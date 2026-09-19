@@ -1,0 +1,2994 @@
+[
+  {
+    "id": "p14-svd-reconstruction",
+    "slug": "p14-svd-reconstruction",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.1",
+    "lesson_id": "P14-C01-S01",
+    "title": "截断 SVD 的投影重建",
+    "statement": "snapshots 的每一列是同一时刻的 n 维状态（state）。取其前 rank 个左奇异方向，返回投影（projection）后的快照、n×n 投影矩阵（matrix）和 Frobenius 残差（residual）范数（norm）；比较结果按投影矩阵而不是单个奇异向量（vector）符号判定。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "snapshots",
+        "type": "list[list[float]]",
+        "description": "n×m 训练快照矩阵；每一行表示同一变量。",
+        "unit": "U"
+      },
+      {
+        "name": "rank",
+        "type": "int",
+        "description": "截断秩（rank），允许0，且不大于 min(n,m)。",
+        "unit": "个"
+      }
+    ],
+    "returns": [
+      {
+        "name": "reconstruction",
+        "type": "list[list[float]]",
+        "description": "投影后的 n×m 快照矩阵。",
+        "unit": "U"
+      },
+      {
+        "name": "projection",
+        "type": "list[list[float]]",
+        "description": "投影到所选左奇异子空间的 n×n 矩阵。",
+        "unit": "1"
+      },
+      {
+        "name": "residual",
+        "type": "float",
+        "description": "原快照减重建快照的 Frobenius 范数。",
+        "unit": "U"
+      }
+    ],
+    "contract": "直接对题给快照做 SVD，不中心化；rank=0 时返回全零重建和投影。奇异向量改号不改变投影；本题不在重复奇异值（singular value）中截断。用 numpy.linalg.svd。",
+    "constraints": [
+      "输入（input）矩阵有限；按照给定秩与顺序返回普通 Python 列表及浮点数。",
+      "n≥m≥1；快照矩阵列满秩。若 0<rank<m，则截断处 σ_rank>σ_(rank+1)，不在重复奇异值中截断。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例只保留第一坐标方向，重建 [[3,0],[0,0]]，残差为2；奇异向量整体改号不改变投影。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    snapshots: list[list[float]],\n    rank: int,\n) -> tuple[list[list[float]], list[list[float]], float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "snapshots": [
+            [
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "rank": 1
+        },
+        "expected": [
+          [
+            [
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          2.0
+        ],
+        "explanation": "首例只保留第一坐标方向，重建 [[3,0],[0,0]]，残差为2；奇异向量整体改号不改变投影。"
+      }
+    ]
+  },
+  {
+    "id": "p14-energy-limit",
+    "slug": "p14-energy-limit",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.1",
+    "lesson_id": "P14-C01-S01",
+    "title": "高能量比例意味着什么",
+    "statement": "训练快照的首个奇异值（singular value）平方占总平方和的99%。这能单独保证什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "训练快照在该方向的最优秩（rank）1 Frobenius 重建误差平方占约1%。"
+      },
+      {
+        "id": "B",
+        "text": "任意新初值（initial condition）的长期预测误差都不超过1%。"
+      },
+      {
+        "id": "C",
+        "text": "该奇异向量（vector）一定是真实系统唯一的机制变量。"
+      },
+      {
+        "id": "D",
+        "text": "不用说明变量尺度，也可以比较不同单位的能量。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-holdout-basis",
+    "slug": "p14-holdout-basis",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.1",
+    "lesson_id": "P14-C01-S01",
+    "title": "基应从哪些轨迹取得",
+    "statement": "目标是检查用训练轨迹（trajectory）得到的低秩（rank）基能否预测新初值（initial condition）。如何划分数据？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "仅用训练轨迹求中心与基；新初值轨迹只用于评估。"
+      },
+      {
+        "id": "B",
+        "text": "先把新初值完整轨迹加入 SVD，再报告其重建误差为零。"
+      },
+      {
+        "id": "C",
+        "text": "看完留出误差后反复选择最有利的秩，却仍称其为独立测试。"
+      },
+      {
+        "id": "D",
+        "text": "不同容室使用不同物理单位而不声明转换。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-sign-and-rank",
+    "slug": "p14-sign-and-rank",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.1",
+    "lesson_id": "P14-C01-S01",
+    "title": "奇异向量改号后的判定",
+    "statement": "两个 SVD 程序得到首个左奇异向量（vector） u 与 −u，但奇异值（singular value）相同。哪项结论成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "两者给出相同的 uuᵀ 投影（projection）矩阵（matrix）。"
+      },
+      {
+        "id": "B",
+        "text": "至少一个程序的重建必错误。"
+      },
+      {
+        "id": "C",
+        "text": "两个投影必互为相反数。"
+      },
+      {
+        "id": "D",
+        "text": "首个奇异值会变成负数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-galerkin-euler",
+    "slug": "p14-galerkin-euler",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.1",
+    "lesson_id": "P14-C01-S02",
+    "title": "已知方程的降阶显式更新",
+    "statement": "完整模型（model）满足 dx/dt=−Lx。给定正交（orthogonality）列基 basis、中心 mean 和初始状态（state） initial，把初值（initial condition）先投影（projection），再对降阶坐标做 steps 次显式 Euler 更新；返回含投影初态的每步 n 维重建状态。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "laplacian",
+        "type": "list[list[float]]",
+        "description": "已知 n×n 对称交换拉普拉斯。",
+        "unit": "1/T"
+      },
+      {
+        "name": "basis",
+        "type": "list[list[float]]",
+        "description": "n×r 正交列基，r 至少1。",
+        "unit": "1"
+      },
+      {
+        "name": "mean",
+        "type": "list[float]",
+        "description": "训练得到的 n 维中心；本题直接给出。",
+        "unit": "U"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "新条件下的 n 维初始总量。",
+        "unit": "U"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "正时间步。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "非负更新步数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "history",
+        "type": "list[list[float]]",
+        "description": "投影初态及之后每一步的重建状态，共 steps+1 行。",
+        "unit": "U"
+      }
+    ],
+    "contract": "a0=basisᵀ(initial−mean)；每步只读旧 a，用 a_next=a−dt·basisᵀ L(mean+basis·a) 更新；返回 mean+basis·a。题给 basis 已正交，不重拟合。",
+    "constraints": [
+      "输入（input）矩阵（matrix）有限；按照给定秩（rank）与顺序返回普通 Python 列表及浮点数。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例初值落在给定基上；一步后第一室为1.8 U、第二室为0，第二步为1.62 U 与0。降阶结果不自动保留完整模型的守恒。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    laplacian: list[list[float]],\n    basis: list[list[float]],\n    mean: list[float],\n    initial: list[float],\n    dt: float,\n    steps: int,\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "laplacian": [
+            [
+              1.0,
+              -1.0
+            ],
+            [
+              -1.0,
+              1.0
+            ]
+          ],
+          "basis": [
+            [
+              1.0
+            ],
+            [
+              0.0
+            ]
+          ],
+          "mean": [
+            0.0,
+            0.0
+          ],
+          "initial": [
+            2.0,
+            0.0
+          ],
+          "dt": 0.1,
+          "steps": 2
+        },
+        "expected": [
+          [
+            2.0,
+            0.0
+          ],
+          [
+            1.8,
+            0.0
+          ],
+          [
+            1.62,
+            0.0
+          ]
+        ],
+        "explanation": "首例初值落在给定基上；一步后第一室为1.8 U、第二室为0，第二步为1.62 U 与0。降阶结果不自动保留完整模型的守恒。"
+      }
+    ]
+  },
+  {
+    "id": "p14-initial-projection",
+    "slug": "p14-initial-projection",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.1",
+    "lesson_id": "P14-C01-S02",
+    "title": "预测误差从何时开始",
+    "statement": "训练轨迹（trajectory）的秩（rank）1重建残差（residual）接近0，但新初值（initial condition）有一个与训练基正交（orthogonality）的分量。哪项判断正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "降阶重建在初始时刻就可能与新初值不同。"
+      },
+      {
+        "id": "B",
+        "text": "训练残差为零保证新初值初始误差也为零。"
+      },
+      {
+        "id": "C",
+        "text": "这一定是 Euler 步长造成的。"
+      },
+      {
+        "id": "D",
+        "text": "提高绘图分辨率可恢复被丢弃的方向。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-conservation-projection",
+    "slug": "p14-conservation-projection",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.1",
+    "lesson_id": "P14-C01-S02",
+    "title": "投影后是否仍守恒",
+    "statement": "完整无输入（input）交换方程的总量守恒。一个任意低秩（rank）投影（projection）模型（model）是否因此自动守恒且非负？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不能自动保证；要检查基、中心、离散步长与重建状态（state）。"
+      },
+      {
+        "id": "B",
+        "text": "任何正交投影（orthogonal projection）都自动保留总量并保持每一室非负。"
+      },
+      {
+        "id": "C",
+        "text": "只要训练重建误差小，所有新轨迹（trajectory）必满足守恒和非负。"
+      },
+      {
+        "id": "D",
+        "text": "舍弃奇异值（singular value）平方和就是总量收支（mass balance）残差（residual）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-time-vs-reduction",
+    "slug": "p14-time-vs-reduction",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.1",
+    "lesson_id": "P14-C01-S02",
+    "title": "区分时间误差与降阶误差",
+    "statement": "同一新初值（initial condition）下，完整模型（model）的 Euler 轨迹（trajectory）与解析解（analytical solution）接近，降阶 Euler 轨迹却从 t=0 起偏离完整模型。优先检查什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "初值投影（projection）和训练基覆盖范围，再单独检查步长细化。"
+      },
+      {
+        "id": "B",
+        "text": "只缩小绘图采样（sampling）间隔。"
+      },
+      {
+        "id": "C",
+        "text": "宣布完整解析解错误。"
+      },
+      {
+        "id": "D",
+        "text": "只看训练重建能量，忽略新初值。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-dmd-fit",
+    "slug": "p14-dmd-fit",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.2",
+    "lesson_id": "P14-C02-S01",
+    "title": "从配对快照拟合传播矩阵",
+    "statement": "past 和 future 的第 j 列是同一轨迹（trajectory）相邻时刻。按题定截断伪逆（pseudoinverse）返回 n×n 的一步传播矩阵（matrix）；不必返回奇异向量（vector）。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "past",
+        "type": "list[list[float]]",
+        "description": "n×m 旧状态（state）快照，按列配对。",
+        "unit": "U"
+      },
+      {
+        "name": "future",
+        "type": "list[list[float]]",
+        "description": "n×m 下一步快照。",
+        "unit": "U"
+      },
+      {
+        "name": "rank",
+        "type": "int",
+        "description": "保留的左奇异方向数，允许0。",
+        "unit": "个"
+      }
+    ],
+    "returns": [
+      {
+        "name": "operator",
+        "type": "list[list[float]]",
+        "description": "使 future≈operator·past 的 n×n 算子。",
+        "unit": "1"
+      }
+    ],
+    "contract": "对 past 作 SVD，取前 rank 个奇异方向；逆奇异值（singular value）只用于大于首奇异值的 10⁻¹² 倍的项，其余逆置零。rank=0 时返回零矩阵。若在重复奇异值处截断，最优方向可不唯一；本题非端点截断只给严格间隙。",
+    "constraints": [
+      "n≥1，m≥1，0≤rank≤min(n,m)；非端点截断处有严格奇异值间隙。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例 past 是单位矩阵，所以返回的算子就是 future；秩不足时不能从数据确定未激发方向。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    past: list[list[float]],\n    future: list[list[float]],\n    rank: int,\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "past": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "future": [
+            [
+              0.9,
+              0.1
+            ],
+            [
+              0.0,
+              0.8
+            ]
+          ],
+          "rank": 2
+        },
+        "expected": [
+          [
+            0.9,
+            0.1
+          ],
+          [
+            0.0,
+            0.8
+          ]
+        ],
+        "explanation": "首例 past 是单位矩阵（identity matrix），所以返回的算子就是 future；秩（rank）不足时不能从数据确定未激发方向。"
+      }
+    ]
+  },
+  {
+    "id": "p14-one-step-rollout",
+    "slug": "p14-one-step-rollout",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.2",
+    "lesson_id": "P14-C02-S01",
+    "title": "一步好不等于滚动好",
+    "statement": "训练配对快照的一步残差（residual）很小。哪项结论仍需另行检验？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "新初值（initial condition）的多步预测误差。"
+      },
+      {
+        "id": "B",
+        "text": "传播矩阵（matrix）已经是真实机制。"
+      },
+      {
+        "id": "C",
+        "text": "任意初值必有零预测误差。"
+      },
+      {
+        "id": "D",
+        "text": "可以忽略快照配对顺序。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-null-direction",
+    "slug": "p14-null-direction",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.2",
+    "lesson_id": "P14-C02-S01",
+    "title": "未激发方向的传播",
+    "statement": "训练快照只沿一个方向变化，却要预测二维新初值（initial condition）。哪项判断正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "另一个方向上的传播不能由这批快照唯一识别。"
+      },
+      {
+        "id": "B",
+        "text": "零训练误差给出完整二维算子。"
+      },
+      {
+        "id": "C",
+        "text": "把 rank 改为2 必自动产生第二条独立信息。"
+      },
+      {
+        "id": "D",
+        "text": "舍弃奇异值（singular value）一定为负。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-paired-columns",
+    "slug": "p14-paired-columns",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.2",
+    "lesson_id": "P14-C02-S01",
+    "title": "配对列的时间含义",
+    "statement": "构造 X 与 Y 时，下列哪一项保持了同一采样（sampling）间隔的一步配对？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "X 的第 j 列取 x_j，Y 的第 j 列取 x_(j+1)。"
+      },
+      {
+        "id": "B",
+        "text": "X 与 Y 各自随机打乱列。"
+      },
+      {
+        "id": "C",
+        "text": "把留出初值（initial condition）也放入 X 后仍称其为独立测试。"
+      },
+      {
+        "id": "D",
+        "text": "X 用总量，Y 不声明地改用浓度（concentration）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-dmd-rates",
+    "slug": "p14-dmd-rates",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.2",
+    "lesson_id": "P14-C02-S02",
+    "title": "从离散特征值读主值速率",
+    "statement": "给定非零复特征值（eigenvalue）的实部、虚部和采样（sampling）间隔，返回连续时间主值衰减率与主值角频率。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "real",
+        "type": "float",
+        "description": "离散特征值的实部。",
+        "unit": "1"
+      },
+      {
+        "name": "imag",
+        "type": "float",
+        "description": "离散特征值的虚部。",
+        "unit": "1"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "正采样间隔。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "依次为 log(|λ|)/dt 和 atan2(imag,real)/dt。",
+        "unit": "1/T"
+      }
+    ],
+    "contract": "特征值非零，角度采用 atan2 的主值区间；不得以主值直接断言真实频率无混叠（aliasing）。",
+    "constraints": [
+      "dt>0，real²+imag²>0；全部输入（input）有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例幅度不变而相角为 π/2，所以衰减率为0，主值角频率为 π/T；整圈混叠仍可能存在。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    real: float,\n    imag: float,\n    dt: float,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "real": 0.0,
+          "imag": 1.0,
+          "dt": 0.5
+        },
+        "expected": [
+          0.0,
+          3.141592653589793
+        ],
+        "explanation": "首例幅度不变而相角为 π/2，所以衰减率为0，主值角频率为 π/T；整圈混叠仍可能存在。"
+      }
+    ]
+  },
+  {
+    "id": "p14-angle-alias",
+    "slug": "p14-angle-alias",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.2",
+    "lesson_id": "P14-C02-S02",
+    "title": "同一个离散旋转",
+    "statement": "离散特征值（eigenvalue）的相角为 0.5 rad。采样（sampling）间隔 Δt 已知，以下哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "(0.5+2πk)/Δt 的频率可给出同一离散相角。"
+      },
+      {
+        "id": "B",
+        "text": "主值频率必是真实唯一频率。"
+      },
+      {
+        "id": "C",
+        "text": "相角与频率完全无关。"
+      },
+      {
+        "id": "D",
+        "text": "改用更大的 rank 就消除所有时间混叠（aliasing）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-eigen-modulus",
+    "slug": "p14-eigen-modulus",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.2",
+    "lesson_id": "P14-C02-S02",
+    "title": "模态幅度的每步变化",
+    "statement": "线性传播的某离散模态（mode）特征值（eigenvalue）模为 0.8。只在该模态的线性解释内，可推出什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "该模态幅度每步乘0.8。"
+      },
+      {
+        "id": "B",
+        "text": "原非线性系统所有状态（state）都以0.8 衰减。"
+      },
+      {
+        "id": "C",
+        "text": "连续衰减率就是0.8/T。"
+      },
+      {
+        "id": "D",
+        "text": "特征值必为实数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-local-operator",
+    "slug": "p14-local-operator",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.2",
+    "lesson_id": "P14-C02-S02",
+    "title": "局部拟合的边界",
+    "statement": "小幅振荡训练得到的 DMD 在大幅留出初值（initial condition）上偏离。哪项解释最审慎？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "线性拟合的适用范围可能不足，需独立条件验证。"
+      },
+      {
+        "id": "B",
+        "text": "一次偏离就证明真实系统混沌（chaos）。"
+      },
+      {
+        "id": "C",
+        "text": "只要一步残差（residual）小就忽略留出误差。"
+      },
+      {
+        "id": "D",
+        "text": "把留出轨迹（trajectory）加入训练再称原测试通过。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-edmd-fit",
+    "slug": "p14-edmd-fit",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.3",
+    "lesson_id": "P14-C03-S01",
+    "title": "从观测特征拟合传播",
+    "statement": "feature_past 与 feature_next 以列对应。返回左乘特征列的传播矩阵（matrix） K；ridge=0 时使用题定伪逆（pseudoinverse），ridge>0 时用岭式矩阵解。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "feature_past",
+        "type": "list[list[float]]",
+        "description": "d×m 旧特征列。",
+        "unit": "按特征声明"
+      },
+      {
+        "name": "feature_next",
+        "type": "list[list[float]]",
+        "description": "d×m 新特征列。",
+        "unit": "按特征声明"
+      },
+      {
+        "name": "ridge",
+        "type": "float",
+        "description": "非负岭参数（parameter）。",
+        "unit": "按特征尺度"
+      }
+    ],
+    "returns": [
+      {
+        "name": "operator",
+        "type": "list[list[float]]",
+        "description": "d×d 特征传播矩阵。",
+        "unit": "按特征尺度"
+      }
+    ],
+    "contract": "ridge=0：K=Y·pinv(X)，伪逆相对阈值10⁻¹²；ridge>0：K=YXᵀ(XXᵀ+ridge·I)⁻¹。输入（input）特征已按题意构造，不在函数内重复提升。",
+    "constraints": [
+      "特征矩阵同形且 d,m≥1；ridge≥0；全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例旧特征是单位矩阵，因而 K 等于新特征矩阵；正则化会收缩系数。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    feature_past: list[list[float]],\n    feature_next: list[list[float]],\n    ridge: float,\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "feature_past": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "feature_next": [
+            [
+              0.8,
+              0.0
+            ],
+            [
+              0.4,
+              0.7
+            ]
+          ],
+          "ridge": 0.0
+        },
+        "expected": [
+          [
+            0.8,
+            0.0
+          ],
+          [
+            0.4,
+            0.7
+          ]
+        ],
+        "explanation": "首例旧特征是单位矩阵（identity matrix），因而 K 等于新特征矩阵；正则化（regularization）会收缩系数。"
+      }
+    ]
+  },
+  {
+    "id": "p14-koopman-functions",
+    "slug": "p14-koopman-functions",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.3",
+    "lesson_id": "P14-C03-S01",
+    "title": "算子作用在哪里",
+    "statement": "Koopman 算子在本节怎样定义？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "把观测（observation）函数与状态（state）映射复合，即 Kg=g∘F。"
+      },
+      {
+        "id": "B",
+        "text": "要求原状态 F 必须线性。"
+      },
+      {
+        "id": "C",
+        "text": "只能作用于固定的三个多项式。"
+      },
+      {
+        "id": "D",
+        "text": "自动证明字典的物理因果意义。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-exact-closure",
+    "slug": "p14-exact-closure",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.3",
+    "lesson_id": "P14-C03-S01",
+    "title": "三角映射为何闭合",
+    "statement": "x⁺=ax，y⁺=by+cx²。字典 [x,y,x²] 的第三项下一步为何仍在字典中？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "(x⁺)²=a²x²。"
+      },
+      {
+        "id": "B",
+        "text": "(x⁺)²=ay。"
+      },
+      {
+        "id": "C",
+        "text": "因为任何多项式字典都必闭合。"
+      },
+      {
+        "id": "D",
+        "text": "因为训练样本足够多就自动闭合。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-readout",
+    "slug": "p14-readout",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.3",
+    "lesson_id": "P14-C03-S01",
+    "title": "状态读出的作用",
+    "statement": "已经得到 z=[x,y,x²] 的传播，如何在本例返回原状态（state）？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "用固定读出矩阵（matrix）选取前两个分量。"
+      },
+      {
+        "id": "B",
+        "text": "把三个分量相加当成 x。"
+      },
+      {
+        "id": "C",
+        "text": "对任何字典都无需定义读出。"
+      },
+      {
+        "id": "D",
+        "text": "把留出状态用于重新拟合读出再报告独立误差。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-lifted-roll",
+    "slug": "p14-lifted-roll",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.3",
+    "lesson_id": "P14-C03-S02",
+    "title": "在固定字典中滚动预测",
+    "statement": "给定已拟合的特征传播矩阵（matrix）、状态（state）读出和初始特征，返回含初态的每步状态预测。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "operator",
+        "type": "list[list[float]]",
+        "description": "d×d 左乘特征矩阵。",
+        "unit": "按特征声明"
+      },
+      {
+        "name": "readout",
+        "type": "list[list[float]]",
+        "description": "n×d 状态读出矩阵。",
+        "unit": "按状态/特征"
+      },
+      {
+        "name": "initial_feature",
+        "type": "list[float]",
+        "description": "d 维初始特征。",
+        "unit": "按特征声明"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "非负预测步数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "依次为第0步到第 steps 步的 n 维状态。",
+        "unit": "U"
+      }
+    ],
+    "contract": "每步先以 operator 左乘旧特征，再以 readout 取状态；本题不在滚动过程中从预测状态重新生成非线性字典。",
+    "constraints": [
+      "矩阵维度相容；steps≥0；全部输入（input）有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例第0步读数为3，第一步为2.1，第二步为1.53；始终使用同一个特征传播。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    operator: list[list[float]],\n    readout: list[list[float]],\n    initial_feature: list[float],\n    steps: int,\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "operator": [
+            [
+              0.8,
+              0.0
+            ],
+            [
+              0.0,
+              0.5
+            ]
+          ],
+          "readout": [
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "initial_feature": [
+            2.0,
+            1.0
+          ],
+          "steps": 2
+        },
+        "expected": [
+          [
+            3.0
+          ],
+          [
+            2.1
+          ],
+          [
+            1.5300000000000002
+          ]
+        ],
+        "explanation": "首例第0步读数为3，第一步为2.1，第二步为1.53；始终使用同一个特征传播。"
+      }
+    ]
+  },
+  {
+    "id": "p14-dictionary-mismatch",
+    "slug": "p14-dictionary-mismatch",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.3",
+    "lesson_id": "P14-C03-S02",
+    "title": "字典变大一定好吗",
+    "statement": "增加字典项后训练残差（residual）下降，哪项仍不能直接得出？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "独立初值（initial condition）和分布（distribution）外预测必改善。"
+      },
+      {
+        "id": "B",
+        "text": "较大的字典改变了表示空间。"
+      },
+      {
+        "id": "C",
+        "text": "需要检查条件数（condition number）与正则选择。"
+      },
+      {
+        "id": "D",
+        "text": "需要单独报告读出误差。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-ridge-bias",
+    "slug": "p14-ridge-bias",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.3",
+    "lesson_id": "P14-C03-S02",
+    "title": "正则参数的选择",
+    "statement": "本节岭参数（parameter） ridge>0 的直接数学作用是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "改变拟合矩阵（matrix），通常引入偏差并改善某些病态情形。"
+      },
+      {
+        "id": "B",
+        "text": "保证学到真实机制。"
+      },
+      {
+        "id": "C",
+        "text": "自动让有限字典精确闭合。"
+      },
+      {
+        "id": "D",
+        "text": "让训练与测试数据可以混用。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-feature-drift",
+    "slug": "p14-feature-drift",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.3",
+    "lesson_id": "P14-C03-S02",
+    "title": "线性滚动后的特征",
+    "statement": "有限字典不闭合时，Kz 滚动后可能出现什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "预测特征未必等于预测状态（state）重新代入字典的值。"
+      },
+      {
+        "id": "B",
+        "text": "每一步必仍是某个真实状态的精确字典。"
+      },
+      {
+        "id": "C",
+        "text": "读出矩阵（matrix）必不存在。"
+      },
+      {
+        "id": "D",
+        "text": "此问题只能用更多绘图点修复。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-sparse-stlsq",
+    "slug": "p14-sparse-stlsq",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.4",
+    "lesson_id": "P14-C04-S01",
+    "title": "按列归一化的稀疏辨识",
+    "statement": "给定候选字典 theta 与导数（derivative）观测（observation），按题定顺序阈值最小二乘（sequential thresholded least squares，STLSQ）返回原单位系数及活动列索引。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "theta",
+        "type": "list[list[float]]",
+        "description": "N×p 候选项设计矩阵（design matrix）。",
+        "unit": "按列定义"
+      },
+      {
+        "name": "derivative",
+        "type": "list[float]",
+        "description": "N 个导数观测。",
+        "unit": "U/T"
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "归一化系数的正阈值。",
+        "unit": "U/T"
+      },
+      {
+        "name": "max_iter",
+        "type": "int",
+        "description": "最多重新拟合次数，允许0。",
+        "unit": "次"
+      }
+    ],
+    "returns": [
+      {
+        "name": "coefficients",
+        "type": "list[float]",
+        "description": "按原候选列顺序的物理系数。",
+        "unit": "按列定义"
+      },
+      {
+        "name": "active",
+        "type": "list[int]",
+        "description": "非零活动列的从0开始索引。",
+        "unit": "个"
+      }
+    ],
+    "contract": "列二范数（norm）归一化；零列尺度设1。先全列最小二乘，取绝对系数≥threshold 的支持，再最多 max_iter 次仅在支持上拟合并重定支持；支持不变即停止。最后低于阈值的系数置0，并除以列尺度。最小二乘使用 numpy.linalg.lstsq 的默认秩（rank）判定。",
+    "constraints": [
+      "N,p≥1，threshold>0，max_iter≥0；全部输入（input）有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例只有第二列活动，系数为 [0,2]；阈值和列尺度是答案的一部分。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    theta: list[list[float]],\n    derivative: list[float],\n    threshold: float,\n    max_iter: int,\n) -> tuple[list[float], list[int]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "theta": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "derivative": [
+            0.0,
+            2.0
+          ],
+          "threshold": 0.1,
+          "max_iter": 5
+        },
+        "expected": [
+          [
+            0.0,
+            2.0
+          ],
+          [
+            1
+          ]
+        ],
+        "explanation": "首例只有第二列活动，系数为 [0,2]；阈值和列尺度是答案的一部分。"
+      }
+    ]
+  },
+  {
+    "id": "p14-column-scale",
+    "slug": "p14-column-scale",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.4",
+    "lesson_id": "P14-C04-S01",
+    "title": "为何声明列尺度",
+    "statement": "候选列 x 与 x² 的数值范围不同，为什么阈值前需要明确列尺度？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "同一数值阈值会随列缩放改变支持，需说明归一化与还原。"
+      },
+      {
+        "id": "B",
+        "text": "因为列尺度能证明因果方向。"
+      },
+      {
+        "id": "C",
+        "text": "因为所有多项式列都同单位。"
+      },
+      {
+        "id": "D",
+        "text": "因为归一化后可不再还原物理系数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-collinear-terms",
+    "slug": "p14-collinear-terms",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.4",
+    "lesson_id": "P14-C04-S01",
+    "title": "共线候选的边界",
+    "statement": "在训练状态（state）中 x² 与 x 几乎共线，两个稀疏方程都拟合得好。哪项判断合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "当前数据不足以稳定区分两项，应增加有区分力的状态范围。"
+      },
+      {
+        "id": "B",
+        "text": "较短方程必是真实机制。"
+      },
+      {
+        "id": "C",
+        "text": "训练误差相同就说明模型（model）物理完全相同。"
+      },
+      {
+        "id": "D",
+        "text": "只改图表颜色可解决。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-candidate-mechanism",
+    "slug": "p14-candidate-mechanism",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.4",
+    "lesson_id": "P14-C04-S01",
+    "title": "候选项与机制",
+    "statement": "字典中出现 x² 且其拟合系数非零，意味着什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "它是在当前字典和数据下保留的候选项，仍需独立检验。"
+      },
+      {
+        "id": "B",
+        "text": "已经证明生物体真实具有该机制。"
+      },
+      {
+        "id": "C",
+        "text": "其他遗漏变量不可能存在。"
+      },
+      {
+        "id": "D",
+        "text": "模型（model）必能预测任何初值（initial condition）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-finite-derivative",
+    "slug": "p14-finite-derivative",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.4",
+    "lesson_id": "P14-C04-S02",
+    "title": "从不等距采样估计变化率",
+    "statement": "返回每个时刻的有限差分（finite difference）导数（derivative）：内部点用前后两点，首末点用相邻两点。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "严格递增的采样（sampling）时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "observations",
+        "type": "list[float]",
+        "description": "对应状态（state）观测（observation）。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "按原顺序的导数估计。",
+        "unit": "U/T"
+      }
+    ],
+    "contract": "内部 i 用 (y_(i+1)−y_(i−1))/(t_(i+1)−t_(i−1))；端点分别用相邻两点。等距和不等距均按同一公式，不能把估计当作无噪声真导数。",
+    "constraints": [
+      "时刻长度≥2且严格递增，观测等长；全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例三处差分均为 2 U/T；内部差分只读两侧观测。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    times: list[float],\n    observations: list[float],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "times": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "observations": [
+            0.0,
+            2.0,
+            4.0
+          ]
+        },
+        "expected": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "explanation": "首例三处差分均为 2 U/T；内部差分只读两侧观测。"
+      }
+    ]
+  },
+  {
+    "id": "p14-noise-difference",
+    "slug": "p14-noise-difference",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.4",
+    "lesson_id": "P14-C04-S02",
+    "title": "缩短采样一定更好吗",
+    "statement": "有固定幅度的独立观测（observation）噪声时，直接差分并缩小时间间隔，可能出现什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "噪声差除以更小间隔，导数（derivative）误差可变大。"
+      },
+      {
+        "id": "B",
+        "text": "导数误差必严格变小。"
+      },
+      {
+        "id": "C",
+        "text": "原状态（state）观测自动无噪声。"
+      },
+      {
+        "id": "D",
+        "text": "差分所得一定是机制真导数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-trajectory-split",
+    "slug": "p14-trajectory-split",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.4",
+    "lesson_id": "P14-C04-S02",
+    "title": "何为独立轨迹验证",
+    "statement": "要检验辨识方程对新初值（initial condition）的预测，应怎样分割？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "训练与留出使用不同的完整轨迹（trajectory），留出不用于阈值选择。"
+      },
+      {
+        "id": "B",
+        "text": "随机打散同一轨迹的相邻点当作独立轨迹。"
+      },
+      {
+        "id": "C",
+        "text": "在留出结果最好时选阈值，仍报告它为独立测试。"
+      },
+      {
+        "id": "D",
+        "text": "只报告训练导数（derivative）拟合。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-chaotic-long-term",
+    "slug": "p14-chaotic-long-term",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.4",
+    "lesson_id": "P14-C04-S02",
+    "title": "混沌基准的比较",
+    "statement": "在 Lorenz 类混沌（chaos）基准上，两个模型（model）长时逐点轨迹（trajectory）分离，哪项结论最谨慎？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "还需看方程、短时预测和限定窗口的长期几何，不能只凭逐点分离判错。"
+      },
+      {
+        "id": "B",
+        "text": "逐点分离证明某模型从未拟合数据。"
+      },
+      {
+        "id": "C",
+        "text": "不需要固定初值（initial condition）与容差。"
+      },
+      {
+        "id": "D",
+        "text": "漂亮吸引子（attractor）图形足以证明原论文复现。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-structure-metrics",
+    "slug": "p14-structure-metrics",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.5",
+    "lesson_id": "P14-C05-S01",
+    "title": "检查交换矩阵与 Euler 一步",
+    "statement": "状态（state）为各室总量，方程 dx/dt=operator·x。返回列和最大偏差、最小非对角元、最小 Euler 对角元，以及连续闭合交换条件和 Euler 非负条件的布尔值。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "operator",
+        "type": "list[list[float]]",
+        "description": "n×n 连续时间线性矩阵（matrix）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "正 Euler 步长。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "max_balance",
+        "type": "float",
+        "description": "各列和绝对值最大值。",
+        "unit": "1/T"
+      },
+      {
+        "name": "min_offdiag",
+        "type": "float",
+        "description": "最小非对角元；n=1 时定义为0。",
+        "unit": "1/T"
+      },
+      {
+        "name": "min_euler_diag",
+        "type": "float",
+        "description": "最小的 1+dt·A_ii。",
+        "unit": "1"
+      },
+      {
+        "name": "closed_exchange",
+        "type": "bool",
+        "description": "列和误差<10⁻¹⁰且非对角元≥−10⁻¹⁰。",
+        "unit": "1"
+      },
+      {
+        "name": "euler_nonnegative",
+        "type": "bool",
+        "description": "非对角元≥−10⁻¹⁰且 Euler 对角元≥−10⁻¹⁰。",
+        "unit": "1"
+      }
+    ],
+    "contract": "按总量坐标检查列和。euler_nonnegative 只判一步矩阵是否逐项非负；它与 closed_exchange 分别报告。",
+    "constraints": [
+      "n≥1，operator 为 n×n 有限矩阵，dt>0。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例列和为零、非对角元非负，且一步 Euler 的最小对角为0.8；两种布尔检查都成立。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    operator: list[list[float]],\n    dt: float,\n) -> tuple[float, float, float, bool, bool]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "operator": [
+            [
+              -1.0,
+              0.2
+            ],
+            [
+              1.0,
+              -0.2
+            ]
+          ],
+          "dt": 0.2
+        },
+        "expected": [
+          0.0,
+          0.2,
+          0.8,
+          true,
+          true
+        ],
+        "explanation": "首例列和为零、非对角元非负，且一步 Euler 的最小对角为0.8；两种布尔检查都成立。"
+      }
+    ]
+  },
+  {
+    "id": "p14-column-conservation",
+    "slug": "p14-column-conservation",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.5",
+    "lesson_id": "P14-C05-S01",
+    "title": "总量守恒看哪一项",
+    "statement": "状态（state）是各室总量，dx/dt=A x。要求所有初态的总量守恒，应检查什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "A 的每列和为0。"
+      },
+      {
+        "id": "B",
+        "text": "A 的每行和为0 就足够。"
+      },
+      {
+        "id": "C",
+        "text": "只看某一条轨迹（trajectory）总量不变。"
+      },
+      {
+        "id": "D",
+        "text": "只看 A 的迹为0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-euler-positive",
+    "slug": "p14-euler-positive",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.5",
+    "lesson_id": "P14-C05-S01",
+    "title": "连续正性与一步正性",
+    "statement": "连续闭合交换矩阵（matrix）符合非对角元非负，过大的显式 Euler 步长还可能造成什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "一步矩阵对角元为负，非负初态出现负分量。"
+      },
+      {
+        "id": "B",
+        "text": "连续模型（model）立即失去守恒。"
+      },
+      {
+        "id": "C",
+        "text": "列和必随 h 改变成非零。"
+      },
+      {
+        "id": "D",
+        "text": "算法自动改用隐式 Euler。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-concentration-coordinates",
+    "slug": "p14-concentration-coordinates",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.5",
+    "lesson_id": "P14-C05-S01",
+    "title": "何时不能照搬列和",
+    "statement": "同一个交换过程改用不同容积的浓度（concentration）作为状态（state），哪项做法正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "从总量=容积×浓度重新推导权重守恒条件。"
+      },
+      {
+        "id": "B",
+        "text": "继续要求浓度状态矩阵（matrix）普通列和为0。"
+      },
+      {
+        "id": "C",
+        "text": "浓度必等于总量。"
+      },
+      {
+        "id": "D",
+        "text": "改变量名就保持全部判据不变。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-path-metrics",
+    "slug": "p14-path-metrics",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.5",
+    "lesson_id": "P14-C05-S02",
+    "title": "同一时域下报告失败",
+    "statement": "给定等形状真值与预测轨迹（trajectory），按题定规则返回逐元素 RMSE、加权总量差的时间最大值及显著负值个数。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "truth",
+        "type": "list[list[float]]",
+        "description": "N×n 真实状态（state）。",
+        "unit": "U"
+      },
+      {
+        "name": "prediction",
+        "type": "list[list[float]]",
+        "description": "N×n 预测状态。",
+        "unit": "U"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "n 个总量权重；各室总量时均为1。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rmse",
+        "type": "float",
+        "description": "所有 Nn 元素的均方根误差（root mean squared error，RMSE）。",
+        "unit": "U"
+      },
+      {
+        "name": "max_balance",
+        "type": "float",
+        "description": "各时刻 weights·(prediction−truth) 绝对值最大值。",
+        "unit": "U"
+      },
+      {
+        "name": "negatives",
+        "type": "int",
+        "description": "prediction 中低于 −10⁻¹⁰ 的元素个数。",
+        "unit": "个"
+      }
+    ],
+    "contract": "预测轨迹包括失败时刻，不得删去。max_balance 衡量相对于真值的加权总量差，不等同于单条预测轨迹对其自身初值（initial condition）的漂移。",
+    "constraints": [
+      "N,n≥1，三组维度相容，全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例第二时刻两室误差互相抵消，总量差为0，但逐元素 RMSE 仍大于0。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    truth: list[list[float]],\n    prediction: list[list[float]],\n    weights: list[float],\n) -> tuple[float, float, int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "truth": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "prediction": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              1.2,
+              0.8
+            ]
+          ],
+          "weights": [
+            1.0,
+            1.0
+          ]
+        },
+        "expected": [
+          0.14142135623730948,
+          0.0,
+          0
+        ],
+        "explanation": "首例第二时刻两室误差互相抵消，总量差为0，但逐元素 RMSE 仍大于0。"
+      }
+    ]
+  },
+  {
+    "id": "p14-fair-budget",
+    "slug": "p14-fair-budget",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.5",
+    "lesson_id": "P14-C05-S02",
+    "title": "怎样比较不同模型",
+    "statement": "比较机制、低秩（rank）和数据传播时，什么必须固定并公开？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "训练来源、观测（observation）变量、留出条件、预测时域与各方法先验（prior）。"
+      },
+      {
+        "id": "B",
+        "text": "只固定图形颜色。"
+      },
+      {
+        "id": "C",
+        "text": "给数据方法留出真值参数（parameter）却说它只用观测。"
+      },
+      {
+        "id": "D",
+        "text": "删除失败轨迹（trajectory）后再汇总。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-initial-error",
+    "slug": "p14-initial-error",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.5",
+    "lesson_id": "P14-C05-S02",
+    "title": "t=0 错误从哪里来",
+    "statement": "降阶模型（model）在 t=0 已偏离留出初值（initial condition），完整 Euler 尚未更新。先检查什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "训练基对新初值的投影（projection）误差。"
+      },
+      {
+        "id": "B",
+        "text": "Euler 时间步是否足够小。"
+      },
+      {
+        "id": "C",
+        "text": "绘图采样（sampling）点数。"
+      },
+      {
+        "id": "D",
+        "text": "只报告训练能量比例。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-repeat-noise",
+    "slug": "p14-repeat-noise",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.5",
+    "lesson_id": "P14-C05-S02",
+    "title": "重复观测噪声实验",
+    "statement": "10 次预定种子下的预测误差差异较大，怎样报告较合适？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "给出重复的范围或分布（distribution），并保留固定的独立评估条件。"
+      },
+      {
+        "id": "B",
+        "text": "只选择误差最低一次当作典型结果。"
+      },
+      {
+        "id": "C",
+        "text": "把所有不同种子都当成新生物机制。"
+      },
+      {
+        "id": "D",
+        "text": "在测试轨迹（trajectory）上挑选种子再报告独立测试。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-capstone-projection-claim",
+    "slug": "p14-capstone-projection-claim",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.summary",
+    "lesson_id": "P14-SUMMARY",
+    "title": "投影误差与动态误差",
+    "statement": "训练快照的秩（rank）1重建误差为0，留出初值（initial condition）有未激发方向。哪项结论成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "训练重建成功不保证留出轨迹（trajectory）的初态或长期预测。"
+      },
+      {
+        "id": "B",
+        "text": "留出误差必为0。"
+      },
+      {
+        "id": "C",
+        "text": "奇异值（singular value）之和就是长期预测误差。"
+      },
+      {
+        "id": "D",
+        "text": "可以用留出轨迹求基后仍叫原独立测试。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-capstone-lift-limit",
+    "slug": "p14-capstone-lift-limit",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.summary",
+    "lesson_id": "P14-SUMMARY",
+    "title": "线性提升的保证",
+    "statement": "一组三项字典在教学三角映射中恰好闭合。对一般新系统能推出什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不能直接推出有限字典也闭合，需检查误差与范围。"
+      },
+      {
+        "id": "B",
+        "text": "任意有限字典都精确闭合。"
+      },
+      {
+        "id": "C",
+        "text": "原状态（state）映射一定线性。"
+      },
+      {
+        "id": "D",
+        "text": "训练拟合足以证明因果机制。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-capstone-projection",
+    "slug": "p14-capstone-projection",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.summary",
+    "lesson_id": "P14-SUMMARY",
+    "title": "综合：低秩投影与重建",
+    "statement": "给定训练快照和截断秩（rank），返回正交投影（orthogonal projection）、重建矩阵（matrix）与 Frobenius 残差（residual），以供后续模型（model）比较。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "snapshots",
+        "type": "list[list[float]]",
+        "description": "n×m 训练快照。",
+        "unit": "U"
+      },
+      {
+        "name": "rank",
+        "type": "int",
+        "description": "截断秩。",
+        "unit": "个"
+      }
+    ],
+    "returns": [
+      {
+        "name": "reconstruction",
+        "type": "list[list[float]]",
+        "description": "投影（projection）重建矩阵。",
+        "unit": "U"
+      },
+      {
+        "name": "projection",
+        "type": "list[list[float]]",
+        "description": "n×n 正交投影矩阵。",
+        "unit": "1"
+      },
+      {
+        "name": "residual",
+        "type": "float",
+        "description": "训练 Frobenius 残差。",
+        "unit": "U"
+      }
+    ],
+    "contract": "不中心化；奇异向量（vector）符号不影响投影。非端点截断有严格奇异值（singular value）间隙；rank=0 返回零投影。",
+    "constraints": [
+      "n≥m≥1，快照列满秩，0≤rank≤m；非端点截断处有严格间隙。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例保留第一方向，投影重建第二行变0，残差为1 U。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    snapshots: list[list[float]],\n    rank: int,\n) -> tuple[list[list[float]], list[list[float]], float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "snapshots": [
+            [
+              4.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "rank": 1
+        },
+        "expected": [
+          [
+            [
+              4.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          1.0
+        ],
+        "explanation": "首例保留第一方向，投影重建第二行变0，残差为1 U。"
+      }
+    ]
+  },
+  {
+    "id": "p14-capstone-edmd",
+    "slug": "p14-capstone-edmd",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.summary",
+    "lesson_id": "P14-SUMMARY",
+    "title": "综合：提升传播及训练残差",
+    "statement": "固定字典的相邻特征列已给出。按题定岭式回归返回特征传播矩阵（matrix）和训练 Frobenius 残差（residual）。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "feature_past",
+        "type": "list[list[float]]",
+        "description": "d×m 旧特征。",
+        "unit": "按特征声明"
+      },
+      {
+        "name": "feature_next",
+        "type": "list[list[float]]",
+        "description": "d×m 新特征。",
+        "unit": "按特征声明"
+      },
+      {
+        "name": "ridge",
+        "type": "float",
+        "description": "非负岭参数（parameter）。",
+        "unit": "按特征尺度"
+      }
+    ],
+    "returns": [
+      {
+        "name": "operator",
+        "type": "list[list[float]]",
+        "description": "d×d 特征传播。",
+        "unit": "按特征尺度"
+      },
+      {
+        "name": "residual",
+        "type": "float",
+        "description": "||Y−KX||_F。",
+        "unit": "按特征尺度"
+      }
+    ],
+    "contract": "K 左乘特征列；ridge=0 用 rcond=10⁻¹² 的伪逆（pseudoinverse），ridge>0 用 YXᵀ(XXᵀ+ridge I)⁻¹。训练残差不是独立预测误差。",
+    "constraints": [
+      "d,m≥1，矩阵同形，ridge≥0；全部有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例字典配对构成对角传播，矩阵为 diag(0.8,0.6)，训练残差为0。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    feature_past: list[list[float]],\n    feature_next: list[list[float]],\n    ridge: float,\n) -> tuple[list[list[float]], float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "feature_past": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "feature_next": [
+            [
+              0.8,
+              0.0
+            ],
+            [
+              0.0,
+              0.6
+            ]
+          ],
+          "ridge": 0.0
+        },
+        "expected": [
+          [
+            [
+              0.8,
+              0.0
+            ],
+            [
+              0.0,
+              0.6
+            ]
+          ],
+          0.0
+        ],
+        "explanation": "首例字典配对构成对角传播，矩阵为 diag(0.8,0.6)，训练残差为0。"
+      }
+    ]
+  },
+  {
+    "id": "p14-capstone-sparse",
+    "slug": "p14-capstone-sparse",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.summary",
+    "lesson_id": "P14-SUMMARY",
+    "title": "综合：稀疏辨识与新状态导数",
+    "statement": "从题定候选字典和导数（derivative）拟合稀疏系数，并用独立给定的新状态（state）特征预测其导数。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "theta",
+        "type": "list[list[float]]",
+        "description": "N×p 训练候选字典。",
+        "unit": "按列定义"
+      },
+      {
+        "name": "derivative",
+        "type": "list[float]",
+        "description": "训练导数。",
+        "unit": "U/T"
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "正的归一化系数阈值。",
+        "unit": "U/T"
+      },
+      {
+        "name": "max_iter",
+        "type": "int",
+        "description": "最多重拟合次数。",
+        "unit": "次"
+      },
+      {
+        "name": "test_features",
+        "type": "list[float]",
+        "description": "未用于拟合的 p 个候选项数值。",
+        "unit": "按列定义"
+      }
+    ],
+    "returns": [
+      {
+        "name": "coefficients",
+        "type": "list[float]",
+        "description": "原列尺度的系数。",
+        "unit": "按列定义"
+      },
+      {
+        "name": "active",
+        "type": "list[int]",
+        "description": "从0开始的活动列。",
+        "unit": "个"
+      },
+      {
+        "name": "prediction",
+        "type": "float",
+        "description": "test_features 与系数的点积。",
+        "unit": "U/T"
+      }
+    ],
+    "contract": "归一化、阈值、重拟合和零列规则与 14.4.1 一致；新特征只用于最后计算，不参与选择支持。",
+    "constraints": [
+      "N,p≥1，threshold>0，max_iter≥0；全部有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例只有第二项活动，独立新特征 [1,3] 给出的导数预测为6。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    theta: list[list[float]],\n    derivative: list[float],\n    threshold: float,\n    max_iter: int,\n    test_features: list[float],\n) -> tuple[list[float], list[int], float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "theta": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "derivative": [
+            0.0,
+            2.0
+          ],
+          "threshold": 0.1,
+          "max_iter": 5,
+          "test_features": [
+            1.0,
+            3.0
+          ]
+        },
+        "expected": [
+          [
+            0.0,
+            2.0
+          ],
+          [
+            1
+          ],
+          6.0
+        ],
+        "explanation": "首例只有第二项活动，独立新特征 [1,3] 给出的导数预测为6。"
+      }
+    ]
+  },
+  {
+    "id": "p14-capstone-structure",
+    "slug": "p14-capstone-structure",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.summary",
+    "lesson_id": "P14-SUMMARY",
+    "title": "综合：外推误差与结构失败",
+    "statement": "比较同一评估轨迹（trajectory）下的真值与候选预测，返回 RMSE、加权总量最大差及负值数；失败时刻不能删去。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "truth",
+        "type": "list[list[float]]",
+        "description": "N×n 留出真值。",
+        "unit": "U"
+      },
+      {
+        "name": "prediction",
+        "type": "list[list[float]]",
+        "description": "N×n 候选预测。",
+        "unit": "U"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "n 个守恒权重。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rmse",
+        "type": "float",
+        "description": "逐元素均方根误差（root mean squared error，RMSE）。",
+        "unit": "U"
+      },
+      {
+        "name": "max_balance",
+        "type": "float",
+        "description": "相对于真值的加权总量差最大值。",
+        "unit": "U"
+      },
+      {
+        "name": "negatives",
+        "type": "int",
+        "description": "低于 −10⁻¹⁰ 的预测元素数。",
+        "unit": "个"
+      }
+    ],
+    "contract": "三项指标各自报告，不把低 RMSE 自动解释为结构保持。",
+    "constraints": [
+      "N,n≥1，矩阵（matrix）同形，权重长度 n；全部有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例总量差仍为0，但逐室存在预测误差。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    truth: list[list[float]],\n    prediction: list[list[float]],\n    weights: list[float],\n) -> tuple[float, float, int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "truth": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "prediction": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              1.1,
+              0.9
+            ]
+          ],
+          "weights": [
+            1.0,
+            1.0
+          ]
+        },
+        "expected": [
+          0.07071067811865477,
+          1.1102230246251565e-16,
+          0
+        ],
+        "explanation": "首例总量差仍为0，但逐室存在预测误差。"
+      }
+    ]
+  },
+  {
+    "id": "p14-capstone-noisy-selection",
+    "slug": "p14-capstone-noisy-selection",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.summary",
+    "lesson_id": "P14-SUMMARY",
+    "title": "噪声下选择方程",
+    "statement": "导数（derivative）噪声下多个稀疏方程训练拟合接近，应怎样选择与检验？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "用预先独立的验证轨迹（trajectory）选阈值，保留最后未参与选择的测试轨迹。"
+      },
+      {
+        "id": "B",
+        "text": "只选训练残差（residual）最低且最漂亮的曲线。"
+      },
+      {
+        "id": "C",
+        "text": "把测试轨迹用于反复调参后仍称独立测试。"
+      },
+      {
+        "id": "D",
+        "text": "一次稀疏支持足以证明真实机制。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p14-capstone-new-input",
+    "slug": "p14-capstone-new-input",
+    "version": "1",
+    "part": "14",
+    "chapter": "14.summary",
+    "lesson_id": "P14-SUMMARY",
+    "title": "新输入后的结论边界",
+    "statement": "训练只含无外部输入（input）交换，新条件增加了时变输入。哪项结论合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数17",
+      "数40"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "原无输入模型（model）未编码该输入作用，须扩展模型并用独立输入条件检验。"
+      },
+      {
+        "id": "B",
+        "text": "训练重建误差小保证新输入预测。"
+      },
+      {
+        "id": "C",
+        "text": "把新输入实验拿来拟合后仍报告为原独立测试。"
+      },
+      {
+        "id": "D",
+        "text": "绘图更平滑可代替新实验条件。"
+      }
+    ],
+    "constraints": []
+  }
+]

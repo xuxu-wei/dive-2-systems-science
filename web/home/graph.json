@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "3c146548b599e1d28cd70cd6be525acf2496b1fa1e1cf00f6a983817d0e3ccee",
+    "catalogSha256": "410c85a5082f97165049b6dffd680ce5057b6fd07f0024c1f8c5aac7c766804b",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -13764,7 +13764,7 @@
       "number": "11.2",
       "parentId": "11",
       "url": "/chapters/11-02-网络上的扩散与守恒/",
-      "description": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量（connected component）和平衡（equilibrium）模态（mode）的关系。",
+      "description": "先推导等容积归一化总量模型（model） dx/dt = −L_k x，再引入非等容积时的 dm/dt = −L_g(m/V)，说明守恒、连通分量（connected component）和平衡（equilibrium）模态（mode）。",
       "categories": [
         "evolution",
         "regulation"
@@ -16395,12 +16395,63 @@
         "14.4",
         "14.5"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-svd-reconstruction",
+        "p14-energy-limit",
+        "p14-holdout-basis",
+        "p14-sign-and-rank",
+        "p14-galerkin-euler",
+        "p14-initial-projection",
+        "p14-conservation-projection",
+        "p14-time-vs-reduction",
+        "p14-dmd-fit",
+        "p14-one-step-rollout",
+        "p14-null-direction",
+        "p14-paired-columns",
+        "p14-dmd-rates",
+        "p14-angle-alias",
+        "p14-eigen-modulus",
+        "p14-local-operator",
+        "p14-edmd-fit",
+        "p14-koopman-functions",
+        "p14-exact-closure",
+        "p14-readout",
+        "p14-lifted-roll",
+        "p14-dictionary-mismatch",
+        "p14-ridge-bias",
+        "p14-feature-drift",
+        "p14-sparse-stlsq",
+        "p14-column-scale",
+        "p14-collinear-terms",
+        "p14-candidate-mechanism",
+        "p14-finite-derivative",
+        "p14-noise-difference",
+        "p14-trajectory-split",
+        "p14-chaotic-long-term",
+        "p14-structure-metrics",
+        "p14-column-conservation",
+        "p14-euler-positive",
+        "p14-concentration-coordinates",
+        "p14-path-metrics",
+        "p14-fair-budget",
+        "p14-initial-error",
+        "p14-repeat-noise",
+        "p14-capstone-projection-claim",
+        "p14-capstone-lift-limit",
+        "p14-capstone-projection",
+        "p14-capstone-edmd",
+        "p14-capstone-sparse",
+        "p14-capstone-structure",
+        "p14-capstone-noisy-selection",
+        "p14-capstone-new-input"
+      ],
+      "available": true,
+      "published": 5,
       "total": 5,
-      "assessmentIds": [],
-      "assessmentUrl": null,
+      "assessmentIds": [
+        "P14-SUMMARY"
+      ],
+      "assessmentUrl": "/parts/14-数据驱动动力学与模型降阶/综合练习/",
       "progressScope": "已发布篇章练习（含篇末综合）"
     },
     {
@@ -16416,112 +16467,261 @@
         "evolution"
       ],
       "children": [
-        "14.1:planned:1",
-        "14.1:planned:2",
-        "14.1:planned:3",
-        "14.1:planned:4"
+        "14.1.1:concept:1",
+        "14.1.1:concept:2",
+        "14.1.1:concept:3",
+        "14.1.1:concept:4",
+        "14.1.2:concept:1",
+        "14.1.2:concept:2",
+        "14.1.2:concept:3",
+        "14.1.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-svd-reconstruction",
+        "p14-energy-limit",
+        "p14-holdout-basis",
+        "p14-sign-and-rank",
+        "p14-galerkin-euler",
+        "p14-initial-projection",
+        "p14-conservation-projection",
+        "p14-time-vs-reduction"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "14.1:planned:1",
+      "id": "14.1.1:concept:1",
       "kind": "concept",
-      "title": "奇异值分解",
-      "english": "singular value decomposition",
-      "number": "14.1",
-      "parentId": "14.1",
-      "url": "/chapters/14-01-低秩分解与模型降阶/",
-      "description": "从快照矩阵（matrix）构造低秩（rank）表示，推导截断误差（truncation error）并区分重建精度与动态预测精度。",
-      "categories": [
-        "cognition",
-        "evolution"
-      ],
-      "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
-      "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
-      "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
-      "progressScope": "教学设计，尚无学习记录"
-    },
-    {
-      "id": "14.1:planned:2",
-      "kind": "concept",
-      "title": "本征正交分解",
+      "title": "训练快照",
       "english": null,
-      "number": "14.1",
+      "number": "14.1.1",
       "parentId": "14.1",
-      "url": "/chapters/14-01-低秩分解与模型降阶/",
-      "description": "从快照矩阵（matrix）构造低秩（rank）表示，推导截断误差（truncation error）并区分重建精度与动态预测精度。",
+      "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction",
+      "description": "从训练快照建立低秩表示，计算投影误差，并判断能量比例能否证明动态预测有效。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-svd-reconstruction",
+        "p14-energy-limit",
+        "p14-holdout-basis",
+        "p14-sign-and-rank"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C01-S01",
+      "lessonNumber": "14.1.1",
+      "lessonTitle": "从快照到截断奇异值",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.1:planned:3",
+      "id": "14.1.1:concept:2",
       "kind": "concept",
-      "title": "低维投影",
+      "title": "奇异值与截断",
       "english": null,
-      "number": "14.1",
+      "number": "14.1.1",
       "parentId": "14.1",
-      "url": "/chapters/14-01-低秩分解与模型降阶/",
-      "description": "从快照矩阵（matrix）构造低秩（rank）表示，推导截断误差（truncation error）并区分重建精度与动态预测精度。",
+      "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction",
+      "description": "从训练快照建立低秩表示，计算投影误差，并判断能量比例能否证明动态预测有效。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-svd-reconstruction",
+        "p14-energy-limit",
+        "p14-holdout-basis",
+        "p14-sign-and-rank"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C01-S01",
+      "lessonNumber": "14.1.1",
+      "lessonTitle": "从快照到截断奇异值",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.1:planned:4",
+      "id": "14.1.1:concept:3",
       "kind": "concept",
-      "title": "截断误差",
-      "english": "truncation error",
-      "number": "14.1",
+      "title": "投影重建",
+      "english": null,
+      "number": "14.1.1",
       "parentId": "14.1",
-      "url": "/chapters/14-01-低秩分解与模型降阶/",
-      "description": "从快照矩阵（matrix）构造低秩（rank）表示，推导截断误差（truncation error）并区分重建精度与动态预测精度。",
+      "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction",
+      "description": "从训练快照建立低秩表示，计算投影误差，并判断能量比例能否证明动态预测有效。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-svd-reconstruction",
+        "p14-energy-limit",
+        "p14-holdout-basis",
+        "p14-sign-and-rank"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C01-S01",
+      "lessonNumber": "14.1.1",
+      "lessonTitle": "从快照到截断奇异值",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.1.1:concept:4",
+      "kind": "concept",
+      "title": "留出方向",
+      "english": null,
+      "number": "14.1.1",
+      "parentId": "14.1",
+      "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction",
+      "description": "从训练快照建立低秩表示，计算投影误差，并判断能量比例能否证明动态预测有效。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-svd-reconstruction",
+        "p14-energy-limit",
+        "p14-holdout-basis",
+        "p14-sign-and-rank"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C01-S01",
+      "lessonNumber": "14.1.1",
+      "lessonTitle": "从快照到截断奇异值",
+      "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.1.2:concept:1",
+      "kind": "concept",
+      "title": "降阶坐标",
+      "english": null,
+      "number": "14.1.2",
+      "parentId": "14.1",
+      "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler",
+      "description": "把已知交换方程投影到低维坐标，分别检查训练重建、新初值误差和动态预测误差。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-galerkin-euler",
+        "p14-initial-projection",
+        "p14-conservation-projection",
+        "p14-time-vs-reduction"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C01-S02",
+      "lessonNumber": "14.1.2",
+      "lessonTitle": "投影动力学与新初值",
+      "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.1.2:concept:2",
+      "kind": "concept",
+      "title": "初值投影",
+      "english": null,
+      "number": "14.1.2",
+      "parentId": "14.1",
+      "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler",
+      "description": "把已知交换方程投影到低维坐标，分别检查训练重建、新初值误差和动态预测误差。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-galerkin-euler",
+        "p14-initial-projection",
+        "p14-conservation-projection",
+        "p14-time-vs-reduction"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C01-S02",
+      "lessonNumber": "14.1.2",
+      "lessonTitle": "投影动力学与新初值",
+      "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.1.2:concept:3",
+      "kind": "concept",
+      "title": "动态误差",
+      "english": null,
+      "number": "14.1.2",
+      "parentId": "14.1",
+      "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler",
+      "description": "把已知交换方程投影到低维坐标，分别检查训练重建、新初值误差和动态预测误差。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-galerkin-euler",
+        "p14-initial-projection",
+        "p14-conservation-projection",
+        "p14-time-vs-reduction"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C01-S02",
+      "lessonNumber": "14.1.2",
+      "lessonTitle": "投影动力学与新初值",
+      "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.1.2:concept:4",
+      "kind": "concept",
+      "title": "守恒与非负",
+      "english": null,
+      "number": "14.1.2",
+      "parentId": "14.1",
+      "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler",
+      "description": "把已知交换方程投影到低维坐标，分别检查训练重建、新初值误差和动态预测误差。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-galerkin-euler",
+        "p14-initial-projection",
+        "p14-conservation-projection",
+        "p14-time-vs-reduction"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C01-S02",
+      "lessonNumber": "14.1.2",
+      "lessonTitle": "投影动力学与新初值",
+      "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "14.2",
@@ -16536,112 +16736,261 @@
         "evolution"
       ],
       "children": [
-        "14.2:planned:1",
-        "14.2:planned:2",
-        "14.2:planned:3",
-        "14.2:planned:4"
+        "14.2.1:concept:1",
+        "14.2.1:concept:2",
+        "14.2.1:concept:3",
+        "14.2.1:concept:4",
+        "14.2.2:concept:1",
+        "14.2.2:concept:2",
+        "14.2.2:concept:3",
+        "14.2.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-dmd-fit",
+        "p14-one-step-rollout",
+        "p14-null-direction",
+        "p14-paired-columns",
+        "p14-dmd-rates",
+        "p14-angle-alias",
+        "p14-eigen-modulus",
+        "p14-local-operator"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "14.2:planned:1",
+      "id": "14.2.1:concept:1",
       "kind": "concept",
-      "title": "动态模态分解",
-      "english": "dynamic mode decomposition",
-      "number": "14.2",
+      "title": "配对快照",
+      "english": null,
+      "number": "14.2.1",
       "parentId": "14.2",
-      "url": "/chapters/14-02-动态模态分解/",
-      "description": "由配对快照拟合线性传播，计算动态模态分解（dynamic mode decomposition，DMD）并验证离散与连续时间解释。",
+      "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit",
+      "description": "从相邻快照拟合传播矩阵，比较训练一步残差和独立初值的滚动误差。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-dmd-fit",
+        "p14-one-step-rollout",
+        "p14-null-direction",
+        "p14-paired-columns"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C02-S01",
+      "lessonNumber": "14.2.1",
+      "lessonTitle": "配对快照与线性传播",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.2:planned:2",
+      "id": "14.2.1:concept:2",
       "kind": "concept",
-      "title": "模态重建",
+      "title": "截断伪逆",
       "english": null,
-      "number": "14.2",
+      "number": "14.2.1",
       "parentId": "14.2",
-      "url": "/chapters/14-02-动态模态分解/",
-      "description": "由配对快照拟合线性传播，计算动态模态分解（dynamic mode decomposition，DMD）并验证离散与连续时间解释。",
+      "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit",
+      "description": "从相邻快照拟合传播矩阵，比较训练一步残差和独立初值的滚动误差。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-dmd-fit",
+        "p14-one-step-rollout",
+        "p14-null-direction",
+        "p14-paired-columns"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C02-S01",
+      "lessonNumber": "14.2.1",
+      "lessonTitle": "配对快照与线性传播",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.2:planned:3",
+      "id": "14.2.1:concept:3",
       "kind": "concept",
-      "title": "滚动预测",
+      "title": "一步传播",
       "english": null,
-      "number": "14.2",
+      "number": "14.2.1",
       "parentId": "14.2",
-      "url": "/chapters/14-02-动态模态分解/",
-      "description": "由配对快照拟合线性传播，计算动态模态分解（dynamic mode decomposition，DMD）并验证离散与连续时间解释。",
+      "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit",
+      "description": "从相邻快照拟合传播矩阵，比较训练一步残差和独立初值的滚动误差。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-dmd-fit",
+        "p14-one-step-rollout",
+        "p14-null-direction",
+        "p14-paired-columns"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C02-S01",
+      "lessonNumber": "14.2.1",
+      "lessonTitle": "配对快照与线性传播",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.2:planned:4",
+      "id": "14.2.1:concept:4",
       "kind": "concept",
-      "title": "对数分支",
+      "title": "留出滚动",
       "english": null,
-      "number": "14.2",
+      "number": "14.2.1",
       "parentId": "14.2",
-      "url": "/chapters/14-02-动态模态分解/",
-      "description": "由配对快照拟合线性传播，计算动态模态分解（dynamic mode decomposition，DMD）并验证离散与连续时间解释。",
+      "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit",
+      "description": "从相邻快照拟合传播矩阵，比较训练一步残差和独立初值的滚动误差。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-dmd-fit",
+        "p14-one-step-rollout",
+        "p14-null-direction",
+        "p14-paired-columns"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C02-S01",
+      "lessonNumber": "14.2.1",
+      "lessonTitle": "配对快照与线性传播",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.2.2:concept:1",
+      "kind": "concept",
+      "title": "动态模态",
+      "english": null,
+      "number": "14.2.2",
+      "parentId": "14.2",
+      "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates",
+      "description": "从离散特征值解释衰减与角频率，识别采样混叠和局部拟合的外推限制。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-dmd-rates",
+        "p14-angle-alias",
+        "p14-eigen-modulus",
+        "p14-local-operator"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C02-S02",
+      "lessonNumber": "14.2.2",
+      "lessonTitle": "模态、采样与预测范围",
+      "chapterUrl": "/chapters/14-02-动态模态分解/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.2.2:concept:2",
+      "kind": "concept",
+      "title": "主值频率",
+      "english": null,
+      "number": "14.2.2",
+      "parentId": "14.2",
+      "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates",
+      "description": "从离散特征值解释衰减与角频率，识别采样混叠和局部拟合的外推限制。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-dmd-rates",
+        "p14-angle-alias",
+        "p14-eigen-modulus",
+        "p14-local-operator"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C02-S02",
+      "lessonNumber": "14.2.2",
+      "lessonTitle": "模态、采样与预测范围",
+      "chapterUrl": "/chapters/14-02-动态模态分解/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.2.2:concept:3",
+      "kind": "concept",
+      "title": "采样混叠",
+      "english": null,
+      "number": "14.2.2",
+      "parentId": "14.2",
+      "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates",
+      "description": "从离散特征值解释衰减与角频率，识别采样混叠和局部拟合的外推限制。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-dmd-rates",
+        "p14-angle-alias",
+        "p14-eigen-modulus",
+        "p14-local-operator"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C02-S02",
+      "lessonNumber": "14.2.2",
+      "lessonTitle": "模态、采样与预测范围",
+      "chapterUrl": "/chapters/14-02-动态模态分解/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.2.2:concept:4",
+      "kind": "concept",
+      "title": "局部拟合",
+      "english": null,
+      "number": "14.2.2",
+      "parentId": "14.2",
+      "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates",
+      "description": "从离散特征值解释衰减与角频率，识别采样混叠和局部拟合的外推限制。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-dmd-rates",
+        "p14-angle-alias",
+        "p14-eigen-modulus",
+        "p14-local-operator"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C02-S02",
+      "lessonNumber": "14.2.2",
+      "lessonTitle": "模态、采样与预测范围",
+      "chapterUrl": "/chapters/14-02-动态模态分解/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "14.3",
@@ -16656,112 +17005,231 @@
         "evolution"
       ],
       "children": [
-        "14.3:planned:1",
-        "14.3:planned:2",
-        "14.3:planned:3",
-        "14.3:planned:4"
+        "14.3.1:concept:1",
+        "14.3.1:concept:2",
+        "14.3.1:concept:3",
+        "14.3.1:concept:4",
+        "14.3.2:concept:1",
+        "14.3.2:concept:2",
+        "14.3.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-edmd-fit",
+        "p14-koopman-functions",
+        "p14-exact-closure",
+        "p14-readout",
+        "p14-lifted-roll",
+        "p14-dictionary-mismatch",
+        "p14-ridge-bias",
+        "p14-feature-drift"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "14.3:planned:1",
+      "id": "14.3.1:concept:1",
       "kind": "concept",
-      "title": "Koopman 算子",
+      "title": "Koopman 观测",
       "english": null,
-      "number": "14.3",
+      "number": "14.3.1",
       "parentId": "14.3",
-      "url": "/chapters/14-03-Koopman 表示与有限字典/",
-      "description": "理解作用于观测（observation）函数的线性传播，实现有限字典近似并解释闭合误差。",
+      "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit",
+      "description": "构造恰好闭合的有限观测字典，手算并核验其线性传播。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-edmd-fit",
+        "p14-koopman-functions",
+        "p14-exact-closure",
+        "p14-readout"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C03-S01",
+      "lessonNumber": "14.3.1",
+      "lessonTitle": "从非线性状态到线性观测",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.3:planned:2",
+      "id": "14.3.1:concept:2",
       "kind": "concept",
-      "title": "观测函数字典",
+      "title": "有限闭合",
       "english": null,
-      "number": "14.3",
+      "number": "14.3.1",
       "parentId": "14.3",
-      "url": "/chapters/14-03-Koopman 表示与有限字典/",
-      "description": "理解作用于观测（observation）函数的线性传播，实现有限字典近似并解释闭合误差。",
+      "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit",
+      "description": "构造恰好闭合的有限观测字典，手算并核验其线性传播。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-edmd-fit",
+        "p14-koopman-functions",
+        "p14-exact-closure",
+        "p14-readout"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C03-S01",
+      "lessonNumber": "14.3.1",
+      "lessonTitle": "从非线性状态到线性观测",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.3:planned:3",
+      "id": "14.3.1:concept:3",
       "kind": "concept",
-      "title": "扩展动态模态分解",
-      "english": "extended dynamic mode decomposition",
-      "number": "14.3",
+      "title": "EDMD 回归",
+      "english": null,
+      "number": "14.3.1",
       "parentId": "14.3",
-      "url": "/chapters/14-03-Koopman 表示与有限字典/",
-      "description": "理解作用于观测（observation）函数的线性传播，实现有限字典近似并解释闭合误差。",
+      "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit",
+      "description": "构造恰好闭合的有限观测字典，手算并核验其线性传播。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-edmd-fit",
+        "p14-koopman-functions",
+        "p14-exact-closure",
+        "p14-readout"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C03-S01",
+      "lessonNumber": "14.3.1",
+      "lessonTitle": "从非线性状态到线性观测",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.3:planned:4",
+      "id": "14.3.1:concept:4",
       "kind": "concept",
-      "title": "字典闭合",
+      "title": "状态读出",
       "english": null,
-      "number": "14.3",
+      "number": "14.3.1",
       "parentId": "14.3",
-      "url": "/chapters/14-03-Koopman 表示与有限字典/",
-      "description": "理解作用于观测（observation）函数的线性传播，实现有限字典近似并解释闭合误差。",
+      "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit",
+      "description": "构造恰好闭合的有限观测字典，手算并核验其线性传播。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-edmd-fit",
+        "p14-koopman-functions",
+        "p14-exact-closure",
+        "p14-readout"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C03-S01",
+      "lessonNumber": "14.3.1",
+      "lessonTitle": "从非线性状态到线性观测",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.3.2:concept:1",
+      "kind": "concept",
+      "title": "字典失配",
+      "english": null,
+      "number": "14.3.2",
+      "parentId": "14.3",
+      "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll",
+      "description": "比较相同数据上的短字典与闭合字典，解释正则化和分布外误差。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-lifted-roll",
+        "p14-dictionary-mismatch",
+        "p14-ridge-bias",
+        "p14-feature-drift"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C03-S02",
+      "lessonNumber": "14.3.2",
+      "lessonTitle": "字典失配与正则化",
+      "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.3.2:concept:2",
+      "kind": "concept",
+      "title": "岭式正则",
+      "english": null,
+      "number": "14.3.2",
+      "parentId": "14.3",
+      "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll",
+      "description": "比较相同数据上的短字典与闭合字典，解释正则化和分布外误差。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-lifted-roll",
+        "p14-dictionary-mismatch",
+        "p14-ridge-bias",
+        "p14-feature-drift"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C03-S02",
+      "lessonNumber": "14.3.2",
+      "lessonTitle": "字典失配与正则化",
+      "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.3.2:concept:3",
+      "kind": "concept",
+      "title": "特征漂移",
+      "english": null,
+      "number": "14.3.2",
+      "parentId": "14.3",
+      "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll",
+      "description": "比较相同数据上的短字典与闭合字典，解释正则化和分布外误差。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-lifted-roll",
+        "p14-dictionary-mismatch",
+        "p14-ridge-bias",
+        "p14-feature-drift"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C03-S02",
+      "lessonNumber": "14.3.2",
+      "lessonTitle": "字典失配与正则化",
+      "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "14.4",
@@ -16776,112 +17244,231 @@
         "evolution"
       ],
       "children": [
-        "14.4:planned:1",
-        "14.4:planned:2",
-        "14.4:planned:3",
-        "14.4:planned:4"
+        "14.4.1:concept:1",
+        "14.4.1:concept:2",
+        "14.4.1:concept:3",
+        "14.4.1:concept:4",
+        "14.4.2:concept:1",
+        "14.4.2:concept:2",
+        "14.4.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-sparse-stlsq",
+        "p14-column-scale",
+        "p14-collinear-terms",
+        "p14-candidate-mechanism",
+        "p14-finite-derivative",
+        "p14-noise-difference",
+        "p14-trajectory-split",
+        "p14-chaotic-long-term"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "14.4:planned:1",
+      "id": "14.4.1:concept:1",
       "kind": "concept",
-      "title": "候选函数库",
+      "title": "候选项",
       "english": null,
-      "number": "14.4",
+      "number": "14.4.1",
       "parentId": "14.4",
-      "url": "/chapters/14-04-稀疏动力学辨识/",
-      "description": "构造候选机制字典并实施稀疏回归，区分方程拟合、结构恢复与可辨识性（identifiability）。",
+      "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq",
+      "description": "从明确的候选项与导数构造稀疏方程，公开列尺度、阈值和停止规则。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-sparse-stlsq",
+        "p14-column-scale",
+        "p14-collinear-terms",
+        "p14-candidate-mechanism"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C04-S01",
+      "lessonNumber": "14.4.1",
+      "lessonTitle": "候选字典与顺序阈值回归",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.4:planned:2",
+      "id": "14.4.1:concept:2",
       "kind": "concept",
-      "title": "顺序阈值最小二乘",
+      "title": "列归一化",
       "english": null,
-      "number": "14.4",
+      "number": "14.4.1",
       "parentId": "14.4",
-      "url": "/chapters/14-04-稀疏动力学辨识/",
-      "description": "构造候选机制字典并实施稀疏回归，区分方程拟合、结构恢复与可辨识性（identifiability）。",
+      "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq",
+      "description": "从明确的候选项与导数构造稀疏方程，公开列尺度、阈值和停止规则。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-sparse-stlsq",
+        "p14-column-scale",
+        "p14-collinear-terms",
+        "p14-candidate-mechanism"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C04-S01",
+      "lessonNumber": "14.4.1",
+      "lessonTitle": "候选字典与顺序阈值回归",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.4:planned:3",
+      "id": "14.4.1:concept:3",
       "kind": "concept",
-      "title": "导数估计",
+      "title": "顺序阈值",
       "english": null,
-      "number": "14.4",
+      "number": "14.4.1",
       "parentId": "14.4",
-      "url": "/chapters/14-04-稀疏动力学辨识/",
-      "description": "构造候选机制字典并实施稀疏回归，区分方程拟合、结构恢复与可辨识性（identifiability）。",
+      "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq",
+      "description": "从明确的候选项与导数构造稀疏方程，公开列尺度、阈值和停止规则。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-sparse-stlsq",
+        "p14-column-scale",
+        "p14-collinear-terms",
+        "p14-candidate-mechanism"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C04-S01",
+      "lessonNumber": "14.4.1",
+      "lessonTitle": "候选字典与顺序阈值回归",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.4:planned:4",
+      "id": "14.4.1:concept:4",
       "kind": "concept",
-      "title": "轨迹留出",
+      "title": "活动支持",
       "english": null,
-      "number": "14.4",
+      "number": "14.4.1",
       "parentId": "14.4",
-      "url": "/chapters/14-04-稀疏动力学辨识/",
-      "description": "构造候选机制字典并实施稀疏回归，区分方程拟合、结构恢复与可辨识性（identifiability）。",
+      "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq",
+      "description": "从明确的候选项与导数构造稀疏方程，公开列尺度、阈值和停止规则。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-sparse-stlsq",
+        "p14-column-scale",
+        "p14-collinear-terms",
+        "p14-candidate-mechanism"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C04-S01",
+      "lessonNumber": "14.4.1",
+      "lessonTitle": "候选字典与顺序阈值回归",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.4.2:concept:1",
+      "kind": "concept",
+      "title": "导数噪声",
+      "english": null,
+      "number": "14.4.2",
+      "parentId": "14.4",
+      "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative",
+      "description": "比较真实导数与含噪有限差分，使用独立初值检验候选方程。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-finite-derivative",
+        "p14-noise-difference",
+        "p14-trajectory-split",
+        "p14-chaotic-long-term"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C04-S02",
+      "lessonNumber": "14.4.2",
+      "lessonTitle": "导数噪声与独立轨迹",
+      "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.4.2:concept:2",
+      "kind": "concept",
+      "title": "独立轨迹",
+      "english": null,
+      "number": "14.4.2",
+      "parentId": "14.4",
+      "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative",
+      "description": "比较真实导数与含噪有限差分，使用独立初值检验候选方程。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-finite-derivative",
+        "p14-noise-difference",
+        "p14-trajectory-split",
+        "p14-chaotic-long-term"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C04-S02",
+      "lessonNumber": "14.4.2",
+      "lessonTitle": "导数噪声与独立轨迹",
+      "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.4.2:concept:3",
+      "kind": "concept",
+      "title": "重复实验",
+      "english": null,
+      "number": "14.4.2",
+      "parentId": "14.4",
+      "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative",
+      "description": "比较真实导数与含噪有限差分，使用独立初值检验候选方程。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-finite-derivative",
+        "p14-noise-difference",
+        "p14-trajectory-split",
+        "p14-chaotic-long-term"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C04-S02",
+      "lessonNumber": "14.4.2",
+      "lessonTitle": "导数噪声与独立轨迹",
+      "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "14.5",
@@ -16896,87 +17483,231 @@
         "evolution"
       ],
       "children": [
-        "14.5:planned:1",
-        "14.5:planned:2",
-        "14.5:planned:3"
+        "14.5.1:concept:1",
+        "14.5.1:concept:2",
+        "14.5.1:concept:3",
+        "14.5.2:concept:1",
+        "14.5.2:concept:2",
+        "14.5.2:concept:3",
+        "14.5.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-structure-metrics",
+        "p14-column-conservation",
+        "p14-euler-positive",
+        "p14-concentration-coordinates",
+        "p14-path-metrics",
+        "p14-fair-budget",
+        "p14-initial-error",
+        "p14-repeat-noise"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "14.5:planned:1",
+      "id": "14.5.1:concept:1",
       "kind": "concept",
-      "title": "结构误差",
+      "title": "列和守恒",
       "english": null,
-      "number": "14.5",
+      "number": "14.5.1",
       "parentId": "14.5",
-      "url": "/chapters/14-05-噪声、外推与结构保持/",
-      "description": "在共同协议下比较降阶与动力学发现，检查守恒、非负性（nonnegativity）、外推和噪声敏感性。",
+      "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics",
+      "description": "用矩阵的列和与非对角符号检查闭合交换，辨认 Euler 步长造成的非负性失效。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-structure-metrics",
+        "p14-column-conservation",
+        "p14-euler-positive",
+        "p14-concentration-coordinates"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C05-S01",
+      "lessonNumber": "14.5.1",
+      "lessonTitle": "守恒、正性与离散步长",
       "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.5:planned:2",
+      "id": "14.5.1:concept:2",
       "kind": "concept",
-      "title": "守恒与非负性",
+      "title": "正性条件",
       "english": null,
-      "number": "14.5",
+      "number": "14.5.1",
       "parentId": "14.5",
-      "url": "/chapters/14-05-噪声、外推与结构保持/",
-      "description": "在共同协议下比较降阶与动力学发现，检查守恒、非负性（nonnegativity）、外推和噪声敏感性。",
+      "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics",
+      "description": "用矩阵的列和与非对角符号检查闭合交换，辨认 Euler 步长造成的非负性失效。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-structure-metrics",
+        "p14-column-conservation",
+        "p14-euler-positive",
+        "p14-concentration-coordinates"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C05-S01",
+      "lessonNumber": "14.5.1",
+      "lessonTitle": "守恒、正性与离散步长",
       "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "14.5:planned:3",
+      "id": "14.5.1:concept:3",
       "kind": "concept",
-      "title": "范围外预测",
+      "title": "Euler 步长",
       "english": null,
-      "number": "14.5",
+      "number": "14.5.1",
       "parentId": "14.5",
-      "url": "/chapters/14-05-噪声、外推与结构保持/",
-      "description": "在共同协议下比较降阶与动力学发现，检查守恒、非负性（nonnegativity）、外推和噪声敏感性。",
+      "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics",
+      "description": "用矩阵的列和与非对角符号检查闭合交换，辨认 Euler 步长造成的非负性失效。",
       "categories": [
         "cognition",
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p14-structure-metrics",
+        "p14-column-conservation",
+        "p14-euler-positive",
+        "p14-concentration-coordinates"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P14-C05-S01",
+      "lessonNumber": "14.5.1",
+      "lessonTitle": "守恒、正性与离散步长",
       "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.5.2:concept:1",
+      "kind": "concept",
+      "title": "公平预算",
+      "english": null,
+      "number": "14.5.2",
+      "parentId": "14.5",
+      "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics",
+      "description": "统一训练轨迹与预测时域，分别汇报预测、总量与非负性证据。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-path-metrics",
+        "p14-fair-budget",
+        "p14-initial-error",
+        "p14-repeat-noise"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C05-S02",
+      "lessonNumber": "14.5.2",
+      "lessonTitle": "同一预算下的外推比较",
+      "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.5.2:concept:2",
+      "kind": "concept",
+      "title": "留出误差",
+      "english": null,
+      "number": "14.5.2",
+      "parentId": "14.5",
+      "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics",
+      "description": "统一训练轨迹与预测时域，分别汇报预测、总量与非负性证据。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-path-metrics",
+        "p14-fair-budget",
+        "p14-initial-error",
+        "p14-repeat-noise"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C05-S02",
+      "lessonNumber": "14.5.2",
+      "lessonTitle": "同一预算下的外推比较",
+      "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.5.2:concept:3",
+      "kind": "concept",
+      "title": "结构残差",
+      "english": null,
+      "number": "14.5.2",
+      "parentId": "14.5",
+      "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics",
+      "description": "统一训练轨迹与预测时域，分别汇报预测、总量与非负性证据。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-path-metrics",
+        "p14-fair-budget",
+        "p14-initial-error",
+        "p14-repeat-noise"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C05-S02",
+      "lessonNumber": "14.5.2",
+      "lessonTitle": "同一预算下的外推比较",
+      "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "14.5.2:concept:4",
+      "kind": "concept",
+      "title": "噪声波动",
+      "english": null,
+      "number": "14.5.2",
+      "parentId": "14.5",
+      "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics",
+      "description": "统一训练轨迹与预测时域，分别汇报预测、总量与非负性证据。",
+      "categories": [
+        "cognition",
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p14-path-metrics",
+        "p14-fair-budget",
+        "p14-initial-error",
+        "p14-repeat-noise"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P14-C05-S02",
+      "lessonNumber": "14.5.2",
+      "lessonTitle": "同一预算下的外推比较",
+      "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "15",
@@ -23665,46 +24396,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "14.1:planned:1",
-      "target": "14.1:planned:2",
+      "source": "14.1.1:concept:1",
+      "target": "14.1.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.1:planned:1",
-      "target": "14.1:planned:3",
+      "source": "14.1.1:concept:1",
+      "target": "14.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.1:planned:1",
-      "target": "14.1:planned:4",
+      "source": "14.1.1:concept:1",
+      "target": "14.1.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.1:planned:2",
-      "target": "14.1:planned:3",
+      "source": "14.1.1:concept:2",
+      "target": "14.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.1:planned:2",
-      "target": "14.1:planned:4",
+      "source": "14.1.1:concept:2",
+      "target": "14.1.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.1:planned:3",
-      "target": "14.1:planned:4",
+      "source": "14.1.1:concept:3",
+      "target": "14.1.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.1.2:concept:1",
+      "target": "14.1.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.1.2:concept:1",
+      "target": "14.1.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.1.2:concept:1",
+      "target": "14.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.1.2:concept:2",
+      "target": "14.1.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.1.2:concept:2",
+      "target": "14.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.1.2:concept:3",
+      "target": "14.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.1.1:concept:4",
+      "target": "14.1.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "3.2",
@@ -23728,46 +24508,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "14.2:planned:1",
-      "target": "14.2:planned:2",
+      "source": "14.2.1:concept:1",
+      "target": "14.2.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.2:planned:1",
-      "target": "14.2:planned:3",
+      "source": "14.2.1:concept:1",
+      "target": "14.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.2:planned:1",
-      "target": "14.2:planned:4",
+      "source": "14.2.1:concept:1",
+      "target": "14.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.2:planned:2",
-      "target": "14.2:planned:3",
+      "source": "14.2.1:concept:2",
+      "target": "14.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.2:planned:2",
-      "target": "14.2:planned:4",
+      "source": "14.2.1:concept:2",
+      "target": "14.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.2:planned:3",
-      "target": "14.2:planned:4",
+      "source": "14.2.1:concept:3",
+      "target": "14.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.2.2:concept:1",
+      "target": "14.2.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.2.2:concept:1",
+      "target": "14.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.2.2:concept:1",
+      "target": "14.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.2.2:concept:2",
+      "target": "14.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.2.2:concept:2",
+      "target": "14.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.2.2:concept:3",
+      "target": "14.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.2.1:concept:4",
+      "target": "14.2.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "6.5",
@@ -23784,46 +24613,74 @@
       "label": "直接先修关系"
     },
     {
-      "source": "14.3:planned:1",
-      "target": "14.3:planned:2",
+      "source": "14.3.1:concept:1",
+      "target": "14.3.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.3:planned:1",
-      "target": "14.3:planned:3",
+      "source": "14.3.1:concept:1",
+      "target": "14.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.3:planned:1",
-      "target": "14.3:planned:4",
+      "source": "14.3.1:concept:1",
+      "target": "14.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.3:planned:2",
-      "target": "14.3:planned:3",
+      "source": "14.3.1:concept:2",
+      "target": "14.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.3:planned:2",
-      "target": "14.3:planned:4",
+      "source": "14.3.1:concept:2",
+      "target": "14.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.3:planned:3",
-      "target": "14.3:planned:4",
+      "source": "14.3.1:concept:3",
+      "target": "14.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.3.2:concept:1",
+      "target": "14.3.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.3.2:concept:1",
+      "target": "14.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.3.2:concept:2",
+      "target": "14.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.3.1:concept:4",
+      "target": "14.3.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "14.2",
@@ -23833,46 +24690,74 @@
       "label": "直接先修关系"
     },
     {
-      "source": "14.4:planned:1",
-      "target": "14.4:planned:2",
+      "source": "14.4.1:concept:1",
+      "target": "14.4.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.4:planned:1",
-      "target": "14.4:planned:3",
+      "source": "14.4.1:concept:1",
+      "target": "14.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.4:planned:1",
-      "target": "14.4:planned:4",
+      "source": "14.4.1:concept:1",
+      "target": "14.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.4:planned:2",
-      "target": "14.4:planned:3",
+      "source": "14.4.1:concept:2",
+      "target": "14.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.4:planned:2",
-      "target": "14.4:planned:4",
+      "source": "14.4.1:concept:2",
+      "target": "14.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.4:planned:3",
-      "target": "14.4:planned:4",
+      "source": "14.4.1:concept:3",
+      "target": "14.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.4.2:concept:1",
+      "target": "14.4.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.4.2:concept:1",
+      "target": "14.4.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.4.2:concept:2",
+      "target": "14.4.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.4.1:concept:4",
+      "target": "14.4.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "4.6",
@@ -23896,25 +24781,74 @@
       "label": "直接先修关系"
     },
     {
-      "source": "14.5:planned:1",
-      "target": "14.5:planned:2",
+      "source": "14.5.1:concept:1",
+      "target": "14.5.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.5:planned:1",
-      "target": "14.5:planned:3",
+      "source": "14.5.1:concept:1",
+      "target": "14.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "14.5:planned:2",
-      "target": "14.5:planned:3",
+      "source": "14.5.1:concept:2",
+      "target": "14.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.5.2:concept:1",
+      "target": "14.5.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.5.2:concept:1",
+      "target": "14.5.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.5.2:concept:1",
+      "target": "14.5.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.5.2:concept:2",
+      "target": "14.5.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.5.2:concept:2",
+      "target": "14.5.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.5.2:concept:3",
+      "target": "14.5.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "14.5.1:concept:3",
+      "target": "14.5.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "13.4",

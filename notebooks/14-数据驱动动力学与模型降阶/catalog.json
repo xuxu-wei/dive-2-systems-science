@@ -1,0 +1,112 @@
+[
+  {
+    "id": "P14-C01-S01",
+    "chapter_id": "14.1",
+    "number": "14.1.1",
+    "title": "从快照到截断奇异值",
+    "outcome": "从训练快照建立低秩表示，计算投影误差，并判断能量比例能否证明动态预测有效。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/01-从快照到截断奇异值.ipynb",
+    "visualization": "web/lowrank/index.html"
+  },
+  {
+    "id": "P14-C01-S02",
+    "chapter_id": "14.1",
+    "number": "14.1.2",
+    "title": "投影动力学与新初值",
+    "outcome": "把已知交换方程投影到低维坐标，分别检查训练重建、新初值误差和动态预测误差。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/02-投影动力学与新初值.ipynb",
+    "visualization": "web/lowrank/index.html"
+  },
+  {
+    "id": "P14-C02-S01",
+    "chapter_id": "14.2",
+    "number": "14.2.1",
+    "title": "配对快照与线性传播",
+    "outcome": "从相邻快照拟合传播矩阵，比较训练一步残差和独立初值的滚动误差。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/01-配对快照与线性传播.ipynb",
+    "visualization": "web/datadriven/index.html"
+  },
+  {
+    "id": "P14-C02-S02",
+    "chapter_id": "14.2",
+    "number": "14.2.2",
+    "title": "模态、采样与预测范围",
+    "outcome": "从离散特征值解释衰减与角频率，识别采样混叠和局部拟合的外推限制。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/02-模态、采样与预测范围.ipynb",
+    "visualization": "web/datadriven/index.html"
+  },
+  {
+    "id": "P14-C03-S01",
+    "chapter_id": "14.3",
+    "number": "14.3.1",
+    "title": "从非线性状态到线性观测",
+    "outcome": "构造恰好闭合的有限观测字典，手算并核验其线性传播。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/01-从非线性状态到线性观测.ipynb",
+    "visualization": "web/datadriven/index.html"
+  },
+  {
+    "id": "P14-C03-S02",
+    "chapter_id": "14.3",
+    "number": "14.3.2",
+    "title": "字典失配与正则化",
+    "outcome": "比较相同数据上的短字典与闭合字典，解释正则化和分布外误差。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.ipynb",
+    "visualization": "web/datadriven/index.html"
+  },
+  {
+    "id": "P14-C04-S01",
+    "chapter_id": "14.4",
+    "number": "14.4.1",
+    "title": "候选字典与顺序阈值回归",
+    "outcome": "从明确的候选项与导数构造稀疏方程，公开列尺度、阈值和停止规则。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/01-候选字典与顺序阈值回归.ipynb",
+    "visualization": "web/datadriven/index.html"
+  },
+  {
+    "id": "P14-C04-S02",
+    "chapter_id": "14.4",
+    "number": "14.4.2",
+    "title": "导数噪声与独立轨迹",
+    "outcome": "比较真实导数与含噪有限差分，使用独立初值检验候选方程。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/02-导数噪声与独立轨迹.ipynb",
+    "visualization": "web/datadriven/index.html"
+  },
+  {
+    "id": "P14-C05-S01",
+    "chapter_id": "14.5",
+    "number": "14.5.1",
+    "title": "守恒、正性与离散步长",
+    "outcome": "用矩阵的列和与非对角符号检查闭合交换，辨认 Euler 步长造成的非负性失效。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/01-守恒、正性与离散步长.ipynb",
+    "visualization": "web/datadriven/index.html"
+  },
+  {
+    "id": "P14-C05-S02",
+    "chapter_id": "14.5",
+    "number": "14.5.2",
+    "title": "同一预算下的外推比较",
+    "outcome": "统一训练轨迹与预测时域，分别汇报预测、总量与非负性证据。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/02-同一预算下的外推比较.ipynb",
+    "visualization": "web/datadriven/index.html"
+  },
+  {
+    "id": "P14-SUMMARY",
+    "chapter_id": "14.summary",
+    "number": "14.综合",
+    "title": "交换系统的降阶与动力学发现",
+    "outcome": "在同一独立条件下比较投影、提升、稀疏方程与结构约束。",
+    "path": "notebooks/14-数据驱动动力学与模型降阶/99-篇末综合/01-交换系统的降阶与动力学发现.ipynb",
+    "visualization": null,
+    "overview": {
+      "goals": "在共同训练与留出协议下比较表示、辨识与结构证据。",
+      "prerequisites": "本篇14.1—14.5；第8篇的模型验证。",
+      "focus": "训练重建、一步拟合与留出预测的证据不能互换。",
+      "knowledge": [
+        "截断与投影",
+        "有限字典与模态",
+        "稀疏候选方程",
+        "守恒、噪声与外推"
+      ]
+    }
+  }
+]

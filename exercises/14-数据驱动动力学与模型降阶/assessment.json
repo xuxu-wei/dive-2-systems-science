@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "14",
+  "lesson_id": "P14-SUMMARY",
+  "title": "交换系统的降阶与动力学发现",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "构造低秩表示",
+      "review_url": "/chapters/14-01-低秩分解与模型降阶/"
+    },
+    {
+      "id": "T2",
+      "title": "识别有限表示的动态",
+      "review_url": "/chapters/14-03-Koopman 表示与有限字典/"
+    },
+    {
+      "id": "T3",
+      "title": "发现稀疏候选方程",
+      "review_url": "/chapters/14-04-稀疏动力学辨识/"
+    },
+    {
+      "id": "T4",
+      "title": "检查结构与迁移",
+      "review_url": "/chapters/14-05-噪声、外推与结构保持/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p14-capstone-projection-claim",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p14-capstone-lift-limit",
+      "level": 1,
+      "points": 10,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p14-capstone-projection",
+      "level": 2,
+      "points": 15,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p14-capstone-edmd",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p14-capstone-sparse",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p14-capstone-structure",
+      "level": 3,
+      "points": 15,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p14-capstone-noisy-selection",
+      "level": 4,
+      "points": 10,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p14-capstone-new-input",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}

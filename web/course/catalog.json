@@ -5761,7 +5761,7 @@
           "prerequisites": "10.1；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点零点（zero）、复平面曲线、相位（phase）变化与绕数的几何解释。",
           "knowledge": [
             "从闭环特征方程到根轨迹",
-            "幅相与裕度",
+            "定义增益（gain）/相位交叉频率（phase crossover frequency）与相位/增益裕度（gain margin）",
             "复平面轨迹和绕数的必要几何桥接，再应用 Nyquist"
           ],
           "focus": "必须固定 Nyquist 的计数约定；裕度只支持所声明模型（model）和回路条件，不能替代非线性饱和系统的完整验证。",
@@ -5853,7 +5853,7 @@
             "能控矩阵和秩",
             "极点配置、状态缩放与输入幅度代价"
           ],
-          "focus": "对应练习 两种秩分别为 2、1；反馈符号约定和 A − BK 的核验一致；近似秩须报告数值容差与尺度。",
+          "focus": "对应练习 两种秩分别为 2、1；给定数值系统的能控性（controllability）不称结构能控性；任意极点配置与只要求稳定所需的可稳定性（stabilizability）分清。反馈符号、数值容差与尺度须核验。",
           "available": true,
           "lessons": [
             {
@@ -5939,10 +5939,10 @@
           "prerequisites": "10.3、7.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门。",
           "knowledge": [
             "复用 7.1 的能观性，推导状态观测器的误差动态",
-            "设计观测器增益（gain）并组合状态反馈，推导输出反馈闭环",
+            "设计观测（observation）器增益（gain）并组合状态反馈，推导输出反馈闭环",
             "在无噪线性条件下解释分离设计，再用噪声和饱和检验其限制"
           ],
-          "focus": "对应练习 两种秩分别为 2、1；只有课程已知状态（state）作为隔离核验答案时，才能直接报告完整状态误差。 反馈只使用估计状态；将增广闭环极点（pole）与控制/观测（observation）误差两组极点核对，饱和时重新验证。",
+          "focus": "对应练习 两种秩分别为 2、1；能观性与较弱的可检测性（detectability）分清。仅在隔离核验中报告已知完整状态（state）误差；反馈只使用估计状态，并核对增广闭环与误差极点（pole），饱和时重新验证。",
           "available": true,
           "lessons": [
             {
@@ -6031,7 +6031,7 @@
             "倒推价值和最优决策",
             "LQR、权重正定（positive definite）条件及有限/无限时域区别"
           ],
-          "focus": "对应练习 最优 u = −x/2、价值为 3x²/2；Riccati 结果与小问题独立计算一致，不能将截断输入（input）后的方案继续称为原约束问题的最优解。",
+          "focus": "对应练习 最优 u = −x/2、价值为 3x²/2；Riccati 结果与小问题独立计算一致。有限时域计算不能自动推出无限时域稳定化解，须检查可稳定性（stabilizability）、代价可检测性（detectability）等条件；截断输入（input）后不能沿用原无约束最优性结论。",
           "available": true,
           "lessons": [
             {
@@ -6477,14 +6477,14 @@
           "id": "11.2",
           "title": "网络上的扩散与守恒",
           "url": "/chapters/11-02-网络上的扩散与守恒/",
-          "goals": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量（connected component）和平衡（equilibrium）模态（mode）的关系。",
+          "goals": "先推导等容积归一化总量模型（model） dx/dt = −L_k x，再引入非等容积时的 dm/dt = −L_g(m/V)，说明守恒、连通分量（connected component）和平衡（equilibrium）模态（mode）。",
           "prerequisites": "11.1、3.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态、矩阵（matrix）幂和矩阵指数（matrix exponential）、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
           "knowledge": [
-            "每条边的交换收支（mass balance）",
-            "拉普拉斯零模态与连通性",
-            "非零模态和趋近速度，限定等容积及对称交换假设"
+            "等容积边系数 k 的单位为 1/T",
+            "物理边系数 g 的单位为 V/T，等容积时 k=g/V₀",
+            "拉普拉斯零模态、连通性与趋近速度"
           ],
-          "focus": "无外部输入（input）输出（output）时检查总量守恒；谱关系只用于满足假设的算子，不能把有向或非对称网络未经说明套入同一结论。",
+          "focus": "无外部输入（input）输出（output）时检查总量守恒；Euler 非负步长只由加权度大于 0 的节点限制，孤立节点不限制；谱关系只用于满足假设的算子。",
           "available": true,
           "lessons": [
             {
@@ -6933,9 +6933,9 @@
           "goals": "从收益矩阵（payoff matrix）计算频率依赖收益，推导两类型复制动态（replicator dynamics），解释个体模型（model）与平均描述的假设。",
           "prerequisites": "12.1、2.3；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、收益矩阵、频率依赖与复制动态。",
           "knowledge": [
-            "收益及其教学含义",
+            "收益数值在连续复制方程中作为适合度率（fitness rate），单位 1/T",
             "平均收益与复制方程",
-            "有限个体规则、混合假设与空间合作"
+            "有限个体规则、混合假设与空间合作，不能把收益率当作繁殖概率（probability）"
           ],
           "focus": "频率位于 [0, 1]，总频率为 1；收益是模型假设，不把某张收益表当成所有生物合作的定律。",
           "available": true,
@@ -7112,10 +7112,10 @@
           "prerequisites": "12.3、4.3、11.2；数学：数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
           "knowledge": [
             "从一维网格交换进入 PDE",
-            "有限差分、边界与时间更新",
-            "二成分反应扩散（reaction-diffusion）及均匀平衡（equilibrium）的扰动，逐步进入模式形成"
+            "内点中心差分（central difference）与单元中心守恒的无通量端点",
+            "无量纲 Schnakenberg 反应扩散（reaction-diffusion）、均匀平衡（equilibrium）扰动及模式证据"
           ],
-          "focus": "显式纯扩散的稳定条件只适用于所声明维数和离散方案；加入反应后重新检查。出现图案不足以证明 Turing 失稳，还须核查均匀态与相关模态（mode）条件。",
+          "focus": "纯扩散的步长条件只适用于所声明的离散方案；双组分 u、v、a、b 为无量纲（dimensionless）量，反应系数单位 1/T，扩散系数（diffusion coefficient）单位格长²/T。出现图案不足以证明 Turing 失稳，还须核查均匀态、模态（mode）与网格收敛。",
           "available": true,
           "lessons": [
             {
@@ -7837,82 +7837,537 @@
           "title": "低秩分解与模型降阶",
           "url": "/chapters/14-01-低秩分解与模型降阶/",
           "goals": "从快照矩阵（matrix）构造低秩（rank）表示，推导截断误差（truncation error）并区分重建精度与动态预测精度。",
-          "prerequisites": "3.2、6.4、8.3；数学：向量（vector）、矩阵、内积（inner product）、范数（norm）、秩、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩投影。",
+          "prerequisites": "3.2、6.4、8.3；数学：向量（vector）、矩阵、内积（inner product）、范数（norm）、秩、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩投影。",
           "knowledge": [
             "建立快照、中心化与变量尺度约定，推导奇异值分解（singular value decomposition，SVD）及伪逆",
             "由投影误差引入本征正交分解（proper orthogonal decomposition，POD）与截断秩",
             "将机制方程投影到低维坐标，检查初值（initial condition）映射、守恒和截断影响"
           ],
           "focus": "截断误差与舍弃奇异值（singular value）平方和对照；正交（orthogonality）性及秩零/满秩边界核验。中心化均值来自训练集（training set），降阶不自动保证非负性（nonnegativity）或守恒。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P14-C01-S01",
+              "chapter_id": "14.1",
+              "number": "14.1.1",
+              "title": "从快照到截断奇异值",
+              "outcome": "从训练快照建立低秩表示，计算投影误差，并判断能量比例能否证明动态预测有效。",
+              "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/01-从快照到截断奇异值.ipynb",
+              "visualization": "web/lowrank/index.html",
+              "questions": [
+                {
+                  "id": "p14-svd-reconstruction",
+                  "slug": "p14-svd-reconstruction",
+                  "title": "截断 SVD 的投影重建",
+                  "type": "python"
+                },
+                {
+                  "id": "p14-energy-limit",
+                  "slug": "p14-energy-limit",
+                  "title": "高能量比例意味着什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-holdout-basis",
+                  "slug": "p14-holdout-basis",
+                  "title": "基应从哪些轨迹取得",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-sign-and-rank",
+                  "slug": "p14-sign-and-rank",
+                  "title": "奇异向量改号后的判定",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction"
+            },
+            {
+              "id": "P14-C01-S02",
+              "chapter_id": "14.1",
+              "number": "14.1.2",
+              "title": "投影动力学与新初值",
+              "outcome": "把已知交换方程投影到低维坐标，分别检查训练重建、新初值误差和动态预测误差。",
+              "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/02-投影动力学与新初值.ipynb",
+              "visualization": "web/lowrank/index.html",
+              "questions": [
+                {
+                  "id": "p14-galerkin-euler",
+                  "slug": "p14-galerkin-euler",
+                  "title": "已知方程的降阶显式更新",
+                  "type": "python"
+                },
+                {
+                  "id": "p14-initial-projection",
+                  "slug": "p14-initial-projection",
+                  "title": "预测误差从何时开始",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-conservation-projection",
+                  "slug": "p14-conservation-projection",
+                  "title": "投影后是否仍守恒",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-time-vs-reduction",
+                  "slug": "p14-time-vs-reduction",
+                  "title": "区分时间误差与降阶误差",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler"
+            }
+          ],
+          "visualization": "web/lowrank/index.html"
         },
         {
           "id": "14.2",
           "title": "动态模态分解",
           "url": "/chapters/14-02-动态模态分解/",
           "goals": "由配对快照拟合线性传播，计算动态模态分解（dynamic mode decomposition，DMD）并验证离散与连续时间解释。",
-          "prerequisites": "14.1、6.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影（projection）。",
+          "prerequisites": "14.1、6.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影（projection）。",
           "knowledge": [
             "从最小二乘传播矩阵进入动态模态分解（dynamic mode decomposition，DMD）",
             "在截断子空间计算特征值（eigenvalue）与模态（mode），解释重建和滚动预测",
             "讨论采样（sampling）间隔、模态混叠（aliasing）及对数分支，区分一步误差和长期行为"
           ],
           "focus": "完整秩线性例子与已知传播矩阵（matrix）、独立轨迹（trajectory）对照；测试零奇异值（singular value）和秩不足，不用训练重建替代预测验证。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P14-C02-S01",
+              "chapter_id": "14.2",
+              "number": "14.2.1",
+              "title": "配对快照与线性传播",
+              "outcome": "从相邻快照拟合传播矩阵，比较训练一步残差和独立初值的滚动误差。",
+              "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/01-配对快照与线性传播.ipynb",
+              "visualization": "web/datadriven/index.html",
+              "questions": [
+                {
+                  "id": "p14-dmd-fit",
+                  "slug": "p14-dmd-fit",
+                  "title": "从配对快照拟合传播矩阵",
+                  "type": "python"
+                },
+                {
+                  "id": "p14-one-step-rollout",
+                  "slug": "p14-one-step-rollout",
+                  "title": "一步好不等于滚动好",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-null-direction",
+                  "slug": "p14-null-direction",
+                  "title": "未激发方向的传播",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-paired-columns",
+                  "slug": "p14-paired-columns",
+                  "title": "配对列的时间含义",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit"
+            },
+            {
+              "id": "P14-C02-S02",
+              "chapter_id": "14.2",
+              "number": "14.2.2",
+              "title": "模态、采样与预测范围",
+              "outcome": "从离散特征值解释衰减与角频率，识别采样混叠和局部拟合的外推限制。",
+              "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/02-模态、采样与预测范围.ipynb",
+              "visualization": "web/datadriven/index.html",
+              "questions": [
+                {
+                  "id": "p14-dmd-rates",
+                  "slug": "p14-dmd-rates",
+                  "title": "从离散特征值读主值速率",
+                  "type": "python"
+                },
+                {
+                  "id": "p14-angle-alias",
+                  "slug": "p14-angle-alias",
+                  "title": "同一个离散旋转",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-eigen-modulus",
+                  "slug": "p14-eigen-modulus",
+                  "title": "模态幅度的每步变化",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-local-operator",
+                  "slug": "p14-local-operator",
+                  "title": "局部拟合的边界",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates"
+            }
+          ],
+          "visualization": "web/datadriven/index.html"
         },
         {
           "id": "14.3",
           "title": "Koopman 表示与有限字典",
           "url": "/chapters/14-03-Koopman 表示与有限字典/",
           "goals": "理解作用于观测（observation）函数的线性传播，实现有限字典近似并解释闭合误差。",
-          "prerequisites": "14.2；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、函数观测、线性算子、有限字典与投影（projection）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影。",
+          "prerequisites": "14.2；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、函数观测、线性算子、有限字典与投影（projection）、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影。",
           "knowledge": [
             "从非线性状态（state）更新引入 Koopman 算子（Koopman operator），先讲函数与算子的必要定义",
             "构造扩展动态模态分解（extended dynamic mode decomposition，EDMD）的字典与数据矩阵",
             "比较字典、投影、正则化（regularization）与状态重建，限定有限字典的闭合条件"
           ],
           "focus": "精确闭合系统用代数递推核验；一般系统报告投影与重建误差，真值方程不用于选择最终字典。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P14-C03-S01",
+              "chapter_id": "14.3",
+              "number": "14.3.1",
+              "title": "从非线性状态到线性观测",
+              "outcome": "构造恰好闭合的有限观测字典，手算并核验其线性传播。",
+              "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/01-从非线性状态到线性观测.ipynb",
+              "visualization": "web/datadriven/index.html",
+              "questions": [
+                {
+                  "id": "p14-edmd-fit",
+                  "slug": "p14-edmd-fit",
+                  "title": "从观测特征拟合传播",
+                  "type": "python"
+                },
+                {
+                  "id": "p14-koopman-functions",
+                  "slug": "p14-koopman-functions",
+                  "title": "算子作用在哪里",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-exact-closure",
+                  "slug": "p14-exact-closure",
+                  "title": "三角映射为何闭合",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-readout",
+                  "slug": "p14-readout",
+                  "title": "状态读出的作用",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit"
+            },
+            {
+              "id": "P14-C03-S02",
+              "chapter_id": "14.3",
+              "number": "14.3.2",
+              "title": "字典失配与正则化",
+              "outcome": "比较相同数据上的短字典与闭合字典，解释正则化和分布外误差。",
+              "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.ipynb",
+              "visualization": "web/datadriven/index.html",
+              "questions": [
+                {
+                  "id": "p14-lifted-roll",
+                  "slug": "p14-lifted-roll",
+                  "title": "在固定字典中滚动预测",
+                  "type": "python"
+                },
+                {
+                  "id": "p14-dictionary-mismatch",
+                  "slug": "p14-dictionary-mismatch",
+                  "title": "字典变大一定好吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-ridge-bias",
+                  "slug": "p14-ridge-bias",
+                  "title": "正则参数的选择",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-feature-drift",
+                  "slug": "p14-feature-drift",
+                  "title": "线性滚动后的特征",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll"
+            }
+          ],
+          "visualization": "web/datadriven/index.html"
         },
         {
           "id": "14.4",
           "title": "稀疏动力学辨识",
           "url": "/chapters/14-04-稀疏动力学辨识/",
           "goals": "构造候选机制字典并实施稀疏回归，区分方程拟合、结构恢复与可辨识性（identifiability）。",
-          "prerequisites": "14.3、8.3、4.6；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影（projection）、散度（divergence）与体积变化、连续变分方程、分段归一化和时间增长率。",
+          "prerequisites": "14.3、8.3、4.6；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影（projection）、散度（divergence）与体积变化、连续变分方程、分段归一化和时间增长率。",
           "knowledge": [
             "从导数或离散增量的回归引入稀疏动力学辨识（sparse identification of nonlinear dynamics，SINDy）",
-            "显式实现顺序阈值最小二乘，公开阈值、列缩放和停止规则",
+            "显式实现顺序阈值最小二乘（sequential thresholded least squares，STLSQ），公开阈值、列缩放和停止规则",
             "比较候选项共线性、导数估计与观测（observation）噪声，使用完整轨迹留出验证"
           ],
           "focus": "无噪可辨识小例子与已知系数核验；含噪例子分别检查导数（derivative）误差、短时预测和长期结构，不以混沌（chaos）轨迹（trajectory）长时逐点失配单独判定方程错误。标准化与阈值只由训练/验证集（validation set）决定，4.6 的 Lorenz 实验为课程基准，原论文复现留到第 17 篇。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P14-C04-S01",
+              "chapter_id": "14.4",
+              "number": "14.4.1",
+              "title": "候选字典与顺序阈值回归",
+              "outcome": "从明确的候选项与导数构造稀疏方程，公开列尺度、阈值和停止规则。",
+              "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/01-候选字典与顺序阈值回归.ipynb",
+              "visualization": "web/datadriven/index.html",
+              "questions": [
+                {
+                  "id": "p14-sparse-stlsq",
+                  "slug": "p14-sparse-stlsq",
+                  "title": "按列归一化的稀疏辨识",
+                  "type": "python"
+                },
+                {
+                  "id": "p14-column-scale",
+                  "slug": "p14-column-scale",
+                  "title": "为何声明列尺度",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-collinear-terms",
+                  "slug": "p14-collinear-terms",
+                  "title": "共线候选的边界",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-candidate-mechanism",
+                  "slug": "p14-candidate-mechanism",
+                  "title": "候选项与机制",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq"
+            },
+            {
+              "id": "P14-C04-S02",
+              "chapter_id": "14.4",
+              "number": "14.4.2",
+              "title": "导数噪声与独立轨迹",
+              "outcome": "比较真实导数与含噪有限差分，使用独立初值检验候选方程。",
+              "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/02-导数噪声与独立轨迹.ipynb",
+              "visualization": "web/datadriven/index.html",
+              "questions": [
+                {
+                  "id": "p14-finite-derivative",
+                  "slug": "p14-finite-derivative",
+                  "title": "从不等距采样估计变化率",
+                  "type": "python"
+                },
+                {
+                  "id": "p14-noise-difference",
+                  "slug": "p14-noise-difference",
+                  "title": "缩短采样一定更好吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-trajectory-split",
+                  "slug": "p14-trajectory-split",
+                  "title": "何为独立轨迹验证",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-chaotic-long-term",
+                  "slug": "p14-chaotic-long-term",
+                  "title": "混沌基准的比较",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative"
+            }
+          ],
+          "visualization": "web/datadriven/index.html"
         },
         {
           "id": "14.5",
           "title": "噪声、外推与结构保持",
           "url": "/chapters/14-05-噪声、外推与结构保持/",
           "goals": "在共同协议下比较降阶与动力学发现，检查守恒、非负性（nonnegativity）、外推和噪声敏感性。",
-          "prerequisites": "14.4、13.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影（projection）。",
+          "prerequisites": "14.4、13.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影（projection）。",
           "knowledge": [
             "对齐物理变量、采样（sampling）、数据量和预测时域，固定结构误差与数值误差（numerical error）的分项指标",
             "由多室交换的列和及符号条件检查候选线性模型（model）的守恒与非负性",
             "在新初值（initial condition）、新输入（input）和噪声变化下评价预测与结构，保留失败轨迹（trajectory）"
           ],
           "focus": "纯交换极限（limit）用总量恒定核验；解析线性基线检查指标。低秩重建、一步误差与长期可用性分别报告，失败不作为缺失样本丢弃。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P14-C05-S01",
+              "chapter_id": "14.5",
+              "number": "14.5.1",
+              "title": "守恒、正性与离散步长",
+              "outcome": "用矩阵的列和与非对角符号检查闭合交换，辨认 Euler 步长造成的非负性失效。",
+              "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/01-守恒、正性与离散步长.ipynb",
+              "visualization": "web/datadriven/index.html",
+              "questions": [
+                {
+                  "id": "p14-structure-metrics",
+                  "slug": "p14-structure-metrics",
+                  "title": "检查交换矩阵与 Euler 一步",
+                  "type": "python"
+                },
+                {
+                  "id": "p14-column-conservation",
+                  "slug": "p14-column-conservation",
+                  "title": "总量守恒看哪一项",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-euler-positive",
+                  "slug": "p14-euler-positive",
+                  "title": "连续正性与一步正性",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-concentration-coordinates",
+                  "slug": "p14-concentration-coordinates",
+                  "title": "何时不能照搬列和",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics"
+            },
+            {
+              "id": "P14-C05-S02",
+              "chapter_id": "14.5",
+              "number": "14.5.2",
+              "title": "同一预算下的外推比较",
+              "outcome": "统一训练轨迹与预测时域，分别汇报预测、总量与非负性证据。",
+              "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/02-同一预算下的外推比较.ipynb",
+              "visualization": "web/datadriven/index.html",
+              "questions": [
+                {
+                  "id": "p14-path-metrics",
+                  "slug": "p14-path-metrics",
+                  "title": "同一时域下报告失败",
+                  "type": "python"
+                },
+                {
+                  "id": "p14-fair-budget",
+                  "slug": "p14-fair-budget",
+                  "title": "怎样比较不同模型",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-initial-error",
+                  "slug": "p14-initial-error",
+                  "title": "t=0 错误从哪里来",
+                  "type": "choice"
+                },
+                {
+                  "id": "p14-repeat-noise",
+                  "slug": "p14-repeat-noise",
+                  "title": "重复观测噪声实验",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics"
+            }
+          ],
+          "visualization": "web/datadriven/index.html"
         }
-      ]
+      ],
+      "assessment": {
+        "id": "14.summary",
+        "assessment": true,
+        "title": "交换系统的降阶与动力学发现",
+        "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/",
+        "goals": "在共同训练与留出协议下比较表示、辨识与结构证据。",
+        "prerequisites": "本篇14.1—14.5；第8篇的模型（model）验证。",
+        "focus": "训练重建、一步拟合与留出预测的证据不能互换。",
+        "knowledge": [
+          "截断与投影（projection）",
+          "有限字典与模态（mode）",
+          "稀疏候选方程",
+          "守恒、噪声与外推"
+        ],
+        "lessons": [
+          {
+            "id": "P14-SUMMARY",
+            "chapter_id": "14.summary",
+            "number": "14.综合",
+            "title": "交换系统的降阶与动力学发现",
+            "outcome": "在同一独立条件下比较投影、提升、稀疏方程与结构约束。",
+            "path": "notebooks/14-数据驱动动力学与模型降阶/99-篇末综合/01-交换系统的降阶与动力学发现.ipynb",
+            "visualization": null,
+            "overview": {
+              "goals": "在共同训练与留出协议下比较表示、辨识与结构证据。",
+              "prerequisites": "本篇14.1—14.5；第8篇的模型验证。",
+              "focus": "训练重建、一步拟合与留出预测的证据不能互换。",
+              "knowledge": [
+                "截断与投影",
+                "有限字典与模态",
+                "稀疏候选方程",
+                "守恒、噪声与外推"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p14-capstone-projection-claim",
+                "slug": "p14-capstone-projection-claim",
+                "title": "投影误差与动态误差",
+                "type": "choice"
+              },
+              {
+                "id": "p14-capstone-lift-limit",
+                "slug": "p14-capstone-lift-limit",
+                "title": "线性提升的保证",
+                "type": "choice"
+              },
+              {
+                "id": "p14-capstone-projection",
+                "slug": "p14-capstone-projection",
+                "title": "综合：低秩投影与重建",
+                "type": "python"
+              },
+              {
+                "id": "p14-capstone-edmd",
+                "slug": "p14-capstone-edmd",
+                "title": "综合：提升传播及训练残差",
+                "type": "python"
+              },
+              {
+                "id": "p14-capstone-sparse",
+                "slug": "p14-capstone-sparse",
+                "title": "综合：稀疏辨识与新状态导数",
+                "type": "python"
+              },
+              {
+                "id": "p14-capstone-structure",
+                "slug": "p14-capstone-structure",
+                "title": "综合：外推误差与结构失败",
+                "type": "python"
+              },
+              {
+                "id": "p14-capstone-noisy-selection",
+                "slug": "p14-capstone-noisy-selection",
+                "title": "噪声下选择方程",
+                "type": "choice"
+              },
+              {
+                "id": "p14-capstone-new-input",
+                "slug": "p14-capstone-new-input",
+                "title": "新输入后的结论边界",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-projection-claim"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "15",

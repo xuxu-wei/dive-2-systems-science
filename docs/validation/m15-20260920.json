@@ -1,0 +1,47 @@
+{
+  "milestone": "M15",
+  "date": "2026-09-20",
+  "status": "已完成",
+  "scope": "第14篇：14.1—14.5与篇末综合",
+  "deliverables": {
+    "chapters": 5,
+    "notebooks": 11,
+    "questions": 48,
+    "python_questions": 14,
+    "graded_capstone": {
+      "questions": 8,
+      "level_points": [20, 30, 30, 20],
+      "targets": ["T1", "T2", "T3", "T4"]
+    },
+    "chapter_explorations": 5,
+    "catalog": "notebooks/14-数据驱动动力学与模型降阶/catalog.json",
+    "question_bank": "exercises/14-数据驱动动力学与模型降阶/questions.json",
+    "pages": ["web/lowrank/index.html", "web/datadriven/index.html"]
+  },
+  "science_review": [
+    "截断 SVD 的训练误差由舍弃奇异值核对；截断穿过重复奇异值时投影可能不唯一，当前判题限定严格间隙",
+    "DMD 在满秩线性快照上对照已知矩阵，零奇异方向按公开阈值处理；新初值滚动与训练一步拟合分开",
+    "三角非线性映射的三项 Koopman 字典代数闭合；饱和清除字典作为失配反例",
+    "无噪声 logistic 与 Lorenz 已知系数独立核对；含噪导数和留出初值不当作原论文复现",
+    "闭合交换列和、非对角符号与 Euler 步长分别核对；完整、低秩、DMD、有限字典和稀疏候选共享训练与留出条件",
+    "五格无通量扩散用于第二组低秩快照，核对守恒与截断误差；新输入和单通道观测单列为变更条件"
+  ],
+  "execution": {
+    "environment": "Windows / Python 3.13.2；本机 PC 浏览器",
+    "fresh_kernel_notebooks": 11,
+    "executed_code_cells": 55,
+    "figures_saved": 11,
+    "teaching_sync": "168 本已发布 Notebook、778 道题与链接同步；术语首现检查通过",
+    "judge": "14 道本篇 Python 题逐题检查样例通过、完整通过和错误答案不通过",
+    "browser": "在隔离的本机学习目录中实际操作 14.1 的留出初值往返及 14.2—14.5 的参数/案例往返、题面和默认 IDE 请求；14.2—14.5 检查 1024、1440、1920 px 宽度无水平溢出",
+    "javascript": "97 项通过，包括低秩、混叠、字典、阈值和守恒网页模型",
+    "python_suite": "全量 856 项通过；最终目录和 Notebook 生成后专项 29 项通过",
+    "home_graph": "17 篇、85 章；645 节点、936 条边；已与最新课程目录哈希同步"
+  },
+  "boundaries": [
+    "网页模型标明解析特例或简化假设；完整推导和实验以 Notebook 为准",
+    "Lorenz 基准只使用课程明示参数和干净导数，不宣称复现 SINDy 原论文",
+    "本轮仅检验 Windows/Chrome 的所列 PC 宽度，尚无目标读者试学或独立同行评审",
+    "未纳入模拟数据、个人作答记录、本地虚拟环境和临时检查文件；AGENTS.md 未修改"
+  ]
+}
