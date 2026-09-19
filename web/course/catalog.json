@@ -8378,40 +8378,186 @@
           "id": "15.1",
           "title": "神经网络与自动微分",
           "url": "/chapters/15-01-神经网络与自动微分/",
-          "goals": "从计算图推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
-          "prerequisites": "3.4、8.2、9.5；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播。",
+          "goals": "从计算图（computational graph）推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
+          "prerequisites": "3.4、8.2、9.5；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、神经网络（neural network）、计算图、自动微分（automatic differentiation，AD）与反向传播。",
           "knowledge": [
             "引入小型神经网络（neural network）的参数（parameter）、激活和计算图",
             "从链式法则推导反向模式自动微分（automatic differentiation，AD），逐项实现小图反传",
             "组织损失、批次、初始化和训练/验证边界，解释自动微分与数值差分的区别"
           ],
           "focus": "光滑点用中心差分（central difference）步长扫描，线性网络用闭式核验；自动微分准确求程序导数（derivative），不保证程序或模型（model）本身正确。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P15-C01-S01",
+              "chapter_id": "15.1",
+              "number": "15.1.1",
+              "title": "从计算图到小型神经网络",
+              "outcome": "写出一层标量网络的前向计算，并逐项解释参数、激活和损失。",
+              "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb",
+              "visualization": "web/differentiable/index.html",
+              "questions": [
+                {
+                  "id": "p15-graph-order",
+                  "slug": "p15-graph-order",
+                  "title": "计算图的前向顺序",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-static-not-ode",
+                  "slug": "p15-static-not-ode",
+                  "title": "网络表示的对象",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-network-value",
+                  "slug": "p15-network-value",
+                  "title": "计算一神经元响应",
+                  "type": "python"
+                },
+                {
+                  "id": "p15-network-loss-gradient",
+                  "slug": "p15-network-loss-gradient",
+                  "title": "输出、损失与四个梯度",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order"
+            },
+            {
+              "id": "P15-C01-S02",
+              "chapter_id": "15.1",
+              "number": "15.1.2",
+              "title": "反向传播与梯度核验",
+              "outcome": "对同一计算图手推、反向累积并用中心差分核验梯度；识别不可微点。",
+              "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.ipynb",
+              "visualization": "web/differentiable/index.html",
+              "questions": [
+                {
+                  "id": "p15-gradient-object",
+                  "slug": "p15-gradient-object",
+                  "title": "自动微分究竟对什么求导",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-nonsmooth",
+                  "slug": "p15-nonsmooth",
+                  "title": "非光滑点的差分",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-reverse-graph",
+                  "slug": "p15-reverse-graph",
+                  "title": "反向计算图梯度",
+                  "type": "python"
+                },
+                {
+                  "id": "p15-difference-check",
+                  "slug": "p15-difference-check",
+                  "title": "中心差分核验",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object"
+            }
+          ],
+          "visualization": "web/differentiable/index.html"
         },
         {
           "id": "15.2",
           "title": "离散动力学学习",
           "url": "/chapters/15-02-离散动力学学习/",
           "goals": "学习离散状态（state）转移模型（model），区分一步训练、自由滚动和训练分布（distribution）外预测。",
-          "prerequisites": "15.1、14.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
+          "prerequisites": "15.1、14.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
           "knowledge": [
             "以离散转移映射定义网络输入、输出（output）、时间间隔和尺度",
             "比较一步损失与有限滚动损失，避免将未来真实状态混入自由运行（free-run simulation）",
             "在新初值（initial condition）与输入下比较机制、线性和小网络基线，记录稳定性与预算"
           ],
           "focus": "线性网络与已知状态转移矩阵（transition matrix）对照；空时域和零输入（input）测试。离散转移网络不未经说明当作连续导数（derivative）使用。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P15-C02-S01",
+              "chapter_id": "15.2",
+              "number": "15.2.1",
+              "title": "固定采样间隔的一步映射",
+              "outcome": "把状态与输入组成离散转移，分清一步拟合的训练和留出轨迹。",
+              "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.ipynb",
+              "visualization": "web/differentiable/index.html",
+              "questions": [
+                {
+                  "id": "p15-one-step-input",
+                  "slug": "p15-one-step-input",
+                  "title": "一步预测喂入什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-sampling-object",
+                  "slug": "p15-sampling-object",
+                  "title": "采样间隔变化后的模型",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-fixed-map",
+                  "slug": "p15-fixed-map",
+                  "title": "固定间隔的一步状态",
+                  "type": "python"
+                },
+                {
+                  "id": "p15-teacher-forced",
+                  "slug": "p15-teacher-forced",
+                  "title": "真实旧状态的一步预测",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input"
+            },
+            {
+              "id": "P15-C02-S02",
+              "chapter_id": "15.2",
+              "number": "15.2.2",
+              "title": "自由滚动、数据划分与外推",
+              "outcome": "按完整轨迹划分数据，比较一步损失、多步误差和新初值。",
+              "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.ipynb",
+              "visualization": "web/differentiable/index.html",
+              "questions": [
+                {
+                  "id": "p15-split-trajectories",
+                  "slug": "p15-split-trajectories",
+                  "title": "独立评估的划分",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-rollout-leak",
+                  "slug": "p15-rollout-leak",
+                  "title": "自由运行中的信息泄漏",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-free-rollout",
+                  "slug": "p15-free-rollout",
+                  "title": "自由运行的状态路径",
+                  "type": "python"
+                },
+                {
+                  "id": "p15-rollout-error",
+                  "slug": "p15-rollout-error",
+                  "title": "多步误差与终点误差",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories"
+            }
+          ],
+          "visualization": "web/differentiable/index.html"
         },
         {
           "id": "15.3",
           "title": "神经微分方程",
           "url": "/chapters/15-03-神经微分方程/",
           "goals": "以网络表示连续动力学右端，推导前向和伴随灵敏度（adjoint sensitivity），核验两种求导路线并区分求解误差和模型（model）误差。",
-          "prerequisites": "15.2、2.4；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、ODE 参数（parameter）前向灵敏度、分部积分、伴随终值方程、参数梯度（gradient）积分与观测（observation）时刻跳跃。",
+          "prerequisites": "15.2、2.4；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、ODE 参数（parameter）前向灵敏度（forward sensitivity）、分部积分、伴随终值方程、参数梯度（gradient）积分与观测（observation）时刻跳跃。",
           "knowledge": [
             "建立神经常微分方程（neural ordinary differential equation，Neural ODE）的右端与观测损失",
             "先对固定步长求解程序显式求导，用链式法则（chain rule）推导连续前向灵敏度方程",
@@ -8420,43 +8566,352 @@
             "比较容差、反向状态（state）重建、观测稀疏与不同初值，一般函数空间证明作为拓展"
           ],
           "focus": "线性标量模型用指数解及解析参数导数（derivative）独立核验前向和伴随；固定离散程序另作有限差分（finite difference）检查，两种路线的数值梯度不要求在有限步长完全相同。观测网格与求解网格分开，检查观测时刻跳跃、反向重建误差与细化收敛；超预算单独记录。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P15-C03-S01",
+              "chapter_id": "15.3",
+              "number": "15.3.1",
+              "title": "连续右端、求解器与前向灵敏度",
+              "outcome": "区分连续模型、离散求解程序和两者各自的参数导数。",
+              "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb",
+              "visualization": "web/differentiable/index.html",
+              "questions": [
+                {
+                  "id": "p15-two-gradients",
+                  "slug": "p15-two-gradients",
+                  "title": "连续与离散梯度",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-sensitivity-initial",
+                  "slug": "p15-sensitivity-initial",
+                  "title": "固定初态的灵敏度",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-exact-decay",
+                  "slug": "p15-exact-decay",
+                  "title": "连续清除的解析状态",
+                  "type": "python"
+                },
+                {
+                  "id": "p15-euler-sensitivity",
+                  "slug": "p15-euler-sensitivity",
+                  "title": "Euler 状态与参数灵敏度",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients"
+            },
+            {
+              "id": "P15-C03-S02",
+              "chapter_id": "15.3",
+              "number": "15.3.2",
+              "title": "伴随跳跃与反向重建的边界",
+              "outcome": "推导多时刻观测的伴随跳跃和参数梯度，比较离散反传与反向重建。",
+              "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.ipynb",
+              "visualization": "web/differentiable/index.html",
+              "questions": [
+                {
+                  "id": "p15-adjoint-jump",
+                  "slug": "p15-adjoint-jump",
+                  "title": "观测时刻的伴随跳跃",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-reverse-state",
+                  "slug": "p15-reverse-state",
+                  "title": "反向状态重建",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-continuous-gradient",
+                  "slug": "p15-continuous-gradient",
+                  "title": "固定观测时刻的连续损失梯度",
+                  "type": "python"
+                },
+                {
+                  "id": "p15-discrete-adjoint",
+                  "slug": "p15-discrete-adjoint",
+                  "title": "带观测跳跃的离散梯度",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump"
+            }
+          ],
+          "visualization": "web/differentiable/index.html"
         },
         {
           "id": "15.4",
           "title": "物理约束学习",
           "url": "/chapters/15-04-物理约束学习/",
           "goals": "构造数据、方程及初边值残差（residual）损失，评价物理约束学习（physics-informed learning）的权重、覆盖与失效。",
-          "prerequisites": "15.3、12.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
+          "prerequisites": "15.3、12.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
           "knowledge": [
             "建立物理信息神经网络（physics-informed neural network，PINN）的函数表示和残差",
-            "用自动微分计算所需导数，明确配点、数据和初边值损失及单位尺度",
+            "用自动微分计算所需导数，明确配点（collocation point）、数据和初边值损失及单位尺度",
             "比较权重、配点覆盖和错误机制；先做常微分方程（ordinary differential equation，ODE），再给小型空间问题"
           ],
           "focus": "解析函数同时核验方程、初值（initial condition）/边界与导数（derivative）；独立评估点不参与训练，残差和解误差分别报告，不能以网络替代必要的数值基线。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P15-C04-S01",
+              "chapter_id": "15.4",
+              "number": "15.4.1",
+              "title": "数据、方程与初值的分项损失",
+              "outcome": "对光滑候选函数计算导数与方程残差，分开报告数据、物理和初值误差。",
+              "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.ipynb",
+              "visualization": "web/differentiable/index.html",
+              "questions": [
+                {
+                  "id": "p15-pinn-parts",
+                  "slug": "p15-pinn-parts",
+                  "title": "方程约束的三类证据",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-loss-unit",
+                  "slug": "p15-loss-unit",
+                  "title": "损失相加之前",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-trial-derivative",
+                  "slug": "p15-trial-derivative",
+                  "title": "光滑候选值与导数",
+                  "type": "python"
+                },
+                {
+                  "id": "p15-ode-loss-parts",
+                  "slug": "p15-ode-loss-parts",
+                  "title": "数据、方程与初值损失",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts"
+            },
+            {
+              "id": "P15-C04-S02",
+              "chapter_id": "15.4",
+              "number": "15.4.2",
+              "title": "扩散残差与无通量边界",
+              "outcome": "计算一维扩散候选的方程及边界残差，识别只查内点的漏洞。",
+              "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.ipynb",
+              "visualization": "web/differentiable/index.html",
+              "questions": [
+                {
+                  "id": "p15-boundary-needed",
+                  "slug": "p15-boundary-needed",
+                  "title": "内点残差零时",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-collocation-limit",
+                  "slug": "p15-collocation-limit",
+                  "title": "有限配点的结论",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-diffusion-profile",
+                  "slug": "p15-diffusion-profile",
+                  "title": "扩散候选的空间取值",
+                  "type": "python"
+                },
+                {
+                  "id": "p15-diffusion-residual",
+                  "slug": "p15-diffusion-residual",
+                  "title": "内部与无通量边界残差",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed"
+            }
+          ],
+          "visualization": "web/differentiable/index.html"
         },
         {
           "id": "15.5",
           "title": "混合模型与可辨识性",
           "url": "/chapters/15-05-混合模型与可辨识性/",
           "goals": "构造机制与学习修正的混合模型（model），检查可辨识性（identifiability）、约束和预测不确定性。",
-          "prerequisites": "15.4、9.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、后验（posterior）归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新。",
+          "prerequisites": "15.4、9.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、后验（posterior）归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新。",
           "knowledge": [
             "以已知收支（mass balance）项加可学习修正构成混合模型，明确修正进入的位置与单位",
             "在固定参数与联合学习两种条件下讨论机制参数和网络补偿的混淆",
             "复用后验预测（posterior predictive inference）与变分基础比较不确定性、独立预测和错误机制；完整贝叶斯网络作为拓展"
           ],
           "focus": "修正为零时恢复机制基线；不同参数（parameter）组合产生相同输出（output）的反例必须保留。模型、求解、优化和后验近似误差分别解释。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P15-C05-S01",
+              "chapter_id": "15.5",
+              "number": "15.5.1",
+              "title": "已知收支加可学习修正",
+              "outcome": "给机制项和修正项分别标单位，并在新输入下比较机制与混合模型。",
+              "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.ipynb",
+              "visualization": "web/differentiable/index.html",
+              "questions": [
+                {
+                  "id": "p15-zero-correction",
+                  "slug": "p15-zero-correction",
+                  "title": "零修正的极限",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-mechanism-claim",
+                  "slug": "p15-mechanism-claim",
+                  "title": "拟合与机制",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-hybrid-right-side",
+                  "slug": "p15-hybrid-right-side",
+                  "title": "机制与修正的总变化率",
+                  "type": "python"
+                },
+                {
+                  "id": "p15-hybrid-steps",
+                  "slug": "p15-hybrid-steps",
+                  "title": "混合模型的固定步长轨迹",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction"
+            },
+            {
+              "id": "P15-C05-S02",
+              "chapter_id": "15.5",
+              "number": "15.5.2",
+              "title": "参数混淆、观测与预测不确定性",
+              "outcome": "构造不可辨识参数对，说明新输入和额外测量的不同作用。",
+              "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.ipynb",
+              "visualization": "web/differentiable/index.html",
+              "questions": [
+                {
+                  "id": "p15-confounding-input",
+                  "slug": "p15-confounding-input",
+                  "title": "新输入能否破除同形混淆",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-candidate-variance",
+                  "slug": "p15-candidate-variance",
+                  "title": "候选预测方差的范围",
+                  "type": "choice"
+                },
+                {
+                  "id": "p15-indistinguishable-rate",
+                  "slug": "p15-indistinguishable-rate",
+                  "title": "同形修正的变化率",
+                  "type": "python"
+                },
+                {
+                  "id": "p15-candidate-moments",
+                  "slug": "p15-candidate-moments",
+                  "title": "预设候选的预测矩",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input"
+            }
+          ],
+          "visualization": "web/differentiable/index.html"
         }
-      ]
+      ],
+      "assessment": {
+        "id": "15.summary",
+        "assessment": true,
+        "title": "机制与学习模型的独立比较",
+        "url": "/parts/15-可微分建模与机制融合/综合练习/",
+        "goals": "固定求导对象、模型（model）边界与留出条件，比较机制与学习修正。",
+        "prerequisites": "本篇 15.1—15.5；第 14 篇模型验证。",
+        "focus": "损失下降、梯度（gradient）正确、可辨识和外推是不同证据。",
+        "knowledge": [
+          "计算图（computational graph）与梯度",
+          "离散和连续动力学",
+          "方程残差（residual）与边界",
+          "混合模型与独立比较"
+        ],
+        "lessons": [
+          {
+            "id": "P15-SUMMARY",
+            "chapter_id": "15.summary",
+            "number": "15.综合",
+            "title": "机制与学习模型的独立比较",
+            "outcome": "在共同观测和独立输入下核验梯度、方程损失与混合模型预测。",
+            "path": "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb",
+            "visualization": null,
+            "overview": {
+              "goals": "固定求导对象、模型边界与留出条件，比较机制与学习修正。",
+              "prerequisites": "本篇 15.1—15.5；第 14 篇模型验证。",
+              "focus": "损失下降、梯度正确、可辨识和外推是不同证据。",
+              "knowledge": [
+                "计算图与梯度",
+                "离散和连续动力学",
+                "方程残差与边界",
+                "混合模型与独立比较"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p15-capstone-gradient-object",
+                "slug": "p15-capstone-gradient-object",
+                "title": "综合：先声明梯度对象",
+                "type": "choice"
+              },
+              {
+                "id": "p15-capstone-identifiability",
+                "slug": "p15-capstone-identifiability",
+                "title": "综合：机制参数是否可辨",
+                "type": "choice"
+              },
+              {
+                "id": "p15-capstone-small-gradient",
+                "slug": "p15-capstone-small-gradient",
+                "title": "综合：网络预测与梯度",
+                "type": "python"
+              },
+              {
+                "id": "p15-capstone-forward-gradient",
+                "slug": "p15-capstone-forward-gradient",
+                "title": "综合：连续方程的离散梯度",
+                "type": "python"
+              },
+              {
+                "id": "p15-capstone-scaled-loss",
+                "slug": "p15-capstone-scaled-loss",
+                "title": "综合：已声明尺度的方程损失",
+                "type": "python"
+              },
+              {
+                "id": "p15-capstone-independent-error",
+                "slug": "p15-capstone-independent-error",
+                "title": "综合：相同留出轨迹下的误差",
+                "type": "python"
+              },
+              {
+                "id": "p15-capstone-grid-transfer",
+                "slug": "p15-capstone-grid-transfer",
+                "title": "综合：改变求解步长",
+                "type": "choice"
+              },
+              {
+                "id": "p15-capstone-hybrid-ablation",
+                "slug": "p15-capstone-hybrid-ablation",
+                "title": "综合：混合修正的证据",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-gradient-object"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "16",
@@ -8564,7 +9019,7 @@
           "title": "模型学习与约束决策",
           "url": "/chapters/16-07-模型学习与约束决策/",
           "goals": "把学得模型（model）接入滚动决策，在共同观测（observation）和执行限制下评价误差、风险与失效。",
-          "prerequisites": "16.3、16.6、10.6、14.5、15.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、有限时域动态规划、Bellman 递推与离散 Riccati 递推、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、MDP、条件期望（expectation）形式的 Bellman 方程、策略评估（policy evaluation）与改进。",
+          "prerequisites": "16.3、16.6、10.6、14.5、15.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、有限时域动态规划、Bellman 递推与离散 Riccati 递推、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、MDP、条件期望（expectation）形式的 Bellman 方程、策略评估（policy evaluation）与改进。",
           "knowledge": [
             "比较固定机制、在线辨识和学习模型作为预测器的接口与误差来源",
             "将估计状态（state）与模型预测接入约束决策，检查外推和不可行处理",
@@ -8603,7 +9058,7 @@
           "title": "复现协议与公平基线",
           "url": "/chapters/17-02-复现协议与公平基线/",
           "goals": "制定能运行且公平的复现协议，隔离训练和评估信息并记录计算预算。",
-          "prerequisites": "17.1；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、ODE 参数（parameter）前向灵敏度、分部积分、伴随终值方程、参数梯度（gradient）积分与观测（observation）时刻跳跃。",
+          "prerequisites": "17.1；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、ODE 参数（parameter）前向灵敏度（forward sensitivity）、分部积分、伴随终值方程、参数梯度（gradient）积分与观测（observation）时刻跳跃。",
           "knowledge": [
             "定义数据、轨迹（trajectory）和随机流的划分边界，固定方法输入（input）与调参资源",
             "建立显式算法、成熟实现和简单机制基线的对应，核对允许的信息差异",
@@ -8635,7 +9090,7 @@
           "title": "研究方法综合比较",
           "url": "/chapters/17-04-研究方法综合比较/",
           "goals": "把机制、推断和学习结果组织为可追溯比较，在新条件下判断结论仍成立的范围。",
-          "prerequisites": "17.3；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）。",
+          "prerequisites": "17.3；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）。",
           "knowledge": [
             "以三组贯穿案例整理观测（observation）条件、状态（state）/参数（parameter）问题及可选择的方法",
             "连接独立评估、预算、失效与不确定性，分别给出可以和不能支持的结论",

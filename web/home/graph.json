@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "410c85a5082f97165049b6dffd680ce5057b6fd07f0024c1f8c5aac7c766804b",
+    "catalogSha256": "c01850a93da0e9713365498b471f1d8d57b32ddf9585a9db11797617bd4bcc39",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -17728,12 +17728,63 @@
         "15.4",
         "15.5"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-graph-order",
+        "p15-static-not-ode",
+        "p15-network-value",
+        "p15-network-loss-gradient",
+        "p15-gradient-object",
+        "p15-nonsmooth",
+        "p15-reverse-graph",
+        "p15-difference-check",
+        "p15-one-step-input",
+        "p15-sampling-object",
+        "p15-fixed-map",
+        "p15-teacher-forced",
+        "p15-split-trajectories",
+        "p15-rollout-leak",
+        "p15-free-rollout",
+        "p15-rollout-error",
+        "p15-two-gradients",
+        "p15-sensitivity-initial",
+        "p15-exact-decay",
+        "p15-euler-sensitivity",
+        "p15-adjoint-jump",
+        "p15-reverse-state",
+        "p15-continuous-gradient",
+        "p15-discrete-adjoint",
+        "p15-pinn-parts",
+        "p15-loss-unit",
+        "p15-trial-derivative",
+        "p15-ode-loss-parts",
+        "p15-boundary-needed",
+        "p15-collocation-limit",
+        "p15-diffusion-profile",
+        "p15-diffusion-residual",
+        "p15-zero-correction",
+        "p15-mechanism-claim",
+        "p15-hybrid-right-side",
+        "p15-hybrid-steps",
+        "p15-confounding-input",
+        "p15-candidate-variance",
+        "p15-indistinguishable-rate",
+        "p15-candidate-moments",
+        "p15-capstone-gradient-object",
+        "p15-capstone-identifiability",
+        "p15-capstone-small-gradient",
+        "p15-capstone-forward-gradient",
+        "p15-capstone-scaled-loss",
+        "p15-capstone-independent-error",
+        "p15-capstone-grid-transfer",
+        "p15-capstone-hybrid-ablation"
+      ],
+      "available": true,
+      "published": 5,
       "total": 5,
-      "assessmentIds": [],
-      "assessmentUrl": null,
+      "assessmentIds": [
+        "P15-SUMMARY"
+      ],
+      "assessmentUrl": "/parts/15-可微分建模与机制融合/综合练习/",
       "progressScope": "已发布篇章练习（含篇末综合）"
     },
     {
@@ -17743,118 +17794,267 @@
       "number": "15.1",
       "parentId": "15",
       "url": "/chapters/15-01-神经网络与自动微分/",
-      "description": "从计算图推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
+      "description": "从计算图（computational graph）推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [
-        "15.1:planned:1",
-        "15.1:planned:2",
-        "15.1:planned:3",
-        "15.1:planned:4"
+        "15.1.1:concept:1",
+        "15.1.1:concept:2",
+        "15.1.1:concept:3",
+        "15.1.1:concept:4",
+        "15.1.2:concept:1",
+        "15.1.2:concept:2",
+        "15.1.2:concept:3",
+        "15.1.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-graph-order",
+        "p15-static-not-ode",
+        "p15-network-value",
+        "p15-network-loss-gradient",
+        "p15-gradient-object",
+        "p15-nonsmooth",
+        "p15-reverse-graph",
+        "p15-difference-check"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "15.1:planned:1",
-      "kind": "concept",
-      "title": "神经网络",
-      "english": null,
-      "number": "15.1",
-      "parentId": "15.1",
-      "url": "/chapters/15-01-神经网络与自动微分/",
-      "description": "从计算图推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
-      "categories": [
-        "cognition",
-        "method"
-      ],
-      "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
-      "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
-      "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
-      "progressScope": "教学设计，尚无学习记录"
-    },
-    {
-      "id": "15.1:planned:2",
+      "id": "15.1.1:concept:1",
       "kind": "concept",
       "title": "计算图",
-      "english": null,
-      "number": "15.1",
+      "english": "computational graph",
+      "number": "15.1.1",
       "parentId": "15.1",
-      "url": "/chapters/15-01-神经网络与自动微分/",
-      "description": "从计算图推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
+      "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order",
+      "description": "写出一层标量网络的前向计算，并逐项解释参数、激活和损失。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-graph-order",
+        "p15-static-not-ode",
+        "p15-network-value",
+        "p15-network-loss-gradient"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C01-S01",
+      "lessonNumber": "15.1.1",
+      "lessonTitle": "从计算图到小型神经网络",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.1:planned:3",
+      "id": "15.1.1:concept:2",
       "kind": "concept",
-      "title": "反向自动微分",
+      "title": "标量神经元",
       "english": null,
-      "number": "15.1",
+      "number": "15.1.1",
       "parentId": "15.1",
-      "url": "/chapters/15-01-神经网络与自动微分/",
-      "description": "从计算图推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
+      "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order",
+      "description": "写出一层标量网络的前向计算，并逐项解释参数、激活和损失。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-graph-order",
+        "p15-static-not-ode",
+        "p15-network-value",
+        "p15-network-loss-gradient"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C01-S01",
+      "lessonNumber": "15.1.1",
+      "lessonTitle": "从计算图到小型神经网络",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.1:planned:4",
+      "id": "15.1.1:concept:3",
       "kind": "concept",
-      "title": "训练验证边界",
+      "title": "激活与损失",
       "english": null,
-      "number": "15.1",
+      "number": "15.1.1",
       "parentId": "15.1",
-      "url": "/chapters/15-01-神经网络与自动微分/",
-      "description": "从计算图推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
+      "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order",
+      "description": "写出一层标量网络的前向计算，并逐项解释参数、激活和损失。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-graph-order",
+        "p15-static-not-ode",
+        "p15-network-value",
+        "p15-network-loss-gradient"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C01-S01",
+      "lessonNumber": "15.1.1",
+      "lessonTitle": "从计算图到小型神经网络",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.1.1:concept:4",
+      "kind": "concept",
+      "title": "静态表示",
+      "english": null,
+      "number": "15.1.1",
+      "parentId": "15.1",
+      "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order",
+      "description": "写出一层标量网络的前向计算，并逐项解释参数、激活和损失。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-graph-order",
+        "p15-static-not-ode",
+        "p15-network-value",
+        "p15-network-loss-gradient"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C01-S01",
+      "lessonNumber": "15.1.1",
+      "lessonTitle": "从计算图到小型神经网络",
+      "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.1.2:concept:1",
+      "kind": "concept",
+      "title": "链式法则",
+      "english": "chain rule",
+      "number": "15.1.2",
+      "parentId": "15.1",
+      "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object",
+      "description": "对同一计算图手推、反向累积并用中心差分核验梯度；识别不可微点。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-gradient-object",
+        "p15-nonsmooth",
+        "p15-reverse-graph",
+        "p15-difference-check"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C01-S02",
+      "lessonNumber": "15.1.2",
+      "lessonTitle": "反向传播与梯度核验",
+      "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.1.2:concept:2",
+      "kind": "concept",
+      "title": "反向累积",
+      "english": null,
+      "number": "15.1.2",
+      "parentId": "15.1",
+      "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object",
+      "description": "对同一计算图手推、反向累积并用中心差分核验梯度；识别不可微点。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-gradient-object",
+        "p15-nonsmooth",
+        "p15-reverse-graph",
+        "p15-difference-check"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C01-S02",
+      "lessonNumber": "15.1.2",
+      "lessonTitle": "反向传播与梯度核验",
+      "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.1.2:concept:3",
+      "kind": "concept",
+      "title": "差分核验",
+      "english": null,
+      "number": "15.1.2",
+      "parentId": "15.1",
+      "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object",
+      "description": "对同一计算图手推、反向累积并用中心差分核验梯度；识别不可微点。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-gradient-object",
+        "p15-nonsmooth",
+        "p15-reverse-graph",
+        "p15-difference-check"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C01-S02",
+      "lessonNumber": "15.1.2",
+      "lessonTitle": "反向传播与梯度核验",
+      "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.1.2:concept:4",
+      "kind": "concept",
+      "title": "训练与验证",
+      "english": null,
+      "number": "15.1.2",
+      "parentId": "15.1",
+      "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object",
+      "description": "对同一计算图手推、反向累积并用中心差分核验梯度；识别不可微点。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-gradient-object",
+        "p15-nonsmooth",
+        "p15-reverse-graph",
+        "p15-difference-check"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C01-S02",
+      "lessonNumber": "15.1.2",
+      "lessonTitle": "反向传播与梯度核验",
+      "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "15.2",
@@ -17869,112 +18069,261 @@
         "method"
       ],
       "children": [
-        "15.2:planned:1",
-        "15.2:planned:2",
-        "15.2:planned:3",
-        "15.2:planned:4"
+        "15.2.1:concept:1",
+        "15.2.1:concept:2",
+        "15.2.1:concept:3",
+        "15.2.1:concept:4",
+        "15.2.2:concept:1",
+        "15.2.2:concept:2",
+        "15.2.2:concept:3",
+        "15.2.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-one-step-input",
+        "p15-sampling-object",
+        "p15-fixed-map",
+        "p15-teacher-forced",
+        "p15-split-trajectories",
+        "p15-rollout-leak",
+        "p15-free-rollout",
+        "p15-rollout-error"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "15.2:planned:1",
+      "id": "15.2.1:concept:1",
       "kind": "concept",
-      "title": "转移映射",
+      "title": "固定间隔映射",
       "english": null,
-      "number": "15.2",
+      "number": "15.2.1",
       "parentId": "15.2",
-      "url": "/chapters/15-02-离散动力学学习/",
-      "description": "学习离散状态（state）转移模型（model），区分一步训练、自由滚动和训练分布（distribution）外预测。",
+      "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input",
+      "description": "把状态与输入组成离散转移，分清一步拟合的训练和留出轨迹。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-one-step-input",
+        "p15-sampling-object",
+        "p15-fixed-map",
+        "p15-teacher-forced"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C02-S01",
+      "lessonNumber": "15.2.1",
+      "lessonTitle": "固定采样间隔的一步映射",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.2:planned:2",
+      "id": "15.2.1:concept:2",
       "kind": "concept",
-      "title": "一步损失",
-      "english": null,
-      "number": "15.2",
+      "title": "一步预测",
+      "english": "one-step-ahead prediction",
+      "number": "15.2.1",
       "parentId": "15.2",
-      "url": "/chapters/15-02-离散动力学学习/",
-      "description": "学习离散状态（state）转移模型（model），区分一步训练、自由滚动和训练分布（distribution）外预测。",
+      "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input",
+      "description": "把状态与输入组成离散转移，分清一步拟合的训练和留出轨迹。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-one-step-input",
+        "p15-sampling-object",
+        "p15-fixed-map",
+        "p15-teacher-forced"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C02-S01",
+      "lessonNumber": "15.2.1",
+      "lessonTitle": "固定采样间隔的一步映射",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.2:planned:3",
+      "id": "15.2.1:concept:3",
       "kind": "concept",
-      "title": "滚动损失",
+      "title": "非线性特征",
       "english": null,
-      "number": "15.2",
+      "number": "15.2.1",
       "parentId": "15.2",
-      "url": "/chapters/15-02-离散动力学学习/",
-      "description": "学习离散状态（state）转移模型（model），区分一步训练、自由滚动和训练分布（distribution）外预测。",
+      "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input",
+      "description": "把状态与输入组成离散转移，分清一步拟合的训练和留出轨迹。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-one-step-input",
+        "p15-sampling-object",
+        "p15-fixed-map",
+        "p15-teacher-forced"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C02-S01",
+      "lessonNumber": "15.2.1",
+      "lessonTitle": "固定采样间隔的一步映射",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.2:planned:4",
+      "id": "15.2.1:concept:4",
       "kind": "concept",
-      "title": "自由运行",
-      "english": "free-run simulation",
-      "number": "15.2",
+      "title": "留出初值",
+      "english": null,
+      "number": "15.2.1",
       "parentId": "15.2",
-      "url": "/chapters/15-02-离散动力学学习/",
-      "description": "学习离散状态（state）转移模型（model），区分一步训练、自由滚动和训练分布（distribution）外预测。",
+      "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input",
+      "description": "把状态与输入组成离散转移，分清一步拟合的训练和留出轨迹。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-one-step-input",
+        "p15-sampling-object",
+        "p15-fixed-map",
+        "p15-teacher-forced"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C02-S01",
+      "lessonNumber": "15.2.1",
+      "lessonTitle": "固定采样间隔的一步映射",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.2.2:concept:1",
+      "kind": "concept",
+      "title": "自由滚动",
+      "english": null,
+      "number": "15.2.2",
+      "parentId": "15.2",
+      "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories",
+      "description": "按完整轨迹划分数据，比较一步损失、多步误差和新初值。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-split-trajectories",
+        "p15-rollout-leak",
+        "p15-free-rollout",
+        "p15-rollout-error"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C02-S02",
+      "lessonNumber": "15.2.2",
+      "lessonTitle": "自由滚动、数据划分与外推",
+      "chapterUrl": "/chapters/15-02-离散动力学学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.2.2:concept:2",
+      "kind": "concept",
+      "title": "多步损失",
+      "english": null,
+      "number": "15.2.2",
+      "parentId": "15.2",
+      "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories",
+      "description": "按完整轨迹划分数据，比较一步损失、多步误差和新初值。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-split-trajectories",
+        "p15-rollout-leak",
+        "p15-free-rollout",
+        "p15-rollout-error"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C02-S02",
+      "lessonNumber": "15.2.2",
+      "lessonTitle": "自由滚动、数据划分与外推",
+      "chapterUrl": "/chapters/15-02-离散动力学学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.2.2:concept:3",
+      "kind": "concept",
+      "title": "轨迹划分",
+      "english": null,
+      "number": "15.2.2",
+      "parentId": "15.2",
+      "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories",
+      "description": "按完整轨迹划分数据，比较一步损失、多步误差和新初值。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-split-trajectories",
+        "p15-rollout-leak",
+        "p15-free-rollout",
+        "p15-rollout-error"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C02-S02",
+      "lessonNumber": "15.2.2",
+      "lessonTitle": "自由滚动、数据划分与外推",
+      "chapterUrl": "/chapters/15-02-离散动力学学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.2.2:concept:4",
+      "kind": "concept",
+      "title": "模型失配",
+      "english": null,
+      "number": "15.2.2",
+      "parentId": "15.2",
+      "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories",
+      "description": "按完整轨迹划分数据，比较一步损失、多步误差和新初值。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-split-trajectories",
+        "p15-rollout-leak",
+        "p15-free-rollout",
+        "p15-rollout-error"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C02-S02",
+      "lessonNumber": "15.2.2",
+      "lessonTitle": "自由滚动、数据划分与外推",
+      "chapterUrl": "/chapters/15-02-离散动力学学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "15.3",
@@ -17989,112 +18338,261 @@
         "method"
       ],
       "children": [
-        "15.3:planned:1",
-        "15.3:planned:2",
-        "15.3:planned:3",
-        "15.3:planned:4"
+        "15.3.1:concept:1",
+        "15.3.1:concept:2",
+        "15.3.1:concept:3",
+        "15.3.1:concept:4",
+        "15.3.2:concept:1",
+        "15.3.2:concept:2",
+        "15.3.2:concept:3",
+        "15.3.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-two-gradients",
+        "p15-sensitivity-initial",
+        "p15-exact-decay",
+        "p15-euler-sensitivity",
+        "p15-adjoint-jump",
+        "p15-reverse-state",
+        "p15-continuous-gradient",
+        "p15-discrete-adjoint"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "15.3:planned:1",
+      "id": "15.3.1:concept:1",
       "kind": "concept",
-      "title": "神经常微分方程",
-      "english": "neural ordinary differential equation",
-      "number": "15.3",
+      "title": "连续右端",
+      "english": null,
+      "number": "15.3.1",
       "parentId": "15.3",
-      "url": "/chapters/15-03-神经微分方程/",
-      "description": "以网络表示连续动力学右端，推导前向和伴随灵敏度（adjoint sensitivity），核验两种求导路线并区分求解误差和模型（model）误差。",
+      "url": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients",
+      "description": "区分连续模型、离散求解程序和两者各自的参数导数。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-two-gradients",
+        "p15-sensitivity-initial",
+        "p15-exact-decay",
+        "p15-euler-sensitivity"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C03-S01",
+      "lessonNumber": "15.3.1",
+      "lessonTitle": "连续右端、求解器与前向灵敏度",
       "chapterUrl": "/chapters/15-03-神经微分方程/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.3:planned:2",
+      "id": "15.3.1:concept:2",
+      "kind": "concept",
+      "title": "解析解",
+      "english": "analytical solution",
+      "number": "15.3.1",
+      "parentId": "15.3",
+      "url": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients",
+      "description": "区分连续模型、离散求解程序和两者各自的参数导数。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-two-gradients",
+        "p15-sensitivity-initial",
+        "p15-exact-decay",
+        "p15-euler-sensitivity"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C03-S01",
+      "lessonNumber": "15.3.1",
+      "lessonTitle": "连续右端、求解器与前向灵敏度",
+      "chapterUrl": "/chapters/15-03-神经微分方程/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.3.1:concept:3",
       "kind": "concept",
       "title": "前向灵敏度",
-      "english": null,
-      "number": "15.3",
+      "english": "forward sensitivity",
+      "number": "15.3.1",
       "parentId": "15.3",
-      "url": "/chapters/15-03-神经微分方程/",
-      "description": "以网络表示连续动力学右端，推导前向和伴随灵敏度（adjoint sensitivity），核验两种求导路线并区分求解误差和模型（model）误差。",
+      "url": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients",
+      "description": "区分连续模型、离散求解程序和两者各自的参数导数。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-two-gradients",
+        "p15-sensitivity-initial",
+        "p15-exact-decay",
+        "p15-euler-sensitivity"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C03-S01",
+      "lessonNumber": "15.3.1",
+      "lessonTitle": "连续右端、求解器与前向灵敏度",
       "chapterUrl": "/chapters/15-03-神经微分方程/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.3:planned:3",
+      "id": "15.3.1:concept:4",
       "kind": "concept",
-      "title": "伴随灵敏度",
-      "english": "adjoint sensitivity",
-      "number": "15.3",
+      "title": "Euler 梯度",
+      "english": null,
+      "number": "15.3.1",
       "parentId": "15.3",
-      "url": "/chapters/15-03-神经微分方程/",
-      "description": "以网络表示连续动力学右端，推导前向和伴随灵敏度（adjoint sensitivity），核验两种求导路线并区分求解误差和模型（model）误差。",
+      "url": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients",
+      "description": "区分连续模型、离散求解程序和两者各自的参数导数。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-two-gradients",
+        "p15-sensitivity-initial",
+        "p15-exact-decay",
+        "p15-euler-sensitivity"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C03-S01",
+      "lessonNumber": "15.3.1",
+      "lessonTitle": "连续右端、求解器与前向灵敏度",
       "chapterUrl": "/chapters/15-03-神经微分方程/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.3:planned:4",
+      "id": "15.3.2:concept:1",
       "kind": "concept",
-      "title": "观测时刻跳跃",
+      "title": "伴随跳跃",
       "english": null,
-      "number": "15.3",
+      "number": "15.3.2",
       "parentId": "15.3",
-      "url": "/chapters/15-03-神经微分方程/",
-      "description": "以网络表示连续动力学右端，推导前向和伴随灵敏度（adjoint sensitivity），核验两种求导路线并区分求解误差和模型（model）误差。",
+      "url": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump",
+      "description": "推导多时刻观测的伴随跳跃和参数梯度，比较离散反传与反向重建。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-adjoint-jump",
+        "p15-reverse-state",
+        "p15-continuous-gradient",
+        "p15-discrete-adjoint"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C03-S02",
+      "lessonNumber": "15.3.2",
+      "lessonTitle": "伴随跳跃与反向重建的边界",
       "chapterUrl": "/chapters/15-03-神经微分方程/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.3.2:concept:2",
+      "kind": "concept",
+      "title": "离散反传",
+      "english": null,
+      "number": "15.3.2",
+      "parentId": "15.3",
+      "url": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump",
+      "description": "推导多时刻观测的伴随跳跃和参数梯度，比较离散反传与反向重建。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-adjoint-jump",
+        "p15-reverse-state",
+        "p15-continuous-gradient",
+        "p15-discrete-adjoint"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C03-S02",
+      "lessonNumber": "15.3.2",
+      "lessonTitle": "伴随跳跃与反向重建的边界",
+      "chapterUrl": "/chapters/15-03-神经微分方程/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.3.2:concept:3",
+      "kind": "concept",
+      "title": "反向重建",
+      "english": null,
+      "number": "15.3.2",
+      "parentId": "15.3",
+      "url": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump",
+      "description": "推导多时刻观测的伴随跳跃和参数梯度，比较离散反传与反向重建。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-adjoint-jump",
+        "p15-reverse-state",
+        "p15-continuous-gradient",
+        "p15-discrete-adjoint"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C03-S02",
+      "lessonNumber": "15.3.2",
+      "lessonTitle": "伴随跳跃与反向重建的边界",
+      "chapterUrl": "/chapters/15-03-神经微分方程/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.3.2:concept:4",
+      "kind": "concept",
+      "title": "非线性修正",
+      "english": null,
+      "number": "15.3.2",
+      "parentId": "15.3",
+      "url": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump",
+      "description": "推导多时刻观测的伴随跳跃和参数梯度，比较离散反传与反向重建。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-adjoint-jump",
+        "p15-reverse-state",
+        "p15-continuous-gradient",
+        "p15-discrete-adjoint"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C03-S02",
+      "lessonNumber": "15.3.2",
+      "lessonTitle": "伴随跳跃与反向重建的边界",
+      "chapterUrl": "/chapters/15-03-神经微分方程/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "15.4",
@@ -18109,112 +18607,261 @@
         "method"
       ],
       "children": [
-        "15.4:planned:1",
-        "15.4:planned:2",
-        "15.4:planned:3",
-        "15.4:planned:4"
+        "15.4.1:concept:1",
+        "15.4.1:concept:2",
+        "15.4.1:concept:3",
+        "15.4.1:concept:4",
+        "15.4.2:concept:1",
+        "15.4.2:concept:2",
+        "15.4.2:concept:3",
+        "15.4.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-pinn-parts",
+        "p15-loss-unit",
+        "p15-trial-derivative",
+        "p15-ode-loss-parts",
+        "p15-boundary-needed",
+        "p15-collocation-limit",
+        "p15-diffusion-profile",
+        "p15-diffusion-residual"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "15.4:planned:1",
+      "id": "15.4.1:concept:1",
       "kind": "concept",
-      "title": "物理信息神经网络",
+      "title": "平滑候选",
       "english": null,
-      "number": "15.4",
+      "number": "15.4.1",
       "parentId": "15.4",
-      "url": "/chapters/15-04-物理约束学习/",
-      "description": "构造数据、方程及初边值残差（residual）损失，评价物理约束学习（physics-informed learning）的权重、覆盖与失效。",
+      "url": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts",
+      "description": "对光滑候选函数计算导数与方程残差，分开报告数据、物理和初值误差。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-pinn-parts",
+        "p15-loss-unit",
+        "p15-trial-derivative",
+        "p15-ode-loss-parts"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C04-S01",
+      "lessonNumber": "15.4.1",
+      "lessonTitle": "数据、方程与初值的分项损失",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.4:planned:2",
+      "id": "15.4.1:concept:2",
       "kind": "concept",
       "title": "方程残差",
       "english": null,
-      "number": "15.4",
+      "number": "15.4.1",
       "parentId": "15.4",
-      "url": "/chapters/15-04-物理约束学习/",
-      "description": "构造数据、方程及初边值残差（residual）损失，评价物理约束学习（physics-informed learning）的权重、覆盖与失效。",
+      "url": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts",
+      "description": "对光滑候选函数计算导数与方程残差，分开报告数据、物理和初值误差。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-pinn-parts",
+        "p15-loss-unit",
+        "p15-trial-derivative",
+        "p15-ode-loss-parts"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C04-S01",
+      "lessonNumber": "15.4.1",
+      "lessonTitle": "数据、方程与初值的分项损失",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.4:planned:3",
+      "id": "15.4.1:concept:3",
       "kind": "concept",
-      "title": "配点",
+      "title": "分项损失",
       "english": null,
-      "number": "15.4",
+      "number": "15.4.1",
       "parentId": "15.4",
-      "url": "/chapters/15-04-物理约束学习/",
-      "description": "构造数据、方程及初边值残差（residual）损失，评价物理约束学习（physics-informed learning）的权重、覆盖与失效。",
+      "url": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts",
+      "description": "对光滑候选函数计算导数与方程残差，分开报告数据、物理和初值误差。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-pinn-parts",
+        "p15-loss-unit",
+        "p15-trial-derivative",
+        "p15-ode-loss-parts"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C04-S01",
+      "lessonNumber": "15.4.1",
+      "lessonTitle": "数据、方程与初值的分项损失",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.4:planned:4",
+      "id": "15.4.1:concept:4",
       "kind": "concept",
-      "title": "初边值约束",
+      "title": "独立配点",
       "english": null,
-      "number": "15.4",
+      "number": "15.4.1",
       "parentId": "15.4",
-      "url": "/chapters/15-04-物理约束学习/",
-      "description": "构造数据、方程及初边值残差（residual）损失，评价物理约束学习（physics-informed learning）的权重、覆盖与失效。",
+      "url": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts",
+      "description": "对光滑候选函数计算导数与方程残差，分开报告数据、物理和初值误差。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-pinn-parts",
+        "p15-loss-unit",
+        "p15-trial-derivative",
+        "p15-ode-loss-parts"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C04-S01",
+      "lessonNumber": "15.4.1",
+      "lessonTitle": "数据、方程与初值的分项损失",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.4.2:concept:1",
+      "kind": "concept",
+      "title": "扩散模态",
+      "english": null,
+      "number": "15.4.2",
+      "parentId": "15.4",
+      "url": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed",
+      "description": "计算一维扩散候选的方程及边界残差，识别只查内点的漏洞。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-boundary-needed",
+        "p15-collocation-limit",
+        "p15-diffusion-profile",
+        "p15-diffusion-residual"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C04-S02",
+      "lessonNumber": "15.4.2",
+      "lessonTitle": "扩散残差与无通量边界",
+      "chapterUrl": "/chapters/15-04-物理约束学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.4.2:concept:2",
+      "kind": "concept",
+      "title": "无通量边界",
+      "english": "no-flux boundary",
+      "number": "15.4.2",
+      "parentId": "15.4",
+      "url": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed",
+      "description": "计算一维扩散候选的方程及边界残差，识别只查内点的漏洞。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-boundary-needed",
+        "p15-collocation-limit",
+        "p15-diffusion-profile",
+        "p15-diffusion-residual"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C04-S02",
+      "lessonNumber": "15.4.2",
+      "lessonTitle": "扩散残差与无通量边界",
+      "chapterUrl": "/chapters/15-04-物理约束学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.4.2:concept:3",
+      "kind": "concept",
+      "title": "内部残差",
+      "english": null,
+      "number": "15.4.2",
+      "parentId": "15.4",
+      "url": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed",
+      "description": "计算一维扩散候选的方程及边界残差，识别只查内点的漏洞。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-boundary-needed",
+        "p15-collocation-limit",
+        "p15-diffusion-profile",
+        "p15-diffusion-residual"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C04-S02",
+      "lessonNumber": "15.4.2",
+      "lessonTitle": "扩散残差与无通量边界",
+      "chapterUrl": "/chapters/15-04-物理约束学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.4.2:concept:4",
+      "kind": "concept",
+      "title": "初值条件",
+      "english": null,
+      "number": "15.4.2",
+      "parentId": "15.4",
+      "url": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed",
+      "description": "计算一维扩散候选的方程及边界残差，识别只查内点的漏洞。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-boundary-needed",
+        "p15-collocation-limit",
+        "p15-diffusion-profile",
+        "p15-diffusion-residual"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C04-S02",
+      "lessonNumber": "15.4.2",
+      "lessonTitle": "扩散残差与无通量边界",
+      "chapterUrl": "/chapters/15-04-物理约束学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "15.5",
@@ -18229,112 +18876,261 @@
         "method"
       ],
       "children": [
-        "15.5:planned:1",
-        "15.5:planned:2",
-        "15.5:planned:3",
-        "15.5:planned:4"
+        "15.5.1:concept:1",
+        "15.5.1:concept:2",
+        "15.5.1:concept:3",
+        "15.5.1:concept:4",
+        "15.5.2:concept:1",
+        "15.5.2:concept:2",
+        "15.5.2:concept:3",
+        "15.5.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-zero-correction",
+        "p15-mechanism-claim",
+        "p15-hybrid-right-side",
+        "p15-hybrid-steps",
+        "p15-confounding-input",
+        "p15-candidate-variance",
+        "p15-indistinguishable-rate",
+        "p15-candidate-moments"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "15.5:planned:1",
+      "id": "15.5.1:concept:1",
       "kind": "concept",
-      "title": "机制修正",
+      "title": "已知收支",
       "english": null,
-      "number": "15.5",
+      "number": "15.5.1",
       "parentId": "15.5",
-      "url": "/chapters/15-05-混合模型与可辨识性/",
-      "description": "构造机制与学习修正的混合模型（model），检查可辨识性（identifiability）、约束和预测不确定性。",
+      "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction",
+      "description": "给机制项和修正项分别标单位，并在新输入下比较机制与混合模型。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-zero-correction",
+        "p15-mechanism-claim",
+        "p15-hybrid-right-side",
+        "p15-hybrid-steps"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C05-S01",
+      "lessonNumber": "15.5.1",
+      "lessonTitle": "已知收支加可学习修正",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.5:planned:2",
+      "id": "15.5.1:concept:2",
       "kind": "concept",
-      "title": "联合学习",
+      "title": "学习修正",
       "english": null,
-      "number": "15.5",
+      "number": "15.5.1",
       "parentId": "15.5",
-      "url": "/chapters/15-05-混合模型与可辨识性/",
-      "description": "构造机制与学习修正的混合模型（model），检查可辨识性（identifiability）、约束和预测不确定性。",
+      "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction",
+      "description": "给机制项和修正项分别标单位，并在新输入下比较机制与混合模型。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-zero-correction",
+        "p15-mechanism-claim",
+        "p15-hybrid-right-side",
+        "p15-hybrid-steps"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C05-S01",
+      "lessonNumber": "15.5.1",
+      "lessonTitle": "已知收支加可学习修正",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.5:planned:3",
+      "id": "15.5.1:concept:3",
       "kind": "concept",
-      "title": "参数补偿",
+      "title": "新输入预测",
       "english": null,
-      "number": "15.5",
+      "number": "15.5.1",
       "parentId": "15.5",
-      "url": "/chapters/15-05-混合模型与可辨识性/",
-      "description": "构造机制与学习修正的混合模型（model），检查可辨识性（identifiability）、约束和预测不确定性。",
+      "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction",
+      "description": "给机制项和修正项分别标单位，并在新输入下比较机制与混合模型。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-zero-correction",
+        "p15-mechanism-claim",
+        "p15-hybrid-right-side",
+        "p15-hybrid-steps"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C05-S01",
+      "lessonNumber": "15.5.1",
+      "lessonTitle": "已知收支加可学习修正",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "15.5:planned:4",
+      "id": "15.5.1:concept:4",
       "kind": "concept",
-      "title": "独立预测",
+      "title": "零修正基线",
       "english": null,
-      "number": "15.5",
+      "number": "15.5.1",
       "parentId": "15.5",
-      "url": "/chapters/15-05-混合模型与可辨识性/",
-      "description": "构造机制与学习修正的混合模型（model），检查可辨识性（identifiability）、约束和预测不确定性。",
+      "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction",
+      "description": "给机制项和修正项分别标单位，并在新输入下比较机制与混合模型。",
       "categories": [
         "cognition",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p15-zero-correction",
+        "p15-mechanism-claim",
+        "p15-hybrid-right-side",
+        "p15-hybrid-steps"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P15-C05-S01",
+      "lessonNumber": "15.5.1",
+      "lessonTitle": "已知收支加可学习修正",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.5.2:concept:1",
+      "kind": "concept",
+      "title": "参数混淆",
+      "english": null,
+      "number": "15.5.2",
+      "parentId": "15.5",
+      "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input",
+      "description": "构造不可辨识参数对，说明新输入和额外测量的不同作用。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-confounding-input",
+        "p15-candidate-variance",
+        "p15-indistinguishable-rate",
+        "p15-candidate-moments"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C05-S02",
+      "lessonNumber": "15.5.2",
+      "lessonTitle": "参数混淆、观测与预测不确定性",
+      "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.5.2:concept:2",
+      "kind": "concept",
+      "title": "额外观测",
+      "english": null,
+      "number": "15.5.2",
+      "parentId": "15.5",
+      "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input",
+      "description": "构造不可辨识参数对，说明新输入和额外测量的不同作用。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-confounding-input",
+        "p15-candidate-variance",
+        "p15-indistinguishable-rate",
+        "p15-candidate-moments"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C05-S02",
+      "lessonNumber": "15.5.2",
+      "lessonTitle": "参数混淆、观测与预测不确定性",
+      "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.5.2:concept:3",
+      "kind": "concept",
+      "title": "预测矩",
+      "english": null,
+      "number": "15.5.2",
+      "parentId": "15.5",
+      "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input",
+      "description": "构造不可辨识参数对，说明新输入和额外测量的不同作用。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-confounding-input",
+        "p15-candidate-variance",
+        "p15-indistinguishable-rate",
+        "p15-candidate-moments"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C05-S02",
+      "lessonNumber": "15.5.2",
+      "lessonTitle": "参数混淆、观测与预测不确定性",
+      "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "15.5.2:concept:4",
+      "kind": "concept",
+      "title": "结构可辨识",
+      "english": null,
+      "number": "15.5.2",
+      "parentId": "15.5",
+      "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input",
+      "description": "构造不可辨识参数对，说明新输入和额外测量的不同作用。",
+      "categories": [
+        "cognition",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p15-confounding-input",
+        "p15-candidate-variance",
+        "p15-indistinguishable-rate",
+        "p15-candidate-moments"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P15-C05-S02",
+      "lessonNumber": "15.5.2",
+      "lessonTitle": "参数混淆、观测与预测不确定性",
+      "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "16",
@@ -24865,46 +25661,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "15.1:planned:1",
-      "target": "15.1:planned:2",
+      "source": "15.1.1:concept:1",
+      "target": "15.1.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.1:planned:1",
-      "target": "15.1:planned:3",
+      "source": "15.1.1:concept:1",
+      "target": "15.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.1:planned:1",
-      "target": "15.1:planned:4",
+      "source": "15.1.1:concept:1",
+      "target": "15.1.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.1:planned:2",
-      "target": "15.1:planned:3",
+      "source": "15.1.1:concept:2",
+      "target": "15.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.1:planned:2",
-      "target": "15.1:planned:4",
+      "source": "15.1.1:concept:2",
+      "target": "15.1.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.1:planned:3",
-      "target": "15.1:planned:4",
+      "source": "15.1.1:concept:3",
+      "target": "15.1.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.1.2:concept:1",
+      "target": "15.1.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.1.2:concept:1",
+      "target": "15.1.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.1.2:concept:1",
+      "target": "15.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.1.2:concept:2",
+      "target": "15.1.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.1.2:concept:2",
+      "target": "15.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.1.2:concept:3",
+      "target": "15.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.1.1:concept:4",
+      "target": "15.1.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "3.4",
@@ -24928,46 +25773,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "15.2:planned:1",
-      "target": "15.2:planned:2",
+      "source": "15.2.1:concept:1",
+      "target": "15.2.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.2:planned:1",
-      "target": "15.2:planned:3",
+      "source": "15.2.1:concept:1",
+      "target": "15.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.2:planned:1",
-      "target": "15.2:planned:4",
+      "source": "15.2.1:concept:1",
+      "target": "15.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.2:planned:2",
-      "target": "15.2:planned:3",
+      "source": "15.2.1:concept:2",
+      "target": "15.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.2:planned:2",
-      "target": "15.2:planned:4",
+      "source": "15.2.1:concept:2",
+      "target": "15.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.2:planned:3",
-      "target": "15.2:planned:4",
+      "source": "15.2.1:concept:3",
+      "target": "15.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.2.2:concept:1",
+      "target": "15.2.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.2.2:concept:1",
+      "target": "15.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.2.2:concept:1",
+      "target": "15.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.2.2:concept:2",
+      "target": "15.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.2.2:concept:2",
+      "target": "15.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.2.2:concept:3",
+      "target": "15.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.2.1:concept:4",
+      "target": "15.2.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "14.5",
@@ -24984,46 +25878,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "15.3:planned:1",
-      "target": "15.3:planned:2",
+      "source": "15.3.1:concept:1",
+      "target": "15.3.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.3:planned:1",
-      "target": "15.3:planned:3",
+      "source": "15.3.1:concept:1",
+      "target": "15.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.3:planned:1",
-      "target": "15.3:planned:4",
+      "source": "15.3.1:concept:1",
+      "target": "15.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.3:planned:2",
-      "target": "15.3:planned:3",
+      "source": "15.3.1:concept:2",
+      "target": "15.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.3:planned:2",
-      "target": "15.3:planned:4",
+      "source": "15.3.1:concept:2",
+      "target": "15.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.3:planned:3",
-      "target": "15.3:planned:4",
+      "source": "15.3.1:concept:3",
+      "target": "15.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.3.2:concept:1",
+      "target": "15.3.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.3.2:concept:1",
+      "target": "15.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.3.2:concept:1",
+      "target": "15.3.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.3.2:concept:2",
+      "target": "15.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.3.2:concept:2",
+      "target": "15.3.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.3.2:concept:3",
+      "target": "15.3.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.3.1:concept:4",
+      "target": "15.3.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "2.4",
@@ -25040,46 +25983,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "15.4:planned:1",
-      "target": "15.4:planned:2",
+      "source": "15.4.1:concept:1",
+      "target": "15.4.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.4:planned:1",
-      "target": "15.4:planned:3",
+      "source": "15.4.1:concept:1",
+      "target": "15.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.4:planned:1",
-      "target": "15.4:planned:4",
+      "source": "15.4.1:concept:1",
+      "target": "15.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.4:planned:2",
-      "target": "15.4:planned:3",
+      "source": "15.4.1:concept:2",
+      "target": "15.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.4:planned:2",
-      "target": "15.4:planned:4",
+      "source": "15.4.1:concept:2",
+      "target": "15.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.4:planned:3",
-      "target": "15.4:planned:4",
+      "source": "15.4.1:concept:3",
+      "target": "15.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.4.2:concept:1",
+      "target": "15.4.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.4.2:concept:1",
+      "target": "15.4.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.4.2:concept:1",
+      "target": "15.4.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.4.2:concept:2",
+      "target": "15.4.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.4.2:concept:2",
+      "target": "15.4.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.4.2:concept:3",
+      "target": "15.4.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.4.1:concept:4",
+      "target": "15.4.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "12.4",
@@ -25096,46 +26088,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "15.5:planned:1",
-      "target": "15.5:planned:2",
+      "source": "15.5.1:concept:1",
+      "target": "15.5.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.5:planned:1",
-      "target": "15.5:planned:3",
+      "source": "15.5.1:concept:1",
+      "target": "15.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.5:planned:1",
-      "target": "15.5:planned:4",
+      "source": "15.5.1:concept:1",
+      "target": "15.5.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.5:planned:2",
-      "target": "15.5:planned:3",
+      "source": "15.5.1:concept:2",
+      "target": "15.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.5:planned:2",
-      "target": "15.5:planned:4",
+      "source": "15.5.1:concept:2",
+      "target": "15.5.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "15.5:planned:3",
-      "target": "15.5:planned:4",
+      "source": "15.5.1:concept:3",
+      "target": "15.5.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.5.2:concept:1",
+      "target": "15.5.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.5.2:concept:1",
+      "target": "15.5.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.5.2:concept:1",
+      "target": "15.5.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.5.2:concept:2",
+      "target": "15.5.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.5.2:concept:2",
+      "target": "15.5.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.5.2:concept:3",
+      "target": "15.5.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "15.5.1:concept:4",
+      "target": "15.5.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "9.5",

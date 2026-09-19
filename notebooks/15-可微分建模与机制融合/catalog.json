@@ -1,0 +1,112 @@
+[
+  {
+    "id": "P15-C01-S01",
+    "chapter_id": "15.1",
+    "number": "15.1.1",
+    "title": "从计算图到小型神经网络",
+    "outcome": "写出一层标量网络的前向计算，并逐项解释参数、激活和损失。",
+    "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb",
+    "visualization": "web/differentiable/index.html"
+  },
+  {
+    "id": "P15-C01-S02",
+    "chapter_id": "15.1",
+    "number": "15.1.2",
+    "title": "反向传播与梯度核验",
+    "outcome": "对同一计算图手推、反向累积并用中心差分核验梯度；识别不可微点。",
+    "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.ipynb",
+    "visualization": "web/differentiable/index.html"
+  },
+  {
+    "id": "P15-C02-S01",
+    "chapter_id": "15.2",
+    "number": "15.2.1",
+    "title": "固定采样间隔的一步映射",
+    "outcome": "把状态与输入组成离散转移，分清一步拟合的训练和留出轨迹。",
+    "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.ipynb",
+    "visualization": "web/differentiable/index.html"
+  },
+  {
+    "id": "P15-C02-S02",
+    "chapter_id": "15.2",
+    "number": "15.2.2",
+    "title": "自由滚动、数据划分与外推",
+    "outcome": "按完整轨迹划分数据，比较一步损失、多步误差和新初值。",
+    "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.ipynb",
+    "visualization": "web/differentiable/index.html"
+  },
+  {
+    "id": "P15-C03-S01",
+    "chapter_id": "15.3",
+    "number": "15.3.1",
+    "title": "连续右端、求解器与前向灵敏度",
+    "outcome": "区分连续模型、离散求解程序和两者各自的参数导数。",
+    "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb",
+    "visualization": "web/differentiable/index.html"
+  },
+  {
+    "id": "P15-C03-S02",
+    "chapter_id": "15.3",
+    "number": "15.3.2",
+    "title": "伴随跳跃与反向重建的边界",
+    "outcome": "推导多时刻观测的伴随跳跃和参数梯度，比较离散反传与反向重建。",
+    "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.ipynb",
+    "visualization": "web/differentiable/index.html"
+  },
+  {
+    "id": "P15-C04-S01",
+    "chapter_id": "15.4",
+    "number": "15.4.1",
+    "title": "数据、方程与初值的分项损失",
+    "outcome": "对光滑候选函数计算导数与方程残差，分开报告数据、物理和初值误差。",
+    "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.ipynb",
+    "visualization": "web/differentiable/index.html"
+  },
+  {
+    "id": "P15-C04-S02",
+    "chapter_id": "15.4",
+    "number": "15.4.2",
+    "title": "扩散残差与无通量边界",
+    "outcome": "计算一维扩散候选的方程及边界残差，识别只查内点的漏洞。",
+    "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.ipynb",
+    "visualization": "web/differentiable/index.html"
+  },
+  {
+    "id": "P15-C05-S01",
+    "chapter_id": "15.5",
+    "number": "15.5.1",
+    "title": "已知收支加可学习修正",
+    "outcome": "给机制项和修正项分别标单位，并在新输入下比较机制与混合模型。",
+    "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.ipynb",
+    "visualization": "web/differentiable/index.html"
+  },
+  {
+    "id": "P15-C05-S02",
+    "chapter_id": "15.5",
+    "number": "15.5.2",
+    "title": "参数混淆、观测与预测不确定性",
+    "outcome": "构造不可辨识参数对，说明新输入和额外测量的不同作用。",
+    "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.ipynb",
+    "visualization": "web/differentiable/index.html"
+  },
+  {
+    "id": "P15-SUMMARY",
+    "chapter_id": "15.summary",
+    "number": "15.综合",
+    "title": "机制与学习模型的独立比较",
+    "outcome": "在共同观测和独立输入下核验梯度、方程损失与混合模型预测。",
+    "path": "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb",
+    "visualization": null,
+    "overview": {
+      "goals": "固定求导对象、模型边界与留出条件，比较机制与学习修正。",
+      "prerequisites": "本篇 15.1—15.5；第 14 篇模型验证。",
+      "focus": "损失下降、梯度正确、可辨识和外推是不同证据。",
+      "knowledge": [
+        "计算图与梯度",
+        "离散和连续动力学",
+        "方程残差与边界",
+        "混合模型与独立比较"
+      ]
+    }
+  }
+]

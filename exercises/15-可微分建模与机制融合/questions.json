@@ -1,0 +1,3473 @@
+[
+  {
+    "id": "p15-graph-order",
+    "slug": "p15-graph-order",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.1",
+    "lesson_id": "P15-C01-S01",
+    "title": "计算图的前向顺序",
+    "statement": "对于 z=wx+b、a=tanh(z)、预测 va+c、平方损失，哪一步必须先于激活值？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "计算 z。"
+      },
+      {
+        "id": "B",
+        "text": "计算损失。"
+      },
+      {
+        "id": "C",
+        "text": "更新权重。"
+      },
+      {
+        "id": "D",
+        "text": "查看留出答案。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-static-not-ode",
+    "slug": "p15-static-not-ode",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.1",
+    "lesson_id": "P15-C01-S01",
+    "title": "网络表示的对象",
+    "statement": "只把 x 输入（input）静态网络并得到响应率，哪项解释最准确？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "网络已经给出任意时间的状态（state）轨迹（trajectory）。"
+      },
+      {
+        "id": "B",
+        "text": "它表示给定输入下的函数值，若作为动力学右端还需方程与求解器。"
+      },
+      {
+        "id": "C",
+        "text": "它自动保证总量守恒。"
+      },
+      {
+        "id": "D",
+        "text": "参数（parameter）值直接等于真实清除机制。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-gradient-object",
+    "slug": "p15-gradient-object",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.1",
+    "lesson_id": "P15-C01-S02",
+    "title": "自动微分究竟对什么求导",
+    "statement": "反传结果与差分吻合时，能得出什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "已证明生物模型（model）正确。"
+      },
+      {
+        "id": "B",
+        "text": "已证明训练集（training set）外预测良好。"
+      },
+      {
+        "id": "C",
+        "text": "当前光滑计算图（computational graph）的参数（parameter）导数（derivative）得到数值支持。"
+      },
+      {
+        "id": "D",
+        "text": "最小损失一定已找到。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-nonsmooth",
+    "slug": "p15-nonsmooth",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.1",
+    "lesson_id": "P15-C01-S02",
+    "title": "非光滑点的差分",
+    "statement": "ReLU 在 0 点左右斜率（slope）分别为0与1。中心差分（central difference）给0.5，说明什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "ReLU 的双侧导数（derivative）为0.5。"
+      },
+      {
+        "id": "B",
+        "text": "中心差分一定是程序错误。"
+      },
+      {
+        "id": "C",
+        "text": "反向模式无法处理任何网络。"
+      },
+      {
+        "id": "D",
+        "text": "0.5 是对称差分值，不能当作通常双侧导数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-one-step-input",
+    "slug": "p15-one-step-input",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.2",
+    "lesson_id": "P15-C02-S01",
+    "title": "一步预测喂入什么",
+    "statement": "评估一步映射时给模型（model）真实 x_n，结果可以直接称为自由滚动吗？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不可以；自由滚动从初值（initial condition）起只能使用自身上一时刻预测。"
+      },
+      {
+        "id": "B",
+        "text": "可以，只要两者共用权重。"
+      },
+      {
+        "id": "C",
+        "text": "可以，只要画在同一坐标轴。"
+      },
+      {
+        "id": "D",
+        "text": "可以，因为时间间隔固定。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-sampling-object",
+    "slug": "p15-sampling-object",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.2",
+    "lesson_id": "P15-C02-S01",
+    "title": "采样间隔变化后的模型",
+    "statement": "在 1 T 间隔学到的下一步映射，改成 0.5 T 采样（sampling）后应如何使用？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "直接把输出（output）解释为连续导数（derivative）。"
+      },
+      {
+        "id": "B",
+        "text": "核验或重建新间隔的映射，不能无条件沿用。"
+      },
+      {
+        "id": "C",
+        "text": "只把图线拉宽。"
+      },
+      {
+        "id": "D",
+        "text": "不用声明间隔。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-split-trajectories",
+    "slug": "p15-split-trajectories",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.2",
+    "lesson_id": "P15-C02-S02",
+    "title": "独立评估的划分",
+    "statement": "多条相关时间轨迹（trajectory）用于训练和最终评估，较稳妥的划分是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "同一轨迹随机挑相邻时间点分给两边。"
+      },
+      {
+        "id": "B",
+        "text": "用评估轨迹选参数（parameter）后仍叫独立评估。"
+      },
+      {
+        "id": "C",
+        "text": "按完整轨迹留出，参数选择不接触最终评估轨迹。"
+      },
+      {
+        "id": "D",
+        "text": "只留最后一个训练时间点。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-rollout-leak",
+    "slug": "p15-rollout-leak",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.2",
+    "lesson_id": "P15-C02-S02",
+    "title": "自由运行中的信息泄漏",
+    "statement": "候选每走一步就读取真实下一个状态（state）来修正输入（input），会怎样？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "自动降低连续求解误差。"
+      },
+      {
+        "id": "B",
+        "text": "证明结构稳定。"
+      },
+      {
+        "id": "C",
+        "text": "这正是自由滚动的定义。"
+      },
+      {
+        "id": "D",
+        "text": "变成教师强制（teacher forcing）的一步预测（one-step-ahead prediction），不能代表自主长时预测。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-two-gradients",
+    "slug": "p15-two-gradients",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.3",
+    "lesson_id": "P15-C03-S01",
+    "title": "连续与离散梯度",
+    "statement": "固定 Euler 步长 h 时，穿过求解程序的自动微分（automatic differentiation，AD）梯度（gradient）是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "该离散程序的参数（parameter）梯度；与连续目标梯度一般有步长误差。"
+      },
+      {
+        "id": "B",
+        "text": "必定是连续方程的精确梯度。"
+      },
+      {
+        "id": "C",
+        "text": "完全不依赖 h。"
+      },
+      {
+        "id": "D",
+        "text": "只能通过 Monte Carlo 得到。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-sensitivity-initial",
+    "slug": "p15-sensitivity-initial",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.3",
+    "lesson_id": "P15-C03-S01",
+    "title": "固定初态的灵敏度",
+    "statement": "x(0)=x0 与 k 无关时，s=∂x/∂k 的初值（initial condition）是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "x0。"
+      },
+      {
+        "id": "B",
+        "text": "0。"
+      },
+      {
+        "id": "C",
+        "text": "-k x0。"
+      },
+      {
+        "id": "D",
+        "text": "无法定义。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-adjoint-jump",
+    "slug": "p15-adjoint-jump",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.3",
+    "lesson_id": "P15-C03-S02",
+    "title": "观测时刻的伴随跳跃",
+    "statement": "J=1/2 Σ(x(tj)-yj)^2；向后穿越 tj 时应如何更新 λ？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "忽略该时刻，因为观测（observation）只在离散点。"
+      },
+      {
+        "id": "B",
+        "text": "乘以时间步长（time step）后再加入残差（residual）。"
+      },
+      {
+        "id": "C",
+        "text": "加入 x(tj)-yj。"
+      },
+      {
+        "id": "D",
+        "text": "永远将 λ 设为零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-reverse-state",
+    "slug": "p15-reverse-state",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.3",
+    "lesson_id": "P15-C03-S02",
+    "title": "反向状态重建",
+    "statement": "前向 Euler 后把 ODE 反向再用 Euler 积分，哪项成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "一定精确回到初态。"
+      },
+      {
+        "id": "B",
+        "text": "任何稳定模型（model）都能无误差逆向求解。"
+      },
+      {
+        "id": "C",
+        "text": "反向误差只来自观测（observation）噪声。"
+      },
+      {
+        "id": "D",
+        "text": "要单独检验重建误差，不能把它当作连续伴随的数学恒等式。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-network-value",
+    "slug": "p15-network-value",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.1",
+    "lesson_id": "P15-C01-S01",
+    "title": "计算一神经元响应",
+    "statement": "按 tanh 网络返回给定输入（input）的预测。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "float",
+        "description": "以 U 为单位的输入数值。",
+        "unit": "U"
+      },
+      {
+        "name": "w",
+        "type": "float",
+        "description": "无量纲（dimensionless）输入系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "激活偏置。",
+        "unit": "1"
+      },
+      {
+        "name": "v",
+        "type": "float",
+        "description": "激活的输出（output）幅度。",
+        "unit": "U/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "输出偏置。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "prediction",
+        "type": "float",
+        "description": "给定输入的响应预测。",
+        "unit": "U/T"
+      }
+    ],
+    "contract": "预测 = v*tanh(w*x+b)+c。",
+    "constraints": [
+      "输入规模不超过100，全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先算 z=wx+b，再算 v tanh(z)+c。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x: float,\n    w: float,\n    b: float,\n    v: float,\n    c: float,\n) -> float:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x": 0.0,
+          "w": 1.0,
+          "b": 0.0,
+          "v": 2.0,
+          "c": 0.3
+        },
+        "expected": 0.3,
+        "explanation": "先算 z=wx+b，再算 v tanh(z)+c。"
+      }
+    ]
+  },
+  {
+    "id": "p15-network-loss-gradient",
+    "slug": "p15-network-loss-gradient",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.1",
+    "lesson_id": "P15-C01-S01",
+    "title": "输出、损失与四个梯度",
+    "statement": "按 w,b,v,c 顺序返回预测、半平方损失和梯度（gradient）。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "float",
+        "description": "输入（input）数值。",
+        "unit": "U"
+      },
+      {
+        "name": "y",
+        "type": "float",
+        "description": "目标响应。",
+        "unit": "U/T"
+      },
+      {
+        "name": "w",
+        "type": "float",
+        "description": "输入权重。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "激活偏置。",
+        "unit": "1"
+      },
+      {
+        "name": "v",
+        "type": "float",
+        "description": "输出（output）幅度。",
+        "unit": "U/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "输出偏置。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "prediction",
+        "type": "float",
+        "description": "网络预测。",
+        "unit": "U/T"
+      },
+      {
+        "name": "loss",
+        "type": "float",
+        "description": "半平方误差。",
+        "unit": "(U/T)^2"
+      },
+      {
+        "name": "gradient",
+        "type": "list[float]",
+        "description": "依次对 w,b,v,c 的偏导数（partial derivative）值。",
+        "unit": "按参数"
+      }
+    ],
+    "contract": "预测同上，损失 = (预测-y)²/2；梯度按 w,b,v,c 顺序。",
+    "constraints": [
+      "输入规模不超过100，全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "x=0、b=0 时 tanh=0；检查 w 梯度仍须经链式法则。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x: float,\n    y: float,\n    w: float,\n    b: float,\n    v: float,\n    c: float,\n) -> tuple[float, float, list[float]]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x": 0.0,
+          "y": 1.0,
+          "w": 1.0,
+          "b": 0.0,
+          "v": 2.0,
+          "c": 0.0
+        },
+        "expected": [
+          0.0,
+          0.5,
+          [
+            -0.0,
+            -2.0,
+            -0.0,
+            -1.0
+          ]
+        ],
+        "explanation": "x=0、b=0 时 tanh=0；检查 w 梯度仍须经链式法则（chain rule）。"
+      }
+    ]
+  },
+  {
+    "id": "p15-reverse-graph",
+    "slug": "p15-reverse-graph",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.1",
+    "lesson_id": "P15-C01-S02",
+    "title": "反向计算图梯度",
+    "statement": "构造题给标量计算图（computational graph），并按 w,b,v,c 返回反向累积梯度（gradient）。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "float",
+        "description": "输入（input）数值。",
+        "unit": "U"
+      },
+      {
+        "name": "y",
+        "type": "float",
+        "description": "目标响应。",
+        "unit": "U/T"
+      },
+      {
+        "name": "w",
+        "type": "float",
+        "description": "输入权重。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "偏置。",
+        "unit": "1"
+      },
+      {
+        "name": "v",
+        "type": "float",
+        "description": "输出（output）权重。",
+        "unit": "U/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "输出偏置。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "prediction",
+        "type": "float",
+        "description": "前向预测。",
+        "unit": "U/T"
+      },
+      {
+        "name": "loss",
+        "type": "float",
+        "description": "半平方误差。",
+        "unit": "(U/T)^2"
+      },
+      {
+        "name": "gradient",
+        "type": "list[float]",
+        "description": "反向累积后的四个参数（parameter）梯度。",
+        "unit": "按参数"
+      }
+    ],
+    "contract": "计算图为 z=wx+b、a=tanh(z)、预测=va+c、损失=(预测-y)²/2；反向累计梯度。",
+    "constraints": [
+      "输入规模不超过100，全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "损失的误差节点在平方计算中使用两次，反向贡献应相加。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x: float,\n    y: float,\n    w: float,\n    b: float,\n    v: float,\n    c: float,\n) -> tuple[float, float, list[float]]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x": 0.5,
+          "y": 0.0,
+          "w": 1.0,
+          "b": 0.0,
+          "v": 1.0,
+          "c": 0.0
+        },
+        "expected": [
+          0.46211715726000974,
+          0.10677613351703628,
+          [
+            0.18171549534589682,
+            0.36343099069179363,
+            0.21355226703407257,
+            0.46211715726000974
+          ]
+        ],
+        "explanation": "损失的误差节点在平方计算中使用两次，反向贡献应相加。"
+      }
+    ]
+  },
+  {
+    "id": "p15-difference-check",
+    "slug": "p15-difference-check",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.1",
+    "lesson_id": "P15-C01-S02",
+    "title": "中心差分核验",
+    "statement": "按给定中心差分（central difference）步长返回四个参数（parameter）的数值梯度（gradient）。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "float",
+        "description": "输入（input）。",
+        "unit": "U"
+      },
+      {
+        "name": "y",
+        "type": "float",
+        "description": "目标。",
+        "unit": "U/T"
+      },
+      {
+        "name": "w",
+        "type": "float",
+        "description": "输入权重。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "偏置。",
+        "unit": "1"
+      },
+      {
+        "name": "v",
+        "type": "float",
+        "description": "输出（output）权重。",
+        "unit": "U/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "输出偏置。",
+        "unit": "U/T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "参数数值的正扰动步长。",
+        "unit": "按参数"
+      }
+    ],
+    "returns": [
+      {
+        "name": "gradient",
+        "type": "list[float]",
+        "description": "w,b,v,c 顺序的中心差分结果。",
+        "unit": "按参数"
+      }
+    ],
+    "contract": "每个参数单独计算 [L(参数+h)-L(参数-h)]/(2h)，损失=(v*tanh(wx+b)+c-y)²/2。",
+    "constraints": [
+      "h>0 且所有数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "对每个参数分别做正负扰动；不要把 h 同时加到所有参数上。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x: float,\n    y: float,\n    w: float,\n    b: float,\n    v: float,\n    c: float,\n    h: float,\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x": 0.5,
+          "y": 0.0,
+          "w": 1.0,
+          "b": 0.0,
+          "v": 1.0,
+          "c": 0.0,
+          "h": 0.0001
+        },
+        "expected": [
+          0.18171549493427308,
+          0.36343098739823054,
+          0.21355226703406727,
+          0.46211715725996694
+        ],
+        "explanation": "对每个参数分别做正负扰动；不要把 h 同时加到所有参数上。"
+      }
+    ]
+  },
+  {
+    "id": "p15-fixed-map",
+    "slug": "p15-fixed-map",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.2",
+    "lesson_id": "P15-C02-S01",
+    "title": "固定间隔的一步状态",
+    "statement": "按题给映射计算单步新状态（state）；x、u 数值以 U 为单位。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "float",
+        "description": "当前总量。",
+        "unit": "U"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "本步输入（input）量。",
+        "unit": "U"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "保留系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "输入系数。",
+        "unit": "1"
+      },
+      {
+        "name": "q",
+        "type": "float",
+        "description": "平滑修正幅度。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "next_state",
+        "type": "float",
+        "description": "一步后的总量。",
+        "unit": "U"
+      }
+    ],
+    "contract": "下一状态 = a*x+b*u+q*tanh(x)，x 是以 1 U 为基准的数值。",
+    "constraints": [
+      "输入规模不超过100，全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "零状态下 tanh(0)=0；此函数返回下一步状态，不返回变化率。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x: float,\n    u: float,\n    a: float,\n    b: float,\n    q: float,\n) -> float:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x": 0.0,
+          "u": 1.0,
+          "a": 0.8,
+          "b": 0.2,
+          "q": 0.1
+        },
+        "expected": 0.2,
+        "explanation": "零状态下 tanh(0)=0；此函数返回下一步状态，不返回变化率。"
+      }
+    ]
+  },
+  {
+    "id": "p15-teacher-forced",
+    "slug": "p15-teacher-forced",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.2",
+    "lesson_id": "P15-C02-S01",
+    "title": "真实旧状态的一步预测",
+    "statement": "对每一对真实旧状态（state）与输入（input）计算一步候选预测。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "N+1 个真实状态。",
+        "unit": "U"
+      },
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "N 个本步输入。",
+        "unit": "U"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "状态系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "输入系数。",
+        "unit": "1"
+      },
+      {
+        "name": "q",
+        "type": "float",
+        "description": "修正幅度。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "prediction",
+        "type": "list[float]",
+        "description": "N 个一步预测（one-step-ahead prediction），不含初态。",
+        "unit": "U"
+      }
+    ],
+    "contract": "第 n 项预测 = a*states[n]+b*inputs[n]+q*tanh(states[n])。",
+    "constraints": [
+      "len(states)=len(inputs)+1，步数 0—100，全部有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "每个预测使用输入 states[n]；空步数时返回空列表。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    states: list[float],\n    inputs: list[float],\n    a: float,\n    b: float,\n    q: float,\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "states": [
+            1.0,
+            2.0,
+            3.0
+          ],
+          "inputs": [
+            0.5,
+            0.0
+          ],
+          "a": 0.8,
+          "b": 0.2,
+          "q": 0.0
+        },
+        "expected": [
+          0.9,
+          1.6
+        ],
+        "explanation": "每个预测使用输入 states[n]；空步数时返回空列表。"
+      }
+    ]
+  },
+  {
+    "id": "p15-free-rollout",
+    "slug": "p15-free-rollout",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.2",
+    "lesson_id": "P15-C02-S02",
+    "title": "自由运行的状态路径",
+    "statement": "只从初态出发，按输入（input）序列递推并包含初态返回。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x0",
+        "type": "float",
+        "description": "初态。",
+        "unit": "U"
+      },
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "依次作用的输入。",
+        "unit": "U"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "状态（state）系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "输入系数。",
+        "unit": "1"
+      },
+      {
+        "name": "q",
+        "type": "float",
+        "description": "修正幅度。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "初态及每步更新后的状态。",
+        "unit": "U"
+      }
+    ],
+    "contract": "从 x0 出发迭代上述映射；返回长度为 len(inputs)+1 的列表。",
+    "constraints": [
+      "步数 0—100，全部有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例无输入且 q=0，状态依次为1、0.5、0.25。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x0: float,\n    inputs: list[float],\n    a: float,\n    b: float,\n    q: float,\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x0": 1.0,
+          "inputs": [
+            0.0,
+            0.0
+          ],
+          "a": 0.5,
+          "b": 1.0,
+          "q": 0.0
+        },
+        "expected": [
+          1.0,
+          0.5,
+          0.25
+        ],
+        "explanation": "首例无输入且 q=0，状态依次为1、0.5、0.25。"
+      }
+    ]
+  },
+  {
+    "id": "p15-rollout-error",
+    "slug": "p15-rollout-error",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.2",
+    "lesson_id": "P15-C02-S02",
+    "title": "多步误差与终点误差",
+    "statement": "真实与预测路径都包含相同初态；返回后续步的均方误差及终点绝对误差。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "truth",
+        "type": "list[float]",
+        "description": "真实状态（state）路径。",
+        "unit": "U"
+      },
+      {
+        "name": "prediction",
+        "type": "list[float]",
+        "description": "预测路径。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "metrics",
+        "type": "list[float]",
+        "description": "依次为后续步 MSE 和终点绝对误差。",
+        "unit": "U²、U"
+      }
+    ],
+    "contract": "忽略相同初态；MSE = 后续各步差值平方的平均，终点绝对误差为末项差的绝对值。",
+    "constraints": [
+      "两条路径等长，至少含一个后续状态，全部有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例后两步误差是0.1与-0.2；MSE=(0.01+0.04)/2。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    truth: list[float],\n    prediction: list[float],\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "truth": [
+            1.0,
+            0.8,
+            0.6
+          ],
+          "prediction": [
+            1.0,
+            0.9,
+            0.4
+          ]
+        },
+        "expected": [
+          0.024999999999999988,
+          0.19999999999999996
+        ],
+        "explanation": "首例后两步误差是0.1与-0.2；MSE=(0.01+0.04)/2。"
+      }
+    ]
+  },
+  {
+    "id": "p15-exact-decay",
+    "slug": "p15-exact-decay",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.3",
+    "lesson_id": "P15-C03-S01",
+    "title": "连续清除的解析状态",
+    "statement": "给定固定初态、正清除率与观测（observation）时刻，返回各时刻状态（state）。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x0",
+        "type": "float",
+        "description": "固定初态。",
+        "unit": "U"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "非负观测时刻。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "各观测时刻的解析总量。",
+        "unit": "U"
+      }
+    ],
+    "contract": "对每个 t 返回 x0*exp(-k*t)。",
+    "constraints": [
+      "x0≥0，k≥0，时刻非负且不超过 100 T。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "k=0 时所有时刻保持初态。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x0: float,\n    k: float,\n    times: list[float],\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x0": 2.0,
+          "k": 0.0,
+          "times": [
+            0.0,
+            1.0,
+            2.0
+          ]
+        },
+        "expected": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "explanation": "k=0 时所有时刻保持初态。"
+      }
+    ]
+  },
+  {
+    "id": "p15-euler-sensitivity",
+    "slug": "p15-euler-sensitivity",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.3",
+    "lesson_id": "P15-C03-S01",
+    "title": "Euler 状态与参数灵敏度",
+    "statement": "同时推进 x 和 dx/dk，返回包含初态的两条路径。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x0",
+        "type": "float",
+        "description": "固定初态。",
+        "unit": "U"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "固定步长。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新次数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "Euler 状态（state）路径。",
+        "unit": "U"
+      },
+      {
+        "name": "sensitivity",
+        "type": "list[float]",
+        "description": "每步对 k 的导数（derivative）。",
+        "unit": "U·T"
+      }
+    ],
+    "contract": "初始 s=0；每步 x_new=(1-k*h)*x，s_new=(1-k*h)*s-h*x；返回两条含初值（initial condition）路径。",
+    "constraints": [
+      "x0≥0，k≥0，h>0，0≤steps≤100 且 k*h<1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "初始灵敏度为0；一步更新为 (1-kh)s-hx。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x0: float,\n    k: float,\n    h: float,\n    steps: int,\n) -> tuple[list[float], list[float]]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x0": 2.0,
+          "k": 0.5,
+          "h": 0.2,
+          "steps": 2
+        },
+        "expected": [
+          [
+            2.0,
+            1.8,
+            1.62
+          ],
+          [
+            0.0,
+            -0.4,
+            -0.7200000000000001
+          ]
+        ],
+        "explanation": "初始灵敏度为0；一步更新为 (1-kh)s-hx。"
+      }
+    ]
+  },
+  {
+    "id": "p15-continuous-gradient",
+    "slug": "p15-continuous-gradient",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.3",
+    "lesson_id": "P15-C03-S02",
+    "title": "固定观测时刻的连续损失梯度",
+    "statement": "按解析指数解计算多时刻半平方损失及其对 k 的导数（derivative）。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x0",
+        "type": "float",
+        "description": "固定初态。",
+        "unit": "U"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "observations",
+        "type": "list[list[float]]",
+        "description": "每行 [时刻,观测（observation）总量]。",
+        "unit": "T、U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "loss",
+        "type": "float",
+        "description": "观测半平方损失之和。",
+        "unit": "U²"
+      },
+      {
+        "name": "gradient",
+        "type": "float",
+        "description": "该连续损失对 k 的导数。",
+        "unit": "U²·T"
+      }
+    ],
+    "contract": "在每个 [t,y] 上计算 x=x0*exp(-k*t)、r=x-y；损失 Σr²/2，梯度（gradient） Σr*(-t*x)。",
+    "constraints": [
+      "x0≥0，k≥0；观测时刻非负，观测不超过 20 项。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例 t=0 的残差为0；t=1 的预测为2。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x0: float,\n    k: float,\n    observations: list[list[float]],\n) -> tuple[float, float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x0": 2.0,
+          "k": 0.0,
+          "observations": [
+            [
+              0.0,
+              2.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ]
+        },
+        "expected": [
+          0.5,
+          -2.0
+        ],
+        "explanation": "首例 t=0 的残差（residual）为0；t=1 的预测为2。"
+      }
+    ]
+  },
+  {
+    "id": "p15-discrete-adjoint",
+    "slug": "p15-discrete-adjoint",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.3",
+    "lesson_id": "P15-C03-S02",
+    "title": "带观测跳跃的离散梯度",
+    "statement": "对固定 Euler 网格上的观测（observation）损失求 k 梯度（gradient）；观测在给定整数网格点。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x0",
+        "type": "float",
+        "description": "固定初态。",
+        "unit": "U"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "Euler 步长。",
+        "unit": "T"
+      },
+      {
+        "name": "observation_indices",
+        "type": "list[int]",
+        "description": "各观测的整数网格索引。",
+        "unit": "步"
+      },
+      {
+        "name": "targets",
+        "type": "list[float]",
+        "description": "与索引对应的观测总量。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "gradient",
+        "type": "float",
+        "description": "离散程序的观测损失对 k 的导数（derivative）。",
+        "unit": "U²·T"
+      }
+    ],
+    "contract": "先 Euler 推进到最大观测索引；按每点半平方损失反向传播（backpropagation），返回该离散程序对 k 的梯度。观测索引互不重复。",
+    "constraints": [
+      "x0≥0，k≥0，h>0，k*h<1；索引非负互异且不超过100，索引和目标等长。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "经过观测网格点时，先把状态残差加进伴随，再向前传播。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x0: float,\n    k: float,\n    h: float,\n    observation_indices: list[int],\n    targets: list[float],\n) -> float:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x0": 2.0,
+          "k": 0.5,
+          "h": 0.2,
+          "observation_indices": [
+            1,
+            2
+          ],
+          "targets": [
+            1.8,
+            1.5
+          ]
+        },
+        "expected": -0.08640000000000009,
+        "explanation": "经过观测网格点时，先把状态（state）残差（residual）加进伴随，再向前传播。"
+      }
+    ]
+  },
+  {
+    "id": "p15-pinn-parts",
+    "slug": "p15-pinn-parts",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.4",
+    "lesson_id": "P15-C04-S01",
+    "title": "方程约束的三类证据",
+    "statement": "少量观测（observation）上数据损失接近零，能推出什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "候选函数在连续全域满足方程。"
+      },
+      {
+        "id": "B",
+        "text": "初值（initial condition）自动正确。"
+      },
+      {
+        "id": "C",
+        "text": "训练外轨迹（trajectory）一定正确。"
+      },
+      {
+        "id": "D",
+        "text": "只说明给定观测点拟合好；仍要查残差（residual）、初值和独立点。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-loss-unit",
+    "slug": "p15-loss-unit",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.4",
+    "lesson_id": "P15-C04-S01",
+    "title": "损失相加之前",
+    "statement": "数据平方误差的单位是 U²，方程残差（residual）平方的单位是 U²/T²。直接相加前应怎样做？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "声明尺度与权重，最好先无量纲化（nondimensionalization）各分项。"
+      },
+      {
+        "id": "B",
+        "text": "把单位写在图例里就足够。"
+      },
+      {
+        "id": "C",
+        "text": "只删除方程项。"
+      },
+      {
+        "id": "D",
+        "text": "只增加配点（collocation point）数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-boundary-needed",
+    "slug": "p15-boundary-needed",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.4",
+    "lesson_id": "P15-C04-S02",
+    "title": "内点残差零时",
+    "statement": "候选 φ=e^{-Dπ²t}cos(πx)+s x，s≠0，内部扩散残差（residual）为零。对无通量问题如何判断？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "已证明完全满足问题。"
+      },
+      {
+        "id": "B",
+        "text": "还需检查边界；s≠0 违反零通量条件。"
+      },
+      {
+        "id": "C",
+        "text": "只需增加时间配点（collocation point）。"
+      },
+      {
+        "id": "D",
+        "text": "PDE 残差必为无穷。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-collocation-limit",
+    "slug": "p15-collocation-limit",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.4",
+    "lesson_id": "P15-C04-S02",
+    "title": "有限配点的结论",
+    "statement": "所有训练配点（collocation point）残差（residual）很小，什么仍需检查？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "无需任何评估，已获得连续全域证明。"
+      },
+      {
+        "id": "B",
+        "text": "只看训练损失的总和即可。"
+      },
+      {
+        "id": "C",
+        "text": "独立时空点、边界与解析或数值基线的解误差。"
+      },
+      {
+        "id": "D",
+        "text": "把曲线颜色换成蓝色。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-zero-correction",
+    "slug": "p15-zero-correction",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.5",
+    "lesson_id": "P15-C05-S01",
+    "title": "零修正的极限",
+    "statement": "混合右端 u-kx+θ tanh(x/s) 在 θ=0 时应怎样？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "状态（state）导数（derivative）总为零。"
+      },
+      {
+        "id": "B",
+        "text": "成为任意神经网络（neural network）。"
+      },
+      {
+        "id": "C",
+        "text": "只保留输入（input） u。"
+      },
+      {
+        "id": "D",
+        "text": "精确恢复 u-kx 的机制基线。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-mechanism-claim",
+    "slug": "p15-mechanism-claim",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.5",
+    "lesson_id": "P15-C05-S01",
+    "title": "拟合与机制",
+    "statement": "混合模型（model）训练损失下降且新输入（input）预测改善，可以直接断言修正项是真实生理通道吗？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不能；它支持给定条件下的预测，还需结构可辨识与额外机制证据。"
+      },
+      {
+        "id": "B",
+        "text": "能，因为任何 tanh 都是生理清除。"
+      },
+      {
+        "id": "C",
+        "text": "能，因为总量非负。"
+      },
+      {
+        "id": "D",
+        "text": "能，因为训练参数（parameter）唯一。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-confounding-input",
+    "slug": "p15-confounding-input",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.5",
+    "lesson_id": "P15-C05-S02",
+    "title": "新输入能否破除同形混淆",
+    "statement": "若右端只含 -(k-θ)x，且只测 x(t)，改变已知输入（input） u(t) 会怎样？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "必定分别确定 k 与 θ。"
+      },
+      {
+        "id": "B",
+        "text": "仍只识别 k-θ；需要额外类型的信息，例如独立清除通量。"
+      },
+      {
+        "id": "C",
+        "text": "使 θ 自动变成无量纲（dimensionless）。"
+      },
+      {
+        "id": "D",
+        "text": "使模型（model）无法数值积分。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-candidate-variance",
+    "slug": "p15-candidate-variance",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.5",
+    "lesson_id": "P15-C05-S02",
+    "title": "候选预测方差的范围",
+    "statement": "给定两组预设参数（parameter）及权重，算出的预测方差（variance）是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "所有可能机制的真实后验（posterior）方差。"
+      },
+      {
+        "id": "B",
+        "text": "观测（observation）噪声的唯一估计。"
+      },
+      {
+        "id": "C",
+        "text": "这两组候选及权重下的预测散布，不含遗漏结构。"
+      },
+      {
+        "id": "D",
+        "text": "一定是临床风险。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-trial-derivative",
+    "slug": "p15-trial-derivative",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.4",
+    "lesson_id": "P15-C04-S01",
+    "title": "光滑候选值与导数",
+    "statement": "返回单神经元候选在时刻 t 的值和时间导数（derivative）。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "t",
+        "type": "float",
+        "description": "非负时间。",
+        "unit": "T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "常量项。",
+        "unit": "U"
+      },
+      {
+        "name": "v",
+        "type": "float",
+        "description": "tanh 幅度。",
+        "unit": "U"
+      },
+      {
+        "name": "w",
+        "type": "float",
+        "description": "时间系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "无量纲（dimensionless）偏置。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "value",
+        "type": "float",
+        "description": "候选函数值。",
+        "unit": "U"
+      },
+      {
+        "name": "derivative",
+        "type": "float",
+        "description": "时间导数。",
+        "unit": "U/T"
+      }
+    ],
+    "contract": "候选值 c+v*tanh(w*t+b)，时间导数 v*w*(1-tanh(w*t+b)²)。",
+    "constraints": [
+      "输入（input）规模不超过100，全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例 tanh(0)=0，导数为 v·w。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    t: float,\n    c: float,\n    v: float,\n    w: float,\n    b: float,\n) -> tuple[float, float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "t": 0.0,
+          "c": 1.0,
+          "v": 2.0,
+          "w": 0.5,
+          "b": 0.0
+        },
+        "expected": [
+          1.0,
+          1.0
+        ],
+        "explanation": "首例 tanh(0)=0，导数为 v·w。"
+      }
+    ]
+  },
+  {
+    "id": "p15-ode-loss-parts",
+    "slug": "p15-ode-loss-parts",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.4",
+    "lesson_id": "P15-C04-S01",
+    "title": "数据、方程与初值损失",
+    "statement": "给定相同长度的配点（collocation point）与观测（observation），返回三个未加权损失分项。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "配点时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "对应观测总量。",
+        "unit": "U"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "已知清除率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "候选常量项。",
+        "unit": "U"
+      },
+      {
+        "name": "v",
+        "type": "float",
+        "description": "tanh 幅度。",
+        "unit": "U"
+      },
+      {
+        "name": "w",
+        "type": "float",
+        "description": "时间系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "偏置。",
+        "unit": "1"
+      },
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "声明的初始总量。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "parts",
+        "type": "list[float]",
+        "description": "依次为数据均方、方程残差（residual）均方、初值（initial condition）平方误差。",
+        "unit": "依分项"
+      }
+    ],
+    "contract": "数据项是候选与 observed 的差的平方平均；方程项是 (候选导数（derivative）+k*候选)² 的平均；初值项是 (候选(0)-initial)²。",
+    "constraints": [
+      "配点与观测等长且至少一个，全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例候选恒为1，数据与初值损失为0，方程残差每点为0.5。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    times: list[float],\n    observed: list[float],\n    k: float,\n    c: float,\n    v: float,\n    w: float,\n    b: float,\n    initial: float,\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "times": [
+            0.0,
+            1.0
+          ],
+          "observed": [
+            1.0,
+            1.0
+          ],
+          "k": 0.5,
+          "c": 1.0,
+          "v": 0.0,
+          "w": 1.0,
+          "b": 0.0,
+          "initial": 1.0
+        },
+        "expected": [
+          0.0,
+          0.25,
+          0.0
+        ],
+        "explanation": "首例候选恒为1，数据与初值损失为0，方程残差每点为0.5。"
+      }
+    ]
+  },
+  {
+    "id": "p15-diffusion-profile",
+    "slug": "p15-diffusion-profile",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.4",
+    "lesson_id": "P15-C04-S02",
+    "title": "扩散候选的空间取值",
+    "statement": "对给定位置列表和单个时间返回候选 φ=e^{-rt}cos(πx)+s x。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "points",
+        "type": "list[float]",
+        "description": "区间 [0,1] 的位置。",
+        "unit": "归一化长度"
+      },
+      {
+        "name": "time",
+        "type": "float",
+        "description": "非负时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "rate",
+        "type": "float",
+        "description": "指数衰减率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "slope",
+        "type": "float",
+        "description": "线性空间项系数。",
+        "unit": "U/V"
+      }
+    ],
+    "returns": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "各位置的候选浓度（concentration）数值。",
+        "unit": "U/V"
+      }
+    ],
+    "contract": "对每个 x 返回 exp(-rate*time)*cos(pi*x)+slope*x。",
+    "constraints": [
+      "位置位于[0,1]，time≥0，rate≥0。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例 t=0 且斜率0，值为 [1,0,-1]（中点允许浮点近零）。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    points: list[float],\n    time: float,\n    rate: float,\n    slope: float,\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "points": [
+            0.0,
+            0.5,
+            1.0
+          ],
+          "time": 0.0,
+          "rate": 1.0,
+          "slope": 0.0
+        },
+        "expected": [
+          1.0,
+          6.123233995736766e-17,
+          -1.0
+        ],
+        "explanation": "首例 t=0 且斜率（slope）0，值为 [1,0,-1]（中点允许浮点近零）。"
+      }
+    ]
+  },
+  {
+    "id": "p15-diffusion-residual",
+    "slug": "p15-diffusion-residual",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.4",
+    "lesson_id": "P15-C04-S02",
+    "title": "内部与无通量边界残差",
+    "statement": "返回候选的内部扩散残差（residual）均方和两端相同的导数（derivative）平方。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "points",
+        "type": "list[float]",
+        "description": "内部配点（collocation point）位置。",
+        "unit": "归一化长度"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "对应配点时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "diffusivity",
+        "type": "float",
+        "description": "归一化扩散系数（diffusion coefficient）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "rate",
+        "type": "float",
+        "description": "候选衰减率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "slope",
+        "type": "float",
+        "description": "空间线性项系数。",
+        "unit": "U/V"
+      }
+    ],
+    "returns": [
+      {
+        "name": "parts",
+        "type": "list[float]",
+        "description": "内部 PDE 残差均方、边界导数平方。",
+        "unit": "按分项"
+      }
+    ],
+    "contract": "候选 exp(-rate*t)*cos(pi*x)+slope*x；内部项为 (∂t候选-diffusivity*∂xx候选)² 平均，边界项为端点空间导数平方。",
+    "constraints": [
+      "位置与时刻等长且至少一个；位置位于[0,1]，时刻非负，扩散系数正。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例内部速率匹配，但 slope=0.2 使边界分项为0.04。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    points: list[float],\n    times: list[float],\n    diffusivity: float,\n    rate: float,\n    slope: float,\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "points": [
+            0.0,
+            0.5,
+            1.0
+          ],
+          "times": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "diffusivity": 1.0,
+          "rate": 9.869604401089358,
+          "slope": 0.2
+        },
+        "expected": [
+          0.0,
+          0.04000000000000001
+        ],
+        "explanation": "首例内部速率匹配，但 slope=0.2 使边界分项为0.04。"
+      }
+    ]
+  },
+  {
+    "id": "p15-hybrid-right-side",
+    "slug": "p15-hybrid-right-side",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.5",
+    "lesson_id": "P15-C05-S01",
+    "title": "机制与修正的总变化率",
+    "statement": "计算给定状态（state）、输入（input）率及修正参数（parameter）下的混合右端。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "float",
+        "description": "当前总量。",
+        "unit": "U"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "输入率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "机制清除率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "theta",
+        "type": "float",
+        "description": "修正幅度。",
+        "unit": "U/T"
+      },
+      {
+        "name": "scale",
+        "type": "float",
+        "description": "正的状态尺度。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rate",
+        "type": "float",
+        "description": "当前总量变化率。",
+        "unit": "U/T"
+      }
+    ],
+    "contract": "变化率 = u-k*x+theta*tanh(x/scale)。",
+    "constraints": [
+      "scale>0，x≥0，u≥0，k≥0；全部有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "x=0 时平滑修正为0，右端等于输入率。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x: float,\n    u: float,\n    k: float,\n    theta: float,\n    scale: float,\n) -> float:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x": 0.0,
+          "u": 0.4,
+          "k": 0.3,
+          "theta": -0.1,
+          "scale": 1.0
+        },
+        "expected": 0.4,
+        "explanation": "x=0 时平滑修正为0，右端等于输入率。"
+      }
+    ]
+  },
+  {
+    "id": "p15-hybrid-steps",
+    "slug": "p15-hybrid-steps",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.5",
+    "lesson_id": "P15-C05-S01",
+    "title": "混合模型的固定步长轨迹",
+    "statement": "用显式 Euler 推进已知输入（input）率序列，返回包含初态的全部总量。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x0",
+        "type": "float",
+        "description": "初态。",
+        "unit": "U"
+      },
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "各步输入率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "时间步长（time step）。",
+        "unit": "T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "theta",
+        "type": "float",
+        "description": "修正幅度。",
+        "unit": "U/T"
+      },
+      {
+        "name": "scale",
+        "type": "float",
+        "description": "正尺度。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "初态与逐步更新的总量。",
+        "unit": "U"
+      }
+    ],
+    "contract": "按 x_new=x+h*(u-k*x+theta*tanh(x/scale)) 逐步推进，返回含初态路径。",
+    "constraints": [
+      "scale>0，h>0，k≥0，输入非负，步数不超过100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "零修正、零输入时首例前两步依次乘以1-kh。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x0: float,\n    inputs: list[float],\n    h: float,\n    k: float,\n    theta: float,\n    scale: float,\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x0": 1.0,
+          "inputs": [
+            0.0,
+            0.0
+          ],
+          "h": 0.1,
+          "k": 0.5,
+          "theta": 0.0,
+          "scale": 1.0
+        },
+        "expected": [
+          1.0,
+          0.95,
+          0.9025
+        ],
+        "explanation": "零修正、零输入时首例前两步依次乘以1-kh。"
+      }
+    ]
+  },
+  {
+    "id": "p15-indistinguishable-rate",
+    "slug": "p15-indistinguishable-rate",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.5",
+    "lesson_id": "P15-C05-S02",
+    "title": "同形修正的变化率",
+    "statement": "计算线性修正模型（model） u-(k-θ)x 的瞬时变化率。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "float",
+        "description": "当前总量。",
+        "unit": "U"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "输入（input）率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "theta",
+        "type": "float",
+        "description": "线性修正系数。",
+        "unit": "1/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rate",
+        "type": "float",
+        "description": "给定状态（state）变化率。",
+        "unit": "U/T"
+      }
+    ],
+    "contract": "变化率 = u-(k-theta)*x。",
+    "constraints": [
+      "输入规模不超过100，全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "两组参数的 k-θ 都为0.3，因此样例变化率相同。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x: float,\n    u: float,\n    k: float,\n    theta: float,\n) -> float:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x": 1.0,
+          "u": 0.2,
+          "k": 0.4,
+          "theta": 0.1
+        },
+        "expected": -0.10000000000000003,
+        "explanation": "两组参数（parameter）的 k-θ 都为0.3，因此样例变化率相同。"
+      }
+    ]
+  },
+  {
+    "id": "p15-candidate-moments",
+    "slug": "p15-candidate-moments",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.5",
+    "lesson_id": "P15-C05-S02",
+    "title": "预设候选的预测矩",
+    "statement": "先将非负权重归一化，再计算候选值的加权均值和总体加权方差（variance）。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "各候选给出的预测状态（state）。",
+        "unit": "U"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "相应非负权重，和为正。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "moments",
+        "type": "list[float]",
+        "description": "依次为加权均值及加权方差。",
+        "unit": "U、U²"
+      }
+    ],
+    "contract": "先归一化权重；均值=Σw*x，方差=Σw*(x-均值)²。",
+    "constraints": [
+      "状态与权重等长且非空；权重非负且和为正。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例归一化权重为1/4和3/4，均值2.5、方差0.75。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    states: list[float],\n    weights: list[float],\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "states": [
+            1.0,
+            3.0
+          ],
+          "weights": [
+            1.0,
+            3.0
+          ]
+        },
+        "expected": [
+          2.5,
+          0.75
+        ],
+        "explanation": "首例归一化权重为1/4和3/4，均值2.5、方差0.75。"
+      }
+    ]
+  },
+  {
+    "id": "p15-capstone-gradient-object",
+    "slug": "p15-capstone-gradient-object",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.summary",
+    "lesson_id": "P15-SUMMARY",
+    "title": "综合：先声明梯度对象",
+    "statement": "有限 Euler 程序的反传与连续伴随在粗步长不一致，哪项处理正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "先分别用离散差分和解析连续导数（derivative）核验，再研究细化。"
+      },
+      {
+        "id": "B",
+        "text": "判定其中一种方法必错。"
+      },
+      {
+        "id": "C",
+        "text": "把梯度（gradient）差直接解释为观测（observation）噪声。"
+      },
+      {
+        "id": "D",
+        "text": "在留出结果上调到一致后宣称独立验证。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-capstone-identifiability",
+    "slug": "p15-capstone-identifiability",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.summary",
+    "lesson_id": "P15-SUMMARY",
+    "title": "综合：机制参数是否可辨",
+    "statement": "只观测（observation） x，而方程仅含 k-θ；哪种新增信息能区分两参数（parameter）？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "同一总量的更多时间点。"
+      },
+      {
+        "id": "B",
+        "text": "独立清除通量 kx 的测量。"
+      },
+      {
+        "id": "C",
+        "text": "把输入（input）曲线颜色改为绿色。"
+      },
+      {
+        "id": "D",
+        "text": "只把 Euler 步长减半。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-capstone-small-gradient",
+    "slug": "p15-capstone-small-gradient",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.summary",
+    "lesson_id": "P15-SUMMARY",
+    "title": "综合：网络预测与梯度",
+    "statement": "按固定小网络返回预测、损失和 w,b,v,c 梯度（gradient）。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x",
+        "type": "float",
+        "description": "状态（state）输入（input）。",
+        "unit": "U"
+      },
+      {
+        "name": "y",
+        "type": "float",
+        "description": "目标率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "w",
+        "type": "float",
+        "description": "输入权重。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "偏置。",
+        "unit": "1"
+      },
+      {
+        "name": "v",
+        "type": "float",
+        "description": "输出（output）幅度。",
+        "unit": "U/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "输出偏置。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "prediction",
+        "type": "float",
+        "description": "预测率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "loss",
+        "type": "float",
+        "description": "半平方误差。",
+        "unit": "(U/T)^2"
+      },
+      {
+        "name": "gradient",
+        "type": "list[float]",
+        "description": "四个参数（parameter）导数（derivative）。",
+        "unit": "按参数"
+      }
+    ],
+    "contract": "预测同上，损失 = (预测-y)²/2；梯度按 w,b,v,c 顺序。",
+    "constraints": [
+      "输入规模不超过100，全部数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先对预测求误差，再反向应用 tanh 的导数。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x: float,\n    y: float,\n    w: float,\n    b: float,\n    v: float,\n    c: float,\n) -> tuple[float, float, list[float]]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x": 1.0,
+          "y": 0.2,
+          "w": 0.5,
+          "b": 0.1,
+          "v": 0.8,
+          "c": 0.0
+        },
+        "expected": [
+          0.42963965359842826,
+          0.02636718525240306,
+          [
+            0.13072517672709957,
+            0.13072517672709957,
+            0.12332787653061471,
+            0.22963965359842825
+          ]
+        ],
+        "explanation": "先对预测求误差，再反向应用 tanh 的导数。"
+      }
+    ]
+  },
+  {
+    "id": "p15-capstone-forward-gradient",
+    "slug": "p15-capstone-forward-gradient",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.summary",
+    "lesson_id": "P15-SUMMARY",
+    "title": "综合：连续方程的离散梯度",
+    "statement": "固定 Euler 步数并返回完整状态（state）与参数（parameter）灵敏度路径。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "x0",
+        "type": "float",
+        "description": "固定初态。",
+        "unit": "U"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "步长。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新次数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "状态路径。",
+        "unit": "U"
+      },
+      {
+        "name": "sensitivity",
+        "type": "list[float]",
+        "description": "对 k 的路径导数（derivative）。",
+        "unit": "U·T"
+      }
+    ],
+    "contract": "初始 s=0；每步 x_new=(1-k*h)*x，s_new=(1-k*h)*s-h*x；返回两条含初值（initial condition）路径。",
+    "constraints": [
+      "x0≥0，k≥0，h>0，0≤steps≤100 且 k*h<1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "递推灵敏度应随每个 Euler 更新一起推进。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    x0: float,\n    k: float,\n    h: float,\n    steps: int,\n) -> tuple[list[float], list[float]]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "x0": 1.5,
+          "k": 0.4,
+          "h": 0.1,
+          "steps": 3
+        },
+        "expected": [
+          [
+            1.5,
+            1.44,
+            1.3823999999999999,
+            1.3271039999999998
+          ],
+          [
+            0.0,
+            -0.15000000000000002,
+            -0.28800000000000003,
+            -0.41472
+          ]
+        ],
+        "explanation": "递推灵敏度应随每个 Euler 更新一起推进。"
+      }
+    ]
+  },
+  {
+    "id": "p15-capstone-scaled-loss",
+    "slug": "p15-capstone-scaled-loss",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.summary",
+    "lesson_id": "P15-SUMMARY",
+    "title": "综合：已声明尺度的方程损失",
+    "statement": "给定三项原始损失、对应正尺度及非负权重，返回缩放后加权总损失。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "parts",
+        "type": "list[float]",
+        "description": "依次为数据、方程、初边值原始平方损失。",
+        "unit": "按分项"
+      },
+      {
+        "name": "data_scale",
+        "type": "float",
+        "description": "数据残差（residual）尺度。",
+        "unit": "U"
+      },
+      {
+        "name": "physics_scale",
+        "type": "float",
+        "description": "方程残差尺度。",
+        "unit": "U/T"
+      },
+      {
+        "name": "boundary_scale",
+        "type": "float",
+        "description": "初边值残差尺度。",
+        "unit": "U"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "三项非负权重。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "total",
+        "type": "float",
+        "description": "无量纲（dimensionless）加权损失。",
+        "unit": "1"
+      }
+    ],
+    "contract": "每项先除以各自残差尺度的平方，再乘对应权重并求和。",
+    "constraints": [
+      "parts 和 weights 各恰有三项；三个尺度正，损失和权重非负。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例三项缩放后均为1，总损失为3。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    parts: list[float],\n    data_scale: float,\n    physics_scale: float,\n    boundary_scale: float,\n    weights: list[float],\n) -> float:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "parts": [
+            4.0,
+            9.0,
+            1.0
+          ],
+          "data_scale": 2.0,
+          "physics_scale": 3.0,
+          "boundary_scale": 1.0,
+          "weights": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "expected": 3.0,
+        "explanation": "首例三项缩放后均为1，总损失为3。"
+      }
+    ]
+  },
+  {
+    "id": "p15-capstone-independent-error",
+    "slug": "p15-capstone-independent-error",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.summary",
+    "lesson_id": "P15-SUMMARY",
+    "title": "综合：相同留出轨迹下的误差",
+    "statement": "输入（input）相同条件下真实和候选路径，计算后续步均方和终点绝对误差。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "truth",
+        "type": "list[float]",
+        "description": "独立条件的真值轨迹（trajectory）。",
+        "unit": "U"
+      },
+      {
+        "name": "prediction",
+        "type": "list[float]",
+        "description": "候选轨迹。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "metrics",
+        "type": "list[float]",
+        "description": "后续步 MSE、终点绝对误差。",
+        "unit": "U²、U"
+      }
+    ],
+    "contract": "忽略相同初态；MSE = 后续各步差值平方的平均，终点绝对误差为末项差的绝对值。",
+    "constraints": [
+      "两条路径等长，至少含一个后续状态（state），全部有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "不要把相同初态作为额外一个误差样本稀释结果。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    truth: list[float],\n    prediction: list[float],\n) -> list[float]:\n    # 按题给公式完成计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "truth": [
+            1.0,
+            0.8,
+            0.6,
+            0.5
+          ],
+          "prediction": [
+            1.0,
+            0.9,
+            0.7,
+            0.4
+          ]
+        },
+        "expected": [
+          0.009999999999999995,
+          0.09999999999999998
+        ],
+        "explanation": "不要把相同初态作为额外一个误差样本稀释结果。"
+      }
+    ]
+  },
+  {
+    "id": "p15-capstone-grid-transfer",
+    "slug": "p15-capstone-grid-transfer",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.summary",
+    "lesson_id": "P15-SUMMARY",
+    "title": "综合：改变求解步长",
+    "statement": "用粗步长训练连续右端，细化时预测和梯度（gradient）改变，应先做什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "断言真实机制随步长改变。"
+      },
+      {
+        "id": "B",
+        "text": "忽略步长变化，只报告训练损失。"
+      },
+      {
+        "id": "C",
+        "text": "固定模型（model）参数（parameter），核查状态（state）与梯度网格收敛，再评估新初值（initial condition）。"
+      },
+      {
+        "id": "D",
+        "text": "把细网格留出结果重新用于参数选择。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p15-capstone-hybrid-ablation",
+    "slug": "p15-capstone-hybrid-ablation",
+    "version": "1",
+    "part": "15",
+    "chapter": "15.summary",
+    "lesson_id": "P15-SUMMARY",
+    "title": "综合：混合修正的证据",
+    "statement": "去掉修正后新输入（input）误差增加，但只测 x 且修正与清除同形。能支持什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数27",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "已唯一发现新的生理通道。"
+      },
+      {
+        "id": "B",
+        "text": "所有输入范围都必更好。"
+      },
+      {
+        "id": "C",
+        "text": "任何机制模型（model）都不需要。"
+      },
+      {
+        "id": "D",
+        "text": "该条件下修正改善预测；机制归属仍需独立观测（observation）或干预。"
+      }
+    ],
+    "constraints": []
+  }
+]

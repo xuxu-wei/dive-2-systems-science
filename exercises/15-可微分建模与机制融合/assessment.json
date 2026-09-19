@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "15",
+  "lesson_id": "P15-SUMMARY",
+  "title": "机制与学习模型的独立比较",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "核验计算图梯度",
+      "review_url": "/chapters/15-01-神经网络与自动微分/"
+    },
+    {
+      "id": "T2",
+      "title": "区分离散与连续动态",
+      "review_url": "/chapters/15-03-神经微分方程/"
+    },
+    {
+      "id": "T3",
+      "title": "检查方程与机制条件",
+      "review_url": "/chapters/15-04-物理约束学习/"
+    },
+    {
+      "id": "T4",
+      "title": "独立比较与辨识",
+      "review_url": "/chapters/15-05-混合模型与可辨识性/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p15-capstone-gradient-object",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p15-capstone-identifiability",
+      "level": 1,
+      "points": 10,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p15-capstone-small-gradient",
+      "level": 2,
+      "points": 15,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p15-capstone-forward-gradient",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p15-capstone-scaled-loss",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p15-capstone-independent-error",
+      "level": 3,
+      "points": 15,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p15-capstone-grid-transfer",
+      "level": 4,
+      "points": 10,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p15-capstone-hybrid-ablation",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "stage": "M16",
+  "date": "2026-09-20",
+  "scope": "第15篇 15.1—15.5 及篇末综合；不含第16—17篇。",
+  "deliverables": {
+    "chapters": 5,
+    "notebooks": 11,
+    "code_cells": 56,
+    "figures": 12,
+    "questions": 48,
+    "choice_questions": 24,
+    "python_questions": 24,
+    "web_explorations": 5
+  },
+  "execution": {
+    "python": "3.13.2",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "fresh_kernel": true,
+    "files": [
+      {
+        "id": "P15-C01-S01",
+        "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb",
+        "sha256": "baf5a8d08ec1527441c42adcc7342109004e3339232eaa8f1680573e537d32f2",
+        "code_cells": 6,
+        "figures": 1
+      },
+      {
+        "id": "P15-C01-S02",
+        "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.ipynb",
+        "sha256": "ed5019cda0756a70665de8100d755ecd3dd45521f47ffc61959a28c745593af9",
+        "code_cells": 5,
+        "figures": 2
+      },
+      {
+        "id": "P15-C02-S01",
+        "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.ipynb",
+        "sha256": "56da398627cb4973fb33da65c43a2b955c4cb0720088d68cbeecffce4e989d2e",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P15-C02-S02",
+        "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.ipynb",
+        "sha256": "01f68ce5aa0f0c83ea0d0da3b05b781562b59240ae5c0831dcc6635092c5c63d",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P15-C03-S01",
+        "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb",
+        "sha256": "aa63d0370f41aef4c41cdedcc8447eb3145fdaa4fb1a04eed6784796823824c8",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P15-C03-S02",
+        "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.ipynb",
+        "sha256": "adff4a456d2780a523ed421b432b449a2d956c1b7b62885dae1f29d6769aaeda",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P15-C04-S01",
+        "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.ipynb",
+        "sha256": "14ab0682a96427ede32602d1f5a31ebc6ccc690e343a8cc71762abe5f98ca6bc",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P15-C04-S02",
+        "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.ipynb",
+        "sha256": "fdbd72476bbee47da3508b1f148cf1910658ab73ab81f77c4e1e767b262420d0",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P15-C05-S01",
+        "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.ipynb",
+        "sha256": "9067e8d4194ce37c50069b10f27dd40640888eb1e09ca66372fc05c2396e0edc",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P15-C05-S02",
+        "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.ipynb",
+        "sha256": "255421179c699e26e2ce07a97cfb56c8ce473036d274a18a6c59599212a86f80",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P15-SUMMARY",
+        "path": "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb",
+        "sha256": "c951de743b513d1215c8adeaeba320512503fa7beded2d2941e9cdeaefa9d409",
+        "code_cells": 5,
+        "figures": 1
+      }
+    ]
+  },
+  "independent_checks": [
+    "手推一神经元四参数梯度与反向计算图、中心差分核对。",
+    "标量指数解与 Euler 闭式状态/灵敏度、离散反传差分及带观测跳跃的连续伴随积分分别核对。",
+    "一维扩散解析模态分离内部残差、初值和无通量边界；同形参数在任意输入下不可分别辨识。",
+    "24 道 Python 题用真实本机判题器完成样例、完整提交与错误提交；题目版本和分层综合保持独立。"
+  ],
+  "web_check": {
+    "pages": 5,
+    "pc_widths": [
+      1024,
+      1440,
+      1920
+    ],
+    "checked": [
+      "参数滑块与重置",
+      "三个成对情形的双向切换",
+      "章导航定位",
+      "题目深链接及具名 solve、输入/输出样例",
+      "网页到 Notebook 的 IDE 打开请求"
+    ],
+    "ide_open_scope": "隔离的模拟默认 IDE opener 收到真实 Notebook 文件路径；未检查具体 IDE 内部显示。",
+    "learner_records": "使用 .work/m16/learning 隔离记录；未触及个人作答。"
+  },
+  "tests": {
+    "python_full": "909 passed",
+    "python_targeted": "328 passed（Part15、样例与术语）",
+    "javascript": "136 passed",
+    "teaching_check": "11 本 Notebook、48 题同步和链接通过"
+  },
+  "limitations": [
+    "人工低维课程实验，不等于 Neural ODE 或 PINN 原论文完整复现。",
+    "尚无目标读者试学或独立同行评审；网页测试覆盖普通 PC 而非手机。",
+    "未引入模拟数据或外部数据生成器依赖。"
+  ]
+}
