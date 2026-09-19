@@ -1,0 +1,184 @@
+{
+  "stage": "M17",
+  "date": "2026-09-20",
+  "scope": "第16篇 16.1—16.7 及篇末综合；不含第17篇。",
+  "deliverables": {
+    "chapters": 7,
+    "notebooks": 15,
+    "code_cells": 75,
+    "figures": 15,
+    "questions": 64,
+    "choice_questions": 32,
+    "python_questions": 32,
+    "web_explorations": 7
+  },
+  "execution": {
+    "python": "3.13.2",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "fresh_kernel": true,
+    "files": [
+      {
+        "id": "P16-C01-S01",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/01-非线性反馈与能量下降.ipynb",
+        "sha256": "9d01917cfe3eb0d6b8bc65e0605509e32bf5a1804353fb7822f39c0c76d01f12",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C01-S02",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/02-执行饱和、初值与适用域.ipynb",
+        "sha256": "83c94cea06fc27c76a0bd2bf6ea1e3d265b6e1668f5e1e47788e0ce0faba26f7",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C02-S01",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/01-共同 Lyapunov 矩阵与顶点条件.ipynb",
+        "sha256": "ee3e4ca56483da9763c4a03501455f7caf880d41505a0661b73bf02861375eac",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C02-S02",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/02-集合外失效与鲁棒证据边界.ipynb",
+        "sha256": "bec4ede242a573a2c5c8c6ecfc98546d5091b29b513ce64b62a65658a5daaa5c",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C03-S01",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/01-递推估计、投影与激励.ipynb",
+        "sha256": "46f22f30e7f2b0bbe29ded12ad6696e077082a9ebf1393793489a804c6061df8",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C03-S02",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/02-估计进入控制的时间顺序.ipynb",
+        "sha256": "a0c119d01755fe45083bf16829090444e473fbcdc2563636a86a4ec3ed2d8448",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C04-S01",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/01-布朗增量与 Euler–Maruyama.ipynb",
+        "sha256": "f8d0b8a1f0d2846df751d46b35166fed6bda8d57c2bc83d77d36551a1f040c47",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C04-S02",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/02-路径误差、分布统计与风险.ipynb",
+        "sha256": "fa72658106ac8d2792c3983f83a3d89392108f73f54bb65853f29f0e82a1179c",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C05-S01",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/01-局部通信与平均一致.ipynb",
+        "sha256": "c548c88b4417062351b1f6f29a3cfe68948797d7fb8d4fb69516811e22aafeaa",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C05-S02",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/02-通信延迟、步长与稳定边界.ipynb",
+        "sha256": "8fc5d7666f850b7cf3fb7a75211b02c1e7269c1abe09561adb96809542c4c064",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C06-S01",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/01-有限决策过程与策略评价.ipynb",
+        "sha256": "84bbf9592f9730d3b8dcb317c4674f1290d1398bdb322dad0483bd3f3772f7a9",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C06-S02",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/02-固定经验的 Q 更新与独立评估.ipynb",
+        "sha256": "fced29052c5315aded0121687cc75a3320774ddeb2dc34fe1d1cc87b65101b6e",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C07-S01",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/01-学得预测器进入约束决策.ipynb",
+        "sha256": "79e95807be0f716cea450c1cf9caad21e230ec30f5712e1da2c31b957f10f126",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-C07-S02",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/02-配对预算、失败与迁移范围.ipynb",
+        "sha256": "8846e665b4a2062f4b82720c228f9d0cc71f36f3c16dab629cdc0f306c0bcc55",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P16-SUMMARY",
+        "path": "notebooks/16-自适应、鲁棒与学习控制/99-篇末综合/01-不确定条件下的闭环证据链.ipynb",
+        "sha256": "25fae626ee9a0489c380ef51926eee716e1c2942473df5731ac82860714aef8e",
+        "code_cells": 5,
+        "figures": 1
+      }
+    ]
+  },
+  "independent_checks": [
+    "实际限幅输入代入能量导数；共同 P 的顶点对称矩阵与集合外反例单独核对。",
+    "遗忘因子1的标量 RLS 与批量岭解一致；在线控制先选实际输入，再用新观测更新估计。",
+    "Euler–Maruyama 固定增量、OU 解析均值方差、粗细增量求和及有限重复统计分别核对。",
+    "无向图均值守恒、零延迟极限和激发不稳定模态的延迟反例核对；有限 MDP 解与 Bellman 几何级数对照。",
+    "32 道 Python 题用真实本机判题器完成样例、完整提交与错误提交；篇末综合分层为20/30/30/20分。"
+  ],
+  "web_check": {
+    "pages": 7,
+    "pc_widths": [
+      1024,
+      1440,
+      1920
+    ],
+    "checked": [
+      "滑块改参与重置",
+      "七个视图双向切换",
+      "章导航定位",
+      "题目深链接、具名 solve 及输入/输出样例",
+      "隔离 opener 收到真实 Notebook 路径",
+      "图形可见且无横向溢出"
+    ],
+    "ide_open_scope": "模拟默认 IDE opener 接收请求；未检查具体 IDE 内部显示。",
+    "learner_records": "使用 .work/m17/learning 隔离记录；未触及个人作答。"
+  },
+  "tests": {
+    "python_full": "978 passed",
+    "python_targeted": "37 passed（Part16）",
+    "javascript": "142 passed",
+    "teaching_check": "15 本 Notebook、64 题同步、术语首现和链接通过"
+  },
+  "file_hashes": {
+    "README.md": "cd04690c97c0e3d5ceef349a6abedec27eb88c4029b96a19879edcb606864f48",
+    "ROADMAP.md": "95a617571eb05a18625eb6e27594cf7527ea656a04effc4faf8effba3cef7486",
+    "docs/16-自适应、鲁棒与学习控制.md": "4f7faa52a827aa2be1f672aed2cf1d159ae9c28053c490c1690dd8d1b06e493f",
+    "notebooks/16-自适应、鲁棒与学习控制/catalog.json": "c990447fdfda72ad14da2a2f25c0c2b59c456245a64d34adec24230c81f4e3d6",
+    "exercises/16-自适应、鲁棒与学习控制/questions.json": "dc2c95f55ccd325009edc659febccaa193a5d0af74258a1d135abe55e5d18883",
+    "exercises/16-自适应、鲁棒与学习控制/verification.json": "0e64f196d8aa5e38c019ab521b22a2dfa2502f6c1671c00c9d66432272917d02",
+    "exercises/16-自适应、鲁棒与学习控制/assessment.json": "ebc0404670ef6cdf15b086cdf110059cb790470d16cdf26487cbc04e1ef32a09",
+    "web/advanced-control/index.html": "2e31e2bb32c85e096d72da042a24738ee5085197ae764665b71b8fe64aa3b729",
+    "web/advanced-control/app.mjs": "afe1db43b5dd5e836c8132a1177c98da7becbc05137cb20bf8bdbc39f1176e07",
+    "web/advanced-control/model.mjs": "d0ed1ef10980853c84a263540ea04681cf0c43a8adb665754ad545c8c4e633ac",
+    "web/course/catalog.json": "d63a4611d6d190de1ed61bbb23c6f8e43b09ab8194630661ed9a9b2440611eb0",
+    "web/home/graph.json": "ddd698a1f4a4b116e537843a814d721f3354cec0f322d517da7f1b78ab1acf79"
+  },
+  "limitations": [
+    "教学模型为低维人工实验，不把有限轨迹、参数扫描或短经验称为一般稳定、安全或收敛定理。",
+    "尚无目标读者试学或独立同行评审；浏览器验证覆盖普通 PC。",
+    "未引入模拟数据或外部数据生成器依赖。"
+  ]
+}

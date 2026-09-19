@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "c01850a93da0e9713365498b471f1d8d57b32ddf9585a9db11797617bd4bcc39",
+    "catalogSha256": "d63a4611d6d190de1ed61bbb23c6f8e43b09ab8194630661ed9a9b2440611eb0",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -19153,12 +19153,79 @@
         "16.6",
         "16.7"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-lyapunov-actual",
+        "p16-cubic-condition",
+        "p16-actual-lyapunov",
+        "p16-feedback-path",
+        "p16-saturated-global",
+        "p16-finite-scan",
+        "p16-saturation-boundary",
+        "p16-region-path",
+        "p16-common-p",
+        "p16-vertex-scope",
+        "p16-common-certificate",
+        "p16-affine-model",
+        "p16-certificate-failure",
+        "p16-outside-set",
+        "p16-certificate-counterexample",
+        "p16-robust-interpolation",
+        "p16-zero-excitation",
+        "p16-rls-order",
+        "p16-rls-update",
+        "p16-weak-excitation",
+        "p16-no-lookahead",
+        "p16-tracking-not-id",
+        "p16-adaptive-order",
+        "p16-bounded-adaptation",
+        "p16-brownian-scale",
+        "p16-paired-refine",
+        "p16-em-increments",
+        "p16-brownian-merge",
+        "p16-mean-risk",
+        "p16-strong-weak",
+        "p16-ou-moments",
+        "p16-paired-ou",
+        "p16-symmetric-average",
+        "p16-disconnected",
+        "p16-local-consensus",
+        "p16-component-average",
+        "p16-delay-formula",
+        "p16-delay-condition",
+        "p16-delayed-update",
+        "p16-delay-zero",
+        "p16-terminal-reward",
+        "p16-policy-vs-learning",
+        "p16-policy-bellman",
+        "p16-policy-compare",
+        "p16-terminal-q",
+        "p16-finite-q-claim",
+        "p16-q-one-update",
+        "p16-q-sequential",
+        "p16-pred-vs-actual",
+        "p16-infeasible-action",
+        "p16-feasible-action",
+        "p16-prediction-feasible",
+        "p16-paired-budget",
+        "p16-rmse-not-safety",
+        "p16-paired-metrics",
+        "p16-failure-rate",
+        "p16-capstone-scope",
+        "p16-capstone-random",
+        "p16-capstone-learning",
+        "p16-capstone-failure",
+        "p16-capstone-certificate",
+        "p16-capstone-stochastic",
+        "p16-capstone-policy",
+        "p16-capstone-decision"
+      ],
+      "available": true,
+      "published": 7,
       "total": 7,
-      "assessmentIds": [],
-      "assessmentUrl": null,
+      "assessmentIds": [
+        "P16-SUMMARY"
+      ],
+      "assessmentUrl": "/parts/16-自适应、鲁棒与学习控制/综合练习/",
       "progressScope": "已发布篇章练习（含篇末综合）"
     },
     {
@@ -19174,87 +19241,261 @@
         "cognition"
       ],
       "children": [
-        "16.1:planned:1",
-        "16.1:planned:2",
-        "16.1:planned:3"
+        "16.1.1:concept:1",
+        "16.1.1:concept:2",
+        "16.1.1:concept:3",
+        "16.1.1:concept:4",
+        "16.1.2:concept:1",
+        "16.1.2:concept:2",
+        "16.1.2:concept:3",
+        "16.1.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-lyapunov-actual",
+        "p16-cubic-condition",
+        "p16-actual-lyapunov",
+        "p16-feedback-path",
+        "p16-saturated-global",
+        "p16-finite-scan",
+        "p16-saturation-boundary",
+        "p16-region-path"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "16.1:planned:1",
+      "id": "16.1.1:concept:1",
       "kind": "concept",
-      "title": "Lyapunov 反馈设计",
+      "title": "非线性反馈",
       "english": null,
-      "number": "16.1",
+      "number": "16.1.1",
       "parentId": "16.1",
-      "url": "/chapters/16-01-非线性反馈设计/",
-      "description": "为低维非线性系统构造反馈（feedback）与稳定性论证，明确适用域和执行约束。",
+      "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual",
+      "description": "从候选能量函数推导无饱和反馈的稳定条件。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-lyapunov-actual",
+        "p16-cubic-condition",
+        "p16-actual-lyapunov",
+        "p16-feedback-path"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C01-S01",
+      "lessonNumber": "16.1.1",
+      "lessonTitle": "非线性反馈与能量下降",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.1:planned:2",
+      "id": "16.1.1:concept:2",
       "kind": "concept",
-      "title": "能量整形",
+      "title": "能量下降",
       "english": null,
-      "number": "16.1",
+      "number": "16.1.1",
       "parentId": "16.1",
-      "url": "/chapters/16-01-非线性反馈设计/",
-      "description": "为低维非线性系统构造反馈（feedback）与稳定性论证，明确适用域和执行约束。",
+      "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual",
+      "description": "从候选能量函数推导无饱和反馈的稳定条件。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-lyapunov-actual",
+        "p16-cubic-condition",
+        "p16-actual-lyapunov",
+        "p16-feedback-path"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C01-S01",
+      "lessonNumber": "16.1.1",
+      "lessonTitle": "非线性反馈与能量下降",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.1:planned:3",
+      "id": "16.1.1:concept:3",
       "kind": "concept",
-      "title": "区域内稳定性",
+      "title": "三次项抵消",
       "english": null,
-      "number": "16.1",
+      "number": "16.1.1",
       "parentId": "16.1",
-      "url": "/chapters/16-01-非线性反馈设计/",
-      "description": "为低维非线性系统构造反馈（feedback）与稳定性论证，明确适用域和执行约束。",
+      "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual",
+      "description": "从候选能量函数推导无饱和反馈的稳定条件。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-lyapunov-actual",
+        "p16-cubic-condition",
+        "p16-actual-lyapunov",
+        "p16-feedback-path"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C01-S01",
+      "lessonNumber": "16.1.1",
+      "lessonTitle": "非线性反馈与能量下降",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.1.1:concept:4",
+      "kind": "concept",
+      "title": "充分条件",
+      "english": null,
+      "number": "16.1.1",
+      "parentId": "16.1",
+      "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual",
+      "description": "从候选能量函数推导无饱和反馈的稳定条件。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-lyapunov-actual",
+        "p16-cubic-condition",
+        "p16-actual-lyapunov",
+        "p16-feedback-path"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C01-S01",
+      "lessonNumber": "16.1.1",
+      "lessonTitle": "非线性反馈与能量下降",
+      "chapterUrl": "/chapters/16-01-非线性反馈设计/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.1.2:concept:1",
+      "kind": "concept",
+      "title": "输入饱和",
+      "english": null,
+      "number": "16.1.2",
+      "parentId": "16.1",
+      "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global",
+      "description": "把实际限幅输入代回方程，比较不同初值的恢复与离开。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-saturated-global",
+        "p16-finite-scan",
+        "p16-saturation-boundary",
+        "p16-region-path"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C01-S02",
+      "lessonNumber": "16.1.2",
+      "lessonTitle": "执行饱和、初值与适用域",
+      "chapterUrl": "/chapters/16-01-非线性反馈设计/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.1.2:concept:2",
+      "kind": "concept",
+      "title": "实际执行",
+      "english": null,
+      "number": "16.1.2",
+      "parentId": "16.1",
+      "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global",
+      "description": "把实际限幅输入代回方程，比较不同初值的恢复与离开。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-saturated-global",
+        "p16-finite-scan",
+        "p16-saturation-boundary",
+        "p16-region-path"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C01-S02",
+      "lessonNumber": "16.1.2",
+      "lessonTitle": "执行饱和、初值与适用域",
+      "chapterUrl": "/chapters/16-01-非线性反馈设计/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.1.2:concept:3",
+      "kind": "concept",
+      "title": "初值范围",
+      "english": null,
+      "number": "16.1.2",
+      "parentId": "16.1",
+      "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global",
+      "description": "把实际限幅输入代回方程，比较不同初值的恢复与离开。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-saturated-global",
+        "p16-finite-scan",
+        "p16-saturation-boundary",
+        "p16-region-path"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C01-S02",
+      "lessonNumber": "16.1.2",
+      "lessonTitle": "执行饱和、初值与适用域",
+      "chapterUrl": "/chapters/16-01-非线性反馈设计/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.1.2:concept:4",
+      "kind": "concept",
+      "title": "有限轨迹",
+      "english": null,
+      "number": "16.1.2",
+      "parentId": "16.1",
+      "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global",
+      "description": "把实际限幅输入代回方程，比较不同初值的恢复与离开。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-saturated-global",
+        "p16-finite-scan",
+        "p16-saturation-boundary",
+        "p16-region-path"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C01-S02",
+      "lessonNumber": "16.1.2",
+      "lessonTitle": "执行饱和、初值与适用域",
+      "chapterUrl": "/chapters/16-01-非线性反馈设计/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "16.2",
@@ -19269,112 +19510,261 @@
         "cognition"
       ],
       "children": [
-        "16.2:planned:1",
-        "16.2:planned:2",
-        "16.2:planned:3",
-        "16.2:planned:4"
+        "16.2.1:concept:1",
+        "16.2.1:concept:2",
+        "16.2.1:concept:3",
+        "16.2.1:concept:4",
+        "16.2.2:concept:1",
+        "16.2.2:concept:2",
+        "16.2.2:concept:3",
+        "16.2.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-common-p",
+        "p16-vertex-scope",
+        "p16-common-certificate",
+        "p16-affine-model",
+        "p16-certificate-failure",
+        "p16-outside-set",
+        "p16-certificate-counterexample",
+        "p16-robust-interpolation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "16.2:planned:1",
+      "id": "16.2.1:concept:1",
       "kind": "concept",
-      "title": "不确定模型集合",
+      "title": "共同二次函数",
       "english": null,
-      "number": "16.2",
+      "number": "16.2.1",
       "parentId": "16.2",
-      "url": "/chapters/16-02-模型不确定性与鲁棒控制/",
-      "description": "在明确的不确定参数（parameter）集合上检验鲁棒性能，区别共同证据与有限场景经验。",
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p",
+      "description": "在给定仿射矩阵集合上用同一个正定矩阵核验导数。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-common-p",
+        "p16-vertex-scope",
+        "p16-common-certificate",
+        "p16-affine-model"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C02-S01",
+      "lessonNumber": "16.2.1",
+      "lessonTitle": "共同 Lyapunov 矩阵与顶点条件",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.2:planned:2",
+      "id": "16.2.1:concept:2",
       "kind": "concept",
-      "title": "共同 Lyapunov 函数",
+      "title": "仿射顶点",
       "english": null,
-      "number": "16.2",
+      "number": "16.2.1",
       "parentId": "16.2",
-      "url": "/chapters/16-02-模型不确定性与鲁棒控制/",
-      "description": "在明确的不确定参数（parameter）集合上检验鲁棒性能，区别共同证据与有限场景经验。",
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p",
+      "description": "在给定仿射矩阵集合上用同一个正定矩阵核验导数。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-common-p",
+        "p16-vertex-scope",
+        "p16-common-certificate",
+        "p16-affine-model"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C02-S01",
+      "lessonNumber": "16.2.1",
+      "lessonTitle": "共同 Lyapunov 矩阵与顶点条件",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.2:planned:3",
+      "id": "16.2.1:concept:3",
       "kind": "concept",
-      "title": "顶点核验",
+      "title": "矩阵负定",
       "english": null,
-      "number": "16.2",
+      "number": "16.2.1",
       "parentId": "16.2",
-      "url": "/chapters/16-02-模型不确定性与鲁棒控制/",
-      "description": "在明确的不确定参数（parameter）集合上检验鲁棒性能，区别共同证据与有限场景经验。",
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p",
+      "description": "在给定仿射矩阵集合上用同一个正定矩阵核验导数。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-common-p",
+        "p16-vertex-scope",
+        "p16-common-certificate",
+        "p16-affine-model"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C02-S01",
+      "lessonNumber": "16.2.1",
+      "lessonTitle": "共同 Lyapunov 矩阵与顶点条件",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.2:planned:4",
+      "id": "16.2.1:concept:4",
       "kind": "concept",
-      "title": "保守性",
+      "title": "鲁棒范围",
       "english": null,
-      "number": "16.2",
+      "number": "16.2.1",
       "parentId": "16.2",
-      "url": "/chapters/16-02-模型不确定性与鲁棒控制/",
-      "description": "在明确的不确定参数（parameter）集合上检验鲁棒性能，区别共同证据与有限场景经验。",
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p",
+      "description": "在给定仿射矩阵集合上用同一个正定矩阵核验导数。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-common-p",
+        "p16-vertex-scope",
+        "p16-common-certificate",
+        "p16-affine-model"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C02-S01",
+      "lessonNumber": "16.2.1",
+      "lessonTitle": "共同 Lyapunov 矩阵与顶点条件",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.2.2:concept:1",
+      "kind": "concept",
+      "title": "集合外反例",
+      "english": null,
+      "number": "16.2.2",
+      "parentId": "16.2",
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure",
+      "description": "辨认候选矩阵集合、共同证书和集合外反例。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-certificate-failure",
+        "p16-outside-set",
+        "p16-certificate-counterexample",
+        "p16-robust-interpolation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C02-S02",
+      "lessonNumber": "16.2.2",
+      "lessonTitle": "集合外失效与鲁棒证据边界",
+      "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.2.2:concept:2",
+      "kind": "concept",
+      "title": "证书保守性",
+      "english": null,
+      "number": "16.2.2",
+      "parentId": "16.2",
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure",
+      "description": "辨认候选矩阵集合、共同证书和集合外反例。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-certificate-failure",
+        "p16-outside-set",
+        "p16-certificate-counterexample",
+        "p16-robust-interpolation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C02-S02",
+      "lessonNumber": "16.2.2",
+      "lessonTitle": "集合外失效与鲁棒证据边界",
+      "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.2.2:concept:3",
+      "kind": "concept",
+      "title": "适用边界",
+      "english": null,
+      "number": "16.2.2",
+      "parentId": "16.2",
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure",
+      "description": "辨认候选矩阵集合、共同证书和集合外反例。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-certificate-failure",
+        "p16-outside-set",
+        "p16-certificate-counterexample",
+        "p16-robust-interpolation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C02-S02",
+      "lessonNumber": "16.2.2",
+      "lessonTitle": "集合外失效与鲁棒证据边界",
+      "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.2.2:concept:4",
+      "kind": "concept",
+      "title": "执行约束",
+      "english": null,
+      "number": "16.2.2",
+      "parentId": "16.2",
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure",
+      "description": "辨认候选矩阵集合、共同证书和集合外反例。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-certificate-failure",
+        "p16-outside-set",
+        "p16-certificate-counterexample",
+        "p16-robust-interpolation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C02-S02",
+      "lessonNumber": "16.2.2",
+      "lessonTitle": "集合外失效与鲁棒证据边界",
+      "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "16.3",
@@ -19389,112 +19779,261 @@
         "cognition"
       ],
       "children": [
-        "16.3:planned:1",
-        "16.3:planned:2",
-        "16.3:planned:3",
-        "16.3:planned:4"
+        "16.3.1:concept:1",
+        "16.3.1:concept:2",
+        "16.3.1:concept:3",
+        "16.3.1:concept:4",
+        "16.3.2:concept:1",
+        "16.3.2:concept:2",
+        "16.3.2:concept:3",
+        "16.3.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-zero-excitation",
+        "p16-rls-order",
+        "p16-rls-update",
+        "p16-weak-excitation",
+        "p16-no-lookahead",
+        "p16-tracking-not-id",
+        "p16-adaptive-order",
+        "p16-bounded-adaptation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "16.3:planned:1",
+      "id": "16.3.1:concept:1",
       "kind": "concept",
-      "title": "在线辨识",
-      "english": null,
-      "number": "16.3",
+      "title": "递推最小二乘",
+      "english": "recursive least squares",
+      "number": "16.3.1",
       "parentId": "16.3",
-      "url": "/chapters/16-03-递推辨识与自适应控制/",
-      "description": "将递推参数（parameter）估计接入反馈（feedback），区分自适应跟踪改善、激励充分和参数收敛。",
+      "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation",
+      "description": "按先预测后更新顺序实现标量递推辨识，展示零激励反例。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-zero-excitation",
+        "p16-rls-order",
+        "p16-rls-update",
+        "p16-weak-excitation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C03-S01",
+      "lessonNumber": "16.3.1",
+      "lessonTitle": "递推估计、投影与激励",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.3:planned:2",
+      "id": "16.3.1:concept:2",
       "kind": "concept",
-      "title": "自校正调节",
-      "english": null,
-      "number": "16.3",
+      "title": "遗忘因子",
+      "english": "forgetting factor",
+      "number": "16.3.1",
       "parentId": "16.3",
-      "url": "/chapters/16-03-递推辨识与自适应控制/",
-      "description": "将递推参数（parameter）估计接入反馈（feedback），区分自适应跟踪改善、激励充分和参数收敛。",
+      "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation",
+      "description": "按先预测后更新顺序实现标量递推辨识，展示零激励反例。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-zero-excitation",
+        "p16-rls-order",
+        "p16-rls-update",
+        "p16-weak-excitation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C03-S01",
+      "lessonNumber": "16.3.1",
+      "lessonTitle": "递推估计、投影与激励",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.3:planned:3",
+      "id": "16.3.1:concept:3",
       "kind": "concept",
-      "title": "激励不足",
-      "english": null,
-      "number": "16.3",
+      "title": "投影",
+      "english": "projection",
+      "number": "16.3.1",
       "parentId": "16.3",
-      "url": "/chapters/16-03-递推辨识与自适应控制/",
-      "description": "将递推参数（parameter）估计接入反馈（feedback），区分自适应跟踪改善、激励充分和参数收敛。",
+      "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation",
+      "description": "按先预测后更新顺序实现标量递推辨识，展示零激励反例。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-zero-excitation",
+        "p16-rls-order",
+        "p16-rls-update",
+        "p16-weak-excitation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C03-S01",
+      "lessonNumber": "16.3.1",
+      "lessonTitle": "递推估计、投影与激励",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.3:planned:4",
+      "id": "16.3.1:concept:4",
       "kind": "concept",
-      "title": "闭环相关误差",
-      "english": null,
-      "number": "16.3",
+      "title": "持续激励",
+      "english": "persistent excitation",
+      "number": "16.3.1",
       "parentId": "16.3",
-      "url": "/chapters/16-03-递推辨识与自适应控制/",
-      "description": "将递推参数（parameter）估计接入反馈（feedback），区分自适应跟踪改善、激励充分和参数收敛。",
+      "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation",
+      "description": "按先预测后更新顺序实现标量递推辨识，展示零激励反例。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-zero-excitation",
+        "p16-rls-order",
+        "p16-rls-update",
+        "p16-weak-excitation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C03-S01",
+      "lessonNumber": "16.3.1",
+      "lessonTitle": "递推估计、投影与激励",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.3.2:concept:1",
+      "kind": "concept",
+      "title": "在线时序",
+      "english": null,
+      "number": "16.3.2",
+      "parentId": "16.3",
+      "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead",
+      "description": "按旧估计决策、观测新状态、再更新估计的顺序比较漂移。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-no-lookahead",
+        "p16-tracking-not-id",
+        "p16-adaptive-order",
+        "p16-bounded-adaptation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C03-S02",
+      "lessonNumber": "16.3.2",
+      "lessonTitle": "估计进入控制的时间顺序",
+      "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.3.2:concept:2",
+      "kind": "concept",
+      "title": "参数漂移",
+      "english": null,
+      "number": "16.3.2",
+      "parentId": "16.3",
+      "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead",
+      "description": "按旧估计决策、观测新状态、再更新估计的顺序比较漂移。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-no-lookahead",
+        "p16-tracking-not-id",
+        "p16-adaptive-order",
+        "p16-bounded-adaptation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C03-S02",
+      "lessonNumber": "16.3.2",
+      "lessonTitle": "估计进入控制的时间顺序",
+      "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.3.2:concept:3",
+      "kind": "concept",
+      "title": "跟踪误差",
+      "english": null,
+      "number": "16.3.2",
+      "parentId": "16.3",
+      "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead",
+      "description": "按旧估计决策、观测新状态、再更新估计的顺序比较漂移。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-no-lookahead",
+        "p16-tracking-not-id",
+        "p16-adaptive-order",
+        "p16-bounded-adaptation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C03-S02",
+      "lessonNumber": "16.3.2",
+      "lessonTitle": "估计进入控制的时间顺序",
+      "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.3.2:concept:4",
+      "kind": "concept",
+      "title": "输入限幅",
+      "english": null,
+      "number": "16.3.2",
+      "parentId": "16.3",
+      "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead",
+      "description": "按旧估计决策、观测新状态、再更新估计的顺序比较漂移。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-no-lookahead",
+        "p16-tracking-not-id",
+        "p16-adaptive-order",
+        "p16-bounded-adaptation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C03-S02",
+      "lessonNumber": "16.3.2",
+      "lessonTitle": "估计进入控制的时间顺序",
+      "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "16.4",
@@ -19509,112 +20048,261 @@
         "cognition"
       ],
       "children": [
-        "16.4:planned:1",
-        "16.4:planned:2",
-        "16.4:planned:3",
-        "16.4:planned:4"
+        "16.4.1:concept:1",
+        "16.4.1:concept:2",
+        "16.4.1:concept:3",
+        "16.4.1:concept:4",
+        "16.4.2:concept:1",
+        "16.4.2:concept:2",
+        "16.4.2:concept:3",
+        "16.4.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-brownian-scale",
+        "p16-paired-refine",
+        "p16-em-increments",
+        "p16-brownian-merge",
+        "p16-mean-risk",
+        "p16-strong-weak",
+        "p16-ou-moments",
+        "p16-paired-ou"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "16.4:planned:1",
+      "id": "16.4.1:concept:1",
       "kind": "concept",
-      "title": "布朗运动",
+      "title": "布朗增量",
       "english": null,
-      "number": "16.4",
+      "number": "16.4.1",
       "parentId": "16.4",
-      "url": "/chapters/16-04-随机动力学与控制/",
-      "description": "正确离散随机动态，比较有噪反馈（feedback）的均值、波动与风险，并区分路径误差与分布（distribution）误差。",
+      "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
+      "description": "用固定增量实现随机清除，并区分噪声幅度随步长的缩放。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-brownian-scale",
+        "p16-paired-refine",
+        "p16-em-increments",
+        "p16-brownian-merge"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C04-S01",
+      "lessonNumber": "16.4.1",
+      "lessonTitle": "布朗增量与 Euler–Maruyama",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.4:planned:2",
+      "id": "16.4.1:concept:2",
       "kind": "concept",
-      "title": "Itô 随机微分方程",
+      "title": "随机离散",
       "english": null,
-      "number": "16.4",
+      "number": "16.4.1",
       "parentId": "16.4",
-      "url": "/chapters/16-04-随机动力学与控制/",
-      "description": "正确离散随机动态，比较有噪反馈（feedback）的均值、波动与风险，并区分路径误差与分布（distribution）误差。",
+      "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
+      "description": "用固定增量实现随机清除，并区分噪声幅度随步长的缩放。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-brownian-scale",
+        "p16-paired-refine",
+        "p16-em-increments",
+        "p16-brownian-merge"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C04-S01",
+      "lessonNumber": "16.4.1",
+      "lessonTitle": "布朗增量与 Euler–Maruyama",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.4:planned:3",
+      "id": "16.4.1:concept:3",
       "kind": "concept",
-      "title": "Euler–Maruyama 方法",
+      "title": "路径配对",
       "english": null,
-      "number": "16.4",
+      "number": "16.4.1",
       "parentId": "16.4",
-      "url": "/chapters/16-04-随机动力学与控制/",
-      "description": "正确离散随机动态，比较有噪反馈（feedback）的均值、波动与风险，并区分路径误差与分布（distribution）误差。",
+      "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
+      "description": "用固定增量实现随机清除，并区分噪声幅度随步长的缩放。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-brownian-scale",
+        "p16-paired-refine",
+        "p16-em-increments",
+        "p16-brownian-merge"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C04-S01",
+      "lessonNumber": "16.4.1",
+      "lessonTitle": "布朗增量与 Euler–Maruyama",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.4:planned:4",
+      "id": "16.4.1:concept:4",
       "kind": "concept",
-      "title": "期望代价",
+      "title": "解析矩",
       "english": null,
-      "number": "16.4",
+      "number": "16.4.1",
       "parentId": "16.4",
-      "url": "/chapters/16-04-随机动力学与控制/",
-      "description": "正确离散随机动态，比较有噪反馈（feedback）的均值、波动与风险，并区分路径误差与分布（distribution）误差。",
+      "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
+      "description": "用固定增量实现随机清除，并区分噪声幅度随步长的缩放。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-brownian-scale",
+        "p16-paired-refine",
+        "p16-em-increments",
+        "p16-brownian-merge"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C04-S01",
+      "lessonNumber": "16.4.1",
+      "lessonTitle": "布朗增量与 Euler–Maruyama",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.4.2:concept:1",
+      "kind": "concept",
+      "title": "随机风险",
+      "english": null,
+      "number": "16.4.2",
+      "parentId": "16.4",
+      "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk",
+      "description": "用重复轨迹比较解析矩、Monte Carlo 误差和约束违反。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-mean-risk",
+        "p16-strong-weak",
+        "p16-ou-moments",
+        "p16-paired-ou"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C04-S02",
+      "lessonNumber": "16.4.2",
+      "lessonTitle": "路径误差、分布统计与风险",
+      "chapterUrl": "/chapters/16-04-随机动力学与控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.4.2:concept:2",
+      "kind": "concept",
+      "title": "经验分布",
+      "english": null,
+      "number": "16.4.2",
+      "parentId": "16.4",
+      "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk",
+      "description": "用重复轨迹比较解析矩、Monte Carlo 误差和约束违反。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-mean-risk",
+        "p16-strong-weak",
+        "p16-ou-moments",
+        "p16-paired-ou"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C04-S02",
+      "lessonNumber": "16.4.2",
+      "lessonTitle": "路径误差、分布统计与风险",
+      "chapterUrl": "/chapters/16-04-随机动力学与控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.4.2:concept:3",
+      "kind": "concept",
+      "title": "越界频率",
+      "english": null,
+      "number": "16.4.2",
+      "parentId": "16.4",
+      "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk",
+      "description": "用重复轨迹比较解析矩、Monte Carlo 误差和约束违反。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-mean-risk",
+        "p16-strong-weak",
+        "p16-ou-moments",
+        "p16-paired-ou"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C04-S02",
+      "lessonNumber": "16.4.2",
+      "lessonTitle": "路径误差、分布统计与风险",
+      "chapterUrl": "/chapters/16-04-随机动力学与控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.4.2:concept:4",
+      "kind": "concept",
+      "title": "统计误差",
+      "english": null,
+      "number": "16.4.2",
+      "parentId": "16.4",
+      "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk",
+      "description": "用重复轨迹比较解析矩、Monte Carlo 误差和约束违反。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-mean-risk",
+        "p16-strong-weak",
+        "p16-ou-moments",
+        "p16-paired-ou"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C04-S02",
+      "lessonNumber": "16.4.2",
+      "lessonTitle": "路径误差、分布统计与风险",
+      "chapterUrl": "/chapters/16-04-随机动力学与控制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "16.5",
@@ -19629,112 +20317,261 @@
         "cognition"
       ],
       "children": [
-        "16.5:planned:1",
-        "16.5:planned:2",
-        "16.5:planned:3",
-        "16.5:planned:4"
+        "16.5.1:concept:1",
+        "16.5.1:concept:2",
+        "16.5.1:concept:3",
+        "16.5.1:concept:4",
+        "16.5.2:concept:1",
+        "16.5.2:concept:2",
+        "16.5.2:concept:3",
+        "16.5.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-symmetric-average",
+        "p16-disconnected",
+        "p16-local-consensus",
+        "p16-component-average",
+        "p16-delay-formula",
+        "p16-delay-condition",
+        "p16-delayed-update",
+        "p16-delay-zero"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "16.5:planned:1",
+      "id": "16.5.1:concept:1",
       "kind": "concept",
-      "title": "一致性控制",
+      "title": "局部一致性",
       "english": null,
-      "number": "16.5",
+      "number": "16.5.1",
       "parentId": "16.5",
-      "url": "/chapters/16-05-分布式控制与通信限制/",
-      "description": "由局部通信构造协同反馈（feedback），检查连通性、权重和延迟（delay）对收敛与性能的影响。",
+      "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average",
+      "description": "从图上的邻居差构造同步更新，并检查均值与连通分量。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-symmetric-average",
+        "p16-disconnected",
+        "p16-local-consensus",
+        "p16-component-average"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C05-S01",
+      "lessonNumber": "16.5.1",
+      "lessonTitle": "局部通信与平均一致",
       "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.5:planned:2",
+      "id": "16.5.1:concept:2",
       "kind": "concept",
-      "title": "局部信息",
-      "english": null,
-      "number": "16.5",
+      "title": "图拉普拉斯",
+      "english": "graph Laplacian",
+      "number": "16.5.1",
       "parentId": "16.5",
-      "url": "/chapters/16-05-分布式控制与通信限制/",
-      "description": "由局部通信构造协同反馈（feedback），检查连通性、权重和延迟（delay）对收敛与性能的影响。",
+      "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average",
+      "description": "从图上的邻居差构造同步更新，并检查均值与连通分量。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-symmetric-average",
+        "p16-disconnected",
+        "p16-local-consensus",
+        "p16-component-average"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C05-S01",
+      "lessonNumber": "16.5.1",
+      "lessonTitle": "局部通信与平均一致",
       "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.5:planned:3",
+      "id": "16.5.1:concept:3",
+      "kind": "concept",
+      "title": "平均守恒",
+      "english": null,
+      "number": "16.5.1",
+      "parentId": "16.5",
+      "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average",
+      "description": "从图上的邻居差构造同步更新，并检查均值与连通分量。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-symmetric-average",
+        "p16-disconnected",
+        "p16-local-consensus",
+        "p16-component-average"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C05-S01",
+      "lessonNumber": "16.5.1",
+      "lessonTitle": "局部通信与平均一致",
+      "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.5.1:concept:4",
+      "kind": "concept",
+      "title": "连通分量",
+      "english": "connected component",
+      "number": "16.5.1",
+      "parentId": "16.5",
+      "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average",
+      "description": "从图上的邻居差构造同步更新，并检查均值与连通分量。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-symmetric-average",
+        "p16-disconnected",
+        "p16-local-consensus",
+        "p16-component-average"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C05-S01",
+      "lessonNumber": "16.5.1",
+      "lessonTitle": "局部通信与平均一致",
+      "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.5.2:concept:1",
       "kind": "concept",
       "title": "通信延迟",
       "english": null,
-      "number": "16.5",
+      "number": "16.5.2",
       "parentId": "16.5",
-      "url": "/chapters/16-05-分布式控制与通信限制/",
-      "description": "由局部通信构造协同反馈（feedback），检查连通性、权重和延迟（delay）对收敛与性能的影响。",
+      "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula",
+      "description": "按给定历史执行延迟更新，并区分无延迟谱条件。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-delay-formula",
+        "p16-delay-condition",
+        "p16-delayed-update",
+        "p16-delay-zero"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C05-S02",
+      "lessonNumber": "16.5.2",
+      "lessonTitle": "通信延迟、步长与稳定边界",
       "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.5:planned:4",
+      "id": "16.5.2:concept:2",
       "kind": "concept",
-      "title": "不变总量",
+      "title": "历史状态",
       "english": null,
-      "number": "16.5",
+      "number": "16.5.2",
       "parentId": "16.5",
-      "url": "/chapters/16-05-分布式控制与通信限制/",
-      "description": "由局部通信构造协同反馈（feedback），检查连通性、权重和延迟（delay）对收敛与性能的影响。",
+      "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula",
+      "description": "按给定历史执行延迟更新，并区分无延迟谱条件。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-delay-formula",
+        "p16-delay-condition",
+        "p16-delayed-update",
+        "p16-delay-zero"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C05-S02",
+      "lessonNumber": "16.5.2",
+      "lessonTitle": "通信延迟、步长与稳定边界",
       "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.5.2:concept:3",
+      "kind": "concept",
+      "title": "步长边界",
+      "english": null,
+      "number": "16.5.2",
+      "parentId": "16.5",
+      "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula",
+      "description": "按给定历史执行延迟更新，并区分无延迟谱条件。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-delay-formula",
+        "p16-delay-condition",
+        "p16-delayed-update",
+        "p16-delay-zero"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C05-S02",
+      "lessonNumber": "16.5.2",
+      "lessonTitle": "通信延迟、步长与稳定边界",
+      "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.5.2:concept:4",
+      "kind": "concept",
+      "title": "差异模态",
+      "english": null,
+      "number": "16.5.2",
+      "parentId": "16.5",
+      "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula",
+      "description": "按给定历史执行延迟更新，并区分无延迟谱条件。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-delay-formula",
+        "p16-delay-condition",
+        "p16-delayed-update",
+        "p16-delay-zero"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C05-S02",
+      "lessonNumber": "16.5.2",
+      "lessonTitle": "通信延迟、步长与稳定边界",
+      "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "16.6",
@@ -19749,112 +20586,261 @@
         "cognition"
       ],
       "children": [
-        "16.6:planned:1",
-        "16.6:planned:2",
-        "16.6:planned:3",
-        "16.6:planned:4"
+        "16.6.1:concept:1",
+        "16.6.1:concept:2",
+        "16.6.1:concept:3",
+        "16.6.1:concept:4",
+        "16.6.2:concept:1",
+        "16.6.2:concept:2",
+        "16.6.2:concept:3",
+        "16.6.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-terminal-reward",
+        "p16-policy-vs-learning",
+        "p16-policy-bellman",
+        "p16-policy-compare",
+        "p16-terminal-q",
+        "p16-finite-q-claim",
+        "p16-q-one-update",
+        "p16-q-sequential"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "16.6:planned:1",
+      "id": "16.6.1:concept:1",
       "kind": "concept",
-      "title": "马尔可夫决策过程",
-      "english": "Markov decision process",
-      "number": "16.6",
+      "title": "决策过程",
+      "english": null,
+      "number": "16.6.1",
       "parentId": "16.6",
-      "url": "/chapters/16-06-强化学习与策略评估/",
-      "description": "在有限马尔可夫（Markov）决策模型（model）中实现策略评价和简单学习，区分训练回报与独立策略效果。",
+      "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward",
+      "description": "给定转移和策略，解 Bellman 线性方程并独立迭代核验。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-terminal-reward",
+        "p16-policy-vs-learning",
+        "p16-policy-bellman",
+        "p16-policy-compare"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C06-S01",
+      "lessonNumber": "16.6.1",
+      "lessonTitle": "有限决策过程与策略评价",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.6:planned:2",
+      "id": "16.6.1:concept:2",
+      "kind": "concept",
+      "title": "固定策略",
+      "english": null,
+      "number": "16.6.1",
+      "parentId": "16.6",
+      "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward",
+      "description": "给定转移和策略，解 Bellman 线性方程并独立迭代核验。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-terminal-reward",
+        "p16-policy-vs-learning",
+        "p16-policy-bellman",
+        "p16-policy-compare"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C06-S01",
+      "lessonNumber": "16.6.1",
+      "lessonTitle": "有限决策过程与策略评价",
+      "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.6.1:concept:3",
       "kind": "concept",
       "title": "Bellman 方程",
       "english": null,
-      "number": "16.6",
+      "number": "16.6.1",
       "parentId": "16.6",
-      "url": "/chapters/16-06-强化学习与策略评估/",
-      "description": "在有限马尔可夫（Markov）决策模型（model）中实现策略评价和简单学习，区分训练回报与独立策略效果。",
+      "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward",
+      "description": "给定转移和策略，解 Bellman 线性方程并独立迭代核验。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-terminal-reward",
+        "p16-policy-vs-learning",
+        "p16-policy-bellman",
+        "p16-policy-compare"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C06-S01",
+      "lessonNumber": "16.6.1",
+      "lessonTitle": "有限决策过程与策略评价",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.6:planned:3",
+      "id": "16.6.1:concept:4",
       "kind": "concept",
-      "title": "策略改进",
-      "english": null,
-      "number": "16.6",
+      "title": "吸收态",
+      "english": "absorbing state",
+      "number": "16.6.1",
       "parentId": "16.6",
-      "url": "/chapters/16-06-强化学习与策略评估/",
-      "description": "在有限马尔可夫（Markov）决策模型（model）中实现策略评价和简单学习，区分训练回报与独立策略效果。",
+      "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward",
+      "description": "给定转移和策略，解 Bellman 线性方程并独立迭代核验。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-terminal-reward",
+        "p16-policy-vs-learning",
+        "p16-policy-bellman",
+        "p16-policy-compare"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C06-S01",
+      "lessonNumber": "16.6.1",
+      "lessonTitle": "有限决策过程与策略评价",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.6:planned:4",
+      "id": "16.6.2:concept:1",
       "kind": "concept",
-      "title": "Q 学习",
+      "title": "表格 Q 学习",
       "english": null,
-      "number": "16.6",
+      "number": "16.6.2",
       "parentId": "16.6",
-      "url": "/chapters/16-06-强化学习与策略评估/",
-      "description": "在有限马尔可夫（Markov）决策模型（model）中实现策略评价和简单学习，区分训练回报与独立策略效果。",
+      "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q",
+      "description": "实现表格 Q 更新，区分训练样本与独立策略评价。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-terminal-q",
+        "p16-finite-q-claim",
+        "p16-q-one-update",
+        "p16-q-sequential"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C06-S02",
+      "lessonNumber": "16.6.2",
+      "lessonTitle": "固定经验的 Q 更新与独立评估",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.6.2:concept:2",
+      "kind": "concept",
+      "title": "终止更新",
+      "english": null,
+      "number": "16.6.2",
+      "parentId": "16.6",
+      "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q",
+      "description": "实现表格 Q 更新，区分训练样本与独立策略评价。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-terminal-q",
+        "p16-finite-q-claim",
+        "p16-q-one-update",
+        "p16-q-sequential"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C06-S02",
+      "lessonNumber": "16.6.2",
+      "lessonTitle": "固定经验的 Q 更新与独立评估",
+      "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.6.2:concept:3",
+      "kind": "concept",
+      "title": "探索覆盖",
+      "english": null,
+      "number": "16.6.2",
+      "parentId": "16.6",
+      "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q",
+      "description": "实现表格 Q 更新，区分训练样本与独立策略评价。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-terminal-q",
+        "p16-finite-q-claim",
+        "p16-q-one-update",
+        "p16-q-sequential"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C06-S02",
+      "lessonNumber": "16.6.2",
+      "lessonTitle": "固定经验的 Q 更新与独立评估",
+      "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.6.2:concept:4",
+      "kind": "concept",
+      "title": "独立评估",
+      "english": null,
+      "number": "16.6.2",
+      "parentId": "16.6",
+      "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q",
+      "description": "实现表格 Q 更新，区分训练样本与独立策略评价。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-terminal-q",
+        "p16-finite-q-claim",
+        "p16-q-one-update",
+        "p16-q-sequential"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C06-S02",
+      "lessonNumber": "16.6.2",
+      "lessonTitle": "固定经验的 Q 更新与独立评估",
+      "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "16.7",
@@ -19869,112 +20855,261 @@
         "cognition"
       ],
       "children": [
-        "16.7:planned:1",
-        "16.7:planned:2",
-        "16.7:planned:3",
-        "16.7:planned:4"
+        "16.7.1:concept:1",
+        "16.7.1:concept:2",
+        "16.7.1:concept:3",
+        "16.7.1:concept:4",
+        "16.7.2:concept:1",
+        "16.7.2:concept:2",
+        "16.7.2:concept:3",
+        "16.7.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-pred-vs-actual",
+        "p16-infeasible-action",
+        "p16-feasible-action",
+        "p16-prediction-feasible",
+        "p16-paired-budget",
+        "p16-rmse-not-safety",
+        "p16-paired-metrics",
+        "p16-failure-rate"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "16.7:planned:1",
+      "id": "16.7.1:concept:1",
       "kind": "concept",
-      "title": "预测模型接口",
+      "title": "学习预测器",
       "english": null,
-      "number": "16.7",
+      "number": "16.7.1",
       "parentId": "16.7",
-      "url": "/chapters/16-07-模型学习与约束决策/",
-      "description": "把学得模型（model）接入滚动决策，在共同观测（observation）和执行限制下评价误差、风险与失效。",
+      "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual",
+      "description": "在显式动作集合中检查预测约束、不可行与实际失配。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-pred-vs-actual",
+        "p16-infeasible-action",
+        "p16-feasible-action",
+        "p16-prediction-feasible"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C07-S01",
+      "lessonNumber": "16.7.1",
+      "lessonTitle": "学得预测器进入约束决策",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.7:planned:2",
+      "id": "16.7.1:concept:2",
       "kind": "concept",
-      "title": "约束决策",
+      "title": "有限动作",
       "english": null,
-      "number": "16.7",
+      "number": "16.7.1",
       "parentId": "16.7",
-      "url": "/chapters/16-07-模型学习与约束决策/",
-      "description": "把学得模型（model）接入滚动决策，在共同观测（observation）和执行限制下评价误差、风险与失效。",
+      "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual",
+      "description": "在显式动作集合中检查预测约束、不可行与实际失配。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-pred-vs-actual",
+        "p16-infeasible-action",
+        "p16-feasible-action",
+        "p16-prediction-feasible"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C07-S01",
+      "lessonNumber": "16.7.1",
+      "lessonTitle": "学得预测器进入约束决策",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.7:planned:3",
+      "id": "16.7.1:concept:3",
       "kind": "concept",
-      "title": "外推风险",
+      "title": "预测可行",
       "english": null,
-      "number": "16.7",
+      "number": "16.7.1",
       "parentId": "16.7",
-      "url": "/chapters/16-07-模型学习与约束决策/",
-      "description": "把学得模型（model）接入滚动决策，在共同观测（observation）和执行限制下评价误差、风险与失效。",
+      "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual",
+      "description": "在显式动作集合中检查预测约束、不可行与实际失配。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-pred-vs-actual",
+        "p16-infeasible-action",
+        "p16-feasible-action",
+        "p16-prediction-feasible"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C07-S01",
+      "lessonNumber": "16.7.1",
+      "lessonTitle": "学得预测器进入约束决策",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "16.7:planned:4",
+      "id": "16.7.1:concept:4",
       "kind": "concept",
-      "title": "信息预算",
+      "title": "失败状态",
       "english": null,
-      "number": "16.7",
+      "number": "16.7.1",
       "parentId": "16.7",
-      "url": "/chapters/16-07-模型学习与约束决策/",
-      "description": "把学得模型（model）接入滚动决策，在共同观测（observation）和执行限制下评价误差、风险与失效。",
+      "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual",
+      "description": "在显式动作集合中检查预测约束、不可行与实际失配。",
       "categories": [
         "regulation",
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p16-pred-vs-actual",
+        "p16-infeasible-action",
+        "p16-feasible-action",
+        "p16-prediction-feasible"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P16-C07-S01",
+      "lessonNumber": "16.7.1",
+      "lessonTitle": "学得预测器进入约束决策",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.7.2:concept:1",
+      "kind": "concept",
+      "title": "配对测试",
+      "english": null,
+      "number": "16.7.2",
+      "parentId": "16.7",
+      "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget",
+      "description": "在相同场景上计算误差、执行代价、违约和失败比例。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-paired-budget",
+        "p16-rmse-not-safety",
+        "p16-paired-metrics",
+        "p16-failure-rate"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C07-S02",
+      "lessonNumber": "16.7.2",
+      "lessonTitle": "配对预算、失败与迁移范围",
+      "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.7.2:concept:2",
+      "kind": "concept",
+      "title": "预测误差",
+      "english": null,
+      "number": "16.7.2",
+      "parentId": "16.7",
+      "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget",
+      "description": "在相同场景上计算误差、执行代价、违约和失败比例。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-paired-budget",
+        "p16-rmse-not-safety",
+        "p16-paired-metrics",
+        "p16-failure-rate"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C07-S02",
+      "lessonNumber": "16.7.2",
+      "lessonTitle": "配对预算、失败与迁移范围",
+      "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.7.2:concept:3",
+      "kind": "concept",
+      "title": "实际违约",
+      "english": null,
+      "number": "16.7.2",
+      "parentId": "16.7",
+      "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget",
+      "description": "在相同场景上计算误差、执行代价、违约和失败比例。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-paired-budget",
+        "p16-rmse-not-safety",
+        "p16-paired-metrics",
+        "p16-failure-rate"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C07-S02",
+      "lessonNumber": "16.7.2",
+      "lessonTitle": "配对预算、失败与迁移范围",
+      "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "16.7.2:concept:4",
+      "kind": "concept",
+      "title": "迁移边界",
+      "english": null,
+      "number": "16.7.2",
+      "parentId": "16.7",
+      "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget",
+      "description": "在相同场景上计算误差、执行代价、违约和失败比例。",
+      "categories": [
+        "regulation",
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p16-paired-budget",
+        "p16-rmse-not-safety",
+        "p16-paired-metrics",
+        "p16-failure-rate"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P16-C07-S02",
+      "lessonNumber": "16.7.2",
+      "lessonTitle": "配对预算、失败与迁移范围",
+      "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "17",
@@ -26193,25 +27328,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "16.1:planned:1",
-      "target": "16.1:planned:2",
+      "source": "16.1.1:concept:1",
+      "target": "16.1.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.1:planned:1",
-      "target": "16.1:planned:3",
+      "source": "16.1.1:concept:1",
+      "target": "16.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.1:planned:2",
-      "target": "16.1:planned:3",
+      "source": "16.1.1:concept:1",
+      "target": "16.1.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.1.1:concept:2",
+      "target": "16.1.1:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.1.1:concept:2",
+      "target": "16.1.1:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.1.1:concept:3",
+      "target": "16.1.1:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.1.2:concept:1",
+      "target": "16.1.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.1.2:concept:1",
+      "target": "16.1.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.1.2:concept:1",
+      "target": "16.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.1.2:concept:2",
+      "target": "16.1.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.1.2:concept:2",
+      "target": "16.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.1.2:concept:3",
+      "target": "16.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.1.1:concept:4",
+      "target": "16.1.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "4.5",
@@ -26228,46 +27433,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "16.2:planned:1",
-      "target": "16.2:planned:2",
+      "source": "16.2.1:concept:1",
+      "target": "16.2.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.2:planned:1",
-      "target": "16.2:planned:3",
+      "source": "16.2.1:concept:1",
+      "target": "16.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.2:planned:1",
-      "target": "16.2:planned:4",
+      "source": "16.2.1:concept:1",
+      "target": "16.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.2:planned:2",
-      "target": "16.2:planned:3",
+      "source": "16.2.1:concept:2",
+      "target": "16.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.2:planned:2",
-      "target": "16.2:planned:4",
+      "source": "16.2.1:concept:2",
+      "target": "16.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.2:planned:3",
-      "target": "16.2:planned:4",
+      "source": "16.2.1:concept:3",
+      "target": "16.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.2.2:concept:1",
+      "target": "16.2.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.2.2:concept:1",
+      "target": "16.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.2.2:concept:1",
+      "target": "16.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.2.2:concept:2",
+      "target": "16.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.2.2:concept:2",
+      "target": "16.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.2.2:concept:3",
+      "target": "16.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.2.1:concept:4",
+      "target": "16.2.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "8.4",
@@ -26284,46 +27538,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "16.3:planned:1",
-      "target": "16.3:planned:2",
+      "source": "16.3.1:concept:1",
+      "target": "16.3.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.3:planned:1",
-      "target": "16.3:planned:3",
+      "source": "16.3.1:concept:1",
+      "target": "16.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.3:planned:1",
-      "target": "16.3:planned:4",
+      "source": "16.3.1:concept:1",
+      "target": "16.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.3:planned:2",
-      "target": "16.3:planned:3",
+      "source": "16.3.1:concept:2",
+      "target": "16.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.3:planned:2",
-      "target": "16.3:planned:4",
+      "source": "16.3.1:concept:2",
+      "target": "16.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.3:planned:3",
-      "target": "16.3:planned:4",
+      "source": "16.3.1:concept:3",
+      "target": "16.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.3.2:concept:1",
+      "target": "16.3.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.3.2:concept:1",
+      "target": "16.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.3.2:concept:1",
+      "target": "16.3.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.3.2:concept:2",
+      "target": "16.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.3.2:concept:2",
+      "target": "16.3.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.3.2:concept:3",
+      "target": "16.3.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.3.1:concept:4",
+      "target": "16.3.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "6.6",
@@ -26354,46 +27657,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "16.4:planned:1",
-      "target": "16.4:planned:2",
+      "source": "16.4.1:concept:1",
+      "target": "16.4.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.4:planned:1",
-      "target": "16.4:planned:3",
+      "source": "16.4.1:concept:1",
+      "target": "16.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.4:planned:1",
-      "target": "16.4:planned:4",
+      "source": "16.4.1:concept:1",
+      "target": "16.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.4:planned:2",
-      "target": "16.4:planned:3",
+      "source": "16.4.1:concept:2",
+      "target": "16.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.4:planned:2",
-      "target": "16.4:planned:4",
+      "source": "16.4.1:concept:2",
+      "target": "16.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.4:planned:3",
-      "target": "16.4:planned:4",
+      "source": "16.4.1:concept:3",
+      "target": "16.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.4.2:concept:1",
+      "target": "16.4.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.4.2:concept:1",
+      "target": "16.4.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.4.2:concept:1",
+      "target": "16.4.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.4.2:concept:2",
+      "target": "16.4.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.4.2:concept:2",
+      "target": "16.4.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.4.2:concept:3",
+      "target": "16.4.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.4.1:concept:4",
+      "target": "16.4.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "5.4",
@@ -26417,46 +27769,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "16.5:planned:1",
-      "target": "16.5:planned:2",
+      "source": "16.5.1:concept:1",
+      "target": "16.5.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.5:planned:1",
-      "target": "16.5:planned:3",
+      "source": "16.5.1:concept:1",
+      "target": "16.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.5:planned:1",
-      "target": "16.5:planned:4",
+      "source": "16.5.1:concept:1",
+      "target": "16.5.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.5:planned:2",
-      "target": "16.5:planned:3",
+      "source": "16.5.1:concept:2",
+      "target": "16.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.5:planned:2",
-      "target": "16.5:planned:4",
+      "source": "16.5.1:concept:2",
+      "target": "16.5.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.5:planned:3",
-      "target": "16.5:planned:4",
+      "source": "16.5.1:concept:3",
+      "target": "16.5.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.5.2:concept:1",
+      "target": "16.5.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.5.2:concept:1",
+      "target": "16.5.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.5.2:concept:1",
+      "target": "16.5.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.5.2:concept:2",
+      "target": "16.5.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.5.2:concept:2",
+      "target": "16.5.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.5.2:concept:3",
+      "target": "16.5.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.5.1:concept:4",
+      "target": "16.5.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "10.3",
@@ -26473,46 +27874,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "16.6:planned:1",
-      "target": "16.6:planned:2",
+      "source": "16.6.1:concept:1",
+      "target": "16.6.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.6:planned:1",
-      "target": "16.6:planned:3",
+      "source": "16.6.1:concept:1",
+      "target": "16.6.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.6:planned:1",
-      "target": "16.6:planned:4",
+      "source": "16.6.1:concept:1",
+      "target": "16.6.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.6:planned:2",
-      "target": "16.6:planned:3",
+      "source": "16.6.1:concept:2",
+      "target": "16.6.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.6:planned:2",
-      "target": "16.6:planned:4",
+      "source": "16.6.1:concept:2",
+      "target": "16.6.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.6:planned:3",
-      "target": "16.6:planned:4",
+      "source": "16.6.1:concept:3",
+      "target": "16.6.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.6.2:concept:1",
+      "target": "16.6.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.6.2:concept:1",
+      "target": "16.6.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.6.2:concept:1",
+      "target": "16.6.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.6.2:concept:2",
+      "target": "16.6.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.6.2:concept:2",
+      "target": "16.6.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.6.2:concept:3",
+      "target": "16.6.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.6.1:concept:4",
+      "target": "16.6.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "5.4",
@@ -26536,46 +27986,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "16.7:planned:1",
-      "target": "16.7:planned:2",
+      "source": "16.7.1:concept:1",
+      "target": "16.7.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.7:planned:1",
-      "target": "16.7:planned:3",
+      "source": "16.7.1:concept:1",
+      "target": "16.7.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.7:planned:1",
-      "target": "16.7:planned:4",
+      "source": "16.7.1:concept:1",
+      "target": "16.7.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.7:planned:2",
-      "target": "16.7:planned:3",
+      "source": "16.7.1:concept:2",
+      "target": "16.7.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.7:planned:2",
-      "target": "16.7:planned:4",
+      "source": "16.7.1:concept:2",
+      "target": "16.7.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "16.7:planned:3",
-      "target": "16.7:planned:4",
+      "source": "16.7.1:concept:3",
+      "target": "16.7.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.7.2:concept:1",
+      "target": "16.7.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.7.2:concept:1",
+      "target": "16.7.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.7.2:concept:1",
+      "target": "16.7.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.7.2:concept:2",
+      "target": "16.7.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.7.2:concept:2",
+      "target": "16.7.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.7.2:concept:3",
+      "target": "16.7.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "16.7.1:concept:4",
+      "target": "16.7.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "10.6",

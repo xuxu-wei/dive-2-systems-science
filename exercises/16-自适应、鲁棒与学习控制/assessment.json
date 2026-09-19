@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "16",
+  "lesson_id": "P16-SUMMARY",
+  "title": "不确定条件下的闭环证据链",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "核验非线性与鲁棒条件",
+      "review_url": "/chapters/16-02-模型不确定性与鲁棒控制/"
+    },
+    {
+      "id": "T2",
+      "title": "在线辨识与随机路径",
+      "review_url": "/chapters/16-04-随机动力学与控制/"
+    },
+    {
+      "id": "T3",
+      "title": "图与有限决策模型",
+      "review_url": "/chapters/16-06-强化学习与策略评估/"
+    },
+    {
+      "id": "T4",
+      "title": "模型学习与约束决策",
+      "review_url": "/chapters/16-07-模型学习与约束决策/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p16-capstone-scope",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p16-capstone-random",
+      "level": 1,
+      "points": 10,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p16-capstone-learning",
+      "level": 2,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p16-capstone-failure",
+      "level": 2,
+      "points": 15,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p16-capstone-certificate",
+      "level": 3,
+      "points": 15,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p16-capstone-stochastic",
+      "level": 3,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p16-capstone-policy",
+      "level": 4,
+      "points": 10,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p16-capstone-decision",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}

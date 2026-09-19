@@ -8930,9 +8930,82 @@
             "分别检查饱和、模型失配与区域外初值（initial condition），不把局部结论扩展为全局保证"
           ],
           "focus": "无饱和标量例子用解析解（analytical solution）或导数不等式核验；实际输入（input）代入模型（model）与导数，有限扫描只作数值证据。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P16-C01-S01",
+              "chapter_id": "16.1",
+              "number": "16.1.1",
+              "title": "非线性反馈与能量下降",
+              "outcome": "从候选能量函数推导无饱和反馈的稳定条件。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/01-非线性反馈与能量下降.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-lyapunov-actual",
+                  "slug": "p16-lyapunov-actual",
+                  "title": "哪一个输入进入能量导数",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-cubic-condition",
+                  "slug": "p16-cubic-condition",
+                  "title": "三次反馈的充分条件",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-actual-lyapunov",
+                  "slug": "p16-actual-lyapunov",
+                  "title": "实际输入下的能量导数",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-feedback-path",
+                  "slug": "p16-feedback-path",
+                  "title": "限幅反馈的离散路径",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual"
+            },
+            {
+              "id": "P16-C01-S02",
+              "chapter_id": "16.1",
+              "number": "16.1.2",
+              "title": "执行饱和、初值与适用域",
+              "outcome": "把实际限幅输入代回方程，比较不同初值的恢复与离开。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/02-执行饱和、初值与适用域.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-saturated-global",
+                  "slug": "p16-saturated-global",
+                  "title": "小扰动恢复与全局结论",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-finite-scan",
+                  "slug": "p16-finite-scan",
+                  "title": "有限扫描的作用",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-saturation-boundary",
+                  "slug": "p16-saturation-boundary",
+                  "title": "比较扰动与执行上限",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-region-path",
+                  "slug": "p16-region-path",
+                  "title": "有限初值的反馈实验",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global"
+            }
+          ],
+          "visualization": "web/advanced-control/index.html"
         },
         {
           "id": "16.2",
@@ -8946,9 +9019,82 @@
             "比较保守性、执行约束与超出假设集合的失效；完整鲁棒最优理论作为拓展"
           ],
           "focus": "一维区间模型（model）用解析不等式核验；顶点结论限定在仿射（affine）凸组合和共同函数条件下。加入饱和后的结论另行验证。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P16-C02-S01",
+              "chapter_id": "16.2",
+              "number": "16.2.1",
+              "title": "共同 Lyapunov 矩阵与顶点条件",
+              "outcome": "在给定仿射矩阵集合上用同一个正定矩阵核验导数。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/01-共同 Lyapunov 矩阵与顶点条件.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-common-p",
+                  "slug": "p16-common-p",
+                  "title": "为什么要共同矩阵",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-vertex-scope",
+                  "slug": "p16-vertex-scope",
+                  "title": "顶点法适用范围",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-common-certificate",
+                  "slug": "p16-common-certificate",
+                  "title": "共同二次证书的顶点检查",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-affine-model",
+                  "slug": "p16-affine-model",
+                  "title": "构造区间内模型",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p"
+            },
+            {
+              "id": "P16-C02-S02",
+              "chapter_id": "16.2",
+              "number": "16.2.2",
+              "title": "集合外失效与鲁棒证据边界",
+              "outcome": "辨认候选矩阵集合、共同证书和集合外反例。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/02-集合外失效与鲁棒证据边界.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-certificate-failure",
+                  "slug": "p16-certificate-failure",
+                  "title": "当前证书不通过意味着什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-outside-set",
+                  "slug": "p16-outside-set",
+                  "title": "集合外矩阵",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-certificate-counterexample",
+                  "slug": "p16-certificate-counterexample",
+                  "title": "证书与集合外反例",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-robust-interpolation",
+                  "slug": "p16-robust-interpolation",
+                  "title": "仿射不确定性下的矩阵",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure"
+            }
+          ],
+          "visualization": "web/advanced-control/index.html"
         },
         {
           "id": "16.3",
@@ -8962,9 +9108,82 @@
             "比较参数漂移、激励不足、闭环相关误差与执行饱和，限定参数收敛解释"
           ],
           "focus": "参数已知极限（limit）恢复固定基线；每步估计与独立重算对照。参数投影（projection）、激励与饱和的作用分别说明，错误输入（input）符号作为失效条件。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P16-C03-S01",
+              "chapter_id": "16.3",
+              "number": "16.3.1",
+              "title": "递推估计、投影与激励",
+              "outcome": "按先预测后更新顺序实现标量递推辨识，展示零激励反例。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/01-递推估计、投影与激励.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-zero-excitation",
+                  "slug": "p16-zero-excitation",
+                  "title": "零回归量",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-rls-order",
+                  "slug": "p16-rls-order",
+                  "title": "递推先后",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-rls-update",
+                  "slug": "p16-rls-update",
+                  "title": "递推估计一个系数",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-weak-excitation",
+                  "slug": "p16-weak-excitation",
+                  "title": "弱激励时的递推",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation"
+            },
+            {
+              "id": "P16-C03-S02",
+              "chapter_id": "16.3",
+              "number": "16.3.2",
+              "title": "估计进入控制的时间顺序",
+              "outcome": "按旧估计决策、观测新状态、再更新估计的顺序比较漂移。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/02-估计进入控制的时间顺序.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-no-lookahead",
+                  "slug": "p16-no-lookahead",
+                  "title": "在线控制的信息边界",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-tracking-not-id",
+                  "slug": "p16-tracking-not-id",
+                  "title": "跟踪与参数估计",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-adaptive-order",
+                  "slug": "p16-adaptive-order",
+                  "title": "在线辨识与控制先后",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-bounded-adaptation",
+                  "slug": "p16-bounded-adaptation",
+                  "title": "带限幅的自适应路径",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead"
+            }
+          ],
+          "visualization": "web/advanced-control/index.html"
         },
         {
           "id": "16.4",
@@ -8978,9 +9197,82 @@
             "在随机线性调节中比较期望（expectation）代价、分位和违反约束频率；不提前声称硬约束保证"
           ],
           "focus": "无反馈或线性反馈下用解析矩核验；同路径使用细增量求和形成粗增量，报告重复次数及统计误差。完整随机分析证明为拓展。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P16-C04-S01",
+              "chapter_id": "16.4",
+              "number": "16.4.1",
+              "title": "布朗增量与 Euler–Maruyama",
+              "outcome": "用固定增量实现随机清除，并区分噪声幅度随步长的缩放。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/01-布朗增量与 Euler–Maruyama.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-brownian-scale",
+                  "slug": "p16-brownian-scale",
+                  "title": "随机增量的尺度",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-paired-refine",
+                  "slug": "p16-paired-refine",
+                  "title": "同路径粗细比较",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-em-increments",
+                  "slug": "p16-em-increments",
+                  "title": "固定随机增量的 Euler–Maruyama",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-brownian-merge",
+                  "slug": "p16-brownian-merge",
+                  "title": "粗细网格共用同一路径",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale"
+            },
+            {
+              "id": "P16-C04-S02",
+              "chapter_id": "16.4",
+              "number": "16.4.2",
+              "title": "路径误差、分布统计与风险",
+              "outcome": "用重复轨迹比较解析矩、Monte Carlo 误差和约束违反。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/02-路径误差、分布统计与风险.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-mean-risk",
+                  "slug": "p16-mean-risk",
+                  "title": "均值和尾部",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-strong-weak",
+                  "slug": "p16-strong-weak",
+                  "title": "强误差与弱统计量",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-ou-moments",
+                  "slug": "p16-ou-moments",
+                  "title": "OU 终点的解析矩",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-paired-ou",
+                  "slug": "p16-paired-ou",
+                  "title": "指定路径的随机终点",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk"
+            }
+          ],
+          "visualization": "web/advanced-control/index.html"
         },
         {
           "id": "16.5",
@@ -8994,9 +9286,82 @@
             "加入固定通信延迟、断边和输入（input）上限，与集中信息基线公平比较"
           ],
           "focus": "无向无延迟情形与图拉普拉斯谱及矩阵幂对照；断连时逐分量比较，不将有向权重下的极限（limit）都解释为算术平均。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P16-C05-S01",
+              "chapter_id": "16.5",
+              "number": "16.5.1",
+              "title": "局部通信与平均一致",
+              "outcome": "从图上的邻居差构造同步更新，并检查均值与连通分量。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/01-局部通信与平均一致.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-symmetric-average",
+                  "slug": "p16-symmetric-average",
+                  "title": "平均守恒的条件",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-disconnected",
+                  "slug": "p16-disconnected",
+                  "title": "断连网络的极限",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-local-consensus",
+                  "slug": "p16-local-consensus",
+                  "title": "一次局部一致性更新",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-component-average",
+                  "slug": "p16-component-average",
+                  "title": "断连图的一致性路径",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average"
+            },
+            {
+              "id": "P16-C05-S02",
+              "chapter_id": "16.5",
+              "number": "16.5.2",
+              "title": "通信延迟、步长与稳定边界",
+              "outcome": "按给定历史执行延迟更新，并区分无延迟谱条件。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/02-通信延迟、步长与稳定边界.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-delay-formula",
+                  "slug": "p16-delay-formula",
+                  "title": "延迟更新读取什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-delay-condition",
+                  "slug": "p16-delay-condition",
+                  "title": "无延迟谱界",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-delayed-update",
+                  "slug": "p16-delayed-update",
+                  "title": "一轮延迟邻居更新",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-delay-zero",
+                  "slug": "p16-delay-zero",
+                  "title": "零延迟的退化检查",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula"
+            }
+          ],
+          "visualization": "web/advanced-control/index.html"
         },
         {
           "id": "16.6",
@@ -9010,9 +9375,82 @@
             "明确探索、训练预算与独立评估，比较已知模型规划和从样本学习"
           ],
           "focus": "小型模型用线性方程或有限时域穷举核验；终止后不继续累积回报，失败回合纳入统计，深度强化学习（reinforcement learning，RL）作为拓展。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P16-C06-S01",
+              "chapter_id": "16.6",
+              "number": "16.6.1",
+              "title": "有限决策过程与策略评价",
+              "outcome": "给定转移和策略，解 Bellman 线性方程并独立迭代核验。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/01-有限决策过程与策略评价.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-terminal-reward",
+                  "slug": "p16-terminal-reward",
+                  "title": "终止后价值",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-policy-vs-learning",
+                  "slug": "p16-policy-vs-learning",
+                  "title": "策略评价的对象",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-policy-bellman",
+                  "slug": "p16-policy-bellman",
+                  "title": "固定策略的折扣价值",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-policy-compare",
+                  "slug": "p16-policy-compare",
+                  "title": "两状态策略评价",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward"
+            },
+            {
+              "id": "P16-C06-S02",
+              "chapter_id": "16.6",
+              "number": "16.6.2",
+              "title": "固定经验的 Q 更新与独立评估",
+              "outcome": "实现表格 Q 更新，区分训练样本与独立策略评价。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/02-固定经验的 Q 更新与独立评估.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-terminal-q",
+                  "slug": "p16-terminal-q",
+                  "title": "终止样本的 Q 目标",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-finite-q-claim",
+                  "slug": "p16-finite-q-claim",
+                  "title": "有限经验的结论",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-q-one-update",
+                  "slug": "p16-q-one-update",
+                  "title": "终止经验的 Q 更新",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-q-sequential",
+                  "slug": "p16-q-sequential",
+                  "title": "经验顺序影响有限次更新",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q"
+            }
+          ],
+          "visualization": "web/advanced-control/index.html"
         },
         {
           "id": "16.7",
@@ -9026,11 +9464,174 @@
             "对齐训练、调参、观测和执行预算，比较模型策略与无模型策略并说明信息差异"
           ],
           "focus": "零模型误差极限（limit）与第 10 篇基线对照，逐项独立重算指标；求解失败不冒充有效控制，备用动作的条件与结果单独记录。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P16-C07-S01",
+              "chapter_id": "16.7",
+              "number": "16.7.1",
+              "title": "学得预测器进入约束决策",
+              "outcome": "在显式动作集合中检查预测约束、不可行与实际失配。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/01-学得预测器进入约束决策.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-pred-vs-actual",
+                  "slug": "p16-pred-vs-actual",
+                  "title": "预测约束与真实约束",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-infeasible-action",
+                  "slug": "p16-infeasible-action",
+                  "title": "无可行候选",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-feasible-action",
+                  "slug": "p16-feasible-action",
+                  "title": "有限动作的预测可行选择",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-prediction-feasible",
+                  "slug": "p16-prediction-feasible",
+                  "title": "模型误差下的预测约束",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual"
+            },
+            {
+              "id": "P16-C07-S02",
+              "chapter_id": "16.7",
+              "number": "16.7.2",
+              "title": "配对预算、失败与迁移范围",
+              "outcome": "在相同场景上计算误差、执行代价、违约和失败比例。",
+              "path": "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/02-配对预算、失败与迁移范围.ipynb",
+              "visualization": "web/advanced-control/index.html",
+              "questions": [
+                {
+                  "id": "p16-paired-budget",
+                  "slug": "p16-paired-budget",
+                  "title": "公平配对比较",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-rmse-not-safety",
+                  "slug": "p16-rmse-not-safety",
+                  "title": "预测更准是否更安全",
+                  "type": "choice"
+                },
+                {
+                  "id": "p16-paired-metrics",
+                  "slug": "p16-paired-metrics",
+                  "title": "统一条件下的决策指标",
+                  "type": "python"
+                },
+                {
+                  "id": "p16-failure-rate",
+                  "slug": "p16-failure-rate",
+                  "title": "不要遗漏失败场景",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget"
+            }
+          ],
+          "visualization": "web/advanced-control/index.html"
         }
-      ]
+      ],
+      "assessment": {
+        "id": "16.summary",
+        "assessment": true,
+        "title": "不确定条件下的闭环证据链",
+        "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/",
+        "goals": "把稳定、估计、随机、学习和决策证据放在同一边界中比较。",
+        "prerequisites": "本篇 16.1—16.7；第 10 篇反馈（feedback）控制。",
+        "focus": "证书只覆盖声明集合；预测准确不替代实际约束报告。",
+        "knowledge": [
+          "非线性与共同二次证书",
+          "在线辨识与随机路径",
+          "图一致性与策略评价",
+          "约束决策与失败记录"
+        ],
+        "lessons": [
+          {
+            "id": "P16-SUMMARY",
+            "chapter_id": "16.summary",
+            "number": "16.综合",
+            "title": "不确定条件下的闭环证据链",
+            "outcome": "统一范围、随机样本和评估协议，区分稳定证书、辨识、学习与实际约束。",
+            "path": "notebooks/16-自适应、鲁棒与学习控制/99-篇末综合/01-不确定条件下的闭环证据链.ipynb",
+            "visualization": null,
+            "overview": {
+              "goals": "把稳定、估计、随机、学习和决策证据放在同一边界中比较。",
+              "prerequisites": "本篇 16.1—16.7；第 10 篇反馈控制。",
+              "focus": "证书只覆盖声明集合；预测准确不替代实际约束报告。",
+              "knowledge": [
+                "非线性与共同二次证书",
+                "在线辨识与随机路径",
+                "图一致性与策略评价",
+                "约束决策与失败记录"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p16-capstone-scope",
+                "slug": "p16-capstone-scope",
+                "title": "稳定保证的适用范围",
+                "type": "choice"
+              },
+              {
+                "id": "p16-capstone-random",
+                "slug": "p16-capstone-random",
+                "title": "随机路径的比较",
+                "type": "choice"
+              },
+              {
+                "id": "p16-capstone-learning",
+                "slug": "p16-capstone-learning",
+                "title": "有限训练的强化学习证据",
+                "type": "choice"
+              },
+              {
+                "id": "p16-capstone-failure",
+                "slug": "p16-capstone-failure",
+                "title": "预测与决策结论",
+                "type": "choice"
+              },
+              {
+                "id": "p16-capstone-certificate",
+                "slug": "p16-capstone-certificate",
+                "title": "综合：核验共同证书",
+                "type": "python"
+              },
+              {
+                "id": "p16-capstone-stochastic",
+                "slug": "p16-capstone-stochastic",
+                "title": "综合：独立核验随机终点",
+                "type": "python"
+              },
+              {
+                "id": "p16-capstone-policy",
+                "slug": "p16-capstone-policy",
+                "title": "综合：固定策略的独立价值",
+                "type": "python"
+              },
+              {
+                "id": "p16-capstone-decision",
+                "slug": "p16-capstone-decision",
+                "title": "综合：配对报告四项指标",
+                "type": "python"
+              }
+            ],
+            "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-scope"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "17",
