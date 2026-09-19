@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "17",
+  "lesson_id": "P17-SUMMARY",
+  "title": "从论文主张到有界复现证据",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "主张和证据",
+      "review_url": "/chapters/17-01-研究问题与证据/"
+    },
+    {
+      "id": "T2",
+      "title": "可追溯协议",
+      "review_url": "/chapters/17-02-复现协议与公平基线/"
+    },
+    {
+      "id": "T3",
+      "title": "失效与消融",
+      "review_url": "/chapters/17-03-消融、失效与结论边界/"
+    },
+    {
+      "id": "T4",
+      "title": "比较及迁移",
+      "review_url": "/chapters/17-04-研究方法综合比较/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p17-capstone-claim",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p17-capstone-adaptation",
+      "level": 1,
+      "points": 10,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p17-capstone-protocol",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p17-capstone-lorenz",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p17-capstone-paired",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p17-capstone-score",
+      "level": 3,
+      "points": 15,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p17-capstone-failure",
+      "level": 4,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p17-capstone-boundary",
+      "level": 4,
+      "points": 10,
+      "objective": "T3"
+    }
+  ]
+}

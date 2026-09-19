@@ -1,0 +1,94 @@
+[
+  {
+    "id": "P17-C01-S01",
+    "chapter_id": "17.1",
+    "number": "17.1.1",
+    "title": "锁定 Lorenz 稀疏发现的主张",
+    "outcome": "从原论文给出可检验的方程发现问题，并标记课程缩减。",
+    "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/01-锁定 Lorenz 稀疏发现的主张.ipynb",
+    "visualization": "web/research-practice/index.html"
+  },
+  {
+    "id": "P17-C01-S02",
+    "chapter_id": "17.1",
+    "number": "17.1.2",
+    "title": "锁定 Neural ODE 任务与改编边界",
+    "outcome": "区分连续伴随方法、原论文潜变量螺旋实验和本课程二维缩减实验。",
+    "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/02-锁定 Neural ODE 任务与改编边界.ipynb",
+    "visualization": "web/research-practice/index.html"
+  },
+  {
+    "id": "P17-C02-S01",
+    "chapter_id": "17.2",
+    "number": "17.2.1",
+    "title": "阈值最小二乘与独立 Lorenz 轨迹",
+    "outcome": "手写顺序阈值最小二乘，分别检查稀疏项和未参与拟合的初态。",
+    "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/01-阈值最小二乘与独立 Lorenz 轨迹.ipynb",
+    "visualization": "web/research-practice/index.html"
+  },
+  {
+    "id": "P17-C02-S02",
+    "chapter_id": "17.2",
+    "number": "17.2.2",
+    "title": "连续伴随与公平外推基线",
+    "outcome": "在同一二维螺旋观测上核对伴随梯度、数值精度和机制基线。",
+    "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/02-连续伴随与公平外推基线.ipynb",
+    "visualization": "web/research-practice/index.html"
+  },
+  {
+    "id": "P17-C03-S01",
+    "chapter_id": "17.3",
+    "number": "17.3.1",
+    "title": "稀疏性与导数噪声的失效实验",
+    "outcome": "在同一轨迹上隔离稀疏阈值和导数噪声的影响。",
+    "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/01-稀疏性与导数噪声的失效实验.ipynb",
+    "visualization": "web/research-practice/index.html"
+  },
+  {
+    "id": "P17-C03-S02",
+    "chapter_id": "17.3",
+    "number": "17.3.2",
+    "title": "伴随精度与模型消融",
+    "outcome": "改变数值步长及非线性项，识别训练改善和独立外推的边界。",
+    "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/02-伴随精度与模型消融.ipynb",
+    "visualization": "web/research-practice/index.html"
+  },
+  {
+    "id": "P17-C04-S01",
+    "chapter_id": "17.4",
+    "number": "17.4.1",
+    "title": "迁移到双室物质清除",
+    "outcome": "把稀疏发现迁到双室守恒模型，与同观测的机制基线比较。",
+    "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/01-迁移到双室物质清除.ipynb",
+    "visualization": "web/research-practice/index.html"
+  },
+  {
+    "id": "P17-C04-S02",
+    "chapter_id": "17.4",
+    "number": "17.4.2",
+    "title": "共同指标、失败记录与结论边界",
+    "outcome": "用独立测试、守恒与失败记录写出证据能够支持的最窄结论。",
+    "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/02-共同指标、失败记录与结论边界.ipynb",
+    "visualization": "web/research-practice/index.html"
+  },
+  {
+    "id": "P17-SUMMARY",
+    "chapter_id": "17.summary",
+    "number": "17.综合",
+    "title": "从论文主张到有界复现证据",
+    "outcome": "把两个固定论文任务、课程缩减、独立参考、失败与生命系统迁移写成可复查的证据链。",
+    "path": "notebooks/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.ipynb",
+    "visualization": null,
+    "overview": {
+      "goals": "从原论文主张出发，完成协议、独立核验、消融和迁移边界。",
+      "prerequisites": "本篇 17.1—17.4；第 14—16 篇相关方法。",
+      "focus": "原任务和课程缩减逐项分开；有限实验不冒充完整原论文结果。",
+      "knowledge": [
+        "版本与任务边界",
+        "SINDy 与连续伴随",
+        "基线和失效",
+        "生命系统迁移与证据范围"
+      ]
+    }
+  }
+]

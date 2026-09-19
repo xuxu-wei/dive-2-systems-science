@@ -1,0 +1,2724 @@
+[
+  {
+    "id": "p17-c1s1-choice1",
+    "slug": "p17-c1s1-choice1",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.1",
+    "lesson_id": "P17-C01-S01",
+    "title": "原论文参数与课程窗口",
+    "statement": "哪一种陈述可由本节缩减 Lorenz 实验支持？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "原论文的全部性能数字已经复现"
+      },
+      {
+        "id": "B",
+        "text": "二次字典短窗口恢复给定方程项"
+      },
+      {
+        "id": "C",
+        "text": "真实生理系统已被辨识"
+      },
+      {
+        "id": "D",
+        "text": "任意长时混沌（chaos）轨迹（trajectory）逐点一致"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c1s1-choice2",
+    "slug": "p17-c1s1-choice2",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.1",
+    "lesson_id": "P17-C01-S01",
+    "title": "真值导数的范围",
+    "statement": "使用已知 Lorenz 方程提供导数（derivative），主要消除了什么难题？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "测试轨迹（trajectory）划分"
+      },
+      {
+        "id": "B",
+        "text": "从噪声观测（observation）估导数"
+      },
+      {
+        "id": "C",
+        "text": "多项式列顺序"
+      },
+      {
+        "id": "D",
+        "text": "初值（initial condition）变化"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c1s2-choice1",
+    "slug": "p17-c1s2-choice1",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.1",
+    "lesson_id": "P17-C01-S02",
+    "title": "相似曲线与论文结果",
+    "statement": "课程二维螺旋与原论文实验最准确的关系是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "已经复现全部潜变量训练"
+      },
+      {
+        "id": "B",
+        "text": "已经复现论文 Table 2"
+      },
+      {
+        "id": "C",
+        "text": "只覆盖几何和核心方法的缩减任务"
+      },
+      {
+        "id": "D",
+        "text": "已证明对真实临床轨迹（trajectory）有效"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c1s2-choice2",
+    "slug": "p17-c1s2-choice2",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.1",
+    "lesson_id": "P17-C01-S02",
+    "title": "观测跳跃",
+    "statement": "连续伴随反向越过观测（observation）时刻，应怎样处理？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "清空伴随变量"
+      },
+      {
+        "id": "B",
+        "text": "把该点的损失状态（state）梯度（gradient）加到伴随变量"
+      },
+      {
+        "id": "C",
+        "text": "读取未来测试标签调参"
+      },
+      {
+        "id": "D",
+        "text": "忽略该点损失"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c2s1-choice1",
+    "slug": "p17-c2s1-choice1",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.2",
+    "lesson_id": "P17-C02-S01",
+    "title": "公平轨迹划分",
+    "statement": "如何检验发现方程在新初态上是否仍有效？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "用测试轨迹（trajectory）选阈值"
+      },
+      {
+        "id": "B",
+        "text": "训练前固定并隔离另一初态轨迹"
+      },
+      {
+        "id": "C",
+        "text": "只看训练残差（residual）"
+      },
+      {
+        "id": "D",
+        "text": "挑一条最好看的测试曲线"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c2s1-choice2",
+    "slug": "p17-c2s1-choice2",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.2",
+    "lesson_id": "P17-C02-S01",
+    "title": "阈值重拟合",
+    "statement": "顺序阈值最小二乘（sequential thresholded least squares，STLSQ）每轮为何重拟合？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "让被删项自动恢复"
+      },
+      {
+        "id": "B",
+        "text": "让保留项在当前支持集上重新估计"
+      },
+      {
+        "id": "C",
+        "text": "改变训练集（training set）初态"
+      },
+      {
+        "id": "D",
+        "text": "使所有系数相等"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c2s2-choice1",
+    "slug": "p17-c2s2-choice1",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.2",
+    "lesson_id": "P17-C02-S02",
+    "title": "基线信息公平",
+    "statement": "候选与机制基线比较，什么做法公平？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "机制基线读取测试真值"
+      },
+      {
+        "id": "B",
+        "text": "候选读取额外测试时间"
+      },
+      {
+        "id": "C",
+        "text": "同一训练观测（observation）和独立测试初态"
+      },
+      {
+        "id": "D",
+        "text": "只报告候选训练损失"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c2s2-choice2",
+    "slug": "p17-c2s2-choice2",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.2",
+    "lesson_id": "P17-C02-S02",
+    "title": "梯度核验",
+    "statement": "连续伴随实现和中心差分（central difference）相近，能够直接证明什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "原论文性能已复现"
+      },
+      {
+        "id": "B",
+        "text": "对任何求解精度都无误"
+      },
+      {
+        "id": "C",
+        "text": "在当前数值条件下梯度（gradient）方向被独立核对"
+      },
+      {
+        "id": "D",
+        "text": "神经场比机制基线更优"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c3s1-choice1",
+    "slug": "p17-c3s1-choice1",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.3",
+    "lesson_id": "P17-C03-S01",
+    "title": "消融隔离",
+    "statement": "怎样单独考察稀疏性？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "同时改变字典与噪声"
+      },
+      {
+        "id": "B",
+        "text": "固定同一轨迹（trajectory）和导数（derivative），只改变阈值"
+      },
+      {
+        "id": "C",
+        "text": "挑最好种子"
+      },
+      {
+        "id": "D",
+        "text": "更换测试初态与指标"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c3s1-choice2",
+    "slug": "p17-c3s1-choice2",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.3",
+    "lesson_id": "P17-C03-S01",
+    "title": "导数污染",
+    "statement": "导数（derivative）上添加噪声后的拟合，能推出什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "所有真实测量均一样困难"
+      },
+      {
+        "id": "B",
+        "text": "只支持声明噪声与样本条件下的结果"
+      },
+      {
+        "id": "C",
+        "text": "训练残差（residual）越低结构一定越真"
+      },
+      {
+        "id": "D",
+        "text": "混沌（chaos）使短时测试无意义"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c3s2-choice1",
+    "slug": "p17-c3s2-choice1",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.3",
+    "lesson_id": "P17-C03-S02",
+    "title": "精度与性能",
+    "statement": "细化积分网格后梯度（gradient）更稳定，是否等于外推误差一定下降？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "等于，数值一致性就是泛化"
+      },
+      {
+        "id": "B",
+        "text": "不等于，还要在独立条件评价"
+      },
+      {
+        "id": "C",
+        "text": "等于，训练点更多"
+      },
+      {
+        "id": "D",
+        "text": "数值步长与梯度无关"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c3s2-choice2",
+    "slug": "p17-c3s2-choice2",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.3",
+    "lesson_id": "P17-C03-S02",
+    "title": "模型自由度",
+    "statement": "真生成场是线性螺旋，增加 tanh 项后应该报告什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只报告训练误差"
+      },
+      {
+        "id": "B",
+        "text": "只报告最好参数（parameter）"
+      },
+      {
+        "id": "C",
+        "text": "训练误差和新初态外推误差都报告"
+      },
+      {
+        "id": "D",
+        "text": "把线性基线删除"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c4s1-choice1",
+    "slug": "p17-c4s1-choice1",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.4",
+    "lesson_id": "P17-C04-S01",
+    "title": "交换守恒",
+    "statement": "双室交换项相加后怎样变化？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "变为两倍交换量"
+      },
+      {
+        "id": "B",
+        "text": "相互抵消，总量只受输入（input）与清除影响"
+      },
+      {
+        "id": "C",
+        "text": "总量必然不变"
+      },
+      {
+        "id": "D",
+        "text": "说明单室浓度（concentration）一致"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c4s1-choice2",
+    "slug": "p17-c4s1-choice2",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.4",
+    "lesson_id": "P17-C04-S01",
+    "title": "论文任务边界",
+    "statement": "把 SINDy 用到双室人工清除模型（model）属于什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "原文 Lorenz 原样复现"
+      },
+      {
+        "id": "B",
+        "text": "生命系统课程迁移，不是原 Lorenz 实验"
+      },
+      {
+        "id": "C",
+        "text": "临床有效性试验"
+      },
+      {
+        "id": "D",
+        "text": "无需独立核验的新发现"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c4s2-choice1",
+    "slug": "p17-c4s2-choice1",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.4",
+    "lesson_id": "P17-C04-S02",
+    "title": "低 RMSE 与失败",
+    "statement": "候选平均 RMSE 较低却出现负总量预测，应怎样报告？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只留下 RMSE"
+      },
+      {
+        "id": "B",
+        "text": "删去失败场景"
+      },
+      {
+        "id": "C",
+        "text": "分别报告 RMSE、收支（mass balance）和负值"
+      },
+      {
+        "id": "D",
+        "text": "将负值自动解释为真实生理机制"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-c4s2-choice2",
+    "slug": "p17-c4s2-choice2",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.4",
+    "lesson_id": "P17-C04-S02",
+    "title": "证据范围",
+    "statement": "一组人工双室条件下方法误差较低，可以得出什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "对全部生命系统普遍更优"
+      },
+      {
+        "id": "B",
+        "text": "原论文全部结果复现"
+      },
+      {
+        "id": "C",
+        "text": "限定这组条件和共同协议的比较结论"
+      },
+      {
+        "id": "D",
+        "text": "患者决策收益已确立"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-lorenz-vector",
+    "slug": "p17-lorenz-vector",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.1",
+    "lesson_id": "P17-C01-S01",
+    "title": "原方程瞬时导数",
+    "statement": "原论文报告从数据中发现 Lorenz 方程。本节究竟能核查方程项、系数、短时预测，还是全部长期混沌（chaos）轨迹（trajectory）？本题计算“原方程瞬时导数（derivative）”：依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态（state）与时间均按 Lorenz 无量纲（dimensionless）形式给出。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "按 x、y、z 顺序的无量纲当前状态。",
+        "unit": "1"
+      },
+      {
+        "name": "sigma",
+        "type": "float",
+        "description": "归一化 Lorenz 参数。",
+        "unit": "1"
+      },
+      {
+        "name": "rho",
+        "type": "float",
+        "description": "归一化 Lorenz 参数。",
+        "unit": "1"
+      },
+      {
+        "name": "beta",
+        "type": "float",
+        "description": "归一化 Lorenz 参数。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "三个状态对归一化时间的变化率。",
+        "unit": "1"
+      }
+    ],
+    "contract": "依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态与时间均按 Lorenz 无量纲形式给出。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[float],\n    sigma: float,\n    rho: float,\n    beta: float,\n) -> list[float]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            -8.0,
+            7.0,
+            27.0
+          ],
+          "sigma": 10.0,
+          "rho": 28.0,
+          "beta": 2.6666666666666665
+        },
+        "expected": [
+          150.0,
+          -15.0,
+          -128.0
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态与时间均按 Lorenz 无量纲形式给出。"
+      }
+    ]
+  },
+  {
+    "id": "p17-candidate-row",
+    "slug": "p17-candidate-row",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.1",
+    "lesson_id": "P17-C01-S01",
+    "title": "二次候选项顺序",
+    "statement": "原论文报告从数据中发现 Lorenz 方程。本节究竟能核查方程项、系数、短时预测，还是全部长期混沌（chaos）轨迹（trajectory）？本题计算“二次候选项顺序”：返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "三个状态（state） x、y、z。",
+        "unit": "模型状态"
+      }
+    ],
+    "returns": [
+      {
+        "name": "terms",
+        "type": "list[float]",
+        "description": "常数、一次和二次项的固定顺序。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[float],\n) -> list[float]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            2.0,
+            3.0,
+            4.0
+          ]
+        },
+        "expected": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          4.0,
+          6.0,
+          8.0,
+          9.0,
+          12.0,
+          16.0
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。"
+      }
+    ]
+  },
+  {
+    "id": "p17-spiral-vector",
+    "slug": "p17-spiral-vector",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.1",
+    "lesson_id": "P17-C01-S02",
+    "title": "缩减神经向量场",
+    "statement": "原论文用神经常微分方程（neural ordinary differential equation，Neural ODE）学习低维螺旋。只画一条类似螺旋，能否称为原结果复现？本题计算“缩减神经向量场（vector field）”：f=[-a*x-omega*y+c*tanh(x),omega*x-a*y+d*tanh(y)]。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "二维当前状态（state）。",
+        "unit": "1"
+      },
+      {
+        "name": "parameters",
+        "type": "list[float]",
+        "description": "按 a、omega、c、d 顺序的向量场参数。",
+        "unit": "1/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "二维状态变化率。",
+        "unit": "1/T"
+      }
+    ],
+    "contract": "f=[-a*x-omega*y+c*tanh(x),omega*x-a*y+d*tanh(y)]。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[float],\n    parameters: list[float],\n) -> list[float]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            1.0,
+            0.0
+          ],
+          "parameters": [
+            0.1,
+            2.0,
+            0.0,
+            0.0
+          ]
+        },
+        "expected": [
+          -0.1,
+          2.0
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；f=[-a*x-omega*y+c*tanh(x),omega*x-a*y+d*tanh(y)]。"
+      }
+    ]
+  },
+  {
+    "id": "p17-spiral-reference",
+    "slug": "p17-spiral-reference",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.1",
+    "lesson_id": "P17-C01-S02",
+    "title": "解析螺旋参考",
+    "statement": "原论文用神经常微分方程（neural ordinary differential equation，Neural ODE）学习低维螺旋。只画一条类似螺旋，能否称为原结果复现？本题计算“解析螺旋参考”：每个时刻用 exp(-a*t) 乘旋转矩阵（matrix）作用于 initial。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "二维线性螺旋初态。",
+        "unit": "归一化状态"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "指数衰减率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "omega",
+        "type": "float",
+        "description": "旋转角频率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "从初态开始的时间。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "每个时间对应的二维解析状态（state）。",
+        "unit": "归一化状态"
+      }
+    ],
+    "contract": "每个时刻用 exp(-a*t) 乘旋转矩阵作用于 initial。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: list[float],\n    a: float,\n    omega: float,\n    times: list[float],\n) -> list[list[float]]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": [
+            1.0,
+            0.0
+          ],
+          "a": 0.0,
+          "omega": 0.0,
+          "times": [
+            0.0,
+            1.0
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；每个时刻用 exp(-a*t) 乘旋转矩阵作用于 initial。"
+      }
+    ]
+  },
+  {
+    "id": "p17-disjoint-trajectories",
+    "slug": "p17-disjoint-trajectories",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.2",
+    "lesson_id": "P17-C02-S01",
+    "title": "划分交叉审计",
+    "statement": "若训练导数（derivative）几乎完全拟合，如何知道阈值筛项有用？独立初态会不会立即失配？本题计算“划分交叉审计”：求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "train_ids",
+        "type": "list[int]",
+        "description": "训练轨迹（trajectory）编号。",
+        "unit": "轨迹"
+      },
+      {
+        "name": "validation_ids",
+        "type": "list[int]",
+        "description": "验证轨迹编号。",
+        "unit": "轨迹"
+      },
+      {
+        "name": "test_ids",
+        "type": "list[int]",
+        "description": "独立测试轨迹编号。",
+        "unit": "轨迹"
+      }
+    ],
+    "returns": [
+      {
+        "name": "result",
+        "type": "list",
+        "description": "首项为无交叉标志，第二项为升序重复编号。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    train_ids: list[int],\n    validation_ids: list[int],\n    test_ids: list[int],\n) -> list:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "train_ids": [
+            1,
+            2
+          ],
+          "validation_ids": [
+            3
+          ],
+          "test_ids": [
+            2,
+            4
+          ]
+        },
+        "expected": [
+          false,
+          [
+            2
+          ]
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。"
+      }
+    ]
+  },
+  {
+    "id": "p17-sparse-refit",
+    "slug": "p17-sparse-refit",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.2",
+    "lesson_id": "P17-C02-S01",
+    "title": "顺序阈值重拟合",
+    "statement": "若训练导数（derivative）几乎完全拟合，如何知道阈值筛项有用？独立初态会不会立即失配？本题计算“顺序阈值重拟合”：先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态（state）列只在保留列上重拟合。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "features",
+        "type": "list[list[float]]",
+        "description": "样本×候选项设计矩阵（design matrix）。",
+        "unit": "混合"
+      },
+      {
+        "name": "derivatives",
+        "type": "list[list[float]]",
+        "description": "样本×状态导数矩阵（matrix）。",
+        "unit": "状态/T"
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "原系数量纲（dimension）下的绝对值阈值。",
+        "unit": "系数"
+      },
+      {
+        "name": "iterations",
+        "type": "int",
+        "description": "顺序筛除并重拟合次数。",
+        "unit": "轮"
+      }
+    ],
+    "returns": [
+      {
+        "name": "coefficients",
+        "type": "list[list[float]]",
+        "description": "候选项×状态的系数矩阵。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态列只在保留列上重拟合。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    features: list[list[float]],\n    derivatives: list[list[float]],\n    threshold: float,\n    iterations: int,\n) -> list[list[float]]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "features": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ],
+            [
+              1.0,
+              2.0
+            ]
+          ],
+          "derivatives": [
+            [
+              1.0
+            ],
+            [
+              3.0
+            ],
+            [
+              5.0
+            ]
+          ],
+          "threshold": 0.1,
+          "iterations": 2
+        },
+        "expected": [
+          [
+            0.9999999999999997
+          ],
+          [
+            1.9999999999999998
+          ]
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态列只在保留列上重拟合。"
+      }
+    ]
+  },
+  {
+    "id": "p17-state-jacobian",
+    "slug": "p17-state-jacobian",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.2",
+    "lesson_id": "P17-C02-S02",
+    "title": "伴随状态 Jacobian",
+    "statement": "训练点上的损失下降，能否证明神经向量场（vector field）优于简单线性螺旋机制？本题计算“伴随状态（state） Jacobian”：对 f 的 x、y 分别求导；tanh 的导数（derivative）为 1-tanh²。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "二维状态。",
+        "unit": "1"
+      },
+      {
+        "name": "parameters",
+        "type": "list[float]",
+        "description": "a、omega、c、d。",
+        "unit": "1/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "jacobian",
+        "type": "list[list[float]]",
+        "description": "对状态的 2×2 Jacobian。",
+        "unit": "1/T"
+      }
+    ],
+    "contract": "对 f 的 x、y 分别求导；tanh 的导数为 1-tanh²。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[float],\n    parameters: list[float],\n) -> list[list[float]]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            0.0,
+            0.0
+          ],
+          "parameters": [
+            0.1,
+            2.0,
+            0.3,
+            0.4
+          ]
+        },
+        "expected": [
+          [
+            0.19999999999999998,
+            -2.0
+          ],
+          [
+            2.0,
+            0.30000000000000004
+          ]
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；对 f 的 x、y 分别求导；tanh 的导数为 1-tanh²。"
+      }
+    ]
+  },
+  {
+    "id": "p17-parameter-jacobian",
+    "slug": "p17-parameter-jacobian",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.2",
+    "lesson_id": "P17-C02-S02",
+    "title": "伴随参数 Jacobian",
+    "statement": "训练点上的损失下降，能否证明神经向量场（vector field）优于简单线性螺旋机制？本题计算“伴随参数（parameter） Jacobian”：两行依次为 [-x,-y,tanh(x),0]、[-y,x,0,tanh(y)]。请按下方具名参数和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "二维状态（state）。",
+        "unit": "1"
+      },
+      {
+        "name": "parameters",
+        "type": "list[float]",
+        "description": "a、omega、c、d；该式的导数（derivative）不显含这些值。",
+        "unit": "1/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "jacobian",
+        "type": "list[list[float]]",
+        "description": "对四参数的 2×4 Jacobian。",
+        "unit": "1"
+      }
+    ],
+    "contract": "两行依次为 [-x,-y,tanh(x),0]、[-y,x,0,tanh(y)]。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[float],\n    parameters: list[float],\n) -> list[list[float]]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            1.0,
+            0.0
+          ],
+          "parameters": [
+            0.1,
+            2.0,
+            0.0,
+            0.0
+          ]
+        },
+        "expected": [
+          [
+            -1.0,
+            -0.0,
+            0.7615941559557649,
+            0.0
+          ],
+          [
+            -0.0,
+            1.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；两行依次为 [-x,-y,tanh(x),0]、[-y,x,0,tanh(y)]。"
+      }
+    ]
+  },
+  {
+    "id": "p17-noisy-refit",
+    "slug": "p17-noisy-refit",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.3",
+    "lesson_id": "P17-C03-S01",
+    "title": "带噪导数重拟合",
+    "statement": "移除稀疏阈值或污染导数（derivative）后，训练拟合与结构恢复会同向变化吗？本题计算“带噪导数重拟合”：先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态（state）列只在保留列上重拟合。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "features",
+        "type": "list[list[float]]",
+        "description": "样本×候选项设计矩阵（design matrix）。",
+        "unit": "混合"
+      },
+      {
+        "name": "derivatives",
+        "type": "list[list[float]]",
+        "description": "样本×状态导数矩阵（matrix）。",
+        "unit": "状态/T"
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "原系数量纲（dimension）下的绝对值阈值。",
+        "unit": "系数"
+      },
+      {
+        "name": "iterations",
+        "type": "int",
+        "description": "顺序筛除并重拟合次数。",
+        "unit": "轮"
+      }
+    ],
+    "returns": [
+      {
+        "name": "coefficients",
+        "type": "list[list[float]]",
+        "description": "候选项×状态的系数矩阵。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态列只在保留列上重拟合。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    features: list[list[float]],\n    derivatives: list[list[float]],\n    threshold: float,\n    iterations: int,\n) -> list[list[float]]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "features": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ],
+            [
+              1.0,
+              2.0
+            ]
+          ],
+          "derivatives": [
+            [
+              1.0
+            ],
+            [
+              3.0
+            ],
+            [
+              5.0
+            ]
+          ],
+          "threshold": 0.1,
+          "iterations": 2
+        },
+        "expected": [
+          [
+            0.9999999999999997
+          ],
+          [
+            1.9999999999999998
+          ]
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态列只在保留列上重拟合。"
+      }
+    ]
+  },
+  {
+    "id": "p17-support-row",
+    "slug": "p17-support-row",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.3",
+    "lesson_id": "P17-C03-S01",
+    "title": "候选支持项",
+    "statement": "移除稀疏阈值或污染导数（derivative）后，训练拟合与结构恢复会同向变化吗？本题计算“候选支持项”：返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "三个状态（state） x、y、z。",
+        "unit": "模型状态"
+      }
+    ],
+    "returns": [
+      {
+        "name": "terms",
+        "type": "list[float]",
+        "description": "常数、一次和二次项的固定顺序。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[float],\n) -> list[float]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            2.0,
+            3.0,
+            4.0
+          ]
+        },
+        "expected": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          4.0,
+          6.0,
+          8.0,
+          9.0,
+          12.0,
+          16.0
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。"
+      }
+    ]
+  },
+  {
+    "id": "p17-independent-spiral",
+    "slug": "p17-independent-spiral",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.3",
+    "lesson_id": "P17-C03-S02",
+    "title": "独立初态解析线",
+    "statement": "更细的求解网格和更多向量场（vector field）参数（parameter），总能改善独立初态的预测吗？本题计算“独立初态解析线”：每个时刻用 exp(-a*t) 乘旋转矩阵（matrix）作用于 initial。请按下方具名参数和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "二维线性螺旋初态。",
+        "unit": "归一化状态"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "指数衰减率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "omega",
+        "type": "float",
+        "description": "旋转角频率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "从初态开始的时间。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "每个时间对应的二维解析状态（state）。",
+        "unit": "归一化状态"
+      }
+    ],
+    "contract": "每个时刻用 exp(-a*t) 乘旋转矩阵作用于 initial。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: list[float],\n    a: float,\n    omega: float,\n    times: list[float],\n) -> list[list[float]]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": [
+            1.0,
+            0.0
+          ],
+          "a": 0.0,
+          "omega": 0.0,
+          "times": [
+            0.0,
+            1.0
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；每个时刻用 exp(-a*t) 乘旋转矩阵作用于 initial。"
+      }
+    ]
+  },
+  {
+    "id": "p17-paired-failure",
+    "slug": "p17-paired-failure",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.3",
+    "lesson_id": "P17-C03-S02",
+    "title": "保留失败的配对统计",
+    "statement": "更细的求解网格和更多向量场（vector field）参数（parameter），总能改善独立初态的预测吗？本题计算“保留失败的配对统计”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败率保留全部场景。请按下方具名参数和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "baseline",
+        "type": "list[float]",
+        "description": "全部场景的基线误差。",
+        "unit": "U"
+      },
+      {
+        "name": "method",
+        "type": "list[float]",
+        "description": "同序候选方法误差。",
+        "unit": "U"
+      },
+      {
+        "name": "failures",
+        "type": "list[bool]",
+        "description": "同序失败标志。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "report",
+        "type": "list[float]",
+        "description": "基线减候选的均值、样本标准误和失败率。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    baseline: list[float],\n    method: list[float],\n    failures: list[bool],\n) -> list[float]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "baseline": [
+            0.3,
+            0.4
+          ],
+          "method": [
+            0.2,
+            0.5
+          ],
+          "failures": [
+            false,
+            true
+          ]
+        },
+        "expected": [
+          0.0,
+          0.09999999999999998,
+          0.5
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。"
+      }
+    ]
+  },
+  {
+    "id": "p17-two-compartment",
+    "slug": "p17-two-compartment",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.4",
+    "lesson_id": "P17-C04-S01",
+    "title": "双室收支变化率",
+    "statement": "在生命系统中看到良好短时预测，怎样同时检查交换项符号与总量收支（mass balance）？本题计算“双室收支变化率”：室1=u1-k1*A1-e*(A1-A2)；室2=u2-k2*A2+e*(A1-A2)。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "双室当前总量。",
+        "unit": "U"
+      },
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "双室输入（input）率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "clearance",
+        "type": "list[float]",
+        "description": "双室一阶清除率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "exchange",
+        "type": "float",
+        "description": "对称交换率。",
+        "unit": "1/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "两个室的总量变化率。",
+        "unit": "U/T"
+      }
+    ],
+    "contract": "室1=u1-k1*A1-e*(A1-A2)；室2=u2-k2*A2+e*(A1-A2)。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    amounts: list[float],\n    inputs: list[float],\n    clearance: list[float],\n    exchange: float,\n) -> list[float]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "amounts": [
+            2.0,
+            1.0
+          ],
+          "inputs": [
+            0.2,
+            0.0
+          ],
+          "clearance": [
+            0.1,
+            0.2
+          ],
+          "exchange": 0.3
+        },
+        "expected": [
+          -0.3,
+          0.09999999999999998
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；室1=u1-k1*A1-e*(A1-A2)；室2=u2-k2*A2+e*(A1-A2)。"
+      }
+    ]
+  },
+  {
+    "id": "p17-transfer-score",
+    "slug": "p17-transfer-score",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.4",
+    "lesson_id": "P17-C04-S01",
+    "title": "迁移的三项指标",
+    "statement": "在生命系统中看到良好短时预测，怎样同时检查交换项符号与总量收支（mass balance）？本题计算“迁移的三项指标”：残差（residual）为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "truth",
+        "type": "list[float]",
+        "description": "共同测试的真实状态（state）。",
+        "unit": "U"
+      },
+      {
+        "name": "prediction",
+        "type": "list[float]",
+        "description": "同序预测状态。",
+        "unit": "U"
+      },
+      {
+        "name": "total_input",
+        "type": "float",
+        "description": "评估窗输入（input）积分。",
+        "unit": "U"
+      },
+      {
+        "name": "total_removed",
+        "type": "float",
+        "description": "评估窗清除积分。",
+        "unit": "U"
+      },
+      {
+        "name": "initial_total",
+        "type": "float",
+        "description": "起点总量。",
+        "unit": "U"
+      },
+      {
+        "name": "final_total",
+        "type": "float",
+        "description": "终点总量。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "score",
+        "type": "list",
+        "description": "RMSE、总量收支残差、负预测值个数。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "残差为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    truth: list[float],\n    prediction: list[float],\n    total_input: float,\n    total_removed: float,\n    initial_total: float,\n    final_total: float,\n) -> list:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "truth": [
+            1.0,
+            2.0
+          ],
+          "prediction": [
+            1.0,
+            -1.0
+          ],
+          "total_input": 0.5,
+          "total_removed": 0.2,
+          "initial_total": 3.0,
+          "final_total": 3.3
+        },
+        "expected": [
+          2.1213203435596424,
+          1.6653345369377348e-16,
+          1
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；残差为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。"
+      }
+    ]
+  },
+  {
+    "id": "p17-paired-conclusion",
+    "slug": "p17-paired-conclusion",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.4",
+    "lesson_id": "P17-C04-S02",
+    "title": "公平配对效果",
+    "statement": "一个方法训练误差较小，却在新输入（input）下违反收支（mass balance）或状态（state）非负；比较表应怎样保留这个失败？本题计算“公平配对效果”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败率保留全部场景。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "baseline",
+        "type": "list[float]",
+        "description": "全部场景的基线误差。",
+        "unit": "U"
+      },
+      {
+        "name": "method",
+        "type": "list[float]",
+        "description": "同序候选方法误差。",
+        "unit": "U"
+      },
+      {
+        "name": "failures",
+        "type": "list[bool]",
+        "description": "同序失败标志。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "report",
+        "type": "list[float]",
+        "description": "基线减候选的均值、样本标准误和失败率。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    baseline: list[float],\n    method: list[float],\n    failures: list[bool],\n) -> list[float]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "baseline": [
+            0.3,
+            0.4
+          ],
+          "method": [
+            0.2,
+            0.5
+          ],
+          "failures": [
+            false,
+            true
+          ]
+        },
+        "expected": [
+          0.0,
+          0.09999999999999998,
+          0.5
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。"
+      }
+    ]
+  },
+  {
+    "id": "p17-final-split",
+    "slug": "p17-final-split",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.4",
+    "lesson_id": "P17-C04-S02",
+    "title": "最终轨迹隔离",
+    "statement": "一个方法训练误差较小，却在新输入（input）下违反收支（mass balance）或状态（state）非负；比较表应怎样保留这个失败？本题计算“最终轨迹（trajectory）隔离”：求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "train_ids",
+        "type": "list[int]",
+        "description": "训练轨迹编号。",
+        "unit": "轨迹"
+      },
+      {
+        "name": "validation_ids",
+        "type": "list[int]",
+        "description": "验证轨迹编号。",
+        "unit": "轨迹"
+      },
+      {
+        "name": "test_ids",
+        "type": "list[int]",
+        "description": "独立测试轨迹编号。",
+        "unit": "轨迹"
+      }
+    ],
+    "returns": [
+      {
+        "name": "result",
+        "type": "list",
+        "description": "首项为无交叉标志，第二项为升序重复编号。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    train_ids: list[int],\n    validation_ids: list[int],\n    test_ids: list[int],\n) -> list:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "train_ids": [
+            1,
+            2
+          ],
+          "validation_ids": [
+            3
+          ],
+          "test_ids": [
+            2,
+            4
+          ]
+        },
+        "expected": [
+          false,
+          [
+            2
+          ]
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。"
+      }
+    ]
+  },
+  {
+    "id": "p17-capstone-claim",
+    "slug": "p17-capstone-claim",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.summary",
+    "lesson_id": "P17-SUMMARY",
+    "title": "主张与证据",
+    "statement": "缩减 Lorenz 窗口可检验哪项结论？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "原文长窗全部数值"
+      },
+      {
+        "id": "B",
+        "text": "在当前窗口恢复所声明方程项"
+      },
+      {
+        "id": "C",
+        "text": "所有生理系统可解释"
+      },
+      {
+        "id": "D",
+        "text": "完整临床价值"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-capstone-adaptation",
+    "slug": "p17-capstone-adaptation",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.summary",
+    "lesson_id": "P17-SUMMARY",
+    "title": "复现与改编身份",
+    "statement": "二维四参数（parameter）螺旋加连续伴随，但不含潜变量编码器，如何标记？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "原论文 Table 2 全量复现"
+      },
+      {
+        "id": "B",
+        "text": "原方法核心的课程缩减实验"
+      },
+      {
+        "id": "C",
+        "text": "无关方法"
+      },
+      {
+        "id": "D",
+        "text": "真实患者复现"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-capstone-protocol",
+    "slug": "p17-capstone-protocol",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.summary",
+    "lesson_id": "P17-SUMMARY",
+    "title": "协议缺口",
+    "statement": "训练和测试使用同一轨迹（trajectory）编号，最大的问题是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "积分网格过细"
+      },
+      {
+        "id": "B",
+        "text": "独立验证证据泄漏"
+      },
+      {
+        "id": "C",
+        "text": "基线过强"
+      },
+      {
+        "id": "D",
+        "text": "字典项过少"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-capstone-failure",
+    "slug": "p17-capstone-failure",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.summary",
+    "lesson_id": "P17-SUMMARY",
+    "title": "失败能否反驳主张",
+    "statement": "原主张仅覆盖当前观测（observation）条件，换成未声明的新传感器后失败，最准确的判断是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "原范围结论自动被推翻"
+      },
+      {
+        "id": "B",
+        "text": "提示迁移范围失效，不能直接反驳原范围内结论"
+      },
+      {
+        "id": "C",
+        "text": "证明所有方法都无效"
+      },
+      {
+        "id": "D",
+        "text": "应删除新条件结果"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-capstone-boundary",
+    "slug": "p17-capstone-boundary",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.summary",
+    "lesson_id": "P17-SUMMARY",
+    "title": "复现实验的结论边界",
+    "statement": "平均效果较好但一条件失败，何种报告可信？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只报告成功场景"
+      },
+      {
+        "id": "B",
+        "text": "把失败重命名为成功"
+      },
+      {
+        "id": "C",
+        "text": "保留全部场景、配对差及失败率"
+      },
+      {
+        "id": "D",
+        "text": "凭均值宣称普遍优势"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p17-capstone-lorenz",
+    "slug": "p17-capstone-lorenz",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.summary",
+    "lesson_id": "P17-SUMMARY",
+    "title": "复现关键数值步骤",
+    "statement": "综合任务给定了独立的模型（model）输入（input）与评价条件。本题计算“复现关键数值步骤”：依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态（state）与时间均按 Lorenz 无量纲（dimensionless）形式给出。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "按 x、y、z 顺序的无量纲当前状态。",
+        "unit": "1"
+      },
+      {
+        "name": "sigma",
+        "type": "float",
+        "description": "归一化 Lorenz 参数。",
+        "unit": "1"
+      },
+      {
+        "name": "rho",
+        "type": "float",
+        "description": "归一化 Lorenz 参数。",
+        "unit": "1"
+      },
+      {
+        "name": "beta",
+        "type": "float",
+        "description": "归一化 Lorenz 参数。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "三个状态对归一化时间的变化率。",
+        "unit": "1"
+      }
+    ],
+    "contract": "依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态与时间均按 Lorenz 无量纲形式给出。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入满足模型和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[float],\n    sigma: float,\n    rho: float,\n    beta: float,\n) -> list[float]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            -8.0,
+            7.0,
+            27.0
+          ],
+          "sigma": 10.0,
+          "rho": 28.0,
+          "beta": 2.6666666666666665
+        },
+        "expected": [
+          150.0,
+          -15.0,
+          -128.0
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态与时间均按 Lorenz 无量纲形式给出。"
+      }
+    ]
+  },
+  {
+    "id": "p17-capstone-paired",
+    "slug": "p17-capstone-paired",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.summary",
+    "lesson_id": "P17-SUMMARY",
+    "title": "消融的配对统计",
+    "statement": "综合任务给定了独立的模型（model）输入（input）与评价条件。本题计算“消融的配对统计”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败率保留全部场景。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "baseline",
+        "type": "list[float]",
+        "description": "全部场景的基线误差。",
+        "unit": "U"
+      },
+      {
+        "name": "method",
+        "type": "list[float]",
+        "description": "同序候选方法误差。",
+        "unit": "U"
+      },
+      {
+        "name": "failures",
+        "type": "list[bool]",
+        "description": "同序失败标志。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "report",
+        "type": "list[float]",
+        "description": "基线减候选的均值、样本标准误和失败率。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入满足模型和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    baseline: list[float],\n    method: list[float],\n    failures: list[bool],\n) -> list[float]:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "baseline": [
+            0.3,
+            0.4
+          ],
+          "method": [
+            0.2,
+            0.5
+          ],
+          "failures": [
+            false,
+            true
+          ]
+        },
+        "expected": [
+          0.0,
+          0.09999999999999998,
+          0.5
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。"
+      }
+    ]
+  },
+  {
+    "id": "p17-capstone-score",
+    "slug": "p17-capstone-score",
+    "version": "1",
+    "part": "17",
+    "chapter": "17.summary",
+    "lesson_id": "P17-SUMMARY",
+    "title": "跨方法约束指标",
+    "statement": "综合任务给定了独立的模型（model）输入（input）与评价条件。本题计算“跨方法约束指标”：残差（residual）为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "truth",
+        "type": "list[float]",
+        "description": "共同测试的真实状态（state）。",
+        "unit": "U"
+      },
+      {
+        "name": "prediction",
+        "type": "list[float]",
+        "description": "同序预测状态。",
+        "unit": "U"
+      },
+      {
+        "name": "total_input",
+        "type": "float",
+        "description": "评估窗输入积分。",
+        "unit": "U"
+      },
+      {
+        "name": "total_removed",
+        "type": "float",
+        "description": "评估窗清除积分。",
+        "unit": "U"
+      },
+      {
+        "name": "initial_total",
+        "type": "float",
+        "description": "起点总量。",
+        "unit": "U"
+      },
+      {
+        "name": "final_total",
+        "type": "float",
+        "description": "终点总量。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "score",
+        "type": "list",
+        "description": "RMSE、总量收支（mass balance）残差、负预测值个数。",
+        "unit": "混合"
+      }
+    ],
+    "contract": "残差为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。",
+    "constraints": [
+      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "输入满足模型和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    truth: list[float],\n    prediction: list[float],\n    total_input: float,\n    total_removed: float,\n    initial_total: float,\n    final_total: float,\n) -> list:\n    # 按题给公式计算，保留全部返回项。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "truth": [
+            1.0,
+            2.0
+          ],
+          "prediction": [
+            1.0,
+            -1.0
+          ],
+          "total_input": 0.5,
+          "total_removed": 0.2,
+          "initial_total": 3.0,
+          "final_total": 3.3
+        },
+        "expected": [
+          2.1213203435596424,
+          1.6653345369377348e-16,
+          1
+        ],
+        "explanation": "输入样例代入计算规则后得到所示输出（output）；残差为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。"
+      }
+    ]
+  }
+]

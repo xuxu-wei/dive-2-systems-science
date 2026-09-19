@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "d63a4611d6d190de1ed61bbb23c6f8e43b09ab8194630661ed9a9b2440611eb0",
+    "catalogSha256": "b108d8c4eeb648b13d6c68b311e4aeed11bbd33cd5e18597d725a40233b51f30",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -21129,12 +21129,55 @@
         "17.3",
         "17.4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c1s1-choice1",
+        "p17-c1s1-choice2",
+        "p17-lorenz-vector",
+        "p17-candidate-row",
+        "p17-c1s2-choice1",
+        "p17-c1s2-choice2",
+        "p17-spiral-vector",
+        "p17-spiral-reference",
+        "p17-c2s1-choice1",
+        "p17-c2s1-choice2",
+        "p17-disjoint-trajectories",
+        "p17-sparse-refit",
+        "p17-c2s2-choice1",
+        "p17-c2s2-choice2",
+        "p17-state-jacobian",
+        "p17-parameter-jacobian",
+        "p17-c3s1-choice1",
+        "p17-c3s1-choice2",
+        "p17-noisy-refit",
+        "p17-support-row",
+        "p17-c3s2-choice1",
+        "p17-c3s2-choice2",
+        "p17-independent-spiral",
+        "p17-paired-failure",
+        "p17-c4s1-choice1",
+        "p17-c4s1-choice2",
+        "p17-two-compartment",
+        "p17-transfer-score",
+        "p17-c4s2-choice1",
+        "p17-c4s2-choice2",
+        "p17-paired-conclusion",
+        "p17-final-split",
+        "p17-capstone-claim",
+        "p17-capstone-adaptation",
+        "p17-capstone-protocol",
+        "p17-capstone-failure",
+        "p17-capstone-boundary",
+        "p17-capstone-lorenz",
+        "p17-capstone-paired",
+        "p17-capstone-score"
+      ],
+      "available": true,
+      "published": 4,
       "total": 4,
-      "assessmentIds": [],
-      "assessmentUrl": null,
+      "assessmentIds": [
+        "P17-SUMMARY"
+      ],
+      "assessmentUrl": "/parts/17-研究复现与综合实践/综合练习/",
       "progressScope": "已发布篇章练习（含篇末综合）"
     },
     {
@@ -21150,87 +21193,261 @@
         "method"
       ],
       "children": [
-        "17.1:planned:1",
-        "17.1:planned:2",
-        "17.1:planned:3"
+        "17.1.1:concept:1",
+        "17.1.1:concept:2",
+        "17.1.1:concept:3",
+        "17.1.1:concept:4",
+        "17.1.2:concept:1",
+        "17.1.2:concept:2",
+        "17.1.2:concept:3",
+        "17.1.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c1s1-choice1",
+        "p17-c1s1-choice2",
+        "p17-lorenz-vector",
+        "p17-candidate-row",
+        "p17-c1s2-choice1",
+        "p17-c1s2-choice2",
+        "p17-spiral-vector",
+        "p17-spiral-reference"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "17.1:planned:1",
+      "id": "17.1.1:concept:1",
       "kind": "concept",
-      "title": "研究主张",
+      "title": "论文主张",
       "english": null,
-      "number": "17.1",
+      "number": "17.1.1",
       "parentId": "17.1",
-      "url": "/chapters/17-01-研究问题与证据/",
-      "description": "把论文主张转成有明确假设、对象、指标和证据范围的可复现问题。",
+      "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1",
+      "description": "从原论文给出可检验的方程发现问题，并标记课程缩减。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c1s1-choice1",
+        "p17-c1s1-choice2",
+        "p17-lorenz-vector",
+        "p17-candidate-row"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C01-S01",
+      "lessonNumber": "17.1.1",
+      "lessonTitle": "锁定 Lorenz 稀疏发现的主张",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.1:planned:2",
+      "id": "17.1.1:concept:2",
       "kind": "concept",
-      "title": "复现边界",
+      "title": "原文版本",
       "english": null,
-      "number": "17.1",
+      "number": "17.1.1",
       "parentId": "17.1",
-      "url": "/chapters/17-01-研究问题与证据/",
-      "description": "把论文主张转成有明确假设、对象、指标和证据范围的可复现问题。",
+      "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1",
+      "description": "从原论文给出可检验的方程发现问题，并标记课程缩减。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c1s1-choice1",
+        "p17-c1s1-choice2",
+        "p17-lorenz-vector",
+        "p17-candidate-row"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C01-S01",
+      "lessonNumber": "17.1.1",
+      "lessonTitle": "锁定 Lorenz 稀疏发现的主张",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.1:planned:3",
+      "id": "17.1.1:concept:3",
       "kind": "concept",
-      "title": "公平基线",
+      "title": "Lorenz 条件",
       "english": null,
-      "number": "17.1",
+      "number": "17.1.1",
       "parentId": "17.1",
-      "url": "/chapters/17-01-研究问题与证据/",
-      "description": "把论文主张转成有明确假设、对象、指标和证据范围的可复现问题。",
+      "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1",
+      "description": "从原论文给出可检验的方程发现问题，并标记课程缩减。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c1s1-choice1",
+        "p17-c1s1-choice2",
+        "p17-lorenz-vector",
+        "p17-candidate-row"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C01-S01",
+      "lessonNumber": "17.1.1",
+      "lessonTitle": "锁定 Lorenz 稀疏发现的主张",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.1.1:concept:4",
+      "kind": "concept",
+      "title": "课程缩减",
+      "english": null,
+      "number": "17.1.1",
+      "parentId": "17.1",
+      "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1",
+      "description": "从原论文给出可检验的方程发现问题，并标记课程缩减。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c1s1-choice1",
+        "p17-c1s1-choice2",
+        "p17-lorenz-vector",
+        "p17-candidate-row"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C01-S01",
+      "lessonNumber": "17.1.1",
+      "lessonTitle": "锁定 Lorenz 稀疏发现的主张",
+      "chapterUrl": "/chapters/17-01-研究问题与证据/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.1.2:concept:1",
+      "kind": "concept",
+      "title": "螺旋任务",
+      "english": null,
+      "number": "17.1.2",
+      "parentId": "17.1",
+      "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1",
+      "description": "区分连续伴随方法、原论文潜变量螺旋实验和本课程二维缩减实验。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c1s2-choice1",
+        "p17-c1s2-choice2",
+        "p17-spiral-vector",
+        "p17-spiral-reference"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C01-S02",
+      "lessonNumber": "17.1.2",
+      "lessonTitle": "锁定 Neural ODE 任务与改编边界",
+      "chapterUrl": "/chapters/17-01-研究问题与证据/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.1.2:concept:2",
+      "kind": "concept",
+      "title": "潜变量模型",
+      "english": null,
+      "number": "17.1.2",
+      "parentId": "17.1",
+      "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1",
+      "description": "区分连续伴随方法、原论文潜变量螺旋实验和本课程二维缩减实验。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c1s2-choice1",
+        "p17-c1s2-choice2",
+        "p17-spiral-vector",
+        "p17-spiral-reference"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C01-S02",
+      "lessonNumber": "17.1.2",
+      "lessonTitle": "锁定 Neural ODE 任务与改编边界",
+      "chapterUrl": "/chapters/17-01-研究问题与证据/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.1.2:concept:3",
+      "kind": "concept",
+      "title": "连续伴随",
+      "english": null,
+      "number": "17.1.2",
+      "parentId": "17.1",
+      "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1",
+      "description": "区分连续伴随方法、原论文潜变量螺旋实验和本课程二维缩减实验。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c1s2-choice1",
+        "p17-c1s2-choice2",
+        "p17-spiral-vector",
+        "p17-spiral-reference"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C01-S02",
+      "lessonNumber": "17.1.2",
+      "lessonTitle": "锁定 Neural ODE 任务与改编边界",
+      "chapterUrl": "/chapters/17-01-研究问题与证据/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.1.2:concept:4",
+      "kind": "concept",
+      "title": "改编边界",
+      "english": null,
+      "number": "17.1.2",
+      "parentId": "17.1",
+      "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1",
+      "description": "区分连续伴随方法、原论文潜变量螺旋实验和本课程二维缩减实验。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c1s2-choice1",
+        "p17-c1s2-choice2",
+        "p17-spiral-vector",
+        "p17-spiral-reference"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C01-S02",
+      "lessonNumber": "17.1.2",
+      "lessonTitle": "锁定 Neural ODE 任务与改编边界",
+      "chapterUrl": "/chapters/17-01-研究问题与证据/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "17.2",
@@ -21245,112 +21462,261 @@
         "method"
       ],
       "children": [
-        "17.2:planned:1",
-        "17.2:planned:2",
-        "17.2:planned:3",
-        "17.2:planned:4"
+        "17.2.1:concept:1",
+        "17.2.1:concept:2",
+        "17.2.1:concept:3",
+        "17.2.1:concept:4",
+        "17.2.2:concept:1",
+        "17.2.2:concept:2",
+        "17.2.2:concept:3",
+        "17.2.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c2s1-choice1",
+        "p17-c2s1-choice2",
+        "p17-disjoint-trajectories",
+        "p17-sparse-refit",
+        "p17-c2s2-choice1",
+        "p17-c2s2-choice2",
+        "p17-state-jacobian",
+        "p17-parameter-jacobian"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "17.2:planned:1",
+      "id": "17.2.1:concept:1",
       "kind": "concept",
-      "title": "数据划分",
+      "title": "候选字典",
       "english": null,
-      "number": "17.2",
+      "number": "17.2.1",
       "parentId": "17.2",
-      "url": "/chapters/17-02-复现协议与公平基线/",
-      "description": "制定能运行且公平的复现协议，隔离训练和评估信息并记录计算预算。",
+      "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1",
+      "description": "手写顺序阈值最小二乘，分别检查稀疏项和未参与拟合的初态。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c2s1-choice1",
+        "p17-c2s1-choice2",
+        "p17-disjoint-trajectories",
+        "p17-sparse-refit"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C02-S01",
+      "lessonNumber": "17.2.1",
+      "lessonTitle": "阈值最小二乘与独立 Lorenz 轨迹",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.2:planned:2",
+      "id": "17.2.1:concept:2",
       "kind": "concept",
-      "title": "基线协议",
+      "title": "阈值重拟合",
       "english": null,
-      "number": "17.2",
+      "number": "17.2.1",
       "parentId": "17.2",
-      "url": "/chapters/17-02-复现协议与公平基线/",
-      "description": "制定能运行且公平的复现协议，隔离训练和评估信息并记录计算预算。",
+      "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1",
+      "description": "手写顺序阈值最小二乘，分别检查稀疏项和未参与拟合的初态。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c2s1-choice1",
+        "p17-c2s1-choice2",
+        "p17-disjoint-trajectories",
+        "p17-sparse-refit"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C02-S01",
+      "lessonNumber": "17.2.1",
+      "lessonTitle": "阈值最小二乘与独立 Lorenz 轨迹",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.2:planned:3",
+      "id": "17.2.1:concept:3",
       "kind": "concept",
-      "title": "随机流",
+      "title": "独立初态",
       "english": null,
-      "number": "17.2",
+      "number": "17.2.1",
       "parentId": "17.2",
-      "url": "/chapters/17-02-复现协议与公平基线/",
-      "description": "制定能运行且公平的复现协议，隔离训练和评估信息并记录计算预算。",
+      "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1",
+      "description": "手写顺序阈值最小二乘，分别检查稀疏项和未参与拟合的初态。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c2s1-choice1",
+        "p17-c2s1-choice2",
+        "p17-disjoint-trajectories",
+        "p17-sparse-refit"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C02-S01",
+      "lessonNumber": "17.2.1",
+      "lessonTitle": "阈值最小二乘与独立 Lorenz 轨迹",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.2:planned:4",
+      "id": "17.2.1:concept:4",
       "kind": "concept",
-      "title": "失败处理",
+      "title": "结构恢复",
       "english": null,
-      "number": "17.2",
+      "number": "17.2.1",
       "parentId": "17.2",
-      "url": "/chapters/17-02-复现协议与公平基线/",
-      "description": "制定能运行且公平的复现协议，隔离训练和评估信息并记录计算预算。",
+      "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1",
+      "description": "手写顺序阈值最小二乘，分别检查稀疏项和未参与拟合的初态。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c2s1-choice1",
+        "p17-c2s1-choice2",
+        "p17-disjoint-trajectories",
+        "p17-sparse-refit"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C02-S01",
+      "lessonNumber": "17.2.1",
+      "lessonTitle": "阈值最小二乘与独立 Lorenz 轨迹",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.2.2:concept:1",
+      "kind": "concept",
+      "title": "伴随跳跃",
+      "english": null,
+      "number": "17.2.2",
+      "parentId": "17.2",
+      "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1",
+      "description": "在同一二维螺旋观测上核对伴随梯度、数值精度和机制基线。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c2s2-choice1",
+        "p17-c2s2-choice2",
+        "p17-state-jacobian",
+        "p17-parameter-jacobian"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C02-S02",
+      "lessonNumber": "17.2.2",
+      "lessonTitle": "连续伴随与公平外推基线",
+      "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.2.2:concept:2",
+      "kind": "concept",
+      "title": "梯度核验",
+      "english": null,
+      "number": "17.2.2",
+      "parentId": "17.2",
+      "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1",
+      "description": "在同一二维螺旋观测上核对伴随梯度、数值精度和机制基线。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c2s2-choice1",
+        "p17-c2s2-choice2",
+        "p17-state-jacobian",
+        "p17-parameter-jacobian"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C02-S02",
+      "lessonNumber": "17.2.2",
+      "lessonTitle": "连续伴随与公平外推基线",
+      "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.2.2:concept:3",
+      "kind": "concept",
+      "title": "机制基线",
+      "english": null,
+      "number": "17.2.2",
+      "parentId": "17.2",
+      "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1",
+      "description": "在同一二维螺旋观测上核对伴随梯度、数值精度和机制基线。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c2s2-choice1",
+        "p17-c2s2-choice2",
+        "p17-state-jacobian",
+        "p17-parameter-jacobian"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C02-S02",
+      "lessonNumber": "17.2.2",
+      "lessonTitle": "连续伴随与公平外推基线",
+      "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.2.2:concept:4",
+      "kind": "concept",
+      "title": "独立外推",
+      "english": null,
+      "number": "17.2.2",
+      "parentId": "17.2",
+      "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1",
+      "description": "在同一二维螺旋观测上核对伴随梯度、数值精度和机制基线。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c2s2-choice1",
+        "p17-c2s2-choice2",
+        "p17-state-jacobian",
+        "p17-parameter-jacobian"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C02-S02",
+      "lessonNumber": "17.2.2",
+      "lessonTitle": "连续伴随与公平外推基线",
+      "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "17.3",
@@ -21365,112 +21731,261 @@
         "method"
       ],
       "children": [
-        "17.3:planned:1",
-        "17.3:planned:2",
-        "17.3:planned:3",
-        "17.3:planned:4"
+        "17.3.1:concept:1",
+        "17.3.1:concept:2",
+        "17.3.1:concept:3",
+        "17.3.1:concept:4",
+        "17.3.2:concept:1",
+        "17.3.2:concept:2",
+        "17.3.2:concept:3",
+        "17.3.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c3s1-choice1",
+        "p17-c3s1-choice2",
+        "p17-noisy-refit",
+        "p17-support-row",
+        "p17-c3s2-choice1",
+        "p17-c3s2-choice2",
+        "p17-independent-spiral",
+        "p17-paired-failure"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "17.3:planned:1",
+      "id": "17.3.1:concept:1",
       "kind": "concept",
-      "title": "消融因素",
+      "title": "稀疏消融",
       "english": null,
-      "number": "17.3",
+      "number": "17.3.1",
       "parentId": "17.3",
-      "url": "/chapters/17-03-消融、失效与结论边界/",
-      "description": "通过消融、重复和失效实验定位效果来源，区分统计波动与可支持的机制解释。",
+      "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1",
+      "description": "在同一轨迹上隔离稀疏阈值和导数噪声的影响。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c3s1-choice1",
+        "p17-c3s1-choice2",
+        "p17-noisy-refit",
+        "p17-support-row"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C03-S01",
+      "lessonNumber": "17.3.1",
+      "lessonTitle": "稀疏性与导数噪声的失效实验",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.3:planned:2",
+      "id": "17.3.1:concept:2",
       "kind": "concept",
-      "title": "配对比较",
+      "title": "导数噪声",
       "english": null,
-      "number": "17.3",
+      "number": "17.3.1",
       "parentId": "17.3",
-      "url": "/chapters/17-03-消融、失效与结论边界/",
-      "description": "通过消融、重复和失效实验定位效果来源，区分统计波动与可支持的机制解释。",
+      "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1",
+      "description": "在同一轨迹上隔离稀疏阈值和导数噪声的影响。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c3s1-choice1",
+        "p17-c3s1-choice2",
+        "p17-noisy-refit",
+        "p17-support-row"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C03-S01",
+      "lessonNumber": "17.3.1",
+      "lessonTitle": "稀疏性与导数噪声的失效实验",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.3:planned:3",
+      "id": "17.3.1:concept:3",
       "kind": "concept",
-      "title": "失败分析",
+      "title": "失效记录",
       "english": null,
-      "number": "17.3",
+      "number": "17.3.1",
       "parentId": "17.3",
-      "url": "/chapters/17-03-消融、失效与结论边界/",
-      "description": "通过消融、重复和失效实验定位效果来源，区分统计波动与可支持的机制解释。",
+      "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1",
+      "description": "在同一轨迹上隔离稀疏阈值和导数噪声的影响。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c3s1-choice1",
+        "p17-c3s1-choice2",
+        "p17-noisy-refit",
+        "p17-support-row"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C03-S01",
+      "lessonNumber": "17.3.1",
+      "lessonTitle": "稀疏性与导数噪声的失效实验",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.3:planned:4",
+      "id": "17.3.1:concept:4",
       "kind": "concept",
-      "title": "结论边界",
+      "title": "测试误差",
       "english": null,
-      "number": "17.3",
+      "number": "17.3.1",
       "parentId": "17.3",
-      "url": "/chapters/17-03-消融、失效与结论边界/",
-      "description": "通过消融、重复和失效实验定位效果来源，区分统计波动与可支持的机制解释。",
+      "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1",
+      "description": "在同一轨迹上隔离稀疏阈值和导数噪声的影响。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c3s1-choice1",
+        "p17-c3s1-choice2",
+        "p17-noisy-refit",
+        "p17-support-row"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C03-S01",
+      "lessonNumber": "17.3.1",
+      "lessonTitle": "稀疏性与导数噪声的失效实验",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.3.2:concept:1",
+      "kind": "concept",
+      "title": "求解精度",
+      "english": null,
+      "number": "17.3.2",
+      "parentId": "17.3",
+      "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1",
+      "description": "改变数值步长及非线性项，识别训练改善和独立外推的边界。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c3s2-choice1",
+        "p17-c3s2-choice2",
+        "p17-independent-spiral",
+        "p17-paired-failure"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C03-S02",
+      "lessonNumber": "17.3.2",
+      "lessonTitle": "伴随精度与模型消融",
+      "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.3.2:concept:2",
+      "kind": "concept",
+      "title": "模型消融",
+      "english": null,
+      "number": "17.3.2",
+      "parentId": "17.3",
+      "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1",
+      "description": "改变数值步长及非线性项，识别训练改善和独立外推的边界。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c3s2-choice1",
+        "p17-c3s2-choice2",
+        "p17-independent-spiral",
+        "p17-paired-failure"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C03-S02",
+      "lessonNumber": "17.3.2",
+      "lessonTitle": "伴随精度与模型消融",
+      "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.3.2:concept:3",
+      "kind": "concept",
+      "title": "新初态",
+      "english": null,
+      "number": "17.3.2",
+      "parentId": "17.3",
+      "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1",
+      "description": "改变数值步长及非线性项，识别训练改善和独立外推的边界。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c3s2-choice1",
+        "p17-c3s2-choice2",
+        "p17-independent-spiral",
+        "p17-paired-failure"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C03-S02",
+      "lessonNumber": "17.3.2",
+      "lessonTitle": "伴随精度与模型消融",
+      "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.3.2:concept:4",
+      "kind": "concept",
+      "title": "数值边界",
+      "english": null,
+      "number": "17.3.2",
+      "parentId": "17.3",
+      "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1",
+      "description": "改变数值步长及非线性项，识别训练改善和独立外推的边界。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c3s2-choice1",
+        "p17-c3s2-choice2",
+        "p17-independent-spiral",
+        "p17-paired-failure"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C03-S02",
+      "lessonNumber": "17.3.2",
+      "lessonTitle": "伴随精度与模型消融",
+      "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "17.4",
@@ -21485,112 +22000,261 @@
         "method"
       ],
       "children": [
-        "17.4:planned:1",
-        "17.4:planned:2",
-        "17.4:planned:3",
-        "17.4:planned:4"
+        "17.4.1:concept:1",
+        "17.4.1:concept:2",
+        "17.4.1:concept:3",
+        "17.4.1:concept:4",
+        "17.4.2:concept:1",
+        "17.4.2:concept:2",
+        "17.4.2:concept:3",
+        "17.4.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c4s1-choice1",
+        "p17-c4s1-choice2",
+        "p17-two-compartment",
+        "p17-transfer-score",
+        "p17-c4s2-choice1",
+        "p17-c4s2-choice2",
+        "p17-paired-conclusion",
+        "p17-final-split"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "17.4:planned:1",
+      "id": "17.4.1:concept:1",
       "kind": "concept",
-      "title": "方法选择",
+      "title": "双室清除",
       "english": null,
-      "number": "17.4",
+      "number": "17.4.1",
       "parentId": "17.4",
-      "url": "/chapters/17-04-研究方法综合比较/",
-      "description": "把机制、推断和学习结果组织为可追溯比较，在新条件下判断结论仍成立的范围。",
+      "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1",
+      "description": "把稀疏发现迁到双室守恒模型，与同观测的机制基线比较。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c4s1-choice1",
+        "p17-c4s1-choice2",
+        "p17-two-compartment",
+        "p17-transfer-score"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C04-S01",
+      "lessonNumber": "17.4.1",
+      "lessonTitle": "迁移到双室物质清除",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.4:planned:2",
+      "id": "17.4.1:concept:2",
       "kind": "concept",
-      "title": "独立评估",
+      "title": "交换守恒",
       "english": null,
-      "number": "17.4",
+      "number": "17.4.1",
       "parentId": "17.4",
-      "url": "/chapters/17-04-研究方法综合比较/",
-      "description": "把机制、推断和学习结果组织为可追溯比较，在新条件下判断结论仍成立的范围。",
+      "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1",
+      "description": "把稀疏发现迁到双室守恒模型，与同观测的机制基线比较。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c4s1-choice1",
+        "p17-c4s1-choice2",
+        "p17-two-compartment",
+        "p17-transfer-score"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C04-S01",
+      "lessonNumber": "17.4.1",
+      "lessonTitle": "迁移到双室物质清除",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.4:planned:3",
+      "id": "17.4.1:concept:3",
       "kind": "concept",
-      "title": "不确定性",
+      "title": "课程迁移",
       "english": null,
-      "number": "17.4",
+      "number": "17.4.1",
       "parentId": "17.4",
-      "url": "/chapters/17-04-研究方法综合比较/",
-      "description": "把机制、推断和学习结果组织为可追溯比较，在新条件下判断结论仍成立的范围。",
+      "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1",
+      "description": "把稀疏发现迁到双室守恒模型，与同观测的机制基线比较。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c4s1-choice1",
+        "p17-c4s1-choice2",
+        "p17-two-compartment",
+        "p17-transfer-score"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C04-S01",
+      "lessonNumber": "17.4.1",
+      "lessonTitle": "迁移到双室物质清除",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "17.4:planned:4",
+      "id": "17.4.1:concept:4",
       "kind": "concept",
-      "title": "计算预算",
+      "title": "共同观测",
       "english": null,
-      "number": "17.4",
+      "number": "17.4.1",
       "parentId": "17.4",
-      "url": "/chapters/17-04-研究方法综合比较/",
-      "description": "把机制、推断和学习结果组织为可追溯比较，在新条件下判断结论仍成立的范围。",
+      "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1",
+      "description": "把稀疏发现迁到双室守恒模型，与同观测的机制基线比较。",
       "categories": [
         "practice",
         "method"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p17-c4s1-choice1",
+        "p17-c4s1-choice2",
+        "p17-two-compartment",
+        "p17-transfer-score"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P17-C04-S01",
+      "lessonNumber": "17.4.1",
+      "lessonTitle": "迁移到双室物质清除",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.4.2:concept:1",
+      "kind": "concept",
+      "title": "配对比较",
+      "english": null,
+      "number": "17.4.2",
+      "parentId": "17.4",
+      "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1",
+      "description": "用独立测试、守恒与失败记录写出证据能够支持的最窄结论。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c4s2-choice1",
+        "p17-c4s2-choice2",
+        "p17-paired-conclusion",
+        "p17-final-split"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C04-S02",
+      "lessonNumber": "17.4.2",
+      "lessonTitle": "共同指标、失败记录与结论边界",
+      "chapterUrl": "/chapters/17-04-研究方法综合比较/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.4.2:concept:2",
+      "kind": "concept",
+      "title": "收支残差",
+      "english": null,
+      "number": "17.4.2",
+      "parentId": "17.4",
+      "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1",
+      "description": "用独立测试、守恒与失败记录写出证据能够支持的最窄结论。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c4s2-choice1",
+        "p17-c4s2-choice2",
+        "p17-paired-conclusion",
+        "p17-final-split"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C04-S02",
+      "lessonNumber": "17.4.2",
+      "lessonTitle": "共同指标、失败记录与结论边界",
+      "chapterUrl": "/chapters/17-04-研究方法综合比较/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.4.2:concept:3",
+      "kind": "concept",
+      "title": "失败率",
+      "english": null,
+      "number": "17.4.2",
+      "parentId": "17.4",
+      "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1",
+      "description": "用独立测试、守恒与失败记录写出证据能够支持的最窄结论。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c4s2-choice1",
+        "p17-c4s2-choice2",
+        "p17-paired-conclusion",
+        "p17-final-split"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C04-S02",
+      "lessonNumber": "17.4.2",
+      "lessonTitle": "共同指标、失败记录与结论边界",
+      "chapterUrl": "/chapters/17-04-研究方法综合比较/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "17.4.2:concept:4",
+      "kind": "concept",
+      "title": "结论范围",
+      "english": null,
+      "number": "17.4.2",
+      "parentId": "17.4",
+      "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1",
+      "description": "用独立测试、守恒与失败记录写出证据能够支持的最窄结论。",
+      "categories": [
+        "practice",
+        "method"
+      ],
+      "children": [],
+      "questionIds": [
+        "p17-c4s2-choice1",
+        "p17-c4s2-choice2",
+        "p17-paired-conclusion",
+        "p17-final-split"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P17-C04-S02",
+      "lessonNumber": "17.4.2",
+      "lessonTitle": "共同指标、失败记录与结论边界",
+      "chapterUrl": "/chapters/17-04-研究方法综合比较/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     }
   ],
   "edges": [
@@ -28112,25 +28776,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "17.1:planned:1",
-      "target": "17.1:planned:2",
+      "source": "17.1.1:concept:1",
+      "target": "17.1.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.1:planned:1",
-      "target": "17.1:planned:3",
+      "source": "17.1.1:concept:1",
+      "target": "17.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.1:planned:2",
-      "target": "17.1:planned:3",
+      "source": "17.1.1:concept:1",
+      "target": "17.1.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.1.1:concept:2",
+      "target": "17.1.1:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.1.1:concept:2",
+      "target": "17.1.1:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.1.1:concept:3",
+      "target": "17.1.1:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.1.2:concept:1",
+      "target": "17.1.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.1.2:concept:1",
+      "target": "17.1.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.1.2:concept:1",
+      "target": "17.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.1.2:concept:2",
+      "target": "17.1.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.1.2:concept:2",
+      "target": "17.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.1.2:concept:3",
+      "target": "17.1.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.1.1:concept:4",
+      "target": "17.1.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "9.5",
@@ -28168,46 +28902,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "17.2:planned:1",
-      "target": "17.2:planned:2",
+      "source": "17.2.1:concept:1",
+      "target": "17.2.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.2:planned:1",
-      "target": "17.2:planned:3",
+      "source": "17.2.1:concept:1",
+      "target": "17.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.2:planned:1",
-      "target": "17.2:planned:4",
+      "source": "17.2.1:concept:1",
+      "target": "17.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.2:planned:2",
-      "target": "17.2:planned:3",
+      "source": "17.2.1:concept:2",
+      "target": "17.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.2:planned:2",
-      "target": "17.2:planned:4",
+      "source": "17.2.1:concept:2",
+      "target": "17.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.2:planned:3",
-      "target": "17.2:planned:4",
+      "source": "17.2.1:concept:3",
+      "target": "17.2.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.2.2:concept:1",
+      "target": "17.2.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.2.2:concept:1",
+      "target": "17.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.2.2:concept:1",
+      "target": "17.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.2.2:concept:2",
+      "target": "17.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.2.2:concept:2",
+      "target": "17.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.2.2:concept:3",
+      "target": "17.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.2.1:concept:4",
+      "target": "17.2.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "17.1",
@@ -28217,46 +29000,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "17.3:planned:1",
-      "target": "17.3:planned:2",
+      "source": "17.3.1:concept:1",
+      "target": "17.3.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.3:planned:1",
-      "target": "17.3:planned:3",
+      "source": "17.3.1:concept:1",
+      "target": "17.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.3:planned:1",
-      "target": "17.3:planned:4",
+      "source": "17.3.1:concept:1",
+      "target": "17.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.3:planned:2",
-      "target": "17.3:planned:3",
+      "source": "17.3.1:concept:2",
+      "target": "17.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.3:planned:2",
-      "target": "17.3:planned:4",
+      "source": "17.3.1:concept:2",
+      "target": "17.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.3:planned:3",
-      "target": "17.3:planned:4",
+      "source": "17.3.1:concept:3",
+      "target": "17.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.3.2:concept:1",
+      "target": "17.3.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.3.2:concept:1",
+      "target": "17.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.3.2:concept:1",
+      "target": "17.3.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.3.2:concept:2",
+      "target": "17.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.3.2:concept:2",
+      "target": "17.3.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.3.2:concept:3",
+      "target": "17.3.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.3.1:concept:4",
+      "target": "17.3.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "17.2",
@@ -28266,46 +29098,95 @@
       "label": "直接先修关系"
     },
     {
-      "source": "17.4:planned:1",
-      "target": "17.4:planned:2",
+      "source": "17.4.1:concept:1",
+      "target": "17.4.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.4:planned:1",
-      "target": "17.4:planned:3",
+      "source": "17.4.1:concept:1",
+      "target": "17.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.4:planned:1",
-      "target": "17.4:planned:4",
+      "source": "17.4.1:concept:1",
+      "target": "17.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.4:planned:2",
-      "target": "17.4:planned:3",
+      "source": "17.4.1:concept:2",
+      "target": "17.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.4:planned:2",
-      "target": "17.4:planned:4",
+      "source": "17.4.1:concept:2",
+      "target": "17.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "17.4:planned:3",
-      "target": "17.4:planned:4",
+      "source": "17.4.1:concept:3",
+      "target": "17.4.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.4.2:concept:1",
+      "target": "17.4.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.4.2:concept:1",
+      "target": "17.4.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.4.2:concept:1",
+      "target": "17.4.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.4.2:concept:2",
+      "target": "17.4.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.4.2:concept:2",
+      "target": "17.4.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.4.2:concept:3",
+      "target": "17.4.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "17.4.1:concept:4",
+      "target": "17.4.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "17.3",

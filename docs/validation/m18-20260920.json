@@ -1,0 +1,158 @@
+{
+  "stage": "M18",
+  "date": "2026-09-20",
+  "scope": "第 17 篇四章、八节与篇末综合；原论文任务上的课程缩减实验，不等于原文全量结果表复现。",
+  "deliverables": {
+    "chapters": 4,
+    "notebooks": 9,
+    "code_cells": 45,
+    "figures": 10,
+    "questions": 40,
+    "choice_questions": 21,
+    "python_questions": 19,
+    "web_explorations": 4
+  },
+  "papers": {
+    "R18": {
+      "version": "arXiv:1509.03580v1",
+      "url": "https://arxiv.org/abs/1509.03580v1",
+      "original_low_dimensional_task": "Lorenz，初态 [-8,7,27]，归一化时间 0—100、步长 0.001、至五次多项式。",
+      "executed_course_protocol": "同一 Lorenz 方程，前 4 归一化时间、步长 0.01、二次字典、阈值 0.1、10 次重拟合；原方程给出无噪导数。独立初态 [1,1,1] 用于短窗测试。",
+      "baseline": "同轨迹、同字典的无阈值最小二乘。",
+      "independent_reference": "已知方程七个非零系数和另一初态的 RK4 轨迹。",
+      "measured_course_result": {
+        "nonzero_terms": [
+          "x",
+          "y",
+          "z",
+          "x*y",
+          "x*z"
+        ],
+        "independent_short_window_rmse_approx": 3.3e-13
+      },
+      "failure": "固定种子 1703，导数噪声标准差 0、0.2、1.0；无阈值支持集与噪声影响并列。",
+      "not_reproduced": "原 100 时间窗口、五次字典与论文全部数值性能。"
+    },
+    "R19": {
+      "version": "arXiv:1806.07366v1",
+      "url": "https://arxiv.org/abs/1806.07366v1",
+      "original_low_dimensional_task": "带噪二维螺旋稀疏观测、RNN 编码、四维潜变量 ODE、独立时间外推。",
+      "executed_course_protocol": "固定种子 1806 的一条训练螺旋，21 个观测点，噪声标准差 0.01；二维四参数 tanh 向量场，固定 RK4 步长 0.02，连续伴随与观测跳跃，80 次梯度更新、学习率 0.1。",
+      "baseline": "仅用同一训练观测的中心差分与最小二乘拟合线性衰减旋转场。",
+      "independent_reference": "解析线性螺旋与损失的中心有限差分梯度；未参与训练的初态 [0.7,-0.3]、含训练终点后时间至 3。",
+      "measured_course_result": {
+        "initial_training_loss": 0.012347669032913537,
+        "final_training_loss": 0.00011463888474857767,
+        "course_field_independent_rmse": 0.0012480783698355009,
+        "fitted_mechanism_baseline_independent_rmse": 0.007178650401019948
+      },
+      "failure": "固定观测下对照积分步长 0.1、0.05、0.025；去除或加入 tanh 项，在新初态检查。",
+      "not_reproduced": "原文大规模训练、RNN 编码器、四维潜变量、自适应求解设置与 Table 2；单次课程结果不支持一般方法排名。"
+    }
+  },
+  "execution": {
+    "python": "3.13.2",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "fresh_kernel": true,
+    "files": [
+      {
+        "id": "P17-C01-S01",
+        "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/01-锁定 Lorenz 稀疏发现的主张.ipynb",
+        "sha256": "3b3a60f99a51ff6c014c15294e064dfbd627ff08b0fad0ef0353ecc05677bf25",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P17-C01-S02",
+        "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/02-锁定 Neural ODE 任务与改编边界.ipynb",
+        "sha256": "1fa17e0571027a39653aabea5146a24f4b416947b76d547ba7720696ec685aaf",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P17-C02-S01",
+        "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/01-阈值最小二乘与独立 Lorenz 轨迹.ipynb",
+        "sha256": "8b127ffeb0da575098ac8ecb00f22e47c2cfdc981049e06756cb4ef48185e7fd",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P17-C02-S02",
+        "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/02-连续伴随与公平外推基线.ipynb",
+        "sha256": "f8526e26eb52ba5bc58e4639a99c0ab4e2d5b78ffa53ffa0c05513db93ce86a1",
+        "code_cells": 5,
+        "figures": 2
+      },
+      {
+        "id": "P17-C03-S01",
+        "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/01-稀疏性与导数噪声的失效实验.ipynb",
+        "sha256": "ff7fc062f28ad7dd493bbeffa252e30974df460047b88f1ec88b66048546b2d6",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P17-C03-S02",
+        "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/02-伴随精度与模型消融.ipynb",
+        "sha256": "1e65e01717ded24fcef511158548f04892d18d0abaeb86443c0f08eed9143384",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P17-C04-S01",
+        "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/01-迁移到双室物质清除.ipynb",
+        "sha256": "1dd5ca9efba6ec0e5ea43e30f7a00ca36d59152c72d94ae7a1ad94ee00732142",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P17-C04-S02",
+        "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/02-共同指标、失败记录与结论边界.ipynb",
+        "sha256": "61d067a76981f72535a8dd679a8afe532b3f0542e68cbf7ce62efff57b8e1ff7",
+        "code_cells": 5,
+        "figures": 1
+      },
+      {
+        "id": "P17-SUMMARY",
+        "path": "notebooks/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.ipynb",
+        "sha256": "c5eb0e6819446c81ffd44299d0f852c11b0893724db237a5f3acd35d3bae4b27",
+        "code_cells": 5,
+        "figures": 1
+      }
+    ]
+  },
+  "checks": {
+    "teaching": {
+      "notebooks": 9,
+      "questions": 40,
+      "question_links": 40,
+      "issues": 0
+    },
+    "python_pytest": "1020 passed",
+    "javascript_node_test": "150 passed",
+    "real_python_judge": "19 题逐一通过公开样例、完整判定；错误答案均未通过。",
+    "browser": "四章探索页在 PC 浏览器实际加载，当前章导航展开；四种视图可双向切换；练习深链、具名签名及输入输出样例可见；默认 IDE 请求由隔离测试服务核对本地 .ipynb 路径。",
+    "homepage": "17 篇、85 章均可访问；711 节点、1054 关系；不读取个人记录生成图谱。"
+  },
+  "file_hashes": {
+    "exercises/17-研究复现与综合实践/questions.json": "82a6d81b4d765ea433a999b1aea3f6b54f5080ac7a474f2500abd6de0b80986a",
+    "exercises/17-研究复现与综合实践/verification.json": "b3ad7891e5cbac2ffbc0aa319958edbb39efa2e151a78179885eb9614280ba00",
+    "exercises/17-研究复现与综合实践/assessment.json": "d555a53e81304a11a78a93eb2c6c8a6c4bd88ed261f2d24de941c575e56cb808",
+    "web/research-practice/app.mjs": "358f1bf89e2c529d747591b13b8061286b35965018621d9ce304acd57f5917bd",
+    "web/research-practice/model.mjs": "3f7672c119893246d05287946d4f51c80311df2fca6c928e4ff08a5fbc6e9fea",
+    "web/course/catalog.json": "b108d8c4eeb648b13d6c68b311e4aeed11bbd33cd5e18597d725a40233b51f30",
+    "web/home/graph.json": "0e769f7e78bd1874fb6f06f81b385b52c80f789c7f5e31d7cace06e96b4766fe"
+  },
+  "limits": [
+    "没有目标读者试学或外部同行审读。",
+    "课程人工生命系统迁移不构成真实人体参数辨识或临床效用证据。",
+    "原论文全量配置及结果表未复现，扩展需另定资源与协议。",
+    "浏览器人工抽查覆盖 PC 当前窗口；未进行跨显卡或全部分辨率性能基准。"
+  ]
+}

@@ -9650,9 +9650,82 @@
             "形成主张、基线、数据和评价的对应表，区分原结果复现与课程改编"
           ],
           "focus": "原文实验的位置、版本与课程改动逐项登记；不把低维改编实验称为完整复现原论文全部结果，不以方法年代决定是否有效。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P17-C01-S01",
+              "chapter_id": "17.1",
+              "number": "17.1.1",
+              "title": "锁定 Lorenz 稀疏发现的主张",
+              "outcome": "从原论文给出可检验的方程发现问题，并标记课程缩减。",
+              "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/01-锁定 Lorenz 稀疏发现的主张.ipynb",
+              "visualization": "web/research-practice/index.html",
+              "questions": [
+                {
+                  "id": "p17-c1s1-choice1",
+                  "slug": "p17-c1s1-choice1",
+                  "title": "原论文参数与课程窗口",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-c1s1-choice2",
+                  "slug": "p17-c1s1-choice2",
+                  "title": "真值导数的范围",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-lorenz-vector",
+                  "slug": "p17-lorenz-vector",
+                  "title": "原方程瞬时导数",
+                  "type": "python"
+                },
+                {
+                  "id": "p17-candidate-row",
+                  "slug": "p17-candidate-row",
+                  "title": "二次候选项顺序",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1"
+            },
+            {
+              "id": "P17-C01-S02",
+              "chapter_id": "17.1",
+              "number": "17.1.2",
+              "title": "锁定 Neural ODE 任务与改编边界",
+              "outcome": "区分连续伴随方法、原论文潜变量螺旋实验和本课程二维缩减实验。",
+              "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/02-锁定 Neural ODE 任务与改编边界.ipynb",
+              "visualization": "web/research-practice/index.html",
+              "questions": [
+                {
+                  "id": "p17-c1s2-choice1",
+                  "slug": "p17-c1s2-choice1",
+                  "title": "相似曲线与论文结果",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-c1s2-choice2",
+                  "slug": "p17-c1s2-choice2",
+                  "title": "观测跳跃",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-spiral-vector",
+                  "slug": "p17-spiral-vector",
+                  "title": "缩减神经向量场",
+                  "type": "python"
+                },
+                {
+                  "id": "p17-spiral-reference",
+                  "slug": "p17-spiral-reference",
+                  "title": "解析螺旋参考",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1"
+            }
+          ],
+          "visualization": "web/research-practice/index.html"
         },
         {
           "id": "17.2",
@@ -9666,9 +9739,82 @@
             "记录环境、代码版本、参数、种子、重复次数和失败处理，先做最小核验再完整运行"
           ],
           "focus": "索引集合独立交叉检查，训练变换仅由训练数据估计；记录实际运行资源，不预先声称达到尚未测量的性能。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P17-C02-S01",
+              "chapter_id": "17.2",
+              "number": "17.2.1",
+              "title": "阈值最小二乘与独立 Lorenz 轨迹",
+              "outcome": "手写顺序阈值最小二乘，分别检查稀疏项和未参与拟合的初态。",
+              "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/01-阈值最小二乘与独立 Lorenz 轨迹.ipynb",
+              "visualization": "web/research-practice/index.html",
+              "questions": [
+                {
+                  "id": "p17-c2s1-choice1",
+                  "slug": "p17-c2s1-choice1",
+                  "title": "公平轨迹划分",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-c2s1-choice2",
+                  "slug": "p17-c2s1-choice2",
+                  "title": "阈值重拟合",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-disjoint-trajectories",
+                  "slug": "p17-disjoint-trajectories",
+                  "title": "划分交叉审计",
+                  "type": "python"
+                },
+                {
+                  "id": "p17-sparse-refit",
+                  "slug": "p17-sparse-refit",
+                  "title": "顺序阈值重拟合",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1"
+            },
+            {
+              "id": "P17-C02-S02",
+              "chapter_id": "17.2",
+              "number": "17.2.2",
+              "title": "连续伴随与公平外推基线",
+              "outcome": "在同一二维螺旋观测上核对伴随梯度、数值精度和机制基线。",
+              "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/02-连续伴随与公平外推基线.ipynb",
+              "visualization": "web/research-practice/index.html",
+              "questions": [
+                {
+                  "id": "p17-c2s2-choice1",
+                  "slug": "p17-c2s2-choice1",
+                  "title": "基线信息公平",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-c2s2-choice2",
+                  "slug": "p17-c2s2-choice2",
+                  "title": "梯度核验",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-state-jacobian",
+                  "slug": "p17-state-jacobian",
+                  "title": "伴随状态 Jacobian",
+                  "type": "python"
+                },
+                {
+                  "id": "p17-parameter-jacobian",
+                  "slug": "p17-parameter-jacobian",
+                  "title": "伴随参数 Jacobian",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1"
+            }
+          ],
+          "visualization": "web/research-practice/index.html"
         },
         {
           "id": "17.3",
@@ -9682,9 +9828,82 @@
             "分别排查模型（model）、数值、优化、数据和评价差异，并限定原因解释的强度"
           ],
           "focus": "小表手算与完整结果汇总对照；配对结构不被打乱，重复次数与不确定性计算一致，不将未复现结果改写为成功。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P17-C03-S01",
+              "chapter_id": "17.3",
+              "number": "17.3.1",
+              "title": "稀疏性与导数噪声的失效实验",
+              "outcome": "在同一轨迹上隔离稀疏阈值和导数噪声的影响。",
+              "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/01-稀疏性与导数噪声的失效实验.ipynb",
+              "visualization": "web/research-practice/index.html",
+              "questions": [
+                {
+                  "id": "p17-c3s1-choice1",
+                  "slug": "p17-c3s1-choice1",
+                  "title": "消融隔离",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-c3s1-choice2",
+                  "slug": "p17-c3s1-choice2",
+                  "title": "导数污染",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-noisy-refit",
+                  "slug": "p17-noisy-refit",
+                  "title": "带噪导数重拟合",
+                  "type": "python"
+                },
+                {
+                  "id": "p17-support-row",
+                  "slug": "p17-support-row",
+                  "title": "候选支持项",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1"
+            },
+            {
+              "id": "P17-C03-S02",
+              "chapter_id": "17.3",
+              "number": "17.3.2",
+              "title": "伴随精度与模型消融",
+              "outcome": "改变数值步长及非线性项，识别训练改善和独立外推的边界。",
+              "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/02-伴随精度与模型消融.ipynb",
+              "visualization": "web/research-practice/index.html",
+              "questions": [
+                {
+                  "id": "p17-c3s2-choice1",
+                  "slug": "p17-c3s2-choice1",
+                  "title": "精度与性能",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-c3s2-choice2",
+                  "slug": "p17-c3s2-choice2",
+                  "title": "模型自由度",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-independent-spiral",
+                  "slug": "p17-independent-spiral",
+                  "title": "独立初态解析线",
+                  "type": "python"
+                },
+                {
+                  "id": "p17-paired-failure",
+                  "slug": "p17-paired-failure",
+                  "title": "保留失败的配对统计",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1"
+            }
+          ],
+          "visualization": "web/research-practice/index.html"
         },
         {
           "id": "17.4",
@@ -9698,11 +9917,174 @@
             "形成可再次运行的教材示例与客观综合题，展示完整研究说明但不增加自由报告提交"
           ],
           "focus": "关键函数与先前章节的独立参考一致；已知真值仅供核验。研究成果以有限实验及客观题检验，明确区分课程复现、迁移和新研究主张。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P17-C04-S01",
+              "chapter_id": "17.4",
+              "number": "17.4.1",
+              "title": "迁移到双室物质清除",
+              "outcome": "把稀疏发现迁到双室守恒模型，与同观测的机制基线比较。",
+              "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/01-迁移到双室物质清除.ipynb",
+              "visualization": "web/research-practice/index.html",
+              "questions": [
+                {
+                  "id": "p17-c4s1-choice1",
+                  "slug": "p17-c4s1-choice1",
+                  "title": "交换守恒",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-c4s1-choice2",
+                  "slug": "p17-c4s1-choice2",
+                  "title": "论文任务边界",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-two-compartment",
+                  "slug": "p17-two-compartment",
+                  "title": "双室收支变化率",
+                  "type": "python"
+                },
+                {
+                  "id": "p17-transfer-score",
+                  "slug": "p17-transfer-score",
+                  "title": "迁移的三项指标",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1"
+            },
+            {
+              "id": "P17-C04-S02",
+              "chapter_id": "17.4",
+              "number": "17.4.2",
+              "title": "共同指标、失败记录与结论边界",
+              "outcome": "用独立测试、守恒与失败记录写出证据能够支持的最窄结论。",
+              "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/02-共同指标、失败记录与结论边界.ipynb",
+              "visualization": "web/research-practice/index.html",
+              "questions": [
+                {
+                  "id": "p17-c4s2-choice1",
+                  "slug": "p17-c4s2-choice1",
+                  "title": "低 RMSE 与失败",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-c4s2-choice2",
+                  "slug": "p17-c4s2-choice2",
+                  "title": "证据范围",
+                  "type": "choice"
+                },
+                {
+                  "id": "p17-paired-conclusion",
+                  "slug": "p17-paired-conclusion",
+                  "title": "公平配对效果",
+                  "type": "python"
+                },
+                {
+                  "id": "p17-final-split",
+                  "slug": "p17-final-split",
+                  "title": "最终轨迹隔离",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1"
+            }
+          ],
+          "visualization": "web/research-practice/index.html"
         }
-      ]
+      ],
+      "assessment": {
+        "id": "17.summary",
+        "assessment": true,
+        "title": "从论文主张到有界复现证据",
+        "url": "/parts/17-研究复现与综合实践/综合练习/",
+        "goals": "从原论文主张出发，完成协议、独立核验、消融和迁移边界。",
+        "prerequisites": "本篇 17.1—17.4；第 14—16 篇相关方法。",
+        "focus": "原任务和课程缩减逐项分开；有限实验不冒充完整原论文结果。",
+        "knowledge": [
+          "版本与任务边界",
+          "SINDy 与连续伴随",
+          "基线和失效",
+          "生命系统迁移与证据范围"
+        ],
+        "lessons": [
+          {
+            "id": "P17-SUMMARY",
+            "chapter_id": "17.summary",
+            "number": "17.综合",
+            "title": "从论文主张到有界复现证据",
+            "outcome": "把两个固定论文任务、课程缩减、独立参考、失败与生命系统迁移写成可复查的证据链。",
+            "path": "notebooks/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.ipynb",
+            "visualization": null,
+            "overview": {
+              "goals": "从原论文主张出发，完成协议、独立核验、消融和迁移边界。",
+              "prerequisites": "本篇 17.1—17.4；第 14—16 篇相关方法。",
+              "focus": "原任务和课程缩减逐项分开；有限实验不冒充完整原论文结果。",
+              "knowledge": [
+                "版本与任务边界",
+                "SINDy 与连续伴随",
+                "基线和失效",
+                "生命系统迁移与证据范围"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p17-capstone-claim",
+                "slug": "p17-capstone-claim",
+                "title": "主张与证据",
+                "type": "choice"
+              },
+              {
+                "id": "p17-capstone-adaptation",
+                "slug": "p17-capstone-adaptation",
+                "title": "复现与改编身份",
+                "type": "choice"
+              },
+              {
+                "id": "p17-capstone-protocol",
+                "slug": "p17-capstone-protocol",
+                "title": "协议缺口",
+                "type": "choice"
+              },
+              {
+                "id": "p17-capstone-failure",
+                "slug": "p17-capstone-failure",
+                "title": "失败能否反驳主张",
+                "type": "choice"
+              },
+              {
+                "id": "p17-capstone-boundary",
+                "slug": "p17-capstone-boundary",
+                "title": "复现实验的结论边界",
+                "type": "choice"
+              },
+              {
+                "id": "p17-capstone-lorenz",
+                "slug": "p17-capstone-lorenz",
+                "title": "复现关键数值步骤",
+                "type": "python"
+              },
+              {
+                "id": "p17-capstone-paired",
+                "slug": "p17-capstone-paired",
+                "title": "消融的配对统计",
+                "type": "python"
+              },
+              {
+                "id": "p17-capstone-score",
+                "slug": "p17-capstone-score",
+                "title": "跨方法约束指标",
+                "type": "python"
+              }
+            ],
+            "url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-claim"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     }
   ]
 }
