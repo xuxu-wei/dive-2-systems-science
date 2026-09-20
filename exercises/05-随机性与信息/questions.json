@@ -1148,7 +1148,7 @@
       {
         "name": "posterior",
         "type": "list[float] | None",
-        "description": "按原顺序返回后验；证据概率（evidence probability）为零时返回 None。",
+        "description": "按原顺序返回后验；证据/边际似然（evidence or marginal likelihood）为零时返回 None。",
         "unit": "1"
       }
     ],
@@ -1190,7 +1190,7 @@
           0.6923076923076924,
           0.30769230769230776
         ],
-        "explanation": "未归一化权重为 [0.18,0.08]，证据概率为 0.26；后验为 [9/13,4/13]。0.9 是似然，不是后验。"
+        "explanation": "未归一化权重为 [0.18,0.08]，证据/边际似然为 0.26；后验为 [9/13,4/13]。0.9 是似然，不是后验。"
       }
     ]
   },
@@ -3068,7 +3068,7 @@
       {
         "name": "posterior",
         "type": "list[float] | None",
-        "description": "按原顺序返回后验（posterior）；证据概率（evidence probability）为零时返回 None。",
+        "description": "按原顺序返回后验（posterior）；证据/边际似然（evidence or marginal likelihood）为零时返回 None。",
         "unit": "1"
       }
     ],

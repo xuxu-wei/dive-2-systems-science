@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "b108d8c4eeb648b13d6c68b311e4aeed11bbd33cd5e18597d725a40233b51f30",
+    "catalogSha256": "18e0a6a0ae8359882dd8c58ad0e3d1dfaafcbb2a31fbb64abc054f9a2b6429c7",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -1722,7 +1722,7 @@
       "number": "2.4.1",
       "parentId": "2.4",
       "url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-errors",
-      "description": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观察阶不能使用的情形。",
+      "description": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观测收敛阶不能使用的情形。",
       "categories": [
         "evolution",
         "method"
@@ -1752,7 +1752,7 @@
       "number": "2.4.1",
       "parentId": "2.4",
       "url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-errors",
-      "description": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观察阶不能使用的情形。",
+      "description": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观测收敛阶不能使用的情形。",
       "categories": [
         "evolution",
         "method"
@@ -1782,7 +1782,7 @@
       "number": "2.4.1",
       "parentId": "2.4",
       "url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-errors",
-      "description": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观察阶不能使用的情形。",
+      "description": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观测收敛阶不能使用的情形。",
       "categories": [
         "evolution",
         "method"
@@ -5575,7 +5575,7 @@
       "number": "5.3.1",
       "parentId": "5.3",
       "url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes",
-      "description": "能从联合表计算条件概率，区分先验、似然、证据概率与后验；处理零证据和反复使用同一份数据的条件独立边界。",
+      "description": "能从联合表计算条件概率，区分先验、似然、证据/边际似然与后验；处理零证据和反复使用同一份数据的条件独立边界。",
       "categories": [
         "cognition",
         "evolution"
@@ -5604,7 +5604,7 @@
       "number": "5.3.1",
       "parentId": "5.3",
       "url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes",
-      "description": "能从联合表计算条件概率，区分先验、似然、证据概率与后验；处理零证据和反复使用同一份数据的条件独立边界。",
+      "description": "能从联合表计算条件概率，区分先验、似然、证据/边际似然与后验；处理零证据和反复使用同一份数据的条件独立边界。",
       "categories": [
         "cognition",
         "evolution"
@@ -5633,7 +5633,7 @@
       "number": "5.3.1",
       "parentId": "5.3",
       "url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes",
-      "description": "能从联合表计算条件概率，区分先验、似然、证据概率与后验；处理零证据和反复使用同一份数据的条件独立边界。",
+      "description": "能从联合表计算条件概率，区分先验、似然、证据/边际似然与后验；处理零证据和反复使用同一份数据的条件独立边界。",
       "categories": [
         "cognition",
         "evolution"
@@ -9784,7 +9784,7 @@
       "number": "8.1.1",
       "parentId": "8.1",
       "url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic",
-      "description": "把物质收支拟合写成有尺度的目标，推导值、梯度与Hessian。",
+      "description": "把物质收支拟合写成有尺度的目标，推导值、梯度与海森矩阵。",
       "categories": [
         "regulation",
         "method"
@@ -9813,7 +9813,7 @@
       "number": "8.1.1",
       "parentId": "8.1",
       "url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic",
-      "description": "把物质收支拟合写成有尺度的目标，推导值、梯度与Hessian。",
+      "description": "把物质收支拟合写成有尺度的目标，推导值、梯度与海森矩阵。",
       "categories": [
         "regulation",
         "method"
@@ -9842,7 +9842,7 @@
       "number": "8.1.1",
       "parentId": "8.1",
       "url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic",
-      "description": "把物质收支拟合写成有尺度的目标，推导值、梯度与Hessian。",
+      "description": "把物质收支拟合写成有尺度的目标，推导值、梯度与海森矩阵。",
       "categories": [
         "regulation",
         "method"

@@ -2501,9 +2501,9 @@
     "lesson_id": "P07-C05-S02",
     "part": "7",
     "chapter": "7.5",
-    "title": "观测加权与系统重采样",
+    "title": "观测加权与系统性重采样",
     "type": "python",
-    "statement": "粒子已完成动态传播。用当前观测（observation）的对数似然（likelihood）更新已有权重，再按固定起点进行一次系统重采样（resampling）；题目不调用随机数。",
+    "statement": "粒子已完成动态传播。用当前观测（observation）的对数似然（likelihood）更新已有权重，再按固定起点进行一次系统性重采样（systematic resampling）；题目不调用随机数。",
     "learning_targets": [
       "T3"
     ],
@@ -2535,7 +2535,7 @@
       {
         "name": "offset",
         "type": "float",
-        "description": "系统重采样的单位起点 u，0≤u<1。",
+        "description": "系统性重采样的单位起点 u，0≤u<1。",
         "unit": "无量纲"
       }
     ],
@@ -2543,7 +2543,7 @@
       {
         "name": "normalized",
         "type": "list[float]",
-        "description": "观测加权后的权重，重采样前。",
+        "description": "观测加权后的权重，重采样（resampling）前。",
         "unit": "概率"
       },
       {
@@ -2555,7 +2555,7 @@
       {
         "name": "indices",
         "type": "list[int]",
-        "description": "系统重采样选中的祖先下标，从 0 开始。",
+        "description": "系统性重采样选中的祖先下标，从 0 开始。",
         "unit": "无量纲"
       },
       {
@@ -3840,7 +3840,7 @@
     "chapter": "7.summary",
     "title": "固定随机输入的粒子更新",
     "type": "python",
-    "statement": "相同非线性观测（observation）下，给定已经传播的粒子及其观测对数似然（likelihood），执行确定的权重更新和系统重采样（resampling）。",
+    "statement": "相同非线性观测（observation）下，给定已经传播的粒子及其观测对数似然（likelihood），执行确定的权重更新和系统性重采样（systematic resampling）。",
     "learning_targets": [
       "T3"
     ],
@@ -3872,7 +3872,7 @@
       {
         "name": "offset",
         "type": "float",
-        "description": "系统重采样的单位起点 u，0≤u<1。",
+        "description": "系统性重采样的单位起点 u，0≤u<1。",
         "unit": "无量纲"
       }
     ],
@@ -3880,7 +3880,7 @@
       {
         "name": "normalized",
         "type": "list[float]",
-        "description": "观测加权后的权重，重采样前。",
+        "description": "观测加权后的权重，重采样（resampling）前。",
         "unit": "概率"
       },
       {
@@ -3892,7 +3892,7 @@
       {
         "name": "indices",
         "type": "list[int]",
-        "description": "系统重采样选中的祖先下标，从 0 开始。",
+        "description": "系统性重采样选中的祖先下标，从 0 开始。",
         "unit": "无量纲"
       },
       {

@@ -67,7 +67,7 @@
     "chapter_id": "2.4",
     "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb",
     "title": "误差与网格细化",
-    "outcome": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观察阶不能使用的情形。",
+    "outcome": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观测收敛阶不能使用的情形。",
     "number": "2.4.1",
     "visualization": "web/time-evolution/index.html"
   },

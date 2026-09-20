@@ -21,6 +21,10 @@ from terminology import annotate_text, check_text, TerminologyError
     ('局部秩序与矩阵的秩', '局部秩序与矩阵（matrix）的秩（rank）'),
     ('周期二值格与周期二轨道', '周期二值格与周期二（period-two cycle）轨道'),
     ('人工测试集合与测试集', '人工测试集合与测试集（test set）'),
+    ('观测收敛阶', '观测收敛阶（observed order of convergence）'),
+    ('证据/边际似然', '证据/边际似然（evidence or marginal likelihood）'),
+    ('系统性重采样', '系统性重采样（systematic resampling）'),
+    ('海森矩阵', '海森矩阵（Hessian matrix）'),
 ])
 def test_independent_phrase_cases(source, expected):
     assert annotate_text(source) == expected

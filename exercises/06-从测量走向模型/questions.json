@@ -202,7 +202,7 @@
       },
       {
         "id": "D",
-        "text": "实际降采样前应考虑模拟或合适的数字抗混叠滤波（anti-aliasing filter）。"
+        "text": "首次 A/D 采样前用模拟前端抗混叠滤波（anti-aliasing filter）；足够高采样率（sampling rate）的离散序列再降采样时，先数字低通再抽取。"
       }
     ],
     "constraints": []
@@ -1927,8 +1927,8 @@
       {
         "name": "weights",
         "type": "list[float]",
-        "description": "每个读数平方残差的正权重。",
-        "unit": "1/U²"
+        "description": "每个读数平方残差的正的无量纲（dimensionless）相对权重。",
+        "unit": "1"
       }
     ],
     "returns": [
@@ -1954,7 +1954,7 @@
         "name": "weighted_sse",
         "type": "float",
         "description": "Σweights[i]*residuals[i]²。",
-        "unit": "1"
+        "unit": "U²"
       }
     ],
     "contract": "每个k的预测为initial*exp(−k*t)。比较给定加权平方误差和；候选去重后升序扫描，只有严格更小的损失才更新。返回的最优仅限此候选集合。",

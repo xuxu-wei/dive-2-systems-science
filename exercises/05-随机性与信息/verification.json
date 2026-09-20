@@ -620,7 +620,7 @@
     ],
     "explanations": {
       "B": "这是条件方向相反的似然（likelihood）。",
-      "C": "联合概率（joint probability）还需除以证据概率（evidence probability）。",
+      "C": "联合概率（joint probability）还需除以证据/边际似然（evidence or marginal likelihood）。",
       "D": "0.18/(0.18+0.08)=9/13。",
       "A": "有区分力的观测（observation）改变先验。"
     }

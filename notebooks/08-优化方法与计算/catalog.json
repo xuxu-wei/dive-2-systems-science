@@ -4,7 +4,7 @@
     "chapter_id": "8.1",
     "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
     "title": "从拟合误差到二次目标",
-    "outcome": "把物质收支拟合写成有尺度的目标，推导值、梯度与Hessian。",
+    "outcome": "把物质收支拟合写成有尺度的目标，推导值、梯度与海森矩阵。",
     "number": "8.1.1",
     "visualization": "web/optimization/index.html"
   },

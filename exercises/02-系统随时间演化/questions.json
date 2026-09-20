@@ -1581,7 +1581,7 @@
     "slug": "p02-orders",
     "title": "从误差缩小比例估计阶数",
     "type": "python",
-    "statement": "已按 h、h/2、h/4…得到正的最大误差序列。返回相邻两项对应的观察阶（observed order of convergence） p=log2(Eh/Eh/2)。",
+    "statement": "已按 h、h/2、h/4…得到正的最大误差序列。返回相邻两项对应的观测收敛阶（observed order of convergence） p=log2(Eh/Eh/2)。",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -1604,11 +1604,11 @@
       {
         "name": "orders",
         "type": "list[float]",
-        "description": "每对相邻误差的观察阶，长度少一。",
+        "description": "每对相邻误差的观测收敛阶，长度少一。",
         "unit": "1"
       }
     ],
-    "contract": "按原顺序返回 log2(errors[i]/errors[i+1])；允许误差增大而产生负观察阶，不截断、不取整。",
+    "contract": "按原顺序返回 log2(errors[i]/errors[i+1])；允许误差增大而产生负观测收敛阶，不截断、不取整。",
     "constraints": [
       "所有数值有限；无需修改输入（input）。",
       "1 ≤ len(errors) ≤ 100；1e−12 ≤ errors[i] ≤ 1e6；步长确为依次减半。"
@@ -1643,7 +1643,7 @@
           1.0,
           1.0
         ],
-        "explanation": "每次误差减半，比例为 2，因此两个观察阶均为 1。"
+        "explanation": "每次误差减半，比例为 2，因此两个观测收敛阶均为 1。"
       }
     ]
   },
@@ -1732,7 +1732,7 @@
     "slug": "p02-zero-error",
     "title": "误差为零还能取对数吗",
     "type": "choice",
-    "statement": "零清除且输入（input）恒定时，欧拉法（forward Euler method）给出线性精确结果（忽略浮点舍入）。误差表 E(h)=E(h/2)=0。怎样处理观察阶（observed order of convergence）？",
+    "statement": "零清除且输入（input）恒定时，欧拉法（forward Euler method）给出线性精确结果（忽略浮点舍入）。误差表 E(h)=E(h/2)=0。怎样处理观测收敛阶（observed order of convergence）？",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [

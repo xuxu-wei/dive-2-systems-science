@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-20",
+  "scope": "核查本轮提出的第 2、5、6、7、8 篇样例、单位、抗混叠与五项术语；未对其他章节作全面重新审稿。",
+  "findings": {
+    "08-Armijo": "成立，且属实质性内部矛盾。独立以有理数复算：t=1 时 f=19、右侧=1；t=1/2 时 f=2、右侧=2；t=1/4 时 f=1/4、右侧=5/2。因此首次接受 1/2。两题题库样例、网页提示、作答后解析及 Notebook 副本已修，expected 和 <= 判题未改。",
+    "06-WLS": "成立。正文明确为无量纲相对权重，题库参数 weights 改为 1，返回 weighted_sse 改为 U²；数值答案不变，示例表格由题库重新生成。",
+    "06-抗混叠": "属教学边界改进而非公式错误。正文和选项、解析区分首次 A/D 前的模拟前端滤波及高采样率离散序列抽取前的数字低通；说明后者不能消除首次混叠。",
+    "02-观测收敛阶": "建议采纳。全文、题库、运行输出图表、目录和术语表由观察阶统一为观测收敛阶，仍限定为有限网格上的经验估计。",
+    "05-证据": "原称证据概率在本节离散观测下并非错误；为避免推广到连续观测时误称概率，改为证据/边际似然，首次标注 evidence or marginal likelihood，解释 P(y) 与 p(y) 的区别；第 7 篇离散观测可视化标签同步。",
+    "07-能观性": "原术语正确；在正式定义与教学目标首次说明也称可观测性，章节、路由等身份不改。",
+    "07-系统性重采样": "建议采纳。题面、正文和可视化明确 systematic resampling，不再用系统重采样或仅笼统标 resampling；算法和随机数契约未改。",
+    "08-海森矩阵": "建议采纳。首次学习目标与独立题面用海森矩阵（Hessian matrix），目录及相关讲解一致；变量名 hessian 未改。"
+  },
+  "sources": [
+    "https://www.itl.nist.gov/div898/handbook/pmd/section1/pmd143.htm",
+    "https://www.analog.com/en/resources/analog-dialogue/articles/antialiasing-filtering-considerations-for-high-precision-ad-converters.html"
+  ],
+  "checks": {
+    "independent": "Armijo 三个步长以 Fraction 精确复算；单位核验 1 × U² = U²。",
+    "pytest": "第 2、5、6、7、8 篇及术语：236 passed；目录、网页路由与增补术语回归：56 passed；首页 JavaScript：14 passed；第 7 篇可视化 JavaScript：6 passed。",
+    "teaching_sync": "203 本 Notebook、930 道题、链接及术语首现检查通过；题号、版本、样例输入及数值预期均未变。",
+    "fresh_kernel": "5 本相关 Notebook 新内核顺序执行，各输出 1 幅图；2.4.1 的术语图表输出已重新写入，纯文字修改未冒充全书重跑。",
+    "rendered_review": "检查五份 HTML 预览中的接受等号、U² 表格、模拟/数字抗混叠与观测收敛阶；练习正文后的参考资料和导航保留。",
+    "git_diff_check": "无空白错误；生成的网页目录和首页图谱已同步。"
+  },
+  "boundary": "不改 AGENTS.md、题目判定、数值公式、路由、模拟数据或学习记录；未开展目标读者试学。"
+}

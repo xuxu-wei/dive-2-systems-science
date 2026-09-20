@@ -12,7 +12,7 @@ const definitions={
  '7.2':{title:'预测，再用新读数修正概率',question:'先预测：当前标记明亮，就能确定细胞处于活跃状态吗？逐次查看标记，比较读数到来前后的三种状态概率。',explanation:'隐马尔可夫模型（hidden Markov model，HMM）将状态转移与测量机制分开。贝叶斯滤波（Bayesian filtering）先对未知前态求和，再用当次似然（likelihood）更新；一个读数只使用一次。',formula:'p⁻[j]=Σᵢ p[i] T[i,j]；p⁺[j]=p⁻[j] L[j] / Σₖ p⁻[k] L[k]'},
  '7.3':{title:'一次观测怎样缩小状态的不确定性',question:'先预测：观测只有第一个室，第二个室的不确定性会不会改变？逐次播放，比较预测与滤波的联合分布。',explanation:'卡尔曼滤波（Kalman filter，KF）在线性高斯模型中递推均值（mean）与协方差（covariance）。增益（gain）由预测误差与测量噪声（measurement noise）共同决定。椭圆展示两个室的不确定性关联。',formula:'m⁻=F m；P⁻=F P Fᵀ+Q；K=P⁻Hᵀ/(H P⁻Hᵀ+R)；m⁺=m⁻+K(y−Hm⁻)'},
  '7.4':{title:'一个钟形近似，能装下两个可能状态吗？',question:'先预测：只看到 x² 接近 1.4，能判断 x 的正负吗？将先验均值移到零，比较网格积分刻画的后验形状与两种高斯近似。',explanation:'扩展卡尔曼滤波（extended Kalman filter，EKF）在均值处线性化；无迹卡尔曼滤波（unscented Kalman filter，UKF）传播确定性采样点。两者都只保留一个高斯分布，不能完整表达双峰（bimodal）后验。',formula:'x ~ N(m,0.8)；y=x²+v，v ~ N(0,R)；p(x|y) ∝ p(x) p(y|x)'},
- '7.5':{title:'权重相同，不等于信息重新变多',question:'先预测：重采样后每个粒子权重都一样，丢失的状态是否就回来了？观察高权重位置被重复选择，以及保留下来的不同位置数。',explanation:'重要性采样（importance sampling）用带权粒子近似后验。有效样本量（effective sample size，ESS）描述权重集中程度；系统重采样（systematic resampling）重新分配有限计算资源，不能补回已经没有粒子覆盖的区域。',formula:'wᵢ ∝ p(xᵢ) p(y|xᵢ) / q(xᵢ)；ESS=1/Σᵢwᵢ²；重采样位置=(i+offset)/N'},
+ '7.5':{title:'权重相同，不等于信息重新变多',question:'先预测：重采样后每个粒子权重都一样，丢失的状态是否就回来了？观察高权重位置被重复选择，以及保留下来的不同位置数。',explanation:'重要性采样（importance sampling）用带权粒子近似后验。有效样本量（effective sample size，ESS）描述权重集中程度；系统性重采样（systematic resampling）重新分配有限计算资源，不能补回已经没有粒子覆盖的区域。',formula:'wᵢ ∝ p(xᵢ) p(y|xᵢ) / q(xᵢ)；ESS=1/Σᵢwᵢ²；重采样位置=(i+offset)/N'},
  '7.6':{title:'读数缺了一段，后来能补回什么？',question:'先预测：缺测时滤波区间会怎样变化？重新获得读数后，回看过去的平滑结果与当时能做出的估计有何区别？',explanation:'滤波（filtering）仅使用当前及过去的观测；固定区间平滑（fixed-interval smoothing）使用整段观测。Rauch–Tung–Striebel 平滑（RTS smoothing）向后传播修正，因此只能用于离线重建。',formula:'x[n+1]=x[n]+w[n]；y[n]=x[n]+v[n]；G[n]=P[n]/P⁻[n+1]'}
 };
 function slider(key,label,min,max,step,value){p[key]=value;const group=el('div',undefined,'slider'),lab=el('label',label),out=el('output',value),input=el('input');Object.assign(input,{id:key,type:'range',min,max,step,value});lab.htmlFor=key;out.id=key+'-value';input.addEventListener('input',()=>{p[key]=Number(input.value);out.value=input.value;guard(recompute);});group.append(lab,out,input);$('sliders').append(group);}
@@ -62,7 +62,7 @@ function recompute(){
  }
  if(mode==='7.5'){
   data=particleExperiment(p.noise,p.count,p.offset);const next=alternate(p.count,12,96);$('alternate').textContent=next===96?'切换为 96 个粒子':'切换为 12 个粒子';
-  $('preset-note').textContent=`系统重采样采用固定 offset=${fmt(p.offset)}；重复点击不会偷偷重新抽样。不同祖先 ${new Set(data.indices).size}/${p.count} 个。`;
+  $('preset-note').textContent=`系统性重采样采用固定 offset=${fmt(p.offset)}；重复点击不会偷偷重新抽样。不同祖先 ${new Set(data.indices).size}/${p.count} 个。`;
   $('assumptions').textContent='使用与上一章相同的 x² 观测，先验 N(0,0.8)，y=1.4。为隔离随机波动，这一页把均匀提议 [−4,4] 的中点固定作粒子，权重乘先验密度与似然；这是单次重要性更新和重采样，完整动态粒子滤波见 Notebook。';
   $('chart-heading').textContent='哪些位置获得权重，哪些被重复选择';$('value-label').textContent='重采样前 ESS / N';$('value').textContent=`${fmt(data.ess)} / ${p.count}`;
   $('chart-note').textContent='左图每根针为一个粒子的归一化权重；右图针高为重采样后该位置所占比例，重复祖先合并计数。两图共用纵轴。播放只逐个展示已经算好的粒子，不表示逐次重复观测。重采样后单粒子权重为 1/N，不同位置数可能减少。';
@@ -97,7 +97,7 @@ function draw(progress){
   $('time-readout').textContent=`离散步 n=${n}`;$('observation-value').textContent=`两种初态的读数差：${fmt(data.outputs[0][n]-data.outputs[1][n])} U。O 的两行为 [${data.O[0].map(fmt)}]、[${data.O[1].map(fmt)}]。`;
  }
  if(mode==='7.2'){
-  const n=Math.floor(f*(data.rows.length-1)),r=data.rows[n];bars(left,r.predicted);bars(right,r.filtered);$('time-readout').textContent=`第 ${n} 次读数：左预测 → 右更新`;$('value').textContent=data.observations[n]?'明亮标记':'暗淡标记';$('observation-value').textContent=`证据概率 ${fmt(r.evidence)}；更新后的概率和=${fmt(r.filtered.reduce((a,b)=>a+b,0))}。${p.error===.5?'当前标记不区分状态，预测与更新一致。':'标记同时可能由多个状态产生。'}`;
+  const n=Math.floor(f*(data.rows.length-1)),r=data.rows[n];bars(left,r.predicted);bars(right,r.filtered);$('time-readout').textContent=`第 ${n} 次读数：左预测 → 右更新`;$('value').textContent=data.observations[n]?'明亮标记':'暗淡标记';$('observation-value').textContent=`证据/边际似然 ${fmt(r.evidence)}；更新后的概率和=${fmt(r.filtered.reduce((a,b)=>a+b,0))}。${p.error===.5?'当前标记不区分状态，预测与更新一致。':'标记同时可能由多个状态产生。'}`;
  }
  if(mode==='7.3'){
   const n=Math.floor(f*(data.rows.length-1)),r=data.rows[n],a=axes(left,{xmin:-2,xmax:5,ymin:-3,ymax:4,xlabel:'第一室偏差 / U',ylabel:'第二室偏差 / U'}),b=axes(right,{xmax:15,ymin:-.3,ymax:2.6,xlabel:'离散步 n',ylabel:'滤波均值 / U'});

@@ -770,7 +770,7 @@
           "title": "数值模拟、误差与迁移",
           "url": "/chapters/02-04-数值模拟、误差与迁移/",
           "goals": "连接逐步误差与全程误差；推导 1−kh 的偏差传播；区分渐近稳定（asymptotic stability）与非负性（nonnegativity），正确处理输入（input）跳变。",
-          "prerequisites": "2.3；递推、解析解（analytical solution）、有限求和与对数。局部/全局误差、观察阶（observed order of convergence）和稳定性条件在本章说明。",
+          "prerequisites": "2.3；递推、解析解（analytical solution）、有限求和与对数。局部/全局误差、观测收敛阶（observed order of convergence）和稳定性条件在本章说明。",
           "knowledge": [
             "误差与网格细化",
             "稳定性与非负性不是一回事",
@@ -784,7 +784,7 @@
               "chapter_id": "2.4",
               "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb",
               "title": "误差与网格细化",
-              "outcome": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观察阶不能使用的情形。",
+              "outcome": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观测收敛阶不能使用的情形。",
               "number": "2.4.1",
               "visualization": "web/time-evolution/index.html",
               "questions": [
@@ -2632,7 +2632,7 @@
               "chapter_id": "5.3",
               "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.ipynb",
               "title": "由条件概率推导贝叶斯更新",
-              "outcome": "能从联合表计算条件概率，区分先验、似然、证据概率与后验；处理零证据和反复使用同一份数据的条件独立边界。",
+              "outcome": "能从联合表计算条件概率，区分先验、似然、证据/边际似然与后验；处理零证据和反复使用同一份数据的条件独立边界。",
               "number": "5.3.1",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -4306,7 +4306,7 @@
                 {
                   "id": "p07-particle-resampling",
                   "slug": "p07-particle-resampling",
-                  "title": "观测加权与系统重采样",
+                  "title": "观测加权与系统性重采样",
                   "type": "python"
                 },
                 {
@@ -4530,10 +4530,10 @@
           "title": "目标函数与优化几何",
           "url": "/chapters/08-01-目标函数与优化几何/",
           "goals": "把估计和干预目标写成可计算函数，推导梯度（gradient）与曲率，并说明局部和全局最优结论的条件。",
-          "prerequisites": "3.4、6.4；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）。",
+          "prerequisites": "3.4、6.4；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）。",
           "knowledge": [
             "以参数（parameter）拟合和调节代价建立变量、尺度、目标与可行域（feasible set）",
-            "引入二次型、Hessian 矩阵（matrix）、正定性及凸性，区分驻点（stationary point）与最小值",
+            "引入二次型、海森矩阵、正定性及凸性，区分驻点（stationary point）与最小值",
             "用一维非凸反例解释初值（initial condition）依赖，检查尺度变换是否改变问题含义"
           ],
           "focus": "解析梯度与中心差分（central difference）对照；正定（positive definite）问题用配方法或线性方程核验，非凸反例包含鞍点或局部极值。先声明对称化和维数约定。",
@@ -4544,7 +4544,7 @@
               "chapter_id": "8.1",
               "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
               "title": "从拟合误差到二次目标",
-              "outcome": "把物质收支拟合写成有尺度的目标，推导值、梯度与Hessian。",
+              "outcome": "把物质收支拟合写成有尺度的目标，推导值、梯度与海森矩阵。",
               "number": "8.1.1",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4619,7 +4619,7 @@
           "title": "梯度、曲率与迭代算法",
           "url": "/chapters/08-02-梯度、曲率与迭代算法/",
           "goals": "实现梯度（gradient）法与带步长控制的牛顿法（Newton's method），按残差（residual）和条件判断停止，区分数值失败与问题无解。",
-          "prerequisites": "8.1；数学：目标函数、梯度、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
+          "prerequisites": "8.1；数学：目标函数、梯度、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
           "knowledge": [
             "由局部近似推出梯度下降与牛顿方向，复习线性方程求解",
             "加入固定步长的稳定范围、回溯线搜索与下降条件",
@@ -4750,7 +4750,7 @@
           "title": "正则化与稀疏优化",
           "url": "/chapters/08-03-正则化与稀疏优化/",
           "goals": "推导二范数（norm）与一范数正则化（regularization）的作用，实现软阈值（soft thresholding）更新并独立选择正则强度。",
-          "prerequisites": "8.2、6.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、正则化、非光滑目标、近端更新与软阈值。",
+          "prerequisites": "8.2、6.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、正则化、非光滑目标、近端更新与软阈值。",
           "knowledge": [
             "由不稳定回归引入二范数惩罚，区分拟合误差与参数收缩",
             "从一维绝对值惩罚推导软阈值，再构造近端梯度（proximal gradient）步骤",
@@ -4881,7 +4881,7 @@
           "title": "约束与最优性条件",
           "url": "/chapters/08-04-约束与最优性条件/",
           "goals": "写出约束问题的最优性条件，检查原始与对偶残差（residual），区分可行、最优及求解器失败。",
-          "prerequisites": "8.3；数学：目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
+          "prerequisites": "8.3；数学：目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
           "knowledge": [
             "从盒约束和等式约束引入拉格朗日乘子（Lagrange multiplier）与对偶直觉",
             "建立 KKT（Karush–Kuhn–Tucker，卡鲁什—库恩—塔克）条件，说明约束资格及凸性所支持的结论",
@@ -5067,7 +5067,7 @@
           "title": "贝叶斯建模与后验近似",
           "url": "/chapters/09-01-贝叶斯建模与后验近似/",
           "goals": "构造参数（parameter）后验（posterior），比较点估计与分布（distribution）估计，并计算高斯共轭和局部后验近似。",
-          "prerequisites": "5.3、6.4、7.3、8.2；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验及标量高斯条件更新、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、多元高斯条件分布、块协方差（covariance）与矩阵（matrix）分解、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
+          "prerequisites": "5.3、6.4、7.3、8.2；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验及标量高斯条件更新、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、多元高斯条件分布、块协方差（covariance）与矩阵（matrix）分解、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
           "knowledge": [
             "从清除参数及个体差异声明似然、先验（prior）与后验，先用可解析模型解释归一化",
             "比较极大似然和最大后验估计（maximum a posteriori estimation，MAP），说明先验和参数化的作用",
@@ -5269,7 +5269,7 @@
           "title": "变分推断",
           "url": "/chapters/09-03-变分推断/",
           "goals": "推导变分推断（variational inference，VI）的优化目标，实施均值场（mean-field approximation）更新并量化近似偏差。",
-          "prerequisites": "9.2、5.5、8.3；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场更新。",
+          "prerequisites": "9.2、5.5、8.3；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场更新。",
           "knowledge": [
             "由相对熵（Kullback–Leibler divergence，KL divergence）和 Jensen 不等式建立证据下界（evidence lower bound，ELBO）",
             "推导后验距离、证据与下界的恒等式，以及均值场变分推断（mean-field variational inference）的坐标更新",
@@ -6025,7 +6025,7 @@
           "title": "动态规划与 LQR",
           "url": "/chapters/10-05-动态规划与 LQR/",
           "goals": "从一步决策推到有限时域 Bellman 递推，以二次价值函数推导离散 Riccati 递推与反馈（feedback）增益（gain）。",
-          "prerequisites": "10.3、8.4；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
+          "prerequisites": "10.3、8.4；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
           "knowledge": [
             "有限时域与终端代价",
             "倒推价值和最优决策",
@@ -6114,7 +6114,7 @@
           "title": "带约束的 MPC",
           "url": "/chapters/10-06-带约束的 MPC/",
           "goals": "将预测模型（model）、初始估计、时域和约束写成优化问题，理解每次只执行第一步并重新求解。",
-          "prerequisites": "10.4、10.5、7.3；数学：目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
+          "prerequisites": "10.4、10.5、7.3；数学：目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
           "knowledge": [
             "状态（state）与输入（input）序列的优化表达",
             "滚动时域及估计接口",
@@ -6203,7 +6203,7 @@
           "title": "估计反馈与闭环验证",
           "url": "/chapters/10-07-估计反馈与闭环验证/",
           "goals": "构造公平基线，区分调参条件和独立评估条件，综合解释性能、约束与计算代价。",
-          "prerequisites": "10.6、9.5、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、后验（posterior）归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
+          "prerequisites": "10.6、9.5、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、后验（posterior）归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
           "knowledge": [
             "固定任务、信息和执行接口",
             "验证集（validation set）调参、独立场景评估",
@@ -8015,7 +8015,7 @@
           "title": "Koopman 表示与有限字典",
           "url": "/chapters/14-03-Koopman 表示与有限字典/",
           "goals": "理解作用于观测（observation）函数的线性传播，实现有限字典近似并解释闭合误差。",
-          "prerequisites": "14.2；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、函数观测、线性算子、有限字典与投影（projection）、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影。",
+          "prerequisites": "14.2；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、函数观测、线性算子、有限字典与投影（projection）、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影。",
           "knowledge": [
             "从非线性状态（state）更新引入 Koopman 算子（Koopman operator），先讲函数与算子的必要定义",
             "构造扩展动态模态分解（extended dynamic mode decomposition，EDMD）的字典与数据矩阵",
@@ -8161,7 +8161,7 @@
                 {
                   "id": "p14-finite-derivative",
                   "slug": "p14-finite-derivative",
-                  "title": "从不等距采样估计变化率",
+                  "title": "从等距采样估计变化率",
                   "type": "python"
                 },
                 {
@@ -8379,7 +8379,7 @@
           "title": "神经网络与自动微分",
           "url": "/chapters/15-01-神经网络与自动微分/",
           "goals": "从计算图（computational graph）推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
-          "prerequisites": "3.4、8.2、9.5；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、神经网络（neural network）、计算图、自动微分（automatic differentiation，AD）与反向传播。",
+          "prerequisites": "3.4、8.2、9.5；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、目标函数、梯度、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、神经网络（neural network）、计算图、自动微分（automatic differentiation，AD）与反向传播。",
           "knowledge": [
             "引入小型神经网络（neural network）的参数（parameter）、激活和计算图",
             "从链式法则推导反向模式自动微分（automatic differentiation，AD），逐项实现小图反传",
@@ -8723,7 +8723,7 @@
                 {
                   "id": "p15-diffusion-residual",
                   "slug": "p15-diffusion-residual",
-                  "title": "内部与无通量边界残差",
+                  "title": "方程与无通量边界残差",
                   "type": "python"
                 }
               ],
@@ -8923,7 +8923,7 @@
           "title": "非线性反馈设计",
           "url": "/chapters/16-01-非线性反馈设计/",
           "goals": "为低维非线性系统构造反馈（feedback）与稳定性论证，明确适用域和执行约束。",
-          "prerequisites": "4.5、10.7；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）。",
+          "prerequisites": "4.5、10.7；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）。",
           "knowledge": [
             "复习局部线性反馈的适用范围，从候选 Lyapunov 函数建立非线性设计",
             "对已知输入作用方向推导一个标量反馈或低维能量整形例子",
@@ -9012,7 +9012,7 @@
           "title": "模型不确定性与鲁棒控制",
           "url": "/chapters/16-02-模型不确定性与鲁棒控制/",
           "goals": "在明确的不确定参数（parameter）集合上检验鲁棒性能，区别共同证据与有限场景经验。",
-          "prerequisites": "16.1、8.4；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、Lagrange 乘子、对偶性、KKT 条件与约束资格、共同二次函数、半正定（positive semidefinite）矩阵（matrix）不等式与凸不确定集合。",
+          "prerequisites": "16.1、8.4；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、Lagrange 乘子、对偶性、KKT 条件与约束资格、共同二次函数、半正定（positive semidefinite）矩阵（matrix）不等式与凸不确定集合。",
           "knowledge": [
             "定义模型集合、扰动界和性能指标，区分鲁棒与平均性能目标",
             "从矩阵二次型建立共同 Lyapunov 条件，给出仿射多面体模型的顶点核验依据",
