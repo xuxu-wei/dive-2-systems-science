@@ -58,7 +58,7 @@
     "chapter_id": "16.4",
     "number": "16.4.1",
     "title": "布朗增量与 Euler–Maruyama",
-    "outcome": "用固定增量实现随机清除，并区分噪声幅度随步长的缩放。",
+    "outcome": "用固定增量实现稳态偏差的随机恢复，并区分噪声幅度随步长的缩放。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/01-布朗增量与 Euler–Maruyama.ipynb",
     "visualization": "web/advanced-control/index.html"
   },

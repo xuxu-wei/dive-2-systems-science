@@ -1349,7 +1349,7 @@
     "chapter": "15.3",
     "lesson_id": "P15-C03-S01",
     "title": "连续清除的解析状态",
-    "statement": "给定固定初态、正清除率与观测（observation）时刻，返回各时刻状态（state）。",
+    "statement": "给定固定初态、正的一阶消除系数与观测（observation）时刻，返回各时刻状态（state）。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1371,7 +1371,7 @@
       {
         "name": "k",
         "type": "float",
-        "description": "清除率。",
+        "description": "消除系数。",
         "unit": "1/T"
       },
       {
@@ -1461,7 +1461,7 @@
       {
         "name": "k",
         "type": "float",
-        "description": "清除率。",
+        "description": "消除系数。",
         "unit": "1/T"
       },
       {
@@ -1567,7 +1567,7 @@
       {
         "name": "k",
         "type": "float",
-        "description": "清除率。",
+        "description": "消除系数。",
         "unit": "1/T"
       },
       {
@@ -1667,7 +1667,7 @@
       {
         "name": "k",
         "type": "float",
-        "description": "清除率。",
+        "description": "消除系数。",
         "unit": "1/T"
       },
       {
@@ -2208,7 +2208,7 @@
       {
         "name": "k",
         "type": "float",
-        "description": "已知清除率。",
+        "description": "已知消除系数。",
         "unit": "1/T"
       },
       {
@@ -2539,7 +2539,7 @@
       {
         "name": "k",
         "type": "float",
-        "description": "机制清除率。",
+        "description": "机制消除系数。",
         "unit": "1/T"
       },
       {
@@ -2641,7 +2641,7 @@
       {
         "name": "k",
         "type": "float",
-        "description": "清除率。",
+        "description": "消除系数。",
         "unit": "1/T"
       },
       {
@@ -2745,7 +2745,7 @@
       {
         "name": "k",
         "type": "float",
-        "description": "清除率。",
+        "description": "消除系数。",
         "unit": "1/T"
       },
       {
@@ -3118,7 +3118,7 @@
       {
         "name": "k",
         "type": "float",
-        "description": "清除率。",
+        "description": "消除系数。",
         "unit": "1/T"
       },
       {

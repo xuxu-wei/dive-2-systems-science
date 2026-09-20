@@ -9,11 +9,13 @@ test('sampled angle has a different principal frequency after aliasing',()=>{
  for(const [time,value] of aliased.series[2].points)
   assert.ok(Math.abs(value-Math.exp(-.1*time)*Math.cos(4*time))<1e-12);
 });
-test('closed lift and omitted quadratic feature differ on held-out initial state',()=>{
- const short=lifted(1.5,6,'short'),full=lifted(1.5,6,'full');
- assert.ok(short.stats[2][1]>.1);
+test('deletion and refitting are different operations on the same training states',()=>{
+ const dropped=lifted(1.5,6,'drop'),short=lifted(1.5,6,'short'),full=lifted(1.5,6,'full');
+ assert.ok(dropped.stats[2][1]>.1);
+ assert.notEqual(dropped.stats[3][1],short.stats[3][1]);
+ assert.notEqual(dropped.stats[1][1],short.stats[1][1]);
  assert.equal(full.stats[2][1],0);
- assert.equal(nextKind('14.3',nextKind('14.3','short')),'short');
+ assert.equal(nextKind('14.3',nextKind('14.3',nextKind('14.3','drop'))),'drop');
 });
 test('noiseless sparse recovery and threshold deletion',()=>{
  const exact=sparseFit(.01,0);

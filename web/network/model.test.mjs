@@ -11,6 +11,17 @@ test('rewiring preserves simple-graph node and edge budgets',()=>{
  }
 });
 
+test('clockwise edge ownership does not privilege low numeric node labels',()=>{
+ for(const seed of [0,3,17,41]){
+  const degrees=graphStats(12,ringRewire(12,4,1,seed)).degree;
+  assert.ok(degrees.every(degree=>degree>=2));
+ }
+ const base=synchrony(false,0,60),rewired=synchrony(true,0,60);
+ assert.deepEqual(base.frequencies,rewired.frequencies);
+ assert.deepEqual([...base.frequencies].sort((a,b)=>a-b),Array.from({length:12},(_,i)=>.7+.6*i/11));
+ assert.notDeepEqual(base.frequencies,[...base.frequencies].sort((a,b)=>a-b));
+});
+
 test('path and triangle statistics use graph edges rather than drawing coordinates',()=>{
  const path=graphStats(4,[[0,1],[1,2],[2,3]]);
  assert.deepEqual(path.degree,[1,2,2,1]);assert.equal(path.components,1);

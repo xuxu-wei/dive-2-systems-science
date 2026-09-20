@@ -48,3 +48,18 @@ test('failed finite-action search is shown explicitly',()=>{
  const result=decisionView(1.4,0,'prediction');
  assert.equal(stat(result,'选中动作 / U'),'无可行解');
 });
+
+test('OU view separates continuous, discrete and finite-sample moments',()=>{
+ const coarse=stochasticView(.7,.4,'mean',{count:400,h:.2});
+ const fine=stochasticView(.7,.4,'mean',{count:400,h:.025});
+ const more=stochasticView(.7,.4,'mean',{count:800,h:.2});
+ assert.equal(coarse.series.length,3);
+ assert.deepEqual(coarse.series[0].points,more.series[0].points);
+ assert.deepEqual(coarse.series[1].points,more.series[1].points);
+ assert.notDeepEqual(coarse.series[2].points,more.series[2].points);
+ const gap=result=>Math.abs(result.series[0].points.at(-1)[1]-result.series[1].points.at(-1)[1]);
+ assert.ok(gap(fine)<gap(coarse));
+ const noRecovery=stochasticView(0,.4,'variance',{count:400,h:.1});
+ assert.ok(Math.abs(noRecovery.series[0].points.at(-1)[1]-.32)<1e-12);
+ assert.ok(Math.abs(noRecovery.series[1].points.at(-1)[1]-.32)<1e-12);
+});

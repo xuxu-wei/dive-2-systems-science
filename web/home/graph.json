@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "18e0a6a0ae8359882dd8c58ad0e3d1dfaafcbb2a31fbb64abc054f9a2b6429c7",
+    "catalogSha256": "4f884f0ce54551995d48563659d79b0a1a4edba07b981766c328d6cd68cc682b",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -20080,7 +20080,7 @@
       "number": "16.4.1",
       "parentId": "16.4",
       "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
-      "description": "用固定增量实现随机清除，并区分噪声幅度随步长的缩放。",
+      "description": "用固定增量实现稳态偏差的随机恢复，并区分噪声幅度随步长的缩放。",
       "categories": [
         "regulation",
         "cognition"
@@ -20109,7 +20109,7 @@
       "number": "16.4.1",
       "parentId": "16.4",
       "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
-      "description": "用固定增量实现随机清除，并区分噪声幅度随步长的缩放。",
+      "description": "用固定增量实现稳态偏差的随机恢复，并区分噪声幅度随步长的缩放。",
       "categories": [
         "regulation",
         "cognition"
@@ -20138,7 +20138,7 @@
       "number": "16.4.1",
       "parentId": "16.4",
       "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
-      "description": "用固定增量实现随机清除，并区分噪声幅度随步长的缩放。",
+      "description": "用固定增量实现稳态偏差的随机恢复，并区分噪声幅度随步长的缩放。",
       "categories": [
         "regulation",
         "cognition"
@@ -20167,7 +20167,7 @@
       "number": "16.4.1",
       "parentId": "16.4",
       "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
-      "description": "用固定增量实现随机清除，并区分噪声幅度随步长的缩放。",
+      "description": "用固定增量实现稳态偏差的随机恢复，并区分噪声幅度随步长的缩放。",
       "categories": [
         "regulation",
         "cognition"

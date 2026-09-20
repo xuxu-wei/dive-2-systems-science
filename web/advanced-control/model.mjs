@@ -50,18 +50,30 @@ export function adaptiveView(forget,limit,kind='estimate'){
 }
 
 function seededNormal(seed){let value=seed>>>0;return ()=>{value=(1664525*value+1013904223)>>>0;const u=Math.max((value+.5)/4294967296,1e-12);value=(1664525*value+1013904223)>>>0;const v=(value+.5)/4294967296;return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);};}
-export function stochasticView(a,sigma,kind='variance'){
- const count=400,h=.1,steps=20,rng=seededNormal(1604),paths=Array(count).fill(1),empirical=[],analytic=[];
- for(let n=0;n<=steps;n++){
-  const time=n*h,mean=paths.reduce((s,x)=>s+x,0)/count,variance=paths.reduce((s,x)=>s+(x-mean)**2,0)/count;
-  const exactMean=Math.exp(-a*time),exactVar=a===0?sigma*sigma*time:sigma*sigma*(-Math.expm1(-2*a*time))/(2*a);
-  empirical.push([round(time,3),kind==='mean'?mean:variance]);analytic.push([round(time,3),kind==='mean'?exactMean:exactVar]);
-  if(n<steps)for(let j=0;j<count;j++)paths[j]+= -a*h*paths[j]+sigma*Math.sqrt(h)*rng();
+export function stochasticView(a,sigma,kind='variance',options={}){
+ const count=options.count??400,requestedStep=options.h??.1,steps=Math.max(1,Math.round(2/requestedStep)),h=2/steps,rng=seededNormal(1604);
+ const sums=Array(steps+1).fill(0),squares=Array(steps+1).fill(0);
+ for(let path=0;path<count;path++){
+  let x=1;
+  for(let n=0;n<=steps;n++){
+   sums[n]+=x;squares[n]+=x*x;
+   if(n<steps)x=(1-a*h)*x+sigma*Math.sqrt(h)*rng();
+  }
  }
- return {series:[line(kind==='mean'?'解析均值':'解析方差',blue,analytic),line('固定种子 Monte Carlo',pink,empirical)],
-  stats:[['终点解析值',round(analytic.at(-1)[1])],['终点模拟值',round(empirical.at(-1)[1])],['重复路径',count]],
-  condition:`OU 模型 dX=−${round(a)}Xdt+${round(sigma)}dW；初态 1 U；h=0.1 T；固定种子、${count} 条路径。`,
-  finding:'有限重复的经验统计不会恰等于解析矩；改变参数时仍使用同一随机数序列以减少比较噪声。'};
+ const empirical=[],analytic=[],discrete=[],q=1-a*h;
+ for(let n=0;n<=steps;n++){
+  const time=n*h,mean=sums[n]/count,variance=Math.max(0,squares[n]/count-mean*mean);
+  const exactMean=Math.exp(-a*time),exactVar=a===0?sigma*sigma*time:sigma*sigma*(-Math.expm1(-2*a*time))/(2*a);
+  const discreteMean=q**n,discreteVar=Math.abs(1-q*q)<1e-12?n*sigma*sigma*h:sigma*sigma*h*(1-q**(2*n))/(1-q*q);
+  empirical.push([round(time,3),kind==='mean'?mean:variance]);
+  analytic.push([round(time,3),kind==='mean'?exactMean:exactVar]);
+  discrete.push([round(time,3),kind==='mean'?discreteMean:discreteVar]);
+ }
+ const unit=kind==='mean'?'U':'U²';
+ return {series:[line('连续方程理论结果',blue,analytic),line('当前离散更新理论结果',green,discrete),line(kind==='mean'?'有限重复的样本均值':'有限重复的样本方差',pink,empirical)],
+  stats:[['终点连续理论 / '+unit,round(analytic.at(-1)[1])],['终点离散理论 / '+unit,round(discrete.at(-1)[1])],['终点模拟 / '+unit,round(empirical.at(-1)[1])],['重复路径',count],['实际步长 / T',round(h,4)]],
+  condition:`稳态偏差 X：dX=−${round(a)}Xdt+${round(sigma)}dW；初始偏差 +1 U；固定终点 2 T、${steps} 步、${count} 条路径。`,
+  finding:'增加重复次数通常会减小抽样波动，但一次固定种子结果不保证逐次更接近理论；它不能消除离散理论与连续理论之间的步长偏差，再缩小步长检查后者。'};
 }
 
 export function consensusView(h,delay,kind='states'){

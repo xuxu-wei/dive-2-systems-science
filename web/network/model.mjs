@@ -2,12 +2,9 @@
 const key=(a,b)=>[Math.min(a,b),Math.max(a,b)].join(':');
 const random=seed=>{let state=seed>>>0;return()=>((state=(1664525*state+1013904223)>>>0)/4294967296);};
 export function ringRewire(n,k,probability,seed=17){
- const original=[];for(let i=0;i<n;i++)for(let d=1;d<=k/2;d++){
-  const a=Math.min(i,(i+d)%n),b=Math.max(i,(i+d)%n);
-  if(!original.some(e=>e[0]===a&&e[1]===b))original.push([a,b]);
- }
- original.sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
- const edges=new Map(original.map(e=>[key(...e),e])),rng=random(seed);
+ // The ring direction determines the retained endpoint; sorting is only for storage.
+ const original=[];for(let i=0;i<n;i++)for(let d=1;d<=k/2;d++)original.push([i,(i+d)%n]);
+ const edges=new Map(original.map(([i,j])=>[key(i,j),[Math.min(i,j),Math.max(i,j)]])),rng=random(seed);
  for(const [i,j] of original){if(rng()>=probability)continue;
   const options=Array.from({length:n},(_,v)=>v).filter(v=>v!==i&&!edges.has(key(i,v)));
   if(options.length){const selected=options[Math.floor(rng()*options.length)];edges.delete(key(i,j));edges.set(key(i,selected),[Math.min(i,selected),Math.max(i,selected)]);}
@@ -53,7 +50,9 @@ export function synchrony(rewired,coupling,steps=360){
  const n=12,dt=.035,edges=ringRewire(n,4,rewired?.45:0,17),a=Array.from({length:n},()=>Array(n).fill(0));
  for(const [i,j] of edges)a[i][j]=a[j][i]=1;
  const degree=a.map(row=>row.reduce((x,y)=>x+y,0));let phases=Array.from({length:n},(_,i)=>-2.7+.49*i+.33*Math.sin(2.7*i));
- const frequencies=Array.from({length:n},(_,i)=>.7+.6*i/(n-1)),hist=[phases.slice()];
+ const frequencies=Array.from({length:n},(_,i)=>.7+.6*i/(n-1)),frequencyRng=random(2301);
+ for(let i=n-1;i>0;i--){const j=Math.floor(frequencyRng()*(i+1));[frequencies[i],frequencies[j]]=[frequencies[j],frequencies[i]];}
+ const hist=[phases.slice()];
  const order=values=>Math.hypot(values.reduce((s,v)=>s+Math.cos(v),0)/n,values.reduce((s,v)=>s+Math.sin(v),0)/n);
  const r=[order(phases)];
  for(let t=0;t<steps;t++){
@@ -61,7 +60,7 @@ export function synchrony(rewired,coupling,steps=360){
   phases=next;hist.push(next);r.push(order(next));
  }
  const spread=hist.map((row,t)=>{if(t<60)return null;const before=hist[t-60],rates=row.map((v,i)=>(v-before[i])/(60*dt));return Math.max(...rates)-Math.min(...rates);});
- return {edges,hist,r,spread,dt};
+ return {edges,hist,r,spread,dt,frequencies};
 }
 export function alternate(mode,p){
  if(mode==='11.1')return {rewire:p.rewire>.1?0:.45};

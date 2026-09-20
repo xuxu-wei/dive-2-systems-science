@@ -88,7 +88,10 @@ def test_graph_statistics_independent_small_cases():
         for seed in range(10):
             edges = f['ring_rewire'](30, 4, p, seed)
             assert len(edges) == 60 and len(set(map(tuple, edges))) == 60
-            assert sum(f['graph_summary'](30, edges)[0]) == 120
+            degrees = f['graph_summary'](30, edges)[0]
+            assert sum(degrees) == 120
+            if p == 1.:
+                assert min(degrees) >= 2  # 每个节点保留自己发出的两个环边，不受编号排序影响。
 
 
 def test_diffusion_against_closed_form_and_component_balance():

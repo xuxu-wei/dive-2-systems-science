@@ -34,7 +34,7 @@ const definitions={
   formula:'dx/dt=−a x(1−x/B)；AR(1) 平稳段方差=σ²/(1−ρ²)。',
   heading:'扰动返回与方差对照',label:'当前大扰动状态 x',
   assumptions:'左图 a=1.5、x0=0.2与1.4、Euler h=0.02 T，仅展示0.5 T。右图固定创新与40点过去窗口，前后只改变ρ或σ之一；两段仍 |ρ|<1，并未跨越真实转变。',
-  note:'左图曲线受吸引域边界 B 控制；右图单纯提高噪声也可能触发方差阈值。预警性能须用独立事件标签评估。',
+  note:'左图曲线受吸引域边界 B 控制；越界后这个简化模型没有给出另一有限稳定状态。右图单纯提高噪声也可能触发方差阈值；预警性能须用独立事件标签评估。',
   controls:[['boundary','吸引域边界 B',1,2,1,1],['cause','方差上升原因：0慢化 / 1噪声',0,1,1,0]]}
 };
 function controls(){settings={};$('sliders').replaceChildren();for(const[key,label,min,max,step,value]of definitions[mode].controls){

@@ -14,19 +14,27 @@ export function aliasing(dt,omega){
 
 export function lifted(initialX,steps,kind){
  const a=.8,b=.7,c=.4,initialY=.1;
- let x=initialX,y=initialY,approxX=initialX,approxY=initialY,extra=initialX*initialX;
+ const starts=[.2,.5,.8,1].flatMap(x=>[-.2,.2].map(y=>[x,y]));
+ const feature=([x,y],length)=>length===3?[x,y,x*x]:[x,y];
+ const fit=length=>{
+  const inputs=starts.map(row=>feature(row,length));
+  const outputs=starts.map(([x,y])=>feature([a*x,b*y+c*x*x],length));
+  const gram=Array.from({length},(_,i)=>Array.from({length},(_,j)=>inputs.reduce((sum,row)=>sum+row[i]*row[j],0)));
+  return Array.from({length},(_,target)=>solve(gram,Array.from({length},(_,i)=>inputs.reduce((sum,row,j)=>sum+row[i]*outputs[j][target],0))));
+ };
+ const operator=kind==='full'?fit(3):kind==='short'?fit(2):[[a,0],[0,b]];
+ let x=initialX,y=initialY,predictionState=feature([initialX,initialY],operator.length);
  const exact=[],prediction=[];
  for(let k=0;k<=steps;k++){
-  exact.push([k,y]);prediction.push([k,approxY]);
-  const nextX=a*x,nextY=b*y+c*x*x;x=nextX;y=nextY;
-  const nextApproxX=a*approxX;
-  const nextApproxY=b*approxY+(kind==='full'?c*extra:0);
-  extra=a*a*extra;approxX=nextApproxX;approxY=nextApproxY;
+  exact.push([k,y]);prediction.push([k,predictionState[1]]);
+  [x,y]=[a*x,b*y+c*x*x];
+  predictionState=operator.map(row=>row.reduce((sum,value,j)=>sum+value*predictionState[j],0));
  }
- return {series:[{label:'真实 y',color:'#008bfb',points:exact},{label:kind==='full'?'三项闭合字典':'两项短字典',color:'#ff0051',points:prediction}],
-  stats:[['最终真实 y / U',round(exact.at(-1)[1])],['最终预测 y / U',round(prediction.at(-1)[1])],['末步绝对误差 / U',round(Math.abs(exact.at(-1)[1]-prediction.at(-1)[1]))]],
-  finding:kind==='full'?'在这个专门构造的三角映射中，[x,y,x²] 恰好闭合，留出轨迹可精确重建。':'短字典遗漏 x²；训练数据范围内的线性拟合不能保证此新初值的 y 预测。',
-  condition:`初值 x=${round(initialX)} U、y=0.1 U；${kind==='full'?'三项闭合字典':'两项短字典'}；观察 ${steps} 步。`};
+ const label={drop:'人为删项（不重拟合）',short:'两项字典重拟合',full:'三项字典重拟合'}[kind];
+ return {series:[{label:'真实 y',color:'#008bfb',points:exact},{label,color:'#ff0051',points:prediction}],
+  stats:[['最终真实 y / U',round(exact.at(-1)[1])],['最终预测 y / U',round(prediction.at(-1)[1])],['末步绝对误差 / U',round(Math.abs(exact.at(-1)[1]-prediction.at(-1)[1]))],['y 更新系数',operator[1].map(value=>round(value)).join(' / ')]],
+  finding:kind==='full'?'在这个专门构造的三角映射中，[x,y,x²] 恰好闭合，留出轨迹可精确重建。':kind==='short'?'删去平方项后，训练数据会让剩余系数重新分担它的作用；新初值预测仍可能偏离。':'这里只把已知公式中的平方项直接删除，未使用训练数据重调系数；它不是短字典 EDMD 拟合。',
+  condition:`共同训练集：x=0.2、0.5、0.8、1 U，各配 y=−0.2、0.2 U；留出初值 x=${round(initialX)} U、y=0.1 U；${label}；观察 ${steps} 步。`};
 }
 
 function solve(matrix,right){
@@ -89,7 +97,7 @@ export function structureView(kind,dt,steps){
 }
 
 export function nextKind(chapter,kind){
- if(chapter==='14.3')return kind==='short'?'full':'short';
+ if(chapter==='14.3')return kind==='drop'?'short':kind==='short'?'full':'drop';
  if(chapter==='14.5')return kind==='closed'?'leaky':'closed';
  return kind;
 }
