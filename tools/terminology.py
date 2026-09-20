@@ -20,6 +20,7 @@ PROTECTED_PHRASES = {
     '参数组合': '数组',
     '秩序': '秩',
     '周期二值': '周期二',
+    '测试集合': '测试集',
 }
 # Keep literal code, equations, headings and link destinations byte-for-byte.
 LITERAL = re.compile(

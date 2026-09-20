@@ -515,8 +515,8 @@
       {
         "name": "x",
         "type": "float",
-        "description": "以 U 为单位的输入数值。",
-        "unit": "U"
+        "description": "物理量 x_phys（单位 U）除以 1 U 后传给函数的无量纲（dimensionless）数值。",
+        "unit": "1"
       },
       {
         "name": "w",
@@ -611,8 +611,8 @@
       {
         "name": "x",
         "type": "float",
-        "description": "输入（input）数值。",
-        "unit": "U"
+        "description": "物理量 x_phys（单位 U）除以 1 U 后传给函数的无量纲（dimensionless）数值。",
+        "unit": "1"
       },
       {
         "name": "y",
@@ -623,7 +623,7 @@
       {
         "name": "w",
         "type": "float",
-        "description": "输入权重。",
+        "description": "输入（input）权重。",
         "unit": "1"
       },
       {
@@ -735,8 +735,8 @@
       {
         "name": "x",
         "type": "float",
-        "description": "输入（input）数值。",
-        "unit": "U"
+        "description": "物理量 x_phys（单位 U）除以 1 U 后传给函数的无量纲（dimensionless）数值。",
+        "unit": "1"
       },
       {
         "name": "y",
@@ -747,7 +747,7 @@
       {
         "name": "w",
         "type": "float",
-        "description": "输入权重。",
+        "description": "输入（input）权重。",
         "unit": "1"
       },
       {
@@ -859,8 +859,8 @@
       {
         "name": "x",
         "type": "float",
-        "description": "输入（input）。",
-        "unit": "U"
+        "description": "物理量 x_phys（单位 U）除以 1 U 后传给函数的无量纲（dimensionless）数值。",
+        "unit": "1"
       },
       {
         "name": "y",
@@ -871,7 +871,7 @@
       {
         "name": "w",
         "type": "float",
-        "description": "输入权重。",
+        "description": "输入（input）权重。",
         "unit": "1"
       },
       {
@@ -2403,8 +2403,8 @@
     "part": "15",
     "chapter": "15.4",
     "lesson_id": "P15-C04-S02",
-    "title": "内部与无通量边界残差",
-    "statement": "返回候选的内部扩散残差（residual）均方和两端相同的导数（derivative）平方。",
+    "title": "方程与无通量边界残差",
+    "statement": "返回候选扩散方程残差（residual）的配点（collocation point）均方，以及单独计算的无通量边界（no-flux boundary）导数（derivative）平方。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2420,7 +2420,7 @@
       {
         "name": "points",
         "type": "list[float]",
-        "description": "内部配点（collocation point）位置。",
+        "description": "PDE 方程残差配点（collocation point）位置，可包含端点。",
         "unit": "归一化长度"
       },
       {
@@ -2452,11 +2452,11 @@
       {
         "name": "parts",
         "type": "list[float]",
-        "description": "内部 PDE 残差均方、边界导数平方。",
+        "description": "PDE 方程残差均方、独立的边界导数平方。",
         "unit": "按分项"
       }
     ],
-    "contract": "候选 exp(-rate*t)*cos(pi*x)+slope*x；内部项为 (∂t候选-diffusivity*∂xx候选)² 平均，边界项为端点空间导数平方。",
+    "contract": "候选 exp(-rate*t)*cos(pi*x)+slope*x；方程项为 (∂t候选-diffusivity*∂xx候选)² 在 points 与 times 上的平均，points 可含端点；边界项仍须单独计算两端空间导数的平方。",
     "constraints": [
       "位置与时刻等长且至少一个；位置位于[0,1]，时刻非负，扩散系数正。"
     ],
@@ -2499,7 +2499,7 @@
           0.0,
           0.04000000000000001
         ],
-        "explanation": "首例内部速率匹配，但 slope=0.2 使边界分项为0.04。"
+        "explanation": "首例方程速率匹配，所有配点的方程残差均为零；slope=0.2 仍使独立的边界分项为 0.04。"
       }
     ]
   },

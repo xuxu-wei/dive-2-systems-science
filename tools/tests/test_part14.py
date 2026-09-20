@@ -61,6 +61,20 @@ def test_structure_and_public_contracts():
         'web/lowrank/index.html','web/datadriven/index.html'}
 
 
+def test_finite_derivative_uses_only_the_declared_equal_grid():
+    question = next(item for item in QUESTIONS if item['id'] == 'p14-finite-derivative')
+    assert question['version'] == '2'
+    assert '等距' in question['constraints'][0]
+    cases = VERIFY[question['id']]['cases']
+    for case in cases:
+        steps = np.diff(case['arguments']['times'])
+        np.testing.assert_allclose(steps, steps[0])
+    quadratic = next(case for case in cases if case['arguments']['observations'] == [0., 1., 4., 9.])
+    np.testing.assert_allclose(quadratic['expected'], [1., 2., 4., 5.])
+    np.testing.assert_allclose(notebook_functions()['finite_derivative'](**quadratic['arguments']),
+                               quadratic['expected'])
+
+
 def test_svd_dmd_and_unseen_direction():
     f = notebook_functions()
     matrix = np.array([[4.,0.],[0.,1.]])

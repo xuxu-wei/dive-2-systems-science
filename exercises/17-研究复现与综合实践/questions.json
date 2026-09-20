@@ -1725,7 +1725,7 @@
     "chapter": "17.3",
     "lesson_id": "P17-C03-S02",
     "title": "保留失败的配对统计",
-    "statement": "更细的求解网格和更多向量场（vector field）参数（parameter），总能改善独立初态的预测吗？本题计算“保留失败的配对统计”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败率保留全部场景。请按下方具名参数和返回结构实现 solve。",
+    "statement": "更细的求解网格和更多向量场（vector field）参数（parameter），总能改善独立初态的预测吗？本题计算“保留失败的配对统计”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败表示候选仍有数值预测，但未通过质量检查；对应误差继续参与配对统计，失败率使用全部场景。请按下方具名参数和返回结构实现 solve。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1746,13 +1746,13 @@
       {
         "name": "method",
         "type": "list[float]",
-        "description": "同序候选方法误差。",
+        "description": "同序候选数值预测的误差；质量检查失败时仍有定义。",
         "unit": "U"
       },
       {
         "name": "failures",
         "type": "list[bool]",
-        "description": "同序失败标志。",
+        "description": "候选有数值预测，但未通过预设质量检查（如收支（mass balance）或非负性（nonnegativity））的标志。",
         "unit": "1"
       }
     ],
@@ -1764,9 +1764,9 @@
         "unit": "混合"
       }
     ],
-    "contract": "配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。",
+    "contract": "每组都有定义明确的基线和候选误差；failures=True 仅表示候选数值预测未通过预设质量检查。全部场景均进入 d=baseline-method 的均值和标准误计算；标准误为样本标准差/sqrt(n)，n=1 时取 0。失败率为 True 数量/全部场景数。无有效数值输出（output）的求解失败不属于本接口；此时应另报双方成功场景的配对统计和全体失败率。",
     "constraints": [
-      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "三个列表等长且至少一组；全部误差有限，列表规模不超过 100；按题给顺序返回。",
       "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
@@ -1808,7 +1808,7 @@
           0.09999999999999998,
           0.5
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。"
+        "explanation": "第二组虽标记质量检查失败，候选误差 0.5 U 仍有定义。两组配对差为 0.1 与 -0.1 U，均值为 0、标准误为 0.1 U；失败率为 1/2。"
       }
     ]
   },
@@ -2034,7 +2034,7 @@
     "chapter": "17.4",
     "lesson_id": "P17-C04-S02",
     "title": "公平配对效果",
-    "statement": "一个方法训练误差较小，却在新输入（input）下违反收支（mass balance）或状态（state）非负；比较表应怎样保留这个失败？本题计算“公平配对效果”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败率保留全部场景。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "一个方法训练误差较小，却在新输入（input）下违反收支（mass balance）或状态（state）非负；比较表应怎样保留这个失败？本题计算“公平配对效果”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败表示候选仍有数值预测，但未通过质量检查；对应误差继续参与配对统计，失败率使用全部场景。请按下方具名参数（parameter）和返回结构实现 solve。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2055,13 +2055,13 @@
       {
         "name": "method",
         "type": "list[float]",
-        "description": "同序候选方法误差。",
+        "description": "同序候选数值预测的误差；质量检查失败时仍有定义。",
         "unit": "U"
       },
       {
         "name": "failures",
         "type": "list[bool]",
-        "description": "同序失败标志。",
+        "description": "候选有数值预测，但未通过预设质量检查（如收支（mass balance）或非负性（nonnegativity））的标志。",
         "unit": "1"
       }
     ],
@@ -2073,9 +2073,9 @@
         "unit": "混合"
       }
     ],
-    "contract": "配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。",
+    "contract": "每组都有定义明确的基线和候选误差；failures=True 仅表示候选数值预测未通过预设质量检查。全部场景均进入 d=baseline-method 的均值和标准误计算；标准误为样本标准差/sqrt(n)，n=1 时取 0。失败率为 True 数量/全部场景数。无有效数值输出（output）的求解失败不属于本接口；此时应另报双方成功场景的配对统计和全体失败率。",
     "constraints": [
-      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "三个列表等长且至少一组；全部误差有限，列表规模不超过 100；按题给顺序返回。",
       "输入满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
@@ -2117,7 +2117,7 @@
           0.09999999999999998,
           0.5
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。"
+        "explanation": "第二组虽标记质量检查失败，候选误差 0.5 U 仍有定义。两组配对差为 0.1 与 -0.1 U，均值为 0、标准误为 0.1 U；失败率为 1/2。"
       }
     ]
   },
@@ -2521,7 +2521,7 @@
     "chapter": "17.summary",
     "lesson_id": "P17-SUMMARY",
     "title": "消融的配对统计",
-    "statement": "综合任务给定了独立的模型（model）输入（input）与评价条件。本题计算“消融的配对统计”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败率保留全部场景。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "综合任务给定了独立的模型（model）输入（input）与评价条件。本题计算“消融的配对统计”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败表示候选仍有数值预测，但未通过质量检查；对应误差继续参与配对统计，失败率使用全部场景。请按下方具名参数（parameter）和返回结构实现 solve。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2542,13 +2542,13 @@
       {
         "name": "method",
         "type": "list[float]",
-        "description": "同序候选方法误差。",
+        "description": "同序候选数值预测的误差；质量检查失败时仍有定义。",
         "unit": "U"
       },
       {
         "name": "failures",
         "type": "list[bool]",
-        "description": "同序失败标志。",
+        "description": "候选有数值预测，但未通过预设质量检查（如收支（mass balance）或非负性（nonnegativity））的标志。",
         "unit": "1"
       }
     ],
@@ -2560,9 +2560,9 @@
         "unit": "混合"
       }
     ],
-    "contract": "配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。",
+    "contract": "每组都有定义明确的基线和候选误差；failures=True 仅表示候选数值预测未通过预设质量检查。全部场景均进入 d=baseline-method 的均值和标准误计算；标准误为样本标准差/sqrt(n)，n=1 时取 0。失败率为 True 数量/全部场景数。无有效数值输出（output）的求解失败不属于本接口；此时应另报双方成功场景的配对统计和全体失败率。",
     "constraints": [
-      "全部数值有限；列表规模不超过 100；按题给顺序返回。",
+      "三个列表等长且至少一组；全部误差有限，列表规模不超过 100；按题给顺序返回。",
       "输入满足模型和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
@@ -2604,7 +2604,7 @@
           0.09999999999999998,
           0.5
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；配对差 d=baseline-method；标准误为样本标准差/sqrt(n)，n=1 时规定为0；失败率保留全部场景。"
+        "explanation": "第二组虽标记质量检查失败，候选误差 0.5 U 仍有定义。两组配对差为 0.1 与 -0.1 U，均值为 0、标准误为 0.1 U；失败率为 1/2。"
       }
     ]
   },

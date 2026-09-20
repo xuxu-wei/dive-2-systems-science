@@ -1654,12 +1654,12 @@
   {
     "id": "p14-finite-derivative",
     "slug": "p14-finite-derivative",
-    "version": "1",
+    "version": "2",
     "part": "14",
     "chapter": "14.4",
     "lesson_id": "P14-C04-S02",
-    "title": "从不等距采样估计变化率",
-    "statement": "返回每个时刻的有限差分（finite difference）导数（derivative）：内部点用前后两点，首末点用相邻两点。",
+    "title": "从等距采样估计变化率",
+    "statement": "对等距采样（sampling）的状态（state）观测（observation），返回每个时刻的有限差分（finite difference）导数（derivative）估计：内部点用两侧观测作中心差分（central difference），首末点用相邻两点作单侧差分。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1693,9 +1693,9 @@
         "unit": "U/T"
       }
     ],
-    "contract": "内部 i 用 (y_(i+1)−y_(i−1))/(t_(i+1)−t_(i−1))；端点分别用相邻两点。等距和不等距均按同一公式，不能把估计当作无噪声真导数。",
+    "contract": "设相邻时刻等距 h>0；内部 i 用 (y_(i+1)-y_(i-1))/(2h)，端点分别用相邻两点的斜率（slope）。该公式仅用于本题的等距时刻；不等距三点导数估计需要不同权重。差分结果不等于无噪声真导数。",
     "constraints": [
-      "时刻长度≥2且严格递增，观测等长；全部数值有限。"
+      "时刻长度≥2且严格递增、等距：存在 h>0 使相邻时刻之差均为 h；观测等长，全部数值有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [

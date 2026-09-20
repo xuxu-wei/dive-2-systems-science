@@ -20,6 +20,7 @@ from terminology import annotate_text, check_text, TerminologyError
     ('自助粒子滤波', '自助粒子滤波（bootstrap particle filter）'),
     ('局部秩序与矩阵的秩', '局部秩序与矩阵（matrix）的秩（rank）'),
     ('周期二值格与周期二轨道', '周期二值格与周期二（period-two cycle）轨道'),
+    ('人工测试集合与测试集', '人工测试集合与测试集（test set）'),
 ])
 def test_independent_phrase_cases(source, expected):
     assert annotate_text(source) == expected
@@ -39,6 +40,7 @@ def test_independent_phrase_cases(source, expected):
     ('滞后', 'ambiguous'),
     ('局部秩（rank）序', 'compound'),
     ('周期二（period-two cycle）值格', 'compound'),
+    ('人工测试集（test set）合', 'compound'),
 ])
 def test_bad_annotations_are_rejected_not_certified(source, kind):
     assert kind in {issue.kind for issue in check_text(source)[0]}

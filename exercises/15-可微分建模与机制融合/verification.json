@@ -834,7 +834,7 @@
         ]
       }
     ],
-    "explanation": "首例内部速率匹配，但 slope=0.2 使边界分项为0.04。"
+    "explanation": "首例方程速率匹配，方程残差均为零；端点配点不能替代独立的边界检查，slope=0.2 给出边界分项 0.04。"
   },
   "p15-hybrid-right-side": {
     "cases": [
