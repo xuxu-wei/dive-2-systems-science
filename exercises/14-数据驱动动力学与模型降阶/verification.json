@@ -1113,9 +1113,31 @@
           true,
           false
         ]
+      },
+      {
+        "arguments": {
+          "operator": [
+            [
+              1e-11,
+              -1e-11
+            ],
+            [
+              -1e-11,
+              1e-11
+            ]
+          ],
+          "dt": 1000000000000.0
+        },
+        "expected": [
+          0.0,
+          -1e-11,
+          11.0,
+          true,
+          false
+        ]
       }
     ],
-    "explanation": "首例列和为零、非对角元非负，且一步 Euler 的最小对角为0.8；两种布尔检查都成立。"
+    "explanation": "首例列和为零、非对角元非负，且一步 Euler 的最小对角为0.8；两种布尔检查都成立。 大步长可将 A 中容差内的小负元放大为一步矩阵的明显负元。"
   },
   "p14-column-conservation": {
     "correct": [

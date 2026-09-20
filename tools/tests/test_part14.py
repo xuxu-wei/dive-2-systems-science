@@ -112,6 +112,15 @@ def test_closed_lift_sparse_identification_and_exchange_structure():
     assert active == [1,2]
     assert f['structure_metrics']([[-1,.2],[1,-.2]],.2)[3:] == [True,True]
     assert f['structure_metrics']([[-1,.2],[1,-.2]],2.)[3:] == [True,False]
+    # A small negative off-diagonal can be within the tolerance on A but
+    # become a large negative entry of the Euler step matrix for a large dt.
+    almost_metzler = np.array([[1e-11,-1e-11],[-1e-11,1e-11]])
+    step = np.eye(2) + 1e12 * almost_metzler
+    np.testing.assert_allclose(step, [[11.,-10.],[-10.,11.]])
+    assert f['structure_metrics'](almost_metzler.tolist(),1e12)[3:] == [True,False]
+    structure_question = next(q for q in QUESTIONS if q['id'] == 'p14-structure-metrics')
+    assert structure_question['version'] == '2'
+    assert VERIFY[structure_question['id']]['cases'][-1]['expected'][-1] is False
     assert f['path_metrics']([[1,1]],[[1.2,.8]],[1,1])[1] == pytest.approx(0)
 
 
@@ -135,6 +144,29 @@ sparse:sparseFit(.01,0), closed:structureView('closed',.2,3).series[0].points}))
     assert web['sparse']['active'] == active
     for _,amount in web['closed']:
         assert amount == pytest.approx(2)
+
+
+def test_euler_counterexample_rejects_old_continuous_tolerance_shortcut(tmp_path):
+    question = next(q for q in QUESTIONS if q['id'] == 'p14-structure-metrics')
+    correct = SOLUTIONS[question['id']]
+    old_check = 'bool(least_transfer >= -1e-10 and least_euler_diagonal >= -1e-10)'
+    step_check = 'bool(np.all(np.eye(matrix.shape[0]) + dt * matrix >= -1e-10))'
+    assert correct.count(step_check) == 1
+    old_source = correct.replace(step_check, old_check)
+    engine = PracticeEngine(tmp_path / 'records')
+    try:
+        result = engine.submit({
+            'exercise_id': question['id'], 'exercise_version': question['version'],
+            'request_id': str(uuid.uuid4()), 'source': old_source, 'mode': 'full'
+        }, 'python')
+        deadline = time.monotonic() + 40
+        while result['state'] != 'FINISHED' and time.monotonic() < deadline:
+            time.sleep(.01)
+            result = engine.get(result['id'])
+        assert result['state'] == 'FINISHED'
+        assert result['verdict'] == 'WA'
+    finally:
+        engine.close()
 
 
 @pytest.mark.parametrize('question', PYTHON, ids=lambda item: item['slug'])

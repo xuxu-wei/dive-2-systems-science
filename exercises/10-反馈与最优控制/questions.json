@@ -685,12 +685,12 @@
   {
     "id": "p10-frequency-delay",
     "slug": "p10-frequency-delay",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.2",
     "lesson_id": "P10-C02-S02",
     "title": "计算回路频率响应",
-    "statement": "开环 L(s)=K e^(−sd)/[(s+1)(τs+1)]。在题给非负角频率计算幅值及主值相角（度，范围(−180,180]；恰在分支端点按 atan2 结果）。",
+    "statement": "开环 L(s)=K e^(−sd)/[(s+1)(τs+1)]，其中 K>0。在题给非负角频率计算幅值及主值相角（度，范围(−180,180]；恰在分支端点按 atan2 结果）。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -704,7 +704,7 @@
       {
         "name": "gain",
         "type": "float",
-        "description": "非负实增益（gain）。",
+        "description": "正实增益（gain）；K=0 时频响相位（phase）不定义。",
         "unit": "1"
       },
       {
@@ -740,9 +740,9 @@
         "unit": "degree"
       }
     ],
-    "contract": "直接以复数（complex number） jω 代入，并乘 exp(−jωd)。不要把主值相角当成自动展开的连续相位（phase）。",
+    "contract": "直接以复数（complex number） jω 代入，并乘 exp(−jωd)。不要把主值相角当成自动展开的连续相位（phase）。 K=0 时幅值为零、相位无定义，不在本题输入（input）范围内。",
     "constraints": [
-      "输入（input）均为有限实数，且 gain≥0、tau>0、omega≥0、delay≥0；只需实现题定模型（model），不外推到真实病人或设备。"
+      "输入（input）均为有限实数，且 gain>0、tau>0、omega≥0、delay≥0；只需实现题定模型（model），不外推到真实病人或设备。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -903,7 +903,7 @@
     "chapter": "10.3",
     "lesson_id": "P10-C03-S01",
     "title": "二维能控矩阵",
-    "statement": "离散或连续二维线性模型（model） x_next=Ax+Bu。计算 [B,AB] 与行列式（determinant）；题目输入（input）数值尺度固定，满秩（rank）以 |det|>1e−10 判定。",
+    "statement": "二维线性系统可以是连续模型（model） x′=Ax+Bu，也可以是离散模型 x_next=Ax+Bu；连续模型的 A 描述变化率，离散模型的 A 描述一步更新。两者都计算代数矩阵（matrix） [B,AB] 及行列式（determinant）；题目输入（input）数值尺度固定，满秩（rank）以 |det|>1e−10 判定。",
     "type": "python",
     "learning_targets": [
       "T2"

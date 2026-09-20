@@ -2307,7 +2307,7 @@
     "chapter": "15.4",
     "lesson_id": "P15-C04-S02",
     "title": "扩散候选的空间取值",
-    "statement": "对给定位置列表和单个时间返回候选 φ=e^{-rt}cos(πx)+s x。",
+    "statement": "对给定位置列表和单个时间返回浓度（concentration）相对均匀背景的候选偏差 φ=e^{-rt}cos(πx)+s x 的数值。以 1 U/V 为数值单位，负值表示低于背景，不是负的绝对浓度。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2349,11 +2349,11 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "各位置的候选浓度（concentration）数值。",
+        "description": "各位置的候选浓度偏差数值；负值表示低于背景。",
         "unit": "U/V"
       }
     ],
-    "contract": "对每个 x 返回 exp(-rate*time)*cos(pi*x)+slope*x。",
+    "contract": "对每个 x 返回 exp(-rate*time)*cos(pi*x)+slope*x。 第一项振幅（amplitude）取 1 U/V；输出（output）是偏差而非绝对浓度。",
     "constraints": [
       "位置位于[0,1]，time≥0，rate≥0。"
     ],
@@ -2363,7 +2363,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例 t=0 且斜率0，值为 [1,0,-1]（中点允许浮点近零）。",
+    "hint": "首例 t=0 且斜率0，偏差数值为 [1,0,-1]；负号表示低于均匀背景。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2392,7 +2392,7 @@
           6.123233995736766e-17,
           -1.0
         ],
-        "explanation": "首例 t=0 且斜率（slope）0，值为 [1,0,-1]（中点允许浮点近零）。"
+        "explanation": "首例 t=0 且斜率（slope）0，浓度偏差数值为 [1,0,-1]（中点允许浮点近零）；末点低于均匀背景 1 U/V。"
       }
     ]
   },

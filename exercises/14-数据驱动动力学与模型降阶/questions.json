@@ -1864,7 +1864,7 @@
   {
     "id": "p14-structure-metrics",
     "slug": "p14-structure-metrics",
-    "version": "1",
+    "version": "2",
     "part": "14",
     "chapter": "14.5",
     "lesson_id": "P14-C05-S01",
@@ -1923,11 +1923,11 @@
       {
         "name": "euler_nonnegative",
         "type": "bool",
-        "description": "非对角元≥−10⁻¹⁰且 Euler 对角元≥−10⁻¹⁰。",
+        "description": "完整一步矩阵 I+dt·A 的每个元素均≥−10⁻¹⁰。",
         "unit": "1"
       }
     ],
-    "contract": "按总量坐标检查列和。euler_nonnegative 只判一步矩阵是否逐项非负；它与 closed_exchange 分别报告。",
+    "contract": "按总量坐标检查列和。closed_exchange 对连续矩阵 A 按题定容差检查；euler_nonnegative 对完整一步矩阵 I+dt·A 的所有元素按同一数值容差检查。两项分别报告；容差只用于浮点判定，不能把 A 的非对角元容差直接用于 dt·A。",
     "constraints": [
       "n≥1，operator 为 n×n 有限矩阵，dt>0。"
     ],
@@ -1937,7 +1937,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例列和为零、非对角元非负，且一步 Euler 的最小对角为0.8；两种布尔检查都成立。",
+    "hint": "首例列和为零、非对角元非负，且一步 Euler 的最小对角为0.8；两种布尔检查都成立。 Euler 标志须检查 I+dt·A 的全部元素，而非只查 A 的非对角元。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,

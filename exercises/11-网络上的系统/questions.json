@@ -2539,7 +2539,7 @@
       },
       {
         "id": "C",
-        "text": "R 高说明所有相位（phase）在本时刻较集中，但不能单独证明长期频率锁定（frequency locking）。"
+        "text": "R 较高表示此刻相位（phase）整体较集中，仍可能有个别振子明显偏离；它不能单独证明长期频率锁定（frequency locking）。"
       },
       {
         "id": "D",
