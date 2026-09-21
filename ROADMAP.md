@@ -339,7 +339,7 @@
 
 2026-09-21 外部科学性审查勘误：核实并修订 7 项局部问题，含 Euler 非负性判题与连续／离散模型解释；题目版本、反例和验证范围见[逐项复核](docs/validation/scientific-review-20260921.md)。阶段交付状态不变。
 
-2026-09-21 独立审查复核：7 项中修订 6 项；粒子重采样的浮点边界按报告作者意见保留原状。判断、题目版本及核验范围见[逐项记录](docs/validation/scientific-review-20260921-independent.md)。阶段交付状态不变。
+2026-09-21 独立审查复核：7 项均已处理；粒子重采样只修内部实现与核验，不增加学习者说明。判断、题目版本及核验范围见[逐项记录](docs/validation/scientific-review-20260921-independent.md)。阶段交付状态不变。
 
 
 <a id="attractor-extension"></a>

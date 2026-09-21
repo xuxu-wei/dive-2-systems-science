@@ -213,6 +213,24 @@ def test_online_prefix_missing_and_particle_degeneracy_are_explicit():
     assert one==two
     assert all(1-1e-9<=value<=100+1e-9 for value in one['ess'])
 
+def test_particle_roundoff_is_handled_by_internal_implementations():
+    arguments={'particles':[-1.,1.],'weights':[.5,.5],
+               'log_likelihoods':[0.,0.],'offset':.9999999999999999}
+    expected=[0,1]
+    for name in ('01-重要性采样与稳定权重','02-粒子传播、退化与重采样'):
+        path=ROOT/'notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波'/f'{name}.ipynb'
+        book=json.loads(path.read_text(encoding='utf-8'))
+        cells=[cell for cell in book['cells'] if cell['cell_type']=='code' and
+               'def particle_update(' in ''.join(cell['source'])]
+        assert len(cells)==1
+        scope={'np':np,'math':math}
+        exec(''.join(cells[0]['source']),scope)
+        assert scope['particle_update'](**arguments)['indices']==expected
+    for question_id in ('p07-particle-resampling','p07-cap-particle'):
+        scope={}
+        exec(SOLUTIONS[question_id],scope)
+        assert scope['solve'](**arguments)[2]==expected
+
 def test_estimation_capstone_four_layers_first_score_and_retry(tmp_path):
     spec=json.loads((BANK/'assessment.json').read_text(encoding='utf-8'))
     assert len(spec['items'])==8 and sum(i['points'] for i in spec['items'])==100
