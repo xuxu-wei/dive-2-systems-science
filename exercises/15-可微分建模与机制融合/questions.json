@@ -2238,7 +2238,7 @@
       {
         "name": "initial",
         "type": "float",
-        "description": "声明的初始总量。",
+        "description": "给定的初始总量。",
         "unit": "U"
       }
     ],

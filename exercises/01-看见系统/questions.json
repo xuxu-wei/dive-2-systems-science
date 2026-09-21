@@ -341,7 +341,7 @@
     "type": "choice",
     "slug": "p01-curve-cause",
     "title": "一条下降曲线说明什么",
-    "statement": "人工所追踪物质总量（tracked amount）序列（time series）在 0、1、2 T 为 10、8、6 U。我们尚未测量输入（input）和输出。以下哪些判断成立？",
+    "statement": "人工所追踪物质总量（tracked amount）序列（time series）在 0、1、2 T 为 10、8、6 U。已知数据中没有输入（input）和输出的记录。以下哪些判断成立？",
     "multiple": true,
     "options": [
       {
@@ -2001,7 +2001,7 @@
     "type": "python",
     "slug": "p01-cap-count",
     "title": "计数中的移动与新增",
-    "statement": "给定视野起始细胞数，每段已累计的进入、离开和分裂净新增数。一次一变二的分裂只净增加一个细胞。返回可见数量轨迹（trajectory），不把新增误记为进入。",
+    "statement": "给定视野起始细胞数，每段已累计的进入、离开和分裂净新增数。一次一变二的分裂只净增加一个细胞。分别计入这三项，返回可见数量轨迹（trajectory）。",
     "parameters": [
       {
         "name": "initial",

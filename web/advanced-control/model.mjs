@@ -13,7 +13,7 @@ export function feedbackView(limit,x0,kind='energy'){
   return {series:[line('当前执行上限',pink,path(limit)),line('未触及限幅',blue,path(100))],
    stats:[['请求输入 / U/T',round(actual.requested)],['实际输入 / U/T',round(actual.actual)],['当前 V 导数 / U²/T',round(vdot)]],
    condition:`初态 ${round(x0)} U；上限 ${round(limit)} U/T；12 步、每步 0.02 T。`,
-   finding:'这只是当前初值的有限 Euler 轨迹；未限幅的能量证明不能直接转给限幅执行器。'};
+   finding:'轨迹按当前初值用 Euler 计算；切换到能量导数，可检查限幅后哪些状态仍朝内运动。'};
  }
  const xs=Array.from({length:61},(_,i)=>i/30),cap=xs.map(x=>[x,x*feedback(x,limit).rate]),free=xs.map(x=>[x,x*feedback(x,100).rate]);
  return {series:[line('实际限幅后的 V 导数',pink,cap),line('未触及限幅的 V 导数',blue,free),line('当前状态',green,[[x0,vdot]],true)],
@@ -31,7 +31,7 @@ export function robustView(alpha,p,kind='inside'){
  return {series:[line('仿射区间内的最大导数特征值',blue,rows),line(kind==='outside'?'集合外矩阵':'当前区间参数',pink,[[kind==='outside'?1.15:alpha,selected]],true)],
   stats:[['P 最小特征值',round(Math.min(p,1))],['两顶点最大裕度',round(Math.max(margin(A0,p),margin(A1,p)))],['当前矩阵最大裕度',round(selected)]],
   condition:kind==='outside'?`P=diag(${round(p)},1)；粉点 α=1.15 仅作集合外反例，不是该仿射式的外推。`:`A(α)=(1−α)A₀+αA₁；α=${round(alpha)}；P=diag(${round(p)},1)。`,
-  finding:kind==='outside'?'共同证书只覆盖已声明的凸包；外部矩阵可失稳，不能反过来推翻区间内证明。':'必须同用一个 P 且两个顶点严格负定，才能把结论覆盖到整个仿射区间。'};
+  finding:kind==='outside'?'集合外矩阵具有不同的动态；返回凸包内，比较共同证书覆盖的范围。':'必须同用一个 P 且两个顶点严格负定，才能把结论覆盖到整个仿射区间。'};
 }
 
 export function adaptiveView(forget,limit,kind='estimate'){
@@ -73,7 +73,7 @@ export function stochasticView(a,sigma,kind='variance',options={}){
  return {series:[line('连续方程理论结果',blue,analytic),line('当前离散更新理论结果',green,discrete),line(kind==='mean'?'有限重复的样本均值':'有限重复的样本方差',pink,empirical)],
   stats:[['终点连续理论 / '+unit,round(analytic.at(-1)[1])],['终点离散理论 / '+unit,round(discrete.at(-1)[1])],['终点模拟 / '+unit,round(empirical.at(-1)[1])],['重复路径',count],['实际步长 / T',round(h,4)]],
   condition:`稳态偏差 X：dX=−${round(a)}Xdt+${round(sigma)}dW；初始偏差 +1 U；固定终点 2 T、${steps} 步、${count} 条路径。`,
-  finding:'增加重复次数通常会减小抽样波动，但一次固定种子结果不保证逐次更接近理论；它不能消除离散理论与连续理论之间的步长偏差，再缩小步长检查后者。'};
+  finding:'增加重复次数可减小模拟均值的抽样波动；连续理论与离散理论之间的距离由步长决定，再缩小步长比较。'};
 }
 
 export function consensusView(h,delay,kind='states'){
@@ -83,7 +83,7 @@ export function consensusView(h,delay,kind='states'){
   [line('节点0',blue,rows.map((r,i)=>[i,r[0]])),line('节点1',pink,rows.map((r,i)=>[i,r[1]])),line('节点2',green,rows.map((r,i)=>[i,r[2]]))];
  return {series,stats:[['初始均值 / U',round(4/3)],['终点总和 / U',round(rows.at(-1).reduce((s,x)=>s+x,0))],['终点最大差 / U',round(Math.max(...rows.at(-1))-Math.min(...rows.at(-1)))]],
   condition:`三节点无向路径；初态 [0,4,0] U；h=${round(h)} T；延迟 ${delay} 步；18 步。`,
-  finding:delay===0?'无延迟时可用拉普拉斯谱界分析；总和守恒仍不自动说明给定步长收敛。':'延迟改变特征根。总和守恒与各节点达到一致是两件事，有限曲线不是完整稳定性证明。'};
+  finding:delay===0?'无延迟时可用拉普拉斯谱界分析；总和守恒仍不自动说明给定步长收敛。':'延迟改变特征根；比较节点差距与总和，可以分别观察收敛和守恒。'};
 }
 
 export function learningView(alpha,gamma,kind='q'){

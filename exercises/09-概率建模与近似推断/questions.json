@@ -263,7 +263,7 @@
     "chapter": "9.1",
     "lesson_id": "P09-C01-S02",
     "title": "检查局部近似能否成立",
-    "statement": "独立事件（event）计数服从Poisson(kE)，正参数（parameter）k有Gamma(a,b)先验（prior），b采用率参数化。计算内点模态（mode）及局部曲率；不把边界当作内点。",
+    "statement": "独立事件（event）计数服从Poisson(kE)，正参数（parameter）k有Gamma(a,b)先验（prior），b采用率参数化。计算内点模态（mode）及局部曲率，并按规则处理边界情形。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1152,7 +1152,7 @@
     "options": [
       {
         "id": "A",
-        "text": "用相同目标和声明的密度评估预算。"
+        "text": "使用相同目标和事先固定的密度评估预算。"
       },
       {
         "id": "B",
@@ -2934,7 +2934,7 @@
     "chapter": "9.summary",
     "lesson_id": "P09-SUMMARY",
     "title": "后验局部近似与边界",
-    "statement": "独立事件（event）计数服从Poisson(kE)，正参数（parameter）k有Gamma(a,b)先验（prior），b采用率参数化。计算内点模态（mode）及局部曲率；不把边界当作内点。",
+    "statement": "独立事件（event）计数服从Poisson(kE)，正参数（parameter）k有Gamma(a,b)先验（prior），b采用率参数化。计算内点模态（mode）及局部曲率，并按规则处理边界情形。",
     "type": "python",
     "learning_targets": [
       "T1"

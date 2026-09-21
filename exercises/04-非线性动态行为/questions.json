@@ -4714,7 +4714,7 @@
     "chapter": "4.summary",
     "title": "有界性与函数导数的双重核对",
     "type": "python",
-    "statement": "给定 Lorenz 参数（parameter）与状态（state），以同一个 W 分别计算链式导数（derivative）和配方导数，给出正 c 与 C。根据不等式可以约束范围，不把它说成平衡（equilibrium）稳定证明。",
+    "statement": "给定 Lorenz 参数（parameter）与状态（state），以同一个 W 分别计算链式导数（derivative）和配方导数，给出正 c 与 C。这些量可用于估计轨迹（trajectory）可达范围的上界。",
     "learning_targets": [
       "T4"
     ],

@@ -45,7 +45,7 @@ function draw(time){
   $('value').textContent=fmt(value)+(isStock?' U':' °C');
   $('play-counter').textContent=$('time-readout').textContent+' · '+$('value').textContent;
   $('observation').textContent=isStock?`累计流入 ${fmt(params.inflow*time)} U，累计流出 ${fmt(params.outflow*time)} U。`: `截至此步最大绝对偏差 ${fmt(describe(path.slice(0,index+1)).maxAbs)} °C；转向 ${describe(path.slice(0,index+1)).turns} 次。`;
-  $('model-warning').hidden=!(isStock&&value<0);$('model-warning').textContent='原规则出现负总量：固定流出无法按该假设持续。曲线保留失败值；不能裁剪为零后仍声称原账目守恒。';
+  $('model-warning').hidden=!(isStock&&value<0);$('model-warning').textContent='固定流出使总量耗尽后继续下降。缩短观察时段或修改耗尽后的流出规则，再核对收支。';
   const low=Math.min(0,...series.flatMap(s=>s.values)),high=Math.max(1,...series.flatMap(s=>s.values));
   const pad=(high-low)*.12,yMin=low-pad,yMax=high+pad;
   const x=t=>70+t/limit*690,y=v=>315-(v-yMin)/(yMax-yMin)*270;
@@ -70,9 +70,9 @@ async function start(){
   $('question').textContent=isStock?'流率（flow rate）相同，时间加倍后会积累多少？先预测终点，再播放并对照账目。':'先预测：一直读取过去的偏差（deviation），会不会在到达目标之后继续向同一方向修正？';
   $('explanation').textContent=isStock?'存量（stock）是边界内已经拥有的所追踪物质总量（tracked amount），后文简称总量；流量（flow）在此指每单位时间通过的流率。每段流率恒定时，累计量等于流率乘持续时间。':'负反馈（negative feedback）让修正方向抵消所读取的偏差；延迟（delay）决定读取的是多早以前的信息。gain 是每次修正的比例，delay 是读取信息的滞后步数；偏差为负表示低于目标。';
   $('formula').textContent=isStock?'末量 = 初量 + 持续时间 ×（流入速率 − 流出速率）':'新偏差 = 当前偏差 − gain × delay 步以前的偏差';
-  $('assumptions').textContent=isStock?'假设：无内部生成或转化，流入与流出恒定。第 1 段为 0—1 T，第 2 段为 1—3 T；图中按恒定流率计算时刻内的累计量，未使用数值积分。所有数值均为教学选值。':'假设：人工温度规则，初始历史恒定，忽略噪声、外部扰动和执行限幅。蓝线始终即时读取，玫红线使用所选延迟；点之间的连线仅引导阅读。动画速度不改变计算规则，有限轨迹不证明任意长时间行为。';
+  $('assumptions').textContent=isStock?'假设：无内部生成或转化，流入与流出恒定。第 1 段为 0—1 T，第 2 段为 1—3 T；图中累计量由恒定流率乘以经过的时间得到。':'假设：人工温度规则，初始历史恒定，忽略噪声、外部扰动和执行限幅。蓝线始终即时读取，玫红线使用所选延迟；逐步比较两条曲线的转向与偏差大小，观察延迟怎样改变修正过程。';
   $('value-label').textContent=isStock?'边界内的总量':'所选延迟的偏差';
-  $('reading-prompt').textContent=isStock?'在 Notebook 中逐段推导账目，再比较内部交换为什么在总账中抵消。':'在 Notebook 中核对历史索引、手算前几步，再检查转向次数与结论范围。';
+  $('reading-prompt').textContent=isStock?'在 Notebook 中逐段推导账目，再比较内部交换为什么在总账中抵消。':'在 Notebook 中手算前几步，再用转向次数与偏差大小比较反馈过程。';
   if(isStock){slider('initial','初始总量 / U',0,10,.5,5);slider('inflow','流入速率 / (U/T)',0,6,.5,3);slider('outflow','流出速率 / (U/T)',0,6,.5,1);}
   else{slider('initial','初始历史偏差 / °C',-3,3,.5,2);slider('gain','调节比例 gain',0,1,.05,.5);slider('delay','信息延迟 / 步',0,2,1,2);}
   recompute();

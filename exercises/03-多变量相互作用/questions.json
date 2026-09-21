@@ -304,7 +304,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "不把投影的两个分量相加当作投影；返回的是二维向量。",
+    "hint": "按两个坐标分别计算投影，返回二维向量。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,

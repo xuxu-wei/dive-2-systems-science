@@ -33,7 +33,7 @@ export function lifted(initialX,steps,kind){
  const label={drop:'人为删项（不重拟合）',short:'两项字典重拟合',full:'三项字典重拟合'}[kind];
  return {series:[{label:'真实 y',color:'#008bfb',points:exact},{label,color:'#ff0051',points:prediction}],
   stats:[['最终真实 y / U',round(exact.at(-1)[1])],['最终预测 y / U',round(prediction.at(-1)[1])],['末步绝对误差 / U',round(Math.abs(exact.at(-1)[1]-prediction.at(-1)[1]))],['y 更新系数',operator[1].map(value=>round(value)).join(' / ')]],
-  finding:kind==='full'?'在这个专门构造的三角映射中，[x,y,x²] 恰好闭合，留出轨迹可精确重建。':kind==='short'?'删去平方项后，训练数据会让剩余系数重新分担它的作用；新初值预测仍可能偏离。':'这里只把已知公式中的平方项直接删除，未使用训练数据重调系数；它不是短字典 EDMD 拟合。',
+  finding:kind==='full'?'在这个专门构造的三角映射中，[x,y,x²] 恰好闭合，留出轨迹可精确重建。':kind==='short'?'删去平方项后，训练数据会让剩余系数重新分担它的作用；新初值预测仍可能偏离。':'删去平方项后，预测按 y⁺=0.7y 衰减，少了 0.4x² 的贡献。切换到重拟合，观察剩余系数如何调整。',
   condition:`共同训练集：x=0.2、0.5、0.8、1 U，各配 y=−0.2、0.2 U；留出初值 x=${round(initialX)} U、y=0.1 U；${label}；观察 ${steps} 步。`};
 }
 

@@ -2857,7 +2857,7 @@
     "lesson_id": "P02-SUMMARY",
     "slug": "p02-cap-feasible-plans",
     "title": "迁移到带过程上限的方案筛选",
-    "statement": "沿用一阶清除模型（model） dA/dt=u−kA，现要求候选方案同时满足指定总输入（input）、输入速率上限和全程所追踪物质总量（tracked amount）上限。每个方案独立从 A0 开始，返回所有满足要求的方案索引。参数（parameter）仅用于人工教学实验。",
+    "statement": "沿用一阶清除模型（model） dA/dt=u−kA，现要求候选方案同时满足指定总输入（input）、输入速率上限和全程所追踪物质总量（tracked amount）上限。每个方案独立从 A0 开始，返回所有满足要求的方案索引。",
     "part": "2",
     "chapter": "2.summary",
     "learning_targets": [

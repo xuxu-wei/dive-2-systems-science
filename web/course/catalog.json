@@ -12,11 +12,11 @@
           "goals": "把“为什么会变化”改写成含观察对象、时间范围与可测量结果的问题；说明状态（state）与观测（observation）的区别。",
           "prerequisites": "入口；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
           "knowledge": [
-            "以物质清除和体温变化比较系统边界（system boundary）",
+            "以物质清除和体温变化比较系统边界",
             "建立变量、单位、输入（input）、参数（parameter）与观测表",
             "读取短序列，绘图并解释坐标、尺度和缺失的机制信息"
           ],
-          "focus": "变量不能只写符号而不写含义与单位；换单位后的同一时刻必须对应同一总量；问题卡应包含一个能由观测反驳的预期。",
+          "focus": "围绕具体问题选择系统边界（system boundary）；区分要描述的状态和仪器读数，把数值与单位一起解释。",
           "available": true,
           "lessons": [
             {
@@ -102,10 +102,10 @@
           "prerequisites": "1.1；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
           "knowledge": [
             "容器与箭头表示“多少”和“多快”",
-            "按时间段手算收支（mass balance），再用循环累计",
-            "通过单位、边界与总量定位错误，不提前形式化差分方程（difference equation）"
+            "按时间段手算收支，再用循环累计",
+            "通过单位、边界与总量定位收支错误"
           ],
-          "focus": "对应练习 两段末应为 7 U、11 U；对应练习 整体净增应为 1 U。出现负存量时检查规则及条件，不能直接裁剪后宣称守恒。",
+          "focus": "用流率乘以时长计算累计量；先确定边界，再看内部交换怎样在整体收支（mass balance）中相消。",
           "available": true,
           "lessons": [
             {
@@ -194,7 +194,7 @@
             "比较增强与抵消偏差的回路",
             "用给定人工调节规则观察即时、延迟以及局部与整体响应"
           ],
-          "focus": "检查环路方向是否由各边关系推出；延迟对照必须使用相同初值（initial condition）、增益（gain）与观察长度；有限轨迹（trajectory）只支持该规则下的观察，不作为普遍稳定性结论。",
+          "focus": "由各环节的作用方向判断反馈符号；比较延迟和调节强度怎样共同改变响应。",
           "available": true,
           "lessons": [
             {
@@ -286,10 +286,10 @@
           "prerequisites": "1.3；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
           "knowledge": [
             "把文字机制转为给定的计算规则",
-            "区分初值（initial condition）、参数、结构和观测设置",
+            "区分初值、参数、结构和观测设置",
             "形成“预测—对照—核验—限制”的实验记录"
           ],
-          "focus": "对应练习 第三段末分别为 7 U、7.29 U；实验须保留事前预测，结论只能覆盖所比较规则与参数。",
+          "focus": "区分初值（initial condition）、参数和规则的改变；选择能拉开两种预测的实验，并用新观测检验预测。",
           "available": true,
           "lessons": [
             {
@@ -379,7 +379,7 @@
         "knowledge": [
           "视野计数 → 选择边界与生成项",
           "温度调节 → 核对反馈（feedback）与旁路",
-          "清除比较 → 保留独立预测和限制"
+          "清除比较 → 用新观测（observation）检验预测"
         ],
         "lessons": [
           {
@@ -397,7 +397,7 @@
               "knowledge": [
                 "视野计数 → 选择边界与生成项",
                 "温度调节 → 核对反馈（feedback）与旁路",
-                "清除比较 → 保留独立预测和限制"
+                "清除比较 → 用新观测检验预测"
               ]
             },
             "questions": [
@@ -473,7 +473,7 @@
             "有限等比和与固定点",
             "让实际时间间隔进入收支更新"
           ],
-          "focus": "以有限等比和和展开的加权输入（input）和独立核验递推；覆盖零步数、零清除、零输入和平衡（equilibrium）初值（initial condition）。改变 h 时，每步输入量和清除比例都随之改变。",
+          "focus": "连接逐段收支、递推和固定点；辨认每步保留比例与每单位时间消除系数的区别。",
           "available": true,
           "lessons": [
             {
@@ -562,7 +562,7 @@
             "从矩形累积到定积分",
             "指数、自然对数（natural logarithm）与链式法则"
           ],
-          "focus": "差商为 2t+h；左端和以等差求和独立检查，积分为 b²−a²；指数导数包含 −k。数值证据不替代极限定义，输入（input）积分也不自动等于终点存量（stock）。",
+          "focus": "从平均变化率走向瞬时变化率，从小段累积走向积分；用单位和图形连接导数与积分。",
           "available": true,
           "lessons": [
             {
@@ -683,11 +683,11 @@
           "goals": "推导 dA/dt=u−kA 的恒定输入（input）解，检查初值（initial condition）、方程与边界；区分平衡（equilibrium）位置、特征时间（characteristic time）、偏离半衰时间与无输入时的总量半衰期（half-life）。",
           "prerequisites": "2.2；导数（derivative）、定积分（definite integral）、指数/对数和链式法则（chain rule）。分离变量与初值问题（initial value problem）在本章引入。",
           "knowledge": [
-            "从收支（mass balance）率到初值问题",
+            "从收支率到初值问题",
             "分离变量、偏离平衡与解析解（analytical solution）",
             "比较平衡位置、到达比例与靠近速度"
           ],
-          "focus": "用初值、导数残差（residual）和高精度指数计算检查；k=0 单独返回 A0+ut，小 k 用 expm1(z)/z 的连续极限（limit）避免相减损失与 u/k 中间溢出。到达比例使用 −log(1−f)/k，条件为 k>0、0≤f<1、从零起步且 u>0。",
+          "focus": "从收支（mass balance）推导一阶方程及其解；分别解释平衡位置、接近平衡的时间尺度（time scale）和初值的作用。",
           "available": true,
           "lessons": [
             {
@@ -776,7 +776,7 @@
             "稳定性与非负性不是一回事",
             "在输入跳变处分段计算"
           ],
-          "focus": "误差采用各自网格的最大绝对误差（maximum absolute error），细化时保持问题与观察终点一致；k>0 时 0<kh<2 才严格渐近稳定，0≤kh≤1 才保证任意非负初值（initial condition）/输入的非负性。最后一小步使用实际时长，不能继续套名义 h。",
+          "focus": "分别检查精度、稳定性和非负性；用解析解与网格细化比较误差，在输入跳变处对齐时间步。",
           "available": true,
           "lessons": [
             {
@@ -920,7 +920,7 @@
         "knowledge": [
           "共同条件与等面积 → 公平比较",
           "跳变对齐网格 → 独立参考",
-          "峰值、终值与误差 → 限定模型结论"
+          "峰值、终值与误差 → 比较输入时序的影响"
         ],
         "lessons": [
           {
@@ -938,7 +938,7 @@
               "knowledge": [
                 "共同条件与等面积 → 公平比较",
                 "跳变对齐网格 → 独立参考",
-                "峰值、终值与误差 → 限定模型结论"
+                "峰值、终值与误差 → 比较输入时序的影响"
               ]
             },
             "questions": [
@@ -1014,7 +1014,7 @@
             "数组（array）、矩阵乘法（matrix multiplication）与线性映射（linear map）",
             "内积与投影（projection）直觉、秩、平衡方程及唯一性"
           ],
-          "focus": "对应练习 初始变化率为 (−1.2, 1.2) U/T；封闭系统的平衡（equilibrium）要结合初始总量确定，不能把奇异矩阵强行求逆。",
+          "focus": "把分室收支写成向量与矩阵；用方向、秩和方程组理解耦合与平衡（equilibrium）。",
           "available": true,
           "lessons": [
             {
@@ -1142,10 +1142,10 @@
           "prerequisites": "3.1 的向量（vector）、矩阵乘法（matrix multiplication）与线性方程组（system of linear equations），以及第 2 篇的指数衰减。",
           "knowledge": [
             "状态空间（state space）和不同观测（observation）映射",
-            "特征向量（eigenvector）、矩阵（matrix）幂与矩阵指数",
+            "特征向量（eigenvector）、矩阵（matrix）幂与矩阵指数（matrix exponential）",
             "快慢模态、复数（complex number）与阻尼振荡（damped oscillation），说明不可对角化情况的处理边界"
           ],
-          "focus": "对应练习 特征值为 −1 ± 2i；模态重建与矩阵指数（matrix exponential）参考一致；状态负值在偏差模型（model）与总量模型中含义不同。",
+          "focus": "区分状态、输入和输出；把共同变化与分配变化分解为模态，连接特征值与时间尺度。",
           "available": true,
           "lessons": [
             {
@@ -1282,7 +1282,7 @@
             "方向场、相轨迹（phase trajectory）和平衡",
             "比较不同耦合与初值下的时间图和相图"
           ],
-          "focus": "对应练习 保持轨迹的几何路径但改变时间参数（parameter）化；方向箭头的缩放方式需写明，不能仅靠箭头长度比较速度。",
+          "focus": "联合阅读相平面（phase plane）箭头、轨迹和时间标记；解释守恒约束如何影响平衡与运动方向。",
           "available": true,
           "lessons": [
             {
@@ -1371,7 +1371,7 @@
             "Taylor 展开与 Jacobian",
             "在二室模型中加入饱和清除，比较局部近似与原模型"
           ],
-          "focus": "导数应为 vK/(K + A)²；线性化（linearization）围绕偏差变量书写；不把有限差分（finite difference）一致性当作原模型（model）长期准确性的证明。",
+          "focus": "用偏导构建局部近似；比较近远扰动下的模型（model）差异，并把它与数值误差（numerical error）分开。",
           "available": true,
           "lessons": [
             {
@@ -1568,7 +1568,7 @@
             "初值扫描和扰动跨越边界",
             "新增概念桥接：状态空间（state space）中的轨迹（trajectory）、不变集、吸引子与吸引域，以点和圆的距离例子为下一章准备"
           ],
-          "focus": "无偏置时平衡为 −1、0、1；非零稳定点两侧的方向与局部导数应一致；初值网格只提供边界的数值近似。",
+          "focus": "区分平衡、稳定与吸引；用不同初值探索吸引域，用点到集合的距离理解吸引子。",
           "available": true,
           "lessons": [
             {
@@ -1699,7 +1699,7 @@
             "引入一个简化自激振子及其变量",
             "用相图（phase portrait）与周期测量辨认长期行为"
           ],
-          "focus": "周期测量方法、峰值筛选及暂态窗口需明确；三组初值的数值趋同不替代极限环（limit cycle）存在性的数学证明。",
+          "focus": "比较衰减振荡、外部驱动和自维持振荡（self-sustained oscillation）；从多初值轨迹（trajectory）辨认周期、振幅与极限环（limit cycle）。",
           "available": true,
           "lessons": [
             {
@@ -1794,7 +1794,7 @@
             "开关和振子的参数扫描",
             "正反扫描、步长细化及暂态检查"
           ],
-          "focus": "分支标记需有平衡分析或局部证据；转变位置报告分辨率和未解决的不确定性，不能声称扫描得到精确阈值。",
+          "focus": "追踪平衡和周期轨道随参数的变化；区分分岔（bifurcation）、滞回（hysteresis）与短暂响应。",
           "available": true,
           "lessons": [
             {
@@ -1895,7 +1895,7 @@
             "邻近轨迹及有限时间增长率",
             "有限精度、饱和分离和预测阈值，说明与连续 ODE 的差别"
           ],
-          "focus": "有限时间增长率仅作为指定轨迹（trajectory）与窗口下的数值证据；不得引入尚未学习的随机统计结论来证明混沌（chaos）。",
+          "focus": "比较相邻初值的分离和预测窗口；联系局部伸缩、长期轨迹（trajectory）与数值精度。",
           "available": true,
           "lessons": [
             {
@@ -2032,7 +2032,7 @@
             "多变量链式法则计算沿轨迹导数",
             "检查条件和区域，区分 Lyapunov 函数（Lyapunov function）与 Lyapunov 指数（Lyapunov exponent）"
           ],
-          "focus": "对应练习 的严格负导数区域为 0 < |x| < 1；区分解析符号判断与网格采样（sampling），后者不能证明区域内处处成立。",
+          "focus": "构造能量式指标，检查其正定性与沿轨迹的变化；由下降条件判断稳定与收敛。",
           "available": true,
           "lessons": [
             {
@@ -2130,7 +2130,7 @@
             "定向截面、返回关系、分段切向增长率与奇异几何",
             "汇总解析、数值与引用定理的证据边界，对照稳态、周期与混沌"
           ],
-          "focus": "以平衡残差（residual）、对称关系、沿轨迹导数恒等式及解析线性方程验证实现；短时间窗比较积分器和步长，长时间比较限定的几何与时间摘要，不要求混沌轨迹长时逐点重合。单次正增长率、蝴蝶形图像、负散度（divergence）均不能独自证明奇异吸引子存在。",
+          "focus": "从平衡、对称性和有界性理解洛伦兹轨迹；用截面与切向扰动连接几何结构和敏感性。",
           "available": true,
           "lessons": [
             {
@@ -2298,13 +2298,13 @@
         "assessment": true,
         "title": "非线性行为与证据边界",
         "url": "/parts/04-非线性动态行为/综合练习/",
-        "goals": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，限定稳定性与混沌（chaos）结论。",
+        "goals": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，解释这些证据各自对应的动态行为。",
         "prerequisites": "本篇六章。",
         "focus": "集合与单轨迹（trajectory）、定向事件（event）与投影（projection）、每步与每时间增长、有界性与平衡（equilibrium）稳定分别核对。",
         "knowledge": [
           "不变集（invariant set）合与初值（initial condition） → 多稳态（multistability）、周期和吸引域（basin of attraction）",
           "分岔（bifurcation）、映射与连续流 → 返回和预测范围",
-          "函数导数（derivative）与独立误差对照 → 有界性和结论边界"
+          "函数导数（derivative）与误差对照 → 理解有界性与稳定性"
         ],
         "lessons": [
           {
@@ -2312,17 +2312,17 @@
             "chapter_id": "4.summary",
             "path": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb",
             "title": "非线性行为与证据边界",
-            "outcome": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，限定稳定性与混沌结论。",
+            "outcome": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，解释这些证据各自对应的动态行为。",
             "number": "篇末综合",
             "visualization": null,
             "overview": {
-              "goals": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，限定稳定性与混沌结论。",
+              "goals": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，解释这些证据各自对应的动态行为。",
               "prerequisites": "本篇六章。",
               "focus": "集合与单轨迹、定向事件与投影、每步与每时间增长、有界性与平衡稳定分别核对。",
               "knowledge": [
                 "不变集合与初值 → 多稳态、周期和吸引域",
                 "分岔、映射与连续流 → 返回和预测范围",
-                "函数导数与独立误差对照 → 有界性和结论边界"
+                "函数导数与误差对照 → 理解有界性与稳定性"
               ]
             },
             "questions": [
@@ -2398,7 +2398,7 @@
             "离散、连续分布及概率密度（probability density）",
             "抽样、实验种子与 Monte Carlo 重复"
           ],
-          "focus": "频率落在 [0, 1]，分布总概率（probability）为 1；记录种子列表或确定的派生方式，不把重复使用同一随机序列称为独立重复。",
+          "focus": "把一次结果与重复频率分开；从事件和随机变量建立概率（probability）描述，观察样本量对波动的影响。",
           "available": true,
           "lessons": [
             {
@@ -2484,10 +2484,10 @@
           "prerequisites": "5.1 的概率分布（probability distribution）与重复、第 3.1 章的向量（vector）矩阵（matrix）。期望（expectation）、方差、协方差与高斯分布在本章首次推导。",
           "knowledge": [
             "从样本摘要走向期望与方差",
-            "联合分布、协方差及相关性",
-            "状态（state）更新噪声、观测（observation）噪声和固定个体参数差异"
+            "联合分布（distribution）、协方差及相关性",
+            "状态（state）更新噪声、观测（observation）噪声和固定个体参数（parameter）差异"
           ],
-          "focus": "对应练习 方差为 0.04、0.0656；重复样本误差需与理论量区分，经验分位带只是样本分布（distribution）摘要，不能未经说明称为参数（parameter）置信区间（confidence interval）。",
+          "focus": "用均值、方差和协方差描述变化；区分个体差异、过程噪声（process noise）与测量噪声（measurement noise）。",
           "available": true,
           "lessons": [
             {
@@ -2620,11 +2620,11 @@
           "goals": "区分先验（prior）、似然（likelihood）和后验（posterior），计算离散与简单高斯更新，并说明条件独立（conditional independence）假设。",
           "prerequisites": "5.2 的联合表、期望（expectation）、方差（variance）与高斯密度。条件概率（conditional probability）、Bayes 公式与平方配方更新在本章引入。",
           "knowledge": [
-            "二维概率表与条件概率",
+            "二维概率（probability）表与条件概率",
             "Bayes 公式与归一化",
             "重复观测（observation）、Gaussian 均值和方差更新，衔接未来状态（state）估计"
           ],
-          "focus": "对应练习 后验为 9/13；概率（probability）归一，Gaussian 方差保持非负；“多次输入（input）同一数据”不等于增加独立信息。",
+          "focus": "由先验和读数的似然更新后验；跟踪归一化与条件独立性在计算中的作用。",
           "available": true,
           "lessons": [
             {
@@ -2719,7 +2719,7 @@
             "转移矩阵（transition matrix）及分布递推",
             "长期分布、吸收状态与随机游走（random walk），给出不收敛反例"
           ],
-          "focus": "对应练习 不变分布（invariant distribution）为 (1/3, 2/3)，前两步为 (0.8, 0.2)、(0.66, 0.34)；矩阵（matrix）行和、概率（probability）非负性（nonnegativity）与随机误差分别检查。",
+          "focus": "分别演算一条路径和状态分布；用吸收与交替案例区分不变分布（invariant distribution）、唯一性和长期收敛。",
           "available": true,
           "lessons": [
             {
@@ -2843,14 +2843,14 @@
           "id": "5.5",
           "title": "熵、互信息与测量价值",
           "url": "/chapters/05-05-熵、互信息与测量价值/",
-          "goals": "明确本章“测量价值”仅指给定概率（probability）模型（model）与观测（observation）编码下的信息量，不等同于临床、决策或经济效用，也不等同于因果作用或干预收益；从离散概率计算熵（entropy）与互信息（mutual information），说明单位、样本偏差及因果解释的边界。",
+          "goals": "用熵（entropy）和互信息（mutual information）计算读数带来的平均不确定性减少，解释信息单位、样本偏差及信息与决策用途的区别。",
           "prerequisites": "5.3—5.4 的联合/条件概率（conditional probability）与分布（distribution）、5.2 的期望（expectation），以及第 2 篇的对数。信息量、熵与互信息在本章引入。",
           "knowledge": [
             "信息量、熵与对数底",
             "条件熵（conditional entropy）和互信息",
-            "分箱、有限样本和观测通道比较"
+            "分箱、有限样本和观测（observation）通道比较"
           ],
-          "focus": "对应练习 熵为 1 bit，互信息分别为 1、0 bit；处理零概率项，区分离散熵与连续变量分箱（binning）后的量。",
+          "focus": "用熵描述不确定性，用互信息衡量读数带来的平均减少；通过分箱（binning）与重复实验理解估计偏差。",
           "available": true,
           "lessons": [
             {
@@ -3042,11 +3042,11 @@
           "goals": "区分模型（model）时间步长（time step）、采样（sampling）间隔与滤波窗口，识别混叠（aliasing）和滤波延迟（delay）。",
           "prerequisites": "5.2、2.4；数学：递推、有限求和和固定点（fixed point）代数、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布。",
           "knowledge": [
-            "状态（state）到观测（observation）及采样",
+            "状态（state）到观测及采样",
             "用正弦例子观察混叠",
             "移动平均（moving average）、窗口边界和在线/离线差别"
           ],
-          "focus": "对应练习 在给定采样时刻无法区分；滤波效果同时报告噪声变化与时间偏移，禁止在在线任务中悄悄使用未来值。",
+          "focus": "区分模拟步长、观测（observation）间隔与滤波窗口；用相同采样读数识别混叠，观察平滑带来的延迟。",
           "available": true,
           "lessons": [
             {
@@ -3135,7 +3135,7 @@
             "正弦、复指数与 Fourier 表示",
             "频谱、窗长、泄漏及滤波频率响应（frequency response）"
           ],
-          "focus": "对应练习 结果为 [0.5, 1.5, 1, 0]；避免把循环卷积（circular convolution）与线性卷积（linear convolution）混用，不把补零解释为增加独立观测（observation）信息。",
+          "focus": "由叠加得到卷积，由复指数读取幅度与相位；理解记录长度和频率分辨率的关系。",
           "available": true,
           "lessons": [
             {
@@ -3272,7 +3272,7 @@
             "Laplace 变换、必要收敛域直觉及初值项",
             "Z 变换和离散表示，与状态空间（state space）对照"
           ],
-          "focus": "对应练习 因子分别为 exp(−kh) 与 1 − kh；不同离散化不能因使用相同采样（sampling）间隔就被当作同一模型（model）。",
+          "focus": "连接微分方程、差分方程与传递函数；跟踪初值项、采样（sampling）间隔和极点如何决定响应。",
           "available": true,
           "lessons": [
             {
@@ -3370,10 +3370,10 @@
           "prerequisites": "5.3、3.4、6.1；数学：矩阵（matrix）、偏导（partial derivative）、概率（probability）与似然（likelihood）。最小二乘、估计区间及重采样（resampling）在本章首次引入。",
           "knowledge": [
             "线性回归、投影（projection）和秩（rank）",
-            "理想清除参数的拟合与残差",
+            "理想清除参数（parameter）的拟合与残差",
             "重复观测（observation）、参数区间和重采样入门，区分参数不确定性与预测误差"
           ],
-          "focus": "简单线性例子用已知参数（parameter）和代数参考核验；报告区间方法、假设和重复次数，不把区间宽度当作所有模型（model）误差的总和。",
+          "focus": "由残差构造最小二乘目标；解释相对权重、误差假设和重采样区间各自的作用。",
           "available": true,
           "lessons": [
             {
@@ -3506,11 +3506,11 @@
           "goals": "构建简单外源输入自回归模型（autoregressive with exogenous input，ARX），区分拟合、一步预测（one-step-ahead prediction）和自由运行（free-run simulation），比较激励、结构与可辨识范围。",
           "prerequisites": "6.3、6.4；数学：Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点（pole）零点（zero）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门。",
           "knowledge": [
-            "回归量、延迟（delay）与动态模型（model）",
-            "输入激励、结构选择和参数混淆",
+            "回归量、延迟（delay）与动态模型",
+            "输入激励、结构选择和参数（parameter）混淆",
             "时间/个体划分、验证残差、外推与缺失观测（observation）"
           ],
-          "focus": "返回数据划分索引并检查回归矩阵（matrix）的秩（rank）；已知核验参数（parameter）与状态（state）只能在评估时读取，不能作为拟合输入（input）或调参答案。",
+          "focus": "比较一步预测与自由运行；通过输入（input）激励、滞后（lag）结构和预留数据判断模型（model）的预测能力。",
           "available": true,
           "lessons": [
             {
@@ -3651,9 +3651,9 @@
           "knowledge": [
             "由累计信息矩阵和正规方程引入矩阵秩一更新，先推导无遗忘的递推最小二乘（recursive least squares，RLS）",
             "加入遗忘因子、初始正则项和在线时钟，区分先预测后更新与读取未来观测（observation）",
-            "比较固定参数、缓慢漂移与激励不足；区分逆信息矩阵与参数估计协方差"
+            "比较固定参数、缓慢漂移与激励不足；区分逆信息矩阵（inverse information matrix）与参数估计协方差（covariance）"
           ],
-          "focus": "遗忘因子等于 1 时与逐步扩大的正则化（regularization）批量问题比较；小于 1 时与同一初始权重衰减规则的加权问题比较。无正则、固定满秩设计和独立同方差（homoscedasticity）误差下，参数协方差（covariance）为误差方差（variance）乘逆信息矩阵（inverse information matrix）；有限初始正则、遗忘加权或闭环相关误差下须重新推导协方差，不能直接沿用该式。若采用高斯先验（prior）解释初始矩阵，须明确与频率学派协方差的区别；完整后验（posterior）学习留到 9.1。不以跟踪改善替代参数一致性。",
+          "focus": "把批量估计改写成逐步更新；比较遗忘速度、输入（input）激励和参数漂移对跟踪的影响。",
           "available": true,
           "lessons": [
             {
@@ -3851,7 +3851,7 @@
             "通过不同传感器的同输出（output）状态说明信息缺口，构造有限时域能观矩阵",
             "联系隐藏细胞状态与部分观测二室模型，区分随机不确定性、不可观方向和未知参数"
           ],
-          "focus": "小矩阵逐项乘法与完整轨迹（trajectory）对照；秩的数值容差和尺度明确。线性能观性结论限定在给定模型及采样（sampling）下，不保证任意非线性系统可恢复。",
+          "focus": "从观测序列辨认隐藏状态方向；区分状态估计与参数估计，理解能观性和测量位置。",
           "available": true,
           "lessons": [
             {
@@ -3938,9 +3938,9 @@
           "knowledge": [
             "引入隐马尔可夫模型（hidden Markov model，HMM）的状态、转移与发射概率",
             "由边缘化和贝叶斯公式推导预测—更新递推及证据归一化，再写出连续状态积分形式",
-            "实现有限状态的前向滤波，说明缺测和零证据，不提前使用未来观测"
+            "实现有限状态的前向滤波，处理缺测和零证据，按观测到达顺序更新"
           ],
-          "focus": "对短序列独立枚举；检查非负、归一化、全缺测及不可能观测（observation）。只把离散枚举当小模型（model）参照，不宣称解决连续积分。",
+          "focus": "把贝叶斯更新（Bayesian update）与状态转移相接；按时间顺序计算预测分布、观测（observation）似然和后验。",
           "available": true,
           "lessons": [
             {
@@ -4029,7 +4029,7 @@
             "推导线性动态预测、创新协方差、增益（gain）和观测（observation）更新，以线性方程求解代替显式求逆",
             "处理缺测、协方差对称性和噪声设定错误；说明精确性的线性高斯条件"
           ],
-          "focus": "与整段联合高斯的条件分布独立核对；协方差在容差内对称半正定（positive semidefinite）。零噪或奇异输入（input）的契约显式限定，有限重复的覆盖率附不确定性。",
+          "focus": "跟踪均值与协方差的预测和更新；用创新理解测量怎样修正状态（state）估计。",
           "available": true,
           "lessons": [
             {
@@ -4158,9 +4158,9 @@
           "knowledge": [
             "由一阶线性化得到扩展卡尔曼滤波（extended Kalman filter，EKF），保留雅可比求值位置",
             "由确定性采样（sampling）点传播均值与协方差，建立无迹卡尔曼滤波（unscented Kalman filter，UKF）及权重约定",
-            "在同一非线性观测（observation）模型比较近似误差、初值（initial condition）与噪声；用线性退化情形回归检查"
+            "在同一非线性观测模型（model）比较近似误差、初值（initial condition）与噪声；用线性退化情形回归检查"
           ],
-          "focus": "线性模型（model）下两种方法退化为同一高斯更新；非线性情形与网格积分对照，检查求值位置、权重和协方差。无迹方法不保证普遍优于线性化。",
+          "focus": "比较局部线性化与代表点传播；观察非线性观测（observation）对均值、协方差和估计偏差的影响。",
           "available": true,
           "lessons": [
             {
@@ -4255,7 +4255,7 @@
             "建立自助粒子滤波（bootstrap particle filter）的传播、观测（observation）加权和重采样步骤",
             "计算有效样本量（effective sample size，ESS），区分权重退化、样本贫化和模型（model）错误"
           ],
-          "focus": "手算权重与累积概率索引；一维网格和线性高斯极限（limit）提供参照。极小似然用稳定归一化，全部不可能权重按公开契约返回失败状态（state）；不按单次随机准确率判分。",
+          "focus": "用粒子位置与权重表示后验；理解权重退化、有效样本量和重采样的分工。",
           "available": true,
           "lessons": [
             {
@@ -4346,11 +4346,11 @@
           "goals": "区分预测、滤波和平滑，利用后续观测（observation）修正历史状态（state），同时保持在线任务的时间边界。",
           "prerequisites": "7.3、7.5；数学：状态空间（state space）的条件独立（conditional independence）、概率（probability）分解与边缘化、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解。",
           "knowledge": [
-            "在有限隐藏状态模型推导前向—后向平滑",
+            "在有限隐藏状态模型（model）推导前向—后向平滑",
             "推导线性高斯的 Rauch–Tung–Striebel 平滑（Rauch–Tung–Striebel smoother，RTS smoother）与终端条件",
             "比较连续缺测、观测恢复和离线重建；非线性/粒子平滑列为拓展"
           ],
-          "focus": "有限状态枚举全部路径，线性高斯与整段条件分布对照；末端平滑等于末端滤波。只有满足模型（model）假设的相同观测条件下才比较理论协方差关系。",
+          "focus": "区分预测、滤波和平滑所使用的观测；在缺测时继续预测，用后续读数修正历史状态。",
           "available": true,
           "lessons": [
             {
@@ -4536,7 +4536,7 @@
             "引入二次型、海森矩阵、正定性及凸性，区分驻点（stationary point）与最小值",
             "用一维非凸反例解释初值（initial condition）依赖，检查尺度变换是否改变问题含义"
           ],
-          "focus": "解析梯度与中心差分（central difference）对照；正定（positive definite）问题用配方法或线性方程核验，非凸反例包含鞍点或局部极值。先声明对称化和维数约定。",
+          "focus": "用等高线、梯度和曲率理解目标函数；联系局部形状、凸性与最优点。",
           "available": true,
           "lessons": [
             {
@@ -4625,7 +4625,7 @@
             "加入固定步长的稳定范围、回溯线搜索与下降条件",
             "比较条件数（condition number）、尺度和初值（initial condition）对收敛的影响，记录停止原因与计算预算"
           ],
-          "focus": "正定（positive definite）二次问题与精确解、特征方向递推对照；线搜索验收条件独立（conditional independence）重算。不把步数耗尽或数值异常标为收敛。",
+          "focus": "比较梯度法与牛顿方向；用回溯选择步长，结合残差判断是否停止。",
           "available": true,
           "lessons": [
             {
@@ -4752,11 +4752,11 @@
           "goals": "推导二范数（norm）与一范数正则化（regularization）的作用，实现软阈值（soft thresholding）更新并独立选择正则强度。",
           "prerequisites": "8.2、6.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、正则化、非光滑目标、近端更新与软阈值。",
           "knowledge": [
-            "由不稳定回归引入二范数惩罚，区分拟合误差与参数收缩",
+            "由不稳定回归引入二范数惩罚，区分拟合误差与参数（parameter）收缩",
             "从一维绝对值惩罚推导软阈值，再构造近端梯度（proximal gradient）步骤",
             "比较稀疏性、偏差和共线性，正则强度只用训练与验证数据选择"
           ],
-          "focus": "正交（orthogonality）设计用闭式软阈值核验；零惩罚退化为对应无惩罚更新，正则强度与目标归一化配套。变量缩放参数（parameter）只从训练集（training set）得到。",
+          "focus": "比较平方惩罚与绝对值惩罚；由软阈值理解稀疏性，用预留数据选择正则强度。",
           "available": true,
           "lessons": [
             {
@@ -4887,7 +4887,7 @@
             "建立 KKT（Karush–Kuhn–Tucker，卡鲁什—库恩—塔克）条件，说明约束资格及凸性所支持的结论",
             "对小型二次规划检查活动约束、不可行和数值残差，区分软约束与硬约束"
           ],
-          "focus": "小问题用独立枚举核验最优值；对偶间隙只在相应可行条件下解释。求解器状态（state）不替代约束与最优性残差检查。",
+          "focus": "区分可行点与最优点；结合约束方向、乘子和互补条件检查候选解。",
           "available": true,
           "lessons": [
             {
@@ -5069,11 +5069,11 @@
           "goals": "构造参数（parameter）后验（posterior），比较点估计与分布（distribution）估计，并计算高斯共轭和局部后验近似。",
           "prerequisites": "5.3、6.4、7.3、8.2；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验及标量高斯条件更新、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、多元高斯条件分布、块协方差（covariance）与矩阵（matrix）分解、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
           "knowledge": [
-            "从清除参数及个体差异声明似然、先验（prior）与后验，先用可解析模型解释归一化",
+            "从清除参数及个体差异声明似然、先验与后验，先用可解析模型（model）解释归一化",
             "比较极大似然和最大后验估计（maximum a posteriori estimation，MAP），说明先验和参数化的作用",
             "在模态（mode）附近用曲率构造 Laplace 近似（Laplace approximation），说明多峰和边界的限制"
           ],
-          "focus": "共轭模型（model）使用闭式结果，非共轭一维模型使用收敛网格积分；局部曲率须正定（positive definite），点估计不等于后验均值，近似不声称消除模型偏差。",
+          "focus": "连接先验（prior）、似然和参数后验；比较后验峰值、曲率与整个分布的形状。",
           "available": true,
           "lessons": [
             {
@@ -5174,7 +5174,7 @@
             "推导 Metropolis–Hastings 接受率与提议比，给出满足条件的详细平衡核验",
             "比较多链、预热、自相关与有效样本量，区分接受率、混合和有限样本误差"
           ],
-          "focus": "有限状态（state）小例子核验转移矩阵的平稳分布；连续例子与解析/网格矩比较。有效样本量的相关性修正与粒子权重的定义分别说明，有限诊断不能证明遍历性。",
+          "focus": "由接受率构造采样链；用多链、自相关和有效样本量检查探索分布的效率。",
           "available": true,
           "lessons": [
             {
@@ -5273,9 +5273,9 @@
           "knowledge": [
             "由相对熵（Kullback–Leibler divergence，KL divergence）和 Jensen 不等式建立证据下界（evidence lower bound，ELBO）",
             "推导后验距离、证据与下界的恒等式，以及均值场变分推断（mean-field variational inference）的坐标更新",
-            "用显式公式或解析梯度优化小模型，比较近似族、初值（initial condition）和优化误差；自动微分（automatic differentiation，AD）留到 15.1"
+            "用显式公式或解析梯度优化小模型（model），比较近似族、初值（initial condition）和优化误差；自动微分（automatic differentiation，AD）留到 15.1"
           ],
-          "focus": "二维高斯后验用闭式均值、协方差（covariance）和相对熵核验；小模型（model）枚举或网格作另一参照。比较方差（variance）和相关结构，不把任何变分近似概括为必然低估所有不确定性。",
+          "focus": "把分布（distribution）近似转成优化问题；比较均值场因子化带来的计算便利与相关信息损失。",
           "available": true,
           "lessons": [
             {
@@ -5376,7 +5376,7 @@
             "推导期望最大化（expectation–maximization，EM）的条件期望步骤与最大化步骤",
             "用已学平滑连接状态空间（state space）模型（model）的参数学习，说明局部最优、退化解及近似步骤的限制"
           ],
-          "focus": "小样本责任度与直接密度计算对照；固定方差（variance）避免无限似然退化。精确 E/M 步的单调性与近似变体分开，测试标签置换等价。",
+          "focus": "交替计算隐变量责任度与参数更新；区分训练似然的改善、分量退化和预测表现。",
           "available": true,
           "lessons": [
             {
@@ -5473,11 +5473,11 @@
           "goals": "构造后验预测（posterior predictive inference）并评价区间覆盖和模型（model）失配，在独立数据上比较点预测与分布（distribution）预测。",
           "prerequisites": "9.4、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、后验（posterior）归一化、Laplace 局部近似与后验预测积分、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新。",
           "knowledge": [
-            "由参数（parameter）后验积分得到预测分布，区分参数不确定性与观测（observation）/过程随机性",
+            "由参数后验积分得到预测分布，区分参数不确定性与观测/过程随机性",
             "用后验预测检验比较统计特征，明确检查量与目标问题",
             "对齐留出数据、信息和预算，比较预测误差、对数预测分数和覆盖；保留错误机制与范围外条件"
           ],
-          "focus": "总方差公式与共轭预测闭式核验；独立评估集不用于选择检查阈值或调参。有限覆盖率带抽样不确定性，缺失或失败样本不静默剔除。",
+          "focus": "将参数（parameter）不确定性传递到新观测（observation）；用预测区间（prediction interval）、覆盖率和残差检查模型失配。",
           "available": true,
           "lessons": [
             {
@@ -5671,11 +5671,11 @@
           "goals": "从误差构造 P、PI、PID，解释积分累积、微分对噪声的敏感性及执行饱和。",
           "prerequisites": "6.3、4.5；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数和局部适用区域、Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点（pole）零点（zero）。",
           "knowledge": [
-            "设定值、测量、误差和执行输入",
+            "设定值、测量、误差和执行输入（input）",
             "三个控制项及离散实现",
             "跟踪、扰动、饱和与抗积分累积的基本处理"
           ],
-          "focus": "明确离散积分和微分的时间尺度（time scale）；比较结果包含控制代价、超调和稳态表现，裁剪输入（input）后必须按实际输入推进模型（model）。",
+          "focus": "从误差构造比例、积分与微分作用；比较稳态偏差、噪声放大和执行饱和。",
           "available": true,
           "lessons": [
             {
@@ -5764,7 +5764,7 @@
             "定义增益（gain）/相位交叉频率（phase crossover frequency）与相位/增益裕度（gain margin）",
             "复平面轨迹和绕数的必要几何桥接，再应用 Nyquist"
           ],
-          "focus": "必须固定 Nyquist 的计数约定；裕度只支持所声明模型（model）和回路条件，不能替代非线性饱和系统的完整验证。",
+          "focus": "把闭环极点与频率响应（frequency response）联系起来；在回路符号和交叉条件下读取稳定裕度。",
           "available": true,
           "lessons": [
             {
@@ -5853,7 +5853,7 @@
             "能控矩阵和秩",
             "极点配置、状态缩放与输入幅度代价"
           ],
-          "focus": "对应练习 两种秩分别为 2、1；给定数值系统的能控性（controllability）不称结构能控性；任意极点配置与只要求稳定所需的可稳定性（stabilizability）分清。反馈符号、数值容差与尺度须核验。",
+          "focus": "由输入位置判断可达方向；用状态反馈移动极点，区分任意极点配置与稳定化。",
           "available": true,
           "lessons": [
             {
@@ -5939,10 +5939,10 @@
           "prerequisites": "10.3、7.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门。",
           "knowledge": [
             "复用 7.1 的能观性，推导状态观测器的误差动态",
-            "设计观测（observation）器增益（gain）并组合状态反馈，推导输出反馈闭环",
+            "设计观测器增益（gain）并组合状态反馈，推导输出反馈闭环",
             "在无噪线性条件下解释分离设计，再用噪声和饱和检验其限制"
           ],
-          "focus": "对应练习 两种秩分别为 2、1；能观性与较弱的可检测性（detectability）分清。仅在隔离核验中报告已知完整状态（state）误差；反馈只使用估计状态，并核对增广闭环与误差极点（pole），饱和时重新验证。",
+          "focus": "从输出修正状态（state）估计；把观测（observation）误差动态与反馈动态连接起来，分析估计误差的作用。",
           "available": true,
           "lessons": [
             {
@@ -6031,7 +6031,7 @@
             "倒推价值和最优决策",
             "LQR、权重正定（positive definite）条件及有限/无限时域区别"
           ],
-          "focus": "对应练习 最优 u = −x/2、价值为 3x²/2；Riccati 结果与小问题独立计算一致。有限时域计算不能自动推出无限时域稳定化解，须检查可稳定性（stabilizability）、代价可检测性（detectability）等条件；截断输入（input）后不能沿用原无约束最优性结论。",
+          "focus": "从最后一步向前计算价值函数；理解二次代价如何产生随时间变化的最优反馈。",
           "available": true,
           "lessons": [
             {
@@ -6120,7 +6120,7 @@
             "滚动时域及估计接口",
             "软硬约束、不可行、超时和模型误差的处理"
           ],
-          "focus": "不得默认可行性或稳定性；如采用备用控制，必须独立说明其适用域并核验；禁止用未经核验的上次解掩盖求解失败。",
+          "focus": "把预测、约束和代价组成滚动优化；观察可行性、时域长度与执行第一步的关系。",
           "available": true,
           "lessons": [
             {
@@ -6209,7 +6209,7 @@
             "验证集（validation set）调参、独立场景评估",
             "成本、约束、稳健性和运行预算的联合报告"
           ],
-          "focus": "计划以不少于 30 组独立随机场景估计波动，实施时按不确定性和预算调整并记录；方法间共享场景不等于场景之间重复使用同一序列。",
+          "focus": "在相同观测（observation）和约束下比较控制方法；结合跟踪误差、代价和失败情况解释性能。",
           "available": true,
           "lessons": [
             {
@@ -6293,7 +6293,7 @@
         "assessment": true,
         "title": "部分观测下的约束控制",
         "url": "/parts/10-反馈与最优控制/综合练习/",
-        "goals": "控制方案须在声明的信息、执行约束与独立场景下评价。",
+        "goals": "在相同观测（observation）、执行约束与独立场景下，比较控制方案的跟踪、成本与失败。",
         "prerequisites": "本篇10.1—10.7；第7篇估计与第8篇优化。",
         "focus": "时频一致性、能控能观、约束与失败、独立评估。",
         "knowledge": [
@@ -6312,7 +6312,7 @@
             "path": "notebooks/10-反馈与最优控制/08-篇末综合/01-部分观测下的约束控制.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "控制方案须在声明的信息、执行约束与独立场景下评价。",
+              "goals": "在相同观测、执行约束与独立场景下，比较控制方案的跟踪、成本与失败。",
               "prerequisites": "本篇10.1—10.7；第7篇估计与第8篇优化。",
               "focus": "时频一致性、能控能观、约束与失败、独立评估。",
               "knowledge": [
@@ -6395,7 +6395,7 @@
             "度、连通性、社区和图拉普拉斯的基础定义",
             "随机图、规则图与重连图，讨论度分布证据"
           ],
-          "focus": "无向简单图的度和等于两倍边数；图的绘制位置不默认具有空间含义；不凭双对数直线宣布幂律。",
+          "focus": "从邻接关系计算度、路径与连通分量；用规则环和重连对照理解网络结构的变化。",
           "available": true,
           "lessons": [
             {
@@ -6484,7 +6484,7 @@
             "物理边系数 g 的单位为 V/T，等容积时 k=g/V₀",
             "拉普拉斯零模态、连通性与趋近速度"
           ],
-          "focus": "无外部输入（input）输出（output）时检查总量守恒；Euler 非负步长只由加权度大于 0 的节点限制，孤立节点不限制；谱关系只用于满足假设的算子。",
+          "focus": "从逐边交换推导拉普拉斯动态；连接总量守恒、容积差异和连通分量内的平衡。",
           "available": true,
           "lessons": [
             {
@@ -6573,7 +6573,7 @@
             "平均混合与固定网络",
             "结构、初始节点与干预的对照，区分单次灭绝和平均传播规模"
           ],
-          "focus": "总个体数、状态合法性和更新规则一致；建议至少 20 个网络实现、每图 30 次动态重复，实际数量由预算与不确定性检查确定并写明。",
+          "focus": "逐步理解同步感染与恢复；分别改变网络和传播起点，比较多次传播结果。",
           "available": true,
           "lessons": [
             {
@@ -6662,7 +6662,7 @@
             "网络耦合、异质频率与同步指标",
             "扫描耦合及初相，比较结构和规模"
           ],
-          "focus": "R 在 [0, 1]，共同平移所有相位不改变 R；扫描结论检查暂态（transient）、步长和初值（initial condition），不将单次跃变称为普遍同步阈值。",
+          "focus": "区分相位聚集与频率锁定；比较耦合、连接结构和频率分配对同步的影响。",
           "available": true,
           "lessons": [
             {
@@ -6848,7 +6848,7 @@
             "双缓冲同步更新（synchronous update）与原地更新",
             "更新次序、周期/固定边界（fixed boundary）和观测（observation）指标"
           ],
-          "focus": "规则表与实现逐项对照；异步实验记录抽样和时间计量方式；动画相似不代表更新机制相同。",
+          "focus": "把局部规则写成整体更新；比较同时更新和依次更新产生的不同结果。",
           "available": true,
           "lessons": [
             {
@@ -6933,11 +6933,11 @@
           "goals": "从收益矩阵（payoff matrix）计算频率依赖收益，推导两类型复制动态（replicator dynamics），解释个体模型（model）与平均描述的假设。",
           "prerequisites": "12.1、2.3；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、收益矩阵、频率依赖与复制动态。",
           "knowledge": [
-            "收益数值在连续复制方程中作为适合度率（fitness rate），单位 1/T",
+            "收益数值在连续复制方程中作为适合度率，单位 1/T",
             "平均收益与复制方程",
-            "有限个体规则、混合假设与空间合作，不能把收益率当作繁殖概率（probability）"
+            "有限个体规则、混合假设与空间合作，区分适合度率与繁殖概率（probability）"
           ],
-          "focus": "频率位于 [0, 1]，总频率为 1；收益是模型假设，不把某张收益表当成所有生物合作的定律。",
+          "focus": "由收益矩阵得到频率依赖的适合度率（fitness rate）；连接个体互动、局部连接与复制动态。",
           "available": true,
           "lessons": [
             {
@@ -7024,9 +7024,9 @@
           "knowledge": [
             "有限种群抽样与漂变",
             "加入选择及双向变异",
-            "规模、固定/灭绝事件及确定性近似"
+            "规模、固定/灭绝事件（event）及确定性近似"
           ],
-          "focus": "对应练习 方差（variance）为 p(1 − p)/N；重复次数、事件（event）定义和观察窗口明确；零变异时的吸收态（absorbing state）不能直接类推到有变异模型（model）。",
+          "focus": "分开选择、变异与有限抽样；比较频率的平均变化和群体间的随机波动。",
           "available": true,
           "lessons": [
             {
@@ -7113,9 +7113,9 @@
           "knowledge": [
             "从一维网格交换进入 PDE",
             "内点中心差分（central difference）与单元中心守恒的无通量端点",
-            "无量纲 Schnakenberg 反应扩散（reaction-diffusion）、均匀平衡（equilibrium）扰动及模式证据"
+            "无量纲（dimensionless） Schnakenberg 反应扩散（reaction-diffusion）、均匀平衡（equilibrium）扰动及模式证据"
           ],
-          "focus": "纯扩散的步长条件只适用于所声明的离散方案；双组分 u、v、a、b 为无量纲（dimensionless）量，反应系数单位 1/T，扩散系数（diffusion coefficient）单位格长²/T。出现图案不足以证明 Turing 失稳，还须核查均匀态、模态（mode）与网格收敛。",
+          "focus": "把反应与空间交换相接；解释边界、时间步长（time step）和网格如何影响扩散与模式形成。",
           "available": true,
           "lessons": [
             {
@@ -7201,10 +7201,10 @@
           "prerequisites": "12.4、5.5；数学：信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、收益矩阵（payoff matrix）、频率依赖与复制动态（replicator dynamics）、空间偏导（partial derivative）、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
           "knowledge": [
             "从个体轨迹（trajectory）聚合频率、密度与相关量",
-            "平均场闭合（mean-field closure）的假设",
+            "平均场闭合的假设",
             "时间/空间聚合与信息损失，比较失效情形"
           ],
-          "focus": "比较尺度与误差定义事先固定；平均场失败应回到相关性或规则假设，不能只通过反复调参掩盖结构差异。",
+          "focus": "从局部状态（state）计算宏观量；用相同均值、不同局部结构理解相关性和平均场闭合（mean-field closure）。",
           "available": true,
           "lessons": [
             {
@@ -7288,7 +7288,7 @@
         "assessment": true,
         "title": "局部规则与宏观近似",
         "url": "/parts/12-个体与集体现象/综合练习/",
-        "goals": "先声明局部更新，再比较频率、空间与粗尺度结果。",
+        "goals": "从局部更新规则出发，比较频率、空间图案与粗尺度结果。",
         "prerequisites": "本篇12.1—12.5；第5篇概率（probability）与第11篇网络基础。",
         "focus": "同步与异步、收益与抽样、空间步长、相关性与闭合。",
         "knowledge": [
@@ -7307,7 +7307,7 @@
             "path": "notebooks/12-个体与集体现象/06-篇末综合/01-局部规则与宏观近似.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "先声明局部更新，再比较频率、空间与粗尺度结果。",
+              "goals": "从局部更新规则出发，比较频率、空间图案与粗尺度结果。",
               "prerequisites": "本篇12.1—12.5；第5篇概率与第11篇网络基础。",
               "focus": "同步与异步、收益与抽样、空间步长、相关性与闭合。",
               "knowledge": [
@@ -7383,14 +7383,14 @@
           "id": "13.1",
           "title": "相变、临界性与有限规模",
           "url": "/chapters/13-01-相变、临界性与有限规模/",
-          "goals": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+          "goals": "选择可测量的序参量（order parameter），比较不同规模及重复实验中的集体变化。",
           "prerequisites": "12.5、4.3、6.4；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、序参量、尺度关系、有限规模（finite size）比较与不确定性评估。",
           "knowledge": [
             "回顾分岔（bifurcation）与群体行为",
             "序参量、波动和尺度关系的含义",
             "系统规模、观察时长及重复实验对阈值判断的影响"
           ],
-          "focus": "条件矩和单步抽样可手算；尺度比较报告暂态（transient）、重复次数和波动。平均映射的局部边界不等于有限系统的精确相变点，更不能单独证明普适指数。",
+          "focus": "从序参量观察集体变化；比较不同规模和重复实验，区分有限波动与临界行为。",
           "available": true,
           "lessons": [
             {
@@ -7479,7 +7479,7 @@
             "正整数邻居阈值与逐轮级联",
             "固定种子和边数时比较链与星，再单独改变阈值"
           ],
-          "focus": "零初始损伤及高阈值有预期边界；失效节点不无故恢复或重复计数，连通性不能直接说明真实功能容量。",
+          "focus": "按阈值逐轮追踪级联；区分初始损伤、后续传播和剩余连接所反映的结构功能。",
           "available": true,
           "lessons": [
             {
@@ -7566,9 +7566,9 @@
           "knowledge": [
             "小扰动响应、线性化（linearization）与恢复时间",
             "有限扰动、吸引子与吸引域，区分回到长期集合和回到原时间相位（phase）",
-            "滑动窗口预警、趋势与观测影响、误报（false alarm）及漏报（missed event）"
+            "滑动窗口预警、趋势与观测（observation）影响、误报（false alarm）及漏报（missed event）"
           ],
-          "focus": "预测时刻不能使用未来数据；采样（sampling）变化时“滞后（lag）一步”不等于相同物理滞后；预警指标变化只支持所声明模型（model）与观测（observation）条件。",
+          "focus": "分别测量恢复速度和返回范围；用方差与自相关对照判断早期预警（early warning）的来源。",
           "available": true,
           "lessons": [
             {
@@ -7657,7 +7657,7 @@
             "相关性和宏观闭合",
             "分来源单因素对照与尺度排序"
           ],
-          "focus": "模型（model）比较须使用一致指标、单位和条件；敏感性是所选扰动范围内的数值证据，范围外不自动成立。",
+          "focus": "比较相同宏观量背后的局部结构；分开参数、观测和结构变化对结果的影响。",
           "available": true,
           "lessons": [
             {
@@ -7843,7 +7843,7 @@
             "由投影误差引入本征正交分解（proper orthogonal decomposition，POD）与截断秩",
             "将机制方程投影到低维坐标，检查初值（initial condition）映射、守恒和截断影响"
           ],
-          "focus": "截断误差与舍弃奇异值（singular value）平方和对照；正交（orthogonality）性及秩零/满秩边界核验。中心化均值来自训练集（training set），降阶不自动保证非负性（nonnegativity）或守恒。",
+          "focus": "由奇异值分解提取主要数据模式；区分重建误差、数据能量占比与动态预测误差。",
           "available": true,
           "lessons": [
             {
@@ -7929,10 +7929,10 @@
           "prerequisites": "14.1、6.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影（projection）。",
           "knowledge": [
             "从最小二乘传播矩阵进入动态模态分解（dynamic mode decomposition，DMD）",
-            "在截断子空间计算特征值（eigenvalue）与模态（mode），解释重建和滚动预测",
+            "在截断子空间计算特征值与模态，解释重建和滚动预测",
             "讨论采样（sampling）间隔、模态混叠（aliasing）及对数分支，区分一步误差和长期行为"
           ],
-          "focus": "完整秩线性例子与已知传播矩阵（matrix）、独立轨迹（trajectory）对照；测试零奇异值（singular value）和秩不足，不用训练重建替代预测验证。",
+          "focus": "从成对快照拟合传播矩阵（matrix）；连接离散特征值（eigenvalue）、模态（mode）和连续时间解释。",
           "available": true,
           "lessons": [
             {
@@ -8021,7 +8021,7 @@
             "构造扩展动态模态分解（extended dynamic mode decomposition，EDMD）的字典与数据矩阵",
             "比较字典、投影、正则化（regularization）与状态重建，限定有限字典的闭合条件"
           ],
-          "focus": "精确闭合系统用代数递推核验；一般系统报告投影与重建误差，真值方程不用于选择最终字典。",
+          "focus": "通过观测函数表达动力学；区分直接删项与重新拟合，解释有限字典的闭合误差。",
           "available": true,
           "lessons": [
             {
@@ -8106,11 +8106,11 @@
           "goals": "构造候选机制字典并实施稀疏回归，区分方程拟合、结构恢复与可辨识性（identifiability）。",
           "prerequisites": "14.3、8.3、4.6；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影（projection）、散度（divergence）与体积变化、连续变分方程、分段归一化和时间增长率。",
           "knowledge": [
-            "从导数或离散增量的回归引入稀疏动力学辨识（sparse identification of nonlinear dynamics，SINDy）",
+            "从导数（derivative）或离散增量的回归引入稀疏动力学辨识（sparse identification of nonlinear dynamics，SINDy）",
             "显式实现顺序阈值最小二乘（sequential thresholded least squares，STLSQ），公开阈值、列缩放和停止规则",
-            "比较候选项共线性、导数估计与观测（observation）噪声，使用完整轨迹留出验证"
+            "比较候选项共线性、导数估计与观测（observation）噪声，使用完整轨迹（trajectory）留出验证"
           ],
-          "focus": "无噪可辨识小例子与已知系数核验；含噪例子分别检查导数（derivative）误差、短时预测和长期结构，不以混沌（chaos）轨迹（trajectory）长时逐点失配单独判定方程错误。标准化与阈值只由训练/验证集（validation set）决定，4.6 的 Lorenz 实验为课程基准，原论文复现留到第 17 篇。",
+          "focus": "把候选机制组成字典并逐步筛选；比较求导误差、稀疏阈值和新初态预测。",
           "available": true,
           "lessons": [
             {
@@ -8199,7 +8199,7 @@
             "由多室交换的列和及符号条件检查候选线性模型（model）的守恒与非负性",
             "在新初值（initial condition）、新输入（input）和噪声变化下评价预测与结构，保留失败轨迹（trajectory）"
           ],
-          "focus": "纯交换极限（limit）用总量恒定核验；解析线性基线检查指标。低秩重建、一步误差与长期可用性分别报告，失败不作为缺失样本丢弃。",
+          "focus": "在新条件下检查学得动态；结合守恒、正性与噪声对照判断结构保持和外推表现。",
           "available": true,
           "lessons": [
             {
@@ -8285,7 +8285,7 @@
         "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/",
         "goals": "在共同训练与留出协议下比较表示、辨识与结构证据。",
         "prerequisites": "本篇14.1—14.5；第8篇的模型（model）验证。",
-        "focus": "训练重建、一步拟合与留出预测的证据不能互换。",
+        "focus": "分别计算训练重建、一步拟合与留出预测，解释三类误差的来源。",
         "knowledge": [
           "截断与投影（projection）",
           "有限字典与模态（mode）",
@@ -8304,7 +8304,7 @@
             "overview": {
               "goals": "在共同训练与留出协议下比较表示、辨识与结构证据。",
               "prerequisites": "本篇14.1—14.5；第8篇的模型验证。",
-              "focus": "训练重建、一步拟合与留出预测的证据不能互换。",
+              "focus": "分别计算训练重建、一步拟合与留出预测，解释三类误差的来源。",
               "knowledge": [
                 "截断与投影",
                 "有限字典与模态",
@@ -8385,7 +8385,7 @@
             "从链式法则推导反向模式自动微分（automatic differentiation，AD），逐项实现小图反传",
             "组织损失、批次、初始化和训练/验证边界，解释自动微分与数值差分的区别"
           ],
-          "focus": "光滑点用中心差分（central difference）步长扫描，线性网络用闭式核验；自动微分准确求程序导数（derivative），不保证程序或模型（model）本身正确。",
+          "focus": "把有单位的输入（input）转换为无量纲（dimensionless）数值；沿计算图应用链式法则，用差分核对梯度。",
           "available": true,
           "lessons": [
             {
@@ -8470,11 +8470,11 @@
           "goals": "学习离散状态（state）转移模型（model），区分一步训练、自由滚动和训练分布（distribution）外预测。",
           "prerequisites": "15.1、14.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
           "knowledge": [
-            "以离散转移映射定义网络输入、输出（output）、时间间隔和尺度",
+            "以离散转移映射定义网络输入（input）、输出（output）、时间间隔和尺度",
             "比较一步损失与有限滚动损失，避免将未来真实状态混入自由运行（free-run simulation）",
             "在新初值（initial condition）与输入下比较机制、线性和小网络基线，记录稳定性与预算"
           ],
-          "focus": "线性网络与已知状态转移矩阵（transition matrix）对照；空时域和零输入（input）测试。离散转移网络不未经说明当作连续导数（derivative）使用。",
+          "focus": "将一步状态映射连续使用；比较一步拟合、滚动误差与训练范围外的预测。",
           "available": true,
           "lessons": [
             {
@@ -8565,7 +8565,7 @@
             "声明固定初态、可微右端与固定观测时刻，比较离散求导与连续伴随后数值离散的误差",
             "比较容差、反向状态（state）重建、观测稀疏与不同初值，一般函数空间证明作为拓展"
           ],
-          "focus": "线性标量模型用指数解及解析参数导数（derivative）独立核验前向和伴随；固定离散程序另作有限差分（finite difference）检查，两种路线的数值梯度不要求在有限步长完全相同。观测网格与求解网格分开，检查观测时刻跳跃、反向重建误差与细化收敛；超预算单独记录。",
+          "focus": "比较对离散程序求导和对连续方程求灵敏度；跟踪观测时刻的伴随跳跃与积分误差。",
           "available": true,
           "lessons": [
             {
@@ -8651,10 +8651,10 @@
           "prerequisites": "15.3、12.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
           "knowledge": [
             "建立物理信息神经网络（physics-informed neural network，PINN）的函数表示和残差",
-            "用自动微分计算所需导数，明确配点（collocation point）、数据和初边值损失及单位尺度",
+            "用自动微分计算所需导数（derivative），明确配点（collocation point）、数据和初边值损失及单位尺度",
             "比较权重、配点覆盖和错误机制；先做常微分方程（ordinary differential equation，ODE），再给小型空间问题"
           ],
-          "focus": "解析函数同时核验方程、初值（initial condition）/边界与导数（derivative）；独立评估点不参与训练，残差和解误差分别报告，不能以网络替代必要的数值基线。",
+          "focus": "分别检查方程、初值（initial condition）、边界和观测（observation）拟合；理解残差尺度与损失权重如何影响学习。",
           "available": true,
           "lessons": [
             {
@@ -8743,7 +8743,7 @@
             "在固定参数与联合学习两种条件下讨论机制参数和网络补偿的混淆",
             "复用后验预测（posterior predictive inference）与变分基础比较不确定性、独立预测和错误机制；完整贝叶斯网络作为拓展"
           ],
-          "focus": "修正为零时恢复机制基线；不同参数（parameter）组合产生相同输出（output）的反例必须保留。模型、求解、优化和后验近似误差分别解释。",
+          "focus": "把机制项与学习修正组合；用等价参数（parameter）反例理解预测准确与机制可辨识的区别。",
           "available": true,
           "lessons": [
             {
@@ -8827,11 +8827,11 @@
         "assessment": true,
         "title": "机制与学习模型的独立比较",
         "url": "/parts/15-可微分建模与机制融合/综合练习/",
-        "goals": "固定求导对象、模型（model）边界与留出条件，比较机制与学习修正。",
+        "goals": "连接计算图（computational graph）、动力学梯度（gradient）与损失，用新输入（input）比较机制模型（model）与学习修正。",
         "prerequisites": "本篇 15.1—15.5；第 14 篇模型验证。",
-        "focus": "损失下降、梯度（gradient）正确、可辨识和外推是不同证据。",
+        "focus": "损失下降、梯度正确、可辨识和外推是不同证据。",
         "knowledge": [
-          "计算图（computational graph）与梯度",
+          "计算图与梯度",
           "离散和连续动力学",
           "方程残差（residual）与边界",
           "混合模型与独立比较"
@@ -8846,7 +8846,7 @@
             "path": "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "固定求导对象、模型边界与留出条件，比较机制与学习修正。",
+              "goals": "连接计算图、动力学梯度与损失，用新输入比较机制模型与学习修正。",
               "prerequisites": "本篇 15.1—15.5；第 14 篇模型验证。",
               "focus": "损失下降、梯度正确、可辨识和外推是不同证据。",
               "knowledge": [
@@ -8926,10 +8926,10 @@
           "prerequisites": "4.5、10.7；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）。",
           "knowledge": [
             "复习局部线性反馈的适用范围，从候选 Lyapunov 函数建立非线性设计",
-            "对已知输入作用方向推导一个标量反馈或低维能量整形例子",
-            "分别检查饱和、模型失配与区域外初值（initial condition），不把局部结论扩展为全局保证"
+            "对已知输入（input）作用方向推导一个标量反馈或低维能量整形例子",
+            "比较饱和、模型（model）失配与区域内外初值（initial condition），解释稳定区域的变化"
           ],
-          "focus": "无饱和标量例子用解析解（analytical solution）或导数不等式核验；实际输入（input）代入模型（model）与导数，有限扫描只作数值证据。",
+          "focus": "构造反馈使能量式指标下降；比较理想控制与执行限幅下的有效范围。",
           "available": true,
           "lessons": [
             {
@@ -9014,11 +9014,11 @@
           "goals": "在明确的不确定参数（parameter）集合上检验鲁棒性能，区别共同证据与有限场景经验。",
           "prerequisites": "16.1、8.4；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、Lagrange 乘子、对偶性、KKT 条件与约束资格、共同二次函数、半正定（positive semidefinite）矩阵（matrix）不等式与凸不确定集合。",
           "knowledge": [
-            "定义模型集合、扰动界和性能指标，区分鲁棒与平均性能目标",
-            "从矩阵二次型建立共同 Lyapunov 条件，给出仿射多面体模型的顶点核验依据",
+            "定义模型（model）集合、扰动界和性能指标，区分鲁棒与平均性能目标",
+            "从矩阵二次型建立共同 Lyapunov 条件，给出仿射（affine）多面体模型的顶点核验依据",
             "比较保守性、执行约束与超出假设集合的失效；完整鲁棒最优理论作为拓展"
           ],
-          "focus": "一维区间模型（model）用解析不等式核验；顶点结论限定在仿射（affine）凸组合和共同函数条件下。加入饱和后的结论另行验证。",
+          "focus": "在参数集合上检查共同稳定性证书；区分顶点论证、候选证书失败与场景仿真。",
           "available": true,
           "lessons": [
             {
@@ -9107,7 +9107,7 @@
             "构造有界标量自校正调节例子，声明输入增益（gain）符号、参数范围和估计噪声条件",
             "比较参数漂移、激励不足、闭环相关误差与执行饱和，限定参数收敛解释"
           ],
-          "focus": "参数已知极限（limit）恢复固定基线；每步估计与独立重算对照。参数投影（projection）、激励与饱和的作用分别说明，错误输入（input）符号作为失效条件。",
+          "focus": "按观测（observation）到来的次序更新估计和控制；比较跟踪性能、输入（input）激励与参数学习。",
           "available": true,
           "lessons": [
             {
@@ -9194,9 +9194,9 @@
           "knowledge": [
             "引入布朗运动（Brownian motion）、Itô 随机微分方程（stochastic differential equation，SDE）及随机积分的必要直觉",
             "推导 Euler–Maruyama 方法（Euler–Maruyama method）的噪声缩放，区分强弱误差",
-            "在随机线性调节中比较期望（expectation）代价、分位和违反约束频率；不提前声称硬约束保证"
+            "在随机线性调节中比较期望（expectation）代价、分位和违反约束频率"
           ],
-          "focus": "无反馈或线性反馈下用解析矩核验；同路径使用细增量求和形成粗增量，报告重复次数及统计误差。完整随机分析证明为拓展。",
+          "focus": "由布朗增量构造随机更新；分开连续模型（model）、离散规则和有限模拟的均值与波动。",
           "available": true,
           "lessons": [
             {
@@ -9285,7 +9285,7 @@
             "分析离散步长、连通分量（connected component）和不变总量，区别状态（state）一致与平均一致",
             "加入固定通信延迟、断边和输入（input）上限，与集中信息基线公平比较"
           ],
-          "focus": "无向无延迟情形与图拉普拉斯谱及矩阵幂对照；断连时逐分量比较，不将有向权重下的极限（limit）都解释为算术平均。",
+          "focus": "从邻居差异构造一致性更新；分析步长、连通性和通信延迟怎样改变收敛。",
           "available": true,
           "lessons": [
             {
@@ -9370,11 +9370,11 @@
           "goals": "在有限马尔可夫（Markov）决策模型（model）中实现策略评价和简单学习，区分训练回报与独立策略效果。",
           "prerequisites": "5.4、10.5、9.5；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、MDP、条件期望（expectation）形式的 Bellman 方程、策略评估（policy evaluation）与改进。",
           "knowledge": [
-            "建立马尔可夫决策过程（Markov decision process，MDP）的状态（state）、动作、转移、回报和终止",
+            "建立马尔可夫决策过程（Markov decision process，MDP）的状态、动作、转移、回报和终止",
             "连接随机 Bellman 方程，推导策略评价、改进及表格 Q 学习（Q-learning）更新",
             "明确探索、训练预算与独立评估，比较已知模型规划和从样本学习"
           ],
-          "focus": "小型模型用线性方程或有限时域穷举核验；终止后不继续累积回报，失败回合纳入统计，深度强化学习（reinforcement learning，RL）作为拓展。",
+          "focus": "从已知模型的策略评价走向经验更新；区分终止状态（state）、探索过程与策略表现。",
           "available": true,
           "lessons": [
             {
@@ -9463,7 +9463,7 @@
             "将估计状态（state）与模型预测接入约束决策，检查外推和不可行处理",
             "对齐训练、调参、观测和执行预算，比较模型策略与无模型策略并说明信息差异"
           ],
-          "focus": "零模型误差极限（limit）与第 10 篇基线对照，逐项独立重算指标；求解失败不冒充有效控制，备用动作的条件与结果单独记录。",
+          "focus": "用学习模型预测并选择受约束动作；同时比较预测误差、实际违约和执行失败。",
           "available": true,
           "lessons": [
             {
@@ -9547,9 +9547,9 @@
         "assessment": true,
         "title": "不确定条件下的闭环证据链",
         "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/",
-        "goals": "把稳定、估计、随机、学习和决策证据放在同一边界中比较。",
+        "goals": "综合计算稳定性、在线估计、随机波动与决策指标，解释各方法的表现。",
         "prerequisites": "本篇 16.1—16.7；第 10 篇反馈（feedback）控制。",
-        "focus": "证书只覆盖声明集合；预测准确不替代实际约束报告。",
+        "focus": "将稳定性证书对应到模型（model）集合，把预测误差与实际约束、失败情况一起比较。",
         "knowledge": [
           "非线性与共同二次证书",
           "在线辨识与随机路径",
@@ -9566,9 +9566,9 @@
             "path": "notebooks/16-自适应、鲁棒与学习控制/99-篇末综合/01-不确定条件下的闭环证据链.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "把稳定、估计、随机、学习和决策证据放在同一边界中比较。",
+              "goals": "综合计算稳定性、在线估计、随机波动与决策指标，解释各方法的表现。",
               "prerequisites": "本篇 16.1—16.7；第 10 篇反馈控制。",
-              "focus": "证书只覆盖声明集合；预测准确不替代实际约束报告。",
+              "focus": "将稳定性证书对应到模型集合，把预测误差与实际约束、失败情况一起比较。",
               "knowledge": [
                 "非线性与共同二次证书",
                 "在线辨识与随机路径",
@@ -9649,7 +9649,7 @@
             "将原问题缩为普通 CPU 可运行的低维实验，声明缩减改变了哪些条件",
             "形成主张、基线、数据和评价的对应表，区分原结果复现与课程改编"
           ],
-          "focus": "原文实验的位置、版本与课程改动逐项登记；不把低维改编实验称为完整复现原论文全部结果，不以方法年代决定是否有效。",
+          "focus": "把论文主张转成可计算的问题；明确训练数据、评价对象和课程复现实验的配置。",
           "available": true,
           "lessons": [
             {
@@ -9738,7 +9738,7 @@
             "建立显式算法、成熟实现和简单机制基线的对应，核对允许的信息差异",
             "记录环境、代码版本、参数、种子、重复次数和失败处理，先做最小核验再完整运行"
           ],
-          "focus": "索引集合独立交叉检查，训练变换仅由训练数据估计；记录实际运行资源，不预先声称达到尚未测量的性能。",
+          "focus": "为方法与基线提供相同信息和预算；用新初态和独立窗口比较预测。",
           "available": true,
           "lessons": [
             {
@@ -9827,7 +9827,7 @@
             "比较重复效果差和不确定性，保留全部失败与未复现结果",
             "分别排查模型（model）、数值、优化、数据和评价差异，并限定原因解释的强度"
           ],
-          "focus": "小表手算与完整结果汇总对照；配对结构不被打乱，重复次数与不确定性计算一致，不将未复现结果改写为成功。",
+          "focus": "通过消融和成对重复定位效果来源；同时报告误差差异、随机波动和失败情况。",
           "available": true,
           "lessons": [
             {
@@ -9914,9 +9914,9 @@
           "knowledge": [
             "以三组贯穿案例整理观测（observation）条件、状态（state）/参数（parameter）问题及可选择的方法",
             "连接独立评估、预算、失效与不确定性，分别给出可以和不能支持的结论",
-            "形成可再次运行的教材示例与客观综合题，展示完整研究说明但不增加自由报告提交"
+            "结合可运行实例，完成研究过程与结果解释的综合练习"
           ],
-          "focus": "关键函数与先前章节的独立参考一致；已知真值仅供核验。研究成果以有限实验及客观题检验，明确区分课程复现、迁移和新研究主张。",
+          "focus": "将机制、推断和学习方法用于同一双室问题；通过新条件和收支（mass balance）核对解释方法差异。",
           "available": true,
           "lessons": [
             {
@@ -10000,14 +10000,14 @@
         "assessment": true,
         "title": "从论文主张到有界复现证据",
         "url": "/parts/17-研究复现与综合实践/综合练习/",
-        "goals": "从原论文主张出发，完成协议、独立核验、消融和迁移边界。",
+        "goals": "从论文主张出发组织实验，用基线、消融和新条件检验方法。",
         "prerequisites": "本篇 17.1—17.4；第 14—16 篇相关方法。",
-        "focus": "原任务和课程缩减逐项分开；有限实验不冒充完整原论文结果。",
+        "focus": "连接任务配置、实际计算与评价结果，区分算法误差和模型（model）失配。",
         "knowledge": [
-          "版本与任务边界",
+          "论文版本与实验配置",
           "SINDy 与连续伴随",
           "基线和失效",
-          "生命系统迁移与证据范围"
+          "双室迁移与收支（mass balance）核对"
         ],
         "lessons": [
           {
@@ -10019,14 +10019,14 @@
             "path": "notebooks/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "从原论文主张出发，完成协议、独立核验、消融和迁移边界。",
+              "goals": "从论文主张出发组织实验，用基线、消融和新条件检验方法。",
               "prerequisites": "本篇 17.1—17.4；第 14—16 篇相关方法。",
-              "focus": "原任务和课程缩减逐项分开；有限实验不冒充完整原论文结果。",
+              "focus": "连接任务配置、实际计算与评价结果，区分算法误差和模型失配。",
               "knowledge": [
-                "版本与任务边界",
+                "论文版本与实验配置",
                 "SINDy 与连续伴随",
                 "基线和失效",
-                "生命系统迁移与证据范围"
+                "双室迁移与收支核对"
               ]
             },
             "questions": [

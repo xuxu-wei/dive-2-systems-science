@@ -9,6 +9,14 @@ from terminology import annotate_text
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def teaching_focus(content, chapter_id):
+    """学生重难点独立编写；维护用的核验与反馈不能作为公开内容回退。"""
+    found = re.search(r'^- \*\*教学重难点\*\*：(.+)$', content, re.M)
+    if not found or not found.group(1).strip():
+        raise ValueError(f'{chapter_id} 缺少面向学生的教学重难点')
+    return found.group(1).strip()
+
+
 def annotate_overview(chapter):
     """导览是独立阅读单元；标题不加长括注，正文首次注明词表中的英文。"""
     seen = set()
@@ -54,7 +62,7 @@ def build():
             chapters.append({'id': f'{part}.{chapter}', 'title': name,
                 'url': f'/chapters/{int(part):02d}-{int(chapter):02d}-{name}/',
                 'goals': field('教学目标'), 'prerequisites': field('直接先修'),
-                'knowledge': order, 'focus': field('核验与反馈'),
+                'knowledge': order, 'focus': teaching_focus(content, f'{part}.{chapter}'),
                 'available': False, 'lessons': []})
         parts.append({'id': str(number), 'title': title, 'url': f'/parts/{path.stem}/', 'chapters': chapters})
     validate_design(parts, design)

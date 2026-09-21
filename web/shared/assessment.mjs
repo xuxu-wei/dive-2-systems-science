@@ -45,10 +45,8 @@ export function renderAssessment(host,summary,{practiceUrl='',onSelect}={}){
       li.append(answer,el('span',` · ${item.attempted?'待订正':'未作答'} · `),link);list.append(li);
     }
     review.append(list);
-  }else review.append(el('p','可以离开解析后自行重做或进入下一篇；练习达成分不等同于独立测验成绩。'));
+  }else review.append(el('p','可以离开解析后自行重做，或进入下一篇。'));
   detail.append(review,el('p','每题首次有效完整提交计入首次作答分；任何一次完整通过计入练习达成分。样例试算、取消、系统故障不计分。重试不覆盖首次结果；未作答的分值暂不计入。','assessment-note'));
-  detail.append(el('p','60 分起且基础辨析满分、方法应用至少 15 分为基本达标；80 分起为掌握良好，90 分起为综合表现扎实。题组全部通过才记为完成。等级用于自学诊断，难度尚待试学校准。','assessment-note'));
-  detail.append(el('p',`当前评分版本：${summary.version}。首次作答分仅依据本机保存记录，不保证未使用提示或解析。`,'assessment-note'));
-  if(summary.historical_first)detail.append(el('p','首次分包含评分启用前的同版本记录；含义是本机最早保存的完整作答，不代表未看过解析。','assessment-note'));
+  detail.append(el('p','60 分起且基础辨析满分、方法应用至少 15 分为基本达标；80 分起为掌握良好，90 分起为综合表现扎实。题组全部通过才记为完成。可按分层结果选择复习章节。','assessment-note'));
   host.replaceChildren(title,scores,state,detail);
 }

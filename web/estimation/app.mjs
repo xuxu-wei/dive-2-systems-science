@@ -46,7 +46,7 @@ function recompute(){
  }
  if(mode==='7.3'){
   data=kalmanExperiment(p.noise);const next=alternate(p.noise,.16,.8);$('alternate').textContent=next===.8?'切换为高测量噪声':'切换为低测量噪声';
-  $('preset-note').textContent=`当前 R=${fmt(p.noise)} U²；使用同一段固定读数，比较不同噪声假设，不把显示效果当作真实误差评估。`;
+  $('preset-note').textContent=`当前 R=${fmt(p.noise)} U²；使用同一段固定读数，观察噪声假设怎样改变估计和区间。`;
   $('assumptions').textContent='二室状态为参考工作点附近的偏差，允许负值；F=[[0.85,0.1],[0.1,0.8]]，Q=diag(0.02,0.02) U²，H=[1,0]，m₀=[2,0] U，P₀=I U²。独立零均值高斯噪声，第 0 步先观测更新。';
   $('chart-heading').textContent='预测与滤波的联合不确定性';$('value-label').textContent='第一室增益 K₁';
   $('chart-note').textContent='左图椭圆的马氏距离平方为 5.991，在二维高斯假设下包围约 95% 概率，交叉线为均值。右图是两个室的滤波均值；方差变化与实际误差不同，覆盖率需要另做重复实验。';
@@ -73,7 +73,7 @@ function recompute(){
   $('preset-note').textContent=p.gap?'第 6—12 步没有观测：该段只做预测；第 13 步重新得到观测。':'观测已恢复完整；再次点击可回到相同的缺测区间。';
   $('assumptions').textContent='为突出时间信息，采用二室案例的标量简化：随机游走、初始均值 0 U、方差 1 U²、测量方差 0.16 U²，过程与测量噪声独立高斯。固定观测序列不含真值，不能从两条估计的差异直接判断实际误差。';
   $('chart-heading').textContent='当时能知道的，与后来重建的';$('value-label').textContent='当前缺测状态';
-  $('chart-note').textContent='左图蓝色为实时滤波，玫红虚线为使用全部 20 步观测的离线平滑，浅带为各自的边际 95% 高斯区间。右图比较方差；平滑曲线的历史点使用了播放位置之后的观测，绝不能当作在线预测成绩。';
+  $('chart-note').textContent='左图蓝色为实时滤波，玫红虚线为使用全部 20 步观测的离线平滑，浅带为各自的边际 95% 高斯区间。右图比较方差；平滑在回看历史时使用了后续观测，滤波使用的是当时已到达的读数。';
   legend([['滤波（仅到当前时刻）',blue,false],['平滑（全部观测）',pink,true],['实际读数（圆点）',gray,true]]);table(['步 n','观测 / U','滤波均值 / U','平滑均值 / U','滤波方差 / U²','平滑方差 / U²'],data.filtered.map((r,i)=>[i,data.observations[i],r.mean[0],data.smoothed[i].mean,r.covariance[0][0],data.smoothed[i].variance]));
  }
  playback?.pause();playback?playback.seek(0):draw(0);

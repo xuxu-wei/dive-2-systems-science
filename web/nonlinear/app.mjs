@@ -49,7 +49,7 @@ function recompute(){
   }
   if(rows.flat().some(x=>!Number.isFinite(x)))throw Error('计算结果无效，请恢复起始条件。');
   $('timeline').max=end;$('timeline').step=h;$('value-label').textContent=mode==='logistic'?'两条轨迹的当前比例':'当前偏差 / 无量纲';
-  $('assumptions').textContent=mode==='logistic'?'模型（model）只描述一代到下一代的比例更新。状态（state）x 与参数（parameter）r 无量纲（dimensionless），n 是代次；没有随机扰动。未拟合真实种群数据，未计入观测（observation）误差。播放快慢不改变映射。':mode==='switch'?'参数（parameter）为教学选值。x 是相对参考活动的缩放偏差，τ 是缩放时间；省略噪声、空间和观测（observation）误差，未拟合真实生理数据。播放快慢不改变方程或积分步长。':'模型（model）中的状态（state）和 τ 均为无量纲（dimensionless）；参数（parameter）是教学选择。它们是节律或开关的机制类比，未拟合真实生理数据；省略噪声、空间和观测（observation）误差。播放快慢只改变展示。';
+  $('assumptions').textContent=mode==='logistic'?'模型（model）按一代到下一代更新比例。状态（state）x 与参数（parameter）r 无量纲（dimensionless），n 是代次；更新规则是确定的。':mode==='switch'?'x 是相对参考活动的缩放偏差，τ 是缩放时间；参数（parameter）决定流向与平衡位置，模型省略噪声和空间差异。':'模型（model）中的状态（state）和 τ 均为无量纲（dimensionless）；参数（parameter）控制恢复、旋转或外部驱动，模型省略噪声和空间差异。';
   const legend=mode==='switch'?[[blue,'x / 当前轨迹'],[gray,'变化率 f(x)']]:mode==='bifurcation'&&$('model').value==='hopf'?[[blue,'半径 / 长期半径分支'],[pink,'当前半径'],[gray,'原点分支']]:[[blue,mode==='logistic'?'第一轨迹':mode==='bifurcation'?'状态 / 正向扫描':'x / 相轨迹'],[pink,mode==='logistic'?'邻近轨迹':mode==='bifurcation'?'反向扫描':'y'],[gray,'参照 / 阈值']];
   $('legend').replaceChildren(...legend.map(([c,l])=>{const n=el('span',l);n.style.setProperty('--line-color',c);return n;}));
   const table=el('table'),head=el('tr');head.append(...[mode==='logistic'?'n':'τ','x',mode==='logistic'?'邻近 x':rows[0].length===3?'y':'f(x)'].map(t=>el('th',t)));table.append(head);

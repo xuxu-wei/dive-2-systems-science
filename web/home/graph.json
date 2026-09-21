@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "4f884f0ce54551995d48563659d79b0a1a4edba07b981766c328d6cd68cc682b",
+    "catalogSha256": "841c50c1a5e199106a209e06c82af8bdf54ca01552695bcb52bffaa5d9d7e724",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -6058,7 +6058,7 @@
       "number": "5.5",
       "parentId": "5",
       "url": "/chapters/05-05-熵、互信息与测量价值/",
-      "description": "明确本章“测量价值”仅指给定概率（probability）模型（model）与观测（observation）编码下的信息量，不等同于临床、决策或经济效用，也不等同于因果作用或干预收益；从离散概率计算熵（entropy）与互信息（mutual information），说明单位、样本偏差及因果解释的边界。",
+      "description": "用熵（entropy）和互信息（mutual information）计算读数带来的平均不确定性减少，解释信息单位、样本偏差及信息与决策用途的区别。",
       "categories": [
         "cognition",
         "evolution"
@@ -15547,7 +15547,7 @@
       "number": "13.1",
       "parentId": "13",
       "url": "/chapters/13-01-相变、临界性与有限规模/",
-      "description": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+      "description": "选择可测量的序参量（order parameter），比较不同规模及重复实验中的集体变化。",
       "categories": [
         "evolution",
         "regulation"

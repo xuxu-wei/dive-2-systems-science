@@ -2243,7 +2243,7 @@
       },
       {
         "id": "B",
-        "text": "在当前窗口恢复所声明方程项"
+        "text": "在当前窗口恢复给定方程项"
       },
       {
         "id": "C",
@@ -2344,7 +2344,7 @@
     "chapter": "17.summary",
     "lesson_id": "P17-SUMMARY",
     "title": "失败能否反驳主张",
-    "statement": "原主张仅覆盖当前观测（observation）条件，换成未声明的新传感器后失败，最准确的判断是什么？",
+    "statement": "原主张仅覆盖当前观测（observation）条件，换成原实验以外的新传感器后失败，最准确的判断是什么？",
     "type": "choice",
     "learning_targets": [
       "T1"
