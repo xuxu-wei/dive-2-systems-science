@@ -1640,7 +1640,7 @@
   {
     "id": "p15-discrete-adjoint",
     "slug": "p15-discrete-adjoint",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.3",
     "lesson_id": "P15-C03-S02",
@@ -1699,7 +1699,7 @@
     ],
     "contract": "先 Euler 推进到最大观测索引；按每点半平方损失反向传播（backpropagation），返回该离散程序对 k 的梯度。观测索引互不重复。",
     "constraints": [
-      "x0≥0，k≥0，h>0，k*h<1；索引非负互异且不超过100，索引和目标等长。"
+      "x0≥0，k≥0，h>0，k*h<1；索引非负互异且不超过100，至少有一条观测，索引和目标两个列表等长且非空。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1707,7 +1707,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "经过观测网格点时，先把状态残差加进伴随，再向前传播。",
+    "hint": "经过观测网格点时，先把状态残差加进伴随，再向更早的网格点回传。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2988,8 +2988,8 @@
       {
         "name": "x",
         "type": "float",
-        "description": "状态（state）输入（input）。",
-        "unit": "U"
+        "description": "物理状态（state）除以参考量 1 U 后得到的无量纲（dimensionless）输入（input）。",
+        "unit": "1"
       },
       {
         "name": "y",
@@ -3042,7 +3042,7 @@
         "unit": "按参数"
       }
     ],
-    "contract": "预测同上，损失 = (预测-y)²/2；梯度按 w,b,v,c 顺序。",
+    "contract": "令 prediction = v*tanh(w*x+b)+c，loss = (prediction-y)²/2；返回 prediction、loss 及按 w,b,v,c 排列的 loss 梯度。",
     "constraints": [
       "输入规模不超过100，全部数值有限。"
     ],

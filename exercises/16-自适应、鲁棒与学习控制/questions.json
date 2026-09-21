@@ -4296,7 +4296,7 @@
     ],
     "contract": "四项依次为预测 RMSE、实际动作平方均值、实际动作绝对值超过 limit 的比例、求解失败比例；所有场景均保留。",
     "constraints": [
-      "五个列表长度相同且非空，长度≤100；limit≥0；全部数值有限。"
+      "truth、prediction、inputs、failures 四个列表等长且非空，长度≤100；limit 是全部场景共用的非负标量上限；全部数值有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -4410,7 +4410,7 @@
     ],
     "contract": "四项依次为预测 RMSE、实际动作平方均值、实际动作绝对值超过 limit 的比例、求解失败比例；所有场景均保留。",
     "constraints": [
-      "五个列表长度相同且非空，长度≤100；limit≥0；全部数值有限。"
+      "truth、prediction、inputs、failures 四个列表等长且非空，长度≤100；limit 是全部场景共用的非负标量上限；全部数值有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -5020,7 +5020,7 @@
     ],
     "contract": "四项依次为预测 RMSE、实际动作平方均值、实际动作绝对值超过 limit 的比例、求解失败比例；所有场景均保留。",
     "constraints": [
-      "五个列表长度相同且非空，长度≤100；limit≥0；全部数值有限。"
+      "truth、prediction、inputs、failures 四个列表等长且非空，长度≤100；limit 是全部场景共用的非负标量上限；全部数值有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
