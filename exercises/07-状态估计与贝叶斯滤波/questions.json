@@ -2497,7 +2497,7 @@
   {
     "id": "p07-particle-resampling",
     "slug": "p07-particle-resampling",
-    "version": "2",
+    "version": "1",
     "lesson_id": "P07-C05-S02",
     "part": "7",
     "chapter": "7.5",
@@ -2582,7 +2582,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "样例权重[0.4,0.2,0.4]，ESS=25/9；位置1/6、1/2、5/6选中祖先[0,1,2]。 合法起点若因浮点舍入使最后一个位置恰为1，仍应选择最后一段。",
+    "hint": "样例权重[0.4,0.2,0.4]，ESS=25/9；位置1/6、1/2、5/6选中祖先[0,1,2]。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3834,7 +3834,7 @@
   {
     "id": "p07-cap-particle",
     "slug": "p07-cap-particle",
-    "version": "2",
+    "version": "1",
     "lesson_id": "P07-SUMMARY",
     "part": "7",
     "chapter": "7.summary",
@@ -3917,7 +3917,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "减去最大对数权重避免-1000附近指数下溢；所得概率不受共同平移影响。 合法起点若因浮点舍入使最后一个位置恰为1，仍应选择最后一段。",
+    "hint": "减去最大对数权重避免-1000附近指数下溢；所得概率不受共同平移影响。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,

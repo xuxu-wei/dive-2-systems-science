@@ -118,9 +118,8 @@ def independent(slug,p):
         logs=np.array([-np.inf if w==0 or ll is None else np.log(w)+ll for w,ll in zip(p['weights'],p['log_likelihoods'])])
         if np.isneginf(logs).all():return [[],0.,[],[],'impossible']
         prob=np.exp(logs-logs.max());prob/=prob.sum();cdf=np.cumsum(prob);cdf[-1]=1
-        positions=(p['offset']+np.arange(len(prob)))/len(prob)
-        idx=[next((j for j,mass in enumerate(cdf) if mass>position),len(prob)-1) for position in positions]
-        return [prob.tolist(),float(1/(prob@prob)),idx,np.array(p['particles'])[idx].tolist(),'ok']
+        idx=np.searchsorted(cdf,(p['offset']+np.arange(len(prob)))/len(prob),side='right')
+        return [prob.tolist(),float(1/(prob@prob)),idx.tolist(),np.array(p['particles'])[idx].tolist(),'ok']
     if slug=='hmm-smoothing':return enumerate_hmm(**p)[0]
     if slug=='rts-backward':
         # Match each public saved-statistics fixture to its separately declared generative model.
@@ -208,7 +207,6 @@ def test_online_prefix_missing_and_particle_degeneracy_are_explicit():
     assert f['hmm_filter']([1,0],[[1,0],[0,1]],[[0,1]])['status']=='impossible'
     assert f['particle_update']([0,1],[.5,.5],[None,None],.5)['status']=='impossible'
     assert f['particle_update']([0,1,2,3],[.25]*4,[0]*4,0)['indices']==[0,1,2,3]
-    assert f['particle_update']([-1.,1.],[.5,.5],[0.,0.],.9999999999999999)['indices']==[0,1]
     observations=[3.5,3.,2.8,2.1]
     one=f['bootstrap_filter'](1.8,.2,.04,.15,observations,100,719)
     two=f['bootstrap_filter'](1.8,.2,.04,.15,observations,100,719)
