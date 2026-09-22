@@ -1,6 +1,7 @@
 """按课节目录逐本启动新内核；保存实际输出和供人工点击的 HTML 检查预览。"""
 import argparse
 import base64
+import copy
 import hashlib
 import importlib.metadata
 import json
@@ -53,9 +54,12 @@ def main():
                     count+=1;(figures/f'{lesson["id"]}-{count}.png').write_bytes(base64.b64decode(output.data['image/png']))
         assert count>0
         if args.write:nbformat.write(nb,path)
-        html,_=HTMLExporter(template_name='lab').from_notebook_node(nb)
+        preview_nb = copy.deepcopy(nb)
+        preview_nb.cells = [cell for cell in nb.cells
+                            if cell.metadata.get('teaching_role') != 'local_service']
+        html,_=HTMLExporter(template_name='lab').from_notebook_node(preview_nb)
         (preview/f'{lesson["id"]}.html').write_text(html,encoding='utf-8')
-        report['notebooks'].append({'id':lesson['id'],'path':lesson['path'],'seconds':round(time.perf_counter()-start,2),'code_cells':sum(c.cell_type=='code' for c in nb.cells),'figures':count,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'passed':True})
+        report['notebooks'].append({'id':lesson['id'],'path':lesson['path'],'seconds':round(time.perf_counter()-start,2),'code_cells':sum(c.cell_type=='code' for c in preview_nb.cells),'figures':count,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'passed':True})
         print(f'PASS {lesson["number"]} {lesson["title"]}: {count} figure(s)',flush=True)
     (work/'execution.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 

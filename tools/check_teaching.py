@@ -11,6 +11,7 @@ from lesson_exercises import render_exercises
 from question_contracts import validate_contract
 from assessment import load_assessments
 from terminology import check_text
+from notebook_service import check_or_update
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -53,6 +54,7 @@ def main():
             issues.extend(f'{q["id"]}: {t}' for t in missing)
             evidence.append({'unit': q['id'], 'terms': terms})
         path = ROOT / lesson['path']
+        check_or_update(path, write=False)
         nb = nbformat.read(path, as_version=4)
         nbformat.validate(nb)
         assert nb.cells[0].metadata.get('teaching_role') == 'objectives'

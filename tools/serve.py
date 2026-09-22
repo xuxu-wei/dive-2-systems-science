@@ -9,12 +9,14 @@ from pathlib import Path
 import secrets
 import subprocess
 import sys
+import threading
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from practice import PracticeEngine, RequestError
 from course_content import notebooks, course_chapters
+from systems_science.local_service import SERVICE_NAME, content_id, workspace_id
 
 
 def home_graph_response(root):
@@ -59,6 +61,10 @@ class TeachingServer(ThreadingHTTPServer):
         self.token = secrets.token_urlsafe(32)
         self.catalog = notebooks()
         self.course = json.loads((ROOT / 'web/course/catalog.json').read_text(encoding='utf-8'))
+        self.workspace_id = workspace_id(ROOT)
+        self.content_id = content_id(ROOT)
+        self.lifecycle_lock = threading.Lock()
+        self.stopping = False
         try:
             self.practice = PracticeEngine(learning_directory or ROOT / '.local/learning')
         except Exception:
@@ -101,6 +107,8 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             return
         if urlsplit(self.path).path == '/api/session':
             self.respond_json(200, {'version': 'course-local-ide-1', 'token': self.server.token,
+                                    'service': SERVICE_NAME, 'workspace_id': self.server.workspace_id,
+                                    'content_id': self.server.content_id,
                                     'notebooks': self.server.catalog,'practice_version':'named-parameters-2','assessment_version':'1'})
             return
         path=urlsplit(self.path).path
@@ -133,10 +141,28 @@ class TeachingHandler(SimpleHTTPRequestHandler):
         except (ValueError, UnicodeError):
             self.respond_json(400, {'error': '请求格式不正确。'})
             return
+        if endpoint == '/api/local-shutdown':
+            if payload != {'workspace_id': self.server.workspace_id}:
+                self.respond_json(403, {'error': '教材目录不匹配。'})
+                return
+            with self.server.lifecycle_lock:
+                with self.server.practice.lock:
+                    if self.server.practice.active is not None:
+                        self.respond_json(409, {'error': '正在判题，请稍后重试。'})
+                        return
+                    self.server.stopping = True
+            self.respond_json(202, {'status': 'stopping'})
+            threading.Thread(target=self.server.shutdown, daemon=True).start()
+            return
         try:
             if endpoint in ('/api/v1/choice-attempts','/api/v1/submissions'):
                 kind='choice' if endpoint.endswith('choice-attempts') else 'python'
-                self.respond_json(200 if kind=='choice' else 202,self.server.practice.submit(payload,kind)); return
+                with self.server.lifecycle_lock:
+                    if self.server.stopping:
+                        self.respond_json(503, {'error': '教材服务正在更新，请稍后重试。'})
+                        return
+                    result = self.server.practice.submit(payload, kind)
+                self.respond_json(200 if kind=='choice' else 202, result); return
             if endpoint.startswith('/api/v1/submissions/') and endpoint.endswith('/cancel'):
                 self.respond_json(200,self.server.practice.cancel(endpoint.split('/')[-2])); return
         except RequestError as error:

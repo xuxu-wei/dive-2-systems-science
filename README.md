@@ -22,10 +22,9 @@
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[learn,dev]"
 Invoke-Item .\notebooks\00-导论\01-从生命现象认识系统.ipynb
-.\.venv\Scripts\python.exe tools/serve.py
 ```
 
-在默认 IDE 中选择项目 `.venv` 作为 Notebook 内核，从[导论：走进系统科学](notebooks/00-导论/README.md)开始，再进入[第 1 篇：看见系统](notebooks/01-看见系统/README.md)并按目录顺序学习，当前已交付至[第 17 篇：研究复现与综合实践](notebooks/17-研究复现与综合实践/README.md)。启动本机程序后可打开[开始首页](http://127.0.0.1:8000/)或[全书目录](http://127.0.0.1:8000/catalog/)；环境、操作与故障处理见[学习指南](docs/学习指南.md)。
+在项目根目录双击 [开始学习.cmd](开始学习.cmd) 可打开[开始首页](http://127.0.0.1:8000/)；在受信任的 VS Code 工作区中允许自动任务后，打开工作区也会检查并启动网页服务。在默认 IDE 中选择项目 `.venv` 作为 Notebook 内核，从[导论：走进系统科学](notebooks/00-导论/README.md)开始，再进入[第 1 篇：看见系统](notebooks/01-看见系统/README.md)并按目录顺序学习，当前已交付至[第 17 篇：研究复现与综合实践](notebooks/17-研究复现与综合实践/README.md)。环境、操作与故障处理见[学习指南](docs/学习指南.md)。
 
 项目面向 PC 本机学习，基础实验无需 GPU。教学运行独立于外部数据制备工具；模拟数据、本地环境、个人作答记录和临时文件不纳入 Git 同步。
 
