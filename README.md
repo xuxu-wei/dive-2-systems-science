@@ -6,8 +6,8 @@
 
 ## 当前状态
 
-- 全书 17 篇、85 章均已交付，共 203 本正式 Notebook（含篇末综合）、73 个章节探索视图与 930 道练习。
-- M0—M18 已完成；第 17 篇用有界的课程实验讲解论文复现，原论文完整结果表仍未复现。后续维护与读者试学见 [ROADMAP](ROADMAP.md)。
+- 全书“导论 + 17 篇、85 章”均已交付，共 206 本正式 Notebook（含篇末综合）、74 个探索视图与 939 道练习；其中导论含三本 Notebook、九道自测与一项传播实验。
+- M0—M19 已完成；第 17 篇用有界的课程实验讲解论文复现，原论文完整结果表仍未复现。后续维护与读者试学见 [ROADMAP](ROADMAP.md)。
 - 制作样章已在 M3 验收后清理，历史记录与正式学习进度分开保留；进展见 [ROADMAP](ROADMAP.md)。
 - 支持本机交互练习、Python 判题与学习记录，代码编辑器提供高亮、缩进和 traceback 调试。
 - “开始”首页提供篇—章—概念的交互星图，支持拖动、滚轮进入层级及全站深浅主题。
@@ -21,11 +21,11 @@
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[learn,dev]"
-Invoke-Item .\notebooks\01-看见系统\01-从生理现象提出系统问题\01-边界状态与观测.ipynb
+Invoke-Item .\notebooks\00-导论\01-从生命现象认识系统.ipynb
 .\.venv\Scripts\python.exe tools/serve.py
 ```
 
-在默认 IDE 中选择项目 `.venv` 作为 Notebook 内核，从[第 1 篇：看见系统](notebooks/01-看见系统/README.md)按目录顺序学习，当前已交付至[第 17 篇：研究复现与综合实践](notebooks/17-研究复现与综合实践/README.md)。启动本机程序后可打开[开始首页](http://127.0.0.1:8000/)或[全书目录](http://127.0.0.1:8000/catalog/)；环境、操作与故障处理见[学习指南](docs/学习指南.md)。
+在默认 IDE 中选择项目 `.venv` 作为 Notebook 内核，从[导论：走进系统科学](notebooks/00-导论/README.md)开始，再进入[第 1 篇：看见系统](notebooks/01-看见系统/README.md)并按目录顺序学习，当前已交付至[第 17 篇：研究复现与综合实践](notebooks/17-研究复现与综合实践/README.md)。启动本机程序后可打开[开始首页](http://127.0.0.1:8000/)或[全书目录](http://127.0.0.1:8000/catalog/)；环境、操作与故障处理见[学习指南](docs/学习指南.md)。
 
 项目面向 PC 本机学习，基础实验无需 GPU。教学运行独立于外部数据制备工具；模拟数据、本地环境、个人作答记录和临时文件不纳入 Git 同步。
 

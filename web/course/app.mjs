@@ -20,7 +20,7 @@ function cards(items,kind){
   for(const item of items){
     const card=a(undefined,item.url,`catalog-card ${kind}-card`);
     const title=el('h2');
-    title.append(el('span',kind==='part'?`第 ${item.id} 篇`:item.assessment?'篇末综合':item.id,'card-number'),el('span',item.title,'card-title'));
+    title.append(el('span',item.introduction?'导论':kind==='part'?`第 ${item.id} 篇`:item.assessment?'篇末综合':item.id,'card-number'),el('span',item.title,'card-title'));
     card.append(title);
     if(kind==='part'){
       const topics=el('ul',undefined,'card-topics');
@@ -45,9 +45,10 @@ async function start(){
     const ready=course.parts.filter(p=>p.chapters.every(c=>c.available)).map(p=>p.id);
     const partial=course.parts.filter(p=>p.chapters.some(c=>c.available)&&!p.chapters.every(c=>c.available));
     const partialNote=partial.map(p=>`第 ${p.id} 篇已有 ${p.chapters.filter(c=>c.available).length}/${p.chapters.length} 章可学习。`).join('');
-    heading(`全书目录 · ${course.parts.length} 篇 · ${course.parts.reduce((sum,p)=>sum+p.chapters.length,0)} 章`, '从看见系统，到理解复杂性',
+    heading(`全书目录 · ${course.introduction?'导论 + ':''}${course.parts.length} 篇 · ${course.parts.reduce((sum,p)=>sum+p.chapters.length,0)} 章`, '从看见系统，到理解复杂性',
       '提出问题，建立模型，用计算检验解释。沿着篇章顺序，逐步进入系统科学。',
-      (ready.length?`第 ${ready.join('、')} 篇已提供完整 Notebook 与练习。`:'')+partialNote+'其余篇章目前提供教学设计导览。');
+      (ready.length===course.parts.length?'各篇已提供完整 Notebook 与练习。':(ready.length?`第 ${ready.join('、')} 篇已提供完整 Notebook 与练习。`:'')+partialNote+'其余内容提供教学设计导览。'));
+    if(course.introduction)host.append(cards([course.introduction],'chapter'));
     host.append(cards(course.parts,'part'));
   }else if(part){
     document.body.dataset.guide='part';
@@ -59,12 +60,12 @@ async function start(){
     if(part.assessment){host.append(el('h2','贯通本篇','lessons-heading'),cards([part.assessment],'chapter'));}
   }else{
     document.body.dataset.guide='chapter';
-    heading(`第 ${current.id.split('.')[0]} 篇 · ${current.assessment?'篇末综合':current.id+' 章'}`,current.title,
-      '围绕本章问题，连接必要知识、关键方法与计算实验。',
-      current.available?'在下方进入完整 Notebook；配套练习用于检查理解。':'本页展示教学设计；对应的正式 Notebook、可视化与练习尚待编写。');
+    heading(current.introduction?'导论':`第 ${current.id.split('.')[0]} 篇 · ${current.assessment?'篇末综合':current.id+' 章'}`,current.title,
+      current.introduction?'从生命现象出发，认识系统科学的问题、发展与应用。':'围绕本章问题，连接必要知识、关键方法与计算实验。',
+      current.available?(current.introduction?'建议从导论·1 开始，完成三个小节后进入第一篇。自测帮助检查理解，可随时继续学习。':'在下方进入完整 Notebook；配套练习用于检查理解。'):'本页展示教学设计；对应的正式 Notebook、可视化与练习尚待编写。');
     if(current.assessment)assessmentPanel(current.lessons[0].id,current.url+'practice/');
     const summary=el('div',undefined,'chapter-summary');
-    summary.append(section('本章学会什么',current.goals),section('先修知识',current.prerequisites),section('教学重点与难点',current.focus));host.append(summary);
+    summary.append(section(current.introduction?'导论学会什么':'本章学会什么',current.goals),section('先修知识',current.prerequisites),section('教学重点与难点',current.focus));host.append(summary);
     const knowledge=el('section',undefined,'overview-section knowledge-section');
     knowledge.append(el('h2','知识体系与学习顺序'));
     const list=el('ol',undefined,'knowledge-path');for(const text of current.knowledge)list.append(el('li',text));
@@ -74,7 +75,7 @@ async function start(){
       const grid=el('div',undefined,'chapter-cards');
       for(const [index,lesson] of current.lessons.entries()){
         const card=el('article',undefined,'overview-card');
-        card.append(el('span',`第 ${index+1} 节`,'lesson-label'),el('h3',lesson.title),el('p',lesson.outcome));
+        card.append(el('span',current.introduction?lesson.number:`第 ${index+1} 节`,'lesson-label'),el('h3',lesson.title),el('p',lesson.outcome));
         const links=el('div',undefined,'section-links');
         const button=el('button','在默认 IDE 打开');button.type='button';
         const feedback=el('p','','caption');feedback.setAttribute('role','status');
@@ -87,10 +88,11 @@ async function start(){
           }catch{feedback.textContent='本机连接中断，请重新启动教材服务。';}
           finally{button.disabled=false;}
         });
-        links.append(button,a(`本节 ${lesson.questions.length} 道练习 →`,lesson.url));
+        links.append(button,a(`本节 ${lesson.questions.length} 道${current.introduction?'自测':'练习'} →`,lesson.url));
         card.append(links,feedback);grid.append(card);
       }
       host.append(grid);
+      if(current.introduction)host.append(a('继续学习：1.1 从生理现象提出系统问题 →',course.parts[0].chapters[0].url,'next-chapter'));
     }
   }
   document.title=(current?.title||'全书目录')+' · 动手学系统科学';

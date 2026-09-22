@@ -14,7 +14,7 @@ export function applyProgress(value){
     node.textContent=status.label;node.title=`${status.label} · ${status.passed}/${status.total} 题`;
   }
   const target=document.getElementById('chapter-progress');
-  if(target&&current){const status=summarize(questionIds(current),value);target.textContent=`${status.label}${status.total?' · '+status.passed+' / '+status.total+' 题':''}${value.incomplete?' · 部分记录无法读取':''}`;target.className=`progress-badge ${status.state}`;}
+  if(target&&current){const status=summarize(questionIds(current),value);target.textContent=(current.introduction?`自测通过 ${status.passed} / ${status.total} 题`:`${status.label}${status.total?' · '+status.passed+' / '+status.total+' 题':''}`)+(value.incomplete?' · 部分记录无法读取':'');target.className=`progress-badge ${status.state}`;}
   document.dispatchEvent(new CustomEvent('course-progress',{detail:value}));
 }
 export async function refreshProgress(){
@@ -25,7 +25,7 @@ function badge(item){const b=el('span','未开始','progress-badge new');progres
 function branch(item,parent,isCurrent=false){
   const details=el('details',undefined,'tree-branch');details.open=isCurrent;
   const summary=el('summary');summary.append(el('span',item.title,'tree-title'),badge(item));details.append(summary);
-  const entry=link(item.chapters?'篇导览':'本章导览',item.url,'tree-overview');if(item.url===current?.url&&mode==='overview')entry.setAttribute('aria-current','page');details.append(entry);
+  const entry=link(item.introduction?'导论导览':item.chapters?'篇导览':'本章导览',item.url,'tree-overview');if(item.url===current?.url&&mode==='overview')entry.setAttribute('aria-current','page');details.append(entry);
   parent.append(details);return details;
 }
 export function locateLesson(id){
@@ -43,6 +43,7 @@ export async function mountShell(pageMode='overview'){
   const path=decodeURI(location.pathname);
   const part=course.parts.find(p=>p.url===path);
   const chapterItems=course.parts.flatMap(p=>[...p.chapters,...(p.assessment?[p.assessment]:[])]);
+  if(course.introduction)chapterItems.unshift(course.introduction);
   current=chapterItems.find(c=>path.startsWith(c.url))|| part;
   const header=el('header',undefined,'course-header');
   const toggle=el('button','☰ 隐藏目录','directory-toggle');toggle.id='directory-toggle';toggle.type='button';toggle.setAttribute('aria-controls','course-directory');
@@ -63,6 +64,11 @@ export async function mountShell(pageMode='overview'){
   sidebar.append(primaryNav);
   const error=el('p','进度暂时无法读取，请恢复本机连接后刷新。','error-note');error.id='progress-error';error.hidden=true;sidebar.append(error);
   tree=el('nav',undefined,'course-tree');tree.setAttribute('aria-label','按篇章选择内容');
+  if(course.introduction){
+    const intro=course.introduction;
+    const d=branch({...intro,title:`导论 · ${intro.title}`},tree,intro===current);
+    chapterLinks(intro,d);
+  }
   for(const p of course.parts){
     const chapters=[...p.chapters,...(p.assessment?[p.assessment]:[])];
     const parent=branch({...p,title:`第 ${p.id} 篇 · ${p.title}`},tree,p===current||chapters.includes(current));
@@ -74,12 +80,15 @@ export async function mountShell(pageMode='overview'){
   sidebar.append(tree);document.body.prepend(header,sidebar,resize);setupSidebar(sidebar,toggle,resize);
   const main=document.getElementById('main');main.classList.add('course-main');
   const toolbar=el('div',undefined,'chapter-toolbar');
-  const crumb=el('div',undefined,'breadcrumb');crumb.append(link('目录','/catalog/'));if(current){crumb.append(el('span','/'),link(part?'篇导览':`第 ${current.id.split('.')[0]} 篇`,part?.url||course.parts.find(p=>p.id===current.id.split('.')[0]).url),el('span','/'),el('span',current.title));}
+  const crumb=el('div',undefined,'breadcrumb');crumb.append(link('目录','/catalog/'));if(current){
+    if(current.introduction)crumb.append(el('span','/'),link('导论',current.url),el('span','/'),el('span',current.title));
+    else crumb.append(el('span','/'),link(part?'篇导览':`第 ${current.id.split('.')[0]} 篇`,part?.url||course.parts.find(p=>p.id===current.id.split('.')[0]).url),el('span','/'),el('span',current.title));
+  }
   const sectionName=el('span','','crumb-section');sectionName.id='current-section';crumb.append(sectionName);toolbar.append(crumb);
   if(current&&!part){
     const tabs=el('nav',undefined,'chapter-tabs');tabs.setAttribute('aria-label','本章页面切换');
     const base=current.url;
-    for(const [key,title,url] of [['overview','本章导览',base],['explore','可视化与探索',base+'explore/'],['practice','练习',base+'practice/']]){
+    for(const [key,title,url] of [['overview',current.introduction?'导论导览':'本章导览',base],['explore','可视化与探索',base+'explore/'],['practice',current.introduction?'自测':'练习',base+'practice/']]){
       if(key!=='overview'&&!current.available)continue;
       if(key==='explore'&&!current.visualization)continue;
       let destination=url;

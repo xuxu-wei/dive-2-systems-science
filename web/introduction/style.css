@@ -1,0 +1,21 @@
+.intro-experiment-grid{display:grid;grid-template-columns:minmax(300px,0.9fr) minmax(380px,1.2fr);gap:28px;align-items:start}
+.intro-experiment-grid section{min-width:0}
+.intro-experiment-grid h2{font-size:1.3rem;margin:12px 0}
+.intro-experiment-grid p{line-height:1.75}
+.intro-experiment-grid fieldset{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:12px;border:1px solid var(--ui-border);padding:12px 16px;margin:16px 0}
+.intro-experiment-grid select{min-width:0;width:100%;padding:8px;background:var(--ui-background);color:var(--ui-text);border:1px solid var(--ui-border);font:inherit;border-radius:5px}
+.intro-experiment-grid svg{display:block;width:100%;height:auto;max-height:420px}
+.intro-experiment-grid button,.intro-reading button{font:inherit;cursor:pointer;padding:8px 14px;background:var(--ui-background);color:var(--ui-primary);border:1px solid var(--ui-border);border-radius:6px}
+.intro-experiment-grid button:hover,.intro-reading button:hover{background:color-mix(in srgb,var(--ui-tint) 20%,var(--ui-background))}
+.intro-experiment-grid button:disabled{opacity:.5;cursor:default}
+.intro-play-controls,.intro-reading-links,.intro-legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.chain-key{color:var(--data-1)}.star-key{color:var(--data-2)}
+.round-readout{font-size:1.3rem;font-weight:700;margin:12px 0 4px}
+.intro-reading{border-top:1px solid var(--ui-tint);margin-top:26px;padding:16px 0;line-height:1.8}
+.intro-experiment-grid table{width:100%;border-collapse:collapse;margin-top:12px;text-align:center}
+.intro-experiment-grid th,.intro-experiment-grid td{padding:6px 10px;border-bottom:1px solid var(--ui-tint)}
+.intro-experiment-grid tr[aria-current=true]{background:color-mix(in srgb,var(--ui-tint) 20%,var(--ui-background));font-weight:700}
+.intro-experiment-grid summary{cursor:pointer;padding:6px 0}
+.intro-experiment-grid :focus-visible,.intro-reading :focus-visible{outline:3px solid var(--ui-primary);outline-offset:3px}
+@media(max-width:1100px){.intro-experiment-grid{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){.intro-experiment-grid *{scroll-behavior:auto}}

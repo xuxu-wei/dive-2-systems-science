@@ -9,6 +9,16 @@ def read_json(path):
     return json.loads(path.read_text(encoding='utf-8'))
 
 
+def course_chapters(course):
+    """可学习单元包含独立导论；篇章统计仍只读取 parts。"""
+    if course.get('introduction'):
+        yield course['introduction']
+    for part in course['parts']:
+        yield from part['chapters']
+        if part.get('assessment'):
+            yield part['assessment']
+
+
 def notebooks(root=ROOT):
     entries = [item for path in sorted((root / 'notebooks').rglob('catalog.json'))
                for item in read_json(path)]

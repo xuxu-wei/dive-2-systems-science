@@ -1,0 +1,329 @@
+[
+  {
+    "id": "p00-recovery",
+    "version": "1",
+    "lesson_id": "P00-C01-S01",
+    "type": "choice",
+    "slug": "p00-recovery",
+    "title": "从恢复现象提出系统问题",
+    "statement": "为了研究运动结束后身体怎样散热，以下哪些研究安排有助于把组成、联系、环境与整体变化连起来？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "同时记录活动强度、环境条件和温度随时间的变化，并说明考虑了哪些热量传递关系。"
+      },
+      {
+        "id": "B",
+        "text": "只列出参与的器官名称，就能确定任意环境下的恢复曲线。"
+      },
+      {
+        "id": "C",
+        "text": "在明确条件下比较汗液蒸发和皮肤血流对散热的作用，再把它们放回相互联系中解释。"
+      },
+      {
+        "id": "D",
+        "text": "既然研究整体行为，就不再需要了解汗腺等局部机制。"
+      }
+    ],
+    "constraints": [],
+    "part": "0",
+    "chapter": "0.1",
+    "learning_targets": [
+      "D1",
+      "D2"
+    ],
+    "mathematics": [],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p00-connections",
+    "version": "1",
+    "lesson_id": "P00-C01-S01",
+    "type": "choice",
+    "slug": "p00-connections",
+    "title": "相同个体能否产生不同整体行为",
+    "statement": "两组都包含六个个体和五条双向联系，消息传递规则相同，但连接方式不同。在尚未计算传播过程时，哪项判断最合理？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "人数和联系数相同，任何起点下的传播过程都必然相同。"
+      },
+      {
+        "id": "B",
+        "text": "连接方式可能改变消息经过的路径，还需要说明起点和更新规则才能比较。"
+      },
+      {
+        "id": "C",
+        "text": "只要有一个人收到消息，所有其他人都必然在同一轮收到。"
+      },
+      {
+        "id": "D",
+        "text": "一定是联系画得更长的一组传播更慢。"
+      }
+    ],
+    "constraints": [],
+    "part": "0",
+    "chapter": "0.1",
+    "learning_targets": [
+      "D1"
+    ],
+    "mathematics": [],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p00-purpose",
+    "version": "1",
+    "lesson_id": "P00-C01-S01",
+    "type": "choice",
+    "slug": "p00-purpose",
+    "title": "先分清要回答的问题",
+    "statement": "面对运动后的一组温度读数，研究者提出三个不同问题。以下哪些任务与问题对应合理？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "问“再过一段时间会怎样”，需要研究随时间演化并检查预测。"
+      },
+      {
+        "id": "B",
+        "text": "问“内部情况是什么”，只要把读数换一个名字就已完成认识。"
+      },
+      {
+        "id": "C",
+        "text": "问“怎样改变恢复过程”，需要比较干预方式、结果和代价。"
+      },
+      {
+        "id": "D",
+        "text": "问“方法是否有用”，仅凭模型（model）画出的曲线好看就可以确认。"
+      }
+    ],
+    "constraints": [],
+    "part": "0",
+    "chapter": "0.1",
+    "learning_targets": [
+      "D2"
+    ],
+    "mathematics": [],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p00-traditions",
+    "version": "1",
+    "lesson_id": "P00-C01-S02",
+    "type": "choice",
+    "slug": "p00-traditions",
+    "title": "思想怎样回应问题",
+    "statement": "下面将研究问题与学术传统联系起来。哪些对应合理？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "一般系统论（general system theory，GST）：不同领域的组织关系是否存在可比较的共同形式。"
+      },
+      {
+        "id": "B",
+        "text": "控制论（cybernetics）：动物与机器怎样利用通信和反馈（feedback）进行调节。"
+      },
+      {
+        "id": "C",
+        "text": "信息论（information theory）：仅凭消息的比特数即可确定消息的生理含义。"
+      },
+      {
+        "id": "D",
+        "text": "非线性动力学（nonlinear dynamics）：确定性的规则是否也可能限制长期预测。"
+      }
+    ],
+    "constraints": [],
+    "part": "0",
+    "chapter": "0.1",
+    "learning_targets": [
+      "D3"
+    ],
+    "mathematics": [],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p00-perspectives",
+    "version": "1",
+    "lesson_id": "P00-C01-S02",
+    "type": "choice",
+    "slug": "p00-perspectives",
+    "title": "五类视角怎样配合",
+    "statement": "一项研究先从有误差的读数推断内部情况，再选择调节方式，最后用新的实验检验效果。按照本书的五类问题视角，哪项说法最合适？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "它同时涉及认识系统、调控系统和实践核验，这些视角可以相互支持。"
+      },
+      {
+        "id": "B",
+        "text": "一个研究只能属于一类，前后步骤必须删去两类。"
+      },
+      {
+        "id": "C",
+        "text": "只要已经实施调节，就不再需要检查认识是否正确。"
+      },
+      {
+        "id": "D",
+        "text": "五类视角是每个具体学科都必须采用的唯一划分。"
+      }
+    ],
+    "constraints": [],
+    "part": "0",
+    "chapter": "0.1",
+    "learning_targets": [
+      "D2",
+      "D3"
+    ],
+    "mathematics": [],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p00-complement",
+    "version": "1",
+    "lesson_id": "P00-C01-S02",
+    "type": "choice",
+    "slug": "p00-complement",
+    "title": "新方法与既有知识",
+    "statement": "看到数据驱动建模（data-driven modeling）、复杂网络和人工智能等方法后，怎样理解它们与已有知识的关系？请选择合理的说法。",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "数据中学到的关系可以与已知机制结合，并用新的条件检验。"
+      },
+      {
+        "id": "B",
+        "text": "新方法出现后，守恒关系与测量过程都不再需要考虑。"
+      },
+      {
+        "id": "C",
+        "text": "组成部分的实验能够支持整体模型（model），整体模型也能提示下一项局部实验。"
+      },
+      {
+        "id": "D",
+        "text": "只要不同对象都叫“系统”，同一结论就可以不检查条件地迁移。"
+      }
+    ],
+    "constraints": [],
+    "part": "0",
+    "chapter": "0.1",
+    "learning_targets": [
+      "D3"
+    ],
+    "mathematics": [],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p00-rounds",
+    "version": "1",
+    "lesson_id": "P00-C01-S03",
+    "type": "choice",
+    "slug": "p00-rounds",
+    "title": "独立判断前三轮",
+    "statement": "六人链 A—B—C—D—E—F 的联系均为双向。第 0 轮只有 A 收到消息。每轮仅由上一轮已收到消息者传给相邻者，收到后保持。第 1、2、3 轮的累计接收人数（含 A）分别是多少？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "2、3、4。"
+      },
+      {
+        "id": "B",
+        "text": "6、6、6。"
+      },
+      {
+        "id": "C",
+        "text": "1、2、3。"
+      },
+      {
+        "id": "D",
+        "text": "2、4、6。"
+      }
+    ],
+    "constraints": [],
+    "part": "0",
+    "chapter": "0.1",
+    "learning_targets": [
+      "D1",
+      "D4"
+    ],
+    "mathematics": [],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p00-evidence",
+    "version": "1",
+    "lesson_id": "P00-C01-S03",
+    "type": "choice",
+    "slug": "p00-evidence",
+    "title": "实验支持多大的结论",
+    "statement": "六人链 A—B—C—D—E—F 与以 A 为中心、连接其余五人的六人星形，联系均为双向。第 0 轮仅 A 收到消息，每轮只由上一轮已收到者传给邻居，收到后保持。第三轮累计人数分别为 4 和 6。哪些结论受到这个实验支持？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "在给定规则、起点与观察轮次下，连接方式改变了累计接收人数。"
+      },
+      {
+        "id": "B",
+        "text": "星形连接在所有真实传播问题中都最优，而且没有代价。"
+      },
+      {
+        "id": "C",
+        "text": "要推广到真实传播，还需要了解传递失败、联系变化或个体差异等机制。"
+      },
+      {
+        "id": "D",
+        "text": "人数差异证明了真实生理系统一定采用星形连接。"
+      }
+    ],
+    "constraints": [],
+    "part": "0",
+    "chapter": "0.1",
+    "learning_targets": [
+      "D4"
+    ],
+    "mathematics": [],
+    "difficulty": "迁移"
+  },
+  {
+    "id": "p00-route",
+    "version": "1",
+    "lesson_id": "P00-C01-S03",
+    "type": "choice",
+    "slug": "p00-route",
+    "title": "找到后续学习位置",
+    "statement": "学习地图写着：第 1—5 篇建立基础；第 6 篇从测量走向模型（model）；第 7 篇状态（state）估计与贝叶斯滤波（Bayesian filtering）；第 10 篇反馈（feedback）与最优控制；第 17 篇研究复现。一位读者想逐步学习“从有噪声的读数推断内部状态”，哪项安排合理？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "先从 1.1 建立基础，并把第 7 篇作为后续专题目标，按先修顺序推进。"
+      },
+      {
+        "id": "B",
+        "text": "把第 17 篇当成所有方法的零基础入口。"
+      },
+      {
+        "id": "C",
+        "text": "只要导论自测通过，就可以认为已经掌握滤波算法。"
+      },
+      {
+        "id": "D",
+        "text": "导论的正确率不足 100% 时，教材应禁止进入 1.1。"
+      }
+    ],
+    "constraints": [],
+    "part": "0",
+    "chapter": "0.1",
+    "learning_targets": [
+      "D4"
+    ],
+    "mathematics": [],
+    "difficulty": "迁移"
+  }
+]

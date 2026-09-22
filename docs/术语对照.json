@@ -1,4 +1,13 @@
 [
+  {"zh":"系统科学","en":"systems science"},
+  {"zh":"一般系统论","en":"general system theory","abbr":"GST"},
+  {"zh":"控制论","en":"cybernetics"},
+  {"zh":"工程控制论","en":"engineering cybernetics"},
+  {"zh":"信息论","en":"information theory"},
+  {"zh":"网络科学","en":"network science"},
+  {"zh":"数据驱动建模","en":"data-driven modeling"},
+  {"zh":"多主体模型","en":"agent-based model","abbr":"ABM"},
+  {"zh":"同步更新","en":"synchronous update"},
   {"zh":"系统边界","en":"system boundary"},
   {"zh":"存量","en":"stock"},
   {"zh":"流量","en":"flow"},

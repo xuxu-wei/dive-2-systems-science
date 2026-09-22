@@ -1,0 +1,29 @@
+[
+  {
+    "id": "P00-C01-S01",
+    "chapter_id": "0.1",
+    "path": "notebooks/00-导论/01-从生命现象认识系统.ipynb",
+    "title": "从生命现象认识系统",
+    "outcome": "从运动后恢复等现象中，识别组成、相互作用、环境和整体行为之间的问题。",
+    "number": "导论·1",
+    "visualization": null
+  },
+  {
+    "id": "P00-C01-S02",
+    "chapter_id": "0.1",
+    "path": "notebooks/00-导论/02-系统科学关心什么如何发展.ipynb",
+    "title": "系统科学关心什么，如何发展",
+    "outcome": "用五类问题理解学科全景，辨认主要思想的发展与互补关系。",
+    "number": "导论·2",
+    "visualization": null
+  },
+  {
+    "id": "P00-C01-S03",
+    "chapter_id": "0.1",
+    "path": "notebooks/00-导论/03-从系统问题走向计算与证据.ipynb",
+    "title": "从系统问题走向计算与证据",
+    "outcome": "手算和实现六人消息传播，用对照实验限定结论，并找到全书后续学习位置。",
+    "number": "导论·3",
+    "visualization": "web/introduction/index.html"
+  }
+]

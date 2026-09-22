@@ -10086,5 +10086,113 @@
         "visualization": null
       }
     }
-  ]
+  ],
+  "introduction": {
+    "id": "0.1",
+    "title": "走进系统科学",
+    "url": "/introduction/",
+    "goals": "从生命现象识别相互作用与整体行为；区分演化、认识和干预问题；理解主要学术传统的联系；用简单实验核对结论并定位后续学习。",
+    "prerequisites": "入口。阅读只需日常经验和中学计数；重现第三节代码使用 Python 列表、循环和函数，绘图代码随节说明。",
+    "knowledge": [
+      "从运动后恢复、物质积累与个体传播认识系统",
+      "以五类问题理解学科全景，并串起相互交汇的发展脉络",
+      "比较六个个体的消息传播，连接计算、证据、应用与全书学习路线"
+    ],
+    "focus": "把研究对象、相互关系与研究问题连起来；理解整体研究与局部机制研究相互支持；区分给定规则的实验结果与对真实对象的解释。",
+    "available": true,
+    "lessons": [
+      {
+        "id": "P00-C01-S01",
+        "chapter_id": "0.1",
+        "path": "notebooks/00-导论/01-从生命现象认识系统.ipynb",
+        "title": "从生命现象认识系统",
+        "outcome": "从运动后恢复等现象中，识别组成、相互作用、环境和整体行为之间的问题。",
+        "number": "导论·1",
+        "visualization": null,
+        "questions": [
+          {
+            "id": "p00-recovery",
+            "slug": "p00-recovery",
+            "title": "从恢复现象提出系统问题",
+            "type": "choice"
+          },
+          {
+            "id": "p00-connections",
+            "slug": "p00-connections",
+            "title": "相同个体能否产生不同整体行为",
+            "type": "choice"
+          },
+          {
+            "id": "p00-purpose",
+            "slug": "p00-purpose",
+            "title": "先分清要回答的问题",
+            "type": "choice"
+          }
+        ],
+        "url": "/introduction/practice/?question=p00-recovery"
+      },
+      {
+        "id": "P00-C01-S02",
+        "chapter_id": "0.1",
+        "path": "notebooks/00-导论/02-系统科学关心什么如何发展.ipynb",
+        "title": "系统科学关心什么，如何发展",
+        "outcome": "用五类问题理解学科全景，辨认主要思想的发展与互补关系。",
+        "number": "导论·2",
+        "visualization": null,
+        "questions": [
+          {
+            "id": "p00-traditions",
+            "slug": "p00-traditions",
+            "title": "思想怎样回应问题",
+            "type": "choice"
+          },
+          {
+            "id": "p00-perspectives",
+            "slug": "p00-perspectives",
+            "title": "五类视角怎样配合",
+            "type": "choice"
+          },
+          {
+            "id": "p00-complement",
+            "slug": "p00-complement",
+            "title": "新方法与既有知识",
+            "type": "choice"
+          }
+        ],
+        "url": "/introduction/practice/?question=p00-traditions"
+      },
+      {
+        "id": "P00-C01-S03",
+        "chapter_id": "0.1",
+        "path": "notebooks/00-导论/03-从系统问题走向计算与证据.ipynb",
+        "title": "从系统问题走向计算与证据",
+        "outcome": "手算和实现六人消息传播，用对照实验限定结论，并找到全书后续学习位置。",
+        "number": "导论·3",
+        "visualization": "web/introduction/index.html",
+        "questions": [
+          {
+            "id": "p00-rounds",
+            "slug": "p00-rounds",
+            "title": "独立判断前三轮",
+            "type": "choice"
+          },
+          {
+            "id": "p00-evidence",
+            "slug": "p00-evidence",
+            "title": "实验支持多大的结论",
+            "type": "choice"
+          },
+          {
+            "id": "p00-route",
+            "slug": "p00-route",
+            "title": "找到后续学习位置",
+            "type": "choice"
+          }
+        ],
+        "url": "/introduction/practice/?question=p00-rounds"
+      }
+    ],
+    "introduction": true,
+    "visualization": "web/introduction/index.html"
+  }
 }

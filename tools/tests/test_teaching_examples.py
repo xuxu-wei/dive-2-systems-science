@@ -14,8 +14,10 @@ from practice import difference
 QUESTIONS=[]
 SOLUTIONS={}
 for path in sorted((ROOT/'exercises').glob('[0-9]*/questions.json')):
-    QUESTIONS.extend(json.loads(path.read_text(encoding='utf-8')))
-    SOLUTIONS.update(json.loads(path.with_name('solutions.json').read_text(encoding='utf-8')))
+    questions=json.loads(path.read_text(encoding='utf-8'))
+    QUESTIONS.extend(questions)
+    if any(q['type']=='python' for q in questions):
+        SOLUTIONS.update(json.loads(path.with_name('solutions.json').read_text(encoding='utf-8')))
 
 
 def test_all_code_examples_have_separate_readable_inputs_and_outputs():

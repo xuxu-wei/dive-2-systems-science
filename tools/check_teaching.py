@@ -6,7 +6,7 @@ import re
 from urllib.parse import parse_qs, unquote, urlsplit
 
 import nbformat
-from course_content import notebooks, question_banks
+from course_content import notebooks, question_banks, course_chapters
 from lesson_exercises import render_exercises
 from question_contracts import validate_contract
 from assessment import load_assessments
@@ -31,7 +31,7 @@ def main():
     assessments = load_assessments(questions)
     questions = [q for q in questions if q['lesson_id'] in ids]
     course = json.loads((ROOT / 'web/course/catalog.json').read_text(encoding='utf-8'))
-    chapters = {c['id']: c for p in course['parts'] for c in [*p['chapters'], *([p['assessment']] if 'assessment' in p else [])]}
+    chapters = {c['id']: c for c in course_chapters(course)}
     routes = {c['url'] + suffix for c in chapters.values() for suffix in ['', 'practice/', *(['explore/'] if c.get('visualization') else [])]}
     issues, evidence, links = [], [], 0
     for lesson in catalog:

@@ -7,7 +7,7 @@ const editor=createEditor($('source'));
 let session, catalog=[], question, active=null, pollTimer=null, selection=0, lastRecord=null, undo='';
 let prefix,chapter=null; // 每章独立保存草稿。
 let lessons=[],progressState={passed:[]};
-function progressLabel(value){const ids=new Set(catalog.map(q=>q.id));return `${chapter?.assessment?'篇末综合':'本章'}已完成 ${(value.passed||[]).filter(id=>ids.has(id)).length} / ${ids.size} 题${value.incomplete?' · 部分记录无法读取':''}`;}
+function progressLabel(value){const ids=new Set(catalog.map(q=>q.id));return `${chapter?.introduction?'自测通过':chapter?.assessment?'篇末综合已完成':'本章已完成'} ${(value.passed||[]).filter(id=>ids.has(id)).length} / ${ids.size} 题${value.incomplete?' · 部分记录无法读取':''}`;}
 function scorePanel(){
   const summary=chapter?.assessment?progressState.assessments?.[chapter.lessons[0].id]:null;
   renderAssessment($('assessment-score'),summary,{onSelect:id=>void select(id).catch(connectionError)});
@@ -283,6 +283,6 @@ for(const [button,offset] of [['previous-question',-1],['next-question',1]])$(bu
 const context=await mountShell('practice');chapter=context.current;
 if(!chapter?.available)throw Error('本章练习尚未提供。');
 prefix=`systems-science:course:${chapter.id}:`;
-document.querySelector('.practice-heading .eyebrow').textContent=`${chapter.assessment?'篇末综合':chapter.id+' 章'} · 练习`;
+document.querySelector('.practice-heading .eyebrow').textContent=chapter.introduction?'导论 · 自测':`${chapter.assessment?'篇末综合':chapter.id+' 章'} · 练习`;
 setupWorkspace($('exercise-workspace'),$('workspace-resizer'),$('wrap-code'),$('source'));
 void connect();

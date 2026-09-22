@@ -14,7 +14,7 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from practice import PracticeEngine, RequestError
-from course_content import notebooks
+from course_content import notebooks, course_chapters
 
 
 def home_graph_response(root):
@@ -169,13 +169,13 @@ class TeachingHandler(SimpleHTTPRequestHandler):
         routes={'':'web/home/index.html','catalog/':'web/course/index.html'}
         for part in self.server.course['parts']:
             routes[part['url'].lstrip('/')]='web/course/index.html'
-            for chapter in [*part['chapters'], *([part['assessment']] if part.get('assessment') else [])]:
-                base=chapter['url'].lstrip('/')
-                routes[base]='web/course/index.html'
-                if chapter['available']:
-                    routes[base+'practice/']='web/practice/index.html'
-                    if chapter.get('visualization'):
-                        routes[base+'explore/']=chapter['visualization']
+        for chapter in course_chapters(self.server.course):
+            base=chapter['url'].lstrip('/')
+            routes[base]='web/course/index.html'
+            if chapter['available']:
+                routes[base+'practice/']='web/practice/index.html'
+                if chapter.get('visualization'):
+                    routes[base+'explore/']=chapter['visualization']
         if requested in routes:
             requested=routes[requested];self.path='/'+requested
         resolved = (ROOT / requested).resolve()
@@ -184,7 +184,7 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             return None
         parts = resolved.relative_to(ROOT).parts
         allowed = parts and (parts[0] in {'web', 'notebooks', 'docs'} or requested in {'README.md', 'LICENSE'})
-        if self.server.previews and len(parts)>=3 and parts[0]=='.work' and parts[1] in {'m1','m2','m3','m3-part01','m4','m5','m6','m7','m5-extension','m7-extension','m8','m8-teaching','m9','m10','m11','m12','m13','m14','m6-label-correction'} and parts[2]=='previews':
+        if self.server.previews and len(parts)>=3 and parts[0]=='.work' and parts[1] in {'m1','m2','m3','m3-part01','m4','m5','m6','m7','m5-extension','m7-extension','m8','m8-teaching','m9','m10','m11','m12','m13','m14','m6-label-correction','m19'} and parts[2]=='previews':
             allowed = True
         if not allowed:
             self.send_error(404)

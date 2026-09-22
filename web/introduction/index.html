@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>连接与传播 · 导论</title><link rel="icon" type="image/svg+xml" href="/web/shared/logo.svg"><link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css"><link rel="stylesheet" href="/web/introduction/style.css"></head>
+<body><main id="main">
+<p id="loading-note" class="notice" role="status">正在准备连接与传播实验…</p>
+<article id="experiment" hidden>
+  <header class="overview-heading"><p class="eyebrow">导论 · 可视化与探索</p><h1>同样的个体，不同的连接</h1><p class="lead">六个个体，五条双向联系。先预测消息前三轮到达谁，再逐轮观察。</p></header>
+  <div class="intro-experiment-grid">
+    <section aria-labelledby="structure-title"><h2 id="structure-title">谁与谁联系</h2>
+      <p>第 0 轮只有起点收到消息。每轮仅由<strong>上一轮已收到的人</strong>向邻居传递；收到后保持，联系不变且每次传递都成功。</p>
+      <fieldset id="conditions" disabled><legend>改变一个条件</legend>
+        <label for="network">查看连接方式</label><select id="network"><option value="chain">链形 A—B—C—D—E—F</option><option value="star">星形：A 联系其余五人</option></select>
+        <label for="start-node">消息起点</label><select id="start-node"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option><option value="4">E</option><option value="5">F</option></select>
+      </fieldset>
+      <svg id="network-figure" viewBox="0 0 420 310" role="img" aria-labelledby="network-title network-description"><title id="network-title">六个个体的连接</title><desc id="network-description"></desc></svg>
+      <p class="caption">实心：已收到；空心虚线：尚未收到；外圈：起点。线长是示意画法。</p>
+      <p id="recipients" role="status"></p>
+    </section>
+    <section aria-labelledby="counts-title"><h2 id="counts-title">逐轮到达多少人</h2>
+      <p id="round-readout" class="round-readout" role="status">第 0 轮</p>
+      <p id="count-readout"></p>
+      <svg id="counts-figure" viewBox="0 0 620 360" role="img" aria-labelledby="counts-svg-title counts-description"><title id="counts-svg-title">同一起点的链形与星形传播人数</title><desc id="counts-description"></desc></svg>
+      <div class="intro-legend"><span class="chain-key">● 链形 · 实线</span><span class="star-key">■ 星形 · 虚线</span></div>
+      <div class="intro-play-controls"><button id="step" type="button" disabled>下一轮</button><button id="play" type="button" disabled>播放</button><button id="reset" type="button" disabled>重置</button></div>
+      <p id="play-status" class="caption" role="status"></p>
+      <details><summary>查看完整人数表（包含起点）</summary><div id="counts-table"></div></details>
+    </section>
+  </div>
+  <section class="intro-reading"><h2>从结果回到问题</h2><p>两条曲线始终使用同一起点和同一规则。试着把起点从 A 改为 F：星形第一轮还能到达全部人吗？观察连接路径，再解释人数变化。</p><p>这项实验比较的是给定条件下的传递过程。研究真实传播，还需要了解传递失败、联系变化与个体差异。</p>
+    <div class="intro-reading-links"><button id="open-notebook" type="button">在默认 IDE 打开导论·3</button><a href="/introduction/practice/?question=p00-rounds">用自测检查理解 →</a><a href="/introduction/">返回导论导览</a></div><p id="open-status" role="status"></p>
+  </section>
+</article></main><script src="/web/shared/boot.js"></script><script type="module" src="/web/introduction/app.mjs" data-main></script></body></html>

@@ -42,10 +42,11 @@ def validate_design(parts, design):
         assert [c['id'] for c in part['chapters']] == [f'{part["id"]}.{i}' for i in range(1, len(part['chapters']) + 1)], 'Invalid chapter numbering'
 
 
-def build():
+def build(*, write=True):
     design = (ROOT / 'docs/教材设计.md').read_text(encoding='utf-8')
     maths = dict(re.findall(r'^\| (数\d+) \| ([^|]+) \|', design, re.M))
     parts = []
+    introduction = None
     for path in sorted((ROOT / 'docs').glob('[0-9][0-9]-*.md')):
         source = path.read_text(encoding='utf-8')
         number = int(path.name[:2])
@@ -64,11 +65,17 @@ def build():
                 'goals': field('教学目标'), 'prerequisites': field('直接先修'),
                 'knowledge': order, 'focus': teaching_focus(content, f'{part}.{chapter}'),
                 'available': False, 'lessons': []})
-        parts.append({'id': str(number), 'title': title, 'url': f'/parts/{path.stem}/', 'chapters': chapters})
+        if number == 0:
+            assert path.name == '00-导论.md' and [c['id'] for c in chapters] == ['0.1'], 'Invalid introduction outline'
+            introduction = {**chapters[0], 'introduction': True, 'url': '/introduction/'}
+        else:
+            parts.append({'id': str(number), 'title': title, 'url': f'/parts/{path.stem}/', 'chapters': chapters})
     validate_design(parts, design)
     all_lessons = notebooks()
     chapter_ids = {c['id'] for p in parts for c in p['chapters']}
     chapter_ids.update(p['id'] + '.summary' for p in parts)
+    if introduction:
+        chapter_ids.add(introduction['id'])
     assert all(l.get('chapter_id') in chapter_ids for l in all_lessons), 'Published lesson lost its chapter'
     questions, _ = question_banks()
     assessments = load_assessments(questions)
@@ -97,10 +104,16 @@ def build():
         for chapter in part['chapters']:
             annotate_overview(chapter)
     result = {'parts': parts}
+    if introduction:
+        attach(introduction, [l for l in all_lessons if l.get('chapter_id') == introduction['id']])
+        annotate_overview(introduction)
+        result['introduction'] = introduction
     path = ROOT / 'web/course/catalog.json'
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    if write:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f'Course directory: {len(parts)} parts, {sum(len(p["chapters"]) for p in parts)} chapters; {sum(c["available"] for p in parts for c in p["chapters"])} available.')
+    return result
 
 
 if __name__ == '__main__':

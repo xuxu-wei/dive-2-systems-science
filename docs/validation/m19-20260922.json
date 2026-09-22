@@ -1,0 +1,152 @@
+{
+  "milestone": "M19",
+  "date": "2026-09-22",
+  "status": "delivered",
+  "scope": {
+    "curriculum": "导论 + 17 篇、85 章",
+    "new_notebooks": 3,
+    "new_choice_questions": 9,
+    "new_explorations": 1,
+    "total_notebooks": 206,
+    "total_questions": 939,
+    "total_explorations": 74,
+    "introduction_ids": [
+      "0.1",
+      "P00-C01-S01",
+      "P00-C01-S02",
+      "P00-C01-S03"
+    ],
+    "planning": "导论独立于 parts；正文顺序、数学先修和篇末评价身份不变。"
+  },
+  "teaching_review": [
+    "D1：运动后恢复、物质交换与个体传播讲解组成、联系、环境和整体行为；恢复、连接、逐轮计数自测覆盖。",
+    "D2：恢复案例区分演化、从观测认识、干预与核验任务；目的与五类视角题覆盖。",
+    "D3：一般系统论、控制论与信息论、非线性动力学、网络复杂性、机制与数据融合采用相互补充的组织方式；传统、视角和互补题覆盖。",
+    "D4：六人实验先列前三轮，再给列表循环；结论题限定规则与起点，地图题定位后续学习。",
+    "历史与概念来源在 Notebook 和导论大纲就近链接；五论来自郭雷，篇章对应明确为本书的教学组织。人物和年份不作记忆题。",
+    "九题各有独立题面、正确集合及四项解析；不设自由作答、导论百分制或强制通关。正文没有安装与制作指令。",
+    "三幅图逐一查看；关系箭头不穿过标签，发展图说明代表性工作与问题联系，传播图与手算一致。"
+  ],
+  "execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "notebooks": [
+      {
+        "id": "P00-C01-S01",
+        "path": "notebooks/00-导论/01-从生命现象认识系统.ipynb",
+        "seconds": 2.4,
+        "code_cells": 1,
+        "figures": 1,
+        "sha256": "4cf1ac0573820ddc1997d0cc6ef7c460e9191fbf167db3805d74f3f044ad2f0d",
+        "passed": true
+      },
+      {
+        "id": "P00-C01-S02",
+        "path": "notebooks/00-导论/02-系统科学关心什么如何发展.ipynb",
+        "seconds": 2.32,
+        "code_cells": 1,
+        "figures": 1,
+        "sha256": "3e255253b0354dbe3f8dfd0951c50870557b6d3dc878801c5e2081c580702409",
+        "passed": true
+      },
+      {
+        "id": "P00-C01-S03",
+        "path": "notebooks/00-导论/03-从系统问题走向计算与证据.ipynb",
+        "seconds": 2.42,
+        "code_cells": 3,
+        "figures": 1,
+        "sha256": "bd75c29e1e6486e4ed8a4929c7347ae38d22e9e89633e387b5a99aae8053db8b",
+        "passed": true
+      }
+    ]
+  },
+  "checks": [
+    {
+      "command": "python tools/check_notebooks.py --part 00-导论 --work m19 --write",
+      "result": "3 本分别用新内核运行，5 个代码单元和 3 幅图通过，实际输出已保存。"
+    },
+    {
+      "command": "python tools/check_teaching.py --work m19",
+      "result": "206 本 Notebook、939 道题目与链接同步，术语首次使用检查通过。"
+    },
+    {
+      "command": "python -m pytest -q tools/tests/test_introduction.py tools/tests/test_home_routes.py tools/tests/test_home_graph.py tools/tests/test_course_focus.py tools/tests/test_assessment.py tools/tests/test_terminology.py",
+      "result": "87 passed"
+    },
+    {
+      "command": "node --test tools/tests/introduction.test.mjs tools/tests/editor-progress.test.mjs tools/tests/assessment.test.mjs tools/tests/home-graph.test.mjs",
+      "result": "20 passed"
+    },
+    {
+      "command": "python tools/build_home_graph.py",
+      "result": "重新生成目录校验；711 个节点、1054 条关系与修改前一致。"
+    }
+  ],
+  "independent_verification": [
+    "人工列出链形从 A 出发人数 [1,2,3,4,5,6]，星形 [1,6,6,6,6,6]；F 出发的星形 [1,2,6,6]。",
+    "Notebook 模型以广度优先搜索的最短路径作独立参考；网页模型以 Floyd–Warshall 最短路径作参考。",
+    "每个实现覆盖 4 组连接（链、星、无边、含环且不连通）、6 个起点、0—5 轮，并翻转边枚举顺序验证同步更新。",
+    "全部九题分别提交错误集合和正确集合；既有篇末成绩、普通题通过状态及原提交文件保持，关闭并重建判题引擎后恢复一致。",
+    "不含 introduction 的旧目录仍能访问原目录与章内路由；章节遍历和进度计算不把导论计入正文篇。"
+  ],
+  "compatibility": {
+    "body_parts_unchanged": 17,
+    "body_chapters": 85,
+    "existing_exercise_and_assessment_files_unchanged": 68,
+    "existing_notebook_code_and_outputs_unchanged": [
+      "notebooks/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.ipynb",
+      "notebooks/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.ipynb"
+    ],
+    "graph_nodes_unchanged": 711,
+    "graph_edges_unchanged": 1054,
+    "changed_document_internal_links_checked": 262
+  },
+  "browser_review": {
+    "environment": "Windows，Codex 内置浏览器，PC 默认窗口；测试作答使用 .work/m19/browser-learning。",
+    "routes": "导览、探索、自测可直接打开与刷新；侧栏、面包屑和页签无第 0 篇显示。",
+    "navigation": "首页先读导论 → 导论 → 1.1 可点击；全书目录显示导论 + 17 篇、85 章，正文全部可学习。",
+    "experiment": "链形 A 单步至第三轮显示 4/6 人；切换星形 F，第一轮 A、F，第二轮全体。播放至第五轮、暂停、重置和 Enter 单步均检查。",
+    "appearance": "检查浅色与深色；图形、文字、线型和标记可区分，完整人数表与当前轮同步。",
+    "self_check": "p00-rounds 选 B 判错，查看逐项解析，订正 A 判对；刷新和临时服务重启后保持 1/9，自测不增加正文完成度。",
+    "rendered_notebook": "从执行后的第三节 HTML 实际点击实验链接及 p00-rounds 作答链接，抵达正确页面。预览仅将本机端口替换为隔离测试端口，正式 Notebook 保持 8000。",
+    "notebook_opener": "三个 ID 的 HTTP 回归均传递到正确的原文件路径；正式 8000 服务实际请求 P00-C01-S03，返回 202 和已请求默认 IDE 的反馈。",
+    "opener_environment_note": "受限测试进程打开系统应用曾返回错误反馈；正式服务重启后实际打开请求成功。不据此声称已检查原生 IDE 内的画面。",
+    "console": "正式探索页和首页星图检查时无浏览器脚本错误。"
+  },
+  "local_service": {
+    "routes": {
+      "/introduction/": 200,
+      "/introduction/explore/": 200,
+      "/introduction/practice/": 200,
+      "/web/home/graph.json": 200,
+      "/api/v1/progress": 200
+    },
+    "existing_record_files_unchanged": 29,
+    "existing_passed_started_and_scores_unchanged": true,
+    "old_service_loaded_question_count": 538,
+    "current_service_loaded_question_count": 939,
+    "newly_loaded_assessments": [
+      "P10-SUMMARY",
+      "P11-SUMMARY",
+      "P12-SUMMARY",
+      "P13-SUMMARY",
+      "P14-SUMMARY",
+      "P15-SUMMARY",
+      "P16-SUMMARY",
+      "P17-SUMMARY"
+    ]
+  },
+  "limitations": [
+    "尚未开展目标读者试学或独立同行评审；自测难度与学习效果仍属于教学设计判断。",
+    "本轮只运行三本新增 Notebook；第一篇两本仅补 Markdown 衔接，代码与保存输出逐项对照原版本不变。",
+    "浏览器检查覆盖 PC 默认窗口和统一主题，未进行跨浏览器、跨设备基准；原生 IDE 内容未另作界面自动化。"
+  ]
+}
