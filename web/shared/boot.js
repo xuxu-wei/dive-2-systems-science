@@ -9,8 +9,19 @@
     return valid(saved) ? saved : valid(legacy) ? legacy : document.body.classList.contains('home-page') ? 'dark' : 'light';
   };
   const getTheme = () => document.documentElement.dataset.siteTheme || preferred();
+  let settleFrame = 0;
   const applyTheme = (theme, {persist = true} = {}) => {
     if (!valid(theme)) throw new TypeError('Theme must be dark or light.');
+    const root = document.documentElement;
+    if (root.dataset.siteTheme && root.dataset.siteTheme !== theme && window.requestAnimationFrame) {
+      // Commit interface colors once, without spawning hundreds of color transitions.
+      // The background opacity and pointer feedback remain composited and interactive.
+      root.dataset.themeSettling = 'true';
+      window.cancelAnimationFrame(settleFrame);
+      settleFrame = window.requestAnimationFrame(() => {
+        settleFrame = window.requestAnimationFrame(() => {delete root.dataset.themeSettling;});
+      });
+    }
     document.documentElement.dataset.siteTheme = theme;
     document.documentElement.style.colorScheme = theme;
     if (document.body.classList.contains('home-page')) document.body.dataset.skyTheme = theme;

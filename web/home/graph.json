@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "taxonomy": [
     {
       "id": "method",
@@ -49,6 +49,135 @@
     "note": "五论名称参考原文；课程归类、配色与图形布局由本站设计。连线表达课程先修或同节关联，不表示自然因果或物理引力。"
   },
   "nodes": [
+    {
+      "id": "introduction",
+      "kind": "introduction",
+      "title": "走进系统科学",
+      "parentId": null,
+      "url": "/introduction/",
+      "number": "00",
+      "description": "从生命现象识别相互作用与整体行为；区分演化、认识和干预问题；理解主要学术传统的联系；用简单实验核对结论并定位后续学习。",
+      "categories": [
+        "method",
+        "evolution",
+        "cognition",
+        "regulation",
+        "practice"
+      ],
+      "children": [
+        "P00-C01-S01",
+        "P00-C01-S02",
+        "P00-C01-S03"
+      ],
+      "questionIds": [
+        "p00-recovery",
+        "p00-connections",
+        "p00-purpose",
+        "p00-traditions",
+        "p00-perspectives",
+        "p00-complement",
+        "p00-rounds",
+        "p00-evidence",
+        "p00-route"
+      ],
+      "available": true,
+      "published": 3,
+      "total": 3,
+      "progressScope": "导论自测"
+    },
+    {
+      "id": "P00-C01-S01",
+      "kind": "lesson",
+      "title": "从生命现象认识系统",
+      "parentId": "introduction",
+      "url": "/introduction/practice/?question=p00-recovery",
+      "number": "导论·1",
+      "description": "从运动后恢复等现象中，识别组成、相互作用、环境和整体行为之间的问题。",
+      "categories": [
+        "method",
+        "evolution",
+        "cognition",
+        "regulation",
+        "practice"
+      ],
+      "children": [],
+      "questionIds": [
+        "p00-recovery",
+        "p00-connections",
+        "p00-purpose"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P00-C01-S01",
+      "lessonNumber": "导论·1",
+      "lessonTitle": "从生命现象认识系统",
+      "chapterUrl": "/introduction/",
+      "progressScope": "本节自测",
+      "visualizationUrl": null
+    },
+    {
+      "id": "P00-C01-S02",
+      "kind": "lesson",
+      "title": "系统科学关心什么，如何发展",
+      "parentId": "introduction",
+      "url": "/introduction/practice/?question=p00-traditions",
+      "number": "导论·2",
+      "description": "用五类问题理解学科全景，辨认主要思想的发展与互补关系。",
+      "categories": [
+        "method",
+        "evolution",
+        "cognition",
+        "regulation",
+        "practice"
+      ],
+      "children": [],
+      "questionIds": [
+        "p00-traditions",
+        "p00-perspectives",
+        "p00-complement"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P00-C01-S02",
+      "lessonNumber": "导论·2",
+      "lessonTitle": "系统科学关心什么，如何发展",
+      "chapterUrl": "/introduction/",
+      "progressScope": "本节自测",
+      "visualizationUrl": null
+    },
+    {
+      "id": "P00-C01-S03",
+      "kind": "lesson",
+      "title": "从系统问题走向计算与证据",
+      "parentId": "introduction",
+      "url": "/introduction/practice/?question=p00-rounds",
+      "number": "导论·3",
+      "description": "手算和实现六人消息传播，用对照实验限定结论，并找到全书后续学习位置。",
+      "categories": [
+        "method",
+        "evolution",
+        "cognition",
+        "regulation",
+        "practice"
+      ],
+      "children": [],
+      "questionIds": [
+        "p00-rounds",
+        "p00-evidence",
+        "p00-route"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P00-C01-S03",
+      "lessonNumber": "导论·3",
+      "lessonTitle": "从系统问题走向计算与证据",
+      "chapterUrl": "/introduction/",
+      "progressScope": "本节自测",
+      "visualizationUrl": "/introduction/explore/"
+    },
     {
       "id": "1",
       "kind": "part",
@@ -22258,6 +22387,20 @@
     }
   ],
   "edges": [
+    {
+      "source": "P00-C01-S01",
+      "target": "P00-C01-S02",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "导论小节学习顺序"
+    },
+    {
+      "source": "P00-C01-S02",
+      "target": "P00-C01-S03",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "导论小节学习顺序"
+    },
     {
       "source": "1.1.1:concept:1",
       "target": "1.1.1:concept:2",

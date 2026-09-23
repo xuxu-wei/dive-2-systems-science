@@ -14,6 +14,7 @@ import threading
 import time
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+from .local_desktop import launch_context_id, desktop_environment
 
 
 SERVICE_NAME = "hands-on-systems-science"
@@ -42,7 +43,8 @@ def content_id(root: Path) -> str:
     root = root.resolve()
     paths = [root / "web/course/catalog.json", *sorted((root / "notebooks").rglob("catalog.json")),
              *sorted((root / "exercises").rglob("*.json")),
-             *sorted((root / "tools").glob("*.py")), root / "src/systems_science/local_service.py"]
+             *sorted((root / "tools").glob("*.py")), root / "src/systems_science/local_service.py",
+             root / "src/systems_science/local_desktop.py"]
     digest = hashlib.sha256()
     for path in paths:
         if not path.is_file():
@@ -118,7 +120,8 @@ def _start(root: Path, port: int) -> subprocess.Popen:
         interpreter = Path(sys.executable)
     log_path = root / ".local/service.log"
     log_path.parent.mkdir(parents=True, exist_ok=True)
-    options = {"cwd": root, "stdin": subprocess.DEVNULL, "stderr": subprocess.STDOUT, "close_fds": True}
+    options = {"cwd": root, "stdin": subprocess.DEVNULL, "stderr": subprocess.STDOUT, "close_fds": True,
+               "env": desktop_environment()}
     if os.name == "nt":
         options["creationflags"] = subprocess.CREATE_NO_WINDOW | subprocess.CREATE_NEW_PROCESS_GROUP
     else:
@@ -133,13 +136,14 @@ def ensure_course_server(*, root: Path | None = None, port: int = 8000) -> bool:
     root = (root or project_root()).resolve()
     try:
         expected = content_id(root)
+        context = launch_context_id()
     except OSError as error:
         raise LocalServiceError(f"无法读取教材服务文件：{error}") from error
     with _START_LOCK:
         session = _session(port)
         if session is not None:
             _validate_session(session, root, port)
-            if session.get("content_id") == expected:
+            if session.get("content_id") == expected and session.get("launch_context_id") == context:
                 return True
             _stop_stale(session, root, port)
         try:
@@ -157,7 +161,7 @@ def ensure_course_server(*, root: Path | None = None, port: int = 8000) -> bool:
                 raise
             if session is not None:
                 _validate_session(session, root, port)
-                if session.get("content_id") == expected:
+                if session.get("content_id") == expected and session.get("launch_context_id") == context:
                     return True
             if process.poll() is not None:
                 raise LocalServiceError("教材服务启动失败；请查看 .local/service.log。")

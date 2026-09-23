@@ -1,5 +1,5 @@
 import * as THREE from '../vendor/three/three.module.js';
-import {planeVertex, backgroundFragment, pointVertex, pointFragment, galaxyFragment, sphereVertex, planetFragment, atmosphereFragment, haloFragment, blackHoleFragment, edgeVertex, edgeFragment} from './gpu-materials.mjs';
+import {planeVertex, pointVertex, pointFragment, galaxyFragment, sphereVertex, planetFragment, atmosphereFragment, haloFragment, blackHoleFragment, edgeVertex, edgeFragment} from './gpu-materials.mjs';
 
 const TAU = Math.PI * 2;
 const clamp = n => Math.min(1, Math.max(0, Number.isFinite(n) ? n : 0));
@@ -51,15 +51,13 @@ export class GPURenderer {
   constructor(canvas) {
     this.canvas = canvas; this.dark = true; this.disposed = false; this.width = 1; this.height = 1; this.dpr = 1;
     this.entries = new Map(); this.colorCache = new Map(); this.centerEntry = null; this.centerKey = ''; this.textureReady = false; this.blackHoleTextureReady = false;
-    this.renderer = new THREE.WebGLRenderer({canvas, alpha: false, antialias: true, powerPreference: 'high-performance'});
+    this.renderer = new THREE.WebGLRenderer({canvas, alpha: true, antialias: true, powerPreference: 'high-performance'});
     this.renderer.outputColorSpace = THREE.SRGBColorSpace; this.renderer.toneMapping = THREE.ACESFilmicToneMapping; this.renderer.toneMappingExposure = 1.08;
     this.renderer.debug.onShaderError = (_gl, _program, _vertex, _fragment) => {throw new Error('WebGL 材质无法运行，将切换兼容星图。');};
     this.scene = new THREE.Scene(); this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, .1, 2000); this.camera.position.z = 1000;
     this.quad = new THREE.PlaneGeometry(1, 1); this.sphere = new THREE.SphereGeometry(1, 40, 28); this.moonSphere = new THREE.SphereGeometry(1, 12, 8);
-    this.galaxyStars = starGeometry(1450, true); this.backgroundStars = starGeometry(1500, false);
+    this.galaxyStars = starGeometry(1450, true);
     this.blankTexture = new THREE.DataTexture(new Uint8Array([0, 0, 0, 0]), 1, 1, THREE.RGBAFormat); this.blankTexture.needsUpdate = true; this.galaxyTexture = this.blankTexture; this.blackHoleTexture = this.blankTexture;
-    this.background = new THREE.Mesh(this.quad, this.shader(planeVertex, backgroundFragment, {uDark: uniform(1), uAspect: uniform(1)}, {transparent: false, depthWrite: false, depthTest: false})); this.background.position.z = -400; this.background.renderOrder = -100; this.scene.add(this.background);
-    this.starfield = new THREE.Points(this.backgroundStars, this.pointsMaterial('#9bb9e4', 1.8, .74)); this.starfield.position.z = -300; this.starfield.renderOrder = -90; this.scene.add(this.starfield);
     this.blackHole = new THREE.Mesh(this.quad, this.shader(planeVertex, blackHoleFragment, {uTime: uniform(0), uDark: uniform(1), uOpacity: uniform(1), uMap: uniform(this.blackHoleTexture), uReady: uniform(0)})); this.blackHole.renderOrder = 2; this.scene.add(this.blackHole);
     this.edgeGeometry = new THREE.BufferGeometry(); this.edgeMesh = new THREE.LineSegments(this.edgeGeometry, this.shader(edgeVertex, edgeFragment, {}, {depthTest: false})); this.edgeMesh.renderOrder = -10; this.scene.add(this.edgeMesh); this.edgeCapacity = 0;
     this.scene.add(new THREE.HemisphereLight(0xbddeff, 0x060b18, .45)); const sun = new THREE.DirectionalLight(0xf2f5ff, 2.5); sun.position.set(-400, 400, 600); this.scene.add(sun);
@@ -149,16 +147,16 @@ export class GPURenderer {
   }
 
   resize() {
-    if (this.disposed) return; const box = this.canvas.getBoundingClientRect(); this.width = Math.max(1, box.width); this.height = Math.max(1, box.height); this.dpr = Math.min(1.5, window.devicePixelRatio || 1);
+    if (this.disposed) return; const box = this.canvas.getBoundingClientRect(), width = Math.max(1, box.width), height = Math.max(1, box.height), dpr = Math.min(1.5, window.devicePixelRatio || 1);
+    if (width === this.width && height === this.height && dpr === this.dpr) return;
+    this.width = width; this.height = height; this.dpr = dpr;
     this.renderer.setPixelRatio(this.dpr); this.renderer.setSize(this.width, this.height, false);
     this.camera.left = -this.width / 2; this.camera.right = this.width / 2; this.camera.top = this.height / 2; this.camera.bottom = -this.height / 2; this.camera.updateProjectionMatrix();
-    this.background.scale.set(this.width * 1.01, this.height * 1.01, 1); this.background.material.uniforms.uAspect.value = this.width / this.height;
-    this.starfield.scale.set(this.width * 1.12, this.height * 1.12, 1); this.starfield.material.uniforms.uPixelRatio.value = this.dpr;
   }
 
-  setTheme(dark) {this.dark = Boolean(dark); this.background.material.uniforms.uDark.value = this.dark ? 1 : 0; this.starfield.material.uniforms.uDark.value = this.dark ? 1 : 0; this.renderer.setClearColor(this.dark ? 0x040814 : 0xe5effb, 1);}
+  setTheme(dark) {this.dark = Boolean(dark); this.renderer.setClearColor(0, 0);}
 
-  getDiameter(id = null) {const entry=id?this.entries.get(id):this.centerEntry;return entry?(entry.kind==='chapter'?entry.body.scale.x*2:entry.kind==='part'?entry.body.scale.x:18):1;}
+  getDiameter(id = null) {const entry=id?this.entries.get(id):this.blackHole.visible?null:this.centerEntry;return entry?(entry.kind==='chapter'?entry.body.scale.x*2:entry.kind==='part'?entry.body.scale.x:18):this.blackHole.scale.x*.45;}
 
   updateEdges(nodes, edges, hovered, reveal) {
     const lookup = new Map(nodes.map(node => [node.id, node])), segments = 12, count = edges.length * segments * 2;
@@ -203,16 +201,14 @@ export class GPURenderer {
       if (this.centerEntry) this.centerEntry.group.visible = false;
       this.blackHole.visible = opacity > .001; this.blackHole.position.set(center.x - this.width / 2, this.height / 2 - center.y, 0); this.blackHole.scale.set(radius * 9.2, radius * 9.2, 1); this.blackHole.material.uniforms.uTime.value = time; this.blackHole.material.uniforms.uDark.value = this.dark ? 1 : 0; this.blackHole.material.uniforms.uOpacity.value = opacity; this.blackHole.material.uniforms.uMap.value = this.blackHoleTexture; this.blackHole.material.uniforms.uReady.value = this.blackHoleTextureReady ? 1 : 0;
     }
-    const cameraX = center.x - this.width * .5, cameraY = this.height * .5 - center.y;
-    this.starfield.position.x = cameraX * .075; this.starfield.position.y = cameraY * .075; this.starfield.scale.set(this.width * (1.12 + intro * .055), this.height * (1.12 + intro * .055), 1); this.starfield.material.uniforms.uSize.value = 1.8 + Math.min(.5, Math.abs(velocity) * .35);
     this.renderer.render(this.scene, this.camera);
   }
 
   dispose() {
     if (this.disposed) return; this.disposed = true;
     for (const entry of this.entries.values()) this.removeEntry(entry); this.entries.clear(); this.removeEntry(this.centerEntry);
-    for (const object of [this.background, this.starfield, this.blackHole, this.edgeMesh]) object.material.dispose();
-    for (const geometry of [this.quad, this.sphere, this.moonSphere, this.galaxyStars, this.backgroundStars, this.edgeGeometry]) geometry.dispose();
+    for (const object of [this.blackHole, this.edgeMesh]) object.material.dispose();
+    for (const geometry of [this.quad, this.sphere, this.moonSphere, this.galaxyStars, this.edgeGeometry]) geometry.dispose();
     this.blankTexture.dispose(); if (this.galaxyTexture !== this.blankTexture) this.galaxyTexture.dispose(); if (this.blackHoleTexture !== this.blankTexture) this.blackHoleTexture.dispose(); this.renderer.dispose();
   }
 }

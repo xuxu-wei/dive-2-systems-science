@@ -1,40 +1,50 @@
 /* Shared interface appearance. Scientific plots retain the same paper and data colors. */
-:root[data-site-theme=light]{color-scheme:light}
+:root[data-site-theme=light]{
+  color-scheme:light;
+  --ui-background:#f5f7fc;--ui-text:#202742;--ui-muted:#5e6880;
+  --ui-primary:#414f86;--ui-primary-hover:#505d96;--ui-tint:#c5cce1;--ui-soft:#a5b1ce;--ui-border:#8390b2;
+  --surface:#ffffff;--surface-raised:#edf0f8;--surface-glass:#ffffffeb;
+  --solid-primary:#414c7e;--solid-ink:#ffffff;--selected-surface:#e4e9f7;--ui-focus:#465cc2;
+  --line:#56679229;--wash:#5667920b;--ui-shadow:0 5px 18px #252f5710;
+  background:var(--ui-background);color:var(--ui-text);
+}
 .site-theme-toggle{flex:none;font-size:.78rem;white-space:nowrap;padding:7px 12px;min-width:84px}
 :root[data-site-theme=dark]{
   color-scheme:dark;
-  --ui-background:#0b1120;
-  --ui-tint:#405777;
-  --ui-soft:#7083a1;
-  --ui-border:#6f89b0;
-  --ui-muted:#afc0da;
-  --ui-primary:#a8cbff;
-  --ui-primary-hover:#d1e3ff;
-  --ui-text:#e7eefb;
+  --ui-background:#0b1024;
+  --ui-tint:#4a4a7b;
+  --ui-soft:#727fa6;
+  --ui-border:#7b88ab;
+  --ui-muted:#b7c2db;
+  --ui-primary:#d0d9f2;
+  --ui-primary-hover:#e8ebfa;
+  --ui-text:#edf0fa;
   --ui-error:#ff9aaa;
   --ui-error-strong:#ffc0c9;
-  --line:rgba(152,178,216,.24);
-  --wash:rgba(140,170,218,.09);
-  --surface:#121c2e;
-  --surface-raised:#19263c;
-  --solid-primary:#91b8ed;
-  --solid-ink:#0b1b34;
+  --line:#9eacd333;--wash:#9eacd30c;
+  --surface:#12182e;--surface-raised:#1a2240;--surface-glass:#12182ee8;
+  --solid-primary:#d7dcf1;--solid-ink:#18203a;--selected-surface:#283253;
+  --ui-focus:#85cdd4;--ui-shadow:0 7px 24px #03061128;
   background:var(--ui-background);color:var(--ui-text);
 }
 :root[data-site-theme=dark] body:not(.home-page){background:var(--ui-background);color:var(--ui-text)}
-:root[data-site-theme=dark] body:not(.home-page) .course-header{background:rgba(11,17,32,.96);border-color:var(--line)}
+:root[data-site-theme=dark] body:not(.home-page) .course-header{background:var(--surface-glass);border-color:var(--line)}
 :root[data-site-theme=dark] body:not(.home-page) :is(.course-sidebar,.chapter-toolbar){background:var(--ui-background)}
 :root[data-site-theme=dark] body:not(.home-page) :is(.catalog-card,.overview-card,.chapter-summary .overview-section,.model-panel,.chart-panel,.question-reading,.answer-area,.assessment-panel){background:var(--surface);color:var(--ui-text);border-color:var(--line)}
 :root[data-site-theme=dark] body:not(.home-page) :is(button,.button){background:var(--surface-raised);border-color:var(--ui-border);color:var(--ui-primary)}
-:root[data-site-theme=dark] body:not(.home-page) :is(button,.button):hover{background:#243852;border-color:var(--ui-primary)}
+:root[data-site-theme=dark] body:not(.home-page) :is(button,.button):hover{background:var(--selected-surface);border-color:var(--ui-primary-hover)}
 :root[data-site-theme=dark] body:not(.home-page) :is(button.primary,.button.primary,.chapter-tab[aria-current]){background:var(--solid-primary);border-color:var(--solid-primary);color:var(--solid-ink)}
-:root[data-site-theme=dark] body:not(.home-page) :is(button.primary,.button.primary):hover{background:var(--ui-primary-hover)}
+:root[data-site-theme=dark] body:not(.home-page) :is(button.primary,.button.primary,.chapter-tab[aria-current]):hover{background:var(--ui-primary-hover)}
 :root[data-site-theme=dark] body:not(.home-page) .chapter-tab:hover:not([aria-current]){background:var(--surface-raised)}
 :root[data-site-theme=dark] body:not(.home-page) :is(input:not([type=range]):not([type=checkbox]):not([type=radio]),select){background:var(--surface-raised);color:var(--ui-text);border-color:var(--ui-border)}
 :root[data-site-theme=dark] body:not(.home-page) :is(input,select,textarea){accent-color:var(--ui-primary)}
 :root[data-site-theme=dark] body:not(.home-page) .option{background:var(--surface-raised);border-color:var(--line)}
-:root[data-site-theme=dark] body:not(.home-page) .option:hover{background:#253852;border-color:var(--ui-border)}
-:root[data-site-theme=dark] body:not(.home-page) .option:has(input:checked){background:#294463;border-color:var(--ui-primary)}
+:root[data-site-theme=dark] body:not(.home-page) .option:hover{background:var(--selected-surface);border-color:var(--ui-border)}
+:root[data-site-theme=dark] body:not(.home-page) .option:has(input:checked){background:var(--selected-surface);border-color:var(--solid-primary)}
+:root[data-site-theme=dark] body:not(.home-page) :is(.directory-primary,.course-tree) [aria-current]{background:var(--selected-surface);color:var(--ui-text)}
+:root[data-site-theme=dark] body:not(.home-page) :is(button,.button):disabled{background:var(--surface-raised);color:var(--ui-muted);border-color:var(--ui-border);opacity:1;box-shadow:none}
+:root[data-site-theme=dark] body:not(.home-page) :focus-visible{outline:3px solid var(--ui-focus);outline-offset:3px}
+:root[data-site-theme=dark] body:not(.home-page) a:not(.chapter-tab):not([aria-current]):hover{color:var(--ui-primary-hover)}
 :root[data-site-theme=dark] body:not(.home-page) :is(.function-signature,.example pre,.hint,.limits,.example){border-color:var(--line)}
 :root[data-site-theme=dark] body:not(.home-page) :is(.example table,.contract-table table,.values table,.assessment-breakdown table){background:var(--surface);color:var(--ui-text)}
 :root[data-site-theme=dark] body:not(.home-page) :is(.example th,.contract-table th,.values th){background:var(--surface-raised);color:var(--ui-muted)}

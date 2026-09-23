@@ -24,7 +24,7 @@ test('leave occurs only on outward wheel movement with a parent', () => {
 });
 
 test('chapter and concept views never enter a lesson or open an IDE through scrolling', () => {
-  for(const level of ['chapter','concept',2,3]) {
+  for(const level of ['chapter','concept','introduction','lesson',2,3]) {
     const result=zoomStep({scale:1},-10000,{...root,level,hasChildren:true,hasParent:true});
     assert.equal(result.action,null);
     assert.equal(result.scale,ZOOM_LIMITS.max);

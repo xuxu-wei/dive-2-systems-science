@@ -18,7 +18,7 @@ export function zoomStep(state = {}, deltaY = 0, options = {}) {
   }
   const next = Math.max(ZOOM_LIMITS.min, Math.min(ZOOM_LIMITS.max,
     scale * Math.exp(-deltaY * ZOOM_LIMITS.sensitivity)));
-  const atConceptLevel = level === 'chapter' || level === 'concept'
+  const atConceptLevel = level === 'chapter' || level === 'concept' || level === 'introduction' || level === 'lesson'
     || (typeof level === 'number' && level >= 2);
   const action = deltaY < 0 && next >= ZOOM_LIMITS.enter && hasChildren && !atConceptLevel
     ? 'enter' : deltaY > 0 && next <= ZOOM_LIMITS.leave && hasParent ? 'leave' : null;

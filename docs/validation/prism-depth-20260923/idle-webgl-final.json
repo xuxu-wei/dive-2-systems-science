@@ -1,0 +1,17 @@
+{
+  "result": {
+    "type": "object",
+    "value": {
+      "done": true,
+      "max": 39.5,
+      "p95": 33.299999999995634,
+      "renderer": "webgl",
+      "tasks": [],
+      "viewport": [
+        1920,
+        1080
+      ],
+      "visible": "visible"
+    }
+  }
+}

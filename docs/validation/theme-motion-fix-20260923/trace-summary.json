@@ -1,0 +1,35 @@
+{
+  "UpdateLayoutTree": {
+    "count": 2615,
+    "mean_ms": 3.479484894837476,
+    "p95_ms": 6.42,
+    "max_ms": 182.432
+  },
+  "Layerize": {
+    "count": 2612,
+    "mean_ms": 1.316311255742726,
+    "p95_ms": 2.346,
+    "max_ms": 1004.084
+  },
+  "Layout": {
+    "count": 6,
+    "mean_ms": 4.739,
+    "p95_ms": 17.0,
+    "max_ms": 17.0
+  },
+  "Paint": {
+    "count": 164,
+    "mean_ms": 0.2528109756097561,
+    "p95_ms": 0.636,
+    "max_ms": 8.6
+  },
+  "FireAnimationFrame": {
+    "count": 2615,
+    "mean_ms": 2.4485969407265773,
+    "p95_ms": 5.788,
+    "max_ms": 92.182
+  },
+  "theme_click_ms": [
+    10.481
+  ]
+}

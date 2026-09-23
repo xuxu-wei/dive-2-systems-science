@@ -1,0 +1,11 @@
+{
+  "result": {
+    "type": "object",
+    "value": {
+      "background": "matrix(1, 0, 0, 1, 0, 0)",
+      "states": [
+        "paused"
+      ]
+    }
+  }
+}

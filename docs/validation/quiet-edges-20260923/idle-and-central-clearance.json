@@ -1,0 +1,18 @@
+{
+  "result": {
+    "type": "object",
+    "value": {
+      "centralVisibleShards": 0,
+      "done": true,
+      "max": 55.40000000002328,
+      "p95": 34.59999999997672,
+      "renderer": "webgl",
+      "tasks": [],
+      "viewport": [
+        1920,
+        1080
+      ],
+      "visibility": "visible"
+    }
+  }
+}

@@ -93,9 +93,9 @@ function conceptSprite(color, seed, dark) {
 export class CosmosRenderer {
   constructor(canvas) {
     this.canvas = canvas;
-    this.ctx = canvas.getContext('2d', {alpha: false});
+    this.ctx = canvas.getContext('2d', {alpha: true});
     if (!this.ctx) throw new Error('浏览器未提供画布；请使用全书目录继续学习。');
-    this.sprites = new Map(); this.stars = []; this.width = 0; this.height = 0; this.dark = true; this.resize();
+    this.sprites = new Map(); this.width = 0; this.height = 0; this.dark = true; this.resize();
   }
 
   resize() {
@@ -103,19 +103,13 @@ export class CosmosRenderer {
     const dpr = Math.min(1.5, window.devicePixelRatio || 1);
     this.canvas.width = Math.max(1, Math.round(width * dpr)); this.canvas.height = Math.max(1, Math.round(height * dpr));
     this.width = width; this.height = height; this.dpr = dpr;
-    const random = rng(42017);
-    this.stars = Array.from({length: Math.min(1200, Math.round(width * height / 850))}, () => ({
-      x: random(), y: random(), size: random() < .023 ? 1.15 : .16 + random() * .58,
-      phase: random() * TAU, depth: .12 + random() * .88,
-    }));
-    this.background();
   }
 
-  setTheme(dark) {this.dark = dark; this.background();}
+  setTheme(dark) {this.dark = dark;}
   getDiameter(id = null) {return id?this.diameters?.get(id)||1:this.centralDiameter||1;}
 
   spriteFor(kind, id, color) {
-    const material = kind === 'chapter' || kind === 'concept' ? kind : 'part';
+    const material = kind === 'lesson' ? 'concept' : kind === 'chapter' || kind === 'concept' ? kind : 'part';
     const shade = colorHex(color), key = `${this.dark ? 'dark' : 'light'}:${material}:${id}:${shade}`;
     let sprite = this.sprites.get(key);
     if (!sprite) {
@@ -154,7 +148,7 @@ export class CosmosRenderer {
       moons.filter(item => item.y >= 0).forEach(moon);
       c.restore();
     } else {
-      c.rotate(kind === 'concept' ? Math.sin(time * .11 + seed % 9) * .065 : spin + time * (.007 + (seed % 7) * .001));
+      c.rotate(kind === 'concept' || kind === 'lesson' ? Math.sin(time * .11 + seed % 9) * .065 : spin + time * (.007 + (seed % 7) * .001));
       c.globalCompositeOperation = this.dark && kind !== 'concept' ? 'screen' : 'source-over';
       c.drawImage(sprite, -size, -size, size * 2, size * 2);
       if (kind === 'part' && emphasis > 1) {
@@ -163,24 +157,6 @@ export class CosmosRenderer {
       }
     }
     c.restore();
-  }
-
-  background() {
-    const w = Math.max(1, this.width), h = Math.max(1, this.height), random = rng(1201);
-    this.bg = surface(w, h);
-    const c = this.bg.getContext('2d');
-    c.fillStyle = this.dark ? '#050915' : '#f1f5fc'; c.fillRect(0, 0, w, h);
-    // Layer translucent clouds into an oblique galactic band; keep labels clear.
-    for (let i = 0; i < 46; i++) {
-      const t = random(), x = w * (.04 + .92 * t), y = h * (.69 - t * .36 + (random() - .5) * .25);
-      const radius = Math.min(w, h) * (.12 + random() * .30), g = c.createRadialGradient(x, y, 0, x, y, radius);
-      const colors = this.dark ? ['#39316e14', '#163f5d13', '#15505712', '#46598c0e'] : ['#9588ca09', '#668ab80a', '#51aaa108', '#9b8bbc07'];
-      g.addColorStop(0, colors[i % colors.length]); g.addColorStop(.46, this.dark ? '#15224707' : '#709abd03'); g.addColorStop(1, '#00000000');
-      c.fillStyle = g; c.fillRect(x - radius, y - radius, radius * 2, radius * 2);
-    }
-    const vignette = c.createRadialGradient(w * .47, h * .49, Math.min(w, h) * .18, w * .47, h * .49, w * .66);
-    vignette.addColorStop(0, '#00000000'); vignette.addColorStop(1, this.dark ? '#01030bbb' : '#d9e5f51a');
-    c.fillStyle = vignette; c.fillRect(0, 0, w, h);
   }
 
   blackHole(x, y, radius, time, reveal = 1) {
@@ -194,12 +170,12 @@ export class CosmosRenderer {
     // halves of the disk give the event-horizon silhouette depth.
     for (let i = 90; i >= 0; i--) {
       const t = i / 90, r = radius * (1.12 + t * 1.18), alpha = (1 - t) * .11;
-      c.strokeStyle = dark ? `rgba(${170 + Math.round(70 * (1 - t))},${146 + Math.round(84 * (1 - t))},${128 + Math.round(105 * (1 - t))},${alpha})` : `rgba(68,103,160,${alpha * .9})`;
+      c.strokeStyle = dark ? `rgba(${170 + Math.round(70 * (1 - t))},${146 + Math.round(84 * (1 - t))},${128 + Math.round(105 * (1 - t))},${alpha})` : `rgba(155,98,46,${alpha * .9})`;
       c.lineWidth = radius * .019; c.beginPath(); c.ellipse(0, 0, r, r * (.22 + .05 * t), 0, 0, TAU); c.stroke();
     }
     for (let i = 0; i < 18; i++) {
       const t = i / 18;
-      c.strokeStyle = dark ? `rgba(219,201,186,${(1 - t) * .078})` : `rgba(62,96,145,${(1 - t) * .04})`;
+      c.strokeStyle = dark ? `rgba(219,201,186,${(1 - t) * .078})` : `rgba(147,89,40,${(1 - t) * .04})`;
       c.lineWidth = 1.2; c.beginPath(); c.ellipse(0, -radius * .015, radius * (1.04 + t * .17), radius * (.97 + t * .08), 0, Math.PI, TAU); c.stroke();
     }
     c.globalCompositeOperation = 'source-over';
@@ -209,17 +185,17 @@ export class CosmosRenderer {
     c.globalCompositeOperation = dark ? 'screen' : 'source-over';
     for (let i = 0; i < 60; i++) {
       const t = i / 60, r = radius * (1.04 + t * 1.15);
-      c.strokeStyle = dark ? `rgba(247,217,179,${(1 - t) * .15})` : `rgba(79,115,170,${(1 - t) * .075})`;
+      c.strokeStyle = dark ? `rgba(247,217,179,${(1 - t) * .15})` : `rgba(166,104,50,${(1 - t) * .075})`;
       c.lineWidth = radius * .018; c.beginPath(); c.ellipse(0, radius * .035, r, r * .23, 0, 0, Math.PI); c.stroke();
     }
     const random = rng(84);
     for (let i = 0; i < 65; i++) {
       const a = random() * TAU + time * .09, r = radius * (1.13 + random() * .95);
-      c.strokeStyle = dark ? `rgba(241,220,197,${.05 + random() * .17})` : `rgba(53,91,144,${.06 + random() * .15})`;
+      c.strokeStyle = dark ? `rgba(241,220,197,${.05 + random() * .17})` : `rgba(140,83,35,${.06 + random() * .15})`;
       c.lineWidth = .45; c.beginPath(); c.ellipse(0, 0, r, r * .24, 0, a, a + .03 + random() * .12); c.stroke();
     }
     const streak = c.createLinearGradient(-radius * 3.1, 0, radius * 3.1, 0);
-    streak.addColorStop(0, '#00000000'); streak.addColorStop(.42, dark ? '#ddc6a532' : '#668bbc20'); streak.addColorStop(.5, dark ? '#fff0d356' : '#668bbc32'); streak.addColorStop(.58, dark ? '#ddc6a532' : '#668bbc20'); streak.addColorStop(1, '#00000000');
+    streak.addColorStop(0, '#00000000'); streak.addColorStop(.42, dark ? '#ddc6a532' : '#a8754220'); streak.addColorStop(.5, dark ? '#fff0d356' : '#a8754232'); streak.addColorStop(.58, dark ? '#ddc6a532' : '#a8754220'); streak.addColorStop(1, '#00000000');
     c.fillStyle = streak; c.fillRect(-radius * 3.1, radius * .04, radius * 6.2, .8);
     c.restore();
   }
@@ -230,24 +206,7 @@ export class CosmosRenderer {
     this.diameters=new Map();this.centralDiameter=radius*(centerKind==='part'?9.8:4.14);
     c.setTransform(this.dpr, 0, 0, this.dpr, 0, 0); c.globalAlpha = 1; c.globalCompositeOperation = 'source-over';
     const opening = introProgress !== null, progress = opening ? clamp(introProgress) : 1;
-    const offsetX = center.x - w * .48, offsetY = center.y - h * .52;
-    c.drawImage(this.bg, -w * .025 + offsetX * .025, -h * .025 + offsetY * .025, w * 1.05, h * 1.05);
-    for (const star of this.stars) {
-      const dx = (star.x - .5) * w, dy = (star.y - .5) * h;
-      const scale = 1 + intro * star.depth * .29;
-      // Near stars move farther than background dust when approaching a galaxy.
-      // The app remains authoritative for every selectable node's screen centre.
-      const x = w * .5 + dx * scale + offsetX * star.depth * .20;
-      const y = h * .5 + dy * scale + offsetY * star.depth * .20;
-      const alpha = (.23 + Math.sin(time * .22 + star.phase) * .085) * star.depth;
-      c.fillStyle = this.dark ? `rgba(195,215,247,${alpha + .10})` : `rgba(63,96,147,${alpha * .45})`;
-      c.beginPath(); c.arc(x, y, star.size, 0, TAU); c.fill();
-      if (velocity > .12 && star.depth > .55) {
-        const length = .018 * velocity * star.depth, streak = c.createLinearGradient(x, y, x + dx * length, y + dy * length);
-        streak.addColorStop(0, this.dark ? `rgba(201,219,255,${velocity * .26})` : `rgba(63,96,147,${velocity * .12})`); streak.addColorStop(1, '#00000000');
-        c.strokeStyle = streak; c.lineWidth = star.size * .7; c.beginPath(); c.moveTo(x, y); c.lineTo(x + dx * length, y + dy * length); c.stroke();
-      }
-    }
+    c.clearRect(0, 0, w, h);
     const reveal = new Map(nodes.map((node, index) => [node.id, opening ? smooth(.15 + index / Math.max(1, nodes.length) * .30, .32 + index / Math.max(1, nodes.length) * .30, progress) : 1]));
     const lookup = new Map(nodes.map(node => [node.id, node]));
     for (const edge of edges) {
@@ -276,10 +235,10 @@ export class CosmosRenderer {
       const opacity = (hovered && !isHover && !neighbor ? .27 : 1) * reveal.get(node.id);
       if (opacity < .005) continue;
       const glow = clamp(node.glow || 0), seed = seedOf(node.id);
-      const baseSize = node.kind === 'chapter' ? 24 : node.kind === 'concept' ? 26 : 73;
+      const baseSize = node.kind === 'chapter' ? 24 : (node.kind === 'concept' || node.kind === 'lesson') ? 26 : 73;
       const size = baseSize * (node.scale || 1) * (.94 + (seed % 13) / 100);
       this.diameters.set(node.id,size*2);
-      const baseOpacity = node.kind === 'chapter' ? (this.dark ? .81 : .94) : node.kind === 'concept' ? (this.dark ? .65 : .91) : (this.dark ? .42 : .91);
+      const baseOpacity = node.kind === 'chapter' ? (this.dark ? .81 : .94) : (node.kind === 'concept' || node.kind === 'lesson') ? (this.dark ? .65 : .91) : (this.dark ? .42 : .91);
       this.material({kind: node.kind, id: node.id, color: node.color, x: node.sx, y: node.sy, size, time, spin: node.spin || 0, opacity: clamp(baseOpacity + glow * .42 + (isHover ? .22 : neighbor ? .09 : 0)) * opacity});
       if (glow > 0) {
         c.save(); c.globalCompositeOperation = this.dark ? 'screen' : 'source-over';
@@ -301,7 +260,7 @@ export class CosmosRenderer {
       }
       if (isHover || neighbor || node.id === selected) {
         c.strokeStyle = this.dark ? `rgba(214,233,255,${isHover ? .8 : .30})` : `rgba(42,75,123,${isHover ? .8 : .35})`;
-        const hoverRadius = node.kind === 'chapter' ? Math.max(17, size * .86) : node.kind === 'concept' ? Math.max(12, size * .54) : 17;
+        const hoverRadius = node.kind === 'chapter' ? Math.max(17, size * .86) : (node.kind === 'concept' || node.kind === 'lesson') ? Math.max(12, size * .54) : 17;
         c.lineWidth = isHover ? 1 : .7; c.beginPath(); c.arc(node.sx, node.sy, isHover ? hoverRadius : hoverRadius * .90, 0, TAU); c.stroke();
       }
     }

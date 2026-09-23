@@ -1,0 +1,39 @@
+{
+  "jsTests": 70,
+  "syntaxFiles": 6,
+  "learningFiles": 29,
+  "learningUnchanged": true,
+  "endpoints": [
+    {
+      "path": "/web/home/app.mjs",
+      "status": 200,
+      "bytes": 31300,
+      "sha256": "ba3da1ce953a4f833cd9d633b3e12e21986b4859146f90a37b86192b3dda03b2"
+    },
+    {
+      "path": "/web/home/ambient.mjs",
+      "status": 200,
+      "bytes": 11166,
+      "sha256": "c73df0ba1085162ba1dab845397e2582b666da46ae9658665a814a550706dc45"
+    },
+    {
+      "path": "/web/home/frame-clock.mjs",
+      "status": 200,
+      "bytes": 608,
+      "sha256": "910796955d4738a95b325d43cdab3fd7fecb8ed3bc4b7d97c693c765f9b58425"
+    },
+    {
+      "path": "/web/shared/boot.js",
+      "status": 200,
+      "bytes": 2817,
+      "sha256": "c7a02a6a214afae53a10849c9849168207f9161f72a2a17e5f6f7a0ac7c7f3f3"
+    },
+    {
+      "path": "/web/shared/interaction.css",
+      "status": 200,
+      "bytes": 6490,
+      "sha256": "a32657f2a781220fda45574f1e75b5586ddb5ef610b10999cf91cdc2e2ac1599"
+    }
+  ],
+  "finalBrowserPerformance": "pending"
+}

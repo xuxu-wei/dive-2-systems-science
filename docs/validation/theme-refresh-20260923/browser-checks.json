@@ -1,0 +1,319 @@
+{
+  "viewportChecks": [
+    {
+      "boxes": {
+        "#focus-card": {
+          "bottom": 347.28125,
+          "height": 132.28125,
+          "right": 912.5,
+          "width": 560,
+          "x": 352.5,
+          "y": 215
+        },
+        "#sky-breadcrumb": {
+          "bottom": 203,
+          "height": 42,
+          "right": 1241,
+          "width": 1217,
+          "x": 24,
+          "y": 161
+        },
+        ".sky-bottom": {
+          "bottom": 893,
+          "height": 92.796875,
+          "right": 992.5,
+          "width": 720,
+          "x": 272.5,
+          "y": 800.203125
+        },
+        ".sky-controls": {
+          "bottom": 401.28125,
+          "height": 42,
+          "right": 1241,
+          "width": 603.6875,
+          "x": 637.3125,
+          "y": 359.28125
+        },
+        ".sky-heading": {
+          "bottom": 149,
+          "height": 57,
+          "right": 1241,
+          "width": 1217,
+          "x": 24,
+          "y": 92
+        },
+        ".sky-zoom": {
+          "bottom": 893,
+          "height": 52,
+          "right": 1241,
+          "width": 217.234375,
+          "x": 1023.765625,
+          "y": 841
+        }
+      },
+      "scroll": [
+        1265,
+        917
+      ],
+      "theme": "dark",
+      "viewport": [
+        1280,
+        800
+      ]
+    },
+    {
+      "boxes": {
+        "#focus-card": {
+          "bottom": 347.28125,
+          "height": 132.28125,
+          "right": 992.5,
+          "width": 560,
+          "x": 432.5,
+          "y": 215
+        },
+        "#sky-breadcrumb": {
+          "bottom": 203,
+          "height": 42,
+          "right": 1401,
+          "width": 1377,
+          "x": 24,
+          "y": 161
+        },
+        ".sky-bottom": {
+          "bottom": 893,
+          "height": 92.796875,
+          "right": 1072.5,
+          "width": 720,
+          "x": 352.5,
+          "y": 800.203125
+        },
+        ".sky-controls": {
+          "bottom": 401.28125,
+          "height": 42,
+          "right": 1401,
+          "width": 603.6875,
+          "x": 797.3125,
+          "y": 359.28125
+        },
+        ".sky-heading": {
+          "bottom": 149,
+          "height": 57,
+          "right": 1401,
+          "width": 1377,
+          "x": 24,
+          "y": 92
+        },
+        ".sky-zoom": {
+          "bottom": 893,
+          "height": 52,
+          "right": 1401,
+          "width": 217.234375,
+          "x": 1183.765625,
+          "y": 841
+        }
+      },
+      "scroll": [
+        1425,
+        917
+      ],
+      "theme": "dark",
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "boxes": {
+        "#focus-card": {
+          "bottom": 359.28125,
+          "height": 132.28125,
+          "right": 1240,
+          "width": 560,
+          "x": 680,
+          "y": 227
+        },
+        "#sky-breadcrumb": {
+          "bottom": 215,
+          "height": 42,
+          "right": 1896,
+          "width": 1872,
+          "x": 24,
+          "y": 173
+        },
+        ".sky-bottom": {
+          "bottom": 1056,
+          "height": 92.796875,
+          "right": 1320,
+          "width": 720,
+          "x": 600,
+          "y": 963.203125
+        },
+        ".sky-controls": {
+          "bottom": 269,
+          "height": 42,
+          "right": 1896,
+          "width": 603.6875,
+          "x": 1292.3125,
+          "y": 227
+        },
+        ".sky-heading": {
+          "bottom": 161,
+          "height": 69,
+          "right": 1896,
+          "width": 1872,
+          "x": 24,
+          "y": 92
+        },
+        ".sky-zoom": {
+          "bottom": 1056,
+          "height": 52,
+          "right": 1896,
+          "width": 217.234375,
+          "x": 1678.765625,
+          "y": 1004
+        }
+      },
+      "scroll": [
+        1920,
+        1080
+      ],
+      "theme": "dark",
+      "viewport": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "boxes": {
+        "#focus-card": {
+          "bottom": 359.28125,
+          "height": 132.28125,
+          "right": 1393,
+          "width": 560,
+          "x": 833,
+          "y": 227
+        },
+        "#sky-breadcrumb": {
+          "bottom": 215,
+          "height": 42,
+          "right": 2202,
+          "width": 2178,
+          "x": 24,
+          "y": 173
+        },
+        ".sky-bottom": {
+          "bottom": 1161,
+          "height": 92.796875,
+          "right": 1473,
+          "width": 720,
+          "x": 753,
+          "y": 1068.203125
+        },
+        ".sky-controls": {
+          "bottom": 269,
+          "height": 42,
+          "right": 2202,
+          "width": 603.6875,
+          "x": 1598.3125,
+          "y": 227
+        },
+        ".sky-heading": {
+          "bottom": 161,
+          "height": 69,
+          "right": 2202,
+          "width": 2178,
+          "x": 24,
+          "y": 92
+        },
+        ".sky-zoom": {
+          "bottom": 1161,
+          "height": 52,
+          "right": 2202,
+          "width": 217.234375,
+          "x": 1984.765625,
+          "y": 1109
+        }
+      },
+      "scroll": [
+        2226,
+        1185
+      ],
+      "theme": "dark",
+      "viewport": [
+        2226,
+        1185
+      ]
+    }
+  ],
+  "lightViewportChecks": [
+    {
+      "card": 560,
+      "horizontalOverflow": false,
+      "renderer": "canvas",
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "card": 560,
+      "horizontalOverflow": false,
+      "renderer": "canvas",
+      "viewport": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "card": 560,
+      "horizontalOverflow": false,
+      "renderer": "canvas",
+      "viewport": [
+        2226,
+        1185
+      ]
+    }
+  ],
+  "performance": {
+    "browser": "Chrome 152 / Windows 10 / Codex in-app browser",
+    "dpr": 1,
+    "viewport": [
+      1440,
+      1024
+    ],
+    "samples": 1000,
+    "seconds": 40.5059,
+    "medianFrameMs": 39.9,
+    "approximatelyFps": 25.06,
+    "p95WebGLDrawMs": 2.2,
+    "ambientQuality": 1
+  },
+  "paused": {
+    "frames": 855,
+    "starClockFrozen": true,
+    "ambientClockFrozen": true,
+    "ambientPixelsIdentical": true
+  },
+  "text200": {
+    "viewport": [
+      1440,
+      1024
+    ],
+    "mode": "temporary doubled computed text size, restored by reload",
+    "horizontalOverflow": false,
+    "partNumberOverlaps": 0,
+    "pageHeight": 1529
+  },
+  "editorRetainedAcrossTheme": true,
+  "simulation": {
+    "initial": 5,
+    "inflow": 3,
+    "outflow": 1,
+    "finalTime": 3,
+    "finalAmount": 11
+  },
+  "contextLossFallback": true,
+  "rapidThemeThenHelpClick": true,
+  "consoleErrors": [],
+  "learningRecordsUnchanged": 29
+}

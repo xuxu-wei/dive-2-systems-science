@@ -48,6 +48,42 @@ export function chooseResumePart(nodes, progress = {}) {
     || pending[0] || available.at(-1);
 }
 
+export const isLesson = node => node?.kind === 'concept' || node?.kind === 'lesson';
+
+// The introduction is selectable, but the central black hole is never a body in
+// the orbit/drag simulation. Both layout and interaction use this same boundary.
+export const orbitNodes = nodes => nodes.filter(n => n.kind !== 'introduction');
+
+export function chooseResumeNode(nodes, progress = {}) {
+  const introduction = nodes.find(n => n.kind === 'introduction' && n.available);
+  const resume = chooseResumePart(nodes, progress);
+  // Keep the established active-part rule for returning readers. The independent
+  // introduction comes first when no part is in progress and its self-test is pending.
+  if (resume && nodeProgress(resume, progress).state === 'active') return resume;
+  return introduction && nodeProgress(introduction, progress).ratio < 1 ? introduction : resume || introduction;
+}
+
+export function cardLabel(node, nodes) {
+  if (node.kind === 'introduction') return '00 · 导论';
+  const peers = nodes.filter(n => n.kind === node.kind);
+  const index = peers.findIndex(n => n.id === node.id) + 1;
+  const unit = {part: '篇', chapter: '章', lesson: '节', concept: '个知识点'}[node.kind];
+  return `第 ${index} / ${peers.length} ${unit}`;
+}
+
+export function routeForNode(node) {
+  return !node ? '/' : node.kind === 'introduction' ? '/#introduction'
+    : `/#${node.kind}=${encodeURIComponent(node.id)}`;
+}
+
+export function nodeFromHash(graph, hash) {
+  if (hash === '#introduction') return graph.nodes.find(n => n.kind === 'introduction')?.id || null;
+  const match = hash.match(/^#(part|chapter)=(.+)$/);
+  if (!match) return null;
+  try {return graph.nodes.find(n => n.id === decodeURIComponent(match[2]) && n.kind === match[1])?.id || null;}
+  catch {return null;}
+}
+
 export function categoryColor(category, theme = 'dark') {
   return theme === 'light' ? category.lightColor || category.color : category.color;
 }
@@ -69,7 +105,8 @@ export function mixColors(categories, taxonomy, theme = 'dark') {
 export function getView(graph, parentId = null) {
   const parent = parentId === null ? null : graph.nodes.find(n => n.id === parentId);
   const childIds = parent ? new Set(parent.children) : null;
-  const nodes = parentId === null ? graph.nodes.filter(n => n.kind === 'part')
+  const nodes = parentId === null ? [
+    ...graph.nodes.filter(n => n.kind === 'introduction'), ...graph.nodes.filter(n => n.kind === 'part')]
     : parent ? graph.nodes.filter(n => childIds.has(n.id)) : [];
   const visible = new Set(nodes.map(n => n.id));
   return {nodes, edges: graph.edges.filter(e => visible.has(e.source) && visible.has(e.target))};

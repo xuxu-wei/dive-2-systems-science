@@ -169,7 +169,7 @@ def test_no_default_app_reports_failure_without_a_web_fallback(server):
         raise OSError('No file association')
     server[0].opener = fail
     code, _, body = request(server, '/api/notebooks/open', {'id': 'P01-C01-S01'}, token=server[0].token)
-    assert code == 503 and '默认应用' in json.loads(body)['error']
+    assert code == 503 and '打开请求' in json.loads(body)['error']
 
 
 def test_mjs_mime_and_no_stale_cache(server):

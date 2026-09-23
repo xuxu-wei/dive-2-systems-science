@@ -24,7 +24,7 @@ class Context {
   save() {this.stack.push([this.alpha, this.composite]); this.calls.push(['save']);}
   restore() {[this.alpha, this.composite] = this.stack.pop(); this.calls.push(['restore']);}
 }
-for (const name of ['setTransform', 'translate', 'scale', 'rotate', 'fillRect', 'beginPath', 'arc', 'ellipse', 'fill', 'stroke', 'moveTo', 'lineTo', 'quadraticCurveTo', 'bezierCurveTo', 'closePath', 'clip', 'drawImage']) {
+for (const name of ['setTransform', 'translate', 'scale', 'rotate', 'fillRect', 'clearRect', 'beginPath', 'arc', 'ellipse', 'fill', 'stroke', 'moveTo', 'lineTo', 'quadraticCurveTo', 'bezierCurveTo', 'closePath', 'clip', 'drawImage']) {
   Context.prototype[name] = function (...args) {this.record(name, args);};
 }
 class Canvas {
@@ -100,4 +100,21 @@ test('Both themes render full achievement, hover, invalid colours and all hierar
     r.draw({...scene, nodes, introProgress: .48, intro: .52, velocity: .7});
     assert.ok(r.ctx.calls.every(call => call[0] !== 'composite' || call[1] !== 'multiply'));
   }
+});
+
+test('introduction keeps the black hole and uses small lesson stars in the Canvas fallback',()=>{
+  const r=renderer(),materials=[],holes=[];
+  const material=r.material.bind(r),blackHole=r.blackHole.bind(r);
+  r.material=args=>{materials.push(args);material(args);};
+  r.blackHole=(...args)=>{holes.push(args);blackHole(...args);};
+  for(const dark of [true,false]){
+    r.setTheme(dark);
+    r.draw({...scene,centerKind:'introduction',centerId:'introduction',nodes:[
+      {id:'P00-C01-S01',kind:'lesson',sx:300,sy:400,glow:.5,color:'#cad2dc',scale:1},
+    ]});
+    assert.equal(materials.at(-1).kind,'lesson');
+    assert.ok(materials.at(-1).size<30);
+    assert.equal(r.spriteFor('lesson','P00-C01-S01','#cad2dc'),r.spriteFor('concept','P00-C01-S01','#cad2dc'));
+  }
+  assert.equal(holes.length,2);
 });

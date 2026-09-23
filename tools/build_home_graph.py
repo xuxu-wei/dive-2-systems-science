@@ -332,6 +332,31 @@ def build_graph(catalog, terms, *, catalog_sha256=None):
     term_map = {term['zh']: term['en'] for term in terms}
     valid_ids = {c['id'] for p in catalog['parts'] for c in p['chapters']}
     nodes, edges = [], []
+    introduction = catalog.get('introduction')
+    if introduction:
+        lessons = introduction.get('lessons', [])
+        categories = [item['id'] for item in TAXONOMY]
+        nodes.append({
+            'id': 'introduction', 'kind': 'introduction', 'title': introduction['title'],
+            'parentId': None, 'url': introduction['url'], 'number': '00',
+            'description': introduction['goals'], 'categories': categories,
+            'children': [lesson['id'] for lesson in lessons],
+            'questionIds': question_ids(introduction), 'available': introduction['available'],
+            'published': len(lessons), 'total': len(lessons), 'progressScope': '导论自测',
+        })
+        for lesson in lessons:
+            nodes.append({
+                'id': lesson['id'], 'kind': 'lesson', 'title': lesson['title'],
+                'parentId': 'introduction', 'url': lesson['url'], 'number': lesson['number'],
+                'description': lesson['outcome'], 'categories': categories, 'children': [],
+                'questionIds': question_ids(lesson), 'available': True, 'published': 1, 'total': 1,
+                'lessonId': lesson['id'], 'lessonNumber': lesson['number'], 'lessonTitle': lesson['title'],
+                'chapterUrl': introduction['url'], 'progressScope': '本节自测',
+                'visualizationUrl': introduction['url'] + 'explore/' if lesson.get('visualization') else None,
+            })
+        for first, second in zip(lessons, lessons[1:]):
+            edges.append({'source': first['id'], 'target': second['id'], 'weight': 1,
+                          'kind': 'learning-order', 'label': '导论小节学习顺序'})
     part_weights = Counter()
     for part in catalog['parts']:
         if part['title'] not in PART_LENSES:
@@ -419,7 +444,7 @@ def build_graph(catalog, terms, *, catalog_sha256=None):
         edges.append({'source': source, 'target': target, 'weight': weight,
                       'kind': 'part-prerequisite', 'label': f'{weight} 条直接章级先修关系'})
     return {
-        'version': 1, 'taxonomy': TAXONOMY,
+        'version': 2, 'taxonomy': TAXONOMY,
         'source': {
             'catalogPath': 'web/course/catalog.json', 'catalogSha256': catalog_sha256,
             'title': '郭雷：系统学是什么', 'journal': '系统科学与数学', 'year': 2016,

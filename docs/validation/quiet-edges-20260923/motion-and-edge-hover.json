@@ -1,0 +1,629 @@
+{
+  "result": {
+    "type": "object",
+    "value": {
+      "after": [
+        {
+          "id": 0,
+          "kind": "facet-surface",
+          "opacity": 0.240057,
+          "transform": "matrix3d(0.648761, 0.73485, 0.300277, -0.000834102, -0.755718, 0.65311, 0.049139, -0.000136497, -0.105932, -0.194818, 0.952586, -0.00264607, -20.4347, -24.1814, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 1,
+          "kind": "facet-tint",
+          "opacity": 0.983926,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 2,
+          "kind": "facet-surface",
+          "opacity": 0.290805,
+          "transform": "matrix3d(-0.11566, -0.943689, 0.177211, -0.000492253, 0.94029, -0.204892, -0.170304, 0.000473065, 0.363077, 0.308794, 0.969326, -0.00269257, -61.6711, -60.1143, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 3,
+          "kind": "facet-tint",
+          "opacity": 0.786739,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 4,
+          "kind": "facet-surface",
+          "opacity": 0.291794,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 5,
+          "kind": "facet-tint",
+          "opacity": 0.0556533,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 6,
+          "kind": "facet-surface",
+          "opacity": 0.330413,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 7,
+          "kind": "facet-tint",
+          "opacity": 0.778053,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 8,
+          "kind": "mote-field",
+          "opacity": 0.706133,
+          "transform": "matrix(1, 0, 0, 1, -58.1106, -88.2588)",
+          "visible": true
+        },
+        {
+          "id": 9,
+          "kind": "mote-field",
+          "opacity": 0.908611,
+          "transform": "matrix(1, 0, 0, 1, -115.452, -104.462)",
+          "visible": true
+        },
+        {
+          "id": 10,
+          "kind": "facet-surface",
+          "opacity": 0.288819,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 11,
+          "kind": "facet-tint",
+          "opacity": 0.957568,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 12,
+          "kind": "facet-surface",
+          "opacity": 0.326256,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 13,
+          "kind": "facet-tint",
+          "opacity": 0.997424,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 14,
+          "kind": "facet-surface",
+          "opacity": 0.243851,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 15,
+          "kind": "facet-tint",
+          "opacity": 0.70043,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 16,
+          "kind": "facet-surface",
+          "opacity": 0.186447,
+          "transform": "matrix3d(0.343204, 0.837292, -0.278283, 0.000773008, -0.914704, 0.406469, 0.0901304, -0.000250362, 0.21518, 0.418788, 0.956261, -0.00265628, -10.0143, -73.4765, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 17,
+          "kind": "facet-tint",
+          "opacity": 0.0505212,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 18,
+          "kind": "facet-surface",
+          "opacity": 0.331178,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 19,
+          "kind": "facet-tint",
+          "opacity": 0.482554,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 20,
+          "kind": "facet-surface",
+          "opacity": 0.360546,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 21,
+          "kind": "facet-tint",
+          "opacity": 0.967308,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 22,
+          "kind": "facet-surface",
+          "opacity": 0.403943,
+          "transform": "matrix3d(0.867105, 0.528616, 0.12931, -0.000359195, -0.502399, 0.838189, 0.18887, -0.000524638, 0.157141, -0.154389, 0.973451, -0.00270403, -61.2743, -27.4945, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 23,
+          "kind": "facet-tint",
+          "opacity": 0.709274,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 24,
+          "kind": "facet-surface",
+          "opacity": 0.240723,
+          "transform": "matrix3d(0.958258, 0.154784, 0.228786, -0.000635516, -0.109201, 0.976173, -0.139445, 0.000387348, -0.265053, 0.161765, 0.963438, -0.00267622, 7.52345, -19.8505, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 25,
+          "kind": "facet-tint",
+          "opacity": 0.869854,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 26,
+          "kind": "facet-surface",
+          "opacity": 0.185171,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 27,
+          "kind": "facet-tint",
+          "opacity": 0.430597,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 28,
+          "kind": "facet-surface",
+          "opacity": 0.133176,
+          "transform": "matrix3d(-0.972592, 0.154201, -0.200759, 0.000557663, -0.204604, -0.944985, 0.158128, -0.000439244, -0.119999, 0.313499, 0.966794, -0.00268554, -16.8797, -44.1732, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 29,
+          "kind": "facet-tint",
+          "opacity": 0.174169,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 30,
+          "kind": "facet-surface",
+          "opacity": 0.314301,
+          "transform": "matrix3d(0.998936, 0.0150171, 0.0359821, -9.99502e-05, -0.00463589, 0.973606, -0.206327, 0.000573131, -0.0467082, 0.228954, 0.977821, -0.00271617, 3.1579, -8.47264, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 31,
+          "kind": "facet-tint",
+          "opacity": 0.558489,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 32,
+          "kind": "facet-surface",
+          "opacity": 0.30309,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 33,
+          "kind": "facet-tint",
+          "opacity": 0.18655,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 34,
+          "kind": "facet-surface",
+          "opacity": 0.240077,
+          "transform": "matrix3d(-0.0498865, -0.985597, -0.24155, 0.000670972, 0.960799, 0.0302032, -0.129774, 0.000360485, 0.357518, -0.177932, 0.961672, -0.00267131, -83.2241, -22.694, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 35,
+          "kind": "facet-tint",
+          "opacity": 0.10996,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 36,
+          "kind": "facet-surface",
+          "opacity": 0.246702,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 37,
+          "kind": "facet-tint",
+          "opacity": 0.393388,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 38,
+          "kind": "facet-surface",
+          "opacity": 0.295436,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 39,
+          "kind": "facet-tint",
+          "opacity": 0.970831,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 40,
+          "kind": "facet-surface",
+          "opacity": 0.423756,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 41,
+          "kind": "facet-tint",
+          "opacity": 0.718252,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 42,
+          "kind": "mote-field",
+          "opacity": 0.895899,
+          "transform": "matrix(1, 0, 0, 1, -116.851, -102.973)",
+          "visible": true
+        },
+        {
+          "id": 43,
+          "kind": "mote-field",
+          "opacity": 0.913517,
+          "transform": "matrix(1, 0, 0, 1, -69.7723, -71.4513)",
+          "visible": true
+        }
+      ],
+      "backdrop": "matrix(0.999999, 0.00122173, -0.00122173, 0.999999, -3.75, -1.45)",
+      "before": [
+        {
+          "id": 0,
+          "kind": "facet-surface",
+          "opacity": 0.255469,
+          "transform": "matrix3d(0.566048, 0.813163, 0.266325, -0.000739791, -0.829879, 0.536289, 0.105029, -0.000291747, 0.0428043, -0.231816, 0.958144, -0.00266151, -37.6574, -18.2802, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 1,
+          "kind": "facet-tint",
+          "opacity": 0.931123,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 2,
+          "kind": "facet-surface",
+          "opacity": 0.376433,
+          "transform": "matrix3d(-0.279884, -0.871587, 0.251705, -0.000699181, 0.920038, -0.364567, -0.120028, 0.000333411, 0.291588, 0.37713, 0.960332, -0.00266759, -35.6914, -67.1563, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 3,
+          "kind": "facet-tint",
+          "opacity": 0.908508,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 4,
+          "kind": "facet-surface",
+          "opacity": 0.291794,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 5,
+          "kind": "facet-tint",
+          "opacity": 0.0556533,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 6,
+          "kind": "facet-surface",
+          "opacity": 0.330413,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 7,
+          "kind": "facet-tint",
+          "opacity": 0.778053,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 8,
+          "kind": "mote-field",
+          "opacity": 0.900064,
+          "transform": "matrix(1, 0, 0, 1, -72.2101, -70.0858)",
+          "visible": true
+        },
+        {
+          "id": 9,
+          "kind": "mote-field",
+          "opacity": 0.790091,
+          "transform": "matrix(1, 0, 0, 1, -97.9877, -113.191)",
+          "visible": true
+        },
+        {
+          "id": 10,
+          "kind": "facet-surface",
+          "opacity": 0.288819,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 11,
+          "kind": "facet-tint",
+          "opacity": 0.957568,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 12,
+          "kind": "facet-surface",
+          "opacity": 0.326256,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 13,
+          "kind": "facet-tint",
+          "opacity": 0.997424,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 14,
+          "kind": "facet-surface",
+          "opacity": 0.243851,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 15,
+          "kind": "facet-tint",
+          "opacity": 0.70043,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 16,
+          "kind": "facet-surface",
+          "opacity": 0.158648,
+          "transform": "matrix3d(0.256411, 0.865519, -0.301893, 0.000838591, -0.959817, 0.286531, 0.0438034, -0.000121676, 0.114511, 0.4475, 0.952335, -0.00264538, 3.74353, -63.8737, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 17,
+          "kind": "facet-tint",
+          "opacity": 0.011607,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 18,
+          "kind": "facet-surface",
+          "opacity": 0.331178,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 19,
+          "kind": "facet-tint",
+          "opacity": 0.482554,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 20,
+          "kind": "facet-surface",
+          "opacity": 0.360546,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 21,
+          "kind": "facet-tint",
+          "opacity": 0.967308,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 22,
+          "kind": "facet-surface",
+          "opacity": 0.359217,
+          "transform": "matrix3d(0.780854, 0.638881, 0.0573076, -0.000159188, -0.598336, 0.770641, 0.204147, -0.000567076, 0.236263, -0.0927797, 0.977261, -0.00271461, -55.2568, -37.1761, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 23,
+          "kind": "facet-tint",
+          "opacity": 0.593159,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 24,
+          "kind": "facet-surface",
+          "opacity": 0.253033,
+          "transform": "matrix3d(0.962731, 0.00908733, 0.276654, -0.000768483, 0.024344, 0.992928, -0.0918903, 0.000255251, -0.269439, 0.121531, 0.956566, -0.00265713, -2.29325, -9.90939, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 25,
+          "kind": "facet-tint",
+          "opacity": 0.94818,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 26,
+          "kind": "facet-surface",
+          "opacity": 0.185171,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 27,
+          "kind": "facet-tint",
+          "opacity": 0.430597,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 28,
+          "kind": "facet-surface",
+          "opacity": 0.10256,
+          "transform": "matrix3d(-0.969996, 0.0350755, -0.250026, 0.000694517, -0.0951048, -0.973692, 0.12184, -0.000338444, -0.224283, 0.253182, 0.960543, -0.00266817, -5.58104, -41.6837, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 29,
+          "kind": "facet-tint",
+          "opacity": 0.0953865,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 30,
+          "kind": "facet-surface",
+          "opacity": 0.363286,
+          "transform": "matrix3d(0.991904, -0.0940506, 0.109852, -0.000305144, 0.11044, 0.97303, -0.194366, 0.000539906, -0.0666176, 0.21072, 0.974759, -0.00270766, -8.12185, -2.14022, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 31,
+          "kind": "facet-tint",
+          "opacity": 0.677806,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 32,
+          "kind": "facet-surface",
+          "opacity": 0.30309,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 33,
+          "kind": "facet-tint",
+          "opacity": 0.18655,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 34,
+          "kind": "facet-surface",
+          "opacity": 0.264032,
+          "transform": "matrix3d(0.135925, -0.989017, -0.163251, 0.000453476, 0.920107, 0.184264, -0.176133, 0.00048926, 0.44077, -0.0180275, 0.970735, -0.00269649, -87.7029, -40.1412, 0, 1)",
+          "visible": true
+        },
+        {
+          "id": 35,
+          "kind": "facet-tint",
+          "opacity": 0.235492,
+          "transform": "none",
+          "visible": true
+        },
+        {
+          "id": 36,
+          "kind": "facet-surface",
+          "opacity": 0.246702,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 37,
+          "kind": "facet-tint",
+          "opacity": 0.393388,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 38,
+          "kind": "facet-surface",
+          "opacity": 0.295436,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 39,
+          "kind": "facet-tint",
+          "opacity": 0.970831,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 40,
+          "kind": "facet-surface",
+          "opacity": 0.423756,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 41,
+          "kind": "facet-tint",
+          "opacity": 0.718252,
+          "transform": "none",
+          "visible": false
+        },
+        {
+          "id": 42,
+          "kind": "mote-field",
+          "opacity": 0.822137,
+          "transform": "matrix(1, 0, 0, 1, -100.358, -112.655)",
+          "visible": true
+        },
+        {
+          "id": 43,
+          "kind": "mote-field",
+          "opacity": 0.649267,
+          "transform": "matrix(1, 0, 0, 1, -91.3302, -66.0543)",
+          "visible": true
+        }
+      ],
+      "done": true
+    }
+  }
+}

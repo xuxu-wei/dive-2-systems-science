@@ -1,0 +1,10 @@
+{
+  "javascriptTests": 76,
+  "failures": 0,
+  "syntaxFiles": [
+    "web/home/ambient.mjs",
+    "web/home/app.mjs"
+  ],
+  "visualStatus": "checked",
+  "themeSwitchPerformanceStatus": "open"
+}

@@ -1,0 +1,55 @@
+/* A shared interface finish. Course data, taxonomy and editor syntax keep their palettes. */
+:root{--ease-ui:cubic-bezier(.2,.75,.25,1);--motion-fast:160ms;--motion-settle:200ms}
+:root[data-site-theme] body{background-color:var(--ui-background);color:var(--ui-text)}
+/* One pair of local backgrounds fades without capturing or freezing the page. */
+:root[data-site-theme] body:not(.home-page){isolation:isolate;position:relative;background-image:none}
+:root[data-site-theme] body:not(.home-page)::before,:root[data-site-theme] body:not(.home-page)::after,
+#universe::before,#universe::after{content:"";inset:0;z-index:-1;pointer-events:none;background-position:center;background-size:cover;background-repeat:no-repeat}
+:root[data-site-theme] body:not(.home-page)::before,:root[data-site-theme] body:not(.home-page)::after{position:fixed}
+#universe::before,#universe::after{position:absolute}
+:root[data-site-theme] body:not(.home-page)::before,#universe::before{background-image:linear-gradient(#0b102438,#0b102438),url('/web/home/assets/theme/ambient-dark.png')}
+:root[data-site-theme] body:not(.home-page)::after,#universe::after{background-image:url('/web/home/assets/theme/ambient-light.png');opacity:0;transition:opacity 250ms var(--ease-ui)}
+:root[data-site-theme=light] body:not(.home-page)::after,:root[data-site-theme=light] #universe::after{opacity:1}
+:root[data-site-theme] .course-header{background:var(--surface);border-color:var(--line);backdrop-filter:none}
+:root[data-site-theme] .course-sidebar,:root[data-site-theme] .chapter-toolbar{background:var(--ui-background);border-color:var(--line)}
+:root[data-site-theme] body:not(.home-page) :is(.catalog-card,.overview-card,.chapter-summary .overview-section,.model-panel,.chart-panel,.question-reading,.answer-area,.assessment-panel){background:var(--surface);color:var(--ui-text);border-color:var(--line);box-shadow:0 1px 2px #050c2410}
+:root[data-site-theme] :is(button,.button,.catalog-shortcut){background:var(--surface-raised);border-color:var(--line);color:var(--ui-primary)}
+:root[data-site-theme] :is(button,.button,.catalog-shortcut):hover{background:var(--selected-surface);border-color:var(--ui-border);box-shadow:var(--ui-shadow)}
+:root[data-site-theme] :is(button.primary,.button.primary,.chapter-tab[aria-current]){background:var(--solid-primary);border-color:var(--solid-primary);color:var(--solid-ink)}
+:root[data-site-theme] :is(button.primary,.button.primary,.chapter-tab[aria-current]):hover{background:var(--ui-primary-hover)}
+:root[data-site-theme] .chapter-tab:hover:not([aria-current]){background:var(--surface-raised)}
+:root[data-site-theme] :is(input:not([type=range]):not([type=checkbox]):not([type=radio]),select){background:var(--surface-raised);color:var(--ui-text);border-color:var(--ui-border)}
+:root[data-site-theme] :is(input,select,textarea){accent-color:var(--ui-primary)}
+:root[data-site-theme] .option{background:var(--surface-raised);border-color:var(--line)}
+:root[data-site-theme] .option:hover{background:var(--selected-surface);border-color:var(--ui-border)}
+:root[data-site-theme] .option:has(input:checked){background:var(--selected-surface);border-color:var(--solid-primary);box-shadow:inset 3px 0 var(--solid-primary)}
+:root[data-site-theme] :is(.directory-primary,.course-tree) [aria-current]{background:var(--selected-surface);color:var(--ui-text)}
+:root[data-site-theme] :is(button,.button):disabled{background:var(--surface-raised);color:var(--ui-muted);border-color:var(--line);opacity:1;box-shadow:none;transform:none;translate:none}
+:root[data-site-theme] :focus-visible{outline:3px solid var(--ui-focus);outline-offset:3px}
+:root[data-site-theme] :is(.function-signature,.example pre,.hint,.limits,.example){border-color:var(--line)}
+:root[data-site-theme] :is(.example table,.contract-table table,.values table,.assessment-breakdown table){background:var(--surface);color:var(--ui-text)}
+:root[data-site-theme] :is(.example th,.contract-table th,.values th){background:var(--surface-raised);color:var(--ui-muted)}
+/* Feedback never queues springs or transforms the positioned star targets. */
+:root[data-site-theme] :is(button,.button,.catalog-shortcut,.chapter-tab):not(.sky-node){
+  transition:background-color var(--motion-fast) var(--ease-ui),border-color var(--motion-fast) var(--ease-ui),color var(--motion-fast),box-shadow var(--motion-settle) var(--ease-ui),translate var(--motion-settle) var(--ease-ui);
+  transform:none;font-size:15px;
+}
+:root[data-site-theme] :is(button,.button,.catalog-shortcut,.chapter-tab):not(.sky-node):not(:disabled):hover{translate:0 -1px}
+:root[data-site-theme] :is(button,.button,.catalog-shortcut,.chapter-tab):not(.sky-node):not(:disabled):active{translate:0 0;box-shadow:inset 0 1px 3px #070d2526;transition-duration:85ms}
+:root[data-site-theme] :is(.tree-branch summary,.tree-overview,.tree-lesson,.directory-home,.option){transition:background-color 180ms var(--ease-ui),border-color 180ms var(--ease-ui),color 180ms,box-shadow 180ms var(--ease-ui)}
+:root[data-site-theme] .overview-card:hover{transform:none;box-shadow:var(--ui-shadow)}
+:root[data-site-theme] .course-tree :is(summary,.tree-overview,.tree-lesson){font-size:15px;line-height:1.6}
+:root[data-site-theme] .directory-primary .directory-home{font-size:16px}
+:root[data-site-theme] .progress-badge{font-size:12px}
+:root[data-site-theme] .breadcrumb{font-size:14px}
+:root[data-site-theme] :is(.overview-card p,.overview-section>p,.question-statement,.question-reading>p){font-size:17px;line-height:1.85}
+:root[data-site-theme] .site-theme-toggle{font-size:15px;min-width:90px}
+:root[data-site-theme] .result{animation:result-arrive 160ms var(--ease-ui)}
+@keyframes result-arrive{from{opacity:0;translate:0 -3px}to{opacity:1;translate:0 0}}
+/* Theme colors commit together; only the background opacity crossfades.
+   Animating inherited color tokens restyled the whole course tree on every frame. */
+:root[data-theme-settling] :is(button,.button,.tree-branch summary,.tree-overview,.tree-lesson,.directory-home,.option,.catalog-shortcut,.chapter-tab,input,select){transition:none!important}
+@media(prefers-reduced-motion:reduce){
+  :root[data-site-theme] *, :root[data-site-theme] *::before, :root[data-site-theme] *::after{animation:none!important;transition:none!important;scroll-behavior:auto}
+  :root[data-site-theme] :is(button,.button,.chapter-tab,.catalog-shortcut):not(.sky-node):hover{translate:none}
+}

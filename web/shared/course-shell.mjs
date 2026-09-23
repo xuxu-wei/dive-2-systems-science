@@ -1,6 +1,7 @@
 import {summarize,questionIds} from './progress.mjs';
 import {setupSidebar} from './layout.mjs';
 import {getTheme,toggleTheme} from './appearance.mjs';
+import {polishDisclosures} from './motion.mjs';
 export const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const link=(title,url,cls)=>{const a=el('a',title,cls);a.href=url;return a;};
 let course,current,mode,progress={},tree,section=null;
@@ -77,7 +78,7 @@ export async function mountShell(pageMode='overview'){
       chapterLinks(chapter,d);
     }
   }
-  sidebar.append(tree);document.body.prepend(header,sidebar,resize);setupSidebar(sidebar,toggle,resize);
+  sidebar.append(tree);document.body.prepend(header,sidebar,resize);setupSidebar(sidebar,toggle,resize);polishDisclosures(document.body);
   const main=document.getElementById('main');main.classList.add('course-main');
   const toolbar=el('div',undefined,'chapter-toolbar');
   const crumb=el('div',undefined,'breadcrumb');crumb.append(link('目录','/catalog/'));if(current){

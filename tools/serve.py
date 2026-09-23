@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import io
 import json
+import logging
 import os
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -17,6 +18,8 @@ sys.path.insert(0,str(Path(__file__).resolve().parent))
 from practice import PracticeEngine, RequestError
 from course_content import notebooks, course_chapters
 from systems_science.local_service import SERVICE_NAME, content_id, workspace_id
+from systems_science.local_desktop import (open_in_default_app, launch_context_id, context_diagnostic,
+                                          desktop_environment, NotebookOpenError, error_description)
 
 
 def home_graph_response(root):
@@ -41,16 +44,6 @@ def home_graph_response(root):
     return 200, graph
 
 
-def open_in_default_app(path):
-    """交给操作系统文件关联；不启动网页 Notebook，不执行文件内容。"""
-    if sys.platform == 'win32':
-        os.startfile(str(path), 'open')
-    else:
-        command = 'open' if sys.platform == 'darwin' else 'xdg-open'
-        subprocess.run([command, str(path)], check=True, timeout=10,
-                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-
-
 class TeachingServer(ThreadingHTTPServer):
     daemon_threads = True
 
@@ -63,6 +56,7 @@ class TeachingServer(ThreadingHTTPServer):
         self.course = json.loads((ROOT / 'web/course/catalog.json').read_text(encoding='utf-8'))
         self.workspace_id = workspace_id(ROOT)
         self.content_id = content_id(ROOT)
+        self.launch_context_id = launch_context_id()
         self.lifecycle_lock = threading.Lock()
         self.stopping = False
         try:
@@ -109,6 +103,7 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             self.respond_json(200, {'version': 'course-local-ide-1', 'token': self.server.token,
                                     'service': SERVICE_NAME, 'workspace_id': self.server.workspace_id,
                                     'content_id': self.server.content_id,
+                                    'launch_context_id': self.server.launch_context_id,
                                     'notebooks': self.server.catalog,'practice_version':'named-parameters-2','assessment_version':'1'})
             return
         path=urlsplit(self.path).path
@@ -180,12 +175,15 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             self.respond_json(404, {'error': 'Notebook 文件不可用，请核对教材目录。'})
             return
         try:
-            self.server.opener(path)
-        except (OSError, subprocess.SubprocessError):
-            self.respond_json(503, {'error': '系统未能打开 Notebook。请将 .ipynb 的默认应用设为支持 Notebook 的 IDE，然后重试。'})
+            application = self.server.opener(path)
+        except (OSError, subprocess.SubprocessError) as error:
+            logging.exception('Notebook open failed: id=%s path=%s', entry['id'], path)
+            message = str(error) if isinstance(error, NotebookOpenError) else error_description(error) + '。请查看 .local/service.log。'
+            self.respond_json(503, {'error': message})
             return
         self.respond_json(202, {'status': 'requested', 'id': entry['id'],
-                                'message': '已请求系统默认 IDE 打开，请切换到 IDE 继续学习。'})
+                                'message': '已请求 VS Code 打开原 Notebook，请切换到 IDE 继续学习。' if application == 'vscode'
+                                else '已请求系统默认 IDE 打开，请切换到 IDE 继续学习。'})
 
     def send_head(self):
         if not self.valid_host():
@@ -233,10 +231,21 @@ class TeachingHandler(SimpleHTTPRequestHandler):
 
 
 def main():
+    # Root CMD redirects the service output to a file; retain readable Chinese
+    # paths/errors there even when the Windows console codepage is legacy.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, 'reconfigure'):
+            stream.reconfigure(encoding='utf-8', errors='backslashreplace')
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=8000)
     parser.add_argument('--previews', action='store_true', help='同时提供本地 Notebook 检查预览')
     args = parser.parse_args()
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
+    # Also cover direct `python tools/serve.py`, not just the shared launcher.
+    clean_env = desktop_environment()
+    for key in set(os.environ) - set(clean_env):
+        del os.environ[key]
+    logging.info('Course desktop context: %s', context_diagnostic())
     server = TeachingServer(('127.0.0.1', args.port), previews=args.previews)
     print(f'http://127.0.0.1:{server.server_port}/', flush=True)
     try:

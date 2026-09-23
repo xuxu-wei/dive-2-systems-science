@@ -25,6 +25,19 @@ def test_generated_graph_is_current_and_deterministic():
     assert len({n['id'] for n in GRAPH['nodes']}) == len(GRAPH['nodes'])
 
 
+def test_optional_introduction_preserves_all_body_nodes_and_lesson_identity():
+    intro = next(n for n in GRAPH['nodes'] if n['kind'] == 'introduction')
+    lessons = [n for n in GRAPH['nodes'] if n['kind'] == 'lesson']
+    assert intro['children'] == [l['id'] for l in CATALOG['introduction']['lessons']]
+    assert len(intro['questionIds']) == 9 and len(lessons) == 3
+    for node, lesson in zip(lessons, CATALOG['introduction']['lessons']):
+        assert node['lessonId'] == lesson['id']
+        assert node['url'] == lesson['url']
+        assert node['questionIds'] == module.question_ids(lesson)
+    legacy = module.build_graph({k: v for k, v in CATALOG.items() if k != 'introduction'}, TERMS)
+    assert legacy['nodes'] == [n for n in GRAPH['nodes'] if n['kind'] not in ('introduction', 'lesson')]
+
+
 def test_source_lenses_are_faithful_and_application_is_attributed():
     assert [t['label'] for t in GRAPH['taxonomy']] == [
         '系统方法论', '系统演化论', '系统认知论', '系统调控论', '系统实践论']

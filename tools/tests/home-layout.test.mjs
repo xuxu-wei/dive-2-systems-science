@@ -5,7 +5,7 @@ import {sceneProjection} from '../../web/home/scene-layout.mjs';
 test('the default orbital envelope and label clearance fit between measured interface bands', () => {
   for (const width of [600,800,1280,1440,1920,2226]) {
     for (const height of [350,420,650,900]) {
-      for (const level of ['universe','part','chapter']) {
+      for (const level of ['universe','part','chapter','introduction']) {
         const top=345,bottom=top+height,p=sceneProjection(width,top,bottom,level);
         assert.equal(p.cx,width/2);
         assert.ok(p.cy-p.ry-20>=top);
@@ -21,4 +21,13 @@ test('a taller wrapping header shifts the stage without changing horizontal drag
   const a=sceneProjection(1280,300,900),b=sceneProjection(1280,380,900);
   assert.equal(a.rx,b.rx);assert.equal(b.cy-a.cy,40);
   assert.ok(b.ry<=a.ry);
+});
+
+test('enlarged text gets vertical room without shifting drag coordinates horizontally',()=>{
+  const normal=sceneProjection(1140,300,700,'universe');
+  const enlarged=sceneProjection(1140,520,1320,'universe',2);
+  assert.equal(normal.rx,enlarged.rx);assert.equal(normal.cx,enlarged.cx);
+  assert.ok(enlarged.ry>=normal.ry*1.8);
+  assert.ok(enlarged.cy-enlarged.ry>=520);
+  assert.ok(enlarged.cy+enlarged.ry+64<=1320);
 });

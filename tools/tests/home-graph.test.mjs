@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {nodeProgress, chooseResumePart, mixColors, categoryColor, getView, directNeighborhood} from '../../web/home/graph-model.mjs';
+import {nodeProgress, chooseResumePart, chooseResumeNode, cardLabel, nodeFromHash, routeForNode, isLesson, mixColors, categoryColor, getView, directNeighborhood} from '../../web/home/graph-model.mjs';
 
 const graph = JSON.parse(readFileSync(new URL('../../web/home/graph.json', import.meta.url), 'utf8'));
 const base = {id:'1', number:'1', kind:'part', available:true, published:1, total:1, questionIds:['a','b'], assessmentIds:['a-summary']};
@@ -81,8 +81,9 @@ test('theme-dependent blending retains identity, deduplicates categories and acc
 
 test('each view selects only the requested hierarchy level and its direct edges', () => {
   const root=getView(graph);
-  assert.ok(root.nodes.length>0 && root.nodes.every(n=>n.kind==='part'));
-  const part=getView(graph,root.nodes[0].id);
+  assert.equal(root.nodes[0].kind,'introduction');
+  assert.ok(root.nodes.slice(1).every(n=>n.kind==='part'));
+  const part=getView(graph,root.nodes[1].id);
   assert.ok(part.nodes.every(n=>n.kind==='chapter'));
   const chapter=getView(graph,part.nodes[0].id);
   assert.ok(chapter.nodes.length>0 && chapter.nodes.every(n=>n.kind==='concept'));
@@ -92,6 +93,42 @@ test('each view selects only the requested hierarchy level and its direct edges'
   }
   assert.deepEqual(getView(graph,'no-such-parent'),{nodes:[],edges:[]});
   assert.deepEqual([...directNeighborhood('a',[{source:'a',target:'b'},{source:'b',target:'c'}])],['a','b']);
+});
+
+test('independent introduction cycles before part one without changing body numbering',()=>{
+  const root=getView(graph).nodes, introduction=root[0];
+  assert.equal(cardLabel(introduction,root),'00 · 导论');
+  assert.equal(cardLabel(root[1],root),'第 1 / 17 篇');
+  assert.equal(cardLabel(root.at(-1),root),'第 17 / 17 篇');
+  assert.equal(introduction.questionIds.length,9);
+  const lessons=getView(graph,introduction.id).nodes;
+  assert.equal(lessons.length,3);
+  assert.ok(lessons.every(n=>isLesson(n)&&n.questionIds.length===3));
+  assert.ok(!lessons[0].visualizationUrl&&!lessons[1].visualizationUrl);
+  assert.equal(lessons[2].visualizationUrl,'/introduction/explore/');
+  const progress={passed:introduction.questionIds,assessments:{}};
+  assert.equal(nodeProgress(introduction,progress).state,'complete');
+  assert.equal(nodeProgress(root[1],progress).state,'new');
+  assert.equal(nodeProgress(introduction,progress).score,null);
+});
+
+test('fresh learners start at introduction, returning readers keep active-part priority',()=>{
+  const introduction=graph.nodes.find(n=>n.kind==='introduction'), part=graph.nodes.find(n=>n.kind==='part');
+  assert.equal(chooseResumeNode(graph.nodes).id,introduction.id);
+  assert.equal(chooseResumeNode(graph.nodes,{started:[part.questionIds[0]]}).id,part.id);
+  assert.equal(chooseResumeNode(graph.nodes,{passed:introduction.questionIds}).id,part.id);
+  const legacy={...graph,nodes:graph.nodes.filter(n=>!['introduction','lesson'].includes(n.kind))};
+  assert.equal(chooseResumeNode(legacy.nodes).id,part.id);
+  assert.ok(getView(legacy).nodes.every(n=>n.kind==='part'));
+  assert.equal(nodeFromHash(legacy,'#introduction'),null);
+});
+
+test('introduction routes round-trip alongside existing part and chapter deep links',()=>{
+  for(const node of graph.nodes.filter(n=>['part','chapter','introduction'].includes(n.kind))){
+    assert.equal(nodeFromHash(graph,routeForNode(node).slice(1)),node.id);
+  }
+  assert.equal(routeForNode(null),'/');
+  for(const hash of ['#part=introduction','#chapter=1','#part=%XX','#lesson=P00-C01-S01'])assert.equal(nodeFromHash(graph,hash),null);
 });
 
 test('concept radiance is explicitly the linked lesson exercise progress', () => {

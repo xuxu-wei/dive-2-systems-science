@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createLayout, tickLayout, setPinned, releasePinned, edgeTargetLength} from '../../web/home/physics.mjs';
-import {getView} from '../../web/home/graph-model.mjs';
+import {getView,orbitNodes} from '../../web/home/graph-model.mjs';
 
 const nodes = count => Array.from({length: count}, (_, index) => ({id: String(index), title: `单元 ${index + 1}`}));
 const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
@@ -96,7 +96,7 @@ test('Every published atlas view fits the rotating circular stage and keeps its 
   const parents = [null, ...graph.nodes.filter(node => node.kind !== 'concept').map(node => node.id)];
   for (const parent of parents) {
     const view = getView(graph, parent);
-    const layout = createLayout(view.nodes, view.edges, {radius: .18, holeRadius: .19});
+    const layout = createLayout(orbitNodes(view.nodes), view.edges, {radius: .18, holeRadius: .19});
     for (const node of layout.nodes) {
       const radius = Math.hypot(node.x, node.y);
       assert.ok(radius <= layout.bound + 1e-8, `${node.id} escapes the rotating stage`);
@@ -124,7 +124,7 @@ test('Every published atlas view fits the rotating circular stage and keeps its 
 test('The 17-part accretion-disk annulus is balanced, clear and keeps strong links usually nearer', () => {
   const graph = JSON.parse(readFileSync(new URL('../../web/home/graph.json', import.meta.url), 'utf8'));
   const view = getView(graph);
-  const layout = createLayout(view.nodes, view.edges, {radius: .105, holeRadius: .55});
+  const layout = createLayout(orbitNodes(view.nodes), view.edges, {radius: .105, holeRadius: .55});
   assert.equal(layout.nodes.length, 17);
   assert.equal(layout.holeRadius, .55);
   const mean = values => values.reduce((sum, value) => sum + value, 0) / values.length;

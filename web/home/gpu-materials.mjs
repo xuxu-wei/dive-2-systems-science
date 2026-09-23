@@ -181,7 +181,7 @@ void main(){
     float breathe=1.+.20*stream*diskBand+.085*arcStream*(1.-diskBand);
     vec3 gas=mix(base.rgb,photo.rgb,.68*diskBand)*smoothstep(.0005,.006,fixedLum);
     vec3 night=gas/max(gasAlpha,.10)*breathe;
-    vec3 dayGas=mix(vec3(.018,.045,.083),vec3(.24,.38,.52),pow(clamp(lum,0.,1.),.60));
+    vec3 dayGas=mix(vec3(.070,.035,.025),vec3(.52,.29,.12),pow(clamp(lum,0.,1.),.60));
     vec3 day=mix(vec3(.002,.006,.014),dayGas*breathe,smoothstep(.0015,.035,fixedLum));
     // A black source image is not an opaque rectangular card: only its gas and
     // the circular event horizon cover background stars.
@@ -209,8 +209,8 @@ void main(){
       float temperature=clamp((2.5-diskRadius)/1.9,0.,1.);
       float doppler=mix(.47,1.58,smoothstep(-1.4,1.3,p.x));
       vec3 warm=mix(vec3(.45,.125,.035),vec3(1.6,1.04,.57),temperature);
-      vec3 cool=mix(vec3(.035,.10,.19),vec3(.16,.34,.53),temperature);
-      vec3 emission=mix(cool,warm,uDark)*density*doppler;
+      vec3 daylight=mix(vec3(.12,.055,.025),vec3(.57,.31,.13),temperature);
+      vec3 emission=mix(daylight,warm,uDark)*density*doppler;
       accumulated+=(1.-opacity)*emission*.72;opacity+=(1.-opacity)*density*.42;
     }
     if(p.z< -4.||opacity>.985)break;
@@ -218,7 +218,7 @@ void main(){
   vec3 horizon=mix(vec3(.009,.019,.038),vec3(.0003,.0005,.001),uDark);
   if(captured>.5){accumulated+=horizon*(1.-opacity);opacity=1.;}
   float photon=exp(-pow((closest-.39)/.043,2.))*(1.-captured)*.14;
-  accumulated+=mix(vec3(.05,.13,.25),vec3(.95,.57,.25),uDark)*photon;opacity=max(opacity,photon*.55);
+  accumulated+=mix(vec3(.35,.17,.06),vec3(.95,.57,.25),uDark)*photon;opacity=max(opacity,photon*.55);
   float vignette=1.-smoothstep(.72,1.,length(uv));opacity*=vignette*uOpacity;
   if(opacity<.006)discard;
   gl_FragColor=vec4(accumulated/max(opacity,.10),opacity);

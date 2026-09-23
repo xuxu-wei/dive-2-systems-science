@@ -1,0 +1,67 @@
+{
+  "result": {
+    "type": "object",
+    "value": [
+      {
+        "hueRange": 1.163106556364994,
+        "kind": "base",
+        "pixels": 3708
+      },
+      {
+        "hueRange": 2.289348171701107,
+        "kind": "facet-tint",
+        "pixels": 3708
+      },
+      {
+        "hueRange": 2.8921568627450824,
+        "kind": "base",
+        "pixels": 2621
+      },
+      {
+        "hueRange": 1.5032444124008748,
+        "kind": "facet-tint",
+        "pixels": 2621
+      },
+      {
+        "hueRange": 3.5294117647058556,
+        "kind": "base",
+        "pixels": 3926
+      },
+      {
+        "hueRange": 1.8609022556391324,
+        "kind": "facet-tint",
+        "pixels": 3926
+      },
+      {
+        "hueRange": 1.9148936170213064,
+        "kind": "base",
+        "pixels": 4697
+      },
+      {
+        "hueRange": 1.4961038961038753,
+        "kind": "facet-tint",
+        "pixels": 4697
+      },
+      {
+        "hueRange": 3.1657754010694816,
+        "kind": "base",
+        "pixels": 4147
+      },
+      {
+        "hueRange": 1.8091334894614024,
+        "kind": "facet-tint",
+        "pixels": 4147
+      },
+      {
+        "hueRange": 1.7647058823529278,
+        "kind": "base",
+        "pixels": 2783
+      },
+      {
+        "hueRange": 1.5032444124008748,
+        "kind": "facet-tint",
+        "pixels": 2783
+      }
+    ]
+  }
+}

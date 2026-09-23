@@ -1,0 +1,18 @@
+{
+  "result": {
+    "type": "object",
+    "value": {
+      "done": true,
+      "frames": 90,
+      "max": 48.60000000000582,
+      "p50": 27.79999999998836,
+      "p95": 41.60000000000582,
+      "tasks": [],
+      "viewport": [
+        1219,
+        1272
+      ],
+      "visibility": "visible"
+    }
+  }
+}

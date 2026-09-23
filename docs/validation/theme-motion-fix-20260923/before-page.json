@@ -1,0 +1,216 @@
+{
+  "result": {
+    "type": "object",
+    "value": {
+      "long": [
+        {
+          "duration": 148,
+          "start": 611.1000000014901
+        },
+        {
+          "duration": 78,
+          "start": 783.8999999985099
+        }
+      ],
+      "navigation": [
+        {
+          "domContentLoaded": 758.6000000014901,
+          "load": 767.6000000014901,
+          "responseEnd": 56.69999999552965
+        }
+      ],
+      "paint": [
+        {
+          "name": "first-paint",
+          "start": 1272
+        },
+        {
+          "name": "first-contentful-paint",
+          "start": 1272
+        }
+      ],
+      "resources": [
+        {
+          "bytes": 789,
+          "duration": 84.20000000298023,
+          "name": "shared/theme.css"
+        },
+        {
+          "bytes": 11114,
+          "duration": 79.80000000447035,
+          "name": "shared/course-shell.css"
+        },
+        {
+          "bytes": 3856,
+          "duration": 83.40000000596046,
+          "name": "course/style.css"
+        },
+        {
+          "bytes": 2062,
+          "duration": 84.20000000298023,
+          "name": "shared/assessment.css"
+        },
+        {
+          "bytes": 2514,
+          "duration": 91.39999999850988,
+          "name": "shared/boot.js"
+        },
+        {
+          "bytes": 7914,
+          "duration": 93.10000000149012,
+          "name": "course/app.mjs"
+        },
+        {
+          "bytes": 6889,
+          "duration": 28,
+          "name": "shared/appearance.css"
+        },
+        {
+          "bytes": 8406,
+          "duration": 36,
+          "name": "shared/interaction.css"
+        },
+        {
+          "bytes": 1397543,
+          "duration": 48,
+          "name": "theme/ambient-dark.png"
+        },
+        {
+          "bytes": 1261466,
+          "duration": 44.39999999850989,
+          "name": "theme/ambient-light.png"
+        },
+        {
+          "bytes": 9998,
+          "duration": 36.5,
+          "name": "shared/course-shell.mjs"
+        },
+        {
+          "bytes": 4522,
+          "duration": 42.79999999701977,
+          "name": "shared/assessment.mjs"
+        },
+        {
+          "bytes": 1054,
+          "duration": 32.30000000447035,
+          "name": "shared/progress.mjs"
+        },
+        {
+          "bytes": 6217,
+          "duration": 41.5,
+          "name": "shared/layout.mjs"
+        },
+        {
+          "bytes": 1001,
+          "duration": 46.5,
+          "name": "shared/appearance.mjs"
+        },
+        {
+          "bytes": 1439,
+          "duration": 51.5,
+          "name": "shared/motion.mjs"
+        },
+        {
+          "bytes": 491343,
+          "duration": 32.69999999552965,
+          "name": "course/catalog.json"
+        },
+        {
+          "bytes": 809,
+          "duration": 39.5,
+          "name": "shared/logo.svg"
+        },
+        {
+          "bytes": 79661,
+          "duration": 26.899999998509884,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 36.69999999552965,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 48.10000000149011,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 46.70000000298023,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 35.399999998509884,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 24,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 23.399999998509884,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 23,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 30.900000005960464,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 29.100000001490116,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 51,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 36.79999999701977,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 27.600000001490116,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 27.700000002980232,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 40.60000000149011,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 46.60000000149011,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 44,
+          "name": "v1/progress"
+        },
+        {
+          "bytes": 79661,
+          "duration": 39,
+          "name": "v1/progress"
+        }
+      ]
+    }
+  }
+}

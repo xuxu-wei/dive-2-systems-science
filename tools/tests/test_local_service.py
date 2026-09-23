@@ -18,13 +18,17 @@ from systems_science import local_service
 @pytest.fixture
 def local_server(tmp_path):
     server = TeachingServer(("127.0.0.1", 0), learning_directory=tmp_path / "learning")
-    thread = threading.Thread(target=server.serve_forever, kwargs={"poll_interval": 0.01}, daemon=True)
+    def serve():
+        try:
+            server.serve_forever(poll_interval=0.01)
+        finally:
+            server.server_close()
+    thread = threading.Thread(target=serve, daemon=True)
     thread.start()
     yield server, thread
     if thread.is_alive():
         server.shutdown()
     thread.join(timeout=2)
-    server.server_close()
 
 
 def test_same_workspace_service_is_reused_without_spawning(local_server, monkeypatch):
@@ -35,6 +39,7 @@ def test_same_workspace_service_is_reused_without_spawning(local_server, monkeyp
         session = json.load(response)
     assert session["workspace_id"] == local_service.workspace_id(ROOT)
     assert session["content_id"] == local_service.content_id(ROOT)
+    assert session["launch_context_id"] == local_service.launch_context_id()
 
 
 def test_shutdown_requires_matching_workspace_and_waits_for_active_submission(local_server):
@@ -79,3 +84,32 @@ def test_notebook_still_runs_when_page_cannot_start(monkeypatch, capsys):
     monkeypatch.setattr(local_service, "ensure_course_server", unavailable)
     assert local_service.notebook_service_ready() is None
     assert "练习网页暂时不可用" in capsys.readouterr().out
+
+
+@pytest.mark.parametrize('field,value', [('launch_context_id', 'other-user-session'),
+                                       ('launch_context_id', None), ('content_id', 'old-version')])
+def test_same_workspace_stale_or_wrong_context_service_is_stopped(local_server, monkeypatch, field, value):
+    server, thread = local_server
+    setattr(server, field, value)
+    def replacement(*_):
+        raise OSError('replacement-start-observed')
+    monkeypatch.setattr(local_service, '_start', replacement)
+    with pytest.raises(local_service.LocalServiceError, match='replacement-start-observed'):
+        local_service.ensure_course_server(root=ROOT, port=server.server_port)
+    thread.join(timeout=2)
+    assert not thread.is_alive()
+
+
+def test_wrong_context_never_interrupts_active_judging(local_server, monkeypatch):
+    server, thread = local_server
+    server.launch_context_id = 'other-session'
+    monkeypatch.setattr(local_service, '_start', lambda *_: pytest.fail('interrupted judging'))
+    with server.practice.lock:
+        server.practice.active = 'calculation-running'
+    try:
+        with pytest.raises(local_service.LocalServiceError, match='正在判题'):
+            local_service.ensure_course_server(root=ROOT, port=server.server_port)
+        assert thread.is_alive()
+    finally:
+        with server.practice.lock:
+            server.practice.active = None
