@@ -1,408 +1,2061 @@
 [
-  {"zh":"系统科学","en":"systems science"},
-  {"zh":"一般系统论","en":"general system theory","abbr":"GST"},
-  {"zh":"控制论","en":"cybernetics"},
-  {"zh":"工程控制论","en":"engineering cybernetics"},
-  {"zh":"信息论","en":"information theory"},
-  {"zh":"网络科学","en":"network science"},
-  {"zh":"数据驱动建模","en":"data-driven modeling"},
-  {"zh":"多主体模型","en":"agent-based model","abbr":"ABM"},
-  {"zh":"同步更新","en":"synchronous update"},
-  {"zh":"系统边界","en":"system boundary"},
-  {"zh":"存量","en":"stock"},
-  {"zh":"流量","en":"flow"},
-  {"zh":"收支","en":"mass balance"},
-  {"zh":"示踪物质","en":"tracer"},
-  {"zh":"所追踪物质总量","en":"tracked amount","scope":"part01"},
-  {"zh":"浓度","en":"concentration"},
-  {"zh":"单室模型","en":"one-compartment model"},
-  {"zh":"状态","en":"state"},
-  {"zh":"参数","en":"parameter"},
-  {"zh":"初值","en":"initial condition"},
-  {"zh":"时间步长","en":"time step"},
-  {"zh":"清除系数","en":"elimination rate constant"},
-  {"zh":"递推关系","en":"recurrence relation"},
-  {"zh":"残差","en":"residual"},
-  {"zh":"舍入误差","en":"round-off error"},
-  {"zh":"平衡","en":"equilibrium"},
-  {"zh":"负反馈","en":"negative feedback"},
-  {"zh":"导数","en":"derivative"},
-  {"zh":"定积分","en":"definite integral"},
-  {"zh":"初值问题","en":"initial value problem"},
-  {"zh":"常微分方程","en":"ordinary differential equation","abbr":"ODE"},
-  {"zh":"解析解","en":"analytical solution"},
-  {"zh":"中心差分","en":"central difference"},
-  {"zh":"有限差分","en":"finite difference"},
-  {"zh":"欧拉法","en":"forward Euler method"},
-  {"zh":"数值误差","en":"numerical error"},
-  {"zh":"数值稳定性","en":"numerical stability"},
-  {"zh":"非负性","en":"nonnegativity"},
-  {"zh":"最大绝对误差","en":"maximum absolute error"},
-  {"zh":"观测收敛阶","en":"observed order of convergence"},
-  {"zh":"分段恒定输入","en":"piecewise constant input"},
-  {"zh":"时间网格","en":"time grid"},
-  {"zh":"守恒检查","en":"conservation check"},
-  {"zh":"割线","en":"secant line"},
-  {"zh":"切线","en":"tangent line"},
-  {"zh":"斜率","en":"slope"},
-  {"zh":"极限","en":"limit"},
-  {"zh":"差商","en":"difference quotient"},
-  {"zh":"指数函数","en":"exponential function"},
-  {"zh":"一阶收敛","en":"first-order convergence"},
-  {"zh":"时间尺度","en":"time scale"},
-  {"zh":"观测","en":"observation","scope":"part01"},
-  {"zh":"输入","en":"input","scope":"part01"},
-  {"zh":"模型","en":"model","scope":"part01"},
-  {"zh":"量纲","en":"dimension","scope":"part01"},
-  {"zh":"流率","en":"flow rate","scope":"part01"},
-  {"zh":"增益","en":"gain","scope":"part01"},
-  {"zh":"过冲","en":"overshoot","scope":"part01"},
-  {"zh":"因果回路图","en":"causal loop diagram","scope":"part01"},
-  {"zh":"正反馈","en":"positive feedback","scope":"part01"},
-  {"zh":"反馈","en":"feedback","scope":"part01"},
-  {"zh":"延迟","en":"delay","scope":"part01"},
-  {"zh":"时间序列","en":"time series","scope":"part01"},
-  {"zh":"数组","en":"array","scope":"part01"},
-  {"zh":"计算实验","en":"computational experiment","scope":"part01"},
-  {"zh":"模型结构","en":"model structure","scope":"part01"},
-  {"zh":"轨迹","en":"trajectory","scope":"part01"},
-  {"zh":"无量纲","en":"dimensionless","scope":"part01"},
-  {"zh":"差分方程","en":"difference equation","scope":"part02"},
-  {"zh":"固定点","en":"fixed point","scope":"part02"},
-  {"zh":"链式法则","en":"chain rule","scope":"part02"},
-  {"zh":"自然对数","en":"natural logarithm","scope":"part02"},
-  {"zh":"微积分基本定理","en":"fundamental theorem of calculus","scope":"part02"},
-  {"zh":"渐近稳定","en":"asymptotic stability","scope":"part02"},
-  {"zh":"半衰期","en":"half-life","scope":"part02"},
-  {"zh":"特征时间","en":"characteristic time","scope":"part02"},
-  {"zh":"向量","en":"vector","scope":"part03"},
-  {"zh":"矩阵","en":"matrix","scope":"part03"},
-  {"zh":"矩阵乘法","en":"matrix multiplication","scope":"part03"},
-  {"zh":"线性映射","en":"linear map","scope":"part03"},
-  {"zh":"转置","en":"transpose","scope":"part03"},
-  {"zh":"内积","en":"inner product","scope":"part03"},
-  {"zh":"欧几里得范数","en":"Euclidean norm","scope":"part03"},
-  {"zh":"范数","en":"norm","scope":"part03"},
-  {"zh":"投影","en":"projection","scope":"part03"},
-  {"zh":"正交","en":"orthogonality","scope":"part03"},
-  {"zh":"秩","en":"rank","scope":"part03"},
-  {"zh":"行列式","en":"determinant","scope":"part03"},
-  {"zh":"逆矩阵","en":"inverse matrix","scope":"part03"},
-  {"zh":"单位矩阵","en":"identity matrix","scope":"part03"},
-  {"zh":"状态空间","en":"state space","scope":"part03"},
-  {"zh":"输出","en":"output","scope":"part03"},
-  {"zh":"特征向量","en":"eigenvector","scope":"part03"},
-  {"zh":"特征值","en":"eigenvalue","scope":"part03"},
-  {"zh":"模态","en":"mode","scope":"part03"},
-  {"zh":"矩阵指数","en":"matrix exponential","scope":"part03"},
-  {"zh":"复共轭","en":"complex conjugate","scope":"part03"},
-  {"zh":"复数","en":"complex number","scope":"part03"},
-  {"zh":"模长","en":"modulus","scope":"part03"},
-  {"zh":"向量场","en":"vector field","scope":"part03"},
-  {"zh":"相平面","en":"phase plane","scope":"part03"},
-  {"zh":"相轨迹","en":"phase trajectory","scope":"part03"},
-  {"zh":"相图","en":"phase portrait","scope":"part03"},
-  {"zh":"偏导数","en":"partial derivative","scope":"part03"},
-  {"zh":"偏导","en":"partial derivative","scope":"part03"},
-  {"zh":"梯度","en":"gradient","scope":"part03"},
-  {"zh":"雅可比矩阵","en":"Jacobian matrix","scope":"part03"},
-  {"zh":"线性化","en":"linearization","scope":"part03"},
-  {"zh":"局部渐近稳定","en":"local asymptotic stability","scope":"part03"},
-  {"zh":"线性方程组","en":"system of linear equations","scope":"part03"},
-  {"zh":"线性代数","en":"linear algebra","scope":"part03"},
-  {"zh":"仿射","en":"affine","scope":"part03"},
-  {"zh":"截断误差","en":"truncation error","scope":"part03"},
-  {"zh":"多稳态","en":"multistability","scope":"part04"},
-  {"zh":"双稳态","en":"bistability","scope":"part04"},
-  {"zh":"吸引域","en":"basin of attraction","scope":"part04"},
-  {"zh":"相线","en":"phase line","scope":"part04"},
-  {"zh":"自治系统","en":"autonomous system","scope":"part04"},
-  {"zh":"显式中点法","en":"explicit midpoint method","scope":"part04"},
-  {"zh":"极限环","en":"limit cycle","scope":"part04"},
-  {"zh":"相位","en":"phase","scope":"part04"},
-  {"zh":"振幅","en":"amplitude","scope":"part04"},
-  {"zh":"暂态","en":"transient","scope":"part04"},
-  {"zh":"分岔","en":"bifurcation","scope":"part04"},
-  {"zh":"鞍结分岔","en":"saddle-node bifurcation","scope":"part04"},
-  {"zh":"滞回","en":"hysteresis","scope":"part04"},
-  {"zh":"滞后","en":"lag","scope":"part06","senses":["lag"]},
-  {"zh":"滞后输入","en":"lagged input","scope":"part06"},
-  {"zh":"滞后项","en":"lagged term","scope":"part06"},
-  {"zh":"Hopf 分岔","en":"Hopf bifurcation","scope":"part04"},
-  {"zh":"自维持振荡","en":"self-sustained oscillation","scope":"part04"},
-  {"zh":"受迫振荡","en":"forced oscillation","scope":"part04"},
-  {"zh":"阻尼振荡","en":"damped oscillation","scope":"part04"},
-  {"zh":"不动点","en":"fixed point","scope":"part04"},
-  {"zh":"周期二","en":"period-two cycle","scope":"part04"},
-  {"zh":"logistic 映射","en":"logistic map","scope":"part04"},
-  {"zh":"混沌","en":"chaos","scope":"part04"},
-  {"zh":"初值敏感性","en":"sensitivity to initial conditions","scope":"part04"},
-  {"zh":"有限时间 Lyapunov 指数","en":"finite-time Lyapunov exponent","scope":"part04"},
-  {"zh":"Lyapunov 指数","en":"Lyapunov exponent","scope":"part04"},
-  {"zh":"Lyapunov 函数","en":"Lyapunov function","scope":"part04"},
-  {"zh":"正定","en":"positive definite","scope":"part04"},
-  {"zh":"子水平集","en":"sublevel set","scope":"part04"},
-  {"zh":"径向无界","en":"radially unbounded","scope":"part04"},
-  {"zh":"LaSalle 不变性原理","en":"LaSalle invariance principle","scope":"part04"},
-  {"zh":"正定性","en":"positive definiteness","scope":"part04"},
-  {"zh":"超临界","en":"supercritical","scope":"part04"},
-  {"zh":"蛛网图","en":"cobweb diagram","scope":"part04"},
-  {"zh":"紧集","en":"compact set","scope":"part04"},
-  {"zh":"正向不变","en":"positively invariant","scope":"part04"},
-  {"zh":"概率","en":"probability","scope":"part05"},
-  {"zh":"样本空间","en":"sample space","scope":"part05"},
-  {"zh":"事件","en":"event","scope":"part05"},
-  {"zh":"随机变量","en":"random variable","scope":"part05"},
-  {"zh":"概率质量函数","en":"probability mass function","scope":"part05"},
-  {"zh":"概率密度","en":"probability density","scope":"part05"},
-  {"zh":"分布","en":"distribution","scope":"part05"},
-  {"zh":"经验分位数","en":"empirical quantile","scope":"part05"},
-  {"zh":"统计量","en":"statistic","scope":"part05"},
-  {"zh":"随机种子","en":"random seed","scope":"part05"},
-  {"zh":"独立同分布","en":"independent and identically distributed","scope":"part05"},
-  {"zh":"期望","en":"expectation","scope":"part05"},
-  {"zh":"方差","en":"variance","scope":"part05"},
-  {"zh":"标准差","en":"standard deviation","scope":"part05"},
-  {"zh":"标准误","en":"standard error","scope":"part05"},
-  {"zh":"高斯分布","en":"Gaussian distribution","scope":"part05"},
-  {"zh":"正态分布","en":"normal distribution","scope":"part05"},
-  {"zh":"联合概率","en":"joint probability","scope":"part05"},
-  {"zh":"协方差矩阵","en":"covariance matrix","scope":"part05"},
-  {"zh":"协方差","en":"covariance","scope":"part05"},
-  {"zh":"相关系数","en":"correlation coefficient","scope":"part05"},
-  {"zh":"过程噪声","en":"process noise","scope":"part05"},
-  {"zh":"测量噪声","en":"measurement noise","scope":"part05"},
-  {"zh":"条件概率","en":"conditional probability","scope":"part05"},
-  {"zh":"先验","en":"prior","scope":"part05"},
-  {"zh":"似然","en":"likelihood","scope":"part05"},
-  {"zh":"后验","en":"posterior","scope":"part05"},
-  {"zh":"证据/边际似然","en":"evidence or marginal likelihood","scope":"part05"},
-  {"zh":"贝叶斯更新","en":"Bayesian update","scope":"part05"},
-  {"zh":"条件独立","en":"conditional independence","scope":"part05"},
-  {"zh":"可信区间","en":"credible interval","scope":"part05"},
-  {"zh":"置信区间","en":"confidence interval","scope":"part05"},
-  {"zh":"随机过程","en":"stochastic process","scope":"part05"},
-  {"zh":"马尔可夫链","en":"Markov chain","scope":"part05"},
-  {"zh":"马尔可夫","en":"Markov","scope":"part05"},
-  {"zh":"时间齐次","en":"time-homogeneous","scope":"part05"},
-  {"zh":"转移矩阵","en":"transition matrix","scope":"part05"},
-  {"zh":"不变分布","en":"invariant distribution","scope":"part05"},
-  {"zh":"吸收态","en":"absorbing state","scope":"part05"},
-  {"zh":"不可约","en":"irreducible","scope":"part05"},
-  {"zh":"非周期","en":"aperiodic","scope":"part05"},
-  {"zh":"随机游走","en":"random walk","scope":"part05"},
-  {"zh":"扩散系数","en":"diffusion coefficient","scope":"part05"},
-  {"zh":"互信息","en":"mutual information","scope":"part05"},
-  {"zh":"条件熵","en":"conditional entropy","scope":"part05"},
-  {"zh":"联合熵","en":"joint entropy","scope":"part05"},
-  {"zh":"熵","en":"entropy","scope":"part05"},
-  {"zh":"分箱","en":"binning","scope":"part05"},
-  {"zh":"插件估计","en":"plug-in estimator","scope":"part05"},
-  {"zh":"概率质量","en":"probability mass","scope":"part05"},
-  {"zh":"一次实现","en":"realization","scope":"part05"},
-  {"zh":"概率分布","en":"probability distribution","scope":"part05"},
-  {"zh":"线性时不变","en":"linear time-invariant","scope":"part06","abbr":"LTI"},
-  {"zh":"零输入响应","en":"zero-input response","scope":"part06"},
-  {"zh":"零状态响应","en":"zero-state response","scope":"part06"},
-  {"zh":"一侧 Laplace 变换","en":"unilateral Laplace transform","scope":"part06"},
-  {"zh":"传递函数","en":"transfer function","scope":"part06"},
-  {"zh":"收敛域","en":"region of convergence","scope":"part06","abbr":"ROC"},
-  {"zh":"极点","en":"pole","scope":"part06"},
-  {"zh":"零点","en":"zero","scope":"part06"},
-  {"zh":"时不变性","en":"time invariance","scope":"part06"},
-  {"zh":"仿射映射","en":"affine map","scope":"part06"},
-  {"zh":"因果性","en":"causality","scope":"part06"},
-  {"zh":"BIBO 稳定性","en":"bounded-input bounded-output stability","scope":"part06"},
-  {"zh":"零阶保持","en":"zero-order hold","scope":"part06","abbr":"ZOH"},
-  {"zh":"单侧 Z 变换","en":"unilateral Z-transform","scope":"part06"},
-  {"zh":"普通最小二乘","en":"ordinary least squares","scope":"part06","abbr":"OLS"},
-  {"zh":"同方差","en":"homoscedasticity","scope":"part06"},
-  {"zh":"固定设计","en":"fixed design","scope":"part06"},
-  {"zh":"随机设计","en":"random design","scope":"part06"},
-  {"zh":"高斯误差","en":"Gaussian error","scope":"part06"},
-  {"zh":"平方残差和","en":"sum of squared errors","scope":"part06","abbr":"SSE"},
-  {"zh":"设计矩阵","en":"design matrix","scope":"part06"},
-  {"zh":"正交投影","en":"orthogonal projection","scope":"part06"},
-  {"zh":"加权最小二乘","en":"weighted least squares","scope":"part06","abbr":"WLS"},
-  {"zh":"预测区间","en":"prediction interval","scope":"part06"},
-  {"zh":"自由度","en":"degrees of freedom","scope":"part06"},
-  {"zh":"成对自助法","en":"pairs bootstrap","scope":"part06"},
-  {"zh":"百分位自助区间","en":"percentile bootstrap interval","scope":"part06"},
-  {"zh":"Student t 分布","en":"Student's t-distribution","scope":"part06"},
-  {"zh":"采样","en":"sampling","scope":"part06"},
-  {"zh":"混叠","en":"aliasing","scope":"part06"},
-  {"zh":"采样率","en":"sampling rate","scope":"part06"},
-  {"zh":"奈奎斯特频率","en":"Nyquist frequency","scope":"part06"},
-  {"zh":"带限","en":"band-limited","scope":"part06"},
-  {"zh":"抗混叠滤波","en":"anti-aliasing filter","scope":"part06"},
-  {"zh":"因果滤波","en":"causal filtering","scope":"part06"},
-  {"zh":"移动平均","en":"moving average","scope":"part06"},
-  {"zh":"居中平均","en":"centered moving average","scope":"part06"},
-  {"zh":"脉冲响应","en":"impulse response","scope":"part06"},
-  {"zh":"线性卷积","en":"linear convolution","scope":"part06"},
-  {"zh":"循环卷积","en":"circular convolution","scope":"part06"},
-  {"zh":"零延拓","en":"zero extension","scope":"part06"},
-  {"zh":"欧拉公式","en":"Euler's formula","scope":"part06"},
-  {"zh":"离散傅里叶变换","en":"discrete Fourier transform","scope":"part06","abbr":"DFT"},
-  {"zh":"快速傅里叶变换","en":"fast Fourier transform","scope":"part06","abbr":"FFT"},
-  {"zh":"单边幅度谱","en":"one-sided amplitude spectrum","scope":"part06"},
-  {"zh":"相位谱","en":"phase spectrum","scope":"part06"},
-  {"zh":"频谱泄漏","en":"spectral leakage","scope":"part06"},
-  {"zh":"窗函数","en":"window function","scope":"part06"},
-  {"zh":"零填充","en":"zero padding","scope":"part06"},
-  {"zh":"有限脉冲响应","en":"finite impulse response","scope":"part06","abbr":"FIR"},
-  {"zh":"频率响应","en":"frequency response","scope":"part06"},
-  {"zh":"矩形窗","en":"rectangular window","scope":"part06"},
-  {"zh":"Hann 窗","en":"Hann window","scope":"part06"},
-  {"zh":"相干增益修正","en":"coherent gain correction","scope":"part06"},
-  {"zh":"外源输入自回归模型","en":"autoregressive with exogenous input","scope":"part06","abbr":"ARX"},
-  {"zh":"一步预测","en":"one-step-ahead prediction","scope":"part06"},
-  {"zh":"自由运行","en":"free-run simulation","scope":"part06"},
-  {"zh":"可辨识性","en":"identifiability","scope":"part06"},
-  {"zh":"持续激励","en":"persistent excitation","scope":"part06"},
-  {"zh":"条件数","en":"condition number","scope":"part06"},
-  {"zh":"奇异值","en":"singular value","scope":"part06"},
-  {"zh":"数据泄漏","en":"data leakage","scope":"part06"},
-  {"zh":"训练集","en":"training set","scope":"part06"},
-  {"zh":"验证集","en":"validation set","scope":"part06"},
-  {"zh":"测试集","en":"test set","scope":"part06"},
-  {"zh":"均方根误差","en":"root mean squared error","scope":"part06","abbr":"RMSE"},
-  {"zh":"递推最小二乘","en":"recursive least squares","abbr":"RLS","scope":"part06"},
-  {"zh":"遗忘因子","en":"forgetting factor","scope":"part06"},
-  {"zh":"秩一更新","en":"rank-one update","scope":"part06"},
-  {"zh":"逆信息矩阵","en":"inverse information matrix","scope":"part06"},
-  {"zh":"能观性","en":"observability","scope":"part07"},
-  {"zh":"系统性重采样","en":"systematic resampling","scope":"part07"},
-  {"zh":"半正定","en":"positive semidefinite","scope":"part07"},
-  {"zh":"贝叶斯滤波","en":"Bayesian filtering","scope":"part07"},
-  {"zh":"贝叶斯递推","en":"Bayesian recursion","scope":"part07"},
-  {"zh":"隐马尔可夫模型","en":"hidden Markov model","abbr":"HMM","scope":"part07"},
-  {"zh":"卡尔曼滤波","en":"Kalman filtering","abbr":"KF","scope":"part07","accepted":["Kalman filter","Kalman filter,KF"]},
-  {"zh":"扩展卡尔曼滤波","en":"extended Kalman filtering","abbr":"EKF","scope":"part07","accepted":["extended Kalman filter","extended Kalman filter,EKF"]},
-  {"zh":"无迹卡尔曼滤波","en":"unscented Kalman filtering","abbr":"UKF","scope":"part07","accepted":["unscented Kalman filter","unscented Kalman filter,UKF"]},
-  {"zh":"粒子滤波","en":"particle filtering","abbr":"PF","scope":"part07"},
-  {"zh":"自助粒子滤波","en":"bootstrap particle filter","scope":"part07"},
-  {"zh":"重要性采样","en":"importance sampling","abbr":"IS","scope":"part07"},
-  {"zh":"重采样","en":"resampling","scope":"part06"},
-  {"zh":"后验预测","en":"posterior predictive inference","scope":"part09"},
-  {"zh":"共轭先验","en":"conjugate prior","scope":"part09"},
-  {"zh":"责任度","en":"responsibility","scope":"part09"},
-  {"zh":"详细平衡","en":"detailed balance","scope":"part09"},
-  {"zh":"最大后验估计","en":"maximum a posteriori estimation","abbr":"MAP","scope":"part09"},
-  {"zh":"变分推断","en":"variational inference","abbr":"VI","scope":"part09"},
-  {"zh":"均值场","en":"mean-field approximation","scope":"part09"},
-  {"zh":"均值场变分推断","en":"mean-field variational inference","scope":"part09"},
-  {"zh":"证据下界","en":"evidence lower bound","abbr":"ELBO","scope":"part09"},
-  {"zh":"相对熵","en":"relative entropy","scope":"part09","accepted":["Kullback–Leibler divergence","Kullback–Leibler divergence,KL divergence"]},
-  {"zh":"期望最大化","en":"expectation-maximization","abbr":"EM","scope":"part09"},
-  {"zh":"隐变量","en":"latent variable","scope":"part09"},
-  {"zh":"正则化","en":"regularization","scope":"part08"},
-  {"zh":"凸性","en":"convexity","scope":"part08"},
-  {"zh":"近端梯度","en":"proximal gradient","scope":"part08"},
-  {"zh":"软阈值","en":"soft thresholding","scope":"part08"},
-  {"zh":"海森矩阵","en":"Hessian matrix","scope":"part08"},
-  {"zh":"凸集","en":"convex set","scope":"part08"},
-  {"zh":"驻点","en":"stationary point","scope":"part08"},
-  {"zh":"牛顿法","en":"Newton's method","scope":"part08"},
-  {"zh":"回溯线搜索","en":"backtracking line search","scope":"part08"},
-  {"zh":"次梯度","en":"subgradient","scope":"part08"},
-  {"zh":"近端算子","en":"proximal operator","scope":"part08"},
-  {"zh":"岭回归","en":"ridge regression","scope":"part08"},
-  {"zh":"拉格朗日乘子","en":"Lagrange multiplier","scope":"part08"},
-  {"zh":"活跃集","en":"active set","scope":"part08"},
-  {"zh":"互补松弛","en":"complementary slackness","scope":"part08"},
-  {"zh":"可行域","en":"feasible set","scope":"part08"},
-  {"zh":"能控性","en":"controllability","scope":"part10"},
-  {"zh":"可稳定性","en":"stabilizability","scope":"part10"},
-  {"zh":"可检测性","en":"detectability","scope":"part10"},
-  {"zh":"增益交叉频率","en":"gain crossover frequency","scope":"part10"},
-  {"zh":"相位交叉频率","en":"phase crossover frequency","scope":"part10"},
-  {"zh":"相位裕度","en":"phase margin","scope":"part10"},
-  {"zh":"增益裕度","en":"gain margin","scope":"part10"},
-  {"zh":"微分冲击","en":"derivative kick","scope":"part10"},
-  {"zh":"状态观测器","en":"state observer","scope":"part10"},
-  {"zh":"模型预测控制","en":"model predictive control","abbr":"MPC","scope":"part10"},
-  {"zh":"线性二次调节器","en":"linear quadratic regulator","abbr":"LQR","scope":"part10"},
-  {"zh":"邻接矩阵","en":"adjacency matrix","scope":"part11"},
-  {"zh":"连通分量","en":"connected component","scope":"part11"},
-  {"zh":"广度优先搜索","en":"breadth-first search","abbr":"BFS","scope":"part11"},
-  {"zh":"局部聚类","en":"local clustering","scope":"part11"},
-  {"zh":"小世界","en":"small-world","scope":"part11"},
-  {"zh":"社区","en":"community","scope":"part11"},
-  {"zh":"度分布","en":"degree distribution","scope":"part11"},
-  {"zh":"平均混合","en":"homogeneous mixing","scope":"part11"},
-  {"zh":"图拉普拉斯","en":"graph Laplacian","scope":"part11"},
-  {"zh":"非零特征值","en":"nonzero eigenvalue","scope":"part11"},
-  {"zh":"零特征值","en":"zero eigenvalue","scope":"part11"},
-  {"zh":"非平衡","en":"nonequilibrium","scope":"part11"},
-  {"zh":"序参量","en":"order parameter","scope":"part11"},
-  {"zh":"频率锁定","en":"frequency locking","scope":"part11"},
-  {"zh":"元胞自动机","en":"cellular automaton","scope":"part12"},
-  {"zh":"同步更新","en":"synchronous update","scope":"part12"},
-  {"zh":"异步更新","en":"asynchronous update","scope":"part12"},
-  {"zh":"周期边界","en":"periodic boundary","scope":"part12"},
-  {"zh":"固定边界","en":"fixed boundary","scope":"part12"},
-  {"zh":"收益矩阵","en":"payoff matrix","scope":"part12"},
-  {"zh":"复制动态","en":"replicator dynamics","scope":"part12"},
-  {"zh":"遗传漂变","en":"genetic drift","scope":"part12"},
-  {"zh":"反应扩散","en":"reaction-diffusion","scope":"part12"},
-  {"zh":"无量纲化","en":"nondimensionalization","scope":"part12"},
-  {"zh":"适合度率","en":"fitness rate","scope":"part12"},
-  {"zh":"无通量边界","en":"no-flux boundary","scope":"part12"},
-  {"zh":"图灵失稳","en":"Turing instability","scope":"part12"},
-  {"zh":"平均场闭合","en":"mean-field closure","scope":"part12"},
-  {"zh":"粗粒化","en":"coarse-graining","scope":"part12"},
-  {"zh":"两点相关","en":"two-point correlation","scope":"part12"},
-  {"zh":"有限规模","en":"finite size","scope":"part13"},
-  {"zh":"热力学极限","en":"thermodynamic limit","scope":"part13"},
-  {"zh":"临界指数","en":"critical exponent","scope":"part13"},
-  {"zh":"级联失效","en":"cascading failure","scope":"part13"},
-  {"zh":"结构鲁棒性","en":"structural robustness","scope":"part13"},
-  {"zh":"局部恢复率","en":"local recovery rate","scope":"part13"},
-  {"zh":"早期预警","en":"early warning","scope":"part13"},
-  {"zh":"误报","en":"false alarm","scope":"part13"},
-  {"zh":"漏报","en":"missed event","scope":"part13"},
-  {"zh":"固定物理滞后","en":"fixed physical lag","scope":"part13"},
-  {"zh":"排序反转","en":"ranking reversal","scope":"part13"},
-  {"zh":"不确定性分解","en":"uncertainty decomposition","scope":"part13"},
-  {"zh":"奇异值分解","en":"singular value decomposition","abbr":"SVD","scope":"part14"},
-  {"zh":"本征正交分解","en":"proper orthogonal decomposition","abbr":"POD","scope":"part14"},
-  {"zh":"伪逆","en":"pseudoinverse","scope":"part14"},
-  {"zh":"Galerkin 投影","en":"Galerkin projection","scope":"part14"},
-  {"zh":"顺序阈值最小二乘","en":"sequential thresholded least squares","abbr":"STLSQ","scope":"part14"},
-  {"zh":"动态模态分解","en":"dynamic mode decomposition","abbr":"DMD","scope":"part14"},
-  {"zh":"扩展动态模态分解","en":"extended dynamic mode decomposition","abbr":"EDMD","scope":"part14"},
-  {"zh":"神经常微分方程","en":"neural ordinary differential equation","abbr":"Neural ODE","scope":"part15"},
-  {"zh":"神经网络","en":"neural network","scope":"part15"},
-  {"zh":"计算图","en":"computational graph","scope":"part15"},
-  {"zh":"教师强制","en":"teacher forcing","scope":"part15"},
-  {"zh":"前向灵敏度","en":"forward sensitivity","scope":"part15"},
-  {"zh":"物理信息神经网络","en":"physics-informed neural network","abbr":"PINN","scope":"part15"},
-  {"zh":"配点","en":"collocation point","scope":"part15"},
-  {"zh":"稀疏动力学辨识","en":"sparse identification of nonlinear dynamics","abbr":"SINDy","scope":"part14"},
-  {"zh":"模型降阶","en":"model order reduction","abbr":"MOR","scope":"part14"},
-  {"zh":"自动微分","en":"automatic differentiation","abbr":"AD","scope":"part15"},
-  {"zh":"反向传播","en":"backpropagation","scope":"part15"},
-  {"zh":"神经微分方程","en":"neural differential equation","scope":"part15"},
-  {"zh":"物理约束学习","en":"physics-informed learning","scope":"part15"},
-  {"zh":"鲁棒控制","en":"robust control","scope":"part16"},
-  {"zh":"自适应控制","en":"adaptive control","scope":"part16"},
-  {"zh":"分布式控制","en":"distributed control","scope":"part16"},
-  {"zh":"强化学习","en":"reinforcement learning","abbr":"RL","scope":"part16"},
-  {"zh":"马尔可夫决策过程","en":"Markov decision process","abbr":"MDP","scope":"part16"},
-  {"zh":"策略评估","en":"policy evaluation","scope":"part16"},
-  {"zh":"消融实验","en":"ablation study","scope":"part17"},
-  {"zh":"伴随灵敏度","en":"adjoint sensitivity","scope":"part15"},
-  {"zh":"吸引子","en":"attractor","scope":"part04"},
-  {"zh":"奇异吸引子","en":"strange attractor","scope":"part04"},
-  {"zh":"洛伦兹系统","en":"Lorenz system","scope":"part04"},
-  {"zh":"连续时间混沌","en":"continuous-time chaos","scope":"part04"},
-  {"zh":"离散混沌","en":"discrete-time chaos","scope":"part04"},
-  {"zh":"不变集","en":"invariant set","scope":"part04"},
-  {"zh":"庞加莱截面","en":"Poincaré section","scope":"part04"},
-  {"zh":"首次返回映射","en":"first-return map","scope":"part04"},
-  {"zh":"散度","en":"divergence","scope":"part04"},
-  {"zh":"分形维数","en":"fractal dimension","scope":"part04"},
-  {"zh":"准周期","en":"quasiperiodicity","scope":"part04"},
-  {"zh":"庞加莱–本迪克松定理","en":"Poincaré–Bendixson theorem","scope":"part04"}
+  {
+    "zh": "系统科学",
+    "en": "systems science"
+  },
+  {
+    "zh": "根轨迹",
+    "en": "root locus",
+    "scope": "part10"
+  },
+  {
+    "zh": "一般系统论",
+    "en": "general system theory",
+    "abbr": "GST"
+  },
+  {
+    "zh": "控制论",
+    "en": "cybernetics"
+  },
+  {
+    "zh": "工程控制论",
+    "en": "engineering cybernetics"
+  },
+  {
+    "zh": "信息论",
+    "en": "information theory"
+  },
+  {
+    "zh": "网络科学",
+    "en": "network science"
+  },
+  {
+    "zh": "数据驱动建模",
+    "en": "data-driven modeling"
+  },
+  {
+    "zh": "多主体模型",
+    "en": "agent-based model",
+    "abbr": "ABM"
+  },
+  {
+    "zh": "同步更新",
+    "en": "synchronous update"
+  },
+  {
+    "zh": "系统边界",
+    "en": "system boundary"
+  },
+  {
+    "zh": "存量",
+    "en": "stock"
+  },
+  {
+    "zh": "流量",
+    "en": "flow"
+  },
+  {
+    "zh": "收支",
+    "en": "mass balance"
+  },
+  {
+    "zh": "示踪物质",
+    "en": "tracer"
+  },
+  {
+    "zh": "所追踪物质总量",
+    "en": "tracked amount",
+    "scope": "part01"
+  },
+  {
+    "zh": "浓度",
+    "en": "concentration"
+  },
+  {
+    "zh": "单室模型",
+    "en": "one-compartment model"
+  },
+  {
+    "zh": "状态",
+    "en": "state"
+  },
+  {
+    "zh": "参数",
+    "en": "parameter"
+  },
+  {
+    "zh": "初值",
+    "en": "initial condition"
+  },
+  {
+    "zh": "时间步长",
+    "en": "time step"
+  },
+  {
+    "zh": "清除系数",
+    "en": "elimination rate constant"
+  },
+  {
+    "zh": "递推关系",
+    "en": "recurrence relation"
+  },
+  {
+    "zh": "残差",
+    "en": "residual"
+  },
+  {
+    "zh": "舍入误差",
+    "en": "round-off error"
+  },
+  {
+    "zh": "平衡",
+    "en": "equilibrium"
+  },
+  {
+    "zh": "负反馈",
+    "en": "negative feedback"
+  },
+  {
+    "zh": "导数",
+    "en": "derivative"
+  },
+  {
+    "zh": "定积分",
+    "en": "definite integral"
+  },
+  {
+    "zh": "初值问题",
+    "en": "initial value problem"
+  },
+  {
+    "zh": "常微分方程",
+    "en": "ordinary differential equation",
+    "abbr": "ODE"
+  },
+  {
+    "zh": "解析解",
+    "en": "analytical solution"
+  },
+  {
+    "zh": "中心差分",
+    "en": "central difference"
+  },
+  {
+    "zh": "有限差分",
+    "en": "finite difference"
+  },
+  {
+    "zh": "欧拉法",
+    "en": "forward Euler method"
+  },
+  {
+    "zh": "数值误差",
+    "en": "numerical error"
+  },
+  {
+    "zh": "数值稳定性",
+    "en": "numerical stability"
+  },
+  {
+    "zh": "非负性",
+    "en": "nonnegativity"
+  },
+  {
+    "zh": "最大绝对误差",
+    "en": "maximum absolute error"
+  },
+  {
+    "zh": "观测收敛阶",
+    "en": "observed order of convergence"
+  },
+  {
+    "zh": "分段恒定输入",
+    "en": "piecewise constant input"
+  },
+  {
+    "zh": "时间网格",
+    "en": "time grid"
+  },
+  {
+    "zh": "守恒检查",
+    "en": "conservation check"
+  },
+  {
+    "zh": "割线",
+    "en": "secant line"
+  },
+  {
+    "zh": "切线",
+    "en": "tangent line"
+  },
+  {
+    "zh": "斜率",
+    "en": "slope"
+  },
+  {
+    "zh": "极限",
+    "en": "limit"
+  },
+  {
+    "zh": "差商",
+    "en": "difference quotient"
+  },
+  {
+    "zh": "指数函数",
+    "en": "exponential function"
+  },
+  {
+    "zh": "一阶收敛",
+    "en": "first-order convergence"
+  },
+  {
+    "zh": "时间尺度",
+    "en": "time scale"
+  },
+  {
+    "zh": "观测",
+    "en": "observation",
+    "scope": "part01"
+  },
+  {
+    "zh": "输入",
+    "en": "input",
+    "scope": "part01"
+  },
+  {
+    "zh": "模型",
+    "en": "model",
+    "scope": "part01"
+  },
+  {
+    "zh": "量纲",
+    "en": "dimension",
+    "scope": "part01"
+  },
+  {
+    "zh": "流率",
+    "en": "flow rate",
+    "scope": "part01"
+  },
+  {
+    "zh": "增益",
+    "en": "gain",
+    "scope": "part01"
+  },
+  {
+    "zh": "过冲",
+    "en": "overshoot",
+    "scope": "part01"
+  },
+  {
+    "zh": "因果回路图",
+    "en": "causal loop diagram",
+    "scope": "part01"
+  },
+  {
+    "zh": "正反馈",
+    "en": "positive feedback",
+    "scope": "part01"
+  },
+  {
+    "zh": "反馈",
+    "en": "feedback",
+    "scope": "part01"
+  },
+  {
+    "zh": "延迟",
+    "en": "delay",
+    "scope": "part01"
+  },
+  {
+    "zh": "时间序列",
+    "en": "time series",
+    "scope": "part01"
+  },
+  {
+    "zh": "数组",
+    "en": "array",
+    "scope": "part01"
+  },
+  {
+    "zh": "计算实验",
+    "en": "computational experiment",
+    "scope": "part01"
+  },
+  {
+    "zh": "模型结构",
+    "en": "model structure",
+    "scope": "part01"
+  },
+  {
+    "zh": "轨迹",
+    "en": "trajectory",
+    "scope": "part01"
+  },
+  {
+    "zh": "无量纲",
+    "en": "dimensionless",
+    "scope": "part01"
+  },
+  {
+    "zh": "差分方程",
+    "en": "difference equation",
+    "scope": "part02"
+  },
+  {
+    "zh": "固定点",
+    "en": "fixed point",
+    "scope": "part02"
+  },
+  {
+    "zh": "链式法则",
+    "en": "chain rule",
+    "scope": "part02"
+  },
+  {
+    "zh": "自然对数",
+    "en": "natural logarithm",
+    "scope": "part02"
+  },
+  {
+    "zh": "微积分基本定理",
+    "en": "fundamental theorem of calculus",
+    "scope": "part02"
+  },
+  {
+    "zh": "渐近稳定",
+    "en": "asymptotic stability",
+    "scope": "part02"
+  },
+  {
+    "zh": "半衰期",
+    "en": "half-life",
+    "scope": "part02"
+  },
+  {
+    "zh": "特征时间",
+    "en": "characteristic time",
+    "scope": "part02"
+  },
+  {
+    "zh": "向量",
+    "en": "vector",
+    "scope": "part03"
+  },
+  {
+    "zh": "矩阵",
+    "en": "matrix",
+    "scope": "part03"
+  },
+  {
+    "zh": "矩阵乘法",
+    "en": "matrix multiplication",
+    "scope": "part03"
+  },
+  {
+    "zh": "线性映射",
+    "en": "linear map",
+    "scope": "part03"
+  },
+  {
+    "zh": "转置",
+    "en": "transpose",
+    "scope": "part03"
+  },
+  {
+    "zh": "内积",
+    "en": "inner product",
+    "scope": "part03"
+  },
+  {
+    "zh": "欧几里得范数",
+    "en": "Euclidean norm",
+    "scope": "part03"
+  },
+  {
+    "zh": "范数",
+    "en": "norm",
+    "scope": "part03"
+  },
+  {
+    "zh": "投影",
+    "en": "projection",
+    "scope": "part03"
+  },
+  {
+    "zh": "正交",
+    "en": "orthogonality",
+    "scope": "part03"
+  },
+  {
+    "zh": "秩",
+    "en": "rank",
+    "scope": "part03"
+  },
+  {
+    "zh": "行列式",
+    "en": "determinant",
+    "scope": "part03"
+  },
+  {
+    "zh": "逆矩阵",
+    "en": "inverse matrix",
+    "scope": "part03"
+  },
+  {
+    "zh": "单位矩阵",
+    "en": "identity matrix",
+    "scope": "part03"
+  },
+  {
+    "zh": "状态空间",
+    "en": "state space",
+    "scope": "part03"
+  },
+  {
+    "zh": "输出",
+    "en": "output",
+    "scope": "part03"
+  },
+  {
+    "zh": "特征向量",
+    "en": "eigenvector",
+    "scope": "part03"
+  },
+  {
+    "zh": "特征值",
+    "en": "eigenvalue",
+    "scope": "part03"
+  },
+  {
+    "zh": "模态",
+    "en": "mode",
+    "scope": "part03"
+  },
+  {
+    "zh": "矩阵指数",
+    "en": "matrix exponential",
+    "scope": "part03"
+  },
+  {
+    "zh": "复共轭",
+    "en": "complex conjugate",
+    "scope": "part03"
+  },
+  {
+    "zh": "复数",
+    "en": "complex number",
+    "scope": "part03"
+  },
+  {
+    "zh": "模长",
+    "en": "modulus",
+    "scope": "part03"
+  },
+  {
+    "zh": "向量场",
+    "en": "vector field",
+    "scope": "part03"
+  },
+  {
+    "zh": "相平面",
+    "en": "phase plane",
+    "scope": "part03"
+  },
+  {
+    "zh": "相轨迹",
+    "en": "phase trajectory",
+    "scope": "part03"
+  },
+  {
+    "zh": "相图",
+    "en": "phase portrait",
+    "scope": "part03"
+  },
+  {
+    "zh": "偏导数",
+    "en": "partial derivative",
+    "scope": "part03"
+  },
+  {
+    "zh": "偏导",
+    "en": "partial derivative",
+    "scope": "part03"
+  },
+  {
+    "zh": "梯度",
+    "en": "gradient",
+    "scope": "part03"
+  },
+  {
+    "zh": "雅可比矩阵",
+    "en": "Jacobian matrix",
+    "scope": "part03"
+  },
+  {
+    "zh": "线性化",
+    "en": "linearization",
+    "scope": "part03"
+  },
+  {
+    "zh": "局部渐近稳定",
+    "en": "local asymptotic stability",
+    "scope": "part03"
+  },
+  {
+    "zh": "线性方程组",
+    "en": "system of linear equations",
+    "scope": "part03"
+  },
+  {
+    "zh": "线性代数",
+    "en": "linear algebra",
+    "scope": "part03"
+  },
+  {
+    "zh": "仿射",
+    "en": "affine",
+    "scope": "part03"
+  },
+  {
+    "zh": "截断误差",
+    "en": "truncation error",
+    "scope": "part03"
+  },
+  {
+    "zh": "多稳态",
+    "en": "multistability",
+    "scope": "part04"
+  },
+  {
+    "zh": "双稳态",
+    "en": "bistability",
+    "scope": "part04"
+  },
+  {
+    "zh": "吸引域",
+    "en": "basin of attraction",
+    "scope": "part04"
+  },
+  {
+    "zh": "相线",
+    "en": "phase line",
+    "scope": "part04"
+  },
+  {
+    "zh": "自治系统",
+    "en": "autonomous system",
+    "scope": "part04"
+  },
+  {
+    "zh": "显式中点法",
+    "en": "explicit midpoint method",
+    "scope": "part04"
+  },
+  {
+    "zh": "极限环",
+    "en": "limit cycle",
+    "scope": "part04"
+  },
+  {
+    "zh": "相位",
+    "en": "phase",
+    "scope": "part04"
+  },
+  {
+    "zh": "振幅",
+    "en": "amplitude",
+    "scope": "part04"
+  },
+  {
+    "zh": "暂态",
+    "en": "transient",
+    "scope": "part04"
+  },
+  {
+    "zh": "分岔",
+    "en": "bifurcation",
+    "scope": "part04"
+  },
+  {
+    "zh": "鞍结分岔",
+    "en": "saddle-node bifurcation",
+    "scope": "part04"
+  },
+  {
+    "zh": "滞回",
+    "en": "hysteresis",
+    "scope": "part04"
+  },
+  {
+    "zh": "滞后",
+    "en": "lag",
+    "scope": "part06",
+    "senses": [
+      "lag"
+    ]
+  },
+  {
+    "zh": "滞后输入",
+    "en": "lagged input",
+    "scope": "part06"
+  },
+  {
+    "zh": "滞后项",
+    "en": "lagged term",
+    "scope": "part06"
+  },
+  {
+    "zh": "Hopf 分岔",
+    "en": "Hopf bifurcation",
+    "scope": "part04"
+  },
+  {
+    "zh": "自维持振荡",
+    "en": "self-sustained oscillation",
+    "scope": "part04"
+  },
+  {
+    "zh": "受迫振荡",
+    "en": "forced oscillation",
+    "scope": "part04"
+  },
+  {
+    "zh": "阻尼振荡",
+    "en": "damped oscillation",
+    "scope": "part04"
+  },
+  {
+    "zh": "不动点",
+    "en": "fixed point",
+    "scope": "part04"
+  },
+  {
+    "zh": "周期二",
+    "en": "period-two cycle",
+    "scope": "part04"
+  },
+  {
+    "zh": "logistic 映射",
+    "en": "logistic map",
+    "scope": "part04"
+  },
+  {
+    "zh": "混沌",
+    "en": "chaos",
+    "scope": "part04"
+  },
+  {
+    "zh": "初值敏感性",
+    "en": "sensitivity to initial conditions",
+    "scope": "part04"
+  },
+  {
+    "zh": "有限时间 Lyapunov 指数",
+    "en": "finite-time Lyapunov exponent",
+    "scope": "part04"
+  },
+  {
+    "zh": "Lyapunov 指数",
+    "en": "Lyapunov exponent",
+    "scope": "part04"
+  },
+  {
+    "zh": "Lyapunov 函数",
+    "en": "Lyapunov function",
+    "scope": "part04"
+  },
+  {
+    "zh": "正定",
+    "en": "positive definite",
+    "scope": "part04"
+  },
+  {
+    "zh": "子水平集",
+    "en": "sublevel set",
+    "scope": "part04"
+  },
+  {
+    "zh": "径向无界",
+    "en": "radially unbounded",
+    "scope": "part04"
+  },
+  {
+    "zh": "LaSalle 不变性原理",
+    "en": "LaSalle invariance principle",
+    "scope": "part04"
+  },
+  {
+    "zh": "正定性",
+    "en": "positive definiteness",
+    "scope": "part04"
+  },
+  {
+    "zh": "超临界",
+    "en": "supercritical",
+    "scope": "part04"
+  },
+  {
+    "zh": "蛛网图",
+    "en": "cobweb diagram",
+    "scope": "part04"
+  },
+  {
+    "zh": "紧集",
+    "en": "compact set",
+    "scope": "part04"
+  },
+  {
+    "zh": "正向不变",
+    "en": "positively invariant",
+    "scope": "part04"
+  },
+  {
+    "zh": "概率",
+    "en": "probability",
+    "scope": "part05"
+  },
+  {
+    "zh": "样本空间",
+    "en": "sample space",
+    "scope": "part05"
+  },
+  {
+    "zh": "事件",
+    "en": "event",
+    "scope": "part05"
+  },
+  {
+    "zh": "随机变量",
+    "en": "random variable",
+    "scope": "part05"
+  },
+  {
+    "zh": "概率质量函数",
+    "en": "probability mass function",
+    "scope": "part05"
+  },
+  {
+    "zh": "概率密度",
+    "en": "probability density",
+    "scope": "part05"
+  },
+  {
+    "zh": "分布",
+    "en": "distribution",
+    "scope": "part05"
+  },
+  {
+    "zh": "经验分位数",
+    "en": "empirical quantile",
+    "scope": "part05"
+  },
+  {
+    "zh": "统计量",
+    "en": "statistic",
+    "scope": "part05"
+  },
+  {
+    "zh": "随机种子",
+    "en": "random seed",
+    "scope": "part05"
+  },
+  {
+    "zh": "独立同分布",
+    "en": "independent and identically distributed",
+    "scope": "part05"
+  },
+  {
+    "zh": "期望",
+    "en": "expectation",
+    "scope": "part05"
+  },
+  {
+    "zh": "方差",
+    "en": "variance",
+    "scope": "part05"
+  },
+  {
+    "zh": "标准差",
+    "en": "standard deviation",
+    "scope": "part05"
+  },
+  {
+    "zh": "标准误",
+    "en": "standard error",
+    "scope": "part05"
+  },
+  {
+    "zh": "高斯分布",
+    "en": "Gaussian distribution",
+    "scope": "part05"
+  },
+  {
+    "zh": "正态分布",
+    "en": "normal distribution",
+    "scope": "part05"
+  },
+  {
+    "zh": "联合概率",
+    "en": "joint probability",
+    "scope": "part05"
+  },
+  {
+    "zh": "协方差矩阵",
+    "en": "covariance matrix",
+    "scope": "part05"
+  },
+  {
+    "zh": "协方差",
+    "en": "covariance",
+    "scope": "part05"
+  },
+  {
+    "zh": "相关系数",
+    "en": "correlation coefficient",
+    "scope": "part05"
+  },
+  {
+    "zh": "过程噪声",
+    "en": "process noise",
+    "scope": "part05"
+  },
+  {
+    "zh": "测量噪声",
+    "en": "measurement noise",
+    "scope": "part05"
+  },
+  {
+    "zh": "条件概率",
+    "en": "conditional probability",
+    "scope": "part05"
+  },
+  {
+    "zh": "先验",
+    "en": "prior",
+    "scope": "part05"
+  },
+  {
+    "zh": "似然",
+    "en": "likelihood",
+    "scope": "part05"
+  },
+  {
+    "zh": "后验",
+    "en": "posterior",
+    "scope": "part05"
+  },
+  {
+    "zh": "证据/边际似然",
+    "en": "evidence or marginal likelihood",
+    "scope": "part05"
+  },
+  {
+    "zh": "贝叶斯更新",
+    "en": "Bayesian update",
+    "scope": "part05"
+  },
+  {
+    "zh": "条件独立",
+    "en": "conditional independence",
+    "scope": "part05"
+  },
+  {
+    "zh": "可信区间",
+    "en": "credible interval",
+    "scope": "part05"
+  },
+  {
+    "zh": "置信区间",
+    "en": "confidence interval",
+    "scope": "part05"
+  },
+  {
+    "zh": "随机过程",
+    "en": "stochastic process",
+    "scope": "part05"
+  },
+  {
+    "zh": "马尔可夫链",
+    "en": "Markov chain",
+    "scope": "part05"
+  },
+  {
+    "zh": "马尔可夫",
+    "en": "Markov",
+    "scope": "part05"
+  },
+  {
+    "zh": "时间齐次",
+    "en": "time-homogeneous",
+    "scope": "part05"
+  },
+  {
+    "zh": "转移矩阵",
+    "en": "transition matrix",
+    "scope": "part05"
+  },
+  {
+    "zh": "不变分布",
+    "en": "invariant distribution",
+    "scope": "part05"
+  },
+  {
+    "zh": "吸收态",
+    "en": "absorbing state",
+    "scope": "part05"
+  },
+  {
+    "zh": "不可约",
+    "en": "irreducible",
+    "scope": "part05"
+  },
+  {
+    "zh": "非周期",
+    "en": "aperiodic",
+    "scope": "part05"
+  },
+  {
+    "zh": "随机游走",
+    "en": "random walk",
+    "scope": "part05"
+  },
+  {
+    "zh": "扩散系数",
+    "en": "diffusion coefficient",
+    "scope": "part05"
+  },
+  {
+    "zh": "互信息",
+    "en": "mutual information",
+    "scope": "part05"
+  },
+  {
+    "zh": "条件熵",
+    "en": "conditional entropy",
+    "scope": "part05"
+  },
+  {
+    "zh": "联合熵",
+    "en": "joint entropy",
+    "scope": "part05"
+  },
+  {
+    "zh": "熵",
+    "en": "entropy",
+    "scope": "part05"
+  },
+  {
+    "zh": "分箱",
+    "en": "binning",
+    "scope": "part05"
+  },
+  {
+    "zh": "插件估计",
+    "en": "plug-in estimator",
+    "scope": "part05"
+  },
+  {
+    "zh": "概率质量",
+    "en": "probability mass",
+    "scope": "part05"
+  },
+  {
+    "zh": "一次实现",
+    "en": "realization",
+    "scope": "part05"
+  },
+  {
+    "zh": "概率分布",
+    "en": "probability distribution",
+    "scope": "part05"
+  },
+  {
+    "zh": "线性时不变",
+    "en": "linear time-invariant",
+    "scope": "part06",
+    "abbr": "LTI"
+  },
+  {
+    "zh": "零输入响应",
+    "en": "zero-input response",
+    "scope": "part06"
+  },
+  {
+    "zh": "零状态响应",
+    "en": "zero-state response",
+    "scope": "part06"
+  },
+  {
+    "zh": "一侧 Laplace 变换",
+    "en": "unilateral Laplace transform",
+    "scope": "part06"
+  },
+  {
+    "zh": "传递函数",
+    "en": "transfer function",
+    "scope": "part06"
+  },
+  {
+    "zh": "收敛域",
+    "en": "region of convergence",
+    "scope": "part06",
+    "abbr": "ROC"
+  },
+  {
+    "zh": "极点",
+    "en": "pole",
+    "scope": "part06"
+  },
+  {
+    "zh": "零点",
+    "en": "zero",
+    "scope": "part06"
+  },
+  {
+    "zh": "时不变性",
+    "en": "time invariance",
+    "scope": "part06"
+  },
+  {
+    "zh": "仿射映射",
+    "en": "affine map",
+    "scope": "part06"
+  },
+  {
+    "zh": "因果性",
+    "en": "causality",
+    "scope": "part06"
+  },
+  {
+    "zh": "BIBO 稳定性",
+    "en": "bounded-input bounded-output stability",
+    "scope": "part06"
+  },
+  {
+    "zh": "零阶保持",
+    "en": "zero-order hold",
+    "scope": "part06",
+    "abbr": "ZOH"
+  },
+  {
+    "zh": "单侧 Z 变换",
+    "en": "unilateral Z-transform",
+    "scope": "part06"
+  },
+  {
+    "zh": "普通最小二乘",
+    "en": "ordinary least squares",
+    "scope": "part06",
+    "abbr": "OLS"
+  },
+  {
+    "zh": "同方差",
+    "en": "homoscedasticity",
+    "scope": "part06"
+  },
+  {
+    "zh": "固定设计",
+    "en": "fixed design",
+    "scope": "part06"
+  },
+  {
+    "zh": "随机设计",
+    "en": "random design",
+    "scope": "part06"
+  },
+  {
+    "zh": "高斯误差",
+    "en": "Gaussian error",
+    "scope": "part06"
+  },
+  {
+    "zh": "平方残差和",
+    "en": "sum of squared errors",
+    "scope": "part06",
+    "abbr": "SSE"
+  },
+  {
+    "zh": "设计矩阵",
+    "en": "design matrix",
+    "scope": "part06"
+  },
+  {
+    "zh": "正交投影",
+    "en": "orthogonal projection",
+    "scope": "part06"
+  },
+  {
+    "zh": "加权最小二乘",
+    "en": "weighted least squares",
+    "scope": "part06",
+    "abbr": "WLS"
+  },
+  {
+    "zh": "预测区间",
+    "en": "prediction interval",
+    "scope": "part06"
+  },
+  {
+    "zh": "自由度",
+    "en": "degrees of freedom",
+    "scope": "part06"
+  },
+  {
+    "zh": "成对自助法",
+    "en": "pairs bootstrap",
+    "scope": "part06"
+  },
+  {
+    "zh": "百分位自助区间",
+    "en": "percentile bootstrap interval",
+    "scope": "part06"
+  },
+  {
+    "zh": "Student t 分布",
+    "en": "Student's t-distribution",
+    "scope": "part06"
+  },
+  {
+    "zh": "采样",
+    "en": "sampling",
+    "scope": "part06"
+  },
+  {
+    "zh": "混叠",
+    "en": "aliasing",
+    "scope": "part06"
+  },
+  {
+    "zh": "采样率",
+    "en": "sampling rate",
+    "scope": "part06"
+  },
+  {
+    "zh": "奈奎斯特频率",
+    "en": "Nyquist frequency",
+    "scope": "part06"
+  },
+  {
+    "zh": "带限",
+    "en": "band-limited",
+    "scope": "part06"
+  },
+  {
+    "zh": "抗混叠滤波",
+    "en": "anti-aliasing filter",
+    "scope": "part06"
+  },
+  {
+    "zh": "因果滤波",
+    "en": "causal filtering",
+    "scope": "part06"
+  },
+  {
+    "zh": "移动平均",
+    "en": "moving average",
+    "scope": "part06"
+  },
+  {
+    "zh": "居中平均",
+    "en": "centered moving average",
+    "scope": "part06"
+  },
+  {
+    "zh": "脉冲响应",
+    "en": "impulse response",
+    "scope": "part06"
+  },
+  {
+    "zh": "线性卷积",
+    "en": "linear convolution",
+    "scope": "part06"
+  },
+  {
+    "zh": "循环卷积",
+    "en": "circular convolution",
+    "scope": "part06"
+  },
+  {
+    "zh": "零延拓",
+    "en": "zero extension",
+    "scope": "part06"
+  },
+  {
+    "zh": "欧拉公式",
+    "en": "Euler's formula",
+    "scope": "part06"
+  },
+  {
+    "zh": "离散傅里叶变换",
+    "en": "discrete Fourier transform",
+    "scope": "part06",
+    "abbr": "DFT"
+  },
+  {
+    "zh": "快速傅里叶变换",
+    "en": "fast Fourier transform",
+    "scope": "part06",
+    "abbr": "FFT"
+  },
+  {
+    "zh": "单边幅度谱",
+    "en": "one-sided amplitude spectrum",
+    "scope": "part06"
+  },
+  {
+    "zh": "相位谱",
+    "en": "phase spectrum",
+    "scope": "part06"
+  },
+  {
+    "zh": "频谱泄漏",
+    "en": "spectral leakage",
+    "scope": "part06"
+  },
+  {
+    "zh": "窗函数",
+    "en": "window function",
+    "scope": "part06"
+  },
+  {
+    "zh": "零填充",
+    "en": "zero padding",
+    "scope": "part06"
+  },
+  {
+    "zh": "有限脉冲响应",
+    "en": "finite impulse response",
+    "scope": "part06",
+    "abbr": "FIR"
+  },
+  {
+    "zh": "频率响应",
+    "en": "frequency response",
+    "scope": "part06"
+  },
+  {
+    "zh": "矩形窗",
+    "en": "rectangular window",
+    "scope": "part06"
+  },
+  {
+    "zh": "Hann 窗",
+    "en": "Hann window",
+    "scope": "part06"
+  },
+  {
+    "zh": "相干增益修正",
+    "en": "coherent gain correction",
+    "scope": "part06"
+  },
+  {
+    "zh": "外源输入自回归模型",
+    "en": "autoregressive with exogenous input",
+    "scope": "part06",
+    "abbr": "ARX"
+  },
+  {
+    "zh": "一步预测",
+    "en": "one-step-ahead prediction",
+    "scope": "part06"
+  },
+  {
+    "zh": "自由运行",
+    "en": "free-run simulation",
+    "scope": "part06"
+  },
+  {
+    "zh": "可辨识性",
+    "en": "identifiability",
+    "scope": "part06"
+  },
+  {
+    "zh": "持续激励",
+    "en": "persistent excitation",
+    "scope": "part06"
+  },
+  {
+    "zh": "条件数",
+    "en": "condition number",
+    "scope": "part06"
+  },
+  {
+    "zh": "奇异值",
+    "en": "singular value",
+    "scope": "part06"
+  },
+  {
+    "zh": "数据泄漏",
+    "en": "data leakage",
+    "scope": "part06"
+  },
+  {
+    "zh": "训练集",
+    "en": "training set",
+    "scope": "part06"
+  },
+  {
+    "zh": "验证集",
+    "en": "validation set",
+    "scope": "part06"
+  },
+  {
+    "zh": "测试集",
+    "en": "test set",
+    "scope": "part06"
+  },
+  {
+    "zh": "均方根误差",
+    "en": "root mean squared error",
+    "scope": "part06",
+    "abbr": "RMSE"
+  },
+  {
+    "zh": "递推最小二乘",
+    "en": "recursive least squares",
+    "abbr": "RLS",
+    "scope": "part06"
+  },
+  {
+    "zh": "遗忘因子",
+    "en": "forgetting factor",
+    "scope": "part06"
+  },
+  {
+    "zh": "秩一更新",
+    "en": "rank-one update",
+    "scope": "part06"
+  },
+  {
+    "zh": "逆信息矩阵",
+    "en": "inverse information matrix",
+    "scope": "part06"
+  },
+  {
+    "zh": "能观性",
+    "en": "observability",
+    "scope": "part07"
+  },
+  {
+    "zh": "系统性重采样",
+    "en": "systematic resampling",
+    "scope": "part07"
+  },
+  {
+    "zh": "半正定",
+    "en": "positive semidefinite",
+    "scope": "part07"
+  },
+  {
+    "zh": "贝叶斯滤波",
+    "en": "Bayesian filtering",
+    "scope": "part07"
+  },
+  {
+    "zh": "贝叶斯递推",
+    "en": "Bayesian recursion",
+    "scope": "part07"
+  },
+  {
+    "zh": "隐马尔可夫模型",
+    "en": "hidden Markov model",
+    "abbr": "HMM",
+    "scope": "part07"
+  },
+  {
+    "zh": "卡尔曼滤波",
+    "en": "Kalman filtering",
+    "abbr": "KF",
+    "scope": "part07",
+    "accepted": [
+      "Kalman filter",
+      "Kalman filter,KF"
+    ]
+  },
+  {
+    "zh": "扩展卡尔曼滤波",
+    "en": "extended Kalman filtering",
+    "abbr": "EKF",
+    "scope": "part07",
+    "accepted": [
+      "extended Kalman filter",
+      "extended Kalman filter,EKF"
+    ]
+  },
+  {
+    "zh": "无迹卡尔曼滤波",
+    "en": "unscented Kalman filtering",
+    "abbr": "UKF",
+    "scope": "part07",
+    "accepted": [
+      "unscented Kalman filter",
+      "unscented Kalman filter,UKF"
+    ]
+  },
+  {
+    "zh": "粒子滤波",
+    "en": "particle filtering",
+    "abbr": "PF",
+    "scope": "part07"
+  },
+  {
+    "zh": "自助粒子滤波",
+    "en": "bootstrap particle filter",
+    "scope": "part07"
+  },
+  {
+    "zh": "重要性采样",
+    "en": "importance sampling",
+    "abbr": "IS",
+    "scope": "part07"
+  },
+  {
+    "zh": "重采样",
+    "en": "resampling",
+    "scope": "part06"
+  },
+  {
+    "zh": "后验预测",
+    "en": "posterior predictive inference",
+    "scope": "part09"
+  },
+  {
+    "zh": "共轭先验",
+    "en": "conjugate prior",
+    "scope": "part09"
+  },
+  {
+    "zh": "责任度",
+    "en": "responsibility",
+    "scope": "part09"
+  },
+  {
+    "zh": "详细平衡",
+    "en": "detailed balance",
+    "scope": "part09"
+  },
+  {
+    "zh": "最大后验估计",
+    "en": "maximum a posteriori estimation",
+    "abbr": "MAP",
+    "scope": "part09"
+  },
+  {
+    "zh": "变分推断",
+    "en": "variational inference",
+    "abbr": "VI",
+    "scope": "part09"
+  },
+  {
+    "zh": "均值场",
+    "en": "mean-field approximation",
+    "scope": "part09"
+  },
+  {
+    "zh": "均值场变分推断",
+    "en": "mean-field variational inference",
+    "scope": "part09"
+  },
+  {
+    "zh": "证据下界",
+    "en": "evidence lower bound",
+    "abbr": "ELBO",
+    "scope": "part09"
+  },
+  {
+    "zh": "相对熵",
+    "en": "relative entropy",
+    "scope": "part09",
+    "accepted": [
+      "Kullback–Leibler divergence",
+      "Kullback–Leibler divergence,KL divergence"
+    ]
+  },
+  {
+    "zh": "期望最大化",
+    "en": "expectation-maximization",
+    "abbr": "EM",
+    "scope": "part09"
+  },
+  {
+    "zh": "隐变量",
+    "en": "latent variable",
+    "scope": "part09"
+  },
+  {
+    "zh": "正则化",
+    "en": "regularization",
+    "scope": "part08"
+  },
+  {
+    "zh": "凸性",
+    "en": "convexity",
+    "scope": "part08"
+  },
+  {
+    "zh": "近端梯度",
+    "en": "proximal gradient",
+    "scope": "part08"
+  },
+  {
+    "zh": "软阈值",
+    "en": "soft thresholding",
+    "scope": "part08"
+  },
+  {
+    "zh": "海森矩阵",
+    "en": "Hessian matrix",
+    "scope": "part08"
+  },
+  {
+    "zh": "凸集",
+    "en": "convex set",
+    "scope": "part08"
+  },
+  {
+    "zh": "驻点",
+    "en": "stationary point",
+    "scope": "part08"
+  },
+  {
+    "zh": "牛顿法",
+    "en": "Newton's method",
+    "scope": "part08"
+  },
+  {
+    "zh": "回溯线搜索",
+    "en": "backtracking line search",
+    "scope": "part08"
+  },
+  {
+    "zh": "次梯度",
+    "en": "subgradient",
+    "scope": "part08"
+  },
+  {
+    "zh": "近端算子",
+    "en": "proximal operator",
+    "scope": "part08"
+  },
+  {
+    "zh": "岭回归",
+    "en": "ridge regression",
+    "scope": "part08"
+  },
+  {
+    "zh": "拉格朗日乘子",
+    "en": "Lagrange multiplier",
+    "scope": "part08"
+  },
+  {
+    "zh": "活跃集",
+    "en": "active set",
+    "scope": "part08"
+  },
+  {
+    "zh": "互补松弛",
+    "en": "complementary slackness",
+    "scope": "part08"
+  },
+  {
+    "zh": "可行域",
+    "en": "feasible set",
+    "scope": "part08"
+  },
+  {
+    "zh": "能控性",
+    "en": "controllability",
+    "scope": "part10"
+  },
+  {
+    "zh": "可稳定性",
+    "en": "stabilizability",
+    "scope": "part10"
+  },
+  {
+    "zh": "可检测性",
+    "en": "detectability",
+    "scope": "part10"
+  },
+  {
+    "zh": "增益交叉频率",
+    "en": "gain crossover frequency",
+    "scope": "part10"
+  },
+  {
+    "zh": "相位交叉频率",
+    "en": "phase crossover frequency",
+    "scope": "part10"
+  },
+  {
+    "zh": "相位裕度",
+    "en": "phase margin",
+    "scope": "part10"
+  },
+  {
+    "zh": "增益裕度",
+    "en": "gain margin",
+    "scope": "part10"
+  },
+  {
+    "zh": "微分冲击",
+    "en": "derivative kick",
+    "scope": "part10"
+  },
+  {
+    "zh": "状态观测器",
+    "en": "state observer",
+    "scope": "part10"
+  },
+  {
+    "zh": "模型预测控制",
+    "en": "model predictive control",
+    "abbr": "MPC",
+    "scope": "part10"
+  },
+  {
+    "zh": "线性二次调节器",
+    "en": "linear quadratic regulator",
+    "abbr": "LQR",
+    "scope": "part10"
+  },
+  {
+    "zh": "邻接矩阵",
+    "en": "adjacency matrix",
+    "scope": "part11"
+  },
+  {
+    "zh": "连通分量",
+    "en": "connected component",
+    "scope": "part11"
+  },
+  {
+    "zh": "广度优先搜索",
+    "en": "breadth-first search",
+    "abbr": "BFS",
+    "scope": "part11"
+  },
+  {
+    "zh": "局部聚类",
+    "en": "local clustering",
+    "scope": "part11"
+  },
+  {
+    "zh": "小世界",
+    "en": "small-world",
+    "scope": "part11"
+  },
+  {
+    "zh": "社区",
+    "en": "community",
+    "scope": "part11"
+  },
+  {
+    "zh": "度分布",
+    "en": "degree distribution",
+    "scope": "part11"
+  },
+  {
+    "zh": "平均混合",
+    "en": "homogeneous mixing",
+    "scope": "part11"
+  },
+  {
+    "zh": "图拉普拉斯",
+    "en": "graph Laplacian",
+    "scope": "part11"
+  },
+  {
+    "zh": "非零特征值",
+    "en": "nonzero eigenvalue",
+    "scope": "part11"
+  },
+  {
+    "zh": "零特征值",
+    "en": "zero eigenvalue",
+    "scope": "part11"
+  },
+  {
+    "zh": "非平衡",
+    "en": "nonequilibrium",
+    "scope": "part11"
+  },
+  {
+    "zh": "序参量",
+    "en": "order parameter",
+    "scope": "part11"
+  },
+  {
+    "zh": "频率锁定",
+    "en": "frequency locking",
+    "scope": "part11"
+  },
+  {
+    "zh": "元胞自动机",
+    "en": "cellular automaton",
+    "scope": "part12"
+  },
+  {
+    "zh": "同步更新",
+    "en": "synchronous update",
+    "scope": "part12"
+  },
+  {
+    "zh": "异步更新",
+    "en": "asynchronous update",
+    "scope": "part12"
+  },
+  {
+    "zh": "周期边界",
+    "en": "periodic boundary",
+    "scope": "part12"
+  },
+  {
+    "zh": "固定边界",
+    "en": "fixed boundary",
+    "scope": "part12"
+  },
+  {
+    "zh": "收益矩阵",
+    "en": "payoff matrix",
+    "scope": "part12"
+  },
+  {
+    "zh": "复制动态",
+    "en": "replicator dynamics",
+    "scope": "part12"
+  },
+  {
+    "zh": "遗传漂变",
+    "en": "genetic drift",
+    "scope": "part12"
+  },
+  {
+    "zh": "反应扩散",
+    "en": "reaction-diffusion",
+    "scope": "part12"
+  },
+  {
+    "zh": "无量纲化",
+    "en": "nondimensionalization",
+    "scope": "part12"
+  },
+  {
+    "zh": "适合度率",
+    "en": "fitness rate",
+    "scope": "part12"
+  },
+  {
+    "zh": "无通量边界",
+    "en": "no-flux boundary",
+    "scope": "part12"
+  },
+  {
+    "zh": "图灵失稳",
+    "en": "Turing instability",
+    "scope": "part12"
+  },
+  {
+    "zh": "平均场闭合",
+    "en": "mean-field closure",
+    "scope": "part12"
+  },
+  {
+    "zh": "粗粒化",
+    "en": "coarse-graining",
+    "scope": "part12"
+  },
+  {
+    "zh": "两点相关",
+    "en": "two-point correlation",
+    "scope": "part12"
+  },
+  {
+    "zh": "有限规模",
+    "en": "finite size",
+    "scope": "part13"
+  },
+  {
+    "zh": "热力学极限",
+    "en": "thermodynamic limit",
+    "scope": "part13"
+  },
+  {
+    "zh": "临界指数",
+    "en": "critical exponent",
+    "scope": "part13"
+  },
+  {
+    "zh": "级联失效",
+    "en": "cascading failure",
+    "scope": "part13"
+  },
+  {
+    "zh": "结构鲁棒性",
+    "en": "structural robustness",
+    "scope": "part13"
+  },
+  {
+    "zh": "局部恢复率",
+    "en": "local recovery rate",
+    "scope": "part13"
+  },
+  {
+    "zh": "早期预警",
+    "en": "early warning",
+    "scope": "part13"
+  },
+  {
+    "zh": "误报",
+    "en": "false alarm",
+    "scope": "part13"
+  },
+  {
+    "zh": "漏报",
+    "en": "missed event",
+    "scope": "part13"
+  },
+  {
+    "zh": "固定物理滞后",
+    "en": "fixed physical lag",
+    "scope": "part13"
+  },
+  {
+    "zh": "排序反转",
+    "en": "ranking reversal",
+    "scope": "part13"
+  },
+  {
+    "zh": "不确定性分解",
+    "en": "uncertainty decomposition",
+    "scope": "part13"
+  },
+  {
+    "zh": "奇异值分解",
+    "en": "singular value decomposition",
+    "abbr": "SVD",
+    "scope": "part14"
+  },
+  {
+    "zh": "本征正交分解",
+    "en": "proper orthogonal decomposition",
+    "abbr": "POD",
+    "scope": "part14"
+  },
+  {
+    "zh": "伪逆",
+    "en": "pseudoinverse",
+    "scope": "part14"
+  },
+  {
+    "zh": "Galerkin 投影",
+    "en": "Galerkin projection",
+    "scope": "part14"
+  },
+  {
+    "zh": "顺序阈值最小二乘",
+    "en": "sequential thresholded least squares",
+    "abbr": "STLSQ",
+    "scope": "part14"
+  },
+  {
+    "zh": "动态模态分解",
+    "en": "dynamic mode decomposition",
+    "abbr": "DMD",
+    "scope": "part14"
+  },
+  {
+    "zh": "扩展动态模态分解",
+    "en": "extended dynamic mode decomposition",
+    "abbr": "EDMD",
+    "scope": "part14"
+  },
+  {
+    "zh": "神经常微分方程",
+    "en": "neural ordinary differential equation",
+    "abbr": "Neural ODE",
+    "scope": "part15"
+  },
+  {
+    "zh": "神经网络",
+    "en": "neural network",
+    "scope": "part15"
+  },
+  {
+    "zh": "计算图",
+    "en": "computational graph",
+    "scope": "part15"
+  },
+  {
+    "zh": "教师强制",
+    "en": "teacher forcing",
+    "scope": "part15"
+  },
+  {
+    "zh": "前向灵敏度",
+    "en": "forward sensitivity",
+    "scope": "part15"
+  },
+  {
+    "zh": "物理信息神经网络",
+    "en": "physics-informed neural network",
+    "abbr": "PINN",
+    "scope": "part15"
+  },
+  {
+    "zh": "配点",
+    "en": "collocation point",
+    "scope": "part15"
+  },
+  {
+    "zh": "稀疏动力学辨识",
+    "en": "sparse identification of nonlinear dynamics",
+    "abbr": "SINDy",
+    "scope": "part14"
+  },
+  {
+    "zh": "模型降阶",
+    "en": "model order reduction",
+    "abbr": "MOR",
+    "scope": "part14"
+  },
+  {
+    "zh": "自动微分",
+    "en": "automatic differentiation",
+    "abbr": "AD",
+    "scope": "part15"
+  },
+  {
+    "zh": "反向传播",
+    "en": "backpropagation",
+    "scope": "part15"
+  },
+  {
+    "zh": "神经微分方程",
+    "en": "neural differential equation",
+    "scope": "part15"
+  },
+  {
+    "zh": "物理约束学习",
+    "en": "physics-informed learning",
+    "scope": "part15"
+  },
+  {
+    "zh": "鲁棒控制",
+    "en": "robust control",
+    "scope": "part16"
+  },
+  {
+    "zh": "自适应控制",
+    "en": "adaptive control",
+    "scope": "part16"
+  },
+  {
+    "zh": "分布式控制",
+    "en": "distributed control",
+    "scope": "part16"
+  },
+  {
+    "zh": "强化学习",
+    "en": "reinforcement learning",
+    "abbr": "RL",
+    "scope": "part16"
+  },
+  {
+    "zh": "马尔可夫决策过程",
+    "en": "Markov decision process",
+    "abbr": "MDP",
+    "scope": "part16"
+  },
+  {
+    "zh": "策略评估",
+    "en": "policy evaluation",
+    "scope": "part16"
+  },
+  {
+    "zh": "消融实验",
+    "en": "ablation study",
+    "scope": "part17"
+  },
+  {
+    "zh": "伴随灵敏度",
+    "en": "adjoint sensitivity",
+    "scope": "part15"
+  },
+  {
+    "zh": "吸引子",
+    "en": "attractor",
+    "scope": "part04"
+  },
+  {
+    "zh": "奇异吸引子",
+    "en": "strange attractor",
+    "scope": "part04"
+  },
+  {
+    "zh": "洛伦兹系统",
+    "en": "Lorenz system",
+    "scope": "part04"
+  },
+  {
+    "zh": "连续时间混沌",
+    "en": "continuous-time chaos",
+    "scope": "part04"
+  },
+  {
+    "zh": "离散混沌",
+    "en": "discrete-time chaos",
+    "scope": "part04"
+  },
+  {
+    "zh": "不变集",
+    "en": "invariant set",
+    "scope": "part04"
+  },
+  {
+    "zh": "庞加莱截面",
+    "en": "Poincaré section",
+    "scope": "part04"
+  },
+  {
+    "zh": "首次返回映射",
+    "en": "first-return map",
+    "scope": "part04"
+  },
+  {
+    "zh": "散度",
+    "en": "divergence",
+    "scope": "part04"
+  },
+  {
+    "zh": "分形维数",
+    "en": "fractal dimension",
+    "scope": "part04"
+  },
+  {
+    "zh": "准周期",
+    "en": "quasiperiodicity",
+    "scope": "part04"
+  },
+  {
+    "zh": "庞加莱–本迪克松定理",
+    "en": "Poincaré–Bendixson theorem",
+    "scope": "part04"
+  },
+  {
+    "zh": "条件期望",
+    "en": "conditional expectation",
+    "scope": "part05"
+  },
+  {
+    "zh": "全期望公式",
+    "en": "law of total expectation",
+    "scope": "part05"
+  },
+  {
+    "zh": "二阶导数",
+    "en": "second derivative",
+    "scope": "part02"
+  }
 ]

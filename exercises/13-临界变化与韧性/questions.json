@@ -89,12 +89,12 @@
   {
     "id": "p13-signed-vs-absolute",
     "slug": "p13-signed-vs-absolute",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.1",
     "lesson_id": "P13-C01-S01",
     "title": "为何区分有符号和绝对序参量",
-    "statement": "两次对称轨迹（trajectory）尾窗分别长期接近 m=+0.8 与 m=-0.8。下面哪项对两者汇总最准确？",
+    "statement": "两次等长轨迹（trajectory）的尾窗分别长期接近m=+0.8与m=−0.8。给两次尾窗相同权重，汇总的有符号均值和平均绝对值各约为多少？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -108,19 +108,19 @@
     "options": [
       {
         "id": "A",
-        "text": "有符号均值可能约为0，但平均 |m| 约为0.8。"
+        "text": "汇总后的有符号均值约为0，平均绝对值也约为0。"
       },
       {
         "id": "B",
-        "text": "有符号均值和平均 |m| 都必为0。"
+        "text": "汇总后的有符号均值约为0，平均绝对值约为0.8。"
       },
       {
         "id": "C",
-        "text": "平均 |m| 大于1。"
+        "text": "汇总后的有符号均值约为0.8，平均绝对值也约为0.8。"
       },
       {
         "id": "D",
-        "text": "任何有限轨迹都能证明无限系统的相变。"
+        "text": "汇总后的有符号均值约为0.8，平均绝对值约为0。"
       }
     ],
     "constraints": []
@@ -128,7 +128,7 @@
   {
     "id": "p13-finite-fluctuation",
     "slug": "p13-finite-fluctuation",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.1",
     "lesson_id": "P13-C01-S01",
@@ -147,19 +147,19 @@
     "options": [
       {
         "id": "A",
-        "text": "4r(1-r)/N"
+        "text": "下一步磁化的条件方差为4r(1−r)，不随N改变。"
       },
       {
         "id": "B",
-        "text": "r(1-r)N"
+        "text": "下一步磁化的条件方差为r(1−r)N。"
       },
       {
         "id": "C",
-        "text": "0，因为平均映射是确定的"
+        "text": "下一步磁化的条件方差为0，因为其条件平均值由当前状态确定。"
       },
       {
         "id": "D",
-        "text": "4r(1-r)，与 N 无关"
+        "text": "下一步磁化的条件方差为4r(1−r)/N。"
       }
     ],
     "constraints": []
@@ -167,12 +167,12 @@
   {
     "id": "p13-finite-evidence",
     "slug": "p13-finite-evidence",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.1",
     "lesson_id": "P13-C01-S01",
     "title": "一次突变代表什么",
-    "statement": "在 N=40 的一次模拟中，序参量（order parameter）在某参数（parameter）附近跳高。可以支持哪项结论？",
+    "statement": "N=40的一次模拟中，序参量（order parameter）在某参数（parameter）附近跳高。要判断这种跳变能否支持临界变化解释，下一步应怎样做？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -186,19 +186,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这条有限轨迹（trajectory）在给定规则下出现较高序参量，需要重复和规模比较。"
+        "text": "延长跳变之后的观察时间，用这个参数下的序参量均值估计普适临界指数（critical exponent）。"
       },
       {
         "id": "B",
-        "text": "已经证明无限规模下发生相变。"
+        "text": "增加这条曲线的插值点，用插值后的跳变位置确定无限规模的阈值。"
       },
       {
         "id": "C",
-        "text": "阈值恰好等于该参数且无不确定性。"
+        "text": "将这次跳变所在的参数值，作为其他群体规模发生跳变的精确阈值。"
       },
       {
         "id": "D",
-        "text": "相变与确定性分岔（bifurcation）必是同一概念。"
+        "text": "在N=40时独立重复参数扫描，并在其他规模重复同样的扫描来比较序参量曲线。"
       }
     ],
     "constraints": []
@@ -211,7 +211,7 @@
     "chapter": "13.1",
     "lesson_id": "P13-C01-S02",
     "title": "计算平均场固定点迭代",
-    "statement": "从 start 出发，重复 m_next=tanh(beta*m)，返回含初值（initial condition）的完整轨迹（trajectory）。此为 N→∞ 条件期望（expectation）映射的确定性参照。",
+    "statement": "从 start 出发，重复 m_next=tanh(beta*m)，返回含初值（initial condition）的完整轨迹（trajectory）。此为 N→∞ 条件期望（conditional expectation）映射的确定性参照。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -290,12 +290,12 @@
   {
     "id": "p13-meanfield-threshold",
     "slug": "p13-meanfield-threshold",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.1",
     "lesson_id": "P13-C01-S02",
     "title": "固定点失稳条件",
-    "statement": "对 m_next=tanh(beta*m)，零固定点（fixed point）附近斜率（slope）为 beta。beta 非负时哪项成立？",
+    "statement": "对m_next=tanh(beta*m)，零固定点（fixed point）附近斜率（slope）为beta。比较beta=0.8和1.2时的局部稳定性，哪项正确？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -309,19 +309,19 @@
     "options": [
       {
         "id": "A",
-        "text": "beta<1 时零点（zero）局部稳定；beta>1 时零点局部不稳定。"
+        "text": "beta=0.8时局部稳定，beta=1.2时局部不稳定。"
       },
       {
         "id": "B",
-        "text": "beta>1 时零点因为 tanh 有界而一定稳定。"
+        "text": "beta=0.8时局部不稳定，beta=1.2时局部稳定。"
       },
       {
         "id": "C",
-        "text": "beta=1 时线性斜率已足以判定严格渐近速度。"
+        "text": "两者都局部稳定，因为tanh的输出（output）有界。"
       },
       {
         "id": "D",
-        "text": "有限 N 的模拟阈值严格等于1且没有误差。"
+        "text": "两者都局部不稳定，因为迭代含非线性函数。"
       }
     ],
     "constraints": []
@@ -329,12 +329,12 @@
   {
     "id": "p13-size-comparison",
     "slug": "p13-size-comparison",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.1",
     "lesson_id": "P13-C01-S02",
     "title": "怎样比较三个规模",
-    "statement": "将 N=50、200、800 的参数（parameter）扫描用于有限规模（finite size）比较时，哪项设计最可解释？",
+    "statement": "要比较N=50、200、800时的有限规模（finite size）差异，应如何安排参数（parameter）扫描？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -348,19 +348,19 @@
     "options": [
       {
         "id": "A",
-        "text": "同一更新规则与参数网格，说明暂态（transient）、观察时长、重复数及初态。"
+        "text": "各规模采用同一更新规则，每组只保留序参量（order parameter）最高的一次模拟结果。"
       },
       {
         "id": "B",
-        "text": "每个规模自行更换规则和观测（observation）窗口。"
+        "text": "各规模采用同一更新规则和参数取值，并记录舍弃的初始暂态（transient）、后续观察时长、初态和独立重复次数。"
       },
       {
         "id": "C",
-        "text": "只取每个规模的一条最高曲线。"
+        "text": "各规模采用同一参数取值，在增大N时把同步更新（synchronous update）改成异步更新（asynchronous update）。"
       },
       {
         "id": "D",
-        "text": "看到一条近直线就宣布普适指数。"
+        "text": "各规模只记录模拟结束时的一个值，再将曲线画在同样宽的坐标区内比较。"
       }
     ],
     "constraints": []
@@ -368,12 +368,12 @@
   {
     "id": "p13-critical-language",
     "slug": "p13-critical-language",
-    "version": "1",
+    "version": "3",
     "part": "13",
     "chapter": "13.1",
     "lesson_id": "P13-C01-S02",
     "title": "分岔与相变语言",
-    "statement": "同一模型（model）的确定性平均映射在 beta=1 改变零点（zero）稳定性；有限随机曲线随 N 变陡。哪项表述合适？",
+    "statement": "确定性平均映射在beta=1改变零点（zero）稳定性；随机模型（model）的曲线随N增大而变陡。如何分别理解这两类结果？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -387,19 +387,19 @@
     "options": [
       {
         "id": "A",
-        "text": "前者是确定性固定点（fixed point）分岔（bifurcation）证据，后者是有限规模（finite size）现象；热力学极限（thermodynamic limit）仍需论证。"
+        "text": "平均映射给出的beta=1，也是每一条有限随机轨迹（trajectory）发生跳变的参数（parameter）值。"
       },
       {
         "id": "B",
-        "text": "任一有限曲线自动证明连续相变。"
+        "text": "有限随机曲线随N变陡，已经确定了无限规模下的精确临界点。"
       },
       {
         "id": "C",
-        "text": "平均映射的稳定性与随机模型毫无关系。"
+        "text": "平均映射发生分岔（bifurcation），说明有限随机模型（model）中的每次波动都是数值误差（numerical error）。"
       },
       {
         "id": "D",
-        "text": "绝对磁化不可能用于描述序参量（order parameter）。"
+        "text": "平均映射的稳定性变化属于确定性分岔，随机曲线变陡则是需要结合系统规模解释的有限样本现象。"
       }
     ],
     "constraints": []
@@ -527,12 +527,12 @@
   {
     "id": "p13-direct-vs-secondary",
     "slug": "p13-direct-vs-secondary",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.2",
     "lesson_id": "P13-C02-S01",
     "title": "区分直接与继发失效",
-    "statement": "某链的第0轮 seeds={0}，后续第1轮新增{1}、第2轮新增{2}。哪项是正确记录？",
+    "statement": "一条链在第0轮直接损伤节点0，第1轮新增失效节点1，第2轮新增失效节点2。哪项记录正确？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -546,19 +546,19 @@
     "options": [
       {
         "id": "A",
-        "text": "直接损伤1个，继发失效2个，累计失效3个。"
+        "text": "直接损伤了1个节点，后续又有2个节点失效，累计失效3个节点。"
       },
       {
         "id": "B",
-        "text": "直接损伤3个，继发失效0个。"
+        "text": "直接损伤了3个节点，后续没有节点失效，累计失效3个节点。"
       },
       {
         "id": "C",
-        "text": "累计失效是1+2+3=6个。"
+        "text": "直接损伤了1个节点，后续又有2个节点失效，累计失效6个节点。"
       },
       {
         "id": "D",
-        "text": "第2轮节点应在第0轮就失效。"
+        "text": "直接损伤了1个节点，后续没有节点失效，累计失效1个节点。"
       }
     ],
     "constraints": []
@@ -566,7 +566,7 @@
   {
     "id": "p13-cascade-no-seed",
     "slug": "p13-cascade-no-seed",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.2",
     "lesson_id": "P13-C02-S01",
@@ -585,19 +585,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不会出现继发失效；返回仅含空第0轮。"
+        "text": "孤立节点会先达到失效阈值，再引发其他节点失效。"
       },
       {
         "id": "B",
-        "text": "全部节点立即失效。"
+        "text": "度数最大的节点会先达到失效阈值，再引发其他节点失效。"
       },
       {
         "id": "C",
-        "text": "只有度数最高的节点失效。"
+        "text": "每个节点都没有已失效的邻居，因此之后各轮仍没有节点失效。"
       },
       {
         "id": "D",
-        "text": "不能判断，因为网络结构未给出。"
+        "text": "在不知道总节点数时，无法判断之后是否会出现节点失效。"
       }
     ],
     "constraints": []
@@ -605,12 +605,12 @@
   {
     "id": "p13-cascade-is-not-contagion",
     "slug": "p13-cascade-is-not-contagion",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.2",
     "lesson_id": "P13-C02-S01",
     "title": "阈值规则的含义",
-    "statement": "本章教学网络的节点因“已失效邻居数达到阈值”而失效。它能支持哪项解释？",
+    "statement": "本章教学网络中，一个尚未失效的节点在已失效邻居数达到阈值后永久失效。这段规则规定的是哪种更新机制？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -624,19 +624,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这是明示的负担或暴露代理规则，不能自动等同于真实疾病传播。"
+        "text": "一个节点的失效邻居数达到阈值后，该节点失效并保持失效状态（state）。"
       },
       {
         "id": "B",
-        "text": "所有网络传播都服从这个阈值。"
+        "text": "每条边独立尝试传递失效，失效节点又按固定概率（probability）恢复。"
       },
       {
         "id": "C",
-        "text": "每个节点在同一轮可反复失效和恢复。"
+        "text": "一个节点失效后，它承担的负载按剩余邻居的容量比例分配给这些邻居。"
       },
       {
         "id": "D",
-        "text": "阈值越高，单调增加继发失效。"
+        "text": "节点根据邻居连续状态（state）的平均值改变自身状态，并以线性速率恢复。"
       }
     ],
     "constraints": []
@@ -739,12 +739,12 @@
   {
     "id": "p13-connected-not-functional",
     "slug": "p13-connected-not-functional",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.2",
     "lesson_id": "P13-C02-S02",
-    "title": "连通不保证功能",
-    "statement": "一个剩余网络仍连通，但所有剩余节点的实际处理容量都降到需求以下。哪项成立？",
+    "title": "剩余网络的功能评价",
+    "statement": "用最大连通分量（connected component）大小描述结构。剩余网络仍连通，但所有剩余节点的处理容量都低于需求。哪项成立？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -758,19 +758,19 @@
     "options": [
       {
         "id": "A",
-        "text": "连通性代理仍可能为正，真实负载功能却可能失效。"
+        "text": "最大连通分量仍非空，所以处理容量满足需求。"
       },
       {
         "id": "B",
-        "text": "连通就保证所有任务可完成。"
+        "text": "最大连通分量仍非空，但容量不足以完成需求。"
       },
       {
         "id": "C",
-        "text": "最大分量比例必为0。"
+        "text": "容量低于需求，使剩余图的连通分量大小变为零。"
       },
       {
         "id": "D",
-        "text": "必须把所有节点恢复才能定义功能。"
+        "text": "容量低于需求，使图中所有剩余边在拓扑上消失。"
       }
     ],
     "constraints": []
@@ -778,12 +778,12 @@
   {
     "id": "p13-control-one-factor",
     "slug": "p13-control-one-factor",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.2",
     "lesson_id": "P13-C02-S02",
     "title": "区分结构和阈值",
-    "statement": "比较新增边和提高阈值两种干预对最终损失的影响，哪项设计最清楚？",
+    "statement": "要分别考察增加网络连接和提高失效阈值怎样改变最终失效节点数，应选择哪种实验安排？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -797,19 +797,19 @@
     "options": [
       {
         "id": "A",
-        "text": "固定同一初始损伤和另一因素，分别只改变结构或阈值。"
+        "text": "保持初始损伤相同，分别做只增加边和只提高阈值的两组实验。"
       },
       {
         "id": "B",
-        "text": "结构、阈值和种子都同时更换。"
+        "text": "保持初始损伤相同，在同一组实验中同时增加边和提高阈值，再分别计算两种干预的贡献。"
       },
       {
         "id": "C",
-        "text": "只比较两张图的视觉稠密程度。"
+        "text": "保持阈值相同，在增加边的同时，将初始损伤改为发生在度数更高的节点。"
       },
       {
         "id": "D",
-        "text": "把第0轮损伤也算作新增边的影响。"
+        "text": "保持网络结构相同，在提高阈值的同时减少初始损伤的节点数。"
       }
     ],
     "constraints": []
@@ -817,7 +817,7 @@
   {
     "id": "p13-threshold-monotonic",
     "slug": "p13-threshold-monotonic",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.2",
     "lesson_id": "P13-C02-S02",
@@ -836,19 +836,19 @@
     "options": [
       {
         "id": "A",
-        "text": "最终失效集合不会比原来更大。"
+        "text": "第0轮被指定为初始损伤的节点数会减少。"
       },
       {
         "id": "B",
-        "text": "最终失效集合一定严格缩小。"
+        "text": "原本最终失效的节点中，至少有一个在提高阈值后不再失效。"
       },
       {
         "id": "C",
-        "text": "第0轮种子会自动减少。"
+        "text": "提高阈值后的最终失效节点，都属于原来的最终失效集合。"
       },
       {
         "id": "D",
-        "text": "最大连通分量（connected component）一定严格增大。"
+        "text": "提高阈值后，剩余网络的最大连通分量（connected component）会至少增加一个节点。"
       }
     ],
     "constraints": []
@@ -955,12 +955,12 @@
   {
     "id": "p13-local-rate-vs-basin",
     "slug": "p13-local-rate-vs-basin",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.3",
     "lesson_id": "P13-C03-S01",
-    "title": "恢复率和吸引域不同",
-    "statement": "在 dx/dt=-rate*x*(1-x/boundary) 中，让 rate 固定而 boundary 从1改为2。哪项正确？",
+    "title": "改变非线性参数后的恢复",
+    "statement": "dx/dt=−rate*x*(1−x/boundary)，rate>0固定，boundary从1改为2。零点（zero）附近恢复率和正向吸引域（basin of attraction）边界怎样变化？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -975,19 +975,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0附近线性恢复率不变，正向吸引域（basin of attraction）边界改变。"
+        "text": "零点附近的恢复率变为原来的一半，正向吸引域的边界移到2。"
       },
       {
         "id": "B",
-        "text": "局部恢复率（local recovery rate）翻倍。"
+        "text": "零点附近的恢复率变为原来的两倍，正向吸引域的边界仍在1。"
       },
       {
         "id": "C",
-        "text": "所有超过原边界的扰动都仍不返回。"
+        "text": "零点附近的恢复率保持不变，正向吸引域的边界移到2。"
       },
       {
         "id": "D",
-        "text": "两个概念完全等价。"
+        "text": "零点附近的恢复率保持不变，正向吸引域的边界仍在1。"
       }
     ],
     "constraints": []
@@ -995,12 +995,12 @@
   {
     "id": "p13-finite-perturbation",
     "slug": "p13-finite-perturbation",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.3",
     "lesson_id": "P13-C03-S01",
-    "title": "有限扰动不能只看斜率",
-    "statement": "同一个稳定平衡（equilibrium）附近的线性化（linearization）给出恢复时间约1/rate。要判断 x0=1.4 是否返回，还需要什么？",
+    "title": "判断有限扰动的去向",
+    "statement": "零点（zero）是稳定平衡（equilibrium），局部线性化（linearization）给出恢复时间1/rate。要判断正初值（initial condition）x0=1.4是否返回零点，还需检查什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1015,19 +1015,19 @@
     "options": [
       {
         "id": "A",
-        "text": "非线性方程及吸引域（basin of attraction）边界。"
+        "text": "继续测量更靠近零点的微小扰动，得到这些扰动的恢复时间。"
       },
       {
         "id": "B",
-        "text": "只知道 f'(0) 的符号。"
+        "text": "提高零点附近恢复时间的测量精度，得到更精确的局部恢复率（local recovery rate）。"
       },
       {
         "id": "C",
-        "text": "只看采样（sampling）噪声方差（variance）。"
+        "text": "测量x=1.4处最初的变化率，用这个变化率判断之后是否返回。"
       },
       {
         "id": "D",
-        "text": "假定所有稳定平衡吸引全空间。"
+        "text": "检查0到1.4之间的变化方向，判断返回途中是否存在其他平衡（equilibrium）或吸引域（basin of attraction）边界。"
       }
     ],
     "constraints": []
@@ -1035,12 +1035,12 @@
   {
     "id": "p13-recovery-euler-step",
     "slug": "p13-recovery-euler-step",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.3",
     "lesson_id": "P13-C03-S01",
     "title": "数值返回也需核验",
-    "statement": "用显式 Euler 估计恢复时，观察到某个过大步长产生交替穿越0的轨迹（trajectory）。哪项合适？",
+    "statement": "用显式Euler计算恢复过程时，得到一条在零点（zero）两侧交替变化的轨迹（trajectory）。哪项检查能帮助判断这种交替是否来自时间离散？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1055,19 +1055,19 @@
     "options": [
       {
         "id": "A",
-        "text": "减小步长并对照局部解析指数，再判断是否为模型（model）现象。"
+        "text": "在已有数值点之间增加插值点，检查画出的曲线是否变得平滑。"
       },
       {
         "id": "B",
-        "text": "直接宣布系统有内在振荡。"
+        "text": "保持当前时间步并延长积分，依据最终点的正负判断系统是否振荡。"
       },
       {
         "id": "C",
-        "text": "只查看最后一个点的符号。"
+        "text": "减小时间步，比较轨迹是否接近零点（zero）附近的解析指数衰减。"
       },
       {
         "id": "D",
-        "text": "更换颜色即能消除数值误差（numerical error）。"
+        "text": "每隔一个点保留一次数值结果，用留下的点判断系统是否单调恢复。"
       }
     ],
     "constraints": []
@@ -1172,7 +1172,7 @@
   {
     "id": "p13-ar1-warning-condition",
     "slug": "p13-ar1-warning-condition",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.3",
     "lesson_id": "P13-C03-S02",
@@ -1192,19 +1192,19 @@
     "options": [
       {
         "id": "A",
-        "text": "平稳方差 sigma²/(1-rho²) 增大，固定一步相关也增大。"
+        "text": "平稳方差增大，相隔一步的自相关减小。"
       },
       {
         "id": "B",
-        "text": "方差必减小，因为恢复慢。"
+        "text": "平稳方差减小，相隔一步的自相关增大。"
       },
       {
         "id": "C",
-        "text": "任何真实系统都将在同一时间转变。"
+        "text": "平稳方差增大，相隔一步的自相关也增大。"
       },
       {
         "id": "D",
-        "text": "rho 是临床效用而非动态参数（parameter）。"
+        "text": "平稳方差保持不变，相隔一步的自相关也保持不变。"
       }
     ],
     "constraints": []
@@ -1212,12 +1212,12 @@
   {
     "id": "p13-noise-control",
     "slug": "p13-noise-control",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.3",
     "lesson_id": "P13-C03-S02",
-    "title": "没有转变也能升方差",
-    "statement": "在 AR(1) 的 rho 保持0.7时，仅过程噪声（process noise）标准差（standard deviation）从0.2升至0.5。方差（variance）预警阈值触发可以说明什么？",
+    "title": "改变噪声强度后的指标",
+    "statement": "平稳AR(1)的rho保持0.7，仅过程噪声（process noise）标准差（standard deviation）从0.2升至0.5。理论平稳方差（variance）和一步相关怎样变化？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1232,19 +1232,19 @@
     "options": [
       {
         "id": "A",
-        "text": "可能是噪声改变造成的误报（false alarm），应检查独立对照和事件（event）标签。"
+        "text": "平稳方差变为原来的6.25倍，相隔一步的自相关也变为原来的6.25倍。"
       },
       {
         "id": "B",
-        "text": "必然证明恢复率接近零。"
+        "text": "平稳方差变为原来的2.5倍，相隔一步的自相关仍为0.7。"
       },
       {
         "id": "C",
-        "text": "必然证明跨过吸引域（basin of attraction）边界。"
+        "text": "平稳方差变为原来的6.25倍，相隔一步的自相关仍为0.7。"
       },
       {
         "id": "D",
-        "text": "可以用未来样本重新计算过去时刻并仍称为实时预警。"
+        "text": "平稳方差保持不变，相隔一步的自相关变为原来的2.5倍。"
       }
     ],
     "constraints": []
@@ -1252,7 +1252,7 @@
   {
     "id": "p13-lag-physical-time",
     "slug": "p13-lag-physical-time",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.3",
     "lesson_id": "P13-C03-S02",
@@ -1272,19 +1272,19 @@
     "options": [
       {
         "id": "A",
-        "text": "旧数据 lag=1，新数据 lag=2。"
+        "text": "旧数据相隔1个样本，新数据相隔2个样本，分别计算自相关。"
       },
       {
         "id": "B",
-        "text": "两个序列始终 lag=1。"
+        "text": "旧数据和新数据都相隔1个样本，分别计算自相关。"
       },
       {
         "id": "C",
-        "text": "只比较样本数，不管采样间隔。"
+        "text": "旧数据相隔2个样本，新数据相隔1个样本，分别计算自相关。"
       },
       {
         "id": "D",
-        "text": "新数据使用 lag=0。"
+        "text": "旧数据和新数据都相隔2个样本，分别计算自相关。"
       }
     ],
     "constraints": []
@@ -1368,12 +1368,12 @@
   {
     "id": "p13-same-average-different-structure",
     "slug": "p13-same-average-different-structure",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.4",
     "lesson_id": "P13-C04-S01",
-    "title": "相同均值并不封闭",
-    "statement": "二值环 1010 与 1100 的平均密度都为0.5，但局部异或下一步不同。遗漏了什么？",
+    "title": "密度之外的统计量",
+    "statement": "周期二值环1010与1100的密度都为0.5，但左右旧邻格异或同步更新（synchronous update）后的密度不同。哪一统计量（statistic）能补充解释该差异？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1388,19 +1388,19 @@
     "options": [
       {
         "id": "A",
-        "text": "局部排列或两点相关（two-point correlation）信息。"
+        "text": "补充全环中0的比例与1的比例之差。"
       },
       {
         "id": "B",
-        "text": "平均密度的单位。"
+        "text": "补充相邻两格取值之差的有符号平均值。"
       },
       {
         "id": "C",
-        "text": "Python 随机种子（random seed）。"
+        "text": "补充每格取值平方后的全域平均值。"
       },
       {
         "id": "D",
-        "text": "序参量（order parameter）必须改成负数。"
+        "text": "补充相距两格的格子同时取1的比例。"
       }
     ],
     "constraints": []
@@ -1408,12 +1408,12 @@
   {
     "id": "p13-scale-identifiability",
     "slug": "p13-scale-identifiability",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.4",
     "lesson_id": "P13-C04-S01",
     "title": "粗观测能辨认什么",
-    "statement": "观测（observation）只记录每轮全环平均密度；两个不同微观排列给出同一当前密度。此刻能识别哪项？",
+    "statement": "已知周期环有N格，观测（observation）只记录当前平均密度p。仅凭这一记录，可以确定什么？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1428,19 +1428,19 @@
     "options": [
       {
         "id": "A",
-        "text": "当前平均密度可识别，具体局部排列不可由这一值唯一恢复。"
+        "text": "这一记录能确定相距两格的1—1对数，但不能确定取1的格子总数。"
       },
       {
         "id": "B",
-        "text": "每格状态（state）都已被唯一确定。"
+        "text": "这一记录能确定每个取1格子的位置，但不能确定取1的格子总数。"
       },
       {
         "id": "C",
-        "text": "未来密度必相同。"
+        "text": "这一记录能确定取1的格子总数，但不能确定这些格子各自的位置。"
       },
       {
         "id": "D",
-        "text": "粗粒化（coarse-graining）自动减少模型结构（model structure）误差至零。"
+        "text": "这一记录能确定下一步取1的格子总数，但不能确定当前取1的格子总数。"
       }
     ],
     "constraints": []
@@ -1448,12 +1448,12 @@
   {
     "id": "p13-pair-not-universal",
     "slug": "p13-pair-not-universal",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.4",
     "lesson_id": "P13-C04-S01",
     "title": "相关量也有边界",
-    "statement": "对本节特定异或规则，p 与 c2 足以给出下一步全局密度。可以推出什么？",
+    "statement": "周期异或规则下，已推导下一步密度p_next=2p−2c2。仅由这个结果，可以支持哪项判断？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1468,19 +1468,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这是针对该规则和该一步指标的精确闭合，不保证完整空间状态（state）闭合。"
+        "text": "给定当前p和c2可以计算下一步密度，但这个公式还没有给出下一步c2的计算规则。"
       },
       {
         "id": "B",
-        "text": "p 与 c2 决定任意规则下每格未来状态。"
+        "text": "给定当前p和c2后，下一步密度和下一步c2都等于2p−2c2。"
       },
       {
         "id": "C",
-        "text": "只要有两点相关（two-point correlation）就已证明生物机制。"
+        "text": "给定当前p和c2可以确定每格的下一步值，却不能确定下一步全域密度。"
       },
       {
         "id": "D",
-        "text": "此规则的边界条件不再重要。"
+        "text": "两种排列只要具有相同的p和c2，就能由这些数值恢复各格的取值。"
       }
     ],
     "constraints": []
@@ -1580,12 +1580,12 @@
   {
     "id": "p13-uncertainty-sources",
     "slug": "p13-uncertainty-sources",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.4",
     "lesson_id": "P13-C04-S02",
-    "title": "不要混合不确定性来源",
-    "statement": "参数（parameter）范围变化、观测（observation）降采样（sampling）和替代网络结构都改变最终预测。哪项报告最有信息？",
+    "title": "预测变化的来源",
+    "statement": "改变参数（parameter）范围、观测（observation）采样（sampling）间隔或网络结构，都会改变模型（model）对下一步平均密度的预测。怎样安排比较，才能区分这些变化的来源？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1600,19 +1600,19 @@
     "options": [
       {
         "id": "A",
-        "text": "分别列出各单因素对照、共同指标和范围，再说明可能存在交互。"
+        "text": "每次只改变一个因素，挑出造成最大预测误差的那次结果，作为该因素的全部报告。"
       },
       {
         "id": "B",
-        "text": "把三者简单加总并叫作唯一随机误差。"
+        "text": "分别计算三个因素单独造成的预测变化，再将它们相加作为三个因素同时变化时的精确结果。"
       },
       {
         "id": "C",
-        "text": "只报告最大的一条轨迹（trajectory）。"
+        "text": "将三个因素分别变化得到的结果合在一组，作为同一随机实验的重复来计算标准差（standard deviation）。"
       },
       {
         "id": "D",
-        "text": "把观测差异解释为参数因果效应。"
+        "text": "分别只改变参数范围、采样间隔或网络结构来比较预测，再同时改变这些因素以检查它们是否相互影响。"
       }
     ],
     "constraints": []
@@ -1620,11 +1620,11 @@
   {
     "id": "p13-ranking-reversal",
     "slug": "p13-ranking-reversal",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.4",
     "lesson_id": "P13-C04-S02",
-    "title": "尺度变化时排序可能反转",
+    "title": "两个尺度的得分比较",
     "statement": "两个干预 A、B 在粗尺度得分为0.8、0.7，在细尺度得分为0.4、0.6（均为越高越好）。哪项正确？",
     "type": "choice",
     "learning_targets": [
@@ -1640,19 +1640,19 @@
     "options": [
       {
         "id": "A",
-        "text": "粗尺度 A 优，细尺度 B 优，存在排序反转（ranking reversal）。"
+        "text": "粗尺度下B的得分更高，细尺度下A的得分更高。"
       },
       {
         "id": "B",
-        "text": "两个尺度都 A 优。"
+        "text": "粗尺度下A的得分更高，细尺度下B的得分更高。"
       },
       {
         "id": "C",
-        "text": "排序反转证明 A 在所有条件下无效。"
+        "text": "在粗、细两个尺度下，A的得分都高于B。"
       },
       {
         "id": "D",
-        "text": "只要粗尺度 A 优就可忽略细尺度。"
+        "text": "在粗、细两个尺度下，B的得分都高于A。"
       }
     ],
     "constraints": []
@@ -1660,12 +1660,12 @@
   {
     "id": "p13-sensitivity-range",
     "slug": "p13-sensitivity-range",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.4",
     "lesson_id": "P13-C04-S02",
     "title": "敏感性有声明范围",
-    "statement": "在参数（parameter） theta∈[0.9,1.1] 内，输出（output）变化至多0.03。能推出哪项？",
+    "statement": "数值核验在指定模型（model）的参数（parameter）theta∈[0.9,1.1]内，输出（output）最大变动不超过0.03。该核验直接约束哪一个量？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1680,19 +1680,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这只证明指定模型（model）、指标和范围内的数值稳定。"
+        "text": "该区间内每处输出导数（derivative）的绝对值都不超过0.03。"
       },
       {
         "id": "B",
-        "text": "所有 theta 和所有模型都稳定。"
+        "text": "该区间内该输出的最大变动不超过0.03。"
       },
       {
         "id": "C",
-        "text": "观测（observation）误差自动为零。"
+        "text": "该区间外输出的最大变动也不超过0.03。"
       },
       {
         "id": "D",
-        "text": "干预在现实中必有效。"
+        "text": "更换模型结构（model structure）后输出的最大变动仍不超过0.03。"
       }
     ],
     "constraints": []
@@ -1700,12 +1700,12 @@
   {
     "id": "p13-capstone-finite-claim",
     "slug": "p13-capstone-finite-claim",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
     "title": "有限规模的临界证据",
-    "statement": "三种规模各有重复轨迹（trajectory），有限观察窗中序参量（order parameter）曲线逐渐变陡。下一步最合适的结论是什么？",
+    "statement": "三种规模各有重复轨迹（trajectory），有限观察窗中序参量（order parameter）曲线逐渐变陡。要进一步研究极限（limit）行为，应优先怎样补充检查？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -1720,19 +1720,19 @@
     "options": [
       {
         "id": "A",
-        "text": "报告规模、暂态（transient）、重复不确定性和模型（model）条件，再研究是否能支持极限（limit）论断。"
+        "text": "在每条曲线上增加插值点，将插值点数量增加视为系统规模增加。"
       },
       {
         "id": "B",
-        "text": "曲线变陡自动证明普适临界指数（critical exponent）。"
+        "text": "在最大规模的曲线上选一段拟合直线，将所得斜率（slope）作为普适临界指数（critical exponent）。"
       },
       {
         "id": "C",
-        "text": "只选一条最平滑轨迹作为代表。"
+        "text": "每个规模选出最平滑的一次模拟，用这三条曲线替代全部重复结果。"
       },
       {
         "id": "D",
-        "text": "有限随机模型必须没有任何固定点（fixed point）参照。"
+        "text": "延长各规模的观察时间，比较多次模拟的序参量分布（distribution），以及曲线是否仍随规模增大而变陡。"
       }
     ],
     "constraints": []
@@ -1740,7 +1740,7 @@
   {
     "id": "p13-capstone-basin",
     "slug": "p13-capstone-basin",
-    "version": "1",
+    "version": "2",
     "part": "13",
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
@@ -1760,19 +1760,19 @@
     "options": [
       {
         "id": "A",
-        "text": "小扰动恢复速度相同，但1.5扰动可能只在第二个系统返回。"
+        "text": "两个系统对小扰动的恢复速度相同，1.5的正扰动只在第二个系统的吸引域内。"
       },
       {
         "id": "B",
-        "text": "两个系统对所有扰动的命运相同。"
+        "text": "两个系统对小扰动的恢复速度相同，1.5的正扰动在两个系统的吸引域内。"
       },
       {
         "id": "C",
-        "text": "第二个系统局部恢复率（local recovery rate）必为两倍。"
+        "text": "第二个系统对小扰动恢复得更快，而1.5的正扰动在两个系统的吸引域外。"
       },
       {
         "id": "D",
-        "text": "吸引域只能从方差（variance）一项直接读出。"
+        "text": "第二个系统对小扰动恢复得更慢，而1.5的正扰动只在第一个系统的吸引域内。"
       }
     ],
     "constraints": []
@@ -2278,12 +2278,12 @@
   {
     "id": "p13-capstone-scale-limit",
     "slug": "p13-capstone-scale-limit",
-    "version": "1",
+    "version": "3",
     "part": "13",
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
     "title": "改变尺度后的韧性结论",
-    "statement": "某干预在一个有限网络上减少级联，却在粗尺度恢复指标上无改进，预警还出现误报（false alarm）。哪项结论有依据？",
+    "statement": "某干预减少了有限网络中最终失效的节点数，但小扰动幅度减半所需的时间没有缩短，预警中也出现了误报（false alarm）。哪项结论符合这些记录？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2298,19 +2298,19 @@
     "options": [
       {
         "id": "A",
-        "text": "分别报告指标、尺度和条件，不能把一种优势推广成全面韧性提升。"
+        "text": "最终失效节点减少，因此扰动幅度减半所需的时间也应按相同比例缩短。"
       },
       {
         "id": "B",
-        "text": "只要级联更少，就证明所有韧性指标提高。"
+        "text": "干预减少了最终失效节点，但没有缩短扰动幅度减半的时间，报警后未发生转变的次数也应保留。"
       },
       {
         "id": "C",
-        "text": "误报可以从结果表中删除。"
+        "text": "扰动幅度减半的时间没有缩短，因此最终失效节点减少应归为计数错误。"
       },
       {
         "id": "D",
-        "text": "有限网络结果自动适用于任意结构和规模。"
+        "text": "干预减少了最终失效节点，因此评价预警时可以删去报警后未发生转变的记录。"
       }
     ],
     "constraints": []

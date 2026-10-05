@@ -24,7 +24,7 @@ COURSE = json.loads((ROOT/'web/course/catalog.json').read_text('utf-8'))
 CHOICES = {
     'p00-recovery': ['A','C'], 'p00-connections': ['B'], 'p00-purpose': ['A','C'],
     'p00-traditions': ['A','B','D'], 'p00-perspectives': ['A'], 'p00-complement': ['A','C'],
-    'p00-rounds': ['A'], 'p00-evidence': ['A','C'], 'p00-route': ['A'],
+    'p00-rounds': ['D'], 'p00-evidence': ['A','C'], 'p00-route': ['C'],
 }
 
 

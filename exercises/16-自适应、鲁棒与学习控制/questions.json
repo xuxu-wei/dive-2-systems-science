@@ -2,12 +2,12 @@
   {
     "id": "p16-lyapunov-actual",
     "slug": "p16-lyapunov-actual",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.1",
     "lesson_id": "P16-C01-S01",
     "title": "哪一个输入进入能量导数",
-    "statement": "请求输入（input）超过执行上限时，检验 V 的导数（derivative）应使用什么？",
+    "statement": "系统状态（state）的变化接收执行器的实际作用。请求输入（input）超过执行上限时，应按哪种顺序检验V的导数（derivative）？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -24,19 +24,19 @@
     "options": [
       {
         "id": "A",
-        "text": "饱和后实际施加的输入。"
+        "text": "先将请求输入限制到执行器允许的范围，再用实际输入计算状态变化率和V的导数。"
       },
       {
         "id": "B",
-        "text": "未限幅的请求值。"
+        "text": "先用未限幅的请求输入计算V的导数，再将这个导数限制到执行器允许的范围。"
       },
       {
         "id": "C",
-        "text": "图中最平滑的曲线。"
+        "text": "先对请求输入与实际输入取平均，再将这个平均值代入当前状态方程。"
       },
       {
         "id": "D",
-        "text": "训练时希望的目标。"
+        "text": "将上一时刻施加的实际输入代入当前状态方程，用它计算当前V的导数。"
       }
     ],
     "constraints": []
@@ -44,12 +44,12 @@
   {
     "id": "p16-cubic-condition",
     "slug": "p16-cubic-condition",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.1",
     "lesson_id": "P16-C01-S01",
     "title": "三次反馈的充分条件",
-    "statement": "在无饱和模型（model） V=x²/2、a+k>0 时，哪一条件使四次项不增加 V？",
+    "statement": "无饱和模型（model）中，V=x²/2且dV/dt=−(a+k)x²+(β−c)x⁴，a+k>0、β>0。使四次项对所有x都不增加V的c取值范围是什么？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -66,19 +66,19 @@
     "options": [
       {
         "id": "A",
-        "text": "c<β。"
+        "text": "系数c应满足c≥β。"
       },
       {
         "id": "B",
-        "text": "c≥β。"
+        "text": "系数c应满足c≤β。"
       },
       {
         "id": "C",
-        "text": "任意 c<0。"
+        "text": "系数c应满足c≤−β。"
       },
       {
         "id": "D",
-        "text": "只要初态为零。"
+        "text": "系数c应满足0<c<β。"
       }
     ],
     "constraints": []
@@ -86,7 +86,7 @@
   {
     "id": "p16-saturated-global",
     "slug": "p16-saturated-global",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.1",
     "lesson_id": "P16-C01-S02",
@@ -108,19 +108,19 @@
     "options": [
       {
         "id": "A",
-        "text": "已经证明所有初值（initial condition）都恢复。"
+        "text": "从x0=0.3出发的数值轨迹返回了平衡（equilibrium）点，其他初值（initial condition）的轨迹还需分别分析。"
       },
       {
         "id": "B",
-        "text": "可不再检查实际输入（input）。"
+        "text": "这条轨迹返回了平衡点，说明控制输入（input）在整个状态空间（state space）内都不会触发限幅。"
       },
       {
         "id": "C",
-        "text": "只支持当前初值和模型（model）的有限轨迹观察。"
+        "text": "这条轨迹返回了平衡点，说明从任意初值出发都能返回同一平衡点。"
       },
       {
         "id": "D",
-        "text": "无饱和证明自动转移。"
+        "text": "这条轨迹返回了平衡点，说明限幅前后的V导数（derivative）在所有状态（state）处都相同。"
       }
     ],
     "constraints": []
@@ -128,7 +128,7 @@
   {
     "id": "p16-finite-scan",
     "slug": "p16-finite-scan",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.1",
     "lesson_id": "P16-C01-S02",
@@ -150,19 +150,19 @@
     "options": [
       {
         "id": "A",
-        "text": "已经证明连续系统全局吸引。"
+        "text": "相邻扫描点距离较小，因此夹在它们之间的初值也都会返回平衡（equilibrium）点。"
       },
       {
         "id": "B",
-        "text": "可以删除未扫描区域。"
+        "text": "已扫描的初值产生了返回平衡点的数值轨迹（trajectory），未扫描的初值是否返回还需验证。"
       },
       {
         "id": "C",
-        "text": "等价于解析能量不等式。"
+        "text": "这些返回轨迹已证明，V的导数（derivative）在所有非零状态（state）处都严格为负。"
       },
       {
         "id": "D",
-        "text": "给出当前范围的数值证据，仍需解析条件或更完整验证。"
+        "text": "扫描区域之外沿用同一控制律，因此这些区域的初值也都会返回平衡点。"
       }
     ],
     "constraints": []
@@ -170,12 +170,12 @@
   {
     "id": "p16-common-p",
     "slug": "p16-common-p",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.2",
     "lesson_id": "P16-C02-S01",
     "title": "为什么要共同矩阵",
-    "statement": "两个顶点分别能找到不同的正定（positive definite） P，能直接推出区间内存在同一个共同二次证书吗？",
+    "statement": "要用顶点矩阵（matrix）的凸组合证明区间内存在共同二次证书，应如何处理正定（positive definite）矩阵P？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -192,19 +192,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不能；顶点凸组合推导要求同一个 P。"
+        "text": "在每个顶点各自的坐标系中选择P，再把这些不同坐标系下的不等式合并为一个证书。"
       },
       {
         "id": "B",
-        "text": "能，因为两个 P 都正定。"
+        "text": "分别求出各顶点可用的P，将这些P的平均值用作满足全部顶点不等式的共同矩阵。"
       },
       {
         "id": "C",
-        "text": "能，只要扫描100个参数（parameter）。"
+        "text": "分别证明每个顶点存在一个可用的P，将分别存在视为所有顶点共用一个P。"
       },
       {
         "id": "D",
-        "text": "可以忽略顶点。"
+        "text": "将同一个正定P代入每个顶点的不等式，全部成立后再对这些不等式作凸组合。"
       }
     ],
     "constraints": []
@@ -212,7 +212,7 @@
   {
     "id": "p16-vertex-scope",
     "slug": "p16-vertex-scope",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.2",
     "lesson_id": "P16-C02-S01",
@@ -234,19 +234,19 @@
     "options": [
       {
         "id": "A",
-        "text": "任意非线性参数（parameter）变化也成立。"
+        "text": "参数（parameter）位于两端点之间就足够，不论对应矩阵怎样随参数变化都可沿用顶点结论。"
       },
       {
         "id": "B",
-        "text": "参数集合是给定凸包且使用同一个 P。"
+        "text": "在参数区间内随机抽样并通过足够多次检查，就可沿用顶点结论而不定义完整矩阵集合。"
       },
       {
         "id": "C",
-        "text": "只有随机抽样而无集合定义。"
+        "text": "在不同顶点使用各自的P，再对这些不同P得到的结论取平均。"
       },
       {
         "id": "D",
-        "text": "输入（input）已饱和但不写进模型（model）。"
+        "text": "所有待检闭环矩阵都属于已检顶点的凸包，并且各顶点使用同一个P。"
       }
     ],
     "constraints": []
@@ -254,11 +254,11 @@
   {
     "id": "p16-certificate-failure",
     "slug": "p16-certificate-failure",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.2",
     "lesson_id": "P16-C02-S02",
-    "title": "当前证书不通过意味着什么",
+    "title": "检查候选二次证书",
     "statement": "某个候选 P 的 AᵀP+PA 有非负方向，哪项结论严谨？",
     "type": "choice",
     "learning_targets": [
@@ -276,19 +276,19 @@
     "options": [
       {
         "id": "A",
-        "text": "系统在所有 P 下必失稳。"
+        "text": "这个P没有使V在所有非零方向严格下降，可以另选P或检查系统特征值（eigenvalue）来判断稳定性。"
       },
       {
         "id": "B",
-        "text": "不确定集合可自动扩大。"
+        "text": "将这个P乘以一个更大的正数，就能使原来非负的方向变成负值。"
       },
       {
         "id": "C",
-        "text": "当前 P 未建立所需严格条件，需另找证据。"
+        "text": "V在某个方向没有严格下降，已经说明系统沿这个方向发散。"
       },
       {
         "id": "D",
-        "text": "该矩阵（matrix）一定不可对角化。"
+        "text": "延长仿真的时间窗口，就会改变这个固定P对应的矩阵（matrix）不等式。"
       }
     ],
     "constraints": []
@@ -296,7 +296,7 @@
   {
     "id": "p16-outside-set",
     "slug": "p16-outside-set",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.2",
     "lesson_id": "P16-C02-S02",
@@ -318,19 +318,19 @@
     "options": [
       {
         "id": "A",
-        "text": "推翻区间内证明。"
+        "text": "将这个外部矩阵加入原凸包，扩大后的集合仍沿用已有稳定保证。"
       },
       {
         "id": "B",
-        "text": "说明数值画图一定错误。"
+        "text": "这个外部模型（model）失稳，说明原凸包内已证明的稳定结论也应撤销。"
       },
       {
         "id": "C",
-        "text": "说明所有模型（model）都不稳定。"
+        "text": "原凸包已有稳定证书，因此外部矩阵的正实部特征值不能导致状态（state）增长。"
       },
       {
         "id": "D",
-        "text": "区间内保证仍成立；外部模型需另作分析。"
+        "text": "原凸包内的稳定结论仍成立，这个外部矩阵对应的线性系统则是不稳定的。"
       }
     ],
     "constraints": []
@@ -338,12 +338,12 @@
   {
     "id": "p16-zero-excitation",
     "slug": "p16-zero-excitation",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.3",
     "lesson_id": "P16-C03-S01",
     "title": "零回归量",
-    "statement": "若每步 φ=0，标量 RLS 的参数（parameter）估计怎样？",
+    "statement": "标量递归最小二乘（recursive least squares，RLS）每步回归量φ=0，遗忘因子（forgetting factor）为λ∈(0,1]。估计与P怎样变化？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -360,19 +360,19 @@
     "options": [
       {
         "id": "A",
-        "text": "由这些观测（observation）无法改变，尽管 P 可按遗忘因子（forgetting factor）变化。"
+        "text": "参数（parameter）估计逐步趋向零，而P保持当前值不变。"
       },
       {
         "id": "B",
-        "text": "必收敛到真实 a。"
+        "text": "参数估计保持不变，而P在下一次更新中变为当前值除以λ。"
       },
       {
         "id": "C",
-        "text": "每步自动加1。"
+        "text": "参数估计随新的观测（observation）值改变，而P保持当前值不变。"
       },
       {
         "id": "D",
-        "text": "与控制跟踪误差恒相同。"
+        "text": "参数估计逐步趋向真实值，而P逐步减小到零。"
       }
     ],
     "constraints": []
@@ -380,12 +380,12 @@
   {
     "id": "p16-rls-order",
     "slug": "p16-rls-order",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.3",
     "lesson_id": "P16-C03-S01",
     "title": "递推先后",
-    "statement": "新观测（observation） y_n 到达后，哪个量先由旧估计计算？",
+    "statement": "新观测（observation）y_n到达，旧参数（parameter）估计为a_hat_n，回归量为φ_n。本轮更新用的预测误差是哪一式？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -402,19 +402,19 @@
     "options": [
       {
         "id": "A",
-        "text": "下一回合的真实系数。"
+        "text": "本轮预测误差为y_n−φ_n*a_hat_(n+1)。"
       },
       {
         "id": "B",
-        "text": "预测误差 y_n-φ_n a_hat_n。"
+        "text": "本轮预测误差为y_(n+1)−φ_n*a_hat_n。"
       },
       {
         "id": "C",
-        "text": "未来独立评估答案。"
+        "text": "本轮预测误差为y_n−φ_n*a_hat_n。"
       },
       {
         "id": "D",
-        "text": "只计算终点价值。"
+        "text": "本轮预测误差为φ_n−y_n*a_hat_n。"
       }
     ],
     "constraints": []
@@ -422,7 +422,7 @@
   {
     "id": "p16-no-lookahead",
     "slug": "p16-no-lookahead",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.3",
     "lesson_id": "P16-C03-S02",
@@ -444,19 +444,19 @@
     "options": [
       {
         "id": "A",
-        "text": "当前状态（state） x_n。"
+        "text": "使用本轮动作执行之后才会观测（observation）到的x_(n+1)。"
       },
       {
         "id": "B",
-        "text": "过去更新的估计 a_hat_n。"
+        "text": "使用在本轮开始前已经更新好的参数（parameter）估计a_hat_n。"
       },
       {
         "id": "C",
-        "text": "本步末尚未发生的 x_{n+1}。"
+        "text": "使用本轮已经测得的当前状态（state）x_n。"
       },
       {
         "id": "D",
-        "text": "已知的输入（input）上限。"
+        "text": "使用事先给定的输入（input）上限。"
       }
     ],
     "constraints": []
@@ -464,12 +464,12 @@
   {
     "id": "p16-tracking-not-id",
     "slug": "p16-tracking-not-id",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.3",
     "lesson_id": "P16-C03-S02",
     "title": "跟踪与参数估计",
-    "statement": "漂移系统中误差小而估计 a_hat 偏离真值，说明什么？",
+    "statement": "系统参数（parameter）随时间变化，输出（output）与目标的跟踪误差很小，但估计a_hat偏离真实参数。应怎样理解这两项记录？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -486,19 +486,19 @@
     "options": [
       {
         "id": "A",
-        "text": "算法必定写错。"
+        "text": "跟踪误差已经很小，因此可以用它代替参数（parameter）误差，判定估计值正确。"
       },
       {
         "id": "B",
-        "text": "参数（parameter）辨识已被严格证明。"
+        "text": "参数估计偏离真值，说明当前计算出的较小跟踪误差是错误结果。"
       },
       {
         "id": "C",
-        "text": "没有必要报告限幅。"
+        "text": "继续提高反馈（feedback）增益（gain），将跟踪误差进一步减小作为参数收敛的证明。"
       },
       {
         "id": "D",
-        "text": "跟踪表现与参数识别是不同证据。"
+        "text": "分别计算跟踪误差与参数误差，因为反馈补偿可能使跟踪良好，而数据仍不足以辨认真实参数。"
       }
     ],
     "constraints": []
@@ -506,7 +506,7 @@
   {
     "id": "p16-brownian-scale",
     "slug": "p16-brownian-scale",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.4",
     "lesson_id": "P16-C04-S01",
@@ -528,19 +528,19 @@
     "options": [
       {
         "id": "A",
-        "text": "sqrt(h)*Z。"
+        "text": "将h*Z作为这个时间区间的布朗增量。"
       },
       {
         "id": "B",
-        "text": "h*Z。"
+        "text": "将sqrt(h)*Z作为这个时间区间的布朗增量。"
       },
       {
         "id": "C",
-        "text": "Z/h。"
+        "text": "将Z/h作为这个时间区间的布朗增量。"
       },
       {
         "id": "D",
-        "text": "每步固定为 h。"
+        "text": "将固定值h作为这个时间区间的布朗增量。"
       }
     ],
     "constraints": []
@@ -548,7 +548,7 @@
   {
     "id": "p16-paired-refine",
     "slug": "p16-paired-refine",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.4",
     "lesson_id": "P16-C04-S01",
@@ -570,19 +570,19 @@
     "options": [
       {
         "id": "A",
-        "text": "重新独立抽样。"
+        "text": "独立抽取一个新粗增量，使它的方差（variance）等于粗时间步长（time step）度。"
       },
       {
         "id": "B",
-        "text": "按粗步覆盖的细增量求和。"
+        "text": "对这个粗时间区间内的全部细增量取平均，作为粗增量。"
       },
       {
         "id": "C",
-        "text": "取细增量均值。"
+        "text": "将这个粗时间区间内的全部细增量相加，作为粗增量。"
       },
       {
         "id": "D",
-        "text": "删除所有负增量。"
+        "text": "取这个粗时间区间内的第一个细增量，乘以该区间包含的细步数，作为粗增量。"
       }
     ],
     "constraints": []
@@ -590,12 +590,12 @@
   {
     "id": "p16-mean-risk",
     "slug": "p16-mean-risk",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.4",
     "lesson_id": "P16-C04-S02",
-    "title": "均值和尾部",
-    "statement": "终点平均值低于安全阈值，能否宣称零违约风险？",
+    "title": "平均值与越界统计",
+    "statement": "200次预定重复的终点平均值为0.98，安全阈值为1；其中20次终点超过1，最大终点1.20。该批终点违约率是多少？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -612,19 +612,19 @@
     "options": [
       {
         "id": "A",
-        "text": "能，平均值代表每条路径。"
+        "text": "终点违约率为0%，因为终点均值没有超过阈值。"
       },
       {
         "id": "B",
-        "text": "能，只要画了直方图。"
+        "text": "终点违约率为2%，因为阈值1与终点均值0.98相差0.02。"
       },
       {
         "id": "C",
-        "text": "不能；要报告阈值、重复数和越界频率。"
+        "text": "终点违约率为20%，因为最大终点1.20比阈值1高0.20。"
       },
       {
         "id": "D",
-        "text": "只看一次最好轨迹（trajectory）即可。"
+        "text": "终点违约率为10%，因为200次中有20次终点超过阈值。"
       }
     ],
     "constraints": []
@@ -632,7 +632,7 @@
   {
     "id": "p16-strong-weak",
     "slug": "p16-strong-weak",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.4",
     "lesson_id": "P16-C04-S02",
@@ -654,19 +654,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两者都是完全相同的观测（observation）噪声。"
+        "text": "两种差异都表示每条随机路径上两个数值解的逐点误差。"
       },
       {
         "id": "B",
-        "text": "均值差就是每条路径误差。"
+        "text": "同路径状态差比较两个分布（distribution）的均值，而独立重复均值差比较两条配对路径。"
       },
       {
         "id": "C",
-        "text": "只需前者，不用统计误差。"
+        "text": "同路径状态差与独立重复均值差在数值上相等，可以互相替代。"
       },
       {
         "id": "D",
-        "text": "前者比较配对路径，后者比较分布（distribution）统计。"
+        "text": "同路径状态差比较同一随机驱动下的两个解，而独立重复均值差比较两个解分布的平均值。"
       }
     ],
     "constraints": []
@@ -674,7 +674,7 @@
   {
     "id": "p16-symmetric-average",
     "slug": "p16-symmetric-average",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.5",
     "lesson_id": "P16-C05-S01",
@@ -696,19 +696,19 @@
     "options": [
       {
         "id": "A",
-        "text": "1ᵀL=0，所有节点增量和为零。"
+        "text": "因为1ᵀL=0，全体节点在这一步的增量相加为零。"
       },
       {
         "id": "B",
-        "text": "每个节点从不变化。"
+        "text": "因为L1=0，每个节点从任意初值（initial condition）出发都保持原值。"
       },
       {
         "id": "C",
-        "text": "h 必须等于0。"
+        "text": "因为L的对角元素之和为零，全体节点在这一步的增量相加为零。"
       },
       {
         "id": "D",
-        "text": "只因画出平滑线。"
+        "text": "因为L的特征值（eigenvalue）都相等，每个节点在这一步都增加相同数值。"
       }
     ],
     "constraints": []
@@ -716,7 +716,7 @@
   {
     "id": "p16-disconnected",
     "slug": "p16-disconnected",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.5",
     "lesson_id": "P16-C05-S01",
@@ -738,19 +738,19 @@
     "options": [
       {
         "id": "A",
-        "text": "所有节点趋于全网平均。"
+        "text": "所有节点的状态（state）最终趋于两个分量合在一起计算的全网初始平均值。"
       },
       {
         "id": "B",
-        "text": "各分量分别趋于其初始平均。"
+        "text": "每个分量内的节点状态最终趋于该分量初始值最大的节点值。"
       },
       {
         "id": "C",
-        "text": "所有状态（state）保持初始值。"
+        "text": "每个分量内的节点状态最终趋于该分量自身的初始平均值。"
       },
       {
         "id": "D",
-        "text": "节点顺序自动重新连接。"
+        "text": "每个分量的状态总和保持不变，而且其中每个节点的状态也保持初值（initial condition）不变。"
       }
     ],
     "constraints": []
@@ -758,7 +758,7 @@
   {
     "id": "p16-delay-formula",
     "slug": "p16-delay-formula",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.5",
     "lesson_id": "P16-C05-S02",
@@ -780,19 +780,19 @@
     "options": [
       {
         "id": "A",
-        "text": "未来 x_{n+1}。"
+        "text": "从当前状态x_n中减去用当前状态计算的hLx_n。"
       },
       {
         "id": "B",
-        "text": "固定目标状态。"
+        "text": "从历史状态x_(n−d)中减去用同一历史状态计算的hLx_(n−d)。"
       },
       {
         "id": "C",
-        "text": "历史 x_{n-d}，同时保留当前 x_n 作为基底。"
+        "text": "从当前状态x_n中减去用历史状态计算的hLx_(n−d)。"
       },
       {
         "id": "D",
-        "text": "只看自己的当前状态。"
+        "text": "从历史状态x_(n−d)中减去用下一步状态计算的hLx_(n+1)。"
       }
     ],
     "constraints": []
@@ -800,12 +800,12 @@
   {
     "id": "p16-delay-condition",
     "slug": "p16-delay-condition",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.5",
     "lesson_id": "P16-C05-S02",
     "title": "无延迟谱界",
-    "statement": "无延迟（delay）的 h<2/λmax(L) 能直接保证任意延迟下收敛吗？",
+    "statement": "无延迟（delay）时，步长条件为h<2/λmax(L)。在更新中加入历史状态（state）后，应怎样判断这个步长条件是否仍适用？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -822,19 +822,19 @@
     "options": [
       {
         "id": "A",
-        "text": "能，因为总和守恒。"
+        "text": "总和仍然守恒，因此各差异模态（mode）还按照无延迟时的乘子变化。"
       },
       {
         "id": "B",
-        "text": "能，因为图无向。"
+        "text": "引入延迟后，下一步取决于更早的状态，需要按新的递推关系（recurrence relation）重新求稳定范围。"
       },
       {
         "id": "C",
-        "text": "能，因为只延迟一步。"
+        "text": "将初始历史设为常数后，任何延迟长度都可以沿用无延迟时的步长范围。"
       },
       {
         "id": "D",
-        "text": "不能；延迟系统需独立稳定分析。"
+        "text": "无向图的特征值（eigenvalue）都是实数，因此加入延迟不会改变时间递推的特征方程。"
       }
     ],
     "constraints": []
@@ -842,12 +842,12 @@
   {
     "id": "p16-terminal-reward",
     "slug": "p16-terminal-reward",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.6",
     "lesson_id": "P16-C06-S01",
     "title": "终止后价值",
-    "statement": "终止吸收态（absorbing state）每步奖励0，固定策略下其价值为多少？",
+    "statement": "终止吸收态（absorbing state）从现在起每步奖励均为0，折扣因子γ∈(0,1)。固定策略下该状态（state）的价值是多少？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -864,19 +864,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0。"
+        "text": "该状态的价值为γ/(1−γ)。"
       },
       {
         "id": "B",
-        "text": "1/(1-γ)。"
+        "text": "该状态的价值为0。"
       },
       {
         "id": "C",
-        "text": "等于状态（state）编号。"
+        "text": "该状态的价值为1/(1−γ)。"
       },
       {
         "id": "D",
-        "text": "无法定义。"
+        "text": "该状态的价值为γ。"
       }
     ],
     "constraints": []
@@ -884,12 +884,12 @@
   {
     "id": "p16-policy-vs-learning",
     "slug": "p16-policy-vs-learning",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.6",
     "lesson_id": "P16-C06-S01",
     "title": "策略评价的对象",
-    "statement": "已知转移表下求 Vπ，主要得到什么？",
+    "statement": "已知马尔可夫决策过程（Markov decision process，MDP）的转移表和奖励，求解固定策略的Vπ，得到什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -906,19 +906,19 @@
     "options": [
       {
         "id": "A",
-        "text": "新环境下学习策略的独立效果。"
+        "text": "Vπ给出固定策略下每条随机轨迹（trajectory）都会取得的同一个折扣回报。"
       },
       {
         "id": "B",
-        "text": "固定策略在给定 MDP 中的期望（expectation）折扣回报。"
+        "text": "Vπ给出所有可用策略中最大的期望（expectation）折扣回报。"
       },
       {
         "id": "C",
-        "text": "真实生理控制器的因果效果。"
+        "text": "Vπ给出固定策略在题定转移和奖励下的期望折扣回报。"
       },
       {
         "id": "D",
-        "text": "每条随机轨迹（trajectory）完全相同的回报。"
+        "text": "Vπ给出固定策略执行下一步时的即时期望奖励。"
       }
     ],
     "constraints": []
@@ -926,7 +926,7 @@
   {
     "id": "p16-terminal-q",
     "slug": "p16-terminal-q",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.6",
     "lesson_id": "P16-C06-S02",
@@ -948,19 +948,19 @@
     "options": [
       {
         "id": "A",
-        "text": "r+γmaxQ(next)。"
+        "text": "这次Q更新的目标为本步奖励r。"
       },
       {
         "id": "B",
-        "text": "直接设置为0。"
+        "text": "这次Q更新的目标为0。"
       },
       {
         "id": "C",
-        "text": "仅本步奖励 r。"
+        "text": "这次Q更新的目标为r+γmaxQ(next)。"
       },
       {
         "id": "D",
-        "text": "训练集（training set）平均回报。"
+        "text": "这次Q更新的目标为训练集（training set）中的平均回报。"
       }
     ],
     "constraints": []
@@ -968,7 +968,7 @@
   {
     "id": "p16-finite-q-claim",
     "slug": "p16-finite-q-claim",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.6",
     "lesson_id": "P16-C06-S02",
@@ -990,19 +990,19 @@
     "options": [
       {
         "id": "A",
-        "text": "能，因为曲线变平。"
+        "text": "还需核对各状态（state）动作的访问次数和学习率序列是否符合定理前提，并在新轨迹（trajectory）上评估策略回报。"
       },
       {
         "id": "B",
-        "text": "能，只要学习率非零。"
+        "text": "学习率在训练中一直为正，说明渐近收敛所需的学习率条件已经满足。"
       },
       {
         "id": "C",
-        "text": "能，只要奖励为正。"
+        "text": "训练回报为正，说明探索过程中已经选中了最优动作。"
       },
       {
         "id": "D",
-        "text": "不能；需说明覆盖、预算和独立策略评估（policy evaluation）。"
+        "text": "Q表的数值变化很小，说明每个状态（state）动作组合都已得到充分访问。"
       }
     ],
     "constraints": []
@@ -1010,12 +1010,12 @@
   {
     "id": "p16-pred-vs-actual",
     "slug": "p16-pred-vs-actual",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.7",
     "lesson_id": "P16-C07-S01",
     "title": "预测约束与真实约束",
-    "statement": "候选在 a_hat 模型（model）下预测状态（state）位于 [0,2]，真实 a 不同，能保证实际状态仍在区间吗？",
+    "statement": "估计模型（model）预测状态（state）在[0,2]内，但真实参数（parameter）不同。哪项检查能进一步支持实际约束结论？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1032,19 +1032,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不能，需要实际模型误差或鲁棒裕度的证据。"
+        "text": "检查动作是否在执行器上限内，用输入（input）没有越界来判定实际状态也没有越界。"
       },
       {
         "id": "B",
-        "text": "能，只要输入（input）在限制内。"
+        "text": "估计模型误差能使实际状态偏离预测多少，再检查这一偏差范围是否仍位于[0,2]内。"
       },
       {
         "id": "C",
-        "text": "能，只要代价最低。"
+        "text": "选择预测目标误差平方与动作平方惩罚之和最小的动作，用目标函数最小来判定实际状态没有越界。"
       },
       {
         "id": "D",
-        "text": "能，只要返回了动作。"
+        "text": "检查所有候选动作的预测状态都在[0,2]内，用这些预测结果判定实际状态也在区间内。"
       }
     ],
     "constraints": []
@@ -1052,12 +1052,12 @@
   {
     "id": "p16-infeasible-action",
     "slug": "p16-infeasible-action",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.7",
     "lesson_id": "P16-C07-S01",
     "title": "无可行候选",
-    "statement": "有限动作集合里没有任何满足预测约束的动作，应如何记录？",
+    "statement": "在有限动作集合中，目标函数为预测目标误差平方加动作平方惩罚；可行动作还须满足输入（input）和预测状态（state）上下界。如果没有动作满足这些约束，应如何记录？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1074,19 +1074,19 @@
     "options": [
       {
         "id": "A",
-        "text": "把0强行写成优化最优解。"
+        "text": "在违反约束的动作中选择目标函数值最小的一个，并将它记为原约束下的可行解。"
       },
       {
         "id": "B",
-        "text": "返回无可行解并单独说明备用动作及结果。"
+        "text": "记录本次没有可行动作；如果执行了备用动作，再分别记录该动作及执行后的状态。"
       },
       {
         "id": "C",
-        "text": "删去该场景。"
+        "text": "放宽状态（state）上下界后重新求解，并将所得动作记为原约束下的可行解。"
       },
       {
         "id": "D",
-        "text": "把状态（state）上限放大后仍报告原约束。"
+        "text": "执行零动作，并在未检查其预测状态的情况下，将它记为原约束下的可行解。"
       }
     ],
     "constraints": []
@@ -1094,7 +1094,7 @@
   {
     "id": "p16-paired-budget",
     "slug": "p16-paired-budget",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.7",
     "lesson_id": "P16-C07-S02",
@@ -1116,19 +1116,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只保留成功场景。"
+        "text": "分别取两种策略求解成功的场景，用各自成功场景的数量计算平均预测误差。"
       },
       {
         "id": "B",
-        "text": "学习方法额外读取隐藏真状态（state）。"
+        "text": "每种策略挑出相同数量、且自身预测误差最小的场景，再比较这些场景的平均误差。"
       },
       {
         "id": "C",
-        "text": "每个场景的预测、实际输入（input）、违约和失败。"
+        "text": "每种策略选择使自身预测误差最小的初态，分别记录这些初态下的误差。"
       },
       {
         "id": "D",
-        "text": "只报告最小一次误差。"
+        "text": "在全部共同场景中，逐一记录预测、实际输入（input）、约束是否越界，以及求解是否失败。"
       }
     ],
     "constraints": []
@@ -1136,12 +1136,12 @@
   {
     "id": "p16-rmse-not-safety",
     "slug": "p16-rmse-not-safety",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.7",
     "lesson_id": "P16-C07-S02",
     "title": "预测更准是否更安全",
-    "statement": "候选 RMSE 更低，但动作越界和求解失败更多，何种结论成立？",
+    "statement": "候选预测均方根误差（root mean squared error，RMSE）更低，但动作越界和求解失败更多。怎样比较这些结果？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1158,19 +1158,19 @@
     "options": [
       {
         "id": "A",
-        "text": "候选必在所有决策指标更好。"
+        "text": "保留较低RMSE这一结果，但在总体评价中将动作越界和求解失败次数的权重设为零。"
       },
       {
         "id": "B",
-        "text": "只要 RMSE 低就忽略失败。"
+        "text": "仅保留候选求解成功的场景，重算两种方法的RMSE并据此排序。"
       },
       {
         "id": "C",
-        "text": "机制基线一定没有价值。"
+        "text": "在相同场景下分别报告RMSE、动作越界次数和求解失败次数，说明预测误差减小的同时后两项增加。"
       },
       {
         "id": "D",
-        "text": "当前表中预测误差更低；决策风险证据须单列。"
+        "text": "从RMSE中减去动作越界比例，将差值作为两种方法的排序分数。"
       }
     ],
     "constraints": []
@@ -4464,7 +4464,7 @@
   {
     "id": "p16-capstone-scope",
     "slug": "p16-capstone-scope",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
@@ -4486,19 +4486,19 @@
     "options": [
       {
         "id": "A",
-        "text": "外部模型自动推翻凸包内证明。"
+        "text": "将外部模型加入原集合，继续使用原来的共同矩阵（matrix）而不重新检查不等式。"
       },
       {
         "id": "B",
-        "text": "凸包内结论保留，外部模型另作判断。"
+        "text": "从汇总中删去发散的外部轨迹（trajectory），仅报告原集合中的稳定结果。"
       },
       {
         "id": "C",
-        "text": "所有闭环模型都失稳。"
+        "text": "将声明的集合缩小为一个顶点，把缩小集合视为外部模型已经不再发散。"
       },
       {
         "id": "D",
-        "text": "有限仿真已经取代证书。"
+        "text": "保留原凸包内的稳定结论；若要将外部模型纳入保证范围，则重新验证共同矩阵不等式。"
       }
     ],
     "constraints": []
@@ -4506,7 +4506,7 @@
   {
     "id": "p16-capstone-random",
     "slug": "p16-capstone-random",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
@@ -4528,19 +4528,19 @@
     "options": [
       {
         "id": "A",
-        "text": "粗细各自独立抽样。"
+        "text": "重新独立抽取粗增量，使其方差（variance）等于粗时间步长（time step）度。"
       },
       {
         "id": "B",
-        "text": "只比较两条最好看的曲线。"
+        "text": "将每个粗时间区间内的所有细增量相加，作为该区间的粗增量。"
       },
       {
         "id": "C",
-        "text": "细增量按粗区间求和构造粗增量。"
+        "text": "将每个粗时间区间内的所有细增量取平均，作为该区间的粗增量。"
       },
       {
         "id": "D",
-        "text": "把所有负增量设为零。"
+        "text": "将每个粗时间区间内的首个细增量乘以细步数的平方根，作为该区间的粗增量。"
       }
     ],
     "constraints": []
@@ -4548,12 +4548,12 @@
   {
     "id": "p16-capstone-learning",
     "slug": "p16-capstone-learning",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
     "title": "有限训练的强化学习证据",
-    "statement": "给定短经验序列，训练内回报上升能够证明什么？",
+    "statement": "对给定的短经验序列训练后，训练内回报上升。以下哪项结论符合这项观察？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -4570,19 +4570,19 @@
     "options": [
       {
         "id": "A",
-        "text": "已达到原论文的渐近收敛前提。"
+        "text": "未访问过的状态（state）动作组合也已收敛，因为这些Q表项没有变化。"
       },
       {
         "id": "B",
-        "text": "在任何真实环境都安全。"
+        "text": "以后用同一张Q表运行时，每条轨迹（trajectory）都会取得当前训练回报。"
       },
       {
         "id": "C",
-        "text": "价值函数等于策略的因果效用。"
+        "text": "当前这批经验上的回报上升，还需要用未参与训练的轨迹估计策略的平均回报。"
       },
       {
         "id": "D",
-        "text": "只支持这套训练和评估协议下的有限表现。"
+        "text": "当前训练回报上升，说明策略在一个新的环境中的平均回报也会上升。"
       }
     ],
     "constraints": []
@@ -4590,7 +4590,7 @@
   {
     "id": "p16-capstone-failure",
     "slug": "p16-capstone-failure",
-    "version": "1",
+    "version": "2",
     "part": "16",
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
@@ -4612,19 +4612,19 @@
     "options": [
       {
         "id": "A",
-        "text": "RMSE 最优就说明控制器最安全。"
+        "text": "按RMSE给方法排序，同时从失败率分母中移除所有约束越界的场景。"
       },
       {
         "id": "B",
-        "text": "四项指标分别报告，并说明预测改善未转成安全保证。"
+        "text": "仅在求解成功的场景中计算违约率，将它作为全部场景的违约率。"
       },
       {
         "id": "C",
-        "text": "只删除失败场景。"
+        "text": "对全部共同场景并列报告预测RMSE、动作平方均值、动作越界率和求解失败率。"
       },
       {
         "id": "D",
-        "text": "把约束改宽再称原问题成功。"
+        "text": "放宽状态（state）上限后重算候选的违约率，再与仍使用原上限的基线比较。"
       }
     ],
     "constraints": []

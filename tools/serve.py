@@ -14,7 +14,9 @@ import threading
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(Path(__file__).resolve().parent))
+# Resolve the checkout directly: an editable install may still point at a moved directory.
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "tools"))
 from practice import PracticeEngine, RequestError
 from course_content import notebooks, course_chapters
 from systems_science.local_service import SERVICE_NAME, content_id, workspace_id

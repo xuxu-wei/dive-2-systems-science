@@ -105,7 +105,7 @@ def test_formal_progress_restores_and_is_scoped_to_its_part(tmp_path):
     engine.close();engine=PracticeEngine(directory)
     try:
         assert engine.progress()['passed']==['p01-boundary','p02-step-factor']
-        engine.questions['p01-boundary']['version']='2'
+        engine.questions['p01-boundary']['version']=str(int(engine.questions['p01-boundary']['version'])+1)
         assert engine.progress()['passed']==['p02-step-factor']
     finally:engine.close()
 

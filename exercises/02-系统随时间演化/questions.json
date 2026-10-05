@@ -1,12 +1,12 @@
 [
   {
     "id": "p02-step-factor",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C01-S01",
     "slug": "p02-step-factor",
-    "title": "每步比例属于哪一个时钟",
+    "title": "改变记录间隔",
     "type": "choice",
-    "statement": "一次人工细胞计数模型（model）规定每隔 1 T 更新一次，每次保留原计数的 80%，不含新增。若把记录时刻改成每 0.5 T 一次，哪项说法成立？",
+    "statement": "人工细胞计数模型（model）每 1 T 保留原计数的 80%，不含新增。现用两个相同的半步更新表示同一整步变化，每半步应保留多少比例？",
     "part": "2",
     "chapter": "2.1",
     "learning_targets": [
@@ -20,19 +20,19 @@
     "options": [
       {
         "id": "A",
-        "text": "仍把每半个 T 的保留比例设为 0.8，必定是同一个模型。"
+        "text": "每半步应保留原计数的约 80.0%。"
       },
       {
         "id": "B",
-        "text": "若额外假设两个半步采用相同比例且乘积为 0.8，半步比例为 sqrt(0.8)。"
+        "text": "每半步应保留原计数的约 40.0%。"
       },
       {
         "id": "C",
-        "text": "每步 0.8 的单位是 1/T。"
+        "text": "每半步应保留原计数的约 89.4%。"
       },
       {
         "id": "D",
-        "text": "只需改横轴标签，任何更新次数都不影响终点。"
+        "text": "每半步应保留原计数的约 90.0%。"
       }
     ],
     "constraints": []
@@ -123,7 +123,7 @@
   },
   {
     "id": "p02-sum-index",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C01-S01",
     "slug": "p02-sum-index",
     "title": "累计量为什么包含 n 项",
@@ -142,26 +142,26 @@
     "options": [
       {
         "id": "A",
-        "text": "A[3] = b[3]。"
+        "text": "三次更新后的总量为 A[3]=b[3]。"
       },
       {
         "id": "B",
-        "text": "A[3] = A[0] + b[1] + b[2] + b[3]。"
+        "text": "三次更新后的总量为 A[3]=A[0]+b[1]+b[2]+b[3]。"
       },
       {
         "id": "C",
-        "text": "A[3] = A[0] + b[0] + b[1] + b[2]。"
+        "text": "三次更新后的总量为 A[3]=3A[0]+b[0]。"
       },
       {
         "id": "D",
-        "text": "A[3] = 3 × A[0] + b[0]。"
+        "text": "三次更新后的总量为 A[3]=A[0]+b[0]+b[1]+b[2]。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-fixed-point",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C01-S01",
     "slug": "p02-fixed-point",
     "title": "不变状态与起点",
@@ -180,19 +180,19 @@
     "options": [
       {
         "id": "A",
-        "text": "A=2 U 是固定点（fixed point）。"
+        "text": "总量为 2 U 时，下一步仍为 2 U，因此 2 U 是固定点（fixed point）。"
       },
       {
         "id": "B",
-        "text": "只要固定点为 2 U，任何初值（initial condition）第一步都会变成 2 U。"
+        "text": "从 0 U 开始时，第一次更新就达到固定点 2 U。"
       },
       {
         "id": "C",
-        "text": "从 0 U 开始，前三次更新是 1、1.5、1.75 U。"
+        "text": "从 0 U 开始时，前三次更新后的总量依次为 1、1.5、1.75 U。"
       },
       {
         "id": "D",
-        "text": "每步距 2 U 的偏差都乘 0.5。"
+        "text": "每更新一步，当前总量与 2 U 之差都变为上一步的 0.5 倍。"
       }
     ],
     "constraints": []
@@ -310,12 +310,12 @@
   },
   {
     "id": "p02-rate-unit",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C01-S02",
     "slug": "p02-rate-unit",
     "title": "把速率转成每步比例",
     "type": "choice",
-    "statement": "清除系数（elimination rate constant） k = 0.2 /T，段首所追踪物质总量（tracked amount）为 A，假设本段流出速率保持 kA。时间步长（time step） h = 0.5 T 时，本段移除多少？",
+    "statement": "清除系数（elimination rate constant）k=0.2/T，段首所追踪物质总量（tracked amount）为 A U，本段的流出速率按段首总量计算并保持不变。时间步长（time step）h=0.5 T 时，本段移除多少物质？",
     "part": "2",
     "chapter": "2.1",
     "learning_targets": [
@@ -329,19 +329,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0.2A U，与 h 无关。"
+        "text": "本段移除的物质总量为 0.1A U。"
       },
       {
         "id": "B",
-        "text": "0.1A U。"
+        "text": "本段移除的物质总量为 0.2A U。"
       },
       {
         "id": "C",
-        "text": "0.4A U。"
+        "text": "本段移除的物质总量为 0.4A U。"
       },
       {
         "id": "D",
-        "text": "0.5A U。"
+        "text": "本段移除的物质总量为 0.5A U。"
       }
     ],
     "constraints": []
@@ -453,10 +453,10 @@
   },
   {
     "id": "p02-balance-limit",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C01-S02",
     "slug": "p02-balance-limit",
-    "title": "零残差能证明什么",
+    "title": "检查离散收支",
     "type": "choice",
     "statement": "程序严格执行 A[n+1]=A[n]+h(u−kA[n])，各步收支（mass balance）残差（residual）约为零，但出现了 −5 U。哪些结论成立？",
     "part": "2",
@@ -472,26 +472,26 @@
     "options": [
       {
         "id": "A",
-        "text": "残差为零，说明负所追踪物质总量（tracked amount）一定真实。"
+        "text": "将 −5 U 视为计算舍入造成的微小负值，继续使用当前步长计算后续物质量。"
       },
       {
         "id": "B",
-        "text": "残差只核对离散账目，不能替代物理合理性检查。"
+        "text": "除了比较更新式两侧是否相等，还要检查各步存量（stock）是否满足非负性（nonnegativity）。"
       },
       {
         "id": "C",
-        "text": "应直接把负值改为零，并继续声称同一更新式成立。"
+        "text": "将 −5 U 改为 0 U 而保留原来的流入和流出量后，原更新式的收支残差仍为零。"
       },
       {
         "id": "D",
-        "text": "应检查步长和段内清除速率保持不变的假设。"
+        "text": "检查每步的实际时长，以及按段首总量计算的清除速率是否被保持得过久。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-slope-meaning",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C02-S01",
     "slug": "p02-slope-meaning",
     "title": "平均变化与局部变化",
@@ -510,19 +510,19 @@
     "options": [
       {
         "id": "A",
-        "text": "它的单位是 U/T。"
+        "text": "这个差商表示平均变化率，其单位为 U/T。"
       },
       {
         "id": "B",
-        "text": "当 h=0.5 T 时它等于 2.5 U/T。"
+        "text": "取 h=0.5 T 时，这个差商等于 2.5 U/T。"
       },
       {
         "id": "C",
-        "text": "任意非零 h 得到的数都恰好等于 t=1 的导数（derivative）。"
+        "text": "取 h=0.5 T 时，这个差商就等于 t=1 处的导数（derivative）。"
       },
       {
         "id": "D",
-        "text": "h 趋近零时差商趋近 2 U/T。"
+        "text": "当 h 趋近零时，这个差商趋近 2 U/T。"
       }
     ],
     "constraints": []
@@ -601,12 +601,12 @@
   },
   {
     "id": "p02-limit-not-zero",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C02-S01",
     "slug": "p02-limit-not-zero",
-    "title": "趋近零与代入零",
+    "title": "理解差商的极限",
     "type": "choice",
-    "statement": "定义导数（derivative）时，让 h 趋近零而不直接取零，主要原因是什么？",
+    "statement": "对 A(t)=t²，t=1 处的差商（difference quotient）为 [(1+h)²−1]/h。求导时为什么先在 h≠0 时化简，再令 h 趋近零？",
     "part": "2",
     "chapter": "2.2",
     "learning_targets": [
@@ -620,31 +620,31 @@
     "options": [
       {
         "id": "A",
-        "text": "因为函数永远不能在 t=0 取值。"
+        "text": "因为 h=0 时，原函数 A(1+h) 没有定义。"
       },
       {
         "id": "B",
-        "text": "因为差商（difference quotient）分母为 h，直接取零通常得到 0/0。"
+        "text": "因为 h 从正侧趋零时，化简式趋向无穷大。"
       },
       {
         "id": "C",
-        "text": "因为电脑不允许任何零数值。"
+        "text": "因为导数（derivative）等于任一正 h 对应的差商。"
       },
       {
         "id": "D",
-        "text": "因为导数只是随意选一个很小的 h。"
+        "text": "因为 h=0 时，原差商分子分母同时为零。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-difference-noise",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C02-S01",
     "slug": "p02-difference-noise",
-    "title": "更小间隔总是更准确吗",
+    "title": "解释差分误差",
     "type": "choice",
-    "statement": "用浮点数对光滑曲线做差分。h 缩小时，一开始误差减小，后来却变大。最合理的解释是？",
+    "statement": "用浮点数对光滑函数做前向差分。h 缩小时，误差先减小，极小时又增大。哪种解释与这种变化最相符？",
     "part": "2",
     "chapter": "2.2",
     "learning_targets": [
@@ -658,19 +658,19 @@
     "options": [
       {
         "id": "A",
-        "text": "导数（derivative）不存在。"
+        "text": "截断误差（truncation error）随 h 减小持续放大。"
       },
       {
         "id": "B",
-        "text": "所有差分方法必定不收敛。"
+        "text": "相近数相减的舍入误差（round-off error）被 1/h 放大。"
       },
       {
         "id": "C",
-        "text": "相近数相减的舍入误差（round-off error）经除以很小的 h 放大。"
+        "text": "光滑函数在 h 较小时会变成不连续函数。"
       },
       {
         "id": "D",
-        "text": "应把所有结果取整。"
+        "text": "差商（difference quotient）随 h 减小趋向函数值。"
       }
     ],
     "constraints": []
@@ -696,19 +696,19 @@
     "options": [
       {
         "id": "A",
-        "text": "流入累计量为 4 U。"
+        "text": "0—2 T 内累计流入了 4 U 的物质。"
       },
       {
         "id": "B",
-        "text": "终点总量为 4 U。"
+        "text": "在 t=2 T 时，系统内的物质总量为 4 U。"
       },
       {
         "id": "C",
-        "text": "终点总量为 7 U。"
+        "text": "在 t=2 T 时，系统内的物质总量为 7 U。"
       },
       {
         "id": "D",
-        "text": "定积分的单位为 U/T²。"
+        "text": "这个定积分的单位是 U/T²。"
       }
     ],
     "constraints": []
@@ -794,10 +794,10 @@
   },
   {
     "id": "p02-ftc",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C02-S02",
     "slug": "p02-ftc",
-    "title": "累积函数的变化率",
+    "title": "从累计量求变化率",
     "type": "choice",
     "statement": "令 B(t)=∫₀ᵗ u(s) ds，且 u 在考察时刻连续。哪一项是微积分基本定理（fundamental theorem of calculus）在这里的含义？",
     "part": "2",
@@ -813,19 +813,19 @@
     "options": [
       {
         "id": "A",
-        "text": "B(t)=u(t)。"
+        "text": "累计量 B(t) 等于当前流率（flow rate）u(t)。"
       },
       {
         "id": "B",
-        "text": "B′(t)=u(t)。"
+        "text": "累计量的变化率 B′(t) 等于当前流率减去初始流率，即 u(t)−u(0)。"
       },
       {
         "id": "C",
-        "text": "B′(t)=0。"
+        "text": "累计量的变化率 B′(t) 等于流率本身的变化率 u′(t)。"
       },
       {
         "id": "D",
-        "text": "只要知道 B′，无需初值（initial condition）就能确定原存量（stock）。"
+        "text": "累计量的变化率 B′(t) 等于当前流率 u(t)。"
       }
     ],
     "constraints": []
@@ -851,19 +851,19 @@
     "options": [
       {
         "id": "A",
-        "text": "t=1 T 时累计量连续。"
+        "text": "在 t=1 T 处，累计流入量的左右极限（limit）相同。"
       },
       {
         "id": "B",
-        "text": "t=1 T 时累计曲线的左右斜率（slope）不同。"
+        "text": "在 t=1 T 处，累计曲线左侧斜率（slope）为 2 U/T，右侧斜率为 0。"
       },
       {
         "id": "C",
-        "text": "流率从 2 变 0，存量（stock）必须瞬间减少 2 U。"
+        "text": "流率从 2 U/T 降至 0 时，存量（stock）也会在这一时刻减少 2 U。"
       },
       {
         "id": "D",
-        "text": "对该输入直接用一条处处光滑曲线会掩盖跳变。"
+        "text": "用一条处处光滑的曲线表示输入流率，会把 t=1 T 处从 2 U/T 到 0 的跳变改成连续变化。"
       }
     ],
     "constraints": []
@@ -889,19 +889,19 @@
     "options": [
       {
         "id": "A",
-        "text": "k 的单位应为 1/T。"
+        "text": "清除系数（elimination rate constant） k 的单位应为 1/T。"
       },
       {
         "id": "B",
-        "text": "−kt 是无量纲（dimensionless）数。"
+        "text": "指数中的乘积 −kt 是无量纲（dimensionless）数。"
       },
       {
         "id": "C",
-        "text": "把秒换成分钟后可直接保留 k 的原数值。"
+        "text": "将时间从秒改为分钟表示时，k 使用的数值不需要随之换算。"
       },
       {
         "id": "D",
-        "text": "exp(0)=1，因此满足 A(0)=A0。"
+        "text": "将 t=0 代入公式得到 A(0)=A0，因为 exp(0)=1。"
       }
     ],
     "constraints": []
@@ -998,7 +998,7 @@
   },
   {
     "id": "p02-chain-factor",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C02-S03",
     "slug": "p02-chain-factor",
     "title": "遗漏了哪个因子",
@@ -1017,26 +1017,26 @@
     "options": [
       {
         "id": "A",
-        "text": "乘 −2。"
+        "text": "正确导数（derivative）应为 t exp(−2t)。"
       },
       {
         "id": "B",
-        "text": "乘 t。"
+        "text": "正确导数应为 −2 exp(−2t)。"
       },
       {
         "id": "C",
-        "text": "除以 exp(−2t)。"
+        "text": "正确导数应为 exp(−2t)/exp(−2t)=1。"
       },
       {
         "id": "D",
-        "text": "不需要修正。"
+        "text": "原式 exp(−2t) 已是正确导数。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-integration-constant",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C02-S03",
     "slug": "p02-integration-constant",
     "title": "相同导数为何还有不同曲线",
@@ -1055,31 +1055,31 @@
     "options": [
       {
         "id": "A",
-        "text": "A 与 B 完全相同。"
+        "text": "两个函数在该区间内的函数值处处相同。"
       },
       {
         "id": "B",
-        "text": "B(t)−A(t)=3。"
+        "text": "两个函数在该区间内始终满足 B(t)−A(t)=3。"
       },
       {
         "id": "C",
-        "text": "初值（initial condition）决定积分（definite integral）后的常数。"
+        "text": "给定的初值（initial condition）分别确定了 A 和 B 中的常数项。"
       },
       {
         "id": "D",
-        "text": "A(t)=1+t²，B(t)=4+t²。"
+        "text": "满足题设的两个函数分别为 A(t)=1+t² 和 B(t)=4+t²。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-ivp",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C03-S01",
     "slug": "p02-ivp",
-    "title": "方程还缺什么",
+    "title": "确定一条演化曲线",
     "type": "choice",
-    "statement": "已知 dA/dt=u−kA，u、k 为常数。为了唯一确定本例轨迹（trajectory），还必须提供什么？",
+    "statement": "已知微分方程（differential equation）dA/dt=u−kA，u、k 为给定常数。下面哪组附加信息能唯一确定本例的轨迹（trajectory）？",
     "part": "2",
     "chapter": "2.3",
     "learning_targets": [
@@ -1093,19 +1093,19 @@
     "options": [
       {
         "id": "A",
-        "text": "一个起始时刻及该时刻所追踪物质总量（tracked amount）。"
+        "text": "给出一个起始时刻 t0，并给出该时刻的物质总量 A(t0)。"
       },
       {
         "id": "B",
-        "text": "只需画一条看起来平滑的曲线。"
+        "text": "给出一个起始时刻 t0，并给出绘图时的时间间隔 h。"
       },
       {
         "id": "C",
-        "text": "所有未来时刻的真实测量。"
+        "text": "给出观察终点 t1，并给出纵轴采用的物质总量单位。"
       },
       {
         "id": "D",
-        "text": "任意一个时间步长（time step）即可代替初值（initial condition）。"
+        "text": "给出时间步长（time step）h，并指定计算时采用的数值方法。"
       }
     ],
     "constraints": []
@@ -1209,7 +1209,7 @@
     "slug": "p02-shift-equilibrium",
     "title": "减去平衡为什么有用",
     "type": "choice",
-    "statement": "对 k>0，令 A*=u/k，x=A−A*。哪些推导成立？",
+    "statement": "对恒定输入（input）方程 A′=u−kA，取 k>0、A(0)=A0，并定义平衡（equilibrium）值 A*=u/k 和偏差 x=A−A*。哪些推导成立？",
     "part": "2",
     "chapter": "2.3",
     "learning_targets": [
@@ -1223,31 +1223,31 @@
     "options": [
       {
         "id": "A",
-        "text": "因为 A* 为常数，x′=A′。"
+        "text": "因为平衡值 A* 是常数，偏差的变化率满足 x′=A′。"
       },
       {
         "id": "B",
-        "text": "x′=−kx。"
+        "text": "将 A=x+A* 代入原方程后，偏差满足 x′=−kx。"
       },
       {
         "id": "C",
-        "text": "任何初值（initial condition）都必须等于 A*。"
+        "text": "由 A*=u/k 可知，原方程的初值（initial condition）只能取 A0=A*。"
       },
       {
         "id": "D",
-        "text": "x(t)=(A0−A*)exp(−kt)。"
+        "text": "偏差随时间的变化为 x(t)=(A0−A*)exp(−kt)。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-zero-clearance",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C03-S01",
     "slug": "p02-zero-clearance",
-    "title": "不能除以零的分支",
+    "title": "清除系数为零时",
     "type": "choice",
-    "statement": "若 k=0、u=2 U/T、A0=3 U，则下面哪项成立？",
+    "statement": "模型（model）为 dA/dt=u−kA，k=0、u=2 U/T、A(0)=3 U。t 以 T 为单位，哪条表达式给出 A(t)？",
     "part": "2",
     "chapter": "2.3",
     "learning_targets": [
@@ -1261,29 +1261,29 @@
     "options": [
       {
         "id": "A",
-        "text": "平衡（equilibrium）为 u/k，应设为无限大并直接计算。"
+        "text": "物质总量在各时刻都为 A(t)=3 U。"
       },
       {
         "id": "B",
-        "text": "A(t)=3+2t，没有有限恒定平衡。"
+        "text": "物质总量随时间变化为 A(t)=(3+2t) U。"
       },
       {
         "id": "C",
-        "text": "A(t)=3exp(−2t)。"
+        "text": "物质总量随时间变化为 A(t)=3exp(−2t) U。"
       },
       {
         "id": "D",
-        "text": "A(t)=0。"
+        "text": "物质总量随时间变化为 A(t)=2t U。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-timescale",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C03-S02",
     "slug": "p02-timescale",
-    "title": "同一平衡，不同速度",
+    "title": "同时改变两个速率",
     "type": "choice",
     "statement": "将恒定输入（input）模型（model）中的 u>0 和 k>0 同时乘 2，初值（initial condition）保持不变。哪些结论正确？",
     "part": "2",
@@ -1299,19 +1299,19 @@
     "options": [
       {
         "id": "A",
-        "text": "平衡（equilibrium）量 u/k 不变。"
+        "text": "改变参数（parameter）后，平衡（equilibrium）总量 u/k 与原来相同。"
       },
       {
         "id": "B",
-        "text": "特征时间（characteristic time） 1/k 减半。"
+        "text": "改变参数后，特征时间（characteristic time）1/k 变为原来的一半。"
       },
       {
         "id": "C",
-        "text": "每个相同时刻的所追踪物质总量（tracked amount）必然与原来相同。"
+        "text": "改变参数后，在每个相同时刻计算得到的总量仍与原来相同。"
       },
       {
         "id": "D",
-        "text": "同样的偏离衰减比例在一半时间内达到。"
+        "text": "改变参数后，偏离平衡的量衰减到原来同一比例所需的时间减半。"
       }
     ],
     "constraints": []
@@ -1398,10 +1398,10 @@
   },
   {
     "id": "p02-time-constant",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C03-S02",
     "slug": "p02-time-constant",
-    "title": "一个特征时间之后",
+    "title": "经过一个特征时间",
     "type": "choice",
     "statement": "无输入（input）衰减 A(t)=A0 exp(−kt)，k>0、A0>0。经过 τ=1/k 后还剩多少初始所追踪物质总量（tracked amount）？",
     "part": "2",
@@ -1417,31 +1417,31 @@
     "options": [
       {
         "id": "A",
-        "text": "零。"
+        "text": "经过 τ=1/k 后，剩余量为初始量的 0%。"
       },
       {
         "id": "B",
-        "text": "一半。"
+        "text": "经过 τ=1/k 后，剩余量为初始量的 50%。"
       },
       {
         "id": "C",
-        "text": "exp(−1)≈36.8%。"
+        "text": "经过 τ=1/k 后，剩余量约为初始量的 36.8%。"
       },
       {
         "id": "D",
-        "text": "63.2%。"
+        "text": "经过 τ=1/k 后，剩余量约为初始量的 63.2%。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-solution-check",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C03-S02",
     "slug": "p02-solution-check",
-    "title": "怎样核验一条候选解",
+    "title": "核验候选解",
     "type": "choice",
-    "statement": "候选函数画得很平滑，且最后靠近平衡（equilibrium）。要检查它是否为给定初值问题（initial value problem）的解析解（analytical solution），还应该做哪些事情？",
+    "statement": "对 dA/dt=u−kA、A(0)=A0，给出一个候选函数，其中 u、k 为常数。哪些检查可用来核验它是否为该初值问题（initial value problem）的解析解（analytical solution）？",
     "part": "2",
     "chapter": "2.3",
     "learning_targets": [
@@ -1455,19 +1455,19 @@
     "options": [
       {
         "id": "A",
-        "text": "代入起始时刻，核对初值（initial condition）。"
+        "text": "把 t=0 代入候选函数，检查所得总量是否等于 A0。"
       },
       {
         "id": "B",
-        "text": "求导并检查每个适用时刻都满足方程。"
+        "text": "求出候选函数的导数（derivative），再检查它是否在适用时段满足 A′=u−kA。"
       },
       {
         "id": "C",
-        "text": "只检查终点是否接近 u/k。"
+        "text": "选择一个较晚时刻，候选函数接近 u/k 时就判定它满足整个初值问题。"
       },
       {
         "id": "D",
-        "text": "检查 k=0 等公式分支和变量单位。"
+        "text": "核对等式中各项的单位，并检查 k=0 时所用公式是否仍有定义。"
       }
     ],
     "constraints": []
@@ -1649,12 +1649,12 @@
   },
   {
     "id": "p02-truncation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C04-S01",
     "slug": "p02-truncation",
-    "title": "一次更新舍弃了什么",
+    "title": "一步误差与全程误差",
     "type": "choice",
-    "statement": "欧拉法（forward Euler method）在整个步长 h 内使用段首变化率 f(t,A)。对于光滑解，一步从精确起点出发的遗漏量通常是 O(h²)。哪些结论合理？",
+    "statement": "光滑初值问题（initial value problem）使用欧拉法（forward Euler method）。从精确起点做一步的误差为 O(h²)；在固定总时间内比较不同 h，并假设误差传播稳定。哪些判断成立？",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -1669,31 +1669,31 @@
     "options": [
       {
         "id": "A",
-        "text": "固定总时间内约有 1/h 次更新，稳定条件下全局误差通常为 O(h)。"
+        "text": "在固定总时间内，更新次数约与 1/h 成正比，因此欧拉法的全局误差通常为 O(h)。"
       },
       {
         "id": "B",
-        "text": "只要一步误差是 O(h²)，全局一定二阶。"
+        "text": "每步误差为 O(h²)，因此固定总时间内累积的全局误差也为 O(h²)。"
       },
       {
         "id": "C",
-        "text": "结果还受到舍入误差（round-off error）影响。"
+        "text": "当 h 极小时，浮点运算的舍入误差（round-off error）可能改变误差随 h 减小的趋势。"
       },
       {
         "id": "D",
-        "text": "光滑性和误差传播条件可以忽略。"
+        "text": "将 h 减半会使完成同一总时间的更新次数减半，因此总误差会降低四倍。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-fair-refinement",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C04-S01",
     "slug": "p02-fair-refinement",
-    "title": "怎样公平地细化网格",
+    "title": "比较两个时间网格",
     "type": "choice",
-    "statement": "比较 h=0.5 与 h=0.25 的误差，哪种安排合理？",
+    "statement": "用 h=0.5 T 与 h=0.25 T 比较同一欧拉法（forward Euler method）的误差，两次使用相同初值（initial condition）、参数（parameter）和输入（input）。怎样设置比较时刻？",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -1708,29 +1708,29 @@
     "options": [
       {
         "id": "A",
-        "text": "两次使用同一初值（initial condition）、参数（parameter）、输入（input）和观察区间。"
+        "text": "两组从相同初值运行到 t=4 T，步长为 0.5 T 的组更新 8 次，步长为 0.25 T 的组更新 16 次。"
       },
       {
         "id": "B",
-        "text": "第二次从第一次终点开始。"
+        "text": "两组都更新 8 次，然后比较第一组在 t=4 T 与第二组在 t=2 T 的结果。"
       },
       {
         "id": "C",
-        "text": "第二次同时改变 k，让曲线看起来接近。"
+        "text": "第一组从给定初值运行到 t=4 T，第二组从第一组末值开始再运行 4 T。"
       },
       {
         "id": "D",
-        "text": "只比较两幅图是否足够平滑。"
+        "text": "两组都更新 16 次，然后比较第一组在 t=8 T 与第二组在 t=4 T 的结果。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-zero-error",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C04-S01",
     "slug": "p02-zero-error",
-    "title": "误差为零还能取对数吗",
+    "title": "解释零误差实验",
     "type": "choice",
     "statement": "零清除且输入（input）恒定时，欧拉法（forward Euler method）给出线性精确结果（忽略浮点舍入）。误差表 E(h)=E(h/2)=0。怎样处理观测收敛阶（observed order of convergence）？",
     "part": "2",
@@ -1747,19 +1747,19 @@
     "options": [
       {
         "id": "A",
-        "text": "认定方法无限阶。"
+        "text": "此时 E(h)/E(h/2)=1，因此由误差比估计的收敛阶为 0。"
       },
       {
         "id": "B",
-        "text": "报告此例不能用误差比估计阶数，另选非平凡衰减实验。"
+        "text": "此时 E(h)/E(h/2)=2，因此由误差比估计的收敛阶为 1。"
       },
       {
         "id": "C",
-        "text": "强行算 log2(0/0)。"
+        "text": "此时 E(h)/E(h/2) 为 0/0，无法据此估计收敛阶，需要另选误差非零的例子。"
       },
       {
         "id": "D",
-        "text": "把零改为一个任意正数即可得到证明。"
+        "text": "此时 E(h)/E(h/2)=4，因此由误差比估计的收敛阶为 2。"
       }
     ],
     "constraints": []
@@ -1941,10 +1941,10 @@
   },
   {
     "id": "p02-stable-not-positive",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C04-S02",
     "slug": "p02-stable-not-positive",
-    "title": "稳定曲线也会不合理",
+    "title": "解释放大因子",
     "type": "choice",
     "statement": "无输入（input）清除中 kh=1.5、A0>0。偏差放大因子为 −0.5。哪些说法成立？",
     "part": "2",
@@ -1961,31 +1961,31 @@
     "options": [
       {
         "id": "A",
-        "text": "数值绝对值趋向零。"
+        "text": "每一步计算的总量绝对值都变为上一步的一半，并逐渐趋于零。"
       },
       {
         "id": "B",
-        "text": "每一步必定非负。"
+        "text": "因子 −0.5 只改变近似误差的符号，计算出的物质总量仍保持为正。"
       },
       {
         "id": "C",
-        "text": "曲线交替正负，与连续解的单调正衰减不同。"
+        "text": "计算出的总量正负交替，而对应的连续解始终为正并逐渐衰减。"
       },
       {
         "id": "D",
-        "text": "稳定意味着任何步长精度都足够好。"
+        "text": "计算出的总量绝对值每步减半，说明连续解在每个时长 h 内也恰好减半。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-stability-boundary",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C04-S02",
     "slug": "p02-stability-boundary",
-    "title": "边界 kh=2",
+    "title": "计算边界参数的轨迹",
     "type": "choice",
-    "statement": "无输入（input）、A0=10 U、kh=2。欧拉法（forward Euler method）轨迹（trajectory）是哪种行为？",
+    "statement": "无输入（input）清除，A0=10 U，kh=2，欧拉法（forward Euler method）为 A[n+1]=(1−kh)A[n]。哪组轨迹（trajectory）正确？",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -2000,29 +2000,29 @@
     "options": [
       {
         "id": "A",
-        "text": "10、−10、10、−10…，幅值不衰减，不是严格渐近稳定（asymptotic stability）。"
+        "text": "从起点开始，计算出的总量依次为 10、−5、2.5、−1.25 U，并继续按此比例变化。"
       },
       {
         "id": "B",
-        "text": "10、0、0…，一步达到零。"
+        "text": "从起点开始，计算出的总量依次为 10、0、0、0 U，之后保持为零。"
       },
       {
         "id": "C",
-        "text": "始终为 10。"
+        "text": "从起点开始，计算出的总量依次为 10、10、10、10 U，之后保持不变。"
       },
       {
         "id": "D",
-        "text": "平滑指数衰减。"
+        "text": "从起点开始，计算出的总量依次为 10、−10、10、−10 U，之后继续交替。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-do-not-clip",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C04-S02",
     "slug": "p02-do-not-clip",
-    "title": "发现负值后的正确处理",
+    "title": "调查负值来源",
     "type": "choice",
     "statement": "数值曲线出现负所追踪物质总量（tracked amount），但方程在非负初值（initial condition）和输入（input）下保持非负。哪些操作有助于查明原因？",
     "part": "2",
@@ -2039,19 +2039,19 @@
     "options": [
       {
         "id": "A",
-        "text": "保留失败轨迹（trajectory），减小步长并对照解析解（analytical solution）。"
+        "text": "保留产生负值的计算结果，再减小步长，比较新旧结果与解析解（analytical solution）的差异。"
       },
       {
         "id": "B",
-        "text": "检查 kh 与实际步长。"
+        "text": "核对每次更新实际使用的步长 h，并计算对应的乘积 kh。"
       },
       {
         "id": "C",
-        "text": "直接隐藏负值，继续称原算法通过。"
+        "text": "将负值全部改为零，再以修改后的结果没有负数为依据，判定原更新规则没有问题。"
       },
       {
         "id": "D",
-        "text": "把模型（model）参数（parameter）改到没有负值，但不说明改变了问题。"
+        "text": "增大清除参数（parameter）k，再用新参数下的曲线检验原参数下是否计算正确。"
       }
     ],
     "constraints": []
@@ -2299,26 +2299,26 @@
     "options": [
       {
         "id": "A",
-        "text": "1.6、0 U。"
+        "text": "在 [2.4,3] 和 [3,3.8] 两段内，累计流入量分别为 1.6 U 和 0 U。"
       },
       {
         "id": "B",
-        "text": "0、0 U。"
+        "text": "在 [2.4,3] 和 [3,3.8] 两段内，累计流入量分别为 0 U 和 0 U。"
       },
       {
         "id": "C",
-        "text": "1.2、0 U。"
+        "text": "在 [2.4,3] 和 [3,3.8] 两段内，累计流入量分别为 1.2 U 和 0 U。"
       },
       {
         "id": "D",
-        "text": "1.2、1.6 U。"
+        "text": "在 [2.4,3] 和 [3,3.8] 两段内，累计流入量分别为 1.2 U 和 1.6 U。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-continuity",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C04-S03",
     "slug": "p02-continuity",
     "title": "传播什么到下一段",
@@ -2339,29 +2339,29 @@
     "options": [
       {
         "id": "A",
-        "text": "把上一段末量当作下一段初值（initial condition）。"
+        "text": "将每一段起点的物质总量都设为零，再计算该段。"
       },
       {
         "id": "B",
-        "text": "每段都从零开始。"
+        "text": "将上一段结束时的物质总量作为下一段的初值（initial condition）。"
       },
       {
         "id": "C",
-        "text": "把输入速率的跳变量直接加到所追踪物质总量（tracked amount）上。"
+        "text": "将输入速率在边界处的变化量加到上一段的物质总量上，作为下一段初值。"
       },
       {
         "id": "D",
-        "text": "把总量强行改成新段的平衡（equilibrium）值。"
+        "text": "将新输入对应的平衡（equilibrium）总量作为下一段初值。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-tolerance",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-C04-S03",
     "slug": "p02-tolerance",
-    "title": "两种误差标准",
+    "title": "区分实现误差与近似误差",
     "type": "choice",
     "statement": "判题比较你算出的欧拉法（forward Euler method）值与同一欧拉规则的参考值，容差为 1e−9；同时它与连续解析解（analytical solution）相差 0.1 U。哪些结论成立？",
     "part": "2",
@@ -2379,26 +2379,26 @@
     "options": [
       {
         "id": "A",
-        "text": "两个数字矛盾，题目一定错误。"
+        "text": "程序与欧拉参考值比较的容差为 1e−9，因此程序结果与连续解析解的误差也应小于 1e−9。"
       },
       {
         "id": "B",
-        "text": "前者核对实现，后者衡量离散近似误差。"
+        "text": "与欧拉参考值比较可检查是否按规定更新，与解析解比较可检查离散更新偏离连续解多少。"
       },
       {
         "id": "C",
-        "text": "把判题容差放宽到 0.1 就等于改进数值方法。"
+        "text": "将判题容差从 1e−9 放宽到 0.1，会使当前结果更接近连续解析解。"
       },
       {
         "id": "D",
-        "text": "要减小连续解误差，应检查步长、方法和输入（input）分段。"
+        "text": "可通过减小步长、改用更高阶方法或正确处理输入（input）跳变，检查与连续解的误差能否减小。"
       }
     ],
     "constraints": []
   },
   {
     "id": "p02-cap-rate-balance",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-SUMMARY",
     "slug": "p02-cap-rate-balance",
     "title": "先把速率写进更新式",
@@ -2418,19 +2418,19 @@
     "options": [
       {
         "id": "A",
-        "text": "A_next=A+u−kA。"
+        "text": "下一步总量应按 A_next=A+(u−kA)×Δt 计算。"
       },
       {
         "id": "B",
-        "text": "A_next=A+u×Δt−kA。"
+        "text": "下一步总量应按 A_next=A+u×Δt−kA 计算。"
       },
       {
         "id": "C",
-        "text": "A_next=A+(u−kA)×Δt。"
+        "text": "下一步总量应按 A_next=A+u−kA 计算。"
       },
       {
         "id": "D",
-        "text": "A_next=(A+u−k)×Δt。"
+        "text": "下一步总量应按 A_next=(A+u−k)×Δt 计算。"
       }
     ],
     "constraints": []
@@ -2458,19 +2458,19 @@
     "options": [
       {
         "id": "A",
-        "text": "总流入都为 4 U。"
+        "text": "三个方案在 0—4 T 内的累计流入量都为 4 U。"
       },
       {
         "id": "B",
-        "text": "三者最终所追踪物质总量（tracked amount）必然相等。"
+        "text": "三个方案的累计流入量相同，因此 t=4 T 时剩余的物质量也相同。"
       },
       {
         "id": "C",
-        "text": "较早进入的物质有更长时间被清除。"
+        "text": "较早进入的物质在 t=4 T 之前经历的清除时间更长。"
       },
       {
         "id": "D",
-        "text": "若改为 k=0，三者终值相同，但中间过程仍可不同。"
+        "text": "若将 k 改为 0，三个方案在 t=4 T 时都剩余 4 U，但此前各时刻的总量仍可不同。"
       }
     ],
     "constraints": []
@@ -2813,10 +2813,10 @@
   },
   {
     "id": "p02-migration-evidence",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P02-SUMMARY",
     "slug": "p02-migration-evidence",
-    "title": "哪些证据足以交付迁移实验",
+    "title": "核验分段输入计算",
     "type": "choice",
     "statement": "将恒定输入（input）改成分段输入后，哪些检查属于本例应保留的独立核验？",
     "part": "2",
@@ -2834,19 +2834,19 @@
     "options": [
       {
         "id": "A",
-        "text": "确认网格包含每个跳变且用实际 dt 更新。"
+        "text": "检查每个输入跳变时刻是否出现在时间网格（time grid）中，并用相邻网格点的实际间隔更新。"
       },
       {
         "id": "B",
-        "text": "只看最后一幅曲线是否光滑。"
+        "text": "让两个程序调用同一更新函数，若它们给出相同结果，就不再与另行推导的结果比较。"
       },
       {
         "id": "C",
-        "text": "用分段解析解（analytical solution）比较，并检查 k=0 的累计输入边界。"
+        "text": "将数值结果与分段解析解（analytical solution）比较，并在 k=0 时检查它是否等于初量加累计输入。"
       },
       {
         "id": "D",
-        "text": "比较 h 与 h/2 的误差，报告失败情形。"
+        "text": "在同一时刻比较步长 h 与 h/2 的计算误差，并记录哪些设置下细化步长没有减小误差。"
       }
     ],
     "constraints": []
@@ -2983,7 +2983,7 @@
   },
   {
     "id": "p02-model-scope",
-    "version": "2",
+    "version": "3",
     "lesson_id": "P02-SUMMARY",
     "slug": "p02-model-scope",
     "title": "改变约束后重新解释方案",
@@ -3003,19 +3003,19 @@
     "options": [
       {
         "id": "A",
-        "text": "在声明模型（model）与这些条件下，只有均匀方案满足全程上限。"
+        "text": "均匀方案的峰值为 1.729 U，低于 2 U，而另外两个方案的峰值都超过 2 U。"
       },
       {
         "id": "B",
-        "text": "前置方案终值最低，所以必然满足全程上限。"
+        "text": "前置方案的终值为 0.930 U，因此它在此前整个时段的总量也都低于 2 U。"
       },
       {
         "id": "C",
-        "text": "若只将 k 改为 0，三个方案终值均为 4 U，因此都超过原上限。"
+        "text": "若将 k 改为 0，三个方案在 4 T 时都剩余 4 U，因此都超过 2 U 的上限。"
       },
       {
         "id": "D",
-        "text": "筛选计算正确，就足以把同样参数（parameter）直接用作真实个体的干预方案。"
+        "text": "将每个时刻的输入速率都减半后，三个方案的峰值仍分别为 2.528、2.528、1.729 U。"
       }
     ],
     "constraints": [],

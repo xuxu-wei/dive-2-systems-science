@@ -134,7 +134,7 @@ def test_new_capstone_versions_and_chapter_counts():
     assessment=json.loads((BANK/'assessment.json').read_text(encoding='utf-8'))
     assert assessment['version']=='2'
     cap=[q for q in Q if q['lesson_id']=='P04-SUMMARY']
-    assert len(cap)==8 and all(q['version']=='2' for q in cap)
+    assert len(cap)==8 and all(int(q['version'])>=2 for q in cap)
     for lesson,count in [('P04-C01-S03',4),('P04-C06-S01',4),('P04-C06-S02',5),('P04-C06-S03',4),('P04-C06-S04',5)]:
         assert sum(q['lesson_id']==lesson for q in Q)==count
 

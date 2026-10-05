@@ -132,7 +132,7 @@ def test_http_practice_choice_code_and_progress(server):
     assert sum(q['id'].startswith('p01-') for q in catalog['exercises'])==41
     code,_,body=request(server,'/api/v1/exercises/p01-state-observation')
     assert code==200 and 'correct' not in json.loads(body)
-    choice={'exercise_id':'p01-state-observation','exercise_version':'1','request_id':str(uuid.uuid4()),'selected':['C']}
+    choice={'exercise_id':'p01-state-observation','exercise_version':json.loads(body)['version'],'request_id':str(uuid.uuid4()),'selected':server[0].practice.verification['p01-state-observation']['correct']}
     assert request(server,'/api/v1/choice-attempts',choice)[0]==403
     code,_,body=request(server,'/api/v1/choice-attempts',choice,token=server[0].token)
     assert code==200 and json.loads(body)['verdict']=='AC'

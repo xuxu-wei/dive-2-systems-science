@@ -96,7 +96,7 @@
   {
     "id": "p06-three-clocks",
     "slug": "p06-three-clocks",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C01-S01",
     "part": "6",
     "chapter": "6.1",
@@ -114,19 +114,19 @@
     "options": [
       {
         "id": "A",
-        "text": "将 h 减半必定消除观测（observation）混叠（aliasing）。"
+        "text": "将 h 减为0.005 s 后，读数的采样率（sampling rate）变为200 Hz。"
       },
       {
         "id": "B",
-        "text": "窗口覆盖最近 5 次观察，等间隔时首尾相距 4 s。"
+        "text": "最近5个读数的首尾时刻相距4 s。"
       },
       {
         "id": "C",
-        "text": "用更密的线连采样（sampling）点就获得新的观测信息。"
+        "text": "最近5个读数的窗口时长由5h决定。"
       },
       {
         "id": "D",
-        "text": "数值步长、采样间隔和窗口长度是三个不同选择。"
+        "text": "求解步长减半时，可以保持采样（sampling）间隔与窗口点数。"
       }
     ],
     "constraints": []
@@ -134,7 +134,7 @@
   {
     "id": "p06-alias-equivalence",
     "slug": "p06-alias-equivalence",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C01-S01",
     "part": "6",
     "chapter": "6.1",
@@ -152,19 +152,19 @@
     "options": [
       {
         "id": "A",
-        "text": "增加同一采样率下的点数必能区分 0.2 Hz 与 0.8 Hz 的零相位（phase）理想余弦。"
+        "text": "延长1 Hz采样（sampling）的记录，可区分0.2 Hz与0.8 Hz。"
       },
       {
         "id": "B",
-        "text": "0.2 Hz 与 0.8 Hz 表示连续曲线处处相同。"
+        "text": "两个候选余弦在相邻采样点之间也重合。"
       },
       {
         "id": "C",
-        "text": "真实连续频率必为 0.2 Hz。"
+        "text": "0.8 Hz零相位（phase）余弦也与全部样本相符。"
       },
       {
         "id": "D",
-        "text": "0.8 Hz 的零相位余弦也能产生这些样本。"
+        "text": "把相邻样本线性插值后，可确定真实频率为0.2 Hz。"
       }
     ],
     "constraints": []
@@ -172,13 +172,13 @@
   {
     "id": "p06-nyquist-conditions",
     "slug": "p06-nyquist-conditions",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C01-S01",
     "part": "6",
     "chapter": "6.1",
     "title": "采样定理的适用前提",
     "type": "choice",
-    "statement": "讨论用均匀采样（sampling）恢复连续信号。哪些说法恰当？",
+    "statement": "讨论最高频率为fmax的理想带限（band-limited）信号及实际记录。采样率（sampling rate）为fs，哪些说法正确？",
     "learning_targets": [
       "T1"
     ],
@@ -190,19 +190,19 @@
     "options": [
       {
         "id": "A",
-        "text": "先混叠（aliasing）后仅凭这些样本，总能确定原高频。"
+        "text": "先以低于2fmax的速率采样（sampling），再对样本进行数字低通滤波，就能消除首次采样产生的混叠（aliasing）。"
       },
       {
         "id": "B",
-        "text": "理想带限（band-limited）信号最高频率为 fmax 时，fs>2fmax 是常用无混叠条件。"
+        "text": "理想带限信号满足fs>2fmax时，可避免频谱副本重叠。"
       },
       {
         "id": "C",
-        "text": "有限而带噪的记录自动满足无限精确恢复。"
+        "text": "有限记录满足fs>2fmax时，补零可恢复记录区间外的信号。"
       },
       {
         "id": "D",
-        "text": "首次 A/D 采样前用模拟前端抗混叠滤波（anti-aliasing filter）；足够高采样率（sampling rate）的离散序列再降采样时，先数字低通再抽取。"
+        "text": "首次采样前应在模拟前端进行抗混叠滤波（anti-aliasing filter），已有高采样率序列降采样前应先进行数字低通滤波。"
       }
     ],
     "constraints": []
@@ -292,7 +292,7 @@
   {
     "id": "p06-centered-lookahead",
     "slug": "p06-centered-lookahead",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C01-S02",
     "part": "6",
     "chapter": "6.1",
@@ -310,19 +310,19 @@
     "options": [
       {
         "id": "A",
-        "text": "使用了一个未来读数，实时实现需要等待或改变算法。"
+        "text": "在n+1时刻收到新读数后，才能精确报告n时刻的平滑值。"
       },
       {
         "id": "B",
-        "text": "公式短，所以不会引入数据泄漏（data leakage）。"
+        "text": "在n时刻用已有三个读数计算，即可得到这个公式的结果。"
       },
       {
         "id": "C",
-        "text": "与过去三点均值逐时刻完全相同。"
+        "text": "结果对应n−1时刻，因为窗口从x[n−1]开始。"
       },
       {
         "id": "D",
-        "text": "不等到下一次读数就能在线得到精确结果。"
+        "text": "把x[n+1]替换成x[n]，仍保持同一平滑算法。"
       }
     ],
     "constraints": []
@@ -330,13 +330,13 @@
   {
     "id": "p06-filter-delay",
     "slug": "p06-filter-delay",
-    "version": "1",
+    "version": "3",
     "lesson_id": "P06-C01-S02",
     "part": "6",
     "chapter": "6.1",
     "title": "平滑与延迟如何一起解释",
     "type": "choice",
-    "statement": "等间隔采样（sampling）、固定长度 W 的均值核，在满窗口且低频通带内讨论响应。哪些正确？",
+    "statement": "等间隔采样（sampling）后，对当前样本和过去W−1个样本取均值。只讨论窗口已满且频率位于低频通带内的响应。哪些判断正确？",
     "learning_targets": [
       "T1"
     ],
@@ -348,19 +348,19 @@
     "options": [
       {
         "id": "A",
-        "text": "该对称因果核在非零通带内有约 (W−1)/2 个采样间隔的延迟（delay）。"
+        "text": "通带内的相位（phase）斜率（slope）对应(W−1)/2个采样间隔的延迟（delay）。"
       },
       {
         "id": "B",
-        "text": "相关噪声也一定满足1/W方差（variance）公式。"
+        "text": "只知道W个噪声读数的方差（variance）相同，就能判定其平均值的方差是单个读数的1/W。"
       },
       {
         "id": "C",
-        "text": "独立零均值同方差（homoscedasticity）噪声平均后的方差为原来的1/W。"
+        "text": "W个噪声读数相互独立、均值为0且方差相同时，其平均值的方差是单个读数的1/W。"
       },
       {
         "id": "D",
-        "text": "所有信号成分都只变平滑，不改变幅度或相位（phase）。"
+        "text": "均值核系数和为1，因此每个频率成分的幅度保持不变。"
       }
     ],
     "constraints": []
@@ -368,13 +368,13 @@
   {
     "id": "p06-startup-filter",
     "slug": "p06-startup-filter",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C01-S02",
     "part": "6",
     "chapter": "6.1",
     "title": "前缀平均与固定FIR相同吗",
     "type": "choice",
-    "statement": "对常数输入（input） [3,3,3]、W=3，比较本节前缀重归一均值与零延拓（zero extension）、始终除以3的有限脉冲响应（finite impulse response，FIR）滤波。哪些正确？",
+    "statement": "对常数输入（input）[3,3,3]使用长度W=3的均值滤波：一种算法在启动时只对已有读数求平均；另一种算法采用零延拓（zero extension），把缺少的历史读数设为0并始终除以3。哪些判断正确？",
     "learning_targets": [
       "T1"
     ],
@@ -386,19 +386,19 @@
     "options": [
       {
         "id": "A",
-        "text": "因为稳态相同，所以启动段也可以混用。"
+        "text": "两种算法从第二个读数起都输出（output）3。"
       },
       {
         "id": "B",
-        "text": "前者返回 [3,3,3]。"
+        "text": "按已有读数个数求平均，得到的前三个结果为[3,3,3]。"
       },
       {
         "id": "C",
-        "text": "后者返回前3项 [1,2,3]。"
+        "text": "将读数到达前的值设为0并始终除以3，得到的前三个结果为[1,2,3]。"
       },
       {
         "id": "D",
-        "text": "它们启动段不同，边界规则必须声明。"
+        "text": "报告启动阶段的滤波结果时，需要说明缺少的历史读数如何处理以及分母取几。"
       }
     ],
     "constraints": []
@@ -490,7 +490,7 @@
   {
     "id": "p06-lti-superposition",
     "slug": "p06-lti-superposition",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S01",
     "part": "6",
     "chapter": "6.2",
@@ -508,19 +508,19 @@
     "options": [
       {
         "id": "A",
-        "text": "输入平移后响应相应平移。"
+        "text": "输入在时间上平移后，输出也按相同时间量平移。"
       },
       {
         "id": "B",
-        "text": "饱和器对所有幅值仍满足这一表达。"
+        "text": "用小幅输入测得的固定核计算卷积，可以得到超过饱和阈值时的输出。"
       },
       {
         "id": "C",
-        "text": "非零初态响应应另行考虑。"
+        "text": "初态不为零时，还需要把初态引起的输出计入总响应。"
       },
       {
         "id": "D",
-        "text": "各输入分量的响应可线性叠加。"
+        "text": "将输入分成几个分量后，总输出等于各分量单独引起的输出之和。"
       }
     ],
     "constraints": []
@@ -528,7 +528,7 @@
   {
     "id": "p06-circular-wrap",
     "slug": "p06-circular-wrap",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S01",
     "part": "6",
     "chapter": "6.2",
@@ -546,19 +546,19 @@
     "options": [
       {
         "id": "A",
-        "text": "循环回绕是新的生理反馈（feedback）。"
+        "text": "把两序列补零至L≥N+M−1，再取逆变换的前N+M−1项，可以得到完整线性卷积。"
       },
       {
         "id": "B",
-        "text": "补零改变了系统的脉冲响应（impulse response）。"
+        "text": "把两序列补零至L≥N+M−2，可以利用周期性补回缺少的最后一项。"
       },
       {
         "id": "C",
-        "text": "L≥N+M−1 并补零到L，前N+M−1项对应完整线性卷积。"
+        "text": "把两序列补零至L≥N+M可以得到完整线性卷积，且N+M是最小通用长度。"
       },
       {
         "id": "D",
-        "text": "只要L=max(N,M)总是足够。"
+        "text": "把两序列补零至L≥max(N,M)，再取较长序列对应的项数，可以得到完整线性卷积。"
       }
     ],
     "constraints": []
@@ -566,7 +566,7 @@
   {
     "id": "p06-impulse-meaning",
     "slug": "p06-impulse-meaning",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S01",
     "part": "6",
     "chapter": "6.2",
@@ -584,7 +584,7 @@
     "options": [
       {
         "id": "A",
-        "text": "单位脉冲表示单个离散时刻的输入，不等于随意宽度的连续方波。"
+        "text": "单个离散时刻取值为1的输入，与持续一段时间的连续方波不是同一种输入。"
       },
       {
         "id": "B",
@@ -592,11 +592,11 @@
       },
       {
         "id": "C",
-        "text": "x[n−j] 的延迟（delay）必须与 h[j] 的索引约定一致。"
+        "text": "在Σh[j]x[n−j]中，h[j]表示脉冲输入经过j个时间步后引起的响应。"
       },
       {
         "id": "D",
-        "text": "任意非零初态都不会改变测得的输出。"
+        "text": "初态非零时，把输入幅值除以初态值后测得的输出，仍是零初态下的同一个脉冲响应。"
       }
     ],
     "constraints": []
@@ -709,7 +709,7 @@
   {
     "id": "p06-complex-rotation",
     "slug": "p06-complex-rotation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S02",
     "part": "6",
     "chapter": "6.2",
@@ -731,7 +731,7 @@
       },
       {
         "id": "B",
-        "text": "DFT的正负频率对实信号没有任何关系。"
+        "text": "实信号DFT的正负频率系数相等，虚部也保持同号。"
       },
       {
         "id": "C",
@@ -747,11 +747,11 @@
   {
     "id": "p06-nyquist-amplitude",
     "slug": "p06-nyquist-amplitude",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S02",
     "part": "6",
     "chapter": "6.2",
-    "title": "Nyquist点为什么不乘二",
+    "title": "交替序列的单边频谱",
     "type": "choice",
     "statement": "记录 [1,−1,1,−1] U，fs=4 Hz，N=4。单边幅度谱（one-sided amplitude spectrum）中哪项正确？",
     "learning_targets": [
@@ -765,19 +765,19 @@
     "options": [
       {
         "id": "A",
-        "text": "频率坐标最后一项为4 Hz。"
+        "text": "主峰在4 Hz，单边幅值为1 U。"
       },
       {
         "id": "B",
-        "text": "该记录只有DC成分。"
+        "text": "主峰在0 Hz，单边幅值为1 U。"
       },
       {
         "id": "C",
-        "text": "2 Hz处幅值为1 U，不再乘二。"
+        "text": "主峰在2 Hz，单边幅值为2 U。"
       },
       {
         "id": "D",
-        "text": "2 Hz处幅值为2 U，因为所有正频率均加倍。"
+        "text": "主峰在2 Hz，单边幅值为1 U。"
       }
     ],
     "constraints": []
@@ -785,7 +785,7 @@
   {
     "id": "p06-phase-zero",
     "slug": "p06-phase-zero",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S02",
     "part": "6",
     "chapter": "6.2",
@@ -803,7 +803,7 @@
     "options": [
       {
         "id": "A",
-        "text": "题面返回0相位（phase）不意味着存在零相位振荡。"
+        "text": "程序为这个频点返回相位（phase）0，并不表示信号中存在零相位振荡。"
       },
       {
         "id": "B",
@@ -811,11 +811,11 @@
       },
       {
         "id": "C",
-        "text": "可以用阈值标记未定义相位，但必须声明约定。"
+        "text": "把幅度低于阈值的频点标为相位未定义时，需要同时给出所用阈值。"
       },
       {
         "id": "D",
-        "text": "数值atan2输出（output）可以稳定地揭示该分量的真实相位。"
+        "text": "把这个极小系数除以自身模长（modulus）后，得到的相角就能排除数值误差的影响。"
       }
     ],
     "constraints": []
@@ -823,7 +823,7 @@
   {
     "id": "p06-frequency-units",
     "slug": "p06-frequency-units",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S02",
     "part": "6",
     "chapter": "6.2",
@@ -841,19 +841,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0.2 Hz。"
+        "text": "频点间隔为20 Hz。"
       },
       {
         "id": "B",
-        "text": "5 Hz。"
+        "text": "频点间隔为5 Hz。"
       },
       {
         "id": "C",
-        "text": "20 Hz。"
+        "text": "频点间隔为0.2 Hz。"
       },
       {
         "id": "D",
-        "text": "0.2 rad/s。"
+        "text": "频点间隔为0.2 rad/s。"
       }
     ],
     "constraints": []
@@ -964,7 +964,7 @@
   {
     "id": "p06-finite-leakage",
     "slug": "p06-finite-leakage",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S03",
     "part": "6",
     "chapter": "6.2",
@@ -986,7 +986,7 @@
       },
       {
         "id": "B",
-        "text": "泄漏与混叠（aliasing）是同一个概念。"
+        "text": "频谱泄漏（spectral leakage）和混叠（aliasing）都由采样（sampling）频率不足引起。"
       },
       {
         "id": "C",
@@ -994,7 +994,7 @@
       },
       {
         "id": "D",
-        "text": "看到多个频点就能断定生理机制包含同样多振荡源。"
+        "text": "在原记录末尾补零后，矩形窗（rectangular window）对应的频谱主瓣会变窄。"
       }
     ],
     "constraints": []
@@ -1002,7 +1002,7 @@
   {
     "id": "p06-zero-padding",
     "slug": "p06-zero-padding",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S03",
     "part": "6",
     "chapter": "6.2",
@@ -1020,19 +1020,19 @@
     "options": [
       {
         "id": "A",
-        "text": "原样本的噪声方差（variance）自动降为1/4。"
+        "text": "频点间隔缩为1/4，原样本的噪声方差（variance）也缩为1/4。"
       },
       {
         "id": "B",
-        "text": "增加了独立观测（observation）长度。"
+        "text": "频点间隔缩为1/4，原记录对应的主瓣宽度也缩为1/4。"
       },
       {
         "id": "C",
-        "text": "频谱显示更密，但没有新增原始观察信息。"
+        "text": "频点间隔缩为1/4，原记录对应的主瓣宽度保持不变。"
       },
       {
         "id": "D",
-        "text": "一定能分开任意接近的两种频率。"
+        "text": "频点间隔保持不变，原记录对应的主瓣宽度缩为1/4。"
       }
     ],
     "constraints": []
@@ -1040,7 +1040,7 @@
   {
     "id": "p06-fir-delay-band",
     "slug": "p06-fir-delay-band",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S03",
     "part": "6",
     "chapter": "6.2",
@@ -1062,15 +1062,15 @@
       },
       {
         "id": "B",
-        "text": "所有频率增益（gain）均为1。"
+        "text": "系数和为1，因此0.2 Hz成分的增益（gain）也为1。"
       },
       {
         "id": "C",
-        "text": "零增益频点不能用相位计算有意义的延迟。"
+        "text": "零增益频点的输出（output）幅度为0，因此不能从该频点的相位确定延迟。"
       },
       {
         "id": "D",
-        "text": "启动前按0延拓时，常数输入（input）最初几步可能被压低。"
+        "text": "启动前的输入（input）按0延拓时，常数输入最初几步的输出可能低于该常数。"
       }
     ],
     "constraints": []
@@ -1078,13 +1078,13 @@
   {
     "id": "p06-amplitude-calibration",
     "slug": "p06-amplitude-calibration",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C02-S03",
     "part": "6",
     "chapter": "6.2",
     "title": "给频谱乘窗后怎样报幅值",
     "type": "choice",
-    "statement": "在同一记录上使用矩形窗（rectangular window）与Hann窗。哪项最可靠？",
+    "statement": "在同一N点记录上使用矩形窗（rectangular window）与Hann窗。考虑远离直流和Nyquist点的孤立整频点正弦，忽略旁瓣重叠，以Xw表示加窗后的DFT。常用的振幅（amplitude）相干增益（gain）标定是哪项？",
     "learning_targets": [
       "T2"
     ],
@@ -1096,19 +1096,19 @@
     "options": [
       {
         "id": "A",
-        "text": "声明窗与归一化；整频点孤立正弦的幅值校正常用窗系数和，但离频点/多分量仍有偏差。"
+        "text": "正弦幅值估计为2|Xw[k]|除以窗系数之和。"
       },
       {
         "id": "B",
-        "text": "任何窗都能消除泄漏并保留无限分辨率。"
+        "text": "正弦幅值估计为2|Xw[k]|除以窗系数平方之和。"
       },
       {
         "id": "C",
-        "text": "窗函数（window function）可以恢复采样（sampling）前已丢失的高频。"
+        "text": "正弦幅值估计为2|Xw[k]|除以最大的窗系数。"
       },
       {
         "id": "D",
-        "text": "直接比较未标定峰高，较低者意味着真实振幅（amplitude）下降。"
+        "text": "正弦幅值估计为2|Xw[k]|除以记录长度N。"
       }
     ],
     "constraints": []
@@ -1223,7 +1223,7 @@
   {
     "id": "p06-laplace-initial",
     "slug": "p06-laplace-initial",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C03-S01",
     "part": "6",
     "chapter": "6.3",
@@ -1241,19 +1241,19 @@
     "options": [
       {
         "id": "A",
-        "text": "所有非线性模型（model）都能用同一固定G(s)描述。"
-      },
-      {
-        "id": "B",
         "text": "(s+k)A(s)=U(s)+A0。"
       },
       {
+        "id": "B",
+        "text": "(s+k)A(s)=U(s)−A0。"
+      },
+      {
         "id": "C",
-        "text": "(s+k)A(s)=U(s)，任何初态都成立。"
+        "text": "(s+k)A(s)=U(s)。"
       },
       {
         "id": "D",
-        "text": "A0只会改变极点（pole）位置。"
+        "text": "(s+k)A(s)=U(s)+sA0。"
       }
     ],
     "constraints": []
@@ -1261,7 +1261,7 @@
   {
     "id": "p06-linear-map-initial",
     "slug": "p06-linear-map-initial",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C03-S01",
     "part": "6",
     "chapter": "6.3",
@@ -1283,15 +1283,15 @@
       },
       {
         "id": "B",
-        "text": "该映射一般是仿射（affine）的，零状态（state）部分才满足输入叠加。"
+        "text": "固定非零初态使u到A的映射带有一个与u无关的附加项，因此该映射一般是仿射（affine）的。"
       },
       {
         "id": "C",
-        "text": "把初态也作为可缩放输入的一部分可以恢复联合线性描述。"
+        "text": "把输入u和初态A0一起乘同一系数，得到的整个响应A也乘该系数。"
       },
       {
         "id": "D",
-        "text": "方程线性就允许忽略一切初态。"
+        "text": "固定A0=3时，把输入加倍会使总输出加倍。"
       }
     ],
     "constraints": []
@@ -1299,7 +1299,7 @@
   {
     "id": "p06-roc-causal",
     "slug": "p06-roc-causal",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C03-S01",
     "part": "6",
     "chapter": "6.3",
@@ -1317,7 +1317,7 @@
     "options": [
       {
         "id": "A",
-        "text": "同一有理式无需收敛域（region of convergence，ROC）就唯一决定所有双侧时间信号。"
+        "text": "同一表达式1/(s+k)取Re(s)<−k时，仍对应这条因果核。"
       },
       {
         "id": "B",
@@ -1325,11 +1325,11 @@
       },
       {
         "id": "C",
-        "text": "k=0时仍具有相同的有界输入（input）有界输出（output）稳定性。"
+        "text": "令k=0后，非零恒定输入（input）产生的输出（output）仍是一个有界常数。"
       },
       {
         "id": "D",
-        "text": "其Laplace变换为1/(s+k)，收敛域Re(s)>−k。"
+        "text": "该核的Laplace变换为1/(s+k)，其收敛域（region of convergence，ROC）为Re(s)>−k。"
       }
     ],
     "constraints": []
@@ -1337,13 +1337,13 @@
   {
     "id": "p06-lti-failure",
     "slug": "p06-lti-failure",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C03-S01",
     "part": "6",
     "chapter": "6.3",
     "title": "线性与时不变哪个失效",
     "type": "choice",
-    "statement": "考虑清除模型（model） dA/dt=u−k(t)A 与 dA/dt=u−Vmax*A/(K+A)。其中k(t)单位1/T，Vmax>0单位U/T，K>0单位U，A≥0。哪项正确？",
+    "statement": "考虑清除模型（model）dA/dt=u−k(t)A与dA/dt=u−Vmax*A/(K+A)。k(t)是给定的非恒定时间函数，单位1/T；Vmax>0与K>0均为常数，单位分别为U/T与U，A≥0。哪项分类正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1355,19 +1355,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只要有清除就必是LTI。"
+        "text": "前者的方程是线性的且系数随时间变化，后者的方程是非线性的且系数不随时间变化。"
       },
       {
         "id": "B",
-        "text": "在某一点线性化（linearization）即可保证所有初态都用同一模型。"
+        "text": "前者的方程是非线性的且系数随时间变化，后者的方程是线性的且系数不随时间变化。"
       },
       {
         "id": "C",
-        "text": "前者一般线性但时变，后者一般非线性。"
+        "text": "前者的方程是线性的且系数不随时间变化，后者的方程是非线性的且系数不随时间变化。"
       },
       {
         "id": "D",
-        "text": "前者一定非线性，后者一定线性。"
+        "text": "前者的方程是线性的且系数随时间变化，后者的方程是线性的且系数不随时间变化。"
       }
     ],
     "constraints": []
@@ -1481,7 +1481,7 @@
   {
     "id": "p06-z-index",
     "slug": "p06-z-index",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C03-S02",
     "part": "6",
     "chapter": "6.3",
@@ -1499,19 +1499,19 @@
     "options": [
       {
         "id": "A",
-        "text": "G(z)=b*z⁻¹/(1−a*z⁻¹)，因为u[0]最早影响x[1]。"
+        "text": "G(z)=b/(1−a*z⁻¹)。"
       },
       {
         "id": "B",
-        "text": "G(z)=b/(1−a*z⁻¹)，而无需调整输出（output）索引。"
+        "text": "G(z)=b*z⁻¹/(1−a*z⁻¹)。"
       },
       {
         "id": "C",
-        "text": "非零x[0]也可直接删去。"
+        "text": "G(z)=b*z⁻¹/(1+a*z⁻¹)。"
       },
       {
         "id": "D",
-        "text": "z只等于实时间n。"
+        "text": "G(z)=b*z⁻²/(1−a*z⁻¹)。"
       }
     ],
     "constraints": []
@@ -1537,19 +1537,19 @@
     "options": [
       {
         "id": "A",
-        "text": "Euler幅度衰减要求0<kh<2。"
+        "text": "Euler递推使非零初态的幅度逐步衰减，当且仅当0<kh<2。"
       },
       {
         "id": "B",
-        "text": "Euler对所有非负初态保持非负要求kh≤1。"
+        "text": "Euler递推对每个非负初态都保持非负，当且仅当kh≤1。"
       },
       {
         "id": "C",
-        "text": "只要1−kh<1就保证幅度衰减。"
+        "text": "判定Euler递推的幅度是否衰减，只需要检查1−kh<1这一侧的不等式。"
       },
       {
         "id": "D",
-        "text": "精确因子总在(0,1)。"
+        "text": "精确递推因子exp(−kh)位于0与1之间。"
       }
     ],
     "constraints": []
@@ -1557,7 +1557,7 @@
   {
     "id": "p06-zero-clearance",
     "slug": "p06-zero-clearance",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C03-S02",
     "part": "6",
     "chapter": "6.3",
@@ -1575,15 +1575,15 @@
     "options": [
       {
         "id": "A",
-        "text": "必须抛弃k=0情形，因为分母为0。"
+        "text": "b趋向1。"
       },
       {
         "id": "B",
-        "text": "极限（limit）系数仍具有1/T单位。"
+        "text": "b趋向h²/2。"
       },
       {
         "id": "C",
-        "text": "b趋向h，得到按流量（flow）累积的积分器。"
+        "text": "b趋向h。"
       },
       {
         "id": "D",
@@ -1595,13 +1595,13 @@
   {
     "id": "p06-sampling-pole-map",
     "slug": "p06-sampling-pole-map",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C03-S02",
     "part": "6",
     "chapter": "6.3",
     "title": "改变采样周期后系数怎样变化",
     "type": "choice",
-    "statement": "同一k>0连续系统，两次实验都满足区间恒定输入（input）。将采样（sampling）周期h改为2h。哪些正确？",
+    "statement": "连续系统满足dA/dt=u−kA，k>0，输入（input）在每个采样（sampling）区间内恒定。原采样（sampling）周期为h，精确状态（state）系数为a=exp(−kh)；现将周期改为2h。哪些判断正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1613,7 +1613,7 @@
     "options": [
       {
         "id": "A",
-        "text": "仅改变观察时刻、保持同一连续方程和实际输入轨迹（trajectory）时，真实动态不变。"
+        "text": "若连续方程和实际输入轨迹（trajectory）均未改变，只改变观察时刻不会改变真实状态轨迹。"
       },
       {
         "id": "B",
@@ -1621,11 +1621,11 @@
       },
       {
         "id": "C",
-        "text": "输入系数也必须重新按2h计算。"
+        "text": "采样周期改为2h后，需要重新计算输入在这段2h时间内的累积系数。"
       },
       {
         "id": "D",
-        "text": "直接把Euler系数平方一定等于连续模型（model）的精确采样系数。"
+        "text": "新精确状态系数可写成(1−kh)²。"
       }
     ],
     "constraints": []
@@ -1733,13 +1733,13 @@
   {
     "id": "p06-least-squares-gaussian",
     "slug": "p06-least-squares-gaussian",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S01",
     "part": "6",
     "chapter": "6.4",
     "title": "平方残差何时对应似然",
     "type": "choice",
-    "statement": "固定设计（fixed design）矩阵（matrix）X，y=Xβ+ε，共同误差方差（variance）σ²>0，且最小平方残差和（sum of squared errors，SSE）严格大于0。哪些前提支持普通最小二乘（ordinary least squares，OLS）与最大似然（likelihood）的对应？",
+    "statement": "固定设计（fixed design）矩阵（matrix）X，y=Xβ+ε。误差相互独立、均值为0，服从方差（variance）均为σ²>0的高斯分布（Gaussian distribution），即满足同方差（homoscedasticity）假设，且最小平方残差和（sum of squared errors，SSE）大于0。哪些关于普通最小二乘（ordinary least squares，OLS）与最大似然（likelihood）的判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1751,19 +1751,19 @@
     "options": [
       {
         "id": "A",
-        "text": "任意异方差误差仍应无条件使用同样权重。"
+        "text": "若改为已知不同方差，最大似然的β仍最小化未加权SSE。"
       },
       {
         "id": "B",
-        "text": "共同方差（homoscedasticity）已知或未知时，β的最大似然点估计都可由最小SSE给出。"
+        "text": "σ²已知或未知时，β的最大似然估计都最小化SSE。"
       },
       {
         "id": "C",
-        "text": "平方残差（residual）最小就说明模型（model）机制正确。"
+        "text": "在SSE最小的β处，各观测（observation）残差（residual）均等于零。"
       },
       {
         "id": "D",
-        "text": "ε各项独立、均值0，服从共同方差的高斯分布（Gaussian distribution）。"
+        "text": "固定σ²时，负对数似然中随β变化的项为SSE/(2σ²)。"
       }
     ],
     "constraints": []
@@ -1771,7 +1771,7 @@
   {
     "id": "p06-rank-deficiency",
     "slug": "p06-rank-deficiency",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S01",
     "part": "6",
     "chapter": "6.4",
@@ -1789,19 +1789,19 @@
     "options": [
       {
         "id": "A",
-        "text": "增加同样x的重复就一定恢复满列秩（rank）。"
+        "text": "这些观测（observation）可以分别确定β0和β1。"
       },
       {
         "id": "B",
-        "text": "直接求逆可以创造缺少的信息。"
+        "text": "这些观测只能确定参数（parameter）组合β0+2β1。"
       },
       {
         "id": "C",
-        "text": "两个系数分别唯一可定。"
+        "text": "这些观测只能确定β1，因为β0不影响拟合值。"
       },
       {
         "id": "D",
-        "text": "只有组合β0+2β1能由这些观测（observation）约束，设计矩阵（design matrix）列相关。"
+        "text": "这些观测只能确定β0，因为β1不影响拟合值。"
       }
     ],
     "constraints": []
@@ -1809,7 +1809,7 @@
   {
     "id": "p06-orthogonal-residual",
     "slug": "p06-orthogonal-residual",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S01",
     "part": "6",
     "chapter": "6.4",
@@ -1827,19 +1827,19 @@
     "options": [
       {
         "id": "A",
-        "text": "残差（residual）与所有未观测（observation）的真实机制都独立。"
+        "text": "相邻时刻的残差（residual）样本相关系数（correlation coefficient）为0。"
       },
       {
         "id": "B",
-        "text": "Xᵀr=0到数值误差（numerical error）范围内。"
+        "text": "忽略数值误差（numerical error）时，残差向量（vector）r满足Xᵀr=0。"
       },
       {
         "id": "C",
-        "text": "残差和为0到数值误差范围内。"
+        "text": "忽略数值误差时，所有残差之和为0。"
       },
       {
         "id": "D",
-        "text": "每个残差都必须为0。"
+        "text": "忽略数值误差时，所有残差的平方和为0。"
       }
     ],
     "constraints": []
@@ -1847,13 +1847,13 @@
   {
     "id": "p06-weighted-errors",
     "slug": "p06-weighted-errors",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S01",
     "part": "6",
     "chapter": "6.4",
     "title": "不同测量精度如何进入损失",
     "type": "choice",
-    "statement": "独立高斯误差（Gaussian error）标准差（standard deviation）为σᵢ，且均已知。哪项正确？",
+    "statement": "独立高斯误差（Gaussian error）的标准差（standard deviation）σᵢ已知且不全相同，残差（residual）为rᵢ。忽略与待估参数（parameter）无关的项，哪一个目标与最大似然（likelihood）等价？",
     "learning_targets": [
       "T3"
     ],
@@ -1865,19 +1865,19 @@
     "options": [
       {
         "id": "A",
-        "text": "用Σrᵢ²/σᵢ²作为与似然（likelihood）相关的损失。"
+        "text": "应最小化Σσᵢ²rᵢ²。"
       },
       {
         "id": "B",
-        "text": "标准差越大，权重应越大。"
+        "text": "应最小化Σrᵢ²/σᵢ²。"
       },
       {
         "id": "C",
-        "text": "所有残差（residual）先取绝对值再平方会改成不同损失。"
+        "text": "应最小化Σrᵢ²/σᵢ。"
       },
       {
         "id": "D",
-        "text": "误差分布（distribution）和测量精度与估计无关。"
+        "text": "应最小化Σrᵢ²。"
       }
     ],
     "constraints": []
@@ -2025,7 +2025,7 @@
   {
     "id": "p06-log-error-model",
     "slug": "p06-log-error-model",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S02",
     "part": "6",
     "chapter": "6.4",
@@ -2043,19 +2043,19 @@
     "options": [
       {
         "id": "A",
-        "text": "Y≤0时对数甚至无定义，不能静默删点而不说明。"
+        "text": "当Y≤0时，实数对数logY没有定义，取对数拟合前需要决定如何处理这些读数。"
       },
       {
         "id": "B",
-        "text": "若误差原本是乘性对数正态，另一个对数模型可能合理。"
+        "text": "如果误差改为乘性对数正态误差，则取对数后可以建立加性高斯误差模型。"
       },
       {
         "id": "C",
-        "text": "直接拟合原单位平方残差（residual）符合这个误差设定。"
+        "text": "在题设加性高斯误差模型下，最小化原测量单位上的残差（residual）平方和与最大似然（likelihood）一致。"
       },
       {
         "id": "D",
-        "text": "对所有Y取对数再做等权直线拟合，必与原问题等价。"
+        "text": "对正的Y取对数后，对数误差的方差仍不随t变化。"
       }
     ],
     "constraints": []
@@ -2063,7 +2063,7 @@
   {
     "id": "p06-grid-resolution",
     "slug": "p06-grid-resolution",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S02",
     "part": "6",
     "chapter": "6.4",
@@ -2081,19 +2081,19 @@
     "options": [
       {
         "id": "A",
-        "text": "若最优在边界，无须考虑边界之外。"
+        "text": "连续最优点位于[0.1,0.3]内。"
       },
       {
         "id": "B",
-        "text": "0.2是所有实数k中的精确最优。"
+        "text": "连续最优点位于[0.15,0.25]内。"
       },
       {
         "id": "C",
-        "text": "0.2是已比较集合中的最优，需检查网格范围和分辨率。"
+        "text": "连续最优点与0.2的距离不超过0.1。"
       },
       {
         "id": "D",
-        "text": "网格越密就必定证明机制真实。"
+        "text": "0.2在三个已计算候选中最优。"
       }
     ],
     "constraints": []
@@ -2101,7 +2101,7 @@
   {
     "id": "p06-noisy-differences",
     "slug": "p06-noisy-differences",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S02",
     "part": "6",
     "chapter": "6.4",
@@ -2123,7 +2123,7 @@
       },
       {
         "id": "B",
-        "text": "h变小同时可能放大差分噪声。"
+        "text": "减小h时，差分中噪声项的方差会增大。"
       },
       {
         "id": "C",
@@ -2131,7 +2131,7 @@
       },
       {
         "id": "D",
-        "text": "差分近似误差变小就代表总误差必变小。"
+        "text": "把h减半，差分噪声方差也减半。"
       }
     ],
     "constraints": []
@@ -2139,7 +2139,7 @@
   {
     "id": "p06-residual-validation",
     "slug": "p06-residual-validation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S02",
     "part": "6",
     "chapter": "6.4",
@@ -2157,19 +2157,19 @@
     "options": [
       {
         "id": "A",
-        "text": "检查残差（residual）随时间的结构与测量假设。"
+        "text": "检查残差（residual）是否随时间呈现规律，并将残差大小与假设的测量误差比较。"
       },
       {
         "id": "B",
-        "text": "用核验真值挑参数（parameter），然后声称只用观测拟合。"
+        "text": "用这三次读数选择结构后，把同一批读数上的拟合误差当作独立验证结果。"
       },
       {
         "id": "C",
-        "text": "报告参数搜索范围和可能的参数混淆。"
+        "text": "报告搜索过的参数（parameter）范围，并检查不同参数组合是否能给出相近的拟合值。"
       },
       {
         "id": "D",
-        "text": "在预先保留的其他时刻/个体上验证。"
+        "text": "用预先保留、未参与拟合的其他时刻或其他个体的数据检验预测误差。"
       }
     ],
     "constraints": []
@@ -2287,7 +2287,7 @@
   {
     "id": "p06-interval-meaning",
     "slug": "p06-interval-meaning",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S03",
     "part": "6",
     "chapter": "6.4",
@@ -2305,19 +2305,19 @@
     "options": [
       {
         "id": "A",
-        "text": "参数区间直接就是下一次读数区间。"
+        "text": "反复构造的区间中，约95%包含固定真实参数。"
       },
       {
         "id": "B",
-        "text": "在所列模型（model）条件下，这个构造长期约95%覆盖固定参数。"
+        "text": "每次区间平均包含95%的下一批读数。"
       },
       {
         "id": "C",
-        "text": "真实参数每次以95%概率（probability）重新抽入一个固定区间。"
+        "text": "固定某次区间后，参数有95%的抽样机会落入其中。"
       },
       {
         "id": "D",
-        "text": "只要区间窄就涵盖所有结构误差。"
+        "text": "每100次重复中，恰有95个区间覆盖真实参数。"
       }
     ],
     "constraints": []
@@ -2325,7 +2325,7 @@
   {
     "id": "p06-unknown-variance",
     "slug": "p06-unknown-variance",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S03",
     "part": "6",
     "chapter": "6.4",
@@ -2347,7 +2347,7 @@
       },
       {
         "id": "B",
-        "text": "把估计标准差（standard deviation）直接代入1.96即可保证任何小样本精确95%覆盖。"
+        "text": "估计标准差（standard deviation）代入1.96后，仍得到精确小样本95%区间。"
       },
       {
         "id": "C",
@@ -2355,7 +2355,7 @@
       },
       {
         "id": "D",
-        "text": "N=p且恰好插值时仍可由0/0可靠估计方差。"
+        "text": "同一模型的t临界值应使用N个自由度（degrees of freedom）。"
       }
     ],
     "constraints": []
@@ -2363,7 +2363,7 @@
   {
     "id": "p06-bootstrap-unit",
     "slug": "p06-bootstrap-unit",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C04-S03",
     "part": "6",
     "chapter": "6.4",
@@ -2381,19 +2381,19 @@
     "options": [
       {
         "id": "A",
-        "text": "时间相关的一条轨迹（trajectory）可任意打散为独立点而不改变目标。"
+        "text": "对一条有时间相关性的轨迹（trajectory）逐点有放回抽样，可以保留原序列的相邻相关性。"
       },
       {
         "id": "B",
-        "text": "固定设计（fixed design）回归的残差（residual）自助法须说明误差模型（model），不能与随机设计（random design）对自助法混用。"
+        "text": "固定设计（fixed design）回归的残差（residual）自助法保留原自变量，只重采样（resampling）残差；它与同时重采样自变量和响应的成对自助法（pairs bootstrap）采用不同的随机对象。"
       },
       {
         "id": "C",
-        "text": "自助区间没有自动囊括未建模机制偏差。"
+        "text": "自助区间反映从已有数据重采样得到的估计波动，不包含由遗漏机制产生的全部偏差。"
       },
       {
         "id": "D",
-        "text": "独立随机设计观测（observation）对可成对重采样（resampling），声明重采样次数和区间方法。"
+        "text": "随机设计（random design）下，若各对自变量和响应相互独立，可以把整对观测（observation）作为重采样单位。"
       }
     ],
     "constraints": []
@@ -2513,7 +2513,7 @@
   {
     "id": "p06-arx-regressors",
     "slug": "p06-arx-regressors",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C05-S01",
     "part": "6",
     "chapter": "6.5",
@@ -2531,19 +2531,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只取y[n+1]作为自己的解释变量。"
+        "text": "对应的回归行为[y[n−1],u[n]]。"
       },
       {
         "id": "B",
-        "text": "[y[n],u[n]]。"
+        "text": "对应的回归行为[y[n],u[n+1]]。"
       },
       {
         "id": "C",
-        "text": "[y[n+1],u[n+1]]。"
+        "text": "对应的回归行为[y[n+1],u[n]]。"
       },
       {
         "id": "D",
-        "text": "[a,b]。"
+        "text": "对应的回归行为[y[n],u[n]]。"
       }
     ],
     "constraints": []
@@ -2551,7 +2551,7 @@
   {
     "id": "p06-prediction-information",
     "slug": "p06-prediction-information",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C05-S01",
     "part": "6",
     "chapter": "6.5",
@@ -2569,19 +2569,19 @@
     "options": [
       {
         "id": "A",
-        "text": "一步预测（one-step-ahead prediction）每拍可用新的观测（observation）校正，因此任务不同。"
+        "text": "一步预测（one-step-ahead prediction）每一步都使用新到达的观测（observation），而自由运行把上一步预测值带入下一步。"
       },
       {
         "id": "B",
-        "text": "必须同时说明两种模式、初始化与指标时段。"
+        "text": "比较两种RMSE时，需要说明各自使用哪些读数、从哪个初始值开始，以及在哪段时间计算误差。"
       },
       {
         "id": "C",
-        "text": "一步好就必然证明长期自主模拟准确。"
+        "text": "两种RMSE之差就是参数估计偏差的大小。"
       },
       {
         "id": "D",
-        "text": "自由运行的误差可以随着递推积累。"
+        "text": "自由运行会把前一步的预测误差带入后续计算，使误差随递推积累。"
       }
     ],
     "constraints": []
@@ -2589,7 +2589,7 @@
   {
     "id": "p06-arx-noise-assumption",
     "slug": "p06-arx-noise-assumption",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C05-S01",
     "part": "6",
     "chapter": "6.5",
@@ -2611,15 +2611,15 @@
       },
       {
         "id": "B",
-        "text": "所有叫ARX的拟合都自动一致。"
+        "text": "v[n]在时间上独立，因此等效回归误差与y[n]不相关。"
       },
       {
         "id": "C",
-        "text": "独立创新进入状态（state）的模型（model）与此测量噪声（measurement noise）模型有不同假设。"
+        "text": "把独立噪声加在状态（state）递推方程中，与只把噪声加在传感器读数中，是两种不同的误差模型（model）。"
       },
       {
         "id": "D",
-        "text": "直接回归y[n+1]对y[n]可能有误差变量偏差。"
+        "text": "以含误差的y[n]作为解释变量拟合y[n+1]，可能使a、b的估计产生偏差。"
       }
     ],
     "constraints": []
@@ -2627,13 +2627,13 @@
   {
     "id": "p06-delay-structure",
     "slug": "p06-delay-structure",
-    "version": "1",
+    "version": "3",
     "lesson_id": "P06-C05-S01",
     "part": "6",
     "chapter": "6.5",
     "title": "输入延迟选错会怎样",
     "type": "choice",
-    "statement": "真实输入（input）u[n−1]影响y[n+1]，却拟合成u[n]即时作用。哪项正确？",
+    "statement": "输入（input）随时间变化，且由u[n−1]和u[n]分别组成的两列不成比例。y[n+1]实际受前一拍输入u[n−1]影响，拟合时却用了u[n]。要检查这一个采样（sampling）间隔的错位，哪项做法合适？",
     "learning_targets": [
       "T4"
     ],
@@ -2645,19 +2645,19 @@
     "options": [
       {
         "id": "A",
-        "text": "增加小数位可以把延迟（delay）变成增益（gain）。"
+        "text": "调整输入增益（gain）b而保留u[n]这一列，可以得到与使用u[n−1]相同的输入响应。"
       },
       {
         "id": "B",
-        "text": "训练误差最小足以消除结构选择风险。"
+        "text": "把参数（parameter）网格划得更细，可以在仍使用u[n]的回归中恢复u[n−1]的作用时序。"
       },
       {
         "id": "C",
-        "text": "只要求解器精度高，就自动修复延迟错误。"
+        "text": "可以比较使用u[n]和u[n−1]的模型（model），并检查残差（residual）与各个滞后输入（lagged input）的相关性。"
       },
       {
         "id": "D",
-        "text": "残差（residual）与滞后输入（lagged input）可能相关，需要比较有明确索引的候选结构。"
+        "text": "训练残差的均值为0，说明模型采用的输入延迟（delay）与真实延迟一致。"
       }
     ],
     "constraints": []
@@ -2745,7 +2745,7 @@
   {
     "id": "p06-steady-confounding",
     "slug": "p06-steady-confounding",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C05-S02",
     "part": "6",
     "chapter": "6.5",
@@ -2763,19 +2763,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只能约束b/(1−a)=2 U/V。"
+        "text": "这组稳态读数只约束参数比值b/(1−a)=2 U/V。"
       },
       {
         "id": "B",
-        "text": "(a,b)=(0.5,1)和(0.8,0.4)都符合这条关系。"
+        "text": "参数取(a,b)=(0.5,1)或(0.8,0.4)，都能产生这组稳态读数。"
       },
       {
         "id": "C",
-        "text": "已知输入值就必能独立确定a、b。"
+        "text": "在同一稳态再测一次，就得到确定a、b的第二个独立方程。"
       },
       {
         "id": "D",
-        "text": "动态过渡或新的激励可能增加可辨识信息。"
+        "text": "增加过渡阶段读数或改变输入，可能使回归列不再成比例，从而区分a与b。"
       }
     ],
     "constraints": []
@@ -2783,13 +2783,13 @@
   {
     "id": "p06-constant-transient",
     "slug": "p06-constant-transient",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C05-S02",
     "part": "6",
     "chapter": "6.5",
-    "title": "常量输入一定无法辨识吗",
+    "title": "恒定输入下的参数辨识",
     "type": "choice",
-    "statement": "输入（input）恒定，但从非平衡（equilibrium）初态出发并记录了完整过渡。哪项正确？",
+    "statement": "ARX模型（model）y[n+1]=a*y[n]+b*u[n]的a、b独立未知。输入（input）恒为1，非平衡初态下取得回归行[1,1]与[2,1]，并观测（observation）到对应目标。关于这两行组成的矩阵（matrix）的秩（rank）及参数（parameter）估计，哪项正确？",
     "learning_targets": [
       "T4"
     ],
@@ -2801,19 +2801,19 @@
     "options": [
       {
         "id": "A",
-        "text": "变化中的输出（output）列可能不与常量输入列成比例，有限样本回归矩阵（matrix）可能满秩（rank）。"
+        "text": "输出（output）列变化，因此单独保留任意一行也能求a、b。"
       },
       {
         "id": "B",
-        "text": "所有瞬态都必然提供高精度参数（parameter）估计。"
+        "text": "输入列恒定，因此矩阵的秩为1。"
       },
       {
         "id": "C",
-        "text": "只需数值矩阵满秩就不必检查噪声模型（model）。"
+        "text": "两行组成的矩阵满秩，可在无噪方程内分别求a、b。"
       },
       {
         "id": "D",
-        "text": "常量输入在任何情况下都只能得到秩1。"
+        "text": "矩阵满秩，因此带噪数据也能恢复无误差的a、b。"
       }
     ],
     "constraints": []
@@ -2821,7 +2821,7 @@
   {
     "id": "p06-conditioning",
     "slug": "p06-conditioning",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C05-S02",
     "part": "6",
     "chapter": "6.5",
@@ -2839,11 +2839,11 @@
     "options": [
       {
         "id": "A",
-        "text": "秩为2就意味着参数（parameter）误差为0。"
+        "text": "矩阵秩为2，因此两个参数（parameter）组合的估计精度相同。"
       },
       {
         "id": "B",
-        "text": "用数值稳定的最小二乘可以缓解算术误差，却不能创造信息。"
+        "text": "数值稳定的求解方法可以减少计算舍入误差（round-off error），但不能消除回归列接近成比例所造成的参数不确定性。"
       },
       {
         "id": "C",
@@ -2851,7 +2851,7 @@
       },
       {
         "id": "D",
-        "text": "应检查奇异值（singular value）比例或条件数（condition number），并考虑新的实验设计。"
+        "text": "可以用奇异值（singular value）比例或条件数（condition number）检查列之间接近成比例的程度，并设计新的输入（input）来区分这些列。"
       }
     ],
     "constraints": []
@@ -2859,7 +2859,7 @@
   {
     "id": "p06-mechanistic-parameters",
     "slug": "p06-mechanistic-parameters",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C05-S02",
     "part": "6",
     "chapter": "6.5",
@@ -2877,7 +2877,7 @@
     "options": [
       {
         "id": "A",
-        "text": "不论参数（parameter）哪些已知，稳态永远不能提供k信息。"
+        "text": "在u和k都未知时，正的稳态读数A*能够分别确定u与k。"
       },
       {
         "id": "B",
@@ -2885,11 +2885,11 @@
       },
       {
         "id": "C",
-        "text": "若u已独立校准且A*>0，则理想模型（model）内k=u/A*可确定。"
+        "text": "若u已经独立校准且A*>0，则题设模型（model）给出的k为u/A*。"
       },
       {
         "id": "D",
-        "text": "若u已知且非零，输入（input）通道还有未知增益（gain）g，A*=g*u/k只约束g/k。"
+        "text": "若u已知且非零，但输入（input）通道的增益（gain）g未知，则A*=g*u/k只能确定比值g/k。"
       }
     ],
     "constraints": []
@@ -3133,13 +3133,13 @@
   {
     "id": "p06-train-only-transform",
     "slug": "p06-train-only-transform",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C05-S03",
     "part": "6",
     "chapter": "6.5",
     "title": "标准化参数从哪里估计",
     "type": "choice",
-    "statement": "按时间划定训练、验证和最终评估后，需要减均值除标准差（standard deviation）。哪项正确？",
+    "statement": "按时间划定训练、验证和最终评估，目标是评价只在训练段拟合、之后固定使用的模型（model）。减均值除标准差（standard deviation）的预处理应怎样实施？",
     "learning_targets": [
       "T4"
     ],
@@ -3151,19 +3151,19 @@
     "options": [
       {
         "id": "A",
-        "text": "每个最终评估点都用它未来邻点更新变换，仍声称离线固定模型（model）。"
+        "text": "在训练、验证和最终评估三段中，各用本段的均值和标准差完成标准化。"
       },
       {
         "id": "B",
-        "text": "先按最终评估误差挑变换，再报告同一最终误差为未见表现。"
+        "text": "用训练与验证合并后的均值和标准差处理数据，再根据验证误差选择模型。"
       },
       {
         "id": "C",
-        "text": "用全记录估计均值方差（variance），因为没有用到标签就不算泄漏。"
+        "text": "用全记录的均值和标准差处理数据，再按既定时间划分拟合预测模型。"
       },
       {
         "id": "D",
-        "text": "只用训练段拟合变换，再原样用于验证和最终评估。"
+        "text": "用训练段的均值和标准差处理训练、验证和最终评估三段数据。"
       }
     ],
     "constraints": []
@@ -3171,7 +3171,7 @@
   {
     "id": "p06-missing-lags",
     "slug": "p06-missing-lags",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C05-S03",
     "part": "6",
     "chapter": "6.5",
@@ -3189,19 +3189,19 @@
     "options": [
       {
         "id": "A",
-        "text": "借助验证段未来值填补训练缺测而无需记录。"
+        "text": "用y[1]替代缺测的y[2]，并把由此构造的回归行当作没有缺测的真实观测（observation）。"
       },
       {
         "id": "B",
-        "text": "删除None后把y[1]直接当y[3]的一拍前值。"
+        "text": "保留原时间索引，并跳过目标值或所需滞后（lag）值缺测的回归行。"
       },
       {
         "id": "C",
-        "text": "保留原索引；含缺测目标或所需滞后项（lagged term）的回归行不直接用于拟合。"
+        "text": "删除None后，用[y[1],u[1]]作为预测y[3]的一阶回归行。"
       },
       {
         "id": "D",
-        "text": "把None当0不会改变模型（model）。"
+        "text": "把None替换为0，再用补齐后的序列构造所有回归行。"
       }
     ],
     "constraints": []
@@ -3209,13 +3209,13 @@
   {
     "id": "p06-held-out-purpose",
     "slug": "p06-held-out-purpose",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C05-S03",
     "part": "6",
     "chapter": "6.5",
     "title": "验证与最终评估分别做什么",
     "type": "choice",
-    "statement": "比较两个候选动态结构后准备报告性能。哪些正确？",
+    "statement": "比较两个候选动态结构后，准备报告模型（model）的预测误差。哪些做法或判断正确？",
     "learning_targets": [
       "T4"
     ],
@@ -3227,19 +3227,19 @@
     "options": [
       {
         "id": "A",
-        "text": "训练拟合参数（parameter），验证用于预定候选选择，最终评估留待方案固定后。"
+        "text": "用训练数据估计参数（parameter），用验证数据选择候选结构，再用最终评估数据计算固定方案的预测误差。"
       },
       {
         "id": "B",
-        "text": "同一个体记录跨训练/测试时可以无条件声称泛化到新个体。"
+        "text": "将同一个体的记录按时间分为训练和测试两段，可以估计模型用于新个体时的预测误差。"
       },
       {
         "id": "C",
-        "text": "范围外输入（input）表现差，应报告适用范围而不是删去这些点。"
+        "text": "输入（input）超出训练范围时若预测误差增大，应分别报告这些点的误差及对应输入范围。"
       },
       {
         "id": "D",
-        "text": "可报告残差（residual）时间相关，但单个统计量（statistic）不能证明机制唯一。"
+        "text": "残差（residual）的时间相关可以用于检查模型，但单独这一统计量（statistic）不能确定唯一的动态机制。"
       }
     ],
     "constraints": []
@@ -3247,7 +3247,7 @@
   {
     "id": "p06-rls-equivalence",
     "slug": "p06-rls-equivalence",
-    "version": "1",
+    "version": "3",
     "lesson_id": "P06-C06-S01",
     "part": "6",
     "chapter": "6.6",
@@ -3266,19 +3266,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只对已有观测（observation）的残差（residual）平方求和，完全丢掉初始条件。"
+        "text": "批量目标是已有观测（observation）的残差（residual）平方和，不包含初始参数（parameter）带来的惩罚项。"
       },
       {
         "id": "B",
-        "text": "残差平方和加上 (θ−θ₀)ᵀP₀⁻¹(θ−θ₀)。"
+        "text": "批量目标在每一步只包含最新观测的残差平方和，不包含此前观测。"
       },
       {
         "id": "C",
-        "text": "残差平方和加上 θᵀP₀θ，无论 θ₀ 为何。"
+        "text": "批量目标是已有观测的残差平方和加上θᵀP₀θ。"
       },
       {
         "id": "D",
-        "text": "每收到一条观测就重新用 θ₀ 预测，仅更新 P。"
+        "text": "批量目标是已有观测的残差平方和加上(θ−θ₀)ᵀP₀⁻¹(θ−θ₀)。"
       }
     ],
     "constraints": []
@@ -3433,7 +3433,7 @@
   {
     "id": "p06-rls-rank-one",
     "slug": "p06-rls-rank-one",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C06-S01",
     "part": "6",
     "chapter": "6.6",
@@ -3452,19 +3452,19 @@
     "options": [
       {
         "id": "A",
-        "text": "φφᵀ 的秩（rank）最多为1；可以利用 Pφ 避免每次完整求逆。"
+        "text": "φφᵀ的秩（rank）最多为1，因此可以通过Pφ计算逆矩阵（inverse matrix）的更新，而不必重新求整个H_new的逆。"
       },
       {
         "id": "B",
-        "text": "只要 φ=0，参数（parameter）就完全由这一条目标读数决定。"
+        "text": "当φ=0但目标读数非零时，H仍获得一个非零秩一增量。"
       },
       {
         "id": "C",
-        "text": "正定（positive definite） H 使 1+φᵀPφ>0，因此本节分母有定义。"
+        "text": "H正定（positive definite）时有1+φᵀPφ>0，因此更新公式中以它为分母的除法有定义。"
       },
       {
         "id": "D",
-        "text": "正则项使 H 可逆，并不等于数据已经提供所有参数方向的信息。"
+        "text": "正则项可以使H可逆，即使观测（observation）仍无法区分某些参数（parameter）组合。"
       }
     ],
     "constraints": []
@@ -3563,13 +3563,13 @@
   {
     "id": "p06-rls-covariance",
     "slug": "p06-rls-covariance",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C06-S01",
     "part": "6",
     "chapter": "6.6",
     "title": "什么时候可以写成噪声方差乘P",
     "type": "choice",
-    "statement": "把 P 称为逆信息矩阵（inverse information matrix）。关于参数（parameter）不确定性，以下哪些说法成立？",
+    "statement": "用Φ表示设计矩阵（design matrix），W表示对角遗忘权重矩阵（matrix），H表示加上固定正则项后的信息矩阵，P=H⁻¹。σ²表示单个误差的方差（variance），正则中心保持固定。关于参数（parameter）估计的协方差（covariance）与偏差，哪些说法成立？",
     "learning_targets": [
       "T3"
     ],
@@ -3582,19 +3582,19 @@
     "options": [
       {
         "id": "A",
-        "text": "固定满列秩（rank）设计、无正则且误差独立同方差（homoscedasticity）时，普通最小二乘（ordinary least squares，OLS）的协方差（covariance）为 σ²P。"
+        "text": "当W=I、无正则、设计矩阵满列秩（rank）且误差独立同方差（homoscedasticity）时，普通最小二乘（ordinary least squares，OLS）的参数协方差为σ²P。"
       },
       {
         "id": "B",
-        "text": "加入固定有限正则中心后，无论设计如何仍有协方差=σ²P。"
+        "text": "独立同方差误差下，有固定正则时协方差仍为σ²H⁻¹。"
       },
       {
         "id": "C",
-        "text": "有遗忘权重 W 时，固定设计（fixed design）的误差项一般给出 σ²H⁻¹ΦᵀW²ΦH⁻¹。"
+        "text": "在固定设计（fixed design）和遗忘权重W下，由独立同方差误差产生的参数协方差一般为σ²H⁻¹ΦᵀW²ΦH⁻¹。"
       },
       {
         "id": "D",
-        "text": "若误差与回归量相关，不能仅凭 P 小就断言估计没有偏差。"
+        "text": "误差与回归量相关时，即使P的对角元素较小，也不能说明参数估计没有偏差。"
       }
     ],
     "constraints": []
@@ -3602,11 +3602,11 @@
   {
     "id": "p06-forgetting-objective",
     "slug": "p06-forgetting-objective",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C06-S02",
     "part": "6",
     "chapter": "6.6",
-    "title": "初始约束也会被遗忘",
+    "title": "遗忘递推对应哪种目标",
     "type": "choice",
     "statement": "每次更新使用 Hₙ=λHₙ₋₁+φₙφₙᵀ、bₙ=λbₙ₋₁+φₙyₙ，0<λ<1。第 n 条之后，哪一个目标与此递推对应？",
     "learning_targets": [
@@ -3621,19 +3621,19 @@
     "options": [
       {
         "id": "A",
-        "text": "初始正则项权重固定为1，每条历史残差（residual）的权重也固定为1。"
+        "text": "初始正则项的权重为1，第i条残差（residual）平方的权重为λⁿ⁻ⁱ。"
       },
       {
         "id": "B",
-        "text": "初始正则项乘 λⁿ，第 i 条残差平方乘 λⁿ⁻ⁱ。"
+        "text": "初始正则项的权重为1，第i条残差平方的权重为λⁱ。"
       },
       {
         "id": "C",
-        "text": "只有最新目标乘 λ，所有旧数据权重不变。"
+        "text": "初始正则项的权重为λⁿ，第i条残差平方的权重为λⁱ。"
       },
       {
         "id": "D",
-        "text": "只对参数（parameter）值乘 λ，而信息矩阵（matrix）不变。"
+        "text": "初始正则项的权重为λⁿ，第i条残差平方的权重为λⁿ⁻ⁱ。"
       }
     ],
     "constraints": []
@@ -3745,11 +3745,11 @@
     "options": [
       {
         "id": "A",
-        "text": "先固定 ŷₙ=φₙᵀθₙ₋₁，再读取 yₙ、记误差并更新。"
+        "text": "先用θₙ₋₁计算并保存ŷₙ=φₙᵀθₙ₋₁，再读取yₙ计算预测误差和更新参数。"
       },
       {
         "id": "B",
-        "text": "先用 yₙ 更新参数，再用 φₙᵀθₙ 作为当时的预测成绩。"
+        "text": "先用yₙ更新得到θₙ，再把yₙ−φₙᵀθₙ计作读数到达前的预测误差。"
       },
       {
         "id": "C",
@@ -3757,7 +3757,7 @@
       },
       {
         "id": "D",
-        "text": "若应用场景不再获得目标读数，应另评估冻结参数或自由运行（free-run simulation），不能沿用在线更新成绩。"
+        "text": "若部署后不再获得目标读数，应评估保持参数不变或自由运行（free-run simulation）时的误差，而不是使用持续更新时的误差。"
       }
     ],
     "constraints": []
@@ -3765,11 +3765,11 @@
   {
     "id": "p06-forgetting-excitation",
     "slug": "p06-forgetting-excitation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C06-S02",
     "part": "6",
     "chapter": "6.6",
-    "title": "弱激励不能靠遗忘制造信息",
+    "title": "固定回归方向下的遗忘",
     "type": "choice",
     "statement": "两个参数（parameter）的回归向量（vector）长期都是 [1,0]，λ=0.95，P₀ 是单位矩阵（identity matrix）。以下哪些判断成立？",
     "learning_targets": [
@@ -3784,19 +3784,19 @@
     "options": [
       {
         "id": "A",
-        "text": "第二参数方向没有数据激励，第二分量不会自动靠真实数据收敛。"
+        "text": "这些读数不含第二参数的贡献，因此不能根据它们估计第二参数的真实值。"
       },
       {
         "id": "B",
-        "text": "第二方向的 P 分量按 1/λ 增长，提示旧约束逐渐消失。"
+        "text": "P的第二个对角元素每步乘1/λ，因为该方向没有新观测（observation）补充被遗忘的信息。"
       },
       {
         "id": "C",
-        "text": "把 λ 再减小一定能恢复第二参数的真实值。"
+        "text": "减小λ会使P的第二个对角元素更快减小。"
       },
       {
         "id": "D",
-        "text": "第一分量跟踪较好，不能作为两个分量都被辨识的证据。"
+        "text": "第一参数估计接近真实值，仍不能说明第二参数也已经由数据确定。"
       }
     ],
     "constraints": []
@@ -3804,7 +3804,7 @@
   {
     "id": "p06-drift-noise-validation",
     "slug": "p06-drift-noise-validation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-C06-S02",
     "part": "6",
     "chapter": "6.6",
@@ -3823,19 +3823,19 @@
     "options": [
       {
         "id": "A",
-        "text": "较小 λ 常能更快响应漂移，但也可能放大固定参数（parameter）下的波动。"
+        "text": "较小的λ常使估计更快跟随系数变化，但在系数固定时也可能增大估计值的波动。"
       },
       {
         "id": "B",
-        "text": "一次漂移轨迹（trajectory）误差下降证明参数估计在任意噪声下都一致。"
+        "text": "漂移组误差下降，便可把噪声增大组的误差变化也归为参数（parameter）漂移。"
       },
       {
         "id": "C",
-        "text": "漂移和噪声增大都可能改变误差，要结合激励和预先固定的对照判断。"
+        "text": "参数漂移和噪声增大都可能改变预测误差，需要利用只改变其中一个因素的对照实验来区分。"
       },
       {
         "id": "D",
-        "text": "若最终评估不佳，应如实报告；按评估结果重选 λ 后须另留未见时段。"
+        "text": "最终评估误差应保留在报告中；若用这些误差重新选择λ，则需要新的未见时段评估修改后的方法。"
       }
     ],
     "constraints": []
@@ -3843,7 +3843,7 @@
   {
     "id": "p06-cap-sampling",
     "slug": "p06-cap-sampling",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-SUMMARY",
     "part": "6",
     "chapter": "6.summary",
@@ -3861,19 +3861,19 @@
     "options": [
       {
         "id": "A",
-        "text": "使用未来点的居中滤波应标为离线或注明等待延迟（delay）。"
+        "text": "居中滤波使用后续读数，因此报告实时结果时需要计入等待这些读数的时间。"
       },
       {
         "id": "B",
-        "text": "给1秒采样（sampling）记录补零即可恢复两个连续成分。"
+        "text": "给1 Hz记录补零到十倍长度，就能把0.2 Hz与0.8 Hz分开。"
       },
       {
         "id": "C",
-        "text": "提高观察采样率（sampling rate）并满足带宽条件可以减少这种歧义。"
+        "text": "把采样率（sampling rate）提高到1.6 Hz以上并满足带限（band-limited）前提，可以区分这两个频率。"
       },
       {
         "id": "D",
-        "text": "更细数值步长不改变每秒一次读数的混叠（aliasing）歧义。"
+        "text": "把数值求解步长继续缩小，不会使每秒一次的读数区分出这两个混叠（aliasing）频率。"
       }
     ],
     "constraints": []
@@ -3881,7 +3881,7 @@
   {
     "id": "p06-cap-excitation",
     "slug": "p06-cap-excitation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-SUMMARY",
     "part": "6",
     "chapter": "6.summary",
@@ -3899,19 +3899,19 @@
     "options": [
       {
         "id": "A",
-        "text": "1000点一定比10点任何动态设计更可辨识。"
+        "text": "1000次同稳态读数使两个回归列的秩（rank）达到2。"
       },
       {
         "id": "B",
-        "text": "满列秩（rank）之后仍需检查误差假设与独立验证。"
+        "text": "即使新增数据使回归矩阵（matrix）满列秩，仍需要检查误差假设并用未参与拟合的数据评估预测。"
       },
       {
         "id": "C",
-        "text": "重复可以减少某些随机误差，却不能自动打破稳态参数（parameter）组合的混淆。"
+        "text": "重复同一稳态测量可以减小部分随机误差，但符合相同稳态关系的多组参数（parameter）仍无法区分。"
       },
       {
         "id": "D",
-        "text": "设计过渡或变化输入（input），再检查回归列是否提供独立方向。"
+        "text": "可以记录过渡阶段或改变输入（input），再将读数构造成回归矩阵，检查各列是否线性独立。"
       }
     ],
     "constraints": []
@@ -4448,13 +4448,13 @@
   {
     "id": "p06-cap-resampling",
     "slug": "p06-cap-resampling",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-SUMMARY",
     "part": "6",
     "chapter": "6.summary",
     "title": "更换采样率后的响应",
     "type": "choice",
-    "statement": "同一连续单室清除系数（elimination rate constant）k=0.4/T、每个区间内输入（input）恒定。将采样（sampling）间隔从1T改为2T。哪项正确？",
+    "statement": "同一连续单室模型（one-compartment model）的清除系数（elimination rate constant）k=0.4/T，每个区间内输入（input）恒定。采样（sampling）间隔从1T改为2T后，精确区间更新的状态（state）系数和输入系数分别是哪项？",
     "learning_targets": [
       "T2"
     ],
@@ -4466,19 +4466,19 @@
     "options": [
       {
         "id": "A",
-        "text": "稀疏观察能够自动增加高速动态信息。"
+        "text": "新的状态系数为exp(−0.8)，输入系数为(1−exp(−0.4))/0.4。"
       },
       {
         "id": "B",
-        "text": "新精确状态（state）系数exp(−0.8)，输入系数(1−exp(−0.8))/0.4。"
+        "text": "新的状态系数为exp(−0.8)，输入系数为(1−exp(−0.8))/0.4。"
       },
       {
         "id": "C",
-        "text": "沿用所有旧离散系数即可，因为连续系统没变。"
+        "text": "新的状态系数为exp(−0.4)，输入系数为(1−exp(−0.4))/0.4。"
       },
       {
         "id": "D",
-        "text": "新系数必等于1−0.8且这没有近似误差。"
+        "text": "新的状态系数为1−0.8，输入系数为2。"
       }
     ],
     "constraints": []

@@ -20,19 +20,19 @@
     "options": [
       {
         "id": "A",
-        "text": "M=[[-a,b],[a,-b]]。"
+        "text": "两个室的交换矩阵（matrix）为 M=[[-a,b],[a,-b]]。"
       },
       {
         "id": "B",
-        "text": "每一列的和为零，内部交换不改变总量。"
+        "text": "M 的每列元素相加都为零，因此内部交换不改变两室物质量之和。"
       },
       {
         "id": "C",
-        "text": "M 的非对角元素必须为负。"
+        "text": "M 的非对角元素应取负值，用来表示一个室向另一个室转出物质。"
       },
       {
         "id": "D",
-        "text": "把两条方程相加得到 A1′+A2′=0。"
+        "text": "将两室的变化率相加，可得 A1′+A2′=0。"
       }
     ],
     "constraints": []
@@ -164,7 +164,7 @@
   {
     "id": "p03-amount-concentration",
     "slug": "p03-amount-concentration",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C01-S01",
     "part": "3",
     "chapter": "3.1",
@@ -186,15 +186,15 @@
       },
       {
         "id": "B",
-        "text": "A1+A2 等于两室浓度之和。"
+        "text": "两室混合后的浓度等于 2+2=4 U/L。"
       },
       {
         "id": "C",
-        "text": "若 C1=A1/V1，C1′=−aC1+b(V2/V1)C2（封闭交换）。"
+        "text": "若 C1=A1/V1，封闭交换下 C1′=−aC1+b(V2/V1)C2。"
       },
       {
         "id": "D",
-        "text": "把 A 全换成 C 而保留所有矩阵（matrix）元素，任何容积下都正确。"
+        "text": "对本题容积，封闭交换下 C1′=−aC1+bC2。"
       }
     ],
     "constraints": []
@@ -202,7 +202,7 @@
   {
     "id": "p03-third-room",
     "slug": "p03-third-room",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C01-S01",
     "part": "3",
     "chapter": "3.1",
@@ -220,19 +220,19 @@
     "options": [
       {
         "id": "A",
-        "text": "[[-r,0,0],[r,-r,0],[0,r,0]]"
+        "text": "三室交换应使用矩阵 M=[[-r,0,0],[0,-r,0],[0,0,0]]。"
       },
       {
         "id": "B",
-        "text": "[[-r,r,0],[0,-r,r],[0,0,0]]"
+        "text": "三室交换应使用矩阵 M=[[-r,r,0],[0,-r,r],[0,0,0]]。"
       },
       {
         "id": "C",
-        "text": "[[-r,0,0],[r,r,0],[0,r,0]]"
+        "text": "三室交换应使用矩阵 M=[[-r,0,0],[r,r,0],[0,r,0]]。"
       },
       {
         "id": "D",
-        "text": "[[-r,0,0],[0,-r,0],[0,0,0]]"
+        "text": "三室交换应使用矩阵 M=[[-r,0,0],[r,-r,0],[0,r,0]]。"
       }
     ],
     "constraints": []
@@ -347,13 +347,13 @@
   {
     "id": "p03-norm-units",
     "slug": "p03-norm-units",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C01-S02",
     "part": "3",
     "chapter": "3.1",
-    "title": "长度依赖怎样的坐标",
+    "title": "比较两个状态分量",
     "type": "choice",
-    "statement": "状态（state）由所追踪物质总量（tracked amount） A /U 和温度 θ /℃ 组成。直接计算 sqrt(A²+θ²) 并称为系统总量，哪里有问题？",
+    "statement": "状态（state）由总量 A（U）和温度 θ（℃）组成。若想用一个距离比较这两个分量的变化，计算 sqrt(A²+θ²) 之前需要怎样处理单位与尺度？",
     "learning_targets": [
       "T1"
     ],
@@ -365,19 +365,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不同单位直接相加缺乏所需的度量定义，应先明确各自尺度与比较目的。"
+        "text": "将总量和温度各自平方后，两项就可以作为无量纲（dimensionless）数相加。"
       },
       {
         "id": "B",
-        "text": "只要放入 NumPy 数组（array）就有统一物理单位。"
+        "text": "先规定总量和温度在数组（array）中的顺序，再用数组长度统一它们的单位。"
       },
       {
         "id": "C",
-        "text": "平方会自动消除单位。"
+        "text": "把 sqrt(A²+θ²) 的结果标为 U，就能使温度项与物质量项使用同一单位。"
       },
       {
         "id": "D",
-        "text": "任何范数（norm）都等于守恒总量。"
+        "text": "为总量和温度分别选定参考尺度，再比较各分量相对于自身尺度的变化。"
       }
     ],
     "constraints": []
@@ -403,19 +403,19 @@
     "options": [
       {
         "id": "A",
-        "text": "(x−p)·d=0。"
+        "text": "误差向量 x−p 与方向 d 的内积（inner product）为零，即 (x−p)·d=0。"
       },
       {
         "id": "B",
-        "text": "任何 x 都等于 p。"
+        "text": "采用这个 α 后，误差向量 x−p 等于零。"
       },
       {
         "id": "C",
-        "text": "这个 α 使 ||x−αd||² 最小。"
+        "text": "在所有沿 d 方向的候选 αd 中，这个 α 使平方误差 ||x−αd||² 最小。"
       },
       {
         "id": "D",
-        "text": "d 放大两倍后，投影（projection）向量 p 保持不变。"
+        "text": "将方向 d 换成 2d 并重新计算 α 后，投影（projection）向量 p 保持不变。"
       }
     ],
     "constraints": []
@@ -423,13 +423,13 @@
   {
     "id": "p03-matrix-product",
     "slug": "p03-matrix-product",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C01-S02",
     "part": "3",
     "chapter": "3.1",
-    "title": "矩阵乘法怎样读取",
+    "title": "计算矩阵作用",
     "type": "choice",
-    "statement": "M=[[-0.2,0.1],[0.2,−0.1]]，x=[6,0]。为什么 M@x 等于 [−1.2,1.2] 而非逐元素结果？",
+    "statement": "矩阵（matrix）M=[[-0.2,0.1],[0.2,−0.1]]，列向量（vector）x=[6,0]。按矩阵乘法（matrix multiplication）计算 M@x，结果是什么？",
     "learning_targets": [
       "T1"
     ],
@@ -441,19 +441,19 @@
     "options": [
       {
         "id": "A",
-        "text": "每个结果分量是矩阵（matrix）一行与向量（vector）的内积（inner product）。"
+        "text": "矩阵乘积 M@x 的结果为 [−1.2,0]。"
       },
       {
         "id": "B",
-        "text": "@ 自动寻找平衡（equilibrium）。"
+        "text": "矩阵乘积 M@x 的结果为 [−0.6,0.6]。"
       },
       {
         "id": "C",
-        "text": "@ 与 * 对任意 NumPy 数组（array）都等价。"
+        "text": "矩阵乘积 M@x 的结果为 [−1.2,1.2]。"
       },
       {
         "id": "D",
-        "text": "结果分量由对应行元素相乘得到。"
+        "text": "矩阵乘积 M@x 的结果为 [1.2,−1.2]。"
       }
     ],
     "constraints": []
@@ -550,13 +550,13 @@
   {
     "id": "p03-singular-equilibrium",
     "slug": "p03-singular-equilibrium",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C01-S03",
     "part": "3",
     "chapter": "3.1",
-    "title": "封闭系统为何不能直接求逆",
+    "title": "确定两室平衡",
     "type": "choice",
-    "statement": "a,b>0 的封闭两室交换矩阵（matrix）秩（rank）为 1。要确定从初值（initial condition） [6,0] 出发所对应的平衡（equilibrium），还缺哪一条信息？",
+    "statement": "封闭两室以 aA1 从室 1 转移到室 2，以 bA2 回流，a,b>0。平衡（equilibrium）方程给出 aA1*=bA2*。从 [6,0] U 出发，还应结合哪一条关系确定对应平衡？",
     "learning_targets": [
       "T1"
     ],
@@ -568,19 +568,19 @@
     "options": [
       {
         "id": "A",
-        "text": "A1*+A2*=6 U。"
+        "text": "平衡时，室 1 的物质量为 0，室 2 的物质量为 6 U。"
       },
       {
         "id": "B",
-        "text": "A1*=A2* 恒成立。"
+        "text": "平衡时，两室物质量之差满足 A1*−A2*=6 U。"
       },
       {
         "id": "C",
-        "text": "矩阵的每一项都非零。"
+        "text": "平衡时，两室各有 3 U 的物质。"
       },
       {
         "id": "D",
-        "text": "任意指定 A1*=0。"
+        "text": "平衡时，两室物质量之和满足 A1*+A2*=6 U。"
       }
     ],
     "constraints": []
@@ -606,19 +606,19 @@
     "options": [
       {
         "id": "A",
-        "text": "秩（rank）数的是独立方向或独立约束的数量。"
+        "text": "矩阵（matrix）的秩（rank）等于其列向量（vector）中最多能选出的线性无关向量个数。"
       },
       {
         "id": "B",
-        "text": "任意奇异矩阵（matrix）都意味着无解。"
+        "text": "矩阵 M 不可逆时，方程 Mx=r 就没有解。"
       },
       {
         "id": "C",
-        "text": "二维可逆 M 对每个 r 都有唯一解。"
+        "text": "二维矩阵 M 可逆时，每个右端向量 r 都对应唯一的解 x。"
       },
       {
         "id": "D",
-        "text": "M=0、r=0 时所有 x 都是解。"
+        "text": "M 为零矩阵且 r 为零向量时，每个 x 都满足方程。"
       }
     ],
     "constraints": []
@@ -626,13 +626,13 @@
   {
     "id": "p03-no-clearance-input",
     "slug": "p03-no-clearance-input",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C01-S03",
     "part": "3",
     "chapter": "3.1",
-    "title": "封闭交换加输入能达到定常吗",
+    "title": "持续输入下的定常量",
     "type": "choice",
-    "statement": "a,b>0，c=0，u=1 U/T 持续进入室 1。有没有有限的定常所追踪物质总量（tracked amount）？",
+    "statement": "两室仅内部交换，交换系数 a,b>0；没有清除，外界以 1 U/T 持续输入（input）室 1。是否存在有限的定常总量？",
     "learning_targets": [
       "T1"
     ],
@@ -644,19 +644,19 @@
     "options": [
       {
         "id": "A",
-        "text": "有，因为两室会均衡。"
+        "text": "两室存在有限的定常总量，因为两室之间达到交换平衡（equilibrium）后可以抵消外界输入。"
       },
       {
         "id": "B",
-        "text": "没有，因为总变化率恒为 1 U/T。"
+        "text": "两室不存在有限的定常总量，因为两室总量每单位时间都增加 1 U。"
       },
       {
         "id": "C",
-        "text": "有，只要矩阵（matrix）不可逆。"
+        "text": "两室存在有限的定常总量，因为两室总变化率为 1−aA1−bA2，可以降到零。"
       },
       {
         "id": "D",
-        "text": "有，把任何负平衡（equilibrium）设为零即可。"
+        "text": "两室不存在有限的定常总量，因为总变化率会随总量增长而指数增加。"
       }
     ],
     "constraints": []
@@ -664,7 +664,7 @@
   {
     "id": "p03-equilibrium-limit",
     "slug": "p03-equilibrium-limit",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C01-S03",
     "part": "3",
     "chapter": "3.1",
@@ -682,19 +682,19 @@
     "options": [
       {
         "id": "A",
-        "text": "把 x* 代回两条原方程。"
+        "text": "将 x* 代入两条原方程，检查两个室的变化率是否都为零。"
       },
       {
         "id": "B",
-        "text": "核对输入（input）与清除的总账。"
+        "text": "将两条原方程相加，检查平衡（equilibrium）时外界输入（input）的总流率（flow rate）是否等于清除流率。"
       },
       {
         "id": "C",
-        "text": "仅凭方程有解，就断言所有初值（initial condition）必在有限时间到达。"
+        "text": "从 x* 开始模拟，若两室总量都不变，就可判定其他初值（initial condition）也会回到 x*。"
       },
       {
         "id": "D",
-        "text": "区分平衡（equilibrium）存在、稳定性与到达速度。"
+        "text": "将初值设在 x* 附近，观察两室总量与 x* 的差是缩小还是增大，以及变化有多快。"
       }
     ],
     "constraints": []
@@ -852,19 +852,19 @@
     "options": [
       {
         "id": "A",
-        "text": "总量观测（observation）可以不变，但两室仍在交换。"
+        "text": "两室物质量之和可以保持 6 U，同时仍有物质在两室之间转移。"
       },
       {
         "id": "B",
-        "text": "内部每个状态（state）必定不变。"
+        "text": "两室物质量之和保持 6 U，说明 A1 和 A2 各自都保持不变。"
       },
       {
         "id": "C",
-        "text": "测量只给出两分量之和，不能直接读出各室所追踪物质总量（tracked amount）。"
+        "text": "知道 A1+A2=6 U 还无法分别确定 A1 和 A2 的数值。"
       },
       {
         "id": "D",
-        "text": "若观察 A1，可能看见交换过程。"
+        "text": "改为记录 A1 随时间的变化，可能看到总量曲线未显示的室间转移。"
       }
     ],
     "constraints": []
@@ -872,7 +872,7 @@
   {
     "id": "p03-dimensions",
     "slug": "p03-dimensions",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C02-S01",
     "part": "3",
     "chapter": "3.2",
@@ -891,19 +891,19 @@
     "options": [
       {
         "id": "A",
-        "text": "M:2×2，B:2×1，C:1×2，D:1×1。"
+        "text": "M、B、C、D 的维数依次为 1×2、1×1、1×2、1×1。"
       },
       {
         "id": "B",
-        "text": "M:1×2，B:2×2，C:2×1，D:2×2。"
+        "text": "M、B、C、D 的维数依次为 2×2、1×2、2×1、1×1。"
       },
       {
         "id": "C",
-        "text": "所有矩阵（matrix）都必须 2×2。"
+        "text": "M、B、C、D 的维数依次为 2×2、2×1、1×2、2×1。"
       },
       {
         "id": "D",
-        "text": "C 的行数必须等于状态数。"
+        "text": "M、B、C、D 的维数依次为 2×2、2×1、1×2、1×1。"
       }
     ],
     "constraints": []
@@ -911,13 +911,13 @@
   {
     "id": "p03-output-units",
     "slug": "p03-output-units",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C02-S01",
     "part": "3",
     "chapter": "3.2",
-    "title": "测量浓度如何写输出",
+    "title": "写出浓度测量",
     "type": "choice",
-    "statement": "x=[A1,A2]，V1=2 L。测量室 1 的浓度（concentration），不含直接输入（input）项。正确输出（output）关系是？",
+    "statement": "状态（state）x=[A1,A2] 的单位为 U，室 1 容积 V1=2 L。输出（output）y=Cx 仅测量室 1 浓度（concentration）。以下 C 的各元素均以 1/L 为单位，哪一组正确？",
     "learning_targets": [
       "T2"
     ],
@@ -930,19 +930,19 @@
     "options": [
       {
         "id": "A",
-        "text": "y=[1,0]x，单位 U/L。"
+        "text": "输出关系应使用 C=[1/2,0]。"
       },
       {
         "id": "B",
-        "text": "y=[1/2,0]x，C 的单位为 1/L。"
+        "text": "输出关系应使用 C=[1,0]。"
       },
       {
         "id": "C",
-        "text": "y=[2,0]x，单位 L。"
+        "text": "输出关系应使用 C=[2,0]。"
       },
       {
         "id": "D",
-        "text": "y=A1+A2，始终等于室 1 浓度。"
+        "text": "输出关系应使用 C=[0,1/2]。"
       }
     ],
     "constraints": []
@@ -1074,13 +1074,13 @@
   {
     "id": "p03-unexcited-mode",
     "slug": "p03-unexcited-mode",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C02-S02",
     "part": "3",
     "chapter": "3.2",
-    "title": "模态存在但未被激发",
+    "title": "分解一个对称初值",
     "type": "choice",
-    "statement": "上述对称交换模型（model） a>0，初值（initial condition） [2,2]。差异模态（mode） [1,−1] 的特征值（eigenvalue）仍存在，但其轨迹（trajectory）贡献为零。原因是？",
+    "statement": "对称两室线性模型（model）的模态（mode）方向为 [1,1] 与 [1,−1]。初值（initial condition）为 [2,2] 时，为什么差异模态 [1,−1] 对轨迹（trajectory）的贡献为零？",
     "learning_targets": [
       "T2"
     ],
@@ -1093,19 +1093,19 @@
     "options": [
       {
         "id": "A",
-        "text": "该初值在差异模态方向的系数为零。"
+        "text": "初值为 [2,2] 后，方向 [1,−1] 对应的特征值（eigenvalue）也变成零。"
       },
       {
         "id": "B",
-        "text": "所有快速模态都不存在。"
+        "text": "初值可写成 [2,2]=2[1,1]+0[1,−1]，因此差异方向的分解系数为零。"
       },
       {
         "id": "C",
-        "text": "两室矩阵（matrix）没有特征值。"
+        "text": "向量（vector） [1,−1] 的两分量之和为零，因此它的长度也为零。"
       },
       {
         "id": "D",
-        "text": "观测（observation）曲线为零就能证明矩阵为零。"
+        "text": "两个模态方向相互正交（orthogonality），因此差异模态在任何初值下的分解系数都为零。"
       }
     ],
     "constraints": []
@@ -1113,13 +1113,13 @@
   {
     "id": "p03-invisible-mode",
     "slug": "p03-invisible-mode",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C02-S02",
     "part": "3",
     "chapter": "3.2",
-    "title": "被求和隐藏的模态",
+    "title": "比较状态与总量观测",
     "type": "choice",
-    "statement": "慢向量（vector） [1,1]、快向量 [1,−1]，初值（initial condition） [6,0]，观测（observation） C=[1,1]。哪些成立？",
+    "statement": "线性模型（model）有两个衰减模态（mode）：特征值（eigenvalue）−0.1/T 对应 [1,1]，−0.5/T 对应 [1,−1]。初值（initial condition）为 [6,0]，观测（observation）y=Cx，C=[1,1]。哪些判断成立？",
     "learning_targets": [
       "T2"
     ],
@@ -1132,19 +1132,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两个模态（mode）均被初值激发。"
+        "text": "初值满足 [6,0]=3[1,1]+3[1,−1]，因此两种模态的初始系数都为 3。"
       },
       {
         "id": "B",
-        "text": "C[1,−1]=0，因此快模态在此观测中抵消。"
+        "text": "观测系数满足 C[1,−1]=0，因此 y 中没有快模态的衰减项。"
       },
       {
         "id": "C",
-        "text": "快模态在完整状态（state）中也不存在。"
+        "text": "y 中没有快模态的衰减项，说明 A1 和 A2 中也都没有这一项。"
       },
       {
         "id": "D",
-        "text": "换 C=[1,0] 能在该初值下看到两种衰减。"
+        "text": "改为 C=[1,0] 后，y 中会同时出现 exp(−0.1t) 和 exp(−0.5t) 两种衰减项。"
       }
     ],
     "constraints": []
@@ -1171,19 +1171,19 @@
     "options": [
       {
         "id": "A",
-        "text": "定义中的幂是矩阵乘法（matrix multiplication）幂。"
+        "text": "矩阵指数（matrix exponential）的级数中，M²、M³ 等幂由矩阵乘法（matrix multiplication）计算。"
       },
       {
         "id": "B",
-        "text": "通常可以直接用 np.exp(M*t) 得到矩阵指数（matrix exponential）。"
+        "text": "对 M*t 的每个元素分别取指数，即 np.exp(M*t)，可得到矩阵指数（matrix exponential）。"
       },
       {
         "id": "C",
-        "text": "若 M=VΛV⁻¹ 且 V 可逆，可写成 V exp(Λt)V⁻¹。"
+        "text": "若 M=VΛV⁻¹ 且 V 可逆，矩阵指数可写成 exp(Mt)=V exp(Λt)V⁻¹。"
       },
       {
         "id": "D",
-        "text": "离散更新矩阵 P 的 n 步传播是 Pⁿ。"
+        "text": "若离散更新为 x[n+1]=Px[n]，连续做 n 次更新后有 x[n]=Pⁿx[0]。"
       }
     ],
     "constraints": []
@@ -1191,13 +1191,13 @@
   {
     "id": "p03-modal-time",
     "slug": "p03-modal-time",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C02-S02",
     "part": "3",
     "chapter": "3.2",
-    "title": "哪一个变化更慢",
+    "title": "比较两个衰减模态",
     "type": "choice",
-    "statement": "两个实特征值（eigenvalue）为 −0.1/T 和 −0.5/T。仅考虑各模态（mode）自身衰减，正确结论是？",
+    "statement": "两个模态（mode）的实特征值（eigenvalue）为 −0.1/T 和 −0.5/T。它们各自的特征时间（characteristic time）依次是多少？",
     "learning_targets": [
       "T2"
     ],
@@ -1210,19 +1210,19 @@
     "options": [
       {
         "id": "A",
-        "text": "特征时间（characteristic time）分别为 10 T 和 2 T。"
+        "text": "−0.1/T 与 −0.5/T 对应的特征时间依次为 2 T 和 10 T。"
       },
       {
         "id": "B",
-        "text": "−0.5 对应更慢的模态。"
+        "text": "−0.1/T 与 −0.5/T 对应的特征时间依次为 0.1 T 和 0.5 T。"
       },
       {
         "id": "C",
-        "text": "特征值为负说明所追踪物质总量（tracked amount）必须负。"
+        "text": "−0.1/T 与 −0.5/T 对应的特征时间依次为 10 T 和 2 T。"
       },
       {
         "id": "D",
-        "text": "每个模态都在特征时间时恰好变为零。"
+        "text": "−0.1/T 与 −0.5/T 对应的特征时间依次为 −10 T 和 −2 T。"
       }
     ],
     "constraints": []
@@ -1452,11 +1452,11 @@
   {
     "id": "p03-complex-meaning",
     "slug": "p03-complex-meaning",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C02-S03",
     "part": "3",
     "chapter": "3.2",
-    "title": "虚数不是虚构的物理量",
+    "title": "解释平面状态的复数表示",
     "type": "choice",
     "statement": "对 z=x1+i x2，i²=−1，z′=(−alpha+i omega)z。哪些解释正确？",
     "learning_targets": [
@@ -1471,19 +1471,19 @@
     "options": [
       {
         "id": "A",
-        "text": "i omega 部分描述平面旋转。"
+        "text": "i omega 项使由 (x1,x2) 表示的状态（state）绕原点旋转。"
       },
       {
         "id": "B",
-        "text": "实状态（state） x1,x2 必须变成复数（complex number）测量。"
+        "text": "x1 和 x2 各自的绝对值都等于复数（complex number）z 的模。"
       },
       {
         "id": "C",
-        "text": "e^(iθ)=cosθ+i sinθ 把复指数与实平面联系起来。"
+        "text": "利用 e^(iθ)=cosθ+i sinθ，可以分别写出复指数解的实部和虚部。"
       },
       {
         "id": "D",
-        "text": "alpha>0 时半径按指数缩小。"
+        "text": "alpha>0 时，到原点的距离 sqrt(x1²+x2²) 按指数衰减。"
       }
     ],
     "constraints": []
@@ -1491,13 +1491,13 @@
   {
     "id": "p03-exchange-no-oscillation",
     "slug": "p03-exchange-no-oscillation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C02-S03",
     "part": "3",
     "chapter": "3.2",
-    "title": "封闭两室会自发振荡吗",
+    "title": "分析封闭双向交换",
     "type": "choice",
-    "statement": "普通封闭双向交换的 a,b>0。特征值（eigenvalue）为 0 与 −(a+b)。哪些成立？",
+    "statement": "封闭两室以 aA1 从室 1 流向室 2，以 bA2 回流，a,b>0。特征值（eigenvalue）为 0 与 −(a+b)。哪些判断成立？",
     "learning_targets": [
       "T2"
     ],
@@ -1510,19 +1510,19 @@
     "options": [
       {
         "id": "A",
-        "text": "总量模态（mode）保持不变。"
+        "text": "两室物质量之和 A1+A2 随时间保持不变。"
       },
       {
         "id": "B",
-        "text": "差异向平衡（equilibrium）分配指数衰减。"
+        "text": "每个室的物质量与其平衡（equilibrium）值之差都按 exp[−(a+b)t] 衰减。"
       },
       {
         "id": "C",
-        "text": "必然产生周期性正负摆动。"
+        "text": "每个室的物质量都会反复高于和低于它的平衡值。"
       },
       {
         "id": "D",
-        "text": "人工旋转模型（model）的负偏差不能解释成负所追踪物质总量（tracked amount）。"
+        "text": "保持 a 和联合总量不变时，增大回流系数 b 会增大平衡时 A1 在联合总量中的比例。"
       }
     ],
     "constraints": []
@@ -1530,13 +1530,13 @@
   {
     "id": "p03-defective-limit",
     "slug": "p03-defective-limit",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C02-S03",
     "part": "3",
     "chapter": "3.2",
-    "title": "能否总把矩阵对角化",
+    "title": "缺少独立特征向量时",
     "type": "choice",
-    "statement": "矩阵（matrix） [[−1,1],[0,−1]] 只有一个独立特征向量（eigenvector）。正确处理是？",
+    "statement": "矩阵（matrix）M=[[-1,1],[0,-1]] 只有一个独立特征向量（eigenvector）。求解 x′=Mx 时，哪种处理可保留原方程？",
     "learning_targets": [
       "T2"
     ],
@@ -1549,19 +1549,19 @@
     "options": [
       {
         "id": "A",
-        "text": "强行求两列相同向量（vector）组成的矩阵的逆。"
+        "text": "先求出 x2′=−x2 的解，再把它代入 x1′=−x1+x2 求解。"
       },
       {
         "id": "B",
-        "text": "认为微分方程没有解。"
+        "text": "把 M 换成对角矩阵 diag(−1,−1)，再把所得解作为原方程的解。"
       },
       {
         "id": "C",
-        "text": "按耦合方程求解，或用不依赖完整特征向量组的矩阵指数（matrix exponential）方法。"
+        "text": "将同一个特征向量写成 V 的两列，再求 V 的逆来分解方程。"
       },
       {
         "id": "D",
-        "text": "删掉非对角元素，认为特征值（eigenvalue）一样就没有区别。"
+        "text": "将两个特征值（eigenvalue）分别改为 −1 和 1，再用这两个模态（mode）求原方程的解。"
       }
     ],
     "constraints": []
@@ -1723,19 +1723,19 @@
     "options": [
       {
         "id": "A",
-        "text": "同一路径不保证同一时刻位于同一点。"
+        "text": "两条轨迹（trajectory）经过相同的几何路径，但在同一个时刻可能位于路径上的不同点。"
       },
       {
         "id": "B",
-        "text": "时间曲线可以区分二者。"
+        "text": "分别画出状态（state）随时间的变化，可以区分沿同一路径运动的两种速度。"
       },
       {
         "id": "C",
-        "text": "几何路径已证明速度相同。"
+        "text": "两条几何路径完全重合，说明两条轨迹在对应位置的运动速度相同。"
       },
       {
         "id": "D",
-        "text": "相图（phase portrait）加等时间标记能帮助比较速度。"
+        "text": "在相图（phase portrait）上按相同时间间隔标出位置，可以比较两条轨迹在一段时间内走过的距离。"
       }
     ],
     "constraints": []
@@ -1743,13 +1743,13 @@
   {
     "id": "p03-normalized-arrows",
     "slug": "p03-normalized-arrows",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C03-S01",
     "part": "3",
     "chapter": "3.3",
-    "title": "等长箭头可以比较速度吗",
+    "title": "读取归一化方向场",
     "type": "choice",
-    "statement": "方向场把所有非零箭头都归一化为相同长度。下列哪项解释正确？",
+    "statement": "方向场把所有非零箭头归一化为相同长度。现看到点 P 与点 Q 的箭头等长、方向不同，能从这幅图直接读出什么？",
     "learning_targets": [
       "T3"
     ],
@@ -1762,19 +1762,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只说明方向，速度需看数值或等时间标记。"
+        "text": "P 与 Q 的显示箭头等长，因此两点的实际运动速率相同。"
       },
       {
         "id": "B",
-        "text": "所有状态（state）点速度都一样。"
+        "text": "P 与 Q 的运动方向不同，而比较速率还需要原变化率的大小或等时间间隔内的位移。"
       },
       {
         "id": "C",
-        "text": "平衡（equilibrium）点必须画一个任意方向的箭头。"
+        "text": "P 与 Q 中箭头和横轴夹角较大的那个点，其实际运动速率也较大。"
       },
       {
         "id": "D",
-        "text": "箭头越密表示运动越快。"
+        "text": "P 与 Q 中周围采样点较密的那个点，其实际运动速率也较大。"
       }
     ],
     "constraints": []
@@ -1782,13 +1782,13 @@
   {
     "id": "p03-equilibrium-direction",
     "slug": "p03-equilibrium-direction",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C03-S01",
     "part": "3",
     "chapter": "3.3",
-    "title": "一条分量为零等于平衡吗",
+    "title": "读取二维变化率",
     "type": "choice",
-    "statement": "某点 x′=[0,2] U/T。对于二维自治系统，这个点是什么情况？",
+    "statement": "某点的状态（state）变化率为 x′=[0,2] U/T。对于二维自治系统，该点此刻的运动怎样？",
     "learning_targets": [
       "T3"
     ],
@@ -1801,19 +1801,19 @@
     "options": [
       {
         "id": "A",
-        "text": "已在平衡（equilibrium），因为第一分量为零。"
+        "text": "该点处于平衡（equilibrium），两个分量都不再变化。"
       },
       {
         "id": "B",
-        "text": "沿第二坐标正向运动，尚非平衡。"
+        "text": "第一分量向正方向变化，第二分量瞬时不变。"
       },
       {
         "id": "C",
-        "text": "必定沿封闭周期运动。"
+        "text": "第一分量瞬时不变，第二分量向正方向变化。"
       },
       {
         "id": "D",
-        "text": "所有初值（initial condition）都会经过它。"
+        "text": "第一分量瞬时不变，第二分量向负方向变化。"
       }
     ],
     "constraints": []
@@ -1929,7 +1929,7 @@
     "chapter": "3.3",
     "title": "只关闭回流通道",
     "type": "choice",
-    "statement": "封闭系统 a>0、b=0，总量为 6 U。哪些成立？",
+    "statement": "封闭两室的方程为 A1′=−aA1+bA2、A2′=aA1−bA2，初始联合总量为 6 U，且两室物质量非负。现取 a>0、b=0，即关闭室 2 向室 1 的回流通道。哪些判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1942,19 +1942,19 @@
     "options": [
       {
         "id": "A",
-        "text": "长期趋向 [0,6] U。"
+        "text": "从联合总量为 6 U 的非负初值（initial condition）出发，两室总量分别趋向 [0,6] U。"
       },
       {
         "id": "B",
-        "text": "所追踪物质总量（tracked amount）仍守恒。"
+        "text": "关闭回流通道后，两室所追踪物质总量（tracked amount）之和仍保持不变。"
       },
       {
         "id": "C",
-        "text": "只要 b=0，就所有状态（state）都是平衡（equilibrium）。"
+        "text": "关闭回流通道后，即使 A1>0，两室物质量也都不再变化。"
       },
       {
         "id": "D",
-        "text": "平衡集合在非负区域为 A1=0、A2 任意非负值。"
+        "text": "不限制联合总量时，非负区域内的平衡（equilibrium）点恰为 A1=0、A2≥0 的各点。"
       }
     ],
     "constraints": []
@@ -1981,19 +1981,19 @@
     "options": [
       {
         "id": "A",
-        "text": "外观角度和长度可能变，但方程没有改变。"
+        "text": "图中的角度和显示长度可能改变，但生成轨迹的方程和数值没有改变。"
       },
       {
         "id": "B",
-        "text": "由图上角度变化可证明耦合系数增大。"
+        "text": "图中曲线的角度改变，说明方程中的两个变量耦合系数已经增大。"
       },
       {
         "id": "C",
-        "text": "比较方向时应读坐标刻度与单位。"
+        "text": "比较曲线方向时，需要结合横纵轴的刻度和单位读取两个分量的变化。"
       },
       {
         "id": "D",
-        "text": "若比较欧几里得几何，应采用等比例轴或解释坐标变换。"
+        "text": "若要从图上比较坐标中的角度和距离，需要使用等比例轴，或按横纵轴的缩放比例换算。"
       }
     ],
     "constraints": []
@@ -2001,13 +2001,13 @@
   {
     "id": "p03-all-channels-off",
     "slug": "p03-all-channels-off",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C03-S02",
     "part": "3",
     "chapter": "3.3",
-    "title": "两个通道都关闭",
+    "title": "关闭交换通道",
     "type": "choice",
-    "statement": "封闭两室 a=b=0，从 [2,4] 开始。下列哪项正确？",
+    "statement": "封闭两室交换系数 a=b=0，初值（initial condition）为 [2,4] U。任意后续时刻的状态（state）是什么？",
     "learning_targets": [
       "T3"
     ],
@@ -2020,19 +2020,19 @@
     "options": [
       {
         "id": "A",
-        "text": "最终自动均分为 [3,3]。"
+        "text": "任意后续时刻，两室物质量都保持为 [2,4] U。"
       },
       {
         "id": "B",
-        "text": "保持 [2,4]，且非负区域的每个状态（state）都是平衡（equilibrium）。"
+        "text": "任意后续时刻，两室物质量都变为 [3,3] U。"
       },
       {
         "id": "C",
-        "text": "总量会衰减到零。"
+        "text": "任意后续时刻，两室物质量都变为 [0,6] U。"
       },
       {
         "id": "D",
-        "text": "模型（model）必须产生振荡才能保持守恒。"
+        "text": "任意后续时刻，两室物质量都变为 [0,0] U。"
       }
     ],
     "constraints": []
@@ -2262,13 +2262,13 @@
   {
     "id": "p03-partial-meaning",
     "slug": "p03-partial-meaning",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C04-S01",
     "part": "3",
     "chapter": "3.4",
-    "title": "偏导数固定什么",
+    "title": "计算一个分量的偏导",
     "type": "choice",
-    "statement": "计算 f1 对 A1 的偏导（partial derivative）时，以下哪些操作正确？",
+    "statement": "两室状态（state）A1、A2 的单位为 U，第一室变化率 f1=−aA1+bA2−vA1/(K+A1)+u，单位 U/T，K>0。求 f1 对 A1 的偏导（partial derivative），哪些判断正确？",
     "learning_targets": [
       "T4"
     ],
@@ -2282,19 +2282,19 @@
     "options": [
       {
         "id": "A",
-        "text": "保持 A2 与模型（model）参数（parameter）不变。"
+        "text": "求该偏导时，只改变 A1，并保持 A2 与各参数（parameter）不变。"
       },
       {
         "id": "B",
-        "text": "把 A2 同时改为 A2+epsilon。"
+        "text": "求该偏导时，应让 A2 与 A1 同时增加相同的微小量。"
       },
       {
         "id": "C",
-        "text": "对 vA1/(K+A1) 求导得到 vK/(K+A1)²。"
+        "text": "清除项中的 vA1/(K+A1) 对 A1 的导数（derivative）为 vK/(K+A1)²。"
       },
       {
         "id": "D",
-        "text": "结果单位为 (U/T)/U=1/T。"
+        "text": "f1 对 A1 的偏导具有单位 1/T。"
       }
     ],
     "constraints": []
@@ -2302,13 +2302,13 @@
   {
     "id": "p03-affine-approximation",
     "slug": "p03-affine-approximation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C04-S01",
     "part": "3",
     "chapter": "3.4",
-    "title": "不是平衡时还缺哪一项",
+    "title": "任意点附近的一阶近似",
     "type": "choice",
-    "statement": "在任意点 x0 附近，一阶 Taylor 近似 f(x0+δ) 应写成？",
+    "statement": "J(x0) 是向量场（vector field）f 在 x0 处的雅可比矩阵（Jacobian matrix）。x0 不要求是平衡（equilibrium）。f(x0+δ) 的一阶泰勒近似（Taylor approximation）是哪项？",
     "learning_targets": [
       "T4"
     ],
@@ -2322,19 +2322,19 @@
     "options": [
       {
         "id": "A",
-        "text": "J(x0)δ，总是没有常数项。"
+        "text": "在 x0 附近，可用 J(x0)δ 近似 f(x0+δ)。"
       },
       {
         "id": "B",
-        "text": "f(x0)+J(x0)δ。"
+        "text": "在 x0 附近，可用 f(x0)+J(x0)x0 近似 f(x0+δ)。"
       },
       {
         "id": "C",
-        "text": "J(x0)x0，与 δ 无关。"
+        "text": "在 x0 附近，可用 f(x0)+J(x0)δ 近似 f(x0+δ)。"
       },
       {
         "id": "D",
-        "text": "f(δ)，因为只是改了名字。"
+        "text": "在 x0 附近，可用 f(x0)+J(δ)x0 近似 f(x0+δ)。"
       }
     ],
     "constraints": []
@@ -2342,13 +2342,13 @@
   {
     "id": "p03-difference-proof",
     "slug": "p03-difference-proof",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C04-S01",
     "part": "3",
     "chapter": "3.4",
-    "title": "差分一致性证明了什么",
+    "title": "解释导数核对结果",
     "type": "choice",
-    "statement": "解析 雅可比矩阵（Jacobian matrix） 与中心差分（central difference）在一个点十分接近。哪些结论可以得出？",
+    "statement": "解析雅可比矩阵（Jacobian matrix）与中心差分（central difference）在一个点十分接近。哪些判断合理？",
     "learning_targets": [
       "T4"
     ],
@@ -2362,19 +2362,19 @@
     "options": [
       {
         "id": "A",
-        "text": "在所测点、扰动和精度下，两种导数（derivative）计算一致。"
+        "text": "在这一个点和所用差分步长下，解析公式与数值差分给出的导数（derivative）相近。"
       },
       {
         "id": "B",
-        "text": "原非线性模型（model）必定真实描述人体。"
+        "text": "在这一个点计算相近，说明解析导数在其他状态（state）点也已得到核验。"
       },
       {
         "id": "C",
-        "text": "任意大扰动都能由这一个矩阵（matrix）准确预测。"
+        "text": "在这一个点计算相近，说明用这个矩阵（matrix）预测较大扰动也能保持同样的精度。"
       },
       {
         "id": "D",
-        "text": "仍需要不同扰动幅度和轨迹（trajectory）误差对照。"
+        "text": "可以改变差分步长检查导数比较，并用不同幅度的扰动检查局部模型（model）与原模型的轨迹（trajectory）差异。"
       }
     ],
     "constraints": []
@@ -2543,13 +2543,13 @@
   {
     "id": "p03-deviation-variable",
     "slug": "p03-deviation-variable",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C04-S02",
     "part": "3",
     "chapter": "3.4",
-    "title": "线性化究竟推进哪一个量",
+    "title": "用偏差推进局部模型",
     "type": "choice",
-    "statement": "x*= [2,4] 是平衡（equilibrium），δ=x−x*。正确的局部模型（model）是哪一项？",
+    "statement": "x*=[2,4] 是平衡（equilibrium），J 是该点的雅可比矩阵（Jacobian matrix），δ=x−x*。若使用局部线性模型（model）推进绝对状态（state）x，应写成哪项？",
     "learning_targets": [
       "T4"
     ],
@@ -2563,19 +2563,19 @@
     "options": [
       {
         "id": "A",
-        "text": "δ′=Jδ；若记录绝对状态（state）则 x′≈J(x−x*)。"
+        "text": "绝对状态的变化率应近似为 x′≈J(x−x*)。"
       },
       {
         "id": "B",
-        "text": "x′≈Jx，完全不必减平衡。"
+        "text": "绝对状态的变化率应近似为 x′≈Jx。"
       },
       {
         "id": "C",
-        "text": "δ′=Jx*。"
+        "text": "绝对状态的变化率应近似为 x′≈Jx*。"
       },
       {
         "id": "D",
-        "text": "x(t)=x* 对所有初值（initial condition）都成立。"
+        "text": "绝对状态的变化率应近似为 x′≈x*+Jx。"
       }
     ],
     "constraints": []
@@ -2583,7 +2583,7 @@
   {
     "id": "p03-local-error-order",
     "slug": "p03-local-error-order",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C04-S02",
     "part": "3",
     "chapter": "3.4",
@@ -2603,19 +2603,19 @@
     "options": [
       {
         "id": "A",
-        "text": "一半。"
+        "text": "扰动 ε 减半后，余项约为原来的四分之一。"
       },
       {
         "id": "B",
-        "text": "四分之一。"
+        "text": "扰动 ε 减半后，余项约为原来的一半。"
       },
       {
         "id": "C",
-        "text": "两倍。"
+        "text": "扰动 ε 减半后，余项约为原来的两倍。"
       },
       {
         "id": "D",
-        "text": "始终为零。"
+        "text": "扰动 ε 减半后，余项为零。"
       }
     ],
     "constraints": []
@@ -2623,11 +2623,11 @@
   {
     "id": "p03-model-numerical-error",
     "slug": "p03-model-numerical-error",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-C04-S02",
     "part": "3",
     "chapter": "3.4",
-    "title": "两条曲线接近是否足够",
+    "title": "比较原模型与局部模型",
     "type": "choice",
     "statement": "用很粗欧拉步长比较原模型（model）与线性化（linearization）。两条曲线很接近。哪些后续动作合理？",
     "learning_targets": [
@@ -2643,19 +2643,19 @@
     "options": [
       {
         "id": "A",
-        "text": "减半步长，分别检查每条轨迹（trajectory）是否稳定收敛。"
+        "text": "将步长减半，分别比较原模型的新旧轨迹（trajectory）以及局部模型的新旧轨迹。"
       },
       {
         "id": "B",
-        "text": "直接宣布原系统全局线性。"
+        "text": "原模型和局部模型在粗网格上接近，说明它们各自与连续解的误差都很小。"
       },
       {
         "id": "C",
-        "text": "比较近、远两组扰动，并保持其他条件不变。"
+        "text": "在相同参数（parameter）和时间窗内，分别从靠近平衡（equilibrium）的小扰动和较大的扰动起步，比较两个模型的预测差异。"
       },
       {
         "id": "D",
-        "text": "把离散误差与模型线性化误差区分开。"
+        "text": "先检查各模型对步长细化的变化，再比较两个模型之间的差异，以区分离散误差和线性化误差。"
       }
     ],
     "constraints": []
@@ -2683,19 +2683,19 @@
     "options": [
       {
         "id": "A",
-        "text": "可推出该平衡的局部渐近稳定（local asymptotic stability）。"
+        "text": "在该平衡附近，足够小的扰动会随时间回到平衡，因此该点局部渐近稳定（local asymptotic stability）。"
       },
       {
         "id": "B",
-        "text": "任何初值（initial condition）都一定回到该平衡。"
+        "text": "从整个状态空间（state space）中的每个初值（initial condition）出发，解都会回到这个平衡。"
       },
       {
         "id": "C",
-        "text": "有限几条模拟轨迹（trajectory）不能替代全局论证。"
+        "text": "几条数值轨迹（trajectory）回到平衡，还不能覆盖未计算过的所有初值。"
       },
       {
         "id": "D",
-        "text": "存在零实部特征值时，应继续分析高阶项而不直接套用此结论。"
+        "text": "若某个特征值的实部为零，需要检查非线性高阶项或其他稳定性条件，才能判断该点是否吸引扰动。"
       }
     ],
     "constraints": []
@@ -2703,13 +2703,13 @@
   {
     "id": "p03-cap-units",
     "slug": "p03-cap-units",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-SUMMARY",
     "part": "3",
     "chapter": "3.summary",
-    "title": "两室状态与浓度观测",
+    "title": "换算两室计数",
     "type": "choice",
-    "statement": "两个固定容积的室 V1=2 L、V2=1 L，所追踪物质总量（tracked amount）状态（state）为 [2,4] U。哪一项正确？",
+    "statement": "两个固定容积的室 V1=2 L、V2=1 L，物质总量状态（state）为 [2,4] U。联合总量与室 1 浓度（concentration）依次是多少？",
     "learning_targets": [
       "T1"
     ],
@@ -2723,19 +2723,19 @@
     "options": [
       {
         "id": "A",
-        "text": "状态总量为 6 U，室 1 浓度（concentration）为 1 U/L。"
+        "text": "联合总量为 6 U，室 1 的浓度为 2 U/L。"
       },
       {
         "id": "B",
-        "text": "总量为 5 U/L。"
+        "text": "联合总量为 6 U，室 1 的浓度为 1 U/L。"
       },
       {
         "id": "C",
-        "text": "两室量之比必定等于浓度之比。"
+        "text": "联合总量为 5 U，室 1 的浓度为 1 U/L。"
       },
       {
         "id": "D",
-        "text": "把观测（observation）由总量换成浓度，会自动改变实际交换机制。"
+        "text": "联合总量为 6 U，室 1 的浓度为 4 U/L。"
       }
     ],
     "constraints": []
@@ -2763,19 +2763,19 @@
     "options": [
       {
         "id": "A",
-        "text": "第一列的和是 −c。"
+        "text": "矩阵（matrix）第一列的两个元素相加得到 −c。"
       },
       {
         "id": "B",
-        "text": "总变化率为 u−cA1。"
+        "text": "两室物质量之和的变化率为 u−cA1。"
       },
       {
         "id": "C",
-        "text": "aA1 和 bA2 都应再从总量扣除。"
+        "text": "计算联合总量变化时，还需要把两条内部交换流 aA1 和 bA2 都作为损失扣除。"
       },
       {
         "id": "D",
-        "text": "非对角正项表示来自另一室的接收。"
+        "text": "矩阵的非对角正项表示一个室接收另一个室转入的物质。"
       }
     ],
     "constraints": []
@@ -3219,19 +3219,19 @@
     "options": [
       {
         "id": "A",
-        "text": "y2 一直为 6 U。"
+        "text": "总量观测（observation） y2 在整个过程中保持为 6 U。"
       },
       {
         "id": "B",
-        "text": "y1 从 6 向 2 U 靠近。"
+        "text": "室 1 的观测 y1 从 6 U 逐渐趋向 2 U。"
       },
       {
         "id": "C",
-        "text": "y2 不变说明两个室都没有运动。"
+        "text": "总量观测 y2 不变，说明 A1 和 A2 各自都没有变化。"
       },
       {
         "id": "D",
-        "text": "从初值和平衡（equilibrium）的差 [4,−4] 可看出被总量观测（observation）抵消的变化方向。"
+        "text": "初值相对平衡（equilibrium）的偏差为 [4,−4]，这两个分量在总量观测（observation）中相加为零。"
       }
     ],
     "constraints": []
@@ -3395,11 +3395,11 @@
   {
     "id": "p03-cap-scope",
     "slug": "p03-cap-scope",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P03-SUMMARY",
     "part": "3",
     "chapter": "3.summary",
-    "title": "误差表支持怎样的范围",
+    "title": "解释两组误差对照",
     "type": "choice",
     "statement": "某饱和模型（model）在相同 12 T 窗口内，近、远扰动的原模型与局部模型最大差分别为 0.004 U、0.55 U；两组的粗细网格差均小于各自模型差的 5%。这些是给定对照结果。若允许模型差不超过 0.01 U，哪些判断合理？",
     "learning_targets": [
@@ -3415,19 +3415,19 @@
     "options": [
       {
         "id": "A",
-        "text": "近扰动在本次窗口和误差标准下通过。"
+        "text": "近扰动的最大差为 0.004 U，小于本次 12 T 窗口所要求的 0.01 U。"
       },
       {
         "id": "B",
-        "text": "远扰动在此标准下不通过。"
+        "text": "远扰动的最大差为 0.55 U，大于本次 12 T 窗口所要求的 0.01 U。"
       },
       {
         "id": "C",
-        "text": "这些结果足以证明所有初值（initial condition）和任意时长都适用。"
+        "text": "两组粗细网格差都较小，因此继续减小步长就能把远扰动的模型差降到 0.01 U 以下。"
       },
       {
         "id": "D",
-        "text": "主要差异不太可能仅由当前估计的网格误差解释，但仍须限制在已检查条件内。"
+        "text": "两组粗细网格差都远小于对应的模型差，因此还应检查线性化（linearization）在多大扰动范围内能满足 0.01 U 要求。"
       }
     ],
     "constraints": []

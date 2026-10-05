@@ -151,7 +151,7 @@
   {
     "id": "p07-noise-location",
     "slug": "p07-noise-location",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C01-S01",
     "part": "7",
     "chapter": "7.1",
@@ -171,19 +171,19 @@
     "options": [
       {
         "id": "A",
-        "text": "过程噪声（process noise）改变后续状态（state）。"
+        "text": "每天交换量的随机变化会改变下一天两室的真实总量。"
       },
       {
         "id": "B",
-        "text": "测量噪声（measurement noise）必然改变物质收支（mass balance）。"
+        "text": "本次传感器误差会作为真实存量（stock）进入下一天的物质收支（mass balance）。"
       },
       {
         "id": "C",
-        "text": "已知模型（model）下，滤波器只能使用给定读数和先验（prior）。"
+        "text": "估计两室状态（state）时，滤波器使用已知模型（model）、给定先验（prior）和传感器读数。"
       },
       {
         "id": "D",
-        "text": "把核验真值作为输入（input）可以公平评价状态恢复。"
+        "text": "把核验用的真实状态也输入（input）滤波器，仍是在与只提供传感器读数相同的信息条件下评价。"
       }
     ],
     "constraints": []
@@ -191,7 +191,7 @@
   {
     "id": "p07-state-parameter",
     "slug": "p07-state-parameter",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C01-S01",
     "part": "7",
     "chapter": "7.1",
@@ -211,19 +211,19 @@
     "options": [
       {
         "id": "A",
-        "text": "参数（parameter）辨识。"
+        "text": "这项任务要辨识两室的交换系数。"
       },
       {
         "id": "B",
-        "text": "状态（state）估计。"
+        "text": "这项任务要估计两室的当前状态（state）。"
       },
       {
         "id": "C",
-        "text": "系统结构已经被证明正确。"
+        "text": "这项任务要比较一室与二室结构。"
       },
       {
         "id": "D",
-        "text": "无需观测（observation）的确定性求解。"
+        "text": "这项任务要估计传感器的噪声方差（variance）。"
       }
     ],
     "constraints": []
@@ -231,7 +231,7 @@
   {
     "id": "p07-independence",
     "slug": "p07-independence",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C01-S01",
     "part": "7",
     "chapter": "7.1",
@@ -255,7 +255,7 @@
       },
       {
         "id": "B",
-        "text": "所有观测（observation）必然相互独立。"
+        "text": "测量噪声（measurement noise）相互独立，因此相邻观测（observation）也相互独立。"
       },
       {
         "id": "C",
@@ -263,7 +263,7 @@
       },
       {
         "id": "D",
-        "text": "不必声明噪声假设也可直接套高斯精确结论。"
+        "text": "给定当前观测y[t]后，未来状态与过去状态条件独立。"
       }
     ],
     "constraints": []
@@ -402,13 +402,13 @@
   {
     "id": "p07-sum-sensor",
     "slug": "p07-sum-sensor",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C01-S02",
     "part": "7",
     "chapter": "7.1",
     "title": "总量相同就能区分吗",
     "type": "choice",
-    "statement": "F=[[0.8,0.2],[0.2,0.8]]，只测 H=[1,1]。初态[8,2]与[2,8]的每次总量读数均为10。哪项正确？",
+    "statement": "F=[[0.8,0.2],[0.2,0.8]]，只用H=[1,1]进行总量观测（observation）。初态[8,2]与[2,8]的每次总量读数均为10。哪项正确？",
     "learning_targets": [
       "T1"
     ],
@@ -422,19 +422,19 @@
     "options": [
       {
         "id": "A",
-        "text": "多等几步必定能区分。"
+        "text": "两初态之差每步缩为原来的0.6倍，因此经过多次交换后两组总量读数会不同。"
       },
       {
         "id": "B",
-        "text": "增加相同读数的小数位必定能区分。"
+        "text": "初态总量相同，但经过一次交换后总量差变为非零。"
       },
       {
         "id": "C",
-        "text": "两个初态之差落在不可观方向。"
+        "text": "两个初态给出相同总量，因此下一步两室状态（state）也相同。"
       },
       {
         "id": "D",
-        "text": "两条内部轨迹（trajectory）处处相同。"
+        "text": "两初态相差[6,−6]，但这个差异在每次总量读数中产生的差值都为0。"
       }
     ],
     "constraints": []
@@ -442,7 +442,7 @@
   {
     "id": "p07-conditioning",
     "slug": "p07-conditioning",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C01-S02",
     "part": "7",
     "chapter": "7.1",
@@ -462,19 +462,19 @@
     "options": [
       {
         "id": "A",
-        "text": "无噪模型（model）下初态唯一。"
+        "text": "在无噪声且模型（model）正确时，给定观测（observation）序列对应的初态是唯一的。"
       },
       {
         "id": "B",
-        "text": "小测量误差可能被明显放大。"
+        "text": "读数中很小的测量误差，可能使恢复出的初态产生较大误差。"
       },
       {
         "id": "C",
-        "text": "满秩保证所有含噪恢复都精确。"
+        "text": "满秩意味着所有状态（state）方向的噪声放大倍数相同。"
       },
       {
         "id": "D",
-        "text": "更改状态（state）单位可能影响未经尺度处理的数值诊断。"
+        "text": "改变状态变量的计量单位，可能改变未作尺度调整的奇异值和条件数（condition number）。"
       }
     ],
     "constraints": []
@@ -482,7 +482,7 @@
   {
     "id": "p07-sampling-observation",
     "slug": "p07-sampling-observation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C01-S02",
     "part": "7",
     "chapter": "7.1",
@@ -502,19 +502,19 @@
     "options": [
       {
         "id": "A",
-        "text": "连续旋转自动保证这个采样方案能观。"
+        "text": "HF^k均为[1,0]，因此离散能观矩阵（matrix）秩（rank）为1。"
       },
       {
         "id": "B",
-        "text": "离散能观矩阵（matrix）每行都是[1,0]，第二坐标不可观。"
+        "text": "连续系统在两次采样间旋转，因此离散能观矩阵秩为2。"
       },
       {
         "id": "C",
-        "text": "增加同周期采样次数使秩（rank）达到2。"
+        "text": "连续取两次整周读数，可使离散能观矩阵秩为2。"
       },
       {
         "id": "D",
-        "text": "用滤波器即可凭空恢复未测方向。"
+        "text": "整周采样保持状态（state），因此初态两个坐标都可从首个读数求出。"
       }
     ],
     "constraints": []
@@ -668,7 +668,7 @@
   {
     "id": "p07-evidence-normalization",
     "slug": "p07-evidence-normalization",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C02-S01",
     "part": "7",
     "chapter": "7.2",
@@ -688,19 +688,19 @@
     "options": [
       {
         "id": "A",
-        "text": "后验（posterior）直接是[0.2,0.8]。"
+        "text": "证据为1，后验（posterior）为[0.2,0.8]。"
       },
       {
         "id": "B",
-        "text": "证据为0.44，后验为[3/11,8/11]。"
+        "text": "证据为0.56，后验为[6/7,1/7]。"
       },
       {
         "id": "C",
-        "text": "证据为1。"
+        "text": "证据为0.44，后验为[0.12,0.32]。"
       },
       {
         "id": "D",
-        "text": "先验与观测无关，因此可以忽略。"
+        "text": "证据为0.44，后验为[3/11,8/11]。"
       }
     ],
     "constraints": []
@@ -708,13 +708,13 @@
   {
     "id": "p07-missing-not-zero",
     "slug": "p07-missing-not-zero",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C02-S01",
     "part": "7",
     "chapter": "7.2",
     "title": "缺测等于观测零吗",
     "type": "choice",
-    "statement": "当前没有读数。哪些处理成立？",
+    "statement": "缺测事件（event）本身不提供状态（state）信息，当前没有传感器读数。哪些处理成立？",
     "learning_targets": [
       "T2"
     ],
@@ -732,11 +732,11 @@
       },
       {
         "id": "B",
-        "text": "必须用观测（observation）值0更新。"
+        "text": "使用当前预测均值作虚拟观测（observation），并按正常更新缩小协方差（covariance）。"
       },
       {
         "id": "C",
-        "text": "用以后到达的读数填入后仍称实时滤波。"
+        "text": "用下一时刻读数插值当前值，并把结果记作当前在线滤波。"
       },
       {
         "id": "D",
@@ -748,7 +748,7 @@
   {
     "id": "p07-zero-evidence",
     "slug": "p07-zero-evidence",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C02-S01",
     "part": "7",
     "chapter": "7.2",
@@ -768,19 +768,19 @@
     "options": [
       {
         "id": "A",
-        "text": "后验（posterior）均匀。"
+        "text": "把后验（posterior）设为均匀分布（distribution），表示本次观测（observation）没有信息。"
       },
       {
         "id": "B",
-        "text": "把零分母改成极小数即可获得正确条件分布（distribution）。"
+        "text": "先验与似然的乘积在所有状态上都为0，因此无法将它归一化为本次后验。"
       },
       {
         "id": "C",
-        "text": "该模型（model）把事件（event）赋予零概率（probability），后验未定义，应检查模型或数据。"
+        "text": "保留零分子并把分母改为极小正数，得到合法后验。"
       },
       {
         "id": "D",
-        "text": "选择似然最大的状态就是精确Bayes更新。"
+        "text": "忽略先验，在似然最大的状态放置全部后验质量。"
       }
     ],
     "constraints": []
@@ -913,19 +913,19 @@
     "options": [
       {
         "id": "A",
-        "text": "预测为p@T。"
+        "text": "下一时刻的预测分布按p@T计算。"
       },
       {
         "id": "B",
-        "text": "预测为T@p且不必改变约定。"
+        "text": "保持p为行向量时，下一时刻的预测分布按T@p计算。"
       },
       {
         "id": "C",
-        "text": "每一行的和应为1。"
+        "text": "转移矩阵（transition matrix）每一行的概率（probability）之和为1。"
       },
       {
         "id": "D",
-        "text": "每一列的和必为1。"
+        "text": "转移矩阵每一列的概率之和为1。"
       }
     ],
     "constraints": []
@@ -933,7 +933,7 @@
   {
     "id": "p07-path-budget",
     "slug": "p07-path-budget",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C02-S02",
     "part": "7",
     "chapter": "7.2",
@@ -953,19 +953,19 @@
     "options": [
       {
         "id": "A",
-        "text": "枚举只需3T条路径。"
+        "text": "递推保留每个时刻最可能状态，拼接得到全部路径概率（probability）。"
       },
       {
         "id": "B",
-        "text": "递推通过求和消去历史路径，避免显式列出3^T条路径。"
+        "text": "前向算法把相邻观测（observation）视为独立，因此每个状态的权重可以由该状态下各时刻的观测似然（likelihood）相乘得到。"
       },
       {
         "id": "C",
-        "text": "递推只有在转移无噪时才正确。"
+        "text": "前向算法只保留概率最大的历史路径，舍弃其他路径仍能得到各时刻的滤波分布（distribution）。"
       },
       {
         "id": "D",
-        "text": "递推会自动输出（output）最可能的整条路径。"
+        "text": "前向算法对到达同一当前状态的历史路径求和，因此每一步只需保存三个状态对应的权重。"
       }
     ],
     "constraints": []
@@ -973,13 +973,13 @@
   {
     "id": "p07-online-prefix",
     "slug": "p07-online-prefix",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C02-S02",
     "part": "7",
     "chapter": "7.2",
     "title": "如何检查未来信息泄漏",
     "type": "choice",
-    "statement": "两条观测（observation）序列前3步相同，后面的读数不同。已知模型（model）和初始分布（distribution）相同。哪些应相同？",
+    "statement": "两条观测（observation）序列前3步相同，后续读数不同；模型（model）和初始分布（distribution）相同。仅凭这些条件，哪些结果应相同？",
     "learning_targets": [
       "T2"
     ],
@@ -993,19 +993,19 @@
     "options": [
       {
         "id": "A",
-        "text": "前3步的滤波分布。"
+        "text": "两条序列在前3步得到的滤波分布相同。"
       },
       {
         "id": "B",
-        "text": "前3步的平滑分布必相同。"
+        "text": "利用完整序列计算后，两条序列在前3步得到的平滑分布相同。"
       },
       {
         "id": "C",
-        "text": "第2步只依据前三步中当时已到达的读数。"
+        "text": "两条序列在第2步观测更新前得到的预测分布相同。"
       },
       {
         "id": "D",
-        "text": "最后一步后验（posterior）必相同。"
+        "text": "利用完整序列计算后，两条序列在最后一步得到的后验（posterior）分布相同。"
       }
     ],
     "constraints": []
@@ -1123,7 +1123,7 @@
     "chapter": "7.3",
     "title": "椭圆描述的是什么",
     "type": "choice",
-    "statement": "二维高斯的协方差矩阵（covariance matrix）为[[4,1],[1,1]]。哪些正确？",
+    "statement": "二维高斯变量x的协方差矩阵（covariance matrix）P=[[4,1],[1,1]]。哪些判断正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1141,15 +1141,15 @@
       },
       {
         "id": "B",
-        "text": "非对角元素为1表示相关系数（correlation coefficient）必为1。"
+        "text": "非对角元素为1，因此两个分量的相关系数（correlation coefficient）为1。"
       },
       {
         "id": "C",
-        "text": "任意向量（vector）a的方差aᵀPa必须非负。"
+        "text": "对任意确定向量（vector）a，随机投影（projection）aᵀx的方差aᵀPa均非负。"
       },
       {
         "id": "D",
-        "text": "在二维中半径1.96的Mahalanobis椭圆恰好覆盖95%。"
+        "text": "以均值为中心、Mahalanobis距离不超过1.96的椭圆包含95%的概率质量（probability mass）。"
       }
     ],
     "constraints": []
@@ -1157,7 +1157,7 @@
   {
     "id": "p07-conditional-cross",
     "slug": "p07-conditional-cross",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C03-S01",
     "part": "7",
     "chapter": "7.3",
@@ -1177,19 +1177,19 @@
     "options": [
       {
         "id": "A",
-        "text": "知道y必定降低x的方差（variance）。"
+        "text": "观测（observation）y后，x的条件均值不变，但条件方差（variance）变小。"
       },
       {
         "id": "B",
-        "text": "联合高斯条件下x与y独立，观测（observation）y不改变x分布（distribution）。"
+        "text": "观测y后，x的条件均值和条件方差都不变。"
       },
       {
         "id": "C",
-        "text": "所有非高斯变量协方差0也必独立。"
+        "text": "观测y后，x的条件方差不变，但条件均值随y变化。"
       },
       {
         "id": "D",
-        "text": "x与y必定都没有波动。"
+        "text": "观测y后，x的条件方差变为0，条件均值等于y。"
       }
     ],
     "constraints": []
@@ -1197,7 +1197,7 @@
   {
     "id": "p07-factorization",
     "slug": "p07-factorization",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C03-S01",
     "part": "7",
     "chapter": "7.3",
@@ -1217,19 +1217,19 @@
     "options": [
       {
         "id": "A",
-        "text": "解 S z=y−μ 再乘 C。"
+        "text": "先解方程Sz=y−μ，再计算Cz，可以得到所需的均值修正项。"
       },
       {
         "id": "B",
-        "text": "显式形成S⁻¹总是更稳定。"
+        "text": "先算C(y−μ)，再解Sz=C(y−μ)。"
       },
       {
         "id": "C",
-        "text": "Cholesky 分解可以把求解变成三角方程。"
+        "text": "若S=LLᵀ，可以先解La=y−μ，再解Lᵀz=a来求出z。"
       },
       {
         "id": "D",
-        "text": "若S奇异，仍无需改变契约直接除以0。"
+        "text": "若S=LLᵀ，取z=L⁻¹(y−μ)就得到S⁻¹(y−μ)。"
       }
     ],
     "constraints": []
@@ -1401,7 +1401,7 @@
   {
     "id": "p07-kalman-timing",
     "slug": "p07-kalman-timing",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C03-S02",
     "part": "7",
     "chapter": "7.3",
@@ -1421,19 +1421,19 @@
     "options": [
       {
         "id": "A",
-        "text": "先做一次F转移才开始处理第0个读数。"
+        "text": "处理第0个读数前先用F转移一次，此后每个读数到达前也先转移再更新。"
       },
       {
         "id": "B",
-        "text": "先直接观测更新；从第1个读数起先预测。"
+        "text": "第0个读数用于更新初始分布（distribution），此后的读数也只用于观测更新，不进行状态（state）转移。"
       },
       {
         "id": "C",
-        "text": "每一步都跳过过程噪声（process noise）。"
+        "text": "第0个读数用于更新初始分布，从第1个读数开始先作状态预测再作观测更新。"
       },
       {
         "id": "D",
-        "text": "初始均值等同于精确真实状态（state）。"
+        "text": "第0步只作状态预测而不使用第0个读数，从第1步起再吸收各时刻读数。"
       }
     ],
     "constraints": []
@@ -1441,11 +1441,11 @@
   {
     "id": "p07-joseph-noise",
     "slug": "p07-joseph-noise",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C03-S02",
     "part": "7",
     "chapter": "7.3",
-    "title": "更新协方差丢了哪一项",
+    "title": "协方差更新的两种写法",
     "type": "choice",
     "statement": "将P更新写成(I−KH)P(I−KH)ᵀ，却遗漏K R Kᵀ。哪些正确？",
     "learning_targets": [
@@ -1461,19 +1461,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这个式子一般会低估测量带来的不确定性。"
+        "text": "这个式子遗漏了测量误差经过增益（gain）K传入估计的协方差（covariance）。"
       },
       {
         "id": "B",
-        "text": "只要K非零，遗漏项在R>0时可能非零。"
+        "text": "R正定（positive definite）且K不为零时，被遗漏的KRKᵀ也不为零。"
       },
       {
         "id": "C",
-        "text": "它始终等于P−K S Kᵀ。"
+        "text": "选用最优Kalman增益（gain）后，遗漏式就等于P−KSKᵀ。"
       },
       {
         "id": "D",
-        "text": "补回K R Kᵀ得到Joseph形式。"
+        "text": "把KRKᵀ加回该式，就得到Joseph形式的协方差更新。"
       }
     ],
     "constraints": []
@@ -1481,13 +1481,13 @@
   {
     "id": "p07-gaussian-exactness",
     "slug": "p07-gaussian-exactness",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C03-S02",
     "part": "7",
     "chapter": "7.3",
     "title": "什么时候是精确后验",
     "type": "choice",
-    "statement": "关于Kalman滤波，哪项陈述最准确？",
+    "statement": "下列哪组假设足以使标准Kalman滤波给出精确滤波分布（distribution）的均值与协方差（covariance）？各组噪声均与初态独立，所需更新矩阵（matrix）可逆。",
     "learning_targets": [
       "T2"
     ],
@@ -1501,19 +1501,19 @@
     "options": [
       {
         "id": "A",
-        "text": "任何非线性模型（model）中都得到真实后验（posterior）。"
+        "text": "状态（state）转移与观测（observation）关系是非线性的，初态服从高斯分布（Gaussian distribution），各项噪声服从相互独立的高斯分布。"
       },
       {
         "id": "B",
-        "text": "线性模型、联合高斯初态和独立高斯噪声的假设成立时，它给出精确滤波分布（distribution）的矩。"
+        "text": "状态转移与观测关系是线性的，初态服从高斯分布，各项噪声服从相互独立的高斯分布。"
       },
       {
         "id": "C",
-        "text": "协方差（covariance）为零说明现实中没有模型错误。"
+        "text": "状态转移与观测关系是线性的，初态服从高斯分布，各项噪声服从相互独立的均匀分布。"
       },
       {
         "id": "D",
-        "text": "满列秩（rank）H是所有Kalman更新的必要条件。"
+        "text": "状态转移与观测关系是线性的，初态服从双峰分布，各项噪声服从相互独立的高斯分布。"
       }
     ],
     "constraints": []
@@ -1521,13 +1521,13 @@
   {
     "id": "p07-empty-observations",
     "slug": "p07-empty-observations",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C03-S02",
     "part": "7",
     "chapter": "7.3",
     "title": "无读数与连续缺测",
     "type": "choice",
-    "statement": "本章计算题 solve 契约中，哪些正确？",
+    "statement": "函数按观测（observation）列表的时间索引处理：第0项已有预测分布（distribution），此后先按动态模型（model）预测；非None读数到达时更新，None时跳过更新。返回逐时刻均值列表与协方差（covariance）列表。哪些正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1541,19 +1541,19 @@
     "options": [
       {
         "id": "A",
-        "text": "空observations返回两个空列表。"
+        "text": "观测列表为空时，函数返回两个空列表。"
       },
       {
         "id": "B",
-        "text": "[None,None]仍产生两时刻的估计结果。"
+        "text": "观测列表为[None,None]时，函数仍返回这两个时刻的均值和协方差。"
       },
       {
         "id": "C",
-        "text": "None等价于观测（observation）到零。"
+        "text": "可以删除所有None，并把剩余读数当作相邻时刻的读数进行计算。"
       },
       {
         "id": "D",
-        "text": "缺测时协方差（covariance）按动态预测变化。"
+        "text": "遇到缺测时，函数跳过观测更新，并继续按动态模型传播协方差。"
       }
     ],
     "constraints": []
@@ -1679,13 +1679,13 @@
   {
     "id": "p07-coverage-unit",
     "slug": "p07-coverage-unit",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C03-S03",
     "part": "7",
     "chapter": "7.3",
     "title": "谁是独立重复",
     "type": "choice",
-    "statement": "同一条轨迹（trajectory）有100个时刻，另有200条独立轨迹。要估计终点95%区间的覆盖率不确定性，哪项合适？",
+    "statement": "有200条独立模拟轨迹（trajectory），每条包含100个时刻。某时刻的区间包含真值时记1，否则记0，称为覆盖指示。要估计终点95%区间覆盖率的抽样不确定性，应怎样取样本？",
     "learning_targets": [
       "T4"
     ],
@@ -1699,19 +1699,19 @@
     "options": [
       {
         "id": "A",
-        "text": "把全部20000个时刻都当独立终点。"
+        "text": "把每条轨迹100个时刻的覆盖指示都作为独立终点样本，共得到20000个样本。"
       },
       {
         "id": "B",
-        "text": "每条独立轨迹取终点覆盖指示，共200项。"
+        "text": "把每条轨迹100个时刻的覆盖指示取平均，并将这个平均值作为该轨迹的终点覆盖指示。"
       },
       {
         "id": "C",
-        "text": "只保留覆盖的轨迹。"
+        "text": "把每个时刻的200条轨迹合并成一个样本，共得到100个独立终点样本。"
       },
       {
         "id": "D",
-        "text": "使用平滑后的终点之前结果替代滤波却不改任务。"
+        "text": "每条独立轨迹只取终点的覆盖指示，共得到200个独立样本。"
       }
     ],
     "constraints": []
@@ -1719,7 +1719,7 @@
   {
     "id": "p07-innovation-whiteness",
     "slug": "p07-innovation-whiteness",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C03-S03",
     "part": "7",
     "chapter": "7.3",
@@ -1739,19 +1739,19 @@
     "options": [
       {
         "id": "A",
-        "text": "均值0。"
+        "text": "归一化创新的理论均值为0。"
       },
       {
         "id": "B",
-        "text": "方差（variance）1。"
+        "text": "归一化创新的理论方差（variance）为1。"
       },
       {
         "id": "C",
-        "text": "有限样本中每个数必须等于0。"
+        "text": "任何有限窗口中的归一化创新样本均值都恰为0。"
       },
       {
         "id": "D",
-        "text": "不同时刻不相关。"
+        "text": "不同时刻的归一化创新彼此不相关。"
       }
     ],
     "constraints": []
@@ -1759,7 +1759,7 @@
   {
     "id": "p07-calibration-failure",
     "slug": "p07-calibration-failure",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C03-S03",
     "part": "7",
     "chapter": "7.3",
@@ -1779,19 +1779,19 @@
     "options": [
       {
         "id": "A",
-        "text": "甲的区间一定更可靠。"
+        "text": "甲点估计误差较小，因此其95%区间也更接近标称覆盖率。"
       },
       {
         "id": "B",
-        "text": "甲点估计误差较小，但区间在本实验中偏窄或模型（model）有失配。"
+        "text": "甲的点估计RMSE较小，但其区间覆盖率70%低于标称的95%。"
       },
       {
         "id": "C",
-        "text": "乙必适用于所有生理系统。"
+        "text": "乙覆盖率更接近95%，因此乙的点估计误差也较小。"
       },
       {
         "id": "D",
-        "text": "只要把区间改宽，模型结构（model structure）就被验证了。"
+        "text": "乙的区间覆盖率更接近95%，说明乙的区间平均宽度比甲更小。"
       }
     ],
     "constraints": []
@@ -1895,7 +1895,7 @@
   {
     "id": "p07-jacobian-location",
     "slug": "p07-jacobian-location",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C04-S01",
     "part": "7",
     "chapter": "7.4",
@@ -1922,11 +1922,11 @@
       },
       {
         "id": "C",
-        "text": "观测雅可比应固定在核验真值处。"
+        "text": "观测雅可比在上一时刻滤波均值处求值。"
       },
       {
         "id": "D",
-        "text": "预测协方差（covariance）忽略Q仍总正确。"
+        "text": "转移雅可比在读取当前观测后的更新均值处求值。"
       }
     ],
     "constraints": []
@@ -1934,7 +1934,7 @@
   {
     "id": "p07-zero-gradient",
     "slug": "p07-zero-gradient",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C04-S01",
     "part": "7",
     "chapter": "7.4",
@@ -1953,19 +1953,19 @@
     "options": [
       {
         "id": "A",
-        "text": "观测在真实模型（model）中不包含任何信息。"
+        "text": "增益为0表明精确后验（posterior）与N(0,1)相同。"
       },
       {
         "id": "B",
-        "text": "EKF的一阶近似看不到曲率；真实后验（posterior）可能集中在正负两侧。"
+        "text": "观测4使精确后验只在正的x≈2附近聚集。"
       },
       {
         "id": "C",
-        "text": "状态（state）必为0。"
+        "text": "观测函数在预测均值0处的导数（derivative）为0，但精确后验仍可在接近−2和2的两侧集中。"
       },
       {
         "id": "D",
-        "text": "只要增加计算小数位，EKF一定给出双峰。"
+        "text": "观测4使EKF均值移动到2，而协方差（covariance）保持不变。"
       }
     ],
     "constraints": []
@@ -1973,7 +1973,7 @@
   {
     "id": "p07-linear-limit",
     "slug": "p07-linear-limit",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C04-S01",
     "part": "7",
     "chapter": "7.4",
@@ -1992,19 +1992,19 @@
     "options": [
       {
         "id": "A",
-        "text": "EKF应与KF一致。"
+        "text": "EKF逐时刻算出的滤波均值和协方差（covariance）应与KF相同。"
       },
       {
         "id": "B",
-        "text": "UKF按同一加性噪声约定也应与KF一致。"
+        "text": "UKF在使用同一加性噪声约定时，逐时刻算出的滤波均值和协方差应与KF相同。"
       },
       {
         "id": "C",
-        "text": "为了显示区别应人为改其中一种噪声。"
+        "text": "只要观测（observation）序列相同，即使Q、R取值不同，两种算法的滤波均值和协方差也应相同。"
       },
       {
         "id": "D",
-        "text": "一致即证明非线性情况下也精确。"
+        "text": "两算法在线性例子中得到相同结果，说明改为平方观测后也会得到相同的精确后验（posterior）。"
       }
     ],
     "constraints": []
@@ -2108,7 +2108,7 @@
   {
     "id": "p07-sigma-weights",
     "slug": "p07-sigma-weights",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C04-S02",
     "part": "7",
     "chapter": "7.4",
@@ -2139,7 +2139,7 @@
       },
       {
         "id": "D",
-        "text": "协方差权重必须加和为1才合法。"
+        "text": "这组参数下协方差权重之和等于1。"
       }
     ],
     "constraints": []
@@ -2147,13 +2147,13 @@
   {
     "id": "p07-moment-not-posterior",
     "slug": "p07-moment-not-posterior",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C04-S02",
     "part": "7",
     "chapter": "7.4",
     "title": "矩准确意味着后验准确吗",
     "type": "choice",
-    "statement": "对高斯先验（prior）的平方观测（observation），本节UT可准确给出观测前均值、方差（variance）和交叉协方差（covariance）。哪项成立？",
+    "statement": "对具有高斯先验（prior）的状态（state）x采用平方观测（observation）y=x²+v。无迹变换UT可准确计算预测读数y的均值、方差（variance）及x与y的交叉协方差（covariance）。哪项判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -2166,19 +2166,19 @@
     "options": [
       {
         "id": "A",
-        "text": "更新得到的高斯一定等于真实后验（posterior）。"
+        "text": "只要这三个矩计算准确，就能确定状态后验（posterior）有几个峰。"
       },
       {
         "id": "B",
-        "text": "观测前矩准确仍不保证条件后验为高斯。"
+        "text": "这三个矩计算准确，仍不能据此判定状态后验服从高斯分布（Gaussian distribution）。"
       },
       {
         "id": "C",
-        "text": "单高斯可精确表示任意双峰。"
+        "text": "状态与预测读数的交叉协方差为0时，读数不能约束状态的绝对值。"
       },
       {
         "id": "D",
-        "text": "UKF对所有模型（model）都优于EKF。"
+        "text": "预测读数的方差计算准确时，可以将它用作状态的后验方差。"
       }
     ],
     "constraints": []
@@ -2186,7 +2186,7 @@
   {
     "id": "p07-grid-validation",
     "slug": "p07-grid-validation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C04-S02",
     "part": "7",
     "chapter": "7.4",
@@ -2205,19 +2205,19 @@
     "options": [
       {
         "id": "A",
-        "text": "加密网格，比较均值和方差（variance）变化。"
+        "text": "增加区间内的网格点数后，比较所得后验均值和方差（variance）是否变化。"
       },
       {
         "id": "B",
-        "text": "扩大边界，检查截断影响。"
+        "text": "扩大积分区间后，比较区间外尾部是否改变所得后验均值和方差。"
       },
       {
         "id": "C",
-        "text": "画出曲线就证明积分完全精确。"
+        "text": "均值在一次网格加密后不变，就可省略边界扩展检查。"
       },
       {
         "id": "D",
-        "text": "按概率密度（probability density）乘网格尺度后归一化。"
+        "text": "计算网格上的概率质量（probability mass）时，应将密度乘网格间隔，再使所有网格点的质量之和为1。"
       }
     ],
     "constraints": []
@@ -2225,7 +2225,7 @@
   {
     "id": "p07-symmetric-posterior",
     "slug": "p07-symmetric-posterior",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C04-S02",
     "part": "7",
     "chapter": "7.4",
@@ -2244,19 +2244,19 @@
     "options": [
       {
         "id": "A",
-        "text": "分布（distribution）完全不变。"
+        "text": "均值仍为0，说明后验方差（variance）也应与先验相同。"
       },
       {
         "id": "B",
-        "text": "均值不足以描述变化，方差（variance）和形状仍可改变。"
+        "text": "出现正负两峰，说明后验的总概率质量（probability mass）变为2。"
       },
       {
         "id": "C",
-        "text": "双峰证明采样（sampling）程序出错。"
+        "text": "均值仍为0，方差和密度形状仍可发生变化。"
       },
       {
         "id": "D",
-        "text": "只需比较均值就能评判所有滤波器。"
+        "text": "均值仍为0，说明后验在x=0处的密度最高。"
       }
     ],
     "constraints": []
@@ -2377,7 +2377,7 @@
   {
     "id": "p07-proposal-support",
     "slug": "p07-proposal-support",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C05-S01",
     "part": "7",
     "chapter": "7.5",
@@ -2397,19 +2397,19 @@
     "options": [
       {
         "id": "A",
-        "text": "增加权重可恢复所有负侧样本。"
+        "text": "增加x>0区域的样本数后，加权经验分布就会向x<0区域分配正概率（probability）。"
       },
       {
         "id": "B",
-        "text": "增加相同提议的样本数就消除支持遗漏。"
+        "text": "将正侧样本的权重归一到总和为1，就能得到同时包含目标正侧和负侧概率的近似。"
       },
       {
         "id": "C",
-        "text": "目标支持未被覆盖，重要性近似不能恢复缺失区域。"
+        "text": "所有样本都位于x>0，因此经验分布在x<0区域的概率为0，漏掉了目标在该区域的概率。"
       },
       {
         "id": "D",
-        "text": "权重均匀即可证明无偏。"
+        "text": "正侧样本的权重相等，说明目标在x<0区域的概率可以忽略。"
       }
     ],
     "constraints": []
@@ -2417,7 +2417,7 @@
   {
     "id": "p07-self-normalized",
     "slug": "p07-self-normalized",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C05-S01",
     "part": "7",
     "chapter": "7.5",
@@ -2437,7 +2437,7 @@
     "options": [
       {
         "id": "A",
-        "text": "权重归一化可抵消相同常数。"
+        "text": "把每个权重除以权重总和时，所有权重共有的未知倍数会相消。"
       },
       {
         "id": "B",
@@ -2445,11 +2445,11 @@
       },
       {
         "id": "C",
-        "text": "样本相关性或支持缺口不影响有效性。"
+        "text": "即使提议分布（distribution）在目标的某个区域为0，增加样本数也能恢复该区域的目标概率（probability）。"
       },
       {
         "id": "D",
-        "text": "不能把ESS当作后验（posterior）正确性的证明。"
+        "text": "即使ESS接近样本总数，样本也可能漏掉后验（posterior）的某个峰。"
       }
     ],
     "constraints": []
@@ -2457,13 +2457,13 @@
   {
     "id": "p07-log-shift",
     "slug": "p07-log-shift",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C05-S01",
     "part": "7",
     "chapter": "7.5",
     "title": "为什么减最大对数权重",
     "type": "choice",
-    "statement": "所有对数权重都加上同一常数后，哪项不变？",
+    "statement": "在精确算术下，所有对数权重加上同一常数后，哪一对量保持不变？ESS表示有效样本量（effective sample size）。",
     "learning_targets": [
       "T3"
     ],
@@ -2477,19 +2477,19 @@
     "options": [
       {
         "id": "A",
-        "text": "未归一化指数值。"
+        "text": "未归一化权重及其总和都保持不变。"
       },
       {
         "id": "B",
-        "text": "归一化权重和ESS。"
+        "text": "最大对数权重和最小对数权重都保持不变。"
       },
       {
         "id": "C",
-        "text": "浮点下溢风险必定不变。"
+        "text": "归一化权重及由它计算的ESS都保持不变。"
       },
       {
         "id": "D",
-        "text": "每个对数权重本身。"
+        "text": "未归一化权重和归一化权重都保持不变。"
       }
     ],
     "constraints": []
@@ -2660,19 +2660,19 @@
     "options": [
       {
         "id": "A",
-        "text": "ESS=2，不触发严格小于条件。"
+        "text": "ESS为2，按给定规则不进行重采样。"
       },
       {
         "id": "B",
-        "text": "ESS=4，所有粒子都有效。"
+        "text": "ESS为4，按给定规则不进行重采样。"
       },
       {
         "id": "C",
-        "text": "ESS=0.5。"
+        "text": "ESS为0.5，按给定规则进行重采样。"
       },
       {
         "id": "D",
-        "text": "ESS=2，必触发小于条件。"
+        "text": "ESS为2，按给定规则进行重采样。"
       }
     ],
     "constraints": []
@@ -2680,7 +2680,7 @@
   {
     "id": "p07-ancestry-poverty",
     "slug": "p07-ancestry-poverty",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C05-S02",
     "part": "7",
     "chapter": "7.5",
@@ -2700,19 +2700,19 @@
     "options": [
       {
         "id": "A",
-        "text": "ESS=100。"
+        "text": "由这些权重算出的ESS为100。"
       },
       {
         "id": "B",
-        "text": "权重均匀不代表样本多样。"
+        "text": "虽然100个权重相等，这些粒子仍只来自3个不同祖先。"
       },
       {
         "id": "C",
-        "text": "这证明后验（posterior）精确。"
+        "text": "ESS=100意味着重采样后有100个不同的祖先状态（state）。"
       },
       {
         "id": "D",
-        "text": "重复祖先在过程噪声（process noise）不足时可能持续。"
+        "text": "过程噪声（process noise）较小时，来自同一祖先的粒子在后续传播中仍可能保持接近。"
       }
     ],
     "constraints": []
@@ -2720,13 +2720,13 @@
   {
     "id": "p07-bootstrap-proposal",
     "slug": "p07-bootstrap-proposal",
-    "version": "1",
+    "version": "3",
     "lesson_id": "P07-C05-S02",
     "part": "7",
     "chapter": "7.5",
     "title": "自助滤波中为何只乘似然",
     "type": "choice",
-    "statement": "自助粒子滤波（bootstrap particle filter）用状态（state）转移分布（distribution）作提议。哪项解释正确？",
+    "statement": "自助粒子滤波（bootstrap particle filter）用状态（state）转移分布（distribution）作提议，当前传播前没有重采样（resampling），旧权重可能不相等。关于传播后的未归一化权重，哪项解释正确？",
     "learning_targets": [
       "T3"
     ],
@@ -2740,19 +2740,19 @@
     "options": [
       {
         "id": "A",
-        "text": "转移密度从来不影响结果。"
+        "text": "转移密度与提议密度在重要性比中相消，因此新权重等于旧权重乘当前似然（likelihood）。"
       },
       {
         "id": "B",
-        "text": "一般重要性比中的转移与提议相消，传播已使用转移。"
+        "text": "转移密度与似然在重要性比中相消，因此新权重等于旧权重乘提议密度。"
       },
       {
         "id": "C",
-        "text": "无论用何种提议都只乘似然（likelihood）。"
+        "text": "提议分布使用了当前观测（observation），因此新权重等于旧权重乘转移密度。"
       },
       {
         "id": "D",
-        "text": "上一步非均匀权重必须忽略。"
+        "text": "转移密度与提议密度相消后，新权重只由当前似然决定，不再取决于旧权重。"
       }
     ],
     "constraints": []
@@ -2760,7 +2760,7 @@
   {
     "id": "p07-particle-comparison",
     "slug": "p07-particle-comparison",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C05-S02",
     "part": "7",
     "chapter": "7.5",
@@ -2780,19 +2780,19 @@
     "options": [
       {
         "id": "A",
-        "text": "共享同一观测（observation）序列，分别重复独立粒子随机数。"
+        "text": "两种粒子数使用同一观测（observation）序列，并分别用独立随机数重复运行滤波器。"
       },
       {
         "id": "B",
-        "text": "报告误差均值、波动和粒子步数预算。"
+        "text": "报告多次运行的估计误差均值、误差波动以及粒子传播总次数。"
       },
       {
         "id": "C",
-        "text": "只挑每个方法表现最好的一次。"
+        "text": "两种粒子数各使用不同读数序列，再把误差差异归因于粒子数。"
       },
       {
         "id": "D",
-        "text": "据一次精确命中宣称普遍优于KF。"
+        "text": "把一次运行中的每个粒子当作一次独立滤波实验，用它们估计两种方法的误差差异。"
       }
     ],
     "constraints": []
@@ -2910,7 +2910,7 @@
   {
     "id": "p07-three-information-sets",
     "slug": "p07-three-information-sets",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C06-S01",
     "part": "7",
     "chapter": "7.6",
@@ -2941,7 +2941,7 @@
       },
       {
         "id": "D",
-        "text": "平滑后再删掉未来读数就恢复实时可用性。"
+        "text": "先用整段读数平滑，再逐时刻输出（output）保存的结果，得到的就是各时刻在线可用的估计。"
       }
     ],
     "constraints": []
@@ -2949,13 +2949,13 @@
   {
     "id": "p07-backward-index",
     "slug": "p07-backward-index",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C06-S01",
     "part": "7",
     "chapter": "7.6",
     "title": "后向信息从哪一步开始",
     "type": "choice",
-    "statement": "beta[t]=p(y[t+1:T] | z[t])。哪项递推正确？",
+    "statement": "采用行随机转移矩阵（transition matrix）T[i,j]=P(z[t+1]=j|z[t]=i)，后向向量（vector）beta[t]=p(y[t+1:T]|z[t])。likelihood[t]按状态（state）列出时刻t的观测（observation）似然（likelihood），*表示逐项相乘。哪项递推正确？",
     "learning_targets": [
       "T4"
     ],
@@ -2968,19 +2968,19 @@
     "options": [
       {
         "id": "A",
-        "text": "beta[t]=T@(likelihood[t]*beta[t+1])。"
-      },
-      {
-        "id": "B",
         "text": "beta[t]=T@(likelihood[t+1]*beta[t+1])。"
       },
       {
+        "id": "B",
+        "text": "beta[t]=T@(likelihood[t]*beta[t+1])。"
+      },
+      {
         "id": "C",
-        "text": "beta[t]=alpha[t]。"
+        "text": "beta[t]=T.T@(likelihood[t+1]*beta[t+1])。"
       },
       {
         "id": "D",
-        "text": "beta[T]必须等于最后一个似然（likelihood）。"
+        "text": "beta[t]=likelihood[t+1]*(T@beta[t+1])。"
       }
     ],
     "constraints": []
@@ -2988,7 +2988,7 @@
   {
     "id": "p07-offline-online",
     "slug": "p07-offline-online",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C06-S01",
     "part": "7",
     "chapter": "7.6",
@@ -3007,19 +3007,19 @@
     "options": [
       {
         "id": "A",
-        "text": "可直接宣称在线控制会同样改善。"
+        "text": "在相同传感器条件下，可以用这次平滑的RMSE估计实时控制可取得的状态估计RMSE。"
       },
       {
         "id": "B",
-        "text": "说明更多未来信息在该离线重建实验有帮助。"
+        "text": "这次RMSE差异说明，把过程噪声（process noise）方差（variance）改为0就能使滤波的RMSE降到平滑的水平。"
       },
       {
         "id": "C",
-        "text": "滤波算法必定实现错误。"
+        "text": "两方法读取同一条完整记录，因此比较时信息量相同。"
       },
       {
         "id": "D",
-        "text": "未来信息已成为过去真实可获得的信息。"
+        "text": "在这次离线重建中，使用未来读数降低了过去状态估计的RMSE。"
       }
     ],
     "constraints": []
@@ -3213,7 +3213,7 @@
   {
     "id": "p07-terminal-equality",
     "slug": "p07-terminal-equality",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C06-S02",
     "part": "7",
     "chapter": "7.6",
@@ -3232,19 +3232,19 @@
     "options": [
       {
         "id": "A",
-        "text": "末时刻平滑等于滤波。"
+        "text": "末时刻的平滑均值和协方差（covariance）与该时刻的滤波结果相同。"
       },
       {
         "id": "B",
-        "text": "只有一个时刻时不做后向更新。"
+        "text": "记录只有一个时刻时，平滑计算不进行后向更新。"
       },
       {
         "id": "C",
-        "text": "缺测时必须把状态（state）设为0。"
+        "text": "末时刻没有更多未来信息，所以平滑协方差（covariance）初始化为0。"
       },
       {
         "id": "D",
-        "text": "后向增益（gain）用下一时刻预测协方差（covariance）。"
+        "text": "计算从t+1向t传播信息的后向增益（gain）时，需要t+1时刻的预测协方差。"
       }
     ],
     "constraints": []
@@ -3252,7 +3252,7 @@
   {
     "id": "p07-covariance-order",
     "slug": "p07-covariance-order",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C06-S02",
     "part": "7",
     "chapter": "7.6",
@@ -3271,19 +3271,19 @@
     "options": [
       {
         "id": "A",
-        "text": "平滑协方差（covariance）不大于滤波协方差，按半正定（positive semidefinite）顺序理解。"
+        "text": "每次实验中，平滑估计各坐标的平方误差都更小。"
       },
       {
         "id": "B",
-        "text": "每次随机实验的实际误差必逐点更小。"
+        "text": "平滑协方差（covariance）的每个非对角元素都小于对应滤波元素。"
       },
       {
         "id": "C",
-        "text": "两个不同错误模型的协方差也必须满足同样顺序。"
+        "text": "对任意向量（vector）a，aᵀP平滑a≤aᵀP滤波a。"
       },
       {
         "id": "D",
-        "text": "更小模型协方差自动证明对现实更准确。"
+        "text": "平滑协方差的每个特征值（eigenvalue）都等于滤波对应值的一半。"
       }
     ],
     "constraints": []
@@ -3291,7 +3291,7 @@
   {
     "id": "p07-missing-gap",
     "slug": "p07-missing-gap",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-C06-S02",
     "part": "7",
     "chapter": "7.6",
@@ -3314,7 +3314,7 @@
       },
       {
         "id": "B",
-        "text": "平滑可利用恢复后的读数修正缺测段。"
+        "text": "平滑可以利用传感器恢复后的读数，修正缺测期间各时刻的状态（state）估计。"
       },
       {
         "id": "C",
@@ -3322,7 +3322,7 @@
       },
       {
         "id": "D",
-        "text": "缺测意味着过程噪声（process noise）也停止。"
+        "text": "缺测期间可以只按动态方程传播均值，并在协方差（covariance）传播中省去过程噪声（process noise）Q。"
       }
     ],
     "constraints": []
@@ -3330,7 +3330,7 @@
   {
     "id": "p07-cap-state-task",
     "slug": "p07-cap-state-task",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-SUMMARY",
     "part": "7",
     "chapter": "7.summary",
@@ -3354,15 +3354,15 @@
       },
       {
         "id": "B",
-        "text": "状态可观与未知参数（parameter）可辨识是同一命题。"
+        "text": "已知F、Q、H、R，就能从总量读数唯一求出两室当前量。"
       },
       {
         "id": "C",
-        "text": "H=[1,1]且对称守恒交换时可能有不可观差量。"
+        "text": "H=[1,1]且两室对称守恒交换时，总量相同而分配不同的状态可能产生相同读数。"
       },
       {
         "id": "D",
-        "text": "增加滤波器迭代可凭空补齐所有传感器信息。"
+        "text": "把同一个读数重复当作独立观测（observation）更新，可以增加对两室状态的独立测量信息。"
       }
     ],
     "constraints": []
@@ -3370,7 +3370,7 @@
   {
     "id": "p07-cap-information",
     "slug": "p07-cap-information",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-SUMMARY",
     "part": "7",
     "chapter": "7.summary",
@@ -3390,19 +3390,19 @@
     "options": [
       {
         "id": "A",
-        "text": "把全序列平滑估计用于时刻t的实时控制评分。"
+        "text": "用截至t的读数计算滤波误差，并将使用整段读数的平滑误差单独报告为离线重建结果。"
       },
       {
         "id": "B",
-        "text": "滤波仅用截至t的观测（observation）；平滑单独评价离线重建。"
+        "text": "两种方法都用整段读数估计状态（state），再把t时刻的误差计入实时估计结果。"
       },
       {
         "id": "C",
-        "text": "用核验真值选择每一步滤波增益（gain）。"
+        "text": "先用包含未来点的居中窗口平滑整段读数，再逐个输入（input）滤波器并计算实时估计误差。"
       },
       {
         "id": "D",
-        "text": "缺測一律用后一个观测插值再称实时。"
+        "text": "用下一次实际取得的读数填补当前缺测，再把滤波输出（output）与真值的差计作缺测时的实时误差。"
       }
     ],
     "constraints": []
@@ -3814,19 +3814,19 @@
     "options": [
       {
         "id": "A",
-        "text": "均值都接近0足以说明两种高斯表示完整正确。"
+        "text": "两种高斯近似的均值都接近0，说明它们也能重现网格后验（posterior）在正负两侧的概率分布（probability distribution）。"
       },
       {
         "id": "B",
-        "text": "应比较密度形状和方差（variance），不能只看均值。"
+        "text": "比较两种近似时，需要查看方差（variance）和两个峰附近的概率（probability），而不只比较均值。"
       },
       {
         "id": "C",
-        "text": "UKF的观测前矩准确就保证后验（posterior）高斯准确。"
+        "text": "UKF算准观测前的三个矩后，其高斯更新就与真实后验分布（distribution）相同。"
       },
       {
         "id": "D",
-        "text": "粒子法可表示多峰，但须检查支持和退化。"
+        "text": "粒子法可以用样本表示两个峰，但需要检查粒子能否到达两侧，以及权重是否集中在少数粒子上。"
       }
     ],
     "constraints": []
@@ -4267,7 +4267,7 @@
   {
     "id": "p07-cap-failure",
     "slug": "p07-cap-failure",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P07-SUMMARY",
     "part": "7",
     "chapter": "7.summary",
@@ -4287,19 +4287,19 @@
     "options": [
       {
         "id": "A",
-        "text": "总量传感器不能区分差量方向。"
+        "text": "在该对称交换模型（model）中，总量读数不能区分两室之间不同的总量差。"
       },
       {
         "id": "B",
-        "text": "手动缩小协方差不会产生新观测（observation）信息。"
+        "text": "手动缩小协方差没有提供新的读数，也没有增加区分两室差值的信息。"
       },
       {
         "id": "C",
-        "text": "RMSE不变而覆盖变差只证明随机种子（random seed）不好。"
+        "text": "保持估计均值不变而缩小协方差，可以在RMSE不变时提高区间覆盖率。"
       },
       {
         "id": "D",
-        "text": "增加未来总量观测必定完全恢复差量。"
+        "text": "加入未来的总量读数进行平滑，可以使两室差值由这些读数唯一确定。"
       }
     ],
     "constraints": []

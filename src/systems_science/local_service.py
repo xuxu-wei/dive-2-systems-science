@@ -10,6 +10,8 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import sysconfig
+import tempfile
 import threading
 import time
 from urllib.error import HTTPError, URLError
@@ -31,6 +33,28 @@ def project_root() -> Path:
         if (root / "tools/serve.py").is_file() and (root / "web/course/catalog.json").is_file():
             return root
     raise LocalServiceError("未找到教材项目目录；请在项目环境中打开 Notebook。")
+
+
+def _ensure_relative_import(root: Path) -> None:
+    """Keep this checkout's own venv importable after moving the whole directory."""
+    environment = (root / ".venv").resolve()
+    if not environment.is_relative_to(root.resolve()) or Path(sys.prefix).resolve() != environment:
+        return  # Never change an environment selected elsewhere by the learner.
+    site_packages = Path(sysconfig.get_path("purelib")).resolve()
+    if not site_packages.is_relative_to(environment):
+        return
+    # Load before pip's absolute editable registration, including when the old copy still exists.
+    registration = site_packages / "00_hands_on_systems_science.pth"
+    relative = Path(os.path.relpath(root / "src", site_packages)).as_posix() + "\n"
+    if not registration.exists() or registration.read_text(encoding="utf-8") != relative:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=site_packages,
+                                         suffix=".tmp", delete=False) as stream:
+            temporary = Path(stream.name)
+            stream.write(relative)
+        try:
+            temporary.replace(registration)
+        finally:
+            temporary.unlink(missing_ok=True)
 
 
 def workspace_id(root: Path) -> str:
@@ -135,6 +159,7 @@ def ensure_course_server(*, root: Path | None = None, port: int = 8000) -> bool:
     """Return when this checkout's current service is ready; start it if needed."""
     root = (root or project_root()).resolve()
     try:
+        _ensure_relative_import(root)
         expected = content_id(root)
         context = launch_context_id()
     except OSError as error:

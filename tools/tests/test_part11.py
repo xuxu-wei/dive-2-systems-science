@@ -16,6 +16,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'tools'))
 from practice import PracticeEngine
+from terminology import annotate_text
 
 BANK = ROOT / 'exercises/11-网络上的系统'
 QUESTIONS = json.loads((BANK / 'questions.json').read_text(encoding='utf-8'))
@@ -55,9 +56,9 @@ def test_part_structure_and_examples():
 
 
 def test_nonzero_and_nonequilibrium_terms_are_not_split():
-    question = next(item for item in QUESTIONS if item['id'] == 'p11-spectral-gap')
-    assert '非零特征值（nonzero eigenvalue）' in question['statement']
-    assert '非平衡（nonequilibrium）模态' in question['options'][0]['text']
+    annotated = annotate_text('非零特征值与非平衡模态', part=11)
+    assert '非零特征值（nonzero eigenvalue）' in annotated
+    assert '非平衡（nonequilibrium）模态' in annotated
     serialized = json.dumps(QUESTIONS, ensure_ascii=False)
     assert '非零特征值（zero eigenvalue）' not in serialized
     assert '非平衡（equilibrium）' not in serialized

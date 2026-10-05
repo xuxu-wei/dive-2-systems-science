@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "2e044a68c69fbcf15c528cca829f1bb6c38766e5a7ed4225f75846fcf4dbdcae",
+    "catalogSha256": "df6884fdbb7a46a3dfaaca105842bcfca1036a37748d7bfe84eba96d7f9b3e8c",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -1323,7 +1323,7 @@
       "number": "2.2",
       "parentId": "2",
       "url": "/chapters/02-02-变化率与累积：微积分入口/",
-      "description": "从差商（difference quotient）进入导数（derivative），从矩形累积进入定积分（definite integral），用微积分基本定理（fundamental theorem of calculus）连接二者，再用链式法则（chain rule）解释指数衰减。",
+      "description": "手算差商（difference quotient）和矩形累积，解释导数（derivative）与积分的符号和单位，用微积分基本定理（fundamental theorem of calculus）连接二者，再逐层求指数曲线的一阶、二阶导数（second derivative）。",
       "categories": [
         "evolution",
         "method"
@@ -5667,7 +5667,7 @@
       "number": "5.3",
       "parentId": "5",
       "url": "/chapters/05-03-条件概率与贝叶斯更新/",
-      "description": "区分先验（prior）、似然（likelihood）和后验（posterior），计算离散与简单高斯更新，并说明条件独立（conditional independence）假设。",
+      "description": "从条件概率（conditional probability）表算条件平均，区分先验（prior）、似然（likelihood）和后验（posterior），计算离散与简单高斯更新，并说明条件独立（conditional independence）假设。",
       "categories": [
         "cognition",
         "evolution"
@@ -11864,7 +11864,7 @@
       "id": "9.4.2:concept:3",
       "kind": "concept",
       "title": "条件期望",
-      "english": null,
+      "english": "conditional expectation",
       "number": "9.4.2",
       "parentId": "9.4",
       "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments",
@@ -12403,7 +12403,7 @@
       "number": "10.2",
       "parentId": "10",
       "url": "/chapters/10-02-频域稳定性与设计/",
-      "description": "连接闭环极点（pole）、根轨迹（trajectory）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
+      "description": "连接闭环极点（pole）、根轨迹（root locus）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
       "categories": [
         "regulation"
       ],
@@ -24467,6 +24467,13 @@
       "label": "小节学习顺序"
     },
     {
+      "source": "5.3",
+      "target": "6.5",
+      "weight": 1,
+      "kind": "prerequisite",
+      "label": "直接先修关系"
+    },
+    {
       "source": "6.3",
       "target": "6.5",
       "weight": 1,
@@ -29502,9 +29509,9 @@
     {
       "source": "5",
       "target": "6",
-      "weight": 2,
+      "weight": 3,
       "kind": "part-prerequisite",
-      "label": "2 条直接章级先修关系"
+      "label": "3 条直接章级先修关系"
     },
     {
       "source": "5",

@@ -2,12 +2,12 @@
   {
     "id": "p15-graph-order",
     "slug": "p15-graph-order",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.1",
     "lesson_id": "P15-C01-S01",
     "title": "计算图的前向顺序",
-    "statement": "对于 z=wx+b、a=tanh(z)、预测 va+c、平方损失，哪一步必须先于激活值？",
+    "statement": "计算图（computational graph）为z=wx+b、a=tanh(z)、预测va+c，最后计算平方损失。一次前向计算的依赖顺序是什么？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -23,19 +23,19 @@
     "options": [
       {
         "id": "A",
-        "text": "计算 z。"
+        "text": "先算z，再算预测值，然后算a，最后算损失。"
       },
       {
         "id": "B",
-        "text": "计算损失。"
+        "text": "先算a，再算z，然后算预测值，最后算损失。"
       },
       {
         "id": "C",
-        "text": "更新权重。"
+        "text": "先算z，再算a，然后算预测值，最后算损失。"
       },
       {
         "id": "D",
-        "text": "查看留出答案。"
+        "text": "先算z，再算a，然后算损失，最后算预测值。"
       }
     ],
     "constraints": []
@@ -43,12 +43,12 @@
   {
     "id": "p15-static-not-ode",
     "slug": "p15-static-not-ode",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.1",
     "lesson_id": "P15-C01-S01",
     "title": "网络表示的对象",
-    "statement": "只把 x 输入（input）静态网络并得到响应率，哪项解释最准确？",
+    "statement": "将状态（state）x输入（input）一个静态网络，网络输出（output）一个响应率。这个输出对应什么？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -64,19 +64,19 @@
     "options": [
       {
         "id": "A",
-        "text": "网络已经给出任意时间的状态（state）轨迹（trajectory）。"
+        "text": "该输出表示从初值（initial condition）积分到指定时刻后得到的状态。"
       },
       {
         "id": "B",
-        "text": "它表示给定输入下的函数值，若作为动力学右端还需方程与求解器。"
+        "text": "该输出表示训练数据所对应系统的唯一平衡（equilibrium）状态。"
       },
       {
         "id": "C",
-        "text": "它自动保证总量守恒。"
+        "text": "该输出表示求解器在所有时间点算出的状态序列。"
       },
       {
         "id": "D",
-        "text": "参数（parameter）值直接等于真实清除机制。"
+        "text": "该输出表示网络在给定x处的函数值，若要生成轨迹（trajectory）还需将它放入演化方程求解。"
       }
     ],
     "constraints": []
@@ -84,12 +84,12 @@
   {
     "id": "p15-gradient-object",
     "slug": "p15-gradient-object",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.1",
     "lesson_id": "P15-C01-S02",
     "title": "自动微分究竟对什么求导",
-    "statement": "反传结果与差分吻合时，能得出什么？",
+    "statement": "固定一个光滑计算图（computational graph）的参数（parameter），反传结果与多个适当差分步长下的数值差分吻合。这项比较支持哪项结论？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -105,19 +105,19 @@
     "options": [
       {
         "id": "A",
-        "text": "已证明生物模型（model）正确。"
+        "text": "反传得到的局部参数导数（derivative），与对当前程序做数值差分得到的结果一致。"
       },
       {
         "id": "B",
-        "text": "已证明训练集（training set）外预测良好。"
+        "text": "模型（model）在未参与训练的新初值（initial condition）上，预测误差已经得到检验。"
       },
       {
         "id": "C",
-        "text": "当前光滑计算图（computational graph）的参数（parameter）导数（derivative）得到数值支持。"
+        "text": "当前参数使训练损失在所有可能参数取值中达到最小。"
       },
       {
         "id": "D",
-        "text": "最小损失一定已找到。"
+        "text": "反传已经消除了求解器的时间离散误差，给出了连续目标的精确梯度（gradient）。"
       }
     ],
     "constraints": []
@@ -125,7 +125,7 @@
   {
     "id": "p15-nonsmooth",
     "slug": "p15-nonsmooth",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.1",
     "lesson_id": "P15-C01-S02",
@@ -146,19 +146,19 @@
     "options": [
       {
         "id": "A",
-        "text": "ReLU 的双侧导数（derivative）为0.5。"
+        "text": "双侧导数（derivative）为0.5，取值由两侧斜率平均得到。"
       },
       {
         "id": "B",
-        "text": "中心差分一定是程序错误。"
+        "text": "双侧导数为0，因为左侧函数在邻域内保持不变。"
       },
       {
         "id": "C",
-        "text": "反向模式无法处理任何网络。"
+        "text": "双侧导数为1，因为右侧函数在邻域内线性增长。"
       },
       {
         "id": "D",
-        "text": "0.5 是对称差分值，不能当作通常双侧导数。"
+        "text": "双侧导数不存在，0.5是跨折点的对称差分值。"
       }
     ],
     "constraints": []
@@ -166,12 +166,12 @@
   {
     "id": "p15-one-step-input",
     "slug": "p15-one-step-input",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.2",
     "lesson_id": "P15-C02-S01",
-    "title": "一步预测喂入什么",
-    "statement": "评估一步映射时给模型（model）真实 x_n，结果可以直接称为自由滚动吗？",
+    "title": "多步预测的输入协议",
+    "statement": "从已知初值（initial condition）评估一步映射的自由滚动预测，应采用哪种输入（input）协议？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -187,19 +187,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不可以；自由滚动从初值（initial condition）起只能使用自身上一时刻预测。"
+        "text": "从给定初值开始，每一步都将模型（model）上一步预测（one-step-ahead prediction）的状态（state）作为下一步输入。"
       },
       {
         "id": "B",
-        "text": "可以，只要两者共用权重。"
+        "text": "每一步都将该时刻的真实状态（state）作为输入，再连接各步的预测结果。"
       },
       {
         "id": "C",
-        "text": "可以，只要画在同一坐标轴。"
+        "text": "每隔一步将真实状态作为输入，在其余步骤中使用模型上一步的预测。"
       },
       {
         "id": "D",
-        "text": "可以，因为时间间隔固定。"
+        "text": "每一步都用真实状态的变化量修正模型预测，再把修正后的值作为下一步输入。"
       }
     ],
     "constraints": []
@@ -207,7 +207,7 @@
   {
     "id": "p15-sampling-object",
     "slug": "p15-sampling-object",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.2",
     "lesson_id": "P15-C02-S01",
@@ -228,19 +228,19 @@
     "options": [
       {
         "id": "A",
-        "text": "直接把输出（output）解释为连续导数（derivative）。"
+        "text": "每次运行原映射后，将得到的状态（state）数值除以2，作为半个时间单位后的状态。"
       },
       {
         "id": "B",
-        "text": "核验或重建新间隔的映射，不能无条件沿用。"
+        "text": "连续运行两次原映射，将第二次结果作为半个时间单位后的状态。"
       },
       {
         "id": "C",
-        "text": "只把图线拉宽。"
+        "text": "根据相隔0.5T的数据或已知演化方程重新构造映射，并检验它在该时间间隔下的预测。"
       },
       {
         "id": "D",
-        "text": "不用声明间隔。"
+        "text": "保留原映射的计算，只把每次运行所对应的时间从1T改写为0.5T。"
       }
     ],
     "constraints": []
@@ -248,7 +248,7 @@
   {
     "id": "p15-split-trajectories",
     "slug": "p15-split-trajectories",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.2",
     "lesson_id": "P15-C02-S02",
@@ -269,19 +269,19 @@
     "options": [
       {
         "id": "A",
-        "text": "同一轨迹随机挑相邻时间点分给两边。"
+        "text": "将同一轨迹中相邻的时间点随机分组，分别放入训练和测试数据。"
       },
       {
         "id": "B",
-        "text": "用评估轨迹选参数（parameter）后仍叫独立评估。"
+        "text": "留出若干完整轨迹，根据它们的误差选择最终参数（parameter），再用同一误差报告最终测试。"
       },
       {
         "id": "C",
-        "text": "按完整轨迹留出，参数选择不接触最终评估轨迹。"
+        "text": "留出若干完整轨迹作最终测试，在参数选择完成前不使用这些轨迹。"
       },
       {
         "id": "D",
-        "text": "只留最后一个训练时间点。"
+        "text": "将多条轨迹首尾相接，再每隔一个时间点将该点放入最终测试数据。"
       }
     ],
     "constraints": []
@@ -289,12 +289,12 @@
   {
     "id": "p15-rollout-leak",
     "slug": "p15-rollout-leak",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.2",
     "lesson_id": "P15-C02-S02",
-    "title": "自由运行中的信息泄漏",
-    "statement": "候选每走一步就读取真实下一个状态（state）来修正输入（input），会怎样？",
+    "title": "逐步真值校正后的任务",
+    "statement": "比较一步预测（one-step-ahead prediction）与自由滚动。候选每走一步就读取真实下一个状态（state）来修正输入（input），会怎样？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -310,19 +310,19 @@
     "options": [
       {
         "id": "A",
-        "text": "自动降低连续求解误差。"
+        "text": "这种真值替换减小了求解器实际使用的时间步，因此减少时间离散误差。"
       },
       {
         "id": "B",
-        "text": "证明结构稳定。"
+        "text": "每次预测都从真实状态重新出发，因此所测的是连续多次的一步预测误差。"
       },
       {
         "id": "C",
-        "text": "这正是自由滚动的定义。"
+        "text": "这种真值替换只改变输出（output）的显示方式，后续输入仍由模型（model）自身预测得到。"
       },
       {
         "id": "D",
-        "text": "变成教师强制（teacher forcing）的一步预测（one-step-ahead prediction），不能代表自主长时预测。"
+        "text": "这种真值替换增加了网络的层数，因此使网络可以表示更复杂的函数。"
       }
     ],
     "constraints": []
@@ -330,7 +330,7 @@
   {
     "id": "p15-two-gradients",
     "slug": "p15-two-gradients",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.3",
     "lesson_id": "P15-C03-S01",
@@ -351,19 +351,19 @@
     "options": [
       {
         "id": "A",
-        "text": "该离散程序的参数（parameter）梯度；与连续目标梯度一般有步长误差。"
+        "text": "它对更新前的参数（parameter）求导，但不把Euler更新中参数对状态（state）的影响传回去。"
       },
       {
         "id": "B",
-        "text": "必定是连续方程的精确梯度。"
+        "text": "它给出连续目标J的精确导数（derivative），改变h不会改变这一结果。"
       },
       {
         "id": "C",
-        "text": "完全不依赖 h。"
+        "text": "它只计算末态显式依赖参数的那部分导数，不传递各次状态更新之间的依赖。"
       },
       {
         "id": "D",
-        "text": "只能通过 Monte Carlo 得到。"
+        "text": "它对实际执行的离散目标J_h求导，因此改变h通常也会改变所求梯度。"
       }
     ],
     "constraints": []
@@ -371,7 +371,7 @@
   {
     "id": "p15-sensitivity-initial",
     "slug": "p15-sensitivity-initial",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.3",
     "lesson_id": "P15-C03-S01",
@@ -392,19 +392,19 @@
     "options": [
       {
         "id": "A",
-        "text": "x0。"
+        "text": "灵敏度的初值为s(0)=0。"
       },
       {
         "id": "B",
-        "text": "0。"
+        "text": "灵敏度的初值为s(0)=x0。"
       },
       {
         "id": "C",
-        "text": "-k x0。"
+        "text": "灵敏度的初值为s(0)=−k*x0。"
       },
       {
         "id": "D",
-        "text": "无法定义。"
+        "text": "灵敏度的初值为s(0)=1。"
       }
     ],
     "constraints": []
@@ -412,12 +412,12 @@
   {
     "id": "p15-adjoint-jump",
     "slug": "p15-adjoint-jump",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.3",
     "lesson_id": "P15-C03-S02",
     "title": "观测时刻的伴随跳跃",
-    "statement": "J=1/2 Σ(x(tj)-yj)^2；向后穿越 tj 时应如何更新 λ？",
+    "statement": "J=1/2 Σ(x(tj)−yj)²。采用λ(tj−)=λ(tj+)+观测（observation）损失对x的导数（derivative）的约定，向后跨过tj应加入哪一项？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -433,19 +433,19 @@
     "options": [
       {
         "id": "A",
-        "text": "忽略该时刻，因为观测（observation）只在离散点。"
+        "text": "跨过tj时，应向伴随变量加入[x(tj)−yj]²。"
       },
       {
         "id": "B",
-        "text": "乘以时间步长（time step）后再加入残差（residual）。"
+        "text": "跨过tj时，应向伴随变量加入h[x(tj)−yj]。"
       },
       {
         "id": "C",
-        "text": "加入 x(tj)-yj。"
+        "text": "跨过tj时，应向伴随变量加入−[x(tj)−yj]。"
       },
       {
         "id": "D",
-        "text": "永远将 λ 设为零。"
+        "text": "跨过tj时，应向伴随变量加入x(tj)−yj。"
       }
     ],
     "constraints": []
@@ -453,12 +453,12 @@
   {
     "id": "p15-reverse-state",
     "slug": "p15-reverse-state",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.3",
     "lesson_id": "P15-C03-S02",
     "title": "反向状态重建",
-    "statement": "前向 Euler 后把 ODE 反向再用 Euler 积分，哪项成立？",
+    "statement": "对dx/dt=−kx，k>0，用Euler先前进h，再用步长−h回退一次，0<hk<1。结果与原状态（state）x怎样比较？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -474,19 +474,19 @@
     "options": [
       {
         "id": "A",
-        "text": "一定精确回到初态。"
+        "text": "前进和回退的乘子互为倒数，因此完成这两步后回到原值x。"
       },
       {
         "id": "B",
-        "text": "任何稳定模型（model）都能无误差逆向求解。"
+        "text": "前进和回退的乘积为1−h²k²，因此完成这两步后得到(1−h²k²)x。"
       },
       {
         "id": "C",
-        "text": "反向误差只来自观测（observation）噪声。"
+        "text": "前进和回退的乘积为1+h²k²，因此完成这两步后得到(1+h²k²)x。"
       },
       {
         "id": "D",
-        "text": "要单独检验重建误差，不能把它当作连续伴随的数学恒等式。"
+        "text": "前进和回退都乘1−hk，因此完成这两步后得到(1−hk)²x。"
       }
     ],
     "constraints": []
@@ -1742,12 +1742,12 @@
   {
     "id": "p15-pinn-parts",
     "slug": "p15-pinn-parts",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.4",
     "lesson_id": "P15-C04-S01",
     "title": "方程约束的三类证据",
-    "statement": "少量观测（observation）上数据损失接近零，能推出什么？",
+    "statement": "少量观测（observation）点不包含初始时刻，候选函数在这些点的数据平方误差接近零。这项结果说明什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1763,19 +1763,19 @@
     "options": [
       {
         "id": "A",
-        "text": "候选函数在连续全域满足方程。"
+        "text": "候选函数在这些观测点的导数（derivative）满足所设的变化率方程。"
       },
       {
         "id": "B",
-        "text": "初值（initial condition）自动正确。"
+        "text": "候选函数在这些观测点的取值接近对应的数据读数。"
       },
       {
         "id": "C",
-        "text": "训练外轨迹（trajectory）一定正确。"
+        "text": "候选函数在未被观测的初始时刻也满足指定初值（initial condition）。"
       },
       {
         "id": "D",
-        "text": "只说明给定观测点拟合好；仍要查残差（residual）、初值和独立点。"
+        "text": "候选函数在观测点之间和之外都接近真实轨迹（trajectory）。"
       }
     ],
     "constraints": []
@@ -1783,12 +1783,12 @@
   {
     "id": "p15-loss-unit",
     "slug": "p15-loss-unit",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.4",
     "lesson_id": "P15-C04-S01",
     "title": "损失相加之前",
-    "statement": "数据平方误差的单位是 U²，方程残差（residual）平方的单位是 U²/T²。直接相加前应怎样做？",
+    "statement": "数据平方误差的单位为U²，方程残差（residual）平方的单位为U²/T²。设U0是量的参考尺度，τ0是时间参考尺度，怎样把两项组成可解释的共同目标？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1804,19 +1804,19 @@
     "options": [
       {
         "id": "A",
-        "text": "声明尺度与权重，最好先无量纲化（nondimensionalization）各分项。"
+        "text": "先对两个分项的数值取平均，再把平均结果视为不随所选单位改变的目标。"
       },
       {
         "id": "B",
-        "text": "把单位写在图例里就足够。"
+        "text": "分别将两个分项除以各自的样本数，再把它们当作具有相同量纲（dimension）的量相加。"
       },
       {
         "id": "C",
-        "text": "只删除方程项。"
+        "text": "将方程残差平方乘时间参考尺度τ0，再与数据平方误差相加。"
       },
       {
         "id": "D",
-        "text": "只增加配点（collocation point）数。"
+        "text": "将数据平方误差除以U0²，将方程残差平方除以(U0/τ0)²，再规定两项的相对权重。"
       }
     ],
     "constraints": []
@@ -1824,12 +1824,12 @@
   {
     "id": "p15-boundary-needed",
     "slug": "p15-boundary-needed",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.4",
     "lesson_id": "P15-C04-S02",
     "title": "内点残差零时",
-    "statement": "候选 φ=e^{-Dπ²t}cos(πx)+s x，s≠0，内部扩散残差（residual）为零。对无通量问题如何判断？",
+    "statement": "在x∈[0,1]上，候选φ=e^(−Dπ²t)cos(πx)+sx，s≠0。对扩散方程与无通量边界（no-flux boundary），内部残差（residual）和两端空间导数（derivative）分别如何？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1845,19 +1845,19 @@
     "options": [
       {
         "id": "A",
-        "text": "已证明完全满足问题。"
+        "text": "内部残差为零，两个端点空间导数也为零。"
       },
       {
         "id": "B",
-        "text": "还需检查边界；s≠0 违反零通量条件。"
+        "text": "内部残差为s，两个端点空间导数均为零。"
       },
       {
         "id": "C",
-        "text": "只需增加时间配点（collocation point）。"
+        "text": "内部残差为零，两个端点空间导数均为s。"
       },
       {
         "id": "D",
-        "text": "PDE 残差必为无穷。"
+        "text": "内部残差为s，两个端点空间导数均为s。"
       }
     ],
     "constraints": []
@@ -1865,7 +1865,7 @@
   {
     "id": "p15-collocation-limit",
     "slug": "p15-collocation-limit",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.4",
     "lesson_id": "P15-C04-S02",
@@ -1886,19 +1886,19 @@
     "options": [
       {
         "id": "A",
-        "text": "无需任何评估，已获得连续全域证明。"
+        "text": "在同一批训练配点上反复计算残差，用重复结果相同来判断所有时空位置都满足方程。"
       },
       {
         "id": "B",
-        "text": "只看训练损失的总和即可。"
+        "text": "将数据、方程和边界损失合并成一个数，用总损失较小来判断每一类误差都小。"
       },
       {
         "id": "C",
-        "text": "独立时空点、边界与解析或数值基线的解误差。"
+        "text": "在未参与训练的时空位置计算残差，并分别比较边界条件和参考解是否得到满足。"
       },
       {
         "id": "D",
-        "text": "把曲线颜色换成蓝色。"
+        "text": "计算训练损失从开始到结束下降了多少比例，用下降比例代替最终误差大小。"
       }
     ],
     "constraints": []
@@ -1906,12 +1906,12 @@
   {
     "id": "p15-zero-correction",
     "slug": "p15-zero-correction",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.5",
     "lesson_id": "P15-C05-S01",
     "title": "零修正的极限",
-    "statement": "混合右端 u-kx+θ tanh(x/s) 在 θ=0 时应怎样？",
+    "statement": "混合右端为u−kx+θtanh(x/s)。令θ=0后右端变为什么？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1927,19 +1927,19 @@
     "options": [
       {
         "id": "A",
-        "text": "状态（state）导数（derivative）总为零。"
+        "text": "关闭修正项后的右端为u−kx。"
       },
       {
         "id": "B",
-        "text": "成为任意神经网络（neural network）。"
+        "text": "关闭修正项后的右端为−kx。"
       },
       {
         "id": "C",
-        "text": "只保留输入（input） u。"
+        "text": "关闭修正项后的右端为0。"
       },
       {
         "id": "D",
-        "text": "精确恢复 u-kx 的机制基线。"
+        "text": "关闭修正项后的右端为u。"
       }
     ],
     "constraints": []
@@ -1947,12 +1947,12 @@
   {
     "id": "p15-mechanism-claim",
     "slug": "p15-mechanism-claim",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.5",
     "lesson_id": "P15-C05-S01",
     "title": "拟合与机制",
-    "statement": "混合模型（model）训练损失下降且新输入（input）预测改善，可以直接断言修正项是真实生理通道吗？",
+    "statement": "混合模型（model）训练损失下降，独立新输入（input）下的预测也改善。对于修正项的含义，哪项判断有依据？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1968,19 +1968,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不能；它支持给定条件下的预测，还需结构可辨识与额外机制证据。"
+        "text": "修正项使这些新输入下的预测误差变小，但还不能由此确定它对应哪一种生理过程。"
       },
       {
         "id": "B",
-        "text": "能，因为任何 tanh 都是生理清除。"
+        "text": "修正项使预测误差变小，说明它对应一个独立的生理通道。"
       },
       {
         "id": "C",
-        "text": "能，因为总量非负。"
+        "text": "修正项使预测误差变小，说明方程中的各机制参数（parameter）已经可以分别确定。"
       },
       {
         "id": "D",
-        "text": "能，因为训练参数（parameter）唯一。"
+        "text": "修正项使预测误差变小，说明未进入训练模型的变量没有影响状态（state）变化。"
       }
     ],
     "constraints": []
@@ -1988,12 +1988,12 @@
   {
     "id": "p15-confounding-input",
     "slug": "p15-confounding-input",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.5",
     "lesson_id": "P15-C05-S02",
     "title": "新输入能否破除同形混淆",
-    "statement": "若右端只含 -(k-θ)x，且只测 x(t)，改变已知输入（input） u(t) 会怎样？",
+    "statement": "方程dx/dt=u(t)−(k−θ)x，只测x(t)，输入（input）u(t)已知。怎样理解改变输入后对参数（parameter）k、θ的辨识能力？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2009,19 +2009,19 @@
     "options": [
       {
         "id": "A",
-        "text": "必定分别确定 k 与 θ。"
+        "text": "让u(t)具有更多时间变化，就能根据x(t)分别确定k和θ。"
       },
       {
         "id": "B",
-        "text": "仍只识别 k-θ；需要额外类型的信息，例如独立清除通量。"
+        "text": "将数值积分步长减小到足够精确，就能根据x(t)分别确定k和θ。"
       },
       {
         "id": "C",
-        "text": "使 θ 自动变成无量纲（dimensionless）。"
+        "text": "提高x(t)的采样（sampling）频率，就能根据更多时间点分别确定k和θ。"
       },
       {
         "id": "D",
-        "text": "使模型（model）无法数值积分。"
+        "text": "改变u(t)后，同时给k和θ加上同一个数仍不改变方程，因此仅由x(t)不能将两者分别确定。"
       }
     ],
     "constraints": []
@@ -2029,7 +2029,7 @@
   {
     "id": "p15-candidate-variance",
     "slug": "p15-candidate-variance",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.5",
     "lesson_id": "P15-C05-S02",
@@ -2050,19 +2050,19 @@
     "options": [
       {
         "id": "A",
-        "text": "所有可能机制的真实后验（posterior）方差。"
+        "text": "这个方差描述两组候选预测相对其加权平均预测的离散程度。"
       },
       {
         "id": "B",
-        "text": "观测（observation）噪声的唯一估计。"
+        "text": "这个方差描述传感器重复测量同一真值时产生的噪声变化。"
       },
       {
         "id": "C",
-        "text": "这两组候选及权重下的预测散布，不含遗漏结构。"
+        "text": "这个方差描述所有潜在结构模型（model）在给定数据下的后验（posterior）不确定性。"
       },
       {
         "id": "D",
-        "text": "一定是临床风险。"
+        "text": "这个方差描述同一组参数独立进行随机模拟时产生的过程波动。"
       }
     ],
     "constraints": []
@@ -2885,7 +2885,7 @@
   {
     "id": "p15-capstone-gradient-object",
     "slug": "p15-capstone-gradient-object",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.summary",
     "lesson_id": "P15-SUMMARY",
@@ -2906,19 +2906,19 @@
     "options": [
       {
         "id": "A",
-        "text": "先分别用离散差分和解析连续导数（derivative）核验，再研究细化。"
+        "text": "将两种梯度（gradient）取平均，把所得值作为没有偏差的真实梯度。"
       },
       {
         "id": "B",
-        "text": "判定其中一种方法必错。"
+        "text": "分别用数值差分核验离散目标、用独立解析结果核验连续目标，再比较减小步长时两者的差异。"
       },
       {
         "id": "C",
-        "text": "把梯度（gradient）差直接解释为观测（observation）噪声。"
+        "text": "保持粗步长不变，增加训练迭代次数，直到两种梯度相同。"
       },
       {
         "id": "D",
-        "text": "在留出结果上调到一致后宣称独立验证。"
+        "text": "按独立测试误差选出一种梯度算法，并据此判定另一种算法的导数（derivative）计算错误。"
       }
     ],
     "constraints": []
@@ -2926,7 +2926,7 @@
   {
     "id": "p15-capstone-identifiability",
     "slug": "p15-capstone-identifiability",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.summary",
     "lesson_id": "P15-SUMMARY",
@@ -2947,19 +2947,19 @@
     "options": [
       {
         "id": "A",
-        "text": "同一总量的更多时间点。"
+        "text": "在同一条x轨迹（trajectory）上增加观测时间点。"
       },
       {
         "id": "B",
-        "text": "独立清除通量 kx 的测量。"
+        "text": "再记录一条已知输入（input）u(t)及其对应的x轨迹。"
       },
       {
         "id": "C",
-        "text": "把输入（input）曲线颜色改为绿色。"
+        "text": "在x不为零时，独立测量清除通量kx。"
       },
       {
         "id": "D",
-        "text": "只把 Euler 步长减半。"
+        "text": "将计算现有轨迹所用的积分时间步缩小一半。"
       }
     ],
     "constraints": []
@@ -3391,7 +3391,7 @@
   {
     "id": "p15-capstone-grid-transfer",
     "slug": "p15-capstone-grid-transfer",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.summary",
     "lesson_id": "P15-SUMMARY",
@@ -3412,19 +3412,19 @@
     "options": [
       {
         "id": "A",
-        "text": "断言真实机制随步长改变。"
+        "text": "每次减小时间步都重新拟合参数（parameter），用最低训练误差判断数值解是否收敛。"
       },
       {
         "id": "B",
-        "text": "忽略步长变化，只报告训练损失。"
+        "text": "固定模型（model）参数，比较各时刻状态（state）和梯度随时间步减小而怎样变化。"
       },
       {
         "id": "C",
-        "text": "固定模型（model）参数（parameter），核查状态（state）与梯度网格收敛，再评估新初值（initial condition）。"
+        "text": "固定模型参数，只比较初始时刻的损失，用它判断整条预测轨迹（trajectory）是否收敛。"
       },
       {
         "id": "D",
-        "text": "把细网格留出结果重新用于参数选择。"
+        "text": "将细时间步下的测试误差用于继续训练，再把训练后的结果称为独立的数值核验。"
       }
     ],
     "constraints": []
@@ -3432,12 +3432,12 @@
   {
     "id": "p15-capstone-hybrid-ablation",
     "slug": "p15-capstone-hybrid-ablation",
-    "version": "1",
+    "version": "2",
     "part": "15",
     "chapter": "15.summary",
     "lesson_id": "P15-SUMMARY",
     "title": "综合：混合修正的证据",
-    "statement": "去掉修正后新输入（input）误差增加，但只测 x 且修正与清除同形。能支持什么？",
+    "statement": "只观测（observation）x，修正项与清除项都以x为因子进入方程。去掉修正项后，在一组新输入（input）下预测误差增加，能支持哪项结论？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -3453,19 +3453,19 @@
     "options": [
       {
         "id": "A",
-        "text": "已唯一发现新的生理通道。"
+        "text": "去掉修正后误差上升，已经确定了修正项所代表的独立生理过程。"
       },
       {
         "id": "B",
-        "text": "所有输入范围都必更好。"
+        "text": "保留修正项时本次新输入下的预测误差更小，但仅凭x仍不能区分清除和修正各自的贡献。"
       },
       {
         "id": "C",
-        "text": "任何机制模型（model）都不需要。"
+        "text": "本次误差下降的幅度，也适用于未测试过的其他输入范围。"
       },
       {
         "id": "D",
-        "text": "该条件下修正改善预测；机制归属仍需独立观测（observation）或干预。"
+        "text": "本次新输入下的x轨迹（trajectory），已经足以分别确定清除参数（parameter）和修正参数。"
       }
     ],
     "constraints": []

@@ -65,13 +65,14 @@ def test_choice_answers_explanations_and_duplicate_request(engine):
 
 
 def test_progress_distinguishes_valid_attempts_versions_and_interruption(engine):
-    engine.submit(payload(engine,'p01-state-observation',selected=['B']),'choice')
+    wrong=next(o['id'] for o in engine.questions['p01-state-observation']['options'] if o['id'] not in engine.verification['p01-state-observation']['correct'])
+    engine.submit(payload(engine,'p01-state-observation',selected=[wrong]),'choice')
     progress=engine.progress()
     assert progress['started']==['p01-state-observation'] and not progress['passed']
     assert progress['scope']=='course'
     sample=completed(engine,engine.submit(payload(engine,'p01-balance',SOLUTIONS['p01-balance'],mode='samples'),'python'))
     assert sample['verdict']=='AC' and 'p01-balance' in engine.progress()['started'] and 'p01-balance' not in engine.progress()['passed']
-    engine.questions['p01-state-observation']['version']='2'
+    engine.questions['p01-state-observation']['version']=str(int(engine.questions['p01-state-observation']['version'])+1)
     assert 'p01-state-observation' not in engine.progress()['started']
     for record in engine.records.values():record['verdict']='CANCELLED'
     assert not engine.progress()['started'] and not engine.progress()['passed']
@@ -220,3 +221,34 @@ def test_retired_sample_records_are_preserved_but_not_mapped_to_formal_progress(
         assert not current.progress()['started'] and not current.progress()['passed']
         assert path.read_bytes()==original
     finally:current.close()
+
+
+def test_revised_choice_keeps_old_attempt_and_requires_current_answer(tmp_path):
+    directory=tmp_path/'learning'
+    previous=PracticeEngine(directory)
+    qid='p01-state-observation'
+    current_version=previous.questions[qid]['version']
+    previous.questions[qid]['version']=str(int(current_version)-1)
+    current_answer=previous.verification[qid]['correct'][0]
+    old_letter=next(x for x in 'ABCD' if x!=current_answer)
+    previous.verification[qid]['correct']=[old_letter]
+    previous.verification[qid]['explanations'][old_letter]='Explanation from the previous edition.'
+    request=payload(previous,qid,selected=[old_letter])
+    record=previous.submit(request,'choice')
+    previous.close()
+    path=directory/'attempts'/f'{record["id"]}.json'
+    original=path.read_bytes()
+    current=PracticeEngine(directory)
+    try:
+        assert current.get(record['id'])['selected']==[old_letter]
+        assert current.get(record['id'])['verdict']=='AC'
+        assert qid not in current.progress()['passed']
+        with pytest.raises(RequestError) as error:
+            current.submit({**request,'request_id':str(uuid.uuid4())},'choice')
+        assert error.value.payload['code']=='VERSION_CONFLICT'
+        assert current.submit(payload(current,qid,selected=[old_letter]),'choice')['verdict']=='WA'
+        assert current.submit(payload(current,qid),'choice')['verdict']=='AC'
+        assert qid in current.progress()['passed']
+        assert path.read_bytes()==original
+    finally:
+        current.close()

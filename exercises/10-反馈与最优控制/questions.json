@@ -119,7 +119,7 @@
   {
     "id": "p10-pi-constant-load",
     "slug": "p10-pi-constant-load",
-    "version": "1",
+    "version": "3",
     "part": "10",
     "chapter": "10.1",
     "lesson_id": "P10-C01-S01",
@@ -138,19 +138,19 @@
     "options": [
       {
         "id": "A",
-        "text": "P 控制通常可能留下稳态误差。"
+        "text": "在恒定扰动持续作用时，P控制下的输出（output）可能稳定在偏离设定值的位置。"
       },
       {
         "id": "B",
-        "text": "增加积分项可在闭环稳定等条件下消除该类常值误差。"
+        "text": "PI控制闭环稳定且执行器没有饱和时，恒定扰动引起的误差会趋近于0。"
       },
       {
         "id": "C",
-        "text": "只要加积分，无论延迟（delay）与限幅如何，闭环一定稳定。"
+        "text": "闭环稳定时，P控制和PI控制在同一恒定扰动下的稳态误差相同。"
       },
       {
         "id": "D",
-        "text": "负反馈（negative feedback）方向的定义必须和误差、执行作用方向一致。"
+        "text": "判断负反馈（negative feedback）方向时，需要同时考虑误差的定义和输入（input）对输出的影响。"
       }
     ],
     "constraints": []
@@ -158,7 +158,7 @@
   {
     "id": "p10-request-vs-actuation",
     "slug": "p10-request-vs-actuation",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.1",
     "lesson_id": "P10-C01-S01",
@@ -177,19 +177,19 @@
     "options": [
       {
         "id": "A",
-        "text": "以8推进对象，并只在图上把输入（input）画成5。"
+        "text": "用8 U/T推进对象，并把请求输入（input）记为8 U/T、实际执行输入记为5 U/T。"
       },
       {
         "id": "B",
-        "text": "以真实执行的5推进对象，并另存请求的8用于诊断饱和。"
+        "text": "用8 U/T推进对象，并把请求输入记为5 U/T、实际执行输入记为8 U/T。"
       },
       {
         "id": "C",
-        "text": "对象状态（state）会自动知道控制器原来的请求。"
+        "text": "用5 U/T推进对象，并把请求输入记为5 U/T、实际执行输入记为8 U/T。"
       },
       {
         "id": "D",
-        "text": "发生饱和后原线性闭环推导仍无条件适用。"
+        "text": "用5 U/T推进对象，并把请求输入记为8 U/T、实际执行输入记为5 U/T。"
       }
     ],
     "constraints": []
@@ -197,7 +197,7 @@
   {
     "id": "p10-gain-units",
     "slug": "p10-gain-units",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.1",
     "lesson_id": "P10-C01-S01",
@@ -216,19 +216,19 @@
     "options": [
       {
         "id": "A",
-        "text": "kp 为1/T，ki 为1/T²。"
+        "text": "kp没有单位，ki的单位为1/T。"
       },
       {
         "id": "B",
-        "text": "kp 为T，ki 为T²。"
+        "text": "kp的单位为T，ki的单位为T²。"
       },
       {
         "id": "C",
-        "text": "两者均为1/T。"
+        "text": "kp和ki的单位均为1/T。"
       },
       {
         "id": "D",
-        "text": "增益永远无量纲（dimensionless）。"
+        "text": "kp的单位为1/T，ki的单位为1/T²。"
       }
     ],
     "constraints": []
@@ -363,7 +363,7 @@
   {
     "id": "p10-derivative-noise",
     "slug": "p10-derivative-noise",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.1",
     "lesson_id": "P10-C01-S02",
@@ -382,19 +382,19 @@
     "options": [
       {
         "id": "A",
-        "text": "约放大10倍。"
+        "text": "D中的噪声幅度变为原来的10倍。"
       },
       {
         "id": "B",
-        "text": "约缩小10倍。"
+        "text": "D中的噪声幅度变为原来的1/10。"
       },
       {
         "id": "C",
-        "text": "完全不变，因为真实误差不变。"
+        "text": "D中的噪声幅度保持不变。"
       },
       {
         "id": "D",
-        "text": "只要增加kd便能消除测量噪声。"
+        "text": "D中的噪声幅度变为原来的100倍。"
       }
     ],
     "constraints": []
@@ -402,12 +402,12 @@
   {
     "id": "p10-freeze-direction",
     "slug": "p10-freeze-direction",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.1",
     "lesson_id": "P10-C01-S02",
     "title": "何时冻结积分",
-    "statement": "正向上限为2 U/T，当前请求超过上限。下列哪种误差方向按本节条件积分规则要求冻结积分？",
+    "statement": "执行器正向上限为2 U/T，当前请求超过上限，积分增益（gain）ki>0。按条件积分规则，哪种情况应冻结本次积分增量？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -421,19 +421,19 @@
     "options": [
       {
         "id": "A",
-        "text": "e>0，继续增加正向请求。"
+        "text": "e=0时，应把此前累积的积分值清零。"
       },
       {
         "id": "B",
-        "text": "e<0，推动请求离开正向上限。"
+        "text": "e<0时，应冻结这次使请求输入（input）减小的积分增量。"
       },
       {
         "id": "C",
-        "text": "只要限制存在，积分永远不更新。"
+        "text": "e>0时，应冻结这次使请求输入继续增大的积分增量。"
       },
       {
         "id": "D",
-        "text": "只要D项不为零，积分永远冻结。"
+        "text": "e<0且实际输入仍在上限时，应冻结这次负向积分增量。"
       }
     ],
     "constraints": []
@@ -441,7 +441,7 @@
   {
     "id": "p10-pid-comparison",
     "slug": "p10-pid-comparison",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.1",
     "lesson_id": "P10-C01-S02",
@@ -460,19 +460,19 @@
     "options": [
       {
         "id": "A",
-        "text": "对象、初态、扰动、测量噪声（measurement noise）、执行限幅与评价时间窗。"
+        "text": "各方法使用相同对象和初态，扰动则分别选取各方法调参时误差最小的一组。"
       },
       {
         "id": "B",
-        "text": "只需把三条轨迹画成同一种颜色。"
+        "text": "各方法使用相同对象、初态、扰动、噪声和输入（input）上限，并在相同时间段内比较响应。"
       },
       {
         "id": "C",
-        "text": "让每种方法用不同扰动，从而显示各自优势。"
+        "text": "各方法使用相同对象和扰动，但只在PID实验中加入测量噪声（measurement noise）和输入限幅。"
       },
       {
         "id": "D",
-        "text": "只看终点误差，忽略超调与实际输入（input）。"
+        "text": "各方法使用相同对象和输入上限，并各自以达到稳态的时刻结束误差计算。"
       }
     ],
     "constraints": []
@@ -568,12 +568,12 @@
   {
     "id": "p10-pole-to-time",
     "slug": "p10-pole-to-time",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.2",
     "lesson_id": "P10-C02-S01",
     "title": "极点与暂态",
-    "statement": "对于本节线性连续模型（model），两个闭环极点（pole）实部均为负。哪些结论有条件成立？",
+    "statement": "一个连续时间线性闭环模型（model）的两个极点（pole）实部均为负。关于该模型的响应，下列哪些判断正确？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -587,19 +587,19 @@
     "options": [
       {
         "id": "A",
-        "text": "无未建模动态且模型精确时，小扰动自然响应衰减。"
+        "text": "模型准确时，扰动移除后的自然响应会随时间衰减。"
       },
       {
         "id": "B",
-        "text": "有饱和也一定保持相同的全局稳定结论。"
+        "text": "发生输入（input）饱和后，同一组线性闭环极点仍能描述整个响应过程。"
       },
       {
         "id": "C",
-        "text": "复共轭（complex conjugate）极点对应振荡形状的暂态（transient）分量。"
+        "text": "复共轭（complex conjugate）极点对应的暂态（transient）分量会在衰减过程中振荡。"
       },
       {
         "id": "D",
-        "text": "极点位置本身不能说明传感器噪声与执行代价都可接受。"
+        "text": "闭环极点位于左半平面，并不能确定输入幅度及测量噪声（measurement noise）造成的输出（output）波动有多大。"
       }
     ],
     "constraints": []
@@ -607,12 +607,12 @@
   {
     "id": "p10-root-locus-meaning",
     "slug": "p10-root-locus-meaning",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.2",
     "lesson_id": "P10-C02-S01",
     "title": "根轨迹画的是什么",
-    "statement": "固定对象 G(s)，只改变实数增益（gain） K。根轨迹（trajectory）中的点表示什么？",
+    "statement": "固定对象 G(s)，只改变实数增益（gain） K。根轨迹（root locus）中的点表示什么？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -626,19 +626,19 @@
     "options": [
       {
         "id": "A",
-        "text": "每个K所对应的闭环特征根。"
+        "text": "根轨迹上的点是固定对象G(s)分子的根。"
       },
       {
         "id": "B",
-        "text": "每个K下开环对象原有极点（pole）必随之移动。"
+        "text": "根轨迹上的点是固定对象G(s)分母的根。"
       },
       {
         "id": "C",
-        "text": "执行器实际输入（input）随时间的轨迹。"
+        "text": "根轨迹上的点是不同K取值下闭环特征方程的根。"
       },
       {
         "id": "D",
-        "text": "同一个频率的相角随时间的轨迹。"
+        "text": "根轨迹上的点是频率响应（frequency response）幅值等于1时的频率。"
       }
     ],
     "constraints": []
@@ -646,7 +646,7 @@
   {
     "id": "p10-delay-approximation",
     "slug": "p10-delay-approximation",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.2",
     "lesson_id": "P10-C02-S01",
@@ -665,19 +665,19 @@
     "options": [
       {
         "id": "A",
-        "text": "近似阶次与频率范围会影响相位（phase）和极点（pole）结论，应对照原延迟模型（model）。"
+        "text": "有理近似中新增的每个极点（pole），都表示真实对象多了一个储存状态（state）。"
       },
       {
         "id": "B",
-        "text": "一次近似的稳定极点证明任意真实延迟下都稳定。"
+        "text": "近似模型（model）在低频处的相位（phase）准确，就能用它判断高频处的稳定裕度。"
       },
       {
         "id": "C",
-        "text": "延迟只改变幅值，不改变相位。"
+        "text": "纯延迟的幅值为1，所以从回路中去掉延迟后，闭环稳定性保持不变。"
       },
       {
         "id": "D",
-        "text": "闭环极点与延迟永远无关。"
+        "text": "应比较近似模型与原延迟模型的频率响应（frequency response），检查二者在哪段频率范围内接近。"
       }
     ],
     "constraints": []
@@ -781,7 +781,7 @@
   {
     "id": "p10-nyquist-hypotheses",
     "slug": "p10-nyquist-hypotheses",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.2",
     "lesson_id": "P10-C02-S02",
@@ -800,19 +800,19 @@
     "options": [
       {
         "id": "A",
-        "text": "开环右半平面极点数，并跟踪−1点绕数。"
+        "text": "需要知道开环在右半平面内的极点数，并计算曲线围绕−1点的绕数。"
       },
       {
         "id": "B",
-        "text": "只观察正频率曲线的一个点。"
+        "text": "曲线围绕−1点的绕数为0时，就可判断闭环稳定，而不用计算开环右半平面的极点数。"
       },
       {
         "id": "C",
-        "text": "任何非线性饱和系统都与线性回路结论相同。"
+        "text": "负反馈（negative feedback）特征方程为1+L(s)=0时，应计算曲线围绕+1点的绕数。"
       },
       {
         "id": "D",
-        "text": "若改变轮廓或绕数方向，公式符号也须同步核对。"
+        "text": "如果改变轮廓方向或绕数的正负约定，应相应核对判据中的符号。"
       }
     ],
     "constraints": []
@@ -820,12 +820,12 @@
   {
     "id": "p10-bode-margin",
     "slug": "p10-bode-margin",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.2",
     "lesson_id": "P10-C02-S02",
     "title": "裕度能说明什么",
-    "statement": "给定线性开环模型（model）的 Bode 图和正相位裕度（phase margin）。哪项判断最谨慎？",
+    "statement": "线性负反馈（negative feedback）开环在增益交叉频率（gain crossover frequency）处幅值为1、相位（phase）为−150°。按该交叉点定义，相位裕度（phase margin）30°表示什么？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -839,19 +839,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这提供该线性回路在相应交叉频率条件下的频域稳定裕度与鲁棒性信息，还需检查噪声、饱和与失配。"
+        "text": "增益交叉频率处相位超前30°后，回路就到达−180°。"
       },
       {
         "id": "B",
-        "text": "正裕度证明全部初态和非线性约束下都安全。"
+        "text": "相位交叉频率（phase crossover frequency）处还可增加30倍幅值才到单位增益（gain）。"
       },
       {
         "id": "C",
-        "text": "相位裕度与延迟（delay）无关。"
+        "text": "执行器输入（input）上限还可减少30%，闭环会保持相同裕度。"
       },
       {
         "id": "D",
-        "text": "幅值和相位（phase）都不需注明单位或频率。"
+        "text": "增益交叉频率处还可增加30°相位滞后（lag）才到−180°。"
       }
     ],
     "constraints": []
@@ -859,7 +859,7 @@
   {
     "id": "p10-phase-wrap",
     "slug": "p10-phase-wrap",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.2",
     "lesson_id": "P10-C02-S02",
@@ -878,19 +878,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这可能只是相角绕过分支切线（tangent line）；应展开相位（phase）再讨论连续趋势。"
+        "text": "主值相角越过±180°时，该频率处的幅值必为0。"
       },
       {
         "id": "B",
-        "text": "对象一定发生物理跳变。"
+        "text": "这次相角显示变化意味着连续相位（phase）增加了358°。"
       },
       {
         "id": "C",
-        "text": "频响幅值必同时跃迁无穷大。"
+        "text": "这次相角显示变化意味着连续相位仍停留在−179°。"
       },
       {
         "id": "D",
-        "text": "任何主值跳变都说明闭环不稳定。"
+        "text": "这次相角显示变化可以对应连续相位从−179°减小到−181°。"
       }
     ],
     "constraints": []
@@ -1001,12 +1001,12 @@
   {
     "id": "p10-actuator-position",
     "slug": "p10-actuator-position",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.3",
     "lesson_id": "P10-C03-S01",
     "title": "同一 A、不同输入位置",
-    "statement": "A=[[0,1],[0,0]]，B₁=[0,1]ᵀ，B₂=[1,0]ᵀ。哪项正确？",
+    "statement": "A=[[0,1],[0,0]]，B₁=[0,1]ᵀ，B₂=[1,0]ᵀ。可控矩阵（matrix）[B,AB]的秩（rank）分别是多少？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1020,19 +1020,19 @@
     "options": [
       {
         "id": "A",
-        "text": "[B₁,AB₁] 满秩（rank），而 [B₂,AB₂] 不满秩。"
+        "text": "B₁对应秩2，B₂对应秩1。"
       },
       {
         "id": "B",
-        "text": "两者都满秩，因为A相同。"
+        "text": "B₁对应秩2，B₂对应秩2。"
       },
       {
         "id": "C",
-        "text": "B₂可直接改变第二状态（state）。"
+        "text": "B₁对应秩1，B₂对应秩2。"
       },
       {
         "id": "D",
-        "text": "图中的箭头方向无需对应矩阵（matrix）的行列。"
+        "text": "B₁对应秩1，B₂对应秩1。"
       }
     ],
     "constraints": []
@@ -1040,12 +1040,12 @@
   {
     "id": "p10-rank-tolerance",
     "slug": "p10-rank-tolerance",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.3",
     "lesson_id": "P10-C03-S01",
     "title": "数值秩不是绝对标签",
-    "statement": "把状态（state）第二分量的数值单位改为原来的1000倍，直接使用同一个行列式（determinant）阈值。最合理的处理是什么？",
+    "statement": "同一状态（state）的第二分量改用另一种计量单位，数值变为原来的1000倍，系统矩阵（matrix）也随坐标变换调整。用数值计算判断能控矩阵的秩（rank）时，哪项处理合理？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1059,19 +1059,19 @@
     "options": [
       {
         "id": "A",
-        "text": "报告尺度和容差，并考虑奇异值（singular value）或适当缩放。"
+        "text": "应在调整后的坐标尺度下检查奇异值（singular value），并说明判断秩时采用的容差。"
       },
       {
         "id": "B",
-        "text": "行列式非零的数学秩（rank）会随单位变化。"
+        "text": "应沿用原行列式（determinant）阈值，并将是否跨过阈值解释为对象的能控性（controllability）是否改变。"
       },
       {
         "id": "C",
-        "text": "把所有小于1的数值都宣布不可控。"
+        "text": "应先把矩阵各元素四舍五入为整数，再对得到的整数矩阵计算秩。"
       },
       {
         "id": "D",
-        "text": "任何双精度计算都能无条件判定精确秩。"
+        "text": "应比较行列式的绝对值，并把绝对值较大的系统判为更容易控制。"
       }
     ],
     "constraints": []
@@ -1079,12 +1079,12 @@
   {
     "id": "p10-controllable-not-feasible",
     "slug": "p10-controllable-not-feasible",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.3",
     "lesson_id": "P10-C03-S01",
-    "title": "可控就一定可行吗",
-    "statement": "线性对 (A,B) 可控，但输入（input）存在 |u|≤1 的硬约束。哪项判断正确？",
+    "title": "有限时间内的受限可达性",
+    "statement": "双积分对象x₁′=x₂、x₂′=u从x₁=x₂=0出发，输入（input）限制|u|≤1。希望在1 s内到达位置x₁=2，终端速度不限。哪项正确？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1098,19 +1098,19 @@
     "options": [
       {
         "id": "A",
-        "text": "可控性不保证在任意有限时间、任意初态下满足上限地到达目标。"
+        "text": "令u=1持续1 s，位置增加1，所以再调整终端速度即可到2。"
       },
       {
         "id": "B",
-        "text": "可控性自动提供最小能量解。"
+        "text": "系统可控，因此存在满足|u|≤1的输入在1 s到达x₁=2。"
       },
       {
         "id": "C",
-        "text": "可控性说明传感器一定可观。"
+        "text": "即使系统可控，x₁(1)的最大值也只有0.5，达不到2。"
       },
       {
         "id": "D",
-        "text": "约束不会影响可达集合。"
+        "text": "先取u=1再取u=−1，位置增量会大于始终取u=1。"
       }
     ],
     "constraints": []
@@ -1194,7 +1194,7 @@
   {
     "id": "p10-feedback-sign",
     "slug": "p10-feedback-sign",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.3",
     "lesson_id": "P10-C03-S02",
@@ -1213,19 +1213,19 @@
     "options": [
       {
         "id": "A",
-        "text": "A−BK。"
+        "text": "应检查闭环矩阵A+BK。"
       },
       {
         "id": "B",
-        "text": "A+BK。"
+        "text": "应检查闭环矩阵A−BK。"
       },
       {
         "id": "C",
-        "text": "A−KC。"
+        "text": "应检查闭环矩阵A−KC。"
       },
       {
         "id": "D",
-        "text": "A⁻¹BK。"
+        "text": "应检查闭环矩阵A⁻¹BK。"
       }
     ],
     "constraints": []
@@ -1233,11 +1233,11 @@
   {
     "id": "p10-fast-pole-cost",
     "slug": "p10-fast-pole-cost",
-    "version": "1",
+    "version": "3",
     "part": "10",
     "chapter": "10.3",
     "lesson_id": "P10-C03-S02",
-    "title": "极点越快越好吗",
+    "title": "改变双积分对象的目标极点",
     "statement": "同一个双积分对象上把目标极点（pole）从−1、−2改为−10、−20。哪些结果可能随之改变？",
     "type": "choice",
     "learning_targets": [
@@ -1252,19 +1252,19 @@
     "options": [
       {
         "id": "A",
-        "text": "反馈（feedback）增益（gain）和初始输入（input）需求会显著增大。"
+        "text": "反馈（feedback）增益（gain）会增大，相同非零初态下需要的初始输入（input）也可能增大。"
       },
       {
         "id": "B",
-        "text": "线性理想模型（model）的暂态（transient）会更快。"
+        "text": "在线性理想模型（model）中，各暂态（transient）模态（mode）会以更快的速率衰减。"
       },
       {
         "id": "C",
-        "text": "执行饱和和测量误差可使实际表现偏离理想极点结论。"
+        "text": "输入饱和或测量误差可能使实测响应偏离这组理想极点给出的响应。"
       },
       {
         "id": "D",
-        "text": "极点变快自动消除所有输入代价。"
+        "text": "目标极点的绝对值增大10倍后，位置反馈增益会减小到原来的1/10。"
       }
     ],
     "constraints": []
@@ -1272,12 +1272,12 @@
   {
     "id": "p10-pole-placement-condition",
     "slug": "p10-pole-placement-condition",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.3",
     "lesson_id": "P10-C03-S02",
-    "title": "不可控时不能任意配置",
-    "statement": "若 [B,AB] 秩（rank）只有1，给出任意两个目标极点（pole）时，以下何者正确？",
+    "title": "秩为1时的极点配置",
+    "statement": "二维线性系统的[B,AB]秩（rank）为1。用状态（state）反馈（feedback）u=−Kx配置两个模态（mode）的极点（pole）时，哪项正确？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1291,19 +1291,19 @@
     "options": [
       {
         "id": "A",
-        "text": "无法保证两个模态（mode）都按目标配置。"
+        "text": "秩为1说明输入（input）无法改变这两个模态中的任何一个。"
       },
       {
         "id": "B",
-        "text": "只要K的数字够大就一定可配置。"
+        "text": "把反馈矩阵（matrix）K放大后，能控矩阵的秩可以由1变为2。"
       },
       {
         "id": "C",
-        "text": "不可控模态可由输入（input）直接移动。"
+        "text": "只要保持两个目标极点的平均值不变，就可以选择任意一对目标极点。"
       },
       {
         "id": "D",
-        "text": "这证明对象没有任何可稳定的方向。"
+        "text": "状态反馈能改变可控模态的极点，而不可控模态的极点保持原值。"
       }
     ],
     "constraints": []
@@ -1414,7 +1414,7 @@
   {
     "id": "p10-sensor-position",
     "slug": "p10-sensor-position",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.4",
     "lesson_id": "P10-C04-S01",
@@ -1433,19 +1433,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只测x₁在本模型（model）下可观；只测x₂无法恢复x₁。"
+        "text": "只测x₁时系统能观，只测x₂时系统不能观。"
       },
       {
         "id": "B",
-        "text": "只测x₂一定可恢复x₁，因为两个状态（state）耦合。"
+        "text": "只测x₁时系统不能观，只测x₂时系统能观。"
       },
       {
         "id": "C",
-        "text": "能观性（observability）和传感器位置无关。"
+        "text": "只测x₁或只测x₂时，系统都能观。"
       },
       {
         "id": "D",
-        "text": "能观性直接说明未知参数（parameter）也可辨识。"
+        "text": "只测x₁或只测x₂时，系统都不能观。"
       }
     ],
     "constraints": []
@@ -1453,12 +1453,12 @@
   {
     "id": "p10-known-input",
     "slug": "p10-known-input",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.4",
     "lesson_id": "P10-C04-S01",
-    "title": "观测器需要知道输入吗",
-    "statement": "线性模型（model） x_next=Ax+Bu、y=Cx，估计器使用同一模型。为什么输入（input） u 必须作为已知量接入？",
+    "title": "省略已知输入的预测误差",
+    "statement": "线性模型（model）x_next=Ax+Bu。某估计器预测时漏掉已知输入（input），只算xhat_next=Axhat，暂不作观测（observation）更新。定义e=x−xhat，预测误差是哪项？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1472,19 +1472,19 @@
     "options": [
       {
         "id": "A",
-        "text": "否则读数变化中的输入作用可能被误认为状态（state）变化。"
+        "text": "预测误差满足e_next=Ae。"
       },
       {
         "id": "B",
-        "text": "因为输入是传感器噪声的别名。"
+        "text": "预测误差满足e_next=Ae−Bu。"
       },
       {
         "id": "C",
-        "text": "观测（observation）器不需要模型A。"
+        "text": "预测误差满足e_next=Ae+Bu。"
       },
       {
         "id": "D",
-        "text": "已知输入保证测量无噪声。"
+        "text": "预测误差满足e_next=(A−B)e。"
       }
     ],
     "constraints": []
@@ -1492,11 +1492,11 @@
   {
     "id": "p10-observability-vs-noise",
     "slug": "p10-observability-vs-noise",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.4",
     "lesson_id": "P10-C04-S01",
-    "title": "可观不等于精确恢复",
+    "title": "带噪观测下的状态恢复",
     "statement": "(A,C) 满秩（rank）可观，实际读数含噪。下列哪项正确？",
     "type": "choice",
     "learning_targets": [
@@ -1511,19 +1511,19 @@
     "options": [
       {
         "id": "A",
-        "text": "满秩是理想已知模型（model）的结构条件，噪声下仍需讨论估计误差。"
+        "text": "无噪声时可以从一段输出（output）推断初态，加入测量噪声（measurement noise）后仍可能出现状态（state）估计误差。"
       },
       {
         "id": "B",
-        "text": "满秩保证每次单独读数直接给出全部状态（state）。"
+        "text": "系统能观意味着用任意时刻的一次读数就可以确定完整状态。"
       },
       {
         "id": "C",
-        "text": "满秩保证任何初始误差一步归零。"
+        "text": "能观矩阵（matrix）满秩意味着它的最大奇异值（singular value）和最小奇异值相等。"
       },
       {
         "id": "D",
-        "text": "满秩自动证明参数（parameter）源于真实生理机制。"
+        "text": "把同一个传感器读数多显示几位小数，就能消除其中的随机噪声。"
       }
     ],
     "constraints": []
@@ -1698,12 +1698,12 @@
   {
     "id": "p10-error-dynamics",
     "slug": "p10-error-dynamics",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.4",
     "lesson_id": "P10-C04-S02",
     "title": "误差如何演化",
-    "statement": "同一离散线性对象，观测（observation）器使用真实执行输入（input）且无过程与测量噪声（measurement noise）。定义 e=x−xhat，哪项正确？",
+    "statement": "无过程与测量噪声（measurement noise），对象x_next=Ax+Bu、y=Cx；观测（observation）器xhat_next=Axhat+Bu+L(y−Cxhat)，使用真实执行输入（input）。定义e=x−xhat，哪项正确？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1717,19 +1717,19 @@
     "options": [
       {
         "id": "A",
-        "text": "e_next=(A−LC)e。"
+        "text": "误差递推关系（recurrence relation）为e_next=(A−BL)e。"
       },
       {
         "id": "B",
-        "text": "e_next=(A+LC)e。"
+        "text": "误差递推关系为e_next=(A+LC)e。"
       },
       {
         "id": "C",
-        "text": "只要L非零，误差一步归零。"
+        "text": "误差递推关系为e_next=(I−LC)e。"
       },
       {
         "id": "D",
-        "text": "误差必等于读数创新。"
+        "text": "误差递推关系为e_next=(A−LC)e。"
       }
     ],
     "constraints": []
@@ -1737,12 +1737,12 @@
   {
     "id": "p10-separation-assumptions",
     "slug": "p10-separation-assumptions",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.4",
     "lesson_id": "P10-C04-S02",
     "title": "分离设计的适用条件",
-    "statement": "状态（state）反馈（feedback）和观测（observation）器分别有稳定误差动态。哪项说法最完整？",
+    "statement": "在线性模型（model）准确、执行器无饱和的条件下，使用u=−Kxhat及误差动态e_next=(A−LC)e的估计器。由对象状态（state）和估计误差组成的增广闭环，其极点（pole），即特征值（eigenvalue），如何构成？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1756,19 +1756,19 @@
     "options": [
       {
         "id": "A",
-        "text": "在线性、模型（model）正确、无饱和等条件下可由两组极点（pole）构成增广闭环；加入限幅和失配后须重新验证。"
+        "text": "增广闭环的极点是A−BK−LC这一矩阵（matrix）的特征值。"
       },
       {
         "id": "B",
-        "text": "无论传感器失效或执行器饱和，两组极点仍证明全局稳定。"
+        "text": "增广闭环的极点由A−BK的特征值组成，不包含A−LC的特征值。"
       },
       {
         "id": "C",
-        "text": "反馈可以暗中使用实验用隐藏真值。"
+        "text": "增广闭环的极点由A−LC的特征值组成，不包含A−BK的特征值。"
       },
       {
         "id": "D",
-        "text": "观测器增益（gain）和反馈增益必须数值相等。"
+        "text": "增广闭环的极点由A−BK和A−LC两组特征值组成。"
       }
     ],
     "constraints": []
@@ -1776,11 +1776,11 @@
   {
     "id": "p10-truth-for-validation",
     "slug": "p10-truth-for-validation",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.4",
     "lesson_id": "P10-C04-S02",
-    "title": "真值只能在哪里出现",
+    "title": "模拟中的状态信息协议",
     "statement": "教学模拟能保存完整状态（state），但真实传感器只给出 y。哪种做法合理？",
     "type": "choice",
     "learning_targets": [
@@ -1795,19 +1795,19 @@
     "options": [
       {
         "id": "A",
-        "text": "控制决策只用y及其估计，模拟真值单独用于离线误差核验。"
+        "text": "控制决策使用传感器读数和状态估计，模拟器保存的完整状态用于事后计算估计误差。"
       },
       {
         "id": "B",
-        "text": "用真值计算u，再把结果称为部分观测（observation）控制。"
+        "text": "控制决策使用模拟器保存的完整状态，评估时只展示传感器读数和估计结果。"
       },
       {
         "id": "C",
-        "text": "把真值放入公开练习参数（parameter），却声称无需它。"
+        "text": "控制决策平时使用状态估计，传感器缺测时改用模拟器的完整状态继续运行。"
       },
       {
         "id": "D",
-        "text": "没有真值就不能展示创新序列。"
+        "text": "每一步用模拟器的完整状态选择估计器增益（gain），再将控制器记为仅使用传感器信息。"
       }
     ],
     "constraints": []
@@ -1933,11 +1933,11 @@
   {
     "id": "p10-terminal-matters",
     "slug": "p10-terminal-matters",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.5",
     "lesson_id": "P10-C05-S01",
-    "title": "遗漏终端代价",
+    "title": "一步控制的总代价",
     "statement": "一步问题 x_next=x+u，阶段代价x²+u²，终端代价x_next²。x=2时哪项正确？",
     "type": "choice",
     "learning_targets": [
@@ -1953,19 +1953,19 @@
     "options": [
       {
         "id": "A",
-        "text": "最优u=−1，总代价6。"
+        "text": "最优输入（input）为u=−2，此时总代价为8。"
       },
       {
         "id": "B",
-        "text": "最优u=0，因为只看本步输入（input）代价。"
+        "text": "最优输入为u=0，此时总代价为8。"
       },
       {
         "id": "C",
-        "text": "最优u=−2，总代价4。"
+        "text": "最优输入为u=−1，此时总代价为6。"
       },
       {
         "id": "D",
-        "text": "未来价值与当前决策无关。"
+        "text": "最优输入为u=−2/3，此时总代价为56/9。"
       }
     ],
     "constraints": []
@@ -1973,12 +1973,12 @@
   {
     "id": "p10-bellman-scope",
     "slug": "p10-bellman-scope",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.5",
     "lesson_id": "P10-C05-S01",
     "title": "Bellman 递推需要什么",
-    "statement": "有限时域动态规划中，V_t(x)代表从时刻t状态（state）x开始的最小剩余代价。哪项正确？",
+    "statement": "有限时域动态为x_next=f_t(x,u)，阶段代价ℓ_t(x,u)，终端价值V_N已给定。V_t(x)表示从时刻t状态（state）x出发的最小剩余代价。哪项递推正确？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1993,19 +1993,19 @@
     "options": [
       {
         "id": "A",
-        "text": "需要明确终端条件V_N。"
+        "text": "价值函数满足递推关系（recurrence relation）V_t(x)=min_u{ℓ_t(x,u)+V_{t+1}(f_t(x,u))}。"
       },
       {
         "id": "B",
-        "text": "每一步可用不同未来最优策略而不满足状态转移。"
+        "text": "价值函数满足递推关系V_t(x)=min_u ℓ_t(x,u)+min_z V_{t+1}(z)。"
       },
       {
         "id": "C",
-        "text": "没有模型（model）也能直接写出精确递推。"
+        "text": "价值函数满足递推关系V_t(x)=min_u{ℓ_t(x,u)+V_t(f_t(x,u))}。"
       },
       {
         "id": "D",
-        "text": "最优决策完全不依赖当前状态。"
+        "text": "价值函数满足递推关系V_t(x)=min_u{V_{t+1}(f_t(x,u))}。"
       }
     ],
     "constraints": []
@@ -2013,12 +2013,12 @@
   {
     "id": "p10-weight-units",
     "slug": "p10-weight-units",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.5",
     "lesson_id": "P10-C05-S01",
     "title": "代价权重与单位",
-    "statement": "将状态（state）数值单位改为原来的100倍，但不改变物理目标。应怎样处理 qx² 的权重？",
+    "statement": "代价项为qx²，其中q>0。同一物理状态（state）重新计量后，数值满足x_new=100x，但物理代价保持不变。新权重应是多少？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2033,19 +2033,19 @@
     "options": [
       {
         "id": "A",
-        "text": "相应调整q以保持同一物理代价。"
+        "text": "新权重为q/100。"
       },
       {
         "id": "B",
-        "text": "q永远不变。"
+        "text": "新权重为q/10000。"
       },
       {
         "id": "C",
-        "text": "只改绘图标签即可。"
+        "text": "新权重仍为q。"
       },
       {
         "id": "D",
-        "text": "单位变化证明优化问题不可解。"
+        "text": "新权重为10000q。"
       }
     ],
     "constraints": []
@@ -2201,7 +2201,7 @@
   {
     "id": "p10-riccati-boundary",
     "slug": "p10-riccati-boundary",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.5",
     "lesson_id": "P10-C05-S02",
@@ -2221,19 +2221,19 @@
     "options": [
       {
         "id": "A",
-        "text": "先设 S_N=Qf，再从t=N−1递推到0。"
+        "text": "将终端矩阵（matrix）设为S_N=0，省略Qf，再从t=N−1倒推到0。"
       },
       {
         "id": "B",
-        "text": "先假设所有时刻的K数值相同。"
+        "text": "将初始矩阵设为S_0=Qf，再从t=0正推到N。"
       },
       {
         "id": "C",
-        "text": "只需计算S_0，其他阶段无需定义。"
+        "text": "将终端矩阵设为S_N=Qf，再从t=N−1倒推到0。"
       },
       {
         "id": "D",
-        "text": "把终端权重加在每个阶段而不说明。"
+        "text": "把每个时刻的S_t都设为Qf，再用这些矩阵计算各时刻的K_t。"
       }
     ],
     "constraints": []
@@ -2241,12 +2241,12 @@
   {
     "id": "p10-unconstrained-vs-saturated",
     "slug": "p10-unconstrained-vs-saturated",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.5",
     "lesson_id": "P10-C05-S02",
     "title": "截断 LQR 输入",
-    "statement": "将无约束LQR计算出的u裁剪到执行上限后，哪项说法正确？",
+    "statement": "对象有输入（input）幅值上限，没有额外状态（state）约束。把无约束LQR给出的输入逐步裁剪到上限内，哪项正确？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2261,19 +2261,19 @@
     "options": [
       {
         "id": "A",
-        "text": "裁剪轨迹（trajectory）仍可作为可行基线，但一般不能称作原约束问题的最优解。"
+        "text": "裁剪后的输入满足幅值上限，但对应的总代价可能高于受限问题的最优值。"
       },
       {
         "id": "B",
-        "text": "裁剪不改变状态（state）轨迹。"
+        "text": "裁剪后的输入满足幅值上限，因此与约束动态规划算出的输入相同。"
       },
       {
         "id": "C",
-        "text": "Riccati 证明自动覆盖任何状态约束。"
+        "text": "裁剪输入后，系统仍会沿无约束LQR得到的状态轨迹（trajectory）演化。"
       },
       {
         "id": "D",
-        "text": "若某一步裁剪，后续最优反馈（feedback）增益（gain）必保持原结论。"
+        "text": "R正定（positive definite）时，裁剪后的输入仍满足原无约束问题的驻点（stationary point）方程。"
       }
     ],
     "constraints": []
@@ -2281,7 +2281,7 @@
   {
     "id": "p10-finite-vs-infinite",
     "slug": "p10-finite-vs-infinite",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.5",
     "lesson_id": "P10-C05-S02",
@@ -2301,19 +2301,19 @@
     "options": [
       {
         "id": "A",
-        "text": "有限时域增益（gain）与价值可能变化；不能直接拿某个有限N称为无限时域稳态增益。"
+        "text": "Q和R固定时，各时刻的反馈（feedback）增益（gain）相同。"
       },
       {
         "id": "B",
-        "text": "K_t与N绝对无关。"
+        "text": "改变终端权重或剩余的控制步数，通常会改变反馈增益。"
       },
       {
         "id": "C",
-        "text": "终端条件只改变图题，不改变递推。"
+        "text": "时域长度N为正整数时，初始反馈增益就等于无限时域稳态增益。"
       },
       {
         "id": "D",
-        "text": "无论系统性质如何，N增大后必有相同极限（limit）。"
+        "text": "终端权重改变时，只有最后状态（state）的代价改变，此前的最优输入（input）保持不变。"
       }
     ],
     "constraints": []
@@ -2488,12 +2488,12 @@
   {
     "id": "p10-mpc-receding",
     "slug": "p10-mpc-receding",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.6",
     "lesson_id": "P10-C06-S01",
     "title": "滚动时域的关键动作",
-    "statement": "MPC 在当前时刻得到长度N的可行预测序列。下一时刻通常怎样使用它？",
+    "statement": "MPC在当前时刻得到一个长度为N的可行输入（input）序列。按滚动优化的做法，应如何执行和更新这个序列？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2507,19 +2507,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只执行首步，取得新观测（observation）/估计后重新求解。"
+        "text": "依次执行整段输入序列，经过N步后再读取观测（observation）并重新求解。"
       },
       {
         "id": "B",
-        "text": "把整段序列无条件执行完。"
+        "text": "执行当前序列的第一项输入，下一时刻根据新观测或状态（state）估计重新求解。"
       },
       {
         "id": "C",
-        "text": "一次可行证明所有未来场景都可行。"
+        "text": "执行当前序列的第一项输入，下一时刻沿用旧预测状态重新求解，不使用新读数。"
       },
       {
         "id": "D",
-        "text": "预测序列就是已经发生的真实轨迹（trajectory）。"
+        "text": "先执行当前序列的最后一项，再把前N−1项留给以后各步执行。"
       }
     ],
     "constraints": []
@@ -2527,7 +2527,7 @@
   {
     "id": "p10-hard-soft",
     "slug": "p10-hard-soft",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.6",
     "lesson_id": "P10-C06-S01",
@@ -2546,19 +2546,19 @@
     "options": [
       {
         "id": "A",
-        "text": "优化问题已改变，求解器可能选择违反原硬界的解。"
+        "text": "增加超限惩罚会使执行器把系统状态（state）截断在xmax处。"
       },
       {
         "id": "B",
-        "text": "罚项足够大就对任意数值情形绝对不违反。"
+        "text": "惩罚系数大于1时，软约束问题的最优解就与硬约束问题的最优解相同。"
       },
       {
         "id": "C",
-        "text": "软约束与执行器物理限幅完全同义。"
+        "text": "优化会在超限惩罚与其他代价之间作权衡，因此得到的状态可能超过xmax。"
       },
       {
         "id": "D",
-        "text": "原先不可行的硬问题自动证明系统安全。"
+        "text": "软约束问题存在可行轨迹（trajectory）时，原硬约束问题也存在可行轨迹。"
       }
     ],
     "constraints": []
@@ -2566,12 +2566,12 @@
   {
     "id": "p10-infeasible-truth",
     "slug": "p10-infeasible-truth",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.6",
     "lesson_id": "P10-C06-S01",
-    "title": "求解失败要如实报告",
-    "statement": "小型 MPC 因硬约束不可行。哪项处理符合本教材证据要求？",
+    "title": "MPC不可行时的求解状态",
+    "statement": "一次MPC求解没有找到满足全部硬约束的输入（input）序列。接下来怎样处理，才能如实记录这次求解及控制器实际执行的动作？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2585,19 +2585,19 @@
     "options": [
       {
         "id": "A",
-        "text": "明确返回不可行并单独说明备用策略适用域。"
+        "text": "沿用上一次输入，并把本次求解记为已找到满足原约束的最优解。"
       },
       {
         "id": "B",
-        "text": "把上一次最优输入（input）沿用且报告本次求解成功。"
+        "text": "记录本次求解不可行；若采用备用输入，再记录实际执行了什么以及是否满足约束。"
       },
       {
         "id": "C",
-        "text": "偷偷扩大约束却仍称原问题可行。"
+        "text": "放宽约束后重新求解，并把新解记为满足原约束的解。"
       },
       {
         "id": "D",
-        "text": "令代价为0并把失败场景从评价中删除。"
+        "text": "选择超限量最小的候选输入，并在记录中把该超限量记为0。"
       }
     ],
     "constraints": []
@@ -2784,11 +2784,11 @@
   {
     "id": "p10-prediction-vs-reality",
     "slug": "p10-prediction-vs-reality",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.6",
     "lesson_id": "P10-C06-S02",
-    "title": "预测轨迹不等于实际轨迹",
+    "title": "新读数到达后的滚动预测",
     "statement": "已知模型（model）预测下一状态（state）为1.0 U，实际系统受到未建模扰动，读数为1.3 U。下一时刻合理的做法是什么？",
     "type": "choice",
     "learning_targets": [
@@ -2803,19 +2803,19 @@
     "options": [
       {
         "id": "A",
-        "text": "记录偏差，用新的可用观测（observation）或估计重新求解，并检查约束。"
+        "text": "把传感器读数从1.3 U改成1.0 U，再以1.0 U作为当前状态估计。"
       },
       {
         "id": "B",
-        "text": "继续把旧预测1.0当作真实状态。"
+        "text": "保留1.0 U作为当前状态估计，以便继续执行原先得到的可行序列。"
       },
       {
         "id": "C",
-        "text": "删去这个场景以维护好看的平均误差。"
+        "text": "根据1.3 U的新读数更新状态估计，再从更新后的估计重新预测并检查约束。"
       },
       {
         "id": "D",
-        "text": "只要上一步预测（one-step-ahead prediction）可行，当前约束自动安全。"
+        "text": "把图上当前点改成1.3 U，但仍用从1.0 U出发的预测判断未来是否满足约束。"
       }
     ],
     "constraints": []
@@ -2823,12 +2823,12 @@
   {
     "id": "p10-fallback-domain",
     "slug": "p10-fallback-domain",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.6",
     "lesson_id": "P10-C06-S02",
     "title": "备用控制需要验证",
-    "statement": "求解超时后采用备用输入（input）。哪项表述正确？",
+    "statement": "求解超时后采用备用输入（input）。关于当前状态（state）下的备用策略，哪项正确？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2842,19 +2842,19 @@
     "options": [
       {
         "id": "A",
-        "text": "备用策略的适用状态（state）范围与约束应单独检验。"
+        "text": "上一次输入没有超过幅值上限，因此继续使用它就能满足当前的状态约束。"
       },
       {
         "id": "B",
-        "text": "备用输入来自上一步就自动安全。"
+        "text": "采用备用策略前，应检查当前状态是否位于该策略已验证满足约束的范围内。"
       },
       {
         "id": "C",
-        "text": "超时不必计入失败统计。"
+        "text": "把备用输入设为0后，系统状态就会停留在当前值。"
       },
       {
         "id": "D",
-        "text": "只要代价函数凸就永不超时。"
+        "text": "优化目标是凸函数时，任意备用输入都能使系统满足约束。"
       }
     ],
     "constraints": []
@@ -2862,7 +2862,7 @@
   {
     "id": "p10-estimate-interface",
     "slug": "p10-estimate-interface",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.6",
     "lesson_id": "P10-C06-S02",
@@ -2881,19 +2881,19 @@
     "options": [
       {
         "id": "A",
-        "text": "使用给定的估计器或可用信息，并传播估计误差影响。"
+        "text": "把上一时刻最优输入（input）序列预测的终点状态，当作当前时刻的初始状态。"
       },
       {
         "id": "B",
-        "text": "在教学模拟中直接偷取隐藏真值却称公平比较。"
+        "text": "使用模拟器保存的完整状态作为当前初态，并只在实验记录中保留传感器读数。"
       },
       {
         "id": "C",
-        "text": "令未观测（observation）分量默认为零而不说明。"
+        "text": "把没有测量的状态分量设为0，再把整个状态向量（vector）当作准确值检查约束。"
       },
       {
         "id": "D",
-        "text": "只要MPC优化精确，估计误差不再重要。"
+        "text": "用截至当前时刻的读数估计初态，并在约束检查中考虑估计误差。"
       }
     ],
     "constraints": []
@@ -3030,7 +3030,7 @@
   {
     "id": "p10-fair-baseline",
     "slug": "p10-fair-baseline",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.7",
     "lesson_id": "P10-C07-S01",
@@ -3050,19 +3050,19 @@
     "options": [
       {
         "id": "A",
-        "text": "三法共享观测（observation）、执行上限、扰动场景与调参预算；需要状态的两法共享同一估计器。"
+        "text": "使用相同估计器和输入（input）上限，但让每种方法在自己调参时平均跟踪误差最小的一批场景上接受评估。"
       },
       {
         "id": "B",
-        "text": "只给LQR完整隐藏状态，却称三法信息相同。"
+        "text": "使用相同输入上限和场景，让PID使用含噪读数，而LQR与MPC使用模拟器中的真实状态。"
       },
       {
         "id": "C",
-        "text": "为MPC删去求解超时场景。"
+        "text": "使用相同读数和估计器，但在MPC求解失败时更换场景，其他方法仍在原场景上接受评估。"
       },
       {
         "id": "D",
-        "text": "各法分别选对自己最有利的测试扰动。"
+        "text": "让三种方法使用相同读数、输入上限、场景和调参次数，并让LQR与MPC使用同一个估计器。"
       }
     ],
     "constraints": []
@@ -3070,7 +3070,7 @@
   {
     "id": "p10-average-not-enough",
     "slug": "p10-average-not-enough",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.7",
     "lesson_id": "P10-C07-S01",
@@ -3090,19 +3090,19 @@
     "options": [
       {
         "id": "A",
-        "text": "跟踪误差、实际输入（input）成本、约束违反、失败率及其场景分布（distribution）。"
+        "text": "只计算满足约束的场景的平均跟踪误差，并把两种方法的样本数都写成原总场景数。"
       },
       {
         "id": "B",
-        "text": "只报告平均跟踪误差。"
+        "text": "报告跟踪误差的均值和标准误（standard error），把超限计入总误差后不再报告超限发生的次数。"
       },
       {
         "id": "C",
-        "text": "删掉A的超限值再取平均。"
+        "text": "分别报告跟踪误差、实际执行输入（input）的平方平均值，以及各场景是否超限或求解失败。"
       },
       {
         "id": "D",
-        "text": "把请求输入当成真实执行输入。"
+        "text": "计算控制器请求输入的平方平均值，并用它表示实际执行输入的平方平均值。"
       }
     ],
     "constraints": []
@@ -3110,7 +3110,7 @@
   {
     "id": "p10-training-vs-test",
     "slug": "p10-training-vs-test",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.7",
     "lesson_id": "P10-C07-S01",
@@ -3130,19 +3130,19 @@
     "options": [
       {
         "id": "A",
-        "text": "同批场景上的成绩属于调参/拟合表现，独立评价应使用未参与调参的场景。"
+        "text": "把原扰动场景换一个展示顺序，再将原先的误差结果记为独立测试结果。"
       },
       {
         "id": "B",
-        "text": "只要重新估一次参数（parameter），同一场景就变成新实验。"
+        "text": "用原扰动场景说明调参后的误差，再用未参与调参的新场景检查控制器。"
       },
       {
         "id": "C",
-        "text": "每换一个图表样式，原场景都变成独立测试。"
+        "text": "固定最终参数（parameter）后重新运行原场景，并把这些重复运行记为对未见场景的测试。"
       },
       {
         "id": "D",
-        "text": "独立测试可以看到结果后反复改控制器且仍称未使用。"
+        "text": "在准备评估的新场景上再次选择参数，并只报告再次调参后的误差。"
       }
     ],
     "constraints": []
@@ -3250,7 +3250,7 @@
   {
     "id": "p10-paired-bootstrap",
     "slug": "p10-paired-bootstrap",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.7",
     "lesson_id": "P10-C07-S02",
@@ -3270,19 +3270,19 @@
     "options": [
       {
         "id": "A",
-        "text": "以场景为单位重采样成对结果，保留每对差值。"
+        "text": "分别抽取两种方法的结果，再按抽取后的行号配对并计算差值。"
       },
       {
         "id": "B",
-        "text": "分别打乱两法场景顺序再当成同一配对。"
+        "text": "每次抽取一个场景时，同时取出该场景下两种方法的结果并计算差值。"
       },
       {
         "id": "C",
-        "text": "只重采样表现最好的几个场景。"
+        "text": "把各场景中的时间点视为相互独立的样本，再混合抽取这些时间点。"
       },
       {
         "id": "D",
-        "text": "重复读取同一场景并称其为新的独立实验。"
+        "text": "将两种方法的误差混在一起抽样，不保留结果属于哪个方法或场景的信息。"
       }
     ],
     "constraints": []
@@ -3290,7 +3290,7 @@
   {
     "id": "p10-failure-selection",
     "slug": "p10-failure-selection",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.7",
     "lesson_id": "P10-C07-S02",
@@ -3310,19 +3310,19 @@
     "options": [
       {
         "id": "A",
-        "text": "同时报告成功配对指标与A的8/40失败率；不同任务价值需要声明权衡。"
+        "text": "报告A在32对成功场景中的优势，并将它解释为A在全部40个场景中的平均优势。"
       },
       {
         "id": "B",
-        "text": "删除8场景并声称A总体优于B。"
+        "text": "报告32对成功场景中的误差差异，并把A的失败率算成8/32=25%。"
       },
       {
         "id": "C",
-        "text": "把失败8次都算作0误差。"
+        "text": "把A失败的8个场景的误差记为0，再比较两种方法在40个场景中的平均误差。"
       },
       {
         "id": "D",
-        "text": "只看成功场景就证明A安全。"
+        "text": "报告32对成功场景中的误差差异，同时报告A的失败率为20%、B为0。"
       }
     ],
     "constraints": []
@@ -3330,7 +3330,7 @@
   {
     "id": "p10-uncertainty-scope",
     "slug": "p10-uncertainty-scope",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.7",
     "lesson_id": "P10-C07-S02",
@@ -3350,19 +3350,19 @@
     "options": [
       {
         "id": "A",
-        "text": "区间只描述这些场景生成条件下的抽样不确定性，不能外推到未测试的大扰动。"
+        "text": "该区间反映当前扰动范围内平均误差差异的不确定性，更大扰动下的差异还需要相应的实验。"
       },
       {
         "id": "B",
-        "text": "有区间就证明任意生理对象都适用。"
+        "text": "在同一扰动范围内增加300组场景后，这个区间就能描述更大扰动下的平均误差差异。"
       },
       {
         "id": "C",
-        "text": "场景数量30意味着没有模型结构（model structure）误差。"
+        "text": "把置信水平从95%提高到99%后，这个区间就能描述未测试过的传感器故障造成的误差。"
       },
       {
         "id": "D",
-        "text": "区间越窄就证明传感器永不失效。"
+        "text": "区间宽度接近0时，就能判断控制器使用的模型结构（model structure）与真实系统相同。"
       }
     ],
     "constraints": []
@@ -3370,7 +3370,7 @@
   {
     "id": "p10-cap-feedback",
     "slug": "p10-cap-feedback",
-    "version": "1",
+    "version": "3",
     "part": "10",
     "chapter": "10.summary",
     "lesson_id": "P10-SUMMARY",
@@ -3391,19 +3391,19 @@
     "options": [
       {
         "id": "A",
-        "text": "P可能留下稳态误差；加入积分须重新核验动态和限幅。"
+        "text": "把误差定义为设定值减测量值后，增大比例增益（gain）就等价于加入积分项。"
       },
       {
         "id": "B",
-        "text": "PI永远无条件稳定。"
+        "text": "P控制可能留有稳态误差，增加积分项后还要检查响应是否衰减以及输入（input）是否饱和。"
       },
       {
         "id": "C",
-        "text": "只看请求输入（input）即可知道对象轨迹（trajectory）。"
+        "text": "控制器请求的输入达到所需值后，即便执行器没有实际给出该输入，也能消除稳态误差。"
       },
       {
         "id": "D",
-        "text": "频域裕度保证所有饱和状态（state）下安全。"
+        "text": "保持同一连续P控制律并提高采样（sampling）频率，就能消除恒定扰动下的稳态误差。"
       }
     ],
     "constraints": []
@@ -3432,19 +3432,19 @@
     "options": [
       {
         "id": "A",
-        "text": "B₁、C₁。"
+        "text": "应选择输入（input）位置B₁和测量位置C₁。"
       },
       {
         "id": "B",
-        "text": "B₁、C₂。"
+        "text": "应选择输入位置B₁和测量位置C₂。"
       },
       {
         "id": "C",
-        "text": "B₂、C₁。"
+        "text": "应选择输入位置B₂和测量位置C₁。"
       },
       {
         "id": "D",
-        "text": "B₂、C₂。"
+        "text": "应选择输入位置B₂和测量位置C₂。"
       }
     ],
     "constraints": []
@@ -4190,7 +4190,7 @@
   {
     "id": "p10-cap-mismatch",
     "slug": "p10-cap-mismatch",
-    "version": "1",
+    "version": "2",
     "part": "10",
     "chapter": "10.summary",
     "lesson_id": "P10-SUMMARY",
@@ -4211,19 +4211,19 @@
     "options": [
       {
         "id": "A",
-        "text": "原线性稳定论证不覆盖这些场景；应单独报告估计、约束与备用策略的实际结果。"
+        "text": "只在求解成功的场景中计算平均跟踪误差，并用这个均值代表全部场景。"
       },
       {
         "id": "B",
-        "text": "理想极点（pole）已经证明缺测时也安全。"
+        "text": "用理想模型的极点（pole）评价控制器，不把传感器缺测和求解不可行计入评估。"
       },
       {
         "id": "C",
-        "text": "删除失败场景后即可声称独立评估成功。"
+        "text": "分别检查缺测时的估计误差、约束违反量及备用输入（input）的执行结果，并核对原稳定性结论的条件。"
       },
       {
         "id": "D",
-        "text": "用隐藏状态（state）替代缺测值仍可称原信息协议。"
+        "text": "缺测时用模拟器中的真实状态（state）补齐读数，再将结果记为原传感器条件下的控制误差。"
       }
     ],
     "constraints": []

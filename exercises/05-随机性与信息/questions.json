@@ -20,19 +20,19 @@
     "options": [
       {
         "id": "A",
-        "text": "X 是把结果映射为数的随机变量（random variable）。"
+        "text": "X 将一次抽到的细胞状态（state）记为 0 或 1，因此 X 是随机变量（random variable）。"
       },
       {
         "id": "B",
-        "text": "某次观察到 1，所以模型概率（probability）必为 1。"
+        "text": "一次抽到活跃细胞，就说明模型中的活跃概率（probability）应改为 1。"
       },
       {
         "id": "C",
-        "text": "{X=1} 是事件（event）。"
+        "text": "所有满足 X=1 的抽样结果组成“抽到活跃细胞”这个事件（event）。"
       },
       {
         "id": "D",
-        "text": "十次观察一定恰好有三次为 1。"
+        "text": "活跃概率为 0.3，表示每组十次观察都会恰好出现三个活跃细胞。"
       }
     ],
     "constraints": []
@@ -126,13 +126,13 @@
   {
     "id": "p05-density-point",
     "slug": "p05-density-point",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C01-S01",
     "part": "5",
     "chapter": "5.1",
-    "title": "连续测量的一个精确点",
+    "title": "区间、密度与显示读数",
     "type": "choice",
-    "statement": "误差 E 在 [−0.2,0.2] U 上连续均匀分布（distribution）。哪些正确？",
+    "statement": "误差 E 的分布（distribution）在 [−0.2,0.2] U 上连续均匀；仪器将误差四舍五入到 0.1 U 显示。哪些判断正确？",
     "learning_targets": [
       "T1"
     ],
@@ -144,19 +144,19 @@
     "options": [
       {
         "id": "A",
-        "text": "P(−0.1≤E≤0.1)=0.5。"
+        "text": "误差落在 −0.1 U 到 0.1 U 之间的概率（probability）为 0.5。"
       },
       {
         "id": "B",
-        "text": "连续模型（model）中精确点的概率（probability）为零，因此仪器绝不可能显示 0.0。"
+        "text": "仪器显示 0.0 的概率等于误差恰好为零的概率，因此为 0。"
       },
       {
         "id": "C",
-        "text": "密度为 2.5/U。"
+        "text": "误差在给定区间内的概率密度（probability density）为 2.5/U。"
       },
       {
         "id": "D",
-        "text": "P(E=0)=2.5。"
+        "text": "误差恰好为零的概率为 2.5。"
       }
     ],
     "constraints": []
@@ -164,7 +164,7 @@
   {
     "id": "p05-normalization",
     "slug": "p05-normalization",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C01-S01",
     "part": "5",
     "chapter": "5.1",
@@ -182,19 +182,19 @@
     "options": [
       {
         "id": "A",
-        "text": "无法知道，因为所有概率都需模拟。"
+        "text": "恢复态的概率为 0.5。"
       },
       {
         "id": "B",
-        "text": "0.8。"
+        "text": "恢复态的概率为 0.2。"
       },
       {
         "id": "C",
-        "text": "0.2。"
+        "text": "恢复态的概率为 0.8。"
       },
       {
         "id": "D",
-        "text": "0.15。"
+        "text": "恢复态的概率为 0.15。"
       }
     ],
     "constraints": []
@@ -297,13 +297,13 @@
   {
     "id": "p05-seed-repeats",
     "slug": "p05-seed-repeats",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C01-S02",
     "part": "5",
     "chapter": "5.1",
-    "title": "同一个种子不是新增证据",
+    "title": "解释相同种子的重复结果",
     "type": "choice",
-    "statement": "每次都重新创建相同种子的生成器，抽 50 个数，重复 200 次，发现每组均值完全相同。哪项正确？",
+    "statement": "每次都重新创建同一种类、相同种子的伪随机生成器，抽 50 个数，重复 200 次；各组均值完全相同。对于这项实验，哪项解释正确？",
     "learning_targets": [
       "T1"
     ],
@@ -315,19 +315,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这只是同一伪随机序列的复现，不能当作 200 次独立重复。"
+        "text": "每组都重新创建生成器，因此这 200 组是 200 次独立抽样。"
       },
       {
         "id": "B",
-        "text": "增加到 2000 次就能修复独立性。"
+        "text": "每组重新生成同一段数列，因此这 200 组并没有提供独立重抽样的结果。"
       },
       {
         "id": "C",
-        "text": "种子只影响画图，不影响样本。"
+        "text": "200 组均值完全相同，说明所抽总体的方差（variance）为零。"
       },
       {
         "id": "D",
-        "text": "证明抽样方差（variance）为零。"
+        "text": "重复 200 次已足以估计独立抽样的均值波动，即使每组使用同一段数列。"
       }
     ],
     "constraints": []
@@ -353,19 +353,19 @@
     "options": [
       {
         "id": "A",
-        "text": "增大每组样本量通常缩小频率波动，但一次结果不保证更接近真值。"
+        "text": "增大每组细胞数通常会减小样本频率的波动，但某一组频率仍可能比原来离真实概率（probability）更远。"
       },
       {
         "id": "B",
-        "text": "分位范围会受到有限重复次数影响。"
+        "text": "若重新做一批 200 次抽样，算出的 5% 和 95% 分位端点可能改变。"
       },
       {
         "id": "C",
-        "text": "这是该设计下有限重复的频率波动摘要。"
+        "text": "这个区间描述本次 200 个样本频率中间约 90% 的取值范围。"
       },
       {
         "id": "D",
-        "text": "无需进一步定义，就能称为未知概率（probability）的 90% 置信区间（confidence interval）。"
+        "text": "这个样本频率区间就是未知活跃概率（probability）的 90% 置信区间（confidence interval）。"
       }
     ],
     "constraints": []
@@ -373,13 +373,13 @@
   {
     "id": "p05-shared-environment",
     "slug": "p05-shared-environment",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C01-S02",
     "part": "5",
     "chapter": "5.1",
-    "title": "怎样更接近独立重复",
+    "title": "设计独立二值抽样",
     "type": "choice",
-    "statement": "目标是比较固定活跃概率（probability）下的独立二值观察。哪一设计最符合？",
+    "statement": "要比较固定活跃概率（probability）p 下的独立二值观察。每组抽 100 个标签，并进行重复实验，哪项设计符合这个目标？",
     "learning_targets": [
       "T1"
     ],
@@ -391,19 +391,19 @@
     "options": [
       {
         "id": "A",
-        "text": "每组先随机改变活跃概率却仍声称固定概率。"
+        "text": "每组先随机选一个新的 p，再按这个组的 p 独立抽取 100 个标签。"
       },
       {
         "id": "B",
-        "text": "复制一个细胞的标签 100 次。"
+        "text": "每组先随机抽一个标签，再把这个标签复制成 100 个观察值。"
       },
       {
         "id": "C",
-        "text": "反复读取同一个已保存数组（array）。"
+        "text": "每组按固定的 p 抽取标签，但每次重复实验都从相同随机种子（random seed）重新开始。"
       },
       {
         "id": "D",
-        "text": "各细胞按同一概率独立抽样，重复实验使用派生的不同随机流。"
+        "text": "所有标签都按同一固定 p 独立抽取，并为各次重复实验使用不同的随机流。"
       }
     ],
     "constraints": []
@@ -516,19 +516,19 @@
     "options": [
       {
         "id": "A",
-        "text": "Var(Y)=35。"
+        "text": "变换后的方差（variance）数值为 Var(Y)=35。"
       },
       {
         "id": "B",
-        "text": "Var(Y)=300。"
+        "text": "变换后的方差数值为 Var(Y)=300。"
       },
       {
         "id": "C",
-        "text": "标准差（standard deviation）变为原数值的 10 倍。"
+        "text": "变换后的标准差（standard deviation）数值是原来 X 的 10 倍。"
       },
       {
         "id": "D",
-        "text": "E[Y]=25。"
+        "text": "变换后的均值数值为 E[Y]=25。"
       }
     ],
     "constraints": []
@@ -536,13 +536,13 @@
   {
     "id": "p05-gaussian-domain",
     "slug": "p05-gaussian-domain",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C02-S01",
     "part": "5",
     "chapter": "5.2",
-    "title": "高斯误差为什么能为负",
+    "title": "解释一次负测量误差",
     "type": "choice",
-    "statement": "测量值等于理想读数加零均值高斯误差。误差标准差（standard deviation）为 0.2 U。哪项正确？",
+    "statement": "测量模型（model）为 y=θ+E，理想读数 θ=2 U，E 是零均值高斯误差（Gaussian error），标准差（standard deviation）为 0.2 U。本次 E=−0.1 U，怎样解释 y？",
     "learning_targets": [
       "T2"
     ],
@@ -554,19 +554,19 @@
     "options": [
       {
         "id": "A",
-        "text": "方差（variance）为 0.2 U。"
+        "text": "y=2.1 U，表示读数比理想值高 0.1 U。"
       },
       {
         "id": "B",
-        "text": "零均值意味着每次误差都为零。"
+        "text": "y=−0.1 U，表示理想量已经变成负数。"
       },
       {
         "id": "C",
-        "text": "高斯误差绝不超出 ±0.6 U。"
+        "text": "y=2 U，表示零均值误差在每次测量都抵消。"
       },
       {
         "id": "D",
-        "text": "负误差表示读数低于理想值，并不意味着负所追踪物质总量（tracked amount）。"
+        "text": "y=1.9 U，表示读数比理想值低 0.1 U。"
       }
     ],
     "constraints": []
@@ -574,7 +574,7 @@
   {
     "id": "p05-sample-denominator",
     "slug": "p05-sample-denominator",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C02-S01",
     "part": "5",
     "chapter": "5.2",
@@ -592,19 +592,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0 和 2。"
+        "text": "使用分母 n 和 n−1 时，算出的方差依次为 0 和 2。"
       },
       {
         "id": "B",
-        "text": "1 和 2。"
+        "text": "使用分母 n 和 n−1 时，算出的方差依次为 1 和 1。"
       },
       {
         "id": "C",
-        "text": "2 和 1。"
+        "text": "使用分母 n 和 n−1 时，算出的方差依次为 2 和 1。"
       },
       {
         "id": "D",
-        "text": "1 和 1。"
+        "text": "使用分母 n 和 n−1 时，算出的方差依次为 1 和 2。"
       }
     ],
     "constraints": []
@@ -740,19 +740,19 @@
     "options": [
       {
         "id": "A",
-        "text": "X 与 Y 独立。"
+        "text": "X 与 Y 的取值彼此独立。"
       },
       {
         "id": "B",
-        "text": "知道 Y=0 就能确定 X=0。"
+        "text": "知道 Y=0 时，就能确定 X=0。"
       },
       {
         "id": "C",
-        "text": "零协方差（covariance）只排除这个中心乘积指标上的线性关联。"
+        "text": "协方差（covariance）为零仍可能存在 Y=X² 这样的非线性依赖。"
       },
       {
         "id": "D",
-        "text": "Cov(X,Y)=0。"
+        "text": "本题两个变量的协方差满足 Cov(X,Y)=0。"
       }
     ],
     "constraints": []
@@ -760,7 +760,7 @@
   {
     "id": "p05-sum-variance",
     "slug": "p05-sum-variance",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C02-S02",
     "part": "5",
     "chapter": "5.2",
@@ -778,19 +778,19 @@
     "options": [
       {
         "id": "A",
-        "text": "6。"
+        "text": "两通道之和的方差（variance） Var(X+Y) 为 6。"
       },
       {
         "id": "B",
-        "text": "3。"
+        "text": "两通道之和的方差 Var(X+Y) 为 3。"
       },
       {
         "id": "C",
-        "text": "5。"
+        "text": "两通道之和的方差 Var(X+Y) 为 7。"
       },
       {
         "id": "D",
-        "text": "7。"
+        "text": "两通道之和的方差 Var(X+Y) 为 5。"
       }
     ],
     "constraints": []
@@ -798,13 +798,13 @@
   {
     "id": "p05-correlation-zero-var",
     "slug": "p05-correlation-zero-var",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C02-S02",
     "part": "5",
     "chapter": "5.2",
-    "title": "恒定通道的相关系数",
+    "title": "计算恒定通道的相关",
     "type": "choice",
-    "statement": "某通道所有读数相同，另一通道有变化。按标准相关系数（correlation coefficient） Cov(X,Y)/(sd(X)sd(Y))，正确做法是什么？",
+    "statement": "某通道所有读数相同，另一通道有变化。以标准差（standard deviation）sd 计算标准相关系数（correlation coefficient）Cov(X,Y)/(sd(X)sd(Y))，结果应如何记录？",
     "learning_targets": [
       "T2"
     ],
@@ -816,19 +816,19 @@
     "options": [
       {
         "id": "A",
-        "text": "把零标准差（standard deviation）改为任意小数后解释为精确结果。"
+        "text": "相关系数应记为 1，因为恒定通道没有测量波动。"
       },
       {
         "id": "B",
-        "text": "返回 1，因为两者来自同一实验。"
+        "text": "相关系数应记为未定义，因为恒定通道的标准差为零，使分母为零。"
       },
       {
         "id": "C",
-        "text": "返回 0 并宣称独立。"
+        "text": "相关系数应记为 0，表示两个通道不存在统计依赖。"
       },
       {
         "id": "D",
-        "text": "标记未定义，因为分母为零。"
+        "text": "相关系数应记为 −1，因为一个通道变化而另一个不变。"
       }
     ],
     "constraints": []
@@ -836,7 +836,7 @@
   {
     "id": "p05-shared-offset",
     "slug": "p05-shared-offset",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C02-S02",
     "part": "5",
     "chapter": "5.2",
@@ -854,19 +854,19 @@
     "options": [
       {
         "id": "A",
-        "text": "(B+R)/n。"
+        "text": "n 次平均后的误差方差为 B+R/n。"
       },
       {
         "id": "B",
-        "text": "B+R/n。"
+        "text": "n 次平均后的误差方差为 (B+R)/n。"
       },
       {
         "id": "C",
-        "text": "B/n+R。"
+        "text": "n 次平均后的误差方差为 B/n+R。"
       },
       {
         "id": "D",
-        "text": "必为零。"
+        "text": "n 次平均后的误差方差为 B+R。"
       }
     ],
     "constraints": []
@@ -982,19 +982,19 @@
     "options": [
       {
         "id": "A",
-        "text": "给每个个体固定不同的 a，等同于每步重抽 w[n]。"
+        "text": "让每个个体使用不同但固定的 a，与每一步重新抽取 w[n] 会产生相同的随机机制。"
       },
       {
         "id": "B",
-        "text": "若 v 与 x 独立，则 Var(y)=Var(x)+Var(v)。"
+        "text": "在 x[n] 与 v[n] 独立时，观测（observation）方差（variance）满足 Var(y[n])=Var(x[n])+Var(v[n])。"
       },
       {
         "id": "C",
-        "text": "w[n] 影响 x[n+1]，并可继续传播。"
+        "text": "w[n] 加入下一步状态（state） x[n+1]，并可通过后续状态更新继续影响更晚的 x。"
       },
       {
         "id": "D",
-        "text": "v[n] 改变本次观测（observation），但不直接进入下一状态（state）。"
+        "text": "v[n] 改变当前读数 y[n]，而题设的下一步状态更新式中没有 v[n]。"
       }
     ],
     "constraints": []
@@ -1020,19 +1020,19 @@
     "options": [
       {
         "id": "A",
-        "text": "方差存在有限极限（limit）就保证每条轨迹（trajectory）变成常数。"
+        "text": "P[n] 趋向有限值时，每条个体轨迹（trajectory）也会停止波动并变成常数。"
       },
       {
         "id": "B",
-        "text": "|a|<1 时极限为 Q/(1−a²)。"
+        "text": "当 |a|<1 时，P[n] 的极限（limit）为 Q/(1−a²)。"
       },
       {
         "id": "C",
-        "text": "a=1 时方差每步增加 Q。"
+        "text": "当 a=1 时，每次更新都会使 P[n] 增加 Q。"
       },
       {
         "id": "D",
-        "text": "a=−2 因为 a<1，所以方差收敛。"
+        "text": "当 a=−2 时，因为 a<1，所以 P[n] 也会收敛到有限值。"
       }
     ],
     "constraints": []
@@ -1040,13 +1040,13 @@
   {
     "id": "p05-individual-fixed",
     "slug": "p05-individual-fixed",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C02-S03",
     "part": "5",
     "chapter": "5.2",
-    "title": "固定个体差异与过程噪声",
+    "title": "解释两群轨迹差异",
     "type": "choice",
-    "statement": "两群个体均从 x0=1 U 出发，各个体参数（parameter） a 在实验期间固定为 0.6 或 0.9，之后 x[n+1]=a*x[n]，没有 w 或 v。哪项正确？",
+    "statement": "两群个体均从 x0=1 U 出发，a 在每个个体的实验期间固定：第一群 a=0.6，第二群 a=0.9。之后 x[n+1]=a*x[n]，没有过程或测量噪声（measurement noise）。第一步怎样变化？",
     "learning_targets": [
       "T2"
     ],
@@ -1058,19 +1058,19 @@
     "options": [
       {
         "id": "A",
-        "text": "同群个体必定每步随机跳动。"
+        "text": "第一群各个体到达 0.6 U，第二群各个体到达 0.9 U，这一差异来自各群固定的参数（parameter）a。"
       },
       {
         "id": "B",
-        "text": "不同轨迹（trajectory）可以完全来自固定个体参数差异。"
+        "text": "两群各个体都到达 0.75 U，差异要等后续随机更新才出现。"
       },
       {
         "id": "C",
-        "text": "观测（observation）差异证明存在过程噪声（process noise）。"
+        "text": "两群各个体都保持为 1 U，因为固定参数不会改变状态（state）。"
       },
       {
         "id": "D",
-        "text": "每一步都重新抽 a 才是题设。"
+        "text": "第一群到达 0.6 U、第二群到达 0.9 U，这一差异来自每步重新抽取的噪声。"
       }
     ],
     "constraints": []
@@ -1078,13 +1078,13 @@
   {
     "id": "p05-quantiles",
     "slug": "p05-quantiles",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C02-S03",
     "part": "5",
     "chapter": "5.2",
-    "title": "样本带与参数区间",
+    "title": "解释逐时刻分位带",
     "type": "choice",
-    "statement": "展示 200 条状态（state）路径每个时刻的 5%—95% 经验分位带。哪项正确？",
+    "statement": "根据 200 条状态（state）路径，在每个时刻分别计算 5% 与 95% 经验分位数（empirical quantile）。得到的带直接描述什么？",
     "learning_targets": [
       "T2"
     ],
@@ -1096,19 +1096,19 @@
     "options": [
       {
         "id": "A",
-        "text": "它描述逐时刻状态的经验分布（distribution），不能自动解释成未知 a 的区间。"
+        "text": "这条带保证每条完整路径以 90% 的概率（probability）在整个观察时段内都不出带。"
       },
       {
         "id": "B",
-        "text": "它保证每条路径全程有 90% 概率（probability）在带内。"
+        "text": "在每一个时刻，这条带给出该时刻状态样本中间约 90% 的取值范围。"
       },
       {
         "id": "C",
-        "text": "它是数学证明，不受样本数影响。"
+        "text": "这条带给出了未知参数（parameter）a 的 90% 置信区间（confidence interval）。"
       },
       {
         "id": "D",
-        "text": "带内包含全部路径。"
+        "text": "这条带的上下边界是在每个时刻全部 200 条路径的最大值和最小值。"
       }
     ],
     "constraints": []
@@ -1215,19 +1215,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0.2。"
+        "text": "出现标记后，细胞处于活跃态的概率为 0.2。"
       },
       {
         "id": "B",
-        "text": "0.9。"
+        "text": "出现标记后，细胞处于活跃态的概率为 0.9。"
       },
       {
         "id": "C",
-        "text": "0.18。"
+        "text": "出现标记后，细胞处于活跃态的概率为 0.18。"
       },
       {
         "id": "D",
-        "text": "9/13。"
+        "text": "出现标记后，细胞处于活跃态的概率为 9/13。"
       }
     ],
     "constraints": []
@@ -1235,13 +1235,13 @@
   {
     "id": "p05-duplicate-observation",
     "slug": "p05-duplicate-observation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C03-S01",
     "part": "5",
     "chapter": "5.3",
-    "title": "同一结果能更新两次吗",
+    "title": "处理被复制的读数",
     "type": "choice",
-    "statement": "同一个传感器读数被复制为两条记录。若使用条件独立（conditional independence）观测（observation）公式更新两次，会怎样？",
+    "statement": "固定未知量的先验（prior）为高斯分布（Gaussian distribution），方差（variance）为 1，一次测量误差方差也为 1。把同一读数复制为两条，并误按条件独立（conditional independence）的两次观测（observation）更新。怎样评价得到的后验（posterior）方差？",
     "learning_targets": [
       "T3"
     ],
@@ -1253,19 +1253,19 @@
     "options": [
       {
         "id": "A",
-        "text": "正确，因为记录条数翻倍。"
+        "text": "后验方差仍为 1/2，因为两个读数相同，第二次更新不会增加精度。"
       },
       {
         "id": "B",
-        "text": "重复计入同一证据，通常使后验（posterior）过度集中。"
+        "text": "后验方差变为 0，因为两个读数相同，表示测量误差已经消失。"
       },
       {
         "id": "C",
-        "text": "等价于一次更新。"
+        "text": "后验方差变为 2/3，比一次更新的 1/2 更大，表示重复记录增加了不确定性。"
       },
       {
         "id": "D",
-        "text": "自动补足先验（prior）为零的状态（state）。"
+        "text": "后验方差变为 1/3，比一次更新的 1/2 更小，因为同一条证据被计入了两次。"
       }
     ],
     "constraints": []
@@ -1291,19 +1291,19 @@
     "options": [
       {
         "id": "A",
-        "text": "列和为零时仍能任意设定为均匀分布（distribution）。"
+        "text": "当 y 对应的列和为零时，仍可将 p(X|Y=y) 设为均匀分布（distribution）。"
       },
       {
         "id": "B",
-        "text": "归一化后的各 X 概率（probability）之和为 1（分母>0）。"
+        "text": "当 y 对应的列和大于零时，所得各 X 的条件概率（conditional probability）相加为 1。"
       },
       {
         "id": "C",
-        "text": "只要对整个表除以 1 就得到条件表。"
+        "text": "将联合表的每个元素除以全表总和 1，就得到了 p(X|Y=y)。"
       },
       {
         "id": "D",
-        "text": "先取 y 对应列，再除以该列和。"
+        "text": "当 y 对应的列和大于零时，取出该列并将各元素除以列和，可得到 p(X|Y=y)。"
       }
     ],
     "constraints": []
@@ -1538,13 +1538,13 @@
   {
     "id": "p05-precision",
     "slug": "p05-precision",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C03-S02",
     "part": "5",
     "chapter": "5.3",
-    "title": "哪一个读数权重更大",
+    "title": "比较两种观测误差",
     "type": "choice",
-    "statement": "高斯更新先验（prior）方差（variance） P=1 U²，同一观测（observation）值分别配 R=0.1 或 R=10 U²。哪些正确？",
+    "statement": "高斯更新的先验（prior）方差（variance）P=1 U²，同一观测（observation）值分别配 R=0.1 或 R=10 U²，增益（gain）为 K=P/(P+R)。哪些判断正确？",
     "learning_targets": [
       "T3"
     ],
@@ -1556,19 +1556,19 @@
     "options": [
       {
         "id": "A",
-        "text": "R=0.1 时 K 更大。"
+        "text": "与 R=10 相比，R=0.1 时 K 更大，因此同一读数在更新中占的权重更大。"
       },
       {
         "id": "B",
-        "text": "R=10 时观测更精确。"
+        "text": "与 R=0.1 相比，R=10 时 K 更大，因为较大的测量误差方差表示较多信息。"
       },
       {
         "id": "C",
-        "text": "较小 R 给出较小后验（posterior）方差。"
+        "text": "与 R=10 相比，R=0.1 时更新后的后验（posterior）方差更小。"
       },
       {
         "id": "D",
-        "text": "方差缩小本身证明模型（model）正确。"
+        "text": "两种 R 使用同一个读数，因此更新后的后验方差相同。"
       }
     ],
     "constraints": []
@@ -1576,13 +1576,13 @@
   {
     "id": "p05-fixed-quantity",
     "slug": "p05-fixed-quantity",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C03-S02",
     "part": "5",
     "chapter": "5.3",
-    "title": "这一步是不是动态滤波",
+    "title": "连续更新固定未知量",
     "type": "choice",
-    "statement": "用条件高斯公式连续处理同一固定 θ 的多次测量。哪项正确？",
+    "statement": "用条件高斯公式连续处理同一固定 θ 的多次测量，后验（posterior）均值逐次变化。这一变化应怎样理解？",
     "learning_targets": [
       "T3"
     ],
@@ -1594,19 +1594,19 @@
     "options": [
       {
         "id": "A",
-        "text": "它是固定未知量的更新；动态状态（state）还需明确时间演化与预测。"
+        "text": "测量次数增加后，单次读数中的观测（observation）噪声方差（variance）会变为零。"
       },
       {
         "id": "B",
-        "text": "数据多了就不需要观测（observation）模型（model）。"
+        "text": "后验均值每次改变多少，固定量 θ 的物理值就随之跳变多少。"
       },
       {
         "id": "C",
-        "text": "θ 在更新后物理上发生跳变。"
+        "text": "后验均值的变化表示对固定 θ 的估计改变，若要描述 θ 随时间变化还需另给演化方程。"
       },
       {
         "id": "D",
-        "text": "每次必须加过程噪声（process noise），哪怕模型没有。"
+        "text": "后验均值的每次变化都应作为过程噪声（process noise）加入 θ 的下一步变化。"
       }
     ],
     "constraints": []
@@ -1614,13 +1614,13 @@
   {
     "id": "p05-order",
     "slug": "p05-order",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C03-S02",
     "part": "5",
     "chapter": "5.3",
-    "title": "独立测量的顺序有什么影响",
+    "title": "重排独立测量",
     "type": "choice",
-    "statement": "固定量高斯模型（model）的先验（prior）与各观测（observation）误差方差（variance）已知。观测及其方差成对重排。哪些成立？",
+    "statement": "固定量高斯模型（model）的先验（prior）已知，各次观测（observation）在给定固定量后条件独立（conditional independence），误差方差（variance）已知。将观测值及其方差成对重排，哪些判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1632,19 +1632,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只重排 y 而不重排相应 R 也总是相同。"
+        "text": "重排读数 y 而保留原来各位置的 R 不动，仍会得到相同的最终后验（posterior）。"
       },
       {
         "id": "B",
-        "text": "每一步中间后验（posterior）必须完全相同。"
+        "text": "观测次序改变后，每一步的中间后验均值和方差都与原顺序相同。"
       },
       {
         "id": "C",
-        "text": "最终精度 1/P 等于先验精度加各 1/R。"
+        "text": "最终精度 1/P 等于先验精度加上各次观测精度 1/R 的总和。"
       },
       {
         "id": "D",
-        "text": "最终后验在精确算术中与顺序无关。"
+        "text": "读数与其方差成对重排时，在精确算术下最终后验与处理次序无关。"
       }
     ],
     "constraints": []
@@ -1853,13 +1853,13 @@
   {
     "id": "p05-markov-assumption",
     "slug": "p05-markov-assumption",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C04-S01",
     "part": "5",
     "chapter": "5.4",
-    "title": "马尔可夫假设省略了什么",
+    "title": "解读时间齐次的状态模型",
     "type": "choice",
-    "statement": "用当前细胞标签预测下一周期标签，采用时间齐次（time-homogeneous）马尔可夫（Markov）模型（model）。哪些正确？",
+    "statement": "用当前细胞标签预测下一周期标签，采用时间齐次（time-homogeneous）马尔可夫（Markov）模型（model）。哪些判断正确？",
     "learning_targets": [
       "T3"
     ],
@@ -1871,19 +1871,19 @@
     "options": [
       {
         "id": "A",
-        "text": "所有相邻时刻都独立。"
+        "text": "相邻时刻的标签彼此独立，因此不同当前标签对应的下一步概率（probability）都相同。"
       },
       {
         "id": "B",
-        "text": "所有时刻使用相同转移矩阵（transition matrix）。"
+        "text": "从当前标签到下一标签的转移概率不随时刻改变，因此各步使用相同转移矩阵（transition matrix）。"
       },
       {
         "id": "C",
-        "text": "即使遗漏持续作用的内部变量，该假设也必然成立。"
+        "text": "转移矩阵不随时刻改变，因此每条路径中的细胞标签也保持不变。"
       },
       {
         "id": "D",
-        "text": "给定当前状态（state）后，过去标签不再额外改变下一步分布（distribution）。"
+        "text": "给定当前标签后，加入更早的标签记录不会改变下一步标签的条件分布（distribution）。"
       }
     ],
     "constraints": []
@@ -1891,13 +1891,13 @@
   {
     "id": "p05-path-distribution",
     "slug": "p05-path-distribution",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C04-S01",
     "part": "5",
     "chapter": "5.4",
-    "title": "概率为 0.34 的状态怎样出现",
+    "title": "解释某时刻的活跃概率",
     "type": "choice",
-    "statement": "第二周期活跃态概率（probability）为 0.34。哪项解释正确？",
+    "statement": "模型（model）给出第二周期的活跃态概率（probability）为 0.34。下列哪项直接对应这个数？",
     "learning_targets": [
       "T3"
     ],
@@ -1909,19 +1909,19 @@
     "options": [
       {
         "id": "A",
-        "text": "大量独立路径在该时刻的活跃频率可近似 0.34，仍有抽样波动。"
+        "text": "大量独立路径在第二周期处于活跃态的比例会接近 0.34。"
       },
       {
         "id": "B",
-        "text": "观察到一个静息细胞即可否定模型（model）。"
+        "text": "一条长路径中处于活跃态的周期数占全部周期的比例为 0.34。"
       },
       {
         "id": "C",
-        "text": "每个细胞处于 0.34 个活跃态。"
+        "text": "已知上一周期处于活跃态后，下一周期仍活跃的概率为 0.34。"
       },
       {
         "id": "D",
-        "text": "一条路径一定在活跃态停留 34% 的时间。"
+        "text": "第二周期的单个细胞处于完整活跃状态（state）的 0.34 倍。"
       }
     ],
     "constraints": []
@@ -1947,19 +1947,19 @@
     "options": [
       {
         "id": "A",
-        "text": "矩阵行数与状态（state）数相同。"
+        "text": "转移矩阵（transition matrix）的行数应等于状态（state）个数。"
       },
       {
         "id": "B",
-        "text": "各元素非负。"
+        "text": "转移矩阵的每个元素都应为非负数。"
       },
       {
         "id": "C",
-        "text": "每行和为 1。"
+        "text": "转移矩阵每一行的元素之和都应为 1。"
       },
       {
         "id": "D",
-        "text": "每列和必须也为 1。"
+        "text": "转移矩阵每一列的元素之和也应为 1。"
       }
     ],
     "constraints": []
@@ -2060,19 +2060,19 @@
     "options": [
       {
         "id": "A",
-        "text": "[0.5,0.5] 是不变分布（invariant distribution）。"
+        "text": "分布（distribution） [0.5,0.5] 经过一次转移后仍为自身，因此是不变分布（invariant distribution）。"
       },
       {
         "id": "B",
-        "text": "任意初始分布（distribution）都逐时刻收敛到 [0.5,0.5]。"
+        "text": "从初始分布 [1,0] 出发，逐时刻分布会逐渐收敛到 [0.5,0.5]。"
       },
       {
         "id": "C",
-        "text": "从 [0.5,0.5] 出发可始终保持不变。"
+        "text": "若初始分布取 [0.5,0.5]，后续各时刻的分布都保持不变。"
       },
       {
         "id": "D",
-        "text": "分布在 [1,0] 与 [0,1] 之间交替。"
+        "text": "从初始分布 [1,0] 出发，分布会在 [1,0] 和 [0,1] 之间交替。"
       }
     ],
     "constraints": []
@@ -2080,13 +2080,13 @@
   {
     "id": "p05-ergodic-conditions",
     "slug": "p05-ergodic-conditions",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C04-S02",
     "part": "5",
     "chapter": "5.4",
-    "title": "哪组条件足以保证有限链收敛",
+    "title": "有限链的收敛条件",
     "type": "choice",
-    "statement": "对有限状态（state）、时间齐次（time-homogeneous）链，以下哪组条件保证唯一不变分布（invariant distribution）且从任意初始分布（distribution）收敛到它？",
+    "statement": "对有限状态（state）、时间齐次（time-homogeneous）的马尔可夫链（Markov chain），哪组条件足以保证唯一不变分布（invariant distribution），且任意初始分布（distribution）都收敛到它？",
     "learning_targets": [
       "T3"
     ],
@@ -2098,19 +2098,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不可约（irreducible）且非周期（aperiodic）。"
+        "text": "该链不可约（irreducible），但周期为 2。"
       },
       {
         "id": "B",
-        "text": "只有样本曲线看起来平稳。"
+        "text": "该链不可约，并且非周期（aperiodic）。"
       },
       {
         "id": "C",
-        "text": "只要求元素非负。"
+        "text": "该链有两个吸收态（absorbing state），进入其中任一个后都不再离开。"
       },
       {
         "id": "D",
-        "text": "只要求存在一个不变分布。"
+        "text": "该链有一个不变分布，但未对各状态之间的连通性或周期作其他要求。"
       }
     ],
     "constraints": []
@@ -2118,13 +2118,13 @@
   {
     "id": "p05-absorbing",
     "slug": "p05-absorbing",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C04-S02",
     "part": "5",
     "chapter": "5.4",
-    "title": "两个吸收态保留多少初始信息",
+    "title": "考察不转移的两状态链",
     "type": "choice",
-    "statement": "P 为二阶单位矩阵（identity matrix）。哪项正确？",
+    "statement": "转移矩阵（transition matrix）P 为二阶单位矩阵（identity matrix），初始分布（distribution）为 [0.2,0.8]。一步后和长期的不变分布（invariant distribution）有什么关系？",
     "learning_targets": [
       "T3"
     ],
@@ -2136,19 +2136,19 @@
     "options": [
       {
         "id": "A",
-        "text": "多模拟几步便会混合。"
+        "text": "一步后的分布为 [0.5,0.5]，并且这是唯一不变分布。"
       },
       {
         "id": "B",
-        "text": "所有初始分布（distribution）都收敛到 [0.5,0.5]。"
+        "text": "一步后的分布为 [0.8,0.2]，之后与 [0.2,0.8] 交替。"
       },
       {
         "id": "C",
-        "text": "每个初始分布都保持原样，不变分布（invariant distribution）不唯一。"
+        "text": "一步后的分布仍为 [0.2,0.8]，而且换用其他初始分布也会各自保持不变。"
       },
       {
         "id": "D",
-        "text": "该链没有不变分布。"
+        "text": "一步后的分布为 [0,1]，因此长期分布与初始概率（probability）无关。"
       }
     ],
     "constraints": []
@@ -2260,7 +2260,7 @@
     "chapter": "5.4",
     "title": "均值为零的群体是否静止",
     "type": "choice",
-    "statement": "公平独立随机游走（random walk）从 0 出发。哪些成立？",
+    "statement": "随机游走（random walk）从 0 出发，每一步独立地以相同概率（probability）移动 +d 或 −d，其中 d>0。哪些判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -2272,19 +2272,19 @@
     "options": [
       {
         "id": "A",
-        "text": "理论平均位置始终为零。"
+        "text": "每个时刻的理论平均位置都为零。"
       },
       {
         "id": "B",
-        "text": "位置方差（variance）随步数线性增加。"
+        "text": "第 n 步的位置方差（variance）为 n d²，因此随步数线性增加。"
       },
       {
         "id": "C",
-        "text": "均方根位移与步数平方根成比例。"
+        "text": "第 n 步的均方根位移为 d sqrt(n)，因此与步数的平方根成比例。"
       },
       {
         "id": "D",
-        "text": "每条路径始终位于零。"
+        "text": "每条路径在每一步的位置都为零。"
       }
     ],
     "constraints": []
@@ -2292,13 +2292,13 @@
   {
     "id": "p05-walk-boundary",
     "slug": "p05-walk-boundary",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C04-S03",
     "part": "5",
     "chapter": "5.4",
-    "title": "加上反射边界还能照搬公式吗",
+    "title": "给随机游走加上边界",
     "type": "choice",
-    "statement": "原游走无边界；现在把位置限制在有限区间，触边时反射。哪项正确？",
+    "statement": "原随机游走（random walk）无边界；现限制在有限区间，触边时反射。关于长期方差（variance），哪项合理？",
     "learning_targets": [
       "T3"
     ],
@@ -2310,19 +2310,19 @@
     "options": [
       {
         "id": "A",
-        "text": "仅改图的横轴就足够。"
+        "text": "位置方差仍按 n d² 无界增长，因为每步尝试移动的长度没有改变。"
       },
       {
         "id": "B",
-        "text": "反射永远不影响任何路径。"
+        "text": "反射消除了后续移动的随机性，因此长期位置方差会降为零。"
       },
       {
         "id": "C",
-        "text": "无边界的方差（variance） n*d² 必定适用于任意长时间。"
+        "text": "反射会改变平均位置，但不会改变位置方差随时间的计算。"
       },
       {
         "id": "D",
-        "text": "边界改变增量依赖和分布（distribution），需重新建模或用有限链传播。"
+        "text": "位置始终在有限区间内，所以方差有上界，其长期取值需按反射后的转移规则计算。"
       }
     ],
     "constraints": []
@@ -2330,13 +2330,13 @@
   {
     "id": "p05-walk-independence",
     "slug": "p05-walk-independence",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C04-S03",
     "part": "5",
     "chapter": "5.4",
-    "title": "相邻位置与增量的独立性",
+    "title": "比较相邻位置的协方差",
     "type": "choice",
-    "statement": "X[n+1]=X[n]+Z[n]，Z 是独立零均值增量。哪项正确？",
+    "statement": "X[n+1]=X[n]+Z[n]，Z[n] 与 X[n] 独立且均值为零。记 Var(X[n])=V，Var(Z[n])=Q。Cov(X[n],X[n+1]) 等于多少？",
     "learning_targets": [
       "T3"
     ],
@@ -2348,19 +2348,19 @@
     "options": [
       {
         "id": "A",
-        "text": "增量独立意味着每条路径没有记忆坐标。"
+        "text": "相邻两位置的协方差（covariance） Cov(X[n],X[n+1]) 为 V。"
       },
       {
         "id": "B",
-        "text": "X[n] 与 X[n+1] 一定独立。"
+        "text": "相邻两位置的协方差 Cov(X[n],X[n+1]) 为 Q。"
       },
       {
         "id": "C",
-        "text": "Cov(X[n],X[n+1])=Var(X[n])。"
+        "text": "相邻两位置的协方差 Cov(X[n],X[n+1]) 为 0。"
       },
       {
         "id": "D",
-        "text": "所有位置方差（variance）相等。"
+        "text": "相邻两位置的协方差 Cov(X[n],X[n+1]) 为 V+Q。"
       }
     ],
     "constraints": []
@@ -2458,7 +2458,7 @@
   {
     "id": "p05-entropy",
     "slug": "p05-entropy",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C05-S01",
     "part": "5",
     "chapter": "5.5",
@@ -2476,19 +2476,19 @@
     "options": [
       {
         "id": "A",
-        "text": "1 bit、1 bit。"
+        "text": "通道一和通道二与 X 的互信息依次为 1 bit 和 1 bit。"
       },
       {
         "id": "B",
-        "text": "0 bit、1 bit。"
+        "text": "通道一和通道二与 X 的互信息依次为 0 bit 和 1 bit。"
       },
       {
         "id": "C",
-        "text": "0 bit、0 bit。"
+        "text": "通道一和通道二与 X 的互信息依次为 1 bit 和 0 bit。"
       },
       {
         "id": "D",
-        "text": "1 bit、0 bit。"
+        "text": "通道一和通道二与 X 的互信息依次为 0 bit 和 0 bit。"
       }
     ],
     "constraints": []
@@ -2514,19 +2514,19 @@
     "options": [
       {
         "id": "A",
-        "text": "I(X;Y)=I(Y;X)。"
+        "text": "交换 X 与 Y 后互信息（mutual information）不变，即 I(X;Y)=I(Y;X)。"
       },
       {
         "id": "B",
-        "text": "把对数底改为 e 后数值单位变为 nat。"
+        "text": "将计算中的对数底改为 e 后，所得信息量的单位变为 nat。"
       },
       {
         "id": "C",
-        "text": "它是观察 Y 后对 X 的平均不确定性减少量。"
+        "text": "互信息表示知道 Y 后，X 的熵（entropy）平均减少了多少。"
       },
       {
         "id": "D",
-        "text": "它一定等于 Y 的熵（entropy）。"
+        "text": "无论 X 与 Y 如何依赖，互信息都等于 Y 的熵 H(Y)。"
       }
     ],
     "constraints": []
@@ -2534,13 +2534,13 @@
   {
     "id": "p05-channel-flip",
     "slug": "p05-channel-flip",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C05-S01",
     "part": "5",
     "chapter": "5.5",
-    "title": "总是翻转标签会失去信息吗",
+    "title": "计算翻转通道的信息",
     "type": "choice",
-    "statement": "X 公平二值，Y=1−X，映射规则已知。哪项正确？",
+    "statement": "X 是公平二值变量，Y=1−X，翻转规则已知。互信息（mutual information）I(X;Y) 是多少？",
     "learning_targets": [
       "T4"
     ],
@@ -2552,19 +2552,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只有正相关才有互信息（mutual information）。"
+        "text": "X 与 Y 的互信息为 1 bit。"
       },
       {
         "id": "B",
-        "text": "I=0，因为标签从不相等。"
+        "text": "X 与 Y 的互信息为 0 bit。"
       },
       {
         "id": "C",
-        "text": "I=1 bit，因为由 Y 可唯一恢复 X。"
+        "text": "X 与 Y 的互信息为 0.5 bit。"
       },
       {
         "id": "D",
-        "text": "I=−1 bit。"
+        "text": "X 与 Y 的互信息为 −1 bit。"
       }
     ],
     "constraints": []
@@ -2572,13 +2572,13 @@
   {
     "id": "p05-information-scope",
     "slug": "p05-information-scope",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C05-S01",
     "part": "5",
     "chapter": "5.5",
-    "title": "统计信息是否等于作用方向",
+    "title": "解释正互信息",
     "type": "choice",
-    "statement": "细胞标记 X 与 Y 的互信息（mutual information）为正。哪些判断合适？",
+    "statement": "细胞标记 X 与 Y 的互信息（mutual information）为正。哪些解释成立？",
     "learning_targets": [
       "T4"
     ],
@@ -2590,19 +2590,19 @@
     "options": [
       {
         "id": "A",
-        "text": "可以由共同原因造成。"
+        "text": "另一个因素同时影响 X 和 Y，也可以使它们的互信息为正。"
       },
       {
         "id": "B",
-        "text": "已证明 X 导致 Y。"
+        "text": "交换 X 与 Y 会使互信息变号，因此可由符号判断谁影响谁。"
       },
       {
         "id": "C",
-        "text": "指标对称，不能仅由其数值确定因果方向。"
+        "text": "互信息对 X 与 Y 对称，因此同一个数值不能区分 X 影响 Y 还是 Y 影响 X。"
       },
       {
         "id": "D",
-        "text": "等同于热力学熵（entropy）增加。"
+        "text": "互信息为正，说明增大 X 会使 Y 的平均值上升。"
       }
     ],
     "constraints": []
@@ -2710,11 +2710,11 @@
   {
     "id": "p05-finite-bias",
     "slug": "p05-finite-bias",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C05-S02",
     "part": "5",
     "chapter": "5.5",
-    "title": "独立通道为何估出正互信息",
+    "title": "解释有限样本的互信息",
     "type": "choice",
     "statement": "真实 X、Y 独立，但有限样本频数表算得互信息（mutual information） 0.08 bit。哪些正确？",
     "learning_targets": [
@@ -2728,19 +2728,19 @@
     "options": [
       {
         "id": "A",
-        "text": "可用独立机制的多次重复作为参照，并比较样本量。"
+        "text": "按 X、Y 相互独立的规则反复生成样本，比较互信息估计的波动，并检查增加样本量后的变化。"
       },
       {
         "id": "B",
-        "text": "再细分更多箱必然更接近真实连续信息量。"
+        "text": "把当前每个分箱（binning）拆成更多小箱，就能消除互信息估计的有限样本正偏差。"
       },
       {
         "id": "C",
-        "text": "有限表通常不能精确分解成边缘概率（probability）的乘积，插件互信息会有波动和向上偏差。"
+        "text": "有限样本中的联合频率未必等于两个边缘频率的乘积，因此独立变量的经验互信息也可能偏正。"
       },
       {
         "id": "D",
-        "text": "已推翻独立假设，无需不确定性分析。"
+        "text": "本次估计为 0.08 bit，已足以否定独立性，不需要比较独立抽样时也会出现多大的估计值。"
       }
     ],
     "constraints": []
@@ -2766,19 +2766,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两个不嵌套分箱也必须按箱数严格排序。"
+        "text": "即使两种分箱的边界互不嵌套，箱数较多的方案也会得到较大的互信息（mutual information）。"
       },
       {
         "id": "B",
-        "text": "经验分布（distribution）上的互信息（mutual information）不会因确定性合并增加（忽略舍入）。"
+        "text": "用固定规则合并同一经验表的箱后，经验互信息（mutual information）不会增加，忽略舍入误差（round-off error）。"
       },
       {
         "id": "C",
-        "text": "细分后的更高互信息本身证明观测（observation）更有用。"
+        "text": "细分箱后互信息估计增大，就说明传感器更能区分真实细胞状态（state）。"
       },
       {
         "id": "D",
-        "text": "粗化可能丢失区分信息。"
+        "text": "合并两个原箱后，它们得到同一粗箱号，因此原先能区分的读数可能不再可区分。"
       }
     ],
     "constraints": []
@@ -2786,13 +2786,13 @@
   {
     "id": "p05-binning-units",
     "slug": "p05-binning-units",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C05-S02",
     "part": "5",
     "chapter": "5.5",
-    "title": "分箱熵属于哪个变量",
+    "title": "解释分箱后的熵",
     "type": "choice",
-    "statement": "将连续读数 Y 按固定边界编码为箱号 B，计算 H(B)。哪项正确？",
+    "statement": "连续读数 Y 按固定边界编码为箱号 B，再计算箱号的熵（entropy）H(B)。这个结果描述什么？",
     "learning_targets": [
       "T4"
     ],
@@ -2804,19 +2804,19 @@
     "options": [
       {
         "id": "A",
-        "text": "它自动就是 Y 的微分熵（entropy）。"
+        "text": "H(B) 描述连续读数 Y 自身的信息量，与所选箱宽无关。"
       },
       {
         "id": "B",
-        "text": "它是该分箱（binning）标签的离散熵，会随边界改变。"
+        "text": "H(B) 等于连续读数 Y 的方差（variance），并且只由箱数决定。"
       },
       {
         "id": "C",
-        "text": "任何改变单位都不需同步改变边界。"
+        "text": "H(B) 描述各箱号出现的不确定性，其数值取决于分箱（binning）边界及各箱概率（probability）。"
       },
       {
         "id": "D",
-        "text": "箱数越多就证明物理机制越复杂。"
+        "text": "H(B) 已给出未知连续密度的精确信息量，因此不再受有限抽样影响。"
       }
     ],
     "constraints": []
@@ -2824,13 +2824,13 @@
   {
     "id": "p05-comparison-budget",
     "slug": "p05-comparison-budget",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P05-C05-S02",
     "part": "5",
     "chapter": "5.5",
-    "title": "怎样比较两个测量通道",
+    "title": "比较两个测量通道",
     "type": "choice",
-    "statement": "要用经验互信息（mutual information）比较两传感器。哪些应固定或同时报告？",
+    "statement": "要比较两个传感器的读数分别提供了多少关于细胞标签 X 的信息，计划估计标签 X 与各传感器读数之间的互信息（mutual information）。哪些实验条件应固定或同时报告？",
     "learning_targets": [
       "T4"
     ],
@@ -2842,19 +2842,19 @@
     "options": [
       {
         "id": "A",
-        "text": "预先定义的分箱（binning）规则。"
+        "text": "预先确定读数如何划分为箱，并报告两通道各自采用的分箱（binning）边界。"
       },
       {
         "id": "B",
-        "text": "只挑各通道最大的那次结果。"
+        "text": "不断增加各通道的重复次数，直到各自最大的互信息估计不再增加，再比较这两个最大值。"
       },
       {
         "id": "C",
-        "text": "有限样本偏差参照与波动范围。"
+        "text": "生成与细胞标签独立的读数作为参照，在相同样本量和分箱下报告互信息估计的平均偏差与波动。"
       },
       {
         "id": "D",
-        "text": "采样机制、样本量与重复次数。"
+        "text": "固定或报告细胞如何抽取、每次有多少配对样本，以及实验重复了多少次。"
       }
     ],
     "constraints": []
@@ -2880,19 +2880,19 @@
     "options": [
       {
         "id": "A",
-        "text": "同组固定 b 可通过无限次独立 v 测量完全平均掉。"
+        "text": "同一组测量中的固定偏移 b，会随着独立 v 的测量次数增加而被平均到零。"
       },
       {
         "id": "B",
-        "text": "不同个体固定 a 是个体差异。"
+        "text": "不同个体各自保持不同的 a，表示它们的演化参数（parameter）存在固定差异。"
       },
       {
         "id": "C",
-        "text": "w 改变后续状态（state）。"
+        "text": "w[n] 加入 x[n+1]，因此会改变下一步以及可能的后续状态（state）。"
       },
       {
         "id": "D",
-        "text": "v 在该模型（model）中只改变读数。"
+        "text": "v[i] 改变第 i 次读数 y[i]，但不改变题设中的固定 θ。"
       }
     ],
     "constraints": []
@@ -2900,13 +2900,13 @@
   {
     "id": "p05-cap-repeat",
     "slug": "p05-cap-repeat",
-    "version": "1",
+    "version": "3",
     "lesson_id": "P05-SUMMARY",
     "part": "5",
     "chapter": "5.summary",
-    "title": "重复实验的比较单位",
+    "title": "设计噪声机制对照",
     "type": "choice",
-    "statement": "比较噪声机制，哪项最合适？",
+    "statement": "比较几种噪声机制时，每次实验生成若干条长度相同的路径，在末时刻计算各路径数值的组均值。路径内部具有时间相关性。怎样安排重复并报告组均值的波动更合适？",
     "learning_targets": [
       "T1"
     ],
@@ -2918,19 +2918,19 @@
     "options": [
       {
         "id": "A",
-        "text": "把每条时间相关路径中的点全部称为独立个体。"
+        "text": "每种机制生成一条长路径，把不同时间点的数值当作独立重复来比较均值。"
       },
       {
         "id": "B",
-        "text": "用同一数组（array）复制成 200 组，报告标准误（standard error）为零。"
+        "text": "每种机制固定每次实验的路径数，用不同随机流重复 200 次，并报告 200 个末时刻组均值的分布（distribution）。"
       },
       {
         "id": "C",
-        "text": "每个机制固定样本量，使用派生随机流做 200 次重复，报告统计量（statistic）的分布（distribution）。"
+        "text": "每种机制保存一次实验的数组（array），复制成 200 组后计算组间均值波动。"
       },
       {
         "id": "D",
-        "text": "每个机制挑最好的一条路径。"
+        "text": "每种机制先做 200 次实验，再挑选末时刻组均值最接近理论均值的一次进行比较。"
       }
     ],
     "constraints": []
@@ -3468,13 +3468,13 @@
   {
     "id": "p05-cap-scope",
     "slug": "p05-cap-scope",
-    "version": "1",
+    "version": "3",
     "lesson_id": "P05-SUMMARY",
     "part": "5",
     "chapter": "5.summary",
-    "title": "观测价值与因果范围",
+    "title": "解释通道比较结果",
     "type": "choice",
-    "statement": "独立通道的小样本插件互信息（mutual information）偏正；细分后更大；重复实验显示相当波动。哪些结论可支持？",
+    "statement": "在独立生成的标签和读数中，小样本互信息（mutual information）估计常为正，细分箱（binning）后估计更大，多次重复之间也有明显波动。现要据此设计真实细胞标签与两个测量通道的比较，哪些做法合理？",
     "learning_targets": [
       "T4"
     ],
@@ -3486,19 +3486,19 @@
     "options": [
       {
         "id": "A",
-        "text": "最大一次互信息即可证明因果效应。"
+        "text": "将两个真实通道各次实验中最大的互信息相减，用这个差值估计它们的因果效应。"
       },
       {
         "id": "B",
-        "text": "报告有限样本参照和波动，保留共同原因解释。"
+        "text": "报告独立参照中互信息估计的偏差和波动，同时将共同原因列为真实通道与标签关联的一种解释。"
       },
       {
         "id": "C",
-        "text": "增加分箱（binning）必能提高真实测量质量。"
+        "text": "在各通道中选择互信息估计最大的分箱（binning），就可判定哪个通道最能区分真实标签。"
       },
       {
         "id": "D",
-        "text": "固定样本量、分箱与重复设计后再比较通道。"
+        "text": "固定样本量、分箱规则和重复设计后，再比较两个通道的互信息估计分布（distribution）。"
       }
     ],
     "constraints": []

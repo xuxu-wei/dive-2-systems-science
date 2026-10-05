@@ -106,7 +106,7 @@
   {
     "id": "p09-likelihood-object",
     "slug": "p09-likelihood-object",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.1",
     "lesson_id": "P09-C01-S01",
@@ -124,19 +124,19 @@
     "options": [
       {
         "id": "A",
-        "text": "它是θ的概率密度（probability density），自动积分为1。"
+        "text": "把L(θ)看作θ的概率密度（probability density）时，它对θ的积分为1。"
       },
       {
         "id": "B",
-        "text": "它用于比较不同θ对同一y的解释。"
+        "text": "L(θ)的大小用于比较不同θ下出现同一读数y的概率（probability）或概率密度。"
       },
       {
         "id": "C",
-        "text": "后验（posterior）归一化需要结合先验（prior）并计算证据。"
+        "text": "把L(θ)乘先验（prior）密度后，还需除以所得乘积的积分，才能得到归一化后验（posterior）。"
       },
       {
         "id": "D",
-        "text": "可以在没有新增观测（observation）时反复乘同一似然（likelihood），增加独立信息。"
+        "text": "没有新增观测（observation）时，把同一似然（likelihood）平方，仍等同于加入第二次独立同值读数的信息。"
       }
     ],
     "constraints": []
@@ -144,7 +144,7 @@
   {
     "id": "p09-posterior-predictive",
     "slug": "p09-posterior-predictive",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.1",
     "lesson_id": "P09-C01-S01",
@@ -162,19 +162,19 @@
     "options": [
       {
         "id": "A",
-        "text": "参数（parameter）方差可趋近0。"
+        "text": "重复读数增加时，固定偏差参数（parameter）的后验（posterior）方差可趋近0。"
       },
       {
         "id": "B",
-        "text": "一个新读数的预测方差可趋近r。"
+        "text": "重复读数增加时，未来一个新读数的预测方差可趋近r。"
       },
       {
         "id": "C",
-        "text": "未来读数必与后验（posterior）均值完全相等。"
+        "text": "读数足够多时，新读数的预测方差也趋近0。"
       },
       {
         "id": "D",
-        "text": "以上极限（limit）依赖同一偏差及独立噪声等模型（model）假设。"
+        "text": "这些方差极限（limit）依赖偏差保持固定、各次测量噪声（measurement noise）独立等模型（model）假设。"
       }
     ],
     "constraints": []
@@ -182,12 +182,12 @@
   {
     "id": "p09-prior-vs-data",
     "slug": "p09-prior-vs-data",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.1",
     "lesson_id": "P09-C01-S01",
     "title": "先验强度怎样起作用",
-    "statement": "同一批读数下缩小高斯先验（prior）方差（variance），其他量不变。哪项正确？",
+    "statement": "同一批读数下缩小高斯先验（prior）方差（variance），其他量不变。关于后验（posterior）均值，哪项正确？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -200,19 +200,19 @@
     "options": [
       {
         "id": "A",
-        "text": "后验（posterior）均值通常更靠近先验均值，但这不证明先验更真实。"
+        "text": "样本均值向先验均值移动，读数噪声方差随之减小。"
       },
       {
         "id": "B",
-        "text": "数据的观测（observation）噪声自动变小。"
+        "text": "后验均值中，样本均值的相对权重增大。"
       },
       {
         "id": "C",
-        "text": "后验变窄就证明模型（model）无偏。"
+        "text": "后验均值保持不变，只有后验方差改变。"
       },
       {
         "id": "D",
-        "text": "先验选择不需要任何说明。"
+        "text": "后验均值中，先验均值的相对权重增大。"
       }
     ],
     "constraints": []
@@ -220,12 +220,12 @@
   {
     "id": "p09-normalizer-zero",
     "slug": "p09-normalizer-zero",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.1",
     "lesson_id": "P09-C01-S01",
     "title": "后验什么时候存在",
-    "statement": "先验（prior）密度p与似然（likelihood）L均非负。作为概率密度（probability density）的后验（posterior）还要求什么？",
+    "statement": "先验（prior）密度p与似然（likelihood）L均非负，记Z=∫p(θ)L(θ)dθ。用pL/Z构造合法后验（posterior）概率密度（probability density）所需的归一化条件是哪项？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -238,19 +238,19 @@
     "options": [
       {
         "id": "A",
-        "text": "归一化积分Z满足0<Z<∞。"
+        "text": "Z的取值条件为0<Z<∞。"
       },
       {
         "id": "B",
-        "text": "任何非负函数都自动可归一化。"
+        "text": "Z的取值条件为Z>0，其中也允许Z为正无穷。"
       },
       {
         "id": "C",
-        "text": "L为常数零也能得到后验。"
+        "text": "Z的取值条件为0≤Z<∞，其中也允许Z为0。"
       },
       {
         "id": "D",
-        "text": "采用不适定先验时无需再检查Z。"
+        "text": "Z的取值条件为Z=1，其他正数都不符合要求。"
       }
     ],
     "constraints": []
@@ -308,7 +308,7 @@
       {
         "name": "curvature",
         "type": "float | None",
-        "description": "负对数后验（posterior）在模态处的二阶导数（derivative）。",
+        "description": "负对数后验（posterior）在模态处的二阶导数（second derivative）。",
         "unit": "T²"
       },
       {
@@ -472,7 +472,7 @@
   {
     "id": "p09-coordinate-map",
     "slug": "p09-coordinate-map",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.1",
     "lesson_id": "P09-C01-S02",
@@ -498,11 +498,11 @@
       },
       {
         "id": "C",
-        "text": "两个参数（parameter）化下的概率（probability）事件（event）可一致，但密度众数不必对应。"
+        "text": "同一个区间事件（event）在两种坐标下的概率（probability）相同，但两种密度的众数不一定通过η=log k相互对应。"
       },
       {
         "id": "D",
-        "text": "不需要雅可比，只要把横轴改名。"
+        "text": "pη(η)=pk(expη)/expη。"
       }
     ],
     "constraints": []
@@ -510,12 +510,12 @@
   {
     "id": "p09-single-mode",
     "slug": "p09-single-mode",
-    "version": "1",
+    "version": "3",
     "part": "9",
     "chapter": "9.1",
     "lesson_id": "P09-C01-S02",
     "title": "一个漂亮的局部高斯",
-    "statement": "目标后验（posterior）有两个相距很远的峰，算法在左峰精确求出正曲率。哪项结论可靠？",
+    "statement": "一维后验（posterior）密度有两个相距很远的峰；在左峰位置，负对数密度的一阶导数（derivative）为0、二阶导数（second derivative）为正。根据这些信息，哪项结论成立？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -528,19 +528,19 @@
     "options": [
       {
         "id": "A",
-        "text": "已精确表示整个后验。"
+        "text": "负对数密度在左峰对应位置的二阶导数为正，说明两峰之间的后验概率（probability）可以忽略。"
       },
       {
         "id": "B",
-        "text": "右峰不重要，因为左峰局部曲率为正。"
+        "text": "可以在左峰附近构造局部高斯近似，但还需要检查该近似漏掉了右峰多少概率。"
       },
       {
         "id": "C",
-        "text": "只能说明左峰附近可构造局部近似，仍需检查遗漏质量。"
+        "text": "只用左峰处的负对数密度曲率，就能确定两个峰各自所占的概率。"
       },
       {
         "id": "D",
-        "text": "扩大局部图像就能找回右峰概率（probability）。"
+        "text": "把左峰附近的高斯近似归一化到积分为1，就已经计入了右峰的概率。"
       }
     ],
     "constraints": []
@@ -548,12 +548,12 @@
   {
     "id": "p09-grid-domain",
     "slug": "p09-grid-domain",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.1",
     "lesson_id": "P09-C01-S02",
     "title": "网格变密但区间未扩大",
-    "statement": "在k∈[0.1,0.5]上把网格从1000加密到2000点，矩几乎不变。哪些解释正确？",
+    "statement": "在k∈[0.1,0.5]上把积分网格从1000点加密到2000点，所得后验（posterior）均值和方差（variance）几乎不变。哪些解释正确？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -566,19 +566,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这支持当前区间内离散误差较小。"
+        "text": "网格加密前后的均值和方差接近，支持当前区间内的数值积分误差较小。"
       },
       {
         "id": "B",
-        "text": "这证明区间外没有概率（probability）。"
+        "text": "加密网格后均值和方差的变化都小于10⁻⁶，说明区间外后验概率（probability）也小于10⁻⁶。"
       },
       {
         "id": "C",
-        "text": "还应扩大积分区间检查截断误差（truncation error）。"
+        "text": "还应扩大积分区间，比较后验均值和方差是否受区间外概率影响。"
       },
       {
         "id": "D",
-        "text": "若密度峰在边界，必须警惕区间截断。"
+        "text": "若密度峰落在积分边界上，当前区间可能截去了该峰的一部分概率。"
       }
     ],
     "constraints": []
@@ -802,7 +802,7 @@
   {
     "id": "p09-proposal-ratio",
     "slug": "p09-proposal-ratio",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.2",
     "lesson_id": "P09-C02-S01",
@@ -821,19 +821,19 @@
     "options": [
       {
         "id": "A",
-        "text": "q(y|x)/q(x|y)。"
+        "text": "提议修正因子为q(x|y)/q(y|x)。"
       },
       {
         "id": "B",
-        "text": "q(x|y)/q(y|x)。"
+        "text": "提议修正因子为q(y|x)/q(x|y)。"
       },
       {
         "id": "C",
-        "text": "无论是否对称都能约掉。"
+        "text": "提议修正因子为q(x|y)q(y|x)。"
       },
       {
         "id": "D",
-        "text": "只要目标已归一化就不需要它。"
+        "text": "提议修正因子为1/[q(x|y)q(y|x)]。"
       }
     ],
     "constraints": []
@@ -841,7 +841,7 @@
   {
     "id": "p09-stationary-vs-convergence",
     "slug": "p09-stationary-vs-convergence",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.2",
     "lesson_id": "P09-C02-S01",
@@ -860,19 +860,19 @@
     "options": [
       {
         "id": "A",
-        "text": "能，因为已经详细平衡。"
+        "text": "详细平衡使链从任意初态出发一步后即服从π。"
       },
       {
         "id": "B",
-        "text": "不能，链一直保持初态。"
+        "text": "P=I使链每一步都停在初始状态（state），因此不能从任意初态探索给定π。"
       },
       {
         "id": "C",
-        "text": "还需讨论不可约（irreducible）性与周期性等条件。"
+        "text": "详细平衡之外，还需检查链能否到达各状态，以及是否存在周期性，才能判断长期收敛。"
       },
       {
         "id": "D",
-        "text": "有限状态（state）不可约且非周期（aperiodic）时，才有熟悉的唯一平稳及长期收敛结论。"
+        "text": "有限状态（state）链不可约（irreducible）且非周期（aperiodic）时，具有唯一平稳分布（distribution）并从任意初态收敛。"
       }
     ],
     "constraints": []
@@ -880,7 +880,7 @@
   {
     "id": "p09-rejections",
     "slug": "p09-rejections",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.2",
     "lesson_id": "P09-C02-S01",
@@ -899,19 +899,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只保存400个接受后的点并等权平均。"
+        "text": "只保存接受后的状态（state），并给400个记录相同权重。"
       },
       {
         "id": "B",
-        "text": "保存每一步状态（state），拒绝时重复当前点。"
+        "text": "保存全部1000步状态，拒绝时重复记录当前状态。"
       },
       {
         "id": "C",
-        "text": "拒绝意味着数值失败，必须删除。"
+        "text": "只保存不同状态，每个独特状态记录一次。"
       },
       {
         "id": "D",
-        "text": "重复状态的停留时间与目标质量无关。"
+        "text": "保存全部1000个提议点，包括被拒绝的候选点。"
       }
     ],
     "constraints": []
@@ -1016,12 +1016,12 @@
   {
     "id": "p09-high-acceptance",
     "slug": "p09-high-acceptance",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.2",
     "lesson_id": "P09-C02-S02",
     "title": "接受率99%是好消息吗",
-    "statement": "一条链步幅极小，几乎每次接受，但2000步仍留在起点附近。哪项合理？",
+    "statement": "一条针对后验（posterior）的链从给定初值（initial condition）出发，步幅极小、几乎每次接受，但2000步仍留在起点附近。哪项做法合理？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1035,19 +1035,19 @@
     "options": [
       {
         "id": "A",
-        "text": "高接受率证明后验（posterior）均值精确。"
+        "text": "接受率达到99%时停止运行，并把当前样本均值报告为已经收敛的后验均值。"
       },
       {
         "id": "B",
-        "text": "应同时检查移动尺度、自相关、多个初值（initial condition）和计算预算。"
+        "text": "每隔十步保留一点，剩余样本就可视为覆盖全部后验。"
       },
       {
         "id": "C",
-        "text": "删除一半记录必能解决探索问题。"
+        "text": "检查相邻样本的移动距离和自相关，并从相距较远的初始点重新运行。"
       },
       {
         "id": "D",
-        "text": "只需延长图像横轴而不生成新样本。"
+        "text": "进一步减小步幅，使接受率更接近100%再比较均值。"
       }
     ],
     "constraints": []
@@ -1055,7 +1055,7 @@
   {
     "id": "p09-same-mode",
     "slug": "p09-same-mode",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.2",
     "lesson_id": "P09-C02-S02",
@@ -1074,19 +1074,19 @@
     "options": [
       {
         "id": "A",
-        "text": "仍可能全部遗漏右峰。"
+        "text": "所有链都可能只访问左峰，而没有采到右峰附近的状态（state）。"
       },
       {
         "id": "B",
-        "text": "应从分散初值（initial condition）重新运行，并用网格参考模式质量。"
+        "text": "可以从相距较远的初始点重新运行，并用网格积分核对两个峰各自所占的概率（probability）。"
       },
       {
         "id": "C",
-        "text": "Rhat接近1足以证明遍历性。"
+        "text": "Rhat接近1，说明没有被访问的右峰只占很小的后验（posterior）概率。"
       },
       {
         "id": "D",
-        "text": "应报告模式覆盖而不只报告均值诊断。"
+        "text": "除了比较各链均值，还应报告各条链是否访问过两个峰。"
       }
     ],
     "constraints": []
@@ -1094,7 +1094,7 @@
   {
     "id": "p09-ess-not-particles",
     "slug": "p09-ess-not-particles",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.2",
     "lesson_id": "P09-C02-S02",
@@ -1113,19 +1113,19 @@
     "options": [
       {
         "id": "A",
-        "text": "都是同一个公式。"
+        "text": "两种ESS都只根据当前样本的归一化权重计算。"
       },
       {
         "id": "B",
-        "text": "前者针对链时间相关，后者针对当前粒子权重集中。"
+        "text": "MCMC的ESS根据权重集中程度计算，粒子滤波的ESS根据链的时间自相关计算。"
       },
       {
         "id": "C",
-        "text": "粒子等权就证明MCMC没有自相关。"
+        "text": "MCMC的ESS考虑链样本的时间自相关，粒子滤波的ESS考虑当前权重是否集中在少数粒子上。"
       },
       {
         "id": "D",
-        "text": "二者可以替代独立核验。"
+        "text": "两种ESS都等于不同状态（state）值或不同祖先的实际个数。"
       }
     ],
     "constraints": []
@@ -1133,7 +1133,7 @@
   {
     "id": "p09-budget-repeat",
     "slug": "p09-budget-repeat",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.2",
     "lesson_id": "P09-C02-S02",
@@ -1152,19 +1152,19 @@
     "options": [
       {
         "id": "A",
-        "text": "使用相同目标和事先固定的密度评估预算。"
+        "text": "两种步幅使用同一个目标密度，并预先固定各自允许计算目标密度的次数。"
       },
       {
         "id": "B",
-        "text": "预先固定多个独立随机种子（random seed）并报告重复估计的离散程度。"
+        "text": "预先选定多个独立随机种子（random seed）重复运行，并报告各次后验均值估计的波动。"
       },
       {
         "id": "C",
-        "text": "只保留最接近参考答案的一次运行。"
+        "text": "每条链都选取估计均值最接近参考值的那个时刻，再比较这些时刻的结果。"
       },
       {
         "id": "D",
-        "text": "把计算的标准误（standard error）与后验标准差（standard deviation）区分。"
+        "text": "报告时应区分均值估计的计算标准误（standard error）与目标后验本身的标准差（standard deviation）。"
       }
     ],
     "constraints": []
@@ -1373,7 +1373,7 @@
   {
     "id": "p09-kl-direction",
     "slug": "p09-kl-direction",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.3",
     "lesson_id": "P09-C03-S01",
@@ -1391,7 +1391,7 @@
     "options": [
       {
         "id": "A",
-        "text": "logp(y)=ELBO(q)+KL(q||p(z|y))。"
+        "text": "logp(y)=ELBO(q)−KL(p(z|y)||q)。"
       },
       {
         "id": "B",
@@ -1403,7 +1403,7 @@
       },
       {
         "id": "D",
-        "text": "ELBO是任何q下的精确证据。"
+        "text": "logp(y)=ELBO(q)+KL(q||p(z|y))。"
       }
     ],
     "constraints": []
@@ -1411,12 +1411,12 @@
   {
     "id": "p09-gaussian-variance",
     "slug": "p09-gaussian-variance",
-    "version": "1",
+    "version": "3",
     "part": "9",
     "chapter": "9.3",
     "lesson_id": "P09-C03-S01",
     "title": "独立近似丢掉了什么",
-    "statement": "二维目标协方差（covariance）[[1,ρ],[ρ,1]]，0<|ρ|<1。最优高斯均值场（mean-field approximation）q1q2会怎样？",
+    "statement": "二维高斯目标p的协方差（covariance）为[[1,ρ],[ρ,1]]，0<|ρ|<1。在独立高斯族q=q1q2中最小化KL(q||p)，得到最优均值场（mean-field approximation）近似。哪些判断正确？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1429,19 +1429,19 @@
     "options": [
       {
         "id": "A",
-        "text": "每因子方差（variance）为1−ρ²。"
+        "text": "两个独立因子的方差（variance）均为1−ρ²。"
       },
       {
         "id": "B",
-        "text": "每因子方差为1。"
+        "text": "两个独立因子的方差均为1。"
       },
       {
         "id": "C",
-        "text": "不能表达非零交叉协方差。"
+        "text": "因子相互独立，因此近似分布（distribution）的交叉协方差为0，无法重现目标的非零相关性。"
       },
       {
         "id": "D",
-        "text": "本例方差缩小，足以证明所有变分近似都低估所有函数的不确定性。"
+        "text": "当|ρ|增大时，最优独立因子的方差随之增大。"
       }
     ],
     "constraints": []
@@ -1449,7 +1449,7 @@
   {
     "id": "p09-optimization-error",
     "slug": "p09-optimization-error",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.3",
     "lesson_id": "P09-C03-S01",
@@ -1467,19 +1467,19 @@
     "options": [
       {
         "id": "A",
-        "text": "目标后验（posterior）已变成独立。"
+        "text": "下界稳定说明目标后验（posterior）的交叉协方差（covariance）已变成0。"
       },
       {
         "id": "B",
-        "text": "优化可能已完成，但近似族仍遗漏相关性。"
+        "text": "继续在同一独立因子族内迭代，可以使两个因子之间出现非零交叉协方差。"
       },
       {
         "id": "C",
-        "text": "必须把观测（observation）改成符合近似的数据。"
+        "text": "坐标更新可能已找到该族内的最优解，但两个独立因子仍无法表示目标的非零相关性。"
       },
       {
         "id": "D",
-        "text": "停止上升说明数据来自该模型（model）。"
+        "text": "下界稳定说明近似方差（variance）已等于目标的边缘方差。"
       }
     ],
     "constraints": []
@@ -1586,7 +1586,7 @@
   {
     "id": "p09-two-modes-family",
     "slug": "p09-two-modes-family",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.3",
     "lesson_id": "P09-C03-S02",
@@ -1604,19 +1604,19 @@
     "options": [
       {
         "id": "A",
-        "text": "p1=p2=.5时独立族给四状态各1/4。"
+        "text": "在独立近似中取p1=p2=0.5时，四个状态的概率（probability）都是1/4。"
       },
       {
         "id": "B",
-        "text": "只要多迭代，独立族必能精确变成原目标。"
+        "text": "将两个边缘概率（probability）都调为0.5，就同时得到P(00)≈P(11)≈0.5。"
       },
       {
         "id": "C",
-        "text": "允许完整四状态质量后可以直接归一化得到精确后验（posterior）。"
+        "text": "若分别保存四个状态的未归一化后验（posterior）权重，再除以权重总和，就能表示该目标的精确后验。"
       },
       {
         "id": "D",
-        "text": "应比较状态质量或相关性，不能只看两个边缘均值。"
+        "text": "比较近似与目标时，需要检查四个状态的概率或两分量的相关性，而不只比较两个边缘均值。"
       }
     ],
     "constraints": []
@@ -1624,7 +1624,7 @@
   {
     "id": "p09-vi-initialization",
     "slug": "p09-vi-initialization",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.3",
     "lesson_id": "P09-C03-S02",
@@ -1642,19 +1642,19 @@
     "options": [
       {
         "id": "A",
-        "text": "相同ELBO证明两个近似质量完全一致。"
+        "text": "两组结果可能是互相对称的局部解，需要分别检查它们给00和11分配的概率（probability）。"
       },
       {
         "id": "B",
-        "text": "可能是对称的不同局部解，应报告初始化和被遗漏的模式。"
+        "text": "ELBO相同，说明两组结果在四个状态（state）上的概率逐项相同。"
       },
       {
         "id": "C",
-        "text": "必须删掉其中一个结果。"
+        "text": "把两组结果的因子概率逐项取平均后，ELBO仍等于原来的最优值。"
       },
       {
         "id": "D",
-        "text": "可以把两组因子概率（probability）逐元素平均后声称仍是最优解。"
+        "text": "两次运行得到相同ELBO，说明所有局部解都已被这两次运行找到。"
       }
     ],
     "constraints": []
@@ -1662,7 +1662,7 @@
   {
     "id": "p09-elbo-monotone",
     "slug": "p09-elbo-monotone",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.3",
     "lesson_id": "P09-C03-S02",
@@ -1680,19 +1680,19 @@
     "options": [
       {
         "id": "A",
-        "text": "每步下界不下降。"
+        "text": "每次精确更新一个因子后，ELBO不会比更新前小。"
       },
       {
         "id": "B",
-        "text": "必到全局最优。"
+        "text": "每个因子分别无改进时，当前点就是联合全局最优。"
       },
       {
         "id": "C",
-        "text": "数值稳定化和更新顺序仍需核对。"
+        "text": "程序实现时仍应核对数值计算是否稳定，以及后一个因子是否使用了前一个因子的最新值。"
       },
       {
         "id": "D",
-        "text": "若换成近似更新，原单调性不再自动成立。"
+        "text": "若某次更新没有精确最大化该因子的ELBO，就不能沿用原来的每步不下降结论。"
       }
     ],
     "constraints": []
@@ -1700,7 +1700,7 @@
   {
     "id": "p09-jensen-support",
     "slug": "p09-jensen-support",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.3",
     "lesson_id": "P09-C03-S02",
@@ -1718,19 +1718,19 @@
     "options": [
       {
         "id": "A",
-        "text": "q只要选中概率最大的一个状态即可。"
+        "text": "q在每个状态上的概率都等于该状态的后验概率。"
       },
       {
         "id": "B",
-        "text": "q与后验逐状态一致。"
+        "text": "q把全部概率放在后验概率最大的一个状态上。"
       },
       {
         "id": "C",
-        "text": "q的均值与后验均值一样即可。"
+        "text": "q的均值等于后验均值，其他分布（distribution）特征可以不同。"
       },
       {
         "id": "D",
-        "text": "任意归一化q都可以。"
+        "text": "q在全部状态上的概率之和为1，其他取值不受限制。"
       }
     ],
     "constraints": []
@@ -1871,7 +1871,7 @@
   {
     "id": "p09-em-two-targets",
     "slug": "p09-em-two-targets",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.4",
     "lesson_id": "P09-C04-S01",
@@ -1890,19 +1890,19 @@
     "options": [
       {
         "id": "A",
-        "text": "E步计算给定旧参数（parameter）的隐标签后验（posterior）。"
+        "text": "E步在旧参数（parameter）固定时，计算每个观测（observation）属于各混合分量的后验（posterior）概率（probability）。"
       },
       {
         "id": "B",
-        "text": "M步更新参数点估计。"
+        "text": "M步根据当前责任度（responsibility）更新各分量均值和混合权重的点估计。"
       },
       {
         "id": "C",
-        "text": "这自动给出参数的完整贝叶斯后验。"
+        "text": "E步计算的责任度（responsibility）就是未知均值与混合权重的后验分布（distribution）。"
       },
       {
         "id": "D",
-        "text": "精确E/M步骤下观测（observation）似然（likelihood）不下降，但不保证全局最优。"
+        "text": "精确完成E步和M步时，观测似然（likelihood）不会下降，但所得参数不一定是全局最优值。"
       }
     ],
     "constraints": []
@@ -1910,12 +1910,12 @@
   {
     "id": "p09-zero-component",
     "slug": "p09-zero-component",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.4",
     "lesson_id": "P09-C04-S01",
     "title": "权重为零的分量",
-    "statement": "当前某分量权重严格为0，所有其他密度有限正。按本题规则做EM会怎样？",
+    "statement": "混合模型（model）中某分量的当前权重为0，其他分量在全部观测（observation）处的密度均有限且为正。使用标准EM更新，没有额外的分量重启规则；遇到责任度（responsibility）总和为0时保留该分量旧均值。哪些判断正确？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1929,19 +1929,19 @@
     "options": [
       {
         "id": "A",
-        "text": "该分量责任度（responsibility）为0，下一权重仍为0。"
+        "text": "该分量对各观测的责任度都为0，因此下一次更新得到的分量权重仍为0。"
       },
       {
         "id": "B",
-        "text": "其均值可由0/0随意计算。"
+        "text": "该分量的新均值应改成所有观测（observation）的普通平均。"
       },
       {
         "id": "C",
-        "text": "保留旧均值可避免未定义操作，但不会自动恢复该分量。"
+        "text": "责任度总和为0时保留旧均值，可以避免除以0，但不会使该分量重新获得正权重。"
       },
       {
         "id": "D",
-        "text": "可以把无贡献均值当作由数据精确识别。"
+        "text": "保留旧均值并继续迭代足够多次后，该分量的权重会从0变成正数。"
       }
     ],
     "constraints": []
@@ -1949,12 +1949,12 @@
   {
     "id": "p09-variance-collapse",
     "slug": "p09-variance-collapse",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.4",
     "lesson_id": "P09-C04-S01",
     "title": "自由方差的危险",
-    "statement": "在高斯混合中让一个分量均值等于某观测（observation），再令其方差（variance）趋近0。哪项合理？",
+    "statement": "在含至少两个分量的高斯混合中，保持各权重为正；其他分量对其余观测（observation）提供有限正密度。让一个分量均值等于某个观测，其方差（variance）趋近0。关于似然（likelihood），哪项正确？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1968,19 +1968,19 @@
     "options": [
       {
         "id": "A",
-        "text": "无约束似然（likelihood）可能发散；固定方差的本节例子有意避开此退化。"
+        "text": "把两个分量标签互换后，无界似然方向就会消失。"
       },
       {
         "id": "B",
-        "text": "似然越大就证明机制越真实。"
+        "text": "每个分量密度积分为1，因此每个观测点的密度也至多为1。"
       },
       {
         "id": "C",
-        "text": "EM单调性保证方差不会退化。"
+        "text": "EM似然单调性会迫使方差在达到0之前反向增加。"
       },
       {
         "id": "D",
-        "text": "只换标签即可修复。"
+        "text": "该观测的密度可无界增大，因此总似然可能无界。"
       }
     ],
     "constraints": []
@@ -1988,12 +1988,12 @@
   {
     "id": "p09-labels",
     "slug": "p09-labels",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.4",
     "lesson_id": "P09-C04-S01",
     "title": "把两分量标签对换",
-    "statement": "同时对换两分量的权重和均值时，哪些量应保持？",
+    "statement": "两个高斯混合分量共用相同的固定方差（variance）。将两个分量的权重和均值对换，一般情况下哪些量保持不变？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2007,19 +2007,19 @@
     "options": [
       {
         "id": "A",
-        "text": "总体混合密度。"
+        "text": "总体混合密度保持不变。"
       },
       {
         "id": "B",
-        "text": "各观测（observation）的总似然（likelihood）。"
+        "text": "每个观测（observation）在所有分量上的密度加权和保持不变。"
       },
       {
         "id": "C",
-        "text": "每列责任度（responsibility）的标签名称。"
+        "text": "一个固定标签对应的责任度（responsibility）列保持不变。"
       },
       {
         "id": "D",
-        "text": "总体预测矩。"
+        "text": "总体预测分布（distribution）的均值和方差保持不变。"
       }
     ],
     "constraints": []
@@ -2123,7 +2123,7 @@
   {
     "id": "p09-smoothing-products",
     "slug": "p09-smoothing-products",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.4",
     "lesson_id": "P09-C04-S02",
@@ -2142,19 +2142,19 @@
     "options": [
       {
         "id": "A",
-        "text": "相邻状态（state）的平滑交叉协方差（covariance）。"
+        "text": "遗漏的项为Var(x[t]|y)。"
       },
       {
         "id": "B",
-        "text": "只遗漏可忽略的打印误差。"
+        "text": "遗漏的项为Cov(x[t+1],x[t]|y)。"
       },
       {
         "id": "C",
-        "text": "二者总相等。"
+        "text": "遗漏的项为Var(x[t+1]|y)。"
       },
       {
         "id": "D",
-        "text": "只要有很多观测（observation）就可不检查地删除方差（variance）。"
+        "text": "遗漏的项为Cov(x[t+1],x[t])。"
       }
     ],
     "constraints": []
@@ -2162,12 +2162,12 @@
   {
     "id": "p09-initial-parameter",
     "slug": "p09-initial-parameter",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.4",
     "lesson_id": "P09-C04-S02",
     "title": "初始分布也依赖a",
-    "statement": "若采用平稳初态方差（variance）Q/(1−a²)，还能直接使用本节N/D更新吗？",
+    "statement": "状态（state）模型（model）为x[t+1]=a*x[t]+w[t]，过程噪声（process noise）方差（variance）Q已知。初态分布（distribution）固定且不依赖a时，EM的M步更新为a=N/D，其中N=ΣE[x[t+1]x[t]|y]，D=ΣE[x[t]²|y]>0，求和覆盖所有相邻时刻。若改用平稳初态方差（variance）Q/(1−a²)，哪项判断正确？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2181,19 +2181,19 @@
     "options": [
       {
         "id": "A",
-        "text": "能，初态总能忽略。"
+        "text": "仍可用a=N/D更新，因为采用平稳初态后，初态对数密度不再随a变化。"
       },
       {
         "id": "B",
-        "text": "不能；初态对数密度也依赖a，目标及约束须重新推导。"
+        "text": "初态对数密度也随a变化，因此需要把它计入目标，并重新推导a的更新与允许范围。"
       },
       {
         "id": "C",
-        "text": "只需删除首个读数。"
+        "text": "删去第0个观测（observation）的似然（likelihood）项后，其余目标仍由a=N/D最大化。"
       },
       {
         "id": "D",
-        "text": "把a改名便可消除依赖。"
+        "text": "把N与D同时除以时刻数，就能在原更新式中计入平稳初态的影响。"
       }
     ],
     "constraints": []
@@ -2201,7 +2201,7 @@
   {
     "id": "p09-approximate-e-step",
     "slug": "p09-approximate-e-step",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.4",
     "lesson_id": "P09-C04-S02",
@@ -2220,19 +2220,19 @@
     "options": [
       {
         "id": "A",
-        "text": "原始观测（observation）似然（likelihood）的单调性不再自动保证。"
+        "text": "使用有偏近似平滑后，原来的观测（observation）似然（likelihood）每步不下降结论不再由精确EM推导保证。"
       },
       {
         "id": "B",
-        "text": "应实际比较原似然或给出所用变分目标的保证。"
+        "text": "可以逐步计算原观测似然的变化，或说明近似算法保证上升的是哪个变分目标。"
       },
       {
         "id": "C",
-        "text": "名字仍叫EM就无需核验。"
+        "text": "近似平滑所用目标上升，就说明原观测似然也上升。"
       },
       {
         "id": "D",
-        "text": "不同目标的上升不能混同。"
+        "text": "报告结果时，需要区分原观测似然的增加与另一个近似目标的增加。"
       }
     ],
     "constraints": []
@@ -2240,7 +2240,7 @@
   {
     "id": "p09-unstable-estimate",
     "slug": "p09-unstable-estimate",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.4",
     "lesson_id": "P09-C04-S02",
@@ -2259,19 +2259,19 @@
     "options": [
       {
         "id": "A",
-        "text": "计算必然错误。"
+        "text": "a=1.1说明计算失败，因为有限记录的无约束最优估计也应满足|a|<1。"
       },
       {
         "id": "B",
-        "text": "有限记录的无约束最优可能不稳定；如需|a|<1须明确约束后重解。"
+        "text": "把a从1.1改为0.99后，仍可将0.99报告为原无约束目标的精确最大点。"
       },
       {
         "id": "C",
-        "text": "静默裁剪到.99仍可声称原无约束精确M步。"
+        "text": "如果应用要求|a|<1，就需要把这一要求写入优化约束并求解相应问题。"
       },
       {
         "id": "D",
-        "text": "这证明人体系统会永远增长。"
+        "text": "重复计算同一个E步得到更多遍平滑矩后，精确M步给出的a就会小于1。"
       }
     ],
     "constraints": []
@@ -2390,7 +2390,7 @@
   {
     "id": "p09-interval-meaning",
     "slug": "p09-interval-meaning",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.5",
     "lesson_id": "P09-C05-S01",
@@ -2409,19 +2409,19 @@
     "options": [
       {
         "id": "A",
-        "text": "前者关于未知参数，后者关于新观测（observation）。"
+        "text": "可信区间描述未知参数的后验（posterior）范围，预测区间描述未来新读数的范围。"
       },
       {
         "id": "B",
-        "text": "预测区间还包含新观测的随机性。"
+        "text": "未来读数的预测区间除参数不确定性外，还考虑新一次观测（observation）的随机波动。"
       },
       {
         "id": "C",
-        "text": "二者必须同宽。"
+        "text": "两种区间都标95%，所以可用同一对端点报告。"
       },
       {
         "id": "D",
-        "text": "可信区间宽度就是数值积分误差。"
+        "text": "把数值积分网格无限加密，参数可信区间宽度就趋近0。"
       }
     ],
     "constraints": []
@@ -2429,7 +2429,7 @@
   {
     "id": "p09-nonlinear-expectation",
     "slug": "p09-nonlinear-expectation",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.5",
     "lesson_id": "P09-C05-S01",
@@ -2448,19 +2448,19 @@
     "options": [
       {
         "id": "A",
-        "text": "总相等。"
+        "text": "后验（posterior）均值有限时，先求k的均值再代入指数函数（exponential function），与先代入再求平均得到相同结果。"
       },
       {
         "id": "B",
-        "text": "一般不相等，因为映射非线性。"
+        "text": "指数函数对k是非线性的，因此这两种求平均的顺序一般得到不同结果。"
       },
       {
         "id": "C",
-        "text": "只能通过模拟得到，不能积分。"
+        "text": "t>0且A0>0时，左式小于右式。"
       },
       {
         "id": "D",
-        "text": "参数（parameter）后验（posterior）很窄时可近似，但须检查误差。"
+        "text": "k的后验集中在很小范围时，可以尝试用后验均值代入近似，但还需比较两种计算结果的差异。"
       }
     ],
     "constraints": []
@@ -2468,7 +2468,7 @@
   {
     "id": "p09-mixture-not-normal",
     "slug": "p09-mixture-not-normal",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.5",
     "lesson_id": "P09-C05-S01",
@@ -2487,19 +2487,19 @@
     "options": [
       {
         "id": "A",
-        "text": "必为精确95%预测区间（prediction interval）。"
+        "text": "两个分量各自为高斯，因此该区间的混合覆盖率恰为95%。"
       },
       {
         "id": "B",
-        "text": "它是矩匹配高斯区间，实际质量需从混合分布核对。"
+        "text": "两个分量权重相等时，该区间的混合覆盖率恰为95%。"
       },
       {
         "id": "C",
-        "text": "均值和方差（variance）唯一决定任意分布。"
+        "text": "该区间来自与混合分布具有相同均值和方差（variance）的高斯分布（Gaussian distribution），实际覆盖率仍需对混合密度积分计算。"
       },
       {
         "id": "D",
-        "text": "直接用节点均值范围就是95%区间。"
+        "text": "两个分量方差（variance）相等时，该区间的混合覆盖率恰为95%。"
       }
     ],
     "constraints": []
@@ -2507,7 +2507,7 @@
   {
     "id": "p09-conditional-variance",
     "slug": "p09-conditional-variance",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.5",
     "lesson_id": "P09-C05-S01",
@@ -2526,19 +2526,19 @@
     "options": [
       {
         "id": "A",
-        "text": "可能漏掉观测（observation）或过程随机性。"
+        "text": "这条带可能没有计入新一次观测（observation）噪声或未来过程噪声（process noise）带来的波动。"
       },
       {
         "id": "B",
-        "text": "样本多就自动加回观测噪声。"
+        "text": "增加参数样本数，会把未来读数噪声方差（variance）补入轨迹带。"
       },
       {
         "id": "C",
-        "text": "若目标本来就是无噪声平均响应，则应明确该带的对象。"
+        "text": "如果研究对象本来就是无噪声的平均响应，可以报告这条带，但应将它标为平均响应的不确定范围。"
       },
       {
         "id": "D",
-        "text": "带越窄越能证明方法好。"
+        "text": "参数样本数趋于无穷时，这条无噪声轨迹带就与单次读数的预测带相同。"
       }
     ],
     "constraints": []
@@ -2710,19 +2710,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这是模型（model）检查，但不是独立留出验证。"
+        "text": "这种方法用已参与拟合的数据检查模型（model），不能当作未见数据上的独立验证。"
       },
       {
         "id": "B",
-        "text": "预先说明检查统计量（statistic）及复制数据的生成条件。"
+        "text": "需要先说明比较的是偏态、残差相关等哪一个统计量（statistic），以及复制数据使用什么参数（parameter）和噪声条件生成。"
       },
       {
         "id": "C",
-        "text": "发现失配后更新模型，仍可把当前拟合表现称独立证据。"
+        "text": "发现模型与这些数据不符并据此修改模型后，仍可把在同一批数据上的拟合误差作为独立证据。"
       },
       {
         "id": "D",
-        "text": "检查与独立预测可以互补。"
+        "text": "可以用复制数据检查模型遗漏的特征，再用独立留出数据评估预测误差。"
       }
     ],
     "constraints": []
@@ -2730,7 +2730,7 @@
   {
     "id": "p09-coverage-uncertainty",
     "slug": "p09-coverage-uncertainty",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.5",
     "lesson_id": "P09-C05-S02",
@@ -2749,19 +2749,19 @@
     "options": [
       {
         "id": "A",
-        "text": "真实覆盖率精确等于90%。"
+        "text": "覆盖率估计为0.9，以20个独立场景计算的标准误（standard error）约为0.067。"
       },
       {
         "id": "B",
-        "text": "有限比例有二项抽样波动，应给区间或标准误（standard error）并增加独立场景。"
+        "text": "覆盖率估计为0.9，以20个独立场景计算的标准误约为0.0045。"
       },
       {
         "id": "C",
-        "text": "删去两次失败即可达到100%。"
+        "text": "覆盖率估计为0.9，只以18次覆盖成功计作样本量，所得标准误约为0.071。"
       },
       {
         "id": "D",
-        "text": "以场景内的100个相关时点冒充100倍独立样本。"
+        "text": "覆盖率估计为0.9，若每个场景含100个时刻，就应以2000个独立终点计算标准误。"
       }
     ],
     "constraints": []
@@ -2769,7 +2769,7 @@
   {
     "id": "p09-fair-prediction",
     "slug": "p09-fair-prediction",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.5",
     "lesson_id": "P09-C05-S02",
@@ -2788,19 +2788,19 @@
     "options": [
       {
         "id": "A",
-        "text": "先验（prior）、似然（likelihood）、训练读数与留出场景。"
+        "text": "两种方法应使用相同的先验（prior）、似然（likelihood）、训练读数和留出评价场景。"
       },
       {
         "id": "B",
-        "text": "计算预算及近似设置。"
+        "text": "应报告两种方法的计算次数，以及网格范围、网格密度或采样步数等近似设置。"
       },
       {
         "id": "C",
-        "text": "只对一种方法剔除失败案例。"
+        "text": "比较计算成本时，可以只统计一种方法的成功运行，而把另一种方法的失败运行也计入。"
       },
       {
         "id": "D",
-        "text": "观测（observation）尺度、预测目标及评分方向。"
+        "text": "应说明预测的是参数（parameter）、平均响应还是新读数，并使用相同的测量单位和评分规则。"
       }
     ],
     "constraints": []
@@ -2808,7 +2808,7 @@
   {
     "id": "p09-noise-misspecification",
     "slug": "p09-noise-misspecification",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.5",
     "lesson_id": "P09-C05-S02",
@@ -2827,19 +2827,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只增加采样（sampling）长度，拒绝检查模型。"
+        "text": "继续增加链的样本数，就会使三种方法的预测区间（prediction interval）都达到标称覆盖率。"
       },
       {
         "id": "B",
-        "text": "检查观测（observation）噪声、输入（input）机制及评估条件，区分模型错设与计算近似。"
+        "text": "把变分优化容差调小，并用优化目标是否上升来判断预测区间是否达到标称覆盖率。"
       },
       {
         "id": "C",
-        "text": "说明三种算法都不能求后验（posterior）。"
+        "text": "继续加密积分网格，积分结果稳定后就可判定预测区间的实际覆盖率正确。"
       },
       {
         "id": "D",
-        "text": "把评估读数加入训练后继续称为留出。"
+        "text": "检查三种方法共同使用的噪声分布（distribution）、噪声大小和评价数据条件，以判断欠覆盖是否来自模型设定。"
       }
     ],
     "constraints": []
@@ -2847,7 +2847,7 @@
   {
     "id": "p09-cap-prior",
     "slug": "p09-cap-prior",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.summary",
     "lesson_id": "P09-SUMMARY",
@@ -2868,19 +2868,19 @@
     "options": [
       {
         "id": "A",
-        "text": "说明先验（prior）来源并检查后验可积。"
+        "text": "说明先验（prior）取值的依据，并检查先验与似然（likelihood）乘积的积分是否为有限正数。"
       },
       {
         "id": "B",
-        "text": "参数可信区间（credible interval）与未来读数区间分别计算。"
+        "text": "根据k的后验计算参数可信区间（credible interval），再把新读数噪声计入未来读数的预测区间（prediction interval）。"
       },
       {
         "id": "C",
-        "text": "重复使用同一似然（likelihood）作为新的独立实验。"
+        "text": "把同一数据的似然（likelihood）乘两次，作为两次重复测量的信息。"
       },
       {
         "id": "D",
-        "text": "只报告MAP就已经报告全部不确定性。"
+        "text": "用MAP点及优化容差组成区间，作为参数的95%可信区间。"
       }
     ],
     "constraints": []
@@ -2888,7 +2888,7 @@
   {
     "id": "p09-cap-diagnostic",
     "slug": "p09-cap-diagnostic",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.summary",
     "lesson_id": "P09-SUMMARY",
@@ -2909,19 +2909,19 @@
     "options": [
       {
         "id": "A",
-        "text": "后验（posterior）均值已收敛。"
+        "text": "将两条链各自的样本均值再取平均，就能补偿每条链没有跨峰的影响。"
       },
       {
         "id": "B",
-        "text": "接受率一致就可以直接合并当独立样本。"
+        "text": "两条链都未跨峰，尚不能说明它们已按后验（posterior）概率（probability）访问两个峰，需要进一步检查跨峰运行。"
       },
       {
         "id": "C",
-        "text": "当前预算不足以支持充分混合，应报告模式覆盖并扩展检查。"
+        "text": "两条链接受率相同，说明两峰各占相同后验概率，因此可以将两组样本等权合并。"
       },
       {
         "id": "D",
-        "text": "删去均值较差的一条链。"
+        "text": "只保留局部方差（variance）较小的一条链，就能更准确地估计整个后验的均值。"
       }
     ],
     "constraints": []
@@ -2979,7 +2979,7 @@
       {
         "name": "curvature",
         "type": "float | None",
-        "description": "负对数后验（posterior）在模态处的二阶导数（derivative）。",
+        "description": "负对数后验（posterior）在模态处的二阶导数（second derivative）。",
         "unit": "T²"
       },
       {
@@ -3426,7 +3426,7 @@
   {
     "id": "p09-cap-em",
     "slug": "p09-cap-em",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.summary",
     "lesson_id": "P09-SUMMARY",
@@ -3447,19 +3447,19 @@
     "options": [
       {
         "id": "A",
-        "text": "需检查方差塌缩，而不直接宣布更好的生理机制。"
+        "text": "需要检查似然增加是否来自分量方差趋近0，而不是把较大似然当作该生理机制成立的证据。"
       },
       {
         "id": "B",
-        "text": "交换标签可能产生相同密度，不是新的机制证据。"
+        "text": "对换分量标签可能保留相同混合密度，因此两套标签不代表两种已被证实的机制。"
       },
       {
         "id": "C",
-        "text": "EM单调上升必给全局有限最优。"
+        "text": "EM似然单调上升，所以这些似然值构成有有限上界的序列。"
       },
       {
         "id": "D",
-        "text": "独立预测与明确约束能提供补充检查。"
+        "text": "可以明确分量方差的允许范围，并用未参与拟合的数据检查模型的预测误差。"
       }
     ],
     "constraints": []
@@ -3467,7 +3467,7 @@
   {
     "id": "p09-cap-misspecification",
     "slug": "p09-cap-misspecification",
-    "version": "1",
+    "version": "2",
     "part": "9",
     "chapter": "9.summary",
     "lesson_id": "P09-SUMMARY",
@@ -3488,19 +3488,19 @@
     "options": [
       {
         "id": "A",
-        "text": "保留原预测和失败案例。"
+        "text": "在报告中保留原预测、实际读数以及发生系统性低估的场景。"
       },
       {
         "id": "B",
-        "text": "考虑缺失输入机制或噪声假设，重新建模后用未参与更新的数据验证。"
+        "text": "检查是否遗漏输入作用或误设噪声，修改模型后用未参与修改的数据重新评估预测。"
       },
       {
         "id": "C",
-        "text": "因网格近乎精确，所以真实机制一定正确。"
+        "text": "网格细化后预测稳定，说明可以排除输入机制遗漏，并将低估归因于抽样波动。"
       },
       {
         "id": "D",
-        "text": "把本次评估用于更新后，仍将拟合结果当独立验证。"
+        "text": "用本次评估数据更新模型后，仍把同一批数据上的拟合结果报告为独立验证。"
       }
     ],
     "constraints": []

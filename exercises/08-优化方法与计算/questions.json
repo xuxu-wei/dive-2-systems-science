@@ -125,13 +125,13 @@
   {
     "id": "p08-loss-units",
     "slug": "p08-loss-units",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C01-S01",
     "part": "8",
     "chapter": "8.1",
     "title": "相加之前先比较单位",
     "type": "choice",
-    "statement": "两个观测（observation）残差（residual）分别以U和U/min表示。怎样构造可解释的无量纲（dimensionless）拟合目标？",
+    "statement": "两组观测（observation）残差（residual）分别以U和U/min表示。关于无量纲（dimensionless）拟合目标的构造及其最小点，哪些说法正确？",
     "learning_targets": [
       "T1"
     ],
@@ -145,19 +145,19 @@
     "options": [
       {
         "id": "A",
-        "text": "分别除以预先给定的同单位参考尺度，再平方求和。"
+        "text": "将每个残差除以预先给定、单位相同的参考尺度后，再把所得无量纲数平方求和。"
       },
       {
         "id": "B",
-        "text": "直接相加平方，因为平方会自动消除单位。"
+        "text": "将两组残差平方和分别除以各自样本数后相加，所得目标就没有单位。"
       },
       {
         "id": "C",
-        "text": "改变某项无量纲权重一般会改变所偏好的解。"
+        "text": "只改变其中一组残差的无量纲权重，一般会改变使总目标最小的参数（parameter）。"
       },
       {
         "id": "D",
-        "text": "把所有项同时乘同一正常数，最小点集合不变。"
+        "text": "将所有残差项同时乘同一个正常数，不会改变使总目标最小的参数集合。"
       }
     ],
     "constraints": []
@@ -165,7 +165,7 @@
   {
     "id": "p08-gradient-direction",
     "slug": "p08-gradient-direction",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C01-S01",
     "part": "8",
     "chapter": "8.1",
@@ -185,19 +185,19 @@
     "options": [
       {
         "id": "A",
-        "text": "任意方向。"
+        "text": "应沿与g垂直的非零方向p移动。"
       },
       {
         "id": "B",
-        "text": "−g。"
+        "text": "应沿正梯度方向g移动。"
       },
       {
         "id": "C",
-        "text": "g。"
+        "text": "应沿负梯度方向−g移动。"
       },
       {
         "id": "D",
-        "text": "与g垂直的方向必下降。"
+        "text": "应沿满足gᵀp=‖g‖²/2的方向p移动。"
       }
     ],
     "constraints": []
@@ -205,13 +205,13 @@
   {
     "id": "p08-change-coordinates",
     "slug": "p08-change-coordinates",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C01-S01",
     "part": "8",
     "chapter": "8.1",
     "title": "单位改变还是问题改变",
     "type": "choice",
-    "statement": "令原变量 x=Dz，D为正的对角矩阵（matrix）。以下哪些转换保持同一个目标问题？",
+    "statement": "二次目标f(x)=xᵀHx/2−bᵀx，令x=Dz，D为正的对角矩阵（matrix）。以下哪些转换保持同一个目标问题？",
     "learning_targets": [
       "T1"
     ],
@@ -225,19 +225,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只替换变量名称，保留原H、b。"
+        "text": "改用z后，二次项矩阵取DHD，线性项系数仍取b。"
       },
       {
         "id": "B",
-        "text": "H改为DᵀHD，b改为Dᵀb。"
+        "text": "改用z后，二次项矩阵取DᵀHD，线性项系数取Dᵀb。"
       },
       {
         "id": "C",
-        "text": "约束与初值（initial condition）也应按x=Dz转换。"
+        "text": "原来的初值（initial condition）和约束也需要通过x=Dz转换成关于z的表达式。"
       },
       {
         "id": "D",
-        "text": "可以随意改变其中一个残差（residual）权重而称为单位转换。"
+        "text": "目标改写为z的函数后，仍把原来x的数值上下界用作z的上下界。"
       }
     ],
     "constraints": []
@@ -333,11 +333,11 @@
   {
     "id": "p08-stationary-counterexample",
     "slug": "p08-stationary-counterexample",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C01-S02",
     "part": "8",
     "chapter": "8.1",
-    "title": "驻点不一定最小",
+    "title": "三个驻点的分类",
     "type": "choice",
     "statement": "f(x)=x⁴/4−x²/2。在x=0及x=±1分别能得到哪些结论？",
     "learning_targets": [
@@ -353,19 +353,19 @@
     "options": [
       {
         "id": "A",
-        "text": "x=0的梯度（gradient）为零，所以是全局最小。"
+        "text": "x=0与x=±1都是最小点，因为三处一阶导数（derivative）均为0。"
       },
       {
         "id": "B",
-        "text": "x=0的二阶导数（derivative）为−1，是严格局部最大。"
+        "text": "x=0处的二阶导数（second derivative）为−1，因此x=0是严格局部最大点。"
       },
       {
         "id": "C",
-        "text": "x=±1为全局最小，函数值都是−1/4。"
+        "text": "x=−1和x=1都是全局最小点，两处函数值均为−1/4。"
       },
       {
         "id": "D",
-        "text": "三个驻点（stationary point）足以证明函数为凸。"
+        "text": "x=0是全局最大点，因为该点二阶导数为负。"
       }
     ],
     "constraints": []
@@ -373,13 +373,13 @@
   {
     "id": "p08-hessian-zero",
     "slug": "p08-hessian-zero",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C01-S02",
     "part": "8",
     "chapter": "8.1",
-    "title": "零曲率没有给出结论",
+    "title": "四次函数在原点的性质",
     "type": "choice",
-    "statement": "f₁(x)=x⁴和f₂(x)=−x⁴在0都有一阶、二阶导数（derivative）为0。哪些判断正确？",
+    "statement": "f₁(x)=x⁴和f₂(x)=−x⁴在0都有一阶、二阶导数（second derivative）为0。哪些判断正确？",
     "learning_targets": [
       "T1"
     ],
@@ -393,19 +393,19 @@
     "options": [
       {
         "id": "A",
-        "text": "二阶导数为0说明都不是极值。"
+        "text": "两者在0的二阶导数都非负，因此都满足极小的充分条件。"
       },
       {
         "id": "B",
-        "text": "f₁在0是严格最小。"
+        "text": "x=0是f₁的严格最小点。"
       },
       {
         "id": "C",
-        "text": "f₂在0是严格最大。"
+        "text": "x=0是f₂的严格最大点。"
       },
       {
         "id": "D",
-        "text": "海森矩阵（Hessian matrix）半正定（positive semidefinite）在单个点不能保证该点最小。"
+        "text": "一个函数在某点的海森矩阵（Hessian matrix）半正定（positive semidefinite），并不足以说明该点是最小点。"
       }
     ],
     "constraints": []
@@ -433,11 +433,11 @@
     "options": [
       {
         "id": "A",
-        "text": "海森矩阵（Hessian matrix）在全域半正定（positive semidefinite）等价于f凸。"
+        "text": "f在整个定义域上为凸函数，当且仅当海森矩阵（Hessian matrix）在域内每一点都半正定（positive semidefinite）。"
       },
       {
         "id": "B",
-        "text": "只在初值（initial condition）处检查海森矩阵（Hessian matrix）即可判定全域凸。"
+        "text": "海森矩阵在初始点半正定，就说明f在整个定义域上为凸函数。"
       },
       {
         "id": "C",
@@ -445,7 +445,7 @@
       },
       {
         "id": "D",
-        "text": "严格凸且最小值能达到时，最小点唯一。"
+        "text": "f严格凸且能在域内取得最小值时，取得最小值的点只有一个。"
       }
     ],
     "constraints": []
@@ -601,13 +601,13 @@
   {
     "id": "p08-step-limit",
     "slug": "p08-step-limit",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C02-S01",
     "part": "8",
     "chapter": "8.2",
-    "title": "步长上界要严格",
+    "title": "固定步长的收敛范围",
     "type": "choice",
-    "statement": "H=diag(1,10)。要使任意初值（initial condition）的误差都收敛到零，固定正步长η应满足什么？",
+    "statement": "正定（positive definite）二次目标的H=diag(1,10)。固定正步长梯度（gradient）下降要对任意初值（initial condition）都使误差收敛到零，η的完整取值范围是哪项？",
     "learning_targets": [
       "T2"
     ],
@@ -620,19 +620,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0<η<0.2。"
+        "text": "步长的完整取值范围为0<η<0.2。"
       },
       {
         "id": "B",
-        "text": "0<η≤0.2。"
+        "text": "步长的完整取值范围为0<η≤0.2。"
       },
       {
         "id": "C",
-        "text": "0<η<2。"
+        "text": "步长的完整取值范围为0<η<2。"
       },
       {
         "id": "D",
-        "text": "η越大越快且总会收敛。"
+        "text": "步长的完整取值范围为0<η<0.1。"
       }
     ],
     "constraints": []
@@ -646,7 +646,7 @@
     "chapter": "8.2",
     "title": "两种慢的原因",
     "type": "choice",
-    "statement": "同为正定（positive definite）二次目标，H₁=I，H₂=diag(1,100)。使用η=.01，第二个目标可能慢在哪里？",
+    "statement": "两个正定（positive definite）二次目标分别使用H₁=I和H₂=diag(1,100)，梯度（gradient）下降步长均为η=0.01。关于误差衰减、步长和目标缩放，哪些判断正确？",
     "learning_targets": [
       "T2"
     ],
@@ -659,11 +659,11 @@
     "options": [
       {
         "id": "A",
-        "text": "较小曲率方向误差每步只乘0.99。"
+        "text": "在H₂的较小曲率方向上，每步误差是上一步的0.99倍。"
       },
       {
         "id": "B",
-        "text": "大曲率方向决定不失稳所需的步长上界。"
+        "text": "为了使H₂的较大曲率方向不发散，步长必须小于由该方向决定的上界。"
       },
       {
         "id": "C",
@@ -671,7 +671,7 @@
       },
       {
         "id": "D",
-        "text": "等比例放大H与b并相应缩小η，轨迹（trajectory）可保持一致。"
+        "text": "把H与b乘同一正常数，并把η除以该常数，可以保持从同一初值（initial condition）出发的迭代点不变。"
       }
     ],
     "constraints": []
@@ -679,7 +679,7 @@
   {
     "id": "p08-small-gradient",
     "slug": "p08-small-gradient",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C02-S01",
     "part": "8",
     "chapter": "8.2",
@@ -698,19 +698,19 @@
     "options": [
       {
         "id": "A",
-        "text": "离最小点的距离仍为1。"
+        "text": "当前点x与最小点之间的欧氏距离为1。"
       },
       {
         "id": "B",
-        "text": "小梯度必说明每个坐标误差都很小。"
+        "text": "梯度范数为0.001，所以到最小点的距离也为0.001。"
       },
       {
         "id": "C",
-        "text": "若已知最小特征值（eigenvalue）μ>0，可用‖x−x*‖≤‖g‖/μ。"
+        "text": "若已知H的最小特征值（eigenvalue）μ>0，则到最小点的距离满足‖x−x*‖≤‖g‖/μ。"
       },
       {
         "id": "D",
-        "text": "比较不同单位的梯度阈值时需要说明尺度。"
+        "text": "变量使用不同计量单位时，需要按相应尺度解释梯度范数的停止阈值。"
       }
     ],
     "constraints": []
@@ -792,7 +792,7 @@
   {
     "id": "p08-newton-taylor",
     "slug": "p08-newton-taylor",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C02-S02",
     "part": "8",
     "chapter": "8.2",
@@ -811,19 +811,19 @@
     "options": [
       {
         "id": "A",
-        "text": "最小化m给出Hp=−g。"
+        "text": "使局部模型m最小的方向p满足Hp=−g。"
       },
       {
         "id": "B",
-        "text": "可以把Hp=−g直接当作原非凸函数的全局最小。"
+        "text": "H正定且p使局部模型m最小时，原目标取x+p后的函数值也会下降。"
       },
       {
         "id": "C",
-        "text": "g非零时gᵀp=−pᵀHp<0。"
+        "text": "g不为零时，牛顿方向满足gᵀp=−pᵀHp<0，因此是一阶下降方向。"
       },
       {
         "id": "D",
-        "text": "二次目标用精确牛顿全步可一步到唯一解。"
+        "text": "对正定二次目标，精确求出牛顿方向并取全步，可以在一次更新后到达唯一最小点。"
       }
     ],
     "constraints": []
@@ -831,11 +831,11 @@
   {
     "id": "p08-negative-curvature",
     "slug": "p08-negative-curvature",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C02-S02",
     "part": "8",
     "chapter": "8.2",
-    "title": "回溯不能修好错误方向",
+    "title": "负曲率处的方向选择",
     "type": "choice",
     "statement": "在f(x)=x⁴/4−x²/2的x=.2处，原始牛顿方向与梯度（gradient）同号。应怎样处理？",
     "learning_targets": [
@@ -850,19 +850,19 @@
     "options": [
       {
         "id": "A",
-        "text": "一直减小正步长，必定获得一阶下降。"
+        "text": "保留该方向，只缩小正步长，直到方向导数（derivative）变负。"
       },
       {
         "id": "B",
-        "text": "先检查g·p；不是下降方向时换用−g。"
+        "text": "计算方向导数g·p，若其不为负，则把当前方向换成−g。"
       },
       {
         "id": "C",
-        "text": "只要能解出牛顿方程就接受全步。"
+        "text": "保留该方向，将Armijo右端的g·p改成−|g·p|。"
       },
       {
         "id": "D",
-        "text": "宣称函数无最小值。"
+        "text": "把牛顿方向除以其长度，再按这个单位方向移动一步，并将该更新判为已接受。"
       }
     ],
     "constraints": []
@@ -870,13 +870,13 @@
   {
     "id": "p08-stationary-stop",
     "slug": "p08-stationary-stop",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C02-S02",
     "part": "8",
     "chapter": "8.2",
     "title": "停在零处应如何报告",
     "type": "choice",
-    "statement": "保护牛顿算法从x=0出发，梯度（gradient）检查立即停止。哪些表述诚实？",
+    "statement": "对f(x)=x⁴/4−x²/2，保护牛顿算法从x=0出发，梯度（gradient）检查立即停止。哪些结论成立？",
     "learning_targets": [
       "T2"
     ],
@@ -889,19 +889,19 @@
     "options": [
       {
         "id": "A",
-        "text": "一阶驻点（stationary point）条件满足。"
+        "text": "x=0满足梯度为0的一阶驻点（stationary point）条件。"
       },
       {
         "id": "B",
-        "text": "已经证得全局最小。"
+        "text": "这次停止证明x=0是局部最小点。"
       },
       {
         "id": "C",
-        "text": "还需看曲率，当前h=−1。"
+        "text": "x=0处的二阶导数（second derivative）为−1，还需要用这一曲率信息判断驻点类型。"
       },
       {
         "id": "D",
-        "text": "这一结果说明停止条件本身不能排除极大点。"
+        "text": "只用梯度为0作为停止条件，会使算法也停在这个局部极大点。"
       }
     ],
     "constraints": []
@@ -1061,13 +1061,13 @@
   {
     "id": "p08-trial-budget",
     "slug": "p08-trial-budget",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C02-S03",
     "part": "8",
     "chapter": "8.2",
     "title": "零次尝试是什么",
     "type": "choice",
-    "statement": "方向已经确认下降，但max_trials=0。应返回什么？",
+    "statement": "方向已经确认下降，但max_trials=0。本题返回标记accepted表示接受一步，converged表示收敛，line_search_failed表示未找到步长。应怎样处理？",
     "learning_targets": [
       "T2"
     ],
@@ -1080,19 +1080,19 @@
     "options": [
       {
         "id": "A",
-        "text": "默认接受初始步长。"
+        "text": "保持当前点，报告“未找到步长”。"
       },
       {
         "id": "B",
-        "text": "无接受步长，保持原点并报告line_search_failed。"
+        "text": "接受初始步长，报告“接受一步”。"
       },
       {
         "id": "C",
-        "text": "converged。"
+        "text": "保持当前点，报告“收敛”。"
       },
       {
         "id": "D",
-        "text": "自动用零步长冒充accepted。"
+        "text": "采用零步长，报告“接受一步”。"
       }
     ],
     "constraints": []
@@ -1100,11 +1100,11 @@
   {
     "id": "p08-line-search-status",
     "slug": "p08-line-search-status",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C02-S03",
     "part": "8",
     "chapter": "8.2",
-    "title": "步长接受不等于收敛",
+    "title": "一步更新后的状态报告",
     "type": "choice",
     "statement": "一次Armijo检验通过，但新点的梯度（gradient）仍明显非零。哪些判断正确？",
     "learning_targets": [
@@ -1119,19 +1119,19 @@
     "options": [
       {
         "id": "A",
-        "text": "足以宣布全局最优。"
+        "text": "一次步长被接受后，可以把本次返回标记记为收敛，而不再检查梯度。"
       },
       {
         "id": "B",
-        "text": "这只说明该次沿该方向满足充分下降。"
+        "text": "这次检验说明该步目标下降量满足Armijo条件。"
       },
       {
         "id": "C",
-        "text": "应在下一迭代重新评估停止条件。"
+        "text": "下一次迭代仍需检查新点是否满足预先设定的停止条件。"
       },
       {
         "id": "D",
-        "text": "若总更新预算用完，应报告预算耗尽。"
+        "text": "如果更新次数已经用完且尚未满足停止条件，应报告预算耗尽。"
       }
     ],
     "constraints": []
@@ -1139,7 +1139,7 @@
   {
     "id": "p08-objective-offset",
     "slug": "p08-objective-offset",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C02-S03",
     "part": "8",
     "chapter": "8.2",
@@ -1158,19 +1158,19 @@
     "options": [
       {
         "id": "A",
-        "text": "f<0就停止。"
+        "text": "当目标值满足f<0时停止迭代。"
       },
       {
         "id": "B",
-        "text": "在相同坐标尺度下检查梯度范数（norm）。"
+        "text": "在相同坐标尺度下，梯度范数（norm）小于既定阈值时停止迭代。"
       },
       {
         "id": "C",
-        "text": "严格凸二次问题检查距解析解（analytical solution）的误差。"
+        "text": "在严格凸二次问题中，当前点到解析最小点的距离小于既定阈值时停止迭代。"
       },
       {
         "id": "D",
-        "text": "目标数值越负越接近最优。"
+        "text": "当目标绝对值|f|小于既定正阈值时停止迭代。"
       }
     ],
     "constraints": []
@@ -1178,7 +1178,7 @@
   {
     "id": "p08-search-guarantee",
     "slug": "p08-search-guarantee",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C02-S03",
     "part": "8",
     "chapter": "8.2",
@@ -1201,15 +1201,15 @@
       },
       {
         "id": "B",
-        "text": "固定有限max_trials必定足够。"
+        "text": "把回溯次数限制为20次后，仍能保证在这些尝试中找到被接受的步长。"
       },
       {
         "id": "C",
-        "text": "该结论来自一阶余项相对t趋于0。"
+        "text": "沿p作步长为t的一阶展开时，余项除以t趋于0，这使充分小的正步长满足Armijo条件。"
       },
       {
         "id": "D",
-        "text": "只要求p非零，不需要方向导数（derivative）为负。"
+        "text": "即使只要求p非零而不要求gᵀp<0，也能保证充分小的正步长被Armijo检验接受。"
       }
     ],
     "constraints": []
@@ -1322,7 +1322,7 @@
   {
     "id": "p08-ridge-normalization",
     "slug": "p08-ridge-normalization",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C03-S01",
     "part": "8",
     "chapter": "8.3",
@@ -1343,19 +1343,19 @@
     "options": [
       {
         "id": "A",
-        "text": "α=λ/n。"
+        "text": "应取α=λ/n。"
       },
       {
         "id": "B",
-        "text": "α=nλ。"
+        "text": "应取α=n²λ。"
       },
       {
         "id": "C",
-        "text": "α=λ，总是相同。"
+        "text": "应取α=λ。"
       },
       {
         "id": "D",
-        "text": "改成任何α都不影响解。"
+        "text": "应取α=nλ。"
       }
     ],
     "constraints": []
@@ -1384,15 +1384,15 @@
     "options": [
       {
         "id": "A",
-        "text": "惩罚使二次矩阵（matrix）正定（positive definite）。"
+        "text": "加入λ>0的岭惩罚后，目标的二次项矩阵（matrix）成为正定（positive definite）矩阵。"
       },
       {
         "id": "B",
-        "text": "数据已能够区分两列对应的机制。"
+        "text": "仅凭这些观测（observation），就可以分别确定两个相同设计列对应的系数。"
       },
       {
         "id": "C",
-        "text": "唯一性可能由惩罚提供，而非观测（observation）提供。"
+        "text": "两个系数的唯一取值可能由岭惩罚选定，而不是由数据分别确定。"
       },
       {
         "id": "D",
@@ -1404,7 +1404,7 @@
   {
     "id": "p08-penalty-intercept",
     "slug": "p08-penalty-intercept",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C03-S01",
     "part": "8",
     "chapter": "8.3",
@@ -1425,19 +1425,19 @@
     "options": [
       {
         "id": "A",
-        "text": "截距代表基准水平，不能与中心化后的斜率（slope）机械混为一类。"
+        "text": "截距保存响应的训练均值，而中心化后的斜率（slope）描述自变量变化引起的响应变化，两者承担不同作用。"
       },
       {
         "id": "B",
-        "text": "所有应用都禁止惩罚截距。"
+        "text": "数据中心化后，改变原响应单位不会改变单独保存的截距。"
       },
       {
         "id": "C",
-        "text": "本节目标只对机制斜率施加收缩，改变目标要另行声明。"
+        "text": "当前目标只惩罚中心化后的斜率，若也惩罚截距，就会额外把响应的基准水平向0收缩。"
       },
       {
         "id": "D",
-        "text": "只要没有惩罚截距，就不会有任何过拟合。"
+        "text": "截距不受惩罚时，斜率也不需要向0收缩。"
       }
     ],
     "constraints": []
@@ -1654,7 +1654,7 @@
   {
     "id": "p08-subgradient-zero",
     "slug": "p08-subgradient-zero",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C03-S02",
     "part": "8",
     "chapter": "8.3",
@@ -1675,19 +1675,19 @@
     "options": [
       {
         "id": "A",
-        "text": "仅当v=0。"
+        "text": "条件为v=0。"
       },
       {
         "id": "B",
-        "text": "|v|≤τ。"
+        "text": "条件为|v|≥τ。"
       },
       {
         "id": "C",
-        "text": "|v|≥τ。"
+        "text": "条件为|v|≤τ。"
       },
       {
         "id": "D",
-        "text": "绝对值在0不可导，所以没有最小点。"
+        "text": "条件为|v|<τ。"
       }
     ],
     "constraints": []
@@ -1695,13 +1695,13 @@
   {
     "id": "p08-proximal-step-size",
     "slug": "p08-proximal-step-size",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C03-S02",
     "part": "8",
     "chapter": "8.3",
     "title": "近端步长和归一化",
     "type": "choice",
-    "statement": "g(β)=‖Xβ−y‖²/(2n)，L为XᵀX/n的最大特征值（eigenvalue）且L>0。哪种选择保证标准上界模型（model）成立？",
+    "statement": "g(β)=‖Xβ−y‖²/(2n)，L为XᵀX/n的最大特征值（eigenvalue）且L>0。作为适用于任意L>0的通用公式，使标准近端二次上界模型（model）对所有方向成立的完整步长范围是哪项？",
     "learning_targets": [
       "T3"
     ],
@@ -1716,19 +1716,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0<η≤1/L。"
+        "text": "完整步长范围为0<η≤1/L。"
       },
       {
         "id": "B",
-        "text": "η=1，与X无关。"
+        "text": "完整步长范围为0<η≤2/L。"
       },
       {
         "id": "C",
-        "text": "阈值永远用λ，不乘η。"
+        "text": "完整步长范围为0<η≤L。"
       },
       {
         "id": "D",
-        "text": "只要加入L1惩罚就不需要检查步长。"
+        "text": "完整步长范围为0<η≤2L。"
       }
     ],
     "constraints": []
@@ -1736,11 +1736,11 @@
   {
     "id": "p08-sparse-evidence",
     "slug": "p08-sparse-evidence",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C03-S02",
     "part": "8",
     "chapter": "8.3",
-    "title": "零系数不是机制证明",
+    "title": "相关变量的稀疏选择",
     "type": "choice",
     "statement": "两个高度相关变量可相互替代，L1解仅保留其中一个。哪些结论合理？",
     "learning_targets": [
@@ -1757,19 +1757,19 @@
     "options": [
       {
         "id": "A",
-        "text": "已证明被删变量没有任何生理作用。"
+        "text": "被删变量系数为0，说明其作用已由当前数据单独识别为0。"
       },
       {
         "id": "B",
-        "text": "这是当前目标和字典下的一种稀疏表示。"
+        "text": "在当前候选变量与惩罚目标下，保留一个变量可以给出只有少数非零系数的拟合结果。"
       },
       {
         "id": "C",
-        "text": "需要独立数据和机制证据检查解释。"
+        "text": "要把入选变量解释为实际机制，需要用独立数据和该机制的实验依据继续检验。"
       },
       {
         "id": "D",
-        "text": "改变变量尺度或轻微改变数据，入选集合可能变化。"
+        "text": "改变变量的计量尺度或小幅改变数据，都可能改变哪个变量的系数被压为0。"
       }
     ],
     "constraints": []
@@ -1913,19 +1913,19 @@
     "options": [
       {
         "id": "A",
-        "text": "训练集（training set）估计均值和尺度，应用到后两段。"
+        "text": "用训练集（training set）估计均值和标准差（standard deviation），再用这些数值标准化验证段和最终评估段。"
       },
       {
         "id": "B",
-        "text": "在验证集（validation set）上选择候选λ，然后只报告一次最终评估。"
+        "text": "根据验证集（validation set）选择λ，并在选择完成后用最终评估段计算预测误差。"
       },
       {
         "id": "C",
-        "text": "查看最终误差后重选λ，但仍称该误差为未见成绩。"
+        "text": "根据最终评估误差重新选择λ后，仍把同一段误差报告为未参与选择的数据上的误差。"
       },
       {
         "id": "D",
-        "text": "最终评估变差时如实报告，并另找新数据评估后续修改。"
+        "text": "保留最终评估段测得的误差，并用新的独立数据评价之后作出的模型（model）修改。"
       }
     ],
     "constraints": []
@@ -1933,7 +1933,7 @@
   {
     "id": "p08-constant-column",
     "slug": "p08-constant-column",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C03-S03",
     "part": "8",
     "chapter": "8.3",
@@ -1954,19 +1954,19 @@
     "options": [
       {
         "id": "A",
-        "text": "后续该坐标为2；这暴露训练中没见过的变化。"
+        "text": "标准化后的值为7/5。"
       },
       {
         "id": "B",
-        "text": "后续该坐标强制为0。"
+        "text": "标准化后的值为0。"
       },
       {
         "id": "C",
-        "text": "需要用后续值重新估计训练方差（variance）。"
+        "text": "标准化后的值为7。"
       },
       {
         "id": "D",
-        "text": "训练恒定足以证明该机制永远不变。"
+        "text": "标准化后的值为2。"
       }
     ],
     "constraints": []
@@ -1974,13 +1974,13 @@
   {
     "id": "p08-prediction-and-truth",
     "slug": "p08-prediction-and-truth",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C03-S03",
     "part": "8",
     "chapter": "8.3",
-    "title": "预测好不等于参数对",
+    "title": "相关字典下的预测与系数",
     "type": "choice",
-    "statement": "含相关机制字典的模型（model）预测误差很小。哪些解释仍需谨慎？",
+    "statement": "一个回归模型（model）使用多个高度相关的候选变量，所得预测误差很小。关于系数解释和新数据预测，哪些判断正确？",
     "learning_targets": [
       "T3"
     ],
@@ -1995,7 +1995,7 @@
     "options": [
       {
         "id": "A",
-        "text": "可直接确认每个系数的生理含义。"
+        "text": "两组系数在留出数据上预测相近，说明它们的各项数值也相近。"
       },
       {
         "id": "B",
@@ -2003,11 +2003,11 @@
       },
       {
         "id": "C",
-        "text": "应另查激励与可辨识性（identifiability）。"
+        "text": "需要检查输入（input）和观测（observation）是否足以区分不同系数组合，再解释每个系数。"
       },
       {
         "id": "D",
-        "text": "留出情形超出训练范围时，预测可恶化。"
+        "text": "若留出数据的输入超出训练范围，即使训练预测误差很小，留出预测误差也可能增大。"
       }
     ],
     "constraints": []
@@ -2173,7 +2173,7 @@
   {
     "id": "p08-necessity-sufficiency",
     "slug": "p08-necessity-sufficiency",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C04-S01",
     "part": "8",
     "chapter": "8.4",
@@ -2193,19 +2193,19 @@
     "options": [
       {
         "id": "A",
-        "text": "满足KKT的原始/对偶点可证明全局最优。"
+        "text": "若某个可行点和一组乘子共同满足KKT条件，该可行点就是全局最小点。"
       },
       {
         "id": "B",
-        "text": "任意非凸问题中KKT都是全局充分条件。"
+        "text": "把凸目标换成一般非凸目标，KKT仍是全局最优的充分条件。"
       },
       {
         "id": "C",
-        "text": "适当约束资格用于保证最优点存在相应乘子。"
+        "text": "要保证最优点存在满足KKT条件的乘子，还需要适当的约束资格条件。"
       },
       {
         "id": "D",
-        "text": "只检查原始可行性就证明最优。"
+        "text": "只检查原始约束可行及乘子非负，就足以证明全局最优，不需要检查驻点（stationary point）和互补条件。"
       }
     ],
     "constraints": []
@@ -2233,19 +2233,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0必不是最优，因为找不到乘子。"
+        "text": "因为x=0处找不到满足KKT条件的乘子，所以x=0不是最优点。"
       },
       {
         "id": "B",
-        "text": "0是唯一可行点，当然最优。"
+        "text": "x=0是唯一可行点，因此也是最优点。"
       },
       {
         "id": "C",
-        "text": "在0，驻点（stationary point）条件为1+λ·0=0，不可能满足。"
+        "text": "x=0处的驻点（stationary point）条件为1+λ·0=0，没有任何λ能满足它。"
       },
       {
         "id": "D",
-        "text": "这个例子说明必要性要检查约束资格。"
+        "text": "这个例子说明，使用KKT作为最优点的必要条件时，需要检查约束资格是否成立。"
       }
     ],
     "constraints": []
@@ -2273,19 +2273,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不等式乘子应非负。"
+        "text": "该不等式约束的KKT乘子满足λ≥0。"
       },
       {
         "id": "B",
-        "text": "互补条件为λg(x)=0。"
+        "text": "该不等式约束的互补条件为λg(x)=0。"
       },
       {
         "id": "C",
-        "text": "未活跃约束g(x)<0时，KKT要求λ=0。"
+        "text": "当约束未活跃，即g(x)<0时，互补条件要求λ=0。"
       },
       {
         "id": "D",
-        "text": "等式约束的乘子也必须非负。"
+        "text": "等式约束对应的KKT乘子也受非负条件限制。"
       }
     ],
     "constraints": []
@@ -2424,7 +2424,7 @@
   {
     "id": "p08-feasible-or-failed",
     "slug": "p08-feasible-or-failed",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C04-S02",
     "part": "8",
     "chapter": "8.4",
@@ -2444,19 +2444,19 @@
     "options": [
       {
         "id": "A",
-        "text": "问题不可行。"
+        "text": "当前候选不可行，因此原问题没有可行点。"
       },
       {
         "id": "B",
-        "text": "当前候选不可行，问题是否可行仍需证据。"
+        "text": "当前候选不可行，尚不能判定原问题是否可行。"
       },
       {
         "id": "C",
-        "text": "增加迭代必能修好。"
+        "text": "当前候选不可行，因此目标函数没有有限最小值。"
       },
       {
         "id": "D",
-        "text": "删除该约束但继续报告原问题结果。"
+        "text": "虽然当前候选违反约束，但它的目标值小于所有可行点时，仍可将它报告为约束最优解。"
       }
     ],
     "constraints": []
@@ -2464,13 +2464,13 @@
   {
     "id": "p08-clip-coupling",
     "slug": "p08-clip-coupling",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C04-S02",
     "part": "8",
     "chapter": "8.4",
     "title": "截断为什么不够",
     "type": "choice",
-    "statement": "H=[[2,1],[1,2]]，两个坐标又受总预算约束。为什么不能默认逐坐标截断无约束解就是约束最优？",
+    "statement": "二次目标的H=[[2,1],[1,2]]，变量x₁、x₂还受总预算约束x₁+x₂≤B。关于逐坐标截断无约束解，哪些判断正确？",
     "learning_targets": [
       "T4"
     ],
@@ -2484,19 +2484,19 @@
     "options": [
       {
         "id": "A",
-        "text": "交叉项使一个坐标影响另一个的代价。"
+        "text": "目标中的交叉项使改变x₁时的目标变化量取决于x₂的取值。"
       },
       {
         "id": "B",
-        "text": "总预算把两个坐标耦合。"
+        "text": "在x₁+x₂≤B的约束下，增大x₁会减少x₂剩余的预算。"
       },
       {
         "id": "C",
-        "text": "任意正定（positive definite）H都能用普通欧氏截断得到约束解。"
+        "text": "H正定（positive definite）时，可以忽略非对角项并分别求两个独立一维问题的截断解。"
       },
       {
         "id": "D",
-        "text": "应在可行集合上比较完整目标或核验KKT。"
+        "text": "判断一个候选是否最优，需要在完整可行集合上比较原目标，或核对该问题的KKT条件。"
       }
     ],
     "constraints": []
@@ -2504,7 +2504,7 @@
   {
     "id": "p08-soft-hard",
     "slug": "p08-soft-hard",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-C04-S02",
     "part": "8",
     "chapter": "8.4",
@@ -2524,19 +2524,19 @@
     "options": [
       {
         "id": "A",
-        "text": "有限ρ一般允许一定违规。"
+        "text": "ρ有限时，优化器可能为了减少其他目标项而选择x₁+x₂>B的解。"
       },
       {
         "id": "B",
-        "text": "这与原硬约束完全等价。"
+        "text": "ρ大于所有目标系数时，所得最优解就满足x₁+x₂≤B。"
       },
       {
         "id": "C",
-        "text": "增加迭代预算只改变求解过程，放宽B则改变可行集合。"
+        "text": "增加迭代次数只改变求解过程，而增大B会扩大允许的变量取值集合。"
       },
       {
         "id": "D",
-        "text": "比较方案时应另报告实际违规量。"
+        "text": "比较所得方案时，还应报告超额量max(0,x₁+x₂−B)。"
       }
     ],
     "constraints": []
@@ -2544,7 +2544,7 @@
   {
     "id": "p08-cap-geometry",
     "slug": "p08-cap-geometry",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-SUMMARY",
     "part": "8",
     "chapter": "8.summary",
@@ -2569,7 +2569,7 @@
       },
       {
         "id": "B",
-        "text": "H只有在当前点半正定（positive semidefinite）就足以证明任意非线性目标凸。"
+        "text": "对一般非线性目标，在一个驻点测得半正定（positive semidefinite）海森矩阵（Hessian matrix）就能证明全域凸。"
       },
       {
         "id": "C",
@@ -2577,7 +2577,7 @@
       },
       {
         "id": "D",
-        "text": "梯度（gradient）为零对一般非凸目标仍需进一步检查。"
+        "text": "对一般非凸目标，梯度（gradient）为0后仍需检查附近函数值或曲率，才能判断该点是否为最小点。"
       }
     ],
     "constraints": []
@@ -2585,13 +2585,13 @@
   {
     "id": "p08-cap-regularization",
     "slug": "p08-cap-regularization",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-SUMMARY",
     "part": "8",
     "chapter": "8.summary",
     "title": "正则化能保证什么",
     "type": "choice",
-    "statement": "用相关机制字典拟合清除数据，验证集（validation set）选择λ。哪些结论合理？",
+    "statement": "用多个高度相关的候选变量拟合清除数据，并根据验证集（validation set）选择正则化（regularization）系数λ。哪些结论合理？",
     "learning_targets": [
       "T3"
     ],
@@ -2606,7 +2606,7 @@
     "options": [
       {
         "id": "A",
-        "text": "稀疏选择可以代替独立机制证据。"
+        "text": "在同一训练集（training set）上反复求解都选中同一变量，说明该变量的独立机制作用已被数据确认。"
       },
       {
         "id": "B",
@@ -2614,11 +2614,11 @@
       },
       {
         "id": "C",
-        "text": "最终测试误差不是训练损失的必然单调函数。"
+        "text": "训练损失减小时，最终测试集（test set）上的预测误差仍可能增大。"
       },
       {
         "id": "D",
-        "text": "列尺度改变会影响同一λ所代表的惩罚。"
+        "text": "改变某列的尺度会改变同一预测所需的系数大小，因此同一个λ产生的惩罚也可能改变。"
       }
     ],
     "constraints": []
@@ -3192,7 +3192,7 @@
   {
     "id": "p08-cap-conditioning",
     "slug": "p08-cap-conditioning",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-SUMMARY",
     "part": "8",
     "chapter": "8.summary",
@@ -3213,19 +3213,19 @@
     "options": [
       {
         "id": "A",
-        "text": "应记录预算耗尽而非converged。"
+        "text": "应把退出原因记为更新次数耗尽，而不是已经达到梯度（gradient）收敛阈值。"
       },
       {
         "id": "B",
-        "text": "目标改变量小可由步长很小造成。"
+        "text": "步长很小时，即使梯度还较大，一次更新引起的目标变化量也可能很小。"
       },
       {
         "id": "C",
-        "text": "应结合尺度、曲率及独立残差（residual）判断。"
+        "text": "可以用独立计算重新求梯度，并按声明的变量尺度和容差核对停止条件。"
       },
       {
         "id": "D",
-        "text": "增加输出（output）小数位就能证明最优。"
+        "text": "使用相同预算重跑并得到相同点后，可以把退出原因改记为已收敛。"
       }
     ],
     "constraints": []
@@ -3233,7 +3233,7 @@
   {
     "id": "p08-cap-infeasible",
     "slug": "p08-cap-infeasible",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P08-SUMMARY",
     "part": "8",
     "chapter": "8.summary",
@@ -3258,15 +3258,15 @@
       },
       {
         "id": "B",
-        "text": "只要把迭代次数加倍就必有可行解。"
+        "text": "按两个下界的平均值1.5比较预算2.5，新问题仍可行。"
       },
       {
         "id": "C",
-        "text": "降低某个下界可以改变可行性，但那是修改问题。"
+        "text": "降低一个流量下界可能使下界之和不超过2.5，但这样改变了原问题的约束。"
       },
       {
         "id": "D",
-        "text": "旧解不能未经检查直接用于新约束。"
+        "text": "使用旧解之前，需要检查其两个流量之和是否仍满足新预算2.5。"
       }
     ],
     "constraints": []

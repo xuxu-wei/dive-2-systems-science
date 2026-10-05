@@ -105,12 +105,12 @@
   {
     "id": "p12-old-state-buffer",
     "slug": "p12-old-state-buffer",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.1",
     "lesson_id": "P12-C01-S01",
-    "title": "为何需要双缓冲",
-    "statement": "从左到右逐格修改原数组（array），却声称实现同步规则。问题出在哪里？",
+    "title": "逐格写入的读值时刻",
+    "statement": "程序从左到右遍历原数组（array），计算一格的新值后立即写回，下一格从这个数组读取邻居值。它与同时读取整轮旧值的同步规则有何区别？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -125,19 +125,19 @@
     "options": [
       {
         "id": "A",
-        "text": "后面格可能读到本步新值。"
+        "text": "修改原数组后，每个格子读取的仍是这一轮开始时的邻居值。"
       },
       {
         "id": "B",
-        "text": "这样自动等于周期边界（periodic boundary）。"
+        "text": "从左到右修改一次数组，会让每个格子在这一轮内更新两次。"
       },
       {
         "id": "C",
-        "text": "异或不能用于二值状态（state）。"
+        "text": "向原数组写入新值时，当前格子的左右邻居索引会交换。"
       },
       {
         "id": "D",
-        "text": "只要动画相似就等价。"
+        "text": "更新靠后的格子时，会同时读到已更新邻居的新值和未更新邻居的旧值。"
       }
     ],
     "constraints": []
@@ -145,7 +145,7 @@
   {
     "id": "p12-periodic-single",
     "slug": "p12-periodic-single",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.1",
     "lesson_id": "P12-C01-S01",
@@ -165,19 +165,19 @@
     "options": [
       {
         "id": "A",
-        "text": "[0,1,0,1]"
+        "text": "更新后的四格排列为[0,0,0,0]。"
       },
       {
         "id": "B",
-        "text": "[0,1,0,0]"
+        "text": "更新后的四格排列为[0,1,0,0]。"
       },
       {
         "id": "C",
-        "text": "[1,1,1,1]"
+        "text": "更新后的四格排列为[1,1,1,1]。"
       },
       {
         "id": "D",
-        "text": "[0,0,0,0]"
+        "text": "更新后的四格排列为[0,1,0,1]。"
       }
     ],
     "constraints": []
@@ -185,12 +185,12 @@
   {
     "id": "p12-rule-definition",
     "slug": "p12-rule-definition",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.1",
     "lesson_id": "P12-C01-S01",
     "title": "局部规则应声明什么",
-    "statement": "要让另一位学习者复现元胞实验，哪些信息是必要的？",
+    "statement": "复现元胞实验时，除初始逐格取值和局部转移公式外，哪些记录能补充决定演化所需的信息？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -205,19 +205,19 @@
     "options": [
       {
         "id": "A",
-        "text": "状态（state）取值、邻域与边界。"
+        "text": "记录每格允许的取值、哪些格子互为邻居，以及边界外的值如何处理。"
       },
       {
         "id": "B",
-        "text": "是否同步及旧状态读写约定。"
+        "text": "记录采用同步还是异步更新（asynchronous update），以及更新时读取旧值还是已写入的新值。"
       },
       {
         "id": "C",
-        "text": "图像边框颜色。"
+        "text": "记录初始总密度，用它代替逐格初始取值来重建演化。"
       },
       {
         "id": "D",
-        "text": "播放按钮的动效时长。"
+        "text": "记录每秒播放的轮数，用它代替每格取值的转移公式。"
       }
     ],
     "constraints": []
@@ -349,12 +349,12 @@
   {
     "id": "p12-async-order",
     "slug": "p12-async-order",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.1",
     "lesson_id": "P12-C01-S02",
     "title": "改变遍历顺序",
-    "statement": "固定初态和异或规则，只改变异步更新（asynchronous update）的 order。哪个判断成立？",
+    "statement": "固定初态和异或规则，异步更新（asynchronous update）时每格的新值立即写回原数组（array）。只改变遍历顺序，以下哪项判断成立？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -369,19 +369,19 @@
     "options": [
       {
         "id": "A",
-        "text": "结果可能改变，必须记录顺序。"
+        "text": "每格在一轮内都更新一次，因此改变遍历次序不会改变轮末排列。"
       },
       {
         "id": "B",
-        "text": "只要每格更新一次，结果总相同。"
+        "text": "改变遍历次序会改变后续格子读到的邻居值，因此轮末排列可能不同。"
       },
       {
         "id": "C",
-        "text": "异步一定比同步更精确。"
+        "text": "将遍历次序反过来，就能由轮末排列恢复这一轮开始前的排列。"
       },
       {
         "id": "D",
-        "text": "遍历顺序等于物理空间位置。"
+        "text": "在这一轮结束后再读取全部格子的值，就会得到同步更新（synchronous update）的结果。"
       }
     ],
     "constraints": []
@@ -389,12 +389,12 @@
   {
     "id": "p12-fixed-boundary",
     "slug": "p12-fixed-boundary",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.1",
     "lesson_id": "P12-C01-S02",
     "title": "固定边界的读值",
-    "statement": "fixed 边界外记0，首格计算左邻居时应读到什么？",
+    "statement": "固定边界（fixed boundary）外的值设为0。计算首格的新值时，它的越界左邻居应取什么？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -409,19 +409,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0。"
+        "text": "越界左邻居取末格在更新前的值。"
       },
       {
         "id": "B",
-        "text": "最后一格。"
+        "text": "越界左邻居取题设的固定值0。"
       },
       {
         "id": "C",
-        "text": "本步第二格的新值。"
+        "text": "越界左邻居取首格在更新前的值。"
       },
       {
         "id": "D",
-        "text": "随机节点。"
+        "text": "越界左邻居取第二格在更新前的值。"
       }
     ],
     "constraints": []
@@ -429,12 +429,12 @@
   {
     "id": "p12-update-budget",
     "slug": "p12-update-budget",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.1",
     "lesson_id": "P12-C01-S02",
     "title": "公平比较的时间单位",
-    "statement": "同步与异步规则的演化图不同。要比较一次“扫过”的效果，首先应怎样对齐？",
+    "statement": "要比较同步与异步规则在一次全体遍历之后的排列，应怎样定义两种规则共同的一轮？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -449,19 +449,19 @@
     "options": [
       {
         "id": "A",
-        "text": "每轮均让每个格子更新一次并声明顺序。"
+        "text": "让两种规则每轮都累计相同次数的数值改变，然后记录轮末排列。"
       },
       {
         "id": "B",
-        "text": "只对齐动画帧率。"
+        "text": "让两种规则每轮都只随机抽一格更新，然后记录全体格子的排列。"
       },
       {
         "id": "C",
-        "text": "同步跑10轮、异步跑1次事件（event）。"
+        "text": "让两种规则每轮都运行相同的秒数，然后记录全体格子的排列。"
       },
       {
         "id": "D",
-        "text": "删去边界说明。"
+        "text": "让两种规则每轮都更新每个格子一次，并记录异步规则的遍历次序。"
       }
     ],
     "constraints": []
@@ -574,12 +574,12 @@
   {
     "id": "p12-replicator-factor",
     "slug": "p12-replicator-factor",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.2",
     "lesson_id": "P12-C02-S01",
-    "title": "p(1−p) 从哪里来",
-    "statement": "两类型收益为 f0、f1，平均收益 pf0+(1−p)f1。dp/dt 等价于什么？",
+    "title": "复制方程的代数化简",
+    "statement": "类型0频率为p，两类型收益为f0、f1。复制动态（replicator dynamics）给出 dp/dt=p[f0−(pf0+(1−p)f1)]。化简后是哪一式？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -593,19 +593,19 @@
     "options": [
       {
         "id": "A",
-        "text": "p(1−p)(f0−f1)。"
+        "text": "频率变化率可化简为dp/dt=p(1−p)(f0+f1)。"
       },
       {
         "id": "B",
-        "text": "p(f0+f1)。"
+        "text": "频率变化率可化简为dp/dt=p(1−p)(f0−f1)。"
       },
       {
         "id": "C",
-        "text": "f0−f1，与 p 无关。"
+        "text": "频率变化率可化简为dp/dt=p(f0−f1)。"
       },
       {
         "id": "D",
-        "text": "(1−p)f0。"
+        "text": "频率变化率可化简为dp/dt=(1−p)(f0−f1)。"
       }
     ],
     "constraints": []
@@ -613,12 +613,12 @@
   {
     "id": "p12-payoff-not-birth",
     "slug": "p12-payoff-not-birth",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.2",
     "lesson_id": "P12-C02-S01",
-    "title": "收益不能直接当概率",
-    "statement": "收益矩阵（payoff matrix）里有负数。把收益直接当个体繁殖概率（probability）有何问题？",
+    "title": "从收益定义繁殖事件",
+    "statement": "收益矩阵（payoff matrix）含负值，也含大于1的值。要定义个体在一步内繁殖的概率（probability），还应怎样处理？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -632,19 +632,19 @@
     "options": [
       {
         "id": "A",
-        "text": "概率必须位于[0,1]，需另声明映射。"
+        "text": "将每个收益除以当代所有收益的总和，把所得比例用作繁殖概率。"
       },
       {
         "id": "B",
-        "text": "复制动态（replicator dynamics）完全不允许负收益。"
+        "text": "规定一种收益到概率的转换规则，使每个转换结果都位于[0,1]。"
       },
       {
         "id": "C",
-        "text": "负收益表示负数量后代。"
+        "text": "将每个收益取绝对值，把所得数值用作繁殖概率。"
       },
       {
         "id": "D",
-        "text": "收益数值总是临床效用。"
+        "text": "从每个收益中减去最低收益，把所得差值用作繁殖概率。"
       }
     ],
     "constraints": []
@@ -652,12 +652,12 @@
   {
     "id": "p12-equal-payoff",
     "slug": "p12-equal-payoff",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.2",
     "lesson_id": "P12-C02-S01",
     "title": "内部不变点",
-    "statement": "若某个内部频率 p* 满足 f0(p*)=f1(p*)，该点的 dp/dt 为何？",
+    "statement": "内部频率p*满足f0(p*)=f1(p*)，其中0<p*<1。按复制动态（replicator dynamics），该点的频率变化率和附近扰动有何关系？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -671,19 +671,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0，但稳定性仍需看附近方向。"
+        "text": "该点的频率变化率等于p*，两种类型在此处以相同速率增长。"
       },
       {
         "id": "B",
-        "text": "必为1。"
+        "text": "该点的频率变化率为零，因此附近的频率扰动会回到p*。"
       },
       {
         "id": "C",
-        "text": "一定全局稳定。"
+        "text": "该点的频率变化率为零，附近扰动是否返回还要看两侧的收益差。"
       },
       {
         "id": "D",
-        "text": "只能在 p=0 或1出现。"
+        "text": "该点的频率变化率等于1−p*，类型0的频率会继续增加。"
       }
     ],
     "constraints": []
@@ -790,12 +790,12 @@
   {
     "id": "p12-same-frequency-structure",
     "slug": "p12-same-frequency-structure",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.2",
     "lesson_id": "P12-C02-S02",
-    "title": "同频率不等于同相遇",
-    "statement": "两组策略排列的类型0比例相同，但一个成团、一个交错。能否只凭总体比例断言每人的局部收益相同？",
+    "title": "频率相同的两种排列",
+    "statement": "周期环上两组策略排列采用同一收益矩阵（payoff matrix），类型0比例相同，但一组成团、一组交错。每人只和邻居相遇，哪项成立？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -809,19 +809,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不能，邻居类型比例可能不同。"
+        "text": "两组的总体频率相同，因此每个个体遇到的两类邻居数量相同。"
       },
       {
         "id": "B",
-        "text": "能，p 相同便固定所有相遇。"
+        "text": "两组的总体频率相同，但每个个体遇到的两类邻居数量仍可能不同。"
       },
       {
         "id": "C",
-        "text": "能，因为平均混合（homogeneous mixing）必在任何空间排列精确成立。"
+        "text": "两组的策略数量相同，因此连接不同策略的相邻边数量相同。"
       },
       {
         "id": "D",
-        "text": "不能，因为收益矩阵（payoff matrix）不存在。"
+        "text": "两组使用同一收益表，因此对应位置上的个体获得相同收益。"
       }
     ],
     "constraints": []
@@ -829,11 +829,11 @@
   {
     "id": "p12-payoff-vs-update",
     "slug": "p12-payoff-vs-update",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.2",
     "lesson_id": "P12-C02-S02",
-    "title": "收益不是完整演化规则",
+    "title": "收益计算之后还缺什么",
     "statement": "已算出局部收益，但尚未指定繁殖/模仿机制。以下哪项正确？",
     "type": "choice",
     "learning_targets": [
@@ -848,19 +848,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不能仅由收益唯一推出下一代策略。"
+        "text": "将各个体的收益归一化后，就已确定下一代每个位置采用的策略。"
       },
       {
         "id": "B",
-        "text": "高收益者必在下一瞬间替换所有邻居。"
+        "text": "将个体按收益从高到低排序后，就已确定下一代每个位置采用的策略。"
       },
       {
         "id": "C",
-        "text": "空间游戏自动等于复制方程。"
+        "text": "还需规定哪些个体更新，以及收益怎样决定繁殖或模仿的概率（probability）和对象。"
       },
       {
         "id": "D",
-        "text": "收益本身就是随机种子（random seed）。"
+        "text": "将所有个体的收益取平均后，就已确定下一代每个位置采用的策略。"
       }
     ],
     "constraints": []
@@ -868,12 +868,12 @@
   {
     "id": "p12-matched-spatial-game",
     "slug": "p12-matched-spatial-game",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.2",
     "lesson_id": "P12-C02-S02",
     "title": "检验空间作用",
-    "statement": "比较平均混合（homogeneous mixing）与局部相遇时，哪组条件最能隔离空间接触效应？",
+    "statement": "比较平均混合（homogeneous mixing）与局部相遇，个体数、更新机制、轮数和重复预算均相同。哪组设计最能隔离空间接触效应？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -887,19 +887,19 @@
     "options": [
       {
         "id": "A",
-        "text": "相同收益矩阵（payoff matrix）与总体初始频率，明确邻域和更新规则。"
+        "text": "固定收益表，同时改变相遇范围和初始频率。"
       },
       {
         "id": "B",
-        "text": "同时换收益矩阵、初始频率与边界。"
+        "text": "固定初始频率，同时改变相遇范围和收益表。"
       },
       {
         "id": "C",
-        "text": "只比较两张不同配色图。"
+        "text": "固定收益表和初始频率，仅改变相遇范围。"
       },
       {
         "id": "D",
-        "text": "只挑一条有利轨迹（trajectory）。"
+        "text": "固定末态频率，回选能达到该频率的两组初态。"
       }
     ],
     "constraints": []
@@ -1004,19 +1004,19 @@
     "options": [
       {
         "id": "A",
-        "text": "p(1−p)/N。"
+        "text": "下一代类型0频率的条件方差为p(1−p)/N。"
       },
       {
         "id": "B",
-        "text": "Np(1−p)。"
+        "text": "下一代类型0频率的条件方差为Np(1−p)。"
       },
       {
         "id": "C",
-        "text": "p/N。"
+        "text": "下一代类型0频率的条件方差为p/N。"
       },
       {
         "id": "D",
-        "text": "与 N 无关。"
+        "text": "下一代类型0频率的条件方差不随N改变。"
       }
     ],
     "constraints": []
@@ -1024,12 +1024,12 @@
   {
     "id": "p12-one-rise",
     "slug": "p12-one-rise",
-    "version": "1",
+    "version": "3",
     "part": "12",
     "chapter": "12.3",
     "lesson_id": "P12-C03-S01",
-    "title": "一次频率上升",
-    "statement": "中性模型（model）某次 p 从0.5升至0.6，可否据此确认类型0有选择优势？",
+    "title": "频率上升后的检验",
+    "statement": "有限中性模型（model）某次频率p从0.5升至0.6。要判断这一幅度是否超出中性漂变的常见范围，应怎样补充实验？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1043,19 +1043,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不能，固定条件下中性抽样也会波动。"
+        "text": "在这条轨迹（trajectory）内增加采样（sampling）点，把相邻点作为独立重复来估计上升幅度的分布（distribution）。"
       },
       {
         "id": "B",
-        "text": "能，任何上升都是适应。"
+        "text": "将这次频率增量除以经过的时间，把所得变化率作为选择优势的估计。"
       },
       {
         "id": "C",
-        "text": "能，因为 N 大于0。"
+        "text": "在相同群体规模和初态下重复中性抽样，比较各次频率上升的幅度。"
       },
       {
         "id": "D",
-        "text": "只能说明变异率必为正。"
+        "text": "用同一随机种子（random seed）重复生成这条轨迹，把重复得到相同结果作为上升超出漂变范围的证据。"
       }
     ],
     "constraints": []
@@ -1063,12 +1063,12 @@
   {
     "id": "p12-neutral-absorption",
     "slug": "p12-neutral-absorption",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.3",
     "lesson_id": "P12-C03-S01",
     "title": "零变异的边界",
-    "statement": "有限中性模型（model）无变异，某代 p=0。下一代可能重新出现类型0吗？",
+    "statement": "有限中性模型（model）无变异，下一代类型0人数服从Binomial(N,p)，N>1。某代p=0，下一代至少出现一个类型0的概率（probability）是多少？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1082,19 +1082,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不能；按本模型抽样概率（probability）仍为0。"
+        "text": "下一代至少出现一个类型0的概率为1−1/N。"
       },
       {
         "id": "B",
-        "text": "必能。"
+        "text": "下一代至少出现一个类型0的概率为1/N。"
       },
       {
         "id": "C",
-        "text": "只有 N=50 时能。"
+        "text": "下一代至少出现一个类型0的概率为1/2。"
       },
       {
         "id": "D",
-        "text": "取决于图像颜色。"
+        "text": "下一代至少出现一个类型0的概率为0。"
       }
     ],
     "constraints": []
@@ -1217,11 +1217,11 @@
   {
     "id": "p12-selection-no-goal",
     "slug": "p12-selection-no-goal",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.3",
     "lesson_id": "P12-C03-S02",
-    "title": "适应不是预先目标",
+    "title": "选择模型的生成顺序",
     "statement": "哪句话符合这里的选择模型（model）？",
     "type": "choice",
     "learning_targets": [
@@ -1236,19 +1236,19 @@
     "options": [
       {
         "id": "A",
-        "text": "给定当前频率与适合度后，后代分布（distribution）改变；没有预定目标状态（state）。"
+        "text": "先观察哪类本代增加，再把它定义为高适合度。"
       },
       {
         "id": "B",
-        "text": "系统为了适应而主动选择最优突变。"
+        "text": "先确定最适终点频率，再向该频率调整抽样。"
       },
       {
         "id": "C",
-        "text": "一次固定就证明未来环境永不改变。"
+        "text": "先按未来环境收益排序，再分配当前繁殖机会。"
       },
       {
         "id": "D",
-        "text": "选择与随机抽样是同一步的同一量。"
+        "text": "先按当前适合度形成权重，再抽样生成后代。"
       }
     ],
     "constraints": []
@@ -1256,12 +1256,12 @@
   {
     "id": "p12-mutation-boundary",
     "slug": "p12-mutation-boundary",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.3",
     "lesson_id": "P12-C03-S02",
     "title": "有变异时的零边界",
-    "statement": "当前 p=0，mutation_10>0。哪项成立？",
+    "statement": "当前类型0频率p=0。每个后代由类型1变为类型0的概率（probability）为μ，0<μ<1；N≥2个后代独立抽样。关于期望（expectation）频率与实际人数，哪项成立？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1275,19 +1275,19 @@
     "options": [
       {
         "id": "A",
-        "text": "变异后期望（expectation）频率大于0，但有限抽样仍可能得到0。"
+        "text": "下一代类型0的期望频率为0，但实际人数可能为1。"
       },
       {
         "id": "B",
-        "text": "下一代必有类型0。"
+        "text": "下一代类型0的期望频率为μ，而且实际人数至少为1。"
       },
       {
         "id": "C",
-        "text": "零边界仍是严格吸收态（absorbing state）。"
+        "text": "下一代类型0的期望频率为μ，但实际人数可能为0。"
       },
       {
         "id": "D",
-        "text": "选择系数 alone 会从0产生类型0。"
+        "text": "下一代类型0的期望频率为Nμ，而且实际人数最多为1。"
       }
     ],
     "constraints": []
@@ -1295,12 +1295,12 @@
   {
     "id": "p12-mechanism-ablation",
     "slug": "p12-mechanism-ablation",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.3",
     "lesson_id": "P12-C03-S02",
     "title": "如何消融机制",
-    "statement": "想分辨选择、变异、漂变的影响，哪种实验设计更合适？",
+    "statement": "想区分选择、变异和漂变对终点类型频率的影响，各组采用相同更新轮数和相同独立重复次数。哪种实验设计更合适？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1314,19 +1314,19 @@
     "options": [
       {
         "id": "A",
-        "text": "依次将 s、μ 置零，在相同 N 与重复预算下比较。"
+        "text": "固定群体规模N和初始频率，分别把选择系数或变异率设为零，并比较各组的频率分布（distribution）。"
       },
       {
         "id": "B",
-        "text": "同时改变 N、s、μ 再归因于 s。"
+        "text": "固定初始频率，在降低选择系数的同时增大N，并把频率分布的变化归于选择。"
       },
       {
         "id": "C",
-        "text": "只看单次终点并倒推唯一机制。"
+        "text": "固定N，在关闭变异的同时改变初始频率，并把终点频率的变化归于变异。"
       },
       {
         "id": "D",
-        "text": "删掉随机种子（random seed）记录。"
+        "text": "固定N和初始频率，每种设置选出最接近本组均值的一次，用这些单次结果比较机制。"
       }
     ],
     "constraints": []
@@ -1460,7 +1460,7 @@
   {
     "id": "p12-diffusion-cfl",
     "slug": "p12-diffusion-cfl",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.4",
     "lesson_id": "P12-C04-S01",
@@ -1480,19 +1480,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0≤α≤1/2。"
+        "text": "α的取值范围应为0≤α≤1/2。"
       },
       {
         "id": "B",
-        "text": "α>1。"
+        "text": "α的取值范围应为0≤α≤1。"
       },
       {
         "id": "C",
-        "text": "任意 dt 都行。"
+        "text": "α的取值范围应为0≤α≤2。"
       },
       {
         "id": "D",
-        "text": "只要求 D≥0。"
+        "text": "α的取值范围应为α≥0，没有上界。"
       }
     ],
     "constraints": []
@@ -1500,12 +1500,12 @@
   {
     "id": "p12-noflux-end",
     "slug": "p12-noflux-end",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.4",
     "lesson_id": "P12-C04-S01",
     "title": "无通量端点",
-    "statement": "左端 noflux 条件在本节单元中心守恒离散规则下如何处理越界左邻格？",
+    "statement": "无通量边界（no-flux boundary）在本节单元中心守恒离散规则下，如何设置左端的越界邻格？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1520,19 +1520,19 @@
     "options": [
       {
         "id": "A",
-        "text": "取左端格自身。"
+        "text": "越界邻格取左端格在更新前的值。"
       },
       {
         "id": "B",
-        "text": "取最右格。"
+        "text": "越界邻格取最右格在更新前的值。"
       },
       {
         "id": "C",
-        "text": "固定为负一。"
+        "text": "越界邻格取左端第二格在更新前的值。"
       },
       {
         "id": "D",
-        "text": "忽略左端更新。"
+        "text": "越界邻格取固定的零浓度（concentration）值。"
       }
     ],
     "constraints": []
@@ -1540,12 +1540,12 @@
   {
     "id": "p12-mass-not-enough",
     "slug": "p12-mass-not-enough",
-    "version": "1",
+    "version": "3",
     "part": "12",
     "chapter": "12.4",
     "lesson_id": "P12-C04-S01",
     "title": "总和守恒就可信？",
-    "statement": "一维纯扩散显式程序保留总和，但某格出现负数。下一步应怎样判断？",
+    "statement": "初始浓度（concentration）非负的一维纯扩散显式程序保留总和，但某格出现负数。下一步怎样检查最能定位问题？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1560,19 +1560,19 @@
     "options": [
       {
         "id": "A",
-        "text": "检查步长、非负性（nonnegativity）和网格收敛，不能只看守恒。"
+        "text": "保持时间步不变，增加总量输出（output）的有效数字位数，再看总量是否保持不变。"
       },
       {
         "id": "B",
-        "text": "守恒已证明物理正确。"
+        "text": "减小时间步并核对各格更新权重，检查最低浓度是否仍为负。"
       },
       {
         "id": "C",
-        "text": "负值代表真实反向物质。"
+        "text": "将所有负浓度改为零，再用裁剪前的总量守恒结果评价修改后的浓度。"
       },
       {
         "id": "D",
-        "text": "删去负格并保持原结果。"
+        "text": "将负浓度改为零并按比例调整其他格子以保留总量，把处理后的数值视为原扩散方程的解。"
       }
     ],
     "constraints": []
@@ -1728,12 +1728,12 @@
   {
     "id": "p12-uniform-equilibrium",
     "slug": "p12-uniform-equilibrium",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.4",
     "lesson_id": "P12-C04-S02",
-    "title": "先检查均匀平衡",
-    "statement": "本模型（model）无空间差异的平衡（equilibrium） u*=a+b、v*=b/(a+b)²。为何先核对它？",
+    "title": "均匀平衡的逐项核对",
+    "statement": "每格都设为反应平衡（equilibrium）u*=a+b、v*=b/(a+b)²，边界与该均匀状态（state）相容。一次更新前，反应和扩散各项应满足什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1748,19 +1748,19 @@
     "options": [
       {
         "id": "A",
-        "text": "反应项和扩散项在该态都应为0。"
+        "text": "全域反应总和为零，各格反应项可以不同。"
       },
       {
         "id": "B",
-        "text": "任何可见图案都说明平衡不存在。"
+        "text": "各格反应项非零，由相反的扩散通量抵消。"
       },
       {
         "id": "C",
-        "text": "平衡自动证明图灵失稳（Turing instability）。"
+        "text": "各格反应项为零，但仍有净扩散流出。"
       },
       {
         "id": "D",
-        "text": "平均值相同意味着各格相同。"
+        "text": "各格反应项为零，邻格扩散通量也为零。"
       }
     ],
     "constraints": []
@@ -1768,12 +1768,12 @@
   {
     "id": "p12-turing-evidence",
     "slug": "p12-turing-evidence",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.4",
     "lesson_id": "P12-C04-S02",
     "title": "图案与机制条件",
-    "statement": "数值模拟出现条纹，何时更有根据称为扩散驱动失稳？",
+    "statement": "研究反应扩散（reaction-diffusion）条纹的来源。已按相同扰动方案比较，并核对网格与时间步。下面哪组结果支持扩散驱动失稳？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1788,19 +1788,19 @@
     "options": [
       {
         "id": "A",
-        "text": "无扩散均匀态稳定，加入扩散后有不稳定非零空间模态（mode），并通过网格与步长核验。"
+        "text": "无扩散时均匀态稳定，加入扩散后，至少一个非零空间模态（mode）的扰动持续增长。"
       },
       {
         "id": "B",
-        "text": "只要画面出现条纹。"
+        "text": "无扩散时均匀态已经失稳，加入扩散后，同一个不稳定扰动继续增长。"
       },
       {
         "id": "C",
-        "text": "只需扩散系数（diffusion coefficient）不同。"
+        "text": "两个扩散系数（diffusion coefficient）不同，但所有空间模态的扰动都随时间衰减。"
       },
       {
         "id": "D",
-        "text": "只看一次随机初态。"
+        "text": "增大时间步后出现条纹，减小时间步后，各个空间扰动都随时间衰减。"
       }
     ],
     "constraints": []
@@ -1808,12 +1808,12 @@
   {
     "id": "p12-reaction-diffusion-step",
     "slug": "p12-reaction-diffusion-step",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.4",
     "lesson_id": "P12-C04-S02",
-    "title": "纯扩散界可直接照搬吗",
-    "statement": "纯扩散的 α≤1/2 通过后，加入反应项仍需检查什么？",
+    "title": "加入反应项后的数值检查",
+    "statement": "纯扩散的显式格式满足α≤1/2。加入反应项后，应怎样继续检查数值解？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1828,19 +1828,19 @@
     "options": [
       {
         "id": "A",
-        "text": "反应动力学、正性及联合时间步误差。"
+        "text": "检查反应与扩散共同更新后的各组分数值是否非负，以及减小时间步后数值解是否趋于一致。"
       },
       {
         "id": "B",
-        "text": "无需任何检查。"
+        "text": "用扩散过程最慢的变化时间来选择时间步，再用这个时间步计算加入反应后的各组分数值。"
       },
       {
         "id": "C",
-        "text": "只检查图像颜色。"
+        "text": "细化网格时保持α不变，据此判断反应项造成的时间积分误差也保持不变。"
       },
       {
         "id": "D",
-        "text": "把反应项当作边界。"
+        "text": "检查扩散更新前后的总量相等，据此判断加入反应后的完整更新也保持总量不变。"
       }
     ],
     "constraints": []
@@ -1929,12 +1929,12 @@
   {
     "id": "p12-same-density",
     "slug": "p12-same-density",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.5",
     "lesson_id": "P12-C05-S01",
-    "title": "只看密度遗漏什么",
-    "statement": "两组周期格的1占比都为1/2，但间隔2的1—1对比例不同。哪个说法成立？",
+    "title": "同密度排列的一步预测",
+    "statement": "两组周期格的1占比都为1/2，但间隔2的1—1对比例不同。按左右旧邻格异或同步更新（synchronous update），下一步密度如何比较？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1949,19 +1949,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只保留密度会丢失这种空间相关。"
+        "text": "两组下一步密度相同，因为周期边界（periodic boundary）使左右邻格的取值相互独立。"
       },
       {
         "id": "B",
-        "text": "密度相同强制每个局部邻域相同。"
+        "text": "两组下一步密度相同，因为当前密度相同就确定了左右邻格的取值组合。"
       },
       {
         "id": "C",
-        "text": "两组下一步密度必相同。"
+        "text": "两组下一步密度不同，这一差异由相距一格的邻居相关性决定。"
       },
       {
         "id": "D",
-        "text": "相关性只由画布宽度决定。"
+        "text": "两组下一步密度不同，因为异或更新的平均值包含相距两格同时为1的比例。"
       }
     ],
     "constraints": []
@@ -1989,19 +1989,19 @@
     "options": [
       {
         "id": "A",
-        "text": "L+R−2LR。"
+        "text": "左右邻格的异或值等于L+R−2LR。"
       },
       {
         "id": "B",
-        "text": "LR。"
+        "text": "左右邻格的异或值等于LR。"
       },
       {
         "id": "C",
-        "text": "L+R。"
+        "text": "左右邻格的异或值等于L+R。"
       },
       {
         "id": "D",
-        "text": "1−L−R。"
+        "text": "左右邻格的异或值等于1−L−R。"
       }
     ],
     "constraints": []
@@ -2009,7 +2009,7 @@
   {
     "id": "p12-measurement-scale",
     "slug": "p12-measurement-scale",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.5",
     "lesson_id": "P12-C05-S01",
@@ -2029,19 +2029,19 @@
     "options": [
       {
         "id": "A",
-        "text": "分母包含哪些格子与记录时刻。"
+        "text": "每次统计使用同一组格子作分母，并在每轮相同的更新时刻记录密度。"
       },
       {
         "id": "B",
-        "text": "是否从同一边界和更新规则取样。"
+        "text": "各次实验采用相同的边界处理和更新规则，使所比较的密度来自相同演化条件。"
       },
       {
         "id": "C",
-        "text": "网页背景色。"
+        "text": "每轮只把值为1的格子计入分母，将这些格子中1的比例作为全域密度。"
       },
       {
         "id": "D",
-        "text": "读取图像像素而不核对状态（state）。"
+        "text": "将图像插值后的像素总数作为分母，用值为1的原始格子数计算密度。"
       }
     ],
     "constraints": []
@@ -2212,11 +2212,11 @@
   {
     "id": "p12-closure-boundary",
     "slug": "p12-closure-boundary",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.5",
     "lesson_id": "P12-C05-S02",
-    "title": "精确闭合的适用范围",
+    "title": "改变局部规则后的聚合",
     "statement": "已证明周期异或规则下一步密度=2p−2c2。若换成带中心格影响的规则，如何处理？",
     "type": "choice",
     "learning_targets": [
@@ -2232,19 +2232,19 @@
     "options": [
       {
         "id": "A",
-        "text": "重新推导所需相关量，不能直接套原式。"
+        "text": "从新的逐格更新公式求平均，检查其中需要哪些邻格取值的联合统计量（statistic）。"
       },
       {
         "id": "B",
-        "text": "原式在任何规则下都精确。"
+        "text": "保留原式的两点相关（two-point correlation）项，只重新拟合一个常数来表示中心格的影响。"
       },
       {
         "id": "C",
-        "text": "只调整网页颜色。"
+        "text": "把原式中的c2换成p²，将所得公式作为加入中心格后的精确密度更新式。"
       },
       {
         "id": "D",
-        "text": "把 c2 强行设为 p² 即精确。"
+        "text": "沿用原公式，并将其中的p解释为中心格取值为1的全域比例。"
       }
     ],
     "constraints": []
@@ -2252,12 +2252,12 @@
   {
     "id": "p12-coarse-evidence",
     "slug": "p12-coarse-evidence",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.5",
     "lesson_id": "P12-C05-S02",
     "title": "平均场预测失败后",
-    "statement": "同样 p 的两种排列下一步密度不同，最合适的结论是什么？",
+    "statement": "确定性周期异或规则下，同样密度p的两种排列下一步密度不同，独立邻居近似却给出同一预测。应优先怎样改进？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2272,19 +2272,19 @@
     "options": [
       {
         "id": "A",
-        "text": "本模型（model）的独立邻居近似缺少相关信息，应检查 c2 和局部规则。"
+        "text": "从同一初态反复执行确定性更新，用这些重复来估计随机抽样造成的偏差。"
       },
       {
         "id": "B",
-        "text": "反复用同一数据调 p 便构成独立验证。"
+        "text": "增大输入（input）公式的密度p，用同一个修改后的p拟合两种排列的下一步密度。"
       },
       {
         "id": "C",
-        "text": "所有宏观描述都不可能有用。"
+        "text": "增加相距两格同时为1的比例c2，检验它是否能区分两种排列的下一步密度。"
       },
       {
         "id": "D",
-        "text": "差异必由随机漂变引起。"
+        "text": "增加密度记录的小数位数，尝试把两种排列的当前密度区分开。"
       }
     ],
     "constraints": []
@@ -2292,12 +2292,12 @@
   {
     "id": "p12-capstone-neighborhood",
     "slug": "p12-capstone-neighborhood",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.summary",
     "lesson_id": "P12-SUMMARY",
-    "title": "先定义邻域和边界",
-    "statement": "要在另一台电脑复现局部二值演化，哪组记录充分且必要？",
+    "title": "复现实验的记录内容",
+    "statement": "另一台电脑要按给定轮数复现确定性的局部二值演化。哪组记录足以逐步计算每个格子的取值？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -2312,19 +2312,19 @@
     "options": [
       {
         "id": "A",
-        "text": "初态、邻域与规则、边界、同步或异步顺序。"
+        "text": "记录每轮总密度、格子总数、邻域半径和边界外的取值规则。"
       },
       {
         "id": "B",
-        "text": "只提供一张末态图片。"
+        "text": "记录每格的最终取值、更新轮数、总密度和随机种子（random seed）。"
       },
       {
         "id": "C",
-        "text": "只记录动画帧率。"
+        "text": "记录每格初值（initial condition）、邻居关系、局部转移公式、边界处理和新旧值的读取顺序。"
       },
       {
         "id": "D",
-        "text": "只记录总密度。"
+        "text": "记录每格初值、邻域半径、更新轮数和每秒播放的动画帧数。"
       }
     ],
     "constraints": []
@@ -2332,12 +2332,12 @@
   {
     "id": "p12-capstone-mechanisms",
     "slug": "p12-capstone-mechanisms",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.summary",
     "lesson_id": "P12-SUMMARY",
     "title": "选择与漂变分开",
-    "statement": "频率变化可能来自选择、变异与有限抽样。以下哪项比较更能区分机制？",
+    "statement": "类型0频率的变化可能来自选择、变异和有限抽样。设s为选择系数，μ为变异率，N为群体规模，哪种比较更有助于区分这些来源？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -2352,19 +2352,19 @@
     "options": [
       {
         "id": "A",
-        "text": "固定 N 和初态，逐项关闭 s、μ，并重复抽样。"
+        "text": "固定N和初始频率，同时将s、μ设为零，把终点频率的全部变化归于选择。"
       },
       {
         "id": "B",
-        "text": "只观察一条上升轨迹（trajectory）。"
+        "text": "固定N和初始频率，分别将s或μ设为零，并比较各设置在独立重复中的终点频率。"
       },
       {
         "id": "C",
-        "text": "同时改变 N、收益和边界却归因于选择。"
+        "text": "固定s和μ，只改变N，把终点频率分布（distribution）的全部变化归于选择。"
       },
       {
         "id": "D",
-        "text": "把收益当概率（probability）且不声明映射。"
+        "text": "固定N和初始频率，每种设置只保留终点频率最大的一次，再据此比较机制。"
       }
     ],
     "constraints": []
@@ -2819,12 +2819,12 @@
   {
     "id": "p12-capstone-pattern-proof",
     "slug": "p12-capstone-pattern-proof",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.summary",
     "lesson_id": "P12-SUMMARY",
     "title": "更换网格后的图案证据",
-    "statement": "反应扩散（reaction-diffusion）在粗网格出现条纹，细化网格并缩小时间步后条纹消失。最稳妥的判断是？",
+    "statement": "反应扩散（reaction-diffusion）在粗网格出现条纹，细化网格并缩小时间步后条纹消失。下一步怎样处理最有助于判断图案来源？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2839,19 +2839,19 @@
     "options": [
       {
         "id": "A",
-        "text": "原图案可能是数值伪影，尚不能据此声称机制失稳。"
+        "text": "保留粗网格的失稳判断，将细网格中条纹消失归因于空间分辨率不足。"
       },
       {
         "id": "B",
-        "text": "粗图案已经证明普遍图灵失稳（Turing instability）。"
+        "text": "比较不同网格和时间步下同一空间模态（mode）的扰动增长率，检查失稳判断是否随离散设置改变。"
       },
       {
         "id": "C",
-        "text": "空间误差与方程无关。"
+        "text": "保留粗网格的计算结果，增加绘图时的插值像素，以此检查数值解是否随网格细化而收敛。"
       },
       {
         "id": "D",
-        "text": "只看条纹颜色即可。"
+        "text": "把粗细网格的图像取平均，用平均图像中的条纹幅度估计原方程的条纹幅度。"
       }
     ],
     "constraints": []
@@ -2859,12 +2859,12 @@
   {
     "id": "p12-capstone-new-scale",
     "slug": "p12-capstone-new-scale",
-    "version": "1",
+    "version": "2",
     "part": "12",
     "chapter": "12.summary",
     "lesson_id": "P12-SUMMARY",
     "title": "新尺度下的闭合判断",
-    "statement": "同一总体密度、不同空间排列给出不同下一步密度。哪项结论可以支持？",
+    "statement": "确定性局部更新中，同一总体密度、不同排列给出不同下一步密度。要构造可检验的宏观预测，哪项改进最合适？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2879,19 +2879,19 @@
     "options": [
       {
         "id": "A",
-        "text": "仅用总体密度的闭合在这组条件下不充分，可加入相关量并独立验证。"
+        "text": "将两种排列的下一步密度取平均，把这个均值作为每种排列的精确预测。"
       },
       {
         "id": "B",
-        "text": "所有平均场模型（model）在任何系统中错误。"
+        "text": "重新拟合一条以当前密度为唯一输入（input）、以下一步密度为输出（output）的单值曲线。"
       },
       {
         "id": "C",
-        "text": "重新拟合同一轨迹（trajectory）就等于新实验。"
+        "text": "增加描述邻格联合取值的统计量（statistic），再用未参与拟合的排列检验下一步密度预测。"
       },
       {
         "id": "D",
-        "text": "未观测（observation）差异证明不存在局部相互作用。"
+        "text": "从同一排列反复执行确定性更新，用重复结果消除两种排列之间的预测差异。"
       }
     ],
     "constraints": []

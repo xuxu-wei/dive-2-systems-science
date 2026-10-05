@@ -1,0 +1,20 @@
+{
+  "python.analysis.useDefaultExcludes": true,
+  "python.analysis.exclude": [
+    "模拟数据/**",
+    "tools/**",
+    "exercises/**",
+    "web/**"
+  ],
+  "python.analysis.diagnosticMode": "openFilesOnly",
+  "python.analysis.indexing": false,
+  "files.watcherExclude": {
+    "**/.venv/**": true,
+    "**/.work/**": true,
+    "**/.local/**": true,
+    "**/.pytest_cache/**": true,
+    "**/__pycache__/**": true,
+    "**/.ipynb_checkpoints/**": true,
+    "**/模拟数据/**": true
+  }
+}

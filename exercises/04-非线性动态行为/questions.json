@@ -20,19 +20,19 @@
     "options": [
       {
         "id": "A",
-        "text": "平衡（equilibrium）为 −1、0、1。"
+        "text": "方程的平衡（equilibrium）点为 x=−1、x=0 和 x=1。"
       },
       {
         "id": "B",
-        "text": "在 0 精确起步会永远保持 0，因此 0 渐近稳定（asymptotic stability）。"
+        "text": "从 x=0 精确起步后保持不动，说明小扰动也会回到 x=0，因此该点渐近稳定（asymptotic stability）。"
       },
       {
         "id": "C",
-        "text": "±1 的局部导数（derivative）均为 −2。"
+        "text": "流向函数 f(x)=x−x³ 在 x=−1 和 x=1 处的导数（derivative）都为 −2。"
       },
       {
         "id": "D",
-        "text": "足够小的正初值（initial condition）最终趋向 1。"
+        "text": "从足够小的正初值（initial condition）出发，解最终趋向 x=1。"
       }
     ],
     "constraints": []
@@ -120,13 +120,13 @@
   {
     "id": "p04-zero-slope",
     "slug": "p04-zero-slope",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C01-S01",
     "part": "4",
     "chapter": "4.1",
-    "title": "导数为零后应该怎样判断",
+    "title": "比较两个三次方程",
     "type": "choice",
-    "statement": "在平衡（equilibrium） x=0，模型（model）一 x′=−x³，模型二 x′=x³ 的局部导数（derivative）都为 0。可以得出什么？",
+    "statement": "在平衡（equilibrium）x=0，甲为 x′=−x³，乙为 x′=x³，两者在原点的导数（derivative）均为 0。根据原点两侧流向判断原点是否渐近稳定（asymptotic stability），哪项正确？",
     "learning_targets": [
       "T1"
     ],
@@ -138,19 +138,19 @@
     "options": [
       {
         "id": "A",
-        "text": "线性判据不能决定，需看高阶项或流向；模型一渐近稳定（asymptotic stability），模型二不稳定。"
+        "text": "甲的原点渐近稳定，乙的原点不稳定。"
       },
       {
         "id": "B",
-        "text": "导数为零说明所有邻近点都保持不变。"
+        "text": "甲的原点不稳定，乙的原点渐近稳定。"
       },
       {
         "id": "C",
-        "text": "二者都稳定。"
+        "text": "甲和乙的原点都渐近稳定。"
       },
       {
         "id": "D",
-        "text": "二者都不稳定。"
+        "text": "甲和乙的原点都不稳定。"
       }
     ],
     "constraints": []
@@ -158,13 +158,13 @@
   {
     "id": "p04-line-no-cycle",
     "slug": "p04-line-no-cycle",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C01-S01",
     "part": "4",
     "chapter": "4.1",
-    "title": "一条状态轴能形成自维持周期吗",
+    "title": "判断一维自治流",
     "type": "choice",
-    "statement": "对光滑、自治的一维方程 x′=f(x)，解唯一且没有外部周期输入（input）。哪项正确？",
+    "statement": "光滑自治方程（autonomous equation）x′=f(x) 的解唯一。相邻两个平衡（equilibrium）之间没有其他零点。关于该区间内的非平衡解，哪项正确？",
     "learning_targets": [
       "T1"
     ],
@@ -176,19 +176,19 @@
     "options": [
       {
         "id": "A",
-        "text": "任何一维离散映射也都不能产生周期。"
+        "text": "若 f 是三次函数，区间内的解就会反复改变运动方向并返回原来的位置。"
       },
       {
         "id": "B",
-        "text": "只要 f 含三次项，就会产生非平凡周期轨道。"
+        "text": "f 在该区间内保持同一符号，因此解沿一个方向变化，不能返回原位置形成非恒定周期解。"
       },
       {
         "id": "C",
-        "text": "相邻平衡（equilibrium）之间流向固定，非平凡解不能掉头形成周期。"
+        "text": "区间内的解可以穿过平衡点后反向运动，再返回出发点。"
       },
       {
         "id": "D",
-        "text": "数值图有来回波动即可证明真实周期。"
+        "text": "数值更新若在两个值之间交替，就说明原连续方程也有经过这两个值的周期解。"
       }
     ],
     "constraints": []
@@ -382,13 +382,13 @@
   {
     "id": "p04-kick-basin",
     "slug": "p04-kick-basin",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C01-S02",
     "part": "4",
     "chapter": "4.1",
-    "title": "瞬时扰动是否越过边界",
+    "title": "施加一次状态扰动",
     "type": "choice",
-    "statement": "无偏置开关已经在 x=−1。瞬时扰动把状态（state）改成 −1+Δ，随后恢复原方程。哪些成立？",
+    "statement": "开关方程 x′=x−x³ 已在 x=−1。瞬时扰动把状态（state）改为 −1+Δ，随后恢复原方程。哪些判断成立？",
     "learning_targets": [
       "T1"
     ],
@@ -400,19 +400,19 @@
     "options": [
       {
         "id": "A",
-        "text": "Δ=1.2 后趋向 1。"
+        "text": "取 Δ=1.2 时，状态先变为 0.2，随后趋向 x=1。"
       },
       {
         "id": "B",
-        "text": "只要 Δ>0 就会切换到 1。"
+        "text": "取任意正 Δ 时，扰动后的状态都会最终趋向 x=1。"
       },
       {
         "id": "C",
-        "text": "Δ=0.8 后回到 −1。"
+        "text": "取 Δ=0.8 时，状态先变为 −0.2，随后回到 x=−1。"
       },
       {
         "id": "D",
-        "text": "Δ=1 后精确留在 0，但对再扰动敏感。"
+        "text": "取 Δ=1 时，状态精确落在 x=0 并保持不动，但再加微小扰动会离开该点。"
       }
     ],
     "constraints": []
@@ -420,13 +420,13 @@
   {
     "id": "p04-finite-grid",
     "slug": "p04-finite-grid",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C01-S02",
     "part": "4",
     "chapter": "4.1",
-    "title": "初值网格能给出精确边界吗",
+    "title": "解释两个初值的结果",
     "type": "choice",
-    "statement": "只计算初值（initial condition） −0.01、0.01，观察到末态分别接近 −1、1。哪项表述最稳妥？",
+    "statement": "对开关方程 x′=x−x³，仅计算初值（initial condition）−0.01 和 0.01，末态分别接近 −1 和 1。只根据这两次计算，关于两类末态的分界能说什么？",
     "learning_targets": [
       "T1"
     ],
@@ -438,19 +438,19 @@
     "options": [
       {
         "id": "A",
-        "text": "再增加一条任意轨迹（trajectory）就能证明所有初值的结论。"
+        "text": "这两次计算已经把分界精确定位在两初值的中点 0。"
       },
       {
         "id": "B",
-        "text": "已数值证明边界恰为 0。"
+        "text": "这两次计算已经把分界精确定位在较小初值 −0.01。"
       },
       {
         "id": "C",
-        "text": "这两条轨迹只约束边界所在区间；结合方程流向和唯一性才可说明本例边界为 0。"
+        "text": "这两次计算已经把分界精确定位在较大初值 0.01。"
       },
       {
         "id": "D",
-        "text": "边界肯定是 0.01。"
+        "text": "这两次计算给出了分界两侧的样本，但分界的精确位置还需用方程流向判断。"
       }
     ],
     "constraints": []
@@ -476,19 +476,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这是参数（parameter）变化，改变整个流向函数。"
+        "text": "增加常数项 0.1 属于参数（parameter）变化，它使每个状态（state）处的变化率都增加 0.1。"
       },
       {
         "id": "B",
-        "text": "平衡（equilibrium）仍必定为 −1、0、1。"
+        "text": "增加常数项后，x=−1、0、1 仍都是原方程的平衡（equilibrium）点。"
       },
       {
         "id": "C",
-        "text": "x=0 时新的初始变化率为 0.1。"
+        "text": "在 x=0 处，新方程给出的变化率为 0.1。"
       },
       {
         "id": "D",
-        "text": "与只在时刻 0 增加状态（state） 0.1 完全等价。"
+        "text": "持续增加常数项 0.1，与保留原方程而仅在起始时把状态（state）增加 0.1，会得到相同演化。"
       }
     ],
     "constraints": []
@@ -496,13 +496,13 @@
   {
     "id": "p04-oscillation-source",
     "slug": "p04-oscillation-source",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C02-S01",
     "part": "4",
     "chapter": "4.2",
-    "title": "周期曲线是否说明自维持振荡",
+    "title": "调查周期曲线的来源",
     "type": "choice",
-    "statement": "一段时间曲线在多周期内保持振幅（amplitude）。还需什么信息来判断是否自维持？",
+    "statement": "一段时间曲线在多个周期内保持振幅（amplitude），但外部驱动尚未记录。哪项后续实验最能帮助区分受迫振荡（forced oscillation）与自维持振荡（self-sustained oscillation）？",
     "learning_targets": [
       "T2"
     ],
@@ -514,19 +514,19 @@
     "options": [
       {
         "id": "A",
-        "text": "应检查是否有周期驱动、去除驱动后的行为，以及多个初值（initial condition）的长期轨迹（trajectory）。"
+        "text": "记录外部周期驱动并将其撤去，再从不同初值（initial condition）观察振幅是衰减还是保持非零。"
       },
       {
         "id": "B",
-        "text": "只要两次峰值相同就是极限环（limit cycle）。"
+        "text": "保持外部驱动不变，将采样频率提高十倍后重新绘制同一段曲线。"
       },
       {
         "id": "C",
-        "text": "测量更密即可替代输入（input）信息。"
+        "text": "保持外部驱动不变，将各周期的峰值缩放为同一高度后比较曲线。"
       },
       {
         "id": "D",
-        "text": "只需曲线足够平滑。"
+        "text": "保持外部驱动不变，延长记录并分段计算相邻峰之间的平均时间。"
       }
     ],
     "constraints": []
@@ -640,13 +640,13 @@
   {
     "id": "p04-forcing-removed",
     "slug": "p04-forcing-removed",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C02-S01",
     "part": "4",
     "chapter": "4.2",
-    "title": "移除周期驱动以后",
+    "title": "撤去周期驱动",
     "type": "choice",
-    "statement": "阻尼系统 z′=(−α+iω)z+F exp(iΩt)，α>0。在某时刻把 F 改为 0。哪个结论成立？",
+    "statement": "阻尼系统 z′=(−α+iω)z+F exp(iΩt)，α>0、ω≠Ω。在 t0 的非零状态（state）z0=z(t0) 处将 F 设为 0。之后状态随 Δt=t−t0 怎样变化？",
     "learning_targets": [
       "T2"
     ],
@@ -658,19 +658,19 @@
     "options": [
       {
         "id": "A",
-        "text": "Ω 会自动变成系统的自激频率。"
+        "text": "撤去驱动后的状态为 z=z0 exp(iΩΔt)。"
       },
       {
         "id": "B",
-        "text": "之后仍由周期驱动维持固定振幅（amplitude）。"
+        "text": "撤去驱动后的状态为 z=z0 exp(αΔt)exp(iωΔt)。"
       },
       {
         "id": "C",
-        "text": "之后从当时状态（state）开始按 exp(−αΔt) 衰减。"
+        "text": "撤去驱动后的状态为 z=z0 exp(−αΔt)exp(iΩΔt)。"
       },
       {
         "id": "D",
-        "text": "状态必须立刻变为 0。"
+        "text": "撤去驱动后的状态为 z=z0 exp(−αΔt)exp(iωΔt)。"
       }
     ],
     "constraints": []
@@ -678,13 +678,13 @@
   {
     "id": "p04-origin-exception",
     "slug": "p04-origin-exception",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C02-S01",
     "part": "4",
     "chapter": "4.2",
-    "title": "为什么正增长系数仍可能不动",
+    "title": "考察径向振子的原点",
     "type": "choice",
-    "statement": "径向振子 μ>0，二维初值（initial condition）精确为 [0,0]。哪项正确？",
+    "statement": "径向振子的笛卡尔形式为 x′=(μ−x²−y²)x−ωy，y′=ωx+(μ−x²−y²)y，μ>0。从 [0,0] 精确起步，并与非零小扰动作比较，哪项正确？",
     "learning_targets": [
       "T2"
     ],
@@ -696,19 +696,19 @@
     "options": [
       {
         "id": "A",
-        "text": "它必定立刻进入极限环（limit cycle）。"
+        "text": "从原点精确出发的解会离开原点，从非零小扰动出发的解也会离开原点。"
       },
       {
         "id": "B",
-        "text": "它保持在不稳定平衡（equilibrium）；非零小扰动才会离开。"
+        "text": "从原点精确出发的解保持不动，从非零小扰动出发的解保持初始半径。"
       },
       {
         "id": "C",
-        "text": "μ>0 说明原点稳定。"
+        "text": "从原点精确出发的解保持不动，从非零小扰动出发的解会远离原点。"
       },
       {
         "id": "D",
-        "text": "程序必须添加噪声才能算正确。"
+        "text": "从原点精确出发的解保持不动，从非零小扰动出发的解会回到原点。"
       }
     ],
     "constraints": []
@@ -716,13 +716,13 @@
   {
     "id": "p04-radial-stability",
     "slug": "p04-radial-stability",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C02-S01",
     "part": "4",
     "chapter": "4.2",
-    "title": "径向方程怎样支持极限环",
+    "title": "分析径向与角向运动",
     "type": "choice",
-    "statement": "对于 μ>0、ω>0 的径向振子，哪些论证成立？",
+    "statement": "径向振子满足 R′=μR−R³、θ′=ω，μ>0、ω>0。哪些判断成立？",
     "learning_targets": [
       "T2"
     ],
@@ -734,19 +734,19 @@
     "options": [
       {
         "id": "A",
-        "text": "R>sqrt(μ) 时半径下降。"
+        "text": "半径大于 sqrt(μ) 时，R′<0，半径随时间减小。"
       },
       {
         "id": "B",
-        "text": "在 R=sqrt(μ) 上有周期运动，且邻近非零半径趋向它。"
+        "text": "半径等于 sqrt(μ) 时，状态（state）沿圆周期运动，附近非零初始半径会趋向这个半径。"
       },
       {
         "id": "C",
-        "text": "所有初值（initial condition）在同一时刻收敛到同一个状态（state）点。"
+        "text": "从不同初始角度出发的解，会在同一时刻收敛到圆上的同一个点。"
       },
       {
         "id": "D",
-        "text": "0<R<sqrt(μ) 时半径增长。"
+        "text": "半径位于 0 与 sqrt(μ) 之间时，R′>0，半径随时间增大。"
       }
     ],
     "constraints": []
@@ -958,13 +958,13 @@
   {
     "id": "p04-phase-after-kick",
     "slug": "p04-phase-after-kick",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C02-S02",
     "part": "4",
     "chapter": "4.2",
     "title": "回到圆环等于回到原来的时钟吗",
     "type": "choice",
-    "statement": "径向振子已在稳定极限环（limit cycle）上。扰动改变了半径和角度，之后恢复原方程。哪些成立？",
+    "statement": "径向振子满足 R′=μR−R³、θ′=ω，μ>0、ω>0，原先已在稳定极限环（limit cycle）上。一次扰动改变半径和角度，且扰动后 R>0；随后继续按原方程演化。哪些判断成立？",
     "learning_targets": [
       "T2"
     ],
@@ -976,19 +976,19 @@
     "options": [
       {
         "id": "A",
-        "text": "半径可恢复到同一极限环。"
+        "text": "扰动后的半径会趋向原来的 sqrt(μ)，使轨迹（trajectory）回到同一圆环。"
       },
       {
         "id": "B",
-        "text": "角度变化一定自动消失。"
+        "text": "扰动造成的角度差会随半径回归而逐渐缩小到零。"
       },
       {
         "id": "C",
-        "text": "本模型（model） θ′=ω，两条轨迹（trajectory）的相位（phase）差保持不变。"
+        "text": "扰动后两条轨迹（trajectory）都以角速度 ω 运动，因此它们的相位（phase）差保持不变。"
       },
       {
         "id": "D",
-        "text": "轨道吸引与逐点同步是不同结论。"
+        "text": "半径回到同一圆环，并不表示扰动前后的两条轨迹在同一时刻经过圆上的同一点。"
       }
     ],
     "constraints": []
@@ -996,13 +996,13 @@
   {
     "id": "p04-measurement-window",
     "slug": "p04-measurement-window",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C02-S02",
     "part": "4",
     "chapter": "4.2",
-    "title": "周期数值相同就足够了吗",
+    "title": "估计长期振荡周期",
     "type": "choice",
-    "statement": "一段短轨迹（trajectory）仅包含两个很早的峰。计算得到一个峰间周期。哪个后续检查最合适？",
+    "statement": "一段轨迹（trajectory）只含两个很早的峰，由峰间距得到周期估计；模型（model）另有解析周期。怎样检查这次估计是否代表长期周期？",
     "learning_targets": [
       "T2"
     ],
@@ -1014,19 +1014,19 @@
     "options": [
       {
         "id": "A",
-        "text": "延长观察、增加暂态（transient）截断并细化采样，与模型（model）的解析周期比较。"
+        "text": "保留两个峰出现的时刻，用两峰高度的平均值作为新的周期估计。"
       },
       {
         "id": "B",
-        "text": "把输出（output）小数位增多即可提高可信度。"
+        "text": "保持记录时长和采样间隔不变，将已有周期估计显示到十位小数。"
       },
       {
         "id": "C",
-        "text": "只需删除振幅（amplitude）较小的峰，不说明规则。"
+        "text": "延长记录并去掉更多早期数据，缩短采样间隔后重新计算峰间距，再与解析周期比较。"
       },
       {
         "id": "D",
-        "text": "直接把它宣布为长期极限环（limit cycle）周期。"
+        "text": "保持记录时长不变，在两峰之间补上更多直线插值点，并把这些点视为新增测量。"
       }
     ],
     "constraints": []
@@ -1221,7 +1221,7 @@
     "chapter": "4.3",
     "title": "分支图应该标记什么",
     "type": "choice",
-    "statement": "偏置开关的平衡（equilibrium）关系为 b=x³−x。哪些标记正确？",
+    "statement": "偏置开关满足 x′=f(x)=x−x³+b，其平衡（equilibrium）关系为 b=x³−x。关于平衡分支，哪些判断正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1233,19 +1233,19 @@
     "options": [
       {
         "id": "A",
-        "text": "|x|>1/sqrt(3) 的分支局部渐近稳定（local asymptotic stability）。"
+        "text": "满足 |x|>1/sqrt(3) 的平衡点在小扰动后会返回原位，因此局部渐近稳定（local asymptotic stability）。"
       },
       {
         "id": "B",
-        "text": "|x|<1/sqrt(3) 的分支不稳定。"
+        "text": "满足 |x|<1/sqrt(3) 的平衡点是不稳定的。"
       },
       {
         "id": "C",
-        "text": "在折叠点 f′=0，不能只用一阶导数（derivative）的严格正负判据。"
+        "text": "在折叠点处 f′=0，一阶导数（derivative）的严格正负条件不能判定该点的稳定性。"
       },
       {
         "id": "D",
-        "text": "只画接续扫描终点就能找全所有不稳定分支。"
+        "text": "将每次参数（parameter）扫描结束的状态（state）连起来，就能得到全部不稳定平衡分支。"
       }
     ],
     "constraints": []
@@ -1253,13 +1253,13 @@
   {
     "id": "p04-scan-protocol",
     "slug": "p04-scan-protocol",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C03-S01",
     "part": "4",
     "chapter": "4.3",
-    "title": "为什么正反扫描不重合",
+    "title": "解释正反参数扫描",
     "type": "choice",
-    "statement": "正向扫描沿用上一末态，反向也沿用上一末态。某一区间两条结果不同。哪项正确？",
+    "statement": "正反扫描都沿用上一参数（parameter）的末态作为下一初值（initial condition），同一区间得到不同结果。下一步怎样区分多稳态（multistability）与有限等待时间的影响？",
     "learning_targets": [
       "T2"
     ],
@@ -1271,19 +1271,19 @@
     "options": [
       {
         "id": "A",
-        "text": "可能来自多稳态（multistability）及历史，也可能含有限停留造成的延迟（delay）；需对照分支和停留时间。"
+        "text": "求出各参数下的平衡（equilibrium）分支，并延长每个参数点的停留时间后重新做正反扫描。"
       },
       {
         "id": "B",
-        "text": "足以证明系统受随机噪声驱动。"
+        "text": "把同一参数下正反扫描的末值取平均，将平均值作为该参数下唯一的平衡值。"
       },
       {
         "id": "C",
-        "text": "忽略初值（initial condition）并平均两条曲线，就得到真正唯一平衡（equilibrium）。"
+        "text": "保持停留时间和时间步长（time step）不变，将显示的末值增加到更多小数位。"
       },
       {
         "id": "D",
-        "text": "必然是程序错误。"
+        "text": "正向和反向扫描分别使用不同的演化方程，再选择曲线更平滑的结果。"
       }
     ],
     "constraints": []
@@ -1291,13 +1291,13 @@
   {
     "id": "p04-threshold-resolution",
     "slug": "p04-threshold-resolution",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C03-S01",
     "part": "4",
     "chapter": "4.3",
-    "title": "转变位置该报告到几位",
+    "title": "报告参数扫描的转变",
     "type": "choice",
-    "statement": "扫描 b 的间隔是 0.02，观察到状态（state）在 b=0.38 与 0.40 之间跳变，停留时间有限。哪项正确？",
+    "statement": "扫描参数（parameter）b 的间隔为 0.02，末态在 b=0.38 与 0.40 之间改变，每点停留时间有限。当前数据适合怎样报告转变位置？",
     "learning_targets": [
       "T2"
     ],
@@ -1309,19 +1309,19 @@
     "options": [
       {
         "id": "A",
-        "text": "阈值精确等于 0.40，最后一位没有误差。"
+        "text": "将 b=0.40 报告为精确转变值，因为这是首个显示新状态（state）的采样点。"
       },
       {
         "id": "B",
-        "text": "只细化时间步就能消除参数（parameter）网格误差。"
+        "text": "将 b=0.38 报告为精确转变值，因为这是最后显示旧状态的采样点。"
       },
       {
         "id": "C",
-        "text": "阈值精确等于 0.390000。"
+        "text": "将 [0.38,0.40] 报告为本次转变区间，并同时给出参数间隔和每点停留时间。"
       },
       {
         "id": "D",
-        "text": "只报告当前网格与停留条件下的转变区间，并结合解析折叠值和更细实验。"
+        "text": "将 b=0.390000 报告为精确转变值，因为取区间中点消除了参数网格误差。"
       }
     ],
     "constraints": []
@@ -1422,11 +1422,11 @@
   {
     "id": "p04-critical-slow",
     "slug": "p04-critical-slow",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C03-S02",
     "part": "4",
     "chapter": "4.3",
-    "title": "μ=0 时为什么不能说不稳定",
+    "title": "临界参数下的半径变化",
     "type": "choice",
     "statement": "径向方程 μ=0 时 R′=−R³。哪些成立？",
     "learning_targets": [
@@ -1440,19 +1440,19 @@
     "options": [
       {
         "id": "A",
-        "text": "非零半径缓慢趋于 0。"
+        "text": "从非零初始半径出发，R 随时间减小并趋近零。"
       },
       {
         "id": "B",
-        "text": "原点线性化（linearization）实部为零，因此一定不稳定。"
+        "text": "原点线性化（linearization）的特征值（eigenvalue）实部为零，因此非零小半径会远离原点。"
       },
       {
         "id": "C",
-        "text": "衰减是代数型 R=R0/sqrt(1+2R0²t)，可能需要很长观察窗。"
+        "text": "半径满足 R(t)=R0/sqrt(1+2R0²t)，其代数衰减可能使短时间记录中仍有明显残余半径。"
       },
       {
         "id": "D",
-        "text": "线性判据不决定本例，但非线性径向方程能决定。"
+        "text": "虽然线性化没有给出严格负实部，但 R>0 时的 R′=−R³<0 可以用于判断半径趋向零。"
       }
     ],
     "constraints": []
@@ -1460,13 +1460,13 @@
   {
     "id": "p04-zero-frequency",
     "slug": "p04-zero-frequency",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C03-S02",
     "part": "4",
     "chapter": "4.3",
-    "title": "有稳定半径就一定是极限环吗",
+    "title": "角速度为零时",
     "type": "choice",
-    "statement": "若把径向振子设为 μ>0、ω=0，则 R=sqrt(μ) 上每点都静止。应怎样解释？",
+    "statement": "径向振子 R′=μR−R³、θ′=ω 取 μ>0、ω=0。R=sqrt(μ) 的圆上各点具有什么性质？",
     "learning_targets": [
       "T2"
     ],
@@ -1478,19 +1478,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这是一圈平衡（equilibrium）点，不是该模型（model）的非平凡周期轨道。"
+        "text": "圆上各点的半径继续增大、角度不变，因此它们沿半径远离原点。"
       },
       {
         "id": "B",
-        "text": "所有点同时变成原点。"
+        "text": "圆上各点的半径不变、角度持续变化，因此它们沿圆做周期运动。"
       },
       {
         "id": "C",
-        "text": "只要相图（phase portrait）上是圆，就可以叫极限环（limit cycle）。"
+        "text": "圆上各点的半径继续减小、角度不变，因此它们沿半径趋向原点。"
       },
       {
         "id": "D",
-        "text": "仍有周期 2π/0。"
+        "text": "圆上各点的半径和角度都不变，因此每一点都是平衡（equilibrium）点。"
       }
     ],
     "constraints": []
@@ -1498,13 +1498,13 @@
   {
     "id": "p04-amplitude-axis",
     "slug": "p04-amplitude-axis",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C03-S02",
     "part": "4",
     "chapter": "4.3",
-    "title": "分岔图的纵轴为何不能混用",
+    "title": "选择参数扫描的摘要",
     "type": "choice",
-    "statement": "比较开关与径向振子的参数（parameter）扫描，哪项正确？",
+    "statement": "开关扫描记录平衡（equilibrium）状态（state） x；径向振子扫描记录长期振荡。哪种记录方式适合比较两种参数（parameter）转变？",
     "learning_targets": [
       "T2"
     ],
@@ -1516,19 +1516,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只要无量纲（dimensionless），任何数值都能合成同一物理量。"
+        "text": "两类扫描都记录末时刻的 x，并将该值作为长期振幅（amplitude）。"
       },
       {
         "id": "B",
-        "text": "振子的振幅（amplitude）只由最后一个时刻决定。"
+        "text": "两类扫描都记录末时刻的 x²，并将该值作为整个时段的平均状态。"
       },
       {
         "id": "C",
-        "text": "开关平衡（equilibrium）状态（state） x 与振子长期半径 R 是不同摘要，应分别标轴。"
+        "text": "开关扫描记录平衡时的 x，振子扫描记录长期半径 R，并为两条纵轴分别写明所记录的量。"
       },
       {
         "id": "D",
-        "text": "把振子的单个末态 x 叫长期振幅总是正确。"
+        "text": "开关扫描记录初始 x，振子扫描记录第一个峰的高度，并把这些值画成长期稳定分支。"
       }
     ],
     "constraints": []
@@ -1536,13 +1536,13 @@
   {
     "id": "p04-hopf-evidence",
     "slug": "p04-hopf-evidence",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C03-S02",
     "part": "4",
     "chapter": "4.3",
-    "title": "特征值穿过虚轴以后",
+    "title": "从径向方程判断转变",
     "type": "choice",
-    "statement": "原点特征值（eigenvalue）为 μ±iω，ω>0。对于指定的径向模型（model），哪些支持超临界（supercritical） Hopf 转变？",
+    "statement": "径向模型（model）为 R′=μR−R³、θ′=ω，ω>0。原点特征值（eigenvalue）为 μ±iω。哪些判断支持本例的超临界（supercritical）Hopf 转变？",
     "learning_targets": [
       "T2"
     ],
@@ -1554,19 +1554,19 @@
     "options": [
       {
         "id": "A",
-        "text": "径向三次项的负号决定了本例的幅度饱和。"
+        "text": "当 μ>0 且 R 较大时，−R³ 抑制 μR 引起的增长，使半径能够趋向有限值。"
       },
       {
         "id": "B",
-        "text": "μ 由负变正时原点从吸引变排斥。"
+        "text": "μ 从负变正时，小半径的变化方向从向原点收缩变为远离原点。"
       },
       {
         "id": "C",
-        "text": "稳定周期半径 sqrt(μ) 从零连续出现。"
+        "text": "μ>0 时存在稳定周期半径 sqrt(μ)，且该半径随 μ 从零增大而连续增大。"
       },
       {
         "id": "D",
-        "text": "对任意其他非线性项，只要同样线性化（linearization）就必然有同样稳定环。"
+        "text": "把径向方程改为 R′=μR+R³ 后，μ>0 时仍有相同的稳定周期半径 sqrt(μ)。"
       }
     ],
     "constraints": []
@@ -1658,13 +1658,13 @@
   {
     "id": "p04-interval-invariance",
     "slug": "p04-interval-invariance",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C04-S01",
     "part": "4",
     "chapter": "4.4",
     "title": "为什么选择 0≤r≤4",
     "type": "choice",
-    "statement": "logistic 映射（logistic map）中 x∈[0,1]。哪些成立？",
+    "statement": "logistic 映射（logistic map）为 x[n+1]=r × x[n] × (1−x[n])。当当前值 x[n]∈[0,1] 时，哪些判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1676,19 +1676,19 @@
     "options": [
       {
         "id": "A",
-        "text": "0≤r≤4 时下一代仍在 [0,1]。"
+        "text": "当 0≤r≤4 时，从 [0,1] 中任一点更新得到的下一代仍在 [0,1] 中。"
       },
       {
         "id": "B",
-        "text": "只要初值（initial condition）在 [0,1]，任意 r 都保持区间。"
+        "text": "当 r=5 时，从 [0,1] 中任一点更新得到的下一代仍在 [0,1] 中。"
       },
       {
         "id": "C",
-        "text": "这个区间结论不等于任意 r 都有相同长期行为。"
+        "text": "下一代仍在 [0,1] 中，并不能说明不同 r 的序列都会收敛到同一个固定点（fixed point）。"
       },
       {
         "id": "D",
-        "text": "x(1−x) 在区间内非负且不超过 1/4。"
+        "text": "在 x∈[0,1] 上，x(1−x) 的取值位于 0 与 1/4 之间。"
       }
     ],
     "constraints": []
@@ -1696,13 +1696,13 @@
   {
     "id": "p04-map-stability",
     "slug": "p04-map-stability",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C04-S01",
     "part": "4",
     "chapter": "4.4",
-    "title": "映射的不动点如何判断稳定",
+    "title": "判断非零不动点",
     "type": "choice",
-    "statement": "非零不动点（fixed point） x*=1−1/r（r>1），映射导数（derivative）在该点为 2−r。哪个是局部吸引的严格条件？",
+    "statement": "逻辑斯蒂映射（logistic map）的非零不动点（fixed point）为 x*=1−1/r，r>1，该点导数（derivative）为 2−r。按导数绝对值小于 1 的严格判据，局部吸引对应的完整参数（parameter）范围是哪项？",
     "learning_targets": [
       "T3"
     ],
@@ -1714,19 +1714,19 @@
     "options": [
       {
         "id": "A",
-        "text": "2−r>0 即可。"
+        "text": "满足该严格判据的完整参数范围是 1<r<2。"
       },
       {
         "id": "B",
-        "text": "任何 r>1 都局部吸引。"
+        "text": "满足该严格判据的完整参数范围是 r>1。"
       },
       {
         "id": "C",
-        "text": "2−r<0 即可。"
+        "text": "满足该严格判据的完整参数范围是 r>2。"
       },
       {
         "id": "D",
-        "text": "|2−r|<1，即 1<r<3。"
+        "text": "满足该严格判据的完整参数范围是 1<r<3。"
       }
     ],
     "constraints": []
@@ -1734,13 +1734,13 @@
   {
     "id": "p04-periodic-not-chaotic",
     "slug": "p04-periodic-not-chaotic",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C04-S01",
     "part": "4",
     "chapter": "4.4",
-    "title": "两点交替属于混沌吗",
+    "title": "辨认交替序列",
     "type": "choice",
-    "statement": "参数（parameter） r=3.2 的后段序列在两个值附近交替，步进规则确定。哪项正确？",
+    "statement": "逻辑斯蒂映射（logistic map）在 r=3.2 时，后段序列持续在两个值附近交替。哪项最符合这一记录？",
     "learning_targets": [
       "T3"
     ],
@@ -1752,19 +1752,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两点周期违反一维 ODE 无周期结论，因此程序错了。"
+        "text": "这段序列表明，一维连续自治方程存在非恒定周期解。"
       },
       {
         "id": "B",
-        "text": "只要一直变化就是混沌（chaos）。"
+        "text": "这段序列与离散映射的周期二（period-two cycle）轨道相符。"
       },
       {
         "id": "C",
-        "text": "周期二（period-two cycle）行为与混沌不同；需继续检查长期重复和初值敏感性（sensitivity to initial conditions）。"
+        "text": "这段序列表明，轨道是不重复的混沌（chaos）轨道。"
       },
       {
         "id": "D",
-        "text": "只有随机数能产生交替。"
+        "text": "这段序列表明，系统由随机输入（input）驱动而形成两个常见取值。"
       }
     ],
     "constraints": []
@@ -1884,7 +1884,7 @@
     "chapter": "4.4",
     "title": "阈值相等算越界吗",
     "type": "choice",
-    "statement": "距离序列为 [0.01,0.05,0.1,0.08]，要求首次严格超过 0.05。正确下标是？",
+    "statement": "距离序列为 [0.01,0.05,0.1,0.08]，下标从 0 开始。首次严格超过 0.05 的值位于哪个下标？",
     "learning_targets": [
       "T3"
     ],
@@ -1896,19 +1896,19 @@
     "options": [
       {
         "id": "A",
-        "text": "1"
+        "text": "首次严格超过 0.05 的值位于下标 1。"
       },
       {
         "id": "B",
-        "text": "2"
+        "text": "首次严格超过 0.05 的值位于下标 2。"
       },
       {
         "id": "C",
-        "text": "3"
+        "text": "首次严格超过 0.05 的值位于下标 3。"
       },
       {
         "id": "D",
-        "text": "0"
+        "text": "首次严格超过 0.05 的值位于下标 0。"
       }
     ],
     "constraints": []
@@ -1916,11 +1916,11 @@
   {
     "id": "p04-bounded-separation",
     "slug": "p04-bounded-separation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C04-S02",
     "part": "4",
     "chapter": "4.4",
-    "title": "距离饱和是否推翻初值敏感性",
+    "title": "解释轨迹距离的饱和",
     "type": "choice",
     "statement": "两条轨迹（trajectory）都在 [0,1]，距离先增大后不再指数上升。哪些成立？",
     "learning_targets": [
@@ -1934,19 +1934,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这证明前段增长一定是随机噪声。"
+        "text": "后段距离停止指数增大，说明前段测得的切向增长率应改记为零。"
       },
       {
         "id": "B",
-        "text": "应区分小扰动增长窗口与饱和阶段。"
+        "text": "估计小扰动增长率时，需要区分两轨迹仍很接近的时段和距离已接近区间尺度的时段。"
       },
       {
         "id": "C",
-        "text": "距离最多为 1，因此不可能永远指数增长。"
+        "text": "两个状态（state）都在 [0,1] 中，因此它们的距离最多为 1。"
       },
       {
         "id": "D",
-        "text": "远离后局部线性扰动近似可能不再适用。"
+        "text": "两轨迹相距较远时，用局部导数（derivative）预测两者距离的线性近似可能不再准确。"
       }
     ],
     "constraints": []
@@ -1954,13 +1954,13 @@
   {
     "id": "p04-precision-merge",
     "slug": "p04-precision-merge",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C04-S02",
     "part": "4",
     "chapter": "4.4",
-    "title": "两个输入为何变成同一条轨迹",
+    "title": "比较两个浮点初值",
     "type": "choice",
-    "statement": "两个不同十进制初值（initial condition）转成 Python float 后恰好相等。能从二者轨迹（trajectory）距离全零推出什么？",
+    "statement": "两个不同十进制初值（initial condition）转成 Python float 后恰好相等，随后按相同规则迭代，轨迹（trajectory）距离全为零。这次结果说明什么？",
     "learning_targets": [
       "T3"
     ],
@@ -1972,19 +1972,19 @@
     "options": [
       {
         "id": "A",
-        "text": "添加随机噪声后原问题自动得到解答。"
+        "text": "两个十进制初值被保存为同一个浮点数，因此这次计算实际上重复了同一条轨迹。"
       },
       {
         "id": "B",
-        "text": "数学模型（model）不敏感。"
+        "text": "两个初值之间原有的数学差异，是在后续迭代中被动力学逐步压缩到零的。"
       },
       {
         "id": "C",
-        "text": "只能说明这次计算实际用了同一浮点初值，实验未保留想比较的扰动。"
+        "text": "这次零距离说明，所选映射会使其他非零初值差也始终保持零距离。"
       },
       {
         "id": "D",
-        "text": "已证明真实预测无限准确。"
+        "text": "这次零距离足以估计出一个负的渐近扰动增长指数。"
       }
     ],
     "constraints": []
@@ -1992,13 +1992,13 @@
   {
     "id": "p04-map-not-step",
     "slug": "p04-map-not-step",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C04-S02",
     "part": "4",
     "chapter": "4.4",
-    "title": "怎样检查映射计算误差",
+    "title": "检查代次映射的精度",
     "type": "choice",
-    "statement": "对原始 logistic 代次映射，哪个精度检查成立？",
+    "statement": "原始逻辑斯蒂映射（logistic map）每代严格按 xₙ₊₁=r xₙ(1−xₙ) 更新。哪种比较能在保留同一代次模型（model）的前提下检查数值误差（numerical error）？",
     "learning_targets": [
       "T3"
     ],
@@ -2010,19 +2010,19 @@
     "options": [
       {
         "id": "A",
-        "text": "把一步拆成两次半步更新而不说明新模型（model）。"
+        "text": "将原来每代的更新改为两次参数（parameter） r/2 的更新，再比较末代结果。"
       },
       {
         "id": "B",
-        "text": "比较不同算术精度、表达式求值与初值（initial condition）表示；保留原代次定义。"
+        "text": "将参数 r 减半、迭代代数加倍，再把所得序列与原序列比较。"
       },
       {
         "id": "C",
-        "text": "把 r 除以二即可得到更精确的相同轨迹（trajectory）。"
+        "text": "保持实际运算精度不变，将每代数值多显示十位小数后比较。"
       },
       {
         "id": "D",
-        "text": "使用更多小数位打印即可增加计算精度。"
+        "text": "保持初值（initial condition）、r 和迭代代数不变，用更高算术精度重新计算并比较各代结果。"
       }
     ],
     "constraints": []
@@ -2116,13 +2116,13 @@
   {
     "id": "p04-finite-positive",
     "slug": "p04-finite-positive",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C04-S03",
     "part": "4",
     "chapter": "4.4",
-    "title": "有限时间正值能证明什么",
+    "title": "解释短窗口增长率",
     "type": "choice",
-    "statement": "某条轨迹（trajectory）一个短窗口的对数导数（derivative）均值为正。哪项正确？",
+    "statement": "在一个短窗口内，沿某条映射轨迹（trajectory）计算的 log|f′(x)| 均值为正。哪项是这次计算直接支持的结论？",
     "learning_targets": [
       "T3"
     ],
@@ -2134,19 +2134,19 @@
     "options": [
       {
         "id": "A",
-        "text": "所有初值（initial condition）的长期指数完全相同。"
+        "text": "该轨迹的无限时间平均增长率为正。"
       },
       {
         "id": "B",
-        "text": "任意观测（observation）误差都永远指数增长。"
+        "text": "该轨迹在这个窗口内的平均切向增长率为正。"
       },
       {
         "id": "C",
-        "text": "已经证明整个参数（parameter）区间都混沌（chaos）。"
+        "text": "窗口内每一步的局部导数（derivative）绝对值均大于 1。"
       },
       {
         "id": "D",
-        "text": "它是该轨迹该窗口的切向扩张证据，仍需检查窗口、暂态（transient）、轨道和数值精度。"
+        "text": "该参数（parameter）下所有初值（initial condition）的平均增长率为正。"
       }
     ],
     "constraints": []
@@ -2154,13 +2154,13 @@
   {
     "id": "p04-log-zero",
     "slug": "p04-log-zero",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C04-S03",
     "part": "4",
     "chapter": "4.4",
-    "title": "怎样处理零导数",
+    "title": "遇到零局部导数",
     "type": "choice",
-    "statement": "局部导数（derivative）恰为零。对对数增长率的处理哪项正确？",
+    "statement": "估计平均 log|f′(x)| 时，一步的局部导数（derivative）恰为零。将这一对数项按 |f′(x)| 从正数趋向零的极限（limit）解释，其值是什么？",
     "learning_targets": [
       "T3"
     ],
@@ -2172,19 +2172,19 @@
     "options": [
       {
         "id": "A",
-        "text": "强行返回 0，表示不变。"
+        "text": "这一对数项按极限解释为负无穷。"
       },
       {
         "id": "B",
-        "text": "换成 10⁻⁸ 且不说明。"
+        "text": "这一对数项的取值为 1。"
       },
       {
         "id": "C",
-        "text": "数学上对数为负无穷；计算契约可返回明确的缺失标记，并解释原因。"
+        "text": "这一对数项的取值为 0。"
       },
       {
         "id": "D",
-        "text": "把这一项删除，平均分母保持原样。"
+        "text": "这一对数项按极限解释为正无穷。"
       }
     ],
     "constraints": []
@@ -2192,13 +2192,13 @@
   {
     "id": "p04-exact-special-orbit",
     "slug": "p04-exact-special-orbit",
-    "version": "1",
+    "version": "3",
     "lesson_id": "P04-C04-S03",
     "part": "4",
     "chapter": "4.4",
-    "title": "特殊初值为何推翻不了典型行为",
+    "title": "解释一个特殊初值",
     "type": "choice",
-    "statement": "r=4，初值（initial condition） x0=0.5 给出 0.5→1→0→0。哪项正确？",
+    "statement": "逻辑斯蒂映射（logistic map）在 r=4、x0=0.5 时给出 0.5→1→0→0。关于该轨道，哪项正确？",
     "learning_targets": [
       "T3"
     ],
@@ -2210,19 +2210,19 @@
     "options": [
       {
         "id": "A",
-        "text": "r=4 的每条轨迹（trajectory）都如此。"
+        "text": "从 x0=0.25 出发，也会沿这条序列到达零。"
       },
       {
         "id": "B",
-        "text": "存在特殊轨道；不能把它外推为所有初值，也不能把所有初值强称为混沌（chaos）。"
+        "text": "这条序列到达零，说明零点附近的微小偏差会逐步缩小。"
       },
       {
         "id": "C",
-        "text": "计算必须加噪声来阻止这条轨道。"
+        "text": "序列中的 0.5 与 1 构成稳定的周期二（period-two cycle）轨道。"
       },
       {
         "id": "D",
-        "text": "数学确定性排除了复杂长期行为。"
+        "text": "这条序列在两次更新后到达固定点（fixed point）0，随后保持在零。"
       }
     ],
     "constraints": []
@@ -2230,13 +2230,13 @@
   {
     "id": "p04-digits-vs-certainty",
     "slug": "p04-digits-vs-certainty",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C04-S03",
     "part": "4",
     "chapter": "4.4",
-    "title": "增加算术精度意味着什么",
+    "title": "比较两个运算精度",
     "type": "choice",
-    "statement": "两个精度版本在早期一致、后期分离。哪项解读合适？",
+    "statement": "敏感动力系统的两个算术精度版本使用相同数学初值（initial condition）和方程，早期一致、后期分离。怎样使用更高精度的结果？",
     "learning_targets": [
       "T3"
     ],
@@ -2248,19 +2248,19 @@
     "options": [
       {
         "id": "A",
-        "text": "舍入误差（round-off error）会被动力学放大；更高精度提供更长参考窗口，但仍需模型（model）与初值（initial condition）误差分析。"
+        "text": "将两个精度版本在各时刻的数值取平均，就可以抵消被动力学放大的计算误差。"
       },
       {
         "id": "B",
-        "text": "舍入本质上就是随机过程。"
+        "text": "低精度版本与高精度版本分离，说明原方程的解析性质已不适用于低精度计算。"
       },
       {
         "id": "C",
-        "text": "只选与预期图像最像的版本即可。"
+        "text": "提高算术精度会同时消除初始状态（state）的测量误差，因此可以无限延长逐点预测。"
       },
       {
         "id": "D",
-        "text": "精度较高的版本一定等于真实生理系统。"
+        "text": "用更高精度结果比较舍入误差（round-off error）何时增大，同时继续检查初值测量误差和方程假设是否影响预测。"
       }
     ],
     "constraints": []
@@ -2397,19 +2397,19 @@
     "options": [
       {
         "id": "A",
-        "text": "V 可以在另一非零状态（state）等于零而仍称相对原点正定（positive definite）。"
+        "text": "区域内另一个非零状态（state）满足 V(x)=0 时，V 仍可称为相对于原点正定（positive definite）。"
       },
       {
         "id": "B",
-        "text": "V(0)=0。"
+        "text": "V 在原点的取值应满足 V(0)=0。"
       },
       {
         "id": "C",
-        "text": "区域内所有非零 x 都有 V(x)>0。"
+        "text": "区域内每个非零 x 都应满足 V(x)>0。"
       },
       {
         "id": "D",
-        "text": "只检查采样点 V≥0 即可证明。"
+        "text": "所选采样点都满足 V(x)≥0，就足以证明整个区域内的正定性。"
       }
     ],
     "constraints": []
@@ -2436,19 +2436,19 @@
     "options": [
       {
         "id": "A",
-        "text": "原点局部渐近稳定（local asymptotic stability）。"
+        "text": "从原点附近足够小的初值（initial condition）出发，解会回到原点，因此原点局部渐近稳定（local asymptotic stability）。"
       },
       {
         "id": "B",
-        "text": "对任意 |x0|<1，可选包含初值（initial condition）的子水平集（sublevel set） V≤c<1/2，使轨迹（trajectory）保持在衰减区。"
+        "text": "对 |x0|<1，可以选取含有 x0 的子水平集（sublevel set）V≤c<1/2，使解留在 |x|<1 且 V 不增大的区域。"
       },
       {
         "id": "C",
-        "text": "因为 V 正定（positive definite），所以所有实数初值都趋向 0。"
+        "text": "V 在非零 x 处为正，因此从 |x0|>1 出发的解也会趋向原点。"
       },
       {
         "id": "D",
-        "text": "±1 是边界平衡（equilibrium），不能并入原点的吸引域（basin of attraction）。"
+        "text": "从 x0=±1 出发的解保持在对应平衡（equilibrium）点，不属于原点的吸引域（basin of attraction）。"
       }
     ],
     "constraints": []
@@ -2456,13 +2456,13 @@
   {
     "id": "p04-global-decay",
     "slug": "p04-global-decay",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C05-S01",
     "part": "4",
     "chapter": "4.5",
-    "title": "全局结论还需要什么",
+    "title": "论证全空间的回归",
     "type": "choice",
-    "statement": "对 x′=−x，V=x²/2，V′=−x²。哪组理由支持全局渐近稳定（asymptotic stability）？",
+    "statement": "对 x′=−x，取 V=x²/2。已知 V 正定（positive definite）、径向无界（radially unbounded），且解对所有 t≥0 存在。下面哪项补充事实足以用严格下降判据推出原点在全空间渐近稳定（asymptotic stability）？",
     "learning_targets": [
       "T4"
     ],
@@ -2475,19 +2475,19 @@
     "options": [
       {
         "id": "A",
-        "text": "正定（positive definite）、全空间非零点严格负导数（derivative）、径向无界（radially unbounded）且解全局存在；也可直接用 x=x0 exp(−t) 核对。"
+        "text": "对所有非零实数 x，V′=−x²<0。"
       },
       {
         "id": "B",
-        "text": "仅因为 V 有平方。"
+        "text": "在原点 x=0，有 V′=0。"
       },
       {
         "id": "C",
-        "text": "只在原点导数为零就足够。"
+        "text": "对所画的五条轨迹（trajectory），V 都随时间下降。"
       },
       {
         "id": "D",
-        "text": "仅因为画出的五条轨迹（trajectory）下降。"
+        "text": "在 abs(x)<1 的非零点，V′<0。"
       }
     ],
     "constraints": []
@@ -2495,13 +2495,13 @@
   {
     "id": "p04-function-vs-exponent",
     "slug": "p04-function-vs-exponent",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C05-S01",
     "part": "4",
     "chapter": "4.5",
-    "title": "同姓不代表同一种判据",
+    "title": "区分两种李雅普诺夫工具",
     "type": "choice",
-    "statement": "Lyapunov 函数（Lyapunov function）与 Lyapunov 指数（Lyapunov exponent）有何区别？",
+    "statement": "关于李雅普诺夫函数（Lyapunov function）与李雅普诺夫指数（Lyapunov exponent），哪项区分正确？",
     "learning_targets": [
       "T4"
     ],
@@ -2514,19 +2514,19 @@
     "options": [
       {
         "id": "A",
-        "text": "函数为正意味着指数为正。"
+        "text": "李雅普诺夫函数取正值，表示邻近扰动也具有正的指数增长率。"
       },
       {
         "id": "B",
-        "text": "指数的有限时间估计可自动替代函数的区域证明。"
+        "text": "一段有限时间内的增长指数为负，就能代替整个区域内候选函数沿运动下降的证明。"
       },
       {
         "id": "C",
-        "text": "前者是状态（state）上的候选标量及符号判据，后者描述邻近扰动沿轨迹（trajectory）的增长率。"
+        "text": "函数方法检查 V(x) 及其沿运动的变化率，指数则衡量邻近扰动沿一条轨迹（trajectory）增长或缩小的速率。"
       },
       {
         "id": "D",
-        "text": "它们都是同一条曲线的不同名字。"
+        "text": "候选函数沿运动的导数（derivative）处处为零时，系统的每条轨迹都停在初始点。"
       }
     ],
     "constraints": []
@@ -2644,13 +2644,13 @@
   {
     "id": "p04-semidefinite-counterexample",
     "slug": "p04-semidefinite-counterexample",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C05-S02",
     "part": "4",
     "chapter": "4.5",
-    "title": "导数非正能保证收敛到原点吗",
+    "title": "纯旋转中的标量变化",
     "type": "choice",
-    "statement": "纯旋转 x′=−y，y′=x，V=(x²+y²)/2。正确结论是？",
+    "statement": "纯旋转系统 x′=−y、y′=x，取 V=(x²+y²)/2。非零初值（initial condition）的半径和长期状态（state）怎样？",
     "learning_targets": [
       "T4"
     ],
@@ -2663,19 +2663,19 @@
     "options": [
       {
         "id": "A",
-        "text": "V′=0，原点稳定但不渐近稳定（asymptotic stability），非零轨迹（trajectory）沿圆旋转。"
+        "text": "V′=0，半径保持不变，轨迹（trajectory）停在初始点。"
       },
       {
         "id": "B",
-        "text": "V′=0，所有轨迹都保持同一个点。"
+        "text": "V′=0，半径保持不变，轨迹沿圆运动。"
       },
       {
         "id": "C",
-        "text": "V>0，所以原点不稳定。"
+        "text": "V′<0，半径逐步缩小，轨迹趋向原点。"
       },
       {
         "id": "D",
-        "text": "V′≤0 足以保证所有轨迹到原点。"
+        "text": "V′>0，半径逐步增大，轨迹远离原点。"
       }
     ],
     "constraints": []
@@ -2702,19 +2702,19 @@
     "options": [
       {
         "id": "A",
-        "text": "所有初值（initial condition）都趋向原点。"
+        "text": "从任意初值（initial condition）出发，两个分量最终都趋向零。"
       },
       {
         "id": "B",
-        "text": "初值 [1,2] 趋向 [0,2]。"
+        "text": "从 [1,2] 出发，x 逐渐趋向零而 y 保持为 2，因此解趋向 [0,2]。"
       },
       {
         "id": "C",
-        "text": "V′=0 的集合含非零平衡（equilibrium），不能由此宣布原点渐近稳定（asymptotic stability）。"
+        "text": "满足 V′=0 的集合包括整条 x=0 直线上的平衡（equilibrium）点，因此不能据此认定解都回到原点。"
       },
       {
         "id": "D",
-        "text": "V′=−x²≤0。"
+        "text": "沿方程求导可得 V′=−x²≤0。"
       }
     ],
     "constraints": []
@@ -2722,13 +2722,13 @@
   {
     "id": "p04-sampled-proof",
     "slug": "p04-sampled-proof",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C05-S02",
     "part": "4",
     "chapter": "4.5",
-    "title": "有限采样可替代符号条件吗",
+    "title": "由采样检查一个区域",
     "type": "choice",
-    "statement": "在圆盘内抽取 1000 个点都得到 V′<0。哪项正确？",
+    "statement": "在圆盘内抽取 1000 个非零点，候选函数均满足 V′<0。若要断言圆盘内所有非零点均满足这一条件，哪项后续做法足够？",
     "learning_targets": [
       "T4"
     ],
@@ -2741,19 +2741,19 @@
     "options": [
       {
         "id": "A",
-        "text": "点数超过 100 就自动成为数学证明。"
+        "text": "提高同一批采样点的运算精度，若结果仍为负就认为已覆盖整个圆盘。"
       },
       {
         "id": "B",
-        "text": "只检查边界更能保证所有内部点。"
+        "text": "补充检查圆周上的点，若边界点均为负就把这一结论用于全部内部点。"
       },
       {
         "id": "C",
-        "text": "已严格证明每一点都小于零，包括原点。"
+        "text": "推导对圆盘内每个非零点都成立的不等式，以证明该区域内 V′<0。"
       },
       {
         "id": "D",
-        "text": "这是数值支持；要宣称区域判据，还需解析不等式或有保证的全域核验。"
+        "text": "再随机抽取 1000 个点，若也都为负就把样本数当作全域证明。"
       }
     ],
     "constraints": []
@@ -2780,19 +2780,19 @@
     "options": [
       {
         "id": "A",
-        "text": "单位圆是不变集（invariant set），邻近轨迹（trajectory）到单位圆的距离趋于零。"
+        "text": "从单位圆出发的解留在圆上，附近轨迹（trajectory）到单位圆的距离随时间趋于零。"
       },
       {
         "id": "B",
-        "text": "所有轨迹最终在单位圆上同一点停下。"
+        "text": "不同初始角度的轨迹最终会在单位圆上的同一个点停止。"
       },
       {
         "id": "C",
-        "text": "吸引域（basin of attraction）包含所有 r>0 的初值（initial condition），原点例外。"
+        "text": "所有 r>0 的初值（initial condition）都会趋向单位圆，而精确原点不属于这个吸引域（basin of attraction）。"
       },
       {
         "id": "D",
-        "text": "一条被画出的圆必然吸引邻近初值。"
+        "text": "从 r>1 出发时，半径会继续增大，因此这些轨迹远离单位圆。"
       }
     ],
     "constraints": []
@@ -2800,13 +2800,13 @@
   {
     "id": "p04-center-counterexample",
     "slug": "p04-center-counterexample",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C01-S03",
     "part": "4",
     "chapter": "4.1",
-    "title": "不变为何不一定吸引",
+    "title": "比较相邻圆轨迹",
     "type": "choice",
-    "statement": "纯旋转 x′=−y、y′=x 的单位圆有什么性质？",
+    "statement": "纯旋转 x′=−y、y′=x。初始半径为 1.1 的轨迹（trajectory）到单位圆的最短距离随时间怎样变化？",
     "learning_targets": [
       "T1"
     ],
@@ -2819,19 +2819,19 @@
     "options": [
       {
         "id": "A",
-        "text": "它不变，但半径 1.1 的轨迹（trajectory）到它的距离始终 0.1。"
+        "text": "这段最短距离随角度在 0 与 0.1 之间变化。"
       },
       {
         "id": "B",
-        "text": "它吸引整个平面。"
+        "text": "这段最短距离按 0.1exp(−t) 衰减。"
       },
       {
         "id": "C",
-        "text": "圆上运动就说明混沌（chaos）。"
+        "text": "轨迹每转一圈，这段最短距离就减少 0.1。"
       },
       {
         "id": "D",
-        "text": "平衡（equilibrium）点是唯一可能的吸引子（attractor）。"
+        "text": "这段最短距离在所有时刻都保持为 0.1。"
       }
     ],
     "constraints": []
@@ -3028,13 +3028,13 @@
   {
     "id": "p04-plane-autonomous",
     "slug": "p04-plane-autonomous",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C06-S01",
     "part": "4",
     "chapter": "4.6",
-    "title": "平面定理适用在哪里",
+    "title": "应用平面极限集定理",
     "type": "choice",
-    "statement": "采用本节给出的庞加莱–本迪克松定理（Poincaré–Bendixson theorem）限定版本。哪项正确？",
+    "statement": "考察光滑系统的前向轨迹（trajectory）、所处的紧集（compact set）及长期极限（limit）集合中的平衡（equilibrium）点。按本节庞加莱–本迪克松定理（Poincaré–Bendixson theorem），哪组条件足以保证极限集是周期轨道？",
     "learning_targets": [
       "T3"
     ],
@@ -3047,19 +3047,19 @@
     "options": [
       {
         "id": "A",
-        "text": "平面自治光滑流的前向轨迹（trajectory）留在紧集（compact set），且其极限（limit）集不含平衡（equilibrium）点时，极限集是周期轨道。"
+        "text": "系统是平面自治系统（autonomous system），轨迹留在紧集内，但极限集含有吸引平衡点。"
       },
       {
         "id": "B",
-        "text": "任意二维周期受迫系统都只能有周期解。"
+        "text": "系统是平面自治系统，轨迹留在紧集内，且极限集不含平衡点。"
       },
       {
         "id": "C",
-        "text": "三维自治系统（autonomous system）一定混沌（chaos）。"
+        "text": "系统是平面周期受迫系统，轨迹留在紧集内，且极限集不含平衡点。"
       },
       {
         "id": "D",
-        "text": "不含平衡点这项可以无条件删除。"
+        "text": "系统是三维自治系统，轨迹留在紧集内，且极限集不含平衡点。"
       }
     ],
     "constraints": []
@@ -3067,13 +3067,13 @@
   {
     "id": "p04-lorenz-equilibria",
     "slug": "p04-lorenz-equilibria",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C06-S01",
     "part": "4",
     "chapter": "4.6",
-    "title": "平衡的位置与变量含义",
+    "title": "求洛伦兹平衡",
     "type": "choice",
-    "statement": "洛伦兹系统（Lorenz system）使用正参数（parameter） σ、ρ、β。哪些说法成立？",
+    "statement": "洛伦兹系统（Lorenz system）为 x′=σ(y−x)、y′=x(ρ−z)−y、z′=xy−βz，σ、ρ、β>0。哪些判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -3086,19 +3086,19 @@
     "options": [
       {
         "id": "A",
-        "text": "原点对所有正参数都是平衡（equilibrium）。"
+        "text": "原点对所有给定正参数（parameter）都是平衡（equilibrium）。"
       },
       {
         "id": "B",
-        "text": "ρ>1 时有两个非零平衡，其 x、y 必须同号。"
+        "text": "ρ>1 时存在两个非零平衡，且各自的 x、y 同号。"
       },
       {
         "id": "C",
-        "text": "x<0 表示负的所追踪物质总量（tracked amount）。"
+        "text": "ρ>1 时两个非零平衡中，一个满足 x=−y≠0。"
       },
       {
         "id": "D",
-        "text": "ρ=1 时另有两个与原点不同的平衡。"
+        "text": "ρ=1 时仍有两个不同于原点的非零平衡。"
       }
     ],
     "constraints": []
@@ -3226,13 +3226,13 @@
   {
     "id": "p04-lorenz-local-scope",
     "slug": "p04-lorenz-local-scope",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C06-S01",
     "part": "4",
     "chapter": "4.6",
-    "title": "精确平衡不是稳定性检验",
+    "title": "检查原点的稳定性",
     "type": "choice",
-    "statement": "ρ=28 时从精确原点出发，程序一直返回零。正确解释是什么？",
+    "statement": "洛伦兹系统（Lorenz system）在 ρ=28 时，从精确原点起步的数值轨迹（trajectory）一直为零。下一步怎样检查原点的稳定性？",
     "learning_targets": [
       "T3"
     ],
@@ -3245,19 +3245,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这是平衡（equilibrium）解；判断稳定性还需检查扰动与雅可比矩阵（Jacobian matrix）。"
+        "text": "计算原点的雅可比矩阵（Jacobian matrix），并从邻近非零初值（initial condition）观察状态（state）与原点的距离怎样变化。"
       },
       {
         "id": "B",
-        "text": "这证明原点吸引所有邻近初值（initial condition）。"
+        "text": "把从精确原点起步的计算时长加倍，若仍为零就认定邻近初值也会回到原点。"
       },
       {
         "id": "C",
-        "text": "应偷偷加入随机扰动使其画出蝴蝶。"
+        "text": "增加零轨迹显示的小数位，若显示仍为零就认定原点能够吸引邻近状态。"
       },
       {
         "id": "D",
-        "text": "只要有不稳定平衡就不可能有吸引子（attractor）。"
+        "text": "重复多次从精确原点起步，若每次都为零就认定原点能够吸引邻近状态。"
       }
     ],
     "constraints": []
@@ -3265,13 +3265,13 @@
   {
     "id": "p04-volume-bounded",
     "slug": "p04-volume-bounded",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C06-S02",
     "part": "4",
     "chapter": "4.6",
-    "title": "体积收缩是否保证有界",
+    "title": "比较面积与单条轨迹",
     "type": "choice",
-    "statement": "线性系统 x′=x、y′=−2y 的散度（divergence）为 −1。可以得到什么？",
+    "statement": "线性系统 x′=x、y′=−2y 的散度（divergence）为 −1。从 [1,1] 起步，哪项同时描述邻域面积和该轨迹（trajectory）？",
     "learning_targets": [
       "T3"
     ],
@@ -3284,19 +3284,19 @@
     "options": [
       {
         "id": "A",
-        "text": "面积缩小，但 x₀≠0 的轨迹（trajectory）可以无界逃逸。"
+        "text": "面积按 exp(t) 增长，x 按 exp(t) 增长。"
       },
       {
         "id": "B",
-        "text": "每个方向都收缩。"
+        "text": "面积按 exp(−t) 缩小，x 按 exp(−t) 衰减。"
       },
       {
         "id": "C",
-        "text": "所有轨迹都趋于原点。"
+        "text": "面积按 exp(−t) 缩小，x 按 exp(t) 增长。"
       },
       {
         "id": "D",
-        "text": "负散度自动给出有界吸引区域。"
+        "text": "面积按 exp(−t) 缩小，x 保持初值（initial condition） 1。"
       }
     ],
     "constraints": []
@@ -3612,13 +3612,13 @@
   {
     "id": "p04-short-window-check",
     "slug": "p04-short-window-check",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C06-S02",
     "part": "4",
     "chapter": "4.6",
-    "title": "混沌轨迹怎样做收敛对照",
+    "title": "比较短窗与长窗的数值结果",
     "type": "choice",
-    "statement": "短窗细化步长后误差下降，长窗两轨迹（trajectory）逐点分离。哪项合理？",
+    "statement": "混沌（chaos）计算中，短窗细化步长后误差下降，长窗两轨迹（trajectory）逐点分离。下一步怎样检验数值结果？",
     "learning_targets": [
       "T3"
     ],
@@ -3631,19 +3631,19 @@
     "options": [
       {
         "id": "A",
-        "text": "先检查短窗收敛，再比较长窗截面与限定时间摘要；不能要求长窗逐点一致。"
+        "text": "继续比较短窗的步长误差，并在长窗中比较截面点的位置分布及同长度窗口的平均增长率。"
       },
       {
         "id": "B",
-        "text": "长窗分离一定证明积分器错误。"
+        "text": "以长窗首次分离为依据，将此前短窗中随步长细化而减小的误差也判为不收敛。"
       },
       {
         "id": "C",
-        "text": "只要图像像蝴蝶就无需检查步长。"
+        "text": "逐渐放宽两轨迹的逐点差值容限，直到长窗通过比较，再把通过视作步长误差已减小。"
       },
       {
         "id": "D",
-        "text": "可以删掉不同的时刻以制造一致。"
+        "text": "将长窗中已经分离的两条轨迹逐点取平均，再把平均曲线用作原方程的精确解。"
       }
     ],
     "constraints": []
@@ -3651,7 +3651,7 @@
   {
     "id": "p04-section-projection",
     "slug": "p04-section-projection",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C06-S03",
     "part": "4",
     "chapter": "4.6",
@@ -3670,19 +3670,19 @@
     "options": [
       {
         "id": "A",
-        "text": "完整截面点包含两个坐标。"
+        "text": "在给定 z=c 后，完整截面点仍需 x、y 两个坐标。"
       },
       {
         "id": "B",
-        "text": "投影（projection）散点未必是一条单值函数曲线。"
+        "text": "只画 x[n] 与 x[n+1] 时，同一横坐标可能对应多个纵坐标。"
       },
       {
         "id": "C",
-        "text": "同一 x 值必然对应唯一的完整状态（state）。"
+        "text": "固定 x[n] 后，截面上的 y[n] 可由截面高度 c 唯一确定。"
       },
       {
         "id": "D",
-        "text": "无交点就能证明没有混沌（chaos）。"
+        "text": "将不同方向的穿越混合记录，仍与原定向返回映射完全相同。"
       }
     ],
     "constraints": []
@@ -3909,13 +3909,13 @@
   {
     "id": "p04-section-limits",
     "slug": "p04-section-limits",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C06-S03",
     "part": "4",
     "chapter": "4.6",
-    "title": "没有检测到交点意味着什么",
+    "title": "解释未检测到穿越",
     "type": "choice",
-    "statement": "粗采样没有发现 zᵢ<c≤zᵢ₊₁。哪项正确？",
+    "statement": "粗采样没有出现 z[i]<c≤z[i+1]，但同一采样间隔内可能先上穿再下穿。为了检查是否漏掉定向截面事件，哪项合理？",
     "learning_targets": [
       "T3"
     ],
@@ -3928,19 +3928,19 @@
     "options": [
       {
         "id": "A",
-        "text": "可能漏掉段内穿越，应细化采样并检查截面是否横截。"
+        "text": "保持原采样时刻不变，将已保存的 z 值显示为更多小数位。"
       },
       {
         "id": "B",
-        "text": "说明完整连续轨迹（trajectory）没有交点。"
+        "text": "缩短采样间隔，并检查轨迹（trajectory）是否从 z<c 穿到 z>c，以及穿越时 z′ 是否非零。"
       },
       {
         "id": "C",
-        "text": "相切点也总是符合定向穿越规则。"
+        "text": "凡是采样值满足 z[i]=c，都将该点记作一次向上穿越。"
       },
       {
         "id": "D",
-        "text": "可以把两方向混合以增加样本而不说明。"
+        "text": "只比较区间两端的 z 值，若两端位于截面同侧，就认定中间没有穿越。"
       }
     ],
     "constraints": []
@@ -4130,13 +4130,13 @@
   {
     "id": "p04-growth-units",
     "slug": "p04-growth-units",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C06-S04",
     "part": "4",
     "chapter": "4.6",
-    "title": "增加归一化次数会提高增长率吗",
+    "title": "归一化间隔与增长率",
     "type": "choice",
-    "statement": "相同总时间的切向演化，仅把归一化间隔减半。哪项正确？",
+    "statement": "切向演化总时间为 T，每段归一化前相对单位扰动的伸长倍数为 q[i]。在同一轨迹（trajectory）上把归一化间隔减半，怎样保持每单位时间增长率的定义？",
     "learning_targets": [
       "T3"
     ],
@@ -4149,19 +4149,19 @@
     "options": [
       {
         "id": "A",
-        "text": "应按总时间归一，分段更密本身不应使增长率翻倍。"
+        "text": "将各段伸长倍数相加后除以总时间，即用 sum(q[i])/T 计算增长率。"
       },
       {
         "id": "B",
-        "text": "应按段数归一，越多段越准确地表示每单位时间。"
+        "text": "将各段对数伸长相加后除以段数，并把这个每段均值解释为每单位时间增长率。"
       },
       {
         "id": "C",
-        "text": "任何初始方向都会给出最大渐近指数。"
+        "text": "将各段对数伸长相加后除以总时间，即用 sum(log(q[i]))/T 计算增长率。"
       },
       {
         "id": "D",
-        "text": "零扰动也可先取对数再归一。"
+        "text": "先把各段伸长倍数相加再取对数，最后除以总时间，即用 log(sum(q[i]))/T 计算增长率。"
       }
     ],
     "constraints": []
@@ -4169,7 +4169,7 @@
   {
     "id": "p04-quasiperiodic-counterexample",
     "slug": "p04-quasiperiodic-counterexample",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C06-S04",
     "part": "4",
     "chapter": "4.6",
@@ -4188,19 +4188,19 @@
     "options": [
       {
         "id": "A",
-        "text": "一般没有共同有限周期。"
+        "text": "两角速度之比是无理数，因此两角一般不存在共同的有限周期。"
       },
       {
         "id": "B",
-        "text": "两解的相位差保持，非周期并不自动意味着指数敏感。"
+        "text": "对于两个不同初值（initial condition）的解，各自的 θ 差和 φ 差保持不变，因此缺少共同周期不表示初始差会指数增长。"
       },
       {
         "id": "C",
-        "text": "只看这两条角度方程就知道该环面吸引周围状态（state）。"
+        "text": "把角度限制在 [0,2π) 后，两解之间的相位差就会随时间缩小。"
       },
       {
         "id": "D",
-        "text": "准周期（quasiperiodicity）和混沌（chaos）在所有系统里同义。"
+        "text": "两角没有共同周期，因此两个邻近解的相位差会随时间指数增大。"
       }
     ],
     "constraints": []
@@ -4208,13 +4208,13 @@
   {
     "id": "p04-strange-evidence",
     "slug": "p04-strange-evidence",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-C06-S04",
     "part": "4",
     "chapter": "4.6",
-    "title": "图像与存在性证明的距离",
+    "title": "解释数值混沌证据",
     "type": "choice",
-    "statement": "普通浮点积分得到蝴蝶状轨迹（trajectory），若干长窗口方向增长率为正。最准确的结论是什么？",
+    "statement": "普通浮点积分得到蝴蝶状轨迹（trajectory），若干长窗口的切向增长率为正。哪项与这组证据的范围相符？",
     "learning_targets": [
       "T3"
     ],
@@ -4227,19 +4227,19 @@
     "options": [
       {
         "id": "A",
-        "text": "提供与混沌（chaos）行为相符的数值证据；奇异吸引子（strange attractor）严格存在仍需额外理论与经验证的数值。"
+        "text": "两次算出的增长率保留三位小数相同，就足以证明无限时间增长率已收敛到该值。"
       },
       {
         "id": "B",
-        "text": "本次图像已重现 Tucker 的计算机辅助证明。"
+        "text": "这些有限轨迹已经确定了所有邻近初值（initial condition）的无限时间行为。"
       },
       {
         "id": "C",
-        "text": "正增长证明所有初值（initial condition）都是混沌轨道。"
+        "text": "轨道形状与正增长率提供了混沌（chaos）的数值证据，还应检查步长细化和更换观察窗口后这些结果是否保持。"
       },
       {
         "id": "D",
-        "text": "负散度（divergence）单独证明分形维数（fractal dimension）。"
+        "text": "若同时测得散度（divergence）为负，就可由散度的符号确定吸引子（attractor）的分形维数（fractal dimension）。"
       }
     ],
     "constraints": []
@@ -4247,13 +4247,13 @@
   {
     "id": "p04-cap-equilibrium",
     "slug": "p04-cap-equilibrium",
-    "version": "2",
+    "version": "3",
     "lesson_id": "P04-SUMMARY",
     "part": "4",
     "chapter": "4.summary",
-    "title": "吸引子、吸引域与轨迹",
+    "title": "比较三种长期行为",
     "type": "choice",
-    "statement": "比较 x′=x−x³、稳定单位圆模型（model）与纯旋转。哪些陈述成立？",
+    "statement": "比较开关 x′=x−x³、径向振子 R′=R(1−R²)、θ′=1 与纯旋转 x′=−y、y′=x。哪些判断成立？",
     "learning_targets": [
       "T1"
     ],
@@ -4266,19 +4266,19 @@
     "options": [
       {
         "id": "A",
-        "text": "开关的 +1 吸引所有正初值（initial condition）。"
+        "text": "开关模型（model）从任意正初值（initial condition）出发，解都会趋向 x=1。"
       },
       {
         "id": "B",
-        "text": "稳定周期轨道是整个不变集（invariant set）合，不是某一固定相位（phase）点。"
+        "text": "径向振子的半径会趋向 1，而角度继续变化，因此稳定周期轨道是整个单位圆。"
       },
       {
         "id": "C",
-        "text": "纯旋转的任意圆都吸引周围轨迹（trajectory）。"
+        "text": "纯旋转中，从相邻半径出发的轨迹（trajectory）会逐渐靠近原来选定的圆。"
       },
       {
         "id": "D",
-        "text": "画一条轨迹就完整给出了吸引域（basin of attraction）。"
+        "text": "径向振子沿单位圆运动后，会逐渐停在 [1,0]，与初始角度无关。"
       }
     ],
     "constraints": []
@@ -4305,19 +4305,19 @@
     "options": [
       {
         "id": "A",
-        "text": "撤去周期输入后衰减的例子可属于受迫振荡（forced oscillation）。"
+        "text": "若撤去周期输入后振幅（amplitude）逐渐衰减，原来的持续振荡可以由外部驱动维持。"
       },
       {
         "id": "B",
-        "text": "自治径向模型（model） R′=μR−R³、θ′=1 在 μ>0 有稳定周期。"
+        "text": "径向模型（model）R′=μR−R³、θ′=1 在 μ>0 时具有半径 sqrt(μ) 的稳定周期轨道。"
       },
       {
         "id": "C",
-        "text": "有限扫描的跳变点必然等于解析折叠点。"
+        "text": "有限参数网格上首次出现跳变的采样值，就是方程解析得到的精确折叠值。"
       },
       {
         "id": "D",
-        "text": "延长暂态（transient）等待可检查临界减慢造成的偏差。"
+        "text": "延长每个参数点的暂态（transient）等待时间，并比较转变位置是否改变，可以检查恢复变慢造成的扫描偏移。"
       }
     ],
     "constraints": []
@@ -4669,13 +4669,13 @@
   {
     "id": "p04-cap-irregular",
     "slug": "p04-cap-irregular",
-    "version": "2",
+    "version": "3",
     "lesson_id": "P04-SUMMARY",
     "part": "4",
     "chapter": "4.summary",
-    "title": "混沌证据是否充分",
+    "title": "报告非规则轨迹计算",
     "type": "choice",
-    "statement": "已保留精确平衡（equilibrium），普通初值（initial condition）在细化短窗中收敛，长窗截面与增长率仍随窗口变化。应该怎样报告？",
+    "statement": "已保留精确平衡（equilibrium）作为对照；普通初值（initial condition）的短窗结果随步长细化而收敛，长窗截面与增长率仍随窗口变化。哪种报告方式合适？",
     "learning_targets": [
       "T3"
     ],
@@ -4688,19 +4688,19 @@
     "options": [
       {
         "id": "A",
-        "text": "列出参数（parameter）、初值、步长、暂态（transient）、窗口及差异，作为有限数值证据。"
+        "text": "把不同窗口的增长率合并为一个平均值，并把这个平均值作为已经确定的无限时间增长率。"
       },
       {
         "id": "B",
-        "text": "删去精确平衡以声称所有初值敏感。"
+        "text": "列出参数（parameter）、初值、步长和各窗口长度，同时报告短窗误差、长窗截面和增长率的变化。"
       },
       {
         "id": "C",
-        "text": "一次正增长就是严格混沌（chaos）证明。"
+        "text": "以短窗误差随细化减小为依据，认定长窗中每个时刻的状态（state）也已得到精确计算。"
       },
       {
         "id": "D",
-        "text": "只凭轨迹（trajectory）形状就确定分形维数（fractal dimension）。"
+        "text": "只使用增长率为正的窗口计算平均值，并用该平均值代表完整轨道的增长率。"
       }
     ],
     "constraints": []
@@ -4829,13 +4829,13 @@
   {
     "id": "p04-cap-scope",
     "slug": "p04-cap-scope",
-    "version": "2",
+    "version": "3",
     "lesson_id": "P04-SUMMARY",
     "part": "4",
     "chapter": "4.summary",
-    "title": "吸引、稳定与混沌的结论边界",
+    "title": "综合三类动力学证据",
     "type": "choice",
-    "statement": "已解析得到 W′≤−cW+C（c>0），散度（divergence）为负，并得到有限窗口正增长。哪些结论有依据？",
+    "statement": "非负函数 W 径向无界（radially unbounded），沿全局存在的解满足 W′≤−cW+C，其中 c>0、C≥0。同时散度（divergence）为负，某有限窗口的切向增长率为正。哪些判断有依据？",
     "learning_targets": [
       "T4"
     ],
@@ -4848,19 +4848,19 @@
     "options": [
       {
         "id": "A",
-        "text": "由积分因子可给出 W(t) 的上界。"
+        "text": "使用积分因子可得上界 W(t)≤W(0)e^(−ct)+(C/c)(1−e^(−ct))。"
       },
       {
         "id": "B",
-        "text": "足够大的 W 子水平集（sublevel set）约束最终轨迹（trajectory）范围。"
+        "text": "任取 d>C/c，解在足够长时间后会进入子水平集（sublevel set）W≤d，并留在其中。"
       },
       {
         "id": "C",
-        "text": "所有方向都收缩，所有解趋于同一平衡（equilibrium）。"
+        "text": "散度为负表示每个方向的扰动都缩小，因此有限窗口测得的正增长率是计算错误。"
       },
       {
         "id": "D",
-        "text": "还不能仅凭这三条宣称完成奇异吸引子（strange attractor）严格存在性证明。"
+        "text": "W 的上界、负散度和有限窗口正增长这三项，还不足以证明奇异吸引子（strange attractor）严格存在。"
       }
     ],
     "constraints": []
