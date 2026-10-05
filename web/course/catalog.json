@@ -4523,14 +4523,14 @@
           "id": "8.1",
           "title": "目标函数与优化几何",
           "url": "/chapters/08-01-目标函数与优化几何/",
-          "goals": "把估计和干预目标写成可计算函数，推导梯度（gradient）与曲率，并说明局部和全局最优结论的条件。",
-          "prerequisites": "3.4、6.4；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）。",
+          "goals": "从四条物质变化记录建立拟合目标，按行推导梯度和海森矩阵（Hessian matrix），再区分局部极值与全局最小。",
+          "prerequisites": "3.4、6.4；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性（convexity）。",
           "knowledge": [
-            "以参数（parameter）拟合和调节代价建立变量、尺度、目标与可行域（feasible set）",
-            "引入二次型、海森矩阵、正定性及凸性，区分驻点（stationary point）与最小值",
-            "用一维非凸反例解释初值（initial condition）依赖，检查尺度变换是否改变问题含义"
+            "手算两组候选的逐行误差，换算物理尺度，再展开二次目标",
+            "保留两行链式求导桥接，合成梯度与海森矩阵，连接等高线及坐标变换",
+            "比较四次函数的三个驻点（stationary point）、鞍点与零曲率反例，再用凸性证明全局结论"
           ],
-          "focus": "用等高线、梯度和曲率理解目标函数；联系局部形状、凸性与最优点。",
+          "focus": "数据行、系数列与偏导的对应；删常数和改权重的区别；局部曲率与全域凸性支持不同结论。",
           "available": true,
           "lessons": [
             {
@@ -4538,7 +4538,7 @@
               "chapter_id": "8.1",
               "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
               "title": "从拟合误差到二次目标",
-              "outcome": "把物质收支拟合写成有尺度的目标，推导值、梯度与海森矩阵。",
+              "outcome": "先比较四行预测误差，再按行求偏导，推导二次目标与海森矩阵，核对单位和坐标换算。",
               "number": "8.1.1",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4574,7 +4574,7 @@
               "chapter_id": "8.1",
               "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.ipynb",
               "title": "曲率凸性与局部极值",
-              "outcome": "用方向曲率区分凸性、严格极小与驻点，解释非凸反例。",
+              "outcome": "比较四次函数的三个驻点与鞍点，用局部曲率和全域凸性分别判断最小点。",
               "number": "8.1.2",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4612,14 +4612,14 @@
           "id": "8.2",
           "title": "梯度、曲率与迭代算法",
           "url": "/chapters/08-02-梯度、曲率与迭代算法/",
-          "goals": "实现梯度（gradient）法与带步长控制的牛顿法（Newton's method），按残差（residual）和条件判断停止，区分数值失败与问题无解。",
-          "prerequisites": "8.1；数学：目标函数、梯度、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
+          "goals": "从误差倍率推导固定步长范围，从局部近似推导牛顿方向，再用Armijo回溯和当前残差解释迭代结果。",
+          "prerequisites": "8.1；数学：目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
           "knowledge": [
-            "由局部近似推出梯度下降与牛顿方向，复习线性方程求解",
-            "加入固定步长的稳定范围、回溯线搜索与下降条件",
-            "比较条件数（condition number）、尺度和初值（initial condition）对收敛的影响，记录停止原因与计算预算"
+            "手算一维三种步长，再推导特征方向递推、条件数和缩放",
+            "计算负曲率牛顿上升方向，建立保护规则与二次局部收敛条件",
+            "跟算全步及等号接受半步，推导解析接受界，说明回溯尝试次数与外层停止规则"
           ],
-          "focus": "比较梯度法与牛顿方向；用回溯选择步长，结合残差判断是否停止。",
+          "focus": "等幅交替与误差归零的区别；方向和长度分别检查；接受一步、驻点达标与次数用完分别报告。",
           "available": true,
           "lessons": [
             {
@@ -4627,7 +4627,7 @@
               "chapter_id": "8.2",
               "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.ipynb",
               "title": "梯度下降的步长与条件数",
-              "outcome": "推导二次目标上的步长范围，解释振荡、病态与变量缩放。",
+              "outcome": "手算三个误差倍率，再推导固定步长范围，解释曲率差异、缩放与梯度阈值。",
               "number": "8.2.1",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4663,7 +4663,7 @@
               "chapter_id": "8.2",
               "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/02-牛顿方向与非凸曲率.ipynb",
               "title": "牛顿方向与非凸曲率",
-              "outcome": "从二阶近似推导牛顿方向，用反例判断方向是否下降。",
+              "outcome": "从局部二次近似推导牛顿方向，计算负曲率的上升反例，说明保护规则与局部收敛。",
               "number": "8.2.2",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4699,7 +4699,7 @@
               "chapter_id": "8.2",
               "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.ipynb",
               "title": "回溯与可信的停止条件",
-              "outcome": "实现Armijo回溯，区分步长接受、残差达标与预算耗尽。",
+              "outcome": "跟算全步与半步的Armijo检验，保留等号接受，区分接受步、驻点与次数用完。",
               "number": "8.2.3",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4743,14 +4743,14 @@
           "id": "8.3",
           "title": "正则化与稀疏优化",
           "url": "/chapters/08-03-正则化与稀疏优化/",
-          "goals": "推导二范数（norm）与一范数正则化（regularization）的作用，实现软阈值（soft thresholding）更新并独立选择正则强度。",
-          "prerequisites": "8.2、6.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、正则化、非光滑目标、近端更新与软阈值。",
+          "goals": "由近共线候选解释系数不稳定，推导岭与软阈值（soft thresholding），再按训练、验证和最终评估选择并检查预测。",
+          "prerequisites": "8.2、6.4；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、正则化（regularization）、非光滑目标、近端更新与软阈值。",
           "knowledge": [
-            "由不稳定回归引入二范数惩罚，区分拟合误差与参数（parameter）收缩",
-            "从一维绝对值惩罚推导软阈值，再构造近端梯度（proximal gradient）步骤",
-            "比较稀疏性、偏差和共线性，正则强度只用训练与验证数据选择"
+            "比较同一设计下的受控读数扰动，推导平均损失岭方程、特征方向收缩及条件性先验解释",
+            "从标量三种情况建立软阈值，再由二次上界推导近端梯度（proximal gradient）与次梯度残差",
+            "手算恒定训练列的标准化，固定候选与连续分段，比较三种预测并核对原坐标表达"
           ],
-          "focus": "比较平方惩罚与绝对值惩罚；由软阈值理解稀疏性，用预留数据选择正则强度。",
+          "focus": "唯一的惩罚解不等于数据区分机制；零点次梯度（subgradient）与光滑梯度不同；尺度、截距和最终数据的作用要明确。",
           "available": true,
           "lessons": [
             {
@@ -4758,7 +4758,7 @@
               "chapter_id": "8.3",
               "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.ipynb",
               "title": "岭回归与参数收缩",
-              "outcome": "推导二范数惩罚解，解释共线性、正则强度与不唯一。",
+              "outcome": "比较近共线列对读数扰动的响应，推导岭方程与特征方向收缩，区分唯一解和机制识别。",
               "number": "8.3.1",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4794,7 +4794,7 @@
               "chapter_id": "8.3",
               "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.ipynb",
               "title": "软阈值与近端梯度",
-              "outcome": "由绝对值惩罚推导软阈值，显式实现近端梯度并核验边界。",
+              "outcome": "分三种情况解绝对值惩罚，推导梯度步加软阈值，检查完整目标与次梯度条件。",
               "number": "8.3.2",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4836,7 +4836,7 @@
               "chapter_id": "8.3",
               "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.ipynb",
               "title": "缩放选参与独立预测",
-              "outcome": "只从训练集估计预处理量，只用验证集选参并保留最终评估。",
+              "outcome": "手算训练标准化，再按验证段选择惩罚、最终段评价预测，换算原坐标系数。",
               "number": "8.3.3",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4874,14 +4874,14 @@
           "id": "8.4",
           "title": "约束与最优性条件",
           "url": "/chapters/08-04-约束与最优性条件/",
-          "goals": "写出约束问题的最优性条件，检查原始与对偶残差（residual），区分可行、最优及求解器失败。",
-          "prerequisites": "8.3；数学：目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
+          "goals": "沿总量边界手算配置，以乘子及四类KKT条件核对最优，再枚举二维活跃约束并独立检查可行性。",
+          "prerequisites": "8.3；数学：目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
           "knowledge": [
-            "从盒约束和等式约束引入拉格朗日乘子（Lagrange multiplier）与对偶直觉",
-            "建立 KKT（Karush–Kuhn–Tucker，卡鲁什—库恩—塔克）条件，说明约束资格及凸性所支持的结论",
-            "对小型二次规划检查活动约束、不可行和数值残差，区分软约束与硬约束"
+            "从两路允许方向推导等式乘子，再建立不等式符号、互补及凸问题下界证明",
+            "以退化约束说明乘子必要性条件，按四类残差比较最优、可行非最优和违规候选",
+            "先证上下界加预算的可行性，枚举独立活跃行，用一维边界与有限平方罚项核对不同结论"
           ],
-          "focus": "区分可行点与最优点；结合约束方向、乘子和互补条件检查候选解。",
+          "focus": "约束行、右端和乘子顺序；KKT的必要性与凸充分性；最低需求冲突、候选违规及数值失败分别解释。",
           "available": true,
           "lessons": [
             {
@@ -4889,7 +4889,7 @@
               "chapter_id": "8.4",
               "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.ipynb",
               "title": "约束乘子与最优性条件",
-              "outcome": "推导等式及不等式的乘子条件，区分必要性、充分性与残差。",
+              "outcome": "沿总量边界手算两路配置，以乘子、四类KKT条件与对偶下界证明本例最优。",
               "number": "8.4.1",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4925,7 +4925,7 @@
               "chapter_id": "8.4",
               "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.ipynb",
               "title": "活跃集与可行性核验",
-              "outcome": "枚举小型二次规划的活跃集，区分可行最优、不可行与数值失败。",
+              "outcome": "先用最低需求判断可行性，再枚举活跃约束，比较几何边界解与平方惩罚反例。",
               "number": "8.4.2",
               "visualization": "web/optimization/index.html",
               "questions": [
@@ -4965,14 +4965,13 @@
         "assessment": true,
         "title": "拟合、稀疏与约束优化",
         "url": "/parts/08-优化方法与计算/综合练习/",
-        "goals": "构造目标并核验梯度（gradient）、下降、稀疏性和约束解。",
-        "prerequisites": "本篇8.1—8.4。",
-        "focus": "尺度与条件、迭代预算、独立预测、可行性及最优性证据。",
+        "goals": "分别求拟合系数和受限输入配置，用目标常数、梯度、次梯度与四类残差解释结果。",
+        "prerequisites": "本篇8.1—8.4的二次目标、下降与回溯、岭和L1惩罚、约束最优性。",
+        "focus": "先说清优化的是系数还是输入，再按对应目标计算；将接受一步、残差达标与约束最优分别解释。",
         "knowledge": [
-          "目标与曲率 → 凸性（convexity）和反例",
-          "下降方向与回溯 → 有限预算",
-          "正则与近端 → 独立选参",
-          "约束与活跃集（active set） → 可行性和残差（residual）"
+          "比较目标尺度、局部曲率与全域凸性，判断当前证据支持哪一种最优结论",
+          "用各题独立输入计算导数、有限回溯、近端历史与两路受限配置",
+          "按返回顺序解释结果，检查零次预算、阈值等号、最低需求冲突与停止原因"
         ],
         "lessons": [
           {
@@ -4980,18 +4979,17 @@
             "chapter_id": "8.summary",
             "path": "notebooks/08-优化方法与计算/05-篇末综合/01-拟合稀疏与约束优化.ipynb",
             "title": "拟合、稀疏与约束优化",
-            "outcome": "在统一尺度与信息边界下构造目标、实现下降与稀疏拟合，并核验约束解。",
+            "outcome": "分别求拟合系数和受限输入配置，用目标常数、梯度、次梯度与四类残差解释结果。",
             "number": "篇末综合",
             "visualization": null,
             "overview": {
-              "goals": "构造目标并核验梯度、下降、稀疏性和约束解。",
-              "prerequisites": "本篇8.1—8.4。",
-              "focus": "尺度与条件、迭代预算、独立预测、可行性及最优性证据。",
+              "goals": "分别求拟合系数和受限输入配置，用目标常数、梯度、次梯度与四类残差解释结果。",
+              "prerequisites": "本篇8.1—8.4的二次目标、下降与回溯、岭和L1惩罚、约束最优性。",
+              "focus": "先说清优化的是系数还是输入，再按对应目标计算；将接受一步、残差达标与约束最优分别解释。",
               "knowledge": [
-                "目标与曲率 → 凸性和反例",
-                "下降方向与回溯 → 有限预算",
-                "正则与近端 → 独立选参",
-                "约束与活跃集 → 可行性和残差"
+                "比较目标尺度、局部曲率与全域凸性，判断当前证据支持哪一种最优结论",
+                "用各题独立输入计算导数、有限回溯、近端历史与两路受限配置",
+                "按返回顺序解释结果，检查零次预算、阈值等号、最低需求冲突与停止原因"
               ]
             },
             "questions": [

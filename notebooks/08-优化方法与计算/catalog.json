@@ -4,7 +4,7 @@
     "chapter_id": "8.1",
     "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
     "title": "从拟合误差到二次目标",
-    "outcome": "把物质收支拟合写成有尺度的目标，推导值、梯度与海森矩阵。",
+    "outcome": "先比较四行预测误差，再按行求偏导，推导二次目标与海森矩阵，核对单位和坐标换算。",
     "number": "8.1.1",
     "visualization": "web/optimization/index.html"
   },
@@ -13,7 +13,7 @@
     "chapter_id": "8.1",
     "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.ipynb",
     "title": "曲率凸性与局部极值",
-    "outcome": "用方向曲率区分凸性、严格极小与驻点，解释非凸反例。",
+    "outcome": "比较四次函数的三个驻点与鞍点，用局部曲率和全域凸性分别判断最小点。",
     "number": "8.1.2",
     "visualization": "web/optimization/index.html"
   },
@@ -22,7 +22,7 @@
     "chapter_id": "8.2",
     "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.ipynb",
     "title": "梯度下降的步长与条件数",
-    "outcome": "推导二次目标上的步长范围，解释振荡、病态与变量缩放。",
+    "outcome": "手算三个误差倍率，再推导固定步长范围，解释曲率差异、缩放与梯度阈值。",
     "number": "8.2.1",
     "visualization": "web/optimization/index.html"
   },
@@ -31,7 +31,7 @@
     "chapter_id": "8.2",
     "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/02-牛顿方向与非凸曲率.ipynb",
     "title": "牛顿方向与非凸曲率",
-    "outcome": "从二阶近似推导牛顿方向，用反例判断方向是否下降。",
+    "outcome": "从局部二次近似推导牛顿方向，计算负曲率的上升反例，说明保护规则与局部收敛。",
     "number": "8.2.2",
     "visualization": "web/optimization/index.html"
   },
@@ -40,7 +40,7 @@
     "chapter_id": "8.2",
     "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.ipynb",
     "title": "回溯与可信的停止条件",
-    "outcome": "实现Armijo回溯，区分步长接受、残差达标与预算耗尽。",
+    "outcome": "跟算全步与半步的Armijo检验，保留等号接受，区分接受步、驻点与次数用完。",
     "number": "8.2.3",
     "visualization": "web/optimization/index.html"
   },
@@ -49,7 +49,7 @@
     "chapter_id": "8.3",
     "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.ipynb",
     "title": "岭回归与参数收缩",
-    "outcome": "推导二范数惩罚解，解释共线性、正则强度与不唯一。",
+    "outcome": "比较近共线列对读数扰动的响应，推导岭方程与特征方向收缩，区分唯一解和机制识别。",
     "number": "8.3.1",
     "visualization": "web/optimization/index.html"
   },
@@ -58,7 +58,7 @@
     "chapter_id": "8.3",
     "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.ipynb",
     "title": "软阈值与近端梯度",
-    "outcome": "由绝对值惩罚推导软阈值，显式实现近端梯度并核验边界。",
+    "outcome": "分三种情况解绝对值惩罚，推导梯度步加软阈值，检查完整目标与次梯度条件。",
     "number": "8.3.2",
     "visualization": "web/optimization/index.html"
   },
@@ -67,7 +67,7 @@
     "chapter_id": "8.3",
     "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.ipynb",
     "title": "缩放选参与独立预测",
-    "outcome": "只从训练集估计预处理量，只用验证集选参并保留最终评估。",
+    "outcome": "手算训练标准化，再按验证段选择惩罚、最终段评价预测，换算原坐标系数。",
     "number": "8.3.3",
     "visualization": "web/optimization/index.html"
   },
@@ -76,7 +76,7 @@
     "chapter_id": "8.4",
     "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.ipynb",
     "title": "约束乘子与最优性条件",
-    "outcome": "推导等式及不等式的乘子条件，区分必要性、充分性与残差。",
+    "outcome": "沿总量边界手算两路配置，以乘子、四类KKT条件与对偶下界证明本例最优。",
     "number": "8.4.1",
     "visualization": "web/optimization/index.html"
   },
@@ -85,7 +85,7 @@
     "chapter_id": "8.4",
     "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.ipynb",
     "title": "活跃集与可行性核验",
-    "outcome": "枚举小型二次规划的活跃集，区分可行最优、不可行与数值失败。",
+    "outcome": "先用最低需求判断可行性，再枚举活跃约束，比较几何边界解与平方惩罚反例。",
     "number": "8.4.2",
     "visualization": "web/optimization/index.html"
   },
@@ -94,18 +94,17 @@
     "chapter_id": "8.summary",
     "path": "notebooks/08-优化方法与计算/05-篇末综合/01-拟合稀疏与约束优化.ipynb",
     "title": "拟合、稀疏与约束优化",
-    "outcome": "在统一尺度与信息边界下构造目标、实现下降与稀疏拟合，并核验约束解。",
+    "outcome": "分别求拟合系数和受限输入配置，用目标常数、梯度、次梯度与四类残差解释结果。",
     "number": "篇末综合",
     "visualization": null,
     "overview": {
-      "goals": "构造目标并核验梯度、下降、稀疏性和约束解。",
-      "prerequisites": "本篇8.1—8.4。",
-      "focus": "尺度与条件、迭代预算、独立预测、可行性及最优性证据。",
+      "goals": "分别求拟合系数和受限输入配置，用目标常数、梯度、次梯度与四类残差解释结果。",
+      "prerequisites": "本篇8.1—8.4的二次目标、下降与回溯、岭和L1惩罚、约束最优性。",
+      "focus": "先说清优化的是系数还是输入，再按对应目标计算；将接受一步、残差达标与约束最优分别解释。",
       "knowledge": [
-        "目标与曲率 → 凸性和反例",
-        "下降方向与回溯 → 有限预算",
-        "正则与近端 → 独立选参",
-        "约束与活跃集 → 可行性和残差"
+        "比较目标尺度、局部曲率与全域凸性，判断当前证据支持哪一种最优结论",
+        "用各题独立输入计算导数、有限回溯、近端历史与两路受限配置",
+        "按返回顺序解释结果，检查零次预算、阈值等号、最低需求冲突与停止原因"
       ]
     }
   }

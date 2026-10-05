@@ -1,0 +1,637 @@
+{
+  "date": "2026-10-06",
+  "baseline": "73480dd25ef78e46acab98339c376d456b552d8f",
+  "scope": "Part 8 formal teaching and exercises; pending unified user reading acceptance",
+  "notebooks": [
+    {
+      "id": "P08-C01-S01",
+      "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
+      "sha256": "89d6e336d6e0706392d42139dfaa81fd4662aeb332b571415647147ecd40dd14",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "e80a7ca2c441ef004872298f9148208f6c9ceea6bc6268c46de0594065d31b9f"
+    },
+    {
+      "id": "P08-C01-S02",
+      "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.ipynb",
+      "sha256": "b97c28ac7176fbbc554df5f39efaab1022dd685d219651efcb0f106936d4b71e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "bd55b8e4a52b98f4f3b21d0fa0763c5788d116d5bde8abb3379ab497bb5c251b"
+    },
+    {
+      "id": "P08-C02-S01",
+      "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.ipynb",
+      "sha256": "d1de214ed80edf5fe4839f6e2137a459d3c05a85c2c08d29194ba79344874e76",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "4eb5e2abb4b2b6badf7aa03b8fde70d425f2adbf334978fbecc4a1064c183cd1"
+    },
+    {
+      "id": "P08-C02-S02",
+      "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/02-牛顿方向与非凸曲率.ipynb",
+      "sha256": "7eb36998bc28b11243235e1682275990ad4f4a8c99af80b9213bb29d3dac370f",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "5353a939906c5cffaaf539df14eef976952c4aba97b87eac63ee17fdc37622f9"
+    },
+    {
+      "id": "P08-C02-S03",
+      "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.ipynb",
+      "sha256": "b321f955777986fb29c52931466a191b214c6331a75c6f02351230a359c22345",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "64f9b31483f9ab77f3f508eb5d2dd1dfd6d0aa73618bca771f0a374a5b4aa572"
+    },
+    {
+      "id": "P08-C03-S01",
+      "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.ipynb",
+      "sha256": "2389c9b60df2d348482bf36734c9ba3696573189647ad33d347f44a7eb5e607b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "ca1b08adc77fc5b6bf2edd9a9deea857da4136a135911c4bd4e03b5e2549b0e7"
+    },
+    {
+      "id": "P08-C03-S02",
+      "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.ipynb",
+      "sha256": "a69d167fd83cb55fd1a41872846550b47385df8e39d129b462a2fa97c70edd3a",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "48a20fbc3ab9141a04788d59e061143e6ac5e8361cbf19eb70ec2be333164ef6"
+    },
+    {
+      "id": "P08-C03-S03",
+      "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.ipynb",
+      "sha256": "8aa32e0bd537a4f6e6b4fc8a6ffc000d026ff489f62e99c4033cbabffb4d38d2",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "6b7e6fcdc3d10095c04050271033653f7b5e8a3551e8fd6432e877f920882d8b"
+    },
+    {
+      "id": "P08-C04-S01",
+      "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.ipynb",
+      "sha256": "25f6ea105786044d98b073dc81108a2f18c258402d9a11d687c7e2a0862b74f6",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "7b9fbc921aa314a04aac8391311cf2d32ca77a55d580a002f604b4ef36271cf6"
+    },
+    {
+      "id": "P08-C04-S02",
+      "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.ipynb",
+      "sha256": "2ba5074ca1cd5a27b747c48f165d42fc6172c6faf90ea332923c82e71dd5864f",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "e5106a78899076b15210589341887f7ae9bee24cc3a0718512df6167eb6fa201"
+    },
+    {
+      "id": "P08-SUMMARY",
+      "path": "notebooks/08-优化方法与计算/05-篇末综合/01-拟合稀疏与约束优化.ipynb",
+      "sha256": "1c1698276707cc033e75afb44c35e074e677a76fb356e20c9ddefb7a67d0ccf0",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "4c45328f3c41922377468155d4c7cbe39d53d4cffbf185b541b6cd45ebc36003"
+    }
+  ],
+  "questions": {
+    "reviewed": 50,
+    "choice": 35,
+    "python": 15,
+    "wording_changed": 50,
+    "wording_changed_ids": [
+      "p08-quadratic",
+      "p08-loss-units",
+      "p08-gradient-direction",
+      "p08-change-coordinates",
+      "p08-linear-minimum",
+      "p08-stationary-counterexample",
+      "p08-hessian-zero",
+      "p08-convex-domain",
+      "p08-gradient-steps",
+      "p08-step-limit",
+      "p08-conditioning",
+      "p08-small-gradient",
+      "p08-newton-direction",
+      "p08-newton-taylor",
+      "p08-negative-curvature",
+      "p08-stationary-stop",
+      "p08-armijo",
+      "p08-trial-budget",
+      "p08-line-search-status",
+      "p08-objective-offset",
+      "p08-search-guarantee",
+      "p08-ridge",
+      "p08-ridge-normalization",
+      "p08-rank-and-ridge",
+      "p08-penalty-intercept",
+      "p08-threshold",
+      "p08-proximal",
+      "p08-subgradient-zero",
+      "p08-proximal-step-size",
+      "p08-sparse-evidence",
+      "p08-training-scale",
+      "p08-split-protocol",
+      "p08-constant-column",
+      "p08-prediction-and-truth",
+      "p08-kkt",
+      "p08-necessity-sufficiency",
+      "p08-constraint-qualification",
+      "p08-multiplier-sign",
+      "p08-budget-qp",
+      "p08-feasible-or-failed",
+      "p08-clip-coupling",
+      "p08-soft-hard",
+      "p08-cap-geometry",
+      "p08-cap-regularization",
+      "p08-cap-derivatives",
+      "p08-cap-descent",
+      "p08-cap-sparse",
+      "p08-cap-constrained",
+      "p08-cap-conditioning",
+      "p08-cap-infeasible"
+    ],
+    "explanation_changed": 50,
+    "explanation_changed_ids": [
+      "p08-quadratic",
+      "p08-loss-units",
+      "p08-gradient-direction",
+      "p08-change-coordinates",
+      "p08-linear-minimum",
+      "p08-stationary-counterexample",
+      "p08-hessian-zero",
+      "p08-convex-domain",
+      "p08-gradient-steps",
+      "p08-step-limit",
+      "p08-conditioning",
+      "p08-small-gradient",
+      "p08-newton-direction",
+      "p08-newton-taylor",
+      "p08-negative-curvature",
+      "p08-stationary-stop",
+      "p08-armijo",
+      "p08-trial-budget",
+      "p08-line-search-status",
+      "p08-objective-offset",
+      "p08-search-guarantee",
+      "p08-ridge",
+      "p08-ridge-normalization",
+      "p08-rank-and-ridge",
+      "p08-penalty-intercept",
+      "p08-threshold",
+      "p08-proximal",
+      "p08-subgradient-zero",
+      "p08-proximal-step-size",
+      "p08-sparse-evidence",
+      "p08-training-scale",
+      "p08-split-protocol",
+      "p08-constant-column",
+      "p08-prediction-and-truth",
+      "p08-kkt",
+      "p08-necessity-sufficiency",
+      "p08-constraint-qualification",
+      "p08-multiplier-sign",
+      "p08-budget-qp",
+      "p08-feasible-or-failed",
+      "p08-clip-coupling",
+      "p08-soft-hard",
+      "p08-cap-geometry",
+      "p08-cap-regularization",
+      "p08-cap-derivatives",
+      "p08-cap-descent",
+      "p08-cap-sparse",
+      "p08-cap-constrained",
+      "p08-cap-conditioning",
+      "p08-cap-infeasible"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Read-only unbound PracticeEngine.progress with original in-memory records and current bank/assessment; no constructor, judging or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_and_introduction_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_model_unchanged": true,
+    "web_controller_changes_exactly_match_display_text_replacements": true,
+    "slider_keys_ranges_steps_initial_values_labels_preserved": true,
+    "official_checker_and_glossary_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "independent_hand_examples_and_algebra": [
+      "Four-row loss example and two explicit chain-rule contributions, including averaging over all four rows",
+      "Stationary classifications, one- and two-coordinate error factors and the nondivergence endpoint counterexample",
+      "Quartic raw Newton ascent versus protected negative-gradient descent",
+      "Armijo candidate table, exact half-step equality acceptance and analytical upper bound",
+      "Mean-normalized ridge, threshold equality, one proximal target 0.6725 and orthogonal target 0.75",
+      "Training constant-column transformation and original-coordinate prediction equality",
+      "Two-input KKT balance/target −28/3, lower-bound infeasibility and finite square-penalty violation",
+      "Capstone two-row prediction residuals and the loss-to-MSE constant convention"
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    },
+    {
+      "id": "p08-conditioning",
+      "version": "1",
+      "location": "Option B, marked correct in the existing answer",
+      "issue": "不发散与误差收敛到零混用。B要求步长严格小于上界才不发散，但H₂较大曲率方向在η=2/100时因子为−1，误差等幅交替且不发散。",
+      "evidence": "e[k+1]=(1−100η)e[k]；η=0.02给出e[k+1]=−e[k]。严格上界针对误差衰减到零，而不是仅不发散。",
+      "required_substantive_change": "后续明确B要判断误差衰减/收敛，或修订不发散条件及对应答案，再依版本规则处理；本轮没有暗改答案、条件意图或版本。",
+      "status": "登记，待实质题库修订；当前正确答案与旧成绩保留"
+    }
+  ],
+  "new_unresolved": [
+    {
+      "id": "p08-conditioning",
+      "version": "1",
+      "location": "Option B, marked correct in the existing answer",
+      "issue": "不发散与误差收敛到零混用。B要求步长严格小于上界才不发散，但H₂较大曲率方向在η=2/100时因子为−1，误差等幅交替且不发散。",
+      "evidence": "e[k+1]=(1−100η)e[k]；η=0.02给出e[k+1]=−e[k]。严格上界针对误差衰减到零，而不是仅不发散。",
+      "required_substantive_change": "后续明确B要判断误差衰减/收敛，或修订不发散条件及对应答案，再依版本规则处理；本轮没有暗改答案、条件意图或版本。",
+      "status": "登记，待实质题库修订；当前正确答案与旧成绩保留"
+    }
+  ],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 110,
+    "core_changed": 99,
+    "exercise_cells_synchronized": 11
+  },
+  "teaching_check": {
+    "notebooks": 11,
+    "questions": 50,
+    "question_links": 50,
+    "issues": []
+  },
+  "teaching_check_method": "Existing check_teaching logic runs through a local wrapper. Actual Parts 0–7 and preceding Part 8 lessons supply seen vocabulary; exercises inherit their lesson explanations, and overviews inherit earlier chapters. Original checker, glossary, first-use and part-range rules remain unchanged.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/08-01-目标函数与优化几何/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/08-02-梯度、曲率与迭代算法/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/08-03-正则化与稀疏优化/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/08-04-约束与最优性条件/",
+        "status": 200
+      },
+      {
+        "path": "/parts/08-优化方法与计算/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/08-01-目标函数与优化几何/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/08-02-梯度、曲率与迭代算法/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/08-03-正则化与稀疏优化/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/08-04-约束与最优性条件/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p08-quadratic",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p08-gradient-steps",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p08-ridge",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p08-kkt",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p08-cap-constrained",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      }
+    ],
+    "served_catalog_and_controller_equal_current_files": true,
+    "local_file_link_targets_checked": 49,
+    "html_rendered_without_execution": [
+      "P08-C01-S01",
+      "P08-C01-S02",
+      "P08-C02-S01",
+      "P08-C02-S02",
+      "P08-C02-S03",
+      "P08-C03-S01",
+      "P08-C03-S02",
+      "P08-C03-S03",
+      "P08-C04-S01",
+      "P08-C04-S02",
+      "P08-SUMMARY"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout, MathJax rendering or interaction behavior."
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_optimization/gd.html",
+      "focus": "本轮选读一维梯度下降及学习率段落：具体函数、一次更新、同一函数的不同步长、再以轨迹解释差别。"
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/05-The-Unreasonable-Effectiveness-of-Linear-Regression.html",
+      "focus": "本轮选读案例进入回归及理论解释段落：承接原问题，逐项说明符号，以代码结果再算回原来的比较。本篇未引入其中的因果结论。"
+    }
+  ],
+  "authorization": "Direct user authorization in the project implementation conversation permits sequential Parts 2–17 and final unified reading acceptance. Current verified dispatch is Part 8. Normal commit/push is authorized, excluding records, environments, simulated data and temporary files; wait for Part 9 dispatch.",
+  "specific_prose_corrections": [
+    "Four data rows are explained before use; columns represent input and negative storage, while coefficient order and response order are explicit.",
+    "The two-row chain-rule bridge is retained and expanded; residual e_i differs from the physical rate r, and the full loss averages all four rows.",
+    "Quadratic gradients and Hessians connect to local Taylor changes, stationary counterexamples and the distinction between one-point curvature and whole-domain convexity.",
+    "One-dimensional update factors explain convergence, equal-amplitude alternation and divergence; the strict all-initial-state step range remains intact.",
+    "Newton direction and step length are checked separately. Quartic negative curvature is computed explicitly, and local quadratic convergence conditions remain beside the reasoning.",
+    "Armijo half-step equality remains accepted, and accepting one step is separated from gradient stopping or exhausted update/trial counts.",
+    "Ridge uniqueness is separated from mechanism identification; feature-coordinate shrinkage, mean-loss normalization and conditional Gaussian-prior interpretation are retained.",
+    "Absolute-value subgradients and their set notation are explained before the proximal optimality condition; a one-step target is worked through with threshold eta*lambda.",
+    "Training-only scaling, the constant-column convention, intercept and validation/test roles are connected to a hand calculation and original-coordinate prediction.",
+    "Two-input constraints specify common flow scaling, each inequality row, multiplier order and four residual meanings; the boundary optimum is calculated before KKT.",
+    "Qualification-dependent necessity and convex sufficiency remain distinct; the degenerate x^2<=0 counterexample, active-set enumeration and finite square-penalty violation are retained.",
+    "Capstone fitting coefficients and decision inputs use separate meanings and targets. MSE equals twice the restored half-square loss; numerical-failure returns no longer imply proven infeasibility."
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part08-rewrite-20261006/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part08-rewrite-20261006/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part08-rewrite-20261006/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part08-rewrite-20261006/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/optimization/app.mjs",
+      "exit_code": 0
+    }
+  ]
+}

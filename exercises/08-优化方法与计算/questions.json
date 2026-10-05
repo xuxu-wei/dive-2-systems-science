@@ -8,7 +8,7 @@
     "chapter": "8.1",
     "title": "计算目标与导数",
     "type": "python",
-    "statement": "将已经无量纲（dimensionless）化的收支（mass balance）误差写成二次目标。给定 H、b、x，求目标值、梯度（gradient）和海森矩阵（Hessian matrix）；不要求目标凸。",
+    "statement": "给定对称矩阵H、线性系数b与当前变量x，计算无量纲二次目标f(x)=xᵀHx/2−bᵀx。依次返回目标值、各坐标偏导组成的梯度，以及海森矩阵；H不要求正定。",
     "learning_targets": [
       "T1"
     ],
@@ -22,19 +22,19 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "description": "对称矩阵H；第j行、第k列对应变量x_j与x_k，目标的二次项为xᵀHx/2。",
         "unit": "无量纲"
       },
       {
         "name": "linear",
         "type": "list[float]",
-        "description": "线性项 b，符号按目标中的减号。",
+        "description": "按变量顺序排列的向量b，在线性项−bᵀx中使用。",
         "unit": "无量纲"
       },
       {
         "name": "point",
         "type": "list[float]",
-        "description": "当前优化变量 x。",
+        "description": "当前变量列表x，顺序与H的行列及b一致。",
         "unit": "无量纲"
       }
     ],
@@ -42,23 +42,23 @@
       {
         "name": "value",
         "type": "float",
-        "description": "目标值 f(x)。",
+        "description": "当前点的目标值f(x)，不另加数据损失的常数项。",
         "unit": "无量纲"
       },
       {
         "name": "gradient",
         "type": "list[float]",
-        "description": "梯度 Hx−b。",
+        "description": "按x的坐标顺序返回Hx−b。",
         "unit": "无量纲"
       },
       {
         "name": "hessian",
         "type": "list[list[float]]",
-        "description": "海森矩阵，等于 H。",
+        "description": "按输入的行列顺序返回H。",
         "unit": "无量纲"
       }
     ],
-    "contract": "按 f=xᵀHx/2−bᵀx 计算；不要漏掉 1/2，也不要把 b 的符号改为加号。",
+    "contract": "先求Hx，再求梯度Hx−b和目标xᵀHx/2−bᵀx。二次项保留1/2，线性项使用减号；返回顺序为目标、梯度、海森矩阵。",
     "constraints": [
       "1≤维数≤3；H对称，所有元素绝对值≤20。"
     ],
@@ -67,7 +67,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先算 Hx=[3,−2]，梯度=[2,−4]；目标值为4。",
+    "hint": "可以复用Hx：它既用于梯度，也用于二次项。先核对线性项的符号。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -118,7 +118,7 @@
             ]
           ]
         ],
-        "explanation": "先算 Hx=[3,−2]，梯度=[2,−4]；目标值为4。"
+        "explanation": "样例按两个坐标计算：Hx=[3,−2]，减去b=[1,2]得到梯度[2,−4]；xᵀHx/2=4，bᵀx=0，所以目标值为4。返回的海森矩阵按原行列顺序保留H。"
       }
     ]
   },
@@ -131,7 +131,7 @@
     "chapter": "8.1",
     "title": "相加之前先比较单位",
     "type": "choice",
-    "statement": "两组观测（observation）残差（residual）分别以U和U/min表示。关于无量纲（dimensionless）拟合目标的构造及其最小点，哪些说法正确？",
+    "statement": "两组观测的预测误差分别以U和U/min计量。要把两组误差放入同一个无量纲拟合目标，下面哪些做法或判断成立？",
     "learning_targets": [
       "T1"
     ],
@@ -145,19 +145,19 @@
     "options": [
       {
         "id": "A",
-        "text": "将每个残差除以预先给定、单位相同的参考尺度后，再把所得无量纲数平方求和。"
+        "text": "每个误差先除以与它同单位、预先给定的参考尺度，再把得到的无量纲数平方求和。"
       },
       {
         "id": "B",
-        "text": "将两组残差平方和分别除以各自样本数后相加，所得目标就没有单位。"
+        "text": "两组误差平方和分别除以各自观测条数后，所得两项就可以作为无单位目标相加。"
       },
       {
         "id": "C",
-        "text": "只改变其中一组残差的无量纲权重，一般会改变使总目标最小的参数（parameter）。"
+        "text": "只改变其中一组误差项的相对权重，一般会改变总目标的最小参数。"
       },
       {
         "id": "D",
-        "text": "将所有残差项同时乘同一个正常数，不会改变使总目标最小的参数集合。"
+        "text": "把整个目标乘上同一个正常数，取得最小值的参数集合保持不变。"
       }
     ],
     "constraints": []
@@ -171,7 +171,7 @@
     "chapter": "8.1",
     "title": "梯度指向哪里",
     "type": "choice",
-    "statement": "光滑目标在 x 的梯度（gradient） g 非零。对很小的正数 t，沿哪个方向保证一阶变化为负？",
+    "statement": "可微目标在当前点x的梯度g不为零。沿方向p走正步长t时，一阶变化为t gᵀp。哪个方向使这个一阶项严格为负？",
     "learning_targets": [
       "T1"
     ],
@@ -185,19 +185,19 @@
     "options": [
       {
         "id": "A",
-        "text": "应沿与g垂直的非零方向p移动。"
+        "text": "选择与g垂直的任意非零方向p。"
       },
       {
         "id": "B",
-        "text": "应沿正梯度方向g移动。"
+        "text": "选择正梯度方向p=g。"
       },
       {
         "id": "C",
-        "text": "应沿负梯度方向−g移动。"
+        "text": "选择负梯度方向p=−g。"
       },
       {
         "id": "D",
-        "text": "应沿满足gᵀp=‖g‖²/2的方向p移动。"
+        "text": "选择满足gᵀp=‖g‖²/2的方向p。"
       }
     ],
     "constraints": []
@@ -211,7 +211,7 @@
     "chapter": "8.1",
     "title": "单位改变还是问题改变",
     "type": "choice",
-    "statement": "二次目标f(x)=xᵀHx/2−bᵀx，令x=Dz，D为正的对角矩阵（matrix）。以下哪些转换保持同一个目标问题？",
+    "statement": "对二次目标f(x)=xᵀHx/2−bᵀx，改用坐标z，并规定x=Dz，D是对角元素严格为正的对角矩阵。哪些转换保留原来的目标和允许点？",
     "learning_targets": [
       "T1"
     ],
@@ -225,19 +225,19 @@
     "options": [
       {
         "id": "A",
-        "text": "改用z后，二次项矩阵取DHD，线性项系数仍取b。"
+        "text": "新二次项使用DHD，线性项继续使用原向量b。"
       },
       {
         "id": "B",
-        "text": "改用z后，二次项矩阵取DᵀHD，线性项系数取Dᵀb。"
+        "text": "新二次项使用DᵀHD，线性项使用Dᵀb。"
       },
       {
         "id": "C",
-        "text": "原来的初值（initial condition）和约束也需要通过x=Dz转换成关于z的表达式。"
+        "text": "原始点和原约束都按x=Dz换成关于z的表达。"
       },
       {
         "id": "D",
-        "text": "目标改写为z的函数后，仍把原来x的数值上下界用作z的上下界。"
+        "text": "即使D改变坐标尺度，z的上下界仍使用原来x的数值上下界。"
       }
     ],
     "constraints": []
@@ -251,7 +251,7 @@
     "chapter": "8.1",
     "title": "求严格凸二次目标的最小点",
     "type": "python",
-    "statement": "给定二维正定（positive definite）对称矩阵（matrix）H和线性项b，求唯一最小点。",
+    "statement": "最小化二维目标f(x)=xᵀHx/2−bᵀx，H对称正定，坐标均已无量纲化。求出唯一最小点，按第一、第二坐标顺序返回。",
     "learning_targets": [
       "T1"
     ],
@@ -265,13 +265,13 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "对称目标矩阵 H，目标为 xᵀHx/2−bᵀx。",
+        "description": "对称矩阵H；第j行、第k列对应变量x_j与x_k，目标的二次项为xᵀHx/2。",
         "unit": "无量纲"
       },
       {
         "name": "linear",
         "type": "list[float]",
-        "description": "线性项 b，符号按目标中的减号。",
+        "description": "按变量顺序排列的向量b，在线性项−bᵀx中使用。",
         "unit": "无量纲"
       }
     ],
@@ -279,20 +279,20 @@
       {
         "name": "minimizer",
         "type": "list[float]",
-        "description": "按原坐标顺序返回H⁻¹b。",
+        "description": "满足Hx=b的两个坐标，顺序与b及H的行列一致。",
         "unit": "无量纲"
       }
     ],
-    "contract": "求解Hx=b，返回两个坐标，不返回矩阵的逆。",
+    "contract": "解线性方程Hx=b，返回坐标列表。无需返回或显式计算H的逆矩阵。",
     "constraints": [
-      "H为2×2正定对称矩阵，最小特征值（eigenvalue）≥0.1，最大特征值≤20。"
+      "H为2×2正定对称矩阵，最小特征值≥0.1，最大特征值≤20。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "两个坐标分别为2/2和8/4，即[1,2]。",
+    "hint": "梯度为Hx−b。先写出两条坐标方程，再求它们的共同解。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -326,7 +326,7 @@
           1.0,
           2.0
         ],
-        "explanation": "两个坐标分别为2/2和8/4，即[1,2]。"
+        "explanation": "样例H是对角矩阵，两条方程分别为2x₁=2和4x₂=8，所以按第一、第二坐标返回[1,2]。"
       }
     ]
   },
@@ -339,7 +339,7 @@
     "chapter": "8.1",
     "title": "三个驻点的分类",
     "type": "choice",
-    "statement": "f(x)=x⁴/4−x²/2。在x=0及x=±1分别能得到哪些结论？",
+    "statement": "在整个实数轴上考虑f(x)=x⁴/4−x²/2。一阶导数在0及±1处均为零。结合函数值和曲率，哪些结论成立？",
     "learning_targets": [
       "T1"
     ],
@@ -353,19 +353,19 @@
     "options": [
       {
         "id": "A",
-        "text": "x=0与x=±1都是最小点，因为三处一阶导数（derivative）均为0。"
+        "text": "三个点的一阶导数均为零，所以0及±1都是最小点。"
       },
       {
         "id": "B",
-        "text": "x=0处的二阶导数（second derivative）为−1，因此x=0是严格局部最大点。"
+        "text": "原点的二阶导数为−1，所以原点是严格局部最大点。"
       },
       {
         "id": "C",
-        "text": "x=−1和x=1都是全局最小点，两处函数值均为−1/4。"
+        "text": "−1和1都是全局最小点，两处目标值均为−1/4。"
       },
       {
         "id": "D",
-        "text": "x=0是全局最大点，因为该点二阶导数为负。"
+        "text": "原点二阶导数为负，所以原点是整个实数轴上的最大点。"
       }
     ],
     "constraints": []
@@ -379,7 +379,7 @@
     "chapter": "8.1",
     "title": "四次函数在原点的性质",
     "type": "choice",
-    "statement": "f₁(x)=x⁴和f₂(x)=−x⁴在0都有一阶、二阶导数（second derivative）为0。哪些判断正确？",
+    "statement": "函数f₁(x)=x⁴与f₂(x)=−x⁴在原点的一阶、二阶导数都为零。关于这两个函数及二阶判断，哪些说法成立？",
     "learning_targets": [
       "T1"
     ],
@@ -393,19 +393,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两者在0的二阶导数都非负，因此都满足极小的充分条件。"
+        "text": "两函数在原点的二阶导数均非负，足以证明原点是两者的最小点。"
       },
       {
         "id": "B",
-        "text": "x=0是f₁的严格最小点。"
+        "text": "原点是f₁的严格最小点。"
       },
       {
         "id": "C",
-        "text": "x=0是f₂的严格最大点。"
+        "text": "原点是f₂的严格最大点。"
       },
       {
         "id": "D",
-        "text": "一个函数在某点的海森矩阵（Hessian matrix）半正定（positive semidefinite），并不足以说明该点是最小点。"
+        "text": "某点的海森矩阵半正定，单凭这一条件不能证明该点最小。"
       }
     ],
     "constraints": []
@@ -419,7 +419,7 @@
     "chapter": "8.1",
     "title": "凸性结论的范围",
     "type": "choice",
-    "statement": "在开放凸域上，f二阶连续可微。下列哪些条件或结论正确？",
+    "statement": "函数f在开放凸域上二阶连续可微，所有候选点都在这个域内。关于凸性与最小点，哪些判断成立？",
     "learning_targets": [
       "T1"
     ],
@@ -433,19 +433,19 @@
     "options": [
       {
         "id": "A",
-        "text": "f在整个定义域上为凸函数，当且仅当海森矩阵（Hessian matrix）在域内每一点都半正定（positive semidefinite）。"
+        "text": "f在整个域上凸，当且仅当海森矩阵在域内每一点都半正定。"
       },
       {
         "id": "B",
-        "text": "海森矩阵在初始点半正定，就说明f在整个定义域上为凸函数。"
+        "text": "只要初始点的海森矩阵半正定，f在整个域上就是凸函数。"
       },
       {
         "id": "C",
-        "text": "凸函数的任一驻点（stationary point）若位于域内，都是全局最小点。"
+        "text": "若f凸，域内任一梯度为零的点都是全局最小点。"
       },
       {
         "id": "D",
-        "text": "f严格凸且能在域内取得最小值时，取得最小值的点只有一个。"
+        "text": "若f严格凸且能取得最小值，取得最小值的点只有一个。"
       }
     ],
     "constraints": []
@@ -459,7 +459,7 @@
     "chapter": "8.2",
     "title": "实现有预算的梯度下降",
     "type": "python",
-    "statement": "用固定步长最小化严格凸二次目标，同时如实报告停止原因。",
+    "statement": "对无量纲严格凸二次目标f(x)=xᵀHx/2−bᵀx执行固定步长梯度下降。保留初始点和每次更新后的点，并区分残差达标、更新次数用完及非有限计算。",
     "learning_targets": [
       "T2"
     ],
@@ -472,37 +472,37 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "description": "对称矩阵H；第j行、第k列对应变量x_j与x_k，目标的二次项为xᵀHx/2。",
         "unit": "无量纲"
       },
       {
         "name": "linear",
         "type": "list[float]",
-        "description": "线性项 b，符号按目标中的减号。",
+        "description": "按变量顺序排列的向量b，在线性项−bᵀx中使用。",
         "unit": "无量纲"
       },
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "初始点x₀，包含在轨迹（trajectory）首行。",
+        "description": "初始点x₀，按原坐标顺序排列，并作为历史第一行。",
         "unit": "无量纲"
       },
       {
         "name": "step",
         "type": "float",
-        "description": "固定步长η。",
+        "description": "每次更新使用的固定正步长η。",
         "unit": "无量纲"
       },
       {
         "name": "max_steps",
         "type": "int",
-        "description": "最多执行的更新次数。",
+        "description": "最多执行的更新次数，不包含记录初始点。",
         "unit": "次"
       },
       {
         "name": "tolerance",
         "type": "float",
-        "description": "梯度（gradient）二范数（norm）停止阈值。",
+        "description": "当前梯度二范数不大于此值时判为达标。",
         "unit": "无量纲"
       }
     ],
@@ -510,32 +510,32 @@
       {
         "name": "trajectory",
         "type": "list[list[float]]",
-        "description": "初值（initial condition）及每次更新后的点。",
+        "description": "按更新次序排列的点；第一行是初始点，每行内部按坐标顺序。",
         "unit": "无量纲"
       },
       {
         "name": "residual",
         "type": "float | None",
-        "description": "最后梯度二范数；非有限计算时为None。",
+        "description": "退出时的梯度二范数；遇到非有限计算时为None。",
         "unit": "无量纲"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "converged、max_steps或nonfinite。",
+        "description": "converged表示梯度范数达标，max_steps表示次数用完，nonfinite表示出现非有限数值。",
         "unit": "不适用"
       }
     ],
-    "contract": "每次先检查当前梯度二范数≤tolerance，再检查是否已更新max_steps次；否则x←x−step(Hx−b)。初值已达标即返回一行轨迹。",
+    "contract": "每次先检查当前目标和梯度是否有限；非有限时原样结束并返回None残差。然后检查‖Hx−b‖≤tolerance，再检查是否已完成max_steps次更新，否则执行x←x−step(Hx−b)。初始点已达标时只返回一行历史。",
     "constraints": [
-      "二维正定（positive definite）H，元素≤20；0<step≤1；0≤max_steps≤30；tolerance>0；测试均保持有限数值。"
+      "二维正定H，元素≤20；0<step≤1；0≤max_steps≤30；tolerance>0；测试均保持有限数值。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "三步后为[0.125,0]，梯度范数0.25仍大于0.01，应报告max_steps。",
+    "hint": "梯度检查在次数检查之前；max_steps=0时，也要判断初始点是否已经达标。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -594,7 +594,7 @@
           0.25,
           "max_steps"
         ],
-        "explanation": "三步后为[0.125,0]，梯度范数0.25仍大于0.01，应报告max_steps。"
+        "explanation": "样例两个误差因子为0.5和0。三次更新依次到[0.5,0]、[0.25,0]、[0.125,0]；末梯度为[0.25,0]，范数0.25大于0.01。返回含初始行的四行历史，并报告max_steps。"
       }
     ]
   },
@@ -607,7 +607,7 @@
     "chapter": "8.2",
     "title": "固定步长的收敛范围",
     "type": "choice",
-    "statement": "正定（positive definite）二次目标的H=diag(1,10)。固定正步长梯度（gradient）下降要对任意初值（initial condition）都使误差收敛到零，η的完整取值范围是哪项？",
+    "statement": "正定二次目标使用H=diag(1,10)。要求固定正步长梯度下降从任意初始点出发，误差都收敛到零。η的完整范围是哪一项？",
     "learning_targets": [
       "T2"
     ],
@@ -620,19 +620,19 @@
     "options": [
       {
         "id": "A",
-        "text": "步长的完整取值范围为0<η<0.2。"
+        "text": "完整范围是0<η<0.2。"
       },
       {
         "id": "B",
-        "text": "步长的完整取值范围为0<η≤0.2。"
+        "text": "完整范围是0<η≤0.2。"
       },
       {
         "id": "C",
-        "text": "步长的完整取值范围为0<η<2。"
+        "text": "完整范围是0<η<2。"
       },
       {
         "id": "D",
-        "text": "步长的完整取值范围为0<η<0.1。"
+        "text": "完整范围是0<η<0.1。"
       }
     ],
     "constraints": []
@@ -646,7 +646,7 @@
     "chapter": "8.2",
     "title": "两种慢的原因",
     "type": "choice",
-    "statement": "两个正定（positive definite）二次目标分别使用H₁=I和H₂=diag(1,100)，梯度（gradient）下降步长均为η=0.01。关于误差衰减、步长和目标缩放，哪些判断正确？",
+    "statement": "两个正定二次目标分别使用H₁=I与H₂=diag(1,100)，步长均为η=0.01。比较误差倍率、步长限制与目标缩放，哪些说法成立？",
     "learning_targets": [
       "T2"
     ],
@@ -659,19 +659,19 @@
     "options": [
       {
         "id": "A",
-        "text": "在H₂的较小曲率方向上，每步误差是上一步的0.99倍。"
+        "text": "对H₂，较小曲率方向每次更新后保留上一步误差的0.99倍。"
       },
       {
         "id": "B",
-        "text": "为了使H₂的较大曲率方向不发散，步长必须小于由该方向决定的上界。"
+        "text": "要使H₂在较大曲率方向上的误差不发散，步长必须严格小于该方向给出的上界。"
       },
       {
         "id": "C",
-        "text": "条件数（condition number）只反映最大特征值（eigenvalue）的绝对大小。"
+        "text": "条件数只描述最大特征值的绝对大小。"
       },
       {
         "id": "D",
-        "text": "把H与b乘同一正常数，并把η除以该常数，可以保持从同一初值（initial condition）出发的迭代点不变。"
+        "text": "把H与b同时乘一个正常数，并把η除以该数，从同一起点得到的迭代点保持不变。"
       }
     ],
     "constraints": []
@@ -685,7 +685,7 @@
     "chapter": "8.2",
     "title": "小梯度能说明多近",
     "type": "choice",
-    "statement": "H=diag(0.001,1)，b=0，x=[1,0]。梯度（gradient）范数（norm）为0.001。哪些解释正确？",
+    "statement": "二次目标的H=diag(0.001,1)、b=0，当前点x=[1,0]，梯度范数为0.001。哪些解释成立？",
     "learning_targets": [
       "T2"
     ],
@@ -698,19 +698,19 @@
     "options": [
       {
         "id": "A",
-        "text": "当前点x与最小点之间的欧氏距离为1。"
+        "text": "当前点到最小点的欧氏距离仍为1。"
       },
       {
         "id": "B",
-        "text": "梯度范数为0.001，所以到最小点的距离也为0.001。"
+        "text": "梯度范数是0.001，所以到最小点的距离也是0.001。"
       },
       {
         "id": "C",
-        "text": "若已知H的最小特征值（eigenvalue）μ>0，则到最小点的距离满足‖x−x*‖≤‖g‖/μ。"
+        "text": "已知H的最小特征值μ>0时，距离满足‖x−x*‖≤‖g‖/μ。"
       },
       {
         "id": "D",
-        "text": "变量使用不同计量单位时，需要按相应尺度解释梯度范数的停止阈值。"
+        "text": "解释梯度停止阈值时，需要同时说明变量使用的计量尺度。"
       }
     ],
     "constraints": []
@@ -724,7 +724,7 @@
     "chapter": "8.2",
     "title": "检查牛顿方向是否下降",
     "type": "python",
-    "statement": "对f(x)=x⁴/4−x²/2，根据当前曲率选择方向。",
+    "statement": "对无量纲函数f(x)=x⁴/4−x²/2，根据当前一阶、二阶导数选择搜索方向，按给定规则返回方向及其产生方式。",
     "learning_targets": [
       "T2"
     ],
@@ -737,7 +737,7 @@
       {
         "name": "point",
         "type": "float",
-        "description": "当前标量坐标x。",
+        "description": "当前标量位置x。",
         "unit": "无量纲"
       }
     ],
@@ -745,17 +745,17 @@
       {
         "name": "direction",
         "type": "float",
-        "description": "选出的搜索方向p。",
+        "description": "选出的移动方向p；此题尚未选择或接受实际步长。",
         "unit": "无量纲"
       },
       {
         "name": "kind",
         "type": "str",
-        "description": "stationary、newton或gradient_fallback。",
+        "description": "stationary表示梯度为零，newton表示采用正曲率牛顿方向，gradient_fallback表示改用负梯度。",
         "unit": "不适用"
       }
     ],
-    "contract": "g=x³−x，h=3x²−1。g=0返回(0,stationary)；否则h>0取−g/h并标newton，h≤0改取−g并标gradient_fallback。",
+    "contract": "计算g=x³−x、h=3x²−1。先判断g=0并返回(0,stationary)；否则h>0时返回(−g/h,newton)，h≤0时返回(−g,gradient_fallback)。",
     "constraints": [
       "−3≤point≤3；比较按给定浮点数直接计算；stationary不等于最小。"
     ],
@@ -764,7 +764,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "x=.2时g=−.192，h=−.88；原始牛顿方向会向上，改用−g=.192。",
+    "hint": "先检查是否驻点，再检查曲率符号；解出牛顿方程不保证方向下降。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -785,7 +785,7 @@
           0.192,
           "gradient_fallback"
         ],
-        "explanation": "x=.2时g=−.192，h=−.88；原始牛顿方向会向上，改用−g=.192。"
+        "explanation": "在样例x=0.2处，g=−0.192，h=−0.88。原牛顿方向约−0.2182使gp>0；按规则改取−g=0.192，返回gradient_fallback。"
       }
     ]
   },
@@ -798,7 +798,7 @@
     "chapter": "8.2",
     "title": "牛顿步从哪里来",
     "type": "choice",
-    "statement": "局部模型（model）m(p)=f(x)+gᵀp+pᵀHp/2，H正定（positive definite）。哪些陈述正确？",
+    "statement": "当前点的局部二次近似为m(p)=f(x)+gᵀp+pᵀHp/2，H正定。把移动量p作为待选变量，哪些结论成立？",
     "learning_targets": [
       "T2"
     ],
@@ -811,19 +811,19 @@
     "options": [
       {
         "id": "A",
-        "text": "使局部模型m最小的方向p满足Hp=−g。"
+        "text": "最小化m得到的方向满足Hp=−g。"
       },
       {
         "id": "B",
-        "text": "H正定且p使局部模型m最小时，原目标取x+p后的函数值也会下降。"
+        "text": "只要p使这个正定二次近似最小，原目标在x+p处也一定下降。"
       },
       {
         "id": "C",
-        "text": "g不为零时，牛顿方向满足gᵀp=−pᵀHp<0，因此是一阶下降方向。"
+        "text": "g≠0时，所求方向满足gᵀp=−pᵀHp<0，因而局部下降。"
       },
       {
         "id": "D",
-        "text": "对正定二次目标，精确求出牛顿方向并取全步，可以在一次更新后到达唯一最小点。"
+        "text": "原目标本身为正定二次函数时，精确牛顿全步一次到达唯一最小点。"
       }
     ],
     "constraints": []
@@ -837,7 +837,7 @@
     "chapter": "8.2",
     "title": "负曲率处的方向选择",
     "type": "choice",
-    "statement": "在f(x)=x⁴/4−x²/2的x=.2处，原始牛顿方向与梯度（gradient）同号。应怎样处理？",
+    "statement": "函数f(x)=x⁴/4−x²/2在x=0.2处的原牛顿方向与梯度同号，因此g·p>0。此时应怎样得到下降方向？",
     "learning_targets": [
       "T2"
     ],
@@ -850,19 +850,19 @@
     "options": [
       {
         "id": "A",
-        "text": "保留该方向，只缩小正步长，直到方向导数（derivative）变负。"
+        "text": "保持原方向，只缩小正步长，直到g·p变为负数。"
       },
       {
         "id": "B",
-        "text": "计算方向导数g·p，若其不为负，则把当前方向换成−g。"
+        "text": "先计算g·p；它不为负时，将方向换成−g。"
       },
       {
         "id": "C",
-        "text": "保留该方向，将Armijo右端的g·p改成−|g·p|。"
+        "text": "保持原方向，但把Armijo条件右端的g·p改成−|g·p|。"
       },
       {
         "id": "D",
-        "text": "把牛顿方向除以其长度，再按这个单位方向移动一步，并将该更新判为已接受。"
+        "text": "把原方向除以其长度，沿所得单位方向走一步，并直接接受更新。"
       }
     ],
     "constraints": []
@@ -876,7 +876,7 @@
     "chapter": "8.2",
     "title": "停在零处应如何报告",
     "type": "choice",
-    "statement": "对f(x)=x⁴/4−x²/2，保护牛顿算法从x=0出发，梯度（gradient）检查立即停止。哪些结论成立？",
+    "statement": "保护牛顿方法最小化f(x)=x⁴/4−x²/2，从x=0出发时，梯度检查立即停止。关于这次停止，哪些判断成立？",
     "learning_targets": [
       "T2"
     ],
@@ -889,19 +889,19 @@
     "options": [
       {
         "id": "A",
-        "text": "x=0满足梯度为0的一阶驻点（stationary point）条件。"
+        "text": "原点满足梯度为零的一阶驻点条件。"
       },
       {
         "id": "B",
-        "text": "这次停止证明x=0是局部最小点。"
+        "text": "立即停止证明原点是局部最小点。"
       },
       {
         "id": "C",
-        "text": "x=0处的二阶导数（second derivative）为−1，还需要用这一曲率信息判断驻点类型。"
+        "text": "原点的二阶导数为−1，应结合这一曲率判断它的类型。"
       },
       {
         "id": "D",
-        "text": "只用梯度为0作为停止条件，会使算法也停在这个局部极大点。"
+        "text": "仅以梯度为零停止，方法也会停在这个局部最大点。"
       }
     ],
     "constraints": []
@@ -915,7 +915,7 @@
     "chapter": "8.2",
     "title": "返回真正被接受的步长",
     "type": "python",
-    "statement": "沿给定方向对严格凸二次目标做有限次数Armijo回溯。",
+    "statement": "沿给定方向p，对严格凸二次目标f(x)=xᵀHx/2−bᵀx做有限次数Armijo回溯。返回接受的新点、步长和状态，失败时保留给定当前点。",
     "learning_targets": [
       "T2"
     ],
@@ -928,49 +928,49 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "description": "对称矩阵H；第j行、第k列对应变量x_j与x_k，目标的二次项为xᵀHx/2。",
         "unit": "无量纲"
       },
       {
         "name": "linear",
         "type": "list[float]",
-        "description": "线性项 b，符号按目标中的减号。",
+        "description": "按变量顺序排列的向量b，在线性项−bᵀx中使用。",
         "unit": "无量纲"
       },
       {
         "name": "point",
         "type": "list[float]",
-        "description": "当前优化变量 x。",
+        "description": "当前变量列表x，顺序与H的行列及b一致。",
         "unit": "无量纲"
       },
       {
         "name": "direction",
         "type": "list[float]",
-        "description": "固定搜索方向p。",
+        "description": "给定方向p，顺序与当前变量一致；一次回溯内保持不变。",
         "unit": "无量纲"
       },
       {
         "name": "initial_step",
         "type": "float",
-        "description": "首先尝试的步长t₀。",
+        "description": "第一个尝试的正步长t₀。",
         "unit": "无量纲"
       },
       {
         "name": "shrink",
         "type": "float",
-        "description": "拒绝一次后步长乘β。",
+        "description": "一次拒绝后乘到步长上的缩小系数β。",
         "unit": "无量纲"
       },
       {
         "name": "slope",
         "type": "float",
-        "description": "Armijo系数c。",
+        "description": "要求达到一阶预测下降比例的Armijo系数c。",
         "unit": "无量纲"
       },
       {
         "name": "max_trials",
         "type": "int",
-        "description": "最多尝试多少个步长，含t₀。",
+        "description": "允许尝试的步长个数；第一个t₀也占一次。",
         "unit": "次"
       }
     ],
@@ -978,25 +978,25 @@
       {
         "name": "next_point",
         "type": "list[float]",
-        "description": "接受的点；失败时原点。",
+        "description": "被接受的新点，坐标顺序保持；未接受时返回给定当前点。",
         "unit": "无量纲"
       },
       {
         "name": "accepted_step",
         "type": "float | None",
-        "description": "接受的t，失败时None。",
+        "description": "第一个满足条件的步长t；失败时为None。",
         "unit": "无量纲"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "accepted、not_descent或line_search_failed。",
+        "description": "accepted表示接受一步，not_descent表示方向导数非负，line_search_failed表示尝试内没有接受值。",
         "unit": "不适用"
       }
     ],
-    "contract": "先算gᵀp。若≥0返回原点、None、not_descent。依次尝试t₀βʲ，j=0,…,max_trials−1；取第一个满足f(x+tp)≤f(x)+c t gᵀp的t。无接受值返回line_search_failed。",
+    "contract": "先计算g=Hx−b及gᵀp。若gᵀp≥0，返回当前点、None、not_descent。否则按j=0,…,max_trials−1尝试t=t₀βʲ，接受第一个满足f(x+tp)≤f(x)+c t gᵀp且目标有限的步长。尝试次数用完仍未接受，返回当前点、None、line_search_failed。",
     "constraints": [
-      "维数1或2，H正定（positive definite）；0<shrink<1，0<slope<.5；0≤max_trials≤30；所有输入（input）绝对值≤20。",
+      "维数1或2，H正定；0<shrink<1，0<slope<.5；0≤max_trials≤30；所有输入绝对值≤20。",
       "初始步长必须严格为正：0<initial_step≤20。"
     ],
     "entrypoint": "solve",
@@ -1004,7 +1004,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "分别计算 t=1 和 t=0.5 时的目标值与 Armijo 右侧；条件包含等号，首次满足时就停止回溯。",
+    "hint": "先检查方向导数，再按规定候选顺序检验。Armijo条件包含等号，首次满足时就返回。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1054,7 +1054,7 @@
           0.5,
           "accepted"
         ],
-        "explanation": "t=1 不满足充分下降；t=0.5 时 f(x+tp)=2，Armijo 右侧也为 2，等号满足“≤”，故首次接受 t=0.5，新点为 [0,-1]。"
+        "explanation": "样例旧目标为3，gᵀp=−20。t=1时新目标19大于上界1；t=0.5时新点[0,−1]的目标为2，上界也是2。等号满足“≤”，所以首次接受0.5，返回新点、0.5和accepted。"
       }
     ]
   },
@@ -1067,7 +1067,7 @@
     "chapter": "8.2",
     "title": "零次尝试是什么",
     "type": "choice",
-    "statement": "方向已经确认下降，但max_trials=0。本题返回标记accepted表示接受一步，converged表示收敛，line_search_failed表示未找到步长。应怎样处理？",
+    "statement": "方向已经确认下降，但一次回溯允许的尝试次数max_trials=0。accepted表示接受一步，converged表示收敛，line_search_failed表示未找到接受步长。应怎样返回？",
     "learning_targets": [
       "T2"
     ],
@@ -1080,19 +1080,19 @@
     "options": [
       {
         "id": "A",
-        "text": "保持当前点，报告“未找到步长”。"
+        "text": "保留当前点，报告line_search_failed。"
       },
       {
         "id": "B",
-        "text": "接受初始步长，报告“接受一步”。"
+        "text": "直接接受初始步长，报告accepted。"
       },
       {
         "id": "C",
-        "text": "保持当前点，报告“收敛”。"
+        "text": "保留当前点，报告converged。"
       },
       {
         "id": "D",
-        "text": "采用零步长，报告“接受一步”。"
+        "text": "把零步长记为接受值，报告accepted。"
       }
     ],
     "constraints": []
@@ -1106,7 +1106,7 @@
     "chapter": "8.2",
     "title": "一步更新后的状态报告",
     "type": "choice",
-    "statement": "一次Armijo检验通过，但新点的梯度（gradient）仍明显非零。哪些判断正确？",
+    "statement": "一次Armijo回溯接受了新点，但新梯度仍明显非零。关于这一步和后续停止，哪些说法成立？",
     "learning_targets": [
       "T2"
     ],
@@ -1119,19 +1119,19 @@
     "options": [
       {
         "id": "A",
-        "text": "一次步长被接受后，可以把本次返回标记记为收敛，而不再检查梯度。"
+        "text": "只要步长被接受，便可报告整个优化已收敛，无需再检查停止条件。"
       },
       {
         "id": "B",
-        "text": "这次检验说明该步目标下降量满足Armijo条件。"
+        "text": "此次接受说明目标下降量达到Armijo要求的比例。"
       },
       {
         "id": "C",
-        "text": "下一次迭代仍需检查新点是否满足预先设定的停止条件。"
+        "text": "下一次外层迭代仍要判断新点是否满足预先给定的停止条件。"
       },
       {
         "id": "D",
-        "text": "如果更新次数已经用完且尚未满足停止条件，应报告预算耗尽。"
+        "text": "若更新次数已用完且尚未达标，应报告次数用完。"
       }
     ],
     "constraints": []
@@ -1145,7 +1145,7 @@
     "chapter": "8.2",
     "title": "小目标值可信吗",
     "type": "choice",
-    "statement": "把任意目标f替换为f−10⁶，梯度（gradient）与迭代轨迹（trajectory）保持不变。哪些停止规则仍有相同含义？",
+    "statement": "把目标f整体改成f−10⁶，不改变梯度和同一算法的迭代点。以下哪些停止判断在这次平移后仍保持原来的含义？",
     "learning_targets": [
       "T2"
     ],
@@ -1158,19 +1158,19 @@
     "options": [
       {
         "id": "A",
-        "text": "当目标值满足f<0时停止迭代。"
+        "text": "目标值小于0时停止。"
       },
       {
         "id": "B",
-        "text": "在相同坐标尺度下，梯度范数（norm）小于既定阈值时停止迭代。"
+        "text": "在相同坐标尺度下，梯度范数小于固定阈值时停止。"
       },
       {
         "id": "C",
-        "text": "在严格凸二次问题中，当前点到解析最小点的距离小于既定阈值时停止迭代。"
+        "text": "对严格凸二次目标，到解析最小点的距离小于固定阈值时停止。"
       },
       {
         "id": "D",
-        "text": "当目标绝对值|f|小于既定正阈值时停止迭代。"
+        "text": "目标绝对值小于固定正阈值时停止。"
       }
     ],
     "constraints": []
@@ -1184,7 +1184,7 @@
     "chapter": "8.2",
     "title": "什么时候小步会被接受",
     "type": "choice",
-    "statement": "f在当前点附近连续可微，gᵀp<0，0<c<1。无限回溯不断乘0<β<1。哪些结论成立？",
+    "statement": "目标在当前点附近连续可微，固定方向满足gᵀp<0，Armijo系数满足0<c<1。从正步长出发不断乘0<β<1，且允许无限尝试。哪些结论成立？",
     "learning_targets": [
       "T2"
     ],
@@ -1197,19 +1197,19 @@
     "options": [
       {
         "id": "A",
-        "text": "充分小的步长会满足Armijo条件。"
+        "text": "充分小的正步长会通过Armijo检验。"
       },
       {
         "id": "B",
-        "text": "把回溯次数限制为20次后，仍能保证在这些尝试中找到被接受的步长。"
+        "text": "把尝试次数改成最多20次，也能保证找到接受步长。"
       },
       {
         "id": "C",
-        "text": "沿p作步长为t的一阶展开时，余项除以t趋于0，这使充分小的正步长满足Armijo条件。"
+        "text": "一阶展开的余项除以步长t后趋于零，使负方向导数留下的余量足以满足Armijo条件。"
       },
       {
         "id": "D",
-        "text": "即使只要求p非零而不要求gᵀp<0，也能保证充分小的正步长被Armijo检验接受。"
+        "text": "去掉gᵀp<0，只要求方向非零，仍能保证充分小的正步长被接受。"
       }
     ],
     "constraints": []
@@ -1223,7 +1223,7 @@
     "chapter": "8.3",
     "title": "计算岭回归解",
     "type": "python",
-    "statement": "最小化 ‖Xβ−y‖²/(2n)+λ‖β‖²/2。不额外拟合截距，所有输入（input）已在同一无量纲（dimensionless）尺度。",
+    "statement": "对两列设计求岭回归最小点，目标为‖Xβ−y‖²/(2n)+λ‖β‖²/2，其中n是观测行数。不另拟合截距，设计与读数均已无量纲化。",
     "learning_targets": [
       "T3"
     ],
@@ -1238,19 +1238,19 @@
       {
         "name": "design",
         "type": "list[list[float]]",
-        "description": "设计矩阵（design matrix）X，每行对应一次观测（observation）。",
+        "description": "设计矩阵X，每行对应一条观测，每列对应一个系数；列顺序就是系数顺序。",
         "unit": "无量纲"
       },
       {
         "name": "observed",
         "type": "list[float]",
-        "description": "同序目标y，已按参考量除去单位。",
+        "description": "读数列表y，第i项与X的第i行对应，已按参考量换成无量纲数。",
         "unit": "无量纲"
       },
       {
         "name": "penalty",
         "type": "float",
-        "description": "惩罚强度λ，与平均平方损失的归一化配套。",
+        "description": "惩罚强度λ；损失按观测行数n取平均，惩罚使用题面给定的归一化。",
         "unit": "无量纲"
       }
     ],
@@ -1258,17 +1258,17 @@
       {
         "name": "coefficients",
         "type": "list[float] | None",
-        "description": "唯一系数；不唯一时None。",
+        "description": "按设计列顺序返回唯一系数；零惩罚且系数不唯一时为None。",
         "unit": "无量纲"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "unique或nonunique。",
+        "description": "unique表示系数唯一，nonunique表示零惩罚下的设计不能分别确定所有系数。",
         "unit": "不适用"
       }
     ],
-    "contract": "求解(XᵀX/n+λI)β=Xᵀy/n。λ=0且列不满秩（rank）时返回None、nonunique。题目中的秩亏是精确共线，不把任意小特征值（eigenvalue）直接认作零。",
+    "contract": "求解(XᵀX/n+λI)β=Xᵀy/n。λ=0且列不满秩时返回None、nonunique；本题的秩亏由完全相同列或零列给出，不把任意小特征值当作零。",
     "constraints": [
       "1≤n≤20，2列；0≤λ≤5；非零特征值≥0.01；秩亏时两列完全相同或零列。"
     ],
@@ -1277,7 +1277,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "XᵀX/n=.5I，加.5I后得到I，右端为[1,−1]，所以系数[1,−1]。",
+    "hint": "分别计算平均二次项和平均右端，再只在二次项对角线上加λ。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1315,7 +1315,7 @@
           ],
           "unique"
         ],
-        "explanation": "XᵀX/n=.5I，加.5I后得到I，右端为[1,−1]，所以系数[1,−1]。"
+        "explanation": "样例n=2，XᵀX/n=0.5I，Xᵀy/n=[1,−1]。加上λI=0.5I后，系数矩阵为I，所以返回[1,−1]及unique。"
       }
     ]
   },
@@ -1328,7 +1328,7 @@
     "chapter": "8.3",
     "title": "多出一个n意味着什么",
     "type": "choice",
-    "statement": "损失从‖Xβ−y‖²/(2n)+λ‖β‖²/2改为‖Xβ−y‖²/2+α‖β‖²/2。如何保持最小点相同？",
+    "statement": "原岭目标是‖Xβ−y‖²/(2n)+λ‖β‖²/2，新目标改为‖Xβ−y‖²/2+α‖β‖²/2。要使两个目标的最小点相同，α应怎样随λ换算？",
     "learning_targets": [
       "T3"
     ],
@@ -1369,7 +1369,7 @@
     "chapter": "8.3",
     "title": "唯一解意味着识别了机制吗",
     "type": "choice",
-    "statement": "设计矩阵（design matrix）两列完全相同，加λ>0的岭惩罚后解唯一。哪些判断正确？",
+    "statement": "设计矩阵的两列完全相同。加入λ>0的岭惩罚后，系数解唯一。关于这一唯一解，哪些解释成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1384,19 +1384,19 @@
     "options": [
       {
         "id": "A",
-        "text": "加入λ>0的岭惩罚后，目标的二次项矩阵（matrix）成为正定（positive definite）矩阵。"
+        "text": "λ>0使目标的二次项矩阵成为正定矩阵。"
       },
       {
         "id": "B",
-        "text": "仅凭这些观测（observation），就可以分别确定两个相同设计列对应的系数。"
+        "text": "这些重复设计列的观测已经分别确定了两个系数。"
       },
       {
         "id": "C",
-        "text": "两个系数的唯一取值可能由岭惩罚选定，而不是由数据分别确定。"
+        "text": "两个系数的唯一分配可以由惩罚决定，而不是由数据分别识别。"
       },
       {
         "id": "D",
-        "text": "岭解一般不把小系数精确变成零。"
+        "text": "岭惩罚通常让系数连续收缩，不会把小系数普遍精确变为零。"
       }
     ],
     "constraints": []
@@ -1410,7 +1410,7 @@
     "chapter": "8.3",
     "title": "截距是否一起惩罚",
     "type": "choice",
-    "statement": "训练数据已中心化，y的训练均值作为截距单独保存。为什么截距通常不参与本节惩罚？",
+    "statement": "设计列与响应都在训练上中心化，响应训练均值另存为截距，本节只惩罚中心化后的斜率系数。哪些解释成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1425,19 +1425,19 @@
     "options": [
       {
         "id": "A",
-        "text": "截距保存响应的训练均值，而中心化后的斜率（slope）描述自变量变化引起的响应变化，两者承担不同作用。"
+        "text": "截距保存响应基准水平，斜率描述变量偏离训练均值时的响应变化，两者作用不同。"
       },
       {
         "id": "B",
-        "text": "数据中心化后，改变原响应单位不会改变单独保存的截距。"
+        "text": "中心化以后，即使改变原响应的计量单位，保存的截距数值也不会改变。"
       },
       {
         "id": "C",
-        "text": "当前目标只惩罚中心化后的斜率，若也惩罚截距，就会额外把响应的基准水平向0收缩。"
+        "text": "若把截距也放入平方惩罚，会额外把响应基准水平向零收缩。"
       },
       {
         "id": "D",
-        "text": "截距不受惩罚时，斜率也不需要向0收缩。"
+        "text": "截距没有被惩罚，所以斜率也不会受到惩罚收缩。"
       }
     ],
     "constraints": []
@@ -1451,7 +1451,7 @@
     "chapter": "8.3",
     "title": "实现逐坐标软阈值",
     "type": "python",
-    "statement": "求每个坐标上的最小点argmin_z (z−v)²/2+τ|z|。",
+    "statement": "对列表中每个值v，求标量目标(z−v)²/2+τ|z|的唯一最小点，返回与输入逐项对应的软阈值结果。",
     "learning_targets": [
       "T3"
     ],
@@ -1466,13 +1466,13 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "给定坐标v，可为空。",
+        "description": "按给定顺序排列的各个标量v；空列表也允许。",
         "unit": "无量纲"
       },
       {
         "name": "threshold",
         "type": "float",
-        "description": "阈值τ。",
+        "description": "非负阈值τ，也是当前标量目标的绝对值惩罚强度。",
         "unit": "无量纲"
       }
     ],
@@ -1480,11 +1480,11 @@
       {
         "name": "minimizers",
         "type": "list[float]",
-        "description": "逐坐标最小点，顺序与values一致。",
+        "description": "每项对应原列表同一位置的最小点；输入为空时返回空列表。",
         "unit": "无量纲"
       }
     ],
-    "contract": "v>τ时返回v−τ；v<−τ时返回v+τ；其余返回0。边界|v|=τ归零。",
+    "contract": "逐项判断：v>τ返回v−τ，v<−τ返回v+τ，其余返回0。|v|=τ属于归零情形，τ=0时结果与原值相同。",
     "constraints": [
       "0≤threshold≤10；values长度0—50；元素绝对值≤20。"
     ],
@@ -1493,7 +1493,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "两端各向零移动.5；刚好等于阈值的±.5也变为0。",
+    "hint": "按阈值两侧与中间区间分三种情况，并把等号放在归零区间。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1524,7 +1524,7 @@
           0.0,
           1.5
         ],
-        "explanation": "两端各向零移动.5；刚好等于阈值的±.5也变为0。"
+        "explanation": "按原列表顺序处理，−2与2各向零移动0.5，得到−1.5与1.5；−0.5、0、0.5均满足|v|≤0.5，返回零。"
       }
     ]
   },
@@ -1537,7 +1537,7 @@
     "chapter": "8.3",
     "title": "计算一次近端更新",
     "type": "python",
-    "statement": "对目标F(β)=‖Xβ−y‖²/(2n)+λ‖β‖₁，执行一次近端梯度（proximal gradient）并计算新点的完整目标。",
+    "statement": "目标为F(β)=‖Xβ−y‖²/(2n)+λ‖β‖₁，n是观测行数。执行一次近端梯度更新，依次返回新系数和新点的完整目标。",
     "learning_targets": [
       "T3"
     ],
@@ -1552,31 +1552,31 @@
       {
         "name": "design",
         "type": "list[list[float]]",
-        "description": "设计矩阵（design matrix）X，每行对应一次观测（observation）。",
+        "description": "设计矩阵X，每行对应一条观测，每列对应一个系数；列顺序就是系数顺序。",
         "unit": "无量纲"
       },
       {
         "name": "observed",
         "type": "list[float]",
-        "description": "同序目标y，已按参考量除去单位。",
+        "description": "读数列表y，第i项与X的第i行对应，已按参考量换成无量纲数。",
         "unit": "无量纲"
       },
       {
         "name": "coefficients",
         "type": "list[float]",
-        "description": "当前系数β。",
+        "description": "当前系数β，第一、第二项对应X的第一、第二列。",
         "unit": "无量纲"
       },
       {
         "name": "step",
         "type": "float",
-        "description": "近端梯度步长η。",
+        "description": "这一次更新采用的正步长η。",
         "unit": "无量纲"
       },
       {
         "name": "penalty",
         "type": "float",
-        "description": "惩罚强度λ，与平均平方损失的归一化配套。",
+        "description": "惩罚强度λ；损失按观测行数n取平均，惩罚使用题面给定的归一化。",
         "unit": "无量纲"
       }
     ],
@@ -1584,17 +1584,17 @@
       {
         "name": "updated",
         "type": "list[float]",
-        "description": "更新后的β。",
+        "description": "按原设计列顺序排列的新系数。",
         "unit": "无量纲"
       },
       {
         "name": "objective",
         "type": "float",
-        "description": "新点的F值，含L1惩罚。",
+        "description": "在新系数处计算的F，包括平均半平方损失与L1惩罚。",
         "unit": "无量纲"
       }
     ],
-    "contract": "先算g=Xᵀ(Xβ−y)/n，再对β−ηg用阈值ηλ做软阈值（soft thresholding）。目标在新点计算。",
+    "contract": "先计算梯度g=Xᵀ(Xβ−y)/n，再将β−ηg逐坐标按阈值ηλ做软阈值。返回新系数，并在新点重新计算完整目标；本题只要求给定步长下的一次计算。",
     "constraints": [
       "2列；1≤n≤20；0≤λ≤3；0<step≤2；本题只要求一步计算，不宣称任意步长都收敛。",
       "设计矩阵、观测、初始或当前系数均为有限实数，元素绝对值≤20。"
@@ -1604,7 +1604,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "梯度为[−1,.2]，阈值.3，更新得[.7,0]；完整目标为.6725。",
+    "hint": "阈值是step乘penalty。目标要用更新后的预测误差，不能沿用旧误差。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1647,7 +1647,7 @@
           ],
           0.6725
         ],
-        "explanation": "梯度（gradient）为[−1,.2]，阈值.3，更新得[.7,0]；完整目标为.6725。"
+        "explanation": "样例n=2，起始梯度为[−1,0.2]。步长1给出中间点[1,−0.2]，阈值ηλ=0.3，软阈值后为[0.7,0]。新误差为[−1.3,0.4]，完整目标为(1.3²+0.4²)/4+0.3×0.7=0.6725。"
       }
     ]
   },
@@ -1660,7 +1660,7 @@
     "chapter": "8.3",
     "title": "零处的斜率如何表达",
     "type": "choice",
-    "statement": "最小化(z−v)²/2+τ|z|，τ>0。关于v的哪个条件与“z=0是最小点”等价？",
+    "statement": "标量目标为(z−v)²/2+τ|z|，其中τ>0。下面哪个关于v的条件，恰好等价于“最小点为z=0”？",
     "learning_targets": [
       "T3"
     ],
@@ -1675,19 +1675,19 @@
     "options": [
       {
         "id": "A",
-        "text": "条件为v=0。"
+        "text": "条件是v=0。"
       },
       {
         "id": "B",
-        "text": "条件为|v|≥τ。"
+        "text": "条件是|v|≥τ。"
       },
       {
         "id": "C",
-        "text": "条件为|v|≤τ。"
+        "text": "条件是|v|≤τ。"
       },
       {
         "id": "D",
-        "text": "条件为|v|<τ。"
+        "text": "条件是|v|<τ。"
       }
     ],
     "constraints": []
@@ -1701,7 +1701,7 @@
     "chapter": "8.3",
     "title": "近端步长和归一化",
     "type": "choice",
-    "statement": "g(β)=‖Xβ−y‖²/(2n)，L为XᵀX/n的最大特征值（eigenvalue）且L>0。作为适用于任意L>0的通用公式，使标准近端二次上界模型（model）对所有方向成立的完整步长范围是哪项？",
+    "statement": "光滑损失g(β)=‖Xβ−y‖²/(2n)的最大曲率为L=λmax(XᵀX/n)>0。要使标准近端二次上界在所有方向成立，适用于任意L>0的完整正步长范围是哪一项？",
     "learning_targets": [
       "T3"
     ],
@@ -1716,19 +1716,19 @@
     "options": [
       {
         "id": "A",
-        "text": "完整步长范围为0<η≤1/L。"
+        "text": "完整范围是0<η≤1/L。"
       },
       {
         "id": "B",
-        "text": "完整步长范围为0<η≤2/L。"
+        "text": "完整范围是0<η≤2/L。"
       },
       {
         "id": "C",
-        "text": "完整步长范围为0<η≤L。"
+        "text": "完整范围是0<η≤L。"
       },
       {
         "id": "D",
-        "text": "完整步长范围为0<η≤2L。"
+        "text": "完整范围是0<η≤2L。"
       }
     ],
     "constraints": []
@@ -1742,7 +1742,7 @@
     "chapter": "8.3",
     "title": "相关变量的稀疏选择",
     "type": "choice",
-    "statement": "两个高度相关变量可相互替代，L1解仅保留其中一个。哪些结论合理？",
+    "statement": "两个高度相关的候选变量可以相互补偿，L1拟合只保留其中一个非零系数。关于这种稀疏结果，哪些解释成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1757,19 +1757,19 @@
     "options": [
       {
         "id": "A",
-        "text": "被删变量系数为0，说明其作用已由当前数据单独识别为0。"
+        "text": "另一个变量系数为零，说明当前数据已经单独确定它的真实作用为零。"
       },
       {
         "id": "B",
-        "text": "在当前候选变量与惩罚目标下，保留一个变量可以给出只有少数非零系数的拟合结果。"
+        "text": "在当前候选变量与惩罚下，保留其中一个可以形成只有少数非零系数的拟合。"
       },
       {
         "id": "C",
-        "text": "要把入选变量解释为实际机制，需要用独立数据和该机制的实验依据继续检验。"
+        "text": "若要将入选变量解释为实际机制，还要用独立数据和针对该机制的实验依据检验。"
       },
       {
         "id": "D",
-        "text": "改变变量的计量尺度或小幅改变数据，都可能改变哪个变量的系数被压为0。"
+        "text": "改变计量尺度或轻微改变数据，可能改变最后哪个系数为零。"
       }
     ],
     "constraints": []
@@ -1783,7 +1783,7 @@
     "chapter": "8.3",
     "title": "固定训练尺度后变换新数据",
     "type": "python",
-    "statement": "只使用training计算每列均值与总体标准差（standard deviation），然后变换later。",
+    "statement": "只根据training的观测行计算两列均值和以训练行数为分母的标准差，再用这些训练量变换later。依次返回均值、实际使用的尺度和变换后的行。",
     "learning_targets": [
       "T3"
     ],
@@ -1798,13 +1798,13 @@
       {
         "name": "training",
         "type": "list[list[float]]",
-        "description": "训练行，每行2个变量。",
+        "description": "训练行列表，每行按第一、第二变量排列。",
         "unit": "无量纲"
       },
       {
         "name": "later",
         "type": "list[list[float]]",
-        "description": "待变换的验证或未来行，可为空。",
+        "description": "需要变换的验证或未来行，使用相同列顺序，可为空。",
         "unit": "无量纲"
       }
     ],
@@ -1812,23 +1812,23 @@
       {
         "name": "means",
         "type": "list[float]",
-        "description": "训练列均值。",
+        "description": "第一、第二训练列的均值。",
         "unit": "无量纲"
       },
       {
         "name": "scales",
         "type": "list[float]",
-        "description": "训练总体标准差，零值改为1。",
+        "description": "第一、第二训练列的标准差，零标准差按约定替换为1。",
         "unit": "无量纲"
       },
       {
         "name": "transformed",
         "type": "list[list[float]]",
-        "description": "later按(x−mean)/scale变换后的行。",
+        "description": "逐行对later按(x−mean)/scale计算，保留原来的行序与列序。",
         "unit": "无量纲"
       }
     ],
-    "contract": "标准差分母为训练行数n，不是n−1；later不能参与均值或尺度估计。常量训练列的尺度置1，未来偏离仍保留，不直接清零。",
+    "contract": "均值和标准差只由training计算；标准差的方差分母是训练行数n，不是n−1。later不参与估计。恒定训练列使用尺度1，后续偏离训练均值的数值仍保留。",
     "constraints": [
       "training至少1行、至多30行；later长度0—30；每行2个数，绝对值≤100。"
     ],
@@ -1837,7 +1837,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "训练均值[2,5]、尺度[1,1]，所以新行变为[3,2]。",
+    "hint": "先算训练两列的统计量，再逐行变换later；恒定列只替换分母，不删除新变化。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1885,7 +1885,7 @@
             ]
           ]
         ],
-        "explanation": "训练均值[2,5]、尺度[1,1]，所以新行变为[3,2]。"
+        "explanation": "训练两列均值为[2,5]，以n=2为分母的标准差为[1,0]。按约定将零尺度改成1，所以使用[1,1]；后续行[5,7]变成[(5−2)/1,(7−5)/1]=[3,2]。"
       }
     ]
   },
@@ -1898,7 +1898,7 @@
     "chapter": "8.3",
     "title": "哪一组数据选择λ",
     "type": "choice",
-    "statement": "已经固定训练、验证和最终评估三段。以下哪些做法保持最终评估独立？",
+    "statement": "训练、验证、最终评估三段已经固定。哪些做法能让最终评估段继续承担未参与模型选择的检验？",
     "learning_targets": [
       "T3"
     ],
@@ -1913,19 +1913,19 @@
     "options": [
       {
         "id": "A",
-        "text": "用训练集（training set）估计均值和标准差（standard deviation），再用这些数值标准化验证段和最终评估段。"
+        "text": "只用训练行估计均值和标准差，再用这些量变换验证与最终行。"
       },
       {
         "id": "B",
-        "text": "根据验证集（validation set）选择λ，并在选择完成后用最终评估段计算预测误差。"
+        "text": "根据验证误差选定λ，选择结束后再计算最终段的预测误差。"
       },
       {
         "id": "C",
-        "text": "根据最终评估误差重新选择λ后，仍把同一段误差报告为未参与选择的数据上的误差。"
+        "text": "看过最终误差后重新选λ，仍把同一段误差当作完全未参与选择的评价。"
       },
       {
         "id": "D",
-        "text": "保留最终评估段测得的误差，并用新的独立数据评价之后作出的模型（model）修改。"
+        "text": "保留本次最终误差，后续修改模型时再用新的独立数据评价。"
       }
     ],
     "constraints": []
@@ -1939,7 +1939,7 @@
     "chapter": "8.3",
     "title": "训练中恒定的变量",
     "type": "choice",
-    "statement": "训练时某列始终为5，后续值为7。按本节标准化契约置尺度为1后，哪项正确？",
+    "statement": "训练中某列始终为5，后续一行该列为7。按本节约定，标准差为零时使用尺度1，变换是减训练均值再除尺度。该后续值变成多少？",
     "learning_targets": [
       "T3"
     ],
@@ -1954,19 +1954,19 @@
     "options": [
       {
         "id": "A",
-        "text": "标准化后的值为7/5。"
+        "text": "变换后的值为7/5。"
       },
       {
         "id": "B",
-        "text": "标准化后的值为0。"
+        "text": "变换后的值为0。"
       },
       {
         "id": "C",
-        "text": "标准化后的值为7。"
+        "text": "变换后的值为7。"
       },
       {
         "id": "D",
-        "text": "标准化后的值为2。"
+        "text": "变换后的值为2。"
       }
     ],
     "constraints": []
@@ -1980,7 +1980,7 @@
     "chapter": "8.3",
     "title": "相关字典下的预测与系数",
     "type": "choice",
-    "statement": "一个回归模型（model）使用多个高度相关的候选变量，所得预测误差很小。关于系数解释和新数据预测，哪些判断正确？",
+    "statement": "模型使用多个高度相关的候选变量，并取得很小预测误差。关于系数解释与后续预测，哪些判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1995,19 +1995,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两组系数在留出数据上预测相近，说明它们的各项数值也相近。"
+        "text": "两组系数在留出数据上预测相近，所以每个系数的数值也相近。"
       },
       {
         "id": "B",
-        "text": "多个系数组合可能给出近似相同预测。"
+        "text": "不同系数组合可以在这些输入上产生近似相同的预测。"
       },
       {
         "id": "C",
-        "text": "需要检查输入（input）和观测（observation）是否足以区分不同系数组合，再解释每个系数。"
+        "text": "解释单个系数前，需要检查输入变化与观测是否足以区分不同系数组合。"
       },
       {
         "id": "D",
-        "text": "若留出数据的输入超出训练范围，即使训练预测误差很小，留出预测误差也可能增大。"
+        "text": "后续输入超出训练范围时，即使训练误差很小，预测误差仍可能增大。"
       }
     ],
     "constraints": []
@@ -2021,7 +2021,7 @@
     "chapter": "8.4",
     "title": "核对四类最优性残差",
     "type": "python",
-    "statement": "对严格凸二次目标与线性不等式，核对给定候选点及乘子，不运行优化器。",
+    "statement": "对严格凸二次目标f(x)=xᵀHx/2−bᵀx及线性限制Ax≤c，检查给定候选点和不等式乘子。依次返回四类KKT残差和检查状态，无需重新运行优化器。",
     "learning_targets": [
       "T4"
     ],
@@ -2035,43 +2035,43 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "description": "对称矩阵H；第j行、第k列对应变量x_j与x_k，目标的二次项为xᵀHx/2。",
         "unit": "无量纲"
       },
       {
         "name": "linear",
         "type": "list[float]",
-        "description": "线性项 b，符号按目标中的减号。",
+        "description": "按变量顺序排列的向量b，在线性项−bᵀx中使用。",
         "unit": "无量纲"
       },
       {
         "name": "constraints",
         "type": "list[list[float]]",
-        "description": "不等式行A，规定Ax≤c。",
+        "description": "约束矩阵A，每行代表一条不等式，列顺序与x一致。",
         "unit": "无量纲"
       },
       {
         "name": "bounds",
         "type": "list[float]",
-        "description": "右端c，与约束行同序。",
+        "description": "每条约束的右端c，顺序与A的行一致。",
         "unit": "无量纲"
       },
       {
         "name": "point",
         "type": "list[float]",
-        "description": "当前优化变量 x。",
+        "description": "当前变量列表x，顺序与H的行列及b一致。",
         "unit": "无量纲"
       },
       {
         "name": "multipliers",
         "type": "list[float]",
-        "description": "候选不等式乘子λ，与约束行同序。",
+        "description": "每条不等式的候选乘子λ，顺序与A的行一致。",
         "unit": "无量纲"
       },
       {
         "name": "tolerance",
         "type": "float",
-        "description": "四个残差（residual）统一的绝对阈值。",
+        "description": "四类无量纲残差都使用的非负精度阈值；题设要求严格为正。",
         "unit": "无量纲"
       }
     ],
@@ -2079,26 +2079,26 @@
       {
         "name": "residuals",
         "type": "list[float]",
-        "description": "依次为原始可行、对偶可行、驻点（stationary point）和互补残差。",
+        "description": "依次为约束最大正违反量、乘子最大负违反量、梯度平衡最大绝对分量、最大绝对互补乘积。",
         "unit": "无量纲"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "全部残差≤tolerance为verified，否则rejected。",
+        "description": "四项均不大于tolerance时为verified，否则为rejected。",
         "unit": "不适用"
       }
     ],
-    "contract": "记r=Ax−c，s=Hx−b+Aᵀλ。返回[max(0,max r), max(0,max −λ), max|s|, max|λᵢrᵢ|]；空约束的相应最大值取0。rejected仅说明候选不合格，不能判定问题不可行。",
+    "contract": "计算r=Ax−c、s=Hx−b+Aᵀλ，返回[max(0,max r),max(0,max −λ),max|s|,max|λᵢrᵢ|]。空约束时与约束或乘子相关的最大值取0，驻点残差仍按目标梯度计算。rejected只拒绝当前候选，不能证明整个问题不可行。",
     "constraints": [
-      "维数1或2，H正定（positive definite）；0—5行线性约束；全部量已无量纲（dimensionless）化，tolerance>0。"
+      "维数1或2，H正定；0—5行线性约束；全部量已无量纲化，tolerance>0。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "点[1,1]恰好用完预算2，乘子2抵消梯度[−2,−2]，四个残差为0。",
+    "hint": "先保持约束行、右端和乘子的逐项对应，再分别计算可行性、符号、梯度平衡与互补。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2166,7 +2166,7 @@
           ],
           "verified"
         ],
-        "explanation": "点[1,1]恰好用完预算2，乘子2抵消梯度（gradient）[−2,−2]，四个残差为0。"
+        "explanation": "样例约束顺序为总量、第一坐标非负、第二坐标非负。点[1,1]恰好用完上限2，r=[0,−1,−1]；乘子[2,0,0]非负，并使梯度[−2,−2]+Aᵀλ=[0,0]。互补乘积也全为零，按规定顺序返回四个零残差及verified。"
       }
     ]
   },
@@ -2179,7 +2179,7 @@
     "chapter": "8.4",
     "title": "条件何时必要或充分",
     "type": "choice",
-    "statement": "对可微凸目标、可微凸不等式和仿射（affine）等式，以下哪些表述正确？",
+    "statement": "目标和不等式函数凸且可微，等式约束是仿射等式。关于KKT条件能说明什么，哪些判断成立？",
     "learning_targets": [
       "T4"
     ],
@@ -2193,19 +2193,19 @@
     "options": [
       {
         "id": "A",
-        "text": "若某个可行点和一组乘子共同满足KKT条件，该可行点就是全局最小点。"
+        "text": "可行点与一组乘子共同满足全部KKT条件时，该点是全局最小点。"
       },
       {
         "id": "B",
-        "text": "把凸目标换成一般非凸目标，KKT仍是全局最优的充分条件。"
+        "text": "把目标换成一般非凸函数后，满足KKT仍足以证明全局最小。"
       },
       {
         "id": "C",
-        "text": "要保证最优点存在满足KKT条件的乘子，还需要适当的约束资格条件。"
+        "text": "若要保证最优点具有满足KKT的乘子，还需适当的约束资格条件。"
       },
       {
         "id": "D",
-        "text": "只检查原始约束可行及乘子非负，就足以证明全局最优，不需要检查驻点（stationary point）和互补条件。"
+        "text": "只检查约束满足和乘子非负，就足以证明最优，可以省略驻点与互补条件。"
       }
     ],
     "constraints": []
@@ -2219,7 +2219,7 @@
     "chapter": "8.4",
     "title": "退化约束为什么重要",
     "type": "choice",
-    "statement": "最小化f(x)=x，约束x²≤0，唯一可行点x=0。关于KKT有哪些正确判断？",
+    "statement": "最小化f(x)=x，限制x²≤0。唯一可行点为x=0。关于这个最优点及KKT条件，哪些判断成立？",
     "learning_targets": [
       "T4"
     ],
@@ -2233,19 +2233,19 @@
     "options": [
       {
         "id": "A",
-        "text": "因为x=0处找不到满足KKT条件的乘子，所以x=0不是最优点。"
+        "text": "零点找不到满足KKT的乘子，因此零点不是最优点。"
       },
       {
         "id": "B",
-        "text": "x=0是唯一可行点，因此也是最优点。"
+        "text": "零点是唯一可行点，所以也是全局最小点。"
       },
       {
         "id": "C",
-        "text": "x=0处的驻点（stationary point）条件为1+λ·0=0，没有任何λ能满足它。"
+        "text": "零点的驻点方程是1+λ·0=0，没有任何有限乘子能满足。"
       },
       {
         "id": "D",
-        "text": "这个例子说明，使用KKT作为最优点的必要条件时，需要检查约束资格是否成立。"
+        "text": "这个例子表明，要把KKT作为最优点的必要条件，还需检查保证乘子存在的约束条件。"
       }
     ],
     "constraints": []
@@ -2259,7 +2259,7 @@
     "chapter": "8.4",
     "title": "乘子的符号从哪来",
     "type": "choice",
-    "statement": "目标f，约束g(x)≤0，采用L=f+λg。哪些说法正确？",
+    "statement": "对限制g(x)≤0，采用拉格朗日函数L=f+λg。按这个符号约定，以下哪些关系成立？",
     "learning_targets": [
       "T4"
     ],
@@ -2273,19 +2273,19 @@
     "options": [
       {
         "id": "A",
-        "text": "该不等式约束的KKT乘子满足λ≥0。"
+        "text": "不等式的KKT乘子要求λ≥0。"
       },
       {
         "id": "B",
-        "text": "该不等式约束的互补条件为λg(x)=0。"
+        "text": "不等式的互补条件为λg(x)=0。"
       },
       {
         "id": "C",
-        "text": "当约束未活跃，即g(x)<0时，互补条件要求λ=0。"
+        "text": "限制有严格余量g(x)<0时，互补条件要求λ=0。"
       },
       {
         "id": "D",
-        "text": "等式约束对应的KKT乘子也受非负条件限制。"
+        "text": "等式约束的KKT乘子也必须非负。"
       }
     ],
     "constraints": []
@@ -2299,7 +2299,7 @@
     "chapter": "8.4",
     "title": "求解带上下界和预算的二次目标",
     "type": "python",
-    "statement": "两个可调流量（flow）已除以共同参考流量，求满足上下界及总预算的唯一最优配置。",
+    "statement": "两路输入流率已除以共同参考流率，得到无量纲坐标x₁,x₂。最小化f(x)=xᵀHx/2−bᵀx，要求ℓ≤x≤u及x₁+x₂≤B；H对称正定。返回唯一最优配置或相应失败状态。",
     "learning_targets": [
       "T4"
     ],
@@ -2313,31 +2313,31 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "description": "对称矩阵H；第j行、第k列对应变量x_j与x_k，目标的二次项为xᵀHx/2。",
         "unit": "无量纲"
       },
       {
         "name": "linear",
         "type": "list[float]",
-        "description": "线性项 b，符号按目标中的减号。",
+        "description": "按变量顺序排列的向量b，在线性项−bᵀx中使用。",
         "unit": "无量纲"
       },
       {
         "name": "lower",
         "type": "list[float]",
-        "description": "两坐标的下界ℓ。",
+        "description": "第一、第二坐标下界ℓ，按原坐标顺序排列。",
         "unit": "无量纲"
       },
       {
         "name": "upper",
         "type": "list[float]",
-        "description": "两坐标的上界u。",
+        "description": "第一、第二坐标上界u，按原坐标顺序排列。",
         "unit": "无量纲"
       },
       {
         "name": "budget",
         "type": "float",
-        "description": "总量上限B，要求x₁+x₂≤B。",
+        "description": "总输入强度上限B，两个同尺度坐标要求x₁+x₂≤B。",
         "unit": "无量纲"
       }
     ],
@@ -2345,32 +2345,32 @@
       {
         "name": "point",
         "type": "list[float] | None",
-        "description": "最优坐标，未取得解时None。",
+        "description": "按第一、第二坐标返回最优配置；没有取得配置时为None。",
         "unit": "无量纲"
       },
       {
         "name": "objective",
         "type": "float | None",
-        "description": "该点目标值，无解时None。",
+        "description": "取得的配置处目标f；没有取得配置时为None。",
         "unit": "无量纲"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "optimal、infeasible或numerical_failure。",
+        "description": "optimal表示已求得最优配置，infeasible表示限制本身冲突，numerical_failure表示数值计算未完成。",
         "unit": "不适用"
       }
     ],
-    "contract": "若任一下界大于上界，或下界和大于budget，返回None,None,infeasible。否则求严格凸二次目标的唯一最小点；允许枚举边、顶点或活跃集（active set）。numerical_failure只表示计算失败，不能替代不可行判定。",
+    "contract": "任一下界大于上界，或下界之和大于budget时，返回None,None,infeasible。否则在完整可行集合上最小化原二次目标，可用边、顶点或活跃约束枚举。numerical_failure只说明本次数值计算失败，不能代替不可行证明。",
     "constraints": [
-      "二维H正定（positive definite），特征值（eigenvalue）在[0.1,20]；0≤下界、上界≤5；0≤budget≤10；线性项绝对值≤20；不得只把无约束解逐坐标截断。"
+      "二维H正定，特征值在[0.1,20]；0≤下界、上界≤5；0≤budget≤10；线性项绝对值≤20；不得只把无约束解逐坐标截断。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "预算活跃，解为[2/3,4/3]，目标−28/3；截断[2,2]不能满足总预算。",
+    "hint": "先取下界点检查可行性。可行以后，再比较内部点和可行边界，别只逐坐标截断无约束点。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2417,7 +2417,7 @@
           -9.333333333333334,
           "optimal"
         ],
-        "explanation": "预算活跃，解为[2/3,4/3]，目标−28/3；截断[2,2]不能满足总预算。"
+        "explanation": "样例无约束点为[2,2]，超过总量上限2。沿x₂=2−x₁代入目标，得到3x₁²−4x₁−8，最小处x₁=2/3、x₂=4/3，均满足上下界，目标−28/3。按原坐标顺序返回点、目标和optimal。"
       }
     ]
   },
@@ -2430,7 +2430,7 @@
     "chapter": "8.4",
     "title": "一次候选失败能证明什么",
     "type": "choice",
-    "statement": "某求解器返回候选x，发现违反一条约束。此时最可靠的报告是？",
+    "statement": "求解器给出一个候选x，检查发现它违反了一条硬约束。只根据这次检查，可以得出哪项结论？",
     "learning_targets": [
       "T4"
     ],
@@ -2444,19 +2444,19 @@
     "options": [
       {
         "id": "A",
-        "text": "当前候选不可行，因此原问题没有可行点。"
+        "text": "这个候选不可行，所以整个问题没有任何可行点。"
       },
       {
         "id": "B",
-        "text": "当前候选不可行，尚不能判定原问题是否可行。"
+        "text": "这个候选不可行，还不能判断整个问题是否有可行点。"
       },
       {
         "id": "C",
-        "text": "当前候选不可行，因此目标函数没有有限最小值。"
+        "text": "这个候选不可行，所以目标无法取得有限最小值。"
       },
       {
         "id": "D",
-        "text": "虽然当前候选违反约束，但它的目标值小于所有可行点时，仍可将它报告为约束最优解。"
+        "text": "若这个候选的目标比所有可行点更低，就可以把它当作约束最优解。"
       }
     ],
     "constraints": []
@@ -2470,7 +2470,7 @@
     "chapter": "8.4",
     "title": "截断为什么不够",
     "type": "choice",
-    "statement": "二次目标的H=[[2,1],[1,2]]，变量x₁、x₂还受总预算约束x₁+x₂≤B。关于逐坐标截断无约束解，哪些判断正确？",
+    "statement": "二次目标的H=[[2,1],[1,2]]，变量还受上下界和总量限制x₁+x₂≤B。关于把无约束点分别截到各坐标范围，哪些判断成立？",
     "learning_targets": [
       "T4"
     ],
@@ -2484,19 +2484,19 @@
     "options": [
       {
         "id": "A",
-        "text": "目标中的交叉项使改变x₁时的目标变化量取决于x₂的取值。"
+        "text": "交叉项使改变x₁造成的目标变化依赖x₂的当前值。"
       },
       {
         "id": "B",
-        "text": "在x₁+x₂≤B的约束下，增大x₁会减少x₂剩余的预算。"
+        "text": "总量上限固定时，增加x₁会减少留给x₂的总量余地。"
       },
       {
         "id": "C",
-        "text": "H正定（positive definite）时，可以忽略非对角项并分别求两个独立一维问题的截断解。"
+        "text": "H正定就可以忽略非对角项，把两个坐标分别当作独立问题求解。"
       },
       {
         "id": "D",
-        "text": "判断一个候选是否最优，需要在完整可行集合上比较原目标，或核对该问题的KKT条件。"
+        "text": "判断候选最优，需要比较原目标在完整可行集合上的值，或核对原问题的KKT条件。"
       }
     ],
     "constraints": []
@@ -2510,7 +2510,7 @@
     "chapter": "8.4",
     "title": "放宽约束和多跑几步",
     "type": "choice",
-    "statement": "原问题要求x₁+x₂≤B，改成超额惩罚ρmax(0,x₁+x₂−B)²。哪些判断正确？",
+    "statement": "原问题把x₁+x₂≤B作为硬约束。现在去掉这条硬约束，改在目标中加入ρmax(0,x₁+x₂−B)²。关于这项修改，哪些判断成立？",
     "learning_targets": [
       "T4"
     ],
@@ -2524,19 +2524,19 @@
     "options": [
       {
         "id": "A",
-        "text": "ρ有限时，优化器可能为了减少其他目标项而选择x₁+x₂>B的解。"
+        "text": "有限ρ下，最小点可能通过超过B来降低其他代价，即使需支付超额惩罚。"
       },
       {
         "id": "B",
-        "text": "ρ大于所有目标系数时，所得最优解就满足x₁+x₂≤B。"
+        "text": "只要ρ超过全部目标系数，最小点就一定满足原来的总量硬限制。"
       },
       {
         "id": "C",
-        "text": "增加迭代次数只改变求解过程，而增大B会扩大允许的变量取值集合。"
+        "text": "增加迭代次数改变求解过程，增大B则改变允许配置的集合。"
       },
       {
         "id": "D",
-        "text": "比较所得方案时，还应报告超额量max(0,x₁+x₂−B)。"
+        "text": "报告修改后的方案时，还应计算超额量max(0,x₁+x₂−B)。"
       }
     ],
     "constraints": []
@@ -2550,7 +2550,7 @@
     "chapter": "8.summary",
     "title": "目标尺度与凸性",
     "type": "choice",
-    "statement": "拟合目标f(x)=xᵀHx/2−bᵀx。H对称。哪些判断正确？",
+    "statement": "拟合目标f(x)=xᵀHx/2−bᵀx，H对称。结合本篇的二次与非二次例子，哪些判断成立？",
     "learning_targets": [
       "T1"
     ],
@@ -2565,19 +2565,19 @@
     "options": [
       {
         "id": "A",
-        "text": "H正定（positive definite）时唯一驻点（stationary point）就是全局最小。"
+        "text": "H正定时，唯一驻点就是该二次目标的全局最小点。"
       },
       {
         "id": "B",
-        "text": "对一般非线性目标，在一个驻点测得半正定（positive semidefinite）海森矩阵（Hessian matrix）就能证明全域凸。"
+        "text": "一般非线性目标在一个驻点的海森矩阵半正定，足以证明目标在整个域上凸。"
       },
       {
         "id": "C",
-        "text": "统一正比例缩放目标不改变最小点。"
+        "text": "把整个目标乘正常数，最小点集合保持不变。"
       },
       {
         "id": "D",
-        "text": "对一般非凸目标，梯度（gradient）为0后仍需检查附近函数值或曲率，才能判断该点是否为最小点。"
+        "text": "一般非凸目标梯度为零时，还要检查附近函数值或曲率，才能判断是否最小。"
       }
     ],
     "constraints": []
@@ -2591,7 +2591,7 @@
     "chapter": "8.summary",
     "title": "正则化能保证什么",
     "type": "choice",
-    "statement": "用多个高度相关的候选变量拟合清除数据，并根据验证集（validation set）选择正则化（regularization）系数λ。哪些结论合理？",
+    "statement": "多个高度相关的候选项用于拟合清除读数，并由验证段选择惩罚强度λ。关于系数与预测，哪些结论成立？",
     "learning_targets": [
       "T3"
     ],
@@ -2606,19 +2606,19 @@
     "options": [
       {
         "id": "A",
-        "text": "在同一训练集（training set）上反复求解都选中同一变量，说明该变量的独立机制作用已被数据确认。"
+        "text": "反复在同一训练段求解都选中同一变量，足以确认它的独立机制作用。"
       },
       {
         "id": "B",
-        "text": "λ>0的岭目标可在列相关时给出唯一解。"
+        "text": "λ>0的岭目标在设计列相关时仍可给出唯一系数解。"
       },
       {
         "id": "C",
-        "text": "训练损失减小时，最终测试集（test set）上的预测误差仍可能增大。"
+        "text": "训练损失降低以后，最终评估段的预测误差仍可能增大。"
       },
       {
         "id": "D",
-        "text": "改变某列的尺度会改变同一预测所需的系数大小，因此同一个λ产生的惩罚也可能改变。"
+        "text": "改变一列尺度会改变同一预测所需的系数大小，也可能改变固定λ的惩罚效果。"
       }
     ],
     "constraints": []
@@ -2632,7 +2632,7 @@
     "chapter": "8.summary",
     "title": "梯度与曲率核验",
     "type": "python",
-    "statement": "对已经给定的无量纲（dimensionless）二次拟合目标，返回目标、梯度（gradient）及海森矩阵（Hessian matrix），供独立差分核对。",
+    "statement": "给定无量纲二次目标f(x)=xᵀHx/2−bᵀx的对称H、向量b与当前点x，依次返回目标、梯度和海森矩阵，供独立差分比较。",
     "learning_targets": [
       "T1"
     ],
@@ -2647,19 +2647,19 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "description": "对称矩阵H；第j行、第k列对应变量x_j与x_k，目标的二次项为xᵀHx/2。",
         "unit": "无量纲"
       },
       {
         "name": "linear",
         "type": "list[float]",
-        "description": "线性项 b，符号按目标中的减号。",
+        "description": "按变量顺序排列的向量b，在线性项−bᵀx中使用。",
         "unit": "无量纲"
       },
       {
         "name": "point",
         "type": "list[float]",
-        "description": "当前优化变量 x。",
+        "description": "当前变量列表x，顺序与H的行列及b一致。",
         "unit": "无量纲"
       }
     ],
@@ -2667,23 +2667,23 @@
       {
         "name": "value",
         "type": "float",
-        "description": "目标值 f(x)。",
+        "description": "当前点目标f，不额外加入观测损失的常数项。",
         "unit": "无量纲"
       },
       {
         "name": "gradient",
         "type": "list[float]",
-        "description": "梯度 Hx−b。",
+        "description": "按当前坐标顺序排列的Hx−b。",
         "unit": "无量纲"
       },
       {
         "name": "hessian",
         "type": "list[list[float]]",
-        "description": "海森矩阵，等于 H。",
+        "description": "保持输入行列顺序的H。",
         "unit": "无量纲"
       }
     ],
-    "contract": "按 f=xᵀHx/2−bᵀx 计算；不要漏掉 1/2，也不要把 b 的符号改为加号。",
+    "contract": "计算xᵀHx/2−bᵀx、Hx−b及H，按这个顺序返回。二次项保留1/2，线性项保留减号。",
     "constraints": [
       "1≤维数≤3；H对称，所有元素绝对值≤20。"
     ],
@@ -2692,7 +2692,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先算 Hx=[3,−2]，梯度=[2,−4]；目标值为4。",
+    "hint": "同一次矩阵向量乘积Hx可用于目标与梯度；差分比较时要微调相同坐标。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2743,7 +2743,7 @@
             ]
           ]
         ],
-        "explanation": "先算 Hx=[3,−2]，梯度=[2,−4]；目标值为4。"
+        "explanation": "样例Hx=[3,−2]，梯度为Hx−b=[2,−4]。二次项xᵀHx/2=4，线性项bᵀx=0，所以目标为4；海森矩阵返回原H，保持坐标行列顺序。"
       }
     ]
   },
@@ -2756,7 +2756,7 @@
     "chapter": "8.summary",
     "title": "带回溯的一步下降",
     "type": "python",
-    "statement": "给定同一拟合目标、起点和方向，按公开的有限回溯规则返回接受步长与新点。",
+    "statement": "给定严格凸二次目标f(x)=xᵀHx/2−bᵀx、当前点和方向，按规定的有限Armijo回溯返回新点、首次接受步长及状态。",
     "learning_targets": [
       "T2"
     ],
@@ -2771,49 +2771,49 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "description": "对称矩阵H；第j行、第k列对应变量x_j与x_k，目标的二次项为xᵀHx/2。",
         "unit": "无量纲"
       },
       {
         "name": "linear",
         "type": "list[float]",
-        "description": "线性项 b，符号按目标中的减号。",
+        "description": "按变量顺序排列的向量b，在线性项−bᵀx中使用。",
         "unit": "无量纲"
       },
       {
         "name": "point",
         "type": "list[float]",
-        "description": "当前优化变量 x。",
+        "description": "当前变量列表x，顺序与H的行列及b一致。",
         "unit": "无量纲"
       },
       {
         "name": "direction",
         "type": "list[float]",
-        "description": "固定搜索方向p。",
+        "description": "给定方向p，与变量使用同一坐标顺序，回溯中保持不变。",
         "unit": "无量纲"
       },
       {
         "name": "initial_step",
         "type": "float",
-        "description": "首先尝试的步长t₀。",
+        "description": "第一次尝试的正步长t₀。",
         "unit": "无量纲"
       },
       {
         "name": "shrink",
         "type": "float",
-        "description": "拒绝一次后步长乘β。",
+        "description": "拒绝候选后乘到步长上的缩小系数β。",
         "unit": "无量纲"
       },
       {
         "name": "slope",
         "type": "float",
-        "description": "Armijo系数c。",
+        "description": "Armijo要求的一阶预测下降比例c。",
         "unit": "无量纲"
       },
       {
         "name": "max_trials",
         "type": "int",
-        "description": "最多尝试多少个步长，含t₀。",
+        "description": "最多尝试的步长数，第一个t₀也计入。",
         "unit": "次"
       }
     ],
@@ -2821,25 +2821,25 @@
       {
         "name": "next_point",
         "type": "list[float]",
-        "description": "接受的点；失败时原点。",
+        "description": "接受的新点；未接受时保留给定当前点。",
         "unit": "无量纲"
       },
       {
         "name": "accepted_step",
         "type": "float | None",
-        "description": "接受的t，失败时None。",
+        "description": "首次满足条件的正步长，未接受时为None。",
         "unit": "无量纲"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "accepted、not_descent或line_search_failed。",
+        "description": "accepted表示这一步被接受，not_descent表示方向导数非负，line_search_failed表示尝试中没有接受值。",
         "unit": "不适用"
       }
     ],
-    "contract": "先算gᵀp。若≥0返回原点、None、not_descent。依次尝试t₀βʲ，j=0,…,max_trials−1；取第一个满足f(x+tp)≤f(x)+c t gᵀp的t。无接受值返回line_search_failed。",
+    "contract": "先计算gᵀp；非负时返回当前点、None、not_descent。否则依次尝试t₀βʲ，j=0,…,max_trials−1，接受首个使新目标有限且满足f(x+tp)≤f(x)+c t gᵀp的t。没有接受值时返回当前点、None、line_search_failed。",
     "constraints": [
-      "维数1或2，H正定（positive definite）；0<shrink<1，0<slope<.5；0≤max_trials≤30；所有输入（input）绝对值≤20。",
+      "维数1或2，H正定；0<shrink<1，0<slope<.5；0≤max_trials≤30；所有输入绝对值≤20。",
       "初始步长必须严格为正：0<initial_step≤20。"
     ],
     "entrypoint": "solve",
@@ -2847,7 +2847,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "分别计算 t=1 和 t=0.5 时的目标值与 Armijo 右侧；条件包含等号，首次满足时就停止回溯。",
+    "hint": "候选次序与包含等号的接受条件共同决定返回值；接受一步不表示整个优化已经收敛。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2897,7 +2897,7 @@
           0.5,
           "accepted"
         ],
-        "explanation": "t=1 不满足充分下降；t=0.5 时 f(x+tp)=2，Armijo 右侧也为 2，等号满足“≤”，故首次接受 t=0.5，新点为 [0,-1]。"
+        "explanation": "旧目标3，gᵀp=−20。全步t=1给出目标19、上界1，被拒绝；半步t=0.5给出新点[0,−1]、目标2和上界2。等号允许接受，所以返回[0,−1]、0.5、accepted。"
       }
     ]
   },
@@ -2910,7 +2910,7 @@
     "chapter": "8.summary",
     "title": "固定预算的近端稀疏拟合",
     "type": "python",
-    "statement": "对同一损失归一化进行固定次数的近端梯度（proximal gradient），返回全部迭代与目标值；固定预算结束不自动意味着收敛。",
+    "statement": "对F(β)=‖Xβ−y‖²/(2n)+λ‖β‖₁执行恰好steps次近端梯度更新，n为设计行数。依次返回系数历史与完整目标历史，包含初始点。",
     "learning_targets": [
       "T3"
     ],
@@ -2925,37 +2925,37 @@
       {
         "name": "design",
         "type": "list[list[float]]",
-        "description": "设计矩阵（design matrix）X，每行对应一次观测（observation）。",
+        "description": "设计矩阵X，每行一条观测、每列一个候选项。",
         "unit": "无量纲"
       },
       {
         "name": "observed",
         "type": "list[float]",
-        "description": "同序目标y，已按参考量除去单位。",
+        "description": "读数y，逐项对应X的行，已经无量纲化。",
         "unit": "无量纲"
       },
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "初始系数。",
+        "description": "初始系数，顺序与X的列一致。",
         "unit": "无量纲"
       },
       {
         "name": "step",
         "type": "float",
-        "description": "每步步长η。",
+        "description": "固定正步长η，范围按题设的最大曲率L规定。",
         "unit": "无量纲"
       },
       {
         "name": "penalty",
         "type": "float",
-        "description": "惩罚强度λ，与平均平方损失的归一化配套。",
+        "description": "绝对值惩罚强度λ，损失仍按n取平均。",
         "unit": "无量纲"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "确切的更新次数。",
+        "description": "确切更新次数，初始点记录不占更新次数。",
         "unit": "次"
       }
     ],
@@ -2963,17 +2963,17 @@
       {
         "name": "trajectory",
         "type": "list[list[float]]",
-        "description": "初值（initial condition）加steps个新点。",
+        "description": "初始系数及steps次更新后的系数，共steps+1行，保持列顺序。",
         "unit": "无量纲"
       },
       {
         "name": "objectives",
         "type": "list[float]",
-        "description": "与每个点对应的完整L1目标。",
+        "description": "每行系数处的F，逐项对应系数历史，包含L1惩罚。",
         "unit": "无量纲"
       }
     ],
-    "contract": "目标为‖Xβ−y‖²/(2n)+λ‖β‖₁；每次先梯度（gradient）步，再用阈值ηλ做软阈值（soft thresholding）。steps=0仅返回初值和初值目标。",
+    "contract": "每次先计算Xᵀ(Xβ−y)/n，再对梯度步结果用阈值ηλ做软阈值。保留初始点与其完整目标，再记录每次更新。steps=0只返回初始行和对应目标；次数完成本身不提供额外收敛结论。",
     "constraints": [
       "1≤n≤20；2列；0≤steps≤30；0<step≤1/L，L=λmax(XᵀX/n)>0；λ≥0。",
       "设计矩阵、观测、初始或当前系数均为有限实数，元素绝对值≤20。"
@@ -2983,7 +2983,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "该正交设计XᵀX/n=I，第一步即为[.5,.5]，以后不变；目标从1降到.75。",
+    "hint": "将一次更新与目标计算分开复用，并让两张历史列表长度和位置一致。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3041,7 +3041,7 @@
             0.75
           ]
         ],
-        "explanation": "该正交（orthogonality）设计XᵀX/n=I，第一步即为[.5,.5]，以后不变；目标从1降到.75。"
+        "explanation": "样例XᵀX/n=I、Xᵀy/n=[1,1]。从[0,0]走梯度步到[1,1]，阈值0.5给出[0.5,0.5]；第二次更新仍回到这个点。两次更新加初始行共三行，对应完整目标为1、0.75、0.75。"
       }
     ]
   },
@@ -3054,7 +3054,7 @@
     "chapter": "8.summary",
     "title": "约束配置及最优性证据",
     "type": "python",
-    "statement": "求两个无量纲（dimensionless）流量（flow）的最优配置，并重建非负乘子核对四个KKT残差（residual）。",
+    "statement": "两路流率以共同参考值归一化。对f(x)=xᵀHx/2−bᵀx，求满足上下界及x₁+x₂≤B的最优配置，再重建非负乘子并检查四类KKT残差。",
     "learning_targets": [
       "T4"
     ],
@@ -3069,31 +3069,31 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "description": "对称矩阵H；第j行、第k列对应变量x_j与x_k，目标的二次项为xᵀHx/2。",
         "unit": "无量纲"
       },
       {
         "name": "linear",
         "type": "list[float]",
-        "description": "线性项 b，符号按目标中的减号。",
+        "description": "向量b，按第一、第二变量顺序，元素绝对值不超过20。",
         "unit": "无量纲"
       },
       {
         "name": "lower",
         "type": "list[float]",
-        "description": "两坐标的下界ℓ。",
+        "description": "两个坐标下界ℓ，各项在[0,5]，列表第一项对应第一路。",
         "unit": "无量纲"
       },
       {
         "name": "upper",
         "type": "list[float]",
-        "description": "两坐标的上界u。",
+        "description": "两个坐标上界u，各项在[0,5]，与下界使用相同顺序。",
         "unit": "无量纲"
       },
       {
         "name": "budget",
         "type": "float",
-        "description": "总量上限B，要求x₁+x₂≤B。",
+        "description": "总量上限B，在[0,10]，要求两个坐标之和不超过它。",
         "unit": "无量纲"
       }
     ],
@@ -3101,38 +3101,38 @@
       {
         "name": "point",
         "type": "list[float] | None",
-        "description": "最优点；不可行时None。",
+        "description": "取得的最优配置；不可行或未取得配置时为None。",
         "unit": "无量纲"
       },
       {
         "name": "objective",
         "type": "float | None",
-        "description": "完整二次目标；不可行时None。",
+        "description": "取得配置处的二次目标值；未取得配置时为None。",
         "unit": "无量纲"
       },
       {
         "name": "residuals",
         "type": "list[float] | None",
-        "description": "原始、对偶、驻点（stationary point）、互补残差；不可行时None。",
+        "description": "按原始可行、对偶可行、驻点、互补排列的四残差；不可行或未取得合格检查时为None。",
         "unit": "无量纲"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "optimal、infeasible或numerical_failure。",
+        "description": "optimal表示配置及残差检查完成，infeasible表示约束冲突，numerical_failure表示数值计算或检查未完成。",
         "unit": "不适用"
       }
     ],
-    "contract": "先按上下界和总预算检查可行性。最优解使用A=[[-1,0],[0,-1],[1,0],[0,1],[1,1]]及c=[−lower[0],−lower[1],upper[0],upper[1],budget]。找满足KKT的非负乘子，返回四残差；允许退化情况下不同的有效乘子，不要求返回乘子本身。不可行返回三个None及infeasible。",
+    "contract": "先按下界是否超过上界及下界和是否超过预算检查可行性。五条约束按两个下界、两个上界、总量排列，A=[[-1,0],[0,-1],[1,0],[0,1],[1,1]]，c=[−lower[0],−lower[1],upper[0],upper[1],budget]；列表索引0、1对应第一、第二路。求最优配置并找满足KKT的非负乘子，返回四残差，不返回乘子本身。退化时允许不同有效乘子。不可行返回三个None与infeasible；数值失败时状态为numerical_failure，并保留已经取得的候选信息。",
     "constraints": [
-      "二维正定（positive definite）H，特征值（eigenvalue）在[0.1,20]；其余范围同章节配置题；可行样例都存在数值稳定的有效证书。"
+      "二维正定H，特征值在[0.1,20]；其余范围同章节配置题；可行样例都存在数值稳定的有效证书。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "首例点[2/3,4/3]、值−28/3；总预算乘子8/3，其余乘子0，四个KKT残差在舍入误差内为0。",
+    "hint": "求配置与验证乘子分别进行。取等号的约束可含零乘子，不必把全部紧约束放进同一个奇异方程。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3185,7 +3185,7 @@
           ],
           "optimal"
         ],
-        "explanation": "首例点[2/3,4/3]、值−28/3；总预算乘子8/3，其余乘子0，四个KKT残差在舍入误差（round-off error）内为0。"
+        "explanation": "样例最优点为[2/3,4/3]，目标−28/3。五条约束顺序为两个下界、两个上界、总量，乘子可取[0,0,0,0,8/3]；它平衡梯度并满足互补。四残差在浮点舍入精度内为零，依次返回配置、目标、残差和optimal。"
       }
     ]
   },
@@ -3198,7 +3198,7 @@
     "chapter": "8.summary",
     "title": "病态问题的收敛判断",
     "type": "choice",
-    "statement": "优化日志显示目标改变量很小，但‖g‖仍大于声明阈值；达到最大步数后退出。哪些结论合理？",
+    "statement": "日志显示目标变化很小，但梯度范数仍超过声明阈值；完成最大更新次数后退出。关于这个结果，哪些判断成立？",
     "learning_targets": [
       "T2"
     ],
@@ -3213,19 +3213,19 @@
     "options": [
       {
         "id": "A",
-        "text": "应把退出原因记为更新次数耗尽，而不是已经达到梯度（gradient）收敛阈值。"
+        "text": "退出原因应记为更新次数用完，不能记为梯度残差已经达标。"
       },
       {
         "id": "B",
-        "text": "步长很小时，即使梯度还较大，一次更新引起的目标变化量也可能很小。"
+        "text": "步长很小时，即使梯度不小，一步造成的目标变化也可能很小。"
       },
       {
         "id": "C",
-        "text": "可以用独立计算重新求梯度，并按声明的变量尺度和容差核对停止条件。"
+        "text": "可以独立重新计算梯度，按声明的坐标尺度和阈值检查停止条件。"
       },
       {
         "id": "D",
-        "text": "使用相同预算重跑并得到相同点后，可以把退出原因改记为已收敛。"
+        "text": "同样次数重跑得到相同终点以后，可以把停止原因改记为已收敛。"
       }
     ],
     "constraints": []
@@ -3239,7 +3239,7 @@
     "chapter": "8.summary",
     "title": "不可行与边界迁移",
     "type": "choice",
-    "statement": "两流量（flow）下界分别为1和2，总预算从4降到2.5，上界都为5。哪些判断正确？",
+    "statement": "两路输入下界为1和2，上界均为5，总量上限从4减到2.5。关于新限制及原来的配置，哪些判断成立？",
     "learning_targets": [
       "T4"
     ],
@@ -3254,19 +3254,19 @@
     "options": [
       {
         "id": "A",
-        "text": "新问题不可行，因为最小可能总量3已超预算。"
+        "text": "新问题不可行，因为任何配置总量至少为3，已经超过2.5。"
       },
       {
         "id": "B",
-        "text": "按两个下界的平均值1.5比较预算2.5，新问题仍可行。"
+        "text": "两个下界的平均值为1.5，小于2.5，所以新问题仍可行。"
       },
       {
         "id": "C",
-        "text": "降低一个流量下界可能使下界之和不超过2.5，但这样改变了原问题的约束。"
+        "text": "降低某个下界可能使下界和不超过2.5，但这也改变了原来的要求。"
       },
       {
         "id": "D",
-        "text": "使用旧解之前，需要检查其两个流量之和是否仍满足新预算2.5。"
+        "text": "沿用旧配置前，应检查它的两个输入之和是否满足新的2.5上限。"
       }
     ],
     "constraints": []
