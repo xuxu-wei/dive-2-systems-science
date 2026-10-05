@@ -11,7 +11,7 @@
     "options": [
       {
         "id": "A",
-        "text": "只以血液为系统时，从血液转移到组织的物质应记为跨边界输出。"
+        "text": "只以血液为系统时，从血液转移到组织的物质离开了所选系统，应记作输出。"
       },
       {
         "id": "B",
@@ -57,7 +57,7 @@
       },
       {
         "id": "C",
-        "text": "环境温度 u 位于系统边界（system boundary）之外，因此推断内部温度 x 时可以不考虑 u。"
+        "text": "环境温度 u 描述的是系统外的环境条件，因此推断内部温度 x 时可以不考虑 u。"
       },
       {
         "id": "D",
@@ -101,11 +101,11 @@
       {
         "name": "estimates",
         "type": "list[float]",
-        "description": "按输入（input）顺序返回每个 y − b。",
+        "description": "依照 readings 的顺序，返回每次读数减去 offset 后的温度。",
         "unit": "°C"
       }
     ],
-    "contract": "逐项计算 readings[i] − offset；不取平均、不排序、不改变输入列表。",
+    "contract": "逐项计算 readings[i] − offset；不取平均、不排序、不改变输入（input）列表。",
     "constraints": [
       "所有数值均为有限数。",
       "0 ≤ len(readings) ≤ 1000；读数和偏移的绝对值不超过 100。"
@@ -341,7 +341,7 @@
     "type": "choice",
     "slug": "p01-curve-cause",
     "title": "解释三个时刻的记录",
-    "statement": "人工所追踪物质总量（tracked amount）序列（time series）在 0、1、2 T 为 10、8、6 U。已知数据中没有输入（input）和输出的记录。以下哪些判断成立？",
+    "statement": "一组人工构造的时间序列（time series）记录了所追踪物质总量（tracked amount）：在 0、1、2 T 分别为 10、8、6 U。这里 1 T 等于 1 分钟，没有物质流入或流出的过程记录。以下哪些判断成立？",
     "multiple": true,
     "options": [
       {
@@ -413,7 +413,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "用 zip 配对两组数据，再逐孔计算。",
+    "hint": "第一项总量与第一项体积属于同一个培养孔，以此类推。对每个培养孔，用该孔的总量除以体积，得到浓度。",
     "samples": [
       {
         "arguments": {
@@ -464,7 +464,7 @@
     "type": "choice",
     "slug": "p01-rate-amount",
     "title": "计算一段流入",
-    "statement": "存量（stock）A 的单位为 U，恒定流率（flow rate）q 的单位为 U/T，持续时间 h 的单位为 T。哪项能表示这段时间的流入量？",
+    "statement": "物质以恒定速率流入系统。用 q 表示这一流率（flow rate），单位为 U/T；持续时间 h 的单位为 T，起点存量（stock）A 的单位为 U。哪项能表示这段时间的流入量？",
     "multiple": false,
     "options": [
       {
@@ -502,7 +502,7 @@
     "type": "python",
     "slug": "p01-balance",
     "title": "逐段计算物质收支",
-    "statement": "边界内初始存量（stock）为 initial。每段的流入和流出速率恒定，但各段时长可以不同。返回起点及每段末的所追踪物质总量（tracked amount）。",
+    "statement": "容器中起点已有的存量（stock）为 initial。物质可以从外界进入容器，也可以从容器流向外界；容器中没有这种物质的生成或转化。每个时段的流入和流出速率恒定，各段时长可以不同。返回起点及每段末的物质总量。",
     "parameters": [
       {
         "name": "initial",
@@ -533,11 +533,11 @@
       {
         "name": "amounts",
         "type": "list[float]",
-        "description": "包含起点，共段数加一项。",
+        "description": "第一项是起点总量，后续各项依次是第一段末、第二段末等；项数比时段数多一。",
         "unit": "U"
       }
     ],
-    "contract": "每段末 = 每段初 + durations[i]×(inflows[i]−outflows[i])。按时间顺序累积；即使得到负数也照实返回，不能裁剪。",
+    "contract": "durations、inflows、outflows 按时段先后排列，同一位置 i 的三项属于同一个时段。每段末 = 每段初 + durations[i]×(inflows[i]−outflows[i])。下一段从上一段末继续；即使得到负数也照实返回，不能裁剪。",
     "constraints": [
       "所有数值均为有限数。",
       "三个列表等长，长度 0 到 1000。",
@@ -571,7 +571,7 @@
           7,
           11
         ],
-        "explanation": "第一段净流率为 2 U/T，持续 1 T，得到 7 U；第二段同样的净流率持续 2 T，增加 4 U，得到 11 U。"
+        "explanation": "第一段净流率（flow rate）为 2 U/T，持续 1 T，得到 7 U；第二段同样的净流率持续 2 T，增加 4 U，得到 11 U。"
       }
     ],
     "limits": {
@@ -640,7 +640,7 @@
     "type": "python",
     "slug": "p01-infer-outflow",
     "title": "从收支反求总流出",
-    "statement": "一段实验只有跨边界流入和流出，没有内部产生或转化。已知起点、终点、持续时间和恒定流入速率，返回该段总流出量。",
+    "statement": "一段实验中，所追踪的物质可以从外界进入系统，也可以从系统流向外界；系统中没有这种物质的生成或转化。已知起点总量、终点总量、持续时间和恒定流入速率，返回该段流出的总量。",
     "parameters": [
       {
         "name": "initial",
@@ -686,7 +686,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先求累计流入，再减去存量增加。",
+    "hint": "累计流入等于持续时间乘流入速率。用起点总量加累计流入，再减去终点总量，就得到该时段流出的总量。",
     "samples": [
       {
         "arguments": {
@@ -727,24 +727,24 @@
     "type": "choice",
     "slug": "p01-internal-transfer",
     "title": "扩大边界后什么抵消",
-    "statement": "血液室 B 向组织室 C 转移 3 U，外界向 B 输入（input） 2 U，C 向外界排出 1 U。没有其他变化。关于物质收支（mass balance），哪些结论正确？",
+    "statement": "血液区 B 向组织区 C 转移 3 U，外界向 B 输入（input） 2 U，C 向外界排出 1 U。没有其他变化。关于物质收支（mass balance），哪些结论正确？",
     "multiple": true,
     "options": [
       {
         "id": "A",
-        "text": "血液室 B 的物质总量净减少 1 U。"
+        "text": "血液区 B 的物质总量净减少 1 U。"
       },
       {
         "id": "B",
-        "text": "组织室 C 的物质总量净增加 2 U。"
+        "text": "组织区 C 的物质总量净增加 2 U。"
       },
       {
         "id": "C",
-        "text": "血液室与组织室的联合总量净增加 1 U。"
+        "text": "血液区与组织区的总量之和净增加 1 U。"
       },
       {
         "id": "D",
-        "text": "血液室与组织室的联合总量净减少 2 U，因为联合收支还要扣除从 B 转到 C 的 3 U。"
+        "text": "血液区与组织区的总量之和净减少 2 U，因为整体收支还要扣除从 B 转到 C 的 3 U。"
       }
     ],
     "constraints": [],
@@ -764,8 +764,8 @@
     "lesson_id": "P01-C02-S02",
     "type": "python",
     "slug": "p01-two-rooms",
-    "title": "两个房间，一本总账",
-    "statement": "某种物质分布在 B、C 两个区域。每段给定的是已经累计的外部输入（input）、B 到 C 内部转移和外部输出，均为 U，不是速率。返回两区及总量轨迹（trajectory）。",
+    "title": "两个区域，一本总账",
+    "statement": "某种物质分布在 B、C 两个区域。物质可以从外界进入 B，从 B 转入 C，再从 C 流向外界；没有其他变化。每段给定的三种转移量都是整段累计量，单位 U。返回 B、C 及两区总量的三条轨迹（trajectory）。",
     "parameters": [
       {
         "name": "first",
@@ -794,7 +794,7 @@
       {
         "name": "outgoing",
         "type": "list[float]",
-        "description": "每段从 C 离开整体的量。",
+        "description": "每个时段从 C 流向两区之外的累计量。",
         "unit": "U"
       }
     ],
@@ -818,10 +818,10 @@
         "unit": "U"
       }
     ],
-    "contract": "逐段更新 B = B + incoming[i] − transferred[i]，C = C + transferred[i] − outgoing[i]。内部转移只记一次流出 B 和一次流入 C。",
+    "contract": "三个转移列表按时段先后排列，同一位置 i 的三项属于同一时段。逐段更新 B = B + incoming[i] − transferred[i]，C = C + transferred[i] − outgoing[i]。从 B 转到 C 的量在 B 账上记一次减少，在 C 账上记一次增加。按 (first_path, second_path, total_path) 返回三条列表；每条都依次包含起点、第一段末、第二段末等。",
     "constraints": [
       "所有数值均为有限数。",
-      "三个列表等长，长度 0 到 1000；各输入值在 0 到 1000 之间。",
+      "三个列表等长，长度 0 到 1000；给定的各数值在 0 到 1000 之间。",
       "给定数据保证各段末两区均非负；返回三个列表，长度都是段数加一。"
     ],
     "entrypoint": "solve",
@@ -829,7 +829,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "用只包含外部输入和输出的总账交叉核对两区之和。",
+    "hint": "把两区的量相加，再核对这个总量是否等于起点总量加从外界进入的量、减流向外界的量。",
     "samples": [
       {
         "arguments": {
@@ -896,7 +896,7 @@
     "type": "choice",
     "slug": "p01-hidden-production",
     "title": "怎样记录内部生成",
-    "statement": "追踪物质 X 的总量。边界内可把另一种物质 Y 转化为 X，但没有 X 跨边界流入。收支（mass balance）式应如何记录这部分 X 的增加？",
+    "statement": "追踪系统中物质 X 的总量。系统中另一种物质 Y 可以转化为 X，但没有 X 从系统外进入。收支（mass balance）式应如何记录这部分 X 的增加？",
     "multiple": false,
     "options": [
       {
@@ -905,7 +905,7 @@
       },
       {
         "id": "B",
-        "text": "这部分新产生的 X 应记入 X 的跨边界流入项。"
+        "text": "这部分新产生的 X 应记作 X 从系统外流入系统的量。"
       },
       {
         "id": "C",
@@ -933,8 +933,8 @@
     "lesson_id": "P01-C02-S02",
     "type": "choice",
     "slug": "p01-conserved-total",
-    "title": "联合总量与局部变化",
-    "statement": "一个封闭的两区模型（model）只允许内部物质转移。观测（observation）到 B 减少 3 U，C 增加 3 U。哪些判断合理？",
+    "title": "总量不变，两个区域还能变化吗",
+    "statement": "把 B、C 两个区域合起来作为系统。所追踪的物质只在两区之间转移，既不从系统外进入，也不流向外界，在系统中也没有生成或转化。观测（observation）到 B 中的量减少 3 U，C 中的量增加 3 U。哪些判断合理？",
     "multiple": true,
     "options": [
       {
@@ -951,7 +951,7 @@
       },
       {
         "id": "D",
-        "text": "C 增加的 3 U 应记作从联合边界之外进入两区的物质总量。"
+        "text": "C 增加的 3 U 应记作从两区之外流入系统的物质。"
       }
     ],
     "constraints": [],
@@ -1009,13 +1009,13 @@
     "lesson_id": "P01-C03-S01",
     "type": "python",
     "slug": "p01-loop-sign",
-    "title": "沿一个闭环追踪作用方向",
-    "statement": "反馈（feedback）闭环中每条边以 +1 表示同向局部作用，−1 表示反向局部作用。返回整个闭环的符号。",
+    "title": "沿反馈回路追踪作用方向",
+    "statement": "沿一条反馈（feedback）回路逐个经过箭头，直到回到起点。在其他条件相同时，+1 表示前一个量增大使后一个量增大，−1 表示前一个量增大使后一个量减小。将各箭头的符号相乘，返回扰动沿回路返回起点时的方向。",
     "parameters": [
       {
         "name": "signs",
         "type": "list[int]",
-        "description": "沿一个已确认闭合的回路，依次列出的边符号。",
+        "description": "按沿回路经过箭头的先后排列；每一项对应一条箭头，取 +1 或 −1。",
         "unit": "无量纲"
       }
     ],
@@ -1023,7 +1023,7 @@
       {
         "name": "loop_sign",
         "type": "int",
-        "description": "所有边符号的乘积，只能为 +1 或 −1。",
+        "description": "各箭头符号的乘积，为 +1 或 −1。",
         "unit": "无量纲"
       }
     ],
@@ -1037,7 +1037,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "每经过一条负边，方向反转一次；奇数次反转为负。",
+    "hint": "每经过一条符号为 −1 的箭头，方向就反转一次；奇数次反转得到负号。",
     "samples": [
       {
         "arguments": {
@@ -1048,7 +1048,7 @@
           ]
         },
         "expected": -1,
-        "explanation": "前两条边保持作用方向，最后一条反转，因此返回方向为 −1。"
+        "explanation": "列表中的三项依次对应沿回路经过的三条箭头。前两条保持方向，最后一条反转，所以返回 −1。"
       }
     ],
     "limits": {
@@ -1155,7 +1155,7 @@
     "type": "choice",
     "slug": "p01-delay-history",
     "title": "第一步使用哪一个历史值",
-    "statement": "温度偏差（deviation）规则为“新偏差 = 当前偏差 − gain×delay 步以前的偏差”。history 按从早到晚给出 −delay 到 0 的值。delay=2、history=[3,2,1]、gain=0.5 时，第一步是多少？",
+    "statement": "温度偏差规则为“新偏差 = 当前偏差 − gain×delay 步以前的偏差”。history 按时间从早到晚记录时刻 −delay 到 0 的偏差。delay=2 时，history=[3,2,1] 的三项分别对应时刻 −2、−1、0，当前偏差是最后一项 1。gain=0.5 时，第一步更新后的偏差是多少？",
     "multiple": false,
     "options": [
       {
@@ -1637,7 +1637,7 @@
     "type": "python",
     "slug": "p01-first-failure",
     "title": "第一次越过零发生在哪段",
-    "statement": "在固定移除规则中，起点为 initial，每段减去 fixed。只检查前 steps 段，返回第一次得到严格负所追踪物质总量（tracked amount）的段号，从 1 开始；若没有则返回 −1。",
+    "statement": "在固定移除规则中，起点总量为 initial，每段减去 fixed。只检查前 steps 段，返回计算总量第一次小于零的段号，段号从 1 开始；若没有出现负值则返回 −1。",
     "parameters": [
       {
         "name": "initial",
@@ -1676,7 +1676,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "返回第一次失败的位置，不返回负总量本身。",
+    "hint": "返回总量第一次小于零的段号，不返回负的总量本身；恰好等于零不算。",
     "samples": [
       {
         "arguments": {
@@ -1789,10 +1789,10 @@
         "unit": "索引"
       }
     ],
-    "contract": "第一段末分别为 A−fixed 和 A×(1−fraction)。差可等价写成 abs(fraction×A−fixed)。仅将严格大于 threshold 的索引加入结果。门槛是本题实验选择条件，不是统计显著性。",
+    "contract": "令 A 为 initials 中某一个候选初值。第一段末分别为 A−fixed 和 A×(1−fraction)。差可等价写成 abs(fraction×A−fixed)。仅将严格大于 threshold 的索引加入结果。门槛是本题实验选择条件，不是统计显著性。",
     "constraints": [
       "所有数值均为有限数。",
-      "0 ≤ len(initials) ≤ 1000；0 ≤ fixed ≤ A ≤ 1000。",
+      "A 表示 initials 中的每个候选初值；0 ≤ len(initials) ≤ 1000；0 ≤ fixed ≤ A ≤ 1000。",
       "0 ≤ fraction ≤ 1；0 ≤ threshold ≤ 1000。",
       "测试中预测差距门槛至少 1e−6，或恰好相等且能被二进制精确表示。"
     ],
@@ -1854,15 +1854,15 @@
     "options": [
       {
         "id": "A",
-        "text": "计算前写明每个清除规则的系数、各时刻预测的剩余总量，以及预测与测量之间允许的差值。"
+        "text": "计算前写明每段固定清除的量或清除比例、各时刻预测的剩余总量，以及预测与测量之间允许的差值。"
       },
       {
         "id": "B",
-        "text": "用测量值重新调整清除系数（elimination rate constant）后，将调整后的预测与这些测量值一致记作原系数通过检验。"
+        "text": "用测量值重新调整清除量或清除比例后，将调整后的预测与这些测量值一致记作原参数（parameter）通过检验。"
       },
       {
         "id": "C",
-        "text": "另选一种初始总量开展新实验，用未参与确定系数的读数检查预测，同时记录额外的流入或流出。"
+        "text": "另选一种初始总量开展新实验，用未参与确定清除参数的读数检查预测，同时记录额外的流入或流出。"
       },
       {
         "id": "D",
@@ -1930,7 +1930,7 @@
     "options": [
       {
         "id": "A",
-        "text": "以视野作为边界时，细胞进入或离开视野会改变可见细胞数。"
+        "text": "以视野中的细胞作为系统时，细胞从视野外进入或从视野内离开，会改变可见细胞数。"
       },
       {
         "id": "B",
@@ -1942,7 +1942,7 @@
       },
       {
         "id": "D",
-        "text": "以整个培养孔作为边界时，细胞在孔内跨越两个视野的移动不计入培养孔的外部流量（flow）。"
+        "text": "以整个培养孔中的细胞作为系统时，细胞在孔内从一个视野移到另一个视野，仍然留在系统中，不算从培养孔流向外界。"
       }
     ],
     "constraints": [],
@@ -2012,13 +2012,13 @@
       {
         "name": "entered",
         "type": "list[int]",
-        "description": "各段跨边界进入数。",
+        "description": "各时段从视野外进入视野的累计细胞数。",
         "unit": "个"
       },
       {
         "name": "left",
         "type": "list[int]",
-        "description": "各段跨边界离开数。",
+        "description": "各时段从视野内移到视野外的累计细胞数。",
         "unit": "个"
       },
       {
@@ -2036,7 +2036,7 @@
         "unit": "个"
       }
     ],
-    "contract": "新数量 = 旧数量 + entered[i] − left[i] + born[i]。各段这些数已累计，不再乘时长；题设忽略死亡。",
+    "contract": "三个过程列表按时段先后排列，同一位置 i 对应同一时段。新数量 = 旧数量 + entered[i] − left[i] + born[i]。这些数都是整段累计数，不再乘时长；题设忽略死亡。结果列表依次包含起点、第一段末、第二段末等，项数比时段数多一。",
     "constraints": [
       "所有数值均为有限数。",
       "三个列表等长，长度 0 到 1000；所有计数都是 0 到 10000 的整数。",
@@ -2047,7 +2047,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先按机制逐项记账，再讨论净增减；净变化会掩盖同时发生的过程。",
+    "hint": "先分别记下进入、离开和分裂增加了多少，再计算数量变化；只看净增减，会漏掉同时发生的过程。",
     "samples": [
       {
         "arguments": {
@@ -2184,7 +2184,7 @@
     "constraints": [
       "所有数值均为有限数。",
       "0 ≤ len(initials) ≤ 100；0 ≤ steps ≤ 100；0 ≤ fraction ≤ 1。",
-      "0 ≤ fixed ≤ A ≤ 1000，且 fixed×steps ≤ 每个 A。"
+      "A 表示 initials 中每个独立实验的初值；0 ≤ fixed ≤ A ≤ 1000，且 fixed×steps ≤ 每个 A。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2281,7 +2281,7 @@
     "lesson_id": "P01-SUMMARY",
     "slug": "p01-cap-calibrated-balance",
     "title": "换测量方式后核对收支",
-    "statement": "仪器满足读数 = gain×可见数量 + offset。先换算各时刻数量，再核对已记录的移动和内部新增，返回各段尚未被这些记录解释的净流出量。正数表示额外净减少，负数表示额外净增加；残差（residual）本身不能识别死亡、漏记或其他原因。",
+    "statement": "仪器满足读数 = gain×可见细胞数量 + offset。先换算各时刻数量，再用已记录的进入、离开和净新增数预测每段末数量。返回“记录预测的末数量减观测（observation）末数量”的差额，称为残差（residual）。正数表示观测值比记录预测少，负数表示观测值比记录预测多；差额本身不能确定是死亡、漏记、测量偏差还是其他原因。",
     "part": "1",
     "chapter": "1.summary",
     "learning_targets": [
@@ -2297,7 +2297,7 @@
       {
         "name": "readings",
         "type": "list[float]",
-        "description": "各段边界的仪器读数，含起点。",
+        "description": "按时间先后记录起点及每个时段结束时的仪器读数。",
         "unit": "读数单位"
       },
       {
@@ -2315,13 +2315,13 @@
       {
         "name": "entered",
         "type": "list[float]",
-        "description": "各段已累计的进入数。",
+        "description": "各时段从视野外进入视野的累计细胞数。",
         "unit": "个"
       },
       {
         "name": "left",
         "type": "list[float]",
-        "description": "各段已累计的离开数。",
+        "description": "各时段从视野内移到视野外的累计细胞数。",
         "unit": "个"
       },
       {
@@ -2335,11 +2335,11 @@
       {
         "name": "unexplained",
         "type": "list[float]",
-        "description": "按时间顺序的未解释净流出量。",
+        "description": "按时段先后排列的残差：记录预测末数量减观测末数量。",
         "unit": "个"
       }
     ],
-    "contract": "令 N[i]=(readings[i]−offset)/gain。返回 N[i]+entered[i]−left[i]+born[i]−N[i+1]；保留正负号，不取绝对值、不裁剪。",
+    "contract": "令 N[i]=(readings[i]−offset)/gain。过程列表同一位置 i 的三项对应从 N[i] 到 N[i+1] 的时段。返回 N[i]+entered[i]−left[i]+born[i]−N[i+1]；每项对应一个时段。保留正负号，不取绝对值、不裁剪。",
     "constraints": [
       "所有数值均为有限数；无需修改输入（input）。",
       "0—100 段；readings 比其余三个等长列表多一项。",
@@ -2387,10 +2387,10 @@
           1,
           1
         ],
-        "explanation": "读数换算为 10、12、11 个。第一段记录预测为 13，实际为 12，未解释净流出 1；第二段 12−2+2−11=1。"
+        "explanation": "三条读数依次换算为起点 10 个、第一段末 12 个、第二段末 11 个。第一段记录预测 10+3=13 个，残差为 13−12=1 个；第二段记录预测 12−2+2=12 个，残差为 12−11=1 个。"
       }
     ],
-    "hint": "把计算分成可以单独检查的步骤，再核对边界条件与单位。",
+    "hint": "先将读数换算成细胞数，再把相邻两个时刻与其间的过程记录配对。只有一个起点读数、没有时段记录时，不需要计算残差。",
     "starter_code": "def solve(\n    readings: list[float],\n    gain: float,\n    offset: float,\n    entered: list[float],\n    left: list[float],\n    born: list[float],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n"
   },
   {
@@ -2423,7 +2423,7 @@
       },
       {
         "id": "C",
-        "text": "以全孔作为边界时，细胞在孔内离开中央视野不计入全孔外部流量（flow）。"
+        "text": "以整个培养孔中的细胞作为系统时，细胞在孔内离开中央视野仍然留在系统中，不算从培养孔流向外界。"
       },
       {
         "id": "D",

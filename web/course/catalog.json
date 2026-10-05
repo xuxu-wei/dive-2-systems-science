@@ -162,7 +162,7 @@
                 {
                   "id": "p01-two-rooms",
                   "slug": "p01-two-rooms",
-                  "title": "两个房间，一本总账",
+                  "title": "两个区域，一本总账",
                   "type": "python"
                 },
                 {
@@ -174,7 +174,7 @@
                 {
                   "id": "p01-conserved-total",
                   "slug": "p01-conserved-total",
-                  "title": "联合总量与局部变化",
+                  "title": "总量不变，两个区域还能变化吗",
                   "type": "choice"
                 }
               ],
@@ -215,7 +215,7 @@
                 {
                   "id": "p01-loop-sign",
                   "slug": "p01-loop-sign",
-                  "title": "沿一个闭环追踪作用方向",
+                  "title": "沿反馈回路追踪作用方向",
                   "type": "python"
                 },
                 {

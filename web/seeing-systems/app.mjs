@@ -25,7 +25,7 @@ function recompute(){
     series=[{label:'总量 A',color:theme.data['1'],values:Array.from({length:limit+1},(_,t)=>stock(params.initial,params.inflow,params.outflow,t))}];
     $('alternate').textContent=params.inflow>params.outflow?'切换到净流出示例':'切换到净流入示例';
     $('preset-note').textContent=`当前：${params.inflow>params.outflow?'净流入':params.inflow<params.outflow?'净流出':'流入流出相等'}。切换示例把流入/流出改为 3/1 或 1/3，初始量保持不变。`;
-    const incoming=el('span',`流入 ${params.inflow} U/T`),arrow=el('span','→','direction'),box=el('span','边界内 A','system'),arrow2=el('span','→','direction'),outgoing=el('span',`流出 ${params.outflow} U/T`);
+    const incoming=el('span',`流入 ${params.inflow} U/T`),arrow=el('span','→','direction'),box=el('span','容器中的量 A','system'),arrow2=el('span','→','direction'),outgoing=el('span',`流出 ${params.outflow} U/T`);
     $('mechanism').replaceChildren(incoming,arrow,box,arrow2,outgoing);
   }else{
     series=[{label:'即时调节',color:theme.data['1'],values:response([params.initial],params.gain,0,limit)},
@@ -68,10 +68,10 @@ async function start(){
   $('eyebrow').textContent=`${current.id} 章 · 可视化与探索`;
   $('title').textContent=isStock?'相同的流率，持续多久才积累多少？':'读数晚到两步，调节会怎样？';
   $('question').textContent=isStock?'先算到 1 T 时有多少，再算到 3 T 时有多少。两段的流率（flow rate）相同，增加的量也会相同吗？':'偏差（deviation）已经回到零，调节器却仍读到过去的正偏差。下一步会停在目标上，还是继续向下？';
-  $('explanation').textContent=isStock?'存量（stock）回答边界内现在有多少，流率回答每单位时间进出多少。这里用 U 表示所追踪物质总量（tracked amount），用 T 表示固定时间单位。流量（flow）在此指流率；恒定流率乘以经过的时间，才是这段时间实际转移的量。':'负反馈（negative feedback）按读到的偏差反向修正。gain 表示每次修正的比例，delay 表示读数落后多少步，这就是本实验的延迟（delay）。读到正偏差就减小当前值，读到负偏差就增大当前值；负偏差表示低于目标温度。';
+  $('explanation').textContent=isStock?'存量（stock）表示容器中现在有多少物质，流率表示每单位时间进入或离开多少物质。这里用 U 作为所追踪物质总量（tracked amount）的教学单位，用 T 作为固定时间单位。流量（flow）在此指流率；恒定流率乘以经过的时间，才是这段时间实际转移的量。':'负反馈（negative feedback）按读到的偏差反向修正。gain 表示每次修正的比例，delay 表示读数落后多少步，这就是本实验的延迟（delay）。读到正偏差就减小当前值，读到负偏差就增大当前值；负偏差表示低于目标温度。';
   $('formula').textContent=isStock?'末量 = 初量 + 持续时间 ×（流入速率 − 流出速率）':'新偏差 = 当前偏差 − gain × delay 步以前的偏差';
-  $('assumptions').textContent=isStock?'假设：无内部生成或转化，流入与流出恒定。第 1 段为 0—1 T，第 2 段为 1—3 T；图中累计量由恒定流率乘以经过的时间得到。':'假设：人工温度规则，初始历史恒定，忽略噪声、外部扰动和执行限幅。蓝线始终即时读取，玫红线使用所选延迟；逐步比较两条曲线的转向与偏差大小，观察延迟怎样改变修正过程。';
-  $('value-label').textContent=isStock?'边界内的总量':'所选延迟的偏差';
+  $('assumptions').textContent=isStock?'假设：容器中没有所追踪物质的生成或转化，流入与流出速率恒定。第 1 段为 0—1 T，第 2 段为 1—3 T；图中累计量由恒定流率乘以经过的时间得到。':'假设：人工温度规则，初始历史恒定，忽略噪声、外部扰动和执行限幅。蓝线始终即时读取，玫红线使用所选延迟；逐步比较两条曲线的转向与偏差大小，观察延迟怎样改变修正过程。';
+  $('value-label').textContent=isStock?'容器中的总量':'所选延迟的偏差';
   $('reading-prompt').textContent=isStock?'回到 Notebook，把每段实际进入和离开的量分别记下来，再与图中的总量核对。扩大到两个相互交换的区域后，同一次转移在两本账里分别记为减少和增加，合起来会怎样？':'回到 Notebook，沿时间线手算前四步：每一步当前是多少、读取的是哪个旧值、修正后是多少？再对照曲线中的过冲和转向，解释只看终点会漏掉哪些变化。';
   if(isStock){slider('initial','初始总量 / U',0,10,.5,5);slider('inflow','流入速率 / (U/T)',0,6,.5,3);slider('outflow','流出速率 / (U/T)',0,6,.5,1);}
   else{slider('initial','初始历史偏差 / °C',-3,3,.5,2);slider('gain','调节比例 gain',0,1,.05,.5);slider('delay','信息延迟 / 步',0,2,1,2);}

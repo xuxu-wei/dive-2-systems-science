@@ -190,5 +190,136 @@
   "limits": [
     "User review pending",
     "No target-reader learning-effect evaluation"
-  ]
+  ],
+  "execution_reference_commit": "314096df59fd47f66deb589cdb98d92f7bc59ae4",
+  "language_followup": {
+    "baseline_commit": "314096d",
+    "scope_notebooks": 12,
+    "scope_questions": 50,
+    "revised_notebooks": [
+      "P00-C01-S02",
+      "P00-C01-S03",
+      "P01-C01-S01",
+      "P01-C01-S02",
+      "P01-C02-S01",
+      "P01-C02-S02",
+      "P01-C03-S01",
+      "P01-C03-S02",
+      "P01-C04-S01",
+      "P01-C04-S02",
+      "P01-SUMMARY"
+    ],
+    "revised_question_wording": [
+      "p00-complement",
+      "p01-boundary",
+      "p01-state-observation",
+      "p01-calibrate",
+      "p01-curve-cause",
+      "p01-concentration",
+      "p01-rate-amount",
+      "p01-balance",
+      "p01-infer-outflow",
+      "p01-internal-transfer",
+      "p01-two-rooms",
+      "p01-hidden-production",
+      "p01-conserved-total",
+      "p01-loop-sign",
+      "p01-delay-history",
+      "p01-first-failure",
+      "p01-separation",
+      "p01-prediction-record",
+      "p01-cap-boundary",
+      "p01-cap-count",
+      "p01-cap-predictions",
+      "p01-cap-calibrated-balance",
+      "p01-cap-limits"
+    ],
+    "revised_explanations": [
+      "p00-connections",
+      "p00-complement",
+      "p00-rounds",
+      "p00-evidence",
+      "p01-boundary",
+      "p01-state-observation",
+      "p01-curve-cause",
+      "p01-concentration",
+      "p01-rate-amount",
+      "p01-infer-outflow",
+      "p01-internal-transfer",
+      "p01-two-rooms",
+      "p01-hidden-production",
+      "p01-conserved-total",
+      "p01-loop-sign",
+      "p01-finite-path",
+      "p01-first-step",
+      "p01-first-failure",
+      "p01-cap-boundary",
+      "p01-cap-count",
+      "p01-cap-limits",
+      "p01-cap-units",
+      "p01-cap-calibrated-balance"
+    ],
+    "code_changes": [
+      {
+        "lesson": "P01-C02-S01",
+        "cell": 8,
+        "change": "display_labels_only"
+      },
+      {
+        "lesson": "P01-C02-S02",
+        "cell": 11,
+        "change": "display_labels_only"
+      }
+    ],
+    "question_ids_versions_answers_numerical_samples_and_grading_unchanged": true,
+    "notebook_calculations_numeric_outputs_and_figures_unchanged": true,
+    "part02_to_part17_catalog_unchanged": true,
+    "baseline_personal_records_unchanged": 48,
+    "current_personal_records_preserved": 73,
+    "date": "2026-10-05",
+    "status": "revised_pending_user_review",
+    "kernel_reruns": 0,
+    "validation_method": "Compare all 12 notebook code cells and executed outputs against 314096d; permit only three display-label substitutions. Compare question schemas, grading data, examples, identities, versions and answers. Check teaching synchronization for both scoped parts.",
+    "teaching_checks": {
+      "introduction": {
+        "notebooks": 3,
+        "questions": 9,
+        "question_links": 9,
+        "issues": []
+      },
+      "part01": {
+        "notebooks": 9,
+        "questions": 41,
+        "question_links": 41,
+        "issues": []
+      }
+    },
+    "clarifications": [
+      "Ordered lists explained through person IDs, time points, time intervals, comparison conditions or independent experiments before their first core use.",
+      "Blood/tissue pair order, mathematical subscripts versus Python indices and history list structure made explicit.",
+      "System-inside/outside transfers stated using the actual objects and actions in prose and exercises.",
+      "No external exchange and no internal generation/conversion of the tracked substance stated explicitly in the two-region example.",
+      "Residual retains prediction-minus-observation sign and formula without naming an already identified outflow process.",
+      "Undefined candidate initial A, premature fixed-point/monotonic terminology and ambiguous time-boundary labels removed or explained.",
+      "The time-unit exercise explicitly sets 1 T equal to 1 minute; the inflow exercise specifies the direction of q."
+    ],
+    "notebook_sha256": {
+      "notebooks/00-导论/01-从生命现象认识系统.ipynb": "cd5b0112e2979a55474ecd77f46df0993f86e10488fd8f37cb7eab79e787d6ba",
+      "notebooks/00-导论/02-系统科学关心什么如何发展.ipynb": "3f9b89e143f91834ece66aa5aab89604cdda4983c97968f9c05e22e4c3e7d3b5",
+      "notebooks/00-导论/03-从系统问题走向计算与证据.ipynb": "f2f0d065afab17181c7e3f57c30d76791ca47ccc7619ba79d366a93162db69b6",
+      "notebooks/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.ipynb": "06ddb3052b58f344853b3c2737f4aabf013e223ad8cf0c38e4f77e547f4fd4c7",
+      "notebooks/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.ipynb": "f255cca8b6cf49d3df798290776af8f1518ead499748a8f15934cb27fdb3ec84",
+      "notebooks/01-看见系统/02-存量流量与守恒/01-一段时间的物质收支.ipynb": "67b788982bd359de5079848b02cb0b72b1c642779e66c3e1fb55cb38d002bb9e",
+      "notebooks/01-看见系统/02-存量流量与守恒/02-内部交换与整体守恒.ipynb": "3fd2ae4f922a5aa62d1a5c512b036a93ea9514f2fe4886fc1fbefd570ba27471",
+      "notebooks/01-看见系统/03-反馈延迟与层级/01-作用方向与反馈回路.ipynb": "d9c2d9073e2715caaf3cc0df125e134148e65771105cff8bf4c6e5c97ff02b42",
+      "notebooks/01-看见系统/03-反馈延迟与层级/02-延迟怎样改变调节.ipynb": "db04dc29fe4b4c1cecb26c7aec04b3869179ca6ec4b19846c721aa5ac300bccd",
+      "notebooks/01-看见系统/04-模型假设与计算实验/01-规则参数与初值.ipynb": "a1b193fdd6c5bcdd49d4c975a380928deec612132483d2e092df25f0e53b4d40",
+      "notebooks/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.ipynb": "da85db3c355bb75db542f1e087f24befb522783e69d8db54676870bd94c46c0e",
+      "notebooks/01-看见系统/05-篇末综合/01-系统边界与实验设计.ipynb": "83b2b649c178a86f75e987b150bcfb9e74d6500c54f925ae23ca6e7d2acd982f"
+    },
+    "terminology_sources": [
+      "https://www.ncbi.nlm.nih.gov/books/NBK218086/?report=classic",
+      "https://ocw.mit.edu/courses/res-8-010-introduction-to-statistical-physics-summer-2018/mitres_8_010su18_lec5.pdf"
+    ]
+  }
 }
