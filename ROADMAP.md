@@ -6,7 +6,7 @@
 
 **M0—M19 已完成。** 导论与十七篇 85 章已交付，共 206 本 Notebook、939 道练习与 74 个探索视图。制作样章已在 M3 验收后清理。
 
-2026-10-05：[导论与第 1 篇重写](docs/validation/intro-part01-rewrite-20261005.md)已交付 12 本；[第 2 篇](docs/validation/part02-rewrite-20261005.md)修订 11 本、审读 51 题；[第 3 篇](docs/validation/part03-rewrite-20261005.md)修订 11 本、审读 53 题；[第 4 篇](docs/validation/part04-rewrite-20261005.md)修订 17 本、审读 81 题；[第 5 篇](docs/validation/part05-rewrite-20261005.md)修订 13 本及 62 题。各篇同步导览与网页说明，计算、判题与原成绩保留。用户在项目实施会话授权按篇继续第 2—17 篇，最终统一阅读验收，替代[原计划](docs/导论与第1篇重写计划.md)的阶段等待安排。**当前修订内容均待用户统一验收。** 八项需实质调整的原有题库问题单独登记，个人记录保留。
+2026-10-05—06：[导论与第 1 篇重写](docs/validation/intro-part01-rewrite-20261005.md)已交付 12 本；[第 2 篇](docs/validation/part02-rewrite-20261005.md)修订 11 本、审读 51 题；[第 3 篇](docs/validation/part03-rewrite-20261005.md)修订 11 本、审读 53 题；[第 4 篇](docs/validation/part04-rewrite-20261005.md)修订 17 本、审读 81 题；[第 5 篇](docs/validation/part05-rewrite-20261005.md)修订 13 本及 62 题；[第 6 篇](docs/validation/part06-rewrite-20261005.md)修订 16 本及 79 题。各篇同步导览与网页说明，计算、判题与原成绩保留。用户在项目实施会话授权按篇继续第 2—17 篇，最终统一阅读验收，替代[原计划](docs/导论与第1篇重写计划.md)的阶段等待安排。**当前修订内容均待用户统一验收。** 九项需实质调整的原有题库问题单独登记，个人记录保留。
 
 2026-10-03：[微积分手算与条件期望桥接](docs/validation/math-bridges-20261003.md)：补足10节讲解，按“解释符号、手算一两步、说明假设”核对教学；条件期望在5.3建立后接入6.5，题量与学习记录不变。
 

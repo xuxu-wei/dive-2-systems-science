@@ -1,0 +1,814 @@
+{
+  "date": "2026-10-06",
+  "round_started": "2026-10-05",
+  "baseline": "f3afbf3c2e76d5906cf0064e50d143a9268ae175",
+  "scope": "Part 6 plus the explicitly dispatched single Part 5 entropy wording correction; pending unified user reading acceptance",
+  "notebooks": [
+    {
+      "id": "P06-C01-S01",
+      "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb",
+      "sha256": "c94c8155c0f0fdfb2c2a6263aa3e626dbb17de6fcf90dfacf7ab5b023de41645",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        11,
+        13,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b936a1a892fe16f1f091100427418b305d850c4cbdf314856873ed19284d0667"
+    },
+    {
+      "id": "P06-C01-S02",
+      "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb",
+      "sha256": "84d6b63402c72273fac9daa9dc2b253c3e6f609869c80b9b4531103743c3b8d9",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        11,
+        13,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "83553c37c95bd1312a2c6c3f09f0bcf836489818346cf8ed8e61bd13d575a890"
+    },
+    {
+      "id": "P06-C02-S01",
+      "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.ipynb",
+      "sha256": "9a2b55ad97f5190fc8e7566cc62626680d7796e2c5d2a75287439195f02a7821",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        11,
+        13,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "2e1c497a6b9f15e6ac41722b5cda5ee5a1076b0c56b182d59520178c32d9000d"
+    },
+    {
+      "id": "P06-C02-S02",
+      "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.ipynb",
+      "sha256": "dedd41ee370226b35cf4768cdfde10714de191fa3b5acb971cc9976976f39d11",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        11,
+        13,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "ad2ab92f33aaaa72d82769795d205edd1ed367f05e108b137585b04cbf18c0bf"
+    },
+    {
+      "id": "P06-C02-S03",
+      "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.ipynb",
+      "sha256": "97b3e97f0e0d694d6f7cb3f329b7f0aa04629c273056e06f40f6fe21384fbc42",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        11,
+        13,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "ce20b43f6ab7c6a78bd1b86a6ca9aca94588add22eedd947d9115a9139644681"
+    },
+    {
+      "id": "P06-C03-S01",
+      "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.ipynb",
+      "sha256": "b34182cc8e226198154a55aee44e64d7ce368cfe2f1e25585a0a53904336701e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b4d01c1eade329aa2381da0b6533592bcaa37fdce43acdf26f2467d9e873de15"
+    },
+    {
+      "id": "P06-C03-S02",
+      "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb",
+      "sha256": "738258aa18bf814ec7bdce2d4659951f1c009185bdb492ce3ff8cc77f6e78ddb",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "8d7918950304bb6869f7a334cae3a91da0bc773a168fc56bce94e62f2b8058ee"
+    },
+    {
+      "id": "P06-C04-S01",
+      "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.ipynb",
+      "sha256": "749f05c225b414ee8f4c163cb0f383c7738fa7a3abfb5100d8d45c8f6c9c81d5",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "c9d6895c672229db7459f5c88325c5a465e1d15880a7a09a1e485ec152706965"
+    },
+    {
+      "id": "P06-C04-S02",
+      "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.ipynb",
+      "sha256": "3f75e9260dab2bea19c41c347733f818e57ebc26ee102907d89beff330e95728",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "89965433ff9a1032c9bbdda45eb32c9cf64ca6ed77a9f2c3f1f8b368130d3e7b"
+    },
+    {
+      "id": "P06-C04-S03",
+      "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.ipynb",
+      "sha256": "fc53111c949c24a30891bf2202aab219d7185c53821b595b6231c381e5ce2cb0",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "f656d8ce346b57ca0d77d5e0165a28cb4f36d6ebd81b8fe44f188c8e4eb9d9a7"
+    },
+    {
+      "id": "P06-C05-S01",
+      "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb",
+      "sha256": "cc8254ab909127c58d8100dca50b7183739b93add3904fa419f8506c1633d2e3",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        11,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 7,
+      "code_and_output_sha256": "e685f4d7e26d43790980236713aa195d01e31af8c85fc35eb5c5cde417614330"
+    },
+    {
+      "id": "P06-C05-S02",
+      "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.ipynb",
+      "sha256": "98775bf296d0bfe9e25b1b3aa7741ad198e969ee933ee1c88228d840b5e1e847",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        11,
+        13,
+        14
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "8b6b39b9dcadfd75c79be4770ae39b28d7e6fa5e2b085bdceff662ad922cb5b2"
+    },
+    {
+      "id": "P06-C05-S03",
+      "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.ipynb",
+      "sha256": "1cd52caa531b0e59dd435493bc586aecdf1a30f4dde32f93cded180bae635760",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        11,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 7,
+      "code_and_output_sha256": "c6669521f1728cd2a022b0b774f4618c4be22e81ed8d95c85d6476ed7e00b047"
+    },
+    {
+      "id": "P06-C06-S01",
+      "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/01-从批量最小二乘到递推更新.ipynb",
+      "sha256": "00104f08571c6e53469082d3ae675c5b053a47fcb63c329a88d3208568fb2223",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        13,
+        15,
+        16,
+        18
+      ],
+      "code_cells_unchanged": 9,
+      "code_and_output_sha256": "2dad7c8a512de0dfe120100eaf4e7fdca38da7efca84aaea9b9ea0877177a0ce"
+    },
+    {
+      "id": "P06-C06-S02",
+      "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/02-遗忘、漂移与在线验证.ipynb",
+      "sha256": "e91615ee144d9628c01c9cc9a61a3ae2323c1989964cb69a052e6e7f1d33dff8",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        10,
+        12,
+        14,
+        16,
+        17
+      ],
+      "code_cells_unchanged": 8,
+      "code_and_output_sha256": "b90b9dee1c7097b46d1a1472994847ee06e2360d87c861c3fb2aaef724e27b5d"
+    },
+    {
+      "id": "P06-SUMMARY",
+      "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb",
+      "sha256": "7998d30a6dcca916d1f7da3667db15e04f6ddb1c8450726d79709d5d8662673e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        17
+      ],
+      "code_cells_unchanged": 8,
+      "code_and_output_sha256": "97dcd8dc065541a106f7dda97bf69bf3af6d69504efec200a35a3ea1c1719682"
+    }
+  ],
+  "questions": {
+    "reviewed": 79,
+    "choice": 57,
+    "python": 22,
+    "wording_changed": 79,
+    "wording_changed_ids": [
+      "p06-cosine-samples",
+      "p06-three-clocks",
+      "p06-alias-equivalence",
+      "p06-nyquist-conditions",
+      "p06-causal-average",
+      "p06-centered-lookahead",
+      "p06-filter-delay",
+      "p06-startup-filter",
+      "p06-linear-convolution",
+      "p06-lti-superposition",
+      "p06-circular-wrap",
+      "p06-impulse-meaning",
+      "p06-one-sided-spectrum",
+      "p06-complex-rotation",
+      "p06-nyquist-amplitude",
+      "p06-phase-zero",
+      "p06-frequency-units",
+      "p06-fir-response",
+      "p06-finite-leakage",
+      "p06-zero-padding",
+      "p06-fir-delay-band",
+      "p06-amplitude-calibration",
+      "p06-response-components",
+      "p06-laplace-initial",
+      "p06-linear-map-initial",
+      "p06-roc-causal",
+      "p06-lti-failure",
+      "p06-sampled-response",
+      "p06-z-index",
+      "p06-discrete-poles",
+      "p06-zero-clearance",
+      "p06-sampling-pole-map",
+      "p06-line-fit",
+      "p06-least-squares-gaussian",
+      "p06-rank-deficiency",
+      "p06-orthogonal-residual",
+      "p06-weighted-errors",
+      "p06-clearance-grid",
+      "p06-log-error-model",
+      "p06-grid-resolution",
+      "p06-noisy-differences",
+      "p06-residual-validation",
+      "p06-slope-interval",
+      "p06-interval-meaning",
+      "p06-unknown-variance",
+      "p06-bootstrap-unit",
+      "p06-arx-predictions",
+      "p06-arx-regressors",
+      "p06-prediction-information",
+      "p06-arx-noise-assumption",
+      "p06-delay-structure",
+      "p06-excitation-rank",
+      "p06-steady-confounding",
+      "p06-constant-transient",
+      "p06-conditioning",
+      "p06-mechanistic-parameters",
+      "p06-time-partition",
+      "p06-group-partition",
+      "p06-train-only-transform",
+      "p06-missing-lags",
+      "p06-held-out-purpose",
+      "p06-rls-equivalence",
+      "p06-rls-trace",
+      "p06-rls-rank-one",
+      "p06-ridge-variance",
+      "p06-rls-covariance",
+      "p06-forgetting-objective",
+      "p06-forgetting-weights",
+      "p06-online-clock",
+      "p06-forgetting-excitation",
+      "p06-drift-noise-validation",
+      "p06-cap-sampling",
+      "p06-cap-excitation",
+      "p06-cap-discrete",
+      "p06-cap-fit",
+      "p06-cap-preprocess",
+      "p06-cap-prediction",
+      "p06-cap-resampling",
+      "p06-cap-validation"
+    ],
+    "explanation_changed": 79,
+    "explanation_changed_ids": [
+      "p06-cosine-samples",
+      "p06-three-clocks",
+      "p06-alias-equivalence",
+      "p06-nyquist-conditions",
+      "p06-causal-average",
+      "p06-centered-lookahead",
+      "p06-filter-delay",
+      "p06-startup-filter",
+      "p06-linear-convolution",
+      "p06-lti-superposition",
+      "p06-circular-wrap",
+      "p06-impulse-meaning",
+      "p06-one-sided-spectrum",
+      "p06-complex-rotation",
+      "p06-nyquist-amplitude",
+      "p06-phase-zero",
+      "p06-frequency-units",
+      "p06-fir-response",
+      "p06-finite-leakage",
+      "p06-zero-padding",
+      "p06-fir-delay-band",
+      "p06-amplitude-calibration",
+      "p06-response-components",
+      "p06-laplace-initial",
+      "p06-linear-map-initial",
+      "p06-roc-causal",
+      "p06-lti-failure",
+      "p06-sampled-response",
+      "p06-z-index",
+      "p06-discrete-poles",
+      "p06-zero-clearance",
+      "p06-sampling-pole-map",
+      "p06-line-fit",
+      "p06-least-squares-gaussian",
+      "p06-rank-deficiency",
+      "p06-orthogonal-residual",
+      "p06-weighted-errors",
+      "p06-clearance-grid",
+      "p06-log-error-model",
+      "p06-grid-resolution",
+      "p06-noisy-differences",
+      "p06-residual-validation",
+      "p06-slope-interval",
+      "p06-interval-meaning",
+      "p06-unknown-variance",
+      "p06-bootstrap-unit",
+      "p06-arx-predictions",
+      "p06-arx-regressors",
+      "p06-prediction-information",
+      "p06-arx-noise-assumption",
+      "p06-delay-structure",
+      "p06-excitation-rank",
+      "p06-steady-confounding",
+      "p06-constant-transient",
+      "p06-conditioning",
+      "p06-mechanistic-parameters",
+      "p06-time-partition",
+      "p06-group-partition",
+      "p06-train-only-transform",
+      "p06-missing-lags",
+      "p06-held-out-purpose",
+      "p06-rls-equivalence",
+      "p06-rls-trace",
+      "p06-rls-rank-one",
+      "p06-ridge-variance",
+      "p06-rls-covariance",
+      "p06-forgetting-objective",
+      "p06-forgetting-weights",
+      "p06-online-clock",
+      "p06-forgetting-excitation",
+      "p06-drift-noise-validation",
+      "p06-cap-sampling",
+      "p06-cap-excitation",
+      "p06-cap-discrete",
+      "p06-cap-fit",
+      "p06-cap-preprocess",
+      "p06-cap-prediction",
+      "p06-cap-resampling",
+      "p06-cap-validation"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "prior_part_amendment": {
+    "question": "p05-entropy",
+    "source_sentence": "通道二输出与 X 独立的公平二值 Y",
+    "replacement_sentence": "通道二产生与 X 独立的 Y，Y 也以相同概率取 0 或 1",
+    "notebook": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.ipynb",
+    "other_part05_content_and_grading_preserved": true
+  },
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "current_files_retained": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Unbound PracticeEngine.progress on read-only in-memory baseline records and current question/assessment metadata; no engine constructor or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_and_introduction_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_model_unchanged": true,
+    "web_controller_changed_only_displayed_string_literals": true,
+    "official_checker_and_glossary_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "conditional_expectation_bridge_preserved_after_normalizing_annotations": true,
+    "independent_hand_examples_and_algebra": [
+      "Integer-time 0.8/0.2 Hz alias and separating quarter-second observation",
+      "Five-point causal startup means and two-interval ramp delay",
+      "Complete impulse superposition and three-point circular wraparound",
+      "Frequency spacing, integer/noninteger periods and five-point cancellation",
+      "Exact interval-integral multiplier versus negative Euler multiplier",
+      "Four-point least-squares slope/intercept and fixed-design slope standard error",
+      "ARX conditional mean, two prediction trajectories, squared errors and measurement attenuation",
+      "Distinct parameters with the same steady-state observation",
+      "Scalar regularized cumulative losses and covariance versus inverse information",
+      "Five observation weights versus the separately decayed initial information",
+      "Capstone weighted batch formulas, tuning tie, held-out prediction and final parameter",
+      "Capstone clearance-grid weighted loss"
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    }
+  ],
+  "new_unresolved": [
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    }
+  ],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 159,
+    "core_changed": 143,
+    "exercise_cells_synchronized": 16
+  },
+  "teaching_check": {
+    "notebooks": 16,
+    "questions": 79,
+    "question_links": 79,
+    "issues": []
+  },
+  "teaching_check_method": "Run existing check_teaching logic through a local wrapper. Each lesson inherits actual vocabulary from Parts 0–5 and preceding Part 6 lessons; exercises inherit their lesson explanations, and overviews inherit preceding chapters. The wrapper supplies seen vocabulary and the manually confirmed lag sense of 滞后. The original checker, glossary, first-use and part-range checks remain in place.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/06-01-观测、采样与滤波/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/06-02-卷积、频谱与频率响应/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/06-04-最小二乘与参数估计/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/06-05-动态辨识、实验设计与验证/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/06-06-递推辨识与时变参数跟踪/",
+        "status": 200
+      },
+      {
+        "path": "/parts/06-从测量走向模型/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/06-01-观测、采样与滤波/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/06-02-卷积、频谱与频率响应/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p06-cosine-samples",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p06-linear-convolution",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p06-response-components",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p06-line-fit",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p06-arx-predictions",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p06-rls-equivalence",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p06-cap-sampling",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p05-entropy",
+        "status": 200,
+        "latest_statement_and_version": true
+      }
+    ],
+    "served_catalog_equals_current_file": true,
+    "html_rendered_without_execution": [
+      "P06-C01-S01",
+      "P06-C01-S02",
+      "P06-C02-S01",
+      "P06-C02-S02",
+      "P06-C02-S03",
+      "P06-C03-S01",
+      "P06-C03-S02",
+      "P06-C04-S01",
+      "P06-C04-S02",
+      "P06-C04-S03",
+      "P06-C05-S01",
+      "P06-C05-S02",
+      "P06-C05-S03",
+      "P06-C06-S01",
+      "P06-C06-S02",
+      "P06-SUMMARY"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout or interaction behavior."
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_linear-networks/linear-regression.html",
+      "focus": "Connect prediction variables, a concrete relation, error assumptions, loss and a fitted model; explain formulas and what the code returns."
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/05-The-Unreasonable-Effectiveness-of-Linear-Regression.html",
+      "focus": "Begin with an observable comparison, then explain regression coefficients, calculate a small example and interpret the resulting comparison; no causal assumptions imported into the measurement chapter."
+    }
+  ],
+  "authorization": "The user authorized the project implementation conversation to dispatch Parts 2–17 sequentially, with final unified user reading acceptance. Current dispatch is Part 6 plus one Part 5 entropy sentence. Normal commit/push authorization continues; no force push. Wait for Part 7 dispatch after delivery.",
+  "specific_prose_corrections": [
+    "Frequency and sample coordinates precede alias formulas; the same points are calculated before code, with analog anti-aliasing before initial conversion distinguished from digital filtering before later downsampling.",
+    "Causal startup averaging and fixed zero-extended FIR averaging use separately stated denominators; convolution indices and frequency bins are explained with hand calculations.",
+    "The original conditional-expectation bridge and joint-table link are preserved; given history and scheduled input, the next disturbance remains the random quantity being averaged.",
+    "ARX state/input order, prediction start position, missing-observation clock and independent validation are made explicit. Lag is distinguished from hysteresis in Part 4.",
+    "RLS starts from two scalar observations before the matrix update; initial regularization, exponentially decayed weights, covariance and online prediction timing retain their existing conditions.",
+    "One control character introduced in the filter formula was repaired to the intended noise symbol, and original reference suffixes missed by the first exercise synchronization were restored in the two RLS lessons and capstone before final checks.",
+    "The specifically dispatched Part 5 entropy sentence is the only change outside Part 6 lesson/question content."
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part06-rewrite-20261005/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part06-rewrite-20261005/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part06-rewrite-20261005/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part06-rewrite-20261005/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/measurement/app.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ]
+}

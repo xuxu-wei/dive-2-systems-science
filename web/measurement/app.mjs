@@ -9,9 +9,9 @@ const tickFmt=x=>Number(x.toPrecision(3)).toString();
 const svg=(tag,attrs,text)=>{const n=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;};
 let chapter,mode,p={},playback,data,end;
 const definitions={
- '6.1':{title:'相同读数，可能来自不同节律',question:'先预测：频率（frequency）为 0.8 Hz 的节律每秒测一次，会留下怎样的读数？改变采样率（sampling rate），比较连续参照与采样（sampling）点。',explanation:'把生理节律的偏差（deviation）简化为振幅（amplitude）等于 1 U 的余弦。混叠（aliasing）意味着不同连续信号在给定采样点无法区分；它并不告诉我们真实节律一定是哪一个。'},
- '6.2':{title:'一个平均窗口，怎样改变不同频率',question:'先预测：平均五个读数，会把节律压低多少、推迟多少？改变窗口长度和输入频率（frequency），连接因果卷积（causal convolution）与频率响应（frequency response）。',explanation:'有限脉冲响应（finite impulse response, FIR）滤波器只使用当前与过去读数。输入在 n<0 时为零，始终除以窗口长度 W；这与起始段按已有样本数重归一的平均不同。'},
- '6.3':{title:'精确采样，与数值近似是两件事',question:'先预测：把采样（sampling）间隔变大，会让真实清除过程变成负值吗？对照零阶保持（zero-order hold, ZOH）下的精确离散模型与显式 Euler 方法（explicit Euler method）的近似。',explanation:'单室总量满足 dA/dt=u−kA。参数（parameter）k 是清除系数（clearance coefficient），u 是输入流量（input flow rate），二者恒定且非负；状态（state）A 的初值也非负。线性时不变（linear time-invariant, LTI）模型的精确采样与 Euler 使用不同的离散极点（discrete pole）。'}
+ '6.1':{title:'相同读数，可能来自不同节律',question:'每秒起伏 0.8 次的节律，每秒测一次，会留下什么读数？先作预测，再把采样率提高，比较曲线与测量点。',explanation:'用余弦 x(t) 表示振幅为 1 U 的节律偏差。频率 f 表示每秒重复几次，采样率 fₛ 表示每秒测几次，二者的单位都是 Hz。f=0.8 Hz、fₛ=1 Hz 时，这些点也符合 0.2 Hz 的余弦；从同样的读数辨不出两种节律，这就是混叠。'},
+ '6.2':{title:'一个平均窗口，怎样改变不同频率',question:'把当前读数和前四个读数相加，再除以五，会把节律压低多少、推迟多少？改变频率和窗口，比较输入、输出与幅值比。',explanation:'用 n 从 0 开始编号，窗口长度 W 表示每次平均几个点。这里把 n<0 的输入设为零，始终除以 W；例如 W=5 时第一个输出为 x[0]/5。这是固定有限脉冲响应滤波器的启动方式，与 6.1 按已有点数求平均不同。'},
+ '6.3':{title:'采样间隔怎样影响数值近似',question:'如果相隔更久才测一次，原本非负的清除总量会变成负值吗？先作预测，再增大间隔，比较解析曲线、精确采样点与 Euler 近似。',explanation:'单室收支为 dA/dt=u−kA：A 是物质总量，u 是每单位时间进入的量，kA 是每单位时间清除的量。本页保持 u、k 恒定且非负，初值也非负。精确采样通过区间积分得到，Euler 则用区间起点的变化率作近似；下面比较两种递推的倍率。'}
 };
 function slider(key,label,min,max,step,value){p[key]=value;const group=el('div',undefined,'slider'),lab=el('label',label),out=el('output',value),input=el('input');Object.assign(input,{id:key,type:'range',min,max,step,value});lab.htmlFor=key;out.id=key+'-value';out.htmlFor=key;input.addEventListener('input',()=>{p[key]=Number(input.value);out.value=input.value;guard(recompute);});group.append(lab,out,input);$('sliders').append(group);}
 function controls(){p={};$('sliders').replaceChildren();
@@ -21,15 +21,15 @@ function controls(){p={};$('sliders').replaceChildren();
 }
 function set(values){for(const [key,value] of Object.entries(values)){p[key]=value;$(key).value=value;$(key+'-value').value=value;}guard(recompute);}
 function legend(entries){$('legend').replaceChildren();for(const [label,color,dashed] of entries){const item=el('span',label,dashed?'dashed':'');item.style.setProperty('--line-color',color);$('legend').append(item);}}
-function table(headers,rows){$('table-note').textContent='以下保留起点、终点和分布在记录中的若干实际计算点；曲线由完整序列绘制。';const t=el('table'),header=el('tr');headers.forEach(text=>header.append(el('th',text)));t.append(header);rows.filter((_,i)=>i===0||i===rows.length-1||i%Math.max(1,Math.floor(rows.length/10))===0).forEach(row=>{const tr=el('tr');row.forEach(value=>tr.append(el('td',fmt(value))));t.append(tr);});$('value-table').replaceChildren(t);}
+function table(headers,rows){$('table-note').textContent='表中列出起点、终点以及若干中间计算点；图中显示完整序列。';const t=el('table'),header=el('tr');headers.forEach(text=>header.append(el('th',text)));t.append(header);rows.filter((_,i)=>i===0||i===rows.length-1||i%Math.max(1,Math.floor(rows.length/10))===0).forEach(row=>{const tr=el('tr');row.forEach(value=>tr.append(el('td',fmt(value))));t.append(tr);});$('value-table').replaceChildren(t);}
 function recompute(){
  if(mode==='6.1'){
   end=10;data=sampling(p.frequency,p['sample-rate'],end);const next=alternateSampling(p['sample-rate']);
   $('formula').textContent='x(t)=cos(2πft)；tₙ=n/fₛ；采样间隔 Δt=1/fₛ';
   $('alternate').textContent=`切换到 ${next} Hz 采样`;
   $('preset-note').textContent=`当前 f=${fmt(p.frequency)} Hz，fₛ=${fmt(p['sample-rate'])} Hz；按钮只改变采样率，保留节律频率。`;
-  $('assumptions').textContent='忽略测量噪声（measurement noise），余弦的相位（phase）为零，均匀采样记录为 0—10 s。连续参照的绘图网格固定为 0.01 s；它不是观测采样间隔，也不是微分方程的求解步长。';
-  $('chart-heading').textContent='连续节律与不可区分的读数';$('chart-note').textContent='左图是设定的原节律；右图是在这些样本上相同的最低非负余弦频率。采样率足够高时两条连续曲线重合。只有样本时，选择真实频率还需要带宽（bandwidth）等先验条件。';
+  $('assumptions').textContent='本例不加测量噪声，余弦从相位零开始，均匀采样至 10 s。为画出连续参照，每隔 0.01 s 计算一个点；仪器的测量间隔则为 1/fₛ s。这里直接计算余弦，无需数值求解微分方程。';
+  $('chart-heading').textContent='连续节律与相同的采样读数';$('chart-note').textContent='左图画设定的原节律，右图画符合相同测量点的最低非负余弦频率。采样率提高后，两条曲线可能重合。实际只有读数时，还需知道可能的频率范围，才能判断真实节律。';
   $('value-label').textContent='低频候选 / Hz';$('value').textContent=fmt(data.aliasFrequency);
   legend([['原节律',blue,false],['采样读数（圆点）',pink,false],['同样本低频候选',gray,true]]);
   table(['采样时刻 / s','读数 / U','低频候选值 / U'],data.samples.map(([t,x])=>[t,x,Math.cos(2*Math.PI*data.aliasFrequency*t)]));
@@ -39,8 +39,8 @@ function recompute(){
   $('formula').textContent='y[n]=(x[n]+…+x[n−W+1])/W；H(f)=Σⱼ exp(−i2πfj)/W，j=0,…,W−1';
   $('alternate').textContent=next===1?'切换到 W=1（不平滑）':'切换到 W=5（五点平均）';
   $('preset-note').textContent=`当前 W=${p.window}，f=${fmt(p.frequency)} 周期/样本；按钮只改变 W。稳态幅值比=${fmt(data.selected.magnitude)}。`;
-  $('assumptions').textContent='x[n]=cos(2πfn)，n≥0；此前输入全为零。前 W−1 个输出含启动边界，之后才是同频率的稳态正弦响应（sinusoidal steady-state response）。H 是复数（complex number）；虚数单位（imaginary unit）i 满足 i²=−1。';
-  $('chart-heading').textContent='时域读数与稳态幅值比';$('chart-note').textContent='右图画出所有频率的 |H(f)|，圆点标出当前输入频率。相位（phase）在零增益处未定义；(W−1)/2 样本的群延迟（group delay）只描述非零响应频段中的相位斜率，不把任意波形都当作纯延迟。';
+  $('assumptions').textContent='从 n=0 起输入 x[n]=cos(2πfn)，振幅为 1 U。这里 f 的单位为周期/样本：f=0.1 表示每十个采样间隔转一圈。前 W−1 个输出受补零影响，窗口装满后才符合稳态频率响应 H(f)；式中的 i 为虚数单位。';
+  $('chart-heading').textContent='时域读数与稳态幅值比';$('chart-note').textContent='右图画出 |H(f)|，圆点标出当前频率；例如 W=5、f=0.2 时，五个等间隔相位抵消，稳态输出为零。零增益处没有相位。在非零响应的频段，相位斜率对应 (W−1)/2 个采样间隔的群延迟；一般波形还会因各频率衰减不同而改变形状。';
   $('value-label').textContent='当前频率的幅值比';$('value').textContent=fmt(data.selected.magnitude);
   legend([['时域输入',blue,false],['时域输出 / 频响幅值',pink,true]]);
   table(['样本序号 n','输入 / U','输出 / U'],data.input.map(([n,x])=>[n,x,data.output[n][1]]));
@@ -50,8 +50,8 @@ function recompute(){
   $('formula').textContent='A[n+1]=aA[n]+bu[n]；a=exp(−kh)，b=(1−exp(−kh))/k；k=0 时 b=h';
   $('alternate').textContent=`切换到${next===1?'小':'大'}间隔 h=${next}`;
   $('preset-note').textContent=`当前 kh=${fmt(kh)}，Euler 因子=${fmt(data.eulerPole)}。${kh>1?'此因子为负；无输入且 A₀>0 时将出现符号交替。':'此因子非负；非负初值和输入不会产生负值。'}按钮只改变 h。`;
-  $('assumptions').textContent='U 是所追踪物质总量（tracked amount）的教学单位，T 是时间单位。ZOH 假定每个采样区间输入保持不变；此页 u 在整段记录恒定。连续线按解析解绘制；Euler 每一步恰为 h，不代表精确采样。';
-  $('chart-heading').textContent='连续轨迹、离散点与实极点';$('chart-note').textContent='本页极点均为实数。−1<p<1 是单位圆（unit circle）与实轴的交集，表示任意无输入初态均趋于零；|p|=1 是边界。k=0 时精确模型是积分器（integrator）；非零输入下要另外分析受迫响应（forced response）。Euler 的负值与发散作为数值反例保留显示。';
+  $('assumptions').textContent='总量单位为 U，时间单位为 T，故 u 的单位是 U/T，k 的单位是 T⁻¹。采样间隔为 h T，输入在每个区间内保持不变，本页整段也取同一值。连续线由解析解绘制，Euler 则每隔 h T 更新一次。';
+  $('chart-heading').textContent='连续轨迹、离散点与实极点';$('chart-note').textContent='右图把无输入时的每步倍率记为实极点 p。−1<p<1 时，任意初值都会趋于零；负倍率还会使符号交替。k=0 时精确倍率为 1，总量保持原值；若有恒定输入则逐步累积。图中保留 Euler 产生的负值或发散，便于找出近似失效的间隔。';
   $('value-label').textContent='精确 / Euler 极点';$('value').textContent=fmt(data.coefficients.a)+' / '+fmt(data.eulerPole);
   legend([['解析轨迹 / 精确采样',blue,false],['Euler 近似',pink,true],['实极点的衰减区间',gray,true]]);
   table(['采样时刻 / T','精确量 / U','Euler 量 / U'],data.exact.map(([t,x],i)=>[t,x,data.euler[i][1]]));

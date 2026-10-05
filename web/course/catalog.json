@@ -3037,14 +3037,14 @@
           "id": "6.1",
           "title": "观测、采样与滤波",
           "url": "/chapters/06-01-观测、采样与滤波/",
-          "goals": "区分模型（model）时间步长（time step）、采样（sampling）间隔与滤波窗口，识别混叠（aliasing）和滤波延迟（delay）。",
-          "prerequisites": "5.2、2.4；数学：递推、有限求和和固定点（fixed point）代数、指数函数（exponential function）的二阶展开、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布。",
+          "goals": "从相同采样（sampling）读数解释混叠（aliasing），分别计算因果和居中平均（centered moving average），区分观测间隔、求解步长与窗口长度。",
+          "prerequisites": "5.2、2.4；数学：递推、有限求和和固定点代数、指数函数的二阶展开、数值误差、收敛阶、递推稳定性与非负性、期望、方差、协方差、联合分布、Gaussian 分布。",
           "knowledge": [
-            "状态（state）到观测及采样",
-            "用正弦例子观察混叠",
-            "移动平均（moving average）、窗口边界和在线/离线差别"
+            "手算整数时刻的两种余弦，定义频率、采样率（sampling rate）与观测间隔",
+            "区分首次采样前的模拟滤波与再次降采样前的数字滤波",
+            "从启动段计算因果平均，推导方差与延迟，再比较居中平均"
           ],
-          "focus": "区分模拟步长、观测（observation）间隔与滤波窗口；用相同采样读数识别混叠，观察平滑带来的延迟。",
+          "focus": "先看两种余弦在哪些时刻相同，再看平均使用了哪些读数；平滑噪声与推迟变化需要分别解释。",
           "available": true,
           "lessons": [
             {
@@ -3052,7 +3052,7 @@
               "chapter_id": "6.1",
               "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb",
               "title": "采样间隔与混叠",
-              "outcome": "能区分状态、观测与采样，推导余弦的混叠等价关系，解释采样率、求解步长及带限假设的不同职责。",
+              "outcome": "手算同一组采样点上的两种余弦，区分观测间隔、求解步长与抗混叠处理。",
               "number": "6.1.1",
               "visualization": "web/measurement/index.html",
               "questions": [
@@ -3088,7 +3088,7 @@
               "chapter_id": "6.1",
               "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb",
               "title": "因果滤波与时间延迟",
-              "outcome": "能实现明确起始边界的因果移动平均，推导噪声方差与缓变信号延迟，识别居中滤波使用未来数据。",
+              "outcome": "从已有读数算因果平均，推导独立噪声方差和缓变信号的延迟，再比较居中平均。",
               "number": "6.1.2",
               "visualization": "web/measurement/index.html",
               "questions": [
@@ -3126,14 +3126,14 @@
           "id": "6.2",
           "title": "卷积、频谱与频率响应",
           "url": "/chapters/06-02-卷积、频谱与频率响应/",
-          "goals": "从叠加解释卷积，理解复指数、频率坐标、幅度和相位（phase），并辨认有限记录的影响。",
-          "prerequisites": "6.1、3.2；数学：函数、求和与向量（vector）。复数（complex number）、复指数、卷积及 Fourier 表示在本章首次引入。",
+          "goals": "从平移脉冲叠加得到卷积，按频率格点计算幅值与相位，再解释有限记录和滤波造成的变化。",
+          "prerequisites": "6.1、3.2；承接第 3 篇的复数与旋转表示，用求和与向量建立卷积、复指数频谱和 Fourier 表示。",
           "knowledge": [
-            "脉冲响应（impulse response）与离散卷积",
-            "正弦、复指数与 Fourier 表示",
-            "频谱、窗长、泄漏及滤波频率响应（frequency response）"
+            "手算脉冲叠加与完整卷积，比较末尾零延拓（zero extension）和循环回绕",
+            "承接复数旋转，引入复指数及离散频谱的坐标、幅值和相位",
+            "比较整周期、加窗和补零记录，由有限核推导频率响应（frequency response）并核对时域结果"
           ],
-          "focus": "由叠加得到卷积，由复指数读取幅度与相位；理解记录长度和频率分辨率的关系。",
+          "focus": "卷积中的每个索引对应哪次输入；频谱中的每个格点对应几圈旋转；窗长、补零与滤波分别改变什么。",
           "available": true,
           "lessons": [
             {
@@ -3141,7 +3141,7 @@
               "chapter_id": "6.2",
               "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.ipynb",
               "title": "从脉冲响应到线性卷积",
-              "outcome": "能从线性叠加与时间平移推导完整离散卷积，检查长度、零延拓、初值及循环卷积的差别。",
+              "outcome": "把一次输入拆成平移脉冲，逐项相加得到完整线性卷积，并解释末尾与循环回绕。",
               "number": "6.2.1",
               "visualization": "web/measurement/index.html",
               "questions": [
@@ -3177,7 +3177,7 @@
               "chapter_id": "6.2",
               "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.ipynb",
               "title": "复指数与离散频谱",
-              "outcome": "能从复数与旋转解释 DFT，正确计算频率坐标、单边幅值及相位，处理直流、奇偶长度、奈奎斯特和零幅边界。",
+              "outcome": "沿复指数旋转计算频谱，说明每个频率格点、幅值及相位对应什么信号。",
               "number": "6.2.2",
               "visualization": "web/measurement/index.html",
               "questions": [
@@ -3219,7 +3219,7 @@
               "chapter_id": "6.2",
               "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.ipynb",
               "title": "有限记录与滤波频率响应",
-              "outcome": "能区分记录长度、泄漏、窗函数与零填充，推导有限核的频率响应并用时域卷积核验幅值和相位变化。",
+              "outcome": "比较整周期与非整周期记录，解释加窗和补零，再用频率响应预测滤波结果。",
               "number": "6.2.3",
               "visualization": "web/measurement/index.html",
               "questions": [
@@ -3263,14 +3263,14 @@
           "id": "6.3",
           "title": "LTI 系统、Laplace 与 Z 变换",
           "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
-          "goals": "在明确初值（initial condition）和线性时不变（linear time-invariant，LTI）假设下连接微分/差分方程（difference equation）、传递函数（transfer function）、极点（pole）与响应。",
-          "prerequisites": "6.2；数学：微积分与复指数。Laplace/Z 变换、收敛域（region of convergence，ROC）和极点在本章首次引入。",
+          "goals": "在单室收支中检验线性时不变（linear time-invariant，LTI）假设，分别处理初态和输入，再连接连续变换、区间积分与离散递推。",
+          "prerequisites": "6.2；数学：微积分与复指数。Laplace/Z 变换、收敛域（region of convergence，ROC）和极点（pole）在本章首次引入。",
           "knowledge": [
-            "线性与时不变的检验",
-            "Laplace 变换、必要收敛域直觉及初值项",
-            "Z 变换和离散表示，与状态空间（state space）对照"
+            "用叠加和平移检验假设，分开零输入与零状态响应（zero-state response）",
+            "承接积分因子法，以分部积分推导 Laplace 初值项、传递函数（transfer function）及收敛条件",
+            "对保持不变的区间输入积分，建立精确递推和 Z 变换，再比较 Euler 近似"
           ],
-          "focus": "连接微分方程、差分方程与传递函数；跟踪初值项、采样（sampling）间隔和极点如何决定响应。",
+          "focus": "初值项从哪里来；采样区间怎样进入精确倍率；Euler 倍率为何会改变正性与衰减。",
           "available": true,
           "lessons": [
             {
@@ -3278,7 +3278,7 @@
               "chapter_id": "6.3",
               "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.ipynb",
               "title": "LTI假设与Laplace表示",
-              "outcome": "能检验线性时不变（linear time-invariant，LTI）假设，区分零输入与零状态响应；从一侧 Laplace 变换（unilateral Laplace transform）的初值项推导传递函数（transfer function），解释收敛域（region of convergence，ROC）和极点（pole）的含义。",
+              "outcome": "检查叠加与平移是否成立，从单室收支推导变换关系，并分别计算初态与输入响应。",
               "number": "6.3.1",
               "visualization": "web/measurement/index.html",
               "questions": [
@@ -3320,7 +3320,7 @@
               "chapter_id": "6.3",
               "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb",
               "title": "Z变换与精确采样",
-              "outcome": "能从区间积分推导零阶保持（zero-order hold，ZOH）下的精确采样模型；写出单侧 Z 变换（unilateral Z-transform）的初值项和因果脉冲索引，区分采样周期与 Euler 求解步长。",
+              "outcome": "对一个采样区间积分，推导精确递推和 Z 变换，比较精确倍率与 Euler 倍率。",
               "number": "6.3.2",
               "visualization": "web/measurement/index.html",
               "questions": [
@@ -3364,14 +3364,14 @@
           "id": "6.4",
           "title": "最小二乘与参数估计",
           "url": "/chapters/06-04-最小二乘与参数估计/",
-          "goals": "定义残差（residual）和损失，说明最小二乘与 Gaussian 误差的关系，并为区间估计写明假设。",
-          "prerequisites": "5.3、3.4、6.1；数学：矩阵（matrix）、偏导（partial derivative）、概率（probability）与似然（likelihood）。最小二乘、估计区间及重采样（resampling）在本章首次引入。",
+          "goals": "手算直线拟合与清除参数的候选损失，连接残差、相对权重和误差假设，并解释重复观测下的估计区间。",
+          "prerequisites": "5.3、3.4、6.1；数学：矩阵、偏导、概率与似然。最小二乘、估计区间及重采样（resampling）在本章首次引入。",
           "knowledge": [
-            "线性回归、投影（projection）和秩（rank）",
-            "理想清除参数（parameter）的拟合与残差",
-            "重复观测（observation）、参数区间和重采样入门，区分参数不确定性与预测误差"
+            "从四个读数计算均值、斜率与残差，再推导正交条件和高斯似然",
+            "在限定清除网格上比较预测与损失，说明并列最优和相对权重",
+            "用已知误差方差推导斜率区间，比较固定设计重复与独立同分布观测对的重抽样"
           ],
-          "focus": "由残差构造最小二乘目标；解释相对权重、误差假设和重采样区间各自的作用。",
+          "focus": "损失最小对应什么比较；权重和单位怎样解释；固定设计（fixed design）重复与成对重抽样分别改变哪些随机量。",
           "available": true,
           "lessons": [
             {
@@ -3379,7 +3379,7 @@
               "chapter_id": "6.4",
               "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.ipynb",
               "title": "最小二乘与误差假设",
-              "outcome": "能从平方残差（residual）推导普通最小二乘（ordinary least squares，OLS），把正交条件与矩阵满列秩相连；说明同方差（homoscedasticity）高斯误差下的似然（likelihood）关系，并辨认解释变量有误差的限制。",
+              "outcome": "从四个读数手算直线拟合，再由正交条件和高斯误差解释最小二乘。",
               "number": "6.4.1",
               "visualization": null,
               "questions": [
@@ -3421,7 +3421,7 @@
               "chapter_id": "6.4",
               "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.ipynb",
               "title": "清除曲线的网格估计",
-              "outcome": "能在声明的有限候选集合中估计清除系数，区分网格最优与连续最优；由误差尺度设计加权最小二乘（weighted least squares，WLS），解释对数变换改变了误差模型。",
+              "outcome": "逐个比较清除系数的候选损失，解释残差、相对权重和网格范围对结果的影响。",
               "number": "6.4.2",
               "visualization": null,
               "questions": [
@@ -3463,7 +3463,7 @@
               "chapter_id": "6.4",
               "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.ipynb",
               "title": "参数区间与重复观测",
-              "outcome": "能从估计量方差推导已知误差尺度的斜率置信区间（confidence interval），区分均值区间与未来观测预测区间（prediction interval）；解释自由度（degrees of freedom）和成对自助法（pairs bootstrap）的抽样前提。",
+              "outcome": "在相同设计下重复测量，计算斜率区间，并区分固定设计与成对重抽样。",
               "number": "6.4.3",
               "visualization": null,
               "questions": [
@@ -3501,14 +3501,14 @@
           "id": "6.5",
           "title": "动态辨识、实验设计与验证",
           "url": "/chapters/06-05-动态辨识、实验设计与验证/",
-          "goals": "构建简单外源输入自回归模型（autoregressive with exogenous input，ARX），区分拟合、一步预测（one-step-ahead prediction）和自由运行（free-run simulation），比较激励、结构与可辨识范围。",
-          "prerequisites": "6.3、6.4；复习5.3的条件期望（conditional expectation），数学：条件概率（conditional probability）、条件期望与分组加权平均、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点（pole）零点（zero）、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样（resampling）入门。",
+          "goals": "用历史与输入建立动态回归，解释条件平均，比较两种预测，并以输入变化和预留观测检验可辨识范围。",
+          "prerequisites": "6.3、6.4；复习5.3的条件期望，数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、Laplace/Z 变换、收敛域的必要直觉、极点零点、最小二乘、Gaussian 似然、残差、估计区间及重采样（resampling）入门。",
           "knowledge": [
-            "回归量、延迟（delay）与动态模型（model）",
-            "输入激励、结构选择和参数（parameter）混淆",
-            "时间/个体划分、验证残差、外推与缺失观测（observation）"
+            "写清上一拍状态、区间输入和下一拍观测，承接条件期望并手算两种预测",
+            "从稳态参数混淆走向瞬态与变化输入，比较回归列的独立方向",
+            "按未来时段或新个体划分数据，限定训练预处理，再用完整时钟处理缺测并作最终评估"
           ],
-          "focus": "用已知历史解释条件零均值，比较一步预测与自由运行；通过输入（input）激励、滞后（lag）结构和预留数据判断预测能力。",
+          "focus": "已知历史后还对什么取平均；一步预测和自由运行（free-run simulation）使用哪一个起点；输入方向与数据划分怎样影响结论。",
           "available": true,
           "lessons": [
             {
@@ -3516,7 +3516,7 @@
               "chapter_id": "6.5",
               "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb",
               "title": "ARX回归与两种预测",
-              "outcome": "能构造 ARX 回归量，区分一步预测和自由运行的信息条件，推导测量误差与回归量相关造成的估计偏差。",
+              "outcome": "写清历史与输入的回归顺序，解释条件平均，并手算一步预测和自由运行的差别。",
               "number": "6.5.1",
               "visualization": null,
               "questions": [
@@ -3558,7 +3558,7 @@
               "chapter_id": "6.5",
               "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.ipynb",
               "title": "激励与可辨识范围",
-              "outcome": "能区分秩亏、病态与噪声偏差，解释稳态和瞬态的信息差别，并依据已知物理参数限定可辨识结论。",
+              "outcome": "比较稳态、瞬态与变化输入，判断记录中有几个独立方向，以及哪些参数能区分。",
               "number": "6.5.2",
               "visualization": null,
               "questions": [
@@ -3600,7 +3600,7 @@
               "chapter_id": "6.5",
               "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.ipynb",
               "title": "数据划分与独立验证",
-              "outcome": "能按时间或个体划分数据，隔离训练预处理，保留缺测原时钟，并用固定验证流程选择模型和完成一次最终评估。",
+              "outcome": "先按未来时段或新个体划分数据，再拟合、选结构与最终评估，保留缺测时钟。",
               "number": "6.5.3",
               "visualization": null,
               "questions": [
@@ -3644,14 +3644,14 @@
           "id": "6.6",
           "title": "递推辨识与时变参数跟踪",
           "url": "/chapters/06-06-递推辨识与时变参数跟踪/",
-          "goals": "从批量最小二乘推导递推更新，比较遗忘因子（forgetting factor）、激励和参数（parameter）漂移对估计的影响，限定不确定性解释。",
-          "prerequisites": "6.5；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、信息矩阵、矩阵秩一更新（rank-one update）与递推最小二乘（recursive least squares，RLS）。",
+          "goals": "从同一平方损失推导批量和递推解，解释初始信息与遗忘权重，并在新读数到来前评价漂移参数的预测。",
+          "prerequisites": "6.5；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、最小二乘、Gaussian 似然、残差、估计区间及重采样（resampling）入门、信息矩阵、矩阵秩一更新（rank-one update）与递推最小二乘（recursive least squares，RLS）。",
           "knowledge": [
-            "由累计信息矩阵和正规方程引入矩阵秩一更新，先推导无遗忘的递推最小二乘（recursive least squares，RLS）",
-            "加入遗忘因子、初始正则项和在线时钟，区分先预测后更新与读取未来观测（observation）",
-            "比较固定参数、缓慢漂移与激励不足；区分逆信息矩阵（inverse information matrix）与参数估计协方差（covariance）"
+            "从标量累计损失手算两次更新，再以正规方程和矩阵秩一更新推导递推最小二乘",
+            "对同一初始正则项核对批量解，推导固定设计下的抽样协方差",
+            "展开遗忘权重与初始项衰减，比较漂移、噪声和弱激励，固定候选后按先预测后更新作在线评估"
           ],
-          "focus": "把批量估计改写成逐步更新；比较遗忘速度、输入（input）激励和参数漂移对跟踪的影响。",
+          "focus": "每次更新增加了什么信息；遗忘因子（forgetting factor）怎样削弱旧观测；逆信息矩阵（inverse information matrix）与估计协方差为何需要不同解释。",
           "available": true,
           "lessons": [
             {
@@ -3660,7 +3660,7 @@
               "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/01-从批量最小二乘到递推更新.ipynb",
               "title": "从批量最小二乘到递推更新",
               "number": "6.6.1",
-              "outcome": "能由正则化批量目标推导秩一更新和递推最小二乘，逐前缀核验等价性，并区分逆信息与参数协方差。",
+              "outcome": "从累计平方损失推导逐次更新，用同一初始项核对批量解，并解释逆信息矩阵。",
               "visualization": null,
               "questions": [
                 {
@@ -3702,7 +3702,7 @@
               "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/02-遗忘、漂移与在线验证.ipynb",
               "title": "遗忘、漂移与在线验证",
               "number": "6.6.2",
-              "outcome": "能推导指数遗忘含初始项的权重，比较漂移和弱激励，遵循先预测后更新的在线时钟并隔离调参与最终评估。",
+              "outcome": "跟踪旧观测的权重衰减，比较漂移、噪声与弱激励，并按先预测后更新评估。",
               "visualization": null,
               "questions": [
                 {
@@ -3747,14 +3747,13 @@
         "assessment": true,
         "title": "测量辨识与验证的综合实验",
         "url": "/parts/06-从测量走向模型/综合练习/",
-        "goals": "综合判断采样（sampling）、动态表示、批量/递推参数（parameter）估计与在线预测验证。",
-        "prerequisites": "本篇第 6.1—6.6 章。",
-        "focus": "信息边界、误差假设、激励范围和参数可辨识性（identifiability）。",
+        "goals": "为独立题组选择观测、表示、拟合与评估方法，解释残差和递推预测各自的证据。",
+        "prerequisites": "本篇的采样与滤波、连续和离散表示、最小二乘、动态回归及递推更新。",
+        "focus": "每题先认清观测、单位和已知条件；用预留记录评价预测，分清参数混淆与测量误差。",
         "knowledge": [
-          "测量协议 → 采样与表示",
-          "候选与观测（observation） → 参数及残差（residual）",
-          "数据划分 → 预测与范围验证",
-          "遗忘与漂移 → 先预测后更新的独立在线评估"
+          "根据观测时刻选择采样解释，用区间积分连接连续模型和离散预测",
+          "按给定候选和相对权重计算损失，比较一步预测与自由运行的残差",
+          "只用调参时段选择遗忘因子，再对预留观测先预测、记误差并更新参数"
         ],
         "lessons": [
           {
@@ -3763,17 +3762,16 @@
             "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb",
             "title": "测量辨识与验证的综合实验",
             "number": "篇末综合",
-            "outcome": "能组织观测、表示、批量与递推参数估计及独立在线验证，解释有限数据、激励和模型假设限制。",
+            "outcome": "为独立题组选择观测、表示、拟合与评估方法，解释残差和递推预测各自的证据。",
             "visualization": null,
             "overview": {
-              "goals": "综合判断采样、动态表示、批量/递推参数估计与在线预测验证。",
-              "prerequisites": "本篇第 6.1—6.6 章。",
-              "focus": "信息边界、误差假设、激励范围和参数可辨识性。",
+              "goals": "为独立题组选择观测、表示、拟合与评估方法，解释残差和递推预测各自的证据。",
+              "prerequisites": "本篇的采样与滤波、连续和离散表示、最小二乘、动态回归及递推更新。",
+              "focus": "每题先认清观测、单位和已知条件；用预留记录评价预测，分清参数混淆与测量误差。",
               "knowledge": [
-                "测量协议 → 采样与表示",
-                "候选与观测 → 参数及残差",
-                "数据划分 → 预测与范围验证",
-                "遗忘与漂移 → 先预测后更新的独立在线评估"
+                "根据观测时刻选择采样解释，用区间积分连接连续模型和离散预测",
+                "按给定候选和相对权重计算损失，比较一步预测与自由运行的残差",
+                "只用调参时段选择遗忘因子，再对预留观测先预测、记误差并更新参数"
               ]
             },
             "questions": [
