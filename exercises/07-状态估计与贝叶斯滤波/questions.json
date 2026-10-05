@@ -8,7 +8,7 @@
     "chapter": "7.1",
     "title": "从状态到有噪读数",
     "type": "python",
-    "statement": "一个二维状态（state）由给定矩阵（matrix）逐步转移。过程增量改变系统状态，测量误差只改变读数。请按下列时刻约定返回完整状态轨迹（trajectory）与读数。",
+    "statement": "两室状态按第一室、第二室排列，由已知转移矩阵逐步演化。给定每个区间的过程增量和各时刻的测量误差，返回状态序列与标量读数；过程增量进入真实状态，测量误差只加在读数上。",
     "learning_targets": [
       "T1"
     ],
@@ -22,31 +22,31 @@
       {
         "name": "transition",
         "type": "list[list[float]]",
-        "description": "2×2 已知状态转移矩阵（transition matrix）。",
+        "description": "转移矩阵F；第i行、第j列表示旧状态第j项对新状态第i项的贡献。",
         "unit": "无量纲"
       },
       {
         "name": "sensor",
         "type": "list[float]",
-        "description": "长为 2 的观测（observation）行。",
+        "description": "观测行H，两个系数依次乘第一室和第二室状态。",
         "unit": "无量纲"
       },
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "时刻 0 的两个状态。",
+        "description": "时刻0状态，依次为第一室、第二室。",
         "unit": "U"
       },
       {
         "name": "process_noise",
         "type": "list[list[float]]",
-        "description": "第 i 项用于时刻 i 到 i+1 的过程增量。",
+        "description": "第i项是从时刻i到i+1加在两室状态上的增量，内层依次对应两室。",
         "unit": "U"
       },
       {
         "name": "measurement_noise",
         "type": "list[float]",
-        "description": "从时刻 0 开始的测量误差。",
+        "description": "依次对应时刻0、1、…的标量测量误差。",
         "unit": "U"
       }
     ],
@@ -54,17 +54,17 @@
       {
         "name": "states",
         "type": "list[list[float]]",
-        "description": "包含初值（initial condition）的 T+1 个状态。",
+        "description": "按时刻排列的状态列表，包含时刻0；有T项过程增量时共返回T+1项，每项依次对应两室。",
         "unit": "U"
       },
       {
         "name": "observations",
         "type": "list[float]",
-        "description": "H x 加测量误差。",
+        "description": "与states逐时刻对应的标量读数列表。",
         "unit": "U"
       }
     ],
-    "contract": "x[0]=initial；x[i+1]=F x[i]+process_noise[i]；y[i]=H x[i]+measurement_noise[i]。",
+    "contract": "令x[0]=initial；对每个区间计算x[i+1]=F@x[i]+process_noise[i]。每个时刻计算y[i]=H@x[i]+measurement_noise[i]，包括时刻0；用真实状态继续转移，测量误差不加入下一次状态。",
     "constraints": [
       "F 为 2×2，H 和 initial 长为 2；过程增量 0—20 项；测量误差恰好多 1 项。",
       "数值有限，绝对值≤100。"
@@ -74,7 +74,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "初次读数为8.2，第一次转移后第一室为6.8；测量误差不回写到状态。",
+    "hint": "先保存initial及其读数，再逐区间更新两室。过程增量有T项，状态和测量误差各有T+1项。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -144,7 +144,7 @@
             5.980000000000001
           ]
         ],
-        "explanation": "初次读数为8.2，第一次转移后第一室为6.8；测量误差不回写到状态。"
+        "explanation": "时刻0状态为[8,2] U，读数为8+0.2=8.2 U。第一次转移得到[6.8,3.2] U；第二次转移后再加[0.1,−0.1] U，得到[6.18,3.82] U，末项读数为6.18−0.2=5.98 U。"
       }
     ]
   },
@@ -157,7 +157,7 @@
     "chapter": "7.1",
     "title": "两种噪声加在哪里",
     "type": "choice",
-    "statement": "两个组织室中，交换量每天有随机波动；传感器读数还叠加独立误差。哪些表述正确？",
+    "statement": "两个组织室每天交换物质，实际交换量有随机波动；传感器还叠加独立测量误差。关于真实状态与估计输入，哪些表述正确？",
     "learning_targets": [
       "T1"
     ],
@@ -171,19 +171,19 @@
     "options": [
       {
         "id": "A",
-        "text": "每天交换量的随机变化会改变下一天两室的真实总量。"
+        "text": "交换量的随机波动会改变下一天物质在两室之间的分配。"
       },
       {
         "id": "B",
-        "text": "本次传感器误差会作为真实存量（stock）进入下一天的物质收支（mass balance）。"
+        "text": "本次传感器误差会作为真实物质量进入下一天的物质收支。"
       },
       {
         "id": "C",
-        "text": "估计两室状态（state）时，滤波器使用已知模型（model）、给定先验（prior）和传感器读数。"
+        "text": "滤波器依据已知模型、给定先验和传感器读数估计两室状态。"
       },
       {
         "id": "D",
-        "text": "把核验用的真实状态也输入（input）滤波器，仍是在与只提供传感器读数相同的信息条件下评价。"
+        "text": "给滤波器额外提供核验状态后，评价所用信息仍与只提供传感器读数相同。"
       }
     ],
     "constraints": []
@@ -197,7 +197,7 @@
     "chapter": "7.1",
     "title": "未知的是哪一类量",
     "type": "choice",
-    "statement": "已知交换系数与噪声模型（model），只知道两个室所追踪物质总量（tracked amount）的先验（prior）分布（distribution）。根据逐日读数估计两室当前总量，属于哪项？",
+    "statement": "两室交换系数和噪声模型已知，各室物质量的初始分布已知。现在根据逐日读数估计各室当前物质量，属于哪一项任务？",
     "learning_targets": [
       "T1"
     ],
@@ -215,15 +215,15 @@
       },
       {
         "id": "B",
-        "text": "这项任务要估计两室的当前状态（state）。"
+        "text": "这项任务要估计两室的当前状态。"
       },
       {
         "id": "C",
-        "text": "这项任务要比较一室与二室结构。"
+        "text": "这项任务要比较一室和二室两种模型结构。"
       },
       {
         "id": "D",
-        "text": "这项任务要估计传感器的噪声方差（variance）。"
+        "text": "这项任务要估计传感器噪声的方差。"
       }
     ],
     "constraints": []
@@ -237,7 +237,7 @@
     "chapter": "7.1",
     "title": "条件独立的范围",
     "type": "choice",
-    "statement": "假设 x[t+1]=F x[t]+w[t]，y[t]=H x[t]+v[t]，各时刻 w、v 和 x[0] 相互独立。哪些正确？",
+    "statement": "模型为x[t+1]=F@x[t]+w[t]、y[t]=H@x[t]+v[t]，初态x[0]与各时刻的w、v相互独立。关于这种依赖结构，哪些表述正确？",
     "learning_targets": [
       "T1"
     ],
@@ -251,19 +251,19 @@
     "options": [
       {
         "id": "A",
-        "text": "给定当前状态（state）后，未来转移与更早状态条件独立（conditional independence）。"
+        "text": "给定当前完整状态后，下一状态与更早状态条件独立。"
       },
       {
         "id": "B",
-        "text": "测量噪声（measurement noise）相互独立，因此相邻观测（observation）也相互独立。"
+        "text": "各次测量噪声独立，因此相邻传感器读数也相互独立。"
       },
       {
         "id": "C",
-        "text": "相邻状态一般仍相关。"
+        "text": "相邻状态一般仍然相关。"
       },
       {
         "id": "D",
-        "text": "给定当前观测y[t]后，未来状态与过去状态条件独立。"
+        "text": "只给定当前含噪读数y[t]，未来状态就与过去状态条件独立。"
       }
     ],
     "constraints": []
@@ -277,7 +277,7 @@
     "chapter": "7.1",
     "title": "拼出能观矩阵",
     "type": "python",
-    "statement": "无噪模型（model） x[t+1]=F x[t]，y[t]=H x[t]。计算前 horizon 个读数对应的能观矩阵（matrix）及输出（output），用公开数值规则返回秩（rank）。",
+    "statement": "无噪两室模型为x[t+1]=F@x[t]、y[t]=H@x[t]。从时刻0开始取得horizon项读数，构造能观矩阵、计算读数序列，并按下述公开规则返回数值秩。",
     "learning_targets": [
       "T1"
     ],
@@ -291,25 +291,25 @@
       {
         "name": "transition",
         "type": "list[list[float]]",
-        "description": "2×2 转移矩阵（transition matrix） F。",
+        "description": "2×2转移矩阵F，行对应新状态、列对应旧状态。",
         "unit": "无量纲"
       },
       {
         "name": "sensor",
         "type": "list[float]",
-        "description": "两个分量的观测（observation）行 H。",
+        "description": "观测行H，两项依次乘第一室、第二室状态。",
         "unit": "无量纲"
       },
       {
         "name": "horizon",
         "type": "int",
-        "description": "观测时刻数，含时刻 0。",
+        "description": "读数时刻数；horizon=2指时刻0和1，horizon=0表示不请求读数。",
         "unit": "步"
       },
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "初始状态（state）。",
+        "description": "时刻0两室状态，依次为第一室、第二室。",
         "unit": "U"
       }
     ],
@@ -317,23 +317,23 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "按 H、HF、… 排列的行。",
+        "description": "每行对应一个观测时刻，依次为H、HF、HF²、…；列对应两室初态。",
         "unit": "无量纲"
       },
       {
         "name": "outputs",
         "type": "list[float]",
-        "description": "矩阵乘 initial 得到的序列。",
+        "description": "matrix乘initial所得的标量读数，依次对应时刻0至horizon−1。",
         "unit": "U"
       },
       {
         "name": "rank",
         "type": "int",
-        "description": "0、1 或 2。",
+        "description": "按公开阈值规则所得的0、1或2。",
         "unit": "无量纲"
       }
     ],
-    "contract": "逐次右乘 F。若所有元素绝对值≤1e-10，秩为0；否则若任意两行组成的2×2行列式（determinant）绝对值>1e-10，秩为2；否则秩为1。",
+    "contract": "从H开始，每次右乘F构造下一行。没有行或所有元素绝对值≤1e-10时，秩为0；否则，若任意两行构成的2×2行列式绝对值>1e-10，秩为2；其余情况秩为1。每行乘initial得到对应时刻的读数。",
     "constraints": [
       "0≤horizon≤10；矩阵元素及状态绝对值≤10。",
       "测试矩阵远离规定阈值，且状态量已采用相同单位尺度。"
@@ -343,7 +343,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "两行是[1,0]与[0.8,0.2]，行列式0.2，输出[8,6.8]，因此秩为2。",
+    "hint": "第一行是时刻0的H，第二行是时刻1的HF。按题定的元素和行列式阈值判秩。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -395,7 +395,7 @@
           ],
           2
         ],
-        "explanation": "两行是[1,0]与[0.8,0.2]，行列式0.2，输出[8,6.8]，因此秩为2。"
+        "explanation": "时刻0行是[1,0]，时刻1行是[0.8,0.2]，乘初态[8,2]得到读数8和6.8 U。两行行列式为0.2，因此返回秩2。"
       }
     ]
   },
@@ -408,7 +408,7 @@
     "chapter": "7.1",
     "title": "总量相同就能区分吗",
     "type": "choice",
-    "statement": "F=[[0.8,0.2],[0.2,0.8]]，只用H=[1,1]进行总量观测（observation）。初态[8,2]与[2,8]的每次总量读数均为10。哪项正确？",
+    "statement": "状态列表依次对应第一室、第二室。F=[[0.8,0.2],[0.2,0.8]]，H=[1,1]只读取合计物质量。初态[8,2]与[2,8]都持续给出10 U读数。哪项解释正确？",
     "learning_targets": [
       "T1"
     ],
@@ -422,19 +422,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两初态之差每步缩为原来的0.6倍，因此经过多次交换后两组总量读数会不同。"
+        "text": "两初态之差每步缩为0.6倍，因此多次交换后两组总量读数会不同。"
       },
       {
         "id": "B",
-        "text": "初态总量相同，但经过一次交换后总量差变为非零。"
+        "text": "两初态的合计物质量起初相同，经过一次交换后便会不同。"
       },
       {
         "id": "C",
-        "text": "两个初态给出相同总量，因此下一步两室状态（state）也相同。"
+        "text": "两个初态给出相同总量读数，因此下一时刻的两室状态也相同。"
       },
       {
         "id": "D",
-        "text": "两初态相差[6,−6]，但这个差异在每次总量读数中产生的差值都为0。"
+        "text": "两初态之差为[6,−6] U，这一差异在每个时刻都不改变总量读数。"
       }
     ],
     "constraints": []
@@ -448,7 +448,7 @@
     "chapter": "7.1",
     "title": "满秩之后还要检查什么",
     "type": "choice",
-    "statement": "一个能观矩阵（matrix）满秩（rank），但最小奇异值（singular value）远小于最大奇异值。哪些正确？",
+    "statement": "某线性模型的能观矩阵满列秩，但最小奇异值远小于最大奇异值。关于状态恢复，哪些表述正确？",
     "learning_targets": [
       "T1"
     ],
@@ -462,19 +462,19 @@
     "options": [
       {
         "id": "A",
-        "text": "在无噪声且模型（model）正确时，给定观测（observation）序列对应的初态是唯一的。"
+        "text": "模型正确且读数无噪时，与该读数序列对应的初态唯一。"
       },
       {
         "id": "B",
-        "text": "读数中很小的测量误差，可能使恢复出的初态产生较大误差。"
+        "text": "读数中的小测量误差可能造成恢复初态的较大误差。"
       },
       {
         "id": "C",
-        "text": "满秩意味着所有状态（state）方向的噪声放大倍数相同。"
+        "text": "满列秩意味着各状态方向的噪声放大程度都相同。"
       },
       {
         "id": "D",
-        "text": "改变状态变量的计量单位，可能改变未作尺度调整的奇异值和条件数（condition number）。"
+        "text": "改变状态变量的计量单位，可能改变未经尺度调整的奇异值与条件数。"
       }
     ],
     "constraints": []
@@ -488,7 +488,7 @@
     "chapter": "7.1",
     "title": "采样会丢失方向吗",
     "type": "choice",
-    "statement": "一个二维连续旋转系统，每隔完整一周才观测（observation）第一坐标。采样（sampling）后的 F=I，H=[1,0]。哪项成立？",
+    "statement": "二维状态连续旋转，每完成一周才测量一次第一坐标。采样后的F=I，H=[1,0]，初态列表按第一、第二坐标排列。哪项成立？",
     "learning_targets": [
       "T1"
     ],
@@ -502,19 +502,19 @@
     "options": [
       {
         "id": "A",
-        "text": "HF^k均为[1,0]，因此离散能观矩阵（matrix）秩（rank）为1。"
+        "text": "各时刻的HF^k都等于[1,0]，因此至少取得一项读数时能观矩阵秩为1。"
       },
       {
         "id": "B",
-        "text": "连续系统在两次采样间旋转，因此离散能观矩阵秩为2。"
+        "text": "状态在两次采样间旋转，因此离散能观矩阵的秩为2。"
       },
       {
         "id": "C",
-        "text": "连续取两次整周读数，可使离散能观矩阵秩为2。"
+        "text": "连续取得两次整周读数，就能使离散能观矩阵的秩为2。"
       },
       {
         "id": "D",
-        "text": "整周采样保持状态（state），因此初态两个坐标都可从首个读数求出。"
+        "text": "整周后的状态回到原位置，因此首个读数能确定初态两个坐标。"
       }
     ],
     "constraints": []
@@ -528,7 +528,7 @@
     "chapter": "7.2",
     "title": "逐次预测与更新",
     "type": "python",
-    "statement": "在有限状态（state）模型（model）中递推观测（observation）后验（posterior）。第0时刻先验（prior）就是 initial，不先转移；后续先转移再使用当时似然（likelihood）。",
+    "statement": "有限隐藏状态模型已知初始概率、转移矩阵与实际观测的逐状态似然。按观测时刻递推预测与滤波后验；initial指时刻0观测前分布，首条观测前不作转移。",
     "learning_targets": [
       "T2"
     ],
@@ -542,19 +542,19 @@
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "时刻 0 的观测前概率分布（probability distribution）。",
+        "description": "时刻0观测前各状态概率，状态依次用下标0、1、…表示。",
         "unit": "概率"
       },
       {
         "name": "transition",
         "type": "list[list[float]]",
-        "description": "第 i 行第 j 列为从 i 转移到 j 的概率（probability）。",
+        "description": "第i行、第j列是从状态i转移到j的概率；行列使用initial的同一状态顺序。",
         "unit": "概率"
       },
       {
         "name": "likelihoods",
         "type": "list[list[float] | None]",
-        "description": "各时刻实际读数在各状态下的似然；None 表示缺测。",
+        "description": "外层按时刻0、1、…排列，内层按状态排列，给出该次实际观测在各状态下的似然；None表示整个时刻缺测。",
         "unit": "无量纲"
       }
     ],
@@ -562,29 +562,29 @@
       {
         "name": "predictions",
         "type": "list[list[float]]",
-        "description": "每一步观测前分布（distribution）。",
+        "description": "逐时刻的观测前概率列表；首项等于initial，后续由上一步后验转移得到。",
         "unit": "概率"
       },
       {
         "name": "posteriors",
         "type": "list[list[float]]",
-        "description": "成功归一化各步的滤波后验。",
+        "description": "逐时刻归一化成功的滤波后验；若某步证据为零，不包含该步后验。",
         "unit": "概率"
       },
       {
         "name": "evidence",
         "type": "list[float]",
-        "description": "各步似然加权和。",
+        "description": "每步预测概率与对应似然乘积的总和；包括首次失败的零证据。",
         "unit": "无量纲"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "成功为 ok；首个零证据为 impossible。",
+        "description": "全部成功时为ok；遇到首个零证据时为impossible并停止。",
         "unit": "无量纲"
       }
     ],
-    "contract": "prediction[0]=initial；prediction[t]=posterior[t−1]@transition。逐分量乘似然后除以和。None似然等价全1；零证据时保留该步prediction和0证据，停止且不新增该步后验。",
+    "contract": "prediction[0]=initial；t>0时prediction[t]=posterior[t−1]@transition。逐状态乘当前似然，相加得到证据，再除以证据归一化。None使用全1似然。证据为零时保留该步预测与零证据，停止计算，不生成该步后验。空观测返回空的三个列表和ok。",
     "constraints": [
       "状态数2—3，序列长度0—20；初始和各转移行均非负且和为1。",
       "似然在[0,1]；允许零证据，不擅自改为均匀分布。"
@@ -594,7 +594,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "第一步质量[0.12,0.32]，证据0.44，后验约[0.272727,0.727273]；第二步必须先转移。",
+    "hint": "先区分时间外层与状态内层。首项乘似然后归一化；以后先按行转移，缺测只保留预测。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -661,7 +661,7 @@
           ],
           "ok"
         ],
-        "explanation": "第一步质量[0.12,0.32]，证据0.44，后验约[0.272727,0.727273]；第二步必须先转移。"
+        "explanation": "时刻0两项未归一化概率是0.6×0.2=0.12和0.4×0.8=0.32，证据0.44，后验[3/11,8/11]。再转移得到[16/55,39/55]，乘时刻1似然后归一化为[112/229,117/229]。"
       }
     ]
   },
@@ -674,7 +674,7 @@
     "chapter": "7.2",
     "title": "归一化的分母是什么",
     "type": "choice",
-    "statement": "先验（prior）[0.6,0.4]，某观测（observation）在两个状态（state）下的似然（likelihood）[0.2,0.8]。哪项正确？",
+    "statement": "两个状态的观测前概率依次为[0.6,0.4]，实际观测在这两个状态下的似然依次为[0.2,0.8]。证据与后验均沿用同一状态顺序，哪项正确？",
     "learning_targets": [
       "T2"
     ],
@@ -688,7 +688,7 @@
     "options": [
       {
         "id": "A",
-        "text": "证据为1，后验（posterior）为[0.2,0.8]。"
+        "text": "证据为1，后验为[0.2,0.8]。"
       },
       {
         "id": "B",
@@ -714,7 +714,7 @@
     "chapter": "7.2",
     "title": "缺测等于观测零吗",
     "type": "choice",
-    "statement": "缺测事件（event）本身不提供状态（state）信息，当前没有传感器读数。哪些处理成立？",
+    "statement": "当前时刻缺测，是否缺测本身不提供额外状态信息。关于该时刻的在线估计，哪些处理成立？",
     "learning_targets": [
       "T2"
     ],
@@ -728,19 +728,19 @@
     "options": [
       {
         "id": "A",
-        "text": "令似然（likelihood）为常数1，只做预测。"
+        "text": "将各状态似然设为1，保留动态预测。"
       },
       {
         "id": "B",
-        "text": "使用当前预测均值作虚拟观测（observation），并按正常更新缩小协方差（covariance）。"
+        "text": "把当前预测均值当作新读数，按正常更新缩小协方差。"
       },
       {
         "id": "C",
-        "text": "用下一时刻读数插值当前值，并把结果记作当前在线滤波。"
+        "text": "用下一时刻读数填补当前值，并将所得结果记为当前在线滤波。"
       },
       {
         "id": "D",
-        "text": "保留当前预测作为滤波结果。"
+        "text": "将当前预测分布作为该时刻的滤波结果。"
       }
     ],
     "constraints": []
@@ -754,7 +754,7 @@
     "chapter": "7.2",
     "title": "不可能观测之后",
     "type": "choice",
-    "statement": "先验（prior）只支持状态（state）0，似然（likelihood）在状态0严格为0。哪项恰当？",
+    "statement": "观测前只有状态0有正概率，但实际观测在状态0下的似然为零。关于本次更新，哪项恰当？",
     "learning_targets": [
       "T2"
     ],
@@ -768,19 +768,19 @@
     "options": [
       {
         "id": "A",
-        "text": "把后验（posterior）设为均匀分布（distribution），表示本次观测（observation）没有信息。"
+        "text": "将后验设为均匀分布，表示这次观测没有信息。"
       },
       {
         "id": "B",
-        "text": "先验与似然的乘积在所有状态上都为0，因此无法将它归一化为本次后验。"
+        "text": "所有状态的先验与似然乘积都为零，无法归一化得到本次后验。"
       },
       {
         "id": "C",
-        "text": "保留零分子并把分母改为极小正数，得到合法后验。"
+        "text": "保留零分子并将分母设为极小正数，就能得到合法后验。"
       },
       {
         "id": "D",
-        "text": "忽略先验，在似然最大的状态放置全部后验质量。"
+        "text": "忽略先验，把全部后验概率放在似然最大的状态。"
       }
     ],
     "constraints": []
@@ -794,7 +794,7 @@
     "chapter": "7.2",
     "title": "枚举路径恢复末态",
     "type": "python",
-    "statement": "短序列有两个隐藏状态（state）。枚举所有状态路径的联合质量，返回最后时刻的后验（posterior）。第一时刻权重为initial[z0]*likelihoods[0][z0]。",
+    "statement": "一个短观测序列对应两个隐藏状态0、1。枚举全部状态路径，将每条路径与实际观测的联合概率按末时刻状态汇总，返回末时刻后验。首时刻先验就是initial，之前不作转移。",
     "learning_targets": [
       "T2"
     ],
@@ -808,19 +808,19 @@
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "时刻0的两状态先验（prior）。",
+        "description": "时刻0观测前概率，两项依次对应状态0和1。",
         "unit": "概率"
       },
       {
         "name": "transition",
         "type": "list[list[float]]",
-        "description": "2×2 行随机转移矩阵（transition matrix）。",
+        "description": "2×2转移矩阵，第i行、第j列为从状态i到j的概率，每行和为1。",
         "unit": "概率"
       },
       {
         "name": "likelihoods",
         "type": "list[list[float]]",
-        "description": "每时刻的两状态似然（likelihood）。",
+        "description": "外层按时刻排列，每项的两项依次为实际观测在状态0和1下的似然。",
         "unit": "无量纲"
       }
     ],
@@ -828,11 +828,11 @@
       {
         "name": "posterior",
         "type": "list[float]",
-        "description": "末时刻的归一化概率（probability）。",
+        "description": "两项依次为末时刻处于状态0、1的后验概率；空序列按约定返回initial。",
         "unit": "概率"
       }
     ],
-    "contract": "路径质量为 initial[z0]×各时刻似然×相邻转移概率；按末态分别求和并归一化。空序列直接返回initial。",
+    "contract": "每条路径(z0,…,zT−1)的联合概率为initial[z0]乘各时刻likelihoods[t][zt]，再乘t≥1时transition[z(t−1)][zt]。按末状态求和，除以所有路径联合概率的总和。空序列返回initial。",
     "constraints": [
       "2个状态，0—8个时刻；非空序列总证据>0。",
       "所有概率在[0,1]，先验和转移行和为1。"
@@ -842,7 +842,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "两步有4条路径；先累计末态联合质量，再除以全部路径质量，不能先对每条路径各自归一化。",
+    "hint": "两时刻共有(0,0)、(0,1)、(1,0)、(1,1)四条路径。先按末状态相加，再归一化。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -886,7 +886,7 @@
           0.48908296943231433,
           0.5109170305676856
         ],
-        "explanation": "两步有4条路径；先累计末态联合质量，再除以全部路径质量，不能先对每条路径各自归一化。"
+        "explanation": "末状态0的联合概率为0.6×0.2×0.8×0.7+0.4×0.8×0.1×0.7=0.0896；末状态1为0.0936。两项除以总和0.1832，得到约[0.489083,0.510917]。"
       }
     ]
   },
@@ -899,7 +899,7 @@
     "chapter": "7.2",
     "title": "转移矩阵的方向",
     "type": "choice",
-    "statement": "定义 T[i,j]=P(z[t+1]=j | z[t]=i)，分布（distribution）写成行向量（vector） p。哪些正确？",
+    "statement": "T[i,j]=P(z[t+1]=j | z[t]=i)，当前状态概率p按行向量表示，状态顺序与T的行列相同。哪些表述正确？",
     "learning_targets": [
       "T2"
     ],
@@ -913,19 +913,19 @@
     "options": [
       {
         "id": "A",
-        "text": "下一时刻的预测分布按p@T计算。"
+        "text": "下一时刻的预测概率由p@T计算。"
       },
       {
         "id": "B",
-        "text": "保持p为行向量时，下一时刻的预测分布按T@p计算。"
+        "text": "保持p为行向量时，下一时刻的预测概率由T@p计算。"
       },
       {
         "id": "C",
-        "text": "转移矩阵（transition matrix）每一行的概率（probability）之和为1。"
+        "text": "T每一行的概率之和为1。"
       },
       {
         "id": "D",
-        "text": "转移矩阵每一列的概率之和为1。"
+        "text": "T每一列的概率之和为1。"
       }
     ],
     "constraints": []
@@ -939,7 +939,7 @@
     "chapter": "7.2",
     "title": "为什么还需要递推",
     "type": "choice",
-    "statement": "隐藏状态（state）3种，时刻数T。比较路径枚举与前向算法。哪项正确？",
+    "statement": "隐藏状态有3种，共记录T个观测时刻。为什么前向算法能够代替枚举3^T条路径计算滤波概率？",
     "learning_targets": [
       "T2"
     ],
@@ -953,19 +953,19 @@
     "options": [
       {
         "id": "A",
-        "text": "递推保留每个时刻最可能状态，拼接得到全部路径概率（probability）。"
+        "text": "它只保存各时刻概率最大的状态，再拼接出全部路径概率。"
       },
       {
         "id": "B",
-        "text": "前向算法把相邻观测（observation）视为独立，因此每个状态的权重可以由该状态下各时刻的观测似然（likelihood）相乘得到。"
+        "text": "它将各时刻观测视为独立，按每个状态的似然连乘得到权重。"
       },
       {
         "id": "C",
-        "text": "前向算法只保留概率最大的历史路径，舍弃其他路径仍能得到各时刻的滤波分布（distribution）。"
+        "text": "它只保留概率最大的历史路径，就能得到各时刻完整滤波分布。"
       },
       {
         "id": "D",
-        "text": "前向算法对到达同一当前状态的历史路径求和，因此每一步只需保存三个状态对应的权重。"
+        "text": "它把到达同一当前状态的历史路径概率相加，每步保存三个状态权重。"
       }
     ],
     "constraints": []
@@ -979,7 +979,7 @@
     "chapter": "7.2",
     "title": "如何检查未来信息泄漏",
     "type": "choice",
-    "statement": "两条观测（observation）序列前3步相同，后续读数不同；模型（model）和初始分布（distribution）相同。仅凭这些条件，哪些结果应相同？",
+    "statement": "两条观测记录在时刻0、1、2完全相同，后续读数不同；模型和初始分布相同。仅由这些条件，哪些结果应相同？",
     "learning_targets": [
       "T2"
     ],
@@ -993,19 +993,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两条序列在前3步得到的滤波分布相同。"
+        "text": "两条记录在时刻0、1、2的滤波分布相同。"
       },
       {
         "id": "B",
-        "text": "利用完整序列计算后，两条序列在前3步得到的平滑分布相同。"
+        "text": "使用全部记录后，两条记录在时刻0、1、2的平滑分布相同。"
       },
       {
         "id": "C",
-        "text": "两条序列在第2步观测更新前得到的预测分布相同。"
+        "text": "两条记录在时刻2观测更新前的预测分布相同。"
       },
       {
         "id": "D",
-        "text": "利用完整序列计算后，两条序列在最后一步得到的后验（posterior）分布相同。"
+        "text": "两条记录在各自末时刻的后验分布相同。"
       }
     ],
     "constraints": []
@@ -1019,7 +1019,7 @@
     "chapter": "7.3",
     "title": "两个高斯信息如何合并",
     "type": "python",
-    "statement": "状态（state） x 的先验（prior）为 N(prior_mean,prior_variance)，测量 y=x+v，v~N(0,noise_variance)，并与x独立。返回条件均值、方差（variance）和增益（gain）。",
+    "statement": "状态x观测前的均值和方差为prior_mean、prior_variance，读数为y=x+v。x为高斯状态，零方差允许表示确定状态；v服从独立的零均值高斯分布，方差为noise_variance。返回吸收该读数后的条件均值、条件方差和增益。",
     "learning_targets": [
       "T2"
     ],
@@ -1033,25 +1033,25 @@
       {
         "name": "prior_mean",
         "type": "float",
-        "description": "观测（observation）前的均值。",
+        "description": "本次观测前状态均值m。",
         "unit": "U"
       },
       {
         "name": "prior_variance",
         "type": "float",
-        "description": "观测前的方差。",
+        "description": "本次观测前状态方差P；P=0表示状态确定。",
         "unit": "U²"
       },
       {
         "name": "observation",
         "type": "float",
-        "description": "已到达的读数。",
+        "description": "当前标量读数y，与x使用同一单位。",
         "unit": "U"
       },
       {
         "name": "noise_variance",
         "type": "float",
-        "description": "独立测量噪声（measurement noise）方差。",
+        "description": "独立测量噪声方差R，严格为正。",
         "unit": "U²"
       }
     ],
@@ -1059,23 +1059,23 @@
       {
         "name": "mean",
         "type": "float",
-        "description": "观测后的均值。",
+        "description": "给定当前读数后的条件均值。",
         "unit": "U"
       },
       {
         "name": "variance",
         "type": "float",
-        "description": "观测后的方差。",
+        "description": "给定当前读数后的条件方差。",
         "unit": "U²"
       },
       {
         "name": "gain",
         "type": "float",
-        "description": "先验方差/(先验方差+噪声方差)。",
+        "description": "K=P/(P+R)，表示单位读数差引起的均值修正。",
         "unit": "无量纲"
       }
     ],
-    "contract": "K=P/(P+R)，m_new=m+K(y−m)，P_new=(1−K)P。",
+    "contract": "计算K=P/(P+R)，再返回m+K(y−m)、(1−K)P及K。P=0时K=0，均值和零方差保持不变。",
     "constraints": [
       "0≤prior_variance≤100；0<noise_variance≤100；其余数值有限且绝对值≤100。",
       "零先验方差表示确定状态，不能被独立测量噪声改变。"
@@ -1085,7 +1085,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "样例K=0.8，后验均值1.6、方差0.8；方差的单位是U²，不能当作标准差。",
+    "hint": "先计算读数方差P+R，再用K乘读数与预测均值的差。方差与标准差使用不同单位。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1110,7 +1110,7 @@
           0.7999999999999998,
           0.8
         ],
-        "explanation": "样例K=0.8，后验（posterior）均值1.6、方差0.8；方差的单位是U²，不能当作标准差（standard deviation）。"
+        "explanation": "P+R=5 U²，K=4/5=0.8；均值为0+0.8×2=1.6 U，方差为(1−0.8)×4=0.8 U²。"
       }
     ]
   },
@@ -1123,7 +1123,7 @@
     "chapter": "7.3",
     "title": "椭圆描述的是什么",
     "type": "choice",
-    "statement": "二维高斯变量x的协方差矩阵（covariance matrix）P=[[4,1],[1,1]]。哪些判断正确？",
+    "statement": "二维高斯状态按第一、第二坐标排列，协方差P=[[4,1],[1,1]] U²。关于这个矩阵与概率椭圆，哪些判断正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1137,19 +1137,19 @@
     "options": [
       {
         "id": "A",
-        "text": "对角元素是两个状态（state）的方差（variance）。"
+        "text": "两个对角元素分别是第一、第二坐标的方差。"
       },
       {
         "id": "B",
-        "text": "非对角元素为1，因此两个分量的相关系数（correlation coefficient）为1。"
+        "text": "非对角元素为1，因此两个坐标的相关系数为1。"
       },
       {
         "id": "C",
-        "text": "对任意确定向量（vector）a，随机投影（projection）aᵀx的方差aᵀPa均非负。"
+        "text": "对任意确定向量a，投影aᵀx的方差aᵀPa都非负。"
       },
       {
         "id": "D",
-        "text": "以均值为中心、Mahalanobis距离不超过1.96的椭圆包含95%的概率质量（probability mass）。"
+        "text": "以均值为中心、Mahalanobis距离不超过1.96的椭圆含有95%的概率。"
       }
     ],
     "constraints": []
@@ -1163,7 +1163,7 @@
     "chapter": "7.3",
     "title": "没有交叉协方差时",
     "type": "choice",
-    "statement": "联合高斯变量x、y的交叉协方差（covariance）为0。哪项正确？",
+    "statement": "x与y联合服从高斯分布，二者交叉协方差为零。观测y后，哪项正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1177,19 +1177,19 @@
     "options": [
       {
         "id": "A",
-        "text": "观测（observation）y后，x的条件均值不变，但条件方差（variance）变小。"
+        "text": "x的条件均值保持不变，条件方差缩小。"
       },
       {
         "id": "B",
-        "text": "观测y后，x的条件均值和条件方差都不变。"
+        "text": "x的条件均值和条件方差都保持不变。"
       },
       {
         "id": "C",
-        "text": "观测y后，x的条件方差不变，但条件均值随y变化。"
+        "text": "x的条件方差保持不变，条件均值随y变化。"
       },
       {
         "id": "D",
-        "text": "观测y后，x的条件方差变为0，条件均值等于y。"
+        "text": "x的条件方差变为零，条件均值等于读数y。"
       }
     ],
     "constraints": []
@@ -1203,7 +1203,7 @@
     "chapter": "7.3",
     "title": "求逆还是解方程",
     "type": "choice",
-    "statement": "条件均值涉及 C S⁻¹(y−μ)。S为对称正定（positive definite）矩阵（matrix）。哪些实践成立？",
+    "statement": "条件均值修正项为C S⁻¹(y−μ)，S为对称正定矩阵，C为状态与读数的交叉协方差。哪些计算方式成立？",
     "learning_targets": [
       "T2"
     ],
@@ -1217,19 +1217,19 @@
     "options": [
       {
         "id": "A",
-        "text": "先解方程Sz=y−μ，再计算Cz，可以得到所需的均值修正项。"
+        "text": "先解Sz=y−μ，再计算Cz，得到所需修正。"
       },
       {
         "id": "B",
-        "text": "先算C(y−μ)，再解Sz=C(y−μ)。"
+        "text": "先计算C(y−μ)，再解Sz=C(y−μ)，得到所需修正。"
       },
       {
         "id": "C",
-        "text": "若S=LLᵀ，可以先解La=y−μ，再解Lᵀz=a来求出z。"
+        "text": "若S=LLᵀ，先解La=y−μ，再解Lᵀz=a，得到所需z。"
       },
       {
         "id": "D",
-        "text": "若S=LLᵀ，取z=L⁻¹(y−μ)就得到S⁻¹(y−μ)。"
+        "text": "若S=LLᵀ，只解Lz=y−μ，便得到S⁻¹(y−μ)。"
       }
     ],
     "constraints": []
@@ -1243,7 +1243,7 @@
     "chapter": "7.3",
     "title": "线性高斯递推",
     "type": "python",
-    "statement": "已知一维或二维线性模型（model），传感器每次给出一个标量读数。返回滤波均值和协方差（covariance）；状态（state）真值不作为输入（input）。 初态为给定均值和协方差的高斯分布（Gaussian distribution）；过程噪声（process noise）w~N(0,Q)、测量噪声（measurement noise）v~N(0,R)，初态及各时刻两种噪声相互独立。",
+    "statement": "已知一维或二维线性状态模型，每个时刻最多取得一个标量读数。初态服从给定均值和协方差的高斯分布；过程噪声w~N(0,Q)、测量噪声v~N(0,R)，初态与各时刻两种噪声相互独立。按观测到达顺序返回滤波均值和协方差。",
     "learning_targets": [
       "T2"
     ],
@@ -1257,43 +1257,43 @@
       {
         "name": "transition",
         "type": "list[list[float]]",
-        "description": "已知状态转移矩阵（transition matrix） F。",
+        "description": "状态转移矩阵F；行对应新状态、列对应旧状态，维数与initial_mean相同。",
         "unit": "无量纲"
       },
       {
         "name": "sensor",
         "type": "list[float]",
-        "description": "标量读数的观测（observation）行 H。",
+        "description": "标量观测行H，各项依次乘同序状态坐标。",
         "unit": "无量纲"
       },
       {
         "name": "process_covariance",
         "type": "list[list[float]]",
-        "description": "一步过程噪声协方差 Q。",
+        "description": "每次转移新加入的过程噪声协方差Q，行列沿用状态顺序。",
         "unit": "U²"
       },
       {
         "name": "measurement_variance",
         "type": "float",
-        "description": "测量噪声方差（variance） R。",
+        "description": "独立标量测量噪声的方差R。",
         "unit": "U²"
       },
       {
         "name": "initial_mean",
         "type": "list[float]",
-        "description": "时刻 0 观测前均值。",
+        "description": "时刻0观测前状态均值，内层按状态坐标排列。",
         "unit": "U"
       },
       {
         "name": "initial_covariance",
         "type": "list[list[float]]",
-        "description": "时刻 0 观测前协方差。",
+        "description": "时刻0观测前状态协方差，行列与initial_mean同序。",
         "unit": "U²"
       },
       {
         "name": "observations",
         "type": "list[float | None]",
-        "description": "从时刻 0 开始的读数；None 为缺测。",
+        "description": "依次对应时刻0、1、…的标量读数，None表示该时刻缺测。",
         "unit": "U"
       }
     ],
@@ -1301,27 +1301,27 @@
       {
         "name": "means",
         "type": "list[list[float]]",
-        "description": "各时刻使用当时可用观测后的均值。",
+        "description": "每项对应一个观测时刻，表示吸收截至该时刻可用读数后的状态均值；内层沿用状态顺序。",
         "unit": "U"
       },
       {
         "name": "covariances",
         "type": "list[list[list[float]]]",
-        "description": "与 means 对应的协方差矩阵（covariance matrix）。",
+        "description": "与means逐时刻对应的滤波协方差矩阵，行列沿用状态顺序。",
         "unit": "U²"
       }
     ],
-    "contract": "时刻0直接由initial_mean/initial_covariance进行观测更新；t>0先m=F m、P=F P Fᵀ+Q。非缺测时S=H P Hᵀ+R，K=P Hᵀ/S，m=m+K(y−H m)，P=P−K S Kᵀ。None只保留预测。",
+    "contract": "时刻0直接由初始均值、协方差更新；t>0先令m=F@m、P=F@P@F.T+Q。有读数时，S=H@P@H.T+R，K=P@H.T/S，m=m+K*(y−H@m)，P=P−K*S*K.T。None跳过测量更新并保留该时刻预测。空观测返回两个空列表，不额外返回观测列表之外的时刻。",
     "constraints": [
-      "状态维数1或2，观测长度0—20；R>0，Q半正定（positive semidefinite），初始P正定（positive definite）。",
-      "H是一维列表；全部数值有限，绝对值≤100；返回数组（array）不包含初值（initial condition）之外额外的时刻。"
+      "状态维数1或2，观测长度0—20；R>0，Q半正定，初始P正定。",
+      "H是一维列表；全部数值有限，绝对值≤100；返回数组不包含初值之外额外的时刻。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "第一步更新初始先验，均值1.6、方差0.8；第二步缺测，均值仍1.6但方差增加到0.9。",
+    "hint": "首条读数前不乘F；从时刻1开始先预测。缺测仍占据一个时刻，协方差传播仍加入Q。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1394,7 +1394,7 @@
             ]
           ]
         ],
-        "explanation": "第一步更新初始先验（prior），均值1.6、方差0.8；第二步缺测，均值仍1.6但方差增加到0.9。"
+        "explanation": "时刻0增益4/5，均值1.6 U、方差0.8 U²。时刻1缺测，均值仍1.6 U，方差增至0.9 U²；时刻2预测方差1 U²，吸收读数1 U后得到均值1.3 U、方差0.5 U²。"
       }
     ]
   },
@@ -1407,7 +1407,7 @@
     "chapter": "7.3",
     "title": "第一步之前要转移吗",
     "type": "choice",
-    "statement": "本篇 initial_mean 表示时刻0观测（observation）前的均值，observations[0] 表示时刻0读数。哪项正确？",
+    "statement": "initial_mean表示时刻0观测前均值，observations[0]就是时刻0读数。关于预测与更新的先后，哪项正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1421,19 +1421,19 @@
     "options": [
       {
         "id": "A",
-        "text": "处理第0个读数前先用F转移一次，此后每个读数到达前也先转移再更新。"
+        "text": "时刻0读数前先用F转移一次，以后也先转移再更新。"
       },
       {
         "id": "B",
-        "text": "第0个读数用于更新初始分布（distribution），此后的读数也只用于观测更新，不进行状态（state）转移。"
+        "text": "时刻0读数更新初始分布，以后也只作测量更新，不进行状态转移。"
       },
       {
         "id": "C",
-        "text": "第0个读数用于更新初始分布，从第1个读数开始先作状态预测再作观测更新。"
+        "text": "时刻0读数直接更新初始分布，从时刻1开始先预测再吸收同一时刻读数。"
       },
       {
         "id": "D",
-        "text": "第0步只作状态预测而不使用第0个读数，从第1步起再吸收各时刻读数。"
+        "text": "时刻0只作状态预测并跳过该时刻读数，从时刻1才开始测量更新。"
       }
     ],
     "constraints": []
@@ -1447,7 +1447,7 @@
     "chapter": "7.3",
     "title": "协方差更新的两种写法",
     "type": "choice",
-    "statement": "将P更新写成(I−KH)P(I−KH)ᵀ，却遗漏K R Kᵀ。哪些正确？",
+    "statement": "观测前协方差为P、测量噪声协方差为R、增益为K。将更新写成(I−KH)P(I−KH)ᵀ，却未加入KRKᵀ。哪些判断正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1461,19 +1461,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这个式子遗漏了测量误差经过增益（gain）K传入估计的协方差（covariance）。"
+        "text": "该式遗漏了测量误差经过K传入状态估计的协方差。"
       },
       {
         "id": "B",
-        "text": "R正定（positive definite）且K不为零时，被遗漏的KRKᵀ也不为零。"
+        "text": "R正定且K不为零时，遗漏的KRKᵀ不为零。"
       },
       {
         "id": "C",
-        "text": "选用最优Kalman增益（gain）后，遗漏式就等于P−KSKᵀ。"
+        "text": "采用最优卡尔曼增益后，遗漏项的式子就等于P−KSKᵀ。"
       },
       {
         "id": "D",
-        "text": "把KRKᵀ加回该式，就得到Joseph形式的协方差更新。"
+        "text": "将KRKᵀ加回该式，得到Joseph形式的协方差更新。"
       }
     ],
     "constraints": []
@@ -1487,7 +1487,7 @@
     "chapter": "7.3",
     "title": "什么时候是精确后验",
     "type": "choice",
-    "statement": "下列哪组假设足以使标准Kalman滤波给出精确滤波分布（distribution）的均值与协方差（covariance）？各组噪声均与初态独立，所需更新矩阵（matrix）可逆。",
+    "statement": "以下各组噪声均与初态独立，所需更新矩阵可逆。哪组假设足以使标准卡尔曼滤波给出精确滤波后验的均值与协方差？",
     "learning_targets": [
       "T2"
     ],
@@ -1501,19 +1501,19 @@
     "options": [
       {
         "id": "A",
-        "text": "状态（state）转移与观测（observation）关系是非线性的，初态服从高斯分布（Gaussian distribution），各项噪声服从相互独立的高斯分布。"
+        "text": "状态转移与观测关系非线性，初态为高斯分布，各项噪声为相互独立的高斯分布。"
       },
       {
         "id": "B",
-        "text": "状态转移与观测关系是线性的，初态服从高斯分布，各项噪声服从相互独立的高斯分布。"
+        "text": "状态转移与观测关系线性，初态为高斯分布，各项噪声为相互独立的高斯分布。"
       },
       {
         "id": "C",
-        "text": "状态转移与观测关系是线性的，初态服从高斯分布，各项噪声服从相互独立的均匀分布。"
+        "text": "状态转移与观测关系线性，初态为高斯分布，各项噪声为相互独立的均匀分布。"
       },
       {
         "id": "D",
-        "text": "状态转移与观测关系是线性的，初态服从双峰分布，各项噪声服从相互独立的高斯分布。"
+        "text": "状态转移与观测关系线性，初态为双峰分布，各项噪声为相互独立的高斯分布。"
       }
     ],
     "constraints": []
@@ -1527,7 +1527,7 @@
     "chapter": "7.3",
     "title": "无读数与连续缺测",
     "type": "choice",
-    "statement": "函数按观测（observation）列表的时间索引处理：第0项已有预测分布（distribution），此后先按动态模型（model）预测；非None读数到达时更新，None时跳过更新。返回逐时刻均值列表与协方差（covariance）列表。哪些正确？",
+    "statement": "函数按observations的时间下标处理：时刻0使用给定先验，此后先作动态预测；有数值读数时更新，None时跳过更新。返回逐时刻均值与协方差。哪些表述正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1541,19 +1541,19 @@
     "options": [
       {
         "id": "A",
-        "text": "观测列表为空时，函数返回两个空列表。"
+        "text": "observations为空时，均值和协方差都返回空列表。"
       },
       {
         "id": "B",
-        "text": "观测列表为[None,None]时，函数仍返回这两个时刻的均值和协方差。"
+        "text": "observations为[None,None]时，仍返回时刻0和1的均值与协方差。"
       },
       {
         "id": "C",
-        "text": "可以删除所有None，并把剩余读数当作相邻时刻的读数进行计算。"
+        "text": "可以删除None，将剩余读数视为相邻时刻后计算。"
       },
       {
         "id": "D",
-        "text": "遇到缺测时，函数跳过观测更新，并继续按动态模型传播协方差。"
+        "text": "缺测时跳过测量更新，后续仍按动态模型传播协方差。"
       }
     ],
     "constraints": []
@@ -1567,7 +1567,7 @@
     "chapter": "7.3",
     "title": "误差与覆盖率分开算",
     "type": "python",
-    "statement": "固定时刻进行了独立重复实验。给出核验状态（state）、估计均值和标准差（standard deviation），返回均方根误差（root mean squared error，RMSE）、区间覆盖率及覆盖率的二项标准误（standard error）估计。",
+    "statement": "在同一目标时刻进行独立重复实验，每次给出核验状态、估计均值和估计标准差。计算均方根误差、闭区间覆盖比例及该比例的二项标准误代入估计。",
     "learning_targets": [
       "T4"
     ],
@@ -1581,25 +1581,25 @@
       {
         "name": "truth",
         "type": "list[float]",
-        "description": "每次独立实验的核验状态。",
+        "description": "各次独立实验的核验状态，顺序与means相同。",
         "unit": "U"
       },
       {
         "name": "means",
         "type": "list[float]",
-        "description": "对应后验（posterior）均值。",
+        "description": "各次独立实验的后验均值。",
         "unit": "U"
       },
       {
         "name": "standard_deviations",
         "type": "list[float]",
-        "description": "对应后验标准差，非方差（variance）。",
+        "description": "各次独立实验的后验标准差，用于构造区间半宽；不是方差。",
         "unit": "U"
       },
       {
         "name": "z",
         "type": "float",
-        "description": "区间半宽的标准差倍数。",
+        "description": "区间半宽采用的标准差倍数，严格为正。",
         "unit": "无量纲"
       }
     ],
@@ -1607,23 +1607,23 @@
       {
         "name": "rmse",
         "type": "float",
-        "description": "sqrt(mean((truth−means)²))。",
+        "description": "各次平方误差取平均后开平方，单位与状态相同。",
         "unit": "U"
       },
       {
         "name": "coverage",
         "type": "float",
-        "description": "落入闭区间mean±z*std的比例。",
+        "description": "核验状态位于mean±z*std闭区间内的实验比例。",
         "unit": "比例"
       },
       {
         "name": "standard_error",
         "type": "float",
-        "description": "sqrt(coverage*(1−coverage)/n)，仅为代入估计。",
+        "description": "以n次独立实验为单位，计算sqrt(coverage*(1−coverage)/n)。",
         "unit": "比例"
       }
     ],
-    "contract": "使用闭区间，即边界计覆盖。标准误以独立重复为单位，不把同一序列时刻当独立样本；覆盖率为0或1时标准误估计0不表示真实不确定性为0。",
+    "contract": "每项使用同序truth、mean、std；闭区间包含端点。RMSE=sqrt(mean((truth−means)²))。覆盖标准误以独立实验数n计算，不把同一序列的相关时刻当作独立重复。覆盖比例为0或1时，代入标准误为0，不表示真实覆盖概率已知。",
     "constraints": [
       "三个列表等长，1—1000项；标准差≥0，z>0；所有数值有限。"
     ],
@@ -1632,7 +1632,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "前3次误差不超过2U，覆盖率0.75；RMSE=sqrt(21/4)，代入标准误约0.2165。",
+    "hint": "先逐项判断是否覆盖，再计算比例；平方误差与覆盖指示是两种不同的统计量。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1672,7 +1672,7 @@
           0.75,
           0.21650635094610965
         ],
-        "explanation": "前3次误差不超过2U，覆盖率0.75；RMSE=sqrt(21/4)，代入标准误约0.2165。"
+        "explanation": "四个区间均为[−2,2] U，核验状态0、1、2被覆盖，4未被覆盖，因此coverage=0.75。RMSE=√(21/4)≈2.29128785 U，标准误=√(0.75×0.25/4)≈0.21650635。"
       }
     ]
   },
@@ -1685,7 +1685,7 @@
     "chapter": "7.3",
     "title": "谁是独立重复",
     "type": "choice",
-    "statement": "有200条独立模拟轨迹（trajectory），每条包含100个时刻。某时刻的区间包含真值时记1，否则记0，称为覆盖指示。要估计终点95%区间覆盖率的抽样不确定性，应怎样取样本？",
+    "statement": "有200条独立模拟轨迹，每条含100个时刻。区间包含真实状态记为1，否则记为0。若要估计终点95%区间覆盖比例的抽样不确定性，应怎样构造样本？",
     "learning_targets": [
       "T4"
     ],
@@ -1699,19 +1699,19 @@
     "options": [
       {
         "id": "A",
-        "text": "把每条轨迹100个时刻的覆盖指示都作为独立终点样本，共得到20000个样本。"
+        "text": "把每条轨迹所有100个时刻的覆盖指示作为独立终点样本，共用20000项。"
       },
       {
         "id": "B",
-        "text": "把每条轨迹100个时刻的覆盖指示取平均，并将这个平均值作为该轨迹的终点覆盖指示。"
+        "text": "对每条轨迹100个时刻的覆盖指示取平均，将它作为该轨迹的终点覆盖指示。"
       },
       {
         "id": "C",
-        "text": "把每个时刻的200条轨迹合并成一个样本，共得到100个独立终点样本。"
+        "text": "把每个时刻的200条轨迹合成一项，共用100个独立终点样本。"
       },
       {
         "id": "D",
-        "text": "每条独立轨迹只取终点的覆盖指示，共得到200个独立样本。"
+        "text": "每条轨迹只取终点覆盖指示，共用200个独立样本。"
       }
     ],
     "constraints": []
@@ -1725,7 +1725,7 @@
     "chapter": "7.3",
     "title": "创新应该接近什么",
     "type": "choice",
-    "statement": "模型（model）和噪声设定正确的线性高斯滤波，在正确初始化下，归一化创新的理论特征包括哪些？",
+    "statement": "线性高斯模型、噪声设定和初始化均正确，标量创新按其预测标准差归一化。它的理论特征包括哪些？",
     "learning_targets": [
       "T4"
     ],
@@ -1743,11 +1743,11 @@
       },
       {
         "id": "B",
-        "text": "归一化创新的理论方差（variance）为1。"
+        "text": "归一化创新的理论方差为1。"
       },
       {
         "id": "C",
-        "text": "任何有限窗口中的归一化创新样本均值都恰为0。"
+        "text": "任意有限窗口的归一化创新样本均值都恰为0。"
       },
       {
         "id": "D",
@@ -1765,7 +1765,7 @@
     "chapter": "7.3",
     "title": "误差小就校准好吗",
     "type": "choice",
-    "statement": "方法甲RMSE=0.5、95%区间覆盖率70%；乙RMSE=0.6、覆盖率94%。均来自同样独立场景。哪项有依据？",
+    "statement": "同一批独立场景中，甲的RMSE为0.5 U，标称95%区间的覆盖比例为70%；乙的RMSE为0.6 U，覆盖比例为94%。哪项判断有依据？",
     "learning_targets": [
       "T4"
     ],
@@ -1779,19 +1779,19 @@
     "options": [
       {
         "id": "A",
-        "text": "甲点估计误差较小，因此其95%区间也更接近标称覆盖率。"
+        "text": "甲的RMSE较小，因此它的区间覆盖比例更接近95%。"
       },
       {
         "id": "B",
-        "text": "甲的点估计RMSE较小，但其区间覆盖率70%低于标称的95%。"
+        "text": "甲的RMSE较小，但其覆盖比例70%低于标称95%。"
       },
       {
         "id": "C",
-        "text": "乙覆盖率更接近95%，因此乙的点估计误差也较小。"
+        "text": "乙的覆盖比例更接近95%，因此它的点估计误差也较小。"
       },
       {
         "id": "D",
-        "text": "乙的区间覆盖率更接近95%，说明乙的区间平均宽度比甲更小。"
+        "text": "乙的覆盖比例更接近95%，因此它的区间平均宽度比甲小。"
       }
     ],
     "constraints": []
@@ -1805,7 +1805,7 @@
     "chapter": "7.4",
     "title": "一次平方观测的扩展更新",
     "type": "python",
-    "statement": "先验（prior）x~N(mean,variance)，读数y=x²+v，v是与x独立的零均值高斯噪声，方差（variance）为measurement_variance。在先验均值处线性化（linearization），返回EKF更新后的均值和方差。",
+    "statement": "观测前x~N(mean,variance)，状态x是可正可负的基线偏差。传感器给出y=x²+v，独立零均值高斯噪声v的方差为measurement_variance。在观测前均值处将平方函数作一阶展开，返回EKF近似均值与方差。",
     "learning_targets": [
       "T3"
     ],
@@ -1818,25 +1818,25 @@
       {
         "name": "mean",
         "type": "float",
-        "description": "先验均值。",
+        "description": "观测前状态均值m。",
         "unit": "U"
       },
       {
         "name": "variance",
         "type": "float",
-        "description": "先验方差。",
+        "description": "观测前状态方差P，严格为正。",
         "unit": "U²"
       },
       {
         "name": "observation",
         "type": "float",
-        "description": "平方传感器的读数。",
+        "description": "当前平方传感器的读数y，单位为U²。",
         "unit": "U²"
       },
       {
         "name": "measurement_variance",
         "type": "float",
-        "description": "读数噪声方差。",
+        "description": "加在平方读数上的独立噪声方差R，单位为U⁴。",
         "unit": "U⁴"
       }
     ],
@@ -1844,27 +1844,27 @@
       {
         "name": "updated_mean",
         "type": "float",
-        "description": "EKF近似后验（posterior）均值。",
+        "description": "本次EKF更新的近似状态后验均值，单位为U。",
         "unit": "U"
       },
       {
         "name": "updated_variance",
         "type": "float",
-        "description": "EKF近似后验方差。",
+        "description": "本次EKF更新的近似状态后验方差，单位为U²。",
         "unit": "U²"
       }
     ],
-    "contract": "h(mean)=mean²，H=2mean；S=H² variance+R，K=variance H/S；更新mean+K(observation−mean²)、variance−K S K。",
+    "contract": "取预测读数m²、导数H=2m，计算S=H²P+R、C=PH、K=C/S。返回m+K(y−m²)、P−KSK。m=0时按实际导数H=0计算，不另改导数。",
     "constraints": [
       "variance>0，measurement_variance>0；绝对值和方差≤100。",
-      "状态（state）代表相对基线的有符号偏差；允许mean=0，不能将导数（derivative）人为改为非零。"
+      "状态代表相对基线的有符号偏差；允许mean=0，不能将导数人为改为非零。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "样例导数为1.2，创新方差1.302；当mean=0时导数为0，EKF不更新，即使真实后验形状已改变。",
+    "hint": "展开中心是本次观测前均值。先计算读数预测与导数，再计算交叉协方差和含噪读数方差。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1888,7 +1888,7 @@
           1.366820276497696,
           0.09216589861751168
         ],
-        "explanation": "样例导数为1.2，创新方差1.302；当mean=0时导数为0，EKF不更新，即使真实后验形状已改变。"
+        "explanation": "m=0.6 U，H=1.2 U，S=1.2²×0.8+0.15=1.302 U⁴；读数差为1.4−0.36=1.04 U²，得到约1.36682028 U和0.09216590 U²。"
       }
     ]
   },
@@ -1901,7 +1901,7 @@
     "chapter": "7.4",
     "title": "雅可比在哪求值",
     "type": "choice",
-    "statement": "EKF对x[t+1]=f(x[t])+w和y[t]=h(x[t])+v作一阶近似。哪些正确？",
+    "statement": "EKF对x[t+1]=f(x[t])+w[t]、y[t]=h(x[t])+v[t]作一阶近似。关于展开位置，哪些表述正确？",
     "learning_targets": [
       "T3"
     ],
@@ -1914,19 +1914,19 @@
     "options": [
       {
         "id": "A",
-        "text": "转移雅可比在上一时刻滤波均值处求值。"
+        "text": "预测当前状态时，转移雅可比在上一时刻滤波均值处求值。"
       },
       {
         "id": "B",
-        "text": "观测（observation）雅可比在当前预测均值处求值。"
+        "text": "更新当前读数时，观测雅可比在当前预测均值处求值。"
       },
       {
         "id": "C",
-        "text": "观测雅可比在上一时刻滤波均值处求值。"
+        "text": "更新当前读数时，观测雅可比在上一时刻滤波均值处求值。"
       },
       {
         "id": "D",
-        "text": "转移雅可比在读取当前观测后的更新均值处求值。"
+        "text": "预测当前状态时，转移雅可比在吸收当前读数后的均值处求值。"
       }
     ],
     "constraints": []
@@ -1940,7 +1940,7 @@
     "chapter": "7.4",
     "title": "导数为零意味着什么",
     "type": "choice",
-    "statement": "x~N(0,1)，y=x²+v，v方差（variance）0.1，观测（observation）到y=4。EKF增益（gain）为0。哪项正确？",
+    "statement": "观测前x~N(0,1)，读数为y=x²+v，独立高斯测量噪声方差0.1 U⁴，取得y=4 U²。EKF增益为零，哪项解释正确？",
     "learning_targets": [
       "T3"
     ],
@@ -1953,19 +1953,19 @@
     "options": [
       {
         "id": "A",
-        "text": "增益为0表明精确后验（posterior）与N(0,1)相同。"
+        "text": "零增益说明精确后验仍是N(0,1)。"
       },
       {
         "id": "B",
-        "text": "观测4使精确后验只在正的x≈2附近聚集。"
+        "text": "读数4使精确后验只集中在正侧x≈2 U。"
       },
       {
         "id": "C",
-        "text": "观测函数在预测均值0处的导数（derivative）为0，但精确后验仍可在接近−2和2的两侧集中。"
+        "text": "平方函数在预测均值0处导数为零，但精确后验仍可在接近−2与2 U的两侧集中。"
       },
       {
         "id": "D",
-        "text": "观测4使EKF均值移动到2，而协方差（covariance）保持不变。"
+        "text": "读数4使EKF均值移动到2 U，方差保持不变。"
       }
     ],
     "constraints": []
@@ -1979,7 +1979,7 @@
     "chapter": "7.4",
     "title": "线性退化如何检验",
     "type": "choice",
-    "statement": "将f、h都改成线性函数，并保持相同初值（initial condition）与噪声。哪些是合理回归检查？",
+    "statement": "把动态函数f和观测函数h都换为线性函数，保持相同初态、读数与噪声设定。哪些比较能够检查实现是否恢复线性高斯结果？",
     "learning_targets": [
       "T3"
     ],
@@ -1992,19 +1992,19 @@
     "options": [
       {
         "id": "A",
-        "text": "EKF逐时刻算出的滤波均值和协方差（covariance）应与KF相同。"
+        "text": "EKF各时刻均值和协方差应与卡尔曼滤波一致。"
       },
       {
         "id": "B",
-        "text": "UKF在使用同一加性噪声约定时，逐时刻算出的滤波均值和协方差应与KF相同。"
+        "text": "UKF按同一加性噪声约定计算时，各时刻均值和协方差应与卡尔曼滤波一致。"
       },
       {
         "id": "C",
-        "text": "只要观测（observation）序列相同，即使Q、R取值不同，两种算法的滤波均值和协方差也应相同。"
+        "text": "读数相同就足以保证两种方法一致，即使Q、R取值不同。"
       },
       {
         "id": "D",
-        "text": "两算法在线性例子中得到相同结果，说明改为平方观测后也会得到相同的精确后验（posterior）。"
+        "text": "线性例子结果一致，就能证明平方观测下两方法也得到相同精确后验。"
       }
     ],
     "constraints": []
@@ -2018,7 +2018,7 @@
     "chapter": "7.4",
     "title": "三个采样点传播平方观测",
     "type": "python",
-    "statement": "使用n=1、alpha=1、beta=2、kappa=0的无迹变换。输入（input）先验（prior）均值方差（variance），返回平方观测（observation）的预测均值、含噪方差与状态（state）-观测交叉协方差（covariance）。",
+    "statement": "状态x具有高斯先验，观测为y=x²+v，v是独立零均值噪声。用n=1、alpha=1、beta=2、kappa=0的无迹变换，计算预测读数均值、含噪方差和状态与读数的交叉协方差。",
     "learning_targets": [
       "T3"
     ],
@@ -2031,19 +2031,19 @@
       {
         "name": "mean",
         "type": "float",
-        "description": "状态先验均值。",
+        "description": "状态观测前均值m，单位为U。",
         "unit": "U"
       },
       {
         "name": "variance",
         "type": "float",
-        "description": "状态先验方差。",
+        "description": "状态观测前方差P，单位为U²。",
         "unit": "U²"
       },
       {
         "name": "measurement_variance",
         "type": "float",
-        "description": "与状态独立的零均值加性观测噪声方差。",
+        "description": "独立观测噪声方差R，加在平方读数方差上，单位为U⁴。",
         "unit": "U⁴"
       }
     ],
@@ -2051,23 +2051,23 @@
       {
         "name": "observation_mean",
         "type": "float",
-        "description": "平方观测的预测均值。",
+        "description": "平方读数的预测均值，单位为U²。",
         "unit": "U²"
       },
       {
         "name": "innovation_variance",
         "type": "float",
-        "description": "变换方差加噪声方差。",
+        "description": "平方变换所得方差加R，单位为U⁴。",
         "unit": "U⁴"
       },
       {
         "name": "cross_covariance",
         "type": "float",
-        "description": "状态与平方观测的交叉协方差。",
+        "description": "状态x与读数y的交叉协方差，单位为U³。",
         "unit": "U³"
       }
     ],
-    "contract": "点为m、m+sqrt(P)、m−sqrt(P)。均值权重[0,0.5,0.5]，协方差权重[2,0.5,0.5]。用平方后的点计算均值、方差及与原点的交叉协方差，最后给方差加R。",
+    "contract": "三个代表点按中心、上侧、下侧排列为m、m+sqrt(P)、m−sqrt(P)。对应均值权重[0,0.5,0.5]、协方差权重[2,0.5,0.5]。先将各点平方，用均值权重求bar_y，再用协方差权重计算ΣWc(Y−bar_y)²+R及ΣWc(X−m)(Y−bar_y)。",
     "constraints": [
       "variance>0，measurement_variance>0；|mean|≤10，方差≤100。",
       "不能把均值权重直接替代协方差权重。"
@@ -2077,7 +2077,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "样例预测观测均值1.16，方差2.582，交叉协方差0.96；中心点的协方差权重为2。",
+    "hint": "中心点不贡献均值，却有协方差权重2；方差和交叉协方差都围绕各自均值计算。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2101,7 +2101,7 @@
           2.5819999999999994,
           0.96
         ],
-        "explanation": "样例预测观测均值1.16，方差2.582，交叉协方差0.96；中心点的协方差权重为2。"
+        "explanation": "平方读数均值为0.6²+0.8=1.16 U²；含噪方差为4×0.6²×0.8+2×0.8²+0.15=2.582 U⁴，交叉协方差为2×0.6×0.8=0.96 U³。"
       }
     ]
   },
@@ -2114,7 +2114,7 @@
     "chapter": "7.4",
     "title": "均值权重与协方差权重",
     "type": "choice",
-    "statement": "本节无迹变换参数（parameter）为n=1、alpha=1、beta=2、kappa=0。哪些正确？",
+    "statement": "一维无迹变换取alpha=1、beta=2、kappa=0，三个点按中心、上侧、下侧排列。关于两套权重，哪些表述正确？",
     "learning_targets": [
       "T3"
     ],
@@ -2127,19 +2127,19 @@
     "options": [
       {
         "id": "A",
-        "text": "中心点均值权重为0。"
+        "text": "中心点的均值权重为0。"
       },
       {
         "id": "B",
-        "text": "中心点协方差（covariance）权重也为0。"
+        "text": "中心点的协方差权重也为0。"
       },
       {
         "id": "C",
-        "text": "两侧点均值权重各为0.5。"
+        "text": "上侧和下侧的均值权重各为0.5。"
       },
       {
         "id": "D",
-        "text": "这组参数下协方差权重之和等于1。"
+        "text": "这套参数下，协方差权重之和为1。"
       }
     ],
     "constraints": []
@@ -2153,7 +2153,7 @@
     "chapter": "7.4",
     "title": "矩准确意味着后验准确吗",
     "type": "choice",
-    "statement": "对具有高斯先验（prior）的状态（state）x采用平方观测（observation）y=x²+v。无迹变换UT可准确计算预测读数y的均值、方差（variance）及x与y的交叉协方差（covariance）。哪项判断成立？",
+    "statement": "高斯状态先验通过平方观测y=x²+v产生读数。无迹变换准确得到预测y的均值、方差及x与y的交叉协方差。关于状态后验，哪项成立？",
     "learning_targets": [
       "T3"
     ],
@@ -2166,19 +2166,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只要这三个矩计算准确，就能确定状态后验（posterior）有几个峰。"
+        "text": "三个矩准确，就能确定后验密度有几个峰。"
       },
       {
         "id": "B",
-        "text": "这三个矩计算准确，仍不能据此判定状态后验服从高斯分布（Gaussian distribution）。"
+        "text": "三个矩准确，仍不能据此判断状态后验服从高斯分布。"
       },
       {
         "id": "C",
-        "text": "状态与预测读数的交叉协方差为0时，读数不能约束状态的绝对值。"
+        "text": "交叉协方差为零时，读数不能限制状态绝对值。"
       },
       {
         "id": "D",
-        "text": "预测读数的方差计算准确时，可以将它用作状态的后验方差。"
+        "text": "预测读数方差准确时，可以把它作为状态的后验方差。"
       }
     ],
     "constraints": []
@@ -2192,7 +2192,7 @@
     "chapter": "7.4",
     "title": "网格参照也要核验",
     "type": "choice",
-    "statement": "用[-6,6]上的6001点积分作为一维后验（posterior）参照。哪些检查必要？",
+    "statement": "用范围[−6,6] U上的6001个网格点积分，作为一维后验的数值参照。哪些检查或计算需要进行？",
     "learning_targets": [
       "T3"
     ],
@@ -2205,19 +2205,19 @@
     "options": [
       {
         "id": "A",
-        "text": "增加区间内的网格点数后，比较所得后验均值和方差（variance）是否变化。"
+        "text": "增加区间内网格点数，比较后验均值和方差是否变化。"
       },
       {
         "id": "B",
-        "text": "扩大积分区间后，比较区间外尾部是否改变所得后验均值和方差。"
+        "text": "扩大积分区间，比较原区间外尾部对后验均值和方差的影响。"
       },
       {
         "id": "C",
-        "text": "均值在一次网格加密后不变，就可省略边界扩展检查。"
+        "text": "一次加密后均值不变，就可以省去积分范围扩展检查。"
       },
       {
         "id": "D",
-        "text": "计算网格上的概率质量（probability mass）时，应将密度乘网格间隔，再使所有网格点的质量之和为1。"
+        "text": "由等间距网格密度近似概率质量时，应计入网格间隔并归一化。"
       }
     ],
     "constraints": []
@@ -2231,7 +2231,7 @@
     "chapter": "7.4",
     "title": "后验均值零是否没有更新",
     "type": "choice",
-    "statement": "对称先验（prior）和平方观测（observation）下，精确后验（posterior）均值仍为0，但密度从单峰变成双峰。哪项正确？",
+    "statement": "对称先验通过平方观测更新后，精确后验均值仍为0 U，但密度由单峰变为双峰。哪项正确？",
     "learning_targets": [
       "T3"
     ],
@@ -2244,19 +2244,19 @@
     "options": [
       {
         "id": "A",
-        "text": "均值仍为0，说明后验方差（variance）也应与先验相同。"
+        "text": "均值仍为零，因此后验方差也等于先验方差。"
       },
       {
         "id": "B",
-        "text": "出现正负两峰，说明后验的总概率质量（probability mass）变为2。"
+        "text": "出现正负两个峰，因此后验总概率变为2。"
       },
       {
         "id": "C",
-        "text": "均值仍为0，方差和密度形状仍可发生变化。"
+        "text": "均值仍为零，方差和密度形状仍可发生变化。"
       },
       {
         "id": "D",
-        "text": "均值仍为0，说明后验在x=0处的密度最高。"
+        "text": "均值仍为零，因此后验密度在x=0处最高。"
       }
     ],
     "constraints": []
@@ -2270,7 +2270,7 @@
     "chapter": "7.5",
     "title": "稳定计算重要性权重",
     "type": "python",
-    "statement": "给定已由提议分布（distribution）q抽取的样本及其目标密度和提议密度的对数值。计算自归一化权重、状态（state）均值和有效样本量。",
+    "statement": "样本已从提议分布q取得，给出每个样本位置的未归一化目标密度与提议密度的对数。计算自归一化重要性权重、加权状态均值及有效样本量ESS。",
     "learning_targets": [
       "T3"
     ],
@@ -2284,19 +2284,19 @@
       {
         "name": "samples",
         "type": "list[float]",
-        "description": "由q抽取的样本。",
+        "description": "已从q抽取的状态样本，顺序与两个对数列表相同。",
         "unit": "U"
       },
       {
         "name": "log_target",
         "type": "list[float]",
-        "description": "未归一化目标密度的对数值。",
+        "description": "各样本位置的未归一化目标密度对数。",
         "unit": "无量纲"
       },
       {
         "name": "log_proposal",
         "type": "list[float]",
-        "description": "提议密度的对数值。",
+        "description": "各样本位置的提议密度q的对数。",
         "unit": "无量纲"
       }
     ],
@@ -2304,23 +2304,23 @@
       {
         "name": "weights",
         "type": "list[float]",
-        "description": "归一化的重要性权重。",
+        "description": "与samples同序的归一化重要性权重，各项和为1。",
         "unit": "概率"
       },
       {
         "name": "mean",
         "type": "float",
-        "description": "按权重求得的状态均值。",
+        "description": "samples与对应weights相乘后求和的状态估计。",
         "unit": "U"
       },
       {
         "name": "ess",
         "type": "float",
-        "description": "1/sum(w²)。",
+        "description": "由归一化权重计算的1/sum(weights²)。",
         "unit": "个"
       }
     ],
-    "contract": "log_weight=log_target−log_proposal；先减去最大log_weight再取指数并归一化。不得只用目标密度作为权重。",
+    "contract": "逐项计算b=log_target−log_proposal，令a=exp(b−max(b))，再令weights=a/sum(a)。mean=sum(weights*samples)，ess=1/sum(weights²)。三个列表始终逐项对应，不省略提议密度。",
     "constraints": [
       "三个列表等长，1—100项；对数值有限，绝对值≤10000。",
       "本题给定样本上q均非零；总体提议支持应覆盖目标支持。"
@@ -2330,7 +2330,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "未归一化权重为[0.4,2,1.2]，总和3.6，状态均值约1.111111，ESS约2.314286。",
+    "hint": "先相减得到目标与提议的对数比，再减去最大值。共同平移改变未归一化数值，但不改变归一化权重。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2370,7 +2370,7 @@
           1.1111111111111112,
           2.314285714285714
         ],
-        "explanation": "未归一化权重为[0.4,2,1.2]，总和3.6，状态均值约1.111111，ESS约2.314286。"
+        "explanation": "样本依次为−1、1、2 U，目标与提议的比值依次为0.4、2、1.2，总和3.6。权重为[1/9,5/9,1/3]，均值10/9 U，ESS=81/35≈2.314286。"
       }
     ]
   },
@@ -2383,7 +2383,7 @@
     "chapter": "7.5",
     "title": "提议分布漏掉一侧",
     "type": "choice",
-    "statement": "目标密度在x<0和x>0均非零，但提议分布（distribution）只在x>0生成样本。哪项正确？",
+    "statement": "目标在x<0和x>0两侧都有正概率，提议分布却只在x>0生成样本。关于加权经验分布，哪项正确？",
     "learning_targets": [
       "T3"
     ],
@@ -2397,19 +2397,19 @@
     "options": [
       {
         "id": "A",
-        "text": "增加x>0区域的样本数后，加权经验分布就会向x<0区域分配正概率（probability）。"
+        "text": "增加正侧样本数后，经验分布会向负侧分配正概率。"
       },
       {
         "id": "B",
-        "text": "将正侧样本的权重归一到总和为1，就能得到同时包含目标正侧和负侧概率的近似。"
+        "text": "将正侧样本权重归一到和为1，就能恢复目标在两侧的概率。"
       },
       {
         "id": "C",
-        "text": "所有样本都位于x>0，因此经验分布在x<0区域的概率为0，漏掉了目标在该区域的概率。"
+        "text": "所有样本都在正侧，所以经验分布在负侧概率为零，遗漏目标的负侧概率。"
       },
       {
         "id": "D",
-        "text": "正侧样本的权重相等，说明目标在x<0区域的概率可以忽略。"
+        "text": "正侧权重相等，就说明目标的负侧概率可以忽略。"
       }
     ],
     "constraints": []
@@ -2423,7 +2423,7 @@
     "chapter": "7.5",
     "title": "自归一化为何实用",
     "type": "choice",
-    "statement": "目标只知道未归一化密度p̃，常数未知。哪些正确？",
+    "statement": "目标只知道未归一化密度p̃，归一化常数未知。关于自归一化重要性采样，哪些表述正确？",
     "learning_targets": [
       "T3"
     ],
@@ -2437,7 +2437,7 @@
     "options": [
       {
         "id": "A",
-        "text": "把每个权重除以权重总和时，所有权重共有的未知倍数会相消。"
+        "text": "每个权重除以权重总和后，所有权重共有的未知倍数相消。"
       },
       {
         "id": "B",
@@ -2445,11 +2445,11 @@
       },
       {
         "id": "C",
-        "text": "即使提议分布（distribution）在目标的某个区域为0，增加样本数也能恢复该区域的目标概率（probability）。"
+        "text": "提议在某个目标区域为零时，增加样本数仍能恢复该区域的目标概率。"
       },
       {
         "id": "D",
-        "text": "即使ESS接近样本总数，样本也可能漏掉后验（posterior）的某个峰。"
+        "text": "ESS接近样本总数时，样本仍可能漏掉后验的某个峰。"
       }
     ],
     "constraints": []
@@ -2463,7 +2463,7 @@
     "chapter": "7.5",
     "title": "为什么减最大对数权重",
     "type": "choice",
-    "statement": "在精确算术下，所有对数权重加上同一常数后，哪一对量保持不变？ESS表示有效样本量（effective sample size）。",
+    "statement": "在精确算术下，给全部对数权重加同一常数。哪一对量保持不变？ESS由归一化权重计算。",
     "learning_targets": [
       "T3"
     ],
@@ -2481,11 +2481,11 @@
       },
       {
         "id": "B",
-        "text": "最大对数权重和最小对数权重都保持不变。"
+        "text": "最大和最小对数权重都保持不变。"
       },
       {
         "id": "C",
-        "text": "归一化权重及由它计算的ESS都保持不变。"
+        "text": "归一化权重及ESS都保持不变。"
       },
       {
         "id": "D",
@@ -2503,7 +2503,7 @@
     "chapter": "7.5",
     "title": "观测加权与系统性重采样",
     "type": "python",
-    "statement": "粒子已完成动态传播。用当前观测（observation）的对数似然（likelihood）更新已有权重，再按固定起点进行一次系统性重采样（systematic resampling）；题目不调用随机数。",
+    "statement": "粒子已经传播到当前观测时刻。给定已有权重、当前观测对数似然和固定重采样起点，先更新权重，再作一次系统性重采样。返回重采样前权重、ESS以及选中的旧粒子；不调用随机数。",
     "learning_targets": [
       "T3"
     ],
@@ -2517,25 +2517,25 @@
       {
         "name": "particles",
         "type": "list[float]",
-        "description": "已传播到当前时刻的状态（state）样本。",
+        "description": "当前时刻的粒子位置，按旧粒子下标0、1、…排列。",
         "unit": "U"
       },
       {
         "name": "weights",
         "type": "list[float]",
-        "description": "上一步归一化权重。",
+        "description": "与particles同序的已有归一化权重，传播本身没有替换这些权重。",
         "unit": "概率"
       },
       {
         "name": "log_likelihoods",
         "type": "list[float | None]",
-        "description": "当前观测的对数似然；None 表示零似然。",
+        "description": "实际观测在各粒子位置的对数似然；None专指该位置似然为零，不是整时刻缺测。",
         "unit": "无量纲"
       },
       {
         "name": "offset",
         "type": "float",
-        "description": "系统性重采样的单位起点 u，0≤u<1。",
+        "description": "固定起点u，0≤u<1；由它构造全部N个系统性重采样位置。",
         "unit": "无量纲"
       }
     ],
@@ -2543,35 +2543,35 @@
       {
         "name": "normalized",
         "type": "list[float]",
-        "description": "观测加权后的权重，重采样（resampling）前。",
+        "description": "吸收当前似然后、重采样之前的归一化权重，与旧particles同序。",
         "unit": "概率"
       },
       {
         "name": "ess",
         "type": "float",
-        "description": "1/sum(w²)。",
+        "description": "由normalized计算的1/sum(normalized²)，属于重采样前。",
         "unit": "个"
       },
       {
         "name": "indices",
         "type": "list[int]",
-        "description": "系统性重采样选中的祖先下标，从 0 开始。",
+        "description": "每个新粒子选中的旧粒子下标，按新粒子次序排列，旧下标从0开始。",
         "unit": "无量纲"
       },
       {
         "name": "resampled",
         "type": "list[float]",
-        "description": "按祖先下标取得的粒子。",
+        "description": "按indices从particles取得的新粒子列表，允许重复位置。",
         "unit": "U"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "ok 或 impossible。",
+        "description": "更新成功为ok；全部粒子无正质量时为impossible。",
         "unit": "无量纲"
       }
     ],
-    "contract": "先稳定归一化 log(weights)+log_likelihoods。ESS=1/sum(w²)。N个采样（sampling）位置为(offset+i)/N，选择累积权重严格大于该位置的最小下标；恰好相等时进入下一段。零权重或None似然不贡献质量。全部无质量返回([],0,[],[],\"impossible\")。",
+    "contract": "零旧权重或None似然不贡献质量。其余位置计算log(weights)+log_likelihoods，减最大值、取指数并归一化，随后计算ESS。第i个采样位置为(offset+i)/N，i=0,…,N−1；选择累计权重严格大于该位置的最小旧下标，相等时进入下一段。全部无质量返回([],0,[],[],\"impossible\")。normalized返回重采样前权重；新粒子的等权1/N不替换这个返回值。",
     "constraints": [
       "粒子数1—100，各列表等长；weights≥0且和为1；0≤offset<1。",
       "非None对数值有限，绝对值≤10000；状态绝对值≤100。",
@@ -2582,7 +2582,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "样例权重[0.4,0.2,0.4]，ESS=25/9；位置1/6、1/2、5/6选中祖先[0,1,2]。",
+    "hint": "先完成当前观测加权，再累计normalized。各个采样位置共用同一offset，选择规则使用严格大于。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2633,7 +2633,7 @@
           ],
           "ok"
         ],
-        "explanation": "样例权重[0.4,0.2,0.4]，ESS=25/9；位置1/6、1/2、5/6选中祖先[0,1,2]。"
+        "explanation": "三个旧位置−1、0、1 U的似然依次为1、0.5、1，更新权重为[0.4,0.2,0.4]，ESS=25/9。起点0.5给出位置1/6、1/2、5/6，分别选中旧下标0、1、2。"
       }
     ]
   },
@@ -2646,7 +2646,7 @@
     "chapter": "7.5",
     "title": "有效样本量与阈值",
     "type": "choice",
-    "statement": "权重[0.5,0.5,0,0]，规则为ESS<N/2才重采样（resampling）。哪项正确？",
+    "statement": "四个粒子的权重按下标0至3依次为[0.5,0.5,0,0]。只有ESS<N/2才重采样，其中N=4。哪项正确？",
     "learning_targets": [
       "T3"
     ],
@@ -2660,19 +2660,19 @@
     "options": [
       {
         "id": "A",
-        "text": "ESS为2，按给定规则不进行重采样。"
+        "text": "ESS为2，按该规则不重采样。"
       },
       {
         "id": "B",
-        "text": "ESS为4，按给定规则不进行重采样。"
+        "text": "ESS为4，按该规则不重采样。"
       },
       {
         "id": "C",
-        "text": "ESS为0.5，按给定规则进行重采样。"
+        "text": "ESS为0.5，按该规则重采样。"
       },
       {
         "id": "D",
-        "text": "ESS为2，按给定规则进行重采样。"
+        "text": "ESS为2，按该规则重采样。"
       }
     ],
     "constraints": []
@@ -2686,7 +2686,7 @@
     "chapter": "7.5",
     "title": "权重均匀还会贫化吗",
     "type": "choice",
-    "statement": "重采样（resampling）后100个粒子的权重都为0.01，但只有3个不同祖先。哪些正确？",
+    "statement": "重采样后的100个粒子各有权重0.01，但只来自3个不同旧粒子下标。关于权重与祖先，哪些判断正确？",
     "learning_targets": [
       "T3"
     ],
@@ -2700,19 +2700,19 @@
     "options": [
       {
         "id": "A",
-        "text": "由这些权重算出的ESS为100。"
+        "text": "这些权重计算出的ESS为100。"
       },
       {
         "id": "B",
-        "text": "虽然100个权重相等，这些粒子仍只来自3个不同祖先。"
+        "text": "虽然100项权重相等，新粒子仍只来自3个不同祖先。"
       },
       {
         "id": "C",
-        "text": "ESS=100意味着重采样后有100个不同的祖先状态（state）。"
+        "text": "ESS为100就意味着100个新粒子来自100个不同祖先状态。"
       },
       {
         "id": "D",
-        "text": "过程噪声（process noise）较小时，来自同一祖先的粒子在后续传播中仍可能保持接近。"
+        "text": "过程噪声较小时，同一祖先的后代在后续传播中仍可能彼此接近。"
       }
     ],
     "constraints": []
@@ -2726,7 +2726,7 @@
     "chapter": "7.5",
     "title": "自助滤波中为何只乘似然",
     "type": "choice",
-    "statement": "自助粒子滤波（bootstrap particle filter）用状态（state）转移分布（distribution）作提议，当前传播前没有重采样（resampling），旧权重可能不相等。关于传播后的未归一化权重，哪项解释正确？",
+    "statement": "自助粒子滤波从状态转移分布抽取下一粒子位置，本次传播前没有重采样，所以旧权重可能不等。关于传播后未归一化权重，哪项解释正确？",
     "learning_targets": [
       "T3"
     ],
@@ -2740,19 +2740,19 @@
     "options": [
       {
         "id": "A",
-        "text": "转移密度与提议密度在重要性比中相消，因此新权重等于旧权重乘当前似然（likelihood）。"
+        "text": "转移与提议密度相消，新权重等于旧权重乘当前观测似然。"
       },
       {
         "id": "B",
-        "text": "转移密度与似然在重要性比中相消，因此新权重等于旧权重乘提议密度。"
+        "text": "转移密度与观测似然相消，新权重等于旧权重乘提议密度。"
       },
       {
         "id": "C",
-        "text": "提议分布使用了当前观测（observation），因此新权重等于旧权重乘转移密度。"
+        "text": "提议使用了当前观测，新权重等于旧权重乘转移密度。"
       },
       {
         "id": "D",
-        "text": "转移密度与提议密度相消后，新权重只由当前似然决定，不再取决于旧权重。"
+        "text": "转移与提议密度相消后，新权重只由当前似然决定，与旧权重无关。"
       }
     ],
     "constraints": []
@@ -2766,7 +2766,7 @@
     "chapter": "7.5",
     "title": "有限预算怎样比较",
     "type": "choice",
-    "statement": "比较N=100和N=500的粒子滤波（particle filtering，PF）。哪些做法合理？",
+    "statement": "比较100粒子与500粒子的滤波计算。若要评价粒子数对算法近似的影响，哪些做法合理？",
     "learning_targets": [
       "T3"
     ],
@@ -2780,19 +2780,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两种粒子数使用同一观测（observation）序列，并分别用独立随机数重复运行滤波器。"
+        "text": "两组使用同一观测序列，分别用独立随机数重复运行滤波器。"
       },
       {
         "id": "B",
-        "text": "报告多次运行的估计误差均值、误差波动以及粒子传播总次数。"
+        "text": "报告重复运行的误差均值、误差波动及粒子传播总次数。"
       },
       {
         "id": "C",
-        "text": "两种粒子数各使用不同读数序列，再把误差差异归因于粒子数。"
+        "text": "两组使用不同读数序列，再把误差差异归因于粒子数。"
       },
       {
         "id": "D",
-        "text": "把一次运行中的每个粒子当作一次独立滤波实验，用它们估计两种方法的误差差异。"
+        "text": "把一次运行中的每个粒子当作一次独立滤波实验，比较两组误差。"
       }
     ],
     "constraints": []
@@ -2806,7 +2806,7 @@
     "chapter": "7.6",
     "title": "把未来读数传回过去",
     "type": "python",
-    "statement": "已知有限状态（state）HMM，计算全部观测（observation）条件下每个时刻的平滑后验（posterior）。",
+    "statement": "已知有限隐藏状态模型，整段观测已经取得。计算每个时刻在全部观测条件下的平滑后验，状态下标与初始概率、转移和似然保持同序。",
     "learning_targets": [
       "T4"
     ],
@@ -2819,19 +2819,19 @@
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "时刻0先验（prior）。",
+        "description": "时刻0观测前各状态概率，状态下标依次为0、1、…。",
         "unit": "概率"
       },
       {
         "name": "transition",
         "type": "list[list[float]]",
-        "description": "行随机转移矩阵（transition matrix）。",
+        "description": "第i行、第j列为从状态i到j的概率，每行和为1。",
         "unit": "概率"
       },
       {
         "name": "likelihoods",
         "type": "list[list[float] | None]",
-        "description": "每时刻的似然（likelihood），None为缺测。",
+        "description": "外层依次对应时刻0至L−1，内层对应状态；None表示整时刻缺测。",
         "unit": "无量纲"
       }
     ],
@@ -2839,11 +2839,11 @@
       {
         "name": "smoothed",
         "type": "list[list[float]]",
-        "description": "p(z[t] | y[0:T])，按时刻排列。",
+        "description": "按时刻0至L−1排列的平滑概率列表，每项给出全部观测条件下各状态概率。",
         "unit": "概率"
       }
     ],
-    "contract": "先做前向滤波，设末端beta=1。gamma[t]与alpha[t]*beta[t]成比例；beta[t]=T@(likelihood[t+1]*beta[t+1])，可每步缩放。缺测似然全1。空序列返回空列表。",
+    "contract": "先按时刻0直接更新、以后先转移的约定保存前向滤波alpha。末端beta设为全1；beta[t]=transition@(likelihoods[t+1]*beta[t+1])，*为逐项乘法，可给整个向量作正缩放。smoothed[t]由alpha[t]*beta[t]归一化得到。缺测似然取全1，空观测返回空列表。",
     "constraints": [
       "2—3状态，0—12时刻；所有观测前缀证据严格正。",
       "初始及转移行归一化，似然在[0,1]。"
@@ -2853,7 +2853,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "两步观测时，第一步平滑还利用第二个读数；最后一步平滑必须等于最后一步滤波。",
+    "hint": "alpha[t]已经用过当前似然，beta[t]从t+1观测开始。末时刻没有额外未来信息，所以平滑等于滤波。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2903,7 +2903,7 @@
             0.5109170305676857
           ]
         ],
-        "explanation": "两步观测时，第一步平滑还利用第二个读数；最后一步平滑必须等于最后一步滤波。"
+        "explanation": "记录含时刻0、1两项观测。时刻1平滑概率约[0.489083,0.510917]，等于末时刻滤波；时刻0再利用时刻1标记，得到约[0.406114,0.593886]。"
       }
     ]
   },
@@ -2916,7 +2916,7 @@
     "chapter": "7.6",
     "title": "三种估计分别知道什么",
     "type": "choice",
-    "statement": "在时刻t讨论状态（state）x[t]。哪些对应关系正确？",
+    "statement": "对状态x[t]进行估计时，关于可用观测的对应关系，哪些表述正确？",
     "learning_targets": [
       "T4"
     ],
@@ -2929,19 +2929,19 @@
     "options": [
       {
         "id": "A",
-        "text": "预测只使用t之前的观测（observation）。"
+        "text": "一步预测使用t之前已取得的观测。"
       },
       {
         "id": "B",
-        "text": "滤波使用截至t的观测。"
+        "text": "滤波使用截至t的观测，包含当前读数。"
       },
       {
         "id": "C",
-        "text": "平滑允许使用t之后的观测。"
+        "text": "平滑允许使用t之后取得的观测。"
       },
       {
         "id": "D",
-        "text": "先用整段读数平滑，再逐时刻输出（output）保存的结果，得到的就是各时刻在线可用的估计。"
+        "text": "先用全部观测平滑，再逐时刻输出结果，就能得到各时刻在线可用的估计。"
       }
     ],
     "constraints": []
@@ -2955,7 +2955,7 @@
     "chapter": "7.6",
     "title": "后向信息从哪一步开始",
     "type": "choice",
-    "statement": "采用行随机转移矩阵（transition matrix）T[i,j]=P(z[t+1]=j|z[t]=i)，后向向量（vector）beta[t]=p(y[t+1:T]|z[t])。likelihood[t]按状态（state）列出时刻t的观测（observation）似然（likelihood），*表示逐项相乘。哪项递推正确？",
+    "statement": "T[i,j]=P(z[t+1]=j | z[t]=i)。beta[t]汇总给定当前状态后的未来观测信息，从时刻t+1开始；likelihood[t]按状态列出时刻t似然，*表示逐项乘法。哪项递推正确？",
     "learning_targets": [
       "T4"
     ],
@@ -2994,7 +2994,7 @@
     "chapter": "7.6",
     "title": "平滑更好能推实时更好吗",
     "type": "choice",
-    "statement": "离线平滑的过去状态（state）RMSE低于滤波。哪项有依据？",
+    "statement": "某次实验中，离线平滑对过去状态的RMSE低于实时滤波。哪项判断由此得到支持？",
     "learning_targets": [
       "T4"
     ],
@@ -3007,15 +3007,15 @@
     "options": [
       {
         "id": "A",
-        "text": "在相同传感器条件下，可以用这次平滑的RMSE估计实时控制可取得的状态估计RMSE。"
+        "text": "在同样传感器条件下，这次平滑RMSE就是实时控制可取得的估计RMSE。"
       },
       {
         "id": "B",
-        "text": "这次RMSE差异说明，把过程噪声（process noise）方差（variance）改为0就能使滤波的RMSE降到平滑的水平。"
+        "text": "把过程噪声方差改为零，就能使滤波RMSE降到平滑水平。"
       },
       {
         "id": "C",
-        "text": "两方法读取同一条完整记录，因此比较时信息量相同。"
+        "text": "两方法读取同一条完整源记录，因此各历史时刻的可用信息相同。"
       },
       {
         "id": "D",
@@ -3033,7 +3033,7 @@
     "chapter": "7.6",
     "title": "由已保存的滤波矩后向平滑",
     "type": "python",
-    "statement": "给定每时刻预测和滤波矩，用固定区间RTS递推计算平滑均值和协方差（covariance）。末时刻保持滤波结果。",
+    "statement": "同一次线性高斯滤波已保存各时刻的观测前预测和观测后滤波均值、协方差。用固定区间RTS后向递推求整段平滑结果，末时刻保持原滤波结果。",
     "learning_targets": [
       "T4"
     ],
@@ -3046,31 +3046,31 @@
       {
         "name": "transition",
         "type": "list[list[float]]",
-        "description": "已知状态（state）转移矩阵（transition matrix） F。",
+        "description": "状态转移矩阵F，行对应下一状态、列对应当前状态。",
         "unit": "无量纲"
       },
       {
         "name": "predicted_means",
         "type": "list[list[float]]",
-        "description": "每时刻观测（observation）前的均值，长度 T。",
+        "description": "长度T的预测均值列表，第t项对应时刻t观测前；内层按状态坐标排列。",
         "unit": "U"
       },
       {
         "name": "predicted_covariances",
         "type": "list[list[list[float]]]",
-        "description": "每时刻观测前协方差。",
+        "description": "与predicted_means逐时刻对应的预测协方差，行列沿用状态顺序。",
         "unit": "U²"
       },
       {
         "name": "means",
         "type": "list[list[float]]",
-        "description": "每时刻滤波后的均值。",
+        "description": "长度T的滤波均值列表，第t项已吸收截至t的可用观测。",
         "unit": "U"
       },
       {
         "name": "covariances",
         "type": "list[list[list[float]]]",
-        "description": "每时刻滤波后的协方差。",
+        "description": "与means逐时刻对应的滤波协方差，行列沿用状态顺序。",
         "unit": "U²"
       }
     ],
@@ -3078,20 +3078,20 @@
       {
         "name": "means",
         "type": "list[list[float]]",
-        "description": "各时刻在给定整段观测后的固定区间平滑均值，可利用该时刻之后的观测。",
+        "description": "按原时刻顺序排列的平滑均值，每项可利用该时刻之后的观测。",
         "unit": "U"
       },
       {
         "name": "covariances",
         "type": "list[list[list[float]]]",
-        "description": "与 means 对应的固定区间平滑协方差矩阵（covariance matrix）。",
+        "description": "与平滑means逐时刻对应的协方差，使用整段观测条件。",
         "unit": "U²"
       }
     ],
-    "contract": "G[t]=P_f[t] Fᵀ inv(P_pred[t+1])；m_s[t]=m_f[t]+G[t] * (m_s[t+1]−m_pred[t+1])；P_s[t]=P_f[t]+G[t] * (P_s[t+1]−P_pred[t+1])G[t]ᵀ。从T−2向0递推；T=0返回两个空列表。",
+    "contract": "先将末项平滑量设为末项滤波量。从t=T−2至0计算G[t]=P_f[t]@F.T@inv(P_pred[t+1])，m_s[t]=m_f[t]+G[t]@(m_s[t+1]−m_pred[t+1])，P_s[t]=P_f[t]+G[t]@(P_s[t+1]−P_pred[t+1])@G[t].T。可用线性方程求解实现增益。T=0返回两个空列表，T=1保持该项。",
     "constraints": [
-      "状态维数1或2，T为0—20，所有数组（array）时刻数相同。",
-      "输入（input）来自同一合法线性高斯滤波；非空预测协方差正定（positive definite）；值有限。",
+      "状态维数1或2，T为0—20，所有数组时刻数相同。",
+      "输入来自同一合法线性高斯滤波；非空预测协方差正定；值有限。",
       "不得用predicted[t]替代predicted[t+1]，不得在平滑中重新吸收观测。"
     ],
     "entrypoint": "solve",
@@ -3099,7 +3099,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "样例的中间时刻缺测，但后来的读数能回传信息；最后时刻均值和协方差与滤波完全一致。",
+    "hint": "增益与修正都使用t+1预测。末端保持滤波，随后逐项向前回传已经得到的下一时刻平滑量。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3206,7 +3206,7 @@
             ]
           ]
         ],
-        "explanation": "样例的中间时刻缺测，但后来的读数能回传信息；最后时刻均值和协方差与滤波完全一致。"
+        "explanation": "末时刻保持均值1.3 U、方差0.5 U²。中间时刻的G=0.9/1=0.9，得到1.33 U、0.495 U²；再用G=0.8/0.9回传到时刻0，得到1.36 U、0.48 U²。"
       }
     ]
   },
@@ -3219,7 +3219,7 @@
     "chapter": "7.6",
     "title": "后向递推在哪里开始",
     "type": "choice",
-    "statement": "关于固定区间RTS平滑，哪些正确？",
+    "statement": "固定区间RTS平滑已经取得整段记录。关于末端初始化与后向递推，哪些表述正确？",
     "learning_targets": [
       "T4"
     ],
@@ -3232,19 +3232,19 @@
     "options": [
       {
         "id": "A",
-        "text": "末时刻的平滑均值和协方差（covariance）与该时刻的滤波结果相同。"
+        "text": "末时刻平滑均值和协方差等于该时刻滤波结果。"
       },
       {
         "id": "B",
-        "text": "记录只有一个时刻时，平滑计算不进行后向更新。"
+        "text": "记录仅有一个时刻时，不进行后向修正。"
       },
       {
         "id": "C",
-        "text": "末时刻没有更多未来信息，所以平滑协方差（covariance）初始化为0。"
+        "text": "末时刻没有更多未来观测，所以平滑协方差设为零。"
       },
       {
         "id": "D",
-        "text": "计算从t+1向t传播信息的后向增益（gain）时，需要t+1时刻的预测协方差。"
+        "text": "从t+1向t回传时，后向增益使用t+1预测协方差。"
       }
     ],
     "constraints": []
@@ -3258,7 +3258,7 @@
     "chapter": "7.6",
     "title": "协方差变小的前提",
     "type": "choice",
-    "statement": "相同正确线性高斯模型（model）、相同已知噪声和同一组观测（observation）下，哪项正确？",
+    "statement": "正确线性高斯模型、已知噪声设定和观测记录相同。关于平滑与滤波的不确定性，哪项正确？",
     "learning_targets": [
       "T4"
     ],
@@ -3271,19 +3271,19 @@
     "options": [
       {
         "id": "A",
-        "text": "每次实验中，平滑估计各坐标的平方误差都更小。"
+        "text": "每次实验中，平滑估计每个坐标的平方误差都更小。"
       },
       {
         "id": "B",
-        "text": "平滑协方差（covariance）的每个非对角元素都小于对应滤波元素。"
+        "text": "平滑协方差每个非对角元素都小于对应滤波元素。"
       },
       {
         "id": "C",
-        "text": "对任意向量（vector）a，aᵀP平滑a≤aᵀP滤波a。"
+        "text": "任意向量a都满足aᵀP平滑a≤aᵀP滤波a。"
       },
       {
         "id": "D",
-        "text": "平滑协方差的每个特征值（eigenvalue）都等于滤波对应值的一半。"
+        "text": "平滑协方差每个特征值都等于对应滤波值的一半。"
       }
     ],
     "constraints": []
@@ -3297,7 +3297,7 @@
     "chapter": "7.6",
     "title": "缺测区间里的误差",
     "type": "choice",
-    "statement": "某段连续缺测，之后传感器恢复。哪些正确？",
+    "statement": "传感器连续缺测一段时间，之后恢复读数。关于该区间的状态估计，哪些表述正确？",
     "learning_targets": [
       "T4"
     ],
@@ -3310,19 +3310,19 @@
     "options": [
       {
         "id": "A",
-        "text": "滤波在缺测段只做动态预测。"
+        "text": "滤波在缺测区间只进行动态预测。"
       },
       {
         "id": "B",
-        "text": "平滑可以利用传感器恢复后的读数，修正缺测期间各时刻的状态（state）估计。"
+        "text": "平滑可以使用恢复后的读数，修正缺测期间的历史状态估计。"
       },
       {
         "id": "C",
-        "text": "把平滑估计写进实时评估会引入未来信息。"
+        "text": "把这种平滑结果算作缺测时的实时估计，会引入未来信息。"
       },
       {
         "id": "D",
-        "text": "缺测期间可以只按动态方程传播均值，并在协方差（covariance）传播中省去过程噪声（process noise）Q。"
+        "text": "缺测时只传播均值，预测协方差中可以省略过程噪声Q。"
       }
     ],
     "constraints": []
@@ -3336,7 +3336,7 @@
     "chapter": "7.summary",
     "title": "辨认估计任务",
     "type": "choice",
-    "statement": "二室模型（model）的F、Q、H、R已知，初始分布（distribution）已知，当前状态（state）未知。哪些判断正确？",
+    "statement": "两室模型的F、Q、H、R与初始分布已知，当前状态未知。状态列表依次对应第一室、第二室。关于估计任务与读数信息，哪些判断正确？",
     "learning_targets": [
       "T1"
     ],
@@ -3350,19 +3350,19 @@
     "options": [
       {
         "id": "A",
-        "text": "当前任务是状态估计。"
+        "text": "由读数推断当前两室状态，属于状态估计。"
       },
       {
         "id": "B",
-        "text": "已知F、Q、H、R，就能从总量读数唯一求出两室当前量。"
+        "text": "已知F、Q、H、R，就能从总量读数唯一求出当前两室各自物质量。"
       },
       {
         "id": "C",
-        "text": "H=[1,1]且两室对称守恒交换时，总量相同而分配不同的状态可能产生相同读数。"
+        "text": "H=[1,1]且两室对称守恒交换时，合计量相同而分配不同的状态可能产生相同读数。"
       },
       {
         "id": "D",
-        "text": "把同一个读数重复当作独立观测（observation）更新，可以增加对两室状态的独立测量信息。"
+        "text": "把同一读数重复当作独立观测更新，就能增加独立状态测量信息。"
       }
     ],
     "constraints": []
@@ -3376,7 +3376,7 @@
     "chapter": "7.summary",
     "title": "保证在线信息边界",
     "type": "choice",
-    "statement": "比较同一二室模型（model）的实时滤波和离线平滑。哪项设置公平且标注准确？",
+    "statement": "比较同一两室模型的实时滤波与离线平滑。哪种设置正确标明两种估计的可用信息？",
     "learning_targets": [
       "T4"
     ],
@@ -3390,19 +3390,19 @@
     "options": [
       {
         "id": "A",
-        "text": "用截至t的读数计算滤波误差，并将使用整段读数的平滑误差单独报告为离线重建结果。"
+        "text": "滤波误差使用截至t的读数计算，整段观测平滑的误差另作为离线重建报告。"
       },
       {
         "id": "B",
-        "text": "两种方法都用整段读数估计状态（state），再把t时刻的误差计入实时估计结果。"
+        "text": "两方法都使用整段观测，然后把时刻t的误差都计入实时结果。"
       },
       {
         "id": "C",
-        "text": "先用包含未来点的居中窗口平滑整段读数，再逐个输入（input）滤波器并计算实时估计误差。"
+        "text": "先用含未来读数的居中窗口平滑整段记录，再逐项输入滤波器并计算实时误差。"
       },
       {
         "id": "D",
-        "text": "用下一次实际取得的读数填补当前缺测，再把滤波输出（output）与真值的差计作缺测时的实时误差。"
+        "text": "用后来取得的实际读数填补当前缺测，再把结果计作缺测当时的实时误差。"
       }
     ],
     "constraints": []
@@ -3416,7 +3416,7 @@
     "chapter": "7.summary",
     "title": "隐藏状态的精确递推",
     "type": "python",
-    "statement": "一个细胞有静息、活跃、恢复三种隐藏状态（state）；给定先验（prior）、转移与实际标记的似然（likelihood），求预测与后验（posterior）。",
+    "statement": "细胞具有静息、活跃、恢复三种隐藏状态，依次用下标0、1、2表示。给定时刻0先验、状态转移与逐时刻实际标记的似然，求观测前预测和滤波后验；函数也需支持题设的两状态输入。",
     "learning_targets": [
       "T2"
     ],
@@ -3430,19 +3430,19 @@
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "时刻 0 的观测（observation）前概率分布（probability distribution）。",
+        "description": "时刻0观测前状态概率，内层按给定状态顺序排列。",
         "unit": "概率"
       },
       {
         "name": "transition",
         "type": "list[list[float]]",
-        "description": "第 i 行第 j 列为从 i 转移到 j 的概率（probability）。",
+        "description": "第i行、第j列为从状态i到j的概率，行列使用同一状态顺序。",
         "unit": "概率"
       },
       {
         "name": "likelihoods",
         "type": "list[list[float] | None]",
-        "description": "各时刻实际读数在各状态下的似然；None 表示缺测。",
+        "description": "外层按时刻0、1、…排列，内层为该次实际标记在各状态下的似然；None表示整时刻缺测。",
         "unit": "无量纲"
       }
     ],
@@ -3450,29 +3450,29 @@
       {
         "name": "predictions",
         "type": "list[list[float]]",
-        "description": "每一步观测前分布（distribution）。",
+        "description": "按时刻排列的观测前概率，首项为initial；发生零证据时包含失败时刻。",
         "unit": "概率"
       },
       {
         "name": "posteriors",
         "type": "list[list[float]]",
-        "description": "成功归一化各步的滤波后验。",
+        "description": "成功更新各时刻的归一化后验，不包含零证据时刻。",
         "unit": "概率"
       },
       {
         "name": "evidence",
         "type": "list[float]",
-        "description": "各步似然加权和。",
+        "description": "各步预测概率乘对应似然后求和的证据，包含首次失败的零值。",
         "unit": "无量纲"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "成功为 ok；首个零证据为 impossible。",
+        "description": "成功为ok；首次证据为零时为impossible并停止。",
         "unit": "无量纲"
       }
     ],
-    "contract": "时刻0直接更新initial；之后先按行随机矩阵（matrix）转移。缺测用全1似然；零证据停止，保留该步预测与证据，不生成该步后验。",
+    "contract": "时刻0直接更新initial，不先转移；t>0先用前一后验右乘transition。缺测似然取全1。相乘后总和为正时归一化；总和为零时保存该步预测和零证据，不生成该步后验。空观测返回三个空列表与ok。",
     "constraints": [
       "状态数2—3，0—20时刻；初始及转移行归一化，似然在[0,1]或None。"
     ],
@@ -3481,7 +3481,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "第一步三种状态的质量为[0.48,0.12,0.01]，总和0.61；后验由这三项归一化。",
+    "hint": "首步列表按静息、活跃、恢复逐项相乘。缺测仍保留时间；下一次观测前继续转移。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3574,7 +3574,7 @@
           ],
           "ok"
         ],
-        "explanation": "第一步三种状态的质量为[0.48,0.12,0.01]，总和0.61；后验由这三项归一化。"
+        "explanation": "时刻0未归一化概率按静息、活跃、恢复排列为[0.48,0.12,0.01]，证据0.61，后验为[48,12,1]/61。时刻1缺测，预测与后验相同；时刻2先转移再吸收标记似然。"
       }
     ]
   },
@@ -3587,7 +3587,7 @@
     "chapter": "7.summary",
     "title": "部分观测二室恢复",
     "type": "python",
-    "statement": "已知二室动态，给定观测（observation）而不提供真实状态（state），计算线性高斯滤波。该题可退化为一维用于边界核验。 初态为给定均值和协方差（covariance）的高斯分布（Gaussian distribution）；过程噪声（process noise）w~N(0,Q)、测量噪声（measurement noise）v~N(0,R)，初态及各时刻两种噪声相互独立。",
+    "statement": "两室动态和标量传感器已知，根据逐时刻读数估计两室状态。初态为给定均值、协方差的高斯分布，w~N(0,Q)、v~N(0,R)，初态与各时刻两种噪声相互独立。实现线性高斯滤波，并支持相同契约的一维输入。",
     "learning_targets": [
       "T2"
     ],
@@ -3601,43 +3601,43 @@
       {
         "name": "transition",
         "type": "list[list[float]]",
-        "description": "已知状态转移矩阵（transition matrix） F。",
+        "description": "状态转移矩阵F；行对应新状态、列对应旧状态。",
         "unit": "无量纲"
       },
       {
         "name": "sensor",
         "type": "list[float]",
-        "description": "标量读数的观测行 H。",
+        "description": "标量观测行H，依次乘同序状态坐标；两室输入按第一室、第二室排列。",
         "unit": "无量纲"
       },
       {
         "name": "process_covariance",
         "type": "list[list[float]]",
-        "description": "一步过程噪声协方差 Q。",
+        "description": "每次转移加入的独立过程噪声协方差Q，行列与状态同序。",
         "unit": "U²"
       },
       {
         "name": "measurement_variance",
         "type": "float",
-        "description": "测量噪声方差（variance） R。",
+        "description": "独立测量噪声方差R，严格为正。",
         "unit": "U²"
       },
       {
         "name": "initial_mean",
         "type": "list[float]",
-        "description": "时刻 0 观测前均值。",
+        "description": "时刻0观测前均值，内层按状态坐标排列。",
         "unit": "U"
       },
       {
         "name": "initial_covariance",
         "type": "list[list[float]]",
-        "description": "时刻 0 观测前协方差。",
+        "description": "时刻0观测前协方差，行列与initial_mean同序。",
         "unit": "U²"
       },
       {
         "name": "observations",
         "type": "list[float | None]",
-        "description": "从时刻 0 开始的读数；None 为缺测。",
+        "description": "依次对应时刻0、1、…的读数；None表示整时刻缺测。",
         "unit": "U"
       }
     ],
@@ -3645,26 +3645,26 @@
       {
         "name": "means",
         "type": "list[list[float]]",
-        "description": "各时刻使用当时可用观测后的均值。",
+        "description": "逐时刻的滤波均值，每项使用截至该时刻的读数，内层按原状态顺序排列。",
         "unit": "U"
       },
       {
         "name": "covariances",
         "type": "list[list[list[float]]]",
-        "description": "与 means 对应的协方差矩阵（covariance matrix）。",
+        "description": "与means逐时刻对应的滤波协方差，行列按原状态顺序排列。",
         "unit": "U²"
       }
     ],
-    "contract": "初始矩为t=0观测前；之后先F预测并加Q。每个非None读数按标量创新进行更新；None只预测。返回每个请求时刻的滤波矩。",
+    "contract": "时刻0直接由initial_mean、initial_covariance更新。t>0先预测m=F@m、P=F@P@F.T+Q。有读数时计算S=H@P@H.T+R、K=P@H.T/S，再更新m+K*(y−H@m)、P−K*S*K.T。None保留当前预测，不删除时刻。空观测返回两个空列表。",
     "constraints": [
-      "维数1或2，0—20时刻；R>0，Q半正定（positive semidefinite），P0正定（positive definite）；输入（input）有限。"
+      "维数1或2，0—20时刻；R>0，Q半正定，P0正定；输入有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "首个读数1.8小于预测2，第一室均值向下调整；初始交叉协方差使第二室也获得信息。",
+    "hint": "首项读数与初始量同属时刻0。读数虽只来自第一室，交叉协方差也可能修正第二室均值。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3787,7 +3787,7 @@
             ]
           ]
         ],
-        "explanation": "首个读数1.8小于预测2，第一室均值向下调整；初始交叉协方差使第二室也获得信息。"
+        "explanation": "时刻0读数1.8 U比预测2 U低0.2 U。增益两项为[1,0.2]/1.16，因此均值更新为约[1.827586,−0.034483] U；时刻1缺测，仍转移并返回预测。"
       }
     ]
   },
@@ -3800,7 +3800,7 @@
     "chapter": "7.summary",
     "title": "比较近似与真实后验",
     "type": "choice",
-    "statement": "相同平方观测（observation）模型（model）中，m=0，先验（prior）对称，读数提示|x|≈2。网格得到双峰，EKF和UKF都只保存一个高斯。哪些结论合理？",
+    "statement": "平方观测下，状态先验对称、均值m=0 U，读数支持|x|接近2 U。网格后验为双峰，EKF与UKF各保存一个高斯分布。哪些判断合理？",
     "learning_targets": [
       "T3"
     ],
@@ -3814,19 +3814,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两种高斯近似的均值都接近0，说明它们也能重现网格后验（posterior）在正负两侧的概率分布（probability distribution）。"
+        "text": "两个高斯近似均值都接近零，说明它们也重现了网格后验两侧的概率分配。"
       },
       {
         "id": "B",
-        "text": "比较两种近似时，需要查看方差（variance）和两个峰附近的概率（probability），而不只比较均值。"
+        "text": "比较近似时，还需检查方差与两个峰附近的概率，不能只看均值。"
       },
       {
         "id": "C",
-        "text": "UKF算准观测前的三个矩后，其高斯更新就与真实后验分布（distribution）相同。"
+        "text": "UKF算准观测前的三个矩，其高斯更新就等于真实条件后验。"
       },
       {
         "id": "D",
-        "text": "粒子法可以用样本表示两个峰，但需要检查粒子能否到达两侧，以及权重是否集中在少数粒子上。"
+        "text": "粒子可表示两侧峰，但要检查粒子能否到达两侧，以及权重是否集中在少数位置。"
       }
     ],
     "constraints": []
@@ -3840,7 +3840,7 @@
     "chapter": "7.summary",
     "title": "固定随机输入的粒子更新",
     "type": "python",
-    "statement": "相同非线性观测（observation）下，给定已经传播的粒子及其观测对数似然（likelihood），执行确定的权重更新和系统性重采样（systematic resampling）。",
+    "statement": "粒子已传播到当前非线性观测时刻，给定已有权重与该观测在各粒子位置的对数似然。按固定起点作稳定权重更新和系统性重采样，不重新生成随机粒子。",
     "learning_targets": [
       "T3"
     ],
@@ -3854,25 +3854,25 @@
       {
         "name": "particles",
         "type": "list[float]",
-        "description": "已传播到当前时刻的状态（state）样本。",
+        "description": "已传播到当前时刻的旧粒子位置，下标从0开始。",
         "unit": "U"
       },
       {
         "name": "weights",
         "type": "list[float]",
-        "description": "上一步归一化权重。",
+        "description": "与旧粒子同序的已有归一化权重。",
         "unit": "概率"
       },
       {
         "name": "log_likelihoods",
         "type": "list[float | None]",
-        "description": "当前观测的对数似然；None 表示零似然。",
+        "description": "当前观测在各旧位置的对数似然；None表示该粒子似然为零。",
         "unit": "无量纲"
       },
       {
         "name": "offset",
         "type": "float",
-        "description": "系统性重采样的单位起点 u，0≤u<1。",
+        "description": "固定起点u，0≤u<1，用于构造全部重采样位置。",
         "unit": "无量纲"
       }
     ],
@@ -3880,35 +3880,35 @@
       {
         "name": "normalized",
         "type": "list[float]",
-        "description": "观测加权后的权重，重采样（resampling）前。",
+        "description": "重采样前的观测更新权重，与旧particles同序，和为1。",
         "unit": "概率"
       },
       {
         "name": "ess",
         "type": "float",
-        "description": "1/sum(w²)。",
+        "description": "根据重采样前权重计算的1/sum(normalized²)。",
         "unit": "个"
       },
       {
         "name": "indices",
         "type": "list[int]",
-        "description": "系统性重采样选中的祖先下标，从 0 开始。",
+        "description": "按新粒子次序排列的旧下标，允许相同下标重复出现。",
         "unit": "无量纲"
       },
       {
         "name": "resampled",
         "type": "list[float]",
-        "description": "按祖先下标取得的粒子。",
+        "description": "按indices取得的新粒子位置列表。",
         "unit": "U"
       },
       {
         "name": "status",
         "type": "str",
-        "description": "ok 或 impossible。",
+        "description": "成功为ok；全部无正质量为impossible。",
         "unit": "无量纲"
       }
     ],
-    "contract": "位置为(offset+i)/N，选择累积质量严格大于位置的最小下标；稳定归一化已有权重乘似然。全部无质量返回([],0,[],[],\"impossible\")。返回重采样前权重。",
+    "contract": "将旧权重乘当前似然，在对数中相加并减最大值后取指数归一化；零旧权重或None似然不贡献质量。位置为(offset+i)/N，选择累计权重严格大于位置的最小旧下标，相等时进入下一段。全部无质量返回([],0,[],[],\"impossible\")。返回的normalized属于重采样前。",
     "constraints": [
       "1—100粒子；权重非负且和为1；对数似然有限或None；0≤offset<1。"
     ],
@@ -3917,7 +3917,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "减去最大对数权重避免-1000附近指数下溢；所得概率不受共同平移影响。",
+    "hint": "对数似然在−1000附近时，先减去最大对数权重再取指数；重采样下标从当前更新权重计算。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3974,7 +3974,7 @@
           ],
           "ok"
         ],
-        "explanation": "减去最大对数权重避免-1000附近指数下溢；所得概率（probability）不受共同平移影响。"
+        "explanation": "稳定归一化得到约[0.427184,0.314304,0.173439,0.085073]。起点0给出位置0、0.25、0.5、0.75，选中旧下标[0,0,1,2]，新粒子依次为[−2,−2,−1,1] U。"
       }
     ]
   },
@@ -3987,7 +3987,7 @@
     "chapter": "7.summary",
     "title": "缺测记录的后向重建",
     "type": "python",
-    "statement": "给定同一次部分观测（observation）滤波保存的矩，计算RTS平滑，核对未来信息如何修正历史。",
+    "statement": "同一次部分观测滤波已保存预测和滤波均值、协方差。用RTS后向递推计算固定区间平滑，说明后来读数怎样修正缺测时刻的历史状态。",
     "learning_targets": [
       "T4"
     ],
@@ -4001,31 +4001,31 @@
       {
         "name": "transition",
         "type": "list[list[float]]",
-        "description": "已知状态（state）转移矩阵（transition matrix） F。",
+        "description": "状态转移矩阵F，行对应下一状态、列对应当前状态。",
         "unit": "无量纲"
       },
       {
         "name": "predicted_means",
         "type": "list[list[float]]",
-        "description": "每时刻观测前的均值，长度 T。",
+        "description": "长度T的观测前预测均值列表，第t项对应时刻t。",
         "unit": "U"
       },
       {
         "name": "predicted_covariances",
         "type": "list[list[list[float]]]",
-        "description": "每时刻观测前协方差（covariance）。",
+        "description": "与predicted_means逐时刻对应的预测协方差，行列按状态顺序排列。",
         "unit": "U²"
       },
       {
         "name": "means",
         "type": "list[list[float]]",
-        "description": "每时刻滤波后的均值。",
+        "description": "长度T的滤波均值列表，第t项已吸收截至t的可用观测。",
         "unit": "U"
       },
       {
         "name": "covariances",
         "type": "list[list[list[float]]]",
-        "description": "每时刻滤波后的协方差。",
+        "description": "与means逐时刻对应的滤波协方差，行列按状态顺序排列。",
         "unit": "U²"
       }
     ],
@@ -4033,26 +4033,26 @@
       {
         "name": "means",
         "type": "list[list[float]]",
-        "description": "各时刻使用当时可用观测后的均值。",
+        "description": "逐时刻固定区间平滑均值，每项使用给定整段记录，允许利用该时刻之后的观测。",
         "unit": "U"
       },
       {
         "name": "covariances",
         "type": "list[list[list[float]]]",
-        "description": "与 means 对应的协方差矩阵（covariance matrix）。",
+        "description": "与平滑means逐时刻对应的固定区间平滑协方差。",
         "unit": "U²"
       }
     ],
-    "contract": "末端等于滤波；后向增益（gain）用P_f[t] Fᵀ inv(P_pred[t+1])。更新均值与协方差均使用下一时刻的平滑量减预测量。空输入（input）返回两个空列表。",
+    "contract": "末端平滑量等于末端滤波量。从t=T−2至0计算G=P_f[t]@F.T@inv(P_pred[t+1])；m_s[t]=m_f[t]+G@(m_s[t+1]−m_pred[t+1])；P_s[t]=P_f[t]+G@(P_s[t+1]−P_pred[t+1])@G.T。可用线性方程求解增益。空输入返回两个空列表，单项输入保持原项。",
     "constraints": [
-      "维数1或2、0—20时刻；各数组（array）等长、来自同一合法滤波，预测协方差正定（positive definite）。"
+      "维数1或2、0—20时刻；各数组等长、来自同一合法滤波，预测协方差正定。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "二室中第二时刻缺测，之后读数通过后向相关修正该时刻；最终时刻保持滤波矩。",
+    "hint": "每个修正都使用下一时刻平滑量减下一时刻预测量；后向循环不再重复吸收观测。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -4260,7 +4260,7 @@
             ]
           ]
         ],
-        "explanation": "二室中第二时刻缺测，之后读数通过后向相关修正该时刻；最终时刻保持滤波矩。"
+        "explanation": "输入含时刻0至3四项，时刻1缺测。后来读数回传后，时刻1平滑均值约为[1.483293,0.009121] U；末时刻仍保持滤波均值约[1.049541,0.247357] U及原协方差。"
       }
     ]
   },
@@ -4273,7 +4273,7 @@
     "chapter": "7.summary",
     "title": "传感器改变后的诊断",
     "type": "choice",
-    "statement": "对称守恒二室把传感器从第一室改成两室总量，差量方向的估计仍接近先验（prior）；算法输出（output）协方差（covariance）却被手动缩小十倍。哪些判断有依据？",
+    "statement": "对称守恒两室交换模型中，传感器由第一室改为合计物质量。两室之差的估计仍接近先验，却人为把算法报告的协方差缩小十倍。哪些判断有依据？",
     "learning_targets": [
       "T1"
     ],
@@ -4287,19 +4287,19 @@
     "options": [
       {
         "id": "A",
-        "text": "在该对称交换模型（model）中，总量读数不能区分两室之间不同的总量差。"
+        "text": "总量读数不能区分合计量相同、两室之差不同的状态。"
       },
       {
         "id": "B",
-        "text": "手动缩小协方差没有提供新的读数，也没有增加区分两室差值的信息。"
+        "text": "缩小报告协方差没有增加读数，也没有增加区分两室之差的测量信息。"
       },
       {
         "id": "C",
-        "text": "保持估计均值不变而缩小协方差，可以在RMSE不变时提高区间覆盖率。"
+        "text": "保持均值不变而缩小协方差，可以在RMSE不变时提高同倍数区间的覆盖比例。"
       },
       {
         "id": "D",
-        "text": "加入未来的总量读数进行平滑，可以使两室差值由这些读数唯一确定。"
+        "text": "加入未来总量读数平滑，就能唯一确定两室之差。"
       }
     ],
     "constraints": []

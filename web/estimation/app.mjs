@@ -8,17 +8,17 @@ const fmt=x=>x===null?'缺测':Number(x.toPrecision(4)).toString();
 const svg=(tag,attrs,text)=>{const n=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;};
 let chapter,mode,p={},data,playback;
 const definitions={
- '7.1':{title:'只看总量，能分清两个室吗？',question:'先预测：初始总量分别是 [8,2] 与 [2,8]，总量相同。测量一个室和测量总量，得到的信息会有什么不同？',explanation:'状态（state）包含两个室的总量，观测（observation）由传感器（sensor）映射得到。能观性（observability）问的是：模型已知时，不同初始状态能否由一段无噪输出区分。',formula:'x[n+1]=F x[n]；y[n]=H x[n]；O=[H; HF]'},
- '7.2':{title:'预测，再用新读数修正概率',question:'先预测：当前标记明亮，就能确定细胞处于活跃状态吗？逐次查看标记，比较读数到来前后的三种状态概率。',explanation:'隐马尔可夫模型（hidden Markov model，HMM）将状态转移与测量机制分开。贝叶斯滤波（Bayesian filtering）先对未知前态求和，再用当次似然（likelihood）更新；一个读数只使用一次。',formula:'p⁻[j]=Σᵢ p[i] T[i,j]；p⁺[j]=p⁻[j] L[j] / Σₖ p⁻[k] L[k]'},
- '7.3':{title:'一次观测怎样缩小状态的不确定性',question:'先预测：观测只有第一个室，第二个室的不确定性会不会改变？逐次播放，比较预测与滤波的联合分布。',explanation:'卡尔曼滤波（Kalman filter，KF）在线性高斯模型中递推均值（mean）与协方差（covariance）。增益（gain）由预测误差与测量噪声（measurement noise）共同决定。椭圆展示两个室的不确定性关联。',formula:'m⁻=F m；P⁻=F P Fᵀ+Q；K=P⁻Hᵀ/(H P⁻Hᵀ+R)；m⁺=m⁻+K(y−Hm⁻)'},
- '7.4':{title:'一个钟形近似，能装下两个可能状态吗？',question:'先预测：只看到 x² 接近 1.4，能判断 x 的正负吗？将先验均值移到零，比较网格积分刻画的后验形状与两种高斯近似。',explanation:'扩展卡尔曼滤波（extended Kalman filter，EKF）在均值处线性化；无迹卡尔曼滤波（unscented Kalman filter，UKF）传播确定性采样点。两者都只保留一个高斯分布，不能完整表达双峰（bimodal）后验。',formula:'x ~ N(m,0.8)；y=x²+v，v ~ N(0,R)；p(x|y) ∝ p(x) p(y|x)'},
- '7.5':{title:'权重相同，不等于信息重新变多',question:'先预测：重采样后每个粒子权重都一样，丢失的状态是否就回来了？观察高权重位置被重复选择，以及保留下来的不同位置数。',explanation:'重要性采样（importance sampling）用带权粒子近似后验。有效样本量（effective sample size，ESS）描述权重集中程度；系统性重采样（systematic resampling）重新分配有限计算资源，不能补回已经没有粒子覆盖的区域。',formula:'wᵢ ∝ p(xᵢ) p(y|xᵢ) / q(xᵢ)；ESS=1/Σᵢwᵢ²；重采样位置=(i+offset)/N'},
- '7.6':{title:'读数缺了一段，后来能补回什么？',question:'先预测：缺测时滤波区间会怎样变化？重新获得读数后，回看过去的平滑结果与当时能做出的估计有何区别？',explanation:'滤波（filtering）仅使用当前及过去的观测；固定区间平滑（fixed-interval smoothing）使用整段观测。Rauch–Tung–Striebel 平滑（RTS smoothing）向后传播修正，因此只能用于离线重建。',formula:'x[n+1]=x[n]+w[n]；y[n]=x[n]+v[n]；G[n]=P[n]/P⁻[n+1]'}
+ '7.1':{title:'只看总量，能分清两个室吗？',question:'两种初态为 [8,2] U 与 [2,8] U，每项依次对应第一室、第二室。合计物质量都为10 U，只读第一室和读取两室合计量，会看到什么差别？',explanation:'状态的两项是各室物质量，H的两个系数按同一室序产生标量读数。能观性考察已知模型中能否由一段无噪读数区分初态；O的第一、第二行分别对应时刻0、1，列对应两室初态。',formula:'x[n+1]=F x[n]；y[n]=H x[n]；O=[H; HF]'},
+ '7.2':{title:'预测，再用新读数修正概率',question:'一个明亮标记就能确定细胞状态吗？先看标记到来前的预测，再查看同一时刻的更新，比较静息、活跃、恢复三项概率。',explanation:'隐马尔可夫模型将状态转移与标记机制分开。T[i,j]表示从状态i到j的概率；L[j]是当前标记在状态j下的似然。先按转移求预测，再乘当次似然并归一化，两个列表始终按静息、活跃、恢复排列。',formula:'p⁻[j]=Σᵢ p[i] T[i,j]；p⁺[j]=p⁻[j] L[j] / Σₖ p⁻[k] L[k]'},
+ '7.3':{title:'一次观测怎样缩小状态的不确定性',question:'传感器只测第一室，第二室估计会不会也被修正？逐时刻比较读数到来前后的均值与协方差。',explanation:'卡尔曼滤波在线性高斯模型中更新条件均值与协方差。P的行列按第一室、第二室排列，对角项是各室方差，非对角项描述共同变化；K两项分别把同一个读数差转换为两室均值修正。',formula:'m⁻=F m；P⁻=F P Fᵀ+Q；K=P⁻Hᵀ/(H P⁻Hᵀ+R)；m⁺=m⁻+K(y−Hm⁻)'},
+ '7.4':{title:'一个钟形近似，能装下两个可能状态吗？',question:'平方读数y接近1.4 U²，能判断状态x的正负吗？将先验均值移到零，观察两侧的后验峰，再比较两个高斯近似。',explanation:'EKF在当前预测均值处用切线近似观测，UKF把代表点经过平方函数后汇总矩。它们都保存单个高斯；即使均值相近，方差和双峰区域的概率仍可能与网格后验不同。',formula:'x ~ N(m,0.8)；y=x²+v，v ~ N(0,R)；p(x|y) ∝ p(x) p(y|x)'},
+ '7.5':{title:'权重相同，不等于信息重新变多',question:'重采样后每项权重都相等，还保留了多少不同位置？先看哪些粒子获得权重，再看哪些旧位置被重复选择。',explanation:'重要性权重纠正提议位置与目标概率的差别。ESS只描述当前权重集中程度；重采样按累计权重选择旧粒子，复制后每项权重为1/N，不同祖先数量却可能更少。',formula:'wᵢ ∝ p(xᵢ) p(y|xᵢ) / q(xᵢ)；ESS=1/Σᵢwᵢ²；重采样位置=(i+offset)/N'},
+ '7.6':{title:'读数缺了一段，后来能补回什么？',question:'时刻6至12缺测，当时只能怎样估计？时刻13重新取得读数后，比较历史平滑与各时刻实际可用的滤波结果。',explanation:'滤波在时刻n使用截至n的读数；本页固定区间RTS平滑使用全部记录，从末时刻向前修正历史。G[n]把下一时刻平滑均值相对原预测的差传回n，分母使用n+1预测方差。',formula:'x[n+1]=x[n]+w[n]；y[n]=x[n]+v[n]；G[n]=P[n]/P⁻[n+1]'}
 };
 function slider(key,label,min,max,step,value){p[key]=value;const group=el('div',undefined,'slider'),lab=el('label',label),out=el('output',value),input=el('input');Object.assign(input,{id:key,type:'range',min,max,step,value});lab.htmlFor=key;out.id=key+'-value';input.addEventListener('input',()=>{p[key]=Number(input.value);out.value=input.value;guard(recompute);});group.append(lab,out,input);$('sliders').append(group);}
 function controls(){p={};$('sliders').replaceChildren();
  if(mode==='7.1'){slider('exchange','每步交换比例 c',0,.4,.02,.2);p.total=false;}
- if(mode==='7.2')slider('error','标记翻转概率 ε',.02,.5,.02,.14);
+ if(mode==='7.2')slider('error','标记噪声参数 ε',.02,.5,.02,.14);
  if(mode==='7.3')slider('noise','测量方差 R / U²',.04,1,.04,.16);
  if(mode==='7.4'){slider('mean','先验均值 m / U',0,2,.1,.6);slider('noise','测量方差 R / U⁴',.05,1,.05,.15);slider('observed','本次平方读数 y / U²',.2,3,.1,1.4);}
  if(mode==='7.5'){slider('count','粒子数 N',12,120,6,60);slider('noise','测量方差 R / U⁴',.05,1,.05,.15);slider('offset','重采样偏移 offset',0,.95,.05,.5);}
@@ -31,7 +31,7 @@ function recompute(){
  if(mode==='7.1'){
   data=exchange(p.exchange,p.total);$('alternate').textContent=p.total?'切换为只测第一室':'切换为测量两室总量';
   $('preset-note').textContent=`当前 H=[${data.H}]；两种初态总量均为 10 U。按钮切换传感器，交换比例保持不变。`;
-  $('assumptions').textContent='理想封闭二室，U 是所追踪物质总量（tracked amount）的教学单位；每步两室各流出自身的 c 比例给另一室，无清除、输入或噪声。此页首先检验已知离散模型的无噪可区分性。';
+  $('assumptions').textContent='两室交换同一种物质，U为物质量单位；每步各室将自身物质量的c比例转给另一室。不从系统外补入、不向系统外排出，也不发生清除，且本页省略噪声，因此合计量始终为10 U。';
   $('chart-heading').textContent='内部状态不同，读数可能相同';$('value-label').textContent='两步能观矩阵的秩';$('value').textContent=`${data.rank} / 2`;
   $('chart-note').textContent='左图只画两个初态对应的第一室状态；第二室始终等于 10 减第一室。右图画传感器读数。总量传感器的曲线重合，不能恢复物质如何分配；秩满也不保证有噪恢复误差小。';
   legend([['初态 [8,2]',blue,false],['初态 [2,8]',pink,true]]);table(['步 n','初态一：第一室 / U','初态二：第一室 / U','读数一 / U','读数二 / U'],data.paths[0].map((x,i)=>[i,x[0],data.paths[1][i][0],data.outputs[0][i],data.outputs[1][i]]));
@@ -39,15 +39,15 @@ function recompute(){
  if(mode==='7.2'){
   data=hmmExperiment(p.error);const next=alternate(p.error,.14,.5);$('alternate').textContent=next===.5?'切换为无区分度标记':'切换为有区分度标记';
   $('preset-note').textContent=`三态的明亮概率分别为 [${fmt(p.error)}, 0.5, ${fmt(1-p.error)}]。ε=0.5 时，同一标记对三态的似然相同。`;
-  $('assumptions').textContent='三态命名为静息、过渡、活跃，仅为理想细胞机制类比。转移矩阵固定；第 0 次读数直接更新初始分布 [0.6,0.3,0.1]，之后先转移再更新。整段标记固定，改变 ε 只改变测量模型。';
+  $('assumptions').textContent='三态依次为静息、活跃、恢复，是细胞标记的教学例子。时刻0先验为 [0.6,0.3,0.1]，首条标记直接更新；以后先转移再更新。标记序列与转移矩阵固定，改变ε只改变各状态产生标记的概率。';
   $('chart-heading').textContent='读数到来前后，各状态有多大可能';$('value-label').textContent='当前读数';
   $('chart-note').textContent='柱高为概率，坐标固定 0—1；左为预测，右为更新后分布。三态分别采用同一颜色，圆点用于强调当前最大概率；最大概率状态仍可能判断错误。';
-  legend([['静息',blue,false],['过渡',pink,false],['活跃',green,false]]);table(['步 n','标记（0暗/1亮）','静息后验','过渡后验','活跃后验'],data.rows.map((r,i)=>[i,data.observations[i],...r.filtered]));
+  legend([['静息',blue,false],['活跃',pink,false],['恢复',green,false]]);table(['时刻 n','标记（0暗/1亮）','静息后验','活跃后验','恢复后验'],data.rows.map((r,i)=>[i,data.observations[i],...r.filtered]));
  }
  if(mode==='7.3'){
   data=kalmanExperiment(p.noise);const next=alternate(p.noise,.16,.8);$('alternate').textContent=next===.8?'切换为高测量噪声':'切换为低测量噪声';
   $('preset-note').textContent=`当前 R=${fmt(p.noise)} U²；使用同一段固定读数，观察噪声假设怎样改变估计和区间。`;
-  $('assumptions').textContent='二室状态为参考工作点附近的偏差，允许负值；F=[[0.85,0.1],[0.1,0.8]]，Q=diag(0.02,0.02) U²，H=[1,0]，m₀=[2,0] U，P₀=I U²。独立零均值高斯噪声，第 0 步先观测更新。';
+  $('assumptions').textContent='两室状态是参考工作点附近的有符号偏差。F=[[0.85,0.1],[0.1,0.8]]，Q=diag(0.02,0.02) U²，H=[1,0]只读第一室；时刻0观测前m₀=[2,0] U、P₀=I U²。高斯初态与各时刻两类噪声相互独立，噪声均值为零；时刻0直接吸收首条读数。';
   $('chart-heading').textContent='预测与滤波的联合不确定性';$('value-label').textContent='第一室增益 K₁';
   $('chart-note').textContent='左图椭圆的马氏距离平方为 5.991，在二维高斯假设下包围约 95% 概率，交叉线为均值。右图是两个室的滤波均值；方差变化与实际误差不同，覆盖率需要另做重复实验。';
   legend([['预测椭圆 / 第一室均值',blue,false],['滤波椭圆 / 第二室均值',pink,true]]);table(['步 n','读数 / U','第一室均值 / U','第二室均值 / U','第一室方差 / U²'],data.rows.map((r,i)=>[i,data.observations[i],...r.mean,r.covariance[0][0]]));
@@ -62,18 +62,18 @@ function recompute(){
  }
  if(mode==='7.5'){
   data=particleExperiment(p.noise,p.count,p.offset);const next=alternate(p.count,12,96);$('alternate').textContent=next===96?'切换为 96 个粒子':'切换为 12 个粒子';
-  $('preset-note').textContent=`系统性重采样采用固定 offset=${fmt(p.offset)}；重复点击不会偷偷重新抽样。不同祖先 ${new Set(data.indices).size}/${p.count} 个。`;
-  $('assumptions').textContent='使用与上一章相同的 x² 观测，先验 N(0,0.8)，y=1.4。为隔离随机波动，这一页把均匀提议 [−4,4] 的中点固定作粒子，权重乘先验密度与似然；这是单次重要性更新和重采样，完整动态粒子滤波见 Notebook。';
+  $('preset-note').textContent=`固定重采样起点 offset=${fmt(p.offset)}，相同条件产生相同选择。不同祖先 ${new Set(data.indices).size}/${p.count} 个。`;
+  $('assumptions').textContent='沿用平方观测，先验均值0 U、方差0.8 U²，读数1.4 U²。本页在 [−4,4] U等宽区间的中点固定粒子；均匀提议密度为常数，权重与先验密度乘似然成正比。这是确定位置的一次积分近似与重采样，动态粒子抽样见Notebook。';
   $('chart-heading').textContent='哪些位置获得权重，哪些被重复选择';$('value-label').textContent='重采样前 ESS / N';$('value').textContent=`${fmt(data.ess)} / ${p.count}`;
   $('chart-note').textContent='左图每根针为一个粒子的归一化权重；右图针高为重采样后该位置所占比例，重复祖先合并计数。两图共用纵轴。播放只逐个展示已经算好的粒子，不表示逐次重复观测。重采样后单粒子权重为 1/N，不同位置数可能减少。';
   legend([['更新后权重',blue,false],['重采样后位置占比',pink,true]]);const counts=data.indices.reduce((a,j)=>(a[j]=(a[j]||0)+1,a),{});table(['粒子序号','位置 / U','归一化权重','被复制次数'],data.particles.map((x,i)=>[i,x,data.weights[i],counts[i]||0]));
  }
  if(mode==='7.6'){
   data=smoothingExperiment(p.gap,p.process);$('alternate').textContent=p.gap?'切换为完整观测':'切换为中段缺测';
-  $('preset-note').textContent=p.gap?'第 6—12 步没有观测：该段只做预测；第 13 步重新得到观测。':'观测已恢复完整；再次点击可回到相同的缺测区间。';
-  $('assumptions').textContent='为突出时间信息，采用二室案例的标量简化：随机游走、初始均值 0 U、方差 1 U²、测量方差 0.16 U²，过程与测量噪声独立高斯。固定观测序列不含真值，不能从两条估计的差异直接判断实际误差。';
+  $('preset-note').textContent=p.gap?'时刻6至12没有读数，滤波只作动态预测；时刻13重新取得读数。':'观测已恢复完整；再次点击可回到相同的缺测区间。';
+  $('assumptions').textContent='采用一维随机游走说明观测时刻：时刻0观测前均值0 U、方差1 U²，测量方差0.16 U²。高斯初态与各时刻过程、测量噪声相互独立，首条读数直接更新。固定记录未提供真实状态，两条估计的差异不能代替实际误差。';
   $('chart-heading').textContent='当时能知道的，与后来重建的';$('value-label').textContent='当前缺测状态';
-  $('chart-note').textContent='左图蓝色为实时滤波，玫红虚线为使用全部 20 步观测的离线平滑，浅带为各自的边际 95% 高斯区间。右图比较方差；平滑在回看历史时使用了后续观测，滤波使用的是当时已到达的读数。';
+  $('chart-note').textContent='左图蓝色为实时滤波，玫红虚线为使用全部20个时刻记录的离线平滑，浅带为各自均值±1.96个标准差的边际区间。右图比较方差；缺测仍保留时刻，平滑使用后来读数回看历史，末时刻两种结果相同。';
   legend([['滤波（仅到当前时刻）',blue,false],['平滑（全部观测）',pink,true],['实际读数（圆点）',gray,true]]);table(['步 n','观测 / U','滤波均值 / U','平滑均值 / U','滤波方差 / U²','平滑方差 / U²'],data.filtered.map((r,i)=>[i,data.observations[i],r.mean[0],data.smoothed[i].mean,r.covariance[0][0],data.smoothed[i].variance]));
  }
  playback?.pause();playback?playback.seek(0):draw(0);
@@ -87,7 +87,7 @@ function axes(chart,{xmin=0,xmax,ymin,ymax,xlabel,ylabel}){
 function curve(chart,points,a,color,dashed=false){chart.append(svg('path',{d:points.map(([x,y],i)=>`${i?'L':'M'}${a.x(x).toFixed(2)},${a.y(y).toFixed(2)}`).join(' '),fill:'none',stroke:color,'stroke-width':2.7,'stroke-dasharray':dashed?'7 5':'none','stroke-linejoin':'round'}));}
 function marker(chart,[x,y],a,color,r=4){chart.append(svg('circle',{cx:a.x(x),cy:a.y(y),r,fill:'white',stroke:color,'stroke-width':2.4}));}
 function band(chart,rows,a,color){if(!rows.length)return;const points=[...rows.map(([x,m,v])=>[x,m+1.96*Math.sqrt(v)]),...rows.slice().reverse().map(([x,m,v])=>[x,m-1.96*Math.sqrt(v)])];chart.append(svg('path',{d:points.map(([x,y],i)=>`${i?'L':'M'}${a.x(x)},${a.y(y)}`).join(' ')+'Z',fill:color,opacity:.1}));}
-function bars(chart,values){const a=axes(chart,{xmin:0,xmax:4,ymin:0,ymax:1,xlabel:'1 静息 · 2 过渡 · 3 活跃',ylabel:'概率'});values.forEach((v,i)=>{const color=[blue,pink,green][i];chart.append(svg('rect',{x:a.x(i+1)-26,y:a.y(v),width:52,height:a.y(0)-a.y(v),fill:color,'fill-opacity':.24,stroke:color,'stroke-width':2}),svg('text',{x:a.x(i+1),y:a.y(v)-9,'text-anchor':'middle','font-size':15,fill:gray},fmt(v)));});const max=Math.max(...values),index=values.indexOf(max);marker(chart,[index+1,max],a,[blue,pink,green][index]);}
+function bars(chart,values){const a=axes(chart,{xmin:0,xmax:4,ymin:0,ymax:1,xlabel:'1 静息 · 2 活跃 · 3 恢复',ylabel:'概率'});values.forEach((v,i)=>{const color=[blue,pink,green][i];chart.append(svg('rect',{x:a.x(i+1)-26,y:a.y(v),width:52,height:a.y(0)-a.y(v),fill:color,'fill-opacity':.24,stroke:color,'stroke-width':2}),svg('text',{x:a.x(i+1),y:a.y(v)-9,'text-anchor':'middle','font-size':15,fill:gray},fmt(v)));});const max=Math.max(...values),index=values.indexOf(max);marker(chart,[index+1,max],a,[blue,pink,green][index]);}
 function draw(progress){
  const f=progress/100,left=$('chart'),right=$('detail-chart');$('timeline').value=progress;$('play-counter').textContent=`进度 ${progress.toFixed(1)}%`;
  left.replaceChildren(svg('title',{id:'svg-title'},definitions[mode].title),svg('desc',{id:'svg-desc'},$('chart-note').textContent));right.replaceChildren(svg('title',{id:'detail-title'},$('chart-heading').textContent),svg('desc',{id:'detail-desc'},$('chart-note').textContent));
@@ -97,7 +97,7 @@ function draw(progress){
   $('time-readout').textContent=`离散步 n=${n}`;$('observation-value').textContent=`两种初态的读数差：${fmt(data.outputs[0][n]-data.outputs[1][n])} U。O 的两行为 [${data.O[0].map(fmt)}]、[${data.O[1].map(fmt)}]。`;
  }
  if(mode==='7.2'){
-  const n=Math.floor(f*(data.rows.length-1)),r=data.rows[n];bars(left,r.predicted);bars(right,r.filtered);$('time-readout').textContent=`第 ${n} 次读数：左预测 → 右更新`;$('value').textContent=data.observations[n]?'明亮标记':'暗淡标记';$('observation-value').textContent=`证据/边际似然 ${fmt(r.evidence)}；更新后的概率和=${fmt(r.filtered.reduce((a,b)=>a+b,0))}。${p.error===.5?'当前标记不区分状态，预测与更新一致。':'标记同时可能由多个状态产生。'}`;
+  const n=Math.floor(f*(data.rows.length-1)),r=data.rows[n];bars(left,r.predicted);bars(right,r.filtered);$('time-readout').textContent=`时刻 ${n}：左图预测 → 右图更新`;$('value').textContent=data.observations[n]?'明亮标记':'暗淡标记';$('observation-value').textContent=`当前观测的证据 ${fmt(r.evidence)}；更新后的概率和=${fmt(r.filtered.reduce((a,b)=>a+b,0))}。${p.error===.5?'当前标记不区分状态，预测与更新一致。':'标记同时可能由多个状态产生。'}`;
  }
  if(mode==='7.3'){
   const n=Math.floor(f*(data.rows.length-1)),r=data.rows[n],a=axes(left,{xmin:-2,xmax:5,ymin:-3,ymax:4,xlabel:'第一室偏差 / U',ylabel:'第二室偏差 / U'}),b=axes(right,{xmax:15,ymin:-.3,ymax:2.6,xlabel:'离散步 n',ylabel:'滤波均值 / U'});

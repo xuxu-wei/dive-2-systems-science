@@ -3840,14 +3840,14 @@
           "id": "7.1",
           "title": "状态空间与能观性",
           "url": "/chapters/07-01-状态空间与能观性/",
-          "goals": "把状态（state）转移与观测（observation）分开，判断已知线性模型（model）的能观性（observability），区别状态恢复和参数（parameter）辨识。",
-          "prerequisites": "3.2、5.4、6.5；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、条件概率（conditional probability）、条件期望（conditional expectation）与分组加权平均、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布。",
+          "goals": "从两室的一次转移和读数建立状态估计问题，计算能观矩阵，解释传感器与采样怎样影响状态区分。",
+          "prerequisites": "3.2、5.4、6.5；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、随机过程、有限马尔可夫链、转移矩阵与长期分布。",
           "knowledge": [
-            "从第 3 篇状态空间（state space）表示加入过程噪声（process noise）与测量噪声（measurement noise），声明条件独立（conditional independence）结构",
-            "通过不同传感器的同输出（output）状态说明信息缺口，构造有限时域能观矩阵",
-            "联系隐藏细胞状态与部分观测二室模型，区分随机不确定性、不可观方向和未知参数"
+            "手算两室转移及仪器误差，承接前篇的状态表示，加入独立过程和测量噪声",
+            "先定义协方差各项，再推导均值和协方差预测",
+            "比较两种初态与传感器，从两次读数建立能观矩阵，检查秩、弱信息和整周采样"
           ],
-          "focus": "从观测序列辨认隐藏状态方向；区分状态估计与参数估计，理解能观性和测量位置。",
+          "focus": "状态和读数使用什么位置顺序；过程与测量误差分别改变什么；满秩与有噪恢复精度为何需要分别检查。",
           "available": true,
           "lessons": [
             {
@@ -3855,7 +3855,7 @@
               "chapter_id": "7.1",
               "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb",
               "title": "从有噪读数建立状态模型",
-              "outcome": "区分状态、过程噪声和测量噪声，明确估计器能使用的信息。",
+              "outcome": "手算两室转移与读数，区分过程和测量误差，再说明预测均值与协方差的含义。",
               "number": "7.1.1",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -3891,7 +3891,7 @@
               "chapter_id": "7.1",
               "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/02-传感器与可区分的状态.ipynb",
               "title": "传感器与可区分的状态",
-              "outcome": "构造能观矩阵，解释秩、采样和噪声放大各自决定的问题。",
+              "outcome": "由两次读数恢复两室初态，比较第一室和总量传感器，并解释弱信息与采样间隔。",
               "number": "7.1.2",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -3929,14 +3929,14 @@
           "id": "7.2",
           "title": "贝叶斯递推与隐马尔可夫模型",
           "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/",
-          "goals": "由联合分布（distribution）分解推导贝叶斯滤波（Bayesian filtering）的预测和更新，计算有限隐藏状态（state）的精确后验（posterior）。",
-          "prerequisites": "7.1、5.3；数学：条件概率（conditional probability）、条件期望（conditional expectation）与分组加权平均、Bayes 公式、似然（likelihood）、后验及标量高斯条件更新、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布、状态空间（state space）的条件独立（conditional independence）、概率（probability）分解与边缘化。",
+          "goals": "手算标记到达后的隐藏状态概率，把转移与贝叶斯更新接入同一时间循环，并用路径枚举核对。",
+          "prerequisites": "7.1、5.3；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、随机过程、有限马尔可夫链、转移矩阵与长期分布、状态空间的条件独立、概率分解与边缘化。",
           "knowledge": [
-            "引入隐马尔可夫模型（hidden Markov model，HMM）的状态、转移与发射概率",
-            "由边缘化和贝叶斯公式推导预测—更新递推及证据归一化，再写出连续状态积分形式",
-            "实现有限状态的前向滤波，处理缺测和零证据，按观测到达顺序更新"
+            "从两个状态的一次标记更新计算未归一化概率与证据",
+            "推导下一状态求和与当前似然更新，再解释连续状态积分、缺测和零证据",
+            "扩到三状态，合并同末状态路径，比较全部前缀的枚举与递推并检查未来读数不改早期滤波"
           ],
-          "focus": "把贝叶斯更新（Bayesian update）与状态转移相接；按时间顺序计算预测分布、观测（observation）似然和后验。",
+          "focus": "每个概率列表的状态顺序；首条读数前不转移；似然、证据与后验分别属于什么条件。",
           "available": true,
           "lessons": [
             {
@@ -3944,7 +3944,7 @@
               "chapter_id": "7.2",
               "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/01-从条件概率到预测与更新.ipynb",
               "title": "从条件概率到预测与更新",
-              "outcome": "由边缘化和Bayes公式推导滤波，正确处理缺测和零证据。",
+              "outcome": "从两个隐藏状态的一次标记更新开始，连接转移、似然、证据与逐时刻后验。",
               "number": "7.2.1",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -3980,7 +3980,7 @@
               "chapter_id": "7.2",
               "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/02-隐状态序列与路径枚举.ipynb",
               "title": "隐状态序列与路径枚举",
-              "outcome": "在隐马尔可夫模型中实现在线递推，并用全路径枚举核验。",
+              "outcome": "把同末状态的路径概率相加，用枚举比较每个观测前缀，解释前向递推节省的计算。",
               "number": "7.2.2",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -4018,14 +4018,14 @@
           "id": "7.3",
           "title": "卡尔曼滤波",
           "url": "/chapters/07-03-卡尔曼滤波/",
-          "goals": "由多元高斯条件分布（distribution）推导卡尔曼滤波（Kalman filter，KF），计算均值、协方差（covariance）与创新。",
-          "prerequisites": "7.2、3.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望（expectation）、方差（variance）、协方差、联合分布、Gaussian 分布、条件概率（conditional probability）、条件期望（conditional expectation）与分组加权平均、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、多元高斯条件分布、块协方差与矩阵分解。",
+          "goals": "由两室条件更新解释协方差与增益，再把预测和观测更新接成卡尔曼滤波（Kalman filtering，KF），分别评价误差与区间覆盖。",
+          "prerequisites": "7.2、3.1；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、多元高斯条件分布、块协方差与矩阵分解。",
           "knowledge": [
-            "先讲多元高斯密度、分块协方差、正定性（positive definiteness）与条件分布，补齐所需矩阵因式分解",
-            "推导线性动态预测、创新协方差、增益（gain）和观测（observation）更新，以线性方程求解代替显式求逆",
-            "处理缺测、协方差对称性和噪声设定错误；说明精确性的线性高斯条件"
+            "手算协方差[4,1;1,1]的一次条件更新，建立多元高斯密度、平方距离与二维椭圆",
+            "从残差分解推导条件矩，代入动态得到创新、增益和Joseph更新，保持首步与缺测时钟",
+            "在相同独立轨迹中比较噪声设定，用终点误差、覆盖及标准化创新解释结果"
           ],
-          "focus": "跟踪均值与协方差的预测和更新；用创新理解测量怎样修正状态（state）估计。",
+          "focus": "矩阵各行列对应什么状态与读数；独立噪声贡献怎样进入预测和更新；固定终点的重复与时间相关怎样区分。",
           "available": true,
           "lessons": [
             {
@@ -4033,7 +4033,7 @@
               "chapter_id": "7.3",
               "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/01-多元高斯与条件分布.ipynb",
               "title": "多元高斯与条件分布",
-              "outcome": "解释协方差几何，从分块高斯推导条件均值和条件协方差。",
+              "outcome": "按位置解释协方差矩阵，手算两室的一次条件更新，再推导联合高斯的条件均值与协方差。",
               "number": "7.3.1",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -4069,7 +4069,7 @@
               "chapter_id": "7.3",
               "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.ipynb",
               "title": "线性高斯预测与观测更新",
-              "outcome": "从条件高斯推导Kalman递推，检验时刻约定与缺测分支。",
+              "outcome": "先预测再吸收当前读数，按室序计算创新与增益，说明独立噪声和缺测怎样进入协方差。",
               "number": "7.3.2",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -4111,7 +4111,7 @@
               "chapter_id": "7.3",
               "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/03-创新、误差与区间覆盖.ipynb",
               "title": "创新、误差与区间覆盖",
-              "outcome": "用独立重复检验创新和区间覆盖，区分误差与不确定性校准。",
+              "outcome": "对固定终点重复实验，分别计算误差、区间覆盖与创新，解释评价的独立重复单位。",
               "number": "7.3.3",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -4149,14 +4149,14 @@
           "id": "7.4",
           "title": "非线性高斯滤波",
           "url": "/chapters/07-04-非线性高斯滤波/",
-          "goals": "实现扩展与无迹卡尔曼滤波（unscented Kalman filtering，UKF），解释局部线性化（linearization）和矩近似的不同误差来源。",
-          "prerequisites": "7.3、3.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解。",
+          "goals": "在平方观测中推导扩展与无迹更新，说明局部切线、矩传播和单高斯后验表示的不同误差。",
+          "prerequisites": "7.3、3.4；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、多元高斯条件分布、块协方差与矩阵分解。",
           "knowledge": [
-            "由一阶线性化得到扩展卡尔曼滤波（extended Kalman filter，EKF），保留雅可比求值位置",
-            "由确定性采样（sampling）点传播均值与协方差，建立无迹卡尔曼滤波（unscented Kalman filter，UKF）及权重约定",
-            "在同一非线性观测模型（model）比较近似误差、初值（initial condition）与噪声；用线性退化情形回归检查"
+            "用零点导数展示EKF遗漏幅度信息，再在饱和动态与平方读数中推导预测和更新",
+            "手算三点的平均平方，解释矩阵平方根列和均值、协方差权重",
+            "比较解析预测矩、两种高斯近似及网格后验，检查线性情形和积分设置"
           ],
-          "focus": "比较局部线性化与代表点传播；观察非线性观测（observation）对均值、协方差和估计偏差的影响。",
+          "focus": "导数求值时刻与位置；代表点的两套权重；零均值为何仍可能对应变化后的双峰后验。",
           "available": true,
           "lessons": [
             {
@@ -4164,7 +4164,7 @@
               "chapter_id": "7.4",
               "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/01-局部线性化与扩展滤波.ipynb",
               "title": "局部线性化与扩展滤波",
-              "outcome": "推导EKF并保留雅可比求值位置，解释局部近似失效。",
+              "outcome": "在预测均值处展开平方观测，用零导数例子解释局部近似怎样遗漏幅度信息。",
               "number": "7.4.1",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -4200,7 +4200,7 @@
               "chapter_id": "7.4",
               "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/02-无迹变换与后验形状.ipynb",
               "title": "无迹变换与后验形状",
-              "outcome": "构造确定性采样点，比较UKF矩近似、EKF与低维积分后验。",
+              "outcome": "用三点传播平方函数，核对两套权重与解析矩，再比较单高斯近似和双峰后验。",
               "number": "7.4.2",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -4244,14 +4244,14 @@
           "id": "7.5",
           "title": "粒子滤波",
           "url": "/chapters/07-05-粒子滤波/",
-          "goals": "以带权样本近似滤波后验（posterior），计算重要性权重、有效样本量并执行重采样（resampling）。",
-          "prerequisites": "7.2、5.1、7.4；数学：事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、条件概率（conditional probability）、条件期望（conditional expectation）与分组加权平均、Bayes 公式、似然（likelihood）、后验及标量高斯条件更新、状态空间（state space）的条件独立（conditional independence）、概率（probability）分解与边缘化、重要性采样（importance sampling，IS）、自归一化权重、重采样与权重有效样本量。",
+          "goals": "从三位置的目标与提议比值推导稳定权重，将传播、加权和重采样（resampling）接入序列，并评价固定观测下的随机近似。",
+          "prerequisites": "7.2、5.1、7.4；数学：事件、随机变量、离散/连续分布、抽样和 Monte Carlo、条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、状态空间的条件独立、概率分解与边缘化、重要性采样（importance sampling，IS）、自归一化权重、重采样与权重有效样本量。",
           "knowledge": [
-            "从期望（expectation）积分引入重要性采样（importance sampling）与自归一化权重",
-            "建立自助粒子滤波（bootstrap particle filter）的传播、观测（observation）加权和重采样步骤",
-            "计算有效样本量（effective sample size，ESS），区分权重退化、样本贫化和模型（model）错误"
+            "手算同一提议样本的概率比与均值，连接期望比值、自归一化偏差和对数平移",
+            "用双峰更新比较带权粒子与积分，解释ESS不能检查支持遗漏",
+            "从转移提议推导旧权重乘似然，手算严格累计规则，比较100与500粒子各20次相同观测下的波动及预算"
           ],
-          "focus": "用粒子位置与权重表示后验；理解权重退化、有效样本量和重采样的分工。",
+          "focus": "有限样本加权均值与精确目标均值的差别；支持遗漏、权重集中与祖先重复分别需要什么检查。",
           "available": true,
           "lessons": [
             {
@@ -4259,7 +4259,7 @@
               "chapter_id": "7.5",
               "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/01-重要性采样与稳定权重.ipynb",
               "title": "重要性采样与稳定权重",
-              "outcome": "从期望积分推导重要性权重，解释自归一化与提议支持条件。",
+              "outcome": "从目标与提议的比值手算权重，解释稳定归一化、支持遗漏与ESS的检查范围。",
               "number": "7.5.1",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -4295,7 +4295,7 @@
               "chapter_id": "7.5",
               "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/02-粒子传播、退化与重采样.ipynb",
               "title": "粒子传播、退化与重采样",
-              "outcome": "实现自助粒子滤波，比较ESS、样本贫化及固定预算下的重复误差。",
+              "outcome": "按传播、加权与阈值重采样处理序列，比较不同祖先数和20次运行的近似波动。",
               "number": "7.5.2",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -4339,14 +4339,14 @@
           "id": "7.6",
           "title": "平滑与缺测处理",
           "url": "/chapters/07-06-平滑与缺测处理/",
-          "goals": "区分预测、滤波和平滑，利用后续观测（observation）修正历史状态（state），同时保持在线任务的时间边界。",
-          "prerequisites": "7.3、7.5；数学：状态空间（state space）的条件独立（conditional independence）、概率（probability）分解与边缘化、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解。",
+          "goals": "按各时刻可用读数区分预测、滤波与平滑，推导有限状态和线性高斯后向递推，重建连续缺测历史。",
+          "prerequisites": "7.3、7.5；数学：状态空间的条件独立、概率分解与边缘化、多元高斯条件分布、块协方差与矩阵分解。",
           "knowledge": [
-            "在有限隐藏状态模型（model）推导前向—后向平滑",
-            "推导线性高斯的 Rauch–Tung–Striebel 平滑（Rauch–Tung–Striebel smoother，RTS smoother）与终端条件",
-            "比较连续缺测、观测恢复和离线重建；非线性/粒子平滑列为拓展"
+            "从四项细胞标记构造后向信息，与前向概率相乘，并枚举整段路径的各时刻边缘",
+            "手算一维后向修正，由相邻联合高斯及条件期望、全方差关系推导RTS",
+            "对两室连续缺测比较滤波和平滑，用整段联合条件结果核对均值与协方差，说明理论不确定性与单次误差的区别"
           ],
-          "focus": "区分预测、滤波和平滑所使用的观测；在缺测时继续预测，用后续读数修正历史状态。",
+          "focus": "未来信息从t+1进入；RTS使用下一预测而非当前预测；协方差顺序、实际误差和实时用途怎样分别解释。",
           "available": true,
           "lessons": [
             {
@@ -4354,7 +4354,7 @@
               "chapter_id": "7.6",
               "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/01-前向后向与未来信息.ipynb",
               "title": "前向后向与未来信息",
-              "outcome": "从联合路径推导有限状态平滑，并保持在线和离线的信息边界。",
+              "outcome": "按时刻汇总未来标记信息，把前向滤波与后向向量相乘，用整段路径核对平滑。",
               "number": "7.6.1",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -4390,7 +4390,7 @@
               "chapter_id": "7.6",
               "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.ipynb",
               "title": "RTS平滑与连续缺测",
-              "outcome": "推导线性高斯后向平滑，检验末端一致性、缺测和联合条件参照。",
+              "outcome": "从相邻状态的条件关系推导RTS，用后续读数重建连续缺测，并与整段联合高斯比较。",
               "number": "7.6.2",
               "visualization": "web/estimation/index.html",
               "questions": [
@@ -4430,14 +4430,13 @@
         "assessment": true,
         "title": "部分观测下的状态恢复",
         "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/",
-        "goals": "建立状态（state）恢复问题，推导并计算滤波与平滑，解释近似和观测（observation）失效。",
-        "prerequisites": "本篇7.1—7.6。",
-        "focus": "信息边界、条件概率（conditional probability）、协方差（covariance）、近似形状与独立核验。",
+        "goals": "根据传感器、观测时刻和近似形状选择估计方法，计算后验并解释各项结果的条件。",
+        "prerequisites": "本篇的状态与观测模型、贝叶斯递推（Bayesian recursion）、线性及非线性滤波、粒子方法与固定区间平滑。",
+        "focus": "先辨认状态位置与当前可用读数，再计算；用观测方向和后验形状解释估计的缺口。",
         "knowledge": [
-          "模型（model）与传感器 → 可区分状态",
-          "预测与更新 → 离散及Gaussian递推",
-          "非线性与多峰 → 近似和粒子",
-          "未来信息与缺测 → 离线平滑及独立验证"
+          "比较第一室与总量读数能区分哪些两室状态，再按观测到达顺序更新",
+          "用各题独立输入计算隐藏状态概率、线性高斯均值协方差及粒子权重",
+          "区分实时与整段观测结果，解释缺测重建、双峰遗漏和不可观方向"
         ],
         "lessons": [
           {
@@ -4445,18 +4444,17 @@
             "chapter_id": "7.summary",
             "path": "notebooks/07-状态估计与贝叶斯滤波/07-篇末综合/01-部分观测下的状态恢复.ipynb",
             "title": "部分观测下的状态恢复",
-            "outcome": "建立估计问题，计算滤波与平滑，诊断近似和观测失效。",
+            "outcome": "根据传感器、观测时刻和近似形状选择估计方法，计算后验并解释各项结果的条件。",
             "number": "篇末综合",
             "visualization": null,
             "overview": {
-              "goals": "建立状态恢复问题，推导并计算滤波与平滑，解释近似和观测失效。",
-              "prerequisites": "本篇7.1—7.6。",
-              "focus": "信息边界、条件概率、协方差、近似形状与独立核验。",
+              "goals": "根据传感器、观测时刻和近似形状选择估计方法，计算后验并解释各项结果的条件。",
+              "prerequisites": "本篇的状态与观测模型、贝叶斯递推、线性及非线性滤波、粒子方法与固定区间平滑。",
+              "focus": "先辨认状态位置与当前可用读数，再计算；用观测方向和后验形状解释估计的缺口。",
               "knowledge": [
-                "模型与传感器 → 可区分状态",
-                "预测与更新 → 离散及Gaussian递推",
-                "非线性与多峰 → 近似和粒子",
-                "未来信息与缺测 → 离线平滑及独立验证"
+                "比较第一室与总量读数能区分哪些两室状态，再按观测到达顺序更新",
+                "用各题独立输入计算隐藏状态概率、线性高斯均值协方差及粒子权重",
+                "区分实时与整段观测结果，解释缺测重建、双峰遗漏和不可观方向"
               ]
             },
             "questions": [

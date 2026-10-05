@@ -1,0 +1,764 @@
+{
+  "date": "2026-10-06",
+  "baseline": "4df1d81a3f9d1b3af09fea28a68958faeaa774a6",
+  "scope": "Part 7 and explicitly dispatched Part 6 mathematical markup and ARX time labels; pending unified user reading acceptance",
+  "notebooks": [
+    {
+      "id": "P07-C01-S01",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb",
+      "sha256": "8d1788d6cc96c092b4bf1da88e9ce18afe11eae186b966ec45ab861ecc6954a6",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "04645001067b0224dbddff400a099d8adcc6587ef34758c758412713936e2907"
+    },
+    {
+      "id": "P07-C01-S02",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/02-传感器与可区分的状态.ipynb",
+      "sha256": "8dc8dedd16cd5283906a8c923a090035573863749b5e43ab27b1d4b835e2fc7b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "dd3c36eb4c43145c4e51296f2fc384b5498605c47cbcd766e9812cd6d13cfddd"
+    },
+    {
+      "id": "P07-C02-S01",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/01-从条件概率到预测与更新.ipynb",
+      "sha256": "a822969d60e320e633bcadf1722059f759608dccded059baf0a97c613d2a45fa",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "9039e0469a5f0d88bc522b903d20ac70ac2352d3a446d1f423d97c6dbd87a30f"
+    },
+    {
+      "id": "P07-C02-S02",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/02-隐状态序列与路径枚举.ipynb",
+      "sha256": "8945de8d1ef96a73a35f8ad8bb683c7d2ddc4ca5b34138eff0fd57efbe3b6f31",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "d792ccf0a19da26b82c28557f85ac7edb49060082ef3959a92feb861d5bc9d40"
+    },
+    {
+      "id": "P07-C03-S01",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/01-多元高斯与条件分布.ipynb",
+      "sha256": "8a7c3416b5ac80179747aaf3e60f59693009474e9b9a3a62edc1f3de4c2d9ce9",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "082440834dea39763bad72ac197e775be3d74d51046e6246ba13a7af90d33426"
+    },
+    {
+      "id": "P07-C03-S02",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.ipynb",
+      "sha256": "b772bf0d38ab2df8e1bb43f79b9a3bb95f78e91aea73770e6d020a6b55b09a92",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "08406dbd1a7974ebc9088e31d7847875a0801531ce427a764633f0f7d0d7f7a6"
+    },
+    {
+      "id": "P07-C03-S03",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/03-创新、误差与区间覆盖.ipynb",
+      "sha256": "da5d8a85f54fe1ebbbd140341be02cacc382b00838139fdbd640d5529f13c81f",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b830dee13d7ac6b00d96108ed48b5087eb1c078cebc8554e26295649f0ec2bf0"
+    },
+    {
+      "id": "P07-C04-S01",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/01-局部线性化与扩展滤波.ipynb",
+      "sha256": "c8f435c5604b41000fb3aeb94c192c72d29f602a741cf666e1393c7350659a4f",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "3d0e23fe47f2acf134a0832cf60cabf07e2f56ffb9105b8ccec270233054c354"
+    },
+    {
+      "id": "P07-C04-S02",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/02-无迹变换与后验形状.ipynb",
+      "sha256": "fa4a7d9db8cdf0d63bd82e2051dbd11d219c5c369f3f07740ec4876060cf69c7",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "431a6363fe3e7d39ac7814ff41098435a7e9723c2efddf0f8ae16a042a9cdc81"
+    },
+    {
+      "id": "P07-C05-S01",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/01-重要性采样与稳定权重.ipynb",
+      "sha256": "635b5f09758f6227ddd10efd56c3f7ecd1793cea1d5f6e3bba73a7f459785a51",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "de2c2cac187ad024f5466b6eb01f8f3fa32de92a3ff0f970c7714569a7352029"
+    },
+    {
+      "id": "P07-C05-S02",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/02-粒子传播、退化与重采样.ipynb",
+      "sha256": "6c45a018310ba5431057ed3f85b825601c745e1be8041b2ec21cf5de9d89561b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "5edc567cacc6becaf7f3b3bd859028b5afe1d7f2747b7bbcbf5c8d01e8f48913"
+    },
+    {
+      "id": "P07-C06-S01",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/01-前向后向与未来信息.ipynb",
+      "sha256": "f6ec33371a328961832966439c9c65c21b6ce6fff07b115fa30ab4f92d80014b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "ab7dde9965f606fa906d9a6cb979cdf4cb50885e690fe93e34b387b3fe582fb9"
+    },
+    {
+      "id": "P07-C06-S02",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.ipynb",
+      "sha256": "f98f72764d828cb73d995bf9132fb8f16f3294b582a780e132eb1b3a8528a1e4",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "bdcd940621e48947626a73e86f5ca2e0d010a59c945c1659071511ac75d92ca5"
+    },
+    {
+      "id": "P07-SUMMARY",
+      "path": "notebooks/07-状态估计与贝叶斯滤波/07-篇末综合/01-部分观测下的状态恢复.ipynb",
+      "sha256": "5663a855b032166137a4be4a3a40c962277435a28c2e7b1bdf5926c9b196cd48",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "359cfde5eb0dde06d11f8a16958f7d274e9f2e67304ff486d7d6dc3bbae3738b"
+    }
+  ],
+  "prior_part_amendments": [
+    {
+      "id": "P06-C01-S01",
+      "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb",
+      "changed_markdown_cells": [
+        4,
+        6,
+        7
+      ],
+      "sha256": "4e5cfd775bc1fa3b3262b41d5bcbc1af239c6cc1e19211ebac58e474a9af32ab",
+      "code_and_outputs_preserved": true
+    },
+    {
+      "id": "P06-C01-S02",
+      "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb",
+      "changed_markdown_cells": [
+        6
+      ],
+      "sha256": "532c8fd4cc95d232fabb4008e0d4795c0cc228f3fe49194abdb7fe7fc96dfe7f",
+      "code_and_outputs_preserved": true
+    },
+    {
+      "id": "P06-C05-S01",
+      "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb",
+      "changed_markdown_cells": [
+        4
+      ],
+      "sha256": "81863640fdc34963d10c6ae8e32d9f997e054b19add92ab484a42cf7915c3dea",
+      "code_and_outputs_preserved": true
+    }
+  ],
+  "questions": {
+    "reviewed": 63,
+    "choice": 46,
+    "python": 17,
+    "wording_changed": 63,
+    "wording_changed_ids": [
+      "p07-state-readings",
+      "p07-noise-location",
+      "p07-state-parameter",
+      "p07-independence",
+      "p07-observability",
+      "p07-sum-sensor",
+      "p07-conditioning",
+      "p07-sampling-observation",
+      "p07-bayes-sequence",
+      "p07-evidence-normalization",
+      "p07-missing-not-zero",
+      "p07-zero-evidence",
+      "p07-path-posterior",
+      "p07-row-transition",
+      "p07-path-budget",
+      "p07-online-prefix",
+      "p07-scalar-gaussian",
+      "p07-covariance-geometry",
+      "p07-conditional-cross",
+      "p07-factorization",
+      "p07-kalman-sequence",
+      "p07-kalman-timing",
+      "p07-joseph-noise",
+      "p07-gaussian-exactness",
+      "p07-empty-observations",
+      "p07-coverage",
+      "p07-coverage-unit",
+      "p07-innovation-whiteness",
+      "p07-calibration-failure",
+      "p07-extended-update",
+      "p07-jacobian-location",
+      "p07-zero-gradient",
+      "p07-linear-limit",
+      "p07-unscented-moments",
+      "p07-sigma-weights",
+      "p07-moment-not-posterior",
+      "p07-grid-validation",
+      "p07-symmetric-posterior",
+      "p07-importance-weights",
+      "p07-proposal-support",
+      "p07-self-normalized",
+      "p07-log-shift",
+      "p07-particle-resampling",
+      "p07-ess-threshold",
+      "p07-ancestry-poverty",
+      "p07-bootstrap-proposal",
+      "p07-particle-comparison",
+      "p07-hmm-smoothing",
+      "p07-three-information-sets",
+      "p07-backward-index",
+      "p07-offline-online",
+      "p07-rts-backward",
+      "p07-terminal-equality",
+      "p07-covariance-order",
+      "p07-missing-gap",
+      "p07-cap-state-task",
+      "p07-cap-information",
+      "p07-cap-hidden-update",
+      "p07-cap-gaussian-filter",
+      "p07-cap-approximation",
+      "p07-cap-particle",
+      "p07-cap-smoothing",
+      "p07-cap-failure"
+    ],
+    "explanation_changed": 63,
+    "explanation_changed_ids": [
+      "p07-state-readings",
+      "p07-noise-location",
+      "p07-state-parameter",
+      "p07-independence",
+      "p07-observability",
+      "p07-sum-sensor",
+      "p07-conditioning",
+      "p07-sampling-observation",
+      "p07-bayes-sequence",
+      "p07-evidence-normalization",
+      "p07-missing-not-zero",
+      "p07-zero-evidence",
+      "p07-path-posterior",
+      "p07-row-transition",
+      "p07-path-budget",
+      "p07-online-prefix",
+      "p07-scalar-gaussian",
+      "p07-covariance-geometry",
+      "p07-conditional-cross",
+      "p07-factorization",
+      "p07-kalman-sequence",
+      "p07-kalman-timing",
+      "p07-joseph-noise",
+      "p07-gaussian-exactness",
+      "p07-empty-observations",
+      "p07-coverage",
+      "p07-coverage-unit",
+      "p07-innovation-whiteness",
+      "p07-calibration-failure",
+      "p07-extended-update",
+      "p07-jacobian-location",
+      "p07-zero-gradient",
+      "p07-linear-limit",
+      "p07-unscented-moments",
+      "p07-sigma-weights",
+      "p07-moment-not-posterior",
+      "p07-grid-validation",
+      "p07-symmetric-posterior",
+      "p07-importance-weights",
+      "p07-proposal-support",
+      "p07-self-normalized",
+      "p07-log-shift",
+      "p07-particle-resampling",
+      "p07-ess-threshold",
+      "p07-ancestry-poverty",
+      "p07-bootstrap-proposal",
+      "p07-particle-comparison",
+      "p07-hmm-smoothing",
+      "p07-three-information-sets",
+      "p07-backward-index",
+      "p07-offline-online",
+      "p07-rts-backward",
+      "p07-terminal-equality",
+      "p07-covariance-order",
+      "p07-missing-gap",
+      "p07-cap-state-task",
+      "p07-cap-information",
+      "p07-cap-hidden-update",
+      "p07-cap-gaussian-filter",
+      "p07-cap-approximation",
+      "p07-cap-particle",
+      "p07-cap-smoothing",
+      "p07-cap-failure"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Read-only unbound PracticeEngine.progress with original in-memory records and current bank/assessment; no constructor, judging or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_and_introduction_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_model_unchanged": true,
+    "web_controller_changes_exactly_match_display_text_replacements": true,
+    "official_checker_and_glossary_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "all_part06_math_spans_scanned": 16,
+    "part06_math_spans_formatted": 23,
+    "independent_hand_examples_and_algebra": [
+      "Two-room transition [6.8,3.2], invisible [1,-1] direction and recovery from y0/y1",
+      "Two-state Bayes prediction/update, three-state initial masses and future likelihood smoothing",
+      "Two-room conditional mean/covariance, Joseph measurement term and two-dimensional 95% threshold",
+      "Four independent error/coverage values and binomial standard error",
+      "Sigma-point order/two weights and exact Gaussian square moments",
+      "Self-normalized finite sample mean/ESS and systematic cumulative positions",
+      "RTS next-time prediction gains and capstone first measurement correction"
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    }
+  ],
+  "new_unresolved": [],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 140,
+    "core_changed": 126,
+    "exercise_cells_synchronized": 14
+  },
+  "teaching_check": {
+    "notebooks": 14,
+    "questions": 63,
+    "question_links": 63,
+    "issues": []
+  },
+  "teaching_check_method": "Existing check_teaching logic runs through a local wrapper. Actual Parts 0–6 and preceding Part 7 lessons supply seen vocabulary; exercises inherit their own lesson explanations, and overviews inherit earlier chapters. Original checker, glossary, first-use and part-range rules remain unchanged.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/07-01-状态空间与能观性/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-03-卡尔曼滤波/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-04-非线性高斯滤波/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-05-粒子滤波/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-06-平滑与缺测处理/",
+        "status": 200
+      },
+      {
+        "path": "/parts/07-状态估计与贝叶斯滤波/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-01-状态空间与能观性/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-03-卡尔曼滤波/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-04-非线性高斯滤波/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-05-粒子滤波/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/07-06-平滑与缺测处理/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p07-state-readings",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p07-bayes-sequence",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p07-scalar-gaussian",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p07-extended-update",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p07-importance-weights",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p07-hmm-smoothing",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p07-cap-smoothing",
+        "status": 200,
+        "latest_statement_and_version": true
+      }
+    ],
+    "served_catalog_and_controller_equal_current_files": true,
+    "html_rendered_without_execution": [
+      "P07-C01-S01",
+      "P07-C01-S02",
+      "P07-C02-S01",
+      "P07-C02-S02",
+      "P07-C03-S01",
+      "P07-C03-S02",
+      "P07-C03-S03",
+      "P07-C04-S01",
+      "P07-C04-S02",
+      "P07-C05-S01",
+      "P07-C05-S02",
+      "P07-C06-S01",
+      "P07-C06-S02",
+      "P07-SUMMARY",
+      "P06-C01-S01",
+      "P06-C01-S02",
+      "P06-C05-S01"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout, MathJax rendering or interaction behavior."
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_preliminaries/probability.html",
+      "focus": "Concrete random observation, computable example, distribution and conditioning, then code and repeated results."
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/03-Stats-Review-The-Most-Dangerous-Equation.html",
+      "focus": "Surprising observed comparison, distinguish estimates from uncertainty, then explain repeated data and intervals; no causal conclusions imported."
+    }
+  ],
+  "authorization": "Direct user authorization in the project implementation conversation permits sequential Parts 2–17 and final unified reading acceptance. Current dispatch is Part 7 plus Part 6 formula markup and ARX time labels. Normal commit/push is authorized, excluding records, environments, simulated data and temporary files; wait for Part 8 dispatch.",
+  "specific_prose_corrections": [
+    "State order, sensor coefficients, transition rows/columns and covariance blocks are explained before use; time 0 updates the initial distribution without an extra transition.",
+    "Bayes begins with masses [0.12,0.32], then transitions to the next time; independence, missingness and zero evidence remain explicit.",
+    "Conditional Gaussian and RTS connect the prior conditional-expectation/variance concepts to two-room calculations; Gaussian zero covariance is not generalized to non-Gaussian independence.",
+    "Zero-derivative square observations separate unchanged mean from changed variance/shape; sigma points have two explicit weight sets.",
+    "Finite proposal samples differ from complete discrete target probabilities; systematic resampling keeps old weights and strict cumulative rules; ESS differs from ancestor diversity.",
+    "RTS capstone returns now describe whole-record smoothing; ambiguous total differences become same total with different room differences.",
+    "Explore state names match notebook order rest/active/recovery. Closed-room shorthand is replaced with absence of external input/output and clearance; numerical model unchanged.",
+    "Part 6 contains only 23 formatted mathematical spans in sampling/causal averaging and ARX n=2/n=3 wording in three notebooks; all 16 Part 6 notebook math spans were scanned without code execution."
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part07-rewrite-20261006/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part07-rewrite-20261006/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part07-rewrite-20261006/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part07-rewrite-20261006/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/estimation/app.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "preview_check_correction": "Initial served-controller comparison failed because HTTP retained CRLF and Path.read_text normalized it. There were no differing lines and new prose was present. Normalizing line endings fixed the assertion; preview then passed without shipped-content changes or a second service refresh."
+}

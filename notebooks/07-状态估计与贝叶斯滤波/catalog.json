@@ -4,7 +4,7 @@
     "chapter_id": "7.1",
     "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb",
     "title": "从有噪读数建立状态模型",
-    "outcome": "区分状态、过程噪声和测量噪声，明确估计器能使用的信息。",
+    "outcome": "手算两室转移与读数，区分过程和测量误差，再说明预测均值与协方差的含义。",
     "number": "7.1.1",
     "visualization": "web/estimation/index.html"
   },
@@ -13,7 +13,7 @@
     "chapter_id": "7.1",
     "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/02-传感器与可区分的状态.ipynb",
     "title": "传感器与可区分的状态",
-    "outcome": "构造能观矩阵，解释秩、采样和噪声放大各自决定的问题。",
+    "outcome": "由两次读数恢复两室初态，比较第一室和总量传感器，并解释弱信息与采样间隔。",
     "number": "7.1.2",
     "visualization": "web/estimation/index.html"
   },
@@ -22,7 +22,7 @@
     "chapter_id": "7.2",
     "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/01-从条件概率到预测与更新.ipynb",
     "title": "从条件概率到预测与更新",
-    "outcome": "由边缘化和Bayes公式推导滤波，正确处理缺测和零证据。",
+    "outcome": "从两个隐藏状态的一次标记更新开始，连接转移、似然、证据与逐时刻后验。",
     "number": "7.2.1",
     "visualization": "web/estimation/index.html"
   },
@@ -31,7 +31,7 @@
     "chapter_id": "7.2",
     "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/02-隐状态序列与路径枚举.ipynb",
     "title": "隐状态序列与路径枚举",
-    "outcome": "在隐马尔可夫模型中实现在线递推，并用全路径枚举核验。",
+    "outcome": "把同末状态的路径概率相加，用枚举比较每个观测前缀，解释前向递推节省的计算。",
     "number": "7.2.2",
     "visualization": "web/estimation/index.html"
   },
@@ -40,7 +40,7 @@
     "chapter_id": "7.3",
     "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/01-多元高斯与条件分布.ipynb",
     "title": "多元高斯与条件分布",
-    "outcome": "解释协方差几何，从分块高斯推导条件均值和条件协方差。",
+    "outcome": "按位置解释协方差矩阵，手算两室的一次条件更新，再推导联合高斯的条件均值与协方差。",
     "number": "7.3.1",
     "visualization": "web/estimation/index.html"
   },
@@ -49,7 +49,7 @@
     "chapter_id": "7.3",
     "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.ipynb",
     "title": "线性高斯预测与观测更新",
-    "outcome": "从条件高斯推导Kalman递推，检验时刻约定与缺测分支。",
+    "outcome": "先预测再吸收当前读数，按室序计算创新与增益，说明独立噪声和缺测怎样进入协方差。",
     "number": "7.3.2",
     "visualization": "web/estimation/index.html"
   },
@@ -58,7 +58,7 @@
     "chapter_id": "7.3",
     "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/03-创新、误差与区间覆盖.ipynb",
     "title": "创新、误差与区间覆盖",
-    "outcome": "用独立重复检验创新和区间覆盖，区分误差与不确定性校准。",
+    "outcome": "对固定终点重复实验，分别计算误差、区间覆盖与创新，解释评价的独立重复单位。",
     "number": "7.3.3",
     "visualization": "web/estimation/index.html"
   },
@@ -67,7 +67,7 @@
     "chapter_id": "7.4",
     "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/01-局部线性化与扩展滤波.ipynb",
     "title": "局部线性化与扩展滤波",
-    "outcome": "推导EKF并保留雅可比求值位置，解释局部近似失效。",
+    "outcome": "在预测均值处展开平方观测，用零导数例子解释局部近似怎样遗漏幅度信息。",
     "number": "7.4.1",
     "visualization": "web/estimation/index.html"
   },
@@ -76,7 +76,7 @@
     "chapter_id": "7.4",
     "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/02-无迹变换与后验形状.ipynb",
     "title": "无迹变换与后验形状",
-    "outcome": "构造确定性采样点，比较UKF矩近似、EKF与低维积分后验。",
+    "outcome": "用三点传播平方函数，核对两套权重与解析矩，再比较单高斯近似和双峰后验。",
     "number": "7.4.2",
     "visualization": "web/estimation/index.html"
   },
@@ -85,7 +85,7 @@
     "chapter_id": "7.5",
     "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/01-重要性采样与稳定权重.ipynb",
     "title": "重要性采样与稳定权重",
-    "outcome": "从期望积分推导重要性权重，解释自归一化与提议支持条件。",
+    "outcome": "从目标与提议的比值手算权重，解释稳定归一化、支持遗漏与ESS的检查范围。",
     "number": "7.5.1",
     "visualization": "web/estimation/index.html"
   },
@@ -94,7 +94,7 @@
     "chapter_id": "7.5",
     "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/02-粒子传播、退化与重采样.ipynb",
     "title": "粒子传播、退化与重采样",
-    "outcome": "实现自助粒子滤波，比较ESS、样本贫化及固定预算下的重复误差。",
+    "outcome": "按传播、加权与阈值重采样处理序列，比较不同祖先数和20次运行的近似波动。",
     "number": "7.5.2",
     "visualization": "web/estimation/index.html"
   },
@@ -103,7 +103,7 @@
     "chapter_id": "7.6",
     "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/01-前向后向与未来信息.ipynb",
     "title": "前向后向与未来信息",
-    "outcome": "从联合路径推导有限状态平滑，并保持在线和离线的信息边界。",
+    "outcome": "按时刻汇总未来标记信息，把前向滤波与后向向量相乘，用整段路径核对平滑。",
     "number": "7.6.1",
     "visualization": "web/estimation/index.html"
   },
@@ -112,7 +112,7 @@
     "chapter_id": "7.6",
     "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.ipynb",
     "title": "RTS平滑与连续缺测",
-    "outcome": "推导线性高斯后向平滑，检验末端一致性、缺测和联合条件参照。",
+    "outcome": "从相邻状态的条件关系推导RTS，用后续读数重建连续缺测，并与整段联合高斯比较。",
     "number": "7.6.2",
     "visualization": "web/estimation/index.html"
   },
@@ -121,18 +121,17 @@
     "chapter_id": "7.summary",
     "path": "notebooks/07-状态估计与贝叶斯滤波/07-篇末综合/01-部分观测下的状态恢复.ipynb",
     "title": "部分观测下的状态恢复",
-    "outcome": "建立估计问题，计算滤波与平滑，诊断近似和观测失效。",
+    "outcome": "根据传感器、观测时刻和近似形状选择估计方法，计算后验并解释各项结果的条件。",
     "number": "篇末综合",
     "visualization": null,
     "overview": {
-      "goals": "建立状态恢复问题，推导并计算滤波与平滑，解释近似和观测失效。",
-      "prerequisites": "本篇7.1—7.6。",
-      "focus": "信息边界、条件概率、协方差、近似形状与独立核验。",
+      "goals": "根据传感器、观测时刻和近似形状选择估计方法，计算后验并解释各项结果的条件。",
+      "prerequisites": "本篇的状态与观测模型、贝叶斯递推、线性及非线性滤波、粒子方法与固定区间平滑。",
+      "focus": "先辨认状态位置与当前可用读数，再计算；用观测方向和后验形状解释估计的缺口。",
       "knowledge": [
-        "模型与传感器 → 可区分状态",
-        "预测与更新 → 离散及Gaussian递推",
-        "非线性与多峰 → 近似和粒子",
-        "未来信息与缺测 → 离线平滑及独立验证"
+        "比较第一室与总量读数能区分哪些两室状态，再按观测到达顺序更新",
+        "用各题独立输入计算隐藏状态概率、线性高斯均值协方差及粒子权重",
+        "区分实时与整段观测结果，解释缺测重建、双峰遗漏和不可观方向"
       ]
     }
   }
