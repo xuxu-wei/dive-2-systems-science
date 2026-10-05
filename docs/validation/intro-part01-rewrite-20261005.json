@@ -1,0 +1,194 @@
+{
+  "date": "2026-10-05",
+  "status": "delivered_pending_user_review",
+  "scope": [
+    "introduction",
+    "part01"
+  ],
+  "baseline_commits": [
+    "ad57a07",
+    "253a726"
+  ],
+  "execution": {
+    "introduction": {
+      "python": "3.13.2",
+      "platform": "Windows",
+      "packages": {
+        "numpy": "2.5.3",
+        "matplotlib": "3.11.2",
+        "nbclient": "0.11.0",
+        "nbformat": "5.11.1",
+        "nbconvert": "7.17.1",
+        "ipykernel": "7.3.0"
+      },
+      "notebooks": [
+        {
+          "id": "P00-C01-S01",
+          "path": "notebooks/00-导论/01-从生命现象认识系统.ipynb",
+          "seconds": 46.14,
+          "code_cells": 1,
+          "figures": 1,
+          "sha256": "cd5b0112e2979a55474ecd77f46df0993f86e10488fd8f37cb7eab79e787d6ba",
+          "passed": true
+        },
+        {
+          "id": "P00-C01-S02",
+          "path": "notebooks/00-导论/02-系统科学关心什么如何发展.ipynb",
+          "seconds": 30.13,
+          "code_cells": 1,
+          "figures": 1,
+          "sha256": "1f8b9837850b446a0e9c4faf883487ff7a7f908d90aef45f81057b4a95ec4416",
+          "passed": true
+        },
+        {
+          "id": "P00-C01-S03",
+          "path": "notebooks/00-导论/03-从系统问题走向计算与证据.ipynb",
+          "seconds": 30.76,
+          "code_cells": 4,
+          "figures": 2,
+          "sha256": "39adcb4842832d53dd71cee63f54388de60c3a892dacc0609c9c0f02e463447e",
+          "passed": true
+        }
+      ],
+      "normalization": "Only the hidden local_service cell was restored to its generated initializer after execution.",
+      "figure_correction": "P00-C01-S03 executed again after fixing the chain diagram axis limits."
+    },
+    "part01": {
+      "python": "3.13.2",
+      "platform": "Windows",
+      "packages": {
+        "numpy": "2.5.3",
+        "matplotlib": "3.11.2",
+        "nbclient": "0.11.0",
+        "nbformat": "5.11.1",
+        "nbconvert": "7.17.1",
+        "ipykernel": "7.3.0"
+      },
+      "notebooks": [
+        {
+          "id": "P01-C01-S01",
+          "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.ipynb",
+          "seconds": 33.45,
+          "code_cells": 3,
+          "figures": 1,
+          "sha256": "f98d31507d5d079f43706c8e9caedb42400c5c816ce62fe09142bf0f70805b19",
+          "passed": true
+        },
+        {
+          "id": "P01-C01-S02",
+          "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.ipynb",
+          "seconds": 35.94,
+          "code_cells": 3,
+          "figures": 1,
+          "sha256": "db5692ad8f6e51744c798c3b07631e28ad280b3606be1ba8c4cbee332c95b73f",
+          "passed": true
+        },
+        {
+          "id": "P01-C02-S01",
+          "path": "notebooks/01-看见系统/02-存量流量与守恒/01-一段时间的物质收支.ipynb",
+          "seconds": 52.56,
+          "code_cells": 3,
+          "figures": 1,
+          "sha256": "17551174f037c442df2b485bd3d5777946a6aa5511b2a166c5495f82b929a68c",
+          "passed": true
+        },
+        {
+          "id": "P01-C02-S02",
+          "path": "notebooks/01-看见系统/02-存量流量与守恒/02-内部交换与整体守恒.ipynb",
+          "seconds": 46.6,
+          "code_cells": 4,
+          "figures": 1,
+          "sha256": "a15d76d8aaca8f8f5e9911571e42123c6a49b07b75fd8894aa153db23ed2349c",
+          "passed": true
+        },
+        {
+          "id": "P01-C03-S01",
+          "path": "notebooks/01-看见系统/03-反馈延迟与层级/01-作用方向与反馈回路.ipynb",
+          "seconds": 25.62,
+          "code_cells": 3,
+          "figures": 1,
+          "sha256": "26dde27bc16fc6b29b26c20c5d91851cb0d613350a42cbb205f7822422560b72",
+          "passed": true
+        },
+        {
+          "id": "P01-C03-S02",
+          "path": "notebooks/01-看见系统/03-反馈延迟与层级/02-延迟怎样改变调节.ipynb",
+          "seconds": 26.66,
+          "code_cells": 3,
+          "figures": 1,
+          "sha256": "05b56b951632c03872a831a696bcc374c2eced6149060334fc01fd9aad728858",
+          "passed": true
+        },
+        {
+          "id": "P01-C04-S01",
+          "path": "notebooks/01-看见系统/04-模型假设与计算实验/01-规则参数与初值.ipynb",
+          "seconds": 18.55,
+          "code_cells": 3,
+          "figures": 1,
+          "sha256": "23e6cee4bcd3977b2aeedcb9fc4cb7e170284eaf8f59f995bd83899fbd3be4fa",
+          "passed": true
+        },
+        {
+          "id": "P01-C04-S02",
+          "path": "notebooks/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.ipynb",
+          "seconds": 19.77,
+          "code_cells": 3,
+          "figures": 1,
+          "sha256": "97216a997a69af3c7b2c96ea22a5ba3bcb96b944176d67a053f4b837b7116217",
+          "passed": true
+        },
+        {
+          "id": "P01-SUMMARY",
+          "path": "notebooks/01-看见系统/05-篇末综合/01-系统边界与实验设计.ipynb",
+          "seconds": 17.59,
+          "code_cells": 3,
+          "figures": 1,
+          "sha256": "4fc9e77a778491fc5355e649d9be017f4d2f25c9eb134a87e21e84d50505fb47",
+          "passed": true
+        }
+      ],
+      "normalization": "Only the hidden local_service cell was restored to its generated initializer after execution."
+    }
+  },
+  "teaching": {
+    "introduction": {
+      "notebooks": 3,
+      "questions": 9,
+      "question_links": 9,
+      "issues": []
+    },
+    "part01": {
+      "notebooks": 9,
+      "questions": 41,
+      "question_links": 41,
+      "issues": []
+    }
+  },
+  "targeted_python_tests": {
+    "passed": 34,
+    "deselected": 15,
+    "reason": "Unchanged complete subprocess judging cases excluded",
+    "warning": "pytest cache write permission warning"
+  },
+  "javascript_tests": {
+    "passed": 8
+  },
+  "figure_review": {
+    "reviewed": 13,
+    "correction": "Chain connection diagram limits corrected and P00-C01-S03 executed again"
+  },
+  "http_routes": {
+    "passed": 6,
+    "browser_click_review": false
+  },
+  "preservation": {
+    "personal_records_unchanged": 48,
+    "question_ids_versions_answers_numeric_contracts_samples_unchanged": true,
+    "course_parts_02_to_17_unchanged": true,
+    "AGENTS_md_unchanged": true
+  },
+  "limits": [
+    "User review pending",
+    "No target-reader learning-effect evaluation"
+  ]
+}

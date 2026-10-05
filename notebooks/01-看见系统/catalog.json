@@ -4,7 +4,7 @@
     "chapter_id": "1.1",
     "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.ipynb",
     "title": "边界、状态与观测",
-    "outcome": "把现象改写成有范围的问题，区分系统内部的量与实际读数。",
+    "outcome": "确定研究对象与边界，区分被测量和读数，并解释已知偏移怎样用于校正。",
     "number": "1.1.1",
     "visualization": null
   },
@@ -13,7 +13,7 @@
     "chapter_id": "1.1",
     "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.ipynb",
     "title": "单位、量纲与时间序列",
-    "outcome": "把数值连同单位与时刻一起解释，完成坐标换算并识别观测的限制。",
+    "outcome": "换算同一实验的时间单位，读懂观测时刻，并用完整算例区分总量与浓度。",
     "number": "1.1.2",
     "visualization": null
   },
@@ -22,7 +22,7 @@
     "chapter_id": "1.2",
     "path": "notebooks/01-看见系统/02-存量流量与守恒/01-一段时间的物质收支.ipynb",
     "title": "一段时间的物质收支",
-    "outcome": "从每单位时间的流入和流出得到累计变化，再逐段建立可核对的账目。",
+    "outcome": "从每单位时间的流入、流出逐笔算出存量，再用累计总账核对逐段计算。",
     "number": "1.2.1",
     "visualization": "web/seeing-systems/index.html"
   },
@@ -31,7 +31,7 @@
     "chapter_id": "1.2",
     "path": "notebooks/01-看见系统/02-存量流量与守恒/02-内部交换与整体守恒.ipynb",
     "title": "内部交换与整体守恒",
-    "outcome": "分别记两区的账，再通过内部交换抵消验证整体收支。",
+    "outcome": "分别为两区记账，再把两式相加，解释内部转移怎样抵消以及总量为何不说明分布。",
     "number": "1.2.2",
     "visualization": "web/seeing-systems/index.html"
   },
@@ -40,7 +40,7 @@
     "chapter_id": "1.3",
     "path": "notebooks/01-看见系统/03-反馈延迟与层级/01-作用方向与反馈回路.ipynb",
     "title": "作用方向与反馈回路",
-    "outcome": "把闭合的局部作用连接起来，区分作用方向、实际轨迹与机制证据。",
+    "outcome": "沿一次扰动判断反馈回路的方向，并检查调节怎样同时影响其他变量。",
     "number": "1.3.1",
     "visualization": "web/seeing-systems/index.html"
   },
@@ -49,7 +49,7 @@
     "chapter_id": "1.3",
     "path": "notebooks/01-看见系统/03-反馈延迟与层级/02-延迟怎样改变调节.ipynb",
     "title": "延迟怎样改变调节",
-    "outcome": "固定其他条件比较即时和延迟调节，用轨迹与转向统计限定结论。",
+    "outcome": "沿历史时间线手算调节，比较即时与延迟的曲线，解释过冲和转向怎样发生。",
     "number": "1.3.2",
     "visualization": "web/seeing-systems/index.html"
   },
@@ -58,7 +58,7 @@
     "chapter_id": "1.4",
     "path": "notebooks/01-看见系统/04-模型假设与计算实验/01-规则参数与初值.ipynb",
     "title": "规则、参数与初值",
-    "outcome": "明确两种清除假设的区别，在同一条件下计算并检查适用区间。",
+    "outcome": "比较固定量与固定比例清除，区分规则、参数和初值，并检验耗尽时的适用范围。",
     "number": "1.4.1",
     "visualization": null
   },
@@ -67,7 +67,7 @@
     "chapter_id": "1.4",
     "path": "notebooks/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.ipynb",
     "title": "设计可以区分解释的实验",
-    "outcome": "保留事前预测，选择公平对照，并说明反例究竟否定了什么。",
+    "outcome": "选择能拉开候选预测的实验，结合测量精度解释新观测支持或否定了什么。",
     "number": "1.4.2",
     "visualization": null
   },
@@ -76,13 +76,13 @@
     "chapter_id": "1.summary",
     "path": "notebooks/01-看见系统/05-篇末综合/01-系统边界与实验设计.ipynb",
     "title": "系统边界与实验设计",
-    "outcome": "把边界、收支、反馈与候选模型比较用于三个相邻的生命系统情境。",
+    "outcome": "在细胞计数、温度调节和清除实验中，综合使用边界、收支、反馈与预测比较。",
     "number": "篇末综合",
     "visualization": null,
     "overview": {
-      "goals": "综合辨认边界、变量与收支（mass balance），比较候选规则，解释证据范围。",
+      "goals": "确定细胞计数的边界，计算物质收支（mass balance），并用新的观察比较候选解释。",
       "prerequisites": "本篇四章。",
-      "focus": "分开迁移与内部生成、局部与整体、计算核验与机制验证。",
+      "focus": "将可见数量的变化拆成迁入、迁出和新增；同时检查温度与失水；先校准读数，再判断收支还缺少什么。",
       "knowledge": [
         "视野计数 → 选择边界与生成项",
         "温度调节 → 核对反馈（feedback）与旁路",

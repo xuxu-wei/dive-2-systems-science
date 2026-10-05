@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "df6884fdbb7a46a3dfaaca105842bcfca1036a37748d7bfe84eba96d7f9b3e8c",
+    "catalogSha256": "0efc8c4581a716841eee3819f671c996c4809c71b34762c29a2d139e471c22f0",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -92,7 +92,7 @@
       "parentId": "introduction",
       "url": "/introduction/practice/?question=p00-recovery",
       "number": "导论·1",
-      "description": "从运动后恢复等现象中，识别组成、相互作用、环境和整体行为之间的问题。",
+      "description": "沿着运动后热量的去向，说明组成之间的联系和环境条件为什么需要一起研究。",
       "categories": [
         "method",
         "evolution",
@@ -123,7 +123,7 @@
       "parentId": "introduction",
       "url": "/introduction/practice/?question=p00-traditions",
       "number": "导论·2",
-      "description": "用五类问题理解学科全景，辨认主要思想的发展与互补关系。",
+      "description": "从恢复研究中的困难理解各类方法，说明不同学术传统怎样配合回答问题。",
       "categories": [
         "method",
         "evolution",
@@ -154,7 +154,7 @@
       "parentId": "introduction",
       "url": "/introduction/practice/?question=p00-rounds",
       "number": "导论·3",
-      "description": "手算和实现六人消息传播，用对照实验限定结论，并找到全书后续学习位置。",
+      "description": "逐轮计算六人消息传播，解释同步更新与起点怎样影响结果，并据此限定结论。",
       "categories": [
         "method",
         "evolution",
@@ -291,7 +291,7 @@
       "number": "1.1.1",
       "parentId": "1.1",
       "url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-boundary",
-      "description": "把现象改写成有范围的问题，区分系统内部的量与实际读数。",
+      "description": "确定研究对象与边界，区分被测量和读数，并解释已知偏移怎样用于校正。",
       "categories": [
         "method",
         "cognition"
@@ -320,7 +320,7 @@
       "number": "1.1.1",
       "parentId": "1.1",
       "url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-boundary",
-      "description": "把现象改写成有范围的问题，区分系统内部的量与实际读数。",
+      "description": "确定研究对象与边界，区分被测量和读数，并解释已知偏移怎样用于校正。",
       "categories": [
         "method",
         "cognition"
@@ -349,7 +349,7 @@
       "number": "1.1.1",
       "parentId": "1.1",
       "url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-boundary",
-      "description": "把现象改写成有范围的问题，区分系统内部的量与实际读数。",
+      "description": "确定研究对象与边界，区分被测量和读数，并解释已知偏移怎样用于校正。",
       "categories": [
         "method",
         "cognition"
@@ -378,7 +378,7 @@
       "number": "1.1.2",
       "parentId": "1.1",
       "url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units",
-      "description": "把数值连同单位与时刻一起解释，完成坐标换算并识别观测的限制。",
+      "description": "换算同一实验的时间单位，读懂观测时刻，并用完整算例区分总量与浓度。",
       "categories": [
         "method",
         "cognition"
@@ -407,7 +407,7 @@
       "number": "1.1.2",
       "parentId": "1.1",
       "url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units",
-      "description": "把数值连同单位与时刻一起解释，完成坐标换算并识别观测的限制。",
+      "description": "换算同一实验的时间单位，读懂观测时刻，并用完整算例区分总量与浓度。",
       "categories": [
         "method",
         "cognition"
@@ -436,7 +436,7 @@
       "number": "1.1.2",
       "parentId": "1.1",
       "url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units",
-      "description": "把数值连同单位与时刻一起解释，完成坐标换算并识别观测的限制。",
+      "description": "换算同一实验的时间单位，读懂观测时刻，并用完整算例区分总量与浓度。",
       "categories": [
         "method",
         "cognition"
@@ -499,7 +499,7 @@
       "number": "1.2.1",
       "parentId": "1.2",
       "url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount",
-      "description": "从每单位时间的流入和流出得到累计变化，再逐段建立可核对的账目。",
+      "description": "从每单位时间的流入、流出逐笔算出存量，再用累计总账核对逐段计算。",
       "categories": [
         "method",
         "cognition"
@@ -528,7 +528,7 @@
       "number": "1.2.1",
       "parentId": "1.2",
       "url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount",
-      "description": "从每单位时间的流入和流出得到累计变化，再逐段建立可核对的账目。",
+      "description": "从每单位时间的流入、流出逐笔算出存量，再用累计总账核对逐段计算。",
       "categories": [
         "method",
         "cognition"
@@ -557,7 +557,7 @@
       "number": "1.2.1",
       "parentId": "1.2",
       "url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount",
-      "description": "从每单位时间的流入和流出得到累计变化，再逐段建立可核对的账目。",
+      "description": "从每单位时间的流入、流出逐笔算出存量，再用累计总账核对逐段计算。",
       "categories": [
         "method",
         "cognition"
@@ -586,7 +586,7 @@
       "number": "1.2.2",
       "parentId": "1.2",
       "url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-internal-transfer",
-      "description": "分别记两区的账，再通过内部交换抵消验证整体收支。",
+      "description": "分别为两区记账，再把两式相加，解释内部转移怎样抵消以及总量为何不说明分布。",
       "categories": [
         "method",
         "cognition"
@@ -615,7 +615,7 @@
       "number": "1.2.2",
       "parentId": "1.2",
       "url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-internal-transfer",
-      "description": "分别记两区的账，再通过内部交换抵消验证整体收支。",
+      "description": "分别为两区记账，再把两式相加，解释内部转移怎样抵消以及总量为何不说明分布。",
       "categories": [
         "method",
         "cognition"
@@ -679,7 +679,7 @@
       "number": "1.3.1",
       "parentId": "1.3",
       "url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-signed-arrow",
-      "description": "把闭合的局部作用连接起来，区分作用方向、实际轨迹与机制证据。",
+      "description": "沿一次扰动判断反馈回路的方向，并检查调节怎样同时影响其他变量。",
       "categories": [
         "method",
         "cognition"
@@ -708,7 +708,7 @@
       "number": "1.3.1",
       "parentId": "1.3",
       "url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-signed-arrow",
-      "description": "把闭合的局部作用连接起来，区分作用方向、实际轨迹与机制证据。",
+      "description": "沿一次扰动判断反馈回路的方向，并检查调节怎样同时影响其他变量。",
       "categories": [
         "method",
         "cognition"
@@ -737,7 +737,7 @@
       "number": "1.3.1",
       "parentId": "1.3",
       "url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-signed-arrow",
-      "description": "把闭合的局部作用连接起来，区分作用方向、实际轨迹与机制证据。",
+      "description": "沿一次扰动判断反馈回路的方向，并检查调节怎样同时影响其他变量。",
       "categories": [
         "method",
         "cognition"
@@ -766,7 +766,7 @@
       "number": "1.3.2",
       "parentId": "1.3",
       "url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history",
-      "description": "固定其他条件比较即时和延迟调节，用轨迹与转向统计限定结论。",
+      "description": "沿历史时间线手算调节，比较即时与延迟的曲线，解释过冲和转向怎样发生。",
       "categories": [
         "method",
         "cognition"
@@ -796,7 +796,7 @@
       "number": "1.3.2",
       "parentId": "1.3",
       "url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history",
-      "description": "固定其他条件比较即时和延迟调节，用轨迹与转向统计限定结论。",
+      "description": "沿历史时间线手算调节，比较即时与延迟的曲线，解释过冲和转向怎样发生。",
       "categories": [
         "method",
         "cognition"
@@ -861,7 +861,7 @@
       "number": "1.4.1",
       "parentId": "1.4",
       "url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class",
-      "description": "明确两种清除假设的区别，在同一条件下计算并检查适用区间。",
+      "description": "比较固定量与固定比例清除，区分规则、参数和初值，并检验耗尽时的适用范围。",
       "categories": [
         "method",
         "cognition"
@@ -890,7 +890,7 @@
       "number": "1.4.1",
       "parentId": "1.4",
       "url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class",
-      "description": "明确两种清除假设的区别，在同一条件下计算并检查适用区间。",
+      "description": "比较固定量与固定比例清除，区分规则、参数和初值，并检验耗尽时的适用范围。",
       "categories": [
         "method",
         "cognition"
@@ -919,7 +919,7 @@
       "number": "1.4.1",
       "parentId": "1.4",
       "url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class",
-      "description": "明确两种清除假设的区别，在同一条件下计算并检查适用区间。",
+      "description": "比较固定量与固定比例清除，区分规则、参数和初值，并检验耗尽时的适用范围。",
       "categories": [
         "method",
         "cognition"
@@ -948,7 +948,7 @@
       "number": "1.4.2",
       "parentId": "1.4",
       "url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design",
-      "description": "保留事前预测，选择公平对照，并说明反例究竟否定了什么。",
+      "description": "选择能拉开候选预测的实验，结合测量精度解释新观测支持或否定了什么。",
       "categories": [
         "method",
         "cognition"
@@ -977,7 +977,7 @@
       "number": "1.4.2",
       "parentId": "1.4",
       "url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design",
-      "description": "保留事前预测，选择公平对照，并说明反例究竟否定了什么。",
+      "description": "选择能拉开候选预测的实验，结合测量精度解释新观测支持或否定了什么。",
       "categories": [
         "method",
         "cognition"
@@ -1006,7 +1006,7 @@
       "number": "1.4.2",
       "parentId": "1.4",
       "url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design",
-      "description": "保留事前预测，选择公平对照，并说明反例究竟否定了什么。",
+      "description": "选择能拉开候选预测的实验，结合测量精度解释新观测支持或否定了什么。",
       "categories": [
         "method",
         "cognition"
