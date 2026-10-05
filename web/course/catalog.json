@@ -5058,14 +5058,14 @@
           "id": "9.1",
           "title": "贝叶斯建模与后验近似",
           "url": "/chapters/09-01-贝叶斯建模与后验近似/",
-          "goals": "构造参数（parameter）后验（posterior），比较点估计与分布（distribution）估计，并计算高斯共轭和局部后验近似。",
-          "prerequisites": "5.3、6.4、7.3、8.2；数学：条件概率（conditional probability）、条件期望（conditional expectation）与分组加权平均、Bayes 公式、似然（likelihood）、后验及标量高斯条件更新、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、多元高斯条件分布、块协方差（covariance）与矩阵（matrix）分解、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
+          "goals": "从重复读数建立固定参数后验，以配方与Gamma求导解释共轭和局部近似，再区分参数与新读数的不确定性。",
+          "prerequisites": "5.3、6.4、7.3、8.2；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性、多元高斯条件分布、块协方差与矩阵分解、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
           "knowledge": [
-            "从清除参数及个体差异声明似然、先验与后验，先用可解析模型（model）解释归一化",
-            "比较极大似然和最大后验估计（maximum a posteriori estimation，MAP），说明先验和参数化的作用",
-            "在模态（mode）附近用曲率构造 Laplace 近似（Laplace approximation），说明多峰和边界的限制"
+            "手算两次读数的精度与均值，再配方得到高斯后验和新读数方差",
+            "以Gamma计数例区分均值、众数与曲率，保留边界条件",
+            "用链式法则推导清除后验导数，计入积分节点宽度与雅可比，比较网格与局部高斯"
           ],
-          "focus": "连接先验（prior）、似然和参数后验；比较后验峰值、曲率与整个分布的形状。",
+          "focus": "似然固定的是数据；积分变化的是参数；局部曲率、后验矩与坐标变换分别比较。",
           "available": true,
           "lessons": [
             {
@@ -5073,7 +5073,7 @@
               "chapter_id": "9.1",
               "number": "9.1.1",
               "title": "从先验与观测到参数后验",
-              "outcome": "区分先验、似然与预测，推导高斯共轭更新并核对归一化。",
+              "outcome": "从两次读数手算精度与后验，再区分固定参数方差和未来读数方差。",
               "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/01-从先验与观测到参数后验.ipynb",
               "visualization": "web/inference/index.html",
               "questions": [
@@ -5115,7 +5115,7 @@
               "chapter_id": "9.1",
               "number": "9.1.2",
               "title": "后验曲率边界与参数变换",
-              "outcome": "用积分核对清除率的局部近似，解释边界、多峰与参数变换。",
+              "outcome": "先用Gamma计数例求导，再推导清除后验曲率，检查边界、积分权重和对数坐标雅可比。",
               "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/02-后验曲率边界与参数变换.ipynb",
               "visualization": "web/inference/index.html",
               "questions": [
@@ -5159,14 +5159,14 @@
           "id": "9.2",
           "title": "马尔可夫链采样与诊断",
           "url": "/chapters/09-02-马尔可夫链采样与诊断/",
-          "goals": "实现马尔可夫链（Markov chain）蒙特卡洛（Markov chain Monte Carlo，MCMC）采样（sampling），检查平稳目标与混合质量。",
-          "prerequisites": "9.1、5.4；数学：条件概率（conditional probability）、条件期望（conditional expectation）与分组加权平均、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、随机过程（stochastic process）、有限马尔可夫链、转移矩阵（transition matrix）与长期分布（distribution）、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、Metropolis–Hastings、详细平衡（detailed balance）、链相关与采样诊断。",
+          "goals": "从两状态概率流推导接受规则，保存每次判断后的状态，再用多链与重复计算检查探索质量。",
+          "prerequisites": "9.1、5.4；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、随机过程、有限马尔可夫链、转移矩阵与长期分布、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、Metropolis–Hastings、详细平衡（detailed balance）、链相关与采样诊断。",
           "knowledge": [
-            "从难积分的后验进入构造具有目标平稳分布的转移",
-            "推导 Metropolis–Hastings 接受率与提议比，给出满足条件的详细平衡核验",
-            "比较多链、预热、自相关与有效样本量，区分接受率、混合和有限样本误差"
+            "手算双向流，推导含反向提议的MH接受比",
+            "重放固定候选，比较相同随机流下的步幅",
+            "从平均值方差展开推导相关性修正，计算基本R-hat和截断ESS，结合分散起点、两侧占比与30次独立运行解释"
           ],
-          "focus": "由接受率构造采样链；用多链、自相关和有效样本量检查探索分布的效率。",
+          "focus": "目标平稳与初态收敛不同；拒绝停留需记录；样本序号、滞后和链编号先解释后使用。",
           "available": true,
           "lessons": [
             {
@@ -5174,7 +5174,7 @@
               "chapter_id": "9.2",
               "number": "9.2.1",
               "title": "构造保持目标分布的采样链",
-              "outcome": "推导接受比与提议修正，实现可重放的链并核对详细平衡。",
+              "outcome": "手算两状态的双向概率流，推导接受比，并按固定候选逐步记录接受与拒绝。",
               "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/01-构造保持目标分布的采样链.ipynb",
               "visualization": "web/inference/index.html",
               "questions": [
@@ -5216,7 +5216,7 @@
               "chapter_id": "9.2",
               "number": "9.2.2",
               "title": "多链相关性与有限计算预算",
-              "outcome": "比较初始化、步幅与模态覆盖，计算基本诊断并解释其限度。",
+              "outcome": "从样本平均方差解释相关性，用链内、链间差异与独立重复检查有限计算。",
               "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/02-多链相关性与有限计算预算.ipynb",
               "visualization": "web/inference/index.html",
               "questions": [
@@ -5260,14 +5260,14 @@
           "id": "9.3",
           "title": "变分推断",
           "url": "/chapters/09-03-变分推断/",
-          "goals": "推导变分推断（variational inference，VI）的优化目标，实施均值场（mean-field approximation）更新并量化近似偏差。",
-          "prerequisites": "9.2、5.5、8.3；数学：条件概率（conditional probability）、条件期望（conditional expectation）与分组加权平均、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场更新。",
+          "goals": "从以q求期望的KL方向建立下界，推导顺序因子更新，用精确高斯与四状态枚举区分优化和近似误差。",
+          "prerequisites": "9.2、5.5、8.3；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、信息熵、条件熵、互信息与有限样本估计、目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新。",
           "knowledge": [
-            "由相对熵（Kullback–Leibler divergence，KL divergence）和 Jensen 不等式建立证据下界（evidence lower bound，ELBO）",
-            "推导后验距离、证据与下界的恒等式，以及均值场变分推断（mean-field variational inference）的坐标更新",
-            "用显式公式或解析梯度优化小模型（model），比较近似族、初值（initial condition）和优化误差；自动微分（automatic differentiation，AD）留到 15.1"
+            "由后验对数恒等式和Jensen建立证据下界（evidence lower bound，ELBO）",
+            "固定其他因子整理为KL，配方推导二维高斯更新和矩阵KL",
+            "列明00、01、10、11，手算Bernoulli对数比，比较对称与两侧初值及完整联合概率"
           ],
-          "focus": "把分布（distribution）近似转成优化问题；比较均值场因子化带来的计算便利与相关信息损失。",
+          "focus": "固定观测与平均参数；其他因子的期望留下当前变量；独立族的结构限制不能靠迭代消除。",
           "available": true,
           "lessons": [
             {
@@ -5275,7 +5275,7 @@
               "chapter_id": "9.3",
               "number": "9.3.1",
               "title": "从相对熵到均值场更新",
-              "outcome": "推导证据下界与高斯因子更新，分离优化误差和近似误差。",
+              "outcome": "由下界恒等式推导顺序因子更新，以二维高斯区分优化误差和独立族的限制。",
               "path": "notebooks/09-概率建模与近似推断/03-变分推断/01-从相对熵到均值场更新.ipynb",
               "visualization": "web/inference/index.html",
               "questions": [
@@ -5317,7 +5317,7 @@
               "chapter_id": "9.3",
               "number": "9.3.2",
               "title": "近似族与多峰中的初始化",
-              "outcome": "用四状态混合结构核对下界，比较局部解与完整联合后验。",
+              "outcome": "枚举四种细胞联合状态，跟算开启概率更新，比较对称初值与两个局部解。",
               "path": "notebooks/09-概率建模与近似推断/03-变分推断/02-近似族与多峰中的初始化.ipynb",
               "visualization": "web/inference/index.html",
               "questions": [
@@ -5361,14 +5361,14 @@
           "id": "9.4",
           "title": "隐变量与参数学习",
           "url": "/chapters/09-04-隐变量与参数学习/",
-          "goals": "用隐变量（latent variable）分解参数（parameter）学习问题，推导期望最大化（expectation-maximization，EM）并区分状态（state）推断与参数更新。",
-          "prerequisites": "9.3、7.6；数学：条件概率（conditional probability）、条件期望（conditional expectation）与分组加权平均、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新、隐变量条件期望、责任度（responsibility）与期望最大化。",
+          "goals": "先对隐变量（latent variable）保留条件分布，再更新参数，分别推导混合模型与状态模型的一次EM步骤。",
+          "prerequisites": "9.3、7.6；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、多元高斯条件分布、块协方差与矩阵分解、相对熵、Jensen 不等式、变分下界与均值场更新、隐变量条件期望、责任度（responsibility）与期望最大化（expectation-maximization，EM）。",
           "knowledge": [
-            "从混合观测（observation）与未知状态建立完整数据和观测数据似然",
-            "推导期望最大化（expectation–maximization，EM）的条件期望步骤与最大化步骤",
-            "用已学平滑连接状态空间（state space）模型（model）的参数学习，说明局部最优、退化解及近似步骤的限制"
+            "手算两组责任度，再求导得到软权重均值与约束权重更新",
+            "用下界链式比较解释精确EM单调性，检查重合初值、零权重和标签交换",
+            "用两时刻例补回方差与相邻协方差，从RTS条件关系与平滑期望推导动态系数"
           ],
-          "focus": "交替计算隐变量责任度与参数更新；区分训练似然的改善、分量退化和预测表现。",
+          "focus": "责任度或平滑矩按旧参数计算，M步保持固定；隐标签后验与参数点估计不同；完整二阶矩须含方差和协方差。",
           "available": true,
           "lessons": [
             {
@@ -5376,7 +5376,7 @@
               "chapter_id": "9.4",
               "number": "9.4.1",
               "title": "责任度与混合模型参数学习",
-              "outcome": "推导双高斯混合的精确EM步骤，检查似然、标签交换和退化。",
+              "outcome": "从归组概率推导EM加权更新，说明责任度固定、标签交换与似然不下降的条件。",
               "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/01-责任度与混合模型参数学习.ipynb",
               "visualization": "web/inference/index.html",
               "questions": [
@@ -5418,7 +5418,7 @@
               "chapter_id": "9.4",
               "number": "9.4.2",
               "title": "从平滑矩到动态参数更新",
-              "outcome": "由平滑的二阶矩推导转移系数更新，避免把估计状态当真值。",
+              "outcome": "用两时刻手算补回方差和协方差，再从平滑分布推导动态系数更新。",
               "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/02-从平滑矩到动态参数更新.ipynb",
               "visualization": "web/inference/index.html",
               "questions": [
@@ -5462,14 +5462,14 @@
           "id": "9.5",
           "title": "后验预测与模型检验",
           "url": "/chapters/09-05-后验预测与模型检验/",
-          "goals": "构造后验预测（posterior predictive inference）并评价区间覆盖和模型（model）失配，在独立数据上比较点预测与分布（distribution）预测。",
-          "prerequisites": "9.4、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、后验（posterior）归一化、Laplace 局部近似与后验预测积分、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新。",
+          "goals": "对参数后验平均完整预测，分解总方差并构造混合分位数，先固定预测再评估新读数和模型失配。",
+          "prerequisites": "9.4、6.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、相对熵、Jensen 不等式、变分下界与均值场更新。",
           "knowledge": [
-            "由参数后验积分得到预测分布，区分参数不确定性与观测/过程随机性",
-            "用后验预测检验比较统计特征，明确检查量与目标问题",
-            "对齐留出数据、信息和预算，比较预测误差、对数预测分数和覆盖；保留错误机制与范围外条件"
+            "手算两节点预测，用偏差分解推导总方差和混合CDF",
+            "比较非线性后验平均与参数代入，再构建四种固定预测",
+            "在相同留出条件和遗漏输入条件下评分，报告覆盖标准误、密度预算及复制检查，最后用独立共轭场景检查噪声失配"
           ],
-          "focus": "将参数（parameter）不确定性传递到新观测（observation）；用预测区间（prediction interval）、覆盖率和残差检查模型失配。",
+          "focus": "后验节点与评估读数使用不同序号；参数区间与预测区间（prediction interval）不同；固定场景、复制检查和跨场景校准分别解释。",
           "available": true,
           "lessons": [
             {
@@ -5477,7 +5477,7 @@
               "chapter_id": "9.5",
               "number": "9.5.1",
               "title": "把参数不确定性带入预测",
-              "outcome": "推导预测的总方差并构造混合分布，区分可信区间和预测区间。",
+              "outcome": "拆开读数偏差推导总方差，用混合累计概率构造区间，并检查非线性平均。",
               "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/01-把参数不确定性带入预测.ipynb",
               "visualization": "web/inference/index.html",
               "questions": [
@@ -5519,7 +5519,7 @@
               "chapter_id": "9.5",
               "number": "9.5.2",
               "title": "留出预测覆盖与模型失配",
-              "outcome": "比较预测分数与覆盖的抽样波动，识别近似失误和机制失配。",
+              "outcome": "先固定四种预测，再比较留出分数与覆盖，区分固定场景、复制检查与联合重复。",
               "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/02-留出预测覆盖与模型失配.ipynb",
               "visualization": "web/inference/index.html",
               "questions": [
@@ -5565,14 +5565,13 @@
         "assessment": true,
         "title": "同一观测下的后验与预测比较",
         "url": "/parts/09-概率建模与近似推断/综合练习/",
-        "goals": "区分建模、后验（posterior）计算和预测检验，核对可解参照及失效条件。",
-        "prerequisites": "本篇9.1—9.5；第8篇优化和第7篇平滑。",
-        "focus": "后验质量、计算预算、独立信息、退化与模型（model）失配。",
+        "goals": "以Gamma、高斯和新读数三条参照定位局部近似、分布族限制与模型失配。",
+        "prerequisites": "本篇9.1—9.5的后验、采样、变分、EM与预测检验。",
+        "focus": "明确参数、隐标签与未来读数三个对象，分别用可解矩、转移规则和留出结果判断误差来源。",
         "knowledge": [
-          "归一化和局部近似",
-          "接受比、多链和预算",
-          "均值场（mean-field approximation）、下界和EM",
-          "预测矩、评分和覆盖"
+          "从Gamma计数后验检查众数、曲率与完整积分的区别",
+          "用固定候选重放采样，以高斯KL检查均值场更新",
+          "用完整预测密度评分，保留预算与失配场景，分别解释模型和计算误差"
         ],
         "lessons": [
           {
@@ -5580,18 +5579,17 @@
             "chapter_id": "9.summary",
             "number": "篇末综合",
             "title": "同一观测下的后验与预测比较",
-            "outcome": "在相同信息与预算下比较局部近似、采样、变分和独立预测，解释模型错误。",
+            "outcome": "以Gamma、高斯和新读数三条参照定位局部近似、分布族限制与模型失配。",
             "path": "notebooks/09-概率建模与近似推断/06-篇末综合/01-同一观测下的后验与预测比较.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "区分建模、后验计算和预测检验，核对可解参照及失效条件。",
-              "prerequisites": "本篇9.1—9.5；第8篇优化和第7篇平滑。",
-              "focus": "后验质量、计算预算、独立信息、退化与模型失配。",
+              "goals": "以Gamma、高斯和新读数三条参照定位局部近似、分布族限制与模型失配。",
+              "prerequisites": "本篇9.1—9.5的后验、采样、变分、EM与预测检验。",
+              "focus": "明确参数、隐标签与未来读数三个对象，分别用可解矩、转移规则和留出结果判断误差来源。",
               "knowledge": [
-                "归一化和局部近似",
-                "接受比、多链和预算",
-                "均值场、下界和EM",
-                "预测矩、评分和覆盖"
+                "从Gamma计数后验检查众数、曲率与完整积分的区别",
+                "用固定候选重放采样，以高斯KL检查均值场更新",
+                "用完整预测密度评分，保留预算与失配场景，分别解释模型和计算误差"
               ]
             },
             "questions": [

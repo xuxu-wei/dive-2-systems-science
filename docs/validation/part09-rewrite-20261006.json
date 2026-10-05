@@ -1,0 +1,684 @@
+{
+  "date": "2026-10-06",
+  "baseline": "5fef2f1e3463365575bb8bcc36cecbf6f45b5eab",
+  "scope": "Part 9 formal teaching and exercises plus one authorized Part 8 statement; pending unified user reading acceptance",
+  "notebooks": [
+    {
+      "id": "P09-C01-S01",
+      "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/01-从先验与观测到参数后验.ipynb",
+      "sha256": "e9e9268d1aa275fa87726e02377127117fc10d33e7b6d6931796d1f4b4139c96",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "f6ac39f43f38e2b3a987795ed1afb0b3401097e32bbc306597493128126d46f5"
+    },
+    {
+      "id": "P09-C01-S02",
+      "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/02-后验曲率边界与参数变换.ipynb",
+      "sha256": "8854f432e4ce4e1f3887931bfbc971a0633806c7509240b2010f4ec5a358a7eb",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "c424b32a473b63c019278cebdd088e6e6a0d57595078695f2fa1b3e890de26b9"
+    },
+    {
+      "id": "P09-C02-S01",
+      "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/01-构造保持目标分布的采样链.ipynb",
+      "sha256": "16f113e883777ab9b2159a36eb032f3ccc9ba80d96e10b0b9813d744e7ef2ffb",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "78da838b53601da1ded22fdb0a406127dd981bec9112b53ff8cc1c6a02ae15bf"
+    },
+    {
+      "id": "P09-C02-S02",
+      "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/02-多链相关性与有限计算预算.ipynb",
+      "sha256": "8254e52261a12fd3eee49fc7dee2473891b4bb8db8ab951cd34347263458b797",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "1d6d8e5ed7227905096c1f16b4bb4fe415e9a23ce024ce9cc1e86d0b6cf337c6"
+    },
+    {
+      "id": "P09-C03-S01",
+      "path": "notebooks/09-概率建模与近似推断/03-变分推断/01-从相对熵到均值场更新.ipynb",
+      "sha256": "65956adc21dede33e6da63d29e70830b2fab3580d532888f01f61b145ff05e5f",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b65a856b596ffe1a251b01f3daac1b37abeee002112a4e401f977871c94fae1f"
+    },
+    {
+      "id": "P09-C03-S02",
+      "path": "notebooks/09-概率建模与近似推断/03-变分推断/02-近似族与多峰中的初始化.ipynb",
+      "sha256": "996a812632f56eaa6158d6b31fe78f6490e1115a8afad19ebfca75131c67b59a",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "bfeb74fdd915d9fd0387174d99b69325490ba131783e8f7374c59ea8ee118a48"
+    },
+    {
+      "id": "P09-C04-S01",
+      "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/01-责任度与混合模型参数学习.ipynb",
+      "sha256": "56bd5118e4ff93166092013338ed06fc74e1d4d9f4ec0c5ff256c234a10b0739",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "1b9482597b694043ab45c8896f4884a5b8483358edef5ce0d079c06c8fa85e1d"
+    },
+    {
+      "id": "P09-C04-S02",
+      "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/02-从平滑矩到动态参数更新.ipynb",
+      "sha256": "22c4950df895ddc50c360ca54057390202d76e4abefddf2fce12997f47508691",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b1991c557fbd8c98bdd8292216a9c9c08aff6b9629a00aa427b999b1282c7d8e"
+    },
+    {
+      "id": "P09-C05-S01",
+      "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/01-把参数不确定性带入预测.ipynb",
+      "sha256": "96dae5ca6e1ab8ad16e4806537e981a39ae82368a6ffe3897e3d94ef50892f9b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "8f79ed05900c7b36a955a9f665db799b59e28832e638f6e87f735b12a0d3b2eb"
+    },
+    {
+      "id": "P09-C05-S02",
+      "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/02-留出预测覆盖与模型失配.ipynb",
+      "sha256": "30aca879aa0b2c52877bf8ea2246dc583314da30d09546ec32cad6d172dcda70",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "f0b1043ec31757abf81751c9ae35867bfcf6642fd6f18e28cc6be7270c0f387e"
+    },
+    {
+      "id": "P09-SUMMARY",
+      "path": "notebooks/09-概率建模与近似推断/06-篇末综合/01-同一观测下的后验与预测比较.ipynb",
+      "sha256": "3f7362648b9981b9f4ee29f1ed2536c85101d916e733b1f1fe7c5bb7170a5913",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "6177b3b102ae5942470a2638c3dc739e0580aa9376507ed94daee4133d9a84a6"
+    }
+  ],
+  "questions": {
+    "reviewed": 58,
+    "choice": 41,
+    "python": 17,
+    "wording_changed": 58,
+    "wording_changed_ids": [
+      "p09-normal-update",
+      "p09-likelihood-object",
+      "p09-posterior-predictive",
+      "p09-prior-vs-data",
+      "p09-normalizer-zero",
+      "p09-gamma-local",
+      "p09-grid-masses",
+      "p09-coordinate-map",
+      "p09-single-mode",
+      "p09-grid-domain",
+      "p09-mh-replay",
+      "p09-finite-kernel",
+      "p09-proposal-ratio",
+      "p09-stationary-vs-convergence",
+      "p09-rejections",
+      "p09-basic-diagnostics",
+      "p09-high-acceptance",
+      "p09-same-mode",
+      "p09-ess-not-particles",
+      "p09-budget-repeat",
+      "p09-gaussian-coordinate",
+      "p09-finite-bound",
+      "p09-kl-direction",
+      "p09-gaussian-variance",
+      "p09-optimization-error",
+      "p09-discrete-coordinate",
+      "p09-two-modes-family",
+      "p09-vi-initialization",
+      "p09-elbo-monotone",
+      "p09-jensen-support",
+      "p09-mixture-update",
+      "p09-em-two-targets",
+      "p09-zero-component",
+      "p09-variance-collapse",
+      "p09-labels",
+      "p09-state-moments",
+      "p09-smoothing-products",
+      "p09-initial-parameter",
+      "p09-approximate-e-step",
+      "p09-unstable-estimate",
+      "p09-predictive-moments",
+      "p09-interval-meaning",
+      "p09-nonlinear-expectation",
+      "p09-mixture-not-normal",
+      "p09-conditional-variance",
+      "p09-predictive-score",
+      "p09-posterior-check-reuse",
+      "p09-coverage-uncertainty",
+      "p09-fair-prediction",
+      "p09-noise-misspecification",
+      "p09-cap-prior",
+      "p09-cap-diagnostic",
+      "p09-cap-local",
+      "p09-cap-mh",
+      "p09-cap-variational",
+      "p09-cap-predictive",
+      "p09-cap-em",
+      "p09-cap-misspecification"
+    ],
+    "explanation_changed": 58,
+    "explanation_changed_ids": [
+      "p09-normal-update",
+      "p09-likelihood-object",
+      "p09-posterior-predictive",
+      "p09-prior-vs-data",
+      "p09-normalizer-zero",
+      "p09-gamma-local",
+      "p09-grid-masses",
+      "p09-coordinate-map",
+      "p09-single-mode",
+      "p09-grid-domain",
+      "p09-mh-replay",
+      "p09-finite-kernel",
+      "p09-proposal-ratio",
+      "p09-stationary-vs-convergence",
+      "p09-rejections",
+      "p09-basic-diagnostics",
+      "p09-high-acceptance",
+      "p09-same-mode",
+      "p09-ess-not-particles",
+      "p09-budget-repeat",
+      "p09-gaussian-coordinate",
+      "p09-finite-bound",
+      "p09-kl-direction",
+      "p09-gaussian-variance",
+      "p09-optimization-error",
+      "p09-discrete-coordinate",
+      "p09-two-modes-family",
+      "p09-vi-initialization",
+      "p09-elbo-monotone",
+      "p09-jensen-support",
+      "p09-mixture-update",
+      "p09-em-two-targets",
+      "p09-zero-component",
+      "p09-variance-collapse",
+      "p09-labels",
+      "p09-state-moments",
+      "p09-smoothing-products",
+      "p09-initial-parameter",
+      "p09-approximate-e-step",
+      "p09-unstable-estimate",
+      "p09-predictive-moments",
+      "p09-interval-meaning",
+      "p09-nonlinear-expectation",
+      "p09-mixture-not-normal",
+      "p09-conditional-variance",
+      "p09-predictive-score",
+      "p09-posterior-check-reuse",
+      "p09-coverage-uncertainty",
+      "p09-fair-prediction",
+      "p09-noise-misspecification",
+      "p09-cap-prior",
+      "p09-cap-diagnostic",
+      "p09-cap-local",
+      "p09-cap-mh",
+      "p09-cap-variational",
+      "p09-cap-predictive",
+      "p09-cap-em",
+      "p09-cap-misspecification"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "prior_part_amendments": [
+    {
+      "id": "p08-penalty-intercept",
+      "lesson": "P08-C03-S01",
+      "statement_only": true,
+      "new_statement": "设计矩阵的每列和响应都减去各自在训练数据上的均值；响应在训练数据上的均值另存为截距。本节只惩罚中心化后的斜率系数，哪些解释成立？",
+      "notebook_copy_exactly_one_statement_replaced": true,
+      "code_outputs_and_other_exercise_text_preserved": true
+    }
+  ],
+  "corrected_explanatory_copy_errors": [
+    "p09-cap-local",
+    "p09-cap-mh",
+    "p09-cap-variational",
+    "p09-cap-predictive"
+  ],
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Read-only unbound PracticeEngine.progress with original in-memory records and current bank/assessment; no judging or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_model_unchanged": true,
+    "web_controller_changes_exactly_match_display_text_replacements": true,
+    "slider_keys_ranges_steps_initial_values_labels_preserved": true,
+    "official_checker_and_glossary_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "independent_hand_examples_and_algebra": [
+      "Gaussian precision, parameter/predictive variance; Gamma means, modes and local curvature in chapter and capstone",
+      "Clearance residual square chain-rule second derivative independently checked by a local finite difference",
+      "MH bidirectional flow, chapter/capstone acceptance comparisons and nonuniform trapezoidal node moments",
+      "Gaussian factor variance/KL floor, offset-mean capstone KL, and first Bernoulli sequential sweep",
+      "Basic variance/correlation definitions, 20-scenario proportion standard error, EM responsibility and full smoothing-moment residual",
+      "Total-variance and raw-moment agreement, nonlinear averaging direction, capstone conjugate and holdout MSE examples"
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    },
+    {
+      "id": "p08-conditioning",
+      "version": "1",
+      "location": "Option B, marked correct in the existing answer",
+      "issue": "不发散与误差收敛到零混用。B要求步长严格小于上界才不发散，但H₂较大曲率方向在η=2/100时因子为−1，误差等幅交替且不发散。",
+      "evidence": "e[k+1]=(1−100η)e[k]；η=0.02给出e[k+1]=−e[k]。严格上界针对误差衰减到零，而不是仅不发散。",
+      "required_substantive_change": "后续明确B要判断误差衰减/收敛，或修订不发散条件及对应答案，再依版本规则处理；本轮没有暗改答案、条件意图或版本。",
+      "status": "登记，待实质题库修订；当前正确答案与旧成绩保留"
+    }
+  ],
+  "new_unresolved": [],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 120,
+    "core_changed": 109,
+    "exercise_cells_synchronized": 11
+  },
+  "teaching_check": {
+    "notebooks": 11,
+    "questions": 58,
+    "question_links": 58,
+    "issues": []
+  },
+  "teaching_check_method": "Existing check_teaching logic with actual vocabulary from Parts 0–8 and preceding Part 9 lessons. Exercises inherit their lesson explanations, overviews inherit earlier chapters. Original checker, glossary and range rules remain unchanged.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/09-01-贝叶斯建模与后验近似/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/09-02-马尔可夫链采样与诊断/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/09-03-变分推断/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/09-04-隐变量与参数学习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/09-05-后验预测与模型检验/",
+        "status": 200
+      },
+      {
+        "path": "/parts/09-概率建模与近似推断/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/09-01-贝叶斯建模与后验近似/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/09-02-马尔可夫链采样与诊断/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/09-03-变分推断/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/09-04-隐变量与参数学习/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/09-05-后验预测与模型检验/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p09-normal-update",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p09-mh-replay",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p09-gaussian-coordinate",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p09-mixture-update",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p09-predictive-moments",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p09-cap-predictive",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p08-penalty-intercept",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      }
+    ],
+    "served_catalog_and_controller_equal_current_files": true,
+    "local_file_link_targets_checked": 28,
+    "html_rendered_without_execution": [
+      "P09-C01-S01",
+      "P09-C01-S02",
+      "P09-C02-S01",
+      "P09-C02-S02",
+      "P09-C03-S01",
+      "P09-C03-S02",
+      "P09-C04-S01",
+      "P09-C04-S02",
+      "P09-C05-S01",
+      "P09-C05-S02",
+      "P09-SUMMARY"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout, MathJax rendering or interaction behavior."
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_preliminaries/probability.html",
+      "focus": "从具体预测问题与投掷实验进入概率，用代码输出回到频率及分布的解释。借鉴引入、符号说明与实验衔接方式，不复制教材段落。"
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/03-Stats-Review-The-Most-Dangerous-Equation.html",
+      "focus": "从小学校同时出现在表现两端的现象解释估计波动，再用重复实验区分标准差、标准误与区间。借鉴推理展开方式，不引入其教育案例或因果结论。"
+    }
+  ],
+  "authorization": "Verified current dispatch covers Part 9 and the one Part 8 intercept statement amendment. The human-authorized sequential Parts 2–17 workflow uses final unified reading acceptance. Normal commit/push is authorized, with records, environments and work helpers excluded; await Part 10 dispatch.",
+  "specific_prose_corrections": [
+    "A single fixed parameter shared by repeated readings is introduced before likelihood and posterior; normalization integrates over the parameter with data fixed.",
+    "Gamma rate parameterization, nonuniform integration widths and the log-coordinate Jacobian are explained before use; the clearance second derivative keeps both residual chain-rule terms.",
+    "MH sample-step indices differ from physical time; the two-state probability flow precedes detailed balance, and every rejected stay remains in the path.",
+    "The exact finite average-variance expansion connects to the correlation ESS approximation; basic R-hat, its unavailable cases and target width versus computation error remain distinct.",
+    "ELBO derivation names the KL direction and expectation variable; the coordinate update leaves one variable unaveraged, then Gaussian completing-the-square gives sequential means and variances.",
+    "Four binary states name both positions before list probabilities; conditional log-mass differences precede Bernoulli updates, and whole distributions are compared beyond marginal means.",
+    "EM responsibilities and smoothed moments are calculated at old parameters and held fixed in M-steps. The lower-bound inequality chain, zero-weight convention and label swap are retained.",
+    "A two-time-point calculation shows the variance/cross-covariance omitted by mean regression; observation indices 0…T and transition indices 0…T−1 are explicit.",
+    "Total variance follows a conditional cross-term argument; posterior-node indices and holdout-reading indices are separately defined, and mixture CDF probabilities precede interval construction.",
+    "Predictions are fixed before evaluation. Fixed-training conditional coverage, posterior replicated checks and 2000 new joint scenarios use their actual repeating mechanisms.",
+    "Four capstone hints/explanations that repeated a different chapter sample were replaced with the current sample calculations or general hints; arguments, expected values and grading fields stay unchanged."
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part09-rewrite-20261006/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part09-rewrite-20261006/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part09-rewrite-20261006/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part09-rewrite-20261006/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/inference/app.mjs and model.mjs",
+      "exit_code": 0
+    }
+  ]
+}

@@ -8,11 +8,138 @@ const fmt=x=>x===null?'无可行解':Number(x.toPrecision(4)).toString();
 const node=(tag,attrs={},text)=>{const n=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;};
 let chapter,mode,p={},data,playback;
 const definitions={
- '9.1':{title:'同样的读数，噪声更大时该相信多少？',question:'先预测：保持观测（observation）不变，只提高每次测量的噪声方差（variance），后验（posterior）会更接近先验（prior）还是样本平均？',explanation:'一个共同偏差的高斯先验与独立高斯观测形成共轭更新。精度相加，而不是把两个方差直接相加。未来读数还要加回一次观测的随机性。',formula:'v = 1 / (1/4 + n/r)；m = v Σy/r；预测方差 = v+r',heading:'先验、似然形状与后验宽度',label:'当前后验方差 / U²',assumptions:'先验N(0,4)，前12个固定读数见数值表；无过程噪声（process noise）。似然（likelihood）曲线为便于比较做了归一化，不表示它原本就是参数（parameter）概率（probability）。播放逐个纳入读数，不是物理时间。',note:'左图蓝线后验、灰线先验、玫红虚线为归一化似然；右图比较参数方差与未来读数方差。零读数时没有似然曲线。',controls:[['count','观测个数 n',1,12,1,6],['noise','观测方差 r / U²',.25,6,.25,2]]},
- '9.2':{title:'接受率看起来不错，链就探索充分了吗？',question:'先预测：两个模态（mode）相距更远时，从两侧出发的短链能否给出同一个正半轴质量？',explanation:'对称随机游走（random walk）的接受率取决于目标密度之比。接受率、跨模态探索和样本相关性是不同问题；用 600 步比较两条链的探索过程。',formula:'π(x)=½N(−d,1)+½N(d,1)；α=min(1,π(x′)/π(x))',heading:'两条链与正半轴占比',label:'两链最终正半轴占比',assumptions:'无量纲（dimensionless）双高斯目标，初值（initial condition）−d与d；种子9201和9202、各600步，不删预热、不稀疏抽取。',note:'蓝色和玫红分别代表两条链。右图占比含初始点，目标精确正半轴概率（probability）为0.5；两个占比相近也不能独自证明充分混合。',controls:[['separation','模态位置 ±d',0,5,.25,4],['step','提议标准差',.1,3,.1,.6]]},
- '9.3':{title:'下界已经不再变化，后验就准确了吗？',question:'先预测：目标的相关性增强后，独立高斯因子能否同时恢复两个边缘方差（variance）？',explanation:'均值场（mean-field approximation）的坐标更新会逼近最优均值，但独立因子不能表达相关结构。这里的ELBO差等于可精确计算的KL；横线表示近似族造成的最低差距。',formula:'Σ=[[1,ρ],[ρ,1]]；m₁←ρm₂；m₂←ρm₁；vᵢ=1−ρ²',heading:'相关轮廓与独立因子轮廓',label:'当前 KL / 1',assumptions:'已知二维高斯目标，均值0，初始因子均值[2,−2]；20轮顺序更新。两种轮廓对应同一后验（posterior）的精确表示与独立近似。',note:'左图椭圆与圆分别为精确目标与独立近似的二次距离轮廓，中心随更新移动。右图是log₁₀(1+KL)，横线对应不可由优化消除的差距。',controls:[['rho','目标相关系数 ρ',0,.95,.05,.8]]},
- '9.4':{title:'同样的数据，两个分量为什么分不开？',question:'先预测：两个均值从完全相同的位置出发，EM能否自己破坏对称？',explanation:'E步用旧参数（parameter）计算责任度（responsibility），M步用软权重更新均值和混合权重。精确步骤的观测（observation）似然（likelihood）不下降，但对称初始化可能停留在未分离的解。',formula:'rᵢⱼ ∝ wⱼ N(yᵢ|μⱼ,v)；wⱼ′=Σrᵢⱼ/n；μⱼ′=Σrᵢⱼyᵢ/Σrᵢⱼ',heading:'责任度和观测似然一起变化',label:'当前观测 log 似然',assumptions:'8个固定读数，两个分量共享固定正方差（variance），只更新权重与均值；20步，零责任质量时保留该均值。',note:'左图每个点的高度表示属于第一个分量的责任度，第二个分量为1减该值；右图标出每次完整更新后的似然。切换初始化时不会改数据。',controls:[['variance','固定分量方差 / U²',.1,2,.05,.25],['symmetric','初始化：0分离 / 1相同',0,1,1,0]]},
- '9.5':{title:'参数区间够窄，未来读数也会这么集中吗？',question:'先预测：保持参数（parameter）后验（posterior）不变，未来噪声方差（variance）变为假设值的4倍，原预测区间（prediction interval）会覆盖多少概率（probability）？',explanation:'未来读数方差等于参数方差加观测（observation）方差。保持原模型（model）的预测区间，改变实际噪声对应的核验分布（distribution），比较落入区间的概率。',formula:'预测N(1.6,v+r)；核验N(1.6,v+c r)；r=1 U²',heading:'参数分布、读数分布与模型覆盖',label:'封存区间的核验覆盖',assumptions:'共轭偏差模型的公开后验N(1.6,v)，未来噪声独立；这是在该后验下平均参数的解析覆盖，不是一次模拟的经验比例，也不是固定未知参数的覆盖保证。',note:'左图参数后验、模型预测与核验密度；右图是封存95%预测区间在不同噪声倍率下的实际概率。播放从1倍走向指定条件；目标为1倍时从.25倍对照展开；参数区间和预测区间对象不同。',controls:[['variance','参数后验方差 v / U²',.05,2,.05,.8],['multiplier','实际噪声方差倍率 c',.25,4,.25,1]]}
+ "9.1": {
+  "title": "同一批读数，噪声越大，后验靠近哪里？",
+  "question": "保持读数不变，提高单次噪声方差，先判断后验均值更靠近先验均值还是读数平均，再看曲线。",
+  "explanation": "各次读数共享一个固定偏差，独立噪声提供的精度与先验精度相加。噪声方差增大时，这批读数的相对权重减小；新读数预测还需加一次新噪声方差。",
+  "formula": "v = 1 / (1/4 + n/r)；m = v Σy/r；预测方差 = v+r",
+  "heading": "先验、似然形状与后验宽度",
+  "label": "当前后验方差 / U²",
+  "assumptions": "先验均值0 U、方差4 U²，固定读数逐项列在数值表；噪声独立且与偏差独立。播放逐个加入读数，显示的是更新步骤。玫红似然为比较形状而归一化，原似然并非参数密度。",
+  "note": "蓝线为参数后验、灰线为先验、玫红虚线为归一化似然。右图比较参数与新读数的方差；尚无读数时不画似然。",
+  "controls": [
+   [
+    "count",
+    "观测个数 n",
+    1,
+    12,
+    1,
+    6
+   ],
+   [
+    "noise",
+    "观测方差 r / U²",
+    0.25,
+    6,
+    0.25,
+    2
+   ]
+  ]
+ },
+ "9.2": {
+  "title": "两条链都容易接受，能访问两个峰吗？",
+  "question": "增大两峰的距离，先判断从两侧出发的短链能否访问另一侧，再比较落在正半轴的比例。",
+  "explanation": "对称随机游走用目标密度比决定接受。容易接受、移动足够远与探索两个峰是不同判断；这里用相同600步预算比较两条路径。",
+  "formula": "π(x)=½N(−d,1)+½N(d,1)；α=min(1,π(x′)/π(x))",
+  "heading": "两条链与正半轴占比",
+  "label": "两链最终正半轴占比",
+  "assumptions": "两个等权高斯分量均值为−d和d，方差都为1。两链分别从−d、d出发，种子为9201、9202，各运行600步，保留全部点，包括起点与预热阶段。变量已按参考尺度缩放。",
+  "note": "蓝线和玫红线分别为两条链。右图比例包括起点；目标落在正半轴的概率为0.5。两条比例接近也可能共同遗漏某些区域，仍需结合轨迹检查。",
+  "controls": [
+   [
+    "separation",
+    "模态位置 ±d",
+    0,
+    5,
+    0.25,
+    4
+   ],
+   [
+    "step",
+    "提议标准差",
+    0.1,
+    3,
+    0.1,
+    0.6
+   ]
+  ]
+ },
+ "9.3": {
+  "title": "均值更新到位了，相关关系也恢复了吗？",
+  "question": "提高目标相关系数，先判断独立因子的方差会怎样变化，再比较两种轮廓和剩余KL。",
+  "explanation": "一轮先更新第一个均值，再用新值更新第二个。更新能逼近最优均值，独立因子却始终没有交叉协方差。目标已知，证据与下界的差正好等于KL；横线是该分布族的最低差距。",
+  "formula": "Σ=[[1,ρ],[ρ,1]]；m₁←ρm₂；m₂←ρm₁；vᵢ=1−ρ²",
+  "heading": "相关轮廓与独立因子轮廓",
+  "label": "当前 KL / 1",
+  "assumptions": "目标为均值0的二维高斯，两个边缘方差都为1。近似的两个初始均值依次为2和−2，运行20轮顺序更新。两种轮廓表示同一目标的精确分布与独立近似。",
+  "note": "左图灰色椭圆是相关目标轮廓，蓝色虚线圆是独立近似轮廓，其中心随更新移动。右图画log₁₀(1+KL)；玫红横线表示不能靠更多更新消除的族内限制。",
+  "controls": [
+   [
+    "rho",
+    "目标相关系数 ρ",
+    0,
+    0.95,
+    0.05,
+    0.8
+   ]
+  ]
+ },
+ "9.4": {
+  "title": "两个初始均值重合，EM会让它们分开吗？",
+  "question": "保持读数不变，让两个分量从同一均值开始，先判断责任度是否仍会对半分，再观察更新。",
+  "explanation": "E步按旧参数计算各读数的归组概率，M步把这些责任度固定为权重，更新均值与混合权重。精确步骤使观测似然不下降，但重合的分量可能保持对称。",
+  "formula": "rᵢⱼ ∝ wⱼ N(yᵢ|μⱼ,v)；wⱼ′=Σrᵢⱼ/n；μⱼ′=Σrᵢⱼyᵢ/Σrᵢⱼ",
+  "heading": "责任度和观测似然一起变化",
+  "label": "当前观测 log 似然",
+  "assumptions": "固定8个读数，两个高斯分量共享固定正方差，只更新权重与均值，共20次。某组总责任度为0时保留旧均值。滑块改变一次实验的固定方差，EM内部不更新它。",
+  "note": "左图每个读数对应的高度为属于分量1的概率，分量2为1减该值。右图是每次完整更新后重新计算的观测对数似然。切换初始均值时使用同一数据。",
+  "controls": [
+   [
+    "variance",
+    "固定分量方差 / U²",
+    0.1,
+    2,
+    0.05,
+    0.25
+   ],
+   [
+    "symmetric",
+    "初始化：0分离 / 1相同",
+    0,
+    1,
+    1,
+    0
+   ]
+  ]
+ },
+ "9.5": {
+  "title": "未来噪声变大，原预测区间还覆盖多少？",
+  "question": "先按当前后验和假定噪声固定95%预测区间，再增大实际未来噪声，判断落在原区间内的概率如何变化。",
+  "explanation": "参数后验方差与新噪声方差共同决定未来读数的方差。蓝色预测沿用原假设，玫红密度按实际噪声变化；计算原区间在这条密度下包含的概率。",
+  "formula": "预测N(1.6,v+r)；核验N(1.6,v+c r)；r=1 U²",
+  "heading": "参数分布、读数分布与模型覆盖",
+  "label": "原预测区间包含的概率",
+  "assumptions": "固定参数后验均值1.6 U、方差v，假定未来噪声方差r=1 U²且独立。实际噪声方差为c r。这里对同一参数后验平均后求解析区间概率，未生成经验覆盖样本。",
+  "note": "左图灰线表示参数后验，蓝线表示原预测，玫红虚线按实际噪声变化；两条短线分别表示参数区间与读数预测区间。右图记录原95%预测区间包含的概率。播放通常从1倍噪声开始；指定1倍时从0.25倍展开。",
+  "controls": [
+   [
+    "variance",
+    "参数后验方差 v / U²",
+    0.05,
+    2,
+    0.05,
+    0.8
+   ],
+   [
+    "multiplier",
+    "实际噪声方差倍率 c",
+    0.25,
+    4,
+    0.25,
+    1
+   ]
+  ]
+ }
 };
 function controls(){p={};$('sliders').replaceChildren();for(const[key,label,min,max,step,value]of definitions[mode].controls){p[key]=value;const row=el('div',null,'slider'),labelNode=el('label',label),input=el('input'),out=el('output',fmt(value));input.type='range';input.id='parameter-'+key;input.min=min;input.max=max;input.step=step;input.value=value;labelNode.htmlFor=input.id;out.id='parameter-value-'+key;input.addEventListener('input',()=>guard(()=>{p[key]=Number(input.value);out.textContent=fmt(p[key]);recompute();}));row.append(labelNode,out,input);$('sliders').append(row);}}
 function set(values){Object.assign(p,values);for(const[key,value]of Object.entries(values)){$('parameter-'+key).value=value;$('parameter-value-'+key).textContent=fmt(value);}recompute();}
@@ -50,8 +177,8 @@ function draw(progress){
  }
  if(mode==='9.2'){
   const n=Math.floor(frac*600),limit=Math.max(4,p.separation+3,...data.flatMap(c=>c.path.map(Math.abs))),a=axes(left,{xmin:0,xmax:600,ymin:-limit,ymax:limit,xlabel:'步骤（含初始点）',ylabel:'状态 / 1'}),b=axes(right,{xmin:0,xmax:600,ymin:0,ymax:1,xlabel:'步骤（含初始点）',ylabel:'正半轴占比 / 1'});let rows=[];
-  data.forEach((c,j)=>{const color=j?pink:blue,pts=c.path.slice(0,n+1).map((x,i)=>[i,x]);curve(left,pts,a,color);dot(left,pts.at(-1),a,color);let count=0;const ratios=pts.map(([i,x])=>{count+=x>0;return[i,count/(i+1)];});curve(right,ratios,b,color);dot(right,ratios.at(-1),b,color);rows.push([`链 ${j+1} 正占比`,ratios.at(-1)[1]],[`链 ${j+1} 接受率`,n?c.accepted.slice(0,n).filter(Boolean).length/n:'尚无提议']);});curve(right,[[0,.5],[600,.5]],b,gray,true);
-  $('value').textContent=rows.filter((_,i)=>i%2===0).map(r=>fmt(r[1])).join(' / ');$('time-readout').textContent=`第 ${n}/600 步`;$('observation-value').textContent='目标正半轴质量为0.5；完整诊断还需多链、相关性与更充分的预算。';legend([['链1',blue],['链2',pink],['精确半轴概率',gray]]);table([['种子','9201 / 9202'],...rows]);
+  data.forEach((c,j)=>{const color=j?pink:blue,pts=c.path.slice(0,n+1).map((x,i)=>[i,x]);curve(left,pts,a,color);dot(left,pts.at(-1),a,color);let count=0;const ratios=pts.map(([i,x])=>{count+=x>0;return[i,count/(i+1)];});curve(right,ratios,b,color);dot(right,ratios.at(-1),b,color);rows.push([`链 ${j+1} 落在正半轴的比例`,ratios.at(-1)[1]],[`链 ${j+1} 接受率`,n?c.accepted.slice(0,n).filter(Boolean).length/n:'尚无提议']);});curve(right,[[0,.5],[600,.5]],b,gray,true);
+  $('value').textContent=rows.filter((_,i)=>i%2===0).map(r=>fmt(r[1])).join(' / ');$('time-readout').textContent=`第 ${n}/600 步`;$('observation-value').textContent='目标落在正半轴的概率为0.5；还需结合多链、相关性与计算预算检查探索。';legend([['链1',blue],['链2',pink],['精确半轴概率',gray]]);table([['种子','9201 / 9202'],...rows]);
  }
  if(mode==='9.3'){
   const n=Math.floor(frac*20),r=data[n],a=axes(left,{xmin:-4.2,xmax:4.2,ymin:-4.2,ymax:4.2,xlabel:'θ₁ / 1',ylabel:'θ₂ / 1'}),logs=data.map(r=>Math.log10(1+r.gap)),b=axes(right,{xmin:0,xmax:20,ymin:0,ymax:Math.max(...logs)+.15,xlabel:'完整坐标轮数',ylabel:'log₁₀(1+KL) / 1'});
@@ -62,19 +189,19 @@ function draw(progress){
  if(mode==='9.4'){
   const n=Math.floor(frac*20),r=data[n],values=data.map(r=>r.likelihood),a=axes(left,{xmin:-2,xmax:2,ymin:0,ymax:1,xlabel:'观测 / U',ylabel:'第一分量责任度 / 1'}),b=axes(right,{xmin:0,xmax:20,ymin:Math.min(...values)-.5,ymax:Math.max(...values)+.5,xlabel:'完整EM更新次数',ylabel:'观测 log 似然 / 1'});
   observations.forEach((x,i)=>{curve(left,[[x,0],[x,r.responsibilities[i][0]]],a,blue,false,3);dot(left,[x,r.responsibilities[i][0]],a,blue,6);});curve(right,values.slice(0,n+1).map((v,i)=>[i,v]),b,pink);dot(right,[n,r.likelihood],b,pink);
-  $('value').textContent=fmt(r.likelihood);$('time-readout').textContent=`第 ${n}/20 次更新`;$('observation-value').textContent=`均值 [${r.means.map(fmt)}] U；权重 [${r.weights.map(fmt)}]。${p.symmetric?'对称初始化没有自动分离。':'固定方差，不更新噪声。'}`;legend([['当前责任度',blue],['观测似然',pink]]);table([['全部观测 / U',observations],['均值 / U',r.means],['权重',r.weights],['第一分量责任度',r.responsibilities.map(x=>x[0])],['观测log似然',r.likelihood]]);
+  $('value').textContent=fmt(r.likelihood);$('time-readout').textContent=`第 ${n}/20 次更新`;$('observation-value').textContent=`分量1、2的均值 [${r.means.map(fmt)}] U；分量1、2的权重 [${r.weights.map(fmt)}]。${p.symmetric?'对称初始化没有自动分离。':'固定方差，不更新噪声。'}`;legend([['当前责任度',blue],['观测似然',pink]]);table([['全部观测 / U',observations],['均值 / U',r.means],['权重',r.weights],['第一分量责任度',r.responsibilities.map(x=>x[0])],['观测log似然',r.likelihood]]);
  }
  if(mode==='9.5'){
-  const start=p.multiplier===1?.25:1,c=start+(p.multiplier-start)*frac,r=prediction(p.variance,1,c),a=axes(left,{xmin:-5,xmax:8,ymin:0,ymax:1.85,xlabel:'偏差或新读数 / U',ylabel:'密度 / (1/U)'}),b=axes(right,{xmin:.25,xmax:4,ymin:.55,ymax:1.02,xlabel:'实际噪声方差倍率 c',ylabel:'封存预测区间的概率'}),xs=Array.from({length:301},(_,i)=>-5+13*i/300);
+  const start=p.multiplier===1?.25:1,c=start+(p.multiplier-start)*frac,r=prediction(p.variance,1,c),a=axes(left,{xmin:-5,xmax:8,ymin:0,ymax:1.85,xlabel:'偏差或新读数 / U',ylabel:'密度 / (1/U)'}),b=axes(right,{xmin:.25,xmax:4,ymin:.55,ymax:1.02,xlabel:'实际噪声方差倍率 c',ylabel:'原预测区间包含的概率'}),xs=Array.from({length:301},(_,i)=>-5+13*i/300);
   for(const[v,color,dash]of [[p.variance,gray,false],[r.variance,blue,false],[r.actual,pink,true]])curve(left,xs.map(x=>[x,normal(x,1.6,v)]),a,color,dash);curve(left,[[1.6-r.half,.04],[1.6+r.half,.04]],a,blue,false,5);curve(left,[[1.6-r.parameterHalf,.1],[1.6+r.parameterHalf,.1]],a,gray,false,4);
   curve(right,Array.from({length:101},(_,i)=>{const q=.25+3.75*i/100;return[q,prediction(p.variance,1,q).coverage];}),b,pink);dot(right,[c,r.coverage],b,pink,6);curve(right,[[.25,.95],[4,.95]],b,gray,true);
-  $('value').textContent=(100*r.coverage).toFixed(1)+'%';$('time-readout').textContent=`当前噪声倍率 ${fmt(c)}`;$('observation-value').textContent=`参数区间半宽 ${fmt(r.parameterHalf)} U；封存预测区间半宽 ${fmt(r.half)} U。区间始终不变，改变的是核验分布。`;legend([['参数分布与区间',gray],['封存预测与区间',blue],['实际噪声下的核验',pink]]);table([['模型预测方差 / U²',r.variance],['核验方差 / U²',r.actual],['封存区间下界 / U',1.6-r.half],['封存区间上界 / U',1.6+r.half],['解析覆盖',r.coverage]]);
+  $('value').textContent=(100*r.coverage).toFixed(1)+'%';$('time-readout').textContent=`当前噪声倍率 ${fmt(c)}`;$('observation-value').textContent=`参数区间半宽 ${fmt(r.parameterHalf)} U；原预测区间半宽 ${fmt(r.half)} U。本次播放保持预测区间，按实际噪声改变核验密度。`;legend([['参数分布与区间',gray],['原预测与区间',blue],['实际噪声下的核验',pink]]);table([['模型预测方差 / U²',r.variance],['核验方差 / U²',r.actual],['原预测区间下界 / U',1.6-r.half],['原预测区间上界 / U',1.6+r.half],['解析覆盖',r.coverage]]);
  }
 }
 function failed(error){$('loading-note').hidden=false;$('loading-note').classList.add('error');$('loading-note').textContent=`探索未能运行：${error.message}。请刷新重试。`;for(const id of ['controls','play','replay','timeline'])$(id).disabled=true;playback?.pause();}
 function guard(fn){try{fn();}catch(error){failed(error);}}
 async function start(){
- ({current:chapter}=await mountShell('explore'));mode=chapter?.id;const def=definitions[mode];if(!def)throw Error('本章没有此探索页');$('eyebrow').textContent=chapter.id+' 章 · 可视化与探索';for(const id of ['title','question','explanation','formula','assumptions'])$(id).textContent=def[id];$('chart-heading').textContent=def.heading;$('value-label').textContent=def.label;$('chart-note').textContent=def.note;$('preset-note').textContent='先观察指定条件；播放可从起点逐步展开。每个对照按钮都支持切换回去。';controls();recompute();
+ ({current:chapter}=await mountShell('explore'));mode=chapter?.id;const def=definitions[mode];if(!def)throw Error('本章没有此探索页');$('eyebrow').textContent=chapter.id+' 章 · 可视化与探索';for(const id of ['title','question','explanation','formula','assumptions'])$(id).textContent=def[id];$('chart-heading').textContent=def.heading;$('value-label').textContent=def.label;$('chart-note').textContent=def.note;$('preset-note').textContent='先判断改变条件后会发生什么，再播放观察。对照按钮可以切换并返回原条件。';controls();recompute();
  playback=createPlayback({duration:100,speed:10,update:draw,failed,changed:reason=>{$('play').textContent=reason==='playing'?'暂停':'播放';$('play-status').textContent=reason==='playing'?'正在播放，观察图形与读数同步变化。':reason==='ended'?'已展示指定条件；点击播放可从起点观察。':reason==='hidden'?'切离页面后已暂停。':'已暂停，可拖动观察位置。';}});
  $('play').addEventListener('click',()=>guard(()=>playback.running?playback.pause():playback.play()));$('replay').addEventListener('click',()=>guard(()=>{playback.seek(0);playback.play();}));$('timeline').addEventListener('input',()=>guard(()=>playback.seek(Number($('timeline').value))));
  $('alternate').addEventListener('click',()=>guard(()=>{set(alternate(mode,p));}));$('reset').addEventListener('click',()=>guard(()=>{controls();recompute();}));document.addEventListener('visibilitychange',()=>{if(document.hidden)playback.pause('hidden');});
