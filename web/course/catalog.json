@@ -6378,14 +6378,14 @@
           "id": "11.1",
           "title": "从连接结构进入网络科学",
           "url": "/chapters/11-01-从连接结构进入网络科学/",
-          "goals": "构造并解释邻接矩阵（adjacency matrix）、度、路径、连通分量（connected component）与社区（community），辨认随机网络、小世界（small-world）和度分布（degree distribution）的条件。",
-          "prerequisites": "3.2、5.4；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、图、邻接矩阵、图拉普拉斯（graph Laplacian）、图谱与连通性。",
+          "goals": "从四节点边表构造连接矩阵，逐节点数度、逐对找路径，再比较规则环与重连重复。",
+          "prerequisites": "3.2、5.4；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
           "knowledge": [
-            "节点、边与有向/无向、加权/无权语义",
-            "度、连通性、社区和图拉普拉斯的基础定义",
-            "随机图、规则图与重连图，讨论度分布证据"
+            "四节点通道展开为四行矩阵与六对距离",
+            "从邻居对计算局部聚类（local clustering）",
+            "保持节点数与边数，比较16张重连图，报告断连"
           ],
-          "focus": "从邻接关系计算度、路径与连通分量；用规则环和重连对照理解网络结构的变化。",
+          "focus": "矩阵行列与节点编号的对应；按层寻找最短路径；保留端点与无向边存储的区别。",
           "available": true,
           "lessons": [
             {
@@ -6393,7 +6393,7 @@
               "chapter_id": "11.1",
               "number": "11.1.1",
               "title": "从边表到结构统计",
-              "outcome": "用明确的边语义构造邻接矩阵、度、分量与路径。",
+              "outcome": "从四个细胞的通道写出连接矩阵，逐节点计边、逐对寻找最短路径，并辨认断开后的节点组。",
               "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/01-从边表到结构统计.ipynb",
               "visualization": "web/network/index.html",
               "questions": [
@@ -6429,7 +6429,7 @@
               "chapter_id": "11.1",
               "number": "11.1.2",
               "title": "规则网络与重连基线",
-              "outcome": "在相同节点和边数下比较聚类、路径和重连随机性。",
+              "outcome": "保持节点与边数，跟算规则环的邻居连接比例，再比较多张重连网络的聚类、路径和断连情况。",
               "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/02-规则网络与重连基线.ipynb",
               "visualization": "web/network/index.html",
               "questions": [
@@ -6467,14 +6467,14 @@
           "id": "11.2",
           "title": "网络上的扩散与守恒",
           "url": "/chapters/11-02-网络上的扩散与守恒/",
-          "goals": "先推导等容积归一化总量模型（model） dx/dt = −L_k x，再引入非等容积时的 dm/dt = −L_g(m/V)，说明守恒、连通分量（connected component）和平衡（equilibrium）模态（mode）。",
-          "prerequisites": "11.1、3.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态、矩阵（matrix）幂和矩阵指数（matrix exponential）、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
+          "goals": "从逐边收支推导归一化图拉普拉斯（graph Laplacian），展开模态衰减、容积平衡和Euler非负条件。",
+          "prerequisites": "11.1、3.3；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
-            "等容积边系数 k 的单位为 1/T",
-            "物理边系数 g 的单位为 V/T，等容积时 k=g/V₀",
-            "拉普拉斯零模态、连通性与趋近速度"
+            "每条边的四项矩阵贡献与一减一加",
+            "断连两组的常值和差值模态",
+            "不同容积的共同浓度、总量分配与步长系数"
           ],
-          "focus": "从逐边交换推导拉普拉斯动态；连接总量守恒、容积差异和连通分量内的平衡。",
+          "focus": "总量与浓度；归一化系数1/T与物理系数V/T；零模态、分量总量及孤立节点。",
           "available": true,
           "lessons": [
             {
@@ -6482,7 +6482,7 @@
               "chapter_id": "11.2",
               "number": "11.2.1",
               "title": "每条边的交换与守恒",
-              "outcome": "从边收支推导图拉普拉斯并检查总量守恒。",
+              "outcome": "逐边计算两端相反的交换贡献，将三室收支写成图拉普拉斯，并检查每次更新的总量。",
               "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/01-每条边的交换与守恒.ipynb",
               "visualization": "web/network/index.html",
               "questions": [
@@ -6518,7 +6518,7 @@
               "chapter_id": "11.2",
               "number": "11.2.2",
               "title": "连通性、模态与容积",
-              "outcome": "用拉普拉斯零模态解释平衡并核验数值步长。",
+              "outcome": "由断开的节点组解释零模态，再按浓度差推导不同容积的平衡与Euler非负步长条件。",
               "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/02-连通性、模态与容积.ipynb",
               "visualization": "web/network/index.html",
               "questions": [
@@ -6556,14 +6556,14 @@
           "id": "11.3",
           "title": "接触结构与传播",
           "url": "/chapters/11-03-接触结构与传播/",
-          "goals": "定义个体状态（state）和接触传播规则，比较平均混合（homogeneous mixing）与网络模型（model），说明初始位置及有限规模（finite size）影响。",
-          "prerequisites": "11.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
+          "goals": "按旧状态与固定比较表重放传播，在相同观察期内保留网络、起点及传播重复的对应关系。",
+          "prerequisites": "11.2、5.4；数学：随机过程、有限马尔可夫链、转移矩阵与长期分布、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
-            "状态转移和接触定义",
-            "平均混合与固定网络",
-            "结构、初始节点与干预的对照，区分单次灭绝和平均传播规模"
+            "三节点两步手算与至少一次成功概率",
+            "八节点路径12步轨迹",
+            "两种重连条件各20×30结果，轮换起点并成对共用传播表，再比较平均混合（homogeneous mixing）参照"
           ],
-          "focus": "逐步理解同步感染与恢复；分别改变网络和传播起点，比较多次传播结果。",
+          "focus": "接收者与旧感染邻居索引；同步写回；累计人数与活跃步数；图内和图均值间描述性方差。",
           "available": true,
           "lessons": [
             {
@@ -6571,7 +6571,7 @@
               "chapter_id": "11.3",
               "number": "11.3.1",
               "title": "固定随机数的同步传播",
-              "outcome": "写出同步 SIR 更新并复查传播与恢复事件。",
+              "outcome": "按旧状态与定向比较表跟算两步感染和恢复，解释同步更新、累计人数与活跃步数。",
               "path": "notebooks/11-网络上的系统/03-接触结构与传播/01-固定随机数的同步传播.ipynb",
               "visualization": "web/network/index.html",
               "questions": [
@@ -6607,7 +6607,7 @@
               "chapter_id": "11.3",
               "number": "11.3.2",
               "title": "网络随机与传播随机",
-              "outcome": "在等接触预算下分层重复，分开两类随机变异。",
+              "outcome": "将结果按网络与传播重复排成表，手算图内与图均值间方差，并按共同起点和抽样比较结构。",
               "path": "notebooks/11-网络上的系统/03-接触结构与传播/02-网络随机与传播随机.ipynb",
               "visualization": "web/network/index.html",
               "questions": [
@@ -6645,14 +6645,14 @@
           "id": "11.4",
           "title": "耦合振子与同步",
           "url": "/chapters/11-04-耦合振子与同步/",
-          "goals": "区分相位（phase）接近、频率锁定（frequency locking）与平均频率，说明同步指标和耦合归一化。",
-          "prerequisites": "11.3、4.2；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
+          "goals": "从单位相位向量平均进入全局指标，再用未取模位移计算尾窗平均频率，成对比较结构。",
+          "prerequisites": "11.3、4.2；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
-            "单体节律到相位模型（model）的简化",
-            "网络耦合、异质频率与同步指标",
-            "扫描耦合及初相，比较结构和规模"
+            "四振子反相分组与旋转不变",
+            "两振子一步耦合及零耦合线性相位",
+            "固定两张12节点图，四种频率分配各配四组初相，分别读末窗R与尾窗频率极差"
           ],
-          "focus": "区分相位聚集与频率锁定；比较耦合、连接结构和频率分配对同步的影响。",
+          "focus": "全局抵消与组内同相；按度归一化；共同频率分配与初相；均值、标准差与有限观察窗。",
           "available": true,
           "lessons": [
             {
@@ -6660,7 +6660,7 @@
               "chapter_id": "11.4",
               "number": "11.4.1",
               "title": "从单体相位到群体指标",
-              "outcome": "实现耦合相位模型并分辨全局相位一致与分群。",
+              "outcome": "从单位圆箭头的平均计算全局相位指标，解释反相分群，并将相位差接入网络耦合。",
               "path": "notebooks/11-网络上的系统/04-耦合振子与同步/01-从单体相位到群体指标.ipynb",
               "visualization": "web/network/index.html",
               "questions": [
@@ -6696,7 +6696,7 @@
               "chapter_id": "11.4",
               "number": "11.4.2",
               "title": "结构、耦合与频率锁定",
-              "outcome": "比较两种结构的相位一致和尾段频率差，限定结论。",
+              "outcome": "在两种结构中共用频率分配与初相，分别计算末窗相位集中和尾窗平均频率差。",
               "path": "notebooks/11-网络上的系统/04-耦合振子与同步/02-结构、耦合与频率锁定.ipynb",
               "visualization": "web/network/index.html",
               "questions": [
@@ -6736,14 +6736,14 @@
         "assessment": true,
         "title": "网络结构、传播与同步",
         "url": "/parts/11-网络上的系统/综合练习/",
-        "goals": "先定义连接含义和预算，再比较动力学。",
-        "prerequisites": "本篇11.1—11.4；第5篇随机过程（stochastic process）与第3篇多变量动态。",
-        "focus": "结构语义、守恒扩散、分层重复、全局与局部同步。",
+        "goals": "沿四节点环分别检查结构、交换、传播和节律，将各模型的状态、边作用与结果指标对应起来。",
+        "prerequisites": "11.1—11.4：连接统计、守恒交换、同步传播与相位耦合。",
+        "focus": "状态与系数的单位；逐边贡献；旧状态同步顺序；观察长度、重复层级与相位指标的含义。",
         "knowledge": [
-          "邻接、度和路径",
-          "拉普拉斯与容积",
-          "同步 SIR 与分层重复",
-          "相位（phase）序参量（order parameter）与锁定"
+          "连接矩阵、度和最短路径",
+          "图拉普拉斯、零模态与容积平衡",
+          "固定随机表、累计人数与分层方差",
+          "相位向量平均与尾窗频率"
         ],
         "lessons": [
           {
@@ -6751,18 +6751,18 @@
             "chapter_id": "11.summary",
             "number": "篇末综合",
             "title": "网络结构、传播与同步",
-            "outcome": "在同一网络语义下比较结构、扩散、传播及集体节律。",
+            "outcome": "沿四节点环分别检查结构、交换、传播和节律，将各模型的状态、边作用与结果指标对应起来。",
             "path": "notebooks/11-网络上的系统/05-篇末综合/01-网络结构传播与同步.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "先定义连接含义和预算，再比较动力学。",
-              "prerequisites": "本篇11.1—11.4；第5篇随机过程与第3篇多变量动态。",
-              "focus": "结构语义、守恒扩散、分层重复、全局与局部同步。",
+              "goals": "沿四节点环分别检查结构、交换、传播和节律，将各模型的状态、边作用与结果指标对应起来。",
+              "prerequisites": "11.1—11.4：连接统计、守恒交换、同步传播与相位耦合。",
+              "focus": "状态与系数的单位；逐边贡献；旧状态同步顺序；观察长度、重复层级与相位指标的含义。",
               "knowledge": [
-                "邻接、度和路径",
-                "拉普拉斯与容积",
-                "同步 SIR 与分层重复",
-                "相位序参量与锁定"
+                "连接矩阵、度和最短路径",
+                "图拉普拉斯、零模态与容积平衡",
+                "固定随机表、累计人数与分层方差",
+                "相位向量平均与尾窗频率"
               ]
             },
             "questions": [

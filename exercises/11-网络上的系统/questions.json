@@ -7,7 +7,7 @@
     "chapter": "11.1",
     "lesson_id": "P11-C01-S01",
     "title": "计算小图的结构统计",
-    "statement": "节点编号从0到n−1，edges 的每项 [i,j] 表示一条无向、无权、无自环的边且不重复。返回度、按最小节点排序的连通分量（connected component）和全图不同节点对的平均最短路径长度；若图不连通或 n=1，路径平均值返回 None。",
+    "statement": "节点按0到n−1编号。边表中的每个[i,j]表示节点i与j相连，连接无方向、无权重；两个端点不同，同一条边只列一次。计算各节点的度、连通分量，以及全图不同节点对的平均最短路径。图不连通或只有一个节点时，平均路径返回 `None`。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -21,13 +21,13 @@
       {
         "name": "n",
         "type": "int",
-        "description": "节点总数。",
+        "description": "节点总数；编号为0到n−1。",
         "unit": "个"
       },
       {
         "name": "edges",
         "type": "list[list[int]]",
-        "description": "无向简单边，每条只列一次。",
+        "description": "边表；[i,j]中的两个数都是节点编号，表示一条无向边。",
         "unit": "条"
       }
     ],
@@ -35,25 +35,25 @@
       {
         "name": "degrees",
         "type": "list[int]",
-        "description": "按节点编号排列的度。",
+        "description": "按节点0到n−1排列；每项是该节点相连的边数。",
         "unit": "条"
       },
       {
         "name": "components",
         "type": "list[list[int]]",
-        "description": "每个分量及分量顺序均升序。",
+        "description": "每项列出一个连通分量的节点，分量内升序；各分量按其最小节点编号升序排列。",
         "unit": "节点编号"
       },
       {
         "name": "mean_path",
         "type": "float | None",
-        "description": "全图平均最短边数；未定义时为 None。",
+        "description": "每对不同节点间最少边数的平均，只把i<j的一对计一次；存在不可达对或n=1时为 `None`。",
         "unit": "边"
       }
     ],
-    "contract": "先构造对称邻接矩阵（adjacency matrix）；用 BFS 找分量及从每个起点的距离。只对 i<j 计一次；有不可达对则 mean_path=None。",
+    "contract": "邻接矩阵的[i][j]与[j][i]同时记为1。可从每个起点按层寻找邻居，得到最短距离；从尚未访问的节点重新出发则找到下一个分量。全图平均包含所有不同节点对，不用可达的部分代替断连图的全图平均。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -61,7 +61,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "四节点路径的度为[1,2,2,1]；6 对距离之和为10，故平均为10/6。",
+    "hint": "先把每条边分别计入两个端点的度。求距离时，起点的邻居相距1条边，下一层新发现的节点相距2条边；记录已经发现的节点，避免重复。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -109,7 +109,7 @@
           ],
           1.6666666666666667
         ],
-        "explanation": "四节点路径的度为[1,2,2,1]；6 对距离之和为10，故平均为10/6。"
+        "explanation": "按0、1、2、3的顺序，度为[1,2,2,1]。六对节点(0,1)、(0,2)、(0,3)、(1,2)、(1,3)、(2,3)的距离分别为1、2、3、1、2、1，和为10，平均10/6。所有节点在同一分量内。"
       }
     ]
   },
@@ -121,7 +121,7 @@
     "chapter": "11.1",
     "lesson_id": "P11-C01-S01",
     "title": "边与计算规则",
-    "statement": "同一份无向边表分别用于物质交换和接触传播。建模时，哪些做法能明确每条边参与计算的方式？",
+    "statement": "一份无向边表记录哪些节点相连。现在分别把这些连接用于物质交换和接触传播。哪些做法能说明一条边怎样影响下一时刻的状态？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -135,15 +135,15 @@
     "options": [
       {
         "id": "A",
-        "text": "在物质交换模型（model）中，应写明边两端的总量或浓度（concentration）差如何决定交换流率（flow rate）。"
+        "text": "在物质交换模型中，应写明边两端的总量或浓度差如何决定交换流率。"
       },
       {
         "id": "B",
-        "text": "在接触传播模型中，应写明一个感染节点通过接触边感染邻居的概率（probability）及对应的时间步。"
+        "text": "在接触传播模型中，应写明一个感染节点通过接触边感染邻居的概率及对应的时间步。"
       },
       {
         "id": "C",
-        "text": "同一条边的权重可以保持相同数值，分别用作物质交换系数和每步感染概率。"
+        "text": "物质交换系数与每步感染概率采用同一个边权重；改变时间单位或时间步后，这个权重仍同时表示两种作用。"
       },
       {
         "id": "D",
@@ -160,7 +160,7 @@
     "chapter": "11.1",
     "lesson_id": "P11-C01-S01",
     "title": "闭合四节点路径后",
-    "statement": "四节点路径0—1—2—3再增加边3—0，新的度序列与分量数是什么？",
+    "statement": "原网络是0—1—2—3这条路径。加入连接3号与0号的边后，按0、1、2、3排列的度及连通分量数是哪一组？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -174,7 +174,7 @@
     "options": [
       {
         "id": "A",
-        "text": "按节点编号排列的度为[1,2,2,1]，图中有2个连通分量（connected component）。"
+        "text": "按节点编号排列的度为[1,2,2,1]，图中有2个连通分量。"
       },
       {
         "id": "B",
@@ -199,7 +199,7 @@
     "chapter": "11.1",
     "lesson_id": "P11-C01-S01",
     "title": "度数总和检查",
-    "statement": "一个有 n 个节点、m 条边的无向简单图。哪些关于度（degree）和边数的关系成立？",
+    "statement": "无向简单图有n个节点、m条边。把每个节点相连的边数称为该节点的度。关于度与边数，哪些说法成立？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -225,7 +225,7 @@
       },
       {
         "id": "D",
-        "text": "所有节点的度相同时，图中只有一个连通分量（connected component）。"
+        "text": "所有节点的度相同时，图中只有一个连通分量。"
       }
     ],
     "constraints": []
@@ -238,7 +238,7 @@
     "chapter": "11.1",
     "lesson_id": "P11-C01-S02",
     "title": "计算平均局部聚类",
-    "statement": "在无向简单图上，对每个节点计算邻居之间实际相连的边数除以邻居可能边数；度不足2的节点本题局部聚类（local clustering）定义为0。返回 n 个节点的算术平均。",
+    "statement": "在无向简单图中，先找出每个节点的邻居。该节点的局部聚类系数等于邻居之间已有的边数，除以这些邻居之间可能的边数。度小于2时系数取0。返回所有n个节点局部系数的算术平均。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -252,13 +252,13 @@
       {
         "name": "n",
         "type": "int",
-        "description": "节点总数，至少1。",
+        "description": "节点总数，至少为1；编号从0到n−1。",
         "unit": "个"
       },
       {
         "name": "edges",
         "type": "list[list[int]]",
-        "description": "无向简单边。",
+        "description": "每项[i,j]列出一条无向边，端点不同且同一边只列一次。",
         "unit": "条"
       }
     ],
@@ -266,13 +266,13 @@
       {
         "name": "mean_clustering",
         "type": "float",
-        "description": "平均局部聚类系数。",
+        "description": "n个局部聚类系数的和除以n；度不足2的节点也计入平均，其局部值为0。",
         "unit": "1"
       }
     ],
-    "contract": "局部系数 C_i=已连接邻居对数 / [d_i(d_i−1)/2]，d_i<2 时取0；最后除以 n。",
+    "contract": "节点i有d_i个邻居，这些邻居共有d_i(d_i−1)/2对。只数邻居对之间的边，不把节点i到邻居的边计入分子；d_i<2时局部值为0。各节点权重相同，最后除以n。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -280,7 +280,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "三角形每个节点的邻居彼此连接，平均聚类为1；路径图无三角。",
+    "hint": "对一个节点，先列邻居，再逐对检查邻居是否相连。三角形的三个节点都只有一对邻居，而这对邻居相连。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -312,7 +312,7 @@
           ]
         },
         "expected": 1.0,
-        "explanation": "三角形每个节点的邻居彼此连接，平均聚类为1；路径图无三角。"
+        "explanation": "边0—1、1—2、0—2形成三角形。每个节点有两个邻居，唯一的邻居对已有一条边，局部系数都是1，平均也是1。"
       }
     ]
   },
@@ -324,7 +324,7 @@
     "chapter": "11.1",
     "lesson_id": "P11-C01-S02",
     "title": "重连结构的比较",
-    "statement": "要比较“把规则环的部分边重连到远处”对平均最短路径的影响，哪组实验最能保持节点数和边数等其他因素相同？",
+    "statement": "想比较把规则环的部分边换成其他连接后，平均最短路径怎样变化。哪组实验保持规模与边数一致，并能观察随机重连造成的波动？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -338,7 +338,7 @@
     "options": [
       {
         "id": "A",
-        "text": "保持节点数和边数相同，并在每个重连概率（probability）下选取平均最短路径最小的一张图进行比较。"
+        "text": "保持节点数和边数相同，并在每个重连概率下选取平均最短路径最小的一张图进行比较。"
       },
       {
         "id": "B",
@@ -363,7 +363,7 @@
     "chapter": "11.1",
     "lesson_id": "P11-C01-S02",
     "title": "判断度分布的形状",
-    "statement": "一张40节点网络的度分布（degree distribution）在双对数图上有一段近似直线。要判断幂律是否比其他分布（distribution）更能解释数据，下一步应怎样比较？",
+    "statement": "40节点网络的度分布在双对数图上有一段近似直线。若要判断幂律与其他候选分布谁更能解释这些度数据，下一步应怎样做？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -402,7 +402,7 @@
     "chapter": "11.1",
     "lesson_id": "P11-C01-S02",
     "title": "重连实验的随机性",
-    "statement": "重连算法每次移除一条边再添加一条边，并排除自环和重复边。固定节点数、初始规则环和重连概率（probability），仅更换随机种子（random seed）。哪些判断成立？",
+    "statement": "重连时保留原边的一端，移除原边，再接向一个非自身且尚未相连的节点。固定节点数、初始规则环和重连概率，只改变生成种子。哪些结果成立？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -441,7 +441,7 @@
     "chapter": "11.2",
     "lesson_id": "P11-C02-S01",
     "title": "由交换边构造拉普拉斯",
-    "statement": "每项 [i,j,rate] 是归一化的对称交换率 k_ij（单位1/T）。构造 L_k，使等容积总量模型（model）的变化率为 −L_k m；边贡献 L_ii+=rate、L_jj+=rate、L_ij−=rate、L_ji−=rate。",
+    "statement": "等容积节点之间按总量差交换。边表每项[i,j,rate]给出两个节点编号和非负归一化交换系数k_ij=rate，单位1/T。构造L_k，使总量向量m满足变化率−L_k m。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -455,13 +455,13 @@
       {
         "name": "n",
         "type": "int",
-        "description": "节点数。",
+        "description": "节点总数；矩阵行列按0到n−1排列。",
         "unit": "个"
       },
       {
         "name": "weighted_edges",
         "type": "list[list[float]]",
-        "description": "每条无向边的两端编号与非负归一化交换率 k_ij。",
+        "description": "每项[i,j,k_ij]给出一条无向对称交换边；同一边只列一次，第三项的单位为1/T。",
         "unit": "1/T"
       }
     ],
@@ -469,13 +469,13 @@
       {
         "name": "L",
         "type": "list[list[float]]",
-        "description": "n×n 对称拉普拉斯矩阵（matrix）。",
+        "description": "n行n列的L_k；对角项为该节点交换系数之和，非对角项为对应系数的负数，元素单位1/T。",
         "unit": "1/T"
       }
     ],
-    "contract": "同一无向边只给一次；孤立节点保留全零行。",
+    "contract": "边[i,j,rate]分别给L[i][i]与L[j][j]加rate，给L[i][j]与L[j][i]减rate。没有交换边的节点保留全零行和全零列。",
     "constraints": [
-      "只计算题定有限图和数值模型；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -483,7 +483,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例的行和全为0；第一条边给(0,1)与(1,0)各减去2。",
+    "hint": "先写一条边对两个节点变化率的贡献，再与−L_k m对照。每条边只影响两项对角和两项非对角。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -529,7 +529,7 @@
             1.0
           ]
         ],
-        "explanation": "首例的行和全为0；第一条边给(0,1)与(1,0)各减去2。"
+        "explanation": "边0—1的系数为2，给对角(0,0)、(1,1)加2，给(0,1)、(1,0)减2；边1—2同样加入系数1。中间节点的对角项为2+1=3，三行和均为0。"
       }
     ]
   },
@@ -541,7 +541,7 @@
     "chapter": "11.2",
     "lesson_id": "P11-C02-S01",
     "title": "一条边的收支",
-    "statement": "两节点的总量分别为4 U、1 U，交换系数为0.5/T。由第一节点流向第二节点的流率（flow rate）为系数乘总量差。哪组总量变化率同时符合这个交换律并保持总量守恒？",
+    "statement": "第一节点存有4 U，第二节点存有1 U。两者以0.5/T乘总量差计算从第一节点流向第二节点的净流率。按第一、第二节点的顺序，哪组变化率符合该规则？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -580,7 +580,7 @@
     "chapter": "11.2",
     "lesson_id": "P11-C02-S01",
     "title": "行和与总和",
-    "statement": "两变量满足 x₁′=−x₁+x₂、x₂′=2x₁−2x₂。系数矩阵（matrix）的每行和均为0。关于总和的导数（derivative）以及 x₁=x₂ 时的状态（state），哪项计算正确？",
+    "statement": "两个变量的变化率为x₁′=−x₁+x₂、x₂′=2x₁−2x₂。每行系数之和都是0。把两条方程相加，再代入x₁=x₂，哪项同时描述对了总和变化率和相等状态的演化？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -619,7 +619,7 @@
     "chapter": "11.2",
     "lesson_id": "P11-C02-S01",
     "title": "孤立节点的零模态",
-    "statement": "三个等容积节点，只有0号与1号之间存在对称交换，且交换系数为正；2号孤立。初始总量为 [2,6,10] U。长时间后的总量是哪一组？",
+    "statement": "三个等容积节点中，0号与1号以正系数对称交换，2号没有连接。按0、1、2排列的初始总量是[2,6,10] U。长时间后，同一顺序的总量趋于哪一组？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -658,7 +658,7 @@
     "chapter": "11.2",
     "lesson_id": "P11-C02-S02",
     "title": "按容积交换物质总量",
-    "statement": "amount[i] 是第 i 室的所追踪物质总量（tracked amount），volume[i]>0；浓度（concentration） c_i=amount_i/volume_i。物理边系数 g_ij=rate，单位 V/T；边总量流率（flow rate） g_ij·(c_i−c_j)，用题给固定步长显式 Euler 更新指定步数，返回包含初态的每步总量列表。",
+    "statement": "各室总量按节点编号排列在initial中，容积排列在volumes中，浓度为总量除以容积。每条[i,j,rate]给出无向交换边，rate是单位V/T的物理交换系数g_ij；两室间净流率等于g_ij乘浓度差。按给定dt作steps次显式Euler更新，返回初态及每次更新后的各室总量。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -672,37 +672,37 @@
       {
         "name": "n",
         "type": "int",
-        "description": "室数。",
+        "description": "室的总数，编号0到n−1。",
         "unit": "个"
       },
       {
         "name": "weighted_edges",
         "type": "list[list[float]]",
-        "description": "无向对称物理交换边 [i,j,g_ij]。",
+        "description": "每项[i,j,g_ij]给出一条两端对称的物理交换边，第三项非负且单位V/T。",
         "unit": "容积/T"
       },
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "初始各室所追踪物质总量。",
+        "description": "按室编号排列的初始物质总量。",
         "unit": "U"
       },
       {
         "name": "volumes",
         "type": "list[float]",
-        "description": "各室容积。",
+        "description": "按相同室编号排列的正容积；计算浓度时逐项相除。",
         "unit": "V"
       },
       {
         "name": "dt",
         "type": "float",
-        "description": "固定数值步长。",
+        "description": "每次更新所经过的时间，单位T。",
         "unit": "T"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "更新次数。",
+        "description": "从初态开始作多少次同步更新。",
         "unit": "步"
       }
     ],
@@ -710,13 +710,13 @@
       {
         "name": "history",
         "type": "list[list[float]]",
-        "description": "长度 steps+1 的各室总量轨迹（trajectory）。",
+        "description": "外层长度为steps+1；第0项是初态，第t项按室编号列出t次更新后的总量。",
         "unit": "U"
       }
     ],
-    "contract": "每步同时用旧总量计算浓度，m_next=m−dt·L_g(m/V)。令 d_i=∑_j rate_ij；对 d_i>0 的节点，输入（input）保证 dt≤min_{i:d_i>0}(V_i/d_i)，故轨迹非负。孤立节点 d_i=0 不限制步长；全图无边时没有交换步长上界。",
+    "contract": "每步从同一旧总量向量m计算浓度m/V，再更新m_next=m−dt·L_g(m/V)。令d_i为节点i相连的物理系数之和；输入保证对所有d_i>0的节点都有dt≤V_i/d_i，使非负初态继续非负。d_i=0时该室总量不变，不约束步长；全图无交换边时没有交换步长上界。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -724,7 +724,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例第一步为[1.5,0.5]，两室总量之和始终为2；不同容积时长期相等的是浓度而不是总量。",
+    "hint": "先逐室算旧浓度，再逐边算本步转移总量dt·g_ij·(c_i−c_j)。一端减去的量加到另一端；全部边的贡献算完后再写下一状态。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -772,7 +772,7 @@
             0.75
           ]
         ],
-        "explanation": "首例第一步为[1.5,0.5]，两室总量之和始终为2；不同容积时长期相等的是浓度而不是总量。"
+        "explanation": "初态两室总量为[2,0]，容积均为1。第一步转移0.25×1×(2−0)=0.5 U，得[1.5,0.5]；第二步转移0.25×(1.5−0.5)=0.25 U，得[1.25,0.75]。三行总量和均为2 U。"
       }
     ]
   },
@@ -784,7 +784,7 @@
     "chapter": "11.2",
     "lesson_id": "P11-C02-S02",
     "title": "不同容积时的平衡",
-    "statement": "两室容积分别为1 L和3 L，通过浓度（concentration）差交换，总量为8 U，没有外部输入（input）或清除。达到平衡（equilibrium）时，两室总量按相同顺序为多少？",
+    "statement": "第一室容积1 L，第二室3 L，两室按浓度差交换物质。总量为8 U，系统没有外部输入或清除。平衡时，按第一、第二室排列的总量是多少？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -823,7 +823,7 @@
     "chapter": "11.2",
     "lesson_id": "P11-C02-S02",
     "title": "一步更新的两项检查",
-    "statement": "两节点交换满足 m₁′=−m₁+m₂、m₂′=m₁−m₂，时间以T计。初态 [1,0] U，用步长1.5 T作一次显式 Euler 更新得到 [−0.5,1.5] U。哪项解释符合该结果？",
+    "statement": "两室总量按[m₁,m₂]排列，变化率满足m₁′=−m₁+m₂、m₂′=m₁−m₂，时间以T计。从[1,0] U出发，用1.5 T的步长作一次Euler更新，得到[−0.5,1.5] U。这个结果通过了哪项检查？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -837,7 +837,7 @@
     "options": [
       {
         "id": "A",
-        "text": "总量保持1 U，说明这一步同时满足非负性（nonnegativity）要求。"
+        "text": "总量保持1 U，说明这一步同时满足非负性要求。"
       },
       {
         "id": "B",
@@ -849,7 +849,7 @@
       },
       {
         "id": "D",
-        "text": "出现负值说明连续交换模型（model）的精确解也变为负值。"
+        "text": "出现负值说明连续交换模型的精确解也变为负值。"
       }
     ],
     "constraints": []
@@ -862,7 +862,7 @@
     "chapter": "11.2",
     "lesson_id": "P11-C02-S02",
     "title": "最慢模态的时间尺度",
-    "statement": "两张连通无向图采用等容积对称交换，拉普拉斯矩阵（matrix）的最小正特征值（eigenvalue）分别为0.2/T和0.5/T。各自最慢可衰减模态（mode）的幅度降为原来的1/e所需时间分别是多少？",
+    "statement": "两张连通无向图采用等容积对称交换，最小正拉普拉斯特征值依次为0.2/T、0.5/T。各自最慢衰减模态的幅度变为原来的1/e，要经过多少时间？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -901,7 +901,7 @@
     "chapter": "11.3",
     "lesson_id": "P11-C03-S01",
     "title": "用固定随机数重放传播",
-    "statement": "状态（state） 0=S、1=I、2=R。每步用旧状态同步更新：易感节点若任一旧感染邻居的定向抽样 edge_draws[t][i][j]<beta，则下一步变 I；旧感染节点若 recovery_draws[t][i]<gamma，则下一步变 R。返回全轨迹（trajectory）、曾感染人数和更新前仍有 I 的步数。",
+    "statement": "每人状态用0、1、2分别表示易感S、感染I、恢复R，列表按节点编号排列。用题给的感染表和恢复表同步更新：旧易感者只要有一位旧感染邻居的infection_draws[t][i][j]<beta，就在下一步成为I；旧感染者在recovery_draws[t][i]<gamma时成为R。返回状态轨迹、曾为I或R的人数，以及更新前仍有I的步数。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -916,43 +916,43 @@
       {
         "name": "n",
         "type": "int",
-        "description": "人数。",
+        "description": "节点总数，也就是人数；编号从0到n−1。",
         "unit": "人"
       },
       {
         "name": "edges",
         "type": "list[list[int]]",
-        "description": "无向接触边。",
+        "description": "每项[i,j]表示一条无向接触边。",
         "unit": "条"
       },
       {
         "name": "initial",
         "type": "list[int]",
-        "description": "初态，每人取0、1或2。",
+        "description": "按节点编号排列的初态，0=S、1=I、2=R。",
         "unit": "类别"
       },
       {
         "name": "beta",
         "type": "float",
-        "description": "每条感染邻边每步成功概率（probability）。",
+        "description": "每条来自旧感染邻居的接触在一步内成功的概率。",
         "unit": "1"
       },
       {
         "name": "gamma",
         "type": "float",
-        "description": "每个旧感染者每步恢复概率。",
+        "description": "每位旧感染者在一步内恢复的概率。",
         "unit": "1"
       },
       {
         "name": "infection_draws",
         "type": "list[list[list[float]]]",
-        "description": "逐步 n×n 定向感染抽样，只有易感i读取感染邻居j的值。",
+        "description": "infection_draws[t][i][j]是第t步供易感接收者i检查旧感染邻居j的比较值；每步为n×n表。",
         "unit": "1"
       },
       {
         "name": "recovery_draws",
         "type": "list[list[float]]",
-        "description": "逐步每人的恢复抽样。",
+        "description": "recovery_draws[t][i]是第t步供旧感染者i检查恢复的比较值；每步有n项。",
         "unit": "1"
       }
     ],
@@ -960,25 +960,25 @@
       {
         "name": "history",
         "type": "list[list[int]]",
-        "description": "含初态的同步状态序列。",
+        "description": "外层先列初态，再列每次同步更新后的状态；内层按节点编号排列。",
         "unit": "类别"
       },
       {
         "name": "ever",
         "type": "int",
-        "description": "轨迹中曾为 I 或 R 的人数。",
+        "description": "统计轨迹中曾取I或R的节点数，每人只计一次，初态中的I和R也计入。",
         "unit": "人"
       },
       {
         "name": "active_steps",
         "type": "int",
-        "description": "每步更新前至少有一位 I 的步数。",
+        "description": "逐次更新前检查是否至少一人处于I；只数实际给定的更新步，不另数最终状态。",
         "unit": "步"
       }
     ],
-    "contract": "本步所有感染和恢复事件（event）都只读取旧状态。新感染者不能在同一步继续传播；本步将恢复的旧感染者仍按旧 I 状态参与本步感染判定。全部事件判定完成后同时写入新状态；恰好等于阈值不触发，随机表长度相同。",
+    "contract": "所有判定读取同一旧状态，结果写入新列表。新感染者要到下一步才传播或恢复；本步将恢复的旧感染者仍能按旧I状态传播。恢复者保持R。比较采用严格小于，等于阈值不触发；两张随机表的步数相同。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -986,7 +986,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例第1步只有中间节点感染；第2步旧中间节点仍可向右传播，同时左端恢复。",
+    "hint": "复制旧状态作为下一列表。逐人判定时始终读取旧列表和第t步表；全部判定结束后，才让新列表成为当前状态。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1089,7 +1089,7 @@
           3,
           2
         ],
-        "explanation": "首例第1步只有中间节点感染；第2步旧中间节点仍可向右传播，同时左端恢复。"
+        "explanation": "初态[1,0,0]表示0号感染。第0步1号读取0.2<0.5而感染，0号的0.8不触发恢复，得[1,1,0]。第1步2号读取旧1号的0.1而感染，旧0号以0.2恢复，得[2,1,1]。三人都曾感染，两个更新前状态都有I，因此返回3人和2步。"
       }
     ]
   },
@@ -1101,7 +1101,7 @@
     "chapter": "11.3",
     "lesson_id": "P11-C03-S01",
     "title": "链上的一步传播",
-    "statement": "四节点链0—1—2—3，初态 [I,S,S,S]。每条感染接触的感染概率（probability）为1，恢复概率为0；本步全部事件（event）读取旧状态（state）并同步写回。一步后的状态是什么？",
+    "statement": "接触链为0—1—2—3，按节点编号排列的初态是[I,S,S,S]。每条感染接触都成功，恢复概率为0。所有节点读取旧状态，完成判定后一起写入新状态。一步后是哪一组？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1141,7 +1141,7 @@
     "chapter": "11.3",
     "lesson_id": "P11-C03-S01",
     "title": "每边概率与总接触预算",
-    "statement": "每条来自旧感染邻居的接触独立地以0.2概率（probability）感染一个易感节点。两个易感节点分别有1个和2个旧感染邻居。它们本步至少被感染一次的概率分别是多少？",
+    "statement": "一次更新中，每条来自旧感染邻居的接触独立地以0.2的概率成功。两个易感节点分别有1位和2位旧感染邻居。按这个顺序，两节点本步被感染的概率是多少？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1181,7 +1181,7 @@
     "chapter": "11.3",
     "lesson_id": "P11-C03-S01",
     "title": "四次传播的平均结果",
-    "statement": "同一网络与规则下，四次独立传播的累计感染人数为1、1、4、10。前两次从初始感染者开始就终止。用这四次运行估计平均累计感染人数，应取多少？",
+    "statement": "固定网络与规则，四次独立运行的累计曾感染人数为1、1、4、10。前两次没有感染初始感染者之外的人，传播便结束。用全部四次运行估计平均累计人数，应取多少？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1221,7 +1221,7 @@
     "chapter": "11.3",
     "lesson_id": "P11-C03-S02",
     "title": "分开网络与传播重复",
-    "statement": "replicates[g][r] 是第 g 张网络上第 r 次传播的最终感染人数。每张图先求均值；网络内方差（variance）为所有观测（observation）减去本图均值后的平方平均，图均值间描述性方差为各图均值围绕总均值的平方平均，有限传播重复造成的均值抽样误差仍包含在内。返回各图均值、两种总体方差与总均值。",
+    "statement": "replicates[g][r]记录第g张网络上第r次运行观察结束时的累计曾感染人数，各图运行次数相同。先求各图均值，再分别计算图内结果围绕本图均值的平方平均，以及图均值围绕总均值的平方平均。返回各图均值、这两项总体方差和总均值。有限次传播造成的图均值抽样波动仍包含在第二项中。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1236,7 +1236,7 @@
       {
         "name": "replicates",
         "type": "list[list[float]]",
-        "description": "至少2张图、每图至少2次，矩形表；各图重复次数相同。",
+        "description": "矩形结果表；每行属于一张网络，每列是该图的一次传播，至少2行且每行至少2项。",
         "unit": "人"
       }
     ],
@@ -1244,31 +1244,31 @@
       {
         "name": "network_means",
         "type": "list[float]",
-        "description": "逐图的传播均值。",
+        "description": "按输入行顺序排列的每张图平均累计人数。",
         "unit": "人"
       },
       {
         "name": "within",
         "type": "float",
-        "description": "图内总体方差。",
+        "description": "把每个结果减去本行均值，平方后对全部GR项取平均，单位人²。",
         "unit": "人²"
       },
       {
         "name": "between",
         "type": "float",
-        "description": "图均值间的总体方差。",
+        "description": "把每个图均值减去总均值，平方后对G张图取平均，单位人²。",
         "unit": "人²"
       },
       {
         "name": "overall",
         "type": "float",
-        "description": "全部观测均值。",
+        "description": "全部GR项结果的算术平均，单位人。",
         "unit": "人"
       }
     ],
-    "contract": "若 G 张图、R 次重复，within=∑_{g,r}(x_gr−mean_g)²/(GR)，between=∑_g(mean_g−overall)²/G。不是自由度（degrees of freedom）校正样本方差。",
+    "contract": "G为行数、R为每行重复数，mean_g=∑_r replicates[g][r]/R，overall=∑_g mean_g/G。within=∑_{g,r}(replicates[g][r]−mean_g)²/(GR)，between=∑_g(mean_g−overall)²/G；使用总体分母，不作自由度校正。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1276,7 +1276,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例图均值为2和6，图内方差1，图间方差4，总均值4。",
+    "hint": "先算各行均值，再把行均值与原表逐行对应。最后对行均值求总均值，计算它们离总均值有多远。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1311,7 +1311,7 @@
           4.0,
           4.0
         ],
-        "explanation": "首例图均值为2和6，图内方差1，图均值间描述性方差4，总均值4。"
+        "explanation": "两行均值为(1+3)/2=2、(5+7)/2=6，总均值为4。行内四项偏差为−1、1、−1、1，平方平均为1；两个行均值离4的偏差为−2、2，平方平均为4。"
       }
     ]
   },
@@ -1323,7 +1323,7 @@
     "chapter": "11.3",
     "lesson_id": "P11-C03-S02",
     "title": "固定网络上的重复实验",
-    "statement": "固定同一张网络和同一个初始感染节点，只改变传播随机数运行1000次。所得累计感染人数的散布主要估计什么？",
+    "statement": "网络和初始感染节点保持不变，只更换传播随机数，运行1000次。累计曾感染人数在这些运行间的波动，主要描述什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1363,7 +1363,7 @@
     "chapter": "11.3",
     "lesson_id": "P11-C03-S02",
     "title": "定向干预的比较",
-    "statement": "比较“随机删边”和“优先删除高度节点的边”两种策略，每次都删5条边。哪种配对最能把差异归于删边规则？",
+    "statement": "在网络传播模型中比较随机删边与优先删除高度节点边的策略，每次都删5条边。哪种配对使差异主要对应删边规则的变化？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1403,7 +1403,7 @@
     "chapter": "11.3",
     "lesson_id": "P11-C03-S02",
     "title": "两层重复的统计",
-    "statement": "生成20张网络，每张各运行30次传播。估计平均传播规模时，怎样同时考察图内波动和图间差异？",
+    "statement": "生成20张网络，每张运行30次传播。结果既可能因传播抽样而不同，也可能因网络而不同。怎样保留这两个层级来计算描述性方差？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1418,7 +1418,7 @@
     "options": [
       {
         "id": "A",
-        "text": "将600次传播结果合在一起，按同一张网络的600次重复计算方差（variance）。"
+        "text": "将600次传播结果合在一起，按同一张网络的600次重复计算方差。"
       },
       {
         "id": "B",
@@ -1443,7 +1443,7 @@
     "chapter": "11.4",
     "lesson_id": "P11-C04-S01",
     "title": "计算全局相位序参量",
-    "statement": "给出同一时刻 n 个相位（phase）（弧度），计算 R=|n⁻¹∑ exp(iθ_j)|。不要把相位先做普通算术平均；R 应在[0,1]。",
+    "statement": "phases列出同一时刻各振子的相位，单位rad。把每个相位放在单位圆上，平均这些单位向量，再返回平均向量的长度R=|n⁻¹∑_j exp(iθ_j)|。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -1457,7 +1457,7 @@
       {
         "name": "phases",
         "type": "list[float]",
-        "description": "非空相位列表。",
+        "description": "非空列表；每项是一个振子的相位，单位rad。",
         "unit": "rad"
       }
     ],
@@ -1465,13 +1465,13 @@
       {
         "name": "R",
         "type": "float",
-        "description": "全局相位一致程度。",
+        "description": "平均单位相位向量的长度，取值0到1，没有单位。",
         "unit": "1"
       }
     ],
-    "contract": "分别平均 cosθ 与 sinθ，再取向量（vector）长度；所有相位共同平移不改变 R。",
+    "contract": "分别求cosθ与sinθ的算术平均，再求这两个分量组成的向量长度。所有相位共同增加同一个角度，只会旋转向量，R保持不变。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1479,7 +1479,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "两组反相各两个振子时复向量正负抵消，R 约为0；这不表示组内没有同步。",
+    "hint": "先算单位圆箭头在两个坐标轴上的分量。两组人数相等且反相时，箭头的平均可为零，组内仍可同相。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1501,7 +1501,7 @@
           ]
         },
         "expected": 1.0,
-        "explanation": "三个相位完全相同，三个单位复向量方向一致，因此平均向量模长（modulus）为1。作为对照，两组等人数反相时向量可以相互抵消，使 R≈0。"
+        "explanation": "三个相位都为0，三个单位圆向量都是(1,0)。平均仍为(1,0)，长度为1。"
       }
     ]
   },
@@ -1513,7 +1513,7 @@
     "chapter": "11.4",
     "lesson_id": "P11-C04-S01",
     "title": "共同平移全部相位",
-    "statement": "一组振子的序参量（order parameter） R=|N⁻¹Σ exp(iθⱼ)| 为0.6。把全部相位（phase）都增加π/2，新的R为多少？",
+    "statement": "一组振子的相位序参量R=|N⁻¹∑_j exp(iθ_j)|为0.6。所有相位共同增加π/2后，R变为多少？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1552,7 +1552,7 @@
     "chapter": "11.4",
     "lesson_id": "P11-C04-S01",
     "title": "两组相位的序参量",
-    "statement": "四个振子的相位（phase）为 [0,0,π,π]，用全部振子计算序参量（order parameter）R。哪组描述正确？",
+    "statement": "四个振子按编号排列的相位为[0,0,π,π]。用全部四个振子求R，哪项同时描述对了全局指标和组内相位？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1591,7 +1591,7 @@
     "chapter": "11.4",
     "lesson_id": "P11-C04-S01",
     "title": "相位靠近与频率锁定",
-    "statement": "两个不耦合的振子满足 θ₁(t)=t/T、θ₂(t)=2t/T，初相位（phase）均为0。t=0时的序参量（order parameter）R及相位差θ₂−θ₁的增长率分别是多少？",
+    "statement": "两个未耦合振子的相位满足θ₁(t)=t/T、θ₂(t)=2t/T，起点均为0。计算t=0时的R，再计算相位差θ₂−θ₁的增长率，哪组结果正确？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1630,7 +1630,7 @@
     "chapter": "11.4",
     "lesson_id": "P11-C04-S02",
     "title": "一步网络相位耦合",
-    "statement": "网络相位（phase）方程 dθ_i/dt=ω_i+[K/max(1,d_i)]∑_j A_ij sin(θ_j−θ_i)。用显式 Euler 走一步；孤立节点只按固有频率前进。返回未取模的相位，供后续频率计算。",
+    "statement": "各节点相位满足θ_i′=ω_i+[K/max(1,d_i)]∑_j A_ij sin(θ_j−θ_i)，A为无向图邻接矩阵，d_i为节点度。按给定dt作一次显式Euler更新，返回下一时刻的未取模相位。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -1644,31 +1644,31 @@
       {
         "name": "phases",
         "type": "list[float]",
-        "description": "当前各节点相位。",
+        "description": "按节点编号排列的旧相位，单位rad。",
         "unit": "rad"
       },
       {
         "name": "frequencies",
         "type": "list[float]",
-        "description": "各节点固有频率。",
+        "description": "同一顺序的固有角频率，单位rad/T。",
         "unit": "rad/T"
       },
       {
         "name": "edges",
         "type": "list[list[int]]",
-        "description": "无向简单耦合边。",
+        "description": "每项[i,j]表示一条无向耦合边；编号对应两个输入列表的位置。",
         "unit": "条"
       },
       {
         "name": "coupling",
         "type": "float",
-        "description": "各节点总耦合尺度。",
+        "description": "方程中的K，单位rad/T；每个节点的邻居贡献按其度归一化。",
         "unit": "rad/T"
       },
       {
         "name": "dt",
         "type": "float",
-        "description": "正时间步长（time step）。",
+        "description": "本次更新经过的时间，单位T，取正值。",
         "unit": "T"
       }
     ],
@@ -1676,13 +1676,13 @@
       {
         "name": "next_phases",
         "type": "list[float]",
-        "description": "下一步未取模相位。",
+        "description": "按相同节点顺序排列的新相位，保留连续累计的角度，不压回一个周期。",
         "unit": "rad"
       }
     ],
-    "contract": "旧相位同时用于所有节点；节点度为0时耦合和为0。返回一次题定 Euler 更新的数值。",
+    "contract": "所有节点的正弦差值都用旧phases计算；先加固有频率与归一化耦合项，再乘dt。孤立节点的邻居和为0，只按固有频率变化。返回题定Euler一步的数值。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1690,7 +1690,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例两个节点分别增减0.1 rad；第三例孤立振子只按自身频率增加0.5 rad。",
+    "hint": "每条边分别计算两个方向的正弦差，符号相反。每个节点加总后除以max(1,degree)，再乘K；最后加自身固有频率并推进dt。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1726,7 +1726,7 @@
           0.1,
           1.4707963267948965
         ],
-        "explanation": "首例两个节点分别增减0.1 rad；第三例孤立振子只按自身频率增加0.5 rad。"
+        "explanation": "两节点的度都为1，固有频率为0。节点0看到相位差π/2，增加0.1×sin(π/2)=0.1 rad；节点1看到−π/2，减少0.1 rad，得到[0.1,π/2−0.1]。"
       }
     ]
   },
@@ -1738,7 +1738,7 @@
     "chapter": "11.4",
     "lesson_id": "P11-C04-S02",
     "title": "耦合预算的定义",
-    "statement": "比较两个节点的耦合项 K/dᵢ Σⱼ sin(θⱼ−θᵢ)。两节点的度分别为2和4，且每个邻居贡献的正弦值都是0.5，K>0。归一化后的两个耦合项分别为多少？",
+    "statement": "节点耦合项为(K/d_i)∑_j sin(θ_j−θ_i)。两个节点分别有2个、4个邻居，每个邻居的正弦贡献都是0.5，K>0。按这个顺序，两个耦合项为多少？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1777,7 +1777,7 @@
     "chapter": "11.4",
     "lesson_id": "P11-C04-S02",
     "title": "终点变化的检查",
-    "statement": "8个振子的计算中，随K增大，终点R从0.3升到0.9。想检查这个变化是否受到过大时间步或过短运行时间的影响，应怎样比较？",
+    "statement": "8个振子的数值实验中，增加K后末时刻R从0.3升到0.9。怎样检查这种变化是否受到时间步过大或观察时间过短的影响？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1816,7 +1816,7 @@
     "chapter": "11.4",
     "lesson_id": "P11-C04-S02",
     "title": "比较结构时共用频率",
-    "statement": "比较同样8个节点上两种连接方式的同步行为，希望把频率分配和初态作为成对相同的因素。哪组设置符合这一目的？",
+    "statement": "在同样8个节点上比较两种连接结构的同步行为。希望每对运行共用相同的频率分配与初态，哪组设置符合这个目的？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1855,7 +1855,7 @@
     "chapter": "11.summary",
     "lesson_id": "P11-SUMMARY",
     "title": "连接规律的转换",
-    "statement": "同一无向图用来计算物质交换和传播。哪些转换保留了各自模型（model）的含义？",
+    "statement": "同一无向边表分别用于物质交换和接触传播。交换按总量差计算净流率，传播按独立接触的成功概率判定。哪些计算保留了各自机制与单位的含义？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -1870,11 +1870,11 @@
     "options": [
       {
         "id": "A",
-        "text": "交换系数为0.2/T，总量差为3 U时，净交换流率（flow rate）为0.6 U/T。"
+        "text": "交换系数为0.2/T，总量差为3 U时，净交换流率为0.6 U/T。"
       },
       {
         "id": "B",
-        "text": "将0.2/T作为每步感染概率（probability）0.2，改变步长时仍保持这个概率。"
+        "text": "将0.2/T作为每步感染概率0.2，改变步长时仍保持这个概率。"
       },
       {
         "id": "C",
@@ -1895,7 +1895,7 @@
     "chapter": "11.summary",
     "lesson_id": "P11-SUMMARY",
     "title": "传播结构比较的预算",
-    "statement": "比较两种网络连接结构对累计感染人数的影响，节点数和边数相同，每条接触感染概率（probability）也相同。哪组重复实验还能控制起点的影响？",
+    "statement": "两种连接结构有相同节点数、边数及每边感染概率。要比较累计曾感染人数，并控制最初感染发生在哪个节点的影响，哪组重复设置合适？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1935,7 +1935,7 @@
     "chapter": "11.summary",
     "lesson_id": "P11-SUMMARY",
     "title": "统计综合图",
-    "statement": "对题给无向简单图返回度、分量及全图平均最短路径；不连通时平均路径为 None。",
+    "statement": "节点按0到n−1编号，edges每项[i,j]表示一条无向、无权、无自环且不重复的边。返回按节点排列的度、排序后的连通分量和全图平均最短路径。图不连通或n=1时，平均路径返回 `None`。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1950,13 +1950,13 @@
       {
         "name": "n",
         "type": "int",
-        "description": "节点数。",
+        "description": "节点总数，编号从0到n−1。",
         "unit": "个"
       },
       {
         "name": "edges",
         "type": "list[list[int]]",
-        "description": "无向简单边。",
+        "description": "边表；每项给出两个相连的节点编号，同一边只列一次。",
         "unit": "条"
       }
     ],
@@ -1964,25 +1964,25 @@
       {
         "name": "degrees",
         "type": "list[int]",
-        "description": "各节点度。",
+        "description": "按节点编号升序排列的度。",
         "unit": "条"
       },
       {
         "name": "components",
         "type": "list[list[int]]",
-        "description": "分量。",
+        "description": "分量内节点升序；各分量按其最小节点编号升序排列。",
         "unit": "节点编号"
       },
       {
         "name": "mean_path",
         "type": "float | None",
-        "description": "连通图的不同节点对平均距离。",
+        "description": "全图每对不同节点的最少边数平均；只计i<j，不连通或n=1时为 `None`。",
         "unit": "边"
       }
     ],
-    "contract": "同11.1.1，路径只按边数，不按布局距离。",
+    "contract": "路径长度数经过的边；度数每个节点相连的边。连通分量按相互可达性划分，排列与11.1.1相同；绘图的线长不进入距离。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1990,7 +1990,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先核对度和等于两倍边数，再检查路径与连通性。",
+    "hint": "逐条边计两端的度，再从每个起点逐层找最短距离。求平均前检查所有不同节点对是否可达。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2032,7 +2032,7 @@
           ],
           1.3333333333333333
         ],
-        "explanation": "先核对度和等于两倍边数，再检查路径与连通性。"
+        "explanation": "0—1—2的度依次为[1,2,1]，三节点同属一个分量。三对距离为1、2、1，平均(1+2+1)/3=4/3。"
       }
     ]
   },
@@ -2044,7 +2044,7 @@
     "chapter": "11.summary",
     "lesson_id": "P11-SUMMARY",
     "title": "守恒算子与孤点",
-    "statement": "给定对称交换边，返回图拉普拉斯（graph Laplacian）；孤立节点行列为零。",
+    "statement": "室编号从0到n−1，weighted_edges每项[i,j,rate]给出对称物理交换系数g_ij=rate，单位V/T。构造L_g，使物质总量满足m′=−L_g(m/V)，其中m/V逐室计算浓度。没有交换边的室保留零行、零列。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2059,13 +2059,13 @@
       {
         "name": "n",
         "type": "int",
-        "description": "室数。",
+        "description": "室的总数；矩阵行列按室编号排列。",
         "unit": "个"
       },
       {
         "name": "weighted_edges",
         "type": "list[list[float]]",
-        "description": "每条 [i,j,rate]。",
+        "description": "每项[i,j,g_ij]包含两个室编号及非负物理交换系数，单位V/T。",
         "unit": "容积/T"
       }
     ],
@@ -2073,13 +2073,13 @@
       {
         "name": "L",
         "type": "list[list[float]]",
-        "description": "对称、行和为零的矩阵（matrix）。",
+        "description": "n×n对称L_g，行列和为0，元素单位V/T；它作用于浓度向量得到总量变化率。",
         "unit": "容积/T"
       }
     ],
-    "contract": "逐边增加两端对角并减去两个非对角；不凭节点图片位置加边。",
+    "contract": "每条边给两个端点的对角项各加rate，给两个交叉位置各减rate。孤立节点不添加交换贡献。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2087,7 +2087,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "对每条边单独写两个室的正负收支。",
+    "hint": "从零矩阵开始，逐边加入一个两室块：两个对角为正，两个非对角为负，四个数大小相同。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2128,7 +2128,7 @@
             0.0
           ]
         ],
-        "explanation": "对每条边单独写两个室的正负收支（mass balance）。"
+        "explanation": "只有0—1一条边，系数为1。左上2×2块是[[1,−1],[−1,1]]；2号室孤立，第2行和第2列全为0。"
       }
     ]
   },
@@ -2140,7 +2140,7 @@
     "chapter": "11.summary",
     "lesson_id": "P11-SUMMARY",
     "title": "同一随机输入下传播",
-    "statement": "同步 SIR 的旧状态（state）事件（event）和随机表已给定；返回状态轨迹（trajectory）、曾感染人数和更新前活跃步数。",
+    "statement": "用给定随机表重放同步SIR传播。0、1、2依次表示S、I、R；每步易感者检查旧感染邻居，旧感染者检查恢复，全部判断结束后一起更新。返回含初态的状态轨迹、曾为I或R的人数和更新前仍有I的步数。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2155,43 +2155,43 @@
       {
         "name": "n",
         "type": "int",
-        "description": "人数。",
+        "description": "节点总数，也就是人数，编号0到n−1。",
         "unit": "人"
       },
       {
         "name": "edges",
         "type": "list[list[int]]",
-        "description": "无向接触边。",
+        "description": "每项[i,j]表示一条无向接触边。",
         "unit": "条"
       },
       {
         "name": "initial",
         "type": "list[int]",
-        "description": "初始 0=S、1=I、2=R。",
+        "description": "按编号排列的初态，0=S、1=I、2=R。",
         "unit": "类别"
       },
       {
         "name": "beta",
         "type": "float",
-        "description": "每边感染概率（probability）。",
+        "description": "每条旧感染邻边的一步传播成功概率。",
         "unit": "1"
       },
       {
         "name": "gamma",
         "type": "float",
-        "description": "逐人恢复概率。",
+        "description": "每位旧感染者的一步恢复概率。",
         "unit": "1"
       },
       {
         "name": "infection_draws",
         "type": "list[list[list[float]]]",
-        "description": "定向边感染抽样表。",
+        "description": "第t项是n×n表，[t][i][j]供接收者i检查旧感染邻居j。",
         "unit": "1"
       },
       {
         "name": "recovery_draws",
         "type": "list[list[float]]",
-        "description": "恢复抽样表。",
+        "description": "[t][i]供第t步的旧感染者i检查恢复。",
         "unit": "1"
       }
     ],
@@ -2199,25 +2199,25 @@
       {
         "name": "history",
         "type": "list[list[int]]",
-        "description": "全部状态。",
+        "description": "先列初态，再列每次更新后的完整状态列表。",
         "unit": "类别"
       },
       {
         "name": "ever",
         "type": "int",
-        "description": "曾感染人数。",
+        "description": "曾取I或R的节点数，初态也包含在统计中，每人只计一次。",
         "unit": "人"
       },
       {
         "name": "active_steps",
         "type": "int",
-        "description": "更新前至少一人感染的步数。",
+        "description": "每次更新前至少有一位I的步数，不额外计算最终状态。",
         "unit": "步"
       }
     ],
-    "contract": "同步读取旧状态；比较使用严格小于阈值。",
+    "contract": "易感者任一旧感染邻居对应的比较值<beta时变I；旧感染者的恢复值<gamma时变R。新感染者下一步才参与传播或恢复；本步恢复者仍以旧I参与感染判定。R保持，使用严格小于阈值。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2225,7 +2225,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "感染与恢复同一步发生时，先统一读旧状态再写新状态。",
+    "hint": "先复制旧状态。感染和恢复可在同一步发生，但都从旧列表判定，最后再统一写入新状态。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2286,7 +2286,7 @@
           2,
           1
         ],
-        "explanation": "感染与恢复同一步发生时，先统一读旧状态再写新状态。"
+        "explanation": "旧状态[1,0]中0号感染。1号用0.3<0.5判定感染；0号用0.1<0.5判定恢复，因此下一状态为[2,1]。两人都曾感染，唯一的更新前状态含I，活跃步数为1。"
       }
     ]
   },
@@ -2298,7 +2298,7 @@
     "chapter": "11.summary",
     "lesson_id": "P11-SUMMARY",
     "title": "判断尾窗频率锁定",
-    "statement": "history 是未取模相位（phase）轨迹（trajectory），dt 是每步时间；用最后 tail_steps 步位移除以时长计算各节点平均频率，返回最大与最小频率的差及各频率。",
+    "statement": "history按时间列出未取模的相位，各行内按同一节点顺序排列。用最后tail_steps次更新构成的时间窗，计算每个节点的相位位移除以窗口时长；返回平均频率的极差及各节点平均频率。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2313,19 +2313,19 @@
       {
         "name": "history",
         "type": "list[list[float]]",
-        "description": "长度至少 tail_steps+1 的相位轨迹。",
+        "description": "未取模相位轨迹；至少tail_steps+1行，每行节点顺序一致。",
         "unit": "rad"
       },
       {
         "name": "dt",
         "type": "float",
-        "description": "步长。",
+        "description": "相邻两行之间经过的时间，单位T。",
         "unit": "T"
       },
       {
         "name": "tail_steps",
         "type": "int",
-        "description": "末尾窗口步数，至少1。",
+        "description": "末尾时间窗包含的更新次数，至少为1。",
         "unit": "步"
       }
     ],
@@ -2333,19 +2333,19 @@
       {
         "name": "spread",
         "type": "float",
-        "description": "尾窗平均频率极差。",
+        "description": "各节点尾窗平均频率的最大值减最小值，单位rad/T。",
         "unit": "rad/T"
       },
       {
         "name": "frequencies",
         "type": "list[float]",
-        "description": "各节点尾窗平均频率。",
+        "description": "按节点编号排列的尾窗平均频率，单位rad/T。",
         "unit": "rad/T"
       }
     ],
-    "contract": "保留未取模相位；不要对起末两次取模后相减。",
+    "contract": "窗口终点取history[-1]，起点取history[-tail_steps-1]，时长为dt·tail_steps。对应节点逐项相减后除以时长；保留完整角度，不用取模后的端点替代。",
     "constraints": [
-      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2353,7 +2353,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例每个节点尾窗平均频率均为1 rad/T，极差为0。",
+    "hint": "先定位尾窗两端，再数两端之间的更新次数。列表含起点时，tail_steps次更新需要tail_steps+1行。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2392,7 +2392,7 @@
             1.0
           ]
         ],
-        "explanation": "首例每个节点尾窗平均频率均为1 rad/T，极差为0。"
+        "explanation": "尾窗从[0,0]到[2,2]，含2次更新，每次1 T，总时长2 T。两节点的位移都是2 rad，平均频率都是1 rad/T，极差为0。"
       }
     ]
   },
@@ -2404,7 +2404,7 @@
     "chapter": "11.summary",
     "lesson_id": "P11-SUMMARY",
     "title": "改变连接后的扩散尺度",
-    "statement": "对等容积无向加权图，返回给定时刻的精确扩散状态（state）和拉普拉斯升序特征值（eigenvalue）。由完整谱判断零模态（mode）个数；若存在正特征值，其最小值只描述有交换的连通分量（connected component）中最慢的可衰减模态。全无边时没有最小正特征值，也无需额外返回此项。",
+    "statement": "等容积无向网络以归一化交换系数1/T按总量差交换。返回给定时刻的精确总量状态与按升序排列的完整拉普拉斯谱。零特征值的个数对应连通分量数；存在正特征值时，最小正值描述有交换分量中最慢可衰减模态。无边时谱全为零，不另返回最小正值。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2419,25 +2419,25 @@
       {
         "name": "n",
         "type": "int",
-        "description": "节点数。",
+        "description": "节点总数；行列与状态均按0到n−1排列。",
         "unit": "个"
       },
       {
         "name": "weighted_edges",
         "type": "list[list[float]]",
-        "description": "对称交换边。",
+        "description": "每项[i,j,rate]给出一条对称交换边，第三项为非负归一化系数，单位1/T。",
         "unit": "1/T"
       },
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "初始状态（state），用于核对精确演化。",
+        "description": "按节点编号排列的初始总量，单位U。",
         "unit": "U"
       },
       {
         "name": "time",
         "type": "float",
-        "description": "非负时间。",
+        "description": "从初态起经过的非负时间，单位T。",
         "unit": "T"
       }
     ],
@@ -2445,19 +2445,19 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "精确等容积扩散状态。",
+        "description": "同一节点顺序的精确总量状态，单位U。",
         "unit": "U"
       },
       {
         "name": "eigenvalues",
         "type": "list[float]",
-        "description": "升序谱，零值允许浮点舍入。",
+        "description": "L_k的全部特征值，按升序排列，单位1/T；零附近允许浮点舍入。",
         "unit": "1/T"
       }
     ],
-    "contract": "使用对称特征分解 x(t)=V exp(−Λt)Vᵀx(0)。只比较同一交换模型（model）；返回完整谱由读者辨认零模态数。",
+    "contract": "构造对称L_k并作特征分解L_k=QΛQᵀ。Q的列为正交单位特征向量，Λ为对应特征值的对角矩阵；用x(t)=Q exp(−Λt)Qᵀx(0)计算。exp(−Λt)逐个对角项取指数，返回状态及完整谱。",
     "constraints": [
-      "只计算题定有限图和数值模型；返回普通 Python 列表、数值或元组。"
+      "在题目给出的有限输入上计算，返回普通 Python 列表、数值或元组。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2465,7 +2465,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例特征值为0和2，平均模态不衰减；断连例存在多个零模态。",
+    "hint": "先把初态投到各特征向量上，给每项乘exp(−λt)，再还原到节点坐标。零特征值的因子为1，保留相应分量总量。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2504,7 +2504,7 @@
             2.0
           ]
         ],
-        "explanation": "首例特征值为0和2，平均模态不衰减；断连例存在多个零模态。"
+        "explanation": "两节点算子[[1,−1],[−1,1]]的特征值为0、2。初态[2,0]=[1,1]+[1,−1]，第一项不变，第二项在1 T后乘exp(−2)，故状态为[1+exp(−2),1−exp(−2)]。"
       }
     ]
   },
@@ -2516,7 +2516,7 @@
     "chapter": "11.summary",
     "lesson_id": "P11-SUMMARY",
     "title": "有限网络的结构结论",
-    "statement": "同一频率集合下，两张图的一次终点序参量（order parameter）分别为0.8和0.6。哪些判断有依据？",
+    "statement": "共用同一固有频率集合的两张图，一次运行的末时刻R分别为0.8、0.6。由这两个读数及可进一步实施的比较，哪些判断成立？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2531,7 +2531,7 @@
     "options": [
       {
         "id": "A",
-        "text": "两图中各振子的相位（phase）单位向量（vector）求平均后，所得向量的模长（modulus）分别为0.8和0.6。"
+        "text": "两图中各振子的相位单位向量求平均后，所得向量的模长分别为0.8和0.6。"
       },
       {
         "id": "B",
