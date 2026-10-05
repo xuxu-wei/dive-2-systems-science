@@ -1,0 +1,1110 @@
+{
+  "date": "2026-10-05",
+  "baseline": "2defe87b57967f7be3d5351c2ef4e863ef995803",
+  "scope": "Part 2 only; pending unified user reading acceptance",
+  "notebooks": [
+    {
+      "id": "P02-C01-S01",
+      "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/01-从逐步变化到递推规则.ipynb",
+      "sha256": "a75386c822672b4c94bfcddc9ea9cf20b60b284bc659897c2d2cc7f066742e45",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "f5c3ab8ea7ed8a4cdeb18bf36ff00e38071e74c4bb7fae7302dacbb3713a0167"
+    },
+    {
+      "id": "P02-C01-S02",
+      "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.ipynb",
+      "sha256": "b5183ef5461cbaf05d527a5b7c3c7551521584d26e765b783b6e758de638a3cb",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b13c48cb15c26130c07d93cffed165ab5943c9c43672a8143da1edf870df5417"
+    },
+    {
+      "id": "P02-C02-S01",
+      "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/01-从平均变化到导数.ipynb",
+      "sha256": "742d651cbf19eaca0ed0e5a4052a687088e5ab6cabfcc2eb1a1830009cc65d8b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "8b9a7485baf795fce620de8acff12a5b233948104b7f7025c7fab9c48b0cb7ed"
+    },
+    {
+      "id": "P02-C02-S02",
+      "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/02-从矩形累积到定积分.ipynb",
+      "sha256": "d438c2020f4e0de4a587f99f8078db3a0d9e72cf7008afff748ee7ea40b95719",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "96d1a067a4bbe42eeb3a6b983c0b76c4b4d07c04edf7b9c6e844d66a676abb3a"
+    },
+    {
+      "id": "P02-C02-S03",
+      "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/03-指数对数与链式法则.ipynb",
+      "sha256": "12668e949c59dcc95ce3d6d1fd9f0282777e3a0b492043d97e58e583228e15da",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "ec1c78a6f8445546f21753ff05b908a64720e248a96f1dca0348f9b678fb32e2"
+    },
+    {
+      "id": "P02-C03-S01",
+      "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/01-从收支率到一阶初值问题.ipynb",
+      "sha256": "e181b9b965aebf9426801c0a050c1613295bdced7441657818156db35e73d6c1",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "24cd3b3c5cd80d379bf32f4c0436d278d21692e1c87c23982a9aeab118e87ac3"
+    },
+    {
+      "id": "P02-C03-S02",
+      "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/02-平衡位置与靠近速度.ipynb",
+      "sha256": "957d0b548f6edac7c5ad2828399a0da40373ae824bd57284dd6495c87d4a0bfd",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "2b0c3f7939ed27e0dafb97c10125c93db665e199aa73b11dc476e9b614945574"
+    },
+    {
+      "id": "P02-C04-S01",
+      "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb",
+      "sha256": "f703d2c38d38b3e3172a78ae47546f2f230e18eccc752591067a804529d3a54f",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "bae3a8ec4835e3165ddd9ec52205b45cc703fcfd578065560f3207cadcf9701e"
+    },
+    {
+      "id": "P02-C04-S02",
+      "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.ipynb",
+      "sha256": "179702a780f59c399dacba9592fc74246417fcc16e2ad75e577d4f9547d6b016",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "23e35e7b2cb3fa0bb810fb1e559b9b2679babf070bb6aa4b2d3bb0e6792c5462"
+    },
+    {
+      "id": "P02-C04-S03",
+      "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.ipynb",
+      "sha256": "44e76c304d32afeefd936e94bd75461d1b561c7d43902de75a7adf9dd8cbdf85",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "97415a58c18b467acad2c2f8178aa9076ebd88e9efad5ebe9af30c8ec8b77806"
+    },
+    {
+      "id": "P02-SUMMARY",
+      "path": "notebooks/02-系统随时间演化/05-篇末综合/01-等总量输入的不同过程.ipynb",
+      "sha256": "156a20ad0d61c531fc2c6b9fc3d41dcfb3d26501084d1474fcd7d2bc1369ae20",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b55f9f37e10f89da96f139b9110b984d7e8d111eede7dbd2e73a6a7602ac6ec4"
+    }
+  ],
+  "questions": {
+    "reviewed": 51,
+    "choice": 33,
+    "python": 18,
+    "wording_changed": 34,
+    "wording_changed_ids": [
+      "p02-step-factor",
+      "p02-growth",
+      "p02-sum-index",
+      "p02-fixed-point",
+      "p02-euler-balance",
+      "p02-rate-unit",
+      "p02-varying-steps",
+      "p02-balance-limit",
+      "p02-slope-meaning",
+      "p02-difference",
+      "p02-limit-not-zero",
+      "p02-left-area",
+      "p02-ftc",
+      "p02-jump-area",
+      "p02-exponent-unit",
+      "p02-chain-rule",
+      "p02-ivp",
+      "p02-exact",
+      "p02-shift-equilibrium",
+      "p02-arrival",
+      "p02-errors",
+      "p02-orders",
+      "p02-step-properties",
+      "p02-first-decay",
+      "p02-do-not-clip",
+      "p02-aligned-grid",
+      "p02-piecewise",
+      "p02-jump-side",
+      "p02-continuity",
+      "p02-equal-area-not-path",
+      "p02-input-totals",
+      "p02-cap-integrated-balance",
+      "p02-input-metrics",
+      "p02-cap-feasible-plans"
+    ],
+    "explanation_changed": 23,
+    "explanation_changed_ids": [
+      "p02-step-factor",
+      "p02-growth",
+      "p02-sum-index",
+      "p02-fixed-point",
+      "p02-euler-balance",
+      "p02-varying-steps",
+      "p02-balance-limit",
+      "p02-difference",
+      "p02-left-area",
+      "p02-jump-area",
+      "p02-chain-rule",
+      "p02-exact",
+      "p02-arrival",
+      "p02-errors",
+      "p02-orders",
+      "p02-step-properties",
+      "p02-aligned-grid",
+      "p02-piecewise",
+      "p02-equal-area-not-path",
+      "p02-input-totals",
+      "p02-cap-integrated-balance",
+      "p02-input-metrics",
+      "p02-cap-feasible-plans"
+    ],
+    "identities_versions_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "current_files_retained": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Unbound PracticeEngine.progress on read-only in-memory baseline records and current question/assessment metadata. No PracticeEngine constructor or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_and_introduction_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_model_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_link_destinations_preserved": true,
+    "independent_fraction_decimal_hand_examples": true,
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    }
+  ],
+  "teaching_check": {
+    "notebooks": 11,
+    "questions": 51,
+    "question_links": 51,
+    "first_use": [
+      {
+        "unit": "p02-step-factor",
+        "terms": [
+          "模型"
+        ]
+      },
+      {
+        "unit": "p02-growth",
+        "terms": [
+          "模型",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-sum-index",
+        "terms": [
+          "所追踪物质总量"
+        ]
+      },
+      {
+        "unit": "p02-fixed-point",
+        "terms": [
+          "固定点",
+          "模型"
+        ]
+      },
+      {
+        "unit": "P02-C01-S01",
+        "terms": [
+          "初值",
+          "固定点",
+          "差分方程",
+          "收支",
+          "模型",
+          "流率",
+          "递推关系"
+        ]
+      },
+      {
+        "unit": "p02-euler-balance",
+        "terms": [
+          "收支",
+          "残差",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-rate-unit",
+        "terms": [
+          "清除系数",
+          "量纲"
+        ]
+      },
+      {
+        "unit": "p02-varying-steps",
+        "terms": [
+          "清除系数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-balance-limit",
+        "terms": [
+          "存量",
+          "收支",
+          "残差",
+          "流量",
+          "状态",
+          "舍入误差",
+          "非负性"
+        ]
+      },
+      {
+        "unit": "P02-C01-S02",
+        "terms": [
+          "初值",
+          "固定点",
+          "收支",
+          "模型",
+          "残差",
+          "清除系数"
+        ]
+      },
+      {
+        "unit": "p02-slope-meaning",
+        "terms": [
+          "导数",
+          "差商",
+          "所追踪物质总量"
+        ]
+      },
+      {
+        "unit": "p02-difference",
+        "terms": [
+          "导数",
+          "差商",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-limit-not-zero",
+        "terms": [
+          "导数",
+          "差商",
+          "极限"
+        ]
+      },
+      {
+        "unit": "p02-difference-noise",
+        "terms": [
+          "导数",
+          "差商",
+          "极限",
+          "舍入误差"
+        ]
+      },
+      {
+        "unit": "P02-C02-S01",
+        "terms": [
+          "切线",
+          "割线",
+          "导数",
+          "差商",
+          "斜率",
+          "极限",
+          "流率",
+          "舍入误差",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-area-unit",
+        "terms": [
+          "定积分",
+          "所追踪物质总量",
+          "流率"
+        ]
+      },
+      {
+        "unit": "p02-left-area",
+        "terms": [
+          "流率",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-ftc",
+        "terms": [
+          "导数",
+          "微积分基本定理",
+          "流率"
+        ]
+      },
+      {
+        "unit": "p02-jump-area",
+        "terms": [
+          "存量",
+          "所追踪物质总量",
+          "斜率",
+          "极限",
+          "流率",
+          "输入"
+        ]
+      },
+      {
+        "unit": "P02-C02-S02",
+        "terms": [
+          "初值",
+          "定积分",
+          "导数",
+          "微积分基本定理",
+          "收支",
+          "斜率",
+          "极限",
+          "流率"
+        ]
+      },
+      {
+        "unit": "p02-exponent-unit",
+        "terms": [
+          "初值",
+          "指数函数",
+          "无量纲",
+          "清除系数"
+        ]
+      },
+      {
+        "unit": "p02-chain-rule",
+        "terms": [
+          "导数",
+          "指数函数",
+          "无量纲",
+          "清除系数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-chain-factor",
+        "terms": [
+          "导数"
+        ]
+      },
+      {
+        "unit": "p02-integration-constant",
+        "terms": [
+          "初值",
+          "导数",
+          "所追踪物质总量"
+        ]
+      },
+      {
+        "unit": "P02-C02-S03",
+        "terms": [
+          "中心差分",
+          "二阶导数",
+          "初值",
+          "定积分",
+          "导数",
+          "差商",
+          "指数函数",
+          "收支",
+          "无量纲",
+          "时间尺度",
+          "极限",
+          "自然对数",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "p02-ivp",
+        "terms": [
+          "时间步长",
+          "时间网格",
+          "状态"
+        ]
+      },
+      {
+        "unit": "p02-exact",
+        "terms": [
+          "平衡",
+          "极限",
+          "清除系数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-shift-equilibrium",
+        "terms": [
+          "初值",
+          "导数",
+          "平衡"
+        ]
+      },
+      {
+        "unit": "p02-zero-clearance",
+        "terms": [
+          "初值",
+          "导数",
+          "模型",
+          "清除系数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "P02-C03-S01",
+        "terms": [
+          "中心差分",
+          "初值",
+          "初值问题",
+          "单室模型",
+          "存量",
+          "定积分",
+          "导数",
+          "常微分方程",
+          "平衡",
+          "所追踪物质总量",
+          "收支",
+          "斜率",
+          "无量纲",
+          "极限",
+          "流率",
+          "清除系数",
+          "自然对数",
+          "解析解",
+          "轨迹",
+          "输入",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "p02-timescale",
+        "terms": [
+          "初值",
+          "参数",
+          "平衡",
+          "时间尺度",
+          "模型",
+          "特征时间",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-arrival",
+        "terms": [
+          "平衡",
+          "清除系数",
+          "自然对数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-time-constant",
+        "terms": [
+          "半衰期",
+          "所追踪物质总量",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-solution-check",
+        "terms": [
+          "初值",
+          "初值问题",
+          "导数",
+          "解析解"
+        ]
+      },
+      {
+        "unit": "P02-C03-S02",
+        "terms": [
+          "初值",
+          "半衰期",
+          "单室模型",
+          "平衡",
+          "时间尺度",
+          "模型",
+          "流率",
+          "清除系数",
+          "特征时间",
+          "自然对数",
+          "解析解",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p02-errors",
+        "terms": [
+          "初值问题",
+          "所追踪物质总量",
+          "最大绝对误差",
+          "清除系数",
+          "解析解",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-orders",
+        "terms": [
+          "观测收敛阶",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-truncation",
+        "terms": [
+          "初值问题",
+          "欧拉法",
+          "舍入误差"
+        ]
+      },
+      {
+        "unit": "p02-fair-refinement",
+        "terms": [
+          "初值",
+          "初值问题",
+          "参数",
+          "欧拉法",
+          "状态",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-zero-error",
+        "terms": [
+          "欧拉法",
+          "观测收敛阶",
+          "输入"
+        ]
+      },
+      {
+        "unit": "P02-C04-S01",
+        "terms": [
+          "一阶收敛",
+          "切线",
+          "初值问题",
+          "导数",
+          "平衡",
+          "指数函数",
+          "收支",
+          "数值误差",
+          "最大绝对误差",
+          "极限",
+          "模型",
+          "欧拉法",
+          "残差",
+          "清除系数",
+          "观测",
+          "观测收敛阶",
+          "解析解",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-step-properties",
+        "terms": [
+          "平衡",
+          "所追踪物质总量",
+          "时间步长",
+          "模型",
+          "清除系数",
+          "渐近稳定",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-first-decay",
+        "terms": [
+          "清除系数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-stable-not-positive",
+        "terms": [
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-stability-boundary",
+        "terms": [
+          "欧拉法",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-do-not-clip",
+        "terms": [
+          "初值",
+          "初值问题",
+          "参数",
+          "解析解",
+          "非负性"
+        ]
+      },
+      {
+        "unit": "P02-C04-S02",
+        "terms": [
+          "平衡",
+          "模型",
+          "欧拉法",
+          "清除系数",
+          "渐近稳定",
+          "解析解",
+          "轨迹",
+          "输入",
+          "非负性"
+        ]
+      },
+      {
+        "unit": "p02-aligned-grid",
+        "terms": [
+          "时间网格",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-piecewise",
+        "terms": [
+          "初值",
+          "时间网格",
+          "清除系数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-jump-side",
+        "terms": [
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-continuity",
+        "terms": [
+          "初值",
+          "导数",
+          "平衡",
+          "模型",
+          "解析解",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-tolerance",
+        "terms": [
+          "欧拉法",
+          "解析解",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "P02-C04-S03",
+        "terms": [
+          "参数",
+          "时间网格",
+          "模型",
+          "清除系数",
+          "解析解",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-cap-rate-balance",
+        "terms": [
+          "单室模型",
+          "存量",
+          "所追踪物质总量",
+          "清除系数",
+          "状态",
+          "量纲"
+        ]
+      },
+      {
+        "unit": "p02-equal-area-not-path",
+        "terms": [
+          "初值",
+          "模型",
+          "清除系数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-input-totals",
+        "terms": [
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-cap-integrated-balance",
+        "terms": [
+          "收支",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-input-metrics",
+        "terms": [
+          "平衡",
+          "所追踪物质总量",
+          "清除系数",
+          "解析解",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-migration-evidence",
+        "terms": [
+          "时间网格",
+          "解析解",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-cap-feasible-plans",
+        "terms": [
+          "清除系数",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p02-model-scope",
+        "terms": [
+          "模型",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "P02-SUMMARY",
+        "terms": [
+          "平衡",
+          "收支",
+          "数值误差",
+          "最大绝对误差",
+          "模型",
+          "清除系数",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "overview:2.1",
+        "terms": [
+          "收支",
+          "清除系数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "overview:2.2",
+        "terms": [
+          "二阶导数",
+          "定积分",
+          "导数",
+          "差商",
+          "微积分基本定理",
+          "极限",
+          "自然对数",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "overview:2.3",
+        "terms": [
+          "初值",
+          "初值问题",
+          "半衰期",
+          "定积分",
+          "导数",
+          "平衡",
+          "收支",
+          "特征时间",
+          "输入",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "overview:2.4",
+        "terms": [
+          "渐近稳定",
+          "观测收敛阶",
+          "解析解",
+          "输入",
+          "非负性"
+        ]
+      },
+      {
+        "unit": "overview:2.summary",
+        "terms": [
+          "收支",
+          "数值误差",
+          "模型"
+        ]
+      }
+    ],
+    "issues": []
+  },
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/02-01-用递推描述增长与清除/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/02-02-变化率与累积：微积分入口/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/02-03-连续时间与一阶微分方程/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/02-04-数值模拟、误差与迁移/",
+        "status": 200
+      },
+      {
+        "path": "/parts/02-系统随时间演化/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/02-01-用递推描述增长与清除/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/02-03-连续时间与一阶微分方程/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/02-04-数值模拟、误差与迁移/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p02-euler-balance",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p02-exact",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p02-piecewise",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p02-input-metrics",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p02-equal-area-not-path",
+        "status": 200,
+        "latest_statement_and_version": true
+      }
+    ],
+    "served_catalog_equals_current_file": true,
+    "html_rendered_without_execution": [
+      "P02-C01-S01",
+      "P02-C01-S02",
+      "P02-C02-S01",
+      "P02-C02-S02",
+      "P02-C02-S03",
+      "P02-C03-S01",
+      "P02-C03-S02",
+      "P02-C04-S01",
+      "P02-C04-S02",
+      "P02-C04-S03",
+      "P02-SUMMARY"
+    ],
+    "browser_ui_check": "Not completed: cua.createBrowserTab and cua.getState timed out. HTTP and HTML conversion are not browser visual inspection."
+  },
+  "reference_reading": [
+    {
+      "title": "D2L：微积分",
+      "url": "https://zh.d2l.ai/chapter_preliminaries/calculus.html",
+      "use": "Difference quotient experiment, algebraic explanation, tangent and derivative notation"
+    },
+    {
+      "title": "Python Causality Handbook：Randomised Experiments",
+      "url": "https://matheusfacure.github.io/python-causality-handbook/02-Randomised-Experiments.html",
+      "use": "Recap, likely reader confusion, explicit comparison conditions and result explanation"
+    }
+  ],
+  "authorization": {
+    "source_thread": "01a0aeab-1fe6-7080-b8f6-4a4f41c47326",
+    "user_message": "01a10bb9-a379-7561-ab98-9ec979d92176",
+    "verified_direct_human_request": true,
+    "scope": "Sequential Part 2 through Part 17, one part per dispatch; unified user reading acceptance later. This delivery only Part 2."
+  },
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe tools/check_teaching.py --part 2 --work part02-rewrite-20261005",
+      "result": "passed"
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part02-rewrite-20261005/audit.py",
+      "result": "passed"
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part02-rewrite-20261005/preview.py",
+      "result": "passed HTTP and HTML conversion; browser tool timed out"
+    },
+    {
+      "command": "node --check web/time-evolution/app.mjs",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ]
+}

@@ -6,7 +6,7 @@
     "slug": "p02-step-factor",
     "title": "改变记录间隔",
     "type": "choice",
-    "statement": "人工细胞计数模型（model）每 1 T 保留原计数的 80%，不含新增。现用两个相同的半步更新表示同一整步变化，每半步应保留多少比例？",
+    "statement": "一个细胞计数模型（model）规定，每经过 1 T，计数变为原来的 80%，期间没有新增。把这 1 T 分成两个时长相同的半步，并要求两个半步采用相同的保留比例，合起来仍得到原来的一整步变化。每半步应保留多少比例？",
     "part": "2",
     "chapter": "2.1",
     "learning_targets": [
@@ -20,19 +20,19 @@
     "options": [
       {
         "id": "A",
-        "text": "每半步应保留原计数的约 80.0%。"
+        "text": "每半步应保留该半步开始时计数的约 80.0%。"
       },
       {
         "id": "B",
-        "text": "每半步应保留原计数的约 40.0%。"
+        "text": "每半步应保留该半步开始时计数的约 40.0%。"
       },
       {
         "id": "C",
-        "text": "每半步应保留原计数的约 89.4%。"
+        "text": "每半步应保留该半步开始时计数的约 89.4%。"
       },
       {
         "id": "D",
-        "text": "每半步应保留原计数的约 90.0%。"
+        "text": "每半步应保留该半步开始时计数的约 90.0%。"
       }
     ],
     "constraints": []
@@ -78,11 +78,11 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "含起点，长度为 steps + 1。",
+        "description": "依次记录起点、第一次更新后、第二次更新后等，共 steps+1 项。",
         "unit": "个"
       }
     ],
-    "contract": "values[0] = initial；values[n+1] = factor × values[n]。",
+    "contract": "values[0] = initial；第 n 次更新后的值放在 values[n]。每次按 values[n+1] = factor × values[n] 更新，n 从 0 到 steps−1。",
     "constraints": [
       "所有数值有限；无需修改输入（input）。",
       "0 ≤ initial ≤ 100；0 ≤ factor ≤ 1.2；0 ≤ steps ≤ 30。"
@@ -92,7 +92,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "保留起点，再循环 steps 次；可用 initial × factor**n 独立检查。",
+    "hint": "先保留起点，再逐次乘 factor。第 n 次更新后的值还可以用 initial×factor**n 核对；每次乘法都作用于上一步的结果。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -128,7 +128,7 @@
     "slug": "p02-sum-index",
     "title": "累计量为什么包含 n 项",
     "type": "choice",
-    "statement": "规则为 A[n+1] = A[n] + b[n]，从 A[0] 更新到 A[3]。哪一个表达式与三次更新一致？",
+    "statement": "用 A[n] 表示第 n 次更新后的总量，A[0] 是起点；b[n] 是从 A[n] 到 A[n+1] 这一段的净增加量。规则为 A[n+1]=A[n]+b[n]。从 A[0] 连续更新三次，哪一个表达式给出 A[3]？",
     "part": "2",
     "chapter": "2.1",
     "learning_targets": [
@@ -166,7 +166,7 @@
     "slug": "p02-fixed-point",
     "title": "不变状态与起点",
     "type": "choice",
-    "statement": "人工离散模型（model） A[n+1] = 0.5 A[n] + 1，所追踪物质总量（tracked amount）单位 U。以下哪些成立？",
+    "statement": "一个离散模型（model）按 A[n+1]=0.5A[n]+1 更新物质总量，单位为 U，A[0] 表示起点。以下哪些判断成立？",
     "part": "2",
     "chapter": "2.1",
     "learning_targets": [
@@ -204,7 +204,7 @@
     "slug": "p02-euler-balance",
     "title": "把每段流入和清除记到账上",
     "type": "python",
-    "statement": "人工单室模型（one-compartment model）在一段内用段首所追踪物质总量（tracked amount）计算清除速率 kA。实现更新，并返回每一步的收支（mass balance）残差（residual）。负结果保留，用于识别假设失败。",
+    "statement": "用 A 表示一个均匀混合池中的物质总量。物质以恒定速率 u 流入；每个时段都用段首总量 before 计算清除速率 k×before，并在这段内保持该速率。计算逐步总量，再检查每一步是否满足所用收支（mass balance）等式，返回对应的残差（residual）。保留算出的负值，以便发现一次更新是否清除了过多物质。",
     "part": "2",
     "chapter": "2.1",
     "learning_targets": [
@@ -250,17 +250,17 @@
       {
         "name": "amounts",
         "type": "list[float]",
-        "description": "起点及逐步总量。",
+        "description": "依次包含起点与每一步结束时的总量，共 steps+1 项。",
         "unit": "U"
       },
       {
         "name": "residuals",
         "type": "list[float]",
-        "description": "每步末量减初量、减流入量、加清除量；长度 steps。",
+        "description": "每一步的 after−before−h*u+h*k*before，共 steps 项；residuals[i] 检查从 amounts[i] 更新到 amounts[i+1] 的这一步。",
         "unit": "U"
       }
     ],
-    "contract": "after = before + h*u − h*k*before；残差 = after − before − h*u + h*k*before。不能用 after 代替清除项中的 before，也不裁剪负值。",
+    "contract": "用本步开始时的 before 计算 after = before+h*u−h*k*before；本步残差 = after−before−h*u+h*k*before。清除项使用 before。按 (amounts, residuals) 返回两个列表，保留负的总量。",
     "constraints": [
       "所有数值有限；无需修改输入（input）。",
       "0 ≤ A0,u ≤ 20；0 ≤ k ≤ 2；0 < h ≤ 3；0 ≤ steps ≤ 20；允许 kh > 1。"
@@ -270,7 +270,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "用旧值计算本段移除量；残差接近零只证明账目与所选规则一致。",
+    "hint": "先用旧总量计算本段进入和清除的量，再更新总量。残差接近零说明更新满足这条收支规则；还需检查所算清除量是否超过可用物质。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -315,7 +315,7 @@
     "slug": "p02-rate-unit",
     "title": "把速率转成每步比例",
     "type": "choice",
-    "statement": "清除系数（elimination rate constant）k=0.2/T，段首所追踪物质总量（tracked amount）为 A U，本段的流出速率按段首总量计算并保持不变。时间步长（time step）h=0.5 T 时，本段移除多少物质？",
+    "statement": "清除系数（elimination rate constant） k=0.2/T，段首物质总量为 A U。本段采用的清除速率为 kA，并保持不变。持续时间 h=0.5 T 时，这一段共移除多少物质？",
     "part": "2",
     "chapter": "2.1",
     "learning_targets": [
@@ -353,7 +353,7 @@
     "slug": "p02-varying-steps",
     "title": "不等时长也要逐段记账",
     "type": "python",
-    "statement": "给定各段的流入速率和持续时间，清除速率在每段内固定为段首 kA。返回整条所追踪物质总量（tracked amount）轨迹（trajectory）和总流入量。",
+    "statement": "物质总量从 A0 开始。各时段的流入速率和持续时间已按时间先后给出；每段清除速率固定为 k 乘该段起点总量。逐段更新，返回包含起点的总量列表，以及全部时段累计流入的量。",
     "part": "2",
     "chapter": "2.1",
     "learning_targets": [
@@ -373,13 +373,13 @@
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "各段流入速率。",
+        "description": "按时段先后排列的流入速率；索引 i 从 0 开始，rates[i] 对应第 i+1 个时段。",
         "unit": "U/T"
       },
       {
         "name": "durations",
         "type": "list[float]",
-        "description": "各段实际持续时间。",
+        "description": "对应各时段的持续时间；durations[i] 与 rates[i] 属于同一时段。",
         "unit": "T"
       },
       {
@@ -393,7 +393,7 @@
       {
         "name": "amounts",
         "type": "list[float]",
-        "description": "含起点的逐段末量。",
+        "description": "第一项是起点，后续各项依次是每个时段结束时的总量；项数比时段数多一。",
         "unit": "U"
       },
       {
@@ -403,7 +403,7 @@
         "unit": "U"
       }
     ],
-    "contract": "按给定顺序执行 A ← A + durations[i] × (rates[i] − kA)；total 为 sum(rates[i] × durations[i])。",
+    "contract": "按列表顺序处理各时段。用当前总量 A 计算新总量 A+durations[i]×(rates[i]−kA)，再从这个新总量继续下一段；total=sum(rates[i]×durations[i])。按 (amounts,total) 返回。",
     "constraints": [
       "所有数值有限；无需修改输入（input）。",
       "两个列表等长，长度 0—100；0 ≤ A0,rates[i] ≤ 20；0 ≤ k ≤ 2；0 < durations[i] ≤ 2。"
@@ -413,7 +413,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "每段使用自己的时长；流入总量与净变化是两个量。",
+    "hint": "将同一位置的速率与时长配对。累计流入只加进入的量；总量的净变化还要减去各段清除的量。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -458,7 +458,7 @@
     "slug": "p02-balance-limit",
     "title": "检查离散收支",
     "type": "choice",
-    "statement": "程序严格执行 A[n+1]=A[n]+h(u−kA[n])，各步收支（mass balance）残差（residual）约为零，但出现了 −5 U。哪些结论成立？",
+    "statement": "程序按 A[n+1]=A[n]+h(u−kA[n]) 更新，并检查各步的收支（mass balance）残差（residual）。残差约为零，但某一步的物质总量算成了 −5 U。以下哪些判断成立？",
     "part": "2",
     "chapter": "2.1",
     "learning_targets": [
@@ -496,7 +496,7 @@
     "slug": "p02-slope-meaning",
     "title": "平均变化与局部变化",
     "type": "choice",
-    "statement": "人工曲线 A(t)=t² U，t 的数值以 T 为单位。区间 [1,1+h] 的差商（difference quotient）为 (A(1+h)−A(1))/h。哪些说法正确？",
+    "statement": "用人工曲线 A(t)=t² 描述物质总量：t 是以 T 为单位的时间数值，A 的单位为 U。从时刻 1 到 1+h 的平均变化率为 [A(1+h)−A(1)]/h，称为差商（difference quotient）。以下哪些判断正确？",
     "part": "2",
     "chapter": "2.2",
     "learning_targets": [
@@ -534,7 +534,7 @@
     "slug": "p02-difference",
     "title": "用差商接近局部斜率",
     "type": "python",
-    "statement": "给定 A(t)=t²，直接按前向差分计算位置 t 的平均变化率，不返回精确导数（derivative） 2t。t、h 是以 T 为单位的数值。",
+    "statement": "用人工曲线 A(t)=t² 描述物质总量，A 的单位为 U，t、h 是以 T 为单位的数值。计算从时刻 t 到 t+h 的前向差商（difference quotient），返回这段时间的平均变化率。",
     "part": "2",
     "chapter": "2.2",
     "learning_targets": [
@@ -576,7 +576,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "可用代数恒等式 2t+h 检查差分结果。",
+    "hint": "先求两个时刻的总量之差，再除以 h。展开平方可得 2t+h，用它核对计算；题目要求有限区间的差商，结果包含 h。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -595,7 +595,7 @@
           "h": 0.5
         },
         "expected": 2.5,
-        "explanation": "(1.5²−1²)/0.5=2.5；比精确导数 2 大 0.5。"
+        "explanation": "(1.5²−1²)/0.5=2.5；比精确导数（derivative） 2 大 0.5。"
       }
     ]
   },
@@ -606,7 +606,7 @@
     "slug": "p02-limit-not-zero",
     "title": "理解差商的极限",
     "type": "choice",
-    "statement": "对 A(t)=t²，t=1 处的差商（difference quotient）为 [(1+h)²−1]/h。求导时为什么先在 h≠0 时化简，再令 h 趋近零？",
+    "statement": "对 A(t)=t²，时刻 t=1 的前向差商（difference quotient）为 [(1+h)²−1]/h。为什么求导时先在 h≠0 的条件下化简，再考察 h 趋近零时的结果？",
     "part": "2",
     "chapter": "2.2",
     "learning_targets": [
@@ -720,7 +720,7 @@
     "slug": "p02-left-area",
     "title": "用左端矩形累积变化",
     "type": "python",
-    "statement": "流入速率 u(t)=2t，t 以 T 为单位。把 [start,end] 等分成 intervals 段，用每段左端速率乘段宽，返回累计近似。",
+    "statement": "流入速率为 u(t)=2t，t 是以 T 为单位的时间数值，u 的单位为 U/T。把从 start 到 end 的时间等分成 intervals 段，每段用左端时刻的速率乘该段时长，返回这些流入量的和。",
     "part": "2",
     "chapter": "2.2",
     "learning_targets": [
@@ -768,7 +768,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "该递增流率的左端矩形低估面积；细化后应趋近 end²−start²。",
+    "hint": "先求每段时长 h，再依次取左端时刻 start+i*h，计算对应速率 2×(start+i*h)。将速率乘 h 后累加；流率递增，所以左端矩形的和低于精确累计量 end²−start²。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -799,7 +799,7 @@
     "slug": "p02-ftc",
     "title": "从累计量求变化率",
     "type": "choice",
-    "statement": "令 B(t)=∫₀ᵗ u(s) ds，且 u 在考察时刻连续。哪一项是微积分基本定理（fundamental theorem of calculus）在这里的含义？",
+    "statement": "用 u(s) 表示流入速率，用 B(t)=∫₀ᵗu(s)ds 表示从时刻 0 到 t 的累计流入量。积分中的 s 遍历这段时间，t 是累计到的终止时刻。u 在考察时刻连续时，微积分基本定理（fundamental theorem of calculus）在这里说明什么？",
     "part": "2",
     "chapter": "2.2",
     "learning_targets": [
@@ -837,7 +837,7 @@
     "slug": "p02-jump-area",
     "title": "输入跳变时存量是否跳变",
     "type": "choice",
-    "statement": "只有有限流率（flow rate）输入（input）：0—1 T 为 2 U/T，1—2 T 为 0；没有瞬时注入、没有清除。哪些说法正确？",
+    "statement": "物质在 0—1 T 以 2 U/T 的有限速率流入，在 1—2 T 停止流入；没有清除，也没有在某一瞬间一次加入有限量的物质。以下哪些判断正确？",
     "part": "2",
     "chapter": "2.2",
     "learning_targets": [
@@ -859,11 +859,11 @@
       },
       {
         "id": "C",
-        "text": "流率从 2 U/T 降至 0 时，存量（stock）也会在这一时刻减少 2 U。"
+        "text": "流率（flow rate）从 2 U/T 降至 0 时，存量（stock）也会在这一时刻减少 2 U。"
       },
       {
         "id": "D",
-        "text": "用一条处处光滑的曲线表示输入流率，会把 t=1 T 处从 2 U/T 到 0 的跳变改成连续变化。"
+        "text": "用一条处处光滑的曲线表示输入（input）流率，会把 t=1 T 处从 2 U/T 到 0 的跳变改成连续变化。"
       }
     ],
     "constraints": []
@@ -897,7 +897,7 @@
       },
       {
         "id": "C",
-        "text": "将时间从秒改为分钟表示时，k 使用的数值不需要随之换算。"
+        "text": "将时间从秒改为分钟表示时，非零的 k 使用的数值不需要随之换算。"
       },
       {
         "id": "D",
@@ -913,7 +913,7 @@
     "slug": "p02-chain-rule",
     "title": "给衰减曲线和变化率配对",
     "type": "python",
-    "statement": "计算无量纲（dimensionless）函数 f(t)=exp(−kt) 及其导数（derivative） f′(t)=−k exp(−kt)。导数结果用于核对曲线局部变化，不用有限差分（finite difference）近似。",
+    "statement": "给定清除系数（elimination rate constant） k 和一组时刻，计算无量纲（dimensionless）函数 f(t)=exp(−kt) 及其导数（derivative） f′(t)=−k exp(−kt)。返回各时刻的函数值与变化率，使用给出的解析表达式。",
     "part": "2",
     "chapter": "2.2",
     "learning_targets": [
@@ -951,7 +951,7 @@
         "unit": "1/T"
       }
     ],
-    "contract": "分别构造 exp(−k*t) 与 −k*exp(−k*t) 的列表；k=0 时为常数 1、变化率 0。",
+    "contract": "按 times 的原顺序构造 exp(−k*t) 和 −k*exp(−k*t) 两个列表，返回 (values,derivatives)。两个列表的同一位置对应同一时刻；k=0 时分别为 1 和 0。",
     "constraints": [
       "所有数值有限；无需修改输入（input）。",
       "0 ≤ k ≤ 3；0 ≤ times[i] ≤ 20；列表长度 0—1000，可重复、可不排序。"
@@ -961,7 +961,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "链式法则（chain rule）还要乘内层 −kt 的导数 −k。",
+    "hint": "把 −kt 看成内层函数。对外层指数函数（exponential function）求导后，还要乘内层的导数 −k；k>0 时导数为负，比例下降，k=0 时导数为零。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1079,7 +1079,7 @@
     "slug": "p02-ivp",
     "title": "确定一条演化曲线",
     "type": "choice",
-    "statement": "已知微分方程（differential equation）dA/dt=u−kA，u、k 为给定常数。下面哪组附加信息能唯一确定本例的轨迹（trajectory）？",
+    "statement": "物质总量满足微分方程 dA/dt=u−kA，u、k 是给定常数。下面哪组附加信息能唯一确定本例中总量随时间变化的曲线？",
     "part": "2",
     "chapter": "2.3",
     "learning_targets": [
@@ -1117,7 +1117,7 @@
     "slug": "p02-exact",
     "title": "恒定输入的连续解",
     "type": "python",
-    "statement": "理想单室模型（one-compartment model）满足 dA/dt=u−kA，A(0)=A0。返回指定时刻的解析所追踪物质总量（tracked amount）。包含 k=0 和很小 k，需避免两个近乎相等的数相减损失精度。",
+    "statement": "一个均匀混合池中的物质总量满足 dA/dt=u−kA，起点为 A(0)=A0。u 和 k 保持不变。返回给定时刻的解析总量，处理 k=0 和极小 k 时也要保留足够的计算精度。",
     "part": "2",
     "chapter": "2.3",
     "learning_targets": [
@@ -1137,7 +1137,7 @@
       {
         "name": "u",
         "type": "float",
-        "description": "恒定输入（input）速率。",
+        "description": "从外界进入池中的恒定速率。",
         "unit": "U/T"
       },
       {
@@ -1149,7 +1149,7 @@
       {
         "name": "times",
         "type": "list[float]",
-        "description": "非负时刻，保留给定顺序。",
+        "description": "需要计算总量的各时刻；结果与给定位置一一对应，不排序。",
         "unit": "T"
       }
     ],
@@ -1163,7 +1163,7 @@
     ],
     "contract": "k=0 时 A=A0+u*t；k>0 时 A=A0*exp(−k*t)−(u/k)*expm1(−k*t)。math.expm1(z) 准确计算 exp(z)−1。",
     "constraints": [
-      "所有数值有限；无需修改输入。",
+      "所有数值有限；无需修改输入（input）。",
       "0 ≤ A0,u ≤ 20；k=0 或 1e−14 ≤ k ≤ 2；0 ≤ times[i] ≤ 20；列表长度 0—1000。"
     ],
     "entrypoint": "solve",
@@ -1171,7 +1171,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先处理 k=0；极小 k 的结果应接近 A0+u*t，而非产生明显抵消误差。",
+    "hint": "k=0 时使用 A0+u*t。正 k 时令 z=−k*t，将输入贡献改写为 u*t*expm1(z)/z，避免先算 u/k 和两个接近 1 的数之差；z=0 时这个比值按连续极限（limit）取 1。核对结果是否接近零清除时的线性积累。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1209,7 +1209,7 @@
     "slug": "p02-shift-equilibrium",
     "title": "减去平衡为什么有用",
     "type": "choice",
-    "statement": "对恒定输入（input）方程 A′=u−kA，取 k>0、A(0)=A0，并定义平衡（equilibrium）值 A*=u/k 和偏差 x=A−A*。哪些推导成立？",
+    "statement": "物质总量满足 A′=u−kA，u 恒定、k>0、A(0)=A0。定义平衡（equilibrium）总量 A*=u/k，并用 x=A−A* 表示当前总量与平衡总量的差。以下哪些推导成立？",
     "part": "2",
     "chapter": "2.3",
     "learning_targets": [
@@ -1323,7 +1323,7 @@
     "slug": "p02-arrival",
     "title": "到达指定平衡比例要多久",
     "type": "python",
-    "statement": "从 A0=0 出发，u>0、k>0。解为 A(t)=(u/k)(1−exp(−kt))。给定若干比例 f，返回首次达到 f×(u/k) 的时刻。",
+    "statement": "从 A0=0 出发，恒定流入速率 u>0、清除系数（elimination rate constant） k>0，物质总量为 A(t)=(u/k)[1−exp(−kt)]。给定一组目标比例 f，返回总量首次达到平衡（equilibrium）值 u/k 的 f 倍时所需的时间。",
     "part": "2",
     "chapter": "2.3",
     "learning_targets": [
@@ -1355,7 +1355,7 @@
         "unit": "T"
       }
     ],
-    "contract": "由 exp(−kt)=1−f 得到 t=−log(1−f)/k，可用 math.log1p(−f)。f=0 返回 0；不包含永远无法有限时间精确达到的 f=1。",
+    "contract": "对 fractions 中每个比例 f，用 exp(−kt)=1−f 求得 t=−log(1−f)/k，可用 math.log1p(−f) 计算。结果依照 fractions 的顺序排列。f=0 返回 0；题设不包含 f=1。",
     "constraints": [
       "所有数值有限；无需修改输入（input）。",
       "1e−4 ≤ k ≤ 2；0 ≤ f ≤ 0.999999；列表长度 0—100。"
@@ -1365,7 +1365,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "分离指数再取自然对数（natural logarithm）；不要把 90% 当成 90。",
+    "hint": "先把目标比例代入 1−exp(−kt)=f，再移项并取自然对数（natural logarithm）。90% 写成 0.9；该题从零开始向正的平衡值上升。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1479,7 +1479,7 @@
     "slug": "p02-errors",
     "title": "把误差变成一张可比较的表",
     "type": "python",
-    "statement": "对同一恒定输入（input）初值问题（initial value problem），用给定的多个步长分别做显式欧拉法（forward Euler method）更新。对各自全部网格点与解析解（analytical solution）比较，返回最大绝对误差（maximum absolute error）。",
+    "statement": "对 dA/dt=u−kA、A(0)=A0 这个恒定输入（input）初值问题（initial value problem），分别用给定的步长做显式欧拉更新。每次从同一起点运行到 end，在该次计算的所有网格时刻与解析解（analytical solution）比较，返回其中最大的绝对误差。",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -1500,7 +1500,7 @@
       {
         "name": "u",
         "type": "float",
-        "description": "恒定输入。",
+        "description": "在整个观察时段保持不变的流入速率。",
         "unit": "U/T"
       },
       {
@@ -1526,11 +1526,11 @@
       {
         "name": "errors",
         "type": "list[float]",
-        "description": "按步长顺序返回网格最大绝对误差。",
+        "description": "按步长顺序返回网格最大绝对误差（maximum absolute error）。",
         "unit": "U"
       }
     ],
-    "contract": "每个 h 都从同一 A0 开始；steps=round(end/h)；比较 i=0…steps 的 A[i] 与恒定输入解析解。k=0 用线性解。",
+    "contract": "每个步长 h 对应一次独立计算，都从 A0 开始，更新 steps=round(end/h) 次。对 i=0…steps，在时刻 t=i*h 比较欧拉值 A[i] 与恒定输入解析解，取最大绝对差。k=0 使用线性解析解。结果依照 step_sizes 的顺序排列。",
     "constraints": [
       "所有数值有限；无需修改输入。",
       "0 ≤ A0,u ≤ 20；0 ≤ k ≤ 2；0 < end ≤ 20；step_sizes 长度 1—10；每个 end/h 为正整数（误差 <1e−10），最多 10000 步。"
@@ -1540,7 +1540,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "比较共同问题，但每个网格上的全部点都要检查；仅终点误差不等于最大误差。",
+    "hint": "每个步长都要重新从 A0 计算。对该网格的全部时刻求绝对误差再取最大值；只比较终点会漏掉中途更大的误差。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1581,7 +1581,7 @@
     "slug": "p02-orders",
     "title": "从误差缩小比例估计阶数",
     "type": "python",
-    "statement": "已按 h、h/2、h/4…得到正的最大误差序列。返回相邻两项对应的观测收敛阶（observed order of convergence） p=log2(Eh/Eh/2)。",
+    "statement": "同一问题的步长依次为 h、h/2、h/4……，对应的最大误差均为正数，按这个顺序保存在 errors 中。对每对相邻误差计算 p=log₂[E(h)/E(h/2)]，返回这些观测收敛阶（observed order of convergence）。",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -1604,7 +1604,7 @@
       {
         "name": "orders",
         "type": "list[float]",
-        "description": "每对相邻误差的观测收敛阶，长度少一。",
+        "description": "第一项用 errors[0] 与 errors[1] 计算，第二项用 errors[1] 与 errors[2] 计算，依此类推；项数比 errors 少一。",
         "unit": "1"
       }
     ],
@@ -1618,7 +1618,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "该数值是当前网格范围内的观察，不自动证明所有网格的理论收敛阶。",
+    "hint": "将前一项误差除以后一项，再取以 2 为底的对数。误差恰好减半时结果为 1；这个数描述当前两级网格中的误差缩小比例。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1771,7 +1771,7 @@
     "slug": "p02-step-properties",
     "title": "分别检查稳定与非负条件",
     "type": "python",
-    "statement": "本题只讨论恒定输入（input）一阶模型（model）的显式欧拉法（forward Euler method）更新。给定非负 k 和正 h，返回偏差放大因子 q，以及严格渐近稳定（asymptotic stability）、对所有非负初值（initial condition）与输入保持非负这两个布尔判断。",
+    "statement": "恒定流入的一阶清除模型（model）用显式欧拉式 A_next=(1−kh)A+hu 更新。定义 q=1−kh。给定 k≥0、h>0，返回 q，并分别判断偏差是否随更新趋于零，以及这条更新式是否对任意非负起点和流入速率都保持总量非负。",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -1806,7 +1806,7 @@
       {
         "name": "stable",
         "type": "bool",
-        "description": "是否 abs(q)<1；k=0 不属于严格渐近稳定。",
+        "description": "是否 abs(q)<1；k=0 不属于严格渐近稳定（asymptotic stability）。",
         "unit": "1"
       },
       {
@@ -1818,7 +1818,7 @@
     ],
     "contract": "q=1−kh；stable=(abs(q)<1)；nonnegative=(q>=0)。本题要求精确不等号，不加数值容差扩大边界。",
     "constraints": [
-      "所有数值有限；无需修改输入。",
+      "所有数值有限；无需修改输入（input）。",
       "0 ≤ k ≤ 2；0 < h ≤ 4；测试数值包含 kh=0、1、2 及两侧。"
     ],
     "entrypoint": "solve",
@@ -1826,7 +1826,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "稳定判断是偏差会不会衰减，非负判断是所有物理初值的符号保证；二者不同。",
+    "hint": "平衡（equilibrium）偏差每步乘 q，绝对值小于 1 时会趋于零。总量更新还包含非负的 hu；要对任意非负起点都保证非负，A 的系数 q 也需非负。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1860,7 +1860,7 @@
     "slug": "p02-first-decay",
     "title": "负值出现在第一步",
     "type": "python",
-    "statement": "无输入（input）时从 A0≥0 开始，对不同步长分别做一次欧拉法（forward Euler method）更新。返回每个步长得到的第一步所追踪物质总量（tracked amount），保留负值。",
+    "statement": "没有流入时，从共同起点 A0≥0 出发，分别用不同步长做一次欧拉更新。每个步长都是独立尝试，返回对应的第一步总量，保留负值。",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -1895,13 +1895,13 @@
       {
         "name": "first",
         "type": "list[float]",
-        "description": "各自第一步总量。",
+        "description": "与 step_sizes 同位置对应的第一步总量；每一项都独立从 A0 计算。",
         "unit": "U"
       }
     ],
     "contract": "每个试验独立从 A0 出发，返回 A0*(1−k*h)，不裁剪、不连续串接。",
     "constraints": [
-      "所有数值有限；无需修改输入。",
+      "所有数值有限；无需修改输入（input）。",
       "0 ≤ A0 ≤ 20；0 ≤ k ≤ 2；0 < h ≤ 4；列表长度 1—100。"
     ],
     "entrypoint": "solve",
@@ -2024,7 +2024,7 @@
     "slug": "p02-do-not-clip",
     "title": "调查负值来源",
     "type": "choice",
-    "statement": "数值曲线出现负所追踪物质总量（tracked amount），但方程在非负初值（initial condition）和输入（input）下保持非负。哪些操作有助于查明原因？",
+    "statement": "连续方程在非负初值（initial condition）和流入速率下保持物质总量非负，但数值计算出现了负的总量。哪些操作有助于查明这项差异的原因？",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -2063,7 +2063,7 @@
     "slug": "p02-aligned-grid",
     "title": "让网格停在输入跳变点",
     "type": "python",
-    "statement": "输入（input）在 bounds 中的时刻改变。每个分段都从其左端开始，以名义步长 h 前进；最后不足 h 时缩短，并精确保留右端。返回整个时间网格（time grid）。",
+    "statement": "流入速率在 bounds 给出的时刻改变。将这些时刻作为各段的起点与终点，每段从左端重新按名义步长 h 前进；最后一步不足 h 时，缩短到该段终点。返回包含全部计算时刻的时间网格（time grid）。",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -2079,7 +2079,7 @@
       {
         "name": "bounds",
         "type": "list[float]",
-        "description": "严格递增的分段边界，首项为 0。",
+        "description": "按时间先后排列的分段时刻；第一项为 0，相邻两项给出一段的起点和终点。",
         "unit": "T"
       },
       {
@@ -2093,13 +2093,13 @@
       {
         "name": "times",
         "type": "list[float]",
-        "description": "含所有边界、严格递增、不重复的时刻。",
+        "description": "按时间递增排列的计算时刻，包含所有分段时刻，每个时刻出现一次。",
         "unit": "T"
       }
     ],
     "contract": "对每段 [left,right]，加入 left+h、left+2h… 中严格小于 right 的点，再加入 right；边界只出现一次。判断恰好整除时允许 1e−12 的商误差。",
     "constraints": [
-      "所有数值有限；无需修改输入。",
+      "所有数值有限；无需修改输入（input）。",
       "2 ≤ len(bounds) ≤ 20；相邻间隔至少 1e−4；终点 ≤ 20；0.01 ≤ h ≤ 5；总步数 ≤ 10000。"
     ],
     "entrypoint": "solve",
@@ -2107,7 +2107,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "不能让一步跨过跳变，也不能把短末步仍按 h 积分。",
+    "hint": "先处理第一段，到它的终点后再处理下一段。每段末的短步也要保存，这样相邻时刻之差才是后续更新实际使用的时长。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2150,7 +2150,7 @@
     "slug": "p02-piecewise",
     "title": "同时保留数值轨迹与分段参考",
     "type": "python",
-    "statement": "在同一跳变对齐网格上计算分段恒定输入（piecewise constant input）的欧拉法（forward Euler method）轨迹（trajectory）和解析参考。每段末的解析所追踪物质总量（tracked amount）连续传给下一段；欧拉解也连续，但用自己的段首值更新。",
+    "statement": "流入速率按时间分段保持恒定。构造包含各个速率改变时刻的网格，在同一组时刻计算欧拉总量和解析参考总量。两种计算各自从 A0 出发，并分别把上一段末的结果作为下一段的起点。",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -2178,13 +2178,13 @@
       {
         "name": "bounds",
         "type": "list[float]",
-        "description": "严格递增分段边界，首项 0。",
+        "description": "按时间递增排列的分段时刻，第一项为 0；相邻两项确定一个时段。",
         "unit": "T"
       },
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "每个 [bounds[j],bounds[j+1]) 的恒定输入（input）速率。",
+        "description": "rates[j] 是从 bounds[j] 到 bounds[j+1] 这一段的恒定流入速率。",
         "unit": "U/T"
       },
       {
@@ -2214,17 +2214,17 @@
         "unit": "U"
       }
     ],
-    "contract": "网格规则与“让网格停在输入跳变点”相同。欧拉步使用 dt=times[i+1]−times[i] 及左端所在段的速率；到达跳变点后才使用新速率。解析值按各完整段的恒定输入解连续传播。",
+    "contract": "按“让网格停在输入（input）跳变点”的规则构造 times。欧拉步使用 dt=times[i+1]−times[i]，以及该步开始时所在段的速率；到达速率改变时刻后，下一步采用新速率。解析参考用每段恒定输入解连续传播。按 (times,amounts,reference) 返回，三个列表同一位置对应同一时刻。",
     "constraints": [
       "所有数值有限；无需修改输入。",
-      "0 ≤ A0,rates[j] ≤ 20；0 ≤ k ≤ 2；2—20 个边界，末点 ≤20，相邻间隔≥1e−4；rates 比 bounds 少一项；0.01≤h≤5，总步数≤10000。"
+      "0 ≤ A0,rates[j] ≤ 20；0 ≤ k ≤ 2；2—20 个分段时刻，末点 ≤20，相邻间隔≥1e−4；rates 比 bounds 少一项；0.01≤h≤5，总步数≤10000。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "两条轨迹各自延续；不能每段把欧拉值重置为解析值。",
+    "hint": "欧拉计算从上一欧拉值继续，解析计算从上一解析值继续。若在每段开始时用解析值替换欧拉值，就改变了要检查的欧拉过程。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2283,7 +2283,7 @@
     "slug": "p02-jump-side",
     "title": "跳变点前后用哪个输入",
     "type": "choice",
-    "statement": "u=2 U/T 持续到 t=3 T，此后 u=0。网格最后两个区间是 [2.4,3] 和 [3,3.8]。哪组流入累计量正确？",
+    "statement": "物质在时刻 3 T 之前以 2 U/T 流入，此后停止流入。两次相邻更新的时段是 [2.4,3] 和 [3,3.8]，时刻以 T 为单位。这两段累计流入的量分别是多少？",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -2323,7 +2323,7 @@
     "slug": "p02-continuity",
     "title": "传播什么到下一段",
     "type": "choice",
-    "statement": "有限输入（input）速率在边界跳变，模型（model）不包含瞬时注入。连接分段解析解（analytical solution）时应怎样处理？",
+    "statement": "物质以有限速率流入，速率在某个分段时刻改变；模型（model）没有瞬时注入。连接前后两段的解析解（analytical solution）时，应怎样确定后一段的起点总量？",
     "part": "2",
     "chapter": "2.4",
     "learning_targets": [
@@ -2347,11 +2347,11 @@
       },
       {
         "id": "C",
-        "text": "将输入速率在边界处的变化量加到上一段的物质总量上，作为下一段初值。"
+        "text": "将流入速率在分段时刻的变化量加到上一段末的物质总量上，作为下一段初值。"
       },
       {
         "id": "D",
-        "text": "将新输入对应的平衡（equilibrium）总量作为下一段初值。"
+        "text": "将新输入（input）对应的平衡（equilibrium）总量作为下一段初值。"
       }
     ],
     "constraints": []
@@ -2442,7 +2442,7 @@
     "slug": "p02-equal-area-not-path",
     "title": "等总量为何不等轨迹",
     "type": "choice",
-    "statement": "从零开始，k=0.5 /T，观察 0—4 T；三个输入（input）分别为前 2 T 以 2 U/T、后 2 T 以 2 U/T、全程 1 U/T。哪些结论正确？",
+    "statement": "从零开始，清除系数（elimination rate constant） k=0.5/T，观察 0—4 T。前置方案前 2 T 以 2 U/T 流入、后 2 T 停止；后置方案前 2 T 不流入、后 2 T 以 2 U/T 流入；均匀方案全程以 1 U/T 流入。以下哪些判断成立？",
     "part": "2",
     "chapter": "2.summary",
     "learning_targets": [
@@ -2482,7 +2482,7 @@
     "slug": "p02-input-totals",
     "title": "先确认比较方案的总量相同",
     "type": "python",
-    "statement": "三种人工输入（input）方案使用相同的分段边界。分别计算每个方案的累计输入量，作为公平比较的第一项检查。这里只累计流入，不扣清除。",
+    "statement": "几种流入方案共用同一组分段时刻，每个方案给出各段的恒定流入速率。分别计算每个方案在整个观察时段累计流入的量，用来核对方案之间是否等总量；这一计算不扣除清除量。",
     "part": "2",
     "chapter": "2.summary",
     "learning_targets": [
@@ -2499,13 +2499,13 @@
       {
         "name": "bounds",
         "type": "list[float]",
-        "description": "共同的严格递增分段边界，首项 0。",
+        "description": "共同的分段时刻，按时间递增排列，第一项为 0；相邻两项给出一个时段。",
         "unit": "T"
       },
       {
         "name": "plans",
         "type": "list[list[float]]",
-        "description": "每行是一种方案的分段流入速率。",
+        "description": "外层每一项是一种方案的速率列表。对该列表中的索引 j（从 0 开始），对应时段从 bounds[j] 到 bounds[j+1]。",
         "unit": "U/T"
       }
     ],
@@ -2519,15 +2519,15 @@
     ],
     "contract": "对每行 rates，返回 sum((bounds[j+1]−bounds[j])*rates[j])。",
     "constraints": [
-      "所有数值有限；无需修改输入。",
-      "2—20 个边界，末点≤20；1—10 个方案，每行长度为 len(bounds)−1；0≤rate≤20。"
+      "所有数值有限；无需修改输入（input）。",
+      "2—20 个分段时刻，末点≤20；1—10 个方案，每行长度为 len(bounds)−1；0≤rate≤20。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "等总量只固定总面积，不固定输入发生的时刻。",
+    "hint": "对每个方案，将同一时段的速率乘实际时长，再把各段流入量相加。累计量相同，仍可以在不同时间流入。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2577,7 +2577,7 @@
     "lesson_id": "P02-SUMMARY",
     "slug": "p02-cap-integrated-balance",
     "title": "用累计量核对连续收支",
-    "statement": "给定各段恒定输入（input）和边界时刻的所追踪物质总量（tracked amount），计算总输入、存量（stock）净变化与累计清除量。忽略其他来源与损失，数据满足非负清除；累计清除量由整段收支（mass balance）确定，不等于末时刻清除速率。",
+    "statement": "各时段的恒定流入速率、分段时刻和这些时刻的物质总量已经给出。系统没有其他来源或损失，各段收支（mass balance）对应的清除量非负。计算全程累计流入量、终点相对起点的总量变化，以及由收支推得的累计清除量。",
     "part": "2",
     "chapter": "2.summary",
     "learning_targets": [
@@ -2593,7 +2593,7 @@
       {
         "name": "bounds",
         "type": "list[float]",
-        "description": "严格递增的段边界，首项为 0。",
+        "description": "按时间递增排列的分段时刻，第一项为 0。",
         "unit": "T"
       },
       {
@@ -2605,7 +2605,7 @@
       {
         "name": "amounts",
         "type": "list[float]",
-        "description": "每个边界时刻的总量。",
+        "description": "amounts[i] 是时刻 bounds[i] 的总量；第一项是起点，最后一项是全程终点。",
         "unit": "U"
       }
     ],
@@ -2629,10 +2629,10 @@
         "unit": "U"
       }
     ],
-    "contract": "总输入 = 各段速率×实际时长之和；净变化 = amounts[-1]−amounts[0]；累计清除 = 总输入−净变化。",
+    "contract": "总输入（input） = 各段速率×实际时长之和；净变化 = amounts[-1]−amounts[0]；累计清除 = 总输入−净变化。",
     "constraints": [
       "所有数值均为有限数；无需修改输入。",
-      "2—100 个边界，末点≤100；amounts 与 bounds 等长，rates 少一项。",
+      "2—100 个分段时刻，末点≤100；amounts 与 bounds 等长，rates 少一项。",
       "0≤rates[i],amounts[i]≤100；每段收支推得的清除量非负。"
     ],
     "entrypoint": "solve",
@@ -2676,7 +2676,7 @@
         "explanation": "总输入为 2×1+1×2=4 U；净变化为 2.5−1=1.5 U；累计清除为 4−1.5=2.5 U。"
       }
     ],
-    "hint": "把计算分成可以单独检查的步骤，再核对边界条件与单位。",
+    "hint": "先按各段实际时长累计流入量，再算末总量减起点总量。流入量扣掉这项净增加量，就是全程清除量；不要用末时刻的清除速率替代累计量。",
     "starter_code": "def solve(\n    bounds: list[float],\n    rates: list[float],\n    amounts: list[float],\n) -> tuple[float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n"
   },
   {
@@ -2686,7 +2686,7 @@
     "slug": "p02-input-metrics",
     "title": "解释方案差异前先核验误差",
     "type": "python",
-    "statement": "对一种分段恒定输入（piecewise constant input）方案，计算总流入量、解析峰值和终值，以及两种步长下的欧拉法（forward Euler method）最大误差。该模型（model）每个恒定输入（input）段内单调，因此解析峰值可在各段端点找到。",
+    "statement": "对一种各段流入速率恒定的方案，计算全程累计流入量、解析总量的峰值与终值，以及步长 h 和 h/2 下的欧拉最大误差。k>0 时，每段总量单调靠近平衡（equilibrium）值；k=0 时，按恒定流入速率线性积累。两种情况下，全程解析峰值都可在起点和各段末找到。",
     "part": "2",
     "chapter": "2.summary",
     "learning_targets": [
@@ -2714,13 +2714,13 @@
       {
         "name": "bounds",
         "type": "list[float]",
-        "description": "严格递增边界，首项 0。",
+        "description": "按时间递增排列的分段时刻，第一项为 0。",
         "unit": "T"
       },
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "各段非负输入速率。",
+        "description": "与相邻分段时刻确定的各时段一一对应的非负流入速率。",
         "unit": "U/T"
       },
       {
@@ -2734,7 +2734,7 @@
       {
         "name": "total",
         "type": "float",
-        "description": "总输入量。",
+        "description": "总输入（input）量。",
         "unit": "U"
       },
       {
@@ -2765,14 +2765,14 @@
     "contract": "使用本篇跳变对齐网格分别运行 h 与 h/2；误差在各自网格上相对分段解析解（analytical solution）计算。peak、final 来自解析参考，不取未验证的欧拉峰值。",
     "constraints": [
       "所有数值有限；无需修改输入。",
-      "0≤A0,rates[j]≤20；0≤k≤2；2—20 个边界，末点≤20，相邻间隔≥1e−4；rates 比 bounds 少一项；0.02≤h≤4，总步数≤10000。"
+      "0≤A0,rates[j]≤20；0≤k≤2；2—20 个分段时刻，末点≤20，相邻间隔≥1e−4；rates 比 bounds 少一项；0.02≤h≤4，总步数≤10000。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先确认同一问题、同一参考；有限步长误差下降是验证依据之一，不能代替模型假设检查。",
+    "hint": "先用解析传播算出各段末总量，保留起点来求峰值。再分别运行 h、h/2 两次欧拉计算，在各自网格上与同刻解析值比较，得到两个最大误差。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2857,7 +2857,7 @@
     "lesson_id": "P02-SUMMARY",
     "slug": "p02-cap-feasible-plans",
     "title": "迁移到带过程上限的方案筛选",
-    "statement": "沿用一阶清除模型（model） dA/dt=u−kA，现要求候选方案同时满足指定总输入（input）、输入速率上限和全程所追踪物质总量（tracked amount）上限。每个方案独立从 A0 开始，返回所有满足要求的方案索引。",
+    "statement": "物质总量满足 dA/dt=u−kA。几个候选方案共用分段时刻、清除系数（elimination rate constant） k 和起点 A0，各自给出每段的恒定流入速率。筛出同时满足指定累计流入量、各段流入速率上限和全程总量上限的方案，返回它们在 plans 中的索引。",
     "part": "2",
     "chapter": "2.summary",
     "learning_targets": [
@@ -2874,13 +2874,13 @@
       {
         "name": "bounds",
         "type": "list[float]",
-        "description": "各方案共同的严格递增分段边界，首项 0。",
+        "description": "所有方案共用的分段时刻，按时间递增排列，第一项为 0。",
         "unit": "T"
       },
       {
         "name": "plans",
         "type": "list[list[float]]",
-        "description": "每行一个方案的分段恒定输入（piecewise constant input）速率。",
+        "description": "每一项是一种独立方案的速率列表。该列表的索引 j 从 0 开始，第 j+1 项对应 bounds[j] 到 bounds[j+1] 的时段。",
         "unit": "U/T"
       },
       {
@@ -2898,7 +2898,7 @@
       {
         "name": "required_total",
         "type": "float",
-        "description": "要求的总输入量。",
+        "description": "要求的总输入（input）量。",
         "unit": "U"
       },
       {
@@ -2925,7 +2925,7 @@
     "contract": "先计算各方案的累计输入，再用每段解析传播核对全程峰值。恒定输入的单室轨迹（trajectory）每段单调，峰值取起点与各分段端点的最大值。总输入与 required_total 的绝对差≤1e−9，速率与峰值分别≤对应上限+1e−9 才合格。k=0 用线性积累；k 很小时注意指数差的精度。",
     "constraints": [
       "所有数值均为有限数；无需修改输入。",
-      "2—20 个边界，末点≤20，相邻间隔≥1e−4；0—10 个方案，每行比 bounds 少一项。",
+      "2—20 个分段时刻，末点≤20，相邻间隔≥1e−4；0—10 个方案，每个速率列表比 bounds 少一项。",
       "0≤A0,rates[i],max_rate,max_peak≤20；0≤k≤2；0≤required_total≤400。",
       "峰值包括初始时刻；三项条件必须同时满足，不能只检查终值或总输入。"
     ],
@@ -2978,7 +2978,7 @@
         "explanation": "三方案总输入均为 4 U，最大速率均不超过 2 U/T。前置和后置的峰值约 2.5284822353 U，均超过 2 U；均匀输入峰值约 1.7293294335 U，故返回 [2]。"
       }
     ],
-    "hint": "把计算分成可以单独检查的步骤，再核对边界条件与单位。",
+    "hint": "每个方案都重新从 A0 出发。分别核对累计流入量、各段速率和解析全程峰值，三项都符合时才保留索引；峰值检查也要包含起点。",
     "starter_code": "def solve(\n    bounds: list[float],\n    plans: list[list[float]],\n    k: float,\n    A0: float,\n    required_total: float,\n    max_rate: float,\n    max_peak: float,\n) -> list[int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n"
   },
   {
