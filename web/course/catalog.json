@@ -1007,14 +1007,14 @@
           "id": "3.1",
           "title": "从多个室进入线性代数",
           "url": "/chapters/03-01-从多个室进入线性代数/",
-          "goals": "说明向量（vector）分量、矩阵（matrix）元素及维数的物理意义，理解内积（inner product）、范数（norm）、秩（rank）和线性方程组（system of linear equations）。",
-          "prerequisites": "2.4 的收支（mass balance）计算、导数（derivative）与一阶微分方程；会用 Python 列表表达多项数值。",
+          "goals": "为血液与组织分别写收支，说明向量（vector）顺序与矩阵（matrix）行列；用共同变化、重新分配和重复方程理解投影（projection）与平衡。",
+          "prerequisites": "2.4 的收支计算、导数与一阶微分方程；会用 Python 列表表达多项数值。",
           "knowledge": [
-            "两室交换的逐项收支",
-            "数组（array）、矩阵乘法（matrix multiplication）与线性映射（linear map）",
-            "内积与投影（projection）直觉、秩、平衡方程及唯一性"
+            "先算一次血液与组织的转移，再定义向量顺序和矩阵行列",
+            "将共同变化与室间差异分开，用内积（inner product）和配方解释投影",
+            "比较重复的收支与独立约束，用消元求平衡"
           ],
-          "focus": "把分室收支写成向量与矩阵；用方向、秩和方程组理解耦合与平衡（equilibrium）。",
+          "focus": "把每笔转移同时记在转出室和接收室，解释矩阵中的正负号；用独立方程与两室总量确定平衡分配。",
           "available": true,
           "lessons": [
             {
@@ -1022,7 +1022,7 @@
               "chapter_id": "3.1",
               "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/01-两室交换与矩阵收支.ipynb",
               "title": "两室交换与矩阵收支",
-              "outcome": "能从两个室的逐项收支构造向量与矩阵，用矩阵乘法计算变化率，并检查内部交换、外部输入与清除的不同作用。",
+              "outcome": "从血液与组织的逐项收支写出向量和矩阵，逐行算变化率，再用列和核对内部转移。",
               "number": "3.1.1",
               "visualization": null,
               "questions": [
@@ -1058,7 +1058,7 @@
               "chapter_id": "3.1",
               "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.ipynb",
               "title": "内积范数与投影",
-              "outcome": "能计算内积、欧几里得范数与投影，把两室变化分成共同方向和差异方向，并解释单位与尺度对几何比较的影响。",
+              "outcome": "把两室的变化分成共同增加与重新分配，用内积和配方解释投影，并检查单位与尺度。",
               "number": "3.1.2",
               "visualization": null,
               "questions": [
@@ -1094,7 +1094,7 @@
               "chapter_id": "3.1",
               "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.ipynb",
               "title": "平衡方程秩与唯一性",
-              "outcome": "能用独立方程求平衡，区分唯一解、无解和一组平衡，解释封闭系统为什么需要补充守恒总量。",
+              "outcome": "从重复的收支方程引出秩，用消元求平衡，说明何时还需要给定两室总量之和。",
               "number": "3.1.3",
               "visualization": null,
               "questions": [
@@ -1138,14 +1138,14 @@
           "id": "3.2",
           "title": "线性状态空间与动态模态",
           "url": "/chapters/03-02-线性状态空间与动态模态/",
-          "goals": "写出状态（state）、输入（input）和输出（output）关系，用特征值（eigenvalue）解释动态时间尺度（time scale），并把复共轭（complex conjugate）模态（mode）还原为实轨迹（trajectory）。",
+          "goals": "分别写出状态变化与测量关系，用两室的和、差求出两种指数变化，再把复数（complex number）表示还原为二维偏差运动。",
           "prerequisites": "3.1 的向量（vector）、矩阵乘法（matrix multiplication）与线性方程组（system of linear equations），以及第 2 篇的指数衰减。",
           "knowledge": [
-            "状态空间（state space）和不同观测（observation）映射",
-            "特征向量（eigenvector）、矩阵（matrix）幂与矩阵指数（matrix exponential）",
-            "快慢模态、复数（complex number）与阻尼振荡（damped oscillation），说明不可对角化情况的处理边界"
+            "用同一组两室总量比较不同读数，写清 M、B、C、D 的位置和单位",
+            "从和差方程引出特征值（eigenvalue）、模态与矩阵（matrix）传播",
+            "用二维偏差解释复数衰减和旋转，特征向量（eigenvector）不足时沿原方程依次求解"
           ],
-          "focus": "区分状态、输入和输出；把共同变化与分配变化分解为模态，连接特征值与时间尺度。",
+          "focus": "解释为什么总量读数不变时两个室仍在交换；分清模态（mode）在初值中没有贡献与它在读数中被抵消。",
           "available": true,
           "lessons": [
             {
@@ -1153,7 +1153,7 @@
               "chapter_id": "3.2",
               "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.ipynb",
               "title": "状态输入与观测映射",
-              "outcome": "能写出线性状态空间的动态与观测方程，核对矩阵维数和单位，解释不变的观测为何可能掩盖内部变化。",
+              "outcome": "把变化率和读数分别写成矩阵关系，核对各位置、形状与单位，解释总量不变时室内仍能变化。",
               "number": "3.2.1",
               "visualization": "web/multivariable/index.html",
               "questions": [
@@ -1189,7 +1189,7 @@
               "chapter_id": "3.2",
               "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.ipynb",
               "title": "特征值模态与矩阵传播",
-              "outcome": "能从特征值与特征向量建立模态解，区分慢快时间尺度、初值激发与观测抵消，并连接矩阵幂和矩阵指数。",
+              "outcome": "用两室的和、差找出两种指数变化，区分初值中的贡献与观测中的抵消，再连接矩阵传播。",
               "number": "3.2.2",
               "visualization": "web/multivariable/index.html",
               "questions": [
@@ -1231,7 +1231,7 @@
               "chapter_id": "3.2",
               "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/03-复数模态与阻尼旋转.ipynb",
               "title": "复数模态与阻尼旋转",
-              "outcome": "能把复数表示还原为二维实运动，用特征值实部与虚部分别解释衰减和旋转，并识别特征向量不足时的处理边界。",
+              "outcome": "把二维偏差合写成复数，解释衰减与旋转；特征向量不足时，沿原方程依次求解。",
               "number": "3.2.3",
               "visualization": "web/multivariable/index.html",
               "questions": [
@@ -1275,14 +1275,14 @@
           "id": "3.3",
           "title": "耦合、相平面与平衡",
           "url": "/chapters/03-03-耦合、相平面与平衡/",
-          "goals": "从向量场（vector field）辨认局部运动方向，解释平衡（equilibrium）、初值（initial condition）与轨迹（trajectory），并说明相图（phase portrait）丢失了哪些时间信息。",
-          "prerequisites": "3.2 的状态空间（state space）、模态（mode）与时间曲线；会由矩阵（matrix）和状态（state）计算变化率。",
+          "goals": "在指定状态点计算变化率，把运动方向、时间曲线和相轨迹（phase trajectory）对应起来，再比较改变速度和关闭通道的结果。",
+          "prerequisites": "3.2 的状态空间（state space）、模态（mode）与时间曲线；会由矩阵（matrix）和状态计算变化率。",
           "knowledge": [
-            "在状态点计算变化方向",
-            "方向场、相轨迹（phase trajectory）和平衡",
-            "比较不同耦合与初值下的时间图和相图"
+            "手算状态点的变化率，解释箭头方向与速率",
+            "将相轨迹与时间曲线对照，改变全部变化率的共同倍率",
+            "关闭回流与全部交换，结合总量和平衡关系求长期状态"
           ],
-          "focus": "联合阅读相平面（phase plane）箭头、轨迹和时间标记；解释守恒约束如何影响平衡与运动方向。",
+          "focus": "图上的路径说明经过哪里，时间标记说明走了多久；结合两室总量求出关闭通道后的长期分配。",
           "available": true,
           "lessons": [
             {
@@ -1290,7 +1290,7 @@
               "chapter_id": "3.3",
               "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.ipynb",
               "title": "向量场相轨迹与时间",
-              "outcome": "能从状态点计算运动方向和速度，将时间曲线与相轨迹对应，并说明归一化箭头和几何路径各自省略的信息。",
+              "outcome": "从一个状态点的变化率画出运动方向，比较同一路径上不同速度，辨认图中保留的时间信息。",
               "number": "3.3.1",
               "visualization": "web/multivariable/index.html",
               "questions": [
@@ -1326,7 +1326,7 @@
               "chapter_id": "3.3",
               "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.ipynb",
               "title": "通道改变与平衡集合",
-              "outcome": "能比较双向、单向与完全断开的交换，说明平衡集合与初始总量如何共同决定长期状态，辨认坐标尺度造成的视觉变化。",
+              "outcome": "依次关闭回流与全部交换，结合两室总量求长期分配，再检查坐标比例怎样改变图形。",
               "number": "3.3.2",
               "visualization": "web/multivariable/index.html",
               "questions": [
@@ -1364,14 +1364,14 @@
           "id": "3.4",
           "title": "多变量变化与局部线性化",
           "url": "/chapters/03-04-多变量变化与局部线性化/",
-          "goals": "由偏导（partial derivative）构建雅可比矩阵（Jacobian matrix），围绕指定平衡（equilibrium）写出一阶近似，并用误差说明局部适用范围。",
-          "prerequisites": "3.3 的相平面（phase plane）和平衡；复习第 2 篇的单变量导数（derivative）、链式法则（chain rule）及本篇矩阵（matrix）运算。",
+          "goals": "每次只改变一个室的总量，求变化率的偏导（partial derivative）并组成雅可比矩阵（Jacobian matrix）；围绕固定平衡比较小扰动与大扰动的预测。",
+          "prerequisites": "3.3 的相平面（phase plane）和平衡；复习第 2 篇的单变量导数、链式法则及本篇矩阵（matrix）运算。",
           "knowledge": [
-            "偏导和多变量链式法则",
-            "Taylor 展开与 Jacobian",
-            "在二室模型中加入饱和清除，比较局部近似与原模型"
+            "从一次小扰动求偏导，用梯度（gradient）计算沿轨迹的变化",
+            "逐列构造雅可比矩阵，解释一般基点与平衡处的一阶近似",
+            "在同一饱和清除模型中改变扰动幅度，并分别缩短步长核对预测差异"
           ],
-          "focus": "用偏导构建局部近似；比较近远扰动下的模型（model）差异，并把它与数值误差（numerical error）分开。",
+          "focus": "说清雅可比矩阵每行、每列对应的对象；推进相对平衡的偏差，再用扰动幅度和步长对照区分两类误差。",
           "available": true,
           "lessons": [
             {
@@ -1379,7 +1379,7 @@
               "chapter_id": "3.4",
               "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.ipynb",
               "title": "偏导梯度与局部变化",
-              "outcome": "能从单变量导数进入偏导数、梯度和多变量链式法则，逐列构造 Jacobian，并区分任意点的一阶近似与平衡附近的线性化。",
+              "outcome": "每次只改变一个总量分量，推导偏导与雅可比矩阵，区分基点变化率和偏移造成的变化。",
               "number": "3.4.1",
               "visualization": "web/multivariable/index.html",
               "questions": [
@@ -1421,7 +1421,7 @@
               "chapter_id": "3.4",
               "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.ipynb",
               "title": "线性化能够走多远",
-              "outcome": "能围绕平衡推进偏差模型，比较近远扰动的轨迹误差与向量场余项，用步长细化区分局部模型误差和离散误差，并限定局部稳定结论。",
+              "outcome": "从同一起点比较原模型与平衡附近的近似，用扰动幅度和步长细化解释两种误差。",
               "number": "3.4.2",
               "visualization": "web/multivariable/index.html",
               "questions": [
@@ -1467,13 +1467,13 @@
         "assessment": true,
         "title": "二室交换与局部近似综合实验",
         "url": "/parts/03-多变量相互作用/综合练习/",
-        "goals": "连接二室收支（mass balance）、平衡（equilibrium）、观测（observation）和局部近似，独立检验单位、计算与适用范围。",
-        "prerequisites": "本篇四章。",
-        "focus": "总量与分配、激发与可见、局部模型（model）差与数值误差（numerical error）分别核对。",
+        "goals": "从两室收支计算平衡分配，比较两种观测，再判断饱和清除的局部近似在给定实验中是否够准确。",
+        "prerequisites": "本篇四章的矩阵（matrix）计算、模态（mode）分解、相轨迹（phase trajectory）与局部近似。",
+        "focus": "先说清列表中每个位置的含义；区分总量不变与分配不变、模态未出现与读数中抵消、模型差异与步长差异。",
         "knowledge": [
-          "收支与单位 → 矩阵（matrix）和平衡",
-          "模态（mode）与观测 → 看见和遗漏的变化",
-          "Jacobian 与步长细化 → 局部范围证据"
+          "按室 1、室 2 的顺序记账，核对总量与浓度",
+          "由初值分解和观测权重解释两种变化在读数中的贡献",
+          "让原模型与局部模型从同一起点出发，再各自缩短步长"
         ],
         "lessons": [
           {
@@ -1481,17 +1481,17 @@
             "chapter_id": "3.summary",
             "path": "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb",
             "title": "二室交换与局部近似综合实验",
-            "outcome": "能在同一案例中连接变量与单位、矩阵与平衡、模态与观测、局部近似与误差，独立检查结果并限定结论的适用范围。",
+            "outcome": "在两室交换中连接收支、平衡和观测，再用饱和清除比较局部近似与步长造成的差异。",
             "number": "篇末综合",
             "visualization": null,
             "overview": {
-              "goals": "连接二室收支、平衡、观测和局部近似，独立检验单位、计算与适用范围。",
-              "prerequisites": "本篇四章。",
-              "focus": "总量与分配、激发与可见、局部模型差与数值误差分别核对。",
+              "goals": "从两室收支计算平衡分配，比较两种观测，再判断饱和清除的局部近似在给定实验中是否够准确。",
+              "prerequisites": "本篇四章的矩阵计算、模态分解、相轨迹与局部近似。",
+              "focus": "先说清列表中每个位置的含义；区分总量不变与分配不变、模态未出现与读数中抵消、模型差异与步长差异。",
               "knowledge": [
-                "收支与单位 → 矩阵和平衡",
-                "模态与观测 → 看见和遗漏的变化",
-                "Jacobian 与步长细化 → 局部范围证据"
+                "按室 1、室 2 的顺序记账，核对总量与浓度",
+                "由初值分解和观测权重解释两种变化在读数中的贡献",
+                "让原模型与局部模型从同一起点出发，再各自缩短步长"
               ]
             },
             "questions": [

@@ -51,12 +51,12 @@ function recompute(){
     at=t=>symmetric(p.a,p.c,[p.x1,p.x2],t);field=x=>matvec([[-p.a-p.c,p.a],[p.a,-p.a-p.c]],x);
     $('formula').textContent=`共同模态 λ=−${fmt(p.c)}/T；差异模态 λ=−${fmt(2*p.a+p.c)}/T`;
     const equal=p.x1===p.x2;$('alternate').textContent=equal?'切换到有差异的初值':'切换到两室相同初值';
-    $('preset-note').textContent='成对初值 [6,0] ↔ [3,3] U，总量都为 6 U。再改为观察两分量之和，辨认差异模态为何不可见。';
+    $('preset-note').textContent='两种起点依次为：室 1 有 6 U、室 2 有 0 U；两室各有 3 U。两者总量都是 6 U。改为记录两室总量之和，比较读数中还有没有室间差异。';
   }
   if(mode!=='local')values=times.map(at);
   if(values.flat().some(x=>!Number.isFinite(x))||reference?.flat().some(x=>!Number.isFinite(x)))throw Error('出现非有限计算结果，请恢复起始条件。');
   $('legend').replaceChildren(...[[blue,'第一分量'],[pink,'第二分量'],[gray,'所选观测']].map(([color,label])=>{const n=el('span',label);n.style.setProperty('--line-color',color);return n;}));
-  $('chart-note').textContent=mode==='local'?'时间图蓝/玫红分别对应两室，同色实线为原模型、虚线为局部模型。相图（phase portrait）以实虚线区分模型，两轴等比例。计算步长 h=0.005 T，每 0.01 T 展示一帧；灰点线是所选观测。':'时间曲线保留时间；相图（phase portrait）两轴等比例，灰箭头统一长度仅说明方向，圆点每 1 T 一个。灰点线为所选观测；曲线由解析解直接求值。';
+  $('chart-note').textContent=mode==='local'?'蓝色、玫红色分别表示室 1、室 2 的总量；实线为原模型，虚线为局部模型。相图两轴等比例，也用实线、虚线区分模型。两模型的计算步长均为 h=0.005 T，每 0.01 T 显示一点；灰色点线为所选读数。':'左图记录各分量随时间的变化，右图把同一时刻的第一、第二分量作为横、纵坐标。两轴等比例；灰箭头统一长度，只表示运动方向。圆点每 1 T 标记一次位置，间距可用于比较运动快慢。灰色点线为所选读数；各点由解析解求值。';
   const table=el('table'),head=el('tr');head.append(...['t / T','第一分量 / U','第二分量 / U','观测 / U',...(reference?['最大分量差 / U']:[])].map(s=>el('th',s)));table.append(head);
   for(let t=0;t<=end;t++){const i=t*100,x=values[i],row=el('tr'),nums=[t,...x,observation(x)];if(reference)nums.push(Math.max(...x.map((v,j)=>Math.abs(v-reference[i][j]))));row.append(...nums.map(n=>el('td',fmt(n))));table.append(row);}
   $('value-table').replaceChildren(table);if(playback)playback.seek(0);else draw(0);
@@ -64,7 +64,7 @@ function recompute(){
 function draw(time){
   const state=at(time),index=Math.min(1200,Math.floor(time/.01+1e-8));
   $('time-readout').textContent=`t = ${time.toFixed(2)} T / 12 T`;$('timeline').value=time;
-  $('value').textContent=`[${fmt(state[0])}, ${fmt(state[1])}]`;$('play-counter').textContent=time.toFixed(2)+' T';
+  $('value').textContent=`第一分量 ${fmt(state[0])}；第二分量 ${fmt(state[1])}`;$('play-counter').textContent=time.toFixed(2)+' T';
   const gap=reference?Math.max(...state.map((x,j)=>Math.abs(x-reference[index][j]))):0;
   $('observation-value').textContent=`所选观测 ${fmt(observation(state))} U`+(reference?`；当前最大分量差 ${fmt(gap)} U`:'；当前速度 '+fmt(Math.hypot(...field(state)))+' U/T');
   const chart=$('chart');chart.replaceChildren(svg('title',{id:'svg-title'},'时间曲线与相轨迹联动'),svg('desc',{id:'svg-desc'},`当前状态 ${state.map(fmt).join('、')} U，完整值见下方表格。`));
@@ -110,9 +110,9 @@ async function start(){
   ({current:chapter}=await mountShell('explore'));mode={'3.2':'modes','3.3':'phase','3.4':'local'}[chapter?.id];if(!mode)throw Error('该章没有此探索页');
   $('eyebrow').textContent=chapter.id+' 章 · 可视化与探索';
   $('title').textContent={modes:'什么在变化，什么被看见',phase:'同一路径，不同的时钟',local:'一张局部矩阵，能够预测多远'}[mode];
-  $('question').textContent={modes:'先改变初值（initial condition），再改变观测（observation）：模态（mode）没有被激发，与它在观测中被抵消，如何区分？也可切换到人工偏差的阻尼旋转，连接实数轨迹（trajectory）与复数（complex number）表示。',phase:'两个室的状态（state）在相平面（phase plane）中怎样移动？改变整个向量场（vector field）的倍率，或关闭回流通道，观察路径、方向和时间各发生什么变化。',local:'以同一平衡（equilibrium）为起点，只改变初始扰动幅度，线性化（linearization）与原模型（model）的轨迹（trajectory）会相差多少？先预测，再往返比较。'}[mode];
-  $('explanation').textContent={modes:'交换模型（model）以矩阵（matrix）组织两室状态（state）。特征向量（eigenvector）[1,1] 与 [1,−1] 对应共同和差异变化，特征值（eigenvalue）决定各自的时间尺度（time scale）。改为观察和，可能看不见内部重新分配；旋转示例则使用可正可负的偏差。',phase:'相轨迹（phase trajectory）连接经过的状态点。正倍率只改变同一路径上的速度，平衡（equilibrium）保持不变；关闭一个通道会改变平衡分配。箭头归一化后只表示方向，不表示速度。',local:'雅可比矩阵（Jacobian matrix）由偏导数（partial derivative）组成。本例输入（input）u=.5 U/T，交换 a=.2/T、b=.1/T，饱和清除 vA1/(K+A1) 中 v=1 U/T、K=2 U；平衡为 [2,4] U。近似必须推进偏差 δ=x−x*。'}[mode];
-  $('assumptions').textContent={local:'假设：固定容积、充分混合、非负总量。状态（state）按两室总量排列，参数（parameter）在比较中保持一致。原模型与局部模型均用显式欧拉法（forward Euler method），时间步长（time step）为 .005 T。',phase:'假设：两个室充分混合、容积与参数（parameter）固定，没有外部输入或清除。直接计算解析解（analytical solution），改变倍率同时缩放两条交换通道。',modes:'假设：固定参数（parameter）、同单位二维状态。交换例描述充分混合的两室总量，旋转例描述围绕参考点运动的二维偏差。这里直接计算解析解（analytical solution）。'}[mode];
+  $('question').textContent={modes:'两室总量相同，分配不同，读数会怎样变化？先切换起点，再分别记录第一室的量、两室的和、两室的差，区分初值中没有某模态与读数中将它抵消的情况。也可切换到偏差旋转例，比较衰减和旋转。',phase:'物质只在两室间转移。若两条变化率都乘相同正数，到达同一分配需要的时间会怎样改变？再关闭回流通道，比较长期分配。',local:'平衡始终为室 1 有 2 U、室 2 有 4 U，参数保持一致。只把室 1 的起点总量改为 2+Δ U，室 2 仍为 4 U；扰动幅度 Δ 越大，局部近似与原模型的预测会相差多少？'}[mode];
+  $('explanation').textContent={modes:'状态按室 1、室 2 排列为 [A1,A2]。共同方向 [1,1] 使两室同向变化，差异方向 [1,−1] 表示一室增加、另一室减少；它们是分解方向，负号不表示负物质量。两个特征值分别决定这两种变化衰减多快。记录两室之和时，差异项相加为零；旋转例中的两个分量则表示相对参考值的偏差。',phase:'相轨迹连接两室总量组成的点，横坐标为 A1，纵坐标为 A2。两条变化率乘同一正数时，仍沿原路径同向运动，但速度改变。关闭回流通道会改变平衡分配。灰箭头已调成同样长，需要结合时间圆点判断运动快慢。',local:'饱和清除速率为 vA1/(K+A1)。本例 u=.5 U/T，交换系数 a=.2/T、b=.1/T，v=1 U/T、K=2 U。状态 [A1,A2] 依次对应两室总量，平衡 [2,4] U。在该平衡处计算的雅可比矩阵把小偏差 δ=x−[2,4] 映射成近似变化率；局部模型的总量状态为 [2,4]+δ。'}[mode];
+  $('assumptions').textContent={local:'两室容积固定、各自充分混合，起点总量非负。原模型与局部模型从同一起点出发，均以欧拉法、步长 .005 T 计算；比较过程中只改变第一室的起点扰动，其他参数固定。',phase:'两室容积与交换系数固定、各自充分混合，所追踪物质没有外部流入、流出，也没有生成或转化。状态依次记录室 1、室 2 总量；由解析解求各时刻的值，倍率同时乘两条变化率。',modes:'交换例中两室充分混合、参数固定，物质可在两室间转移，各室也可按清除系数流向外界，没有外部流入或生成、转化。旋转例是人工构造的二维偏差模型，两个分量都用 U 表示，可正可负。各时刻由解析解求值。'}[mode];
   $('model-select').hidden=mode!=='modes';controls();recompute();
   playback=createPlayback({duration:end,speed:1.5,update:draw,failed,changed:reason=>{$('play').textContent=reason==='playing'?'暂停':reason==='ended'?'再次播放':'播放';$('play-status').textContent=reason==='playing'?'正在播放：时间、曲线与状态点同步变化。':reason==='ended'?'已到终点，可切换示例或重播。':'已暂停；调参、切换模型或观测会回到起点。';}});
   $('play').addEventListener('click',()=>playback.running?playback.pause():playback.play());$('replay').addEventListener('click',()=>{playback.seek(0);playback.play();});$('timeline').addEventListener('input',()=>playback.seek(Number($('timeline').value)));

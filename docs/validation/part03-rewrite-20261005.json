@@ -1,0 +1,1328 @@
+{
+  "date": "2026-10-05",
+  "baseline": "e61d6e3725e957a6c4f4b81fe5169c4aaddd1f28",
+  "scope": "第三篇全部正式 Notebook、篇末综合、53题与导览/网页说明；第二篇仅删除一处重复段落",
+  "notebooks": [
+    {
+      "id": "P03-C01-S01",
+      "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/01-两室交换与矩阵收支.ipynb",
+      "sha256": "3602dc84b1de5e4b45f4370a27588f95a84cacf34d27aad1a967731b1950a828",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "1086b273642604b79a37a40e3516cde3eb2b9b522ef858797033613380e70da8"
+    },
+    {
+      "id": "P03-C01-S02",
+      "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.ipynb",
+      "sha256": "5f222a3faae61f205caa3d5e5a124207b8423edf0a8c54784f0c5e9d99965fb7",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "f5ccd5c6d1007b6cf28ea5c205544a342cc75d23f085c152e7b9bea5aa14d5cd"
+    },
+    {
+      "id": "P03-C01-S03",
+      "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.ipynb",
+      "sha256": "55bf16907331ea48a4f5e9646af49ac8046665a987eb097754f35a17430b4d8a",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "f350cd4f8055976227a292ea89b7b7f851d1ed3af2b0e8a31b96b2bb369ad9ae"
+    },
+    {
+      "id": "P03-C02-S01",
+      "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.ipynb",
+      "sha256": "ca9139d9542bd28605722f20251639054221782da017fe64913456def59cff6e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "d3aec316d588cacda86d11df087a447721d96e65380de4cc5a230cfab64f56ab"
+    },
+    {
+      "id": "P03-C02-S02",
+      "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.ipynb",
+      "sha256": "42460d813d61c2f512b74644191b1b9e43fcd2a631bef1923cc9a109dd0212f9",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "6d294ec2bdb720146d7061991dd8647fdf8ce604b73cab319e1bde4fff460941"
+    },
+    {
+      "id": "P03-C02-S03",
+      "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/03-复数模态与阻尼旋转.ipynb",
+      "sha256": "b64240219570046c8ce945de60bee534cdbcb045ed3c522e3508926f05da82d8",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "7c62c2f5936a13333baff80f7122397a347df1bcb1ef6de30bf7314c5e9a9242"
+    },
+    {
+      "id": "P03-C03-S01",
+      "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.ipynb",
+      "sha256": "cfdee166621f2d6dd834586ea942f958344119a14c3c1618f9eae758ea4fb972",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "89cc16ec7dd1f5051ffd89eaee3883ae473ed883f6dede673d41c5cf914d8ed5"
+    },
+    {
+      "id": "P03-C03-S02",
+      "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.ipynb",
+      "sha256": "8c910b514a58b4fb91dbf58166a1a506243ab105d14d01ef035f7001ae18b70f",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "332edc79f6d37281ffd122a0ffd682bbae4efe20f3ff118d013f75c9180d8efe"
+    },
+    {
+      "id": "P03-C04-S01",
+      "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.ipynb",
+      "sha256": "9f229f554bbbdc35b52076140e97f3460d8ea068572b8495c6b892309a754c31",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "4b70bd7c6898182738d6a288335cd398873eb9d6026c64a7aafbc4949434a740"
+    },
+    {
+      "id": "P03-C04-S02",
+      "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.ipynb",
+      "sha256": "acab3b6f3047625deca4212bf8757ab9addc1c6456f6ff5cf79574236b14f8ea",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "a5976dcbc62021ac69c5df6ed009a4ea012bbe4c0d28026d1d9c204274e1bc62"
+    },
+    {
+      "id": "P03-SUMMARY",
+      "path": "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb",
+      "sha256": "d87dff327521e50c8899dda223f3f02fe387836893d93eb85e43355abf58a90a",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "8a797470c2354c3a082ac9e33d753903052b95ef9a98f54f1b429b6f90516566"
+    }
+  ],
+  "questions": {
+    "reviewed": 53,
+    "choice": 37,
+    "python": 16,
+    "wording_changed": 51,
+    "wording_changed_ids": [
+      "p03-exchange-columns",
+      "p03-exchange-balance",
+      "p03-amount-concentration",
+      "p03-third-room",
+      "p03-projection",
+      "p03-norm-units",
+      "p03-projection-meaning",
+      "p03-matrix-product",
+      "p03-open-equilibrium",
+      "p03-singular-equilibrium",
+      "p03-rank-meaning",
+      "p03-no-clearance-input",
+      "p03-equilibrium-limit",
+      "p03-state-output",
+      "p03-observation-not-state",
+      "p03-dimensions",
+      "p03-output-units",
+      "p03-symmetric-modes",
+      "p03-unexcited-mode",
+      "p03-invisible-mode",
+      "p03-matrix-exponential",
+      "p03-modal-time",
+      "p03-damped",
+      "p03-jordan",
+      "p03-complex-meaning",
+      "p03-exchange-no-oscillation",
+      "p03-scaled-field",
+      "p03-phase-time",
+      "p03-equilibrium-direction",
+      "p03-closed-state",
+      "p03-channel-off",
+      "p03-axis-scale",
+      "p03-all-channels-off",
+      "p03-jacobian",
+      "p03-chain-rate",
+      "p03-partial-meaning",
+      "p03-affine-approximation",
+      "p03-difference-proof",
+      "p03-local-trajectories",
+      "p03-deviation-variable",
+      "p03-local-error-order",
+      "p03-model-numerical-error",
+      "p03-local-stability",
+      "p03-cap-units",
+      "p03-cap-signs",
+      "p03-integrated-balance",
+      "p03-cap-modes",
+      "p03-cap-phase",
+      "p03-integrated-output",
+      "p03-cap-local",
+      "p03-cap-scope"
+    ],
+    "explanation_changed": 28,
+    "explanation_changed_ids": [
+      "p03-exchange-columns",
+      "p03-exchange-balance",
+      "p03-projection",
+      "p03-norm-units",
+      "p03-projection-meaning",
+      "p03-open-equilibrium",
+      "p03-singular-equilibrium",
+      "p03-rank-meaning",
+      "p03-equilibrium-limit",
+      "p03-state-output",
+      "p03-observation-not-state",
+      "p03-dimensions",
+      "p03-symmetric-modes",
+      "p03-unexcited-mode",
+      "p03-invisible-mode",
+      "p03-modal-time",
+      "p03-exchange-no-oscillation",
+      "p03-phase-time",
+      "p03-normalized-arrows",
+      "p03-equilibrium-direction",
+      "p03-channel-off",
+      "p03-axis-scale",
+      "p03-affine-approximation",
+      "p03-cap-units",
+      "p03-cap-signs",
+      "p03-cap-phase",
+      "p03-integrated-output",
+      "p03-cap-scope"
+    ],
+    "identities_versions_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "current_files_retained": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Unbound PracticeEngine.progress on read-only in-memory baseline records and current question/assessment metadata. No PracticeEngine constructor or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_and_introduction_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_model_unchanged": true
+  },
+  "previous_part_erratum": {
+    "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb",
+    "removed_one_duplicate_paragraph": true,
+    "all_other_content_and_code_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_link_destinations_preserved": true,
+    "independent_fraction_hand_examples": true,
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    }
+  ],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "core_cells_rewritten": 106,
+    "exercise_cells_synchronized": 11,
+    "total_changed_cells": 117
+  },
+  "teaching_check": {
+    "notebooks": 11,
+    "questions": 53,
+    "question_links": 53,
+    "first_use": [
+      {
+        "unit": "p03-exchange-columns",
+        "terms": [
+          "向量",
+          "收支",
+          "矩阵"
+        ]
+      },
+      {
+        "unit": "p03-exchange-balance",
+        "terms": [
+          "收支",
+          "矩阵",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-amount-concentration",
+        "terms": [
+          "浓度"
+        ]
+      },
+      {
+        "unit": "p03-third-room",
+        "terms": [
+          "向量",
+          "收支",
+          "矩阵"
+        ]
+      },
+      {
+        "unit": "P03-C01-S01",
+        "terms": [
+          "仿射",
+          "初值",
+          "参数",
+          "向量",
+          "导数",
+          "收支",
+          "模型",
+          "浓度",
+          "清除系数",
+          "状态",
+          "矩阵",
+          "矩阵乘法",
+          "线性映射",
+          "转置",
+          "输入",
+          "非负性"
+        ]
+      },
+      {
+        "unit": "p03-projection",
+        "terms": [
+          "内积",
+          "向量",
+          "投影",
+          "欧几里得范数",
+          "范数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-norm-units",
+        "terms": [
+          "数组",
+          "无量纲",
+          "状态",
+          "量纲"
+        ]
+      },
+      {
+        "unit": "p03-projection-meaning",
+        "terms": [
+          "内积",
+          "向量",
+          "投影"
+        ]
+      },
+      {
+        "unit": "p03-matrix-product",
+        "terms": [
+          "向量",
+          "矩阵"
+        ]
+      },
+      {
+        "unit": "P03-C01-S02",
+        "terms": [
+          "内积",
+          "向量",
+          "平衡",
+          "投影",
+          "收支",
+          "欧几里得范数",
+          "正交",
+          "范数"
+        ]
+      },
+      {
+        "unit": "p03-open-equilibrium",
+        "terms": [
+          "平衡",
+          "收支",
+          "矩阵",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-singular-equilibrium",
+        "terms": [
+          "平衡",
+          "状态"
+        ]
+      },
+      {
+        "unit": "p03-rank-meaning",
+        "terms": [
+          "向量",
+          "矩阵",
+          "秩"
+        ]
+      },
+      {
+        "unit": "p03-no-clearance-input",
+        "terms": [
+          "平衡",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-equilibrium-limit",
+        "terms": [
+          "初值",
+          "向量",
+          "平衡",
+          "收支",
+          "流率",
+          "输入"
+        ]
+      },
+      {
+        "unit": "P03-C01-S03",
+        "terms": [
+          "单位矩阵",
+          "参数",
+          "向量",
+          "平衡",
+          "收支",
+          "模型",
+          "状态",
+          "矩阵",
+          "矩阵乘法",
+          "秩",
+          "行列式",
+          "轨迹",
+          "输入",
+          "逆矩阵"
+        ]
+      },
+      {
+        "unit": "p03-state-output",
+        "terms": [
+          "向量",
+          "状态",
+          "矩阵",
+          "观测",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-observation-not-state",
+        "terms": [
+          "平衡",
+          "状态",
+          "观测"
+        ]
+      },
+      {
+        "unit": "p03-dimensions",
+        "terms": [
+          "向量",
+          "状态",
+          "矩阵",
+          "输入",
+          "输出"
+        ]
+      },
+      {
+        "unit": "p03-output-units",
+        "terms": [
+          "向量",
+          "浓度",
+          "状态",
+          "观测",
+          "输出"
+        ]
+      },
+      {
+        "unit": "P03-C02-S01",
+        "terms": [
+          "向量",
+          "平衡",
+          "收支",
+          "无量纲",
+          "模型",
+          "浓度",
+          "状态",
+          "状态空间",
+          "矩阵",
+          "矩阵乘法",
+          "观测",
+          "轨迹",
+          "输入",
+          "输出"
+        ]
+      },
+      {
+        "unit": "p03-symmetric-modes",
+        "terms": [
+          "初值",
+          "收支",
+          "模态",
+          "清除系数",
+          "特征值",
+          "状态",
+          "矩阵",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-unexcited-mode",
+        "terms": [
+          "初值",
+          "向量",
+          "模型",
+          "模态",
+          "正交",
+          "特征值",
+          "状态",
+          "矩阵",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p03-invisible-mode",
+        "terms": [
+          "初值",
+          "模态",
+          "特征值",
+          "状态",
+          "观测",
+          "输出"
+        ]
+      },
+      {
+        "unit": "p03-matrix-exponential",
+        "terms": [
+          "向量",
+          "模态",
+          "矩阵",
+          "矩阵乘法",
+          "矩阵指数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-modal-time",
+        "terms": [
+          "模态",
+          "特征值",
+          "特征时间"
+        ]
+      },
+      {
+        "unit": "P03-C02-S02",
+        "terms": [
+          "初值",
+          "单位矩阵",
+          "向量",
+          "投影",
+          "收支",
+          "无量纲",
+          "模型",
+          "模态",
+          "正交",
+          "残差",
+          "流率",
+          "清除系数",
+          "特征值",
+          "特征向量",
+          "特征时间",
+          "状态",
+          "矩阵",
+          "矩阵乘法",
+          "矩阵指数",
+          "观测",
+          "输出"
+        ]
+      },
+      {
+        "unit": "p03-damped",
+        "terms": [
+          "模型",
+          "特征值",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-jordan",
+        "terms": [
+          "模型",
+          "特征值",
+          "特征向量",
+          "状态",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-complex-meaning",
+        "terms": [
+          "复数",
+          "模型",
+          "状态"
+        ]
+      },
+      {
+        "unit": "p03-exchange-no-oscillation",
+        "terms": [
+          "平衡",
+          "收支",
+          "模态",
+          "特征值",
+          "矩阵"
+        ]
+      },
+      {
+        "unit": "p03-defective-limit",
+        "terms": [
+          "模态",
+          "特征值",
+          "特征向量",
+          "矩阵",
+          "逆矩阵"
+        ]
+      },
+      {
+        "unit": "P03-C02-S03",
+        "terms": [
+          "中心差分",
+          "初值",
+          "参数",
+          "复数",
+          "导数",
+          "平衡",
+          "指数函数",
+          "模型",
+          "模态",
+          "特征值",
+          "特征向量",
+          "状态",
+          "矩阵",
+          "矩阵指数",
+          "轨迹",
+          "输入",
+          "逆矩阵"
+        ]
+      },
+      {
+        "unit": "p03-scaled-field",
+        "terms": [
+          "向量",
+          "平衡",
+          "模型",
+          "状态",
+          "矩阵",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-phase-time",
+        "terms": [
+          "向量",
+          "模型",
+          "状态",
+          "相图",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p03-normalized-arrows",
+        "terms": [
+          "向量"
+        ]
+      },
+      {
+        "unit": "p03-equilibrium-direction",
+        "terms": [
+          "向量",
+          "平衡",
+          "状态"
+        ]
+      },
+      {
+        "unit": "P03-C03-S01",
+        "terms": [
+          "初值",
+          "向量",
+          "向量场",
+          "导数",
+          "平衡",
+          "无量纲",
+          "模型",
+          "状态",
+          "状态空间",
+          "相图",
+          "相平面",
+          "相轨迹",
+          "矩阵",
+          "矩阵乘法",
+          "范数",
+          "解析解",
+          "轨迹",
+          "输入",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "p03-closed-state",
+        "terms": [
+          "初值",
+          "平衡",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-channel-off",
+        "terms": [
+          "初值",
+          "平衡",
+          "所追踪物质总量",
+          "流量"
+        ]
+      },
+      {
+        "unit": "p03-axis-scale",
+        "terms": [
+          "模型",
+          "状态",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p03-all-channels-off",
+        "terms": [
+          "初值"
+        ]
+      },
+      {
+        "unit": "P03-C03-S02",
+        "terms": [
+          "初值",
+          "平衡",
+          "极限",
+          "模型",
+          "流量",
+          "清除系数",
+          "状态",
+          "相图",
+          "相平面",
+          "矩阵",
+          "解析解",
+          "轨迹",
+          "输入",
+          "输出"
+        ]
+      },
+      {
+        "unit": "p03-jacobian",
+        "terms": [
+          "中心差分",
+          "偏导",
+          "导数",
+          "平衡",
+          "所追踪物质总量",
+          "有限差分",
+          "状态",
+          "矩阵",
+          "输入",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "p03-chain-rate",
+        "terms": [
+          "梯度",
+          "状态",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-partial-meaning",
+        "terms": [
+          "偏导",
+          "参数",
+          "导数",
+          "状态"
+        ]
+      },
+      {
+        "unit": "p03-affine-approximation",
+        "terms": [
+          "向量",
+          "导数",
+          "平衡",
+          "状态",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "p03-difference-proof",
+        "terms": [
+          "中心差分",
+          "导数",
+          "模型",
+          "状态",
+          "矩阵",
+          "线性化",
+          "轨迹",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "P03-C04-S01",
+        "terms": [
+          "中心差分",
+          "偏导",
+          "偏导数",
+          "内积",
+          "切线",
+          "参数",
+          "向量",
+          "导数",
+          "平衡",
+          "斜率",
+          "时间步长",
+          "极限",
+          "梯度",
+          "模型",
+          "浓度",
+          "状态",
+          "矩阵",
+          "矩阵乘法",
+          "线性化",
+          "轨迹",
+          "输出",
+          "链式法则",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "p03-local-trajectories",
+        "terms": [
+          "初值",
+          "平衡",
+          "收支",
+          "模型",
+          "欧拉法",
+          "状态",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-deviation-variable",
+        "terms": [
+          "向量",
+          "平衡",
+          "模型",
+          "状态",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "p03-local-error-order",
+        "terms": [
+          "参数",
+          "平衡"
+        ]
+      },
+      {
+        "unit": "p03-model-numerical-error",
+        "terms": [
+          "参数",
+          "平衡",
+          "模型",
+          "线性化",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p03-local-stability",
+        "terms": [
+          "初值",
+          "局部渐近稳定",
+          "平衡",
+          "模型",
+          "特征值",
+          "状态空间",
+          "轨迹",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "P03-C04-S02",
+        "terms": [
+          "偏导",
+          "切线",
+          "参数",
+          "向量场",
+          "导数",
+          "局部渐近稳定",
+          "平衡",
+          "数值误差",
+          "斜率",
+          "模型",
+          "模态",
+          "欧拉法",
+          "正交",
+          "特征值",
+          "状态",
+          "矩阵",
+          "行列式",
+          "轨迹",
+          "输入",
+          "量纲",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "p03-cap-units",
+        "terms": [
+          "浓度",
+          "状态"
+        ]
+      },
+      {
+        "unit": "p03-cap-signs",
+        "terms": [
+          "向量",
+          "收支",
+          "状态",
+          "矩阵",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-integrated-balance",
+        "terms": [
+          "平衡",
+          "收支",
+          "浓度",
+          "状态",
+          "矩阵",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-cap-modes",
+        "terms": [
+          "内积",
+          "初值",
+          "模态",
+          "清除系数",
+          "特征值",
+          "状态",
+          "观测",
+          "输入",
+          "输出"
+        ]
+      },
+      {
+        "unit": "p03-cap-phase",
+        "terms": [
+          "平衡",
+          "极限",
+          "模型",
+          "状态",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p03-integrated-output",
+        "terms": [
+          "初值",
+          "平衡",
+          "观测"
+        ]
+      },
+      {
+        "unit": "p03-cap-local",
+        "terms": [
+          "初值",
+          "平衡",
+          "模型",
+          "轨迹",
+          "输入",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "p03-cap-scope",
+        "terms": [
+          "参数",
+          "平衡",
+          "模型",
+          "线性化"
+        ]
+      },
+      {
+        "unit": "P03-SUMMARY",
+        "terms": [
+          "偏导",
+          "切线",
+          "初值",
+          "参数",
+          "导数",
+          "平衡",
+          "收支",
+          "斜率",
+          "模型",
+          "模态",
+          "浓度",
+          "状态",
+          "相平面",
+          "矩阵",
+          "线性化",
+          "观测",
+          "轨迹",
+          "输入",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "overview:3.1",
+        "terms": [
+          "内积",
+          "向量",
+          "导数",
+          "平衡",
+          "投影",
+          "收支",
+          "矩阵"
+        ]
+      },
+      {
+        "unit": "overview:3.2",
+        "terms": [
+          "初值",
+          "向量",
+          "复数",
+          "模态",
+          "特征值",
+          "特征向量",
+          "状态",
+          "矩阵",
+          "矩阵乘法",
+          "线性方程组"
+        ]
+      },
+      {
+        "unit": "overview:3.3",
+        "terms": [
+          "平衡",
+          "模态",
+          "状态",
+          "状态空间",
+          "相轨迹",
+          "矩阵"
+        ]
+      },
+      {
+        "unit": "overview:3.4",
+        "terms": [
+          "偏导",
+          "导数",
+          "平衡",
+          "梯度",
+          "模型",
+          "相平面",
+          "矩阵",
+          "轨迹",
+          "链式法则",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "overview:3.summary",
+        "terms": [
+          "初值",
+          "平衡",
+          "收支",
+          "模型",
+          "模态",
+          "浓度",
+          "相轨迹",
+          "矩阵",
+          "观测"
+        ]
+      }
+    ],
+    "issues": []
+  },
+  "teaching_check_method": {
+    "method": "调用项目 check_teaching；本轮临时包装仅将导论至第二篇已使用的术语作为 seen 集合传入首次术语检查，遵循用户直接承接前文、不重复英文括注的要求。其余教学结构、题库同步和链接检查保持原逻辑。",
+    "wrapper": ".work/part03-rewrite-20261005/teaching.py",
+    "repository_checker_changed": false,
+    "raw_cli_without_carry_override_claimed_passed": false
+  },
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/03-01-从多个室进入线性代数/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/03-02-线性状态空间与动态模态/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/03-03-耦合、相平面与平衡/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/03-04-多变量变化与局部线性化/",
+        "status": 200
+      },
+      {
+        "path": "/parts/03-多变量相互作用/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/03-02-线性状态空间与动态模态/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/03-03-耦合、相平面与平衡/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/03-04-多变量变化与局部线性化/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p03-exchange-columns",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p03-state-output",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p03-closed-state",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p03-jacobian",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p03-cap-local",
+        "status": 200,
+        "latest_statement_and_version": true
+      }
+    ],
+    "served_catalog_equals_current_file": true,
+    "html_rendered_without_execution": [
+      "P03-C01-S01",
+      "P03-C01-S02",
+      "P03-C01-S03",
+      "P03-C02-S01",
+      "P03-C02-S02",
+      "P03-C02-S03",
+      "P03-C03-S01",
+      "P03-C03-S02",
+      "P03-C04-S01",
+      "P03-C04-S02",
+      "P03-SUMMARY"
+    ],
+    "browser_ui_check": "Not performed in this round. The previous Part 2 browser-tool attempt timed out. HTTP and HTML conversion are not browser visual inspection."
+  },
+  "service_refresh": {
+    "initial_read": "5道抽查题面仍为服务启动时加载的旧内容，静态目录已为新文件。",
+    "first_automatic_review": "拒绝启动或重用服务：担心初始化会把未完成记录标为中断。",
+    "guarded_retry": "只读确认全部73份记录均为 FINISHED，实时 progress.active 为 null，无读取错误；再次检查后使用原有刷新方法，正在判题时该方法拒绝关闭。自动审批允许此证据支持的操作。",
+    "result": "刷新完成；73份文件逐字节哈希和刷新前后的完整 progress 对象相同；未提交任何作答。"
+  },
+  "reference_reading": [
+    {
+      "title": "D2L：线性代数",
+      "url": "https://zh.d2l.ai/chapter_preliminaries/linear-algebra.html",
+      "use": "具体分量与索引引出列向量，再接矩阵、运算和代码；只借鉴叙述组织，不复制文字。"
+    },
+    {
+      "title": "Python Causality Handbook：The Unreasonable Effectiveness of Linear Regression",
+      "url": "https://matheusfacure.github.io/python-causality-handbook/05-The-Unreasonable-Effectiveness-of-Linear-Regression.html",
+      "use": "用具体数据与手算引出公式，以代码结果核对解释，并由例子的行为说明方法适用范围。"
+    }
+  ],
+  "authorization": {
+    "source_thread": "01a0aeab-1fe6-7080-b8f6-4a4f41c47326",
+    "user_message": "01a10bb9-a379-7561-ab98-9ec979d92176",
+    "verified_direct_human_request": true,
+    "scope": "按监督会话逐篇派发第2—17篇，最终由用户统一阅读验收。本轮仅第三篇及指定的第二篇重复段落勘误。"
+  },
+  "scientific_prose_correction": {
+    "lesson": "P03-SUMMARY",
+    "issue": "原说明称本例清除速率的切线在远处可能失去非负性，和该例具体公式不符。",
+    "correction": "在A*=2 U处切线为0.25 U/T+(0.125/T)A，对A>=0保持非负；远处偏差来自切线无界增长而原清除速率饱和于1 U/T。",
+    "computational_or_grading_change": false
+  },
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part03-rewrite-20261005/teaching.py",
+      "result": "11本、53题同步与链接检查通过；前文术语继承规则见 teaching_check_method"
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part03-rewrite-20261005/audit.py",
+      "result": "保护字段、代码及输出、记录与实际成绩算法核对通过"
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part03-rewrite-20261005/preview.py",
+      "result": "8个网页路由与5道新版题面HTTP检查、11本HTML静态转换通过；本轮未进行浏览器视觉检查"
+    },
+    {
+      "command": "node --check web/multivariable/app.mjs",
+      "result": "通过"
+    },
+    {
+      "command": "git diff --check",
+      "result": "通过"
+    }
+  ]
+}
