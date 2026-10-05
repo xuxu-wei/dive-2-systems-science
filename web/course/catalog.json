@@ -6831,14 +6831,14 @@
           "id": "12.1",
           "title": "多主体模型与元胞自动机",
           "url": "/chapters/12-01-多主体模型与元胞自动机/",
-          "goals": "把局部规则写成可复现程序，区分同步与给定顺序的异步更新（asynchronous update）。",
-          "prerequisites": "11.1、5.4；数学：递推、有限求和和固定点（fixed point）代数、事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布。",
+          "goals": "写出每格记录、邻居关系与一步规则，区分同步读取旧行和给定顺序的即时改写。",
+          "prerequisites": "11.1、5.4；数学：有限列表的下标、循环与离散更新。",
           "knowledge": [
-            "个体状态（state）、邻域和转移",
-            "双缓冲同步更新（synchronous update）与原地更新",
-            "更新次序、周期/固定边界（fixed boundary）和观测（observation）指标"
+            "0、1状态记录与四格周期手算",
+            "保留整行旧值的同步实现",
+            "立即生效的异步顺序与固定边界（fixed boundary）"
           ],
-          "focus": "把局部规则写成整体更新；比较同时更新和依次更新产生的不同结果。",
+          "focus": "同一句局部规则还需要说明读取时刻；用四格例解释遍历顺序与边界如何分别影响结果。",
           "available": true,
           "lessons": [
             {
@@ -6846,7 +6846,7 @@
               "chapter_id": "12.1",
               "number": "12.1.1",
               "title": "邻域规则与同步更新",
-              "outcome": "定义二值局部规则并用双缓冲核对同步演化。",
+              "outcome": "从四格手算写出同步异或规则，说明旧值读取与端点邻居。",
               "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.ipynb",
               "visualization": "web/collective/index.html",
               "questions": [
@@ -6882,7 +6882,7 @@
               "chapter_id": "12.1",
               "number": "12.1.2",
               "title": "异步顺序与边界",
-              "outcome": "在同一更新预算下区分原地顺序和边界效应。",
+              "outcome": "在每轮相同更新次数下，解释立即生效与遍历顺序如何改变结果。",
               "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.ipynb",
               "visualization": "web/collective/index.html",
               "questions": [
@@ -6920,14 +6920,14 @@
           "id": "12.2",
           "title": "合作与演化博弈",
           "url": "/chapters/12-02-合作与演化博弈/",
-          "goals": "从收益矩阵（payoff matrix）计算频率依赖收益，推导两类型复制动态（replicator dynamics），解释个体模型（model）与平均描述的假设。",
-          "prerequisites": "12.1、2.3；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、收益矩阵、频率依赖与复制动态。",
+          "goals": "说明收益表的行列含义，推导频率变化，再从实际邻居计算空间收益。",
+          "prerequisites": "12.1、2.3；数学：概率加权平均、导数与商法则。",
           "knowledge": [
-            "收益数值在连续复制方程中作为适合度率，单位 1/T",
-            "平均收益与复制方程",
-            "有限个体规则、混合假设与空间合作，区分适合度率与繁殖概率（probability）"
+            "相遇收益表及1/T的适合度率（fitness rate）",
+            "数量增长与两类型复制动态（replicator dynamics）",
+            "同频率的成团、交错排列和局部收益"
           ],
-          "focus": "由收益矩阵得到频率依赖的适合度率（fitness rate）；连接个体互动、局部连接与复制动态。",
+          "focus": "先按相遇对象加权，再按自身类型求群体平均；从两类数量增长说明频率为何由收益率差决定。",
           "available": true,
           "lessons": [
             {
@@ -6935,7 +6935,7 @@
               "chapter_id": "12.2",
               "number": "12.2.1",
               "title": "收益矩阵与复制动态",
-              "outcome": "从相遇收益推导频率变化并核对边界平衡。",
+              "outcome": "按相遇对象计算收益率，再从两类数量增长推导频率导数。",
               "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.ipynb",
               "visualization": "web/collective/index.html",
               "questions": [
@@ -6971,7 +6971,7 @@
               "chapter_id": "12.2",
               "number": "12.2.2",
               "title": "混合假设与空间合作",
-              "outcome": "比较相同收益规则在平均混合与局部邻域中的差异。",
+              "outcome": "从逐个体邻居计算收益，说明相同全局比例为何不足以描述局部接触。",
               "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.ipynb",
               "visualization": "web/collective/index.html",
               "questions": [
@@ -7009,14 +7009,14 @@
           "id": "12.3",
           "title": "选择、变异与适应",
           "url": "/chapters/12-03-选择、变异与适应/",
-          "goals": "通过机制消融区分选择、随机漂变与变异，避免把适应叙述成预先设定的目标。",
-          "prerequisites": "12.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、收益矩阵（payoff matrix）、频率依赖与复制动态（replicator dynamics）。",
+          "goals": "从有限后代计数解释漂变，再按选择、变异、抽样顺序比较机制作用。",
+          "prerequisites": "12.2、5.1；数学：独立抽样、二项计数、期望和方差。",
           "knowledge": [
-            "有限种群抽样与漂变",
-            "加入选择及双向变异",
-            "规模、固定/灭绝事件（event）及确定性近似"
+            "阈值抽样与中性一步方差",
+            "无量纲选择权重和双向变异概率",
+            "机制关闭、共同随机输入与多条世代轨迹"
           ],
-          "focus": "分开选择、变异与有限抽样；比较频率的平均变化和群体间的随机波动。",
+          "focus": "抽样前概率不等于实际后代比例；分开一代独立重复、连续世代轨迹和轨迹间分位范围。",
           "available": true,
           "lessons": [
             {
@@ -7024,7 +7024,7 @@
               "chapter_id": "12.3",
               "number": "12.3.1",
               "title": "中性漂变与有限种群",
-              "outcome": "由二项抽样解释漂变方差和规模效应。",
+              "outcome": "从一代后代计数推导频率方差，比较群体规模与重复分布。",
               "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.ipynb",
               "visualization": null,
               "questions": [
@@ -7060,7 +7060,7 @@
               "chapter_id": "12.3",
               "number": "12.3.2",
               "title": "选择变异与机制消融",
-              "outcome": "分别启停选择与变异，区分期望频率和随机轨迹。",
+              "outcome": "分开选择后概率、变异后概率和有限后代频率，比较机制关闭的结果。",
               "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.ipynb",
               "visualization": null,
               "questions": [
@@ -7098,14 +7098,15 @@
           "id": "12.4",
           "title": "空间自组织与反应扩散",
           "url": "/chapters/12-04-空间自组织与反应扩散/",
-          "goals": "解释空间偏导（partial derivative）、反应与扩散项，正确离散边界，区分机制失稳与数值伪模式。",
-          "prerequisites": "12.3、4.3、11.2；数学：指数函数（exponential function）的二阶展开、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
+          "goals": "从邻格交换推导空间二阶差分，接入双组分反应，并分别检查稳定性与数值离散。",
+          "prerequisites": "12.3、4.3、11.2；数学：欧拉法、差分、局部线性化和矩阵特征值。",
           "knowledge": [
-            "从一维网格交换进入 PDE",
-            "内点中心差分（central difference）与单元中心守恒的无通量端点",
-            "无量纲（dimensionless） Schnakenberg 反应扩散（reaction-diffusion）、均匀平衡（equilibrium）扰动及模式证据"
+            "邻格收支、空间偏导与显式扩散权重",
+            "周期连接与格子中心的无通量端点",
+            "无量纲Schnakenberg反应、均匀平衡与空间模态",
+            "时间和空间分别细化"
           ],
-          "focus": "把反应与空间交换相接；解释边界、时间步长（time step）和网格如何影响扩散与模式形成。",
+          "focus": "端点公式取决于数值记录在格子中心；总和守恒、非负性、线性模态增长与末态网格一致性回答不同问题。",
           "available": true,
           "lessons": [
             {
@@ -7113,7 +7114,7 @@
               "chapter_id": "12.4",
               "number": "12.4.1",
               "title": "一维扩散与边界",
-              "outcome": "由邻格交换建立有限差分并检查质量与步长。",
+              "outcome": "从邻格交换得到扩散格式，分别检查端点、总量和非负权重。",
               "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.ipynb",
               "visualization": "web/collective/index.html",
               "questions": [
@@ -7149,7 +7150,7 @@
               "chapter_id": "12.4",
               "number": "12.4.2",
               "title": "双组分反应与模式证据",
-              "outcome": "检查均匀态和模态条件，分辨机制图案与数值伪影。",
+              "outcome": "从均匀反应平衡检查空间模态，并分别解释时间与空间细化结果。",
               "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.ipynb",
               "visualization": "web/collective/index.html",
               "questions": [
@@ -7187,14 +7188,15 @@
           "id": "12.5",
           "title": "从局部规则到宏观描述",
           "url": "/chapters/12-05-从局部规则到宏观描述/",
-          "goals": "定义粗尺度变量，说明平均场忽略的相关性，比较哪些宏观量得到保留。",
-          "prerequisites": "12.4、5.5；数学：信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、收益矩阵（payoff matrix）、频率依赖与复制动态（replicator dynamics）、空间偏导（partial derivative）、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
+          "goals": "由异或取平均推导一步密度关系，比较块密度的信息损失与宏观闭合条件。",
+          "prerequisites": "12.1、12.2.2、5.2、6.4；数学：有限平均、二值乘积与联合比例。",
           "knowledge": [
-            "从个体轨迹（trajectory）聚合频率、密度与相关量",
-            "平均场闭合的假设",
-            "时间/空间聚合与信息损失，比较失效情形"
+            "同密度不同排列的一步反例",
+            "左右联合比例与精确密度恒等式",
+            "独立性近似与平均场误差",
+            "固定块平均的信息损失和闭合"
           ],
-          "focus": "从局部状态（state）计算宏观量；用相同均值、不同局部结构理解相关性和平均场闭合（mean-field closure）。",
+          "focus": "c2是左右两格同时为1的比例；精确预测下一步密度，还不等于得到了p、c2的完整多步更新。",
           "available": true,
           "lessons": [
             {
@@ -7202,7 +7204,7 @@
               "chapter_id": "12.5",
               "number": "12.5.1",
               "title": "从局部状态到密度",
-              "outcome": "构造密度与两点相关量，检验平均场闭合假设。",
+              "outcome": "推导下一步密度与左右联合比例的关系，检验独立性近似。",
               "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.ipynb",
               "visualization": null,
               "questions": [
@@ -7238,7 +7240,7 @@
               "chapter_id": "12.5",
               "number": "12.5.2",
               "title": "相关性与宏观闭合",
-              "outcome": "比较相同密度不同结构的下一步结果及信息损失。",
+              "outcome": "比较块密度的信息损失，区分统计聚合与可连续更新的宏观闭合。",
               "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.ipynb",
               "visualization": null,
               "questions": [
@@ -7278,34 +7280,34 @@
         "assessment": true,
         "title": "局部规则与宏观近似",
         "url": "/parts/12-个体与集体现象/综合练习/",
-        "goals": "从局部更新规则出发，比较频率、空间图案与粗尺度结果。",
-        "prerequisites": "本篇12.1—12.5；第5篇概率（probability）与第11篇网络基础。",
-        "focus": "同步与异步、收益与抽样、空间步长、相关性与闭合。",
+        "goals": "把逐格更新、相遇收益、有限抽样和空间反应的预测分别连回模型条件。",
+        "prerequisites": "12.1—12.5：更新时序、连续收益率、后代抽样、扩散离散与当前联合比例。",
         "knowledge": [
-          "局部规则与边界",
-          "复制动态（replicator dynamics）及漂变",
-          "反应扩散（reaction-diffusion）",
-          "宏观密度与相关性"
+          "同密度排列与一步密度预测",
+          "收益率差、抽样概率与后代计数",
+          "均匀反应平衡、空间模态和网格核对",
+          "统计聚合的信息损失与宏观闭合"
         ],
+        "focus": "解释同一比例为何不能代替局部排列；根据模型选择手算、边界、重复分布与网格检查。",
         "lessons": [
           {
             "id": "P12-SUMMARY",
             "chapter_id": "12.summary",
             "number": "篇末综合",
             "title": "局部规则与宏观近似",
-            "outcome": "在局部规则、演化和空间模型中检查宏观近似的条件。",
+            "outcome": "从完整局部规则形成宏观预测，并选择收益、抽样与空间模型各自的核对。",
             "path": "notebooks/12-个体与集体现象/06-篇末综合/01-局部规则与宏观近似.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "从局部更新规则出发，比较频率、空间图案与粗尺度结果。",
-              "prerequisites": "本篇12.1—12.5；第5篇概率与第11篇网络基础。",
-              "focus": "同步与异步、收益与抽样、空间步长、相关性与闭合。",
+              "goals": "把逐格更新、相遇收益、有限抽样和空间反应的预测分别连回模型条件。",
+              "prerequisites": "12.1—12.5：更新时序、连续收益率、后代抽样、扩散离散与当前联合比例。",
               "knowledge": [
-                "局部规则与边界",
-                "复制动态及漂变",
-                "反应扩散",
-                "宏观密度与相关性"
-              ]
+                "同密度排列与一步密度预测",
+                "收益率差、抽样概率与后代计数",
+                "均匀反应平衡、空间模态和网格核对",
+                "统计聚合的信息损失与宏观闭合"
+              ],
+              "focus": "解释同一比例为何不能代替局部排列；根据模型选择手算、边界、重复分布与网格检查。"
             },
             "questions": [
               {

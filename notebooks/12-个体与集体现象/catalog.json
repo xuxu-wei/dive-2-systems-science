@@ -4,7 +4,7 @@
     "chapter_id": "12.1",
     "number": "12.1.1",
     "title": "邻域规则与同步更新",
-    "outcome": "定义二值局部规则并用双缓冲核对同步演化。",
+    "outcome": "从四格手算写出同步异或规则，说明旧值读取与端点邻居。",
     "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.ipynb",
     "visualization": "web/collective/index.html"
   },
@@ -13,7 +13,7 @@
     "chapter_id": "12.1",
     "number": "12.1.2",
     "title": "异步顺序与边界",
-    "outcome": "在同一更新预算下区分原地顺序和边界效应。",
+    "outcome": "在每轮相同更新次数下，解释立即生效与遍历顺序如何改变结果。",
     "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.ipynb",
     "visualization": "web/collective/index.html"
   },
@@ -22,7 +22,7 @@
     "chapter_id": "12.2",
     "number": "12.2.1",
     "title": "收益矩阵与复制动态",
-    "outcome": "从相遇收益推导频率变化并核对边界平衡。",
+    "outcome": "按相遇对象计算收益率，再从两类数量增长推导频率导数。",
     "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.ipynb",
     "visualization": "web/collective/index.html"
   },
@@ -31,7 +31,7 @@
     "chapter_id": "12.2",
     "number": "12.2.2",
     "title": "混合假设与空间合作",
-    "outcome": "比较相同收益规则在平均混合与局部邻域中的差异。",
+    "outcome": "从逐个体邻居计算收益，说明相同全局比例为何不足以描述局部接触。",
     "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.ipynb",
     "visualization": "web/collective/index.html"
   },
@@ -40,7 +40,7 @@
     "chapter_id": "12.3",
     "number": "12.3.1",
     "title": "中性漂变与有限种群",
-    "outcome": "由二项抽样解释漂变方差和规模效应。",
+    "outcome": "从一代后代计数推导频率方差，比较群体规模与重复分布。",
     "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.ipynb",
     "visualization": null
   },
@@ -49,7 +49,7 @@
     "chapter_id": "12.3",
     "number": "12.3.2",
     "title": "选择变异与机制消融",
-    "outcome": "分别启停选择与变异，区分期望频率和随机轨迹。",
+    "outcome": "分开选择后概率、变异后概率和有限后代频率，比较机制关闭的结果。",
     "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.ipynb",
     "visualization": null
   },
@@ -58,7 +58,7 @@
     "chapter_id": "12.4",
     "number": "12.4.1",
     "title": "一维扩散与边界",
-    "outcome": "由邻格交换建立有限差分并检查质量与步长。",
+    "outcome": "从邻格交换得到扩散格式，分别检查端点、总量和非负权重。",
     "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.ipynb",
     "visualization": "web/collective/index.html"
   },
@@ -67,7 +67,7 @@
     "chapter_id": "12.4",
     "number": "12.4.2",
     "title": "双组分反应与模式证据",
-    "outcome": "检查均匀态和模态条件，分辨机制图案与数值伪影。",
+    "outcome": "从均匀反应平衡检查空间模态，并分别解释时间与空间细化结果。",
     "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.ipynb",
     "visualization": "web/collective/index.html"
   },
@@ -76,7 +76,7 @@
     "chapter_id": "12.5",
     "number": "12.5.1",
     "title": "从局部状态到密度",
-    "outcome": "构造密度与两点相关量，检验平均场闭合假设。",
+    "outcome": "推导下一步密度与左右联合比例的关系，检验独立性近似。",
     "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.ipynb",
     "visualization": null
   },
@@ -85,7 +85,7 @@
     "chapter_id": "12.5",
     "number": "12.5.2",
     "title": "相关性与宏观闭合",
-    "outcome": "比较相同密度不同结构的下一步结果及信息损失。",
+    "outcome": "比较块密度的信息损失，区分统计聚合与可连续更新的宏观闭合。",
     "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.ipynb",
     "visualization": null
   },
@@ -94,19 +94,19 @@
     "chapter_id": "12.summary",
     "number": "篇末综合",
     "title": "局部规则与宏观近似",
-    "outcome": "在局部规则、演化和空间模型中检查宏观近似的条件。",
+    "outcome": "从完整局部规则形成宏观预测，并选择收益、抽样与空间模型各自的核对。",
     "path": "notebooks/12-个体与集体现象/06-篇末综合/01-局部规则与宏观近似.ipynb",
     "visualization": null,
     "overview": {
-      "goals": "从局部更新规则出发，比较频率、空间图案与粗尺度结果。",
-      "prerequisites": "本篇12.1—12.5；第5篇概率与第11篇网络基础。",
-      "focus": "同步与异步、收益与抽样、空间步长、相关性与闭合。",
+      "goals": "把逐格更新、相遇收益、有限抽样和空间反应的预测分别连回模型条件。",
+      "prerequisites": "12.1—12.5：更新时序、连续收益率、后代抽样、扩散离散与当前联合比例。",
       "knowledge": [
-        "局部规则与边界",
-        "复制动态及漂变",
-        "反应扩散",
-        "宏观密度与相关性"
-      ]
+        "同密度排列与一步密度预测",
+        "收益率差、抽样概率与后代计数",
+        "均匀反应平衡、空间模态和网格核对",
+        "统计聚合的信息损失与宏观闭合"
+      ],
+      "focus": "解释同一比例为何不能代替局部排列；根据模型选择手算、边界、重复分布与网格检查。"
     }
   }
 ]

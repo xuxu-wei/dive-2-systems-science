@@ -1,0 +1,716 @@
+{
+  "date": "2026-10-06",
+  "baseline": "edd683e72934bdf559280651fb2c8e82721df28a",
+  "scope": "Part 12 formal teaching, exercises, guides and web display text; two specific Part 11 wording fixes; pending unified user reading acceptance",
+  "notebooks": [
+    {
+      "id": "P12-C01-S01",
+      "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.ipynb",
+      "sha256": "29e5c89c91ea2e2ca43e142d7de95749ef6eeb0e3342ecac71092388b603c3fd",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "24d5d4904985e720002594379fc656be5e55f4249461c0662ed484a5aefd6440"
+    },
+    {
+      "id": "P12-C01-S02",
+      "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.ipynb",
+      "sha256": "d302575717b1e21a565a208fd5b8afe1f1444d2a791f999243b1e9c0dac2aa8e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "d11f68db691b8154d238b8a7cc9e6ea88107d9f89b1e880756db7f5500f5b6ec"
+    },
+    {
+      "id": "P12-C02-S01",
+      "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.ipynb",
+      "sha256": "a104b7743b31a9ee4b240b1b874018c7139cc041a5915283589ad25d44b7f397",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "80f0c46debfdd9ba0c8ebb3950fec530b16c5663bab513f1fc9167d6f7caf622"
+    },
+    {
+      "id": "P12-C02-S02",
+      "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.ipynb",
+      "sha256": "eb6ea63360d2e4ed712cff058981c2d5fad45e515e7194528217b6fa2a89d90d",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "a4b536b5f6a5e80513bdeff5ee6ac980cf31dbccf1ad797ce69fdf46aacea41c"
+    },
+    {
+      "id": "P12-C03-S01",
+      "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.ipynb",
+      "sha256": "95d79e9246902b1e69067f47571126aaa1f182b6f7f7cb3bca5efc04d7b9652e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "7c4821b37ba4765887d02dfb6f6aeaadc0afff2c4c80608711509c88578fc176"
+    },
+    {
+      "id": "P12-C03-S02",
+      "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.ipynb",
+      "sha256": "660d5af78e9cd7676e58df02eabd6241354a413fe79e633981002fc694e3a7b6",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "acd6077b7f685bde699fb6b1133afced1f289ea228963c84ec1de576c91eb802"
+    },
+    {
+      "id": "P12-C04-S01",
+      "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.ipynb",
+      "sha256": "c08eefcc7d6c5a854435badacf7bab6253ba3d3b8e8d04c9c74b61128f7d7d05",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b348146b033e877b09a0c43971661f5dae32d418730eb384dea9550b5e087eec"
+    },
+    {
+      "id": "P12-C04-S02",
+      "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.ipynb",
+      "sha256": "c92fc6577704910376d97e34e3ce43d2d3e87fee8d14defbfbe8781c64334fb1",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "6a39ca85fb695210a16be22c39ab7301e2d9dd0addd51c301d4b174efc3d1e60"
+    },
+    {
+      "id": "P12-C05-S01",
+      "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.ipynb",
+      "sha256": "2b7dc6fb1499abf10c7a6b1a228f030aa6ec80b83df9e007eca58fdc60bf095b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b3227ab2e3b7f962c7fac215ccc69cbc7a7e2598ccae505c967de5a7d59131a4"
+    },
+    {
+      "id": "P12-C05-S02",
+      "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.ipynb",
+      "sha256": "cec40d22f171f032a91b1297fb419e63b02e3d4b5fa89aca5f6244d988a4ba29",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "7098ffca6d3e4ba539d9c892904e7e18c942965b285ef6932f1a359557c74404"
+    },
+    {
+      "id": "P12-SUMMARY",
+      "path": "notebooks/12-个体与集体现象/06-篇末综合/01-局部规则与宏观近似.ipynb",
+      "sha256": "ed1c1ecc4e9411d754bb31079219c275b8858f22704a18e1c50a52488d9c1ab5",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "95ab5d0e509e000d1ba418aa85b3dafa64877c909381fd796916a4abe7ad64e9"
+    }
+  ],
+  "questions": {
+    "reviewed": 48,
+    "choice": 33,
+    "python": 15,
+    "wording_changed": 48,
+    "wording_changed_ids": [
+      "p12-ca-synchronous",
+      "p12-old-state-buffer",
+      "p12-periodic-single",
+      "p12-rule-definition",
+      "p12-ca-trajectory",
+      "p12-async-order",
+      "p12-fixed-boundary",
+      "p12-update-budget",
+      "p12-payoff-replicator",
+      "p12-replicator-factor",
+      "p12-payoff-not-birth",
+      "p12-equal-payoff",
+      "p12-spatial-payoffs",
+      "p12-same-frequency-structure",
+      "p12-payoff-vs-update",
+      "p12-matched-spatial-game",
+      "p12-neutral-draws",
+      "p12-neutral-variance",
+      "p12-one-rise",
+      "p12-neutral-absorption",
+      "p12-selection-mutation-draw",
+      "p12-selection-no-goal",
+      "p12-mutation-boundary",
+      "p12-mechanism-ablation",
+      "p12-diffusion-grid",
+      "p12-diffusion-cfl",
+      "p12-noflux-end",
+      "p12-mass-not-enough",
+      "p12-reaction-diffusion-onestep",
+      "p12-uniform-equilibrium",
+      "p12-turing-evidence",
+      "p12-reaction-diffusion-step",
+      "p12-periodic-ca-features",
+      "p12-same-density",
+      "p12-xor-density-identity",
+      "p12-measurement-scale",
+      "p12-closure-predictions",
+      "p12-coarse-blocks",
+      "p12-closure-boundary",
+      "p12-coarse-evidence",
+      "p12-capstone-neighborhood",
+      "p12-capstone-mechanisms",
+      "p12-capstone-ca",
+      "p12-capstone-replicator",
+      "p12-capstone-spatial-step",
+      "p12-capstone-coarse-features",
+      "p12-capstone-pattern-proof",
+      "p12-capstone-new-scale"
+    ],
+    "explanation_changed": 48,
+    "explanation_changed_ids": [
+      "p12-ca-synchronous",
+      "p12-old-state-buffer",
+      "p12-periodic-single",
+      "p12-rule-definition",
+      "p12-ca-trajectory",
+      "p12-async-order",
+      "p12-fixed-boundary",
+      "p12-update-budget",
+      "p12-payoff-replicator",
+      "p12-replicator-factor",
+      "p12-payoff-not-birth",
+      "p12-equal-payoff",
+      "p12-spatial-payoffs",
+      "p12-same-frequency-structure",
+      "p12-payoff-vs-update",
+      "p12-matched-spatial-game",
+      "p12-neutral-draws",
+      "p12-neutral-variance",
+      "p12-one-rise",
+      "p12-neutral-absorption",
+      "p12-selection-mutation-draw",
+      "p12-selection-no-goal",
+      "p12-mutation-boundary",
+      "p12-mechanism-ablation",
+      "p12-diffusion-grid",
+      "p12-diffusion-cfl",
+      "p12-noflux-end",
+      "p12-mass-not-enough",
+      "p12-reaction-diffusion-onestep",
+      "p12-uniform-equilibrium",
+      "p12-turing-evidence",
+      "p12-reaction-diffusion-step",
+      "p12-periodic-ca-features",
+      "p12-same-density",
+      "p12-xor-density-identity",
+      "p12-measurement-scale",
+      "p12-closure-predictions",
+      "p12-coarse-blocks",
+      "p12-closure-boundary",
+      "p12-coarse-evidence",
+      "p12-capstone-neighborhood",
+      "p12-capstone-mechanisms",
+      "p12-capstone-ca",
+      "p12-capstone-replicator",
+      "p12-capstone-spatial-step",
+      "p12-capstone-coarse-features",
+      "p12-capstone-pattern-proof",
+      "p12-capstone-new-scale"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "corrected_explanatory_copy_errors": [
+    "p12-neutral-draws unpublished second-example reference removed; visible sample arithmetic provided",
+    "p12-closure-predictions precise one-step identity distinguished from complete multi-step closure"
+  ],
+  "corrected_experiment_descriptions": [
+    "P12-C01-S02 main experiment compares only two update timings under the same periodic boundary",
+    "P12-C02-S01 verification description matches its existing checks rather than claiming an unimplemented equal-payoff test",
+    "P12-C03-S01 theory standard deviations are printed beside frequency histograms, not drawn as a second curve; 300 one-generation repetitions distinguished from 300 generations",
+    "P12-C03-S02 10%–90% empirical quantile band, 80 paths and paired random inputs explained",
+    "P12-C05-S02 block averages are descriptive outputs; plotted predictions are mean field and actual next density",
+    "P12-SUMMARY uniform nonzero-diffusivity state has zero diffusion term; stochastic repetitions are not displayed"
+  ],
+  "prior_part_fixes": {
+    "source_and_copy": "p11-nested-outbreak-variation uses descriptive rather than population variances",
+    "body": "P11-C03-S01 names its pre-supplied random-number table",
+    "exactly_only_two_substitutions": true
+  },
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Read-only unbound PracticeEngine.progress with original in-memory records and current bank/assessment; no judging or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_model_unchanged": true,
+    "web_controller_changes_exactly_match_display_text_replacements": true,
+    "slider_keys_ranges_steps_initial_values_labels_preserved": true,
+    "official_checker_and_glossary_unchanged": true,
+    "prior_part_changes_only_as_dispatched": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "independent_hand_examples_and_algebra": [
+      "The four-position synchronous/fixed/forward/reverse asynchronous hand calculations and the complete binary XOR identity agree with their written values.",
+      "Two stages of payoff averaging, the quotient-rule frequency derivative, finite cluster type means 2.625/1.375, the new capstone sample and the web internal equal-rate point are checked with rational arithmetic.",
+      "Neutral threshold counts, scale variances and standard deviations, ordered selection/mutation probabilities, finite four-offspring frequency and the 80×30×200 input-table dimensions are independently checked.",
+      "Neighbor exchange, both left-end first updates, the conserved negative-step counterexample, diffusion sample rows, equilibrium reactions, stable-reaction and unstable-space determinants, refinement lengths/times and capstone first-cell values are checked without simulation.",
+      "All four coarse-pattern feature/prediction/error values, two equal-block-average counterexamples and the new six-position joint proportion are independently checked."
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    },
+    {
+      "id": "p08-conditioning",
+      "version": "1",
+      "location": "Option B, marked correct in the existing answer",
+      "issue": "不发散与误差收敛到零混用。B要求步长严格小于上界才不发散，但H₂较大曲率方向在η=2/100时因子为−1，误差等幅交替且不发散。",
+      "evidence": "e[k+1]=(1−100η)e[k]；η=0.02给出e[k+1]=−e[k]。严格上界针对误差衰减到零，而不是仅不发散。",
+      "required_substantive_change": "后续明确B要判断误差衰减/收敛，或修订不发散条件及对应答案，再依版本规则处理；本轮没有暗改答案、条件意图或版本。",
+      "status": "登记，待实质题库修订；当前正确答案与旧成绩保留"
+    }
+  ],
+  "new_unresolved": [],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 116,
+    "core_changed": 105,
+    "exercise_cells_synchronized": 11
+  },
+  "teaching_check": {
+    "notebooks": 11,
+    "questions": 48,
+    "question_links": 48,
+    "issues": []
+  },
+  "teaching_check_method": "Existing check_teaching logic with actual vocabulary from Parts 0–11 and preceding Part 12 lessons. Exercises inherit their lesson explanations; overviews inherit earlier chapters. Original checker, glossary and range rules remain unchanged.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/12-01-多主体模型与元胞自动机/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/12-02-合作与演化博弈/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/12-03-选择、变异与适应/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/12-04-空间自组织与反应扩散/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/12-05-从局部规则到宏观描述/",
+        "status": 200
+      },
+      {
+        "path": "/parts/12-个体与集体现象/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/12-01-多主体模型与元胞自动机/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/12-02-合作与演化博弈/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/12-04-空间自组织与反应扩散/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p12-ca-synchronous",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-payoff-replicator",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-neutral-draws",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-diffusion-grid",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-periodic-ca-features",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-capstone-ca",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-capstone-spatial-step",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-closure-predictions",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-same-density",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-selection-mutation-draw",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-old-state-buffer",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-same-frequency-structure",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-payoff-vs-update",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p12-selection-no-goal",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      }
+    ],
+    "served_catalog_and_controller_equal_current_files": true,
+    "local_file_link_targets_checked": 23,
+    "html_rendered_without_execution": [
+      "P12-C01-S01",
+      "P12-C01-S02",
+      "P12-C02-S01",
+      "P12-C02-S02",
+      "P12-C03-S01",
+      "P12-C03-S02",
+      "P12-C04-S01",
+      "P12-C04-S02",
+      "P12-C05-S01",
+      "P12-C05-S02",
+      "P12-SUMMARY"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout, MathJax rendering or interaction behavior."
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_preliminaries/probability.html",
+      "focus": "具体抽样问题、一次计数、重复频率与分布的衔接，用于把有限后代概率接到实际计数，再解释规模方差。借鉴顺序，不复制段落。"
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/03-Stats-Review-The-Most-Dangerous-Equation.html",
+      "focus": "用具体反例引出群体规模与随机波动，再比较重复分布。采用连贯解释方式，并按本篇实验明确经验分位范围与平均值置信区间的区别。"
+    }
+  ],
+  "authorization": "Current dispatch covers Part 12 and two specified Part 11 phrases. The human-authorized sequential Parts 2–17 workflow uses final unified reading acceptance. Normal commit/push is authorized; learning records, environments and temporary work helpers are excluded. Await Part 13 dispatch.",
+  "specific_prose_corrections": [
+    "Each list first names what 0/1 records and gives left-to-right indices. Four-position tables bridge neighbor reads to simultaneous, immediate and reverse-order updates.",
+    "The payoff table names self rows and opponent columns, both averaging stages and 1/T units. Continuous count growth and quotient differentiation explain the replicator factor rather than just defining it.",
+    "Type codes and activation indicators have distinct meanings. Local payoff endpoints use one actual neighbor; an outside zero is not a fictitious type-0 individual.",
+    "Neutral repetitions are 300 independent one-generation samples. Indicators derive the frequency variance p(1-p)/N; fixed input arithmetic separates expected probability from finite offspring frequency.",
+    "Selection uses dimensionless per-generation weights. Mutation direction indices, processing order and 80×30×200 shared input coordinates are defined. The shaded band is the empirical 10%–90% quantile range.",
+    "Diffusion starts with paired transfers, then spatial first slopes and second differences. A common one-cell volume connects U/格 values to total U. Cell-centered no-flux endpoints exchange only with their internal neighbor.",
+    "The nondimensional reaction model retains gamma in 1/T. Equilibrium, Jacobian and discrete sinusoidal growth connect to mode evidence; coarse temporal agreement and failed spatial refinement remain different findings.",
+    "Distance-two c2 is a joint proportion, not a Pearson coefficient. Periodic spatial connectivity is distinguished from a temporal period-two orbit. Mean-field substitution and exact one-step density are separately derived.",
+    "Block density preserves counts and positions at the block scale but loses within-block ordering. Exact next-density aggregation does not establish complete p/c2 multi-step closure.",
+    "Exercises state rules without relying on a preceding question. Final option reading aligns type language, avoids universal old/new mixing claims at the last asynchronous position and names indices rather than ambiguous ordinal positions.",
+    "The three web views explain their actual lengths, steps, payoff rate units and endpoint reads while retaining controls and numerical computations."
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part12-rewrite-20261006/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part12-rewrite-20261006/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part12-rewrite-20261006/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part12-rewrite-20261006/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/collective/app.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    "docs/12-个体与集体现象.md": "0cbe9c1280342710501a51b66dbd2d46b9df93c018679481fe8ffc21efd2054d",
+    "exercises/11-网络上的系统/questions.json": "9845acfe6cdbf93051f1b68cbcde79d7f021f18779d4c340bfa14e87bf721623",
+    "exercises/12-个体与集体现象/questions.json": "588daa117f95ed9dc9960a6cad1223745e874296dcf245962d2d9f17c8723327",
+    "exercises/12-个体与集体现象/verification.json": "2a6cf67b0875b3533169b70d4012bb50cff27b6941d3cf505ff3e3e33d81b7c6",
+    "notebooks/11-网络上的系统/03-接触结构与传播/01-固定随机数的同步传播.ipynb": "0e0c34c8fe324ac10fdee7523b2c6849bd64c6c40a86eac3ff2c8b0fc1dd5740",
+    "notebooks/11-网络上的系统/03-接触结构与传播/02-网络随机与传播随机.ipynb": "c061979b52ad47f7b761795fd79bb8e019e0fbe9c7068e67dfd427cef13e056f",
+    "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.ipynb": "29e5c89c91ea2e2ca43e142d7de95749ef6eeb0e3342ecac71092388b603c3fd",
+    "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.ipynb": "d302575717b1e21a565a208fd5b8afe1f1444d2a791f999243b1e9c0dac2aa8e",
+    "notebooks/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.ipynb": "a104b7743b31a9ee4b240b1b874018c7139cc041a5915283589ad25d44b7f397",
+    "notebooks/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.ipynb": "eb6ea63360d2e4ed712cff058981c2d5fad45e515e7194528217b6fa2a89d90d",
+    "notebooks/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.ipynb": "95d79e9246902b1e69067f47571126aaa1f182b6f7f7cb3bca5efc04d7b9652e",
+    "notebooks/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.ipynb": "660d5af78e9cd7676e58df02eabd6241354a413fe79e633981002fc694e3a7b6",
+    "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.ipynb": "c08eefcc7d6c5a854435badacf7bab6253ba3d3b8e8d04c9c74b61128f7d7d05",
+    "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.ipynb": "c92fc6577704910376d97e34e3ce43d2d3e87fee8d14defbfbe8781c64334fb1",
+    "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.ipynb": "2b7dc6fb1499abf10c7a6b1a228f030aa6ec80b83df9e007eca58fdc60bf095b",
+    "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.ipynb": "cec40d22f171f032a91b1297fb419e63b02e3d4b5fa89aca5f6244d988a4ba29",
+    "notebooks/12-个体与集体现象/06-篇末综合/01-局部规则与宏观近似.ipynb": "ed1c1ecc4e9411d754bb31079219c275b8858f22704a18e1c50a52488d9c1ab5",
+    "notebooks/12-个体与集体现象/README.md": "b1ef414066f5ad79e368d1f3641074f33e2d6f0c933677be676d171267c2c2c4",
+    "notebooks/12-个体与集体现象/catalog.json": "70d2b9f93521e445aae37d0c23fde037faa4cda3827ab520deaffc4ec759470b",
+    "web/collective/app.mjs": "9324fd4626120ee05f26db1edb6d73a07e5751787c25aceb42248e679ffe8541",
+    "web/collective/index.html": "70867c78635a2859c9a75f46113347f37d2158330f0761b5d1e6a9959c2decb6",
+    "web/course/catalog.json": "241262c48e381b42c80ee4cf6d0540bcea07b9f311c85885fa5c2368b3256520"
+  }
+}
