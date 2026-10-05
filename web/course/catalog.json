@@ -5658,14 +5658,14 @@
           "id": "10.1",
           "title": "开闭环与 PID",
           "url": "/chapters/10-01-开闭环与 PID/",
-          "goals": "从误差构造 P、PI、PID，解释积分累积、微分对噪声的敏感性及执行饱和。",
-          "prerequisites": "6.3、4.5；数学：极限（limit）直觉、一阶与二阶导数（second derivative）、积分、基本定理和简单链式法则（chain rule）、Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点（pole）零点（zero）。",
+          "goals": "从目标减读数建立控制误差，手算候选积分、请求与实际输入，再连接恒定扰动和稳态收支。",
+          "prerequisites": "6.3、4.5；数学：极限直觉、一阶与二阶导数、积分、基本定理和简单链式法则、Lyapunov 函数、沿轨迹导数和局部适用区域、Laplace/Z 变换、收敛域的必要直觉、极点零点。",
           "knowledge": [
-            "设定值、测量、误差和执行输入（input）",
-            "三个控制项及离散实现",
-            "跟踪、扰动、饱和与抗积分累积的基本处理"
+            "独立手算误差2与限幅2的控制步骤",
+            "用温度收支推导P稳态偏差及PI可达到目标的条件",
+            "重放四步误差，计算微分噪声幅度与目标跳变项"
           ],
-          "focus": "从误差构造比例、积分与微分作用；比较稳态偏差、噪声放大和执行饱和。",
+          "focus": "本次候选与旧积分的区别；差分使用的两个时刻；实际输入如何进入对象方程。",
           "available": true,
           "lessons": [
             {
@@ -5673,7 +5673,7 @@
               "chapter_id": "10.1",
               "number": "10.1.1",
               "title": "误差怎样驱动比例与积分控制",
-              "outcome": "定义误差、执行量和时步，检查PI稳态误差与饱和。",
+              "outcome": "从温度低于目标的例子出发，区分测量、误差、请求输入和实际输入；手算一次比例积分控制的更新，并解释恒定扰动下为什么可能需要积分项。",
               "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/01-误差怎样驱动比例与积分控制.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -5709,7 +5709,7 @@
               "chapter_id": "10.1",
               "number": "10.1.2",
               "title": "微分噪声与积分抗饱和",
-              "outcome": "实现离散PID与条件积分，比较噪声和执行限幅。",
+              "outcome": "从连续两次误差的差值计算微分项，解释噪声和目标跳变如何影响请求输入；按给定条件积分规则重放一段误差历史。",
               "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/02-微分噪声与积分抗饱和.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -5747,14 +5747,14 @@
           "id": "10.2",
           "title": "频域稳定性与设计",
           "url": "/chapters/10-02-频域稳定性与设计/",
-          "goals": "连接闭环极点（pole）、根轨迹（root locus）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
-          "prerequisites": "10.1；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点零点（zero）、复平面曲线、相位（phase）变化与绕数的几何解释。",
+          "goals": "从两个串联滞后环节推导闭环特征根，以同一回路的延迟乘子建立幅相与交叉条件。",
+          "prerequisites": "10.1；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、Laplace/Z 变换、收敛域的必要直觉、极点零点、复平面曲线、相位变化与绕数的几何解释。",
           "knowledge": [
-            "从闭环特征方程到根轨迹",
-            "定义增益（gain）/相位交叉频率（phase crossover frequency）与相位/增益裕度（gain margin）",
-            "复平面轨迹（trajectory）和绕数的必要几何桥接，再应用 Nyquist"
+            "手算K=0、2的二次根并比较三条阶跃响应",
+            "从复响应推导幅值及延迟相位",
+            "定义两类交叉、裕度和Nyquist计数，明确截断图的范围"
           ],
-          "focus": "把闭环极点与频率响应（frequency response）联系起来；在回路符号和交叉条件下读取稳定裕度。",
+          "focus": "根的两列分量保持配对；暂态与稳态偏差分开；主值相角、展开相位和完整轮廓分别解释。",
           "available": true,
           "lessons": [
             {
@@ -5762,7 +5762,7 @@
               "chapter_id": "10.2",
               "number": "10.2.1",
               "title": "极点与根轨迹的低阶例子",
-              "outcome": "从闭环特征方程计算极点，核对增益和阻尼。",
+              "outcome": "从两个串联滞后环节推导负反馈的特征方程，手算闭环特征根，并联系衰减、振荡和稳态偏差解释增益变化。",
               "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/01-极点与根轨迹的低阶例子.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -5798,7 +5798,7 @@
               "chapter_id": "10.2",
               "number": "10.2.2",
               "title": "Bode与Nyquist的读图条件",
-              "outcome": "计算幅相与延迟，区分稳定裕度和非线性闭环保证。",
+              "outcome": "计算纯延迟造成的相位变化，解释相位裕度和增益裕度的交叉条件，并说明有限频率曲线与完整 Nyquist 判据之间的关系。",
               "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/02-Bode与Nyquist的读图条件.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -5836,14 +5836,14 @@
           "id": "10.3",
           "title": "能控性与状态反馈",
           "url": "/chapters/10-03-能控性与状态反馈/",
-          "goals": "解释输入（input）位置决定的可达方向，在能控条件下设计状态（state）反馈（feedback）并检验闭环极点（pole）。",
-          "prerequisites": "10.2、3.2；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）。",
+          "goals": "展开状态方程，看输入经动态传播的方向，再由目标多项式求状态反馈并计算执行需求。",
+          "prerequisites": "10.2、3.2；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数。",
           "knowledge": [
-            "输入经动态传播到其他状态",
-            "能控矩阵和秩",
-            "极点配置、状态缩放与输入幅度代价"
+            "对同一A分别手算B和AB",
+            "检查二维秩并用1秒受限加速度说明可达范围",
+            "比较两组目标极点、初始请求和限幅轨迹，说明可稳定性（stabilizability）的较弱条件"
           ],
-          "focus": "由输入位置判断可达方向；用状态反馈移动极点，区分任意极点配置与稳定化。",
+          "focus": "给定数值能控性（controllability）与结构能控性；可逆单位缩放与数值容差；无约束能控性与受限可达性。",
           "available": true,
           "lessons": [
             {
@@ -5851,7 +5851,7 @@
               "chapter_id": "10.3",
               "number": "10.3.1",
               "title": "输入位置与能控矩阵",
-              "outcome": "推导二维能控矩阵并检查不能影响的状态方向。",
+              "outcome": "展开二维状态方程，说明输入如何经状态之间的耦合传播；计算能控矩阵，并区分无约束能控性、数值秩和受限时间内的可达性。",
               "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/01-输入位置与能控矩阵.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -5887,7 +5887,7 @@
               "chapter_id": "10.3",
               "number": "10.3.2",
               "title": "极点配置与输入代价",
-              "outcome": "在可控模型中配置极点，核对反馈符号与执行需求。",
+              "outcome": "从目标特征多项式求出双积分对象的反馈增益；同时计算初始请求输入，解释执行限幅为什么改变理想闭环响应。",
               "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/02-极点配置与输入代价.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -5925,14 +5925,14 @@
           "id": "10.4",
           "title": "状态观测器与输出反馈",
           "url": "/chapters/10-04-状态观测器与输出反馈/",
-          "goals": "利用已建立的能观性（observability）设计状态观测器（state observer）和输出（output）反馈（feedback），推导误差动态并检验收敛条件。",
-          "prerequisites": "10.3、7.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门。",
+          "goals": "由读数及其变化建立能观矩阵，按当前读数生成下一估计，再连接误差递推与状态反馈。",
+          "prerequisites": "10.3、7.1；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差、估计区间及重采样入门。",
           "knowledge": [
-            "复用 7.1 的能观性，推导状态观测器的误差动态",
-            "设计观测器增益（gain）并组合状态反馈，推导输出反馈闭环",
-            "在无噪线性条件下解释分离设计，再用噪声和饱和检验其限制"
+            "两个不同初态比较传感器读数",
+            "手算创新、预测和校正，推导同实际输入下的误差抵消",
+            "展开增广矩阵，说明能观、可检测和理想分离条件"
           ],
-          "focus": "从输出修正状态（state）估计；把观测（observation）误差动态与反馈动态连接起来，分析估计误差的作用。",
+          "focus": "测量方向与动态方向；当前预测估计与下一校正估计；控制误差与估计误差分开。",
           "available": true,
           "lessons": [
             {
@@ -5940,7 +5940,7 @@
               "chapter_id": "10.4",
               "number": "10.4.1",
               "title": "传感器位置与能观矩阵",
-              "outcome": "计算能观矩阵，识别无法从读数恢复的状态方向。",
+              "outcome": "从读数和读数变化率建立二维能观矩阵，说明传感器位置为什么影响状态恢复，并区分恢复的唯一性与带噪估计的精度。",
               "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/01-传感器位置与能观矩阵.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -5976,7 +5976,7 @@
               "chapter_id": "10.4",
               "number": "10.4.2",
               "title": "观测误差与输出反馈",
-              "outcome": "推导观测器误差动态，并用估计状态而非真值决策。",
+              "outcome": "按时间顺序重放状态观测器，推导估计误差递推；用估计状态形成反馈，并说明理想线性条件下分离设计的依据。",
               "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/02-观测误差与输出反馈.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -6014,14 +6014,14 @@
           "id": "10.5",
           "title": "动态规划与 LQR",
           "url": "/chapters/10-05-动态规划与 LQR/",
-          "goals": "从一步决策推到有限时域 Bellman 递推，以二次价值函数推导离散 Riccati 递推与反馈（feedback）增益（gain）。",
-          "prerequisites": "10.3、8.4；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
+          "goals": "由当前输入及其终点影响形成总成本，从标量配方推到矩阵Bellman和有限时域Riccati。",
+          "prerequisites": "10.3、8.4；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、目标函数、梯度、海森矩阵、二次型、正定性与凸性、有限时域动态规划、Bellman 递推与离散 Riccati 递推、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
           "knowledge": [
-            "有限时域与终端代价",
-            "倒推价值和最优决策",
-            "LQR、权重正定（positive definite）条件及有限/无限时域区别"
+            "手算三个输入的成本，再求导与配方",
+            "推导矩阵二次项、线性求解增益和价值递推",
+            "运行二维八步反馈，用直接总代价核对初始价值"
           ],
-          "focus": "从最后一步向前计算价值函数；理解二次代价如何产生随时间变化的最优反馈。",
+          "focus": "终端条件属于时刻N；倒推计算与正向执行的顺序；有限步骤与无限时域稳定化条件。",
           "available": true,
           "lessons": [
             {
@@ -6029,7 +6029,7 @@
               "chapter_id": "10.5",
               "number": "10.5.1",
               "title": "一步Bellman递推",
-              "outcome": "从终端代价推导最优输入与价值函数。",
+              "outcome": "把当前输入的代价与它造成的下一状态代价相加，手算一步最优输入；从终端条件建立价值函数，解释倒推为什么保留未来影响。",
               "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/01-一步Bellman递推.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -6065,7 +6065,7 @@
               "chapter_id": "10.5",
               "number": "10.5.2",
               "title": "有限时域LQR的Riccati倒推",
-              "outcome": "从二次价值函数推导矩阵增益和代价矩阵序列。",
+              "outcome": "将一步 Bellman 配方推广到多状态、多时刻，推导反馈增益与价值矩阵；区分从终点倒推增益和从初态正向执行，以及有限时域与无限时域的条件。",
               "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/02-有限时域LQR的Riccati倒推.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -6103,14 +6103,14 @@
           "id": "10.6",
           "title": "带约束的 MPC",
           "url": "/chapters/10-06-带约束的 MPC/",
-          "goals": "将预测模型（model）、初始估计、时域和约束写成优化问题，理解每次只执行第一步并重新求解。",
-          "prerequisites": "10.4、10.5、7.3；数学：目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
+          "goals": "明确有限输入集、预测后继界限和成本，逐条筛选候选，再用新实际状态建立下一次计划。",
+          "prerequisites": "10.4、10.5、7.3；数学：目标函数、梯度、海森矩阵、二次型、正定性与凸性、有限时域动态规划、Bellman 递推与离散 Riccati 递推、多元高斯条件分布、块协方差与矩阵分解、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
           "knowledge": [
-            "状态（state）与输入（input）序列的优化表达",
-            "滚动时域及估计接口",
-            "软硬约束、不可行、超时和模型误差的处理"
+            "列九条两步候选，手算最优成本5.2",
+            "保留不可行及成本并列的处理",
+            "解释预测时间双下标，只执行首步，用失配对象的新状态重新求解"
           ],
-          "focus": "把预测、约束和代价组成滚动优化；观察可行性、时域长度与执行第一步的关系。",
+          "focus": "初态与受约束后继的区别；硬约束与罚项；名义预测、实际失配和不可行记录。",
           "available": true,
           "lessons": [
             {
@@ -6118,7 +6118,7 @@
               "chapter_id": "10.6",
               "number": "10.6.1",
               "title": "预测时域与硬约束",
-              "outcome": "把小型离散行动MPC写成可枚举问题并检查不可行。",
+              "outcome": "列举有限输入集合中的候选序列，逐步检查预测状态约束并计算成本；返回最优首步或不可行结果，解释预测计划与实际执行的区别。",
               "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/01-预测时域与硬约束.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -6154,7 +6154,7 @@
               "chapter_id": "10.6",
               "number": "10.6.2",
               "title": "滚动求解与预测失配",
-              "outcome": "每步只执行首个行动，比较预测与实际轨迹并记录失败。",
+              "outcome": "用新状态作为下一次优化的起点，区分预测与实际状态；检查名义可行性、实际超限和求解失败的记录。",
               "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/02-滚动求解与预测失配.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -6192,14 +6192,14 @@
           "id": "10.7",
           "title": "估计反馈与闭环验证",
           "url": "/chapters/10-07-估计反馈与闭环验证/",
-          "goals": "构造公平基线，区分调参条件和独立评估条件，综合解释性能、约束与计算代价。",
-          "prerequisites": "10.6、9.5、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、后验（posterior）归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
+          "goals": "对齐传感器、外部序列和执行能力，分别计算跟踪、实际输入和失败；在独立场景中配对估计差值。",
+          "prerequisites": "10.6、9.5、6.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
           "knowledge": [
-            "固定任务、信息和执行接口",
-            "验证集（validation set）调参、独立场景评估",
-            "成本、约束、稳健性和运行预算的联合报告"
+            "用短序列手算三个指标",
+            "比较PI、重复使用一步Bellman增益的线性反馈与有限输入MPC",
+            "在40个独立场景比较两套固定PI，按场景成对bootstrap并报告适用范围"
           ],
-          "focus": "在相同观测（observation）和约束下比较控制方法；结合跟踪误差、代价和失败情况解释性能。",
+          "focus": "相同外部噪声不等于各控制器读数数值相同；平滑估计不是模型预测；成功条件均值与全部失败率一起解释。",
           "available": true,
           "lessons": [
             {
@@ -6207,7 +6207,7 @@
               "chapter_id": "10.7",
               "number": "10.7.1",
               "title": "相同信息下的控制评价",
-              "outcome": "在相同观测、限幅和扰动下报告跟踪、代价和失败。",
+              "outcome": "为控制比较明确目标、传感器和执行上限；分开计算跟踪误差、实际输入与超限，并保留失败结果。",
               "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/01-相同信息下的控制评价.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -6243,7 +6243,7 @@
               "chapter_id": "10.7",
               "number": "10.7.2",
               "title": "独立场景与配对不确定性",
-              "outcome": "分开调参和评估数据，保留所有失败场景。",
+              "outcome": "按相同场景配对比较误差，保留双方失败的尝试数；以场景为单位重采样，解释均值差、抽样区间和测试范围。",
               "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/02-独立场景与配对不确定性.ipynb",
               "visualization": "web/control/index.html",
               "questions": [
@@ -6283,14 +6283,14 @@
         "assessment": true,
         "title": "部分观测下的约束控制",
         "url": "/parts/10-反馈与最优控制/综合练习/",
-        "goals": "在相同观测（observation）、执行约束与独立场景下，比较控制方案的跟踪、成本与失败。",
-        "prerequisites": "本篇10.1—10.7；第7篇估计与第8篇优化。",
-        "focus": "时频一致性、能控能观、约束与失败、独立评估。",
+        "goals": "在二维人工对象上连贯检查执行器、传感器、状态估计和限幅反馈；分别求解小型 LQR 与 MPC，并用实际输入和失败记录解释结果。",
+        "prerequisites": "10.1—10.7；第7篇的状态估计、第8篇的二次优化与第9篇的独立预测评价。",
+        "focus": "把当前读数、当前预测估计、请求和实际输入按时间对齐，分清二维闭环实验与一维最优决策。",
         "knowledge": [
-          "PID与频域稳定",
-          "状态（state）与输出（output）反馈（feedback）",
-          "Bellman、LQR与MPC",
-          "配对闭环验证"
+          "手算能控、能观矩阵并解释执行器与传感器的作用方向",
+          "用同一实际输入更新对象和观测器，核对首步请求与限幅",
+          "从终端价值倒推LQR，在有限输入集合内检查MPC硬约束",
+          "按实际轨迹计算跟踪和输入指标，保留独立场景的失败结果"
         ],
         "lessons": [
           {
@@ -6298,18 +6298,18 @@
             "chapter_id": "10.summary",
             "number": "篇末综合",
             "title": "部分观测下的约束控制",
-            "outcome": "在同一人工系统上检查反馈、观测、最优决策及独立闭环评价。",
+            "outcome": "在二维人工对象上连贯检查执行器、传感器、状态估计和限幅反馈；分别求解小型 LQR 与 MPC，并用实际输入和失败记录解释结果。",
             "path": "notebooks/10-反馈与最优控制/08-篇末综合/01-部分观测下的约束控制.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "在相同观测、执行约束与独立场景下，比较控制方案的跟踪、成本与失败。",
-              "prerequisites": "本篇10.1—10.7；第7篇估计与第8篇优化。",
-              "focus": "时频一致性、能控能观、约束与失败、独立评估。",
+              "goals": "在二维人工对象上连贯检查执行器、传感器、状态估计和限幅反馈；分别求解小型 LQR 与 MPC，并用实际输入和失败记录解释结果。",
+              "prerequisites": "10.1—10.7；第7篇的状态估计、第8篇的二次优化与第9篇的独立预测评价。",
+              "focus": "把当前读数、当前预测估计、请求和实际输入按时间对齐，分清二维闭环实验与一维最优决策。",
               "knowledge": [
-                "PID与频域稳定",
-                "状态与输出反馈",
-                "Bellman、LQR与MPC",
-                "配对闭环验证"
+                "手算能控、能观矩阵并解释执行器与传感器的作用方向",
+                "用同一实际输入更新对象和观测器，核对首步请求与限幅",
+                "从终端价值倒推LQR，在有限输入集合内检查MPC硬约束",
+                "按实际轨迹计算跟踪和输入指标，保留独立场景的失败结果"
               ]
             },
             "questions": [

@@ -10,15 +10,187 @@ const node=(tag,attrs={},value)=>{const n=document.createElementNS(ns,tag);for(c
 let chapter,mode,p={},playback;
 
 const definitions={
- '10.1':{title:'请求输入越大，实际执行也会变大吗？',question:'先预测：相同负扰动下，缩小执行上限后，PI（proportional-integral control）的状态还能接近目标吗？',explanation:'误差驱动比例和积分请求；执行器只提供裁剪后的真实输入。播放显示存量随时间变化，并同时画出请求与执行，观察饱和时两者分离。',formula:'xₙ₊₁=xₙ+0.1(−0.4xₙ+uₙ−0.25)；uₙ=clip(kₚeₙ+kᵢIₙ₊₁,±上限)',heading:'状态与真实执行输入',label:'当前温度偏差 / U',assumptions:'目标1 U，初始0 U，固定扰动−0.25 U/T；条件积分在饱和且误差继续推动同方向限幅时冻结。',note:'左图蓝线是PI状态，灰线为目标；右图玫红虚线是请求，蓝线为真实执行。播放按时间步推进。',controls:[['kp','比例增益 kₚ',.1,1.5,.05,.7],['ki','积分增益 kᵢ',0,.8,.05,.3],['limit','执行上限 / (U/T)',.2,1.5,.1,1.5]]},
- '10.2':{title:'增益和延迟怎样改变稳定证据？',question:'先预测：增加延迟但保持增益时，Bode 相位会如何移动？低阶无延迟模型的闭环极点还能代表含延迟系统吗？',explanation:'左图跟踪无延迟模型的闭环极点（closed-loop poles）；右图画开环幅相中的相位。纯延迟只改变相位；延迟场景需要另行核验，不能把左图直接当作含延迟闭环的极点。',formula:'2s²+3s+(1+K)=0；∠L(jω)=−atanω−atan(2ω)−ωd',heading:'低阶极点与延迟相位',label:'当前增益 K',assumptions:'G(s)=1/[(s+1)(2s+1)]、单位负反馈。左图只计算d=0的根；右图K>0并采用展开相位，频率0.1—5 /T。Nyquist绕数需完整轮廓、开环极点计数及明确方向，不能由此截断图直接得出。',note:'左图蓝/玫红为复共轭分支；右图蓝线无延迟，玫红线为指定延迟。切换延迟时左图保持不变，正是因为它只表示无延迟模型。',controls:[['gain','目标增益 K',.2,8,.2,4],['delay','纯延迟 d / T',0,1,.05,0]]},
- '10.3':{title:'把执行器接在哪里，能影响哪些状态？',question:'先预测：双积分对象只把输入加在第一状态，而第二状态没有自身输入时，第二状态会变化吗？',explanation:'同一A、同一脉冲和初态，只改变输入列B的位置。能控矩阵（controllability matrix）[B,AB]揭示输入能直接和经动态传播影响的方向。',formula:'A=[[0,1],[0,0]]；B₁=[0,1]ᵀ 的 det[B,AB]=−1；B₂=[1,0]ᵀ 时 det=0',heading:'相同脉冲，不同执行器位置',label:'能控矩阵行列式',assumptions:'连续双积分教学模型；0—1 T施加1单位输入，之后输入为0；显式小步长0.02 T。这里输入幅度不受约束；加入限幅后，还需计算达到目标所需的时间。',note:'左图第一状态，右图第二状态。切换按钮只改变B位置，播放可比较变化顺序。',controls:[['second','执行器位置：0第一 / 1第二',0,1,1,1]]},
- '10.4':{title:'换一只传感器，会失去哪部分状态信息？',question:'先预测：两条轨迹的第二状态相同、第一状态不同。只测第二状态时，读数能区分这两条轨迹吗？',explanation:'能观矩阵（observability matrix）[C;CA]判断已知线性模型中初态信息是否进入读数。播放同一对初态，只切换C；隐藏状态仅用于这张教学核验图。',formula:'A=[[0.9,0.1],[0,0.8]]；C₁=[1,0] 的 det[C;CA]=0.1；C₂=[0,1] 时 det=0',heading:'两条初态与传感器读数',label:'当前读数差 / U',assumptions:'网页使用离散一步模型，两个初态分别[0,1]与[2,1] U，输入0。通过 yₙ=Cxₙ 与 yₙ₊₁=CAxₙ 比较初态信息。',note:'左图两条读数，右图两者之差。只测第二状态时两条读数重合；读数差为零，不代表两个隐藏状态本身相同。',controls:[['first','传感器位置：0第二 / 1第一',0,1,1,1]]},
- '10.5':{title:'终端代价会怎样改变现在的动作？',question:'先预测：只增大终端状态偏差的惩罚，当前最优输入会更接近0还是更积极地移动状态？',explanation:'一步Bellman递推（Bellman recursion）把当前和终端代价一起最小化。左图是同一状态下的候选输入成本；右图展示最优输入随终端权重变化。',formula:'x⁺=x+u；J=x²+ρu²+qf(x+u)²；u*=−qf x/(ρ+qf)',heading:'当前输入与未来价值',label:'当前最优输入',assumptions:'x=2 U，状态权重1，输入权重ρ>0，终端权重qf≥0，输入无约束，预测时域为一步。',note:'左图蓝线为当前代价曲线，玫红点是最小值；右图显示不同终端权重的解析最优输入。播放逐步改变qf，不表示真实系统时间。',controls:[['inputWeight','输入权重 ρ',.2,3,.1,1],['terminal','目标终端权重 qf',.2,5,.2,4]]},
- '10.6':{title:'预测可行，就意味着下一步永远可行吗？',question:'先预测：把状态上界从2 U缩到0.5 U，哪些两步行动序列会因硬约束被排除？',explanation:'这是离散行动集合上的小型模型预测控制（model predictive control，MPC）。播放依次检查九条候选，只有每个后继状态都在硬界内的序列才可能成为最优解。',formula:'x⁺=x+u；u∈{−1,0,1}；J=Σ[(x−目标)²+0.1u²]+2(x₂−目标)²',heading:'候选成本与可行轨迹',label:'当前最优首步',assumptions:'初态0 U、两步预测、状态下界−1 U，输入为离散集合。成本并列选字典序较小序列。枚举这九个离散候选，找出可行序列中的最小代价；没有候选时显示不可行。',note:'左图按枚举顺序显示可行候选成本；红叉标示不可行，绝非0成本。右图只画已经找到的最佳候选预测轨迹；播放不代表实际执行了整段计划。',controls:[['target','目标状态 / U',0,2,.1,2],['upper','状态上界 / U',.5,2,.1,2]]},
- '10.7':{title:'领先的平均数会遮住失败吗？',question:'先预测：方法A在少数场景失败时，如果只报告成功场景的平均差，会遗漏什么重要信息？',explanation:'两法面对同一批配对场景，差值只在双方成功时定义；失败仍计入总场景。播放逐步纳入场景，观察运行平均差和失败对数如何变化。',formula:'Dᵢ=E_Aᵢ−E_Bᵢ（双方成功时）；同时报告成功配对 m / 总场景 n',heading:'配对差与失败统计',label:'成功配对平均差',assumptions:'40个固定教学场景，数值由公开确定性公式生成；严重失配开关在每第11个场景中使A失败。这些给定结果用于练习配对统计；Notebook 再比较实际控制器的随机实验。',note:'左图蓝点为双方成功的配对差，红叉为失败；右图为成功配对运行均值。若忽略失败，只看均值可能改变比较解释。',controls:[['severity','模型失配：0常规 / 1严重',0,1,1,0]]}
+ "10.1": {
+  "title": "温度已接近目标，为什么还需要输入？",
+  "question": "目标处需要0.65 U/T的持续输入。缩小执行上限前，先判断它还能否提供这份输入，再比较状态、请求和实际执行。",
+  "explanation": "每步先由目标减读数算误差，再试算积分与请求。执行器将请求裁剪后推进对象；条件积分若拒绝本次增量，就保留旧积分并重算。左图看温度，右图看控制意图与实际执行怎样对应。",
+  "formula": "xₙ₊₁=xₙ+0.1(−0.4xₙ+uₙ−0.25)；uₙ=clip(kₚeₙ+kᵢIₙ₊₁,±上限)",
+  "heading": "状态与真实执行输入",
+  "label": "当前温度偏差 / U",
+  "assumptions": "目标1 U、初态0 U，扰动−0.25 U/T，步长0.1 T，共120步；读数等于状态。若候选被裁剪且误差与请求同号，冻结本次积分增量。先算出请求，再把最终实际输入用于对象更新。",
+  "note": "左图蓝线是温度偏差，灰线是目标；右图玫红虚线是请求，蓝线是实际输入。相同时刻的状态对应该时段执行前的值；请求与输入在后续时段推动状态。",
+  "controls": [
+   [
+    "kp",
+    "比例增益 kₚ",
+    0.1,
+    1.5,
+    0.05,
+    0.7
+   ],
+   [
+    "ki",
+    "积分增益 kᵢ",
+    0,
+    0.8,
+    0.05,
+    0.3
+   ],
+   [
+    "limit",
+    "执行上限 / (U/T)",
+    0.2,
+    1.5,
+    0.1,
+    1.5
+   ]
+  ]
+ },
+ "10.2": {
+  "title": "增益改变根，延迟改变哪一份相位？",
+  "question": "固定增益，只增加延迟，先预测幅值与相位分别怎样变化；再确认左图的根来自哪个模型。",
+  "explanation": "左图跟踪无延迟二阶模型的闭环特征根，右图比较无延迟与指定延迟的展开相位。延迟乘子的幅值为1，相位为−ωd，所以切换延迟时左图保持原模型的根，右图则增加相位滞后。",
+  "formula": "2s²+3s+(1+K)=0；∠L(jω)=−atanω−atan(2ω)−ωd",
+  "heading": "低阶极点与延迟相位",
+  "label": "当前增益 K",
+  "assumptions": "对象G(s)=1/[(s+1)(2s+1)]，第一时间常数为1 T，增益K>0。左图计算d=0的闭环根；右图在0.1—5 /T取连续展开相位。完整Nyquist计数还需要轮廓、开环极点数和同一方向约定。",
+  "note": "左图蓝色与玫红色分别表示两个根分支；右图蓝线无延迟，玫红虚线加入指定延迟。播放按增益展开，不表示对象的时间响应。",
+  "controls": [
+   [
+    "gain",
+    "目标增益 K",
+    0.2,
+    8,
+    0.2,
+    4
+   ],
+   [
+    "delay",
+    "纯延迟 d / T",
+    0,
+    1,
+    0.05,
+    0
+   ]
+  ]
+ },
+ "10.3": {
+  "title": "同一份输入，接在哪里能改变两个状态？",
+  "question": "输入只接第一状态时，第二状态的方程没有输入项。先判断第二状态会不会变化，再观察输入结束后的第一状态。",
+  "explanation": "保持A、初态和输入相同，只切换B。矩阵[B,AB]的第一列是直接作用，第二列是经过对象动态传播的作用；两列是否独立，决定给定无约束线性模型是否能控。",
+  "formula": "A=[[0,1],[0,0]]；B₁=[0,1]ᵀ 的 det[B,AB]=−1；B₂=[1,0]ᵀ 时 det=0",
+  "heading": "相同输入，不同执行器位置",
+  "label": "能控矩阵行列式",
+  "assumptions": "双积分例子按参考时长缩放速度与输入，使两个状态坐标都以U计。初态[0,0]，前1 T施加数值1的恒定输入，此后为0，步长0.02 T。受限时间和幅值下能到哪里，需要另外计算。",
+  "note": "左图为第一状态，右图为第二状态，两项都从0开始。输入接第二状态时，它先变化再推动第一状态；输入接第一状态时，第二状态始终为零。",
+  "controls": [
+   [
+    "second",
+    "执行器位置：0第一 / 1第二",
+    0,
+    1,
+    1,
+    1
+   ]
+  ]
+ },
+ "10.4": {
+  "title": "相同读数，能隐藏不同初态吗？",
+  "question": "两组初态的第二分量相同、第一分量相差2 U。只测第二状态时，先判断读数能否区分它们，再换测第一状态。",
+  "explanation": "网页使用离散模型，通过yₙ=Cxₙ、yₙ₊₁=CAxₙ比较初态信息。[C;CA]把这两个测量关系放成两行；输入为零，传感器只切换位置。",
+  "formula": "A=[[0.9,0.1],[0,0.8]]；C₁=[1,0] 的 det[C;CA]=0.1；C₂=[0,1] 时 det=0",
+  "heading": "两条初态与传感器读数",
+  "label": "当前读数差 / U",
+  "assumptions": "A=[[0.9,0.1],[0,0.8]]，两组初态按[x₁,x₂]排列，分别为[0,1]、[2,1] U。这里与Notebook连续双积分例子使用不同A，均按各自模型计算能观矩阵。",
+  "note": "左图蓝线与玫红线对应两组初态的读数，右图是第二组减第一组的读数差。读数重合说明这对初态无法由当前传感器区分，没有说明完整状态相同。",
+  "controls": [
+   [
+    "first",
+    "传感器位置：0第二 / 1第一",
+    0,
+    1,
+    1,
+    1
+   ]
+  ]
+ },
+ "10.5": {
+  "title": "终点偏差越贵，现在该怎样输入？",
+  "question": "保持当前状态和输入权重，增大终端权重。先按公式算最优输入，再观察成本曲线的最小点。",
+  "explanation": "一步模型的总成本包含当前状态、当前输入和下一状态三项。当前输入决定终点，因此最小化时要把终端成本接到x+u上；不能单独挑一个不受动态约束的终点。",
+  "formula": "x⁺=x+u；J=x²+ρu²+qf(x+u)²；u*=−qf x/(ρ+qf)",
+  "heading": "当前输入与未来价值",
+  "label": "当前最优输入",
+  "assumptions": "当前x=2 U，模型x⁺=x+u，状态权重1、输入权重ρ>0、终端权重qf≥0，输入无约束。权重均按同一种代价单位换算，预测长度为一步。",
+  "note": "左图蓝线是当前权重下的成本，玫红点是解析最小值；右图绿线是最优输入随终端权重的变化，玫红点是当前选择。播放改变权重，不推进真实对象。",
+  "controls": [
+   [
+    "inputWeight",
+    "输入权重 ρ",
+    0.2,
+    3,
+    0.1,
+    1
+   ],
+   [
+    "terminal",
+    "目标终端权重 qf",
+    0.2,
+    5,
+    0.2,
+    4
+   ]
+  ]
+ },
+ "10.6": {
+  "title": "九条输入计划，哪些能走完两步？",
+  "question": "把后继状态上界从2 U降到0.5 U前，先列出被排除的两步序列，再比较剩余完整成本。",
+  "explanation": "每条序列的输入只取−1、0、1。先从当前状态逐步预测，任一后继超限就排除整条序列；剩余候选加上终端成本后取最小。这是有限输入集合内的完整枚举。",
+  "formula": "x⁺=x+u；u∈{−1,0,1}；J=Σ[(x−目标)²+0.1u²]+2(x₂−目标)²",
+  "heading": "候选成本与可行轨迹",
+  "label": "当前最优首步",
+  "assumptions": "初态0 U，模型x⁺=x+u，两步预测，后继下界−1 U；目标由滑块选择。输入平方权重0.1、终端权重2，成本并列按输入序列字典序取一个结果。没有完整可行候选时显示不可行。",
+  "note": "左图蓝点是已检查的可行候选成本，红叉是不可行；右图绿线是已见候选中最好的一条预测，玫红虚线是上界。播放在检查计划，尚未执行整段输入。",
+  "controls": [
+   [
+    "target",
+    "目标状态 / U",
+    0,
+    2,
+    0.1,
+    2
+   ],
+   [
+    "upper",
+    "状态上界 / U",
+    0.5,
+    2,
+    0.1,
+    2
+   ]
+  ]
+ },
+ "10.7": {
+  "title": "成功均值之外，还有几次失败？",
+  "question": "开启严重失配后，先判断哪些场景无法计算A−B，再观察成功均值与失败场景数一起变化。",
+  "explanation": "同一行对应两法在同一给定场景的结果。双方成功才计算A−B，负差表示A指标较小；至少一方失败仍计入全部场景。播放逐行纳入结果，保持配对。",
+  "formula": "Dᵢ=E_Aᵢ−E_Bᵢ（双方成功时）；同时报告成功配对 m / 总场景 n",
+  "heading": "配对差与失败统计",
+  "label": "成功配对平均差",
+  "assumptions": "40行给定教学结果由公开确定性公式生成，用于练习统计；严重失配使第1、12、23、34行的A结果为空。Notebook另运行40个独立随机场景，不把网页这些固定结果称为随机控制实验。",
+  "note": "左图蓝点为成功配对差，红叉为至少一方失败；右图绿线只平均当前双方成功的差值。均值需与成功数、失败数及总尝试数共同解释。",
+  "controls": [
+   [
+    "severity",
+    "模型失配：0常规 / 1严重",
+    0,
+    1,
+    1,
+    0
+   ]
+  ]
+ }
 };
-
 function controls(){p={};$('sliders').replaceChildren();for(const[key,label,min,max,step,value]of definitions[mode].controls){p[key]=value;const row=el('div',null,'slider'),labelNode=el('label',label),input=el('input'),out=el('output',fmt(value));input.type='range';input.id='parameter-'+key;input.min=min;input.max=max;input.step=step;input.value=value;labelNode.htmlFor=input.id;out.id='parameter-value-'+key;input.addEventListener('input',()=>guard(()=>{p[key]=Number(input.value);out.textContent=fmt(p[key]);recompute();}));row.append(labelNode,out,input);$('sliders').append(row);}}
 function set(values){Object.assign(p,values);for(const[key,value]of Object.entries(values)){$('parameter-'+key).value=value;$('parameter-value-'+key).textContent=fmt(value);}recompute();}
 function recompute(){
@@ -54,13 +226,13 @@ function draw(progress){
  if(mode==='10.3'){
   const data=actuator(Boolean(p.second)),n=Math.floor(frac*150),a=axes(left,{xmin:0,xmax:3,ymin:0,ymax:2.3,xlabel:'Time / T',ylabel:'First state / U'}),b=axes(right,{xmin:0,xmax:3,ymin:0,ymax:1.1,xlabel:'Time / T',ylabel:'Second state / U'});
   for(let j=0;j<2;j++){const chart=j?right:left,axis=j?b:a,color=j?pink:blue;curve(chart,data.states.slice(0,n+1).map((v,i)=>[i*.02,v[j]]),axis,color);dot(chart,[n*.02,data.states[n][j]],axis,color);}
-  $('value').textContent=fmt(data.determinant);$('time-readout').textContent=`时刻 ${fmt(n*.02)} T`;$('observation-value').textContent=`第一状态 ${fmt(data.states[n][0])} U；第二状态 ${fmt(data.states[n][1])} U。`;legend([['第一状态',blue],['第二状态',pink]]);table([['输入位置',p.second?'第二状态':'第一状态'],['det[B,AB]',data.determinant],['当前状态',data.states[n]]]);
+  $('value').textContent=fmt(data.determinant);$('time-readout').textContent=`时刻 ${fmt(n*.02)} T`;$('observation-value').textContent=`第一状态 ${fmt(data.states[n][0])} U；第二状态 ${fmt(data.states[n][1])} U。`;legend([['第一状态',blue],['第二状态',pink]]);table([['输入位置',p.second?'第二状态':'第一状态'],['det[B,AB]',data.determinant],['当前状态 [x₁,x₂] / U',data.states[n]]]);
  }
  if(mode==='10.4'){
   const data=sensor(Boolean(p.first)),n=Math.floor(frac*59),a=axes(left,{xmin:0,xmax:59,ymin:0,ymax:2.2,xlabel:'Step',ylabel:'Reading / U'}),b=axes(right,{xmin:0,xmax:59,ymin:-.1,ymax:2.1,xlabel:'Step',ylabel:'Difference / U'});
   for(let j=0;j<2;j++){const color=j?pink:blue,points=data.paths[j].slice(0,n+1).map((v,i)=>[i,v]);curve(left,points,a,color);dot(left,points.at(-1),a,color);}
   const diff=data.paths[1].slice(0,n+1).map((v,i)=>[i,v-data.paths[0][i]]);curve(right,diff,b,green);dot(right,diff.at(-1),b,green);
-  $('value').textContent=fmt(diff.at(-1)[1]);$('time-readout').textContent=`第 ${n} 步`;$('observation-value').textContent=`det[C;CA]=${fmt(data.determinant)}；${p.first?'读数可以区分两条初态。':'两条读数重合，但隐藏第一状态不同。'}`;legend([['初态一读数',blue],['初态二读数',pink],['读数差',green]]);table([['传感器',p.first?'第一状态':'第二状态'],['能观矩阵行列式',data.determinant],['当前两读数',data.paths.map(path=>path[n])]]);
+  $('value').textContent=fmt(diff.at(-1)[1]);$('time-readout').textContent=`第 ${n} 步`;$('observation-value').textContent=`det[C;CA]=${fmt(data.determinant)}；${p.first?'读数可以区分两条初态。':'两条读数重合，但隐藏第一状态不同。'}`;legend([['初态 [0,1] 的读数',blue],['初态 [2,1] 的读数',pink],['读数差',green]]);table([['传感器',p.first?'第一状态':'第二状态'],['能观矩阵行列式',data.determinant],['初态一、二的当前读数 / U',data.paths.map(path=>path[n])]]);
  }
  if(mode==='10.5'){
   const start=p.terminal<=.2?4:.2,qf=start+(p.terminal-start)*frac,r=bellman(p.inputWeight,qf),a=axes(left,{xmin:-3,xmax:1,ymin:0,ymax:35,xlabel:'Candidate action',ylabel:'Total cost'}),b=axes(right,{xmin:.2,xmax:5,ymin:-2.1,ymax:0,xlabel:'Terminal weight',ylabel:'Optimal action'});
@@ -72,20 +244,20 @@ function draw(progress){
   const data=mpc(p.target,p.upper),n=Math.floor(frac*9),seen=data.candidates.slice(0,n),best=seen.filter(row=>row.cost!==null).sort((a,b)=>a.cost-b.cost||a.first-b.first||a.second-b.second)[0]||null,a=axes(left,{xmin:0,xmax:9,ymin:0,ymax:22,xlabel:'Candidate index',ylabel:'Feasible cost'}),b=axes(right,{xmin:0,xmax:2,ymin:-1.1,ymax:2.2,xlabel:'Prediction step',ylabel:'Predicted state / U'});
   for(let i=0;i<seen.length;i++){const row=seen[i];if(row.cost===null){left.append(node('text',{x:a.x(i+.5),y:a.y(.8),'text-anchor':'middle',fill:pink,'font-size':22},'×'));}else dot(left,[i+.5,row.cost],a,blue,6);}
   if(best){curve(right,best.states.map((v,i)=>[i,v]),b,green);dot(right,[best.states.length-1,best.states.at(-1)],b,green);}
-  curve(right,[[0,p.upper],[2,p.upper]],b,pink,true);$('value').textContent=best?fmt(best.first):n?'暂无可行候选':'待枚举';$('time-readout').textContent=`已检查 ${n}/9 条`;$('observation-value').textContent=`${seen.filter(row=>row.cost!==null).length} 条已见候选可行；完整最优首步 ${data.best?fmt(data.best.first):'不可行'}。`;legend([['可行成本',blue],['已见最佳轨迹',green],['硬上界/不可行',pink]]);table([['已检查 / 全部',`${n} / 9`],['已见可行条数',seen.filter(row=>row.cost!==null).length],['当前最佳序列',best?[best.first,best.second]:'尚无'],['当前最佳成本',best?best.cost:'尚无']]);
+  curve(right,[[0,p.upper],[2,p.upper]],b,pink,true);$('value').textContent=best?fmt(best.first):n?'暂无可行候选':'待枚举';$('time-readout').textContent=`已检查 ${n}/9 条`;$('observation-value').textContent=`${seen.filter(row=>row.cost!==null).length} 条已见候选可行；完整最优首步 ${data.best?fmt(data.best.first):'不可行'}。`;legend([['可行成本',blue],['已见最佳轨迹',green],['硬上界/不可行',pink]]);table([['已检查 / 全部',`${n} / 9`],['已见可行条数',seen.filter(row=>row.cost!==null).length],['已见最佳输入 [u₀,u₁]',best?[best.first,best.second]:'尚无'],['当前最佳成本',best?best.cost:'尚无']]);
  }
  if(mode==='10.7'){
   const rows=paired(p.severity),n=Math.floor(frac*rows.length),seen=rows.slice(0,n),successful=seen.filter(row=>row.difference!==null),failed=seen.length-successful.length,a=axes(left,{xmin:0,xmax:40,ymin:-.09,ymax:.09,xlabel:'Paired scenario',ylabel:'A−B metric'}),b=axes(right,{xmin:0,xmax:40,ymin:-.09,ymax:.09,xlabel:'Paired scenario',ylabel:'Running mean'});
   for(let i=0;i<seen.length;i++){const row=seen[i];if(row.difference===null)left.append(node('text',{x:a.x(i+1),y:a.y(-.075),'text-anchor':'middle',fill:pink,'font-size':17},'×'));else dot(left,[i+1,row.difference],a,blue,4);}
   let sum=0,count=0;const means=seen.map((row,i)=>{if(row.difference!==null){sum+=row.difference;count++;}return[i+1,count?sum/count:null];}).filter(row=>row[1]!==null);curve(right,means,b,green);dot(right,means.at(-1),b,green);
-  const mean=count?sum/count:null;$('value').textContent=mean===null?'无可比值':fmt(mean);$('time-readout').textContent=`纳入 ${n}/40 个场景`;$('observation-value').textContent=`成功配对 ${count}；失败对 ${failed}；失败从未被记为0成本。`;legend([['成功配对差',blue],['失败对',pink],['运行均值',green]]);table([['总场景',n],['成功配对',count],['失败对',failed],['成功配对平均差',mean]]);
+  const mean=count?sum/count:null;$('value').textContent=mean===null?'无可比值':fmt(mean);$('time-readout').textContent=`纳入 ${n}/40 个场景`;$('observation-value').textContent=`成功配对 ${count}；失败对 ${failed}；总尝试数仍含失败。`;legend([['成功配对差',blue],['至少一方失败的场景',pink],['运行均值',green]]);table([['总场景',n],['成功配对',count],['至少一方失败的场景',failed],['成功配对平均差',mean]]);
  }
 }
 
 function failed(error){$('loading-note').hidden=false;$('loading-note').classList.add('error');$('loading-note').textContent=`探索未能运行：${error.message}。请刷新重试。`;for(const id of ['controls','play','replay','timeline'])$(id).disabled=true;playback?.pause();}
 function guard(fn){try{fn();}catch(error){failed(error);}}
 async function start(){
- ({current:chapter}=await mountShell('explore'));mode=chapter?.id;const def=definitions[mode];if(!def)throw Error('本章没有此探索页');$('eyebrow').textContent=chapter.id+' 章 · 可视化与探索';for(const id of ['title','question','explanation','formula','assumptions'])$(id).textContent=def[id];$('chart-heading').textContent=def.heading;$('value-label').textContent=def.label;$('chart-note').textContent=def.note;$('preset-note').textContent='先预测再播放；每个对照按钮可切换回起始条件。';controls();recompute();
+ ({current:chapter}=await mountShell('explore'));mode=chapter?.id;const def=definitions[mode];if(!def)throw Error('本章没有此探索页');$('eyebrow').textContent=chapter.id+' 章 · 可视化与探索';for(const id of ['title','question','explanation','formula','assumptions'])$(id).textContent=def[id];$('chart-heading').textContent=def.heading;$('value-label').textContent=def.label;$('chart-note').textContent=def.note;$('preset-note').textContent='先判断改变条件后的结果，再播放；对照按钮可返回原条件。';controls();recompute();
  playback=createPlayback({duration:100,speed:10,update:draw,failed,changed:reason=>{$('play').textContent=reason==='playing'?'暂停':'播放';$('play-status').textContent=reason==='playing'?'正在播放，观察图形与读数同步变化。':reason==='ended'?'已展示指定条件；点击播放可从起点观察。':reason==='hidden'?'切离页面后已暂停。':'已暂停，可拖动观察位置。';}});
  $('play').addEventListener('click',()=>guard(()=>playback.running?playback.pause():playback.play()));$('replay').addEventListener('click',()=>guard(()=>{playback.seek(0);playback.play();}));$('timeline').addEventListener('input',()=>guard(()=>playback.seek(Number($('timeline').value))));
  $('alternate').addEventListener('click',()=>guard(()=>{set(alternate(mode,p));}));$('reset').addEventListener('click',()=>guard(()=>{controls();recompute();}));document.addEventListener('visibilitychange',()=>{if(document.hidden)playback.pause('hidden');});

@@ -1,0 +1,852 @@
+{
+  "date": "2026-10-06",
+  "baseline": "10af0bc4a13d8dcbc889ceb626503b47b918cfed",
+  "scope": "Part 10 formal teaching and exercises plus exactly two specified Part 9 text repairs; pending unified user reading acceptance",
+  "notebooks": [
+    {
+      "id": "P10-C01-S01",
+      "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/01-误差怎样驱动比例与积分控制.ipynb",
+      "sha256": "7ce5786a788bb31887ac22453c4df045fbfab1cd1765b826ee837e4545d49a00",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "3cd971273479a47ffc5ad35f3f6bc542c8652131ab47a384a2574b6728485d6d"
+    },
+    {
+      "id": "P10-C01-S02",
+      "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/02-微分噪声与积分抗饱和.ipynb",
+      "sha256": "ef4b18a0c3925670a17a7a26be56c4bf0c0d209936f972b9f3067109d260fc91",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "fdff6ba18efb9d179142dd3338548592fdbd72f089068347424450d9a45c3994"
+    },
+    {
+      "id": "P10-C02-S01",
+      "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/01-极点与根轨迹的低阶例子.ipynb",
+      "sha256": "af7cac81f30b957a1c7988df26078192b22dc6e77651178719d4506f3e16305a",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "a17c148a04c8b48cb0646816b0b3da75b3e8e59b4bedb26b83803790e612fcc2"
+    },
+    {
+      "id": "P10-C02-S02",
+      "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/02-Bode与Nyquist的读图条件.ipynb",
+      "sha256": "f00b674b280712de803f6b250e47328078181f94d0716cb4c0958ca22c7bde15",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "9b006bb858104ec5b68fdcea0df7dcb61e170a5f1c882d3650c231ed2909ef37"
+    },
+    {
+      "id": "P10-C03-S01",
+      "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/01-输入位置与能控矩阵.ipynb",
+      "sha256": "7f55fe38b0ca443fe1f83e2f30a5bdab98f48acf3004a2d07c8066ded42766a5",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "6788c6d1a79e2503fa2c12354f811415b1edb91df4af39fdfcac3b050aaf17fe"
+    },
+    {
+      "id": "P10-C03-S02",
+      "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/02-极点配置与输入代价.ipynb",
+      "sha256": "a07d1ea31cb984acac0a964478284bd1eb3048e81b81ee3fac2f7f89db5fa23d",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "6d6d59bde016192fc18361a58195ce8d673ba2faa0e9ecfe60f5348c9f35b6fc"
+    },
+    {
+      "id": "P10-C04-S01",
+      "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/01-传感器位置与能观矩阵.ipynb",
+      "sha256": "174e675d52cf6ea0089592ae6f077ea4fc39b33576afb0e8de1a4b8e95601be7",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "dd1a29483048a2a49586770602703a0f004f5520d5ddff18f52bce83649c30cd"
+    },
+    {
+      "id": "P10-C04-S02",
+      "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/02-观测误差与输出反馈.ipynb",
+      "sha256": "9ffae15ebcef1d22b7694557f03e02ccb32f247e65bb69ab9dc47aa55cf99e2f",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "a57a9987a7a70fb6fa3b545cdefc80e4d749891b419056ecf816976dd310c03c"
+    },
+    {
+      "id": "P10-C05-S01",
+      "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/01-一步Bellman递推.ipynb",
+      "sha256": "4bfcb2c2cb54ff3c986bf2c2ac900814103cac2db8f79ce1ecb174bdd3ee053f",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "63003e345ac034c86ac82421e869141349e66a45cf5449672427908dfee0727f"
+    },
+    {
+      "id": "P10-C05-S02",
+      "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/02-有限时域LQR的Riccati倒推.ipynb",
+      "sha256": "d95c0a42279e49ce3537c26f8efeb1c0f2500d8eff7ffe6df073c9286a9ec9fb",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "e8225885e47d7078fdabd5bebca4e61d4252c43a5249a66e094ead21dcd779e4"
+    },
+    {
+      "id": "P10-C06-S01",
+      "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/01-预测时域与硬约束.ipynb",
+      "sha256": "a033d3b55aff38081e4cbf7067d6b5de8f48759dc09997cc4e081f8b142432c8",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "82704226ac921cec132b9b82b9b63204af1b5f4b3dd7121ef34423d5c936706f"
+    },
+    {
+      "id": "P10-C06-S02",
+      "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/02-滚动求解与预测失配.ipynb",
+      "sha256": "3ef033802aa34716898b0b55c7804ae62f17ffc3819ef85a08b8ed72fe034e5e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "f482801705506fcd27c726196a439eb1ad8359b2f18f4538a0cfd4a48f3f3ae5"
+    },
+    {
+      "id": "P10-C07-S01",
+      "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/01-相同信息下的控制评价.ipynb",
+      "sha256": "6100549a471b32912b9ae50d565064111139eb599bab1c1a7a84888cbd8eaf0e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "64ce4400b7f49bf5f7d98feb8a82a325dcfa7fa9e14367f5418667226f750aca"
+    },
+    {
+      "id": "P10-C07-S02",
+      "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/02-独立场景与配对不确定性.ipynb",
+      "sha256": "bfb00d23835456f5b01a3d55b0ee1ee2c35e8414b2ddf954462a84aa11267d12",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "c956acacf1d1c3a52683b213028781947087b7fae8ba8a30f036c958304c4dce"
+    },
+    {
+      "id": "P10-SUMMARY",
+      "path": "notebooks/10-反馈与最优控制/08-篇末综合/01-部分观测下的约束控制.ipynb",
+      "sha256": "a8d570882e296d63064aeda09524949afa1d371b185cb17efcb8d3e5e817179b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "c66674a5fe8ed168c0470b4c4ed960d3920d25aed81328d08830c1b18dcc3b9a"
+    }
+  ],
+  "questions": {
+    "reviewed": 64,
+    "choice": 45,
+    "python": 19,
+    "wording_changed": 64,
+    "wording_changed_ids": [
+      "p10-pi-saturation",
+      "p10-pi-constant-load",
+      "p10-request-vs-actuation",
+      "p10-gain-units",
+      "p10-pid-history",
+      "p10-derivative-noise",
+      "p10-freeze-direction",
+      "p10-pid-comparison",
+      "p10-second-order-poles",
+      "p10-pole-to-time",
+      "p10-root-locus-meaning",
+      "p10-delay-approximation",
+      "p10-frequency-delay",
+      "p10-nyquist-hypotheses",
+      "p10-bode-margin",
+      "p10-phase-wrap",
+      "p10-controllability-two",
+      "p10-actuator-position",
+      "p10-rank-tolerance",
+      "p10-controllable-not-feasible",
+      "p10-canonical-gain",
+      "p10-feedback-sign",
+      "p10-fast-pole-cost",
+      "p10-pole-placement-condition",
+      "p10-observability-two",
+      "p10-sensor-position",
+      "p10-known-input",
+      "p10-observability-vs-noise",
+      "p10-observer-replay",
+      "p10-error-dynamics",
+      "p10-separation-assumptions",
+      "p10-truth-for-validation",
+      "p10-bellman-one",
+      "p10-terminal-matters",
+      "p10-bellman-scope",
+      "p10-weight-units",
+      "p10-finite-riccati",
+      "p10-riccati-boundary",
+      "p10-unconstrained-vs-saturated",
+      "p10-finite-vs-infinite",
+      "p10-discrete-mpc",
+      "p10-mpc-receding",
+      "p10-hard-soft",
+      "p10-infeasible-truth",
+      "p10-receding-trajectory",
+      "p10-prediction-vs-reality",
+      "p10-fallback-domain",
+      "p10-estimate-interface",
+      "p10-scenario-metrics",
+      "p10-fair-baseline",
+      "p10-average-not-enough",
+      "p10-training-vs-test",
+      "p10-paired-differences",
+      "p10-paired-bootstrap",
+      "p10-failure-selection",
+      "p10-uncertainty-scope",
+      "p10-cap-feedback",
+      "p10-cap-sensors",
+      "p10-cap-pid",
+      "p10-cap-observer",
+      "p10-cap-riccati",
+      "p10-cap-mpc",
+      "p10-cap-metrics",
+      "p10-cap-mismatch"
+    ],
+    "explanation_changed": 64,
+    "explanation_changed_ids": [
+      "p10-pi-saturation",
+      "p10-pi-constant-load",
+      "p10-request-vs-actuation",
+      "p10-gain-units",
+      "p10-pid-history",
+      "p10-derivative-noise",
+      "p10-freeze-direction",
+      "p10-pid-comparison",
+      "p10-second-order-poles",
+      "p10-pole-to-time",
+      "p10-root-locus-meaning",
+      "p10-delay-approximation",
+      "p10-frequency-delay",
+      "p10-nyquist-hypotheses",
+      "p10-bode-margin",
+      "p10-phase-wrap",
+      "p10-controllability-two",
+      "p10-actuator-position",
+      "p10-rank-tolerance",
+      "p10-controllable-not-feasible",
+      "p10-canonical-gain",
+      "p10-feedback-sign",
+      "p10-fast-pole-cost",
+      "p10-pole-placement-condition",
+      "p10-observability-two",
+      "p10-sensor-position",
+      "p10-known-input",
+      "p10-observability-vs-noise",
+      "p10-observer-replay",
+      "p10-error-dynamics",
+      "p10-separation-assumptions",
+      "p10-truth-for-validation",
+      "p10-bellman-one",
+      "p10-terminal-matters",
+      "p10-bellman-scope",
+      "p10-weight-units",
+      "p10-finite-riccati",
+      "p10-riccati-boundary",
+      "p10-unconstrained-vs-saturated",
+      "p10-finite-vs-infinite",
+      "p10-discrete-mpc",
+      "p10-mpc-receding",
+      "p10-hard-soft",
+      "p10-infeasible-truth",
+      "p10-receding-trajectory",
+      "p10-prediction-vs-reality",
+      "p10-fallback-domain",
+      "p10-estimate-interface",
+      "p10-scenario-metrics",
+      "p10-fair-baseline",
+      "p10-average-not-enough",
+      "p10-training-vs-test",
+      "p10-paired-differences",
+      "p10-paired-bootstrap",
+      "p10-failure-selection",
+      "p10-uncertainty-scope",
+      "p10-cap-feedback",
+      "p10-cap-sensors",
+      "p10-cap-pid",
+      "p10-cap-observer",
+      "p10-cap-riccati",
+      "p10-cap-mpc",
+      "p10-cap-metrics",
+      "p10-cap-mismatch"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "prior_part_amendments": [
+    {
+      "id": "P09-C01-S01",
+      "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/01-从先验与观测到参数后验.ipynb",
+      "changed_cell": 16,
+      "change": "zero-mean noise statement only",
+      "other_text_code_outputs_preserved": true
+    },
+    {
+      "id": "P09-SUMMARY",
+      "path": "notebooks/09-概率建模与近似推断/06-篇末综合/01-同一观测下的后验与预测比较.ipynb",
+      "changed_cell": 4,
+      "change": "three→four heading only",
+      "other_text_code_outputs_preserved": true
+    }
+  ],
+  "corrected_explanatory_copy_errors": [
+    "p10-discrete-mpc"
+  ],
+  "corrected_experiment_descriptions": [
+    "P10-C01-S01 hand-example conditions separated",
+    "P10-C01-S02 prescribed-error replay distinguished from plant feedback",
+    "P10-C04-S02 different noise sequences disclosed",
+    "P10-C05-S02 eight-step horizon matched",
+    "P10-C07-S01 smoother and repeated one-step feedback matched",
+    "P10-SUMMARY scalar optimal tasks separated from two-state loop"
+  ],
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Read-only unbound PracticeEngine.progress with original in-memory records and current bank/assessment; no judging or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_model_unchanged": true,
+    "web_controller_changes_exactly_match_display_text_replacements": true,
+    "slider_keys_ranges_steps_initial_values_labels_preserved": true,
+    "official_checker_and_glossary_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "independent_hand_examples_and_algebra": [
+      "P steady balance 9/22, required input 0.65; ordinary/capstone PI candidate and freeze arithmetic; four PID rows and difference-noise scale",
+      "Quadratic roots by substitution, three steady outputs, 0.25-radian delay and direct complex modulus",
+      "Controllability/observability row-column calculations, pole coefficient matching, bounded one-second reachability, capstone determinants −0.003 and 0.1",
+      "Every written observer sample prediction, input contribution and innovation checked with exact fractions",
+      "Bellman square completion and terminal-weight actions; capstone Riccati gains independently checked by direct two-input normal equations and cost; nominal equilibrium input",
+      "Ordinary/capstone MPC samples independently enumerate complete rational paths and costs 5.2 and 1.2; first mismatch 0.1",
+      "Tracking/input averages, capstone violation, paired failure denominator and actual severe-web failure positions"
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    },
+    {
+      "id": "p08-conditioning",
+      "version": "1",
+      "location": "Option B, marked correct in the existing answer",
+      "issue": "不发散与误差收敛到零混用。B要求步长严格小于上界才不发散，但H₂较大曲率方向在η=2/100时因子为−1，误差等幅交替且不发散。",
+      "evidence": "e[k+1]=(1−100η)e[k]；η=0.02给出e[k+1]=−e[k]。严格上界针对误差衰减到零，而不是仅不发散。",
+      "required_substantive_change": "后续明确B要判断误差衰减/收敛，或修订不发散条件及对应答案，再依版本规则处理；本轮没有暗改答案、条件意图或版本。",
+      "status": "登记，待实质题库修订；当前正确答案与旧成绩保留"
+    }
+  ],
+  "new_unresolved": [],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 164,
+    "core_changed": 149,
+    "exercise_cells_synchronized": 15
+  },
+  "teaching_check": {
+    "notebooks": 15,
+    "questions": 64,
+    "question_links": 64,
+    "issues": []
+  },
+  "teaching_check_method": "Existing check_teaching logic with actual vocabulary from Parts 0–9 and preceding Part 10 lessons. Exercises inherit their lesson explanations; overviews inherit earlier chapters. Original checker, glossary and range rules remain unchanged.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/10-01-开闭环与 PID/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-02-频域稳定性与设计/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-03-能控性与状态反馈/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-04-状态观测器与输出反馈/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-05-动态规划与 LQR/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-06-带约束的 MPC/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-07-估计反馈与闭环验证/",
+        "status": 200
+      },
+      {
+        "path": "/parts/10-反馈与最优控制/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-01-开闭环与 PID/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-02-频域稳定性与设计/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-03-能控性与状态反馈/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-04-状态观测器与输出反馈/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-05-动态规划与 LQR/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-06-带约束的 MPC/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/10-07-估计反馈与闭环验证/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p10-pi-saturation",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p10-second-order-poles",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p10-controllability-two",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p10-observability-two",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p10-bellman-one",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p10-discrete-mpc",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p10-scenario-metrics",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p10-cap-metrics",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p09-normal-update",
+        "status": 200,
+        "latest_visible_contract_and_version": true
+      }
+    ],
+    "served_catalog_and_controller_equal_current_files": true,
+    "local_file_link_targets_checked": 32,
+    "html_rendered_without_execution": [
+      "P10-C01-S01",
+      "P10-C01-S02",
+      "P10-C02-S01",
+      "P10-C02-S02",
+      "P10-C03-S01",
+      "P10-C03-S02",
+      "P10-C04-S01",
+      "P10-C04-S02",
+      "P10-C05-S01",
+      "P10-C05-S02",
+      "P10-C06-S01",
+      "P10-C06-S02",
+      "P10-C07-S01",
+      "P10-C07-S02",
+      "P10-SUMMARY"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout, MathJax rendering or interaction behavior."
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_optimization/momentum.html",
+      "focus": "承接前文的具体困难，再展开递推各项，通过计算连接公式与比较实验。借鉴解释与衔接方式，不复制教材段落。"
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/05-The-Unreasonable-Effectiveness-of-Linear-Regression.html",
+      "focus": "先解释具体比较中要回答的问题，再说明公式里的每一项，并以独立的小计算核对结果。借鉴推理展开，不引入其因果结论。"
+    },
+    {
+      "read": "https://arxiv.org/abs/1707.08243",
+      "read_scope": "abstract only",
+      "focus": "核对结构能控性中非零参数可以赋值的含义；保留它与给定数值矩阵的能控性之间的区别。未宣称阅读全文。"
+    }
+  ],
+  "authorization": "Current dispatch covers Part 10 and exactly two specified Part 9 prose amendments. The human-authorized sequential Parts 2–17 workflow uses final unified reading acceptance. Normal commit/push is authorized; records, environments and work helpers are excluded. Await Part 11 dispatch.",
+  "specific_prose_corrections": [
+    "Measurement y, goal r, error e, requested input and actual input are introduced in the reading-to-next-state order. The independent PI hand example is separated from the main trajectory conditions.",
+    "Derivative action uses two already measured errors. Alternating measurement noise and reference jumps are calculated explicitly; the prescribed-error replay is distinguished from a closed-loop plant experiment.",
+    "The two-lag model explains normalized units before transfer functions. Quadratic roots, steady outputs, delayed phase and the crossing conditions for Bode margins precede interpretation.",
+    "A scaled position/velocity model explains both state entries and the input unit. Given numerical controllability differs from structural controllability and bounded-time, bounded-input reachability.",
+    "State-feedback polynomial coefficients connect to the required initial input. Stabilizability is distinguished from arbitrary pole placement.",
+    "Observer inputs and readings are replayed in the implemented time order: current estimates form the current input; the current reading corrects the next estimate. Estimation error is distinct from tracking error.",
+    "The full-state comparison uses additional information and different drawn noise sequences, which are explicitly disclosed. Detectability and the assumptions behind ideal separation remain stated.",
+    "Bellman reasoning starts from three candidate costs, then completes the square before matrix Riccati recursion. The actual eight-step experiment and finite/infinite-horizon conditions remain distinct.",
+    "MPC names every predicted successor, checks constraints before comparing costs, executes only the first input and replans from the next actual state. The copied second/third-example explanation is replaced with the visible sample cost 5.2.",
+    "Fair comparison fixes external noise/disturbance sequences rather than actual state-dependent reading values. The implemented smoother and repeated one-step feedback are described precisely.",
+    "Paired uncertainty retains all attempted scenarios and failures; means over jointly successful pairs are conditional. The web severe scenario fails at rows 1, 12, 23 and 34, matching its deterministic construction.",
+    "The capstone two-state observer-feedback trajectory is separated from scalar LQR/MPC tasks. Each listed state, input, gain order and reported metric is defined before use."
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part10-rewrite-20261006/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part10-rewrite-20261006/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part10-rewrite-20261006/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part10-rewrite-20261006/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/control/app.mjs and model.mjs",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    "docs/10-反馈与最优控制.md": "9eaa34a467089d2ef7d544d1715b59d93fce9bc03cffc2c59797ee6f0fcc272a",
+    "exercises/09-概率建模与近似推断/questions.json": "d4cf5394545c743c8435ee69a41b6b6fd4759134a779fdd8a0069114bddf063d",
+    "exercises/10-反馈与最优控制/questions.json": "611e163140ef27d10afc7b321a0e6141d7c475736ba5a559bc164070f609da88",
+    "exercises/10-反馈与最优控制/verification.json": "c910921f8a09507adb6a919b51d097f4d03c980e16a0bdf2dab782220d6b1f0d",
+    "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/01-从先验与观测到参数后验.ipynb": "7cb818dcd16472c2480340f3f99b3382aafeb311f4774eaafa9a3d9599bd290c",
+    "notebooks/09-概率建模与近似推断/06-篇末综合/01-同一观测下的后验与预测比较.ipynb": "b394cae468c6ca9a1833861ed48451454d2218d62aacd2f83b0c4f0b69f0e4bf",
+    "notebooks/10-反馈与最优控制/01-开闭环与 PID/01-误差怎样驱动比例与积分控制.ipynb": "7ce5786a788bb31887ac22453c4df045fbfab1cd1765b826ee837e4545d49a00",
+    "notebooks/10-反馈与最优控制/01-开闭环与 PID/02-微分噪声与积分抗饱和.ipynb": "ef4b18a0c3925670a17a7a26be56c4bf0c0d209936f972b9f3067109d260fc91",
+    "notebooks/10-反馈与最优控制/02-频域稳定性与设计/01-极点与根轨迹的低阶例子.ipynb": "af7cac81f30b957a1c7988df26078192b22dc6e77651178719d4506f3e16305a",
+    "notebooks/10-反馈与最优控制/02-频域稳定性与设计/02-Bode与Nyquist的读图条件.ipynb": "f00b674b280712de803f6b250e47328078181f94d0716cb4c0958ca22c7bde15",
+    "notebooks/10-反馈与最优控制/03-能控性与状态反馈/01-输入位置与能控矩阵.ipynb": "7f55fe38b0ca443fe1f83e2f30a5bdab98f48acf3004a2d07c8066ded42766a5",
+    "notebooks/10-反馈与最优控制/03-能控性与状态反馈/02-极点配置与输入代价.ipynb": "a07d1ea31cb984acac0a964478284bd1eb3048e81b81ee3fac2f7f89db5fa23d",
+    "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/01-传感器位置与能观矩阵.ipynb": "174e675d52cf6ea0089592ae6f077ea4fc39b33576afb0e8de1a4b8e95601be7",
+    "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/02-观测误差与输出反馈.ipynb": "9ffae15ebcef1d22b7694557f03e02ccb32f247e65bb69ab9dc47aa55cf99e2f",
+    "notebooks/10-反馈与最优控制/05-动态规划与 LQR/01-一步Bellman递推.ipynb": "4bfcb2c2cb54ff3c986bf2c2ac900814103cac2db8f79ce1ecb174bdd3ee053f",
+    "notebooks/10-反馈与最优控制/05-动态规划与 LQR/02-有限时域LQR的Riccati倒推.ipynb": "d95c0a42279e49ce3537c26f8efeb1c0f2500d8eff7ffe6df073c9286a9ec9fb",
+    "notebooks/10-反馈与最优控制/06-带约束的 MPC/01-预测时域与硬约束.ipynb": "a033d3b55aff38081e4cbf7067d6b5de8f48759dc09997cc4e081f8b142432c8",
+    "notebooks/10-反馈与最优控制/06-带约束的 MPC/02-滚动求解与预测失配.ipynb": "3ef033802aa34716898b0b55c7804ae62f17ffc3819ef85a08b8ed72fe034e5e",
+    "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/01-相同信息下的控制评价.ipynb": "6100549a471b32912b9ae50d565064111139eb599bab1c1a7a84888cbd8eaf0e",
+    "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/02-独立场景与配对不确定性.ipynb": "bfb00d23835456f5b01a3d55b0ee1ee2c35e8414b2ddf954462a84aa11267d12",
+    "notebooks/10-反馈与最优控制/08-篇末综合/01-部分观测下的约束控制.ipynb": "a8d570882e296d63064aeda09524949afa1d371b185cb17efcb8d3e5e817179b",
+    "notebooks/10-反馈与最优控制/README.md": "efc66596ae4f4cccb171011b8834ffd99c668fe2ff841125016d7c9b16db2e36",
+    "notebooks/10-反馈与最优控制/catalog.json": "239321559aeac29aeb2d036eb3e08611935b54f8af84bfbc90a27a32ea804652",
+    "web/control/app.mjs": "5f9b28662ff39cad184b9744a318b610d578de6ab3ae194685c9bf512b883eaa",
+    "web/control/index.html": "d342be50dc89d0a3f4a5e50dd30ead78454aa330e0c48e7f1d525e48982f2bab",
+    "web/course/catalog.json": "7844bd4565c7031a18b39bef095b86bf451668d6e37cb992ddc91fe2c005fe31"
+  }
+}
