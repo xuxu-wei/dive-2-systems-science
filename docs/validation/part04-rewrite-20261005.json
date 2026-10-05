@@ -1,0 +1,1905 @@
+{
+  "date": "2026-10-05",
+  "baseline": "be5cad566af85a1446c6f8bec24193ece3fdb420",
+  "scope": "第四篇全部17本正式 Notebook（含篇末综合）、81题、六章导览与五张探索页说明；第三篇仅三处指定文案勘误",
+  "notebooks": [
+    {
+      "id": "P04-C01-S01",
+      "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/01-从三个平衡进入多稳态.ipynb",
+      "sha256": "5c30a6c89899172f27ea6f8ecdee20d5de671f76a26bbaaee4fdb38c7761a3fc",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "89b4daf2cb81a06d7619c81152c52239c1d59f9beae8f885649ec4a7e9a136cf"
+    },
+    {
+      "id": "P04-C01-S02",
+      "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/02-吸引域扰动与有限时间扫描.ipynb",
+      "sha256": "fa0035ebae3a080d90c637af84995ebd81f8a9b00b194a6923d0bded6f03bfef",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "a0978bcd3786c51fca2ad055d0020e58155bf06d88ed0fbe4755af9486781494"
+    },
+    {
+      "id": "P04-C01-S03",
+      "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/03-从吸引状态到吸引集合.ipynb",
+      "sha256": "1a72084d1b81db627c0427cf99bd1a917ae6e40c4140e4a9da7f775e82a2f195",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "d21eb10525d056fb60cca780cbe4ba2de1f33ddaa9cd6e72429b688513a37668"
+    },
+    {
+      "id": "P04-C02-S01",
+      "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/01-阻尼受迫与自维持振荡.ipynb",
+      "sha256": "6fcc05110a69603e95c0ff4e30750c5c611d1ff8e86fc2fc3913fa0da06b1cda",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16,
+        17
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "a97c1db9b9953a70a57efdbe0ce75ebc032eb8b61509008702c1b1cb9278dcb6"
+    },
+    {
+      "id": "P04-C02-S02",
+      "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/02-周期振幅与相位的测量.ipynb",
+      "sha256": "8fec1d1301838b0cf4c22fe3394263d2fbbbd0c560cdb1b97fb5d32fa7c9896c",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "bb2136319f32c839422e6ebeac87169a73573d08a22e15fe36cd6f543ae317b7"
+    },
+    {
+      "id": "P04-C03-S01",
+      "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.ipynb",
+      "sha256": "cf587b4a7373e61bb437d53e060f9ed868c1e612cb272cfa85794dbe5ce802c4",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "758a3f71ff872f0b318d86ae8c48a5da0ec3a8a8a76750181b2b8d4991bff156"
+    },
+    {
+      "id": "P04-C03-S02",
+      "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/02-从平衡到周期的Hopf转变.ipynb",
+      "sha256": "4668e81cb88ce473db7840b51d8ca8667b5e77137b14bfb284046ca3a2bdc009",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "673bf23fb2809a29ddb83725a1d79ad75a8667f82ae10ae3e3ddc001a79bd641"
+    },
+    {
+      "id": "P04-C04-S01",
+      "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/01-离散映射的不动点与周期.ipynb",
+      "sha256": "eea5efbb776339c765ad58262e4ace267a2ffcc023197bd47f8f75b274e864d4",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "c82a131bcc18086dc065375d541321081c4669f4dc856e51ff0291a1e6c963b6"
+    },
+    {
+      "id": "P04-C04-S02",
+      "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/02-邻近轨迹与预测期限.ipynb",
+      "sha256": "4891c539ef77845f8ab583884ccef39614cd54905a98bf3129defd8403af07cd",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "3a1e479c546d688fff9bdbd0913cf236c8f35d18cb6ba717b94b14a261e15327"
+    },
+    {
+      "id": "P04-C04-S03",
+      "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/03-有限时间增长率与算术精度.ipynb",
+      "sha256": "532dfd50c85c6bbc64f9c8a045ce0415059031ab150c860079f386ac52ef24f5",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "eb5f15d48ac31325e6d9c6fa11e158a8386220d736d00fea0c51098e4e473a91"
+    },
+    {
+      "id": "P04-C05-S01",
+      "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/01-候选函数与局部稳定性证明.ipynb",
+      "sha256": "e05e63dcb0c2ac95c145b2409597de9a350ce364b5579da245206e3a929cd27a",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "fc6b7c5d81642e0d2c5abe9c90dcf7f089bd228149c9d2937b61bc6695212d92"
+    },
+    {
+      "id": "P04-C05-S02",
+      "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/02-非严格衰减与不能省略的条件.ipynb",
+      "sha256": "c9cc0281b3541dd1087a6bda80067931ce8d2e5ed6c1e90b0c1da93ee245cbf2",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b248fead54812a9ee102b159b8377a9d6ce0f73bbaf2b7fe323c52d23e9165e2"
+    },
+    {
+      "id": "P04-C06-S01",
+      "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/01-从平面流到Lorenz系统.ipynb",
+      "sha256": "ba5287348857f3316fcdff3d8ff058d2b11235f75acc112e8ad949135dcf0bdd",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "8665a602fe92cb447dd8a138bc985e81dcc62c7002d09ed3f1cddf4bb773e68d"
+    },
+    {
+      "id": "P04-C06-S02",
+      "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/02-有界耗散与可信积分.ipynb",
+      "sha256": "0d3371fad190eaec4ccf0d14be2f6a4367644d6e464ebae0cc6c3be371b5e767",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "28e5ded5750a76dc477615cfaad5b5bfffeb0f5a1168942395d176a40f852b0a"
+    },
+    {
+      "id": "P04-C06-S03",
+      "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/03-截面与返回中的长期结构.ipynb",
+      "sha256": "a9f92a568cbeb0bdd121c2a16db3d7e79d949d670fd6c0a5c4b483c2f817bf63",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "e624e9067b2f42db8763d714265c149898c99842141615b4faece2acc125e8aa"
+    },
+    {
+      "id": "P04-C06-S04",
+      "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/04-切向增长奇异几何与预测边界.ipynb",
+      "sha256": "e2b35096a543935136d5c7719a5bb4e2bc0f19ef99032efb46a2f598e1fb00a7",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "880f56fe27547e75e0d1c496671f8afb8b53e0dc060710e876af96d55778bc7a"
+    },
+    {
+      "id": "P04-SUMMARY",
+      "path": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb",
+      "sha256": "869aa40c006a23fc5cdf9f3cc07366bf908df1415c19f8a92eb0e86df452753b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        3,
+        5,
+        7,
+        8,
+        9,
+        11,
+        13,
+        14,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "329e982878a39e0dd2835fe84e95a96f04a4d6bdde239be71a4d2c1ce4cfec5d"
+    }
+  ],
+  "questions": {
+    "reviewed": 81,
+    "choice": 53,
+    "python": 28,
+    "wording_changed": 77,
+    "wording_changed_ids": [
+      "p04-switch-equilibria",
+      "p04-switch-exact",
+      "p04-zero-slope",
+      "p04-line-no-cycle",
+      "p04-basin-window",
+      "p04-midpoint-step",
+      "p04-kick-basin",
+      "p04-finite-grid",
+      "p04-bias-shift",
+      "p04-oscillation-source",
+      "p04-radial-solution",
+      "p04-forcing-removed",
+      "p04-radial-stability",
+      "p04-peak-period",
+      "p04-crossing-period",
+      "p04-phase-after-kick",
+      "p04-measurement-window",
+      "p04-fold-locations",
+      "p04-bias-continuation",
+      "p04-branch-stability",
+      "p04-scan-protocol",
+      "p04-threshold-resolution",
+      "p04-hopf-branch",
+      "p04-critical-slow",
+      "p04-zero-frequency",
+      "p04-amplitude-axis",
+      "p04-hopf-evidence",
+      "p04-logistic-iterate",
+      "p04-interval-invariance",
+      "p04-map-stability",
+      "p04-periodic-not-chaotic",
+      "p04-prediction-horizon",
+      "p04-strict-threshold",
+      "p04-bounded-separation",
+      "p04-precision-merge",
+      "p04-map-not-step",
+      "p04-finite-growth",
+      "p04-finite-positive",
+      "p04-log-zero",
+      "p04-exact-special-orbit",
+      "p04-digits-vs-certainty",
+      "p04-local-energy",
+      "p04-positive-definite",
+      "p04-local-domain",
+      "p04-global-decay",
+      "p04-function-vs-exponent",
+      "p04-rotating-energy",
+      "p04-semidefinite-counterexample",
+      "p04-missed-invariant-set",
+      "p04-attractor-set",
+      "p04-center-counterexample",
+      "p04-distance-circle",
+      "p04-distance-equilibria",
+      "p04-plane-autonomous",
+      "p04-lorenz-equilibria",
+      "p04-lorenz-field",
+      "p04-lorenz-local-scope",
+      "p04-volume-bounded",
+      "p04-lorenz-bound",
+      "p04-rk4-linear-step",
+      "p04-aligned-error",
+      "p04-short-window-check",
+      "p04-directed-section",
+      "p04-return-intervals",
+      "p04-section-limits",
+      "p04-tangent-growth",
+      "p04-linear-tangent",
+      "p04-growth-units",
+      "p04-quasiperiodic-counterexample",
+      "p04-strange-evidence",
+      "p04-cap-equilibrium",
+      "p04-cap-source",
+      "p04-cap-basins",
+      "p04-cap-period",
+      "p04-cap-precision",
+      "p04-cap-irregular",
+      "p04-cap-region"
+    ],
+    "explanation_changed": 59,
+    "explanation_changed_ids": [
+      "p04-switch-equilibria",
+      "p04-switch-exact",
+      "p04-zero-slope",
+      "p04-line-no-cycle",
+      "p04-basin-window",
+      "p04-midpoint-step",
+      "p04-kick-basin",
+      "p04-finite-grid",
+      "p04-bias-shift",
+      "p04-radial-solution",
+      "p04-forcing-removed",
+      "p04-origin-exception",
+      "p04-peak-period",
+      "p04-crossing-period",
+      "p04-phase-after-kick",
+      "p04-bias-continuation",
+      "p04-scan-protocol",
+      "p04-hopf-branch",
+      "p04-critical-slow",
+      "p04-zero-frequency",
+      "p04-amplitude-axis",
+      "p04-hopf-evidence",
+      "p04-logistic-iterate",
+      "p04-interval-invariance",
+      "p04-prediction-horizon",
+      "p04-bounded-separation",
+      "p04-finite-growth",
+      "p04-digits-vs-certainty",
+      "p04-local-energy",
+      "p04-positive-definite",
+      "p04-local-domain",
+      "p04-global-decay",
+      "p04-function-vs-exponent",
+      "p04-semidefinite-counterexample",
+      "p04-missed-invariant-set",
+      "p04-sampled-proof",
+      "p04-distance-circle",
+      "p04-distance-equilibria",
+      "p04-plane-autonomous",
+      "p04-lorenz-field",
+      "p04-lorenz-local-scope",
+      "p04-lorenz-bound",
+      "p04-rk4-linear-step",
+      "p04-aligned-error",
+      "p04-section-projection",
+      "p04-directed-section",
+      "p04-return-intervals",
+      "p04-tangent-growth",
+      "p04-linear-tangent",
+      "p04-quasiperiodic-counterexample",
+      "p04-strange-evidence",
+      "p04-cap-equilibrium",
+      "p04-cap-source",
+      "p04-cap-basins",
+      "p04-cap-period",
+      "p04-cap-precision",
+      "p04-cap-irregular",
+      "p04-cap-region",
+      "p04-cap-scope"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "current_files_retained": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Unbound PracticeEngine.progress on read-only in-memory baseline records and current question/assessment metadata; no PracticeEngine constructor or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_and_introduction_unchanged": true,
+    "AGENTS_unchanged": true,
+    "both_web_models_unchanged": true
+  },
+  "previous_part_errata": [
+    {
+      "id": "P03-C01-S01",
+      "old": "用室 1 表示血液中的量，室 2 表示组织中的量。",
+      "new": "把血液看作室 1，把组织看作室 2。",
+      "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/01-两室交换与矩阵收支.ipynb"
+    },
+    {
+      "id": "P03-SUMMARY",
+      "old": "三个子实验都保持交换速率",
+      "new": "三个子实验都保持交换系数",
+      "path": "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb"
+    },
+    {
+      "id": "p03-exchange-balance",
+      "path": "exercises/03-多变量相互作用/questions.json",
+      "old": "外界以恒定速率 u 进入室 1",
+      "new": "物质从外界以恒定速率 u 流入室 1",
+      "notebook_synchronized": true
+    }
+  ],
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "independent_hand_examples_and_algebra": true,
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    }
+  ],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "core_cells_rewritten": 168,
+    "exercise_cells_synchronized": 17,
+    "total_changed_cells": 185
+  },
+  "teaching_check": {
+    "notebooks": 17,
+    "questions": 81,
+    "question_links": 81,
+    "first_use": [
+      {
+        "unit": "p04-switch-equilibria",
+        "terms": [
+          "初值",
+          "导数",
+          "平衡",
+          "无量纲",
+          "渐近稳定",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-switch-exact",
+        "terms": [
+          "初值",
+          "平衡",
+          "无量纲",
+          "状态",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-zero-slope",
+        "terms": [
+          "初值",
+          "导数",
+          "平衡",
+          "渐近稳定"
+        ]
+      },
+      {
+        "unit": "p04-line-no-cycle",
+        "terms": [
+          "平衡",
+          "状态"
+        ]
+      },
+      {
+        "unit": "P04-C01-S01",
+        "terms": [
+          "中心差分",
+          "初值",
+          "双稳态",
+          "吸引域",
+          "多稳态",
+          "导数",
+          "局部渐近稳定",
+          "平衡",
+          "指数函数",
+          "无量纲",
+          "模型",
+          "浓度",
+          "状态",
+          "相线",
+          "解析解",
+          "轨迹",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "p04-basin-window",
+        "terms": [
+          "初值",
+          "吸引域",
+          "无量纲",
+          "显式中点法",
+          "状态",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-midpoint-step",
+        "terms": [
+          "斜率",
+          "无量纲",
+          "显式中点法",
+          "状态",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-kick-basin",
+        "terms": [
+          "吸引域",
+          "状态",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-finite-grid",
+        "terms": [
+          "初值",
+          "平衡"
+        ]
+      },
+      {
+        "unit": "p04-bias-shift",
+        "terms": [
+          "初值",
+          "参数",
+          "平衡",
+          "状态"
+        ]
+      },
+      {
+        "unit": "P04-C01-S02",
+        "terms": [
+          "初值",
+          "参数",
+          "吸引域",
+          "平衡",
+          "斜率",
+          "无量纲",
+          "显式中点法",
+          "欧拉法",
+          "状态",
+          "相线",
+          "解析解",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-attractor-set",
+        "terms": [
+          "初值",
+          "吸引域",
+          "状态",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-center-counterexample",
+        "terms": [
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-distance-circle",
+        "terms": [
+          "状态",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-distance-equilibria",
+        "terms": [
+          "平衡",
+          "状态",
+          "观测",
+          "输入"
+        ]
+      },
+      {
+        "unit": "P04-C01-S03",
+        "terms": [
+          "不变集",
+          "初值",
+          "吸引域",
+          "吸引子",
+          "固定点",
+          "振幅",
+          "无量纲",
+          "极限环",
+          "模型",
+          "状态",
+          "相位",
+          "相线",
+          "范数",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-oscillation-source",
+        "terms": [
+          "初值",
+          "受迫振荡",
+          "振幅",
+          "自维持振荡"
+        ]
+      },
+      {
+        "unit": "p04-radial-solution",
+        "terms": [
+          "初值",
+          "向量",
+          "无量纲",
+          "状态",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-forcing-removed",
+        "terms": [
+          "复数",
+          "状态",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-origin-exception",
+        "terms": [
+          "平衡"
+        ]
+      },
+      {
+        "unit": "p04-radial-stability",
+        "terms": [
+          "状态",
+          "相位"
+        ]
+      },
+      {
+        "unit": "P04-C02-S01",
+        "terms": [
+          "向量",
+          "复数",
+          "振幅",
+          "数值误差",
+          "无量纲",
+          "时间尺度",
+          "暂态",
+          "极限环",
+          "模型",
+          "状态",
+          "相位",
+          "自维持振荡",
+          "解析解",
+          "轨迹",
+          "输入",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "p04-peak-period",
+        "terms": [
+          "振幅",
+          "观测",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-crossing-period",
+        "terms": [
+          "观测",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-phase-after-kick",
+        "terms": [
+          "导数",
+          "极限环",
+          "状态",
+          "相位",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-measurement-window",
+        "terms": [
+          "振幅",
+          "暂态",
+          "模型",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "P04-C02-S02",
+        "terms": [
+          "参数",
+          "振幅",
+          "暂态",
+          "极限环",
+          "模型",
+          "状态",
+          "相位",
+          "观测",
+          "解析解",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-fold-locations",
+        "terms": [
+          "平衡",
+          "斜率",
+          "状态",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-bias-continuation",
+        "terms": [
+          "初值",
+          "平衡",
+          "时间步长",
+          "状态",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-branch-stability",
+        "terms": [
+          "参数",
+          "导数",
+          "局部渐近稳定",
+          "平衡",
+          "状态"
+        ]
+      },
+      {
+        "unit": "p04-scan-protocol",
+        "terms": [
+          "初值",
+          "参数",
+          "多稳态",
+          "平衡",
+          "延迟",
+          "时间步长",
+          "暂态",
+          "模型"
+        ]
+      },
+      {
+        "unit": "p04-threshold-resolution",
+        "terms": [
+          "参数",
+          "状态"
+        ]
+      },
+      {
+        "unit": "P04-C03-S01",
+        "terms": [
+          "初值",
+          "参数",
+          "导数",
+          "平衡",
+          "延迟",
+          "无量纲",
+          "时间步长",
+          "显式中点法",
+          "滞回",
+          "状态",
+          "鞍结分岔"
+        ]
+      },
+      {
+        "unit": "p04-hopf-branch",
+        "terms": [
+          "参数",
+          "平衡",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-critical-slow",
+        "terms": [
+          "极限",
+          "特征值",
+          "线性化"
+        ]
+      },
+      {
+        "unit": "p04-zero-frequency",
+        "terms": [
+          "平衡",
+          "状态"
+        ]
+      },
+      {
+        "unit": "p04-amplitude-axis",
+        "terms": [
+          "初值",
+          "参数",
+          "平衡",
+          "振幅",
+          "暂态",
+          "状态",
+          "相位"
+        ]
+      },
+      {
+        "unit": "p04-hopf-evidence",
+        "terms": [
+          "导数",
+          "平衡",
+          "模型",
+          "特征值",
+          "超临界"
+        ]
+      },
+      {
+        "unit": "P04-C03-S02",
+        "terms": [
+          "Hopf 分岔",
+          "分岔",
+          "初值",
+          "参数",
+          "导数",
+          "平衡",
+          "振幅",
+          "无量纲",
+          "暂态",
+          "极限环",
+          "模型",
+          "特征值",
+          "状态",
+          "超临界",
+          "轨迹",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "p04-logistic-iterate",
+        "terms": [
+          "初值",
+          "参数",
+          "无量纲",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-interval-invariance",
+        "terms": [
+          "logistic 映射",
+          "固定点",
+          "状态"
+        ]
+      },
+      {
+        "unit": "p04-map-stability",
+        "terms": [
+          "logistic 映射",
+          "不动点",
+          "参数",
+          "导数"
+        ]
+      },
+      {
+        "unit": "p04-periodic-not-chaotic",
+        "terms": [
+          "logistic 映射",
+          "周期二",
+          "混沌",
+          "输入"
+        ]
+      },
+      {
+        "unit": "P04-C04-S01",
+        "terms": [
+          "logistic 映射",
+          "不动点",
+          "分岔",
+          "初值",
+          "参数",
+          "周期二",
+          "无量纲",
+          "时间步长",
+          "相线",
+          "蛛网图",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-prediction-horizon",
+        "terms": [
+          "logistic 映射",
+          "初值",
+          "参数",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-strict-threshold",
+        "terms": []
+      },
+      {
+        "unit": "p04-bounded-separation",
+        "terms": [
+          "导数",
+          "状态",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-precision-merge",
+        "terms": [
+          "初值",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-map-not-step",
+        "terms": [
+          "logistic 映射",
+          "初值",
+          "参数",
+          "数值误差",
+          "模型"
+        ]
+      },
+      {
+        "unit": "P04-C04-S02",
+        "terms": [
+          "logistic 映射",
+          "初值",
+          "参数",
+          "模型",
+          "状态",
+          "舍入误差",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-finite-growth",
+        "terms": [
+          "logistic 映射",
+          "不动点",
+          "参数",
+          "导数",
+          "状态",
+          "自然对数",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-finite-positive",
+        "terms": [
+          "初值",
+          "参数",
+          "导数",
+          "暂态",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-log-zero",
+        "terms": [
+          "导数",
+          "极限"
+        ]
+      },
+      {
+        "unit": "p04-exact-special-orbit",
+        "terms": [
+          "logistic 映射",
+          "周期二",
+          "固定点"
+        ]
+      },
+      {
+        "unit": "p04-digits-vs-certainty",
+        "terms": [
+          "初值",
+          "参数",
+          "状态",
+          "舍入误差",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "P04-C04-S03",
+        "terms": [
+          "logistic 映射",
+          "不动点",
+          "初值",
+          "参数",
+          "导数",
+          "暂态",
+          "有限时间 Lyapunov 指数",
+          "极限",
+          "模型",
+          "混沌",
+          "状态",
+          "自然对数",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-local-energy",
+        "terms": [
+          "导数",
+          "状态",
+          "轨迹",
+          "输入",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "p04-positive-definite",
+        "terms": [
+          "平衡",
+          "正定",
+          "正定性",
+          "状态"
+        ]
+      },
+      {
+        "unit": "p04-local-domain",
+        "terms": [
+          "初值",
+          "吸引域",
+          "子水平集",
+          "导数",
+          "局部渐近稳定",
+          "平衡",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-global-decay",
+        "terms": [
+          "初值",
+          "导数",
+          "平衡",
+          "径向无界",
+          "正定",
+          "渐近稳定",
+          "状态",
+          "状态空间",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-function-vs-exponent",
+        "terms": [
+          "导数",
+          "平衡",
+          "正定",
+          "状态",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "P04-C05-S01",
+        "terms": [
+          "Lyapunov 函数",
+          "Lyapunov 指数",
+          "吸引域",
+          "子水平集",
+          "导数",
+          "局部渐近稳定",
+          "平衡",
+          "径向无界",
+          "无量纲",
+          "梯度",
+          "正定",
+          "渐近稳定",
+          "状态",
+          "相线",
+          "轨迹",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "p04-rotating-energy",
+        "terms": [
+          "导数",
+          "状态",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-semidefinite-counterexample",
+        "terms": [
+          "初值",
+          "向量",
+          "状态",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-missed-invariant-set",
+        "terms": [
+          "初值",
+          "导数",
+          "平衡",
+          "状态",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-sampled-proof",
+        "terms": []
+      },
+      {
+        "unit": "P04-C05-S02",
+        "terms": [
+          "LaSalle 不变性原理",
+          "不变集",
+          "子水平集",
+          "导数",
+          "平衡",
+          "无量纲",
+          "模型",
+          "正定性",
+          "渐近稳定",
+          "状态",
+          "范数",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-plane-autonomous",
+        "terms": [
+          "平衡",
+          "庞加莱–本迪克松定理",
+          "极限",
+          "紧集",
+          "自治系统",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-lorenz-equilibria",
+        "terms": [
+          "参数",
+          "平衡",
+          "洛伦兹系统"
+        ]
+      },
+      {
+        "unit": "p04-lorenz-field",
+        "terms": [
+          "偏导",
+          "参数",
+          "无量纲",
+          "状态",
+          "输入",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "p04-lorenz-local-scope",
+        "terms": [
+          "初值",
+          "平衡",
+          "洛伦兹系统",
+          "状态",
+          "线性化",
+          "轨迹",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "P04-C06-S01",
+        "terms": [
+          "中心差分",
+          "偏导",
+          "参数",
+          "常微分方程",
+          "平衡",
+          "庞加莱–本迪克松定理",
+          "斜率",
+          "极限",
+          "极限环",
+          "模型",
+          "模态",
+          "混沌",
+          "特征值",
+          "状态",
+          "相位",
+          "矩阵",
+          "紧集",
+          "自治系统",
+          "轨迹",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "p04-volume-bounded",
+        "terms": [
+          "初值",
+          "散度",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-lorenz-bound",
+        "terms": [
+          "内积",
+          "参数",
+          "导数",
+          "无量纲",
+          "梯度",
+          "状态",
+          "轨迹",
+          "输入",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "p04-rk4-linear-step",
+        "terms": [
+          "初值",
+          "斜率",
+          "时间步长",
+          "状态"
+        ]
+      },
+      {
+        "unit": "p04-aligned-error",
+        "terms": [
+          "状态",
+          "范数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-short-window-check",
+        "terms": [
+          "混沌",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "P04-C06-S02",
+        "terms": [
+          "偏导",
+          "初值",
+          "参数",
+          "导数",
+          "平衡",
+          "散度",
+          "斜率",
+          "无量纲",
+          "显式中点法",
+          "梯度",
+          "状态",
+          "矩阵",
+          "行列式",
+          "解析解",
+          "轨迹",
+          "输出",
+          "链式法则",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "p04-section-projection",
+        "terms": [
+          "投影"
+        ]
+      },
+      {
+        "unit": "p04-directed-section",
+        "terms": [
+          "无量纲",
+          "状态",
+          "观测",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-return-intervals",
+        "terms": [
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-section-limits",
+        "terms": [
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "P04-C06-S03",
+        "terms": [
+          "庞加莱截面",
+          "投影",
+          "数组",
+          "暂态",
+          "状态",
+          "轨迹",
+          "首次返回映射"
+        ]
+      },
+      {
+        "unit": "p04-tangent-growth",
+        "terms": [
+          "自然对数",
+          "范数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-linear-tangent",
+        "terms": [
+          "向量",
+          "范数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-growth-units",
+        "terms": [
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-quasiperiodic-counterexample",
+        "terms": [
+          "初值",
+          "导数",
+          "相位"
+        ]
+      },
+      {
+        "unit": "p04-strange-evidence",
+        "terms": [
+          "分形维数",
+          "初值",
+          "吸引子",
+          "散度",
+          "数值误差",
+          "混沌",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "P04-C06-S04",
+        "terms": [
+          "中心差分",
+          "准周期",
+          "分形维数",
+          "初值",
+          "向量",
+          "吸引子",
+          "奇异吸引子",
+          "无量纲",
+          "混沌",
+          "状态",
+          "相位",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-cap-equilibrium",
+        "terms": [
+          "初值",
+          "模型",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-cap-source",
+        "terms": [
+          "参数",
+          "振幅",
+          "暂态",
+          "模型",
+          "观测",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-cap-basins",
+        "terms": [
+          "初值",
+          "平衡",
+          "时间步长",
+          "状态",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-cap-period",
+        "terms": [
+          "无量纲",
+          "状态",
+          "观测",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-cap-precision",
+        "terms": [
+          "导数",
+          "范数",
+          "输入"
+        ]
+      },
+      {
+        "unit": "p04-cap-irregular",
+        "terms": [
+          "初值",
+          "参数",
+          "平衡",
+          "状态",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "p04-cap-region",
+        "terms": [
+          "内积",
+          "参数",
+          "导数",
+          "无量纲",
+          "梯度",
+          "状态",
+          "轨迹",
+          "输入",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "p04-cap-scope",
+        "terms": [
+          "奇异吸引子",
+          "子水平集",
+          "导数",
+          "径向无界",
+          "散度"
+        ]
+      },
+      {
+        "unit": "P04-SUMMARY",
+        "terms": [
+          "logistic 映射",
+          "初值",
+          "参数",
+          "多稳态",
+          "子水平集",
+          "导数",
+          "平衡",
+          "散度",
+          "无量纲",
+          "暂态",
+          "模型",
+          "混沌",
+          "状态",
+          "相位",
+          "解析解",
+          "轨迹",
+          "输入"
+        ]
+      },
+      {
+        "unit": "overview:4.1",
+        "terms": [
+          "吸引域",
+          "导数",
+          "平衡",
+          "状态",
+          "相位",
+          "线性化",
+          "解析解",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "overview:4.2",
+        "terms": [
+          "复数",
+          "振幅",
+          "暂态",
+          "相位",
+          "范数",
+          "输入",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "overview:4.3",
+        "terms": [
+          "参数",
+          "平衡",
+          "斜率",
+          "显式中点法",
+          "特征值"
+        ]
+      },
+      {
+        "unit": "overview:4.4",
+        "terms": [
+          "不动点",
+          "初值",
+          "导数",
+          "数值误差",
+          "自然对数",
+          "轨迹"
+        ]
+      },
+      {
+        "unit": "overview:4.5",
+        "terms": [
+          "子水平集",
+          "导数",
+          "平衡",
+          "梯度",
+          "模型",
+          "正定",
+          "状态",
+          "范数",
+          "轨迹",
+          "链式法则"
+        ]
+      },
+      {
+        "unit": "overview:4.6",
+        "terms": [
+          "吸引域",
+          "吸引子",
+          "导数",
+          "平衡",
+          "散度",
+          "状态",
+          "轨迹",
+          "雅可比矩阵"
+        ]
+      },
+      {
+        "unit": "overview:4.summary",
+        "terms": [
+          "初值",
+          "导数",
+          "平衡",
+          "模型",
+          "混沌",
+          "轨迹"
+        ]
+      }
+    ],
+    "issues": []
+  },
+  "teaching_check_method": {
+    "method": "调用项目 check_teaching；本轮临时包装只将导论至第三篇实际使用的术语作为 seen 集合传入首次术语检查，承接前文概念。教学结构、题库同步和链接检查保持原逻辑。",
+    "wrapper": ".work/part04-rewrite-20261005/teaching.py",
+    "repository_checker_changed": false,
+    "raw_cli_without_carry_override_claimed_passed": false
+  },
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/04-01-多稳态与吸引域/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/04-02-自维持振荡与极限环/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/04-03-分岔与参数变化/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/04-04-混沌与可预测范围/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/04-06-连续时间混沌与奇异吸引子/",
+        "status": 200
+      },
+      {
+        "path": "/parts/04-非线性动态行为/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/04-01-多稳态与吸引域/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/04-02-自维持振荡与极限环/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/04-03-分岔与参数变化/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/04-04-混沌与可预测范围/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/04-06-连续时间混沌与奇异吸引子/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p04-switch-exact",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p04-basin-window",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p04-lorenz-bound",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p04-cap-equilibrium",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p04-finite-growth",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p04-directed-section",
+        "status": 200,
+        "latest_statement_and_version": true
+      }
+    ],
+    "served_catalog_equals_current_file": true,
+    "html_rendered_without_execution": [
+      "P04-C01-S01",
+      "P04-C01-S02",
+      "P04-C01-S03",
+      "P04-C02-S01",
+      "P04-C02-S02",
+      "P04-C03-S01",
+      "P04-C03-S02",
+      "P04-C04-S01",
+      "P04-C04-S02",
+      "P04-C04-S03",
+      "P04-C05-S01",
+      "P04-C05-S02",
+      "P04-C06-S01",
+      "P04-C06-S02",
+      "P04-C06-S03",
+      "P04-C06-S04",
+      "P04-SUMMARY"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout or interaction behavior."
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All 73 attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "title": "D2L：微积分",
+      "url": "https://zh.d2l.ai/chapter_preliminaries/calculus.html",
+      "use": "阅读从差商例子进入导数、再以具体数值和绘图检查的段落，借鉴先解释变化与符号再写规则的顺序。"
+    },
+    {
+      "title": "Python Causality Handbook：Introduction To Causality",
+      "url": "https://matheusfacure.github.io/python-causality-handbook/01-Introduction-To-Causality.html",
+      "use": "阅读从平板教学案例及反例进入形式记号的段落，借鉴由具体比较提出问题、用反例限定解释的组织。"
+    },
+    {
+      "title": "MIT：Nonlinear Dynamics and Chaos，Lecture Notes",
+      "url": "https://ocw.mit.edu/courses/12-006j-nonlinear-dynamics-chaos-fall-2022/pages/lecture-notes/",
+      "use": "查看讲义目录与第20—21、24讲入口，参考 Lorenz 方程的物理来源与增长率主题；本轮不宣称完整复核全部讲义。"
+    }
+  ],
+  "authorization": {
+    "source_thread": "01a0aeab-1fe6-7080-b8f6-4a4f41c47326",
+    "user_message": "01a10bb9-a379-7561-ab98-9ec979d92176",
+    "verified_direct_human_request": true,
+    "scope": "按监督会话逐篇派发第2—17篇，最终由用户统一阅读验收。本轮第四篇及监督派发中指定的第三篇三处文案勘误。"
+  },
+  "specific_prose_corrections": [
+    {
+      "lesson": "P04-C04-S03",
+      "before": "正文称40位精度、35次更新，而普通课节图的原代码使用50位、80次。",
+      "after": "按原代码说明该图使用50位、80次；篇末综合原有40位、35次实验另外说明。",
+      "code_changed": false
+    },
+    {
+      "id": "p04-sampled-proof",
+      "before": "原解析将选项中的运算精度说成打印精度。",
+      "after": "解释提高同一批点的运算精度仍不能约束没有采样的位置。",
+      "answer_changed": false
+    },
+    {
+      "lesson": "P04-SUMMARY",
+      "before": "参数说明将固定积分步数误注为定积分。",
+      "after": "改为从每个初值执行的中点更新次数。",
+      "computation_changed": false,
+      "id": "p04-cap-basins"
+    }
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part04-rewrite-20261005/teaching.py",
+      "result": "17本、81题同步与链接检查通过；术语继承规则见 teaching_check_method"
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part04-rewrite-20261005/audit.py",
+      "result": "102个代码单元及输出、判题字段、其他篇导览、三处指定勘误和实际成绩算法核对通过；独立手算与代数检查通过"
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part04-rewrite-20261005/refresh.py",
+      "result": "服务刷新前后73份学习记录与完整实时进度相同，未提交作答"
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part04-rewrite-20261005/preview.py",
+      "result": "12个网页路由与6道新版题面HTTP检查、17本HTML静态转换通过；未作浏览器视觉检查"
+    },
+    {
+      "command": "node --check web/nonlinear/app.mjs; node --check web/nonlinear/lorenz-app.mjs",
+      "result": "两项语法检查均通过"
+    }
+  ]
+}

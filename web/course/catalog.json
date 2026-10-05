@@ -1560,15 +1560,14 @@
           "id": "4.1",
           "title": "多稳态与吸引域",
           "url": "/chapters/04-01-多稳态与吸引域/",
-          "goals": "区分平衡（equilibrium）点、局部稳定与吸引域（basin of attraction），解释同一参数（parameter）下的初值（initial condition）依赖；4.1.3 补充吸引子（attractor）、不变集（invariant set）与点到集合距离的统一解释，并以纯旋转区分不变与吸引。",
-          "prerequisites": "3.4；导数（derivative）、解析解（analytical solution）、平衡与局部线性化（linearization）。",
+          "goals": "从状态的变化方向求出三个平衡，比较一次扰动后的长期去向；用点到圆的距离解释吸引域（basin of attraction）和集合吸引。",
+          "prerequisites": "3.4；导数、解析解、平衡与局部线性化。",
           "knowledge": [
-            "从线性近似过渡到多个平衡",
-            "一维流向与局部导数判断",
-            "初值扫描和扰动跨越边界",
-            "新增概念桥接：状态空间（state space）中的轨迹（trajectory）、不变集、吸引子与吸引域，以点和圆的距离例子为下一章准备"
+            "手算活动开关的变化方向，求平衡与解析轨迹",
+            "从半步预测推导中点法，比较一次扰动、持续偏置和有限时间扫描",
+            "先求点到圆的距离，再解释不变、集合稳定与吸引域"
           ],
-          "focus": "区分平衡、稳定与吸引；用不同初值探索吸引域，用点到集合的距离理解吸引子。",
+          "focus": "平衡时不动，邻近状态却可能远离；回到同一圆周时，两条轨迹也可能一直保留相位（phase）差。",
           "available": true,
           "lessons": [
             {
@@ -1576,7 +1575,7 @@
               "chapter_id": "4.1",
               "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/01-从三个平衡进入多稳态.ipynb",
               "title": "从三个平衡进入多稳态",
-              "outcome": "能用一维流向和局部导数区分平衡的稳定性，推导开关模型的解析解，并说明精确停在平衡与抵抗扰动的区别。",
+              "outcome": "先看一次变化把状态推向哪里，再求三个平衡与解析轨迹，解释停在平衡和抵抗扰动的区别。",
               "number": "4.1.1",
               "visualization": "web/nonlinear/index.html",
               "questions": [
@@ -1612,7 +1611,7 @@
               "chapter_id": "4.1",
               "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/02-吸引域扰动与有限时间扫描.ipynb",
               "title": "吸引域扰动与有限时间扫描",
-              "outcome": "能区分初始扰动和持续偏置，用显式中点法扫描初值，保留有限时间未决标签，并用解析解检查数值误差。",
+              "outcome": "把一次推离与持续偏置分开，用半步预测推导中点法，再比较初值扫描的终值与解析解。",
               "number": "4.1.2",
               "visualization": "web/nonlinear/index.html",
               "questions": [
@@ -1654,7 +1653,7 @@
               "chapter_id": "4.1",
               "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/03-从吸引状态到吸引集合.ipynb",
               "title": "从吸引状态到吸引集合",
-              "outcome": "能用不变性、点到集合的距离与吸引域区分吸引平衡、周期吸引和不吸引的中心。",
+              "outcome": "从一个点到一个圆的距离理解集合吸引，区分沿圆运动、趋近圆周和两条轨迹彼此靠拢。",
               "number": "4.1.3",
               "visualization": null,
               "questions": [
@@ -1692,14 +1691,14 @@
           "id": "4.2",
           "title": "自维持振荡与极限环",
           "url": "/chapters/04-02-自维持振荡与极限环/",
-          "goals": "根据输入（input）、暂态（transient）和多初值（initial condition）长期行为区分三种振荡，测量周期和振幅（amplitude）。",
-          "prerequisites": "4.1；第 3 篇的二维旋转、复数（complex number）、范数（norm）与链式法则（chain rule）。",
+          "goals": "比较撤去输入后的运动，从二维方程求半径与角度，再从等间隔记录的曲线测量周期、振幅（amplitude）和相位（phase）。",
+          "prerequisites": "4.1；第 3 篇的二维旋转、复数、范数与链式法则。",
           "knowledge": [
-            "回顾阻尼振荡（damped oscillation）并加入周期驱动",
-            "引入一个简化自激振子及其变量",
-            "用相图（phase portrait）与周期测量辨认长期行为"
+            "给阻尼旋转加入周期输入，求出周期特解",
+            "从二维方程推导半径与角度，比较不同初始半径",
+            "测量记录曲线的振幅、峰间周期和插值过零时间，再比较扰动前后的相位"
           ],
-          "focus": "比较衰减振荡、外部驱动和自维持振荡（self-sustained oscillation）；从多初值轨迹（trajectory）辨认周期、振幅与极限环（limit cycle）。",
+          "focus": "说明振荡由什么维持；把恢复振幅与恢复相位分开，写清暂态（transient）截断、峰值和穿零规则。",
           "available": true,
           "lessons": [
             {
@@ -1707,7 +1706,7 @@
               "chapter_id": "4.2",
               "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/01-阻尼受迫与自维持振荡.ipynb",
               "title": "阻尼受迫与自维持振荡",
-              "outcome": "能通过方程与输入对照区分阻尼、受迫和自维持振荡，从二维方程推导径向运动，并解释稳定极限环与精确原点的例外。",
+              "outcome": "比较撤去输入前后的振荡，从二维方程求半径与角度，说明自维持节律怎样恢复振幅。",
               "number": "4.2.1",
               "visualization": "web/nonlinear/index.html",
               "questions": [
@@ -1749,7 +1748,7 @@
               "chapter_id": "4.2",
               "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/02-周期振幅与相位的测量.ipynb",
               "title": "周期振幅与相位的测量",
-              "outcome": "能明确暂态窗口、峰值和过零规则，计算振幅与周期，分开采样误差、动力学暂态和扰动后的相位差。",
+              "outcome": "从一段采样曲线量振幅与周期，写清暂态、严格峰和过零规则，再比较扰动后的相位。",
               "number": "4.2.2",
               "visualization": "web/nonlinear/index.html",
               "questions": [
@@ -1787,14 +1786,14 @@
           "id": "4.3",
           "title": "分岔与参数变化",
           "url": "/chapters/04-03-分岔与参数变化/",
-          "goals": "区分参数（parameter）改变引起的行为转变与暂态（transient）、扫描方向、数值误差（numerical error）造成的假象。",
-          "prerequisites": "4.2；平衡（equilibrium）条件、显式中点法（explicit midpoint method）与局部特征值（eigenvalue）。",
+          "goals": "从平衡条件求折叠点，从径向方程求周期半径，再比较扫描结果怎样随等待时间和初始化改变。",
+          "prerequisites": "4.2；平衡条件、显式中点法（explicit midpoint method）与局部特征值。",
           "knowledge": [
-            "平衡分支与稳定性标记",
-            "开关和振子的参数扫描",
-            "正反扫描、步长细化及暂态检查"
+            "联立平衡方程和零斜率，展开折叠点附近的变化率",
+            "比较接续、重启和正反扫描，改变等待时间",
+            "连接原点特征值与径向运动，解释周期半径、临界慢衰减和零频率情形"
           ],
-          "focus": "追踪平衡和周期轨道随参数的变化；区分分岔（bifurcation）、滞回（hysteresis）与短暂响应。",
+          "focus": "把解析阈值与扫描中的跳变区间分开；用同一参数处的平衡和周期半径解释长期变化。",
           "available": true,
           "lessons": [
             {
@@ -1802,7 +1801,7 @@
               "chapter_id": "4.3",
               "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.ipynb",
               "title": "平衡分支折叠与滞回",
-              "outcome": "能从平衡方程和零导数求折叠点，区分解析分支与有限扫描，比较接续/重启及正反方向，并保留转变区间的分辨率。",
+              "outcome": "联立平衡方程与零斜率求折叠点，再用正反扫描解释等待时间和初值接续怎样影响跳变。",
               "number": "4.3.1",
               "visualization": "web/nonlinear/index.html",
               "questions": [
@@ -1844,7 +1843,7 @@
               "chapter_id": "4.3",
               "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/02-从平衡到周期的Hopf转变.ipynb",
               "title": "从平衡到周期的Hopf转变",
-              "outcome": "能连接原点特征值、径向方程与周期分支，解释超临界 Hopf 转变及临界慢衰减，区分长期半径和单点观测。",
+              "outcome": "把原点附近的衰减与旋转连接到径向方程，解释周期半径怎样从零长出及临界点的慢衰减。",
               "number": "4.3.2",
               "visualization": "web/nonlinear/index.html",
               "questions": [
@@ -1888,14 +1887,14 @@
           "id": "4.4",
           "title": "混沌与可预测范围",
           "url": "/chapters/04-04-混沌与可预测范围/",
-          "goals": "在确定性映射中测量邻近初值（initial condition）的分离，区分初值误差、数值误差（numerical error）与随机机制。",
-          "prerequisites": "4.3、2.4；离散递推、导数（derivative）、自然对数（natural logarithm）与数值误差。",
+          "goals": "逐代计算种群比例与扰动倍率，比较周期和邻近轨迹分离，再检查有限时间增长率与算术精度。",
+          "prerequisites": "4.3、2.4；离散递推、导数、自然对数与数值误差。",
           "knowledge": [
-            "离散种群映射与参数（parameter）范围",
-            "邻近轨迹及有限时间增长率",
-            "有限精度、饱和分离和预测阈值，说明与连续 ODE 的差别"
+            "从逐代手算进入不动点（fixed point）和二周期，用扰动倍率判断稳定性",
+            "比较两条邻近轨迹，求首次超出容许误差的代次",
+            "推导对数增长率，再用特殊初值与高精度运算解释有限窗口中的结果"
           ],
-          "focus": "比较相邻初值的分离和预测窗口；联系局部伸缩、长期轨迹（trajectory）与数值精度。",
+          "focus": "把每代倍率的乘积写成对数和；明确误差阈值、初值和窗口，解释距离合并、增长与饱和。",
           "available": true,
           "lessons": [
             {
@@ -1903,7 +1902,7 @@
               "chapter_id": "4.4",
               "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/01-离散映射的不动点与周期.ipynb",
               "title": "离散映射的不动点与周期",
-              "outcome": "能区分代次映射和微分方程，证明 logistic 映射的区间保持性，用扰动倍率判断不动点稳定，并识别周期二行为。",
+              "outcome": "逐代手算种群比例，求不动点与二周期，再用扰动倍率判断它们是否吸引邻近轨迹。",
               "number": "4.4.1",
               "visualization": "web/nonlinear/index.html",
               "questions": [
@@ -1939,7 +1938,7 @@
               "chapter_id": "4.4",
               "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/02-邻近轨迹与预测期限.ipynb",
               "title": "邻近轨迹与预测期限",
-              "outcome": "能量化两个初值的逐代距离，按明确阈值报告有限预测期限，解释增长、饱和和精度合并，并区分三类误差来源。",
+              "outcome": "按代记录两条邻近轨迹的距离，找到首次超过容许误差的位置，再解释合并与饱和。",
               "number": "4.4.2",
               "visualization": "web/nonlinear/index.html",
               "questions": [
@@ -1981,7 +1980,7 @@
               "chapter_id": "4.4",
               "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/03-有限时间增长率与算术精度.ipynb",
               "title": "有限时间增长率与算术精度",
-              "outcome": "能推导切向扰动的有限时间对数增长率，处理零导数，比较 float 与 Decimal 轨迹，并把有限证据与长期混沌性质分开。",
+              "outcome": "把逐代倍率的乘积写成对数和，比较浮点与高精度轨迹，说明增长率取决于初值和观察窗口。",
               "number": "4.4.3",
               "visualization": "web/nonlinear/index.html",
               "questions": [
@@ -2025,14 +2024,14 @@
           "id": "4.5",
           "title": "用 Lyapunov 函数分析稳定性",
           "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
-          "goals": "逐项检查候选函数的正定性（positive definiteness）、沿轨迹（trajectory）导数（derivative）与适用区域，区分稳定、渐近稳定（asymptotic stability）及证据不足。",
-          "prerequisites": "4.4、3.4；梯度（gradient）、链式法则（chain rule）、二维旋转与范数（norm）。",
+          "goals": "用函数值衡量偏离平衡的程度，沿轨迹求导，再由符号和区域条件判断稳定与收敛。",
+          "prerequisites": "4.4、3.4；梯度、链式法则、二维旋转与范数。",
           "knowledge": [
-            "能量式函数的直觉与定义",
-            "多变量链式法则计算沿轨迹导数",
-            "检查条件和区域，区分 Lyapunov 函数（Lyapunov function）与 Lyapunov 指数（Lyapunov exponent）"
+            "用一个标量例子解释正定（positive definite）、沿轨迹导数和子水平集（sublevel set）",
+            "在二维模型中用链式法则求导，给出包含于有效区域的充分条件",
+            "比较纯旋转与单方向衰减，再检查零导数集合中的运动"
           ],
-          "focus": "构造能量式指标，检查其正定性与沿轨迹的变化；由下降条件判断稳定与收敛。",
+          "focus": "函数值不增加时，状态仍可能绕圈；从零导数集合中的运动判断还能否得到收敛结论。",
           "available": true,
           "lessons": [
             {
@@ -2040,7 +2039,7 @@
               "chapter_id": "4.5",
               "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/01-候选函数与局部稳定性证明.ipynb",
               "title": "候选函数与局部稳定性证明",
-              "outcome": "能从正定性和沿轨迹导数构造稳定性论证，解释子水平集与局部区域，区分稳定、渐近稳定和全局结论。",
+              "outcome": "用一个始终为正的函数衡量偏离平衡的程度，计算沿轨迹的导数，再确定稳定性结论的区域。",
               "number": "4.5.1",
               "visualization": null,
               "questions": [
@@ -2082,7 +2081,7 @@
               "chapter_id": "4.5",
               "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/02-非严格衰减与不能省略的条件.ipynb",
               "title": "非严格衰减与不能省略的条件",
-              "outcome": "能用二维反例区分不增与吸引，分析零导数集合中的运动，并为新区域写出可检查的充分不等式。",
+              "outcome": "比较纯旋转和单方向衰减，观察函数不增加时状态能否收敛，再检查零导数集合中的运动。",
               "number": "4.5.2",
               "visualization": null,
               "questions": [
@@ -2120,17 +2119,15 @@
           "id": "4.6",
           "title": "连续时间混沌与奇异吸引子",
           "url": "/chapters/04-06-连续时间混沌与奇异吸引子/",
-          "goals": "分析洛伦兹系统（Lorenz system）的平衡（equilibrium）、对称性与有界性，显式实现连续求解和切向扰动更新，结合截面、增长率及误差检查解释奇异吸引子（strange attractor）的几何与混沌（chaos）证据。",
-          "prerequisites": "4.5、2.4、3.4；吸引子（attractor）与吸引域（basin of attraction）、周期运动、离散增长率、雅可比矩阵（Jacobian matrix）和函数沿轨迹（trajectory）导数（derivative）。",
+          "goals": "从 Lorenz 方程求平衡、对称性和有界性，让状态与小扰动共同推进，再用截面交点、增长率和步长对照解释复杂运动。",
+          "prerequisites": "4.5、2.4、3.4；吸引子（attractor）与吸引域（basin of attraction）、周期运动、离散增长率、雅可比矩阵和函数沿轨迹导数。",
           "knowledge": [
-            "连续流与维数条件，说明平面自治系统（autonomous system）的限制及外部周期驱动的例外",
-            "Lorenz 方程、变量含义、平衡与局部稳定",
-            "有界性和体积收缩，区分集合吸引与内部轨迹分离",
-            "显式积分、短时收敛与有限预测期限",
-            "定向截面、返回关系、分段切向增长率与奇异几何",
-            "汇总解析、数值与引用定理的证据边界，对照稳态、周期与混沌"
+            "从平面自治运动的限制进入三维 Lorenz 方程，解释变量、平衡和对称性",
+            "展开函数导数与散度（divergence），再手写 RK4 比较共同时间点",
+            "记录从下向上穿越平面的交点，求插值时间和返回间隔",
+            "推导小扰动方程，按实际时长累计伸长，再结合窗口、步长和特殊轨道解释结果"
           ],
-          "focus": "从平衡、对称性和有界性理解洛伦兹轨迹；用截面与切向扰动连接几何结构和敏感性。",
+          "focus": "轨迹保持有界时，邻近状态仍可能分离；同向交点和按时间累计的伸长分别说明长期结构与局部敏感性。",
           "available": true,
           "lessons": [
             {
@@ -2138,7 +2135,7 @@
               "chapter_id": "4.6",
               "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/01-从平面流到Lorenz系统.ipynb",
               "title": "从平面流到Lorenz系统",
-              "outcome": "能说明平面自治流定理的条件，求 Lorenz 平衡和雅可比矩阵，区分精确平衡与局部稳定。",
+              "outcome": "从平面运动的限制进入三维 Lorenz 方程，解释变量、对称性、平衡和局部扰动的变化。",
               "number": "4.6.1",
               "visualization": "web/nonlinear/lorenz.html",
               "questions": [
@@ -2174,7 +2171,7 @@
               "chapter_id": "4.6",
               "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/02-有界耗散与可信积分.ipynb",
               "title": "有界耗散与可信积分",
-              "outcome": "能推导有界性与散度公式，手写 RK4，按共同时间点检查短窗收敛并解释长时比较的限制。",
+              "outcome": "展开一个函数的导数证明轨迹有界，再手写 RK4，用共同时间点的差异检查短时计算。",
               "number": "4.6.2",
               "visualization": "web/nonlinear/lorenz.html",
               "questions": [
@@ -2216,7 +2213,7 @@
               "chapter_id": "4.6",
               "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/03-截面与返回中的长期结构.ipynb",
               "title": "截面与返回中的长期结构",
-              "outcome": "能定义同向截面与返回，插值同一交点的时间和状态，并区分完整返回映射与投影散点。",
+              "outcome": "记录轨迹从下向上穿过平面的时刻，用同一插值比例求时间和坐标，再比较相邻交点。",
               "number": "4.6.3",
               "visualization": "web/nonlinear/lorenz.html",
               "questions": [
@@ -2252,7 +2249,7 @@
               "chapter_id": "4.6",
               "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/04-切向增长奇异几何与预测边界.ipynb",
               "title": "切向增长奇异几何与预测边界",
-              "outcome": "能推导连续变分方程，按实际时间汇总分段增长，区分有限方向增长、长期最大指数与严格存在性。",
+              "outcome": "让状态与小扰动一起推进，按实际时长汇总伸长，结合截面与误差对照解释复杂运动。",
               "number": "4.6.4",
               "visualization": "web/nonlinear/lorenz.html",
               "questions": [
@@ -2298,13 +2295,13 @@
         "assessment": true,
         "title": "非线性行为与证据边界",
         "url": "/parts/04-非线性动态行为/综合练习/",
-        "goals": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，解释这些证据各自对应的动态行为。",
-        "prerequisites": "本篇六章。",
-        "focus": "集合与单轨迹（trajectory）、定向事件（event）与投影（projection）、每步与每时间增长、有界性与平衡（equilibrium）稳定分别核对。",
+        "goals": "用四个模型连接平衡、周期、返回和增长率，逐项说明每项计算支持怎样的动态判断。",
+        "prerequisites": "本篇六章的平衡分析、周期测量、离散映射、函数导数与连续积分。",
+        "focus": "比较到集合的距离与轨迹间距离；写清穿越方向、列表顺序和增长率的时间单位，再把计算结果接回模型。",
         "knowledge": [
-          "不变集（invariant set）合与初值（initial condition） → 多稳态（multistability）、周期和吸引域（basin of attraction）",
-          "分岔（bifurcation）、映射与连续流 → 返回和预测范围",
-          "函数导数（derivative）与误差对照 → 理解有界性与稳定性"
+          "从初值和扰动判断长期趋向平衡还是周期轨道",
+          "按同一方向记录截面交点，分别计算每代与每单位时间的增长",
+          "结合函数导数、步长对照与特殊初值解释稳定、有界和混沌（chaos）证据"
         ],
         "lessons": [
           {
@@ -2312,17 +2309,17 @@
             "chapter_id": "4.summary",
             "path": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb",
             "title": "非线性行为与证据边界",
-            "outcome": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，解释这些证据各自对应的动态行为。",
+            "outcome": "用四个模型连接平衡、周期、返回和增长率，逐项说明每项计算支持怎样的动态判断。",
             "number": "篇末综合",
             "visualization": null,
             "overview": {
-              "goals": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，解释这些证据各自对应的动态行为。",
-              "prerequisites": "本篇六章。",
-              "focus": "集合与单轨迹、定向事件与投影、每步与每时间增长、有界性与平衡稳定分别核对。",
+              "goals": "用四个模型连接平衡、周期、返回和增长率，逐项说明每项计算支持怎样的动态判断。",
+              "prerequisites": "本篇六章的平衡分析、周期测量、离散映射、函数导数与连续积分。",
+              "focus": "比较到集合的距离与轨迹间距离；写清穿越方向、列表顺序和增长率的时间单位，再把计算结果接回模型。",
               "knowledge": [
-                "不变集合与初值 → 多稳态、周期和吸引域",
-                "分岔、映射与连续流 → 返回和预测范围",
-                "函数导数与误差对照 → 理解有界性与稳定性"
+                "从初值和扰动判断长期趋向平衡还是周期轨道",
+                "按同一方向记录截面交点，分别计算每代与每单位时间的增长",
+                "结合函数导数、步长对照与特殊初值解释稳定、有界和混沌证据"
               ]
             },
             "questions": [

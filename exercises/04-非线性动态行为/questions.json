@@ -8,7 +8,7 @@
     "chapter": "4.1",
     "title": "三个不动点具有相同性质吗",
     "type": "choice",
-    "statement": "理想开关 x′=x−x³ 中，x 是无量纲（dimensionless）偏差。哪些说法成立？",
+    "statement": "理想开关 x′=x−x³ 中，x 是无量纲偏差。哪些说法成立？",
     "learning_targets": [
       "T1"
     ],
@@ -20,19 +20,19 @@
     "options": [
       {
         "id": "A",
-        "text": "方程的平衡（equilibrium）点为 x=−1、x=0 和 x=1。"
+        "text": "方程的平衡点为 x=−1、x=0 和 x=1。"
       },
       {
         "id": "B",
-        "text": "从 x=0 精确起步后保持不动，说明小扰动也会回到 x=0，因此该点渐近稳定（asymptotic stability）。"
+        "text": "从 x=0 精确起步后保持不动，说明小扰动也会回到 x=0，因此该点渐近稳定。"
       },
       {
         "id": "C",
-        "text": "流向函数 f(x)=x−x³ 在 x=−1 和 x=1 处的导数（derivative）都为 −2。"
+        "text": "变化率函数 f(x)=x−x³ 在 x=−1 和 x=1 处的导数都为 −2。"
       },
       {
         "id": "D",
-        "text": "从足够小的正初值（initial condition）出发，解最终趋向 x=1。"
+        "text": "从足够小的正初值出发，解最终趋向 x=1。"
       }
     ],
     "constraints": []
@@ -46,7 +46,7 @@
     "chapter": "4.1",
     "title": "按解析式预测开关状态",
     "type": "python",
-    "statement": "给定无偏置开关 x′=x−x³ 的初值（initial condition），在指定无量纲（dimensionless）时刻计算状态（state）。零初值必须保持为零。",
+    "statement": "活动偏差 x 按无偏置开关 x′=x−x³ 变化。给定时刻 0 的初值，使用解析式计算指定时刻的状态；状态与时间均为无量纲量。",
     "learning_targets": [
       "T1"
     ],
@@ -58,13 +58,13 @@
       {
         "name": "initial",
         "type": "float",
-        "description": "时刻 0 的无量纲状态。",
+        "description": "时刻 0 的活动偏差 x。",
         "unit": "1"
       },
       {
         "name": "times",
         "type": "list[float]",
-        "description": "要求计算的时刻，按输入（input）顺序返回。",
+        "description": "需要求状态的时刻列表，保持所给顺序。",
         "unit": "1"
       }
     ],
@@ -72,7 +72,7 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "每个时刻的 x。",
+        "description": "与 times 逐项对应的 x(t)。",
         "unit": "1"
       }
     ],
@@ -86,7 +86,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "核对 t=0、initial=0、±1 平衡（equilibrium）及正负对称性。",
+    "hint": "分别核对时刻 0、零初值和两个平衡初值 ±1；正负初值的结果应互为相反数。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -126,7 +126,7 @@
     "chapter": "4.1",
     "title": "比较两个三次方程",
     "type": "choice",
-    "statement": "在平衡（equilibrium）x=0，甲为 x′=−x³，乙为 x′=x³，两者在原点的导数（derivative）均为 0。根据原点两侧流向判断原点是否渐近稳定（asymptotic stability），哪项正确？",
+    "statement": "甲为 x′=−x³，乙为 x′=x³。两者都在 x=0 有平衡，变化率函数在该点的导数均为 0。根据原点两侧的流向判断，哪项正确？",
     "learning_targets": [
       "T1"
     ],
@@ -164,7 +164,7 @@
     "chapter": "4.1",
     "title": "判断一维自治流",
     "type": "choice",
-    "statement": "光滑自治方程（autonomous equation）x′=f(x) 的解唯一。相邻两个平衡（equilibrium）之间没有其他零点。关于该区间内的非平衡解，哪项正确？",
+    "statement": "光滑自治方程（autonomous equation）x′=f(x) 的解唯一。相邻两个平衡之间没有其他零点。关于该区间内的非平衡解，哪项正确？",
     "learning_targets": [
       "T1"
     ],
@@ -202,7 +202,7 @@
     "chapter": "4.1",
     "title": "扫描初值但保留未决状态",
     "type": "python",
-    "statement": "对 x′=x−x³ 进行显式中点法（explicit midpoint method）积分，用有限观察时刻的状态（state）做阈值分类。分类 0 表示尚未越过阈值，不等同于平衡（equilibrium）或吸引域（basin of attraction）已确定。",
+    "statement": "用显式中点法（explicit midpoint method）推进开关 x′=x−x³ 的多个初值，再按观察结束时的状态做阈值分类。标签 0 表示终值尚未严格越过正负阈值；这个标签只描述本次观察结果。",
     "learning_targets": [
       "T1"
     ],
@@ -214,25 +214,25 @@
       {
         "name": "initials",
         "type": "list[float]",
-        "description": "待比较的初值（initial condition）。",
+        "description": "各条轨迹在时刻 0 的状态，按列表顺序计算。",
         "unit": "1"
       },
       {
         "name": "h",
         "type": "float",
-        "description": "每步无量纲（dimensionless）时间长度。",
+        "description": "每次更新经过的无量纲时间。",
         "unit": "1"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "每个初值积分的步数。",
+        "description": "对每个初值执行的更新次数。",
         "unit": "1"
       },
       {
         "name": "threshold",
         "type": "float",
-        "description": "分类阈值。",
+        "description": "判断终值所在一侧的正阈值。",
         "unit": "1"
       }
     ],
@@ -240,19 +240,19 @@
       {
         "name": "final_states",
         "type": "list[float]",
-        "description": "对应每个初值的末态。",
+        "description": "与 initials 逐项对应、时刻 steps*h 的状态。",
         "unit": "1"
       },
       {
         "name": "labels",
         "type": "list[int]",
-        "description": "x<−threshold 为 −1，x>threshold 为 1，其余为 0。",
+        "description": "与终值逐项对应的标签：x<−threshold 为 −1，x>threshold 为 1，其余为 0。",
         "unit": "1"
       }
     ],
-    "contract": "每步先计算 k1=x−x³，m=x+h*k1/2，再同步更新 x←x+h*(m−m³)；恰做 steps 步。用严格不等式分类。",
+    "contract": "每步从当前 x 计算 k1=x−x³、m=x+h*k1/2，再更新 x←x+h*(m−m³)；执行 steps 步，按严格不等式分类。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限；不修改输入列表。",
       "initials 长度 1—20，各项在 [−1.5,1.5]；0<h≤0.05；0≤steps≤3000；0<threshold<1。"
     ],
     "entrypoint": "solve",
@@ -260,7 +260,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "不要把有限时间标签直接称为吸引域判定；steps=0 返回原初值。",
+    "hint": "steps=0 时终值就是初值。标签 0 可能对应精确零解，也可能对应尚未越阈值的非零轨迹。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -321,19 +321,19 @@
       {
         "name": "state",
         "type": "float",
-        "description": "当前 x。",
+        "description": "这一步开始时的 x。",
         "unit": "1"
       },
       {
         "name": "bias",
         "type": "float",
-        "description": "本步保持不变的偏置。",
+        "description": "整个时间步内保持不变的持续偏置。",
         "unit": "1"
       },
       {
         "name": "h",
         "type": "float",
-        "description": "整步时间长度。",
+        "description": "这一步的无量纲时间长度。",
         "unit": "1"
       }
     ],
@@ -341,13 +341,13 @@
       {
         "name": "next_state",
         "type": "float",
-        "description": "一个整步后的近似 x。",
+        "description": "从 state 出发，推进 h 后的中点法近似值。",
         "unit": "1"
       }
     ],
-    "contract": "first=state−state³+bias；middle=state+h*first/2；next_state=state+h*(middle−middle³+bias)。第二次斜率（slope）必须在 middle 处计算。",
+    "contract": "first=state−state³+bias；middle=state+h*first/2；next_state=state+h*(middle−middle³+bias)。第二次斜率必须在 middle 处计算。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限。",
       "−1.5≤state≤1.5；−0.6≤bias≤0.6；0≤h≤0.05。"
     ],
     "entrypoint": "solve",
@@ -355,7 +355,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "整步使用中点斜率，起点仍是原 state。",
+    "hint": "半步预测用于求第二个斜率，整步增量仍加到原来的 state 上。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -375,7 +375,7 @@
           "h": 0.05
         },
         "expected": 0.020499950000000003,
-        "explanation": "first=0.4，middle=0.01；下一状态（state）为 0.05×(0.01−0.01³+0.4)=0.02049995。"
+        "explanation": "first=0.4，middle=0.01；下一状态为 0.05×(0.01−0.01³+0.4)=0.02049995。"
       }
     ]
   },
@@ -388,7 +388,7 @@
     "chapter": "4.1",
     "title": "施加一次状态扰动",
     "type": "choice",
-    "statement": "开关方程 x′=x−x³ 已在 x=−1。瞬时扰动把状态（state）改为 −1+Δ，随后恢复原方程。哪些判断成立？",
+    "statement": "开关方程 x′=x−x³ 已在 x=−1。瞬时扰动把状态改为 −1+Δ，随后恢复原方程。哪些判断成立？",
     "learning_targets": [
       "T1"
     ],
@@ -426,7 +426,7 @@
     "chapter": "4.1",
     "title": "解释两个初值的结果",
     "type": "choice",
-    "statement": "对开关方程 x′=x−x³，仅计算初值（initial condition）−0.01 和 0.01，末态分别接近 −1 和 1。只根据这两次计算，关于两类末态的分界能说什么？",
+    "statement": "对开关方程 x′=x−x³，仅计算初值−0.01 和 0.01，末态分别接近 −1 和 1。只根据这两次计算，关于两类末态的分界能说什么？",
     "learning_targets": [
       "T1"
     ],
@@ -464,7 +464,7 @@
     "chapter": "4.1",
     "title": "偏置改变的是规则还是起点",
     "type": "choice",
-    "statement": "把 x′=x−x³ 改成 x′=x−x³+0.1，并保持同一初值（initial condition）。哪些成立？",
+    "statement": "把 x′=x−x³ 改成 x′=x−x³+0.1，并保持同一初值。哪些成立？",
     "learning_targets": [
       "T1"
     ],
@@ -476,11 +476,11 @@
     "options": [
       {
         "id": "A",
-        "text": "增加常数项 0.1 属于参数（parameter）变化，它使每个状态（state）处的变化率都增加 0.1。"
+        "text": "增加常数项 0.1 属于参数变化，它使每个状态处的变化率都增加 0.1。"
       },
       {
         "id": "B",
-        "text": "增加常数项后，x=−1、0、1 仍都是原方程的平衡（equilibrium）点。"
+        "text": "增加常数项后，x=−1、0、1 仍都是新方程的平衡点。"
       },
       {
         "id": "C",
@@ -488,7 +488,7 @@
       },
       {
         "id": "D",
-        "text": "持续增加常数项 0.1，与保留原方程而仅在起始时把状态（state）增加 0.1，会得到相同演化。"
+        "text": "持续增加常数项 0.1，与保留原方程而仅在起始时把状态增加 0.1，会得到相同演化。"
       }
     ],
     "constraints": []
@@ -514,7 +514,7 @@
     "options": [
       {
         "id": "A",
-        "text": "记录外部周期驱动并将其撤去，再从不同初值（initial condition）观察振幅是衰减还是保持非零。"
+        "text": "记录外部周期驱动并将其撤去，再从不同初值观察振幅是衰减还是保持非零。"
       },
       {
         "id": "B",
@@ -540,7 +540,7 @@
     "chapter": "4.2",
     "title": "从半径与角度恢复二维轨迹",
     "type": "python",
-    "statement": "径向振子满足 R′=μR−R³、θ′=ω。给定二维初值（initial condition），按解析式计算状态（state），不能把负分量当作负浓度（concentration）。",
+    "statement": "二维活动偏差按径向振子 R′=μR−R³、θ′=ω 变化，其中 R=sqrt(x²+y²)，θ 为从正 x 轴量起的角度。给定初值 [x0,y0]，用解析式计算指定时刻的 [x(t),y(t)]；状态和时间均无量纲。",
     "learning_targets": [
       "T2"
     ],
@@ -564,13 +564,13 @@
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "二维无量纲（dimensionless）偏差 [x0,y0]。",
+        "description": "依次记录 x、y 两个初始活动偏差的列表 [x0,y0]。",
         "unit": "1"
       },
       {
         "name": "times",
         "type": "list[float]",
-        "description": "无量纲时刻。",
+        "description": "需要计算的时刻，按所给顺序返回状态。",
         "unit": "1"
       }
     ],
@@ -578,13 +578,13 @@
       {
         "name": "states",
         "type": "list[list[float]]",
-        "description": "依次返回 [x(t),y(t)]。",
+        "description": "每行依次记录对应时刻的 x(t)、y(t)，行顺序与 times 一致。",
         "unit": "1"
       }
     ],
-    "contract": "s0=x0²+y0²。s0=0 时状态全零；μ=0 时 s=s0/(1+2s0*t)；否则 s=s0*exp(2μt)/(1+s0*expm1(2μt)/μ)。以 sqrt(s/s0) 缩放初值旋转 ωt 后的向量（vector）。",
+    "contract": "s0=x0²+y0²。s0=0 时状态全零；μ=0 时 s=s0/(1+2s0*t)；否则 s=s0*exp(2μt)/(1+s0*expm1(2μt)/μ)。以 sqrt(s/s0) 缩放初值旋转 ωt 后的向量。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限；不修改输入列表。",
       "−0.5≤mu≤0.8；0<omega≤2；initial 长度为 2，分量绝对值≤2；times 长度 1—30，时刻在 [0,30]。"
     ],
     "entrypoint": "solve",
@@ -592,7 +592,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "处理 s0=0 和 μ=0 两个分支；旋转不改变半径。",
+    "hint": "先检查初始半径为零的情况，再区分 μ=0 与 μ≠0；旋转前后向量长度相同。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -646,7 +646,7 @@
     "chapter": "4.2",
     "title": "撤去周期驱动",
     "type": "choice",
-    "statement": "阻尼系统 z′=(−α+iω)z+F exp(iΩt)，α>0、ω≠Ω。在 t0 的非零状态（state）z0=z(t0) 处将 F 设为 0。之后状态随 Δt=t−t0 怎样变化？",
+    "statement": "用复数 z=x+iy 合记两个同尺度偏差。阻尼系统为 z′=(−α+iω)z+F exp(iΩt)，α>0、ω≠Ω；α 是阻尼系数，ω、Ω 分别为自由与驱动角频率。在 t0 的非零状态 z0=z(t0) 处将 F 设为 0。之后随 Δt=t−t0 怎样变化？",
     "learning_targets": [
       "T2"
     ],
@@ -738,7 +738,7 @@
       },
       {
         "id": "B",
-        "text": "半径等于 sqrt(μ) 时，状态（state）沿圆周期运动，附近非零初始半径会趋向这个半径。"
+        "text": "半径等于 sqrt(μ) 时，状态沿圆周期运动，附近非零初始半径会趋向这个半径。"
       },
       {
         "id": "C",
@@ -760,7 +760,7 @@
     "chapter": "4.2",
     "title": "在明确峰值规则下测量周期",
     "type": "python",
-    "statement": "输入（input）等间隔观测（observation）值。截去前段后计算半峰峰值振幅（amplitude），以及严格局部峰之间的平均间隔。平台峰和端点不记作峰。",
+    "statement": "values 记录等间隔采样的同一观测量，下标从 0 开始。保留从 start 起的窗口，计算半峰峰值振幅（amplitude）及严格局部峰之间的平均间隔。平台峰与窗口端点不计。",
     "learning_targets": [
       "T2"
     ],
@@ -772,7 +772,7 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "时刻 i*dt 的观测值。",
+        "description": "第 i 项为时刻 i*dt 的观测值。",
         "unit": "1"
       },
       {
@@ -784,7 +784,7 @@
       {
         "name": "start",
         "type": "int",
-        "description": "保留窗口的首个下标，包含该值。",
+        "description": "窗口的首个原始下标，该项也保留。",
         "unit": "1"
       }
     ],
@@ -798,13 +798,13 @@
       {
         "name": "peak_times",
         "type": "list[float]",
-        "description": "满足严格峰值条件的时刻。",
+        "description": "严格峰值的时刻列表，使用原始下标乘 dt。",
         "unit": "1"
       },
       {
         "name": "mean_period",
         "type": "float | None",
-        "description": "至少两个峰时返回相邻峰间隔均值，否则 None。",
+        "description": "至少有两个峰时，相邻峰间隔的均值；否则为 None。",
         "unit": "1"
       }
     ],
@@ -818,7 +818,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "不要把端点或平台的一端偷偷算作峰；没有两个峰时保留 None。",
+    "hint": "窗口端点没有窗口内的两个邻点，平台点也不满足严格峰值条件；峰数不足时返回 None。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -868,7 +868,7 @@
     "chapter": "4.2",
     "title": "用向上过零估计周期",
     "type": "python",
-    "statement": "对等间隔轨迹（trajectory）做分段直线插值，找向上过零时刻。重复零值只在最后一个零接到正值的片段计一次。",
+    "statement": "对等间隔轨迹做分段直线插值，找向上过零时刻。重复零值只在最后一个零接到正值的片段计一次。",
     "learning_targets": [
       "T2"
     ],
@@ -880,7 +880,7 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "时刻 i*dt 的观测（observation）值。",
+        "description": "第 i 项为时刻 i*dt 的观测值。",
         "unit": "1"
       },
       {
@@ -892,7 +892,7 @@
       {
         "name": "start",
         "type": "int",
-        "description": "开始检查的片段左端下标。",
+        "description": "开始检查的片段左端下标，片段为 values[i] 到 values[i+1]。",
         "unit": "1"
       }
     ],
@@ -912,7 +912,7 @@
     ],
     "contract": "对 i=start,...,len(values)−2，若 values[i]≤0<values[i+1]，记录 (i−values[i]/(values[i+1]−values[i]))*dt。两次以上按首末间隔平均。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限；不修改输入列表。",
       "2≤len(values)≤5000；0≤start≤len(values)−2；0<dt≤2；值的绝对值≤20。"
     ],
     "entrypoint": "solve",
@@ -920,7 +920,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "要求方向为向上；所有过零混算会把正弦周期误减半。",
+    "hint": "只记录 values[i]≤0<values[i+1] 的向上事件，插值时间保留原下标；两个同方向事件才给出一个完整间隔。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -976,7 +976,7 @@
     "options": [
       {
         "id": "A",
-        "text": "扰动后的半径会趋向原来的 sqrt(μ)，使轨迹（trajectory）回到同一圆环。"
+        "text": "扰动后的半径会趋向原来的 sqrt(μ)，使轨迹回到同一圆周。"
       },
       {
         "id": "B",
@@ -984,11 +984,11 @@
       },
       {
         "id": "C",
-        "text": "扰动后两条轨迹（trajectory）都以角速度 ω 运动，因此它们的相位（phase）差保持不变。"
+        "text": "扰动后两条轨迹都以角速度 ω 运动，因此它们的相位（phase）差保持不变。"
       },
       {
         "id": "D",
-        "text": "半径回到同一圆环，并不表示扰动前后的两条轨迹在同一时刻经过圆上的同一点。"
+        "text": "半径回到同一圆周，并不表示有扰动与无扰动的轨迹在同一时刻经过圆上的同一点。"
       }
     ],
     "constraints": []
@@ -1002,7 +1002,7 @@
     "chapter": "4.2",
     "title": "估计长期振荡周期",
     "type": "choice",
-    "statement": "一段轨迹（trajectory）只含两个很早的峰，由峰间距得到周期估计；模型（model）另有解析周期。怎样检查这次估计是否代表长期周期？",
+    "statement": "一段轨迹只含两个很早的峰，由峰间距得到周期估计；模型另有解析周期。怎样检查这次估计是否代表长期周期？",
     "learning_targets": [
       "T2"
     ],
@@ -1040,7 +1040,7 @@
     "chapter": "4.3",
     "title": "同时求平衡与零斜率",
     "type": "python",
-    "statement": "对 x′=a*x−x³+b，a>0。计算平衡（equilibrium）分支折叠处的状态（state）以及对应偏置。返回按状态从小到大排列的一对结果。",
+    "statement": "对 x′=a*x−x³+b，a>0，求平衡分支折叠处的两个状态及对应偏置。两个状态按从小到大返回，偏置保持与状态逐项对应。",
     "learning_targets": [
       "T2"
     ],
@@ -1060,19 +1060,19 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "两个折叠状态，升序。",
+        "description": "两个折叠位置的 x，从小到大排列。",
         "unit": "1"
       },
       {
         "name": "biases",
         "type": "list[float]",
-        "description": "与 states 一一对应的 b，不另外排序。",
+        "description": "与 states 中两个位置逐项对应的偏置 b。",
         "unit": "1"
       }
     ],
     "contract": "由 a−3x²=0 求 x=±sqrt(a/3)，再用平衡关系 b=x³−a*x 求偏置。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限。",
       "0.1≤a≤3。"
     ],
     "entrypoint": "solve",
@@ -1080,7 +1080,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "零斜率（slope）条件和原平衡方程都必须满足。",
+    "hint": "零斜率条件和原平衡方程都必须满足。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1107,7 +1107,7 @@
             -2.0
           ]
         ],
-        "explanation": "a=3 时折叠状态为 [−1,1]，对应偏置为 [2,−2]；两组数组（array）必须保持配对关系。"
+        "explanation": "a=3 时，两个折叠状态依次为 −1、1，对应偏置依次为 2、−2。偏置保留状态的对应顺序，因此不是升序。"
       }
     ]
   },
@@ -1132,7 +1132,7 @@
       {
         "name": "biases",
         "type": "list[float]",
-        "description": "扫描顺序，不能擅自排序。",
+        "description": "按所给顺序依次使用的偏置列表。",
         "unit": "1"
       },
       {
@@ -1144,19 +1144,19 @@
       {
         "name": "h",
         "type": "float",
-        "description": "时间步长（time step）。",
+        "description": "时间步长。",
         "unit": "1"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "每个偏置停留的积分步数。",
+        "description": "每处偏置保持 steps*h 时间所执行的更新次数。",
         "unit": "1"
       },
       {
         "name": "carry",
         "type": "bool",
-        "description": "True 沿用上一末态；False 每个偏置都从 initial 重启。",
+        "description": "True 时将上一处终值用作下一起点；False 时每处从 initial 重启。",
         "unit": "1"
       }
     ],
@@ -1164,13 +1164,13 @@
       {
         "name": "final_states",
         "type": "list[float]",
-        "description": "每个偏置停留结束后的状态（state）。",
+        "description": "每个偏置停留结束后的状态。",
         "unit": "1"
       }
     ],
     "contract": "每一步 m=x+h*(x−x³+b)/2，x←x+h*(m−m³+b)。接续时把当前末态作为下一偏置起点；重启时不沿用。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限；不修改输入列表。",
       "1≤len(biases)≤40，各值在 [−0.6,0.6]；−1.5≤initial≤1.5；0<h≤0.02；0≤steps≤2000。"
     ],
     "entrypoint": "solve",
@@ -1178,7 +1178,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "扫描摘要是有限停留结果，不自动等于精确平衡（equilibrium）分支。",
+    "hint": "对每处偏置执行同样次数的更新。终值是本次停留结束时的状态，是否接近平衡还取决于停留时间。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1208,7 +1208,7 @@
           0.00807999872,
           0.008243203718701131
         ],
-        "explanation": "第一个偏置 0 使零初值（initial condition）保持零；偏置 0.4 使状态变正；最后恢复偏置 0 时沿用这个正状态，而非重新设为零。"
+        "explanation": "第一个偏置 0 使零初值保持零；偏置 0.4 使状态变正；最后恢复偏置 0 时沿用这个正状态，而非重新设为零。"
       }
     ]
   },
@@ -1221,7 +1221,7 @@
     "chapter": "4.3",
     "title": "分支图应该标记什么",
     "type": "choice",
-    "statement": "偏置开关满足 x′=f(x)=x−x³+b，其平衡（equilibrium）关系为 b=x³−x。关于平衡分支，哪些判断正确？",
+    "statement": "偏置开关满足 x′=f(x)=x−x³+b，其平衡关系为 b=x³−x。关于平衡分支，哪些判断正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1233,7 +1233,7 @@
     "options": [
       {
         "id": "A",
-        "text": "满足 |x|>1/sqrt(3) 的平衡点在小扰动后会返回原位，因此局部渐近稳定（local asymptotic stability）。"
+        "text": "满足 |x|>1/sqrt(3) 的平衡点在小扰动后会返回原位，因此局部渐近稳定。"
       },
       {
         "id": "B",
@@ -1241,11 +1241,11 @@
       },
       {
         "id": "C",
-        "text": "在折叠点处 f′=0，一阶导数（derivative）的严格正负条件不能判定该点的稳定性。"
+        "text": "在折叠点处 f′=0，一阶导数的严格正负条件不能判定该点的稳定性。"
       },
       {
         "id": "D",
-        "text": "将每次参数（parameter）扫描结束的状态（state）连起来，就能得到全部不稳定平衡分支。"
+        "text": "将每次参数扫描结束的状态连起来，就能得到全部不稳定平衡分支。"
       }
     ],
     "constraints": []
@@ -1259,7 +1259,7 @@
     "chapter": "4.3",
     "title": "解释正反参数扫描",
     "type": "choice",
-    "statement": "正反扫描都沿用上一参数（parameter）的末态作为下一初值（initial condition），同一区间得到不同结果。下一步怎样区分多稳态（multistability）与有限等待时间的影响？",
+    "statement": "正反扫描都沿用上一参数的末态作为下一初值，同一区间得到不同结果。下一步怎样区分多稳态（multistability）与有限等待时间的影响？",
     "learning_targets": [
       "T2"
     ],
@@ -1271,7 +1271,7 @@
     "options": [
       {
         "id": "A",
-        "text": "求出各参数下的平衡（equilibrium）分支，并延长每个参数点的停留时间后重新做正反扫描。"
+        "text": "求出各参数下的平衡分支，并延长每个参数点的停留时间后重新做正反扫描。"
       },
       {
         "id": "B",
@@ -1279,7 +1279,7 @@
       },
       {
         "id": "C",
-        "text": "保持停留时间和时间步长（time step）不变，将显示的末值增加到更多小数位。"
+        "text": "保持停留时间和时间步长不变，将显示的末值增加到更多小数位。"
       },
       {
         "id": "D",
@@ -1297,7 +1297,7 @@
     "chapter": "4.3",
     "title": "报告参数扫描的转变",
     "type": "choice",
-    "statement": "扫描参数（parameter）b 的间隔为 0.02，末态在 b=0.38 与 0.40 之间改变，每点停留时间有限。当前数据适合怎样报告转变位置？",
+    "statement": "扫描参数b 的间隔为 0.02，末态在 b=0.38 与 0.40 之间改变，每点停留时间有限。当前数据适合怎样报告转变位置？",
     "learning_targets": [
       "T2"
     ],
@@ -1309,7 +1309,7 @@
     "options": [
       {
         "id": "A",
-        "text": "将 b=0.40 报告为精确转变值，因为这是首个显示新状态（state）的采样点。"
+        "text": "将 b=0.40 报告为精确转变值，因为这是首个显示新状态的采样点。"
       },
       {
         "id": "B",
@@ -1335,7 +1335,7 @@
     "chapter": "4.3",
     "title": "给出长期半径与周期",
     "type": "python",
-    "statement": "对 R′=μR−R³、θ′=ω，ω>0。返回非零初值（initial condition）的吸引运动半径：μ≤0 为 0，μ>0 为 sqrt(μ)。没有非零周期轨道时周期返回 None。",
+    "statement": "径向振子为 R′=μR−R³、θ′=ω，ω>0。对给定 μ 列表，返回非零初始半径的长期去向半径：μ≤0 为 0，μ>0 为 sqrt(μ)；存在非零周期轨道时给出周期，否则为 None。",
     "learning_targets": [
       "T2"
     ],
@@ -1347,7 +1347,7 @@
       {
         "name": "mus",
         "type": "list[float]",
-        "description": "需要比较的 μ，保留输入（input）顺序。",
+        "description": "依次比较的增长系数 μ，保持列表顺序。",
         "unit": "1"
       },
       {
@@ -1361,17 +1361,17 @@
       {
         "name": "radii",
         "type": "list[float]",
-        "description": "对应吸引运动的长期半径。",
+        "description": "与 mus 对应的长期半径。",
         "unit": "1"
       },
       {
         "name": "periods",
         "type": "list[float | None]",
-        "description": "存在非零周期轨道时为 2π/omega，否则 None。",
+        "description": "与 mus 对应：μ>0 时为 2π/omega，μ≤0 时为 None。",
         "unit": "1"
       }
     ],
-    "contract": "逐项分支判断 μ>0；不要对 μ≤0 强行开方，不要把原点的固定状态（state）赋予振荡周期。",
+    "contract": "逐项判断 μ：μ>0 时返回 sqrt(μ) 与 2π/omega；μ≤0 时返回半径 0、周期 None。",
     "constraints": [
       "所有输入数值有限；不修改输入列表。",
       "1≤len(mus)≤30；−1≤mu≤1；0.1≤omega≤3。"
@@ -1381,7 +1381,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "半径来自径向平衡（equilibrium），周期来自角运动，两者的参数（parameter）作用不同。",
+    "hint": "半径来自径向平衡，周期来自角运动，两者的参数作用不同。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1444,7 +1444,7 @@
       },
       {
         "id": "B",
-        "text": "原点线性化（linearization）的特征值（eigenvalue）实部为零，因此非零小半径会远离原点。"
+        "text": "原点线性化的特征值实部为零，因此非零小半径会远离原点。"
       },
       {
         "id": "C",
@@ -1490,7 +1490,7 @@
       },
       {
         "id": "D",
-        "text": "圆上各点的半径和角度都不变，因此每一点都是平衡（equilibrium）点。"
+        "text": "圆上各点的半径和角度都不变，因此每一点都是平衡点。"
       }
     ],
     "constraints": []
@@ -1504,7 +1504,7 @@
     "chapter": "4.3",
     "title": "选择参数扫描的摘要",
     "type": "choice",
-    "statement": "开关扫描记录平衡（equilibrium）状态（state） x；径向振子扫描记录长期振荡。哪种记录方式适合比较两种参数（parameter）转变？",
+    "statement": "开关扫描记录平衡状态 x；径向振子扫描记录长期振荡。哪种记录方式适合比较两种参数转变？",
     "learning_targets": [
       "T2"
     ],
@@ -1542,7 +1542,7 @@
     "chapter": "4.3",
     "title": "从径向方程判断转变",
     "type": "choice",
-    "statement": "径向模型（model）为 R′=μR−R³、θ′=ω，ω>0。原点特征值（eigenvalue）为 μ±iω。哪些判断支持本例的超临界（supercritical）Hopf 转变？",
+    "statement": "径向模型为 R′=μR−R³、θ′=ω，ω>0。原点特征值为 μ±iω。哪些判断支持本例的超临界（supercritical）Hopf 转变？",
     "learning_targets": [
       "T2"
     ],
@@ -1580,7 +1580,7 @@
     "chapter": "4.4",
     "title": "按代次更新一个比例",
     "type": "python",
-    "statement": "离散种群比例满足 x[n+1]=r*x[n]*(1−x[n])。返回从初值（initial condition）开始的全部 steps+1 项，不能把它当作微分方程欧拉更新。",
+    "statement": "离散种群比例按 x[n+1]=r*x[n]*(1−x[n]) 更新，n 为代次，下标从 0 开始。返回包含初值的全部 steps+1 项。",
     "learning_targets": [
       "T3"
     ],
@@ -1592,7 +1592,7 @@
       {
         "name": "r",
         "type": "float",
-        "description": "每代无量纲（dimensionless）参数（parameter）。",
+        "description": "每代无量纲参数。",
         "unit": "1"
       },
       {
@@ -1604,7 +1604,7 @@
       {
         "name": "steps",
         "type": "int",
-        "description": "更新代数。",
+        "description": "从第 0 代开始执行的代际更新次数。",
         "unit": "1"
       }
     ],
@@ -1612,13 +1612,13 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "包含初值的序列。",
+        "description": "按代次排列，第一项为 initial，共 steps+1 项。",
         "unit": "1"
       }
     ],
-    "contract": "每代直接令 next=r*x*(1−x)，不加回 x，不引入 h。 为固定浮点实验，使用 Python float；每次更新按 (r*x)*(1-x) 的括号次序，不改写成 r*(x-x*x)。长轨迹（trajectory）的舍入差异会被放大。",
+    "contract": "每代直接令 next=r*x*(1−x)，不加回 x，不引入 h。 为保持同一浮点实验，使用 Python float；每次更新按 (r*x)*(1-x) 的括号次序，不改写成 r*(x-x*x)。长轨迹的舍入差异会被放大。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限。",
       "0≤r≤4；0≤initial≤1；0≤steps≤200。"
     ],
     "entrypoint": "solve",
@@ -1626,7 +1626,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "检查长度、初值、r=0 和 x0=1 的边界。",
+    "hint": "先检查返回长度和第一项，再检查 r=0 与初值为 1 时的下一代。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1684,7 +1684,7 @@
       },
       {
         "id": "C",
-        "text": "下一代仍在 [0,1] 中，并不能说明不同 r 的序列都会收敛到同一个固定点（fixed point）。"
+        "text": "下一代仍在 [0,1] 中，并不能说明不同 r 的序列都会收敛到同一个固定点。"
       },
       {
         "id": "D",
@@ -1702,7 +1702,7 @@
     "chapter": "4.4",
     "title": "判断非零不动点",
     "type": "choice",
-    "statement": "逻辑斯蒂映射（logistic map）的非零不动点（fixed point）为 x*=1−1/r，r>1，该点导数（derivative）为 2−r。按导数绝对值小于 1 的严格判据，局部吸引对应的完整参数（parameter）范围是哪项？",
+    "statement": "logistic 映射（logistic map）的非零不动点（fixed point）为 x*=1−1/r，r>1，该点导数为 2−r。按导数绝对值小于 1 的严格判据，局部吸引对应的完整参数范围是哪项？",
     "learning_targets": [
       "T3"
     ],
@@ -1740,7 +1740,7 @@
     "chapter": "4.4",
     "title": "辨认交替序列",
     "type": "choice",
-    "statement": "逻辑斯蒂映射（logistic map）在 r=3.2 时，后段序列持续在两个值附近交替。哪项最符合这一记录？",
+    "statement": "logistic 映射（logistic map）在 r=3.2 时，后段序列持续在两个值附近交替。哪项最符合这一记录？",
     "learning_targets": [
       "T3"
     ],
@@ -1764,7 +1764,7 @@
       },
       {
         "id": "D",
-        "text": "这段序列表明，系统由随机输入（input）驱动而形成两个常见取值。"
+        "text": "这段序列表明，系统由随机输入驱动而形成两个常见取值。"
       }
     ],
     "constraints": []
@@ -1778,7 +1778,7 @@
     "chapter": "4.4",
     "title": "何时第一次超过误差容许值",
     "type": "python",
-    "statement": "在同一个 logistic 映射（logistic map）下推进两个初值（initial condition），逐代计算绝对距离，并找首次严格超过 threshold 的代次。若一直不超过，返回 None。",
+    "statement": "在同一个 logistic 映射（logistic map）下推进两个初值，逐代计算绝对距离，并找首次严格超过 threshold 的代次。若一直不超过，返回 None。",
     "learning_targets": [
       "T3"
     ],
@@ -1790,19 +1790,19 @@
       {
         "name": "r",
         "type": "float",
-        "description": "共同映射参数（parameter）。",
+        "description": "共同映射参数。",
         "unit": "1"
       },
       {
         "name": "first",
         "type": "float",
-        "description": "第一条轨迹（trajectory）的第 0 代。",
+        "description": "第一条轨迹在第 0 代的比例。",
         "unit": "1"
       },
       {
         "name": "second",
         "type": "float",
-        "description": "第二条轨迹的第 0 代。",
+        "description": "第二条轨迹在第 0 代的比例。",
         "unit": "1"
       },
       {
@@ -1828,13 +1828,13 @@
       {
         "name": "first_exceedance",
         "type": "int | None",
-        "description": "第一个严格超阈值下标；包括 0。",
+        "description": "首次严格超过 threshold 的代次，可为 0；观察结束仍未超过时为 None。",
         "unit": "1"
       }
     ],
-    "contract": "两条轨迹分别按 x←r*x*(1−x) 同步迭代。距离取绝对值；d==threshold 不算超过。 为固定浮点实验，使用 Python float；每次更新按 (r*x)*(1-x) 的括号次序，不改写成 r*(x-x*x)。长轨迹的舍入差异会被放大。",
+    "contract": "两条轨迹分别按 x←r*x*(1−x) 同步迭代。距离取绝对值；d==threshold 不算超过。 为保持同一浮点实验，使用 Python float；每次更新按 (r*x)*(1-x) 的括号次序，不改写成 r*(x-x*x)。长轨迹的舍入差异会被放大。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限。",
       "0≤r≤4；两个初值在 [0,1]；0≤threshold≤1；0≤steps≤120。"
     ],
     "entrypoint": "solve",
@@ -1842,7 +1842,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "保留未越界 None；不要把最终距离当作首次预测期限。",
+    "hint": "从第 0 代起查找首次严格超过；后续距离缩小不改变已经记录的代次，未发生时返回 None。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1884,7 +1884,7 @@
     "chapter": "4.4",
     "title": "阈值相等算越界吗",
     "type": "choice",
-    "statement": "距离序列为 [0.01,0.05,0.1,0.08]，下标从 0 开始。首次严格超过 0.05 的值位于哪个下标？",
+    "statement": "列表 [0.01,0.05,0.1,0.08] 按代次记录距离，下标从 0 开始。首次严格超过 0.05 出现在哪个下标？",
     "learning_targets": [
       "T3"
     ],
@@ -1922,7 +1922,7 @@
     "chapter": "4.4",
     "title": "解释轨迹距离的饱和",
     "type": "choice",
-    "statement": "两条轨迹（trajectory）都在 [0,1]，距离先增大后不再指数上升。哪些成立？",
+    "statement": "两条轨迹都在 [0,1]，距离先增大后不再指数上升。哪些成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1942,11 +1942,11 @@
       },
       {
         "id": "C",
-        "text": "两个状态（state）都在 [0,1] 中，因此它们的距离最多为 1。"
+        "text": "两个状态都在 [0,1] 中，因此它们的距离最多为 1。"
       },
       {
         "id": "D",
-        "text": "两轨迹相距较远时，用局部导数（derivative）预测两者距离的线性近似可能不再准确。"
+        "text": "两轨迹相距较远时，用局部导数预测两者距离的线性近似可能不再准确。"
       }
     ],
     "constraints": []
@@ -1960,7 +1960,7 @@
     "chapter": "4.4",
     "title": "比较两个浮点初值",
     "type": "choice",
-    "statement": "两个不同十进制初值（initial condition）转成 Python float 后恰好相等，随后按相同规则迭代，轨迹（trajectory）距离全为零。这次结果说明什么？",
+    "statement": "两个不同十进制初值转成 Python float 后恰好相等，随后按相同规则迭代，轨迹距离全为零。这次结果说明什么？",
     "learning_targets": [
       "T3"
     ],
@@ -1998,7 +1998,7 @@
     "chapter": "4.4",
     "title": "检查代次映射的精度",
     "type": "choice",
-    "statement": "原始逻辑斯蒂映射（logistic map）每代严格按 xₙ₊₁=r xₙ(1−xₙ) 更新。哪种比较能在保留同一代次模型（model）的前提下检查数值误差（numerical error）？",
+    "statement": "原始logistic 映射（logistic map）每代严格按 xₙ₊₁=r xₙ(1−xₙ) 更新。哪种比较能在保留同一代次模型的前提下检查数值误差？",
     "learning_targets": [
       "T3"
     ],
@@ -2010,7 +2010,7 @@
     "options": [
       {
         "id": "A",
-        "text": "将原来每代的更新改为两次参数（parameter） r/2 的更新，再比较末代结果。"
+        "text": "将原来每代的更新改为两次参数 r/2 的更新，再比较末代结果。"
       },
       {
         "id": "B",
@@ -2022,7 +2022,7 @@
       },
       {
         "id": "D",
-        "text": "保持初值（initial condition）、r 和迭代代数不变，用更高算术精度重新计算并比较各代结果。"
+        "text": "保持初值、r 和迭代代数不变，用更高算术精度重新计算并比较各代结果。"
       }
     ],
     "constraints": []
@@ -2036,7 +2036,7 @@
     "chapter": "4.4",
     "title": "计算指定窗口的切向增长率",
     "type": "python",
-    "statement": "先丢弃 burn 次迭代，再对 logistic 映射（logistic map）计算 steps 个局部导数（derivative）的自然对数（natural logarithm）均值。遇到零导数时返回 None，表示该有限和包含 log(0)，不能擅自加一个小数规避。",
+    "statement": "对 logistic 映射（logistic map）先推进 burn 次而不记录，再计算接下来 steps 个当前状态处 log|F′(x)| 的均值。F(x)=r*x*(1−x)。若任一导数为零，返回 None，标记对数和含负无穷的情形。",
     "learning_targets": [
       "T3"
     ],
@@ -2048,25 +2048,25 @@
       {
         "name": "r",
         "type": "float",
-        "description": "共同参数（parameter）。",
+        "description": "共同参数。",
         "unit": "1"
       },
       {
         "name": "initial",
         "type": "float",
-        "description": "最初状态（state）。",
+        "description": "最初状态。",
         "unit": "1"
       },
       {
         "name": "burn",
         "type": "int",
-        "description": "先丢弃的更新次数。",
+        "description": "开始记录前执行的更新次数。",
         "unit": "1"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "取对数项数。",
+        "description": "记录的对数项数，每项计算后推进一次。",
         "unit": "1"
       }
     ],
@@ -2074,13 +2074,13 @@
       {
         "name": "growth",
         "type": "float | None",
-        "description": "有限窗口均值；任何导数为零时 None。",
+        "description": "指定窗口的平均对数倍率；出现零导数时为 None。",
         "unit": "每代"
       }
     ],
-    "contract": "烧去 burn 步后，以当前 x 计算 log(abs(r*(1−2*x)))，再更新 x；重复 steps 次并平均。使用自然对数。 为固定浮点实验，使用 Python float；每次更新按 (r*x)*(1-x) 的括号次序，不改写成 r*(x-x*x)。长轨迹（trajectory）的舍入差异会被放大。",
+    "contract": "先推进 burn 步而不记录，然后，以当前 x 计算 log(abs(r*(1−2*x)))，再更新 x；重复 steps 次并平均。使用自然对数。 为保持同一浮点实验，使用 Python float；每次更新按 (r*x)*(1-x) 的括号次序，不改写成 r*(x-x*x)。长轨迹的舍入差异会被放大。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限。",
       "0≤r≤4；0≤initial≤1；0≤burn≤1000；1≤steps≤2000。"
     ],
     "entrypoint": "solve",
@@ -2088,7 +2088,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先求当前状态导数再推进；None 表示有零导数，不能解释为零增长率。",
+    "hint": "先在当前状态计算导数，再推进下一代；零导数用 None 标记，与零增长率区别开。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2122,7 +2122,7 @@
     "chapter": "4.4",
     "title": "解释短窗口增长率",
     "type": "choice",
-    "statement": "在一个短窗口内，沿某条映射轨迹（trajectory）计算的 log|f′(x)| 均值为正。哪项是这次计算直接支持的结论？",
+    "statement": "在一个短窗口内，沿某条映射轨迹计算的 log|f′(x)| 均值为正。哪项是这次计算直接支持的结论？",
     "learning_targets": [
       "T3"
     ],
@@ -2142,11 +2142,11 @@
       },
       {
         "id": "C",
-        "text": "窗口内每一步的局部导数（derivative）绝对值均大于 1。"
+        "text": "窗口内每一步的局部导数绝对值均大于 1。"
       },
       {
         "id": "D",
-        "text": "该参数（parameter）下所有初值（initial condition）的平均增长率为正。"
+        "text": "该参数下所有初值的平均增长率为正。"
       }
     ],
     "constraints": []
@@ -2160,7 +2160,7 @@
     "chapter": "4.4",
     "title": "遇到零局部导数",
     "type": "choice",
-    "statement": "估计平均 log|f′(x)| 时，一步的局部导数（derivative）恰为零。将这一对数项按 |f′(x)| 从正数趋向零的极限（limit）解释，其值是什么？",
+    "statement": "估计平均 log|f′(x)| 时，一步的局部导数恰为零。将这一对数项按 |f′(x)| 从正数趋向零的极限解释，其值是什么？",
     "learning_targets": [
       "T3"
     ],
@@ -2198,7 +2198,7 @@
     "chapter": "4.4",
     "title": "解释一个特殊初值",
     "type": "choice",
-    "statement": "逻辑斯蒂映射（logistic map）在 r=4、x0=0.5 时给出 0.5→1→0→0。关于该轨道，哪项正确？",
+    "statement": "logistic 映射（logistic map）在 r=4、x0=0.5 时给出 0.5→1→0→0。关于该轨道，哪项正确？",
     "learning_targets": [
       "T3"
     ],
@@ -2222,7 +2222,7 @@
       },
       {
         "id": "D",
-        "text": "这条序列在两次更新后到达固定点（fixed point）0，随后保持在零。"
+        "text": "这条序列在两次更新后到达固定点0，随后保持在零。"
       }
     ],
     "constraints": []
@@ -2236,7 +2236,7 @@
     "chapter": "4.4",
     "title": "比较两个运算精度",
     "type": "choice",
-    "statement": "敏感动力系统的两个算术精度版本使用相同数学初值（initial condition）和方程，早期一致、后期分离。怎样使用更高精度的结果？",
+    "statement": "敏感动力系统的两个算术精度版本使用相同数学初值和方程，早期一致、后期分离。怎样使用更高精度的结果？",
     "learning_targets": [
       "T3"
     ],
@@ -2256,11 +2256,11 @@
       },
       {
         "id": "C",
-        "text": "提高算术精度会同时消除初始状态（state）的测量误差，因此可以无限延长逐点预测。"
+        "text": "提高算术精度会同时消除初始状态的测量误差，因此可以无限延长逐点预测。"
       },
       {
         "id": "D",
-        "text": "用更高精度结果比较舍入误差（round-off error）何时增大，同时继续检查初值测量误差和方程假设是否影响预测。"
+        "text": "用更高精度结果比较舍入误差何时增大，同时继续检查初值测量误差和方程假设是否影响预测。"
       }
     ],
     "constraints": []
@@ -2274,7 +2274,7 @@
     "chapter": "4.5",
     "title": "逐点计算候选函数与导数",
     "type": "python",
-    "statement": "系统 x′=−x+x³，候选函数 V=x²/2。返回各点的 V、沿轨迹（trajectory）导数（derivative），以及是否位于严格衰减区域。",
+    "statement": "系统 x′=−x+x³，候选函数 V=x²/2。返回各点的 V、沿轨迹导数，以及是否位于严格衰减区域。",
     "learning_targets": [
       "T4"
     ],
@@ -2287,7 +2287,7 @@
       {
         "name": "points",
         "type": "list[float]",
-        "description": "需要计算的状态（state）点。",
+        "description": "需要计算的状态点。",
         "unit": "1"
       }
     ],
@@ -2307,13 +2307,13 @@
       {
         "name": "strict",
         "type": "list[bool]",
-        "description": "是否满足 0<abs(x)<1。",
+        "description": "与 points 逐项对应的布尔值，0<abs(x)<1 时为 True，其余为 False。",
         "unit": "1"
       }
     ],
-    "contract": "V=x²/2；dV/dt=x*(−x+x³)=−x²+x⁴。strict 在 0 和 ±1 都为 False；点上成立不等于已经证明整个区域。",
+    "contract": "V=x²/2；dV/dt=x*(−x+x³)=−x²+x⁴。strict 按 0<abs(x)<1 判断，在 0 和 ±1 为 False。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限；不修改输入列表。",
       "1≤len(points)≤50；每项在 [−2,2]。"
     ],
     "entrypoint": "solve",
@@ -2321,7 +2321,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "导数必须通过链式法则（chain rule）计算；边界不能算严格负。",
+    "hint": "导数必须通过链式法则计算；边界不能算严格负。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2384,7 +2384,7 @@
     "chapter": "4.5",
     "title": "正定要求检查哪几项",
     "type": "choice",
-    "statement": "要用 V 研究原点，哪些是正定性（positive definiteness）的要求？",
+    "statement": "用标量函数 V 研究原点附近的稳定性。以下哪些是 V 相对于原点的正定性（positive definiteness）要求？",
     "learning_targets": [
       "T4"
     ],
@@ -2397,7 +2397,7 @@
     "options": [
       {
         "id": "A",
-        "text": "区域内另一个非零状态（state）满足 V(x)=0 时，V 仍可称为相对于原点正定（positive definite）。"
+        "text": "区域内另一个非零状态满足 V(x)=0 时，V 仍可称为相对于原点正定（positive definite）。"
       },
       {
         "id": "B",
@@ -2436,7 +2436,7 @@
     "options": [
       {
         "id": "A",
-        "text": "从原点附近足够小的初值（initial condition）出发，解会回到原点，因此原点局部渐近稳定（local asymptotic stability）。"
+        "text": "从原点附近足够小的初值出发，解会回到原点，因此原点局部渐近稳定。"
       },
       {
         "id": "B",
@@ -2448,7 +2448,7 @@
       },
       {
         "id": "D",
-        "text": "从 x0=±1 出发的解保持在对应平衡（equilibrium）点，不属于原点的吸引域（basin of attraction）。"
+        "text": "从 x0=±1 出发的解保持在对应平衡点，不属于原点的吸引域（basin of attraction）。"
       }
     ],
     "constraints": []
@@ -2462,7 +2462,7 @@
     "chapter": "4.5",
     "title": "论证全空间的回归",
     "type": "choice",
-    "statement": "对 x′=−x，取 V=x²/2。已知 V 正定（positive definite）、径向无界（radially unbounded），且解对所有 t≥0 存在。下面哪项补充事实足以用严格下降判据推出原点在全空间渐近稳定（asymptotic stability）？",
+    "statement": "对 x′=−x，取 V=x²/2。已知 V 正定（positive definite）、径向无界（radially unbounded），且解对所有 t≥0 存在。下面哪项补充事实足以用严格下降判据推出原点在全空间渐近稳定？",
     "learning_targets": [
       "T4"
     ],
@@ -2483,7 +2483,7 @@
       },
       {
         "id": "C",
-        "text": "对所画的五条轨迹（trajectory），V 都随时间下降。"
+        "text": "对所画的五条轨迹，V 都随时间下降。"
       },
       {
         "id": "D",
@@ -2522,11 +2522,11 @@
       },
       {
         "id": "C",
-        "text": "函数方法检查 V(x) 及其沿运动的变化率，指数则衡量邻近扰动沿一条轨迹（trajectory）增长或缩小的速率。"
+        "text": "函数方法检查 V(x) 及其沿运动的变化率，指数则衡量邻近扰动沿一条轨迹增长或缩小的速率。"
       },
       {
         "id": "D",
-        "text": "候选函数沿运动的导数（derivative）处处为零时，系统的每条轨迹都停在初始点。"
+        "text": "候选函数沿运动的导数处处为零时，系统的每条轨迹都停在初始点。"
       }
     ],
     "constraints": []
@@ -2540,7 +2540,7 @@
     "chapter": "4.5",
     "title": "旋转项是否改变总平方长度",
     "type": "python",
-    "statement": "二维系统 x′=−αx−ωy，y′=ωx−αy。计算 V=(x²+y²)/2 及沿轨迹（trajectory）导数（derivative）。",
+    "statement": "二维系统 x′=−αx−ωy，y′=ωx−αy。计算 V=(x²+y²)/2 及沿轨迹导数。",
     "learning_targets": [
       "T4"
     ],
@@ -2553,7 +2553,7 @@
       {
         "name": "points",
         "type": "list[list[float]]",
-        "description": "按 [x,y] 排列的状态（state）点。",
+        "description": "按 [x,y] 排列的状态点。",
         "unit": "1"
       },
       {
@@ -2585,7 +2585,7 @@
     ],
     "contract": "先计算两个状态变化率，再使用 V′=x*x′+y*y′；代数核对为 −alpha*(x²+y²)，旋转交叉项抵消。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限；不修改输入列表。",
       "points 长度 1—30，每点两个分量，绝对值≤5；0≤alpha≤1；0≤omega≤3。"
     ],
     "entrypoint": "solve",
@@ -2650,7 +2650,7 @@
     "chapter": "4.5",
     "title": "纯旋转中的标量变化",
     "type": "choice",
-    "statement": "纯旋转系统 x′=−y、y′=x，取 V=(x²+y²)/2。非零初值（initial condition）的半径和长期状态（state）怎样？",
+    "statement": "纯旋转系统 x′=−y、y′=x，取 V=(x²+y²)/2。非零初值的半径和长期状态怎样？",
     "learning_targets": [
       "T4"
     ],
@@ -2663,7 +2663,7 @@
     "options": [
       {
         "id": "A",
-        "text": "V′=0，半径保持不变，轨迹（trajectory）停在初始点。"
+        "text": "V′=0，半径保持不变，轨迹停在初始点。"
       },
       {
         "id": "B",
@@ -2689,7 +2689,7 @@
     "chapter": "4.5",
     "title": "只对部分方向衰减会怎样",
     "type": "choice",
-    "statement": "系统 x′=−x，y′=0，V=(x²+y²)/2。哪些成立？",
+    "statement": "二维偏差按 x′=−x、y′=0 变化，V=(x²+y²)/2。状态列表按 [x,y] 排列。哪些判断成立？",
     "learning_targets": [
       "T4"
     ],
@@ -2702,7 +2702,7 @@
     "options": [
       {
         "id": "A",
-        "text": "从任意初值（initial condition）出发，两个分量最终都趋向零。"
+        "text": "从任意初值出发，两个分量最终都趋向零。"
       },
       {
         "id": "B",
@@ -2710,7 +2710,7 @@
       },
       {
         "id": "C",
-        "text": "满足 V′=0 的集合包括整条 x=0 直线上的平衡（equilibrium）点，因此不能据此认定解都回到原点。"
+        "text": "满足 V′=0 的集合包括整条 x=0 直线上的平衡点，因此不能据此认定解都回到原点。"
       },
       {
         "id": "D",
@@ -2767,7 +2767,7 @@
     "chapter": "4.1",
     "title": "吸引的是点还是集合",
     "type": "choice",
-    "statement": "对 r′=r(1−r²)、θ′=1，r>0。哪些陈述成立？",
+    "statement": "二维状态以半径 r、角度 θ 表示，r′=r(1−r²)、θ′=1，考察 r>0 的运动。哪些陈述成立？",
     "learning_targets": [
       "T1"
     ],
@@ -2780,7 +2780,7 @@
     "options": [
       {
         "id": "A",
-        "text": "从单位圆出发的解留在圆上，附近轨迹（trajectory）到单位圆的距离随时间趋于零。"
+        "text": "从单位圆出发的解留在圆上，附近轨迹到单位圆的距离随时间趋于零。"
       },
       {
         "id": "B",
@@ -2788,7 +2788,7 @@
       },
       {
         "id": "C",
-        "text": "所有 r>0 的初值（initial condition）都会趋向单位圆，而精确原点不属于这个吸引域（basin of attraction）。"
+        "text": "所有 r>0 的初值都会趋向单位圆，而精确原点不属于这个吸引域（basin of attraction）。"
       },
       {
         "id": "D",
@@ -2806,7 +2806,7 @@
     "chapter": "4.1",
     "title": "比较相邻圆轨迹",
     "type": "choice",
-    "statement": "纯旋转 x′=−y、y′=x。初始半径为 1.1 的轨迹（trajectory）到单位圆的最短距离随时间怎样变化？",
+    "statement": "纯旋转 x′=−y、y′=x。初始半径为 1.1 的轨迹到单位圆的最短距离随时间怎样变化？",
     "learning_targets": [
       "T1"
     ],
@@ -2845,7 +2845,7 @@
     "chapter": "4.1",
     "title": "计算点到圆和点的距离",
     "type": "python",
-    "statement": "对每个二维状态（state），分别计算到原点和到半径 radius 圆周的欧氏距离。",
+    "statement": "二维状态按 [x,y] 记录。对每个给定点，分别求到原点、到以原点为圆心且半径为 radius 的整个圆周的欧氏距离。",
     "learning_targets": [
       "T1"
     ],
@@ -2858,7 +2858,7 @@
       {
         "name": "points",
         "type": "list[list[float]]",
-        "description": "二维状态 [x,y] 列表。",
+        "description": "各点坐标列表，每行先 x 后 y。",
         "unit": "1"
       },
       {
@@ -2884,7 +2884,7 @@
     ],
     "contract": "逐点计算 r=sqrt(x²+y²)，返回 (r 列表, |r−radius| 列表)。距离到集合不同于距离到某个选定圆周点。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限，不修改输入列表。",
       "1—50 个二维点；各坐标在 [−10,10]；0<radius≤5。"
     ],
     "entrypoint": "solve",
@@ -2892,7 +2892,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "先求每个点的半径。点在目标圆周上时，到圆周距离为零，到原点距离仍为 radius。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2948,7 +2948,7 @@
     "chapter": "4.1",
     "title": "计算到有限平衡集合的距离",
     "type": "python",
-    "statement": "在一维状态（state）轴上，给定候选平衡（equilibrium）点集合。对每个观测（observation）状态返回它到这个集合的最短距离；不据距离大小自动判断吸引性。",
+    "statement": "一维状态轴上给定一个非空候选平衡点集合。对每个观测状态，计算到该集合的最短距离；返回值描述几何距离。",
     "learning_targets": [
       "T1"
     ],
@@ -2961,7 +2961,7 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "观测状态，按输入（input）顺序保留。",
+        "description": "观测状态，按输入顺序保留。",
         "unit": "1"
       },
       {
@@ -2989,7 +2989,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "对每个状态比较它到所有给定平衡的距离，取最小值；改变平衡列表的顺序或重复某个值不会改变结果。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3034,7 +3034,7 @@
     "chapter": "4.6",
     "title": "应用平面极限集定理",
     "type": "choice",
-    "statement": "考察光滑系统的前向轨迹（trajectory）、所处的紧集（compact set）及长期极限（limit）集合中的平衡（equilibrium）点。按本节庞加莱–本迪克松定理（Poincaré–Bendixson theorem），哪组条件足以保证极限集是周期轨道？",
+    "statement": "考察光滑系统的前向轨迹、所处的紧集（compact set）及长期极限集合中的平衡点。按本节庞加莱–本迪克松定理（Poincaré–Bendixson theorem），哪组条件足以保证极限集是周期轨道？",
     "learning_targets": [
       "T3"
     ],
@@ -3086,7 +3086,7 @@
     "options": [
       {
         "id": "A",
-        "text": "原点对所有给定正参数（parameter）都是平衡（equilibrium）。"
+        "text": "原点对所有给定正参数都是平衡。"
       },
       {
         "id": "B",
@@ -3112,7 +3112,7 @@
     "chapter": "4.6",
     "title": "从方程计算向量场与雅可比矩阵",
     "type": "python",
-    "statement": "洛伦兹系统（Lorenz system）为 x′=σ(y−x)、y′=ρx−y−xz、z′=xy−βz。计算此状态（state）的导数（derivative）向量（vector）及局部线性化（linearization）矩阵（matrix）。",
+    "statement": "Lorenz 方程为 x′=σ(y−x)、y′=ρx−y−xz、z′=xy−βz，状态与时间均按无量纲尺度表示。给定状态 [x,y,z]，返回变化率列表与该点的雅可比矩阵。",
     "learning_targets": [
       "T3"
     ],
@@ -3125,7 +3125,7 @@
       {
         "name": "sigma",
         "type": "float",
-        "description": "正参数（parameter） σ。",
+        "description": "正参数 σ。",
         "unit": "1"
       },
       {
@@ -3143,7 +3143,7 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "状态（state） [x,y,z]。",
+        "description": "当前状态，依次记录 x、y、z。",
         "unit": "1"
       }
     ],
@@ -3151,19 +3151,19 @@
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "[x′,y′,z′]。",
+        "description": "依次记录 x′、y′、z′。",
         "unit": "每单位 τ"
       },
       {
         "name": "jacobian",
         "type": "list[list[float]]",
-        "description": "按状态 x,y,z 顺序的 3×3 雅可比矩阵（Jacobian matrix）。",
+        "description": "每行依次对应 x′、y′、z′；每列依次对 x、y、z 求偏导。",
         "unit": "每单位 τ"
       }
     ],
-    "contract": "逐行按三条方程及其对 x,y,z 的偏导（partial derivative）计算；返回 (rates,jacobian)。",
+    "contract": "逐行按三条方程及其对 x,y,z 的偏导计算；返回 (rates,jacobian)。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限，不修改输入列表。",
       "0<σ≤20，0<ρ≤40，0<β≤5；状态各分量绝对值≤60。"
     ],
     "entrypoint": "solve",
@@ -3171,7 +3171,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "将状态代入三条变化率，再按相同坐标顺序逐列求偏导；核对旋转式对称变换下的符号。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3232,7 +3232,7 @@
     "chapter": "4.6",
     "title": "检查原点的稳定性",
     "type": "choice",
-    "statement": "洛伦兹系统（Lorenz system）在 ρ=28 时，从精确原点起步的数值轨迹（trajectory）一直为零。下一步怎样检查原点的稳定性？",
+    "statement": "洛伦兹系统（Lorenz system）在 ρ=28 时，从精确原点起步的数值轨迹一直为零。下一步怎样检查原点的稳定性？",
     "learning_targets": [
       "T3"
     ],
@@ -3245,7 +3245,7 @@
     "options": [
       {
         "id": "A",
-        "text": "计算原点的雅可比矩阵（Jacobian matrix），并从邻近非零初值（initial condition）观察状态（state）与原点的距离怎样变化。"
+        "text": "计算原点的雅可比矩阵，并从邻近非零初值观察状态与原点的距离怎样变化。"
       },
       {
         "id": "B",
@@ -3271,7 +3271,7 @@
     "chapter": "4.6",
     "title": "比较面积与单条轨迹",
     "type": "choice",
-    "statement": "线性系统 x′=x、y′=−2y 的散度（divergence）为 −1。从 [1,1] 起步，哪项同时描述邻域面积和该轨迹（trajectory）？",
+    "statement": "线性系统 x′=x、y′=−2y 的散度（divergence）为 −1。从 [1,1] 起步，哪项同时描述邻域面积和该轨迹？",
     "learning_targets": [
       "T3"
     ],
@@ -3296,7 +3296,7 @@
       },
       {
         "id": "D",
-        "text": "面积按 exp(−t) 缩小，x 保持初值（initial condition） 1。"
+        "text": "面积按 exp(−t) 缩小，x 保持初值 1。"
       }
     ],
     "constraints": []
@@ -3310,7 +3310,7 @@
     "chapter": "4.6",
     "title": "用两条路径核对函数导数",
     "type": "python",
-    "statement": "用给定 Lorenz 方程计算有界性函数，并分别用链式法则（chain rule）与配方式核对其沿轨迹（trajectory）导数（derivative）。",
+    "statement": "Lorenz 方程为 x′=σ(y−x)、y′=ρx−y−xz、z′=xy−βz，状态与时间均按无量纲尺度表示。计算有界性函数 W，用链式法则和配方表达式分别计算沿轨迹的导数，并给出上界 W′≤−cW+C 中的 c、C。",
     "learning_targets": [
       "T3"
     ],
@@ -3323,7 +3323,7 @@
       {
         "name": "sigma",
         "type": "float",
-        "description": "正参数（parameter） σ。",
+        "description": "正参数 σ。",
         "unit": "1"
       },
       {
@@ -3341,7 +3341,7 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "状态（state） [x,y,z]。",
+        "description": "当前状态，列表依次为 x、y、z。",
         "unit": "1"
       }
     ],
@@ -3349,37 +3349,37 @@
       {
         "name": "W",
         "type": "float",
-        "description": "有界性函数值。",
+        "description": "W=ρx²+σy²+σ(z−2ρ)² 的值。",
         "unit": "1"
       },
       {
         "name": "direct",
         "type": "float",
-        "description": "梯度（gradient）与向量场（vector field）内积（inner product）。",
+        "description": "用 ∇W 与三项变化率作内积得到的 W′。",
         "unit": "每单位 τ"
       },
       {
         "name": "completed",
         "type": "float",
-        "description": "配方后导数值。",
+        "description": "用配方后的表达式得到的同一个 W′。",
         "unit": "每单位 τ"
       },
       {
         "name": "c",
         "type": "float",
-        "description": "正衰减系数。",
+        "description": "不等式 W′≤−cW+C 中的正系数。",
         "unit": "每单位 τ"
       },
       {
         "name": "C",
         "type": "float",
-        "description": "界中常数。",
+        "description": "不等式 W′≤−cW+C 中的常数项。",
         "unit": "每单位 τ"
       }
     ],
     "contract": "W=ρx²+σy²+σ(z−2ρ)²；direct=∇W·f；completed=−2σ[ρx²+y²+β(z−ρ)²−βρ²]；c=min(2σ,2,β)，C=4σβρ²。分别计算两种导数表达式，返回 (W,direct,completed,c,C)。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限，不修改输入列表。",
       "0<σ≤20，0<ρ≤40，0<β≤5；状态各分量绝对值≤60。"
     ],
     "entrypoint": "solve",
@@ -3387,7 +3387,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "两种导数分别计算后应相同；W 的中心经过偏移，所以原点处的 W 可以非零。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3444,7 +3444,7 @@
       {
         "name": "initial",
         "type": "float",
-        "description": "段首状态（state）。",
+        "description": "这一步开始时的 y。",
         "unit": "1"
       },
       {
@@ -3456,7 +3456,7 @@
       {
         "name": "h",
         "type": "float",
-        "description": "时间步长（time step）。",
+        "description": "时间步长。",
         "unit": "τ"
       }
     ],
@@ -3470,7 +3470,7 @@
     ],
     "contract": "k1=rate*y；k2=rate*(y+h*k1/2)；k3=rate*(y+h*k2/2)；k4=rate*(y+h*k3)；返回 y+h*(k1+2k2+2k3+k4)/6。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限。",
       "|initial|≤10，|rate|≤3，0<h≤0.5。"
     ],
     "entrypoint": "solve",
@@ -3478,7 +3478,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "四个斜率依次使用起点、两次中点预测和终点预测；最后按 1、2、2、1 的权重求增量。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3498,7 +3498,7 @@
           "h": 0.5
         },
         "expected": 0.6067708333333333,
-        "explanation": "四个斜率（slope）依次 −1、−0.75、−0.8125、−0.59375；一步结果 0.6067708333333334。"
+        "explanation": "四个斜率依次 −1、−0.75、−0.8125、−0.59375；一步结果 0.6067708333333334。"
       }
     ]
   },
@@ -3511,7 +3511,7 @@
     "chapter": "4.6",
     "title": "只比较相同时刻的结果",
     "type": "python",
-    "statement": "粗网格状态（state）对应 t=0,h,…,Nh；细网格每个粗步分成 ratio 步。计算共同时间点的最大状态欧氏误差。",
+    "statement": "粗网格记录 t=0,h,…,Nh，细网格将每个粗步分成 ratio 步。每行状态按 [x,y,z] 排列。计算共同时间点上两组结果的最大欧氏距离。",
     "learning_targets": [
       "T3"
     ],
@@ -3524,13 +3524,13 @@
       {
         "name": "coarse",
         "type": "list[list[float]]",
-        "description": "粗网格三维状态。",
+        "description": "按时间排列的粗网格状态，每行先 x 后 y 再 z。",
         "unit": "1"
       },
       {
         "name": "fine",
         "type": "list[list[float]]",
-        "description": "细网格三维状态。",
+        "description": "同一起点与终点的细网格状态，采样间隔为 h/ratio。",
         "unit": "1"
       },
       {
@@ -3550,7 +3550,7 @@
     ],
     "contract": "比较 coarse[i] 与 fine[i*ratio]；每对先算三维欧氏距离，再取最大值。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限，不修改输入列表。",
       "2≤len(coarse)≤30，ratio 为 2 或 4；len(fine)=(len(coarse)−1)*ratio+1；每行长度 3。"
     ],
     "entrypoint": "solve",
@@ -3558,7 +3558,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "粗下标 i 与细下标 i*ratio 是同一时刻；先求每对三分量差的范数，再取这些距离的最大值。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3618,7 +3618,7 @@
     "chapter": "4.6",
     "title": "比较短窗与长窗的数值结果",
     "type": "choice",
-    "statement": "混沌（chaos）计算中，短窗细化步长后误差下降，长窗两轨迹（trajectory）逐点分离。下一步怎样检验数值结果？",
+    "statement": "混沌（chaos）计算中，短窗细化步长后误差下降，长窗两轨迹逐点分离。下一步怎样检验数值结果？",
     "learning_targets": [
       "T3"
     ],
@@ -3696,7 +3696,7 @@
     "chapter": "4.6",
     "title": "提取同向截面交点",
     "type": "python",
-    "statement": "给定三维轨迹（trajectory）样本，计算由下向上穿过 z=level 的交点与返回间隔；同一交点的时间和状态（state）必须用相同插值比例。",
+    "statement": "给定三维轨迹样本，计算由下向上穿过 z=level 的交点与返回间隔；同一交点的时间和状态必须用相同插值比例。",
     "learning_targets": [
       "T3"
     ],
@@ -3709,13 +3709,13 @@
       {
         "name": "times",
         "type": "list[float]",
-        "description": "严格递增的观测（observation）时刻。",
+        "description": "严格递增的观测时刻。",
         "unit": "τ"
       },
       {
         "name": "states",
         "type": "list[list[float]]",
-        "description": "与时刻一一对应的三维状态（state）。",
+        "description": "与 times 逐项对应，每行依次为 x、y、z。",
         "unit": "1"
       },
       {
@@ -3727,7 +3727,7 @@
       {
         "name": "burn",
         "type": "float",
-        "description": "保留交点的起始时间，含等号。",
+        "description": "只保留交点时间不早于 burn 的事件，等于也保留。",
         "unit": "τ"
       }
     ],
@@ -3735,7 +3735,7 @@
       {
         "name": "hits",
         "type": "list[list[float]]",
-        "description": "交点列表，每行 [t,x,y,z]；时间单位 τ，其余无量纲（dimensionless）。",
+        "description": "交点列表，每行 [t,x,y,z]；时间单位 τ，其余无量纲。",
         "unit": "1"
       },
       {
@@ -3747,7 +3747,7 @@
     ],
     "contract": "只接受 states[i][2]<level≤states[i+1][2]。用 α=(level−zᵢ)/(zᵢ₊₁−zᵢ) 对时间和三个状态线性插值，仅保留 t≥burn。返回 (hits,intervals)；无交点时均为空列表，只有一个交点时 intervals 为空。端点从下方到达记一次，下一段从等号出发不重复记。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限，不修改输入列表。",
       "2≤len(times)=len(states)≤200；每个状态长度 3；时间在 [0,100] 且严格递增；0≤burn≤100；|状态|、|level|≤100。"
     ],
     "entrypoint": "solve",
@@ -3755,7 +3755,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "同一个插值比例同时用于时间与三个坐标；先插值时间再检查 burn，末端等于截面时只记一次。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3833,7 +3833,7 @@
     "chapter": "4.6",
     "title": "从交点时间估计返回间隔",
     "type": "python",
-    "statement": "已得到同向截面的交点时间。计算逐次返回间隔与平均间隔；不足两个交点不虚构周期。",
+    "statement": "给定同向截面的交点时间，计算相邻返回间隔及其平均值。不足两个交点时返回空间隔列表和 None。",
     "learning_targets": [
       "T3"
     ],
@@ -3866,7 +3866,7 @@
     ],
     "contract": "返回 (intervals,mean_interval)。间隔数为 max(0,n−1)，无间隔时返回 ([],None)。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限，不修改输入列表。",
       "0≤n≤100，时刻有限且严格递增。"
     ],
     "entrypoint": "solve",
@@ -3874,7 +3874,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "n 个交点至多有 n−1 个相邻间隔；先检查空列表与单个交点，再对间隔求平均。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3932,7 +3932,7 @@
       },
       {
         "id": "B",
-        "text": "缩短采样间隔，并检查轨迹（trajectory）是否从 z<c 穿到 z>c，以及穿越时 z′ 是否非零。"
+        "text": "缩短采样间隔，并检查轨迹是否从 z<c 穿到 z>c，以及穿越时 z′ 是否非零。"
       },
       {
         "id": "C",
@@ -3967,7 +3967,7 @@
       {
         "name": "stretch_factors",
         "type": "list[float]",
-        "description": "每段终点范数（norm）除以该段起点范数，均正。",
+        "description": "各段终点范数除以该段起点范数，顺序与 durations 对应。",
         "unit": "1"
       },
       {
@@ -3985,9 +3985,9 @@
         "unit": "每单位 τ"
       }
     ],
-    "contract": "每段开始把扰动归一到相同正范数；返回 sum(log(stretch_factors))/sum(durations)。必须用自然对数（natural logarithm）与实际时长，不除以段数。",
+    "contract": "每段开始把扰动归一到相同正范数；返回 sum(log(stretch_factors))/sum(durations)。必须用自然对数与实际时长，不除以段数。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限，不修改输入列表。",
       "1—100 段，两列表等长；各伸长倍数在 [1e−8,1e8]；各时长在 (0,10]。"
     ],
     "entrypoint": "solve",
@@ -3995,7 +3995,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "分段倍率相乘对应对数相加；所有实际时长相加作为分母，段长不同时也使用这个规则。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -4035,7 +4035,7 @@
     "chapter": "4.6",
     "title": "用解析线性系统检查切向解",
     "type": "python",
-    "statement": "对 δ′=diag(rates)δ，给定三个连续增长率、初始扰动向量（vector）和时刻，返回解析扰动及相对初始范数（norm）的放大倍数。",
+    "statement": "三个扰动分量分别满足 δⱼ′=rates[j]*δⱼ，j 按列表下标 0、1、2 对应三个坐标。给定非零初始扰动与时刻，求解析扰动向量及其范数相对初始范数的倍率。",
     "learning_targets": [
       "T3"
     ],
@@ -4048,13 +4048,13 @@
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "三个对角增长率。",
+        "description": "按三个坐标顺序排列的连续增长率。",
         "unit": "每单位 τ"
       },
       {
         "name": "initial_delta",
         "type": "list[float]",
-        "description": "非零的三维初始扰动。",
+        "description": "按同一坐标顺序排列的初始扰动，三个分量不全为零。",
         "unit": "1"
       },
       {
@@ -4068,7 +4068,7 @@
       {
         "name": "delta",
         "type": "list[float]",
-        "description": "三个扰动分量。",
+        "description": "按同一坐标顺序返回的 δⱼ(time)。",
         "unit": "1"
       },
       {
@@ -4080,7 +4080,7 @@
     ],
     "contract": "δⱼ(t)=δⱼ(0)exp(rates[j]*time)，放大倍数用三维欧氏范数。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限，不修改输入列表。",
       "两个列表长度 3；rates 在 [−3,3]，initial_delta 非零且有限；0≤time≤4。"
     ],
     "entrypoint": "solve",
@@ -4088,7 +4088,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "各分量乘各自的指数因子；倍率使用整个向量的终点范数除以起点范数。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -4136,7 +4136,7 @@
     "chapter": "4.6",
     "title": "归一化间隔与增长率",
     "type": "choice",
-    "statement": "切向演化总时间为 T，每段归一化前相对单位扰动的伸长倍数为 q[i]。在同一轨迹（trajectory）上把归一化间隔减半，怎样保持每单位时间增长率的定义？",
+    "statement": "切向演化总时间为 T，每段归一化前相对单位扰动的伸长倍数为 q[i]。在同一轨迹上把归一化间隔减半，怎样保持每单位时间增长率的定义？",
     "learning_targets": [
       "T3"
     ],
@@ -4192,7 +4192,7 @@
       },
       {
         "id": "B",
-        "text": "对于两个不同初值（initial condition）的解，各自的 θ 差和 φ 差保持不变，因此缺少共同周期不表示初始差会指数增长。"
+        "text": "对于两个不同初值的解，按圆周周期衡量的 θ、φ 相位差都保持不变，因此没有共同周期不表示初始差会指数增长。"
       },
       {
         "id": "C",
@@ -4214,7 +4214,7 @@
     "chapter": "4.6",
     "title": "解释数值混沌证据",
     "type": "choice",
-    "statement": "普通浮点积分得到蝴蝶状轨迹（trajectory），若干长窗口的切向增长率为正。哪项与这组证据的范围相符？",
+    "statement": "普通浮点积分得到蝴蝶状轨迹，若干长窗口的切向增长率为正。哪项与这组证据的范围相符？",
     "learning_targets": [
       "T3"
     ],
@@ -4231,7 +4231,7 @@
       },
       {
         "id": "B",
-        "text": "这些有限轨迹已经确定了所有邻近初值（initial condition）的无限时间行为。"
+        "text": "这些有限轨迹已经确定了所有邻近初值的无限时间行为。"
       },
       {
         "id": "C",
@@ -4266,7 +4266,7 @@
     "options": [
       {
         "id": "A",
-        "text": "开关模型（model）从任意正初值（initial condition）出发，解都会趋向 x=1。"
+        "text": "开关模型从任意正初值出发，解都会趋向 x=1。"
       },
       {
         "id": "B",
@@ -4274,7 +4274,7 @@
       },
       {
         "id": "C",
-        "text": "纯旋转中，从相邻半径出发的轨迹（trajectory）会逐渐靠近原来选定的圆。"
+        "text": "纯旋转中，从相邻半径出发的轨迹会逐渐靠近原来选定的圆。"
       },
       {
         "id": "D",
@@ -4292,7 +4292,7 @@
     "chapter": "4.summary",
     "title": "振荡来源与参数转变",
     "type": "choice",
-    "statement": "改变外部输入（input）和参数（parameter）后观察振荡。哪些判断合理？",
+    "statement": "改变外部输入和参数后观察振荡。哪些判断合理？",
     "learning_targets": [
       "T2"
     ],
@@ -4309,7 +4309,7 @@
       },
       {
         "id": "B",
-        "text": "径向模型（model）R′=μR−R³、θ′=1 在 μ>0 时具有半径 sqrt(μ) 的稳定周期轨道。"
+        "text": "径向模型R′=μR−R³、θ′=1 在 μ>0 时具有半径 sqrt(μ) 的稳定周期轨道。"
       },
       {
         "id": "C",
@@ -4331,7 +4331,7 @@
     "chapter": "4.summary",
     "title": "复算多初值扫描的有限结果",
     "type": "python",
-    "statement": "对 x′=x−x³，按明确的显式中点积分和阈值规则返回末态与分类。包含恰好在不稳定平衡（equilibrium）及接近边界的初值（initial condition）。",
+    "statement": "对 x′=x−x³，按明确的显式中点积分和阈值规则返回末态与分类。包含恰好在不稳定平衡及接近边界的初值。",
     "learning_targets": [
       "T1"
     ],
@@ -4349,13 +4349,13 @@
       {
         "name": "h",
         "type": "float",
-        "description": "时间步长（time step）。",
+        "description": "时间步长。",
         "unit": "1"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "固定积分（definite integral）步数。",
+        "description": "从每个初值执行的中点更新次数。",
         "unit": "1"
       },
       {
@@ -4369,19 +4369,19 @@
       {
         "name": "final_states",
         "type": "list[float]",
-        "description": "各初值末态。",
+        "description": "与 initials 逐项对应、时刻 steps*h 的状态。",
         "unit": "1"
       },
       {
         "name": "labels",
         "type": "list[int]",
-        "description": "小于负阈值 −1，大于正阈值 1，其余 0。",
+        "description": "对应终值的标签：低于 −threshold 为 −1，高于 threshold 为 1，其余为 0。",
         "unit": "1"
       }
     ],
     "contract": "每步 m=x+h*(x−x³)/2，再令 x←x+h*(m−m³)。恰做 steps 步。分类使用严格不等式。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
+      "所有输入数值有限；不修改输入列表。",
       "1≤len(initials)≤20；各项在 [−1.5,1.5]；0<h≤0.05；0≤steps≤3000；0<threshold<1。"
     ],
     "entrypoint": "solve",
@@ -4389,7 +4389,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "有限时间未决与真正的边界平衡要分开解释。",
+    "hint": "steps=0 保留原初值，恰好等于正负阈值都记为 0；同一标签可能对应不同的长期去向。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -4438,7 +4438,7 @@
     "chapter": "4.summary",
     "title": "从定向截面计算返回",
     "type": "python",
-    "statement": "对给定周期或 Lorenz 轨迹（trajectory），按相同的方向、暂态（transient）阈值与插值规则提取交点及间隔。各输入（input）已经完整给定，不依赖其他题。",
+    "statement": "给定周期或 Lorenz 轨迹的三维样本，状态每行依次为 [x,y,z]。按由下向上穿过 z=level 的方向，插值完整交点，筛选交点时间不早于 burn 的事件并计算相邻间隔。",
     "learning_targets": [
       "T2"
     ],
@@ -4451,13 +4451,13 @@
       {
         "name": "times",
         "type": "list[float]",
-        "description": "严格递增的观测（observation）时刻。",
+        "description": "严格递增的观测时刻。",
         "unit": "τ"
       },
       {
         "name": "states",
         "type": "list[list[float]]",
-        "description": "与时刻一一对应的三维状态（state）。",
+        "description": "与 times 逐项对应，每行依次为 x、y、z。",
         "unit": "1"
       },
       {
@@ -4477,7 +4477,7 @@
       {
         "name": "hits",
         "type": "list[list[float]]",
-        "description": "交点列表，每行 [t,x,y,z]；时间单位 τ，其余无量纲（dimensionless）。",
+        "description": "交点列表，每行 [t,x,y,z]；时间单位 τ，其余无量纲。",
         "unit": "1"
       },
       {
@@ -4497,7 +4497,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "插值比例对时间与三个坐标一致；先筛选交点时间，再计算保留事件之间的间隔。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -4575,7 +4575,7 @@
     "chapter": "4.summary",
     "title": "离散与连续的扰动增长",
     "type": "python",
-    "statement": "同时给定离散映射的逐步导数（derivative）和连续切向段伸长，分别计算有限增长率。零映射导数使本题离散对数和为负无穷，用 None 表示。",
+    "statement": "同时给定离散映射的逐步导数和连续切向段伸长，分别计算有限增长率。零映射导数使本题离散对数和为负无穷，用 None 表示。",
     "learning_targets": [
       "T3"
     ],
@@ -4588,19 +4588,19 @@
       {
         "name": "map_derivatives",
         "type": "list[float]",
-        "description": "逐步映射导数，可为零或负。",
+        "description": "按映射代次排列的局部导数，可正、负或零。",
         "unit": "1"
       },
       {
         "name": "stretch_factors",
         "type": "list[float]",
-        "description": "每段终点范数（norm）除以该段起点范数，均正。",
+        "description": "每段终点范数除以该段起点范数，均正。",
         "unit": "1"
       },
       {
         "name": "durations",
         "type": "list[float]",
-        "description": "与每段对应的实际时长。",
+        "description": "与 stretch_factors 逐项对应的实际测量时长。",
         "unit": "τ"
       }
     ],
@@ -4608,19 +4608,19 @@
       {
         "name": "per_step",
         "type": "float | None",
-        "description": "平均 log|导数|；遇零返回 None。",
+        "description": "离散序列的平均 log|导数|，出现零时为 None。",
         "unit": "每步"
       },
       {
         "name": "per_time",
         "type": "float",
-        "description": "连续段平均增长率。",
+        "description": "连续各段对数伸长之和除以实际时长之和。",
         "unit": "每单位 τ"
       }
     ],
     "contract": "离散结果=sum(log(abs(d)))/映射步数，若任一 d=0 则 None；连续结果=sum(log(s))/sum(dt)。返回 (per_step,per_time)。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限，不修改输入列表。",
       "各序列长度 1—100；连续两列表等长；伸长及时间严格为正；各非零导数和伸长绝对值在 [1e−8,1e8]。"
     ],
     "entrypoint": "solve",
@@ -4628,7 +4628,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "离散结果按映射步数归一，连续结果按实际时间归一；分别保留零导数的特殊结果与正伸长倍率。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -4675,7 +4675,7 @@
     "chapter": "4.summary",
     "title": "报告非规则轨迹计算",
     "type": "choice",
-    "statement": "已保留精确平衡（equilibrium）作为对照；普通初值（initial condition）的短窗结果随步长细化而收敛，长窗截面与增长率仍随窗口变化。哪种报告方式合适？",
+    "statement": "已保留精确平衡作为对照；普通初值的短窗结果随步长细化而收敛，长窗截面与增长率仍随窗口变化。哪种报告方式合适？",
     "learning_targets": [
       "T3"
     ],
@@ -4692,11 +4692,11 @@
       },
       {
         "id": "B",
-        "text": "列出参数（parameter）、初值、步长和各窗口长度，同时报告短窗误差、长窗截面和增长率的变化。"
+        "text": "列出参数、初值、步长和各窗口长度，同时报告短窗误差、长窗截面和增长率的变化。"
       },
       {
         "id": "C",
-        "text": "以短窗误差随细化减小为依据，认定长窗中每个时刻的状态（state）也已得到精确计算。"
+        "text": "以短窗误差随细化减小为依据，认定长窗中每个时刻的状态也已得到精确计算。"
       },
       {
         "id": "D",
@@ -4714,7 +4714,7 @@
     "chapter": "4.summary",
     "title": "有界性与函数导数的双重核对",
     "type": "python",
-    "statement": "给定 Lorenz 参数（parameter）与状态（state），以同一个 W 分别计算链式导数（derivative）和配方导数，给出正 c 与 C。这些量可用于估计轨迹（trajectory）可达范围的上界。",
+    "statement": "Lorenz 方程为 x′=σ(y−x)、y′=ρx−y−xz、z′=xy−βz，状态与时间均按无量纲尺度表示。计算有界性函数 W，用链式法则和配方表达式分别计算沿轨迹的导数，并给出上界 W′≤−cW+C 中的 c、C。",
     "learning_targets": [
       "T4"
     ],
@@ -4727,7 +4727,7 @@
       {
         "name": "sigma",
         "type": "float",
-        "description": "正参数（parameter） σ。",
+        "description": "正参数 σ。",
         "unit": "1"
       },
       {
@@ -4745,7 +4745,7 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "状态（state） [x,y,z]。",
+        "description": "当前状态，列表依次为 x、y、z。",
         "unit": "1"
       }
     ],
@@ -4753,37 +4753,37 @@
       {
         "name": "W",
         "type": "float",
-        "description": "有界性函数值。",
+        "description": "W=ρx²+σy²+σ(z−2ρ)² 的值。",
         "unit": "1"
       },
       {
         "name": "direct",
         "type": "float",
-        "description": "梯度（gradient）与向量场（vector field）内积（inner product）。",
+        "description": "用 ∇W 与三项变化率作内积得到的 W′。",
         "unit": "每单位 τ"
       },
       {
         "name": "completed",
         "type": "float",
-        "description": "配方后导数值。",
+        "description": "用配方后的表达式得到的同一个 W′。",
         "unit": "每单位 τ"
       },
       {
         "name": "c",
         "type": "float",
-        "description": "正衰减系数。",
+        "description": "不等式 W′≤−cW+C 中的正系数。",
         "unit": "每单位 τ"
       },
       {
         "name": "C",
         "type": "float",
-        "description": "界中常数。",
+        "description": "不等式 W′≤−cW+C 中的常数项。",
         "unit": "每单位 τ"
       }
     ],
     "contract": "W=ρx²+σy²+σ(z−2ρ)²；direct=∇W·f；completed=−2σ[ρx²+y²+β(z−ρ)²−βρ²]；c=min(2σ,2,β)，C=4σβρ²。分别计算两种导数表达式，返回 (W,direct,completed,c,C)。",
     "constraints": [
-      "所有数值有限，不修改输入（input）列表。",
+      "所有数值有限，不修改输入列表。",
       "0<σ≤20，0<ρ≤40，0<β≤5；状态各分量绝对值≤60。"
     ],
     "entrypoint": "solve",
@@ -4791,7 +4791,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "hint": "两种导数分别计算后应相同；W 的中心经过偏移，所以原点处的 W 可以非零。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
