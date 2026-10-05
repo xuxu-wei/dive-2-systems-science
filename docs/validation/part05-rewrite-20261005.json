@@ -1,0 +1,757 @@
+{
+  "date": "2026-10-05",
+  "baseline": "2640876542afcf5ec6fa14e2352c06483d4f47d9",
+  "scope": "Part 5 only; pending unified user reading acceptance",
+  "notebooks": [
+    {
+      "id": "P05-C01-S01",
+      "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/01-事件分布与一次实现.ipynb",
+      "sha256": "e205e6870f4216e232e14eca3e0dc2fad4f50dc052caf0110901ccc271a73783",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "0dceb003be0c3c46accd9c6e49d28e1f966cb6045284f2a949ddb2a2dcbe076d"
+    },
+    {
+      "id": "P05-C01-S02",
+      "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/02-把抽样变成可比较的重复实验.ipynb",
+      "sha256": "4f6c615084f821d44e1230f551e903d56cab45072f0c2ee3a59fd4c87834685e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "f94e1215a585d5f663f11a37477157934ce9325d8907e3f6e9e6974ce863eafe"
+    },
+    {
+      "id": "P05-C02-S01",
+      "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/01-用期望与方差描述随机量.ipynb",
+      "sha256": "d7994eb430306207055831675312b81f53ef972ff4800a1a962b5603890413e6",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "44b95def0f9d6838f46209dcceb12a931a2f36320941cf4f43a317ed6e9a9a4c"
+    },
+    {
+      "id": "P05-C02-S02",
+      "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/02-联合变化与协方差.ipynb",
+      "sha256": "a85fb3c4cc792c94a3658d87a6bdf4cd581d3a6df19faec1bdc47e09880a26ab",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "1f4650ab77b117fe15d11ab8ff4137e8c3decfa8355a37a759633d9b0c451747"
+    },
+    {
+      "id": "P05-C02-S03",
+      "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/03-过程测量与个体差异.ipynb",
+      "sha256": "3030c36921d4a3de30638582766c40da58022761defabd163f78e16276f3adae",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "55a1d7013c63c0c2fe5965ad3de5dc2bee6f00a6d9e892aac72c0c15ed035a71"
+    },
+    {
+      "id": "P05-C03-S01",
+      "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.ipynb",
+      "sha256": "28f2b4113f561227462984084447aa5a70236f73e966e27689d3be543aaed972",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "1bc7d52df0d6cfd7bf65c4d06102e1bf6faec6795a06bafe06139b0121118f87"
+    },
+    {
+      "id": "P05-C03-S02",
+      "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/02-固定未知量的高斯更新.ipynb",
+      "sha256": "d9d42ea5c17efa734873315b99300339bcf07b195975d0c20e41a8ce2b4e3f51",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "de0cd84a917bea2d299a69d0432a500ed483ff2923e359e16aecda958625cae5"
+    },
+    {
+      "id": "P05-C04-S01",
+      "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/01-状态路径与概率分布的两种推进.ipynb",
+      "sha256": "a8159d77ee179744ee0988171c7dbc9739e654eac3b7448cb26a48becd0e97be",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "ff79a684d19a2eb579aa7e904da8b1c5b57f2ba762ca7707c979b51879719045"
+    },
+    {
+      "id": "P05-C04-S02",
+      "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.ipynb",
+      "sha256": "7003d8a329ef51af049fcc3a59de230b3af8503c6f00bf546eba12e1da64fef2",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "5b80b9024ba50d3f00300bb1c51077014a813ebeea1b1542a8b8183fcb5affe8"
+    },
+    {
+      "id": "P05-C04-S03",
+      "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/03-随机游走中的漂移与扩散.ipynb",
+      "sha256": "2f8703b84cfd74b39206eb90b891d26eb8cc134bcfc942a4efadb9076ec6936a",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "406cf0ab056ac2cf0bd1bf9f4fbc6470921943c5b18d4daeb835fa85950784d9"
+    },
+    {
+      "id": "P05-C05-S01",
+      "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.ipynb",
+      "sha256": "05f64cd080a7fe9e2573811d06b24e8b382bdcd5728af97097c9220381626029",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "0a3be1d7bc00d7262ef11d4a40a4e4ce8ccb23d7834afc3e3bd75332d11cc29c"
+    },
+    {
+      "id": "P05-C05-S02",
+      "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/02-有限样本分箱与信息偏差.ipynb",
+      "sha256": "260bfddfd4845743ab878ffaeaec7d1e0a1c00ea8aae715a54621bab45679f61",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "d0014bfe7386a5e480991f8bd7eadfa08dc0804b891bf4b20d90d65e0e8e8f01"
+    },
+    {
+      "id": "P05-SUMMARY",
+      "path": "notebooks/05-随机性与信息/06-篇末综合/01-噪声概率更新与信息的综合实验.ipynb",
+      "sha256": "a0a63483beceb6c44c4600cab48f494e65ec7f7f164f3f8683132b7991eb1d01",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "74506554c1be11da165e59a0aea526d32ed17b4043bab99ff7382472151172e9"
+    }
+  ],
+  "questions": {
+    "reviewed": 62,
+    "choice": 43,
+    "python": 19,
+    "wording_changed": 62,
+    "wording_changed_ids": [
+      "p05-event-variable",
+      "p05-uniform-area",
+      "p05-density-point",
+      "p05-normalization",
+      "p05-frequencies",
+      "p05-seed-repeats",
+      "p05-repeat-band",
+      "p05-shared-environment",
+      "p05-moments",
+      "p05-variance-units",
+      "p05-gaussian-domain",
+      "p05-sample-denominator",
+      "p05-covariance",
+      "p05-uncorrelated",
+      "p05-sum-variance",
+      "p05-correlation-zero-var",
+      "p05-shared-offset",
+      "p05-variance-path",
+      "p05-noise-location",
+      "p05-stationary-variance",
+      "p05-individual-fixed",
+      "p05-quantiles",
+      "p05-bayes",
+      "p05-base-rate",
+      "p05-duplicate-observation",
+      "p05-conditioning",
+      "p05-normal-update",
+      "p05-prior-sensitivity",
+      "p05-precision",
+      "p05-fixed-quantity",
+      "p05-order",
+      "p05-propagation",
+      "p05-path",
+      "p05-markov-assumption",
+      "p05-path-distribution",
+      "p05-stochastic-matrix",
+      "p05-stationary",
+      "p05-periodic",
+      "p05-ergodic-conditions",
+      "p05-absorbing",
+      "p05-walk",
+      "p05-walk-path",
+      "p05-walk-boundary",
+      "p05-walk-independence",
+      "p05-information",
+      "p05-entropy",
+      "p05-conditional-entropy",
+      "p05-channel-flip",
+      "p05-information-scope",
+      "p05-bin-pairs",
+      "p05-finite-bias",
+      "p05-coarsening",
+      "p05-binning-units",
+      "p05-comparison-budget",
+      "p05-cap-noise",
+      "p05-cap-repeat",
+      "p05-cap-summary",
+      "p05-cap-bayes",
+      "p05-cap-propagation",
+      "p05-cap-variance",
+      "p05-cap-bins",
+      "p05-cap-scope"
+    ],
+    "explanation_changed": 62,
+    "explanation_changed_ids": [
+      "p05-event-variable",
+      "p05-uniform-area",
+      "p05-density-point",
+      "p05-normalization",
+      "p05-frequencies",
+      "p05-seed-repeats",
+      "p05-repeat-band",
+      "p05-shared-environment",
+      "p05-moments",
+      "p05-variance-units",
+      "p05-gaussian-domain",
+      "p05-sample-denominator",
+      "p05-covariance",
+      "p05-uncorrelated",
+      "p05-sum-variance",
+      "p05-correlation-zero-var",
+      "p05-shared-offset",
+      "p05-variance-path",
+      "p05-noise-location",
+      "p05-stationary-variance",
+      "p05-individual-fixed",
+      "p05-quantiles",
+      "p05-bayes",
+      "p05-base-rate",
+      "p05-duplicate-observation",
+      "p05-conditioning",
+      "p05-normal-update",
+      "p05-prior-sensitivity",
+      "p05-precision",
+      "p05-fixed-quantity",
+      "p05-order",
+      "p05-propagation",
+      "p05-path",
+      "p05-markov-assumption",
+      "p05-path-distribution",
+      "p05-stochastic-matrix",
+      "p05-stationary",
+      "p05-periodic",
+      "p05-ergodic-conditions",
+      "p05-absorbing",
+      "p05-walk",
+      "p05-walk-path",
+      "p05-walk-boundary",
+      "p05-walk-independence",
+      "p05-information",
+      "p05-entropy",
+      "p05-conditional-entropy",
+      "p05-channel-flip",
+      "p05-information-scope",
+      "p05-bin-pairs",
+      "p05-finite-bias",
+      "p05-coarsening",
+      "p05-binning-units",
+      "p05-comparison-budget",
+      "p05-cap-noise",
+      "p05-cap-repeat",
+      "p05-cap-summary",
+      "p05-cap-bayes",
+      "p05-cap-propagation",
+      "p05-cap-variance",
+      "p05-cap-bins",
+      "p05-cap-scope"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "current_files_retained": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Unbound PracticeEngine.progress on read-only in-memory baseline records and current question/assessment metadata; no engine constructor or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_and_introduction_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_model_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "conditional_expectation_bridge_preserved_after_normalizing_annotations": true,
+    "independent_hand_examples_and_algebra": [
+      "Uniform overlap probability",
+      "Equal-group versus pooled frequencies",
+      "Discrete release moments and shared-offset average variance",
+      "Process variance first two steps and limit",
+      "Bayes marking probability and preserved conditional-mean table",
+      "Gaussian total precision, final mean and remaining prior difference",
+      "Markov first two steps, invariant vector and alternating counterexample",
+      "Walk drift, dispersion and exact fourth-moment variance-check scale",
+      "Copy, independent, flip and nested-bin information tables",
+      "Capstone equal-group mean and B−1 variance"
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    }
+  ],
+  "new_unresolved": [
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    }
+  ],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 140,
+    "core_changed": 127,
+    "exercise_cells_synchronized": 13
+  },
+  "teaching_check": {
+    "notebooks": 13,
+    "questions": 62,
+    "question_links": 62,
+    "issues": []
+  },
+  "teaching_check_method": "Run existing check_teaching logic through a local wrapper. Each lesson inherits actual vocabulary from Parts 0–4 and earlier Part 5 lessons; its exercises inherit the lesson body, and chapter overviews inherit preceding chapters. Only the seen vocabulary is supplied differently; source checker and glossary files are unchanged.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/05-01-从重复实验建立概率/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/05-02-期望、方差、协方差与噪声/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/05-03-条件概率与贝叶斯更新/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/05-04-随机过程与马尔可夫模型/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/05-05-熵、互信息与测量价值/",
+        "status": 200
+      },
+      {
+        "path": "/parts/05-随机性与信息/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/05-01-从重复实验建立概率/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/05-02-期望、方差、协方差与噪声/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/05-03-条件概率与贝叶斯更新/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/05-04-随机过程与马尔可夫模型/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p05-uniform-area",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p05-bayes",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p05-normal-update",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p05-periodic",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p05-bin-pairs",
+        "status": 200,
+        "latest_statement_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p05-cap-bins",
+        "status": 200,
+        "latest_statement_and_version": true
+      }
+    ],
+    "served_catalog_equals_current_file": true,
+    "html_rendered_without_execution": [
+      "P05-C01-S01",
+      "P05-C01-S02",
+      "P05-C02-S01",
+      "P05-C02-S02",
+      "P05-C02-S03",
+      "P05-C03-S01",
+      "P05-C03-S02",
+      "P05-C04-S01",
+      "P05-C04-S02",
+      "P05-C04-S03",
+      "P05-C05-S01",
+      "P05-C05-S02",
+      "P05-SUMMARY"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout or interaction behavior.",
+    "rendered_again_after_final_prose_polish": [
+      "P05-C02-S03",
+      "P05-C03-S02",
+      "P05-C04-S01"
+    ]
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All 73 attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_preliminaries/probability.html",
+      "focus": "Dice and empirical frequencies, distinction between variables and values, conditional probability direction and the concrete Bayes example."
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/02-Randomised-Experiments.html",
+      "focus": "Explain what independence refers to, connect a concrete comparison and assumptions to formulas, then read a table and interpret its result."
+    }
+  ],
+  "authorization": "The user authorized the project implementation conversation to dispatch Parts 2–17 sequentially and supervise this conversation; unified reading acceptance follows all parts. Current dispatch is Part 5. Existing normal commit/push authorization continues; no force push.",
+  "specific_prose_corrections": [
+    "Readout state variance P, Gaussian update m/P/K, and transition row/column meaning are explained before their first demonstration code.",
+    "The original conditional-expectation joint table, two conditional means and total-expectation calculation remain intact after removing redundant annotations.",
+    "The return-only-final-values contract of p05-prior-sensitivity now matches its existing description, sample structure and unchanged cases.",
+    "Input-list constraints were removed only from scalar-only functions; all numeric bounds are preserved."
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part05-rewrite-20261005/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part05-rewrite-20261005/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part05-rewrite-20261005/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part05-rewrite-20261005/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part05-rewrite-20261005/render_changed.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/probability/app.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ]
+}

@@ -8,7 +8,7 @@
     "chapter": "5.1",
     "title": "事件、随机变量与一次观察",
     "type": "choice",
-    "statement": "每次随机抽取一个理想细胞，X=1 表示当次处于活跃态，X=0 表示静息态。模型（model）规定 P(X=1)=0.3。哪些说法成立？",
+    "statement": "每次随机抽取一个理想细胞，用 X=1 记录活跃、X=0 记录静息。模型规定 P(X=1)=0.3。关于事件、变量和一次结果，哪些说法成立？",
     "learning_targets": [
       "T1"
     ],
@@ -20,15 +20,15 @@
     "options": [
       {
         "id": "A",
-        "text": "X 将一次抽到的细胞状态（state）记为 0 或 1，因此 X 是随机变量（random variable）。"
+        "text": "X 将一次抽到的细胞状态记为 0 或 1，因此 X 是随机变量。"
       },
       {
         "id": "B",
-        "text": "一次抽到活跃细胞，就说明模型中的活跃概率（probability）应改为 1。"
+        "text": "一次抽到活跃细胞，就说明模型中的活跃概率应改为 1。"
       },
       {
         "id": "C",
-        "text": "所有满足 X=1 的抽样结果组成“抽到活跃细胞”这个事件（event）。"
+        "text": "所有满足 X=1 的抽样结果组成“抽到活跃细胞”这个事件。"
       },
       {
         "id": "D",
@@ -46,7 +46,7 @@
     "chapter": "5.1",
     "title": "密度曲线下的概率",
     "type": "python",
-    "statement": "测量误差在 [low,high] 上均匀分布（distribution）。求它落入闭区间 [left,right] 的概率（probability）；区间可以部分位于支持集之外。",
+    "statement": "测量误差均匀地落在 [low,high] 内。求它位于查询区间 [left,right] 的概率；查询区间可以有一部分或全部超出误差的取值范围。",
     "learning_targets": [
       "T1"
     ],
@@ -58,25 +58,25 @@
       {
         "name": "low",
         "type": "float",
-        "description": "均匀分布的左端点。",
+        "description": "误差取值范围的左端点。",
         "unit": "U"
       },
       {
         "name": "high",
         "type": "float",
-        "description": "均匀分布的右端点。",
+        "description": "误差取值范围的右端点。",
         "unit": "U"
       },
       {
         "name": "left",
         "type": "float",
-        "description": "查询区间左端点。",
+        "description": "查询区间的左端点。",
         "unit": "U"
       },
       {
         "name": "right",
         "type": "float",
-        "description": "查询区间右端点。",
+        "description": "查询区间的右端点。",
         "unit": "U"
       }
     ],
@@ -84,13 +84,13 @@
       {
         "name": "probability",
         "type": "float",
-        "description": "误差位于查询区间的概率。",
+        "description": "误差落入两个区间重叠部分的概率。",
         "unit": "1"
       }
     ],
     "contract": "取两区间重叠长度，除以 high−low；没有重叠或 left=right 时返回 0。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值均须有限。",
       "−10≤low<high≤10，high−low≥0.01；−20≤left≤right≤20。"
     ],
     "entrypoint": "solve",
@@ -98,7 +98,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "概率是面积，不是一个点上的密度值。",
+    "hint": "先将查询区间截到 [low,high] 内，再用重叠长度除以整个误差区间的长度。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -119,7 +119,7 @@
           "right": 0.1
         },
         "expected": 0.25,
-        "explanation": "支持区间长 0.4 U，重叠长 0.1 U，概率为 0.25。密度为 2.5/U，其值大于 1 并不违反概率约束。"
+        "explanation": "误差范围长 0.4 U，查询区间与它重叠 0.1 U，概率为 0.1/0.4=0.25。密度 2.5/U 乘区间长度后才得到无单位的概率。"
       }
     ]
   },
@@ -132,7 +132,7 @@
     "chapter": "5.1",
     "title": "区间、密度与显示读数",
     "type": "choice",
-    "statement": "误差 E 的分布（distribution）在 [−0.2,0.2] U 上连续均匀；仪器将误差四舍五入到 0.1 U 显示。哪些判断正确？",
+    "statement": "误差 E 在 [−0.2,0.2] U 上连续均匀分布，仪器将 E 四舍五入到 0.1 U 显示。比较区间概率、点概率与显示结果，哪些判断正确？",
     "learning_targets": [
       "T1"
     ],
@@ -144,7 +144,7 @@
     "options": [
       {
         "id": "A",
-        "text": "误差落在 −0.1 U 到 0.1 U 之间的概率（probability）为 0.5。"
+        "text": "误差落在 −0.1 U 到 0.1 U 之间的概率为 0.5。"
       },
       {
         "id": "B",
@@ -152,7 +152,7 @@
       },
       {
         "id": "C",
-        "text": "误差在给定区间内的概率密度（probability density）为 2.5/U。"
+        "text": "误差在给定区间内的概率密度为 2.5/U。"
       },
       {
         "id": "D",
@@ -170,7 +170,7 @@
     "chapter": "5.1",
     "title": "补齐细胞状态的概率",
     "type": "choice",
-    "statement": "静息、活跃、恢复三种状态（state）互斥且穷尽，前两者概率（probability）是 0.5、0.3。恢复态概率是多少？",
+    "statement": "理想细胞只能处于静息、活跃、恢复三种状态中的一种。静息与活跃的概率分别为 0.5、0.3，恢复状态的概率是多少？",
     "learning_targets": [
       "T1"
     ],
@@ -208,7 +208,7 @@
     "chapter": "5.1",
     "title": "不同大小实验组怎样汇总",
     "type": "python",
-    "statement": "若干组独立细胞观察已给定，每个数是 0 或 1。计算各组成功频率、各组频率的等权平均，以及合并所有细胞的成功频率。",
+    "statement": "已给定若干组独立细胞观察，每个标签 1 表示活跃、0 表示静息。返回各组的活跃频率、这些频率的等权平均，以及合并全部观察后的活跃频率。",
     "learning_targets": [
       "T1"
     ],
@@ -220,7 +220,7 @@
       {
         "name": "groups",
         "type": "list[list[int]]",
-        "description": "外层为实验组；内层为该组二值观察。",
+        "description": "外层按实验组排列，内层记录该组的 0、1 标签。",
         "unit": "1"
       }
     ],
@@ -228,25 +228,25 @@
       {
         "name": "frequencies",
         "type": "list[float]",
-        "description": "按组顺序排列的成功频率。",
+        "description": "按输入组顺序排列的活跃频率。",
         "unit": "1"
       },
       {
         "name": "group_mean",
         "type": "float",
-        "description": "对各组频率等权平均。",
+        "description": "各组频率相加后除以组数，每组权重相同。",
         "unit": "1"
       },
       {
         "name": "pooled_frequency",
         "type": "float",
-        "description": "全部成功次数除以全部观察次数。",
+        "description": "全部活跃标签数除以全部标签数，组长较大者贡献较多观察。",
         "unit": "1"
       }
     ],
     "contract": "每组频率=sum(group)/len(group)。后两项的权重不同，严格按各自定义计算。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "1—20 组，每组 1—100 个数，均为 0 或 1；无空组。"
     ],
     "entrypoint": "solve",
@@ -254,7 +254,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先明确观察单位是组还是细胞，不能混用分母。",
+    "hint": "先分别计算每组的活跃数与标签数；组频率的平均和合并频率使用不同权重。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -290,7 +290,7 @@
           0.625,
           0.6666666666666666
         ],
-        "explanation": "两组频率为 0.5、0.75；组平均 0.625，合并频率 4/6≈0.666667。较大组在合并统计中权重较大。"
+        "explanation": "两组活跃频率为 1/2、3/4，等权平均为 5/8；合并后 6 个标签有 4 个活跃，频率为 2/3。"
       }
     ]
   },
@@ -303,7 +303,7 @@
     "chapter": "5.1",
     "title": "解释相同种子的重复结果",
     "type": "choice",
-    "statement": "每次都重新创建同一种类、相同种子的伪随机生成器，抽 50 个数，重复 200 次；各组均值完全相同。对于这项实验，哪项解释正确？",
+    "statement": "每轮都重新创建同一种伪随机生成器并设置相同种子，抽取 50 个数；这样做 200 轮，各组均值完全相同。哪项解释符合这项实验？",
     "learning_targets": [
       "T1"
     ],
@@ -323,7 +323,7 @@
       },
       {
         "id": "C",
-        "text": "200 组均值完全相同，说明所抽总体的方差（variance）为零。"
+        "text": "200 组均值完全相同，说明所抽总体的方差为零。"
       },
       {
         "id": "D",
@@ -341,7 +341,7 @@
     "chapter": "5.1",
     "title": "重复频率的范围说明什么",
     "type": "choice",
-    "statement": "200 次重新抽样各 20 个细胞，展示各组频率的 5%—95% 经验分位范围。哪些正确？",
+    "statement": "每轮重新抽取 20 个细胞，共做 200 轮，计算各组活跃频率的第 5—95 百分位范围。关于这项重复实验，哪些判断正确？",
     "learning_targets": [
       "T1"
     ],
@@ -353,7 +353,7 @@
     "options": [
       {
         "id": "A",
-        "text": "增大每组细胞数通常会减小样本频率的波动，但某一组频率仍可能比原来离真实概率（probability）更远。"
+        "text": "增大每组细胞数通常会减小样本频率的波动，但某一组频率仍可能比原来离真实概率更远。"
       },
       {
         "id": "B",
@@ -365,7 +365,7 @@
       },
       {
         "id": "D",
-        "text": "这个样本频率区间就是未知活跃概率（probability）的 90% 置信区间（confidence interval）。"
+        "text": "这个样本频率区间就是未知活跃概率的 90% 置信区间。"
       }
     ],
     "constraints": []
@@ -379,7 +379,7 @@
     "chapter": "5.1",
     "title": "设计独立二值抽样",
     "type": "choice",
-    "statement": "要比较固定活跃概率（probability）p 下的独立二值观察。每组抽 100 个标签，并进行重复实验，哪项设计符合这个目标？",
+    "statement": "计划研究固定活跃概率 p 下独立二值观察的波动，每组记录 100 个标签并重复实验。哪项安排符合这个目标？",
     "learning_targets": [
       "T1"
     ],
@@ -399,7 +399,7 @@
       },
       {
         "id": "C",
-        "text": "每组按固定的 p 抽取标签，但每次重复实验都从相同随机种子（random seed）重新开始。"
+        "text": "每组按固定的 p 抽取标签，但每次重复实验都从相同随机种子重新开始。"
       },
       {
         "id": "D",
@@ -417,7 +417,7 @@
     "chapter": "5.2",
     "title": "从概率表计算位置与散布",
     "type": "python",
-    "statement": "理想细胞释放量只取给定离散值。计算其理论期望（expectation）和方差（variance），不把概率（probability）表当作等权样本。",
+    "statement": "理想细胞释放量只取 values 中给定的离散值，probabilities 按相同位置给出各值的概率。计算理论期望和方差，按概率加权。",
     "learning_targets": [
       "T2"
     ],
@@ -429,13 +429,13 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "可能的释放量。",
+        "description": "按顺序列出的可能释放量。",
         "unit": "U"
       },
       {
         "name": "probabilities",
         "type": "list[float]",
-        "description": "与释放量一一对应的概率。",
+        "description": "与 values 按位置配对的概率。",
         "unit": "1"
       }
     ],
@@ -443,19 +443,19 @@
       {
         "name": "mean",
         "type": "float",
-        "description": "理论期望。",
+        "description": "各可能值按其概率加权的期望。",
         "unit": "U"
       },
       {
         "name": "variance",
         "type": "float",
-        "description": "理论方差。",
+        "description": "各值与期望之差的平方按概率加权的方差。",
         "unit": "U²"
       }
     ],
     "contract": "mean=Σpᵢxᵢ；variance=Σpᵢ(xᵢ−mean)²。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "相同长度 1—30；−10≤values[i]≤10；概率非负且和为 1（浮点误差≤1e−12）。"
     ],
     "entrypoint": "solve",
@@ -463,7 +463,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先按概率求均值，再计算中心平方偏差。",
+    "hint": "先按概率求均值，再按同一概率计算各值相对均值的平方偏差。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -504,7 +504,7 @@
     "chapter": "5.2",
     "title": "换单位后哪些量会改变",
     "type": "choice",
-    "statement": "X 的单位为 U，E[X]=2 U，Var(X)=3 U²。令 Y=10X+5，Y 的数值使用相应的新标度。哪些数值正确？",
+    "statement": "以 U 为单位记录 X 的数值，已知 E[X]=2 U、Var(X)=3 U²。对这些数值作变换 Y=10X+5，比较变换后的均值、方差和标准差数值，哪些正确？",
     "learning_targets": [
       "T2"
     ],
@@ -516,7 +516,7 @@
     "options": [
       {
         "id": "A",
-        "text": "变换后的方差（variance）数值为 Var(Y)=35。"
+        "text": "变换后的方差数值为 Var(Y)=35。"
       },
       {
         "id": "B",
@@ -524,7 +524,7 @@
       },
       {
         "id": "C",
-        "text": "变换后的标准差（standard deviation）数值是原来 X 的 10 倍。"
+        "text": "变换后的标准差数值是原来 X 的 10 倍。"
       },
       {
         "id": "D",
@@ -542,7 +542,7 @@
     "chapter": "5.2",
     "title": "解释一次负测量误差",
     "type": "choice",
-    "statement": "测量模型（model）为 y=θ+E，理想读数 θ=2 U，E 是零均值高斯误差（Gaussian error），标准差（standard deviation）为 0.2 U。本次 E=−0.1 U，怎样解释 y？",
+    "statement": "测量模型为 y=θ+E，理想读数 θ=2 U。误差 E 为零均值高斯变量，标准差为 0.2 U；本次实际误差为 −0.1 U。怎样解释本次读数？",
     "learning_targets": [
       "T2"
     ],
@@ -580,7 +580,7 @@
     "chapter": "5.2",
     "title": "两个方差分母的区别",
     "type": "choice",
-    "statement": "固定数组（array） [0,2] 的描述性中心平方偏差用分母 n；若作为独立同分布（independent and identically distributed）样本估计总体方差（variance），用分母 n−1。两者依次是多少？",
+    "statement": "对固定读数 [0,2]，用分母 n 计算中心平方偏差的平均；再将它们看作独立同分布样本，用分母 n−1 估计总体方差。两种结果依次是多少？",
     "learning_targets": [
       "T2"
     ],
@@ -618,7 +618,7 @@
     "chapter": "5.2",
     "title": "配对观察的协方差",
     "type": "python",
-    "statement": "同一时刻有两通道读数 xs、ys。求各通道均值、描述性方差（variance）和配对协方差（covariance），所有中心矩都使用分母 n。",
+    "statement": "两通道的配对读数保存在 xs、ys 中，相同位置来自同一次观察。返回两通道均值、描述性方差和协方差；方差与协方差均使用分母 n。",
     "learning_targets": [
       "T2"
     ],
@@ -630,13 +630,13 @@
       {
         "name": "xs",
         "type": "list[float]",
-        "description": "第一通道读数，按配对顺序。",
+        "description": "第一通道的读数，顺序与 ys 配对。",
         "unit": "U"
       },
       {
         "name": "ys",
         "type": "list[float]",
-        "description": "第二通道读数，顺序不得打乱。",
+        "description": "第二通道的读数，相同位置与 xs 来自同次观察。",
         "unit": "U"
       }
     ],
@@ -644,37 +644,37 @@
       {
         "name": "mean_x",
         "type": "float",
-        "description": "第一通道均值。",
+        "description": "xs 的算术平均。",
         "unit": "U"
       },
       {
         "name": "mean_y",
         "type": "float",
-        "description": "第二通道均值。",
+        "description": "ys 的算术平均。",
         "unit": "U"
       },
       {
         "name": "variance_x",
         "type": "float",
-        "description": "第一通道中心平方均值。",
+        "description": "xs 相对其均值的平方偏差和除以 n。",
         "unit": "U²"
       },
       {
         "name": "variance_y",
         "type": "float",
-        "description": "第二通道中心平方均值。",
+        "description": "ys 相对其均值的平方偏差和除以 n。",
         "unit": "U²"
       },
       {
         "name": "covariance",
         "type": "float",
-        "description": "配对中心乘积均值。",
+        "description": "每对读数的中心偏差乘积之和除以 n。",
         "unit": "U²"
       }
     ],
     "contract": "均值分别计算；方差为 Σ(x−mean_x)²/n 等；协方差为 Σ(x−mean_x)(y−mean_y)/n。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "两个列表等长，长度 1—100；数值绝对值≤100。"
     ],
     "entrypoint": "solve",
@@ -682,7 +682,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "单个样本在描述性 n 分母下返回零中心矩；不能据此断言总体无波动。",
+    "hint": "先分别减去各通道均值，再将相同位置的两个中心偏差相乘。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -728,7 +728,7 @@
     "chapter": "5.2",
     "title": "协方差为零是否独立",
     "type": "choice",
-    "statement": "X 等概率（probability）取 −1、0、1，Y=X²。哪些成立？",
+    "statement": "X 以相同概率取 −1、0、1，另一个变量为 Y=X²。关于两个变量的关系，哪些判断成立？",
     "learning_targets": [
       "T2"
     ],
@@ -748,7 +748,7 @@
       },
       {
         "id": "C",
-        "text": "协方差（covariance）为零仍可能存在 Y=X² 这样的非线性依赖。"
+        "text": "协方差为零仍可能存在 Y=X² 这样的非线性依赖。"
       },
       {
         "id": "D",
@@ -766,7 +766,7 @@
     "chapter": "5.2",
     "title": "两个通道相加的波动",
     "type": "choice",
-    "statement": "Var(X)=1，Var(Y)=4，Cov(X,Y)=1，单位均按相应平方量计。Var(X+Y) 是多少？",
+    "statement": "两通道取相同单位，已知 Var(X)=1、Var(Y)=4、Cov(X,Y)=1，这三个数均以该单位的平方计。Var(X+Y) 的数值是多少？",
     "learning_targets": [
       "T2"
     ],
@@ -778,7 +778,7 @@
     "options": [
       {
         "id": "A",
-        "text": "两通道之和的方差（variance） Var(X+Y) 为 6。"
+        "text": "两通道之和的方差 Var(X+Y) 为 6。"
       },
       {
         "id": "B",
@@ -804,7 +804,7 @@
     "chapter": "5.2",
     "title": "计算恒定通道的相关",
     "type": "choice",
-    "statement": "某通道所有读数相同，另一通道有变化。以标准差（standard deviation）sd 计算标准相关系数（correlation coefficient）Cov(X,Y)/(sd(X)sd(Y))，结果应如何记录？",
+    "statement": "一个通道的所有读数相同，另一个通道的读数有变化。用 Cov(X,Y)/(sd(X)sd(Y)) 计算相关系数，应怎样记录结果？其中 sd 表示标准差。",
     "learning_targets": [
       "T2"
     ],
@@ -842,7 +842,7 @@
     "chapter": "5.2",
     "title": "多测几次能消除共同偏移吗",
     "type": "choice",
-    "statement": "yᵢ=θ+b+vᵢ，b 在一组测量中固定，组间零均值、方差（variance） B；vᵢ 独立零均值、方差 R，且与 b 独立。n 次平均的误差方差为多少？",
+    "statement": "测量同一固定量 θ，读数为 yᵢ=θ+b+vᵢ。偏移 b 在一组内固定，跨组均值为零、方差为 B；误差 vᵢ 相互独立，均值为零、方差为 R，并与 b 独立。将 n 个读数平均，平均读数与 θ 之差的方差是多少？",
     "learning_targets": [
       "T2"
     ],
@@ -880,7 +880,7 @@
     "chapter": "5.2",
     "title": "过程扰动怎样逐步积累",
     "type": "python",
-    "statement": "x[n+1]=a*x[n]+w[n]。w 与当前状态（state）独立、零均值，方差（variance）为 Q。计算状态方差，包含起点。",
+    "statement": "动态偏差满足 x[n+1]=a*x[n]+w[n]。每步扰动 w[n] 与当前 x[n] 独立，均值为零、方差为 Q。给定起始方差，返回各时刻状态方差，包含时刻 0。",
     "learning_targets": [
       "T2"
     ],
@@ -892,25 +892,25 @@
       {
         "name": "a",
         "type": "float",
-        "description": "每步状态偏差的倍数。",
+        "description": "每步对原有状态偏差的缩放倍数。",
         "unit": "1"
       },
       {
         "name": "process_variance",
         "type": "float",
-        "description": "独立过程扰动方差 Q。",
+        "description": "每步独立扰动的方差 Q。",
         "unit": "U²"
       },
       {
         "name": "initial_variance",
         "type": "float",
-        "description": "起始状态偏差方差 P0。",
+        "description": "时刻 0 的状态方差 P0。",
         "unit": "U²"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "更新步数。",
+        "description": "从时刻 0 开始的更新次数。",
         "unit": "步"
       }
     ],
@@ -918,13 +918,13 @@
       {
         "name": "variances",
         "type": "list[float]",
-        "description": "长度 steps+1 的状态方差。",
+        "description": "长度为 steps+1；第 n 项为时刻 n 的状态方差，第 0 项为起始方差。",
         "unit": "U²"
       }
     ],
     "contract": "P[0]=initial_variance；P[n+1]=a²P[n]+process_variance。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值均须有限。",
       "−1≤a≤1；0≤process_variance,initial_variance≤10；0≤steps≤100。"
     ],
     "entrypoint": "solve",
@@ -932,7 +932,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "独立性消除了交叉协方差（covariance）；一般相关扰动时不能直接用此递推。",
+    "hint": "对独立和求方差，旧方差先乘 a²，再加本步扰动方差 Q。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -970,7 +970,7 @@
     "chapter": "5.2",
     "title": "哪一种噪声会进入未来状态",
     "type": "choice",
-    "statement": "x[n+1]=a*x[n]+w[n]，y[n]=x[n]+v[n]，无基于 y 的反馈（feedback）。哪些正确？",
+    "statement": "动态偏差满足 x[n+1]=a*x[n]+w[n]，读数为 y[n]=x[n]+v[n]，没有依据 y 的反馈。根据扰动进入方程的位置，哪些判断正确？",
     "learning_targets": [
       "T2"
     ],
@@ -986,11 +986,11 @@
       },
       {
         "id": "B",
-        "text": "在 x[n] 与 v[n] 独立时，观测（observation）方差（variance）满足 Var(y[n])=Var(x[n])+Var(v[n])。"
+        "text": "在 x[n] 与 v[n] 独立时，观测方差满足 Var(y[n])=Var(x[n])+Var(v[n])。"
       },
       {
         "id": "C",
-        "text": "w[n] 加入下一步状态（state） x[n+1]，并可通过后续状态更新继续影响更晚的 x。"
+        "text": "w[n] 加入下一步状态 x[n+1]，并可通过后续状态更新继续影响更晚的 x。"
       },
       {
         "id": "D",
@@ -1008,7 +1008,7 @@
     "chapter": "5.2",
     "title": "方差极限的条件",
     "type": "choice",
-    "statement": "零均值独立扰动方差（variance） Q>0，P[n+1]=a²P[n]+Q。哪些正确？",
+    "statement": "独立零均值扰动的方差 Q>0，状态方差满足 P[n+1]=a²P[n]+Q。关于方差的长期变化，哪些判断正确？",
     "learning_targets": [
       "T2"
     ],
@@ -1020,11 +1020,11 @@
     "options": [
       {
         "id": "A",
-        "text": "P[n] 趋向有限值时，每条个体轨迹（trajectory）也会停止波动并变成常数。"
+        "text": "P[n] 趋向有限值时，每条个体轨迹也会停止波动并变成常数。"
       },
       {
         "id": "B",
-        "text": "当 |a|<1 时，P[n] 的极限（limit）为 Q/(1−a²)。"
+        "text": "当 |a|<1 时，P[n] 的极限为 Q/(1−a²)。"
       },
       {
         "id": "C",
@@ -1046,7 +1046,7 @@
     "chapter": "5.2",
     "title": "解释两群轨迹差异",
     "type": "choice",
-    "statement": "两群个体均从 x0=1 U 出发，a 在每个个体的实验期间固定：第一群 a=0.6，第二群 a=0.9。之后 x[n+1]=a*x[n]，没有过程或测量噪声（measurement noise）。第一步怎样变化？",
+    "statement": "两群个体均从 x[0]=1 U 出发，按 x[n+1]=a*x[n] 演化。第一群固定取 a=0.6，第二群固定取 a=0.9，整个实验没有过程或测量噪声（measurement noise）。第一步的状态怎样变化？",
     "learning_targets": [
       "T2"
     ],
@@ -1058,7 +1058,7 @@
     "options": [
       {
         "id": "A",
-        "text": "第一群各个体到达 0.6 U，第二群各个体到达 0.9 U，这一差异来自各群固定的参数（parameter）a。"
+        "text": "第一群各个体到达 0.6 U，第二群各个体到达 0.9 U，这一差异来自各群固定的参数a。"
       },
       {
         "id": "B",
@@ -1066,7 +1066,7 @@
       },
       {
         "id": "C",
-        "text": "两群各个体都保持为 1 U，因为固定参数不会改变状态（state）。"
+        "text": "两群各个体都保持为 1 U，因为固定参数不会改变状态。"
       },
       {
         "id": "D",
@@ -1084,7 +1084,7 @@
     "chapter": "5.2",
     "title": "解释逐时刻分位带",
     "type": "choice",
-    "statement": "根据 200 条状态（state）路径，在每个时刻分别计算 5% 与 95% 经验分位数（empirical quantile）。得到的带直接描述什么？",
+    "statement": "已生成 200 条状态路径，在每个时刻分别计算该时刻状态值的第 5 与第 95 百分位数。连接这些端点得到的带描述什么？",
     "learning_targets": [
       "T2"
     ],
@@ -1096,7 +1096,7 @@
     "options": [
       {
         "id": "A",
-        "text": "这条带保证每条完整路径以 90% 的概率（probability）在整个观察时段内都不出带。"
+        "text": "这条带保证每条完整路径以 90% 的概率在整个观察时段内都不出带。"
       },
       {
         "id": "B",
@@ -1104,7 +1104,7 @@
       },
       {
         "id": "C",
-        "text": "这条带给出了未知参数（parameter）a 的 90% 置信区间（confidence interval）。"
+        "text": "这条带给出了未知参数a 的 90% 置信区间。"
       },
       {
         "id": "D",
@@ -1122,7 +1122,7 @@
     "chapter": "5.3",
     "title": "按新观测更新细胞状态概率",
     "type": "python",
-    "statement": "观测（observation）只报告标记是否出现。给定各状态（state）先验（prior）与此次观测的似然（likelihood），返回后验（posterior）。",
+    "statement": "标记观测只报告标记是否出现。给定各候选细胞状态的先验，以及本次标记结果在各状态下出现的概率，返回看到该结果后的状态概率。两份输入列表使用相同状态顺序。",
     "learning_targets": [
       "T3"
     ],
@@ -1134,13 +1134,13 @@
       {
         "name": "prior",
         "type": "list[float]",
-        "description": "互斥且穷尽假设的先验概率（probability）。",
+        "description": "各候选状态的先验概率；状态互斥且穷尽。",
         "unit": "1"
       },
       {
         "name": "likelihood",
         "type": "list[float]",
-        "description": "同一离散观测在各假设下出现的概率。",
+        "description": "本次离散标记结果在对应状态下出现的条件概率。",
         "unit": "1"
       }
     ],
@@ -1148,13 +1148,13 @@
       {
         "name": "posterior",
         "type": "list[float] | None",
-        "description": "按原顺序返回后验；证据/边际似然（evidence or marginal likelihood）为零时返回 None。",
+        "description": "按输入状态顺序返回后验概率；所有加权概率之和为零时返回 None。",
         "unit": "1"
       }
     ],
     "contract": "weights[i]=prior[i]*likelihood[i]；分母为 weights 之和。分母>0 时逐项归一化；分母恰为 0 返回 None，不杜撰均匀后验。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "列表等长，长度 1—20；prior 非负且和为 1（误差≤1e−12）；likelihood 每项在 [0,1]。"
     ],
     "entrypoint": "solve",
@@ -1162,7 +1162,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "后验既取决于观测机制，也取决于先验；零分母表示这次观测被当前模型（model）排除。",
+    "hint": "先验与对应似然逐项相乘，再对全部权重求和；先验零的状态仍保持零权重。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1190,7 +1190,7 @@
           0.6923076923076924,
           0.30769230769230776
         ],
-        "explanation": "未归一化权重为 [0.18,0.08]，证据/边际似然为 0.26；后验为 [9/13,4/13]。0.9 是似然，不是后验。"
+        "explanation": "按活跃、静息顺序，联合权重为 [0.18,0.08]，本次标记概率为 0.26。后验为 [9/13,4/13]；0.9 表示活跃时出现标记的概率，条件方向不同。"
       }
     ]
   },
@@ -1203,7 +1203,7 @@
     "chapter": "5.3",
     "title": "似然高为何后验仍未到九成",
     "type": "choice",
-    "statement": "活跃态先验（prior） 0.2，静息态 0.8；标记出现概率（probability）分别为 0.9、0.1。出现标记后活跃态概率为多少？",
+    "statement": "细胞活跃的先验概率为 0.2，静息为 0.8。给定活跃、静息，标记出现的概率分别为 0.9、0.1。现在看到标记，细胞活跃的概率是多少？",
     "learning_targets": [
       "T3"
     ],
@@ -1241,7 +1241,7 @@
     "chapter": "5.3",
     "title": "处理被复制的读数",
     "type": "choice",
-    "statement": "固定未知量的先验（prior）为高斯分布（Gaussian distribution），方差（variance）为 1，一次测量误差方差也为 1。把同一读数复制为两条，并误按条件独立（conditional independence）的两次观测（observation）更新。怎样评价得到的后验（posterior）方差？",
+    "statement": "固定未知量有高斯先验，方差为 1；一次测量误差的方差也为 1。把同一次读数复制为两条记录，却按两次条件独立（conditional independence）观测的公式更新。怎样评价算出的后验方差？",
     "learning_targets": [
       "T3"
     ],
@@ -1279,7 +1279,7 @@
     "chapter": "5.3",
     "title": "联合表怎样变成条件表",
     "type": "choice",
-    "statement": "联合表 p(X,Y) 非负且总和为 1。要求 p(X|Y=y)，哪些成立？",
+    "statement": "联合概率表的行对应 X 的取值，列对应 Y 的取值，各格非负且全表和为 1。求已知 Y=y 时 X 的条件分布，哪些做法或判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1291,11 +1291,11 @@
     "options": [
       {
         "id": "A",
-        "text": "当 y 对应的列和为零时，仍可将 p(X|Y=y) 设为均匀分布（distribution）。"
+        "text": "当 y 对应的列和为零时，仍可将 p(X|Y=y) 设为均匀分布。"
       },
       {
         "id": "B",
-        "text": "当 y 对应的列和大于零时，所得各 X 的条件概率（conditional probability）相加为 1。"
+        "text": "当 y 对应的列和大于零时，所得各 X 的条件概率相加为 1。"
       },
       {
         "id": "C",
@@ -1317,7 +1317,7 @@
     "chapter": "5.3",
     "title": "更新固定偏差的均值与方差",
     "type": "python",
-    "statement": "固定未知 θ 有高斯先验（prior）；yᵢ=θ+vᵢ，给定 θ 后各误差独立、零均值高斯，方差（variance）已知。逐次更新 θ 的分布（distribution），不加入状态（state）预测。",
+    "statement": "固定未知偏差 θ 有高斯先验，测量为 yᵢ=θ+vᵢ。给定 θ 后，各次误差独立、零均值高斯，方差已知。按读数顺序更新 θ 的后验均值和方差，保留更新前的先验。",
     "learning_targets": [
       "T3"
     ],
@@ -1329,25 +1329,25 @@
       {
         "name": "prior_mean",
         "type": "float",
-        "description": "固定未知偏差的先验均值。",
+        "description": "θ 的先验均值。",
         "unit": "U"
       },
       {
         "name": "prior_variance",
         "type": "float",
-        "description": "先验方差，必须为正。",
+        "description": "θ 的正先验方差。",
         "unit": "U²"
       },
       {
         "name": "observations",
         "type": "list[float]",
-        "description": "依次获得的测量值。",
+        "description": "按获得顺序排列的测量值。",
         "unit": "U"
       },
       {
         "name": "noise_variances",
         "type": "list[float]",
-        "description": "与观测（observation）一一对应的正噪声方差。",
+        "description": "与 observations 按位置配对的正测量误差方差。",
         "unit": "U²"
       }
     ],
@@ -1355,19 +1355,19 @@
       {
         "name": "means",
         "type": "list[float]",
-        "description": "先验及每次更新后的均值。",
+        "description": "第 0 项为先验均值，第 i 项为处理前 i 次观测后的均值。",
         "unit": "U"
       },
       {
         "name": "variances",
         "type": "list[float]",
-        "description": "先验及每次更新后的方差。",
+        "description": "第 0 项为先验方差，第 i 项为处理前 i 次观测后的方差。",
         "unit": "U²"
       }
     ],
     "contract": "每个观测 y、方差 R：K=P/(P+R)，m←m+K(y−m)，P←P*R/(P+R)。结果包含先验；空观测返回仅含先验的两个列表。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "|prior_mean|,|observations[i]|≤100；0.001≤prior_variance,noise_variances[i]≤100；两个观测列表等长，长度 0—30。"
     ],
     "entrypoint": "solve",
@@ -1375,7 +1375,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "这是固定量的条件更新；若 θ 随时间变化，需要额外状态模型（model）。",
+    "hint": "每次用当前均值和方差更新，再将结果追加；下一次使用刚更新的结果。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1413,7 +1413,7 @@
             0.3333333333333333
           ]
         ],
-        "explanation": "均值 [0,0.5,2/3] U，方差 [1,0.5,1/3] U²；新观测精度与已有精度相加。"
+        "explanation": "先验均值、方差均为 0、1。两次独立读数都为 1 U、误差方差都为 1 U²，依次得到均值 [0,1/2,2/3] U、方差 [1,1/2,1/3] U²。"
       }
     ]
   },
@@ -1426,7 +1426,7 @@
     "chapter": "5.3",
     "title": "有限观测后还剩多少先验差异",
     "type": "python",
-    "statement": "对同一固定未知偏差，采用不同的高斯先验（prior），但用相同独立观测（observation）更新。返回各方案的最终均值、方差（variance），以及最终均值的极差。",
+    "statement": "对同一个固定未知偏差，使用多种高斯先验，并用相同的独立测量读数更新。按先验方案顺序返回最终均值、最终方差，以及这些最终均值的最大值减最小值。",
     "learning_targets": [
       "T3"
     ],
@@ -1438,25 +1438,25 @@
       {
         "name": "prior_means",
         "type": "list[float]",
-        "description": "各方案先验均值。",
+        "description": "按方案排列的先验均值。",
         "unit": "U"
       },
       {
         "name": "prior_variances",
         "type": "list[float]",
-        "description": "各方案正先验方差。",
+        "description": "与 prior_means 按位置配对的正先验方差。",
         "unit": "U²"
       },
       {
         "name": "observations",
         "type": "list[float]",
-        "description": "依次获得的测量值。",
+        "description": "所有方案共用的测量值序列。",
         "unit": "U"
       },
       {
         "name": "noise_variances",
         "type": "list[float]",
-        "description": "与观测一一对应的正噪声方差。",
+        "description": "与每次读数配对的正测量误差方差，所有方案共用。",
         "unit": "U²"
       }
     ],
@@ -1464,25 +1464,25 @@
       {
         "name": "final_means",
         "type": "list[float]",
-        "description": "各方案最终均值。",
+        "description": "按先验方案顺序排列的最终后验均值。",
         "unit": "U"
       },
       {
         "name": "final_variances",
         "type": "list[float]",
-        "description": "各方案最终方差。",
+        "description": "按先验方案顺序排列的最终后验方差。",
         "unit": "U²"
       },
       {
         "name": "mean_range",
         "type": "float",
-        "description": "最终均值最大值减最小值。",
+        "description": "final_means 的最大值减最小值。",
         "unit": "U"
       }
     ],
-    "contract": "每个观测 y、方差 R：K=P/(P+R)，m←m+K(y−m)，P←P*R/(P+R)。结果包含先验；空观测返回仅含先验的两个列表。分别更新所有方案；这里只返回末值。极差不是置信区间（confidence interval）。",
+    "contract": "各方案分别按 K=P/(P+R)、m←m+K(y−m)、P←PR/(P+R) 逐次更新，最后返回各自末值。没有观测时，末值就是相应先验。最终均值极差是方案之间的比较，不是置信区间。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "先验列表等长，长度 1—10；|均值及观测|≤100；所有方差在 [0.001,100]；观测与误差方差列表等长，长度 0—30。"
     ],
     "entrypoint": "solve",
@@ -1490,7 +1490,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "比较先验敏感性时固定观测与噪声假设。",
+    "hint": "比较先验时，让所有方案使用同一批读数及其对应误差方差。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1531,7 +1531,7 @@
           ],
           1.0
         ],
-        "explanation": "两方案最终均值为 [0.5,1.5]，方差均为 0.5，均值极差为 1 U；一次观测还没有消除先验差异。"
+        "explanation": "先验均值 [0,2] U、方差均为 1 U²，一次读数 1 U 后，末均值为 [0.5,1.5] U、末方差为 [0.5,0.5] U²。均值仍相差 1 U。"
       }
     ]
   },
@@ -1544,7 +1544,7 @@
     "chapter": "5.3",
     "title": "比较两种观测误差",
     "type": "choice",
-    "statement": "高斯更新的先验（prior）方差（variance）P=1 U²，同一观测（observation）值分别配 R=0.1 或 R=10 U²，增益（gain）为 K=P/(P+R)。哪些判断正确？",
+    "statement": "先验方差 P=1 U²。对同一个读数，分别将测量误差方差设为 R=0.1、10 U²，按 K=P/(P+R) 更新。比较两种误差假设，哪些判断正确？",
     "learning_targets": [
       "T3"
     ],
@@ -1564,7 +1564,7 @@
       },
       {
         "id": "C",
-        "text": "与 R=10 相比，R=0.1 时更新后的后验（posterior）方差更小。"
+        "text": "与 R=10 相比，R=0.1 时更新后的后验方差更小。"
       },
       {
         "id": "D",
@@ -1582,7 +1582,7 @@
     "chapter": "5.3",
     "title": "连续更新固定未知量",
     "type": "choice",
-    "statement": "用条件高斯公式连续处理同一固定 θ 的多次测量，后验（posterior）均值逐次变化。这一变化应怎样理解？",
+    "statement": "用条件高斯更新连续处理同一固定 θ 的多次测量，后验均值逐次改变。怎样解释这种变化？",
     "learning_targets": [
       "T3"
     ],
@@ -1594,7 +1594,7 @@
     "options": [
       {
         "id": "A",
-        "text": "测量次数增加后，单次读数中的观测（observation）噪声方差（variance）会变为零。"
+        "text": "测量次数增加后，单次读数中的观测噪声方差会变为零。"
       },
       {
         "id": "B",
@@ -1606,7 +1606,7 @@
       },
       {
         "id": "D",
-        "text": "后验均值的每次变化都应作为过程噪声（process noise）加入 θ 的下一步变化。"
+        "text": "后验均值的每次变化都应作为过程噪声加入 θ 的下一步变化。"
       }
     ],
     "constraints": []
@@ -1620,7 +1620,7 @@
     "chapter": "5.3",
     "title": "重排独立测量",
     "type": "choice",
-    "statement": "固定量高斯模型（model）的先验（prior）已知，各次观测（observation）在给定固定量后条件独立（conditional independence），误差方差（variance）已知。将观测值及其方差成对重排，哪些判断成立？",
+    "statement": "固定量的高斯先验已知，给定该量后各次测量条件独立（conditional independence）、误差方差已知。将每个读数与其误差方差一起重排，哪些判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -1632,7 +1632,7 @@
     "options": [
       {
         "id": "A",
-        "text": "重排读数 y 而保留原来各位置的 R 不动，仍会得到相同的最终后验（posterior）。"
+        "text": "重排读数 y 而保留原来各位置的 R 不动，仍会得到相同的最终后验。"
       },
       {
         "id": "B",
@@ -1658,7 +1658,7 @@
     "chapter": "5.4",
     "title": "从细胞切换规则传播概率",
     "type": "python",
-    "statement": "细胞每周期按给定马尔可夫（Markov）转移矩阵（transition matrix）切换。计算整个群体的理论状态（state）分布（distribution），不能返回单条随机路径。",
+    "statement": "细胞每周期按给定转移矩阵（transition matrix）切换标签。使用行向量约定，返回各时刻的理论状态概率。初始列表和矩阵行列均按状态编号 0、1、…排列。",
     "learning_targets": [
       "T3"
     ],
@@ -1670,19 +1670,19 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "行随机矩阵（matrix）；第 i 行给出从状态 i 到各状态的概率（probability）。",
+        "description": "方阵；第 i 行、第 j 列表示当前为 i 时，下一步为 j 的概率，各行和为 1。",
         "unit": "1"
       },
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "时刻 0 的行概率向量（vector）。",
+        "description": "时刻 0 各状态的概率，按状态编号排列。",
         "unit": "1"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "传播步数。",
+        "description": "从时刻 0 开始推进的周期数。",
         "unit": "步"
       }
     ],
@@ -1690,13 +1690,13 @@
       {
         "name": "distributions",
         "type": "list[list[float]]",
-        "description": "包含时刻 0，外层按时刻，内层按状态编号。",
+        "description": "外层第 n 项为时刻 n 的分布，内层第 j 项为状态 j 的概率，包含时刻 0。",
         "unit": "1"
       }
     ],
     "contract": "p_next[j]=Σᵢp[i]*matrix[i][j]；同步更新所有分量；包含初始分布。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "方阵维数 1—5；非负且每行和为 1（误差≤1e−12）；initial 等维、非负、和为 1；0≤steps≤100。"
     ],
     "entrypoint": "solve",
@@ -1704,7 +1704,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "检查概率和为 1；行向量右乘矩阵，不把矩阵列当出发状态。",
+    "hint": "每个新分量都由旧分布计算；将到达同一个状态的所有来源相加。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1749,7 +1749,7 @@
             0.3400000000000001
           ]
         ],
-        "explanation": "前两步为 [0.8,0.2]、[0.66,0.34]；初始 [1,0] 也保留在返回列表中。"
+        "explanation": "状态顺序为 0、1，初始 [1,0] 表示全在状态 0；随后两步为 [0.8,0.2]、[0.66,0.34]。返回外层列表依次保存时刻 0、1、2。"
       }
     ]
   },
@@ -1762,7 +1762,7 @@
     "chapter": "5.4",
     "title": "由指定随机数生成一条路径",
     "type": "python",
-    "statement": "给定每一步已抽出的均匀数，按当前状态（state）所在行做逆累计抽样。这样可逐步核对路径，而不依赖某一随机库版本。",
+    "statement": "给定转移矩阵（transition matrix）、起始标签和每一步已经抽出的均匀数。逐步累加当前状态所在行的概率，用该步均匀数确定下一标签，返回一条具体路径。",
     "learning_targets": [
       "T3"
     ],
@@ -1774,19 +1774,19 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "行随机矩阵（matrix）；第 i 行给出从状态 i 到各状态的概率（probability）。",
+        "description": "第 i 行、第 j 列为从状态 i 转到 j 的概率，编号从 0 开始。",
         "unit": "1"
       },
       {
         "name": "initial_state",
         "type": "int",
-        "description": "起始状态的零起始下标。",
+        "description": "起始状态编号。",
         "unit": "1"
       },
       {
         "name": "uniforms",
         "type": "list[float]",
-        "description": "每步使用一个 [0,1) 内的数，按顺序使用。",
+        "description": "按步骤排列的 [0,1) 内均匀数，每次转移使用一个。",
         "unit": "1"
       }
     ],
@@ -1794,13 +1794,13 @@
       {
         "name": "states",
         "type": "list[int]",
-        "description": "起始状态及每步抽中的状态。",
+        "description": "第 0 项为起始标签，第 n 项为完成第 n 次转移后的标签。",
         "unit": "1"
       }
     ],
     "contract": "扫描当前行，从第 0 列累计概率，选第一个 cumulative>u 的列；等于边界时进入右侧区间。若仅因浮点舍入没有命中，选最后一列。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "矩阵符合行随机矩阵条件，维数 1—5；initial_state 是合法下标；0—100 个均匀数，均在 [0,1)。"
     ],
     "entrypoint": "solve",
@@ -1808,7 +1808,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "每一步使用更新后的当前状态选择行。",
+    "hint": "按状态编号从左向右累计当前行概率，选第一个累计值严格大于本步均匀数的位置。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -1846,7 +1846,7 @@
           1,
           0
         ],
-        "explanation": "依次抽到 0、1、0，连同起点返回 [0,0,1,0]。u=0.8 位于右侧区间，不能仍选状态 0。"
+        "explanation": "从 0 出发，0.7 落在第一行的 [0,0.8)，仍为 0；0.8 落在 [0.8,1)，变为 1；随后按第二行，0.05 选中 0。连同起点返回 [0,0,1,0]。"
       }
     ]
   },
@@ -1859,7 +1859,7 @@
     "chapter": "5.4",
     "title": "解读时间齐次的状态模型",
     "type": "choice",
-    "statement": "用当前细胞标签预测下一周期标签，采用时间齐次（time-homogeneous）马尔可夫（Markov）模型（model）。哪些判断正确？",
+    "statement": "用当前细胞标签预测下一周期标签，采用时间齐次马尔可夫模型。关于标签记录与切换规则，哪些判断正确？",
     "learning_targets": [
       "T3"
     ],
@@ -1871,7 +1871,7 @@
     "options": [
       {
         "id": "A",
-        "text": "相邻时刻的标签彼此独立，因此不同当前标签对应的下一步概率（probability）都相同。"
+        "text": "相邻时刻的标签彼此独立，因此不同当前标签对应的下一步概率都相同。"
       },
       {
         "id": "B",
@@ -1883,7 +1883,7 @@
       },
       {
         "id": "D",
-        "text": "给定当前标签后，加入更早的标签记录不会改变下一步标签的条件分布（distribution）。"
+        "text": "给定当前标签后，加入更早的标签记录不会改变下一步标签的条件分布。"
       }
     ],
     "constraints": []
@@ -1897,7 +1897,7 @@
     "chapter": "5.4",
     "title": "解释某时刻的活跃概率",
     "type": "choice",
-    "statement": "模型（model）给出第二周期的活跃态概率（probability）为 0.34。下列哪项直接对应这个数？",
+    "statement": "细胞状态只有静息 0、活跃 1。模型给出第二周期的活跃概率为 0.34。下列哪项对应这一概率的统计含义？",
     "learning_targets": [
       "T3"
     ],
@@ -1921,7 +1921,7 @@
       },
       {
         "id": "D",
-        "text": "第二周期的单个细胞处于完整活跃状态（state）的 0.34 倍。"
+        "text": "每个细胞在第二周期都处于 0.34 倍的完整活跃状态。"
       }
     ],
     "constraints": []
@@ -1935,7 +1935,7 @@
     "chapter": "5.4",
     "title": "如何检查一个转移矩阵",
     "type": "choice",
-    "statement": "采用行随机矩阵（matrix）约定，以下哪些是必要检查？",
+    "statement": "矩阵的行表示当前状态，列表示下一状态。要把它用作行随机转移矩阵（transition matrix），以下哪些条件必须检查？",
     "learning_targets": [
       "T3"
     ],
@@ -1947,7 +1947,7 @@
     "options": [
       {
         "id": "A",
-        "text": "转移矩阵（transition matrix）的行数应等于状态（state）个数。"
+        "text": "转移矩阵的行数应等于状态个数。"
       },
       {
         "id": "B",
@@ -1973,7 +1973,7 @@
     "chapter": "5.4",
     "title": "解两态不变分布并保留退化情形",
     "type": "python",
-    "statement": "转移矩阵（transition matrix）为 [[1−alpha,alpha],[beta,1−beta]]。返回唯一不变分布（invariant distribution）；若所有分布（distribution）都不变则返回 None。不在本题判断是否从任意初始分布收敛。",
+    "statement": "两态转移矩阵为 [[1−alpha,alpha],[beta,1−beta]]，行列按状态 0、1 排列。求唯一的不变概率列表；若每个概率分布都不变，则返回 None。",
     "learning_targets": [
       "T3"
     ],
@@ -1985,13 +1985,13 @@
       {
         "name": "alpha",
         "type": "float",
-        "description": "状态（state） 0 转到 1 的概率（probability）。",
+        "description": "状态 0 在下一步转到状态 1 的概率。",
         "unit": "1"
       },
       {
         "name": "beta",
         "type": "float",
-        "description": "状态 1 转到 0 的概率。",
+        "description": "状态 1 在下一步转到状态 0 的概率。",
         "unit": "1"
       }
     ],
@@ -1999,13 +1999,13 @@
       {
         "name": "stationary",
         "type": "list[float] | None",
-        "description": "状态 0、1 的不变概率；不唯一时为 None。",
+        "description": "依次为状态 0、1 的不变概率；不变分布不唯一时为 None。",
         "unit": "1"
       }
     ],
     "contract": "alpha+beta>0 时返回 [beta/(alpha+beta),alpha/(alpha+beta)]；两者都为 0 时返回 None。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值均须有限。",
       "0≤alpha,beta≤1。"
     ],
     "entrypoint": "solve",
@@ -2013,7 +2013,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "唯一不变不等于所有起点逐时刻收敛；alpha=beta=1 是反例。",
+    "hint": "将 π0*alpha=π1*beta 与 π0+π1=1 联立；另外检查两个切换概率都为零的情形。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2035,7 +2035,7 @@
           0.3333333333333333,
           0.6666666666666666
         ],
-        "explanation": "流量（flow）平衡（equilibrium） π0*0.2=π1*0.1 加上和为 1，得 [1/3,2/3]。"
+        "explanation": "不变时从 0 到 1 的概率质量 π0×0.2，等于从 1 到 0 的 π1×0.1；再用 π0+π1=1，得到 [1/3,2/3]。"
       }
     ]
   },
@@ -2048,7 +2048,7 @@
     "chapter": "5.4",
     "title": "有不变分布为何仍不收敛",
     "type": "choice",
-    "statement": "P=[[0,1],[1,0]]，从 [1,0] 出发。哪些成立？",
+    "statement": "两态矩阵 P=[[0,1],[1,0]]，初始概率列表按状态 0、1 排列，为 [1,0]。关于不变分布和后续各时刻的分布，哪些判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -2060,7 +2060,7 @@
     "options": [
       {
         "id": "A",
-        "text": "分布（distribution） [0.5,0.5] 经过一次转移后仍为自身，因此是不变分布（invariant distribution）。"
+        "text": "分布 [0.5,0.5] 经过一次转移后仍为自身，因此是不变分布。"
       },
       {
         "id": "B",
@@ -2086,7 +2086,7 @@
     "chapter": "5.4",
     "title": "有限链的收敛条件",
     "type": "choice",
-    "statement": "对有限状态（state）、时间齐次（time-homogeneous）的马尔可夫链（Markov chain），哪组条件足以保证唯一不变分布（invariant distribution），且任意初始分布（distribution）都收敛到它？",
+    "statement": "有限状态的时间齐次马尔可夫链，哪组条件足以保证不变分布唯一，并且从任意初始分布出发都逐时刻收敛到它？",
     "learning_targets": [
       "T3"
     ],
@@ -2098,15 +2098,15 @@
     "options": [
       {
         "id": "A",
-        "text": "该链不可约（irreducible），但周期为 2。"
+        "text": "该链不可约，但周期为 2。"
       },
       {
         "id": "B",
-        "text": "该链不可约，并且非周期（aperiodic）。"
+        "text": "该链不可约，并且非周期。"
       },
       {
         "id": "C",
-        "text": "该链有两个吸收态（absorbing state），进入其中任一个后都不再离开。"
+        "text": "该链有两个吸收态，进入其中任一个后都不再离开。"
       },
       {
         "id": "D",
@@ -2124,7 +2124,7 @@
     "chapter": "5.4",
     "title": "考察不转移的两状态链",
     "type": "choice",
-    "statement": "转移矩阵（transition matrix）P 为二阶单位矩阵（identity matrix），初始分布（distribution）为 [0.2,0.8]。一步后和长期的不变分布（invariant distribution）有什么关系？",
+    "statement": "两态转移矩阵为单位矩阵，初始分布按状态 0、1 排列，为 [0.2,0.8]。下列哪项描述了它的一步变化与不变分布？",
     "learning_targets": [
       "T3"
     ],
@@ -2148,7 +2148,7 @@
       },
       {
         "id": "D",
-        "text": "一步后的分布为 [0,1]，因此长期分布与初始概率（probability）无关。"
+        "text": "一步后的分布为 [0,1]，因此长期分布与初始概率无关。"
       }
     ],
     "constraints": []
@@ -2162,7 +2162,7 @@
     "chapter": "5.4",
     "title": "随机游走的漂移与散布",
     "type": "python",
-    "statement": "从位置 0 出发，每步独立以 probability 向右走 step_size，否则向左走同样距离。计算各时刻理论均值与方差（variance）。",
+    "statement": "个体从位置 0 出发，每步独立地以 probability 的概率向右走 step_size，否则向左走同样距离。返回从起点到第 steps 步的理论平均位置与位置方差。",
     "learning_targets": [
       "T3"
     ],
@@ -2174,19 +2174,19 @@
       {
         "name": "probability",
         "type": "float",
-        "description": "向右概率（probability）。",
+        "description": "每一步向右移动的概率。",
         "unit": "1"
       },
       {
         "name": "step_size",
         "type": "float",
-        "description": "每步长度。",
+        "description": "单步向左或向右移动的距离。",
         "unit": "L"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "步数。",
+        "description": "移动的步数。",
         "unit": "步"
       }
     ],
@@ -2194,19 +2194,19 @@
       {
         "name": "means",
         "type": "list[float]",
-        "description": "包含起点的理论位置均值。",
+        "description": "第 n 项为完成 n 步后的平均位置，第 0 项为起点 0。",
         "unit": "L"
       },
       {
         "name": "variances",
         "type": "list[float]",
-        "description": "包含起点的理论位置方差。",
+        "description": "第 n 项为完成 n 步后的位置方差，第 0 项为零。",
         "unit": "L²"
       }
     ],
     "contract": "独立增量每步均值 d(2p−1)，方差 4d²p(1−p)；第 n 步的均值和方差分别乘 n。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值均须有限。",
       "0≤probability≤1；0<step_size≤10；0≤steps≤100。"
     ],
     "entrypoint": "solve",
@@ -2214,7 +2214,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "方差相加依赖独立增量；位置本身跨时刻相关。",
+    "hint": "先从 +d、−d 的两种可能性求一步期望和方差，再利用独立增量将它们累加。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2247,7 +2247,7 @@
             3.0
           ]
         ],
-        "explanation": "公平游走均值 [0,0,0,0]，方差 [0,1,2,3]；平均不动不意味着每个个体不动。"
+        "explanation": "方向对称时，起点及前三步均值都是 0 L，方差依次为 [0,1,2,3] L²。零平均位移并不表示每条路径停在起点。"
       }
     ]
   },
@@ -2260,7 +2260,7 @@
     "chapter": "5.4",
     "title": "均值为零的群体是否静止",
     "type": "choice",
-    "statement": "随机游走（random walk）从 0 出发，每一步独立地以相同概率（probability）移动 +d 或 −d，其中 d>0。哪些判断成立？",
+    "statement": "个体从位置 0 出发，每一步独立地以相同概率移动 +d 或 −d，d>0。关于群体平均位置与散布，哪些判断成立？",
     "learning_targets": [
       "T3"
     ],
@@ -2276,7 +2276,7 @@
       },
       {
         "id": "B",
-        "text": "第 n 步的位置方差（variance）为 n d²，因此随步数线性增加。"
+        "text": "第 n 步的位置方差为 n d²，因此随步数线性增加。"
       },
       {
         "id": "C",
@@ -2298,7 +2298,7 @@
     "chapter": "5.4",
     "title": "给随机游走加上边界",
     "type": "choice",
-    "statement": "原随机游走（random walk）无边界；现限制在有限区间，触边时反射。关于长期方差（variance），哪项合理？",
+    "statement": "原模型是没有位置边界的随机游走。现在把位置限制在有限区间，触及端点时反射。怎样解释位置方差的长期变化？",
     "learning_targets": [
       "T3"
     ],
@@ -2336,7 +2336,7 @@
     "chapter": "5.4",
     "title": "比较相邻位置的协方差",
     "type": "choice",
-    "statement": "X[n+1]=X[n]+Z[n]，Z[n] 与 X[n] 独立且均值为零。记 Var(X[n])=V，Var(Z[n])=Q。Cov(X[n],X[n+1]) 等于多少？",
+    "statement": "位置满足 X[n+1]=X[n]+Z[n]，新增位移 Z[n] 与当前位置 X[n] 独立且均值为零。已知 Var(X[n])=V、Var(Z[n])=Q，相邻两位置的协方差是多少？",
     "learning_targets": [
       "T3"
     ],
@@ -2348,7 +2348,7 @@
     "options": [
       {
         "id": "A",
-        "text": "相邻两位置的协方差（covariance） Cov(X[n],X[n+1]) 为 V。"
+        "text": "相邻两位置的协方差 Cov(X[n],X[n+1]) 为 V。"
       },
       {
         "id": "B",
@@ -2374,7 +2374,7 @@
     "chapter": "5.5",
     "title": "联合计数包含多少信息",
     "type": "python",
-    "statement": "给定细胞状态（state） X 与二值或多值读数 Y 的联合计数。用明确的以 2 为底的插件估计（plug-in estimator）计算边缘熵（entropy）和互信息（mutual information）。",
+    "statement": "给定细胞标签 X 与读数标签 Y 的联合频数表，行对应 X，列对应 Y。将频率代入以 2 为底的离散信息公式，返回 X 的熵、Y 的熵及它们的互信息。",
     "learning_targets": [
       "T4"
     ],
@@ -2386,7 +2386,7 @@
       {
         "name": "counts",
         "type": "list[list[int]]",
-        "description": "行表示 X，列表示 Y 的联合频数表。",
+        "description": "行列分别对应 X、Y 各标签的联合频数，每格记录一类配对出现的次数。",
         "unit": "次"
       }
     ],
@@ -2394,25 +2394,25 @@
       {
         "name": "entropy_x",
         "type": "float",
-        "description": "X 的离散插件熵。",
+        "description": "X 边缘频率代入公式得到的熵。",
         "unit": "bit"
       },
       {
         "name": "entropy_y",
         "type": "float",
-        "description": "Y 的离散插件熵。",
+        "description": "Y 边缘频率代入公式得到的熵。",
         "unit": "bit"
       },
       {
         "name": "mutual_information",
         "type": "float",
-        "description": "X、Y 的插件互信息。",
+        "description": "联合频率与两边缘频率代入公式得到的互信息。",
         "unit": "bit"
       }
     ],
-    "contract": "先除以总频数得到 p[i,j]，按行列求边缘概率（probability）；H(X)=−ΣpX log2(pX)，H(Y) 同理；I=Σp[i,j] log2(p[i,j]/(pX[i]*pY[j]))。零概率项贡献 0，不给零频数加伪计数。",
+    "contract": "先除以总频数得到 p[i,j]，按行列求边缘概率；H(X)=−ΣpX log2(pX)，H(Y) 同理；I=Σp[i,j] log2(p[i,j]/(pX[i]*pY[j]))。零概率项贡献 0，不给零频数加伪计数。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "矩形表 1—8 行、1—8 列；每项整数 0—10000；总频数>0。"
     ],
     "entrypoint": "solve",
@@ -2420,7 +2420,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "跳过 p=0 的项；只在 p>0 的位置计算比值，那里两个边缘也必为正。",
+    "hint": "先除以全表总数，求行和、列和；零频数项跳过，其余项的两个边缘必为正。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2451,7 +2451,7 @@
           1.0,
           1.0
         ],
-        "explanation": "X、Y 各一半，且标签完全一致：H(X)=H(Y)=I=1 bit。这不表示存在 1 bit 的因果作用。"
+        "explanation": "X、Y 都各有一半为 0、一半为 1，且配对标签完全一致。因此两个熵与互信息依次为 [1,1,1] bit，表示读数消除了标签的不确定性。"
       }
     ]
   },
@@ -2464,7 +2464,7 @@
     "chapter": "5.5",
     "title": "公平二值状态的熵",
     "type": "choice",
-    "statement": "X 为公平二值状态（state）。通道一精确复制 X，通道二输出（output）与 X 独立的公平二值 Y。互信息（mutual information）依次是多少？",
+    "statement": "X 以相同概率取 0、1。通道一精确复制 X，通道二输出与 X 独立的公平二值 Y。两个通道与 X 的互信息依次是多少？",
     "learning_targets": [
       "T4"
     ],
@@ -2502,7 +2502,7 @@
     "chapter": "5.5",
     "title": "互信息减少的是什么",
     "type": "choice",
-    "statement": "有限离散变量的 I(X;Y)=H(X)−H(X|Y)。哪些正确？",
+    "statement": "有限离散变量的互信息定义为 I(X;Y)=H(X)−H(X|Y)。关于这一数值与单位，哪些判断正确？",
     "learning_targets": [
       "T4"
     ],
@@ -2514,7 +2514,7 @@
     "options": [
       {
         "id": "A",
-        "text": "交换 X 与 Y 后互信息（mutual information）不变，即 I(X;Y)=I(Y;X)。"
+        "text": "交换 X 与 Y 后互信息不变，即 I(X;Y)=I(Y;X)。"
       },
       {
         "id": "B",
@@ -2522,7 +2522,7 @@
       },
       {
         "id": "C",
-        "text": "互信息表示知道 Y 后，X 的熵（entropy）平均减少了多少。"
+        "text": "互信息表示知道 Y 后，X 的熵平均减少了多少。"
       },
       {
         "id": "D",
@@ -2540,7 +2540,7 @@
     "chapter": "5.5",
     "title": "计算翻转通道的信息",
     "type": "choice",
-    "statement": "X 是公平二值变量，Y=1−X，翻转规则已知。互信息（mutual information）I(X;Y) 是多少？",
+    "statement": "X 以相同概率取 0、1，读数 Y=1−X，且翻转规则已知。I(X;Y) 是多少？",
     "learning_targets": [
       "T4"
     ],
@@ -2578,7 +2578,7 @@
     "chapter": "5.5",
     "title": "解释正互信息",
     "type": "choice",
-    "statement": "细胞标记 X 与 Y 的互信息（mutual information）为正。哪些解释成立？",
+    "statement": "细胞标记 X、Y 的互信息为正。根据这一事实，哪些解释成立？",
     "learning_targets": [
       "T4"
     ],
@@ -2616,7 +2616,7 @@
     "chapter": "5.5",
     "title": "按显式边界统计联合频数",
     "type": "python",
-    "statement": "连续观测（observation）需要先分箱（binning）。本题两个变量使用相同 edges。返回行对应 xs、列对应 ys 的联合计数表。",
+    "statement": "两个通道的配对连续读数保存在 xs、ys 中，使用同一份递增边界 edges 分箱。返回行对应 xs 箱号、列对应 ys 箱号的联合频数表，箱号从 0 开始。",
     "learning_targets": [
       "T4"
     ],
@@ -2628,19 +2628,19 @@
       {
         "name": "xs",
         "type": "list[float]",
-        "description": "第一通道配对样本。",
+        "description": "第一通道读数，相同位置与 ys 配对。",
         "unit": "U"
       },
       {
         "name": "ys",
         "type": "list[float]",
-        "description": "第二通道配对样本。",
+        "description": "第二通道读数，相同位置与 xs 配对。",
         "unit": "U"
       },
       {
         "name": "edges",
         "type": "list[float]",
-        "description": "严格递增分箱边界。",
+        "description": "两个通道共用的严格递增箱边界。",
         "unit": "U"
       }
     ],
@@ -2648,13 +2648,13 @@
       {
         "name": "counts",
         "type": "list[list[int]]",
-        "description": "(len(edges)−1) 阶联合频数表。",
+        "description": "行列数都为 len(edges)−1；第 i 行、第 j 列记录落入第 i、j 箱的配对数量。",
         "unit": "次"
       }
     ],
     "contract": "除最后一箱外均为左闭右开 [eᵢ,eᵢ₊₁)；最后一箱包含最右端点。恰在内部边界上的数进入右侧箱。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "xs、ys 等长，长度 1—100；2—9 个边界；所有样本在 [edges[0],edges[-1]]；数值绝对值≤100。"
     ],
     "entrypoint": "solve",
@@ -2662,7 +2662,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "必须保留样本配对关系，且明确最右端点的规则。",
+    "hint": "每对读数共同决定一个格子；内部端点归右箱，最右端点归最后一箱。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2703,7 +2703,7 @@
             1
           ]
         ],
-        "explanation": "0 进第 0 箱，0.5 和 1 都进第 1 箱，所以联合表为 [[0,1],[1,1]]。"
+        "explanation": "两箱为 [0,0.5)、[0.5,1]。三对读数依次进入格 (0,1)、(1,1)、(1,0)，因此联合表为 [[0,1],[1,1]]。"
       }
     ]
   },
@@ -2716,7 +2716,7 @@
     "chapter": "5.5",
     "title": "解释有限样本的互信息",
     "type": "choice",
-    "statement": "真实 X、Y 独立，但有限样本频数表算得互信息（mutual information） 0.08 bit。哪些正确？",
+    "statement": "生成规则中 X、Y 独立，但一批有限样本经分箱计算得到互信息 0.08 bit。关于该估计的解释与检查，哪些判断正确？",
     "learning_targets": [
       "T4"
     ],
@@ -2732,7 +2732,7 @@
       },
       {
         "id": "B",
-        "text": "把当前每个分箱（binning）拆成更多小箱，就能消除互信息估计的有限样本正偏差。"
+        "text": "把当前每个分箱拆成更多小箱，就能消除互信息估计的有限样本正偏差。"
       },
       {
         "id": "C",
@@ -2754,7 +2754,7 @@
     "chapter": "5.5",
     "title": "同一张表合并箱会怎样",
     "type": "choice",
-    "statement": "细分箱（binning）经确定规则合并为粗分箱，使用完全相同的配对样本。哪些正确？",
+    "statement": "用同一批配对样本构造细箱联合表，再按固定规则合并成粗箱表。关于两种离散编码，哪些判断正确？",
     "learning_targets": [
       "T4"
     ],
@@ -2766,15 +2766,15 @@
     "options": [
       {
         "id": "A",
-        "text": "即使两种分箱的边界互不嵌套，箱数较多的方案也会得到较大的互信息（mutual information）。"
+        "text": "即使两种分箱的边界互不嵌套，箱数较多的方案也会得到较大的互信息。"
       },
       {
         "id": "B",
-        "text": "用固定规则合并同一经验表的箱后，经验互信息（mutual information）不会增加，忽略舍入误差（round-off error）。"
+        "text": "用固定规则合并同一经验表的箱后，经验互信息不会增加，忽略舍入误差。"
       },
       {
         "id": "C",
-        "text": "细分箱后互信息估计增大，就说明传感器更能区分真实细胞状态（state）。"
+        "text": "细分箱后互信息估计增大，就说明传感器更能区分真实细胞状态。"
       },
       {
         "id": "D",
@@ -2792,7 +2792,7 @@
     "chapter": "5.5",
     "title": "解释分箱后的熵",
     "type": "choice",
-    "statement": "连续读数 Y 按固定边界编码为箱号 B，再计算箱号的熵（entropy）H(B)。这个结果描述什么？",
+    "statement": "连续读数 Y 按固定边界变为箱号 B，再计算离散熵 H(B)。这个结果描述什么？",
     "learning_targets": [
       "T4"
     ],
@@ -2808,11 +2808,11 @@
       },
       {
         "id": "B",
-        "text": "H(B) 等于连续读数 Y 的方差（variance），并且只由箱数决定。"
+        "text": "H(B) 等于连续读数 Y 的方差，并且只由箱数决定。"
       },
       {
         "id": "C",
-        "text": "H(B) 描述各箱号出现的不确定性，其数值取决于分箱（binning）边界及各箱概率（probability）。"
+        "text": "H(B) 描述各箱号出现的不确定性，其数值取决于分箱边界及各箱概率。"
       },
       {
         "id": "D",
@@ -2830,7 +2830,7 @@
     "chapter": "5.5",
     "title": "比较两个测量通道",
     "type": "choice",
-    "statement": "要比较两个传感器的读数分别提供了多少关于细胞标签 X 的信息，计划估计标签 X 与各传感器读数之间的互信息（mutual information）。哪些实验条件应固定或同时报告？",
+    "statement": "计划用互信息比较两个传感器读数各提供了多少关于细胞标签 X 的信息。哪些实验条件应固定或随结果报告？",
     "learning_targets": [
       "T4"
     ],
@@ -2842,7 +2842,7 @@
     "options": [
       {
         "id": "A",
-        "text": "预先确定读数如何划分为箱，并报告两通道各自采用的分箱（binning）边界。"
+        "text": "预先确定读数如何划分为箱，并报告两通道各自采用的分箱边界。"
       },
       {
         "id": "B",
@@ -2868,7 +2868,7 @@
     "chapter": "5.summary",
     "title": "噪声进入何处",
     "type": "choice",
-    "statement": "固定 θ 的测量 yᵢ=θ+b+vᵢ，组内 b 固定；动态偏差 x[n+1]=a*x[n]+w[n]。哪些机制解释正确？",
+    "statement": "测量固定量 θ，读数为 yᵢ=θ+b+vᵢ，b 在组内保持同一个值；动态偏差另满足 x[n+1]=a*x[n]+w[n]。根据各量进入方程的位置，哪些机制解释正确？",
     "learning_targets": [
       "T2"
     ],
@@ -2884,11 +2884,11 @@
       },
       {
         "id": "B",
-        "text": "不同个体各自保持不同的 a，表示它们的演化参数（parameter）存在固定差异。"
+        "text": "不同个体各自保持不同的 a，表示它们的演化参数存在固定差异。"
       },
       {
         "id": "C",
-        "text": "w[n] 加入 x[n+1]，因此会改变下一步以及可能的后续状态（state）。"
+        "text": "w[n] 加入 x[n+1]，因此会改变下一步以及可能的后续状态。"
       },
       {
         "id": "D",
@@ -2906,7 +2906,7 @@
     "chapter": "5.summary",
     "title": "设计噪声机制对照",
     "type": "choice",
-    "statement": "比较几种噪声机制时，每次实验生成若干条长度相同的路径，在末时刻计算各路径数值的组均值。路径内部具有时间相关性。怎样安排重复并报告组均值的波动更合适？",
+    "statement": "比较几种噪声机制，每轮生成相同数量、相同长度的路径，并求末时刻各路径数值的组均值。路径内部有时间相关性。怎样组织重复，才能比较组均值的波动？",
     "learning_targets": [
       "T1"
     ],
@@ -2922,11 +2922,11 @@
       },
       {
         "id": "B",
-        "text": "每种机制固定每次实验的路径数，用不同随机流重复 200 次，并报告 200 个末时刻组均值的分布（distribution）。"
+        "text": "每种机制固定每次实验的路径数，用不同随机流重复 200 次，并报告 200 个末时刻组均值的分布。"
       },
       {
         "id": "C",
-        "text": "每种机制保存一次实验的数组（array），复制成 200 组后计算组间均值波动。"
+        "text": "每种机制保存一次实验的数组，复制成 200 组后计算组间均值波动。"
       },
       {
         "id": "D",
@@ -2944,7 +2944,7 @@
     "chapter": "5.summary",
     "title": "固定样本的重复间波动",
     "type": "python",
-    "statement": "每组是一轮独立测量实验，组内给出实际读数。按组等权汇总均值，并用 B−1 分母计算这些组均值的样本方差（variance）。",
+    "statement": "每组读数来自一轮独立测量实验。先求各组均值，再对组均值等权求平均，并以 B−1 为分母计算这些均值的样本方差，B 为实验组数。",
     "learning_targets": [
       "T1"
     ],
@@ -2956,7 +2956,7 @@
       {
         "name": "groups",
         "type": "list[list[float]]",
-        "description": "B 组测量，每组非空；数值单位 U。",
+        "description": "外层为 B 轮实验，内层为该轮非空读数；保持各轮的原顺序。",
         "unit": "U"
       }
     ],
@@ -2964,25 +2964,25 @@
       {
         "name": "means",
         "type": "list[float]",
-        "description": "各组均值。",
+        "description": "按实验组顺序排列的组均值。",
         "unit": "U"
       },
       {
         "name": "mean_of_means",
         "type": "float",
-        "description": "组均值的等权平均。",
+        "description": "B 个组均值的等权平均。",
         "unit": "U"
       },
       {
         "name": "between_variance",
         "type": "float",
-        "description": "组均值的样本方差，分母 B−1。",
+        "description": "组均值相对其平均数的平方偏差和除以 B−1。",
         "unit": "U²"
       }
     ],
-    "contract": "先算组内算术平均，再对 B 个均值求平均和平方偏差和/(B−1)。不改成合并全部读数的统计量（statistic）。",
+    "contract": "先算组内算术平均，再对 B 个均值求平均和平方偏差和/(B−1)。不改成合并全部读数的统计量。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "2≤B≤20；每组 1—100 个读数，绝对值≤100。"
     ],
     "entrypoint": "solve",
@@ -2990,7 +2990,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "统计对象是每次实验的均值；区分组间方差与个体读数方差。",
+    "hint": "方差的对象是 B 个组均值；先完成组内平均，再计算组间平方偏差。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3029,7 +3029,7 @@
           3.0,
           4.0
         ],
-        "explanation": "组均值 [1,3,5]，组平均 3，组间方差 (4+0+4)/2=4 U²。"
+        "explanation": "组均值为 [1,3,5] U，等权平均为 3 U。三个平方偏差是 [4,0,4] U²，除以 B−1=2 得到组间样本方差 4 U²。"
       }
     ]
   },
@@ -3042,7 +3042,7 @@
     "chapter": "5.summary",
     "title": "由新证据更新概率",
     "type": "python",
-    "statement": "三个或更多候选细胞状态（state）中有些先验（prior）可能为零。依据一次离散观测（observation）更新分布（distribution），并显式保留零证据边界。",
+    "statement": "三个或更多候选细胞状态中，部分先验概率可能为零。给定各状态的先验，以及本次离散观测在相应状态下的概率，按相同状态顺序返回后验；总联合权重为零时返回 None。",
     "learning_targets": [
       "T3"
     ],
@@ -3054,13 +3054,13 @@
       {
         "name": "prior",
         "type": "list[float]",
-        "description": "互斥且穷尽假设的先验概率（probability）。",
+        "description": "按候选状态顺序排列的先验，状态互斥且穷尽。",
         "unit": "1"
       },
       {
         "name": "likelihood",
         "type": "list[float]",
-        "description": "同一离散观测在各假设下出现的概率。",
+        "description": "与 prior 按位置配对的本次观测条件概率。",
         "unit": "1"
       }
     ],
@@ -3068,13 +3068,13 @@
       {
         "name": "posterior",
         "type": "list[float] | None",
-        "description": "按原顺序返回后验（posterior）；证据/边际似然（evidence or marginal likelihood）为零时返回 None。",
+        "description": "按输入状态顺序排列的后验；全部权重之和为零时为 None。",
         "unit": "1"
       }
     ],
     "contract": "weights[i]=prior[i]*likelihood[i]；分母为 weights 之和。分母>0 时逐项归一化；分母恰为 0 返回 None，不杜撰均匀后验。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "列表等长，长度 1—20；prior 非负且和为 1（误差≤1e−12）；likelihood 每项在 [0,1]。"
     ],
     "entrypoint": "solve",
@@ -3082,7 +3082,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "归一化分母来自全部假设，不是只取最大似然（likelihood）。",
+    "hint": "对每个候选状态相乘，再用所有状态的权重和归一化；零先验不会被这次相乘变成正权重。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3113,7 +3113,7 @@
           0.7499999999999999,
           0.0
         ],
-        "explanation": "权重 [0.1,0.3,0]，后验 [0.25,0.75,0]；此次观测排除第三态。"
+        "explanation": "三个状态按 0、1、2 排列，权重为 [0.1,0.3,0]，除以总和 0.4 得后验 [0.25,0.75,0]。第三状态在本次观测后权重为零。"
       }
     ]
   },
@@ -3126,7 +3126,7 @@
     "chapter": "5.summary",
     "title": "概率分布的多步传播",
     "type": "python",
-    "statement": "理想细胞有三个标签，允许吸收标签。按完整转移矩阵（transition matrix）传播群体分布（distribution），保持行向量（vector）约定。",
+    "statement": "理想细胞有三个标签，其中可以有进入后无法离开的吸收态。按转移矩阵传播各时刻的群体分布，初始列表与矩阵行列均按标签编号 0、1、…排列。",
     "learning_targets": [
       "T3"
     ],
@@ -3138,19 +3138,19 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "行随机矩阵（matrix）；第 i 行给出从状态（state） i 到各状态的概率（probability）。",
+        "description": "第 i 行、第 j 列给出从标签 i 转到 j 的概率，各行和为 1。",
         "unit": "1"
       },
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "时刻 0 的行概率向量。",
+        "description": "时刻 0 各标签的概率，按标签编号排列。",
         "unit": "1"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "传播步数。",
+        "description": "推进的周期数。",
         "unit": "步"
       }
     ],
@@ -3158,13 +3158,13 @@
       {
         "name": "distributions",
         "type": "list[list[float]]",
-        "description": "包含时刻 0，外层按时刻，内层按状态编号。",
+        "description": "第 n 个内层列表给出时刻 n 的分布，第 j 个分量为标签 j 的概率；包含起点。",
         "unit": "1"
       }
     ],
     "contract": "p_next[j]=Σᵢp[i]*matrix[i][j]；同步更新所有分量；包含初始分布。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "方阵维数 1—5；非负且每行和为 1（误差≤1e−12）；initial 等维、非负、和为 1；0≤steps≤100。"
     ],
     "entrypoint": "solve",
@@ -3172,7 +3172,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "不同机制可以改变长期分布；先检查每一步总概率。",
+    "hint": "计算每个到达标签的概率时，将所有出发标签的贡献相加；每步完成后检查总概率。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3228,7 +3228,7 @@
             0.25
           ]
         ],
-        "explanation": "从 [1,0,0] 到 [0.5,0.5,0]，再到 [0.25,0.5,0.25]；最后状态吸收进入的概率质量（probability mass）。"
+        "explanation": "列表按标签 0、1、2 排列，从 [1,0,0] 依次到 [0.5,0.5,0]、[0.25,0.5,0.25]。标签 2 的转移行是 [0,0,1]，到达后保持该标签。"
       }
     ]
   },
@@ -3241,7 +3241,7 @@
     "chapter": "5.summary",
     "title": "两种噪声的方差贡献",
     "type": "python",
-    "statement": "动态偏差 x[n+1]=a*x[n]+w[n]，观测（observation） y[n]=x[n]+v[n]。过程与测量扰动相互独立，也与适当时刻状态（state）独立，方差（variance）固定。分别输出（output）状态与观测方差。",
+    "statement": "动态偏差满足 x[n+1]=a*x[n]+w[n]，读数为 y[n]=x[n]+v[n]。每步 w[n] 与当前 x[n] 独立，v[n] 与同刻 x[n] 独立，过程与测量扰动相互独立，两种扰动方差固定。分别返回状态方差和读数方差。",
     "learning_targets": [
       "T2"
     ],
@@ -3253,31 +3253,31 @@
       {
         "name": "a",
         "type": "float",
-        "description": "每步状态偏差的倍数。",
+        "description": "原状态偏差在一步演化中的缩放倍数。",
         "unit": "1"
       },
       {
         "name": "process_variance",
         "type": "float",
-        "description": "独立过程扰动方差 Q。",
+        "description": "过程扰动方差 Q。",
         "unit": "U²"
       },
       {
         "name": "measurement_variance",
         "type": "float",
-        "description": "每次独立测量误差方差 R。",
+        "description": "单次测量误差方差 R。",
         "unit": "U²"
       },
       {
         "name": "initial_variance",
         "type": "float",
-        "description": "起始状态偏差方差 P0。",
+        "description": "时刻 0 的状态方差 P0。",
         "unit": "U²"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "更新步数。",
+        "description": "状态更新的次数。",
         "unit": "步"
       }
     ],
@@ -3285,19 +3285,19 @@
       {
         "name": "state_variances",
         "type": "list[float]",
-        "description": "包含起点的状态方差。",
+        "description": "第 n 项为时刻 n 的状态方差，包含 P0。",
         "unit": "U²"
       },
       {
         "name": "observation_variances",
         "type": "list[float]",
-        "description": "与时刻一一对应的观测方差。",
+        "description": "与状态列表按时刻配对；第 n 项为同刻读数方差。",
         "unit": "U²"
       }
     ],
     "contract": "P[0]=initial_variance，P[n+1]=a²P[n]+Q；每个时刻观测方差 S[n]=P[n]+R。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值均须有限。",
       "−1≤a≤1；三种给定方差在 [0,10]；0≤steps≤100。"
     ],
     "entrypoint": "solve",
@@ -3305,7 +3305,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "测量噪声（measurement noise）不回流状态；不能在状态递推的每一步额外加 R。",
+    "hint": "先按 a²P+Q 推进状态方差，再对每个时刻加 R 得到读数方差。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3338,7 +3338,7 @@
             0.15560000000000002
           ]
         ],
-        "explanation": "Q=0.04，R=0.09，a=0.8 时：状态 [0,0.04,0.0656]；观测 [0.09,0.13,0.1556] U²。"
+        "explanation": "状态方差从 0 开始，前两步为 0.04、0.0656 U²；各时刻另加 R=0.09 U²，读数方差为 [0.09,0.13,0.1556] U²。"
       }
     ]
   },
@@ -3351,7 +3351,7 @@
     "chapter": "5.summary",
     "title": "更换分箱后的信息量",
     "type": "python",
-    "statement": "同一批配对读数以两种嵌套分箱（binning）形成粗、细联合计数。分别计算信息指标，比较对象是两个离散编码。",
+    "statement": "同一批配对读数分别形成细箱联合频数表与合并后的粗箱表。两种划分嵌套；按粗表、细表的顺序返回两个边缘熵与互信息，比较的是相应离散编码。",
     "learning_targets": [
       "T4"
     ],
@@ -3363,13 +3363,13 @@
       {
         "name": "coarse_counts",
         "type": "list[list[int]]",
-        "description": "粗分箱联合计数。",
+        "description": "粗箱联合频数表，行列分别对应两通道粗箱号。",
         "unit": "次"
       },
       {
         "name": "fine_counts",
         "type": "list[list[int]]",
-        "description": "细分箱联合计数；与粗表总数一致。",
+        "description": "细箱联合频数表；合并相邻行列可得到 coarse_counts，总频数相同。",
         "unit": "次"
       }
     ],
@@ -3377,19 +3377,19 @@
       {
         "name": "coarse_information",
         "type": "list[float]",
-        "description": "依次为粗表的 H(X)、H(Y)、I(X;Y)。",
+        "description": "粗表结果依次为第一通道熵、第二通道熵、互信息。",
         "unit": "bit"
       },
       {
         "name": "fine_information",
         "type": "list[float]",
-        "description": "依次为细表的 H(X)、H(Y)、I(X;Y)。",
+        "description": "细表结果按同样三个位置排列。",
         "unit": "bit"
       }
     ],
-    "contract": "先除以总频数得到 p[i,j]，按行列求边缘概率（probability）；H(X)=−ΣpX log2(pX)，H(Y) 同理；I=Σp[i,j] log2(p[i,j]/(pX[i]*pY[j]))。零概率项贡献 0，不给零频数加伪计数。分别对两个表计算，返回两组三元结果；不报告因果效应。",
+    "contract": "先除以总频数得到 p[i,j]，按行列求边缘概率；H(X)=−ΣpX log2(pX)，H(Y) 同理；I=Σp[i,j] log2(p[i,j]/(pX[i]*pY[j]))。零概率项贡献 0，不给零频数加伪计数。分别对两个表计算，返回两组三元结果；不报告因果效应。",
     "constraints": [
-      "所有数值有限；不修改输入（input）列表。",
+      "所有数值有限；不修改输入列表。",
       "两表各满足矩形非负整数、总频数>0；各边长 1—8，每项≤10000；粗表可由细表合并相邻行列得到。"
     ],
     "entrypoint": "solve",
@@ -3397,7 +3397,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "先求各表边缘再计算；不能把细表更高的插件数值直接当作更可信的观测（observation）价值。",
+    "hint": "每张表分别归一化并求边缘，再代入公式；将编码带来的变化与估计是否可靠分别解释。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3461,7 +3461,7 @@
             1.0
           ]
         ],
-        "explanation": "粗表独立，结果 [1,1,0]；细表各边缘熵（entropy） 2 bit，互信息（mutual information） 1 bit，结果 [2,2,1]。细分暴露关联，也可能更受有限样本偏差影响。"
+        "explanation": "粗表四格均为 2，边缘熵各为 1 bit、互信息为零；细表边缘熵各为 2 bit、互信息为 1 bit。两组返回值依次为 [1,1,0]、[2,2,1]。"
       }
     ]
   },
@@ -3474,7 +3474,7 @@
     "chapter": "5.summary",
     "title": "解释通道比较结果",
     "type": "choice",
-    "statement": "在独立生成的标签和读数中，小样本互信息（mutual information）估计常为正，细分箱（binning）后估计更大，多次重复之间也有明显波动。现要据此设计真实细胞标签与两个测量通道的比较，哪些做法合理？",
+    "statement": "已知独立生成的标签与读数，在小样本中常给出正互信息估计；细分箱后估计更大，重复之间也有波动。现在设计真实细胞标签与两个测量通道的比较，哪些做法合理？",
     "learning_targets": [
       "T4"
     ],
@@ -3494,11 +3494,11 @@
       },
       {
         "id": "C",
-        "text": "在各通道中选择互信息估计最大的分箱（binning），就可判定哪个通道最能区分真实标签。"
+        "text": "在各通道中选择互信息估计最大的分箱，就可判定哪个通道最能区分真实标签。"
       },
       {
         "id": "D",
-        "text": "固定样本量、分箱规则和重复设计后，再比较两个通道的互信息估计分布（distribution）。"
+        "text": "固定样本量、分箱规则和重复设计后，再比较两个通道的互信息估计分布。"
       }
     ],
     "constraints": []

@@ -2388,14 +2388,14 @@
           "id": "5.1",
           "title": "从重复实验建立概率",
           "url": "/chapters/05-01-从重复实验建立概率/",
-          "goals": "区分事件（event）、随机变量（random variable）、概率分布（probability distribution）与一次实现（realization），说明频率近似的波动。",
-          "prerequisites": "第 2.2—2.4 章的求和、函数、积分面积与计算验证；第 1.4 章的假设比较。事件、分布（distribution）和抽样在本章首次引入。",
+          "goals": "从细胞标签与误差区间建立概率（probability）描述，用重复频率和密度面积解释一次结果与生成规则。",
+          "prerequisites": "第 2.2—2.4 章的求和、函数、积分面积与计算验证；第 1.4 章的假设比较。事件（event）、分布（distribution）和抽样在本章首次引入。",
           "knowledge": [
-            "重复测量与事件",
-            "离散、连续分布及概率密度（probability density）",
-            "抽样、实验种子与 Monte Carlo 重复"
+            "从十个细胞的标签计数进入事件、变量和概率",
+            "从误差区间面积解释密度与舍入读数",
+            "保持相同概率重复抽样，再比较组平均、合并频率与经验分位范围"
           ],
-          "focus": "把一次结果与重复频率分开；从事件和随机变量建立概率（probability）描述，观察样本量对波动的影响。",
+          "focus": "一次标签、样本频率和模型概率各描述什么；组长与重复次数分别改变哪种波动。",
           "available": true,
           "lessons": [
             {
@@ -2403,7 +2403,7 @@
               "chapter_id": "5.1",
               "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/01-事件分布与一次实现.ipynb",
               "title": "事件分布与一次实现",
-              "outcome": "能区分事件、随机变量、分布和一次实现；用总概率与曲线下面积检查离散概率和连续密度，解释测量舍入。",
+              "outcome": "从细胞标签与误差区间进入概率，解释事件、变量、一次结果和密度面积。",
               "number": "5.1.1",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -2439,7 +2439,7 @@
               "chapter_id": "5.1",
               "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/02-把抽样变成可比较的重复实验.ipynb",
               "title": "把抽样变成可比较的重复实验",
-              "outcome": "能区分一组样本、重复实验和随机种子；比较样本量改变后的频率波动，区分组平均与合并频率。",
+              "outcome": "按相同概率重复抽取细胞，比较组长、重复次数及两种频率汇总方式。",
               "number": "5.1.2",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -2477,14 +2477,14 @@
           "id": "5.2",
           "title": "期望、方差、协方差与噪声",
           "url": "/chapters/05-02-期望、方差、协方差与噪声/",
-          "goals": "计算与解释均值、方差（variance）、协方差（covariance）及高斯分布（Gaussian distribution），区分三类变异来源。",
-          "prerequisites": "5.1 的概率分布（probability distribution）与重复、第 3.1 章的向量（vector）矩阵（matrix）。期望（expectation）、方差、协方差与高斯分布在本章首次推导。",
+          "goals": "从离散概率表计算期望（expectation）、方差和协方差（covariance），将共享偏移、独立误差与过程扰动分别放回方程。",
+          "prerequisites": "5.1 的概率分布与重复、第 3.1 章的向量矩阵。期望、方差、协方差与高斯分布（Gaussian distribution）在本章首次推导。",
           "knowledge": [
-            "从样本摘要走向期望与方差",
-            "联合分布（distribution）、协方差及相关性",
-            "状态（state）更新噪声、观测（observation）噪声和固定个体参数（parameter）差异"
+            "手算两种释放量的矩，推导独立平均方差与样本分母",
+            "从配对表计算协方差，用平方关系和共享偏移解释依赖",
+            "推导动态偏差与读数的方差，比较固定个体参数和逐步扰动"
           ],
-          "focus": "用均值、方差和协方差描述变化；区分个体差异、过程噪声（process noise）与测量噪声（measurement noise）。",
+          "focus": "独立误差能随平均缩小，共享偏移却会保留；过程扰动、测量误差与固定演化参数影响不同对象。",
           "available": true,
           "lessons": [
             {
@@ -2492,7 +2492,7 @@
               "chapter_id": "5.2",
               "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/01-用期望与方差描述随机量.ipynb",
               "title": "用期望与方差描述随机量",
-              "outcome": "能从离散分布推导期望与方差，区分描述性方差与总体估计；解释高斯误差、标准差和均值波动的单位。",
+              "outcome": "用两种释放量手算期望和方差，再解释独立平均、样本分母及高斯误差。",
               "number": "5.2.1",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -2528,7 +2528,7 @@
               "chapter_id": "5.2",
               "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/02-联合变化与协方差.ipynb",
               "title": "联合变化与协方差",
-              "outcome": "能从联合分布得到边缘分布，展开和的方差并计算协方差；用反例区分不相关与独立，识别共享误差。",
+              "outcome": "从配对表求边缘与协方差，比较平方关系和共享偏移对独立平均的影响。",
               "number": "5.2.2",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -2570,7 +2570,7 @@
               "chapter_id": "5.2",
               "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/03-过程测量与个体差异.ipynb",
               "title": "过程测量与个体差异",
-              "outcome": "能辨认三类变异进入模型的位置；推导独立扰动下的状态与观测方差，限定方差极限和经验分位带的含义。",
+              "outcome": "把扰动放进状态与读数方程，推导两种方差，再解释固定个体差异和路径分位带。",
               "number": "5.2.3",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -2614,15 +2614,15 @@
           "id": "5.3",
           "title": "条件概率与贝叶斯更新",
           "url": "/chapters/05-03-条件概率与贝叶斯更新/",
-          "goals": "从条件概率（conditional probability）表算条件平均，区分先验（prior）、似然（likelihood）和后验（posterior），计算离散与简单高斯更新，并说明条件独立（conditional independence）假设。",
-          "prerequisites": "5.2 的联合表、期望（expectation）、方差（variance）与高斯密度。条件概率、条件期望（conditional expectation）、Bayes 公式与平方配方更新在本章引入。",
+          "goals": "计算看到标记后的标签概率，手算已知测量方式下的条件平均，再推导固定偏差的高斯更新。",
+          "prerequisites": "5.2 的联合表、期望、方差与高斯密度。条件概率（conditional probability）、条件期望（conditional expectation）、贝叶斯公式与平方配方更新在本章引入。",
           "knowledge": [
-            "二维概率表与条件概率",
-            "条件期望的手算与分组加权平均",
-            "Bayes 公式与归一化",
-            "重复观测（observation）、Gaussian 均值和方差更新，衔接状态（state）估计"
+            "按两种来源计数标记，定义条件概率并归一化后验（posterior）",
+            "用联合表手算已知测量方式后的平均，再还原总体平均",
+            "对高斯先验（prior）与似然（likelihood）配方，求均值、方差和精度更新",
+            "比较先验差异与读数、方差的成对重排"
           ],
-          "focus": "固定已知条件后重新分配概率（probability）、计算条件期望；由先验和读数的似然更新后验，理解归一化与条件独立性。",
+          "focus": "说清已知的是标记还是状态；条件平均固定什么、还对什么求平均；复制读数为何不能算作独立信息。",
           "available": true,
           "lessons": [
             {
@@ -2630,7 +2630,7 @@
               "chapter_id": "5.3",
               "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.ipynb",
               "title": "由条件概率推导贝叶斯更新",
-              "outcome": "能从联合表计算条件概率，区分先验、似然、证据/边际似然与后验；处理零证据和反复使用同一份数据的条件独立边界。",
+              "outcome": "从标记的两种来源计算后验，再用联合表手算已知测量方式后的条件平均。",
               "number": "5.3.1",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -2666,7 +2666,7 @@
               "chapter_id": "5.3",
               "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/02-固定未知量的高斯更新.ipynb",
               "title": "固定未知量的高斯更新",
-              "outcome": "能通过平方配方推导高斯均值与方差更新，解释精度相加、先验敏感性和独立性；区分知识更新与状态演化。",
+              "outcome": "对先验与似然的平方项配方，推导均值、方差和精度更新，比较剩余先验差异。",
               "number": "5.3.2",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -2710,14 +2710,14 @@
           "id": "5.4",
           "title": "随机过程与马尔可夫模型",
           "url": "/chapters/05-04-随机过程与马尔可夫模型/",
-          "goals": "写出转移约定，分别计算状态（state）分布（distribution）和模拟单条路径，说明长期分布的条件。",
-          "prerequisites": "5.3 的条件概率（conditional probability）、第 3.1 章的矩阵乘法（matrix multiplication）；几何和与固定点（fixed point）。过程、马尔可夫（Markov）假设及长期分布条件在本章引入。",
+          "goals": "按行列对应关系推进类别概率，用指定均匀数生成路径，再从两态递推解释不变、收敛与扩散。",
+          "prerequisites": "5.3 的条件概率、第 3.1 章的矩阵乘法；几何和与固定点。过程、马尔可夫（Markov）假设及长期分布条件在本章引入。",
           "knowledge": [
-            "时间索引随机量和马尔可夫假设",
-            "转移矩阵（transition matrix）及分布递推",
-            "长期分布、吸收状态与随机游走（random walk），给出不收敛反例"
+            "手算静息、活跃的两步分布，按当前行生成路径",
+            "从必定交替与吸收例子区分不变和收敛，推导两态偏差倍率",
+            "从独立左右位移求漂移、位置方差与扩散系数（diffusion coefficient）"
           ],
-          "focus": "分别演算一条路径和状态分布；用吸收与交替案例区分不变分布（invariant distribution）、唯一性和长期收敛。",
+          "focus": "单条标签路径与同刻群体频率有不同含义；解出不变分布（invariant distribution）后，还要看其他起点的偏差是否缩小。",
           "available": true,
           "lessons": [
             {
@@ -2725,7 +2725,7 @@
               "chapter_id": "5.4",
               "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/01-状态路径与概率分布的两种推进.ipynb",
               "title": "状态路径与概率分布的两种推进",
-              "outcome": "能写出马尔可夫与时间齐次假设，按行向量传播分布，用指定均匀数抽取路径，并对照多路径频率的不确定性。",
+              "outcome": "先按静息、活跃顺序算两步概率，再生成一条路径并比较同刻群体频率。",
               "number": "5.4.1",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -2767,7 +2767,7 @@
               "chapter_id": "5.4",
               "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.ipynb",
               "title": "不变分布与长期收敛的条件",
-              "outcome": "能求两态不变分布，区分存在、唯一与逐时刻收敛；用周期链和多吸收态解释不可约、非周期等条件。",
+              "outcome": "用必定交替与两个吸收态区分不变和收敛，从两态偏差递推求长期行为。",
               "number": "5.4.2",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -2803,7 +2803,7 @@
               "chapter_id": "5.4",
               "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/03-随机游走中的漂移与扩散.ipynb",
               "title": "随机游走中的漂移与扩散",
-              "outcome": "能推导独立二值步长的均值与方差，比较有偏与无偏游走，说明位置相关性、边界和连续极限的适用范围。",
+              "outcome": "累加左右位移，分别求漂移与位置方差，解释零均值时群体仍会扩散。",
               "number": "5.4.3",
               "visualization": "web/probability/index.html",
               "questions": [
@@ -2841,14 +2841,14 @@
           "id": "5.5",
           "title": "熵、互信息与测量价值",
           "url": "/chapters/05-05-熵、互信息与测量价值/",
-          "goals": "用熵（entropy）和互信息（mutual information）计算读数带来的平均不确定性减少，解释信息单位、样本偏差及信息与决策用途的区别。",
-          "prerequisites": "5.3—5.4 的联合/条件概率（conditional probability）与分布（distribution）、5.2 的期望（expectation），以及第 2 篇的对数。信息量、熵与互信息在本章引入。",
+          "goals": "从联合表计算读数平均减少的不确定性，再用独立配对读数解释有限样本的信息偏差。",
+          "prerequisites": "5.3—5.4 的联合/条件概率与分布、5.2 的期望，以及第 2 篇的对数。信息量、熵（entropy）与互信息（mutual information）在本章引入。",
           "knowledge": [
-            "信息量、熵与对数底",
-            "条件熵（conditional entropy）和互信息",
-            "分箱、有限样本和观测（observation）通道比较"
+            "比较复制、独立与翻转通道，定义信息量及其平均",
+            "从条件表推导互信息，解释非负性和对数单位",
+            "用同一样本比较嵌套分箱（binning），再用不同样本量的独立重复解释偏差与波动"
           ],
-          "focus": "用熵描述不确定性，用互信息衡量读数带来的平均减少；通过分箱（binning）与重复实验理解估计偏差。",
+          "focus": "读数自身的熵不等于关于标签的信息；合箱改变编码，有限频数也会使独立变量的估计偏正。",
           "available": true,
           "lessons": [
             {
@@ -2856,7 +2856,7 @@
               "chapter_id": "5.5",
               "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.ipynb",
               "title": "熵与互信息的离散定义",
-              "outcome": "能推导离散熵、条件熵与互信息，处理零概率和对数单位；用独立、复制、翻转通道检查信息含义及因果边界。",
+              "outcome": "比较复制、独立和翻转读数，从联合表计算熵与互信息，解释平均减少的不确定性。",
               "number": "5.5.1",
               "visualization": null,
               "questions": [
@@ -2898,7 +2898,7 @@
               "chapter_id": "5.5",
               "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/02-有限样本分箱与信息偏差.ipynb",
               "title": "有限样本分箱与信息偏差",
-              "outcome": "能按明确边界构造联合计数、比较嵌套分箱的离散信息量；用重复独立样本识别插件偏差，限定观测价值结论。",
+              "outcome": "将配对读数编码成箱号，比较同一样本的嵌套分箱与独立重复中的估计偏差。",
               "number": "5.5.2",
               "visualization": null,
               "questions": [
@@ -2944,13 +2944,13 @@
         "assessment": true,
         "title": "噪声概率更新与信息的综合实验",
         "url": "/parts/05-随机性与信息/综合练习/",
-        "goals": "围绕理想细胞观测（observation），综合检查重复、噪声位置、概率（probability）更新和信息解释。",
-        "prerequisites": "本篇五章。",
-        "focus": "分母与观察单位、条件独立（conditional independence）、分布（distribution）与路径、分箱（binning）与有限样本分别核对。",
+        "goals": "分别汇总实验组均值、推进噪声方差、更新标签概率和计算分箱信息量。",
+        "prerequisites": "本篇的独立重复、期望与方差、条件更新、转移矩阵和离散信息量。",
+        "focus": "认清每项计算的对象；分别解释测量次数、演化周期和编码边界改变后的结果。",
         "knowledge": [
-          "独立抽样 → 组间波动与解析矩",
-          "联合概率（joint probability） → 更新与状态（state）分布传播",
-          "经验联合表 → 信息量与解释范围"
+          "从每轮的组均值计算重复间波动，分清独立误差与共享偏移",
+          "按同一标签顺序更新后验，再用行向量传播下一周期的概率",
+          "对同一批读数比较粗细编码，并用独立重复参照解释信息估计"
         ],
         "lessons": [
           {
@@ -2958,17 +2958,17 @@
             "chapter_id": "5.summary",
             "path": "notebooks/05-随机性与信息/06-篇末综合/01-噪声概率更新与信息的综合实验.ipynb",
             "title": "噪声概率更新与信息的综合实验",
-            "outcome": "能在统一细胞观测案例中组织重复、分开噪声贡献、更新概率与传播分布，并依据有限样本限制信息量结论。",
+            "outcome": "分别汇总实验组均值、推进噪声方差、更新标签概率和计算分箱信息量。",
             "number": "篇末综合",
             "visualization": null,
             "overview": {
-              "goals": "围绕理想细胞观测，综合检查重复、噪声位置、概率更新和信息解释。",
-              "prerequisites": "本篇五章。",
-              "focus": "分母与观察单位、条件独立、分布与路径、分箱与有限样本分别核对。",
+              "goals": "分别汇总实验组均值、推进噪声方差、更新标签概率和计算分箱信息量。",
+              "prerequisites": "本篇的独立重复、期望与方差、条件更新、转移矩阵和离散信息量。",
+              "focus": "认清每项计算的对象；分别解释测量次数、演化周期和编码边界改变后的结果。",
               "knowledge": [
-                "独立抽样 → 组间波动与解析矩",
-                "联合概率 → 更新与状态分布传播",
-                "经验联合表 → 信息量与解释范围"
+                "从每轮的组均值计算重复间波动，分清独立误差与共享偏移",
+                "按同一标签顺序更新后验，再用行向量传播下一周期的概率",
+                "对同一批读数比较粗细编码，并用独立重复参照解释信息估计"
               ]
             },
             "questions": [
