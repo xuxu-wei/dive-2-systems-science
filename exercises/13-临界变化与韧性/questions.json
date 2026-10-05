@@ -7,7 +7,7 @@
     "chapter": "13.1",
     "lesson_id": "P13-C01-S01",
     "title": "汇总有限系统的序参量",
-    "statement": "每条轨迹（trajectory）给出每一步的有符号磁化 m。按 burnin 删除前面的值；先对每条剩余轨迹求 |m| 的平均，再返回各次重复的平均与总体标准差（standard deviation）。",
+    "statement": "同一规模、同一参数下得到多条独立重复轨迹。每条轨迹按时间保存有符号平均 m，取值在 −1 到 1 之间；第一项是起点。先舍弃每条列表开头 burnin 项，对余下各项的 |m| 求平均，再汇总这些重复结果。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -21,13 +21,13 @@
       {
         "name": "paths",
         "type": "list[list[float]]",
-        "description": "按重复排列的磁化轨迹。",
+        "description": "各次重复的 m 列表，内层按时间先后排列。",
         "unit": "无量纲"
       },
       {
         "name": "burnin",
         "type": "int",
-        "description": "舍弃每条轨迹开头的步数，至少保留一步。",
+        "description": "从每条列表开头舍弃的项数；舍弃后至少保留一项。",
         "unit": "步"
       }
     ],
@@ -35,13 +35,13 @@
       {
         "name": "summary",
         "type": "list[float]",
-        "description": "依次为重复均值、重复间总体标准差。",
+        "description": "两项依次为各次重复结果的平均值、重复间标准差；标准差的平方先除以重复次数。",
         "unit": "无量纲"
       }
     ],
-    "contract": "分别先对每条轨迹的尾窗求 |m| 平均，再对这些重复结果求平均及除以重复数的标准差。",
+    "contract": "令 R 为轨迹条数。第 j 次重复先对 paths[j][burnin:] 中的绝对值求平均，得到 a_j。返回 [a_j 的平均值, sqrt(sum((a_j−平均值)²)/R)]。先在每次重复内部汇总，再跨重复汇总；两个返回项都无量纲。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -49,7 +49,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先在重复内部取尾窗绝对值，再在重复之间汇总；不把一次轨迹的波动当成重复间不确定性。",
+    "hint": "先对每个保留值取绝对值。两条方向相反、幅度相同的轨迹，应得到相同的重复结果。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -82,7 +82,7 @@
           0.30000000000000004,
           0.0
         ],
-        "explanation": "先在重复内部取尾窗绝对值，再在重复之间汇总；不把一次轨迹的波动当成重复间不确定性。"
+        "explanation": "舍弃两条轨迹的首项 0 后，绝对值分别为 [0.2, 0.4] 和 [0.4, 0.2]。两次平均值都是 0.3，因此重复均值为 0.3、重复间标准差为 0。"
       }
     ]
   },
@@ -94,7 +94,7 @@
     "chapter": "13.1",
     "lesson_id": "P13-C01-S01",
     "title": "为何区分有符号和绝对序参量",
-    "statement": "两次等长轨迹（trajectory）的尾窗分别长期接近m=+0.8与m=−0.8。给两次尾窗相同权重，汇总的有符号均值和平均绝对值各约为多少？",
+    "statement": "两次重复分别形成 m=+0.8 和 m=−0.8 的群体平均，两次重复的权重相同。分别计算这两个 m 的平均值，以及它们的绝对值 |m| 的平均值，这两项结果是多少？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -133,7 +133,7 @@
     "chapter": "13.1",
     "lesson_id": "P13-C01-S01",
     "title": "有限系统仍会波动",
-    "statement": "二值同步更新（synchronous update）中，每个个体条件独立（conditional independence）地以概率（probability） r 取 +1；在给定当前状态（state）下，下一步磁化的条件方差（variance）是多少？",
+    "statement": "一个群体有 N 个个体。给定上一轮的群体平均后，每个个体独立地以概率 r 取 +1、以概率 1−r 取 −1。下一轮把这 N 个值求平均，所得平均值的条件方差是多少？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -147,19 +147,19 @@
     "options": [
       {
         "id": "A",
-        "text": "下一步磁化的条件方差为4r(1−r)，不随N改变。"
+        "text": "下一轮群体平均的条件方差为4r(1−r)，不随N改变。"
       },
       {
         "id": "B",
-        "text": "下一步磁化的条件方差为r(1−r)N。"
+        "text": "下一轮群体平均的条件方差为r(1−r)N。"
       },
       {
         "id": "C",
-        "text": "下一步磁化的条件方差为0，因为其条件平均值由当前状态确定。"
+        "text": "下一轮群体平均的条件方差为0，因为其条件平均由旧状态确定。"
       },
       {
         "id": "D",
-        "text": "下一步磁化的条件方差为4r(1−r)/N。"
+        "text": "下一轮群体平均的条件方差为4r(1−r)/N。"
       }
     ],
     "constraints": []
@@ -172,7 +172,7 @@
     "chapter": "13.1",
     "lesson_id": "P13-C01-S01",
     "title": "一次突变代表什么",
-    "statement": "N=40的一次模拟中，序参量（order parameter）在某参数（parameter）附近跳高。要判断这种跳变能否支持临界变化解释，下一步应怎样做？",
+    "statement": "在 N=40 的有限群体中，只运行一次参数扫描，就看到群体平均的幅度在一小段参数区间内明显上升。接下来怎样检查，才能判断这个现象是否稳定出现？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -211,7 +211,7 @@
     "chapter": "13.1",
     "lesson_id": "P13-C01-S02",
     "title": "计算平均场固定点迭代",
-    "statement": "从 start 出发，重复 m_next=tanh(beta*m)，返回含初值（initial condition）的完整轨迹（trajectory）。此为 N→∞ 条件期望（conditional expectation）映射的确定性参照。",
+    "statement": "有限群体的一步条件期望为 tanh(beta*m)。现在建立确定性参照：每一步直接把这个期望值作为新的 m，即 m_next=tanh(beta*m)。从 start 开始更新 steps 次，返回含起点的完整列表。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -225,19 +225,19 @@
       {
         "name": "beta",
         "type": "float",
-        "description": "相互作用强度，非负。",
+        "description": "非负、无量纲的相互作用强度 beta。",
         "unit": "无量纲"
       },
       {
         "name": "start",
         "type": "float",
-        "description": "初始磁化，介于 -1 与 1。",
+        "description": "起点的有符号平均 m，位于 −1 到 1 之间。",
         "unit": "无量纲"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "更新次数。",
+        "description": "要执行的更新次数。",
         "unit": "步"
       }
     ],
@@ -245,13 +245,13 @@
       {
         "name": "path",
         "type": "list[float]",
-        "description": "初值和每一步的平均场磁化。",
+        "description": "起点 start 及每次更新后的 m，按更新先后排列；长度为 steps+1。",
         "unit": "无量纲"
       }
     ],
-    "contract": "每一步只读取上一时刻 m；steps=0 时仅返回初值。",
+    "contract": "先保存 start，再重复 m = tanh(beta*m)，把每个新值追加到结果列表。这里计算的是确定性参照，不加入有限群体的随机抽样。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -259,7 +259,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "tanh(0)=0；零步情形不应自行更新。有限随机系统还存在抽样波动。",
+    "hint": "可用 math.tanh。steps=0 时直接返回 [start]；beta=0 时，每次更新都得到 0。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -283,7 +283,7 @@
           0.0,
           0.0
         ],
-        "explanation": "tanh(0)=0；零步情形不应自行更新。有限随机系统还存在抽样波动。"
+        "explanation": "起点是 0.4。beta=0 时 tanh(0)=0，连续两次更新后列表为 [0.4, 0, 0]。"
       }
     ]
   },
@@ -295,7 +295,7 @@
     "chapter": "13.1",
     "lesson_id": "P13-C01-S02",
     "title": "固定点失稳条件",
-    "statement": "对m_next=tanh(beta*m)，零固定点（fixed point）附近斜率（slope）为beta。比较beta=0.8和1.2时的局部稳定性，哪项正确？",
+    "statement": "确定性映射 m_next=tanh(beta*m) 在 m=0 处的导数为 beta。分别取 beta=0.8 和 beta=1.2，零点附近的小偏差怎样变化？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -317,7 +317,7 @@
       },
       {
         "id": "C",
-        "text": "两者都局部稳定，因为tanh的输出（output）有界。"
+        "text": "两者都局部稳定，因为tanh的输出有界。"
       },
       {
         "id": "D",
@@ -334,7 +334,7 @@
     "chapter": "13.1",
     "lesson_id": "P13-C01-S02",
     "title": "怎样比较三个规模",
-    "statement": "要比较N=50、200、800时的有限规模（finite size）差异，应如何安排参数（parameter）扫描？",
+    "statement": "要比较 N=50、200、800 三种群体规模的结果，怎样安排参数扫描和记录，才能解释差异来自哪里？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -348,15 +348,15 @@
     "options": [
       {
         "id": "A",
-        "text": "各规模采用同一更新规则，每组只保留序参量（order parameter）最高的一次模拟结果。"
+        "text": "各规模采用同一更新规则，每组只保留序参量最高的一次模拟结果。"
       },
       {
         "id": "B",
-        "text": "各规模采用同一更新规则和参数取值，并记录舍弃的初始暂态（transient）、后续观察时长、初态和独立重复次数。"
+        "text": "各规模采用同一更新规则和参数取值，并记录舍弃的初始暂态、后续观察时长、初态和独立重复次数。"
       },
       {
         "id": "C",
-        "text": "各规模采用同一参数取值，在增大N时把同步更新（synchronous update）改成异步更新（asynchronous update）。"
+        "text": "各规模采用同一参数取值，在增大N时把同步更新改成异步更新。"
       },
       {
         "id": "D",
@@ -373,7 +373,7 @@
     "chapter": "13.1",
     "lesson_id": "P13-C01-S02",
     "title": "分岔与相变语言",
-    "statement": "确定性平均映射在beta=1改变零点（zero）稳定性；随机模型（model）的曲线随N增大而变陡。如何分别理解这两类结果？",
+    "statement": "确定性映射在 beta=1 附近改变零点的稳定性；有限群体的平均幅度曲线也随规模增大而变陡。怎样表述这两类证据较准确？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -387,7 +387,7 @@
     "options": [
       {
         "id": "A",
-        "text": "平均映射给出的beta=1，也是每一条有限随机轨迹（trajectory）发生跳变的参数（parameter）值。"
+        "text": "平均映射给出的beta=1，也是每一条有限随机轨迹发生跳变的参数值。"
       },
       {
         "id": "B",
@@ -395,7 +395,7 @@
       },
       {
         "id": "C",
-        "text": "平均映射发生分岔（bifurcation），说明有限随机模型（model）中的每次波动都是数值误差（numerical error）。"
+        "text": "平均映射发生分岔，说明有限随机模型中的每次波动都是数值误差。"
       },
       {
         "id": "D",
@@ -412,7 +412,7 @@
     "chapter": "13.2",
     "lesson_id": "P13-C02-S01",
     "title": "逐轮记录级联失效",
-    "statement": "给定无向图、各节点至少需要的已失效邻居数 thresholds 与初始损伤 seeds。每轮只读取上一轮末的累计失效状态（state），返回第0轮直接损伤及各轮新失效节点，均升序排列。",
+    "statement": "无向网络中，一部分节点在第 0 轮因外部损伤而失效。此后，一个仍可用的节点若有至少 thresholds[i] 个已失效邻居，就在下一轮失效；失效后不再恢复。各节点同时读取上一轮末的累计失效情况。返回第 0 轮及后续每轮新失效的节点。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -426,25 +426,25 @@
       {
         "name": "n",
         "type": "int",
-        "description": "节点数，编号0到n-1。",
+        "description": "原网络的节点数；节点编号为 0 到 n−1。",
         "unit": "节点"
       },
       {
         "name": "edges",
         "type": "list[list[int]]",
-        "description": "无向边，每条仅列一次。",
+        "description": "每项 [a, b] 表示 a、b 之间的一条双向联系，每条边列一次。",
         "unit": "边"
       },
       {
         "name": "thresholds",
         "type": "list[int]",
-        "description": "每节点继发失效所需的失效邻居数，均至少1。",
+        "description": "按节点编号排列；第 i 项是节点 i 失效所需的已失效邻居数，至少为 1。",
         "unit": "邻居"
       },
       {
         "name": "seeds",
         "type": "list[int]",
-        "description": "第0轮直接损伤节点。",
+        "description": "第 0 轮由外部损伤直接造成失效的节点编号。",
         "unit": "节点编号"
       }
     ],
@@ -452,13 +452,13 @@
       {
         "name": "rounds",
         "type": "list[list[int]]",
-        "description": "第0轮及各轮新增失效节点，不含空终止轮。",
+        "description": "外层依次对应第 0、1、2……轮；内层仅列该轮新失效的节点，按编号升序排列。",
         "unit": "节点编号"
       }
     ],
-    "contract": "达到阈值的邻居只按已失效节点计数；本轮新增节点不得在本轮继续触发。",
+    "contract": "先保存升序排列的 seeds。每轮只检查尚未失效的节点，按上一轮末的累计失效集合数邻居，再同时加入本轮新失效节点。若没有新增就停止，不追加空的终止轮；seeds 为空时返回 [[]]。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -466,7 +466,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "链上阈值1的种子逐轮传播；阈值2和零种子给出无继发失效的边界。",
+    "hint": "先保留累计失效集合，再收集这一轮的新节点。不要在遍历中立即让新节点触发它的邻居。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -520,7 +520,7 @@
             3
           ]
         ],
-        "explanation": "链上阈值1的种子逐轮传播；阈值2和零种子给出无继发失效的边界。"
+        "explanation": "第 0 轮只有节点 0。第 1 轮节点 1 达到阈值；节点 2 要到第 2 轮才有已失效邻居 1。因而返回 [[0], [1], [2], [3]]。"
       }
     ]
   },
@@ -532,7 +532,7 @@
     "chapter": "13.2",
     "lesson_id": "P13-C02-S01",
     "title": "区分直接与继发失效",
-    "statement": "一条链在第0轮直接损伤节点0，第1轮新增失效节点1，第2轮新增失效节点2。哪项记录正确？",
+    "statement": "一条链中，第 0 轮外部损伤使节点 0 失效，第 1 轮新失效节点 1，第 2 轮新失效节点 2。这三个节点此前都未重复记录。怎样区分直接损伤、继发失效和累计失效？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -571,7 +571,7 @@
     "chapter": "13.2",
     "lesson_id": "P13-C02-S01",
     "title": "零种子的边界",
-    "statement": "阈值均为至少1个失效邻居，并且没有初始损伤。哪项正确？",
+    "statement": "沿用本章的失效规则：失效不可逆，仍可用节点需要至少一个已失效邻居才能失效。若第 0 轮没有任何损伤，之后会怎样？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -610,7 +610,7 @@
     "chapter": "13.2",
     "lesson_id": "P13-C02-S01",
     "title": "阈值规则的含义",
-    "statement": "本章教学网络中，一个尚未失效的节点在已失效邻居数达到阈值后永久失效。这段规则规定的是哪种更新机制？",
+    "statement": "本章规定：一个仍可用节点在已失效邻居数达到阈值后失效，并永久保持失效。这个模型实际包含哪一种机制？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -624,11 +624,11 @@
     "options": [
       {
         "id": "A",
-        "text": "一个节点的失效邻居数达到阈值后，该节点失效并保持失效状态（state）。"
+        "text": "一个节点的失效邻居数达到阈值后，该节点失效并保持失效状态。"
       },
       {
         "id": "B",
-        "text": "每条边独立尝试传递失效，失效节点又按固定概率（probability）恢复。"
+        "text": "每条边独立尝试传递失效，失效节点又按固定概率恢复。"
       },
       {
         "id": "C",
@@ -636,7 +636,7 @@
       },
       {
         "id": "D",
-        "text": "节点根据邻居连续状态（state）的平均值改变自身状态，并以线性速率恢复。"
+        "text": "节点根据邻居连续状态的平均值改变自身状态，并以线性速率恢复。"
       }
     ],
     "constraints": []
@@ -649,7 +649,7 @@
     "chapter": "13.2",
     "lesson_id": "P13-C02-S02",
     "title": "计算剩余网络的功能代理",
-    "statement": "失效节点及其相邻边不再可用。返回剩余图最大连通分量（connected component）的节点数除以原节点数 n；这是本题定义的功能代理，不是所有真实网络的功能。",
+    "statement": "给定原无向网络和已失效节点，考察仍可用节点之间保留的联系。找出其中最大的连通分量，用其节点数除以原网络节点数 n。这个比例在本题中用来描述剩余连接规模。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -663,19 +663,19 @@
       {
         "name": "n",
         "type": "int",
-        "description": "原网络节点数。",
+        "description": "损伤发生前的节点总数，编号为 0 到 n−1。",
         "unit": "节点"
       },
       {
         "name": "edges",
         "type": "list[list[int]]",
-        "description": "原无向边。",
+        "description": "原网络的无向边；每项 [a, b] 表示两个端点。",
         "unit": "边"
       },
       {
         "name": "failed",
         "type": "list[int]",
-        "description": "已失效节点。",
+        "description": "已失效节点的编号。",
         "unit": "节点编号"
       }
     ],
@@ -683,13 +683,13 @@
       {
         "name": "fraction",
         "type": "float",
-        "description": "最大剩余连通分量占原节点数的比例。",
+        "description": "最大可用连通分量的节点数除以原节点数 n，值在 0 到 1 之间。",
         "unit": "无量纲"
       }
     ],
-    "contract": "失效节点不计入剩余分量；完全失效返回0；孤立剩余节点各自构成大小1的分量。",
+    "contract": "连通分量只包含仍可用节点和连接它们的边。孤立的可用节点各自构成大小为 1 的分量；没有可用节点时返回 0。分母始终是原 n。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -697,7 +697,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "去掉链的内部节点后，最大剩余分量仍可能含多个节点；分母始终是原 n。",
+    "hint": "先排除 failed 中的节点，再从每个尚未访问的可用节点沿边寻找其分量。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -732,7 +732,7 @@
           ]
         },
         "expected": 0.5,
-        "explanation": "去掉链的内部节点后，最大剩余分量仍可能含多个节点；分母始终是原 n。"
+        "explanation": "四节点链失去节点 1 后，节点 0 单独一组，节点 2、3 仍相连。最大分量有 2 个节点，所以返回 2/4=0.5。"
       }
     ]
   },
@@ -744,7 +744,7 @@
     "chapter": "13.2",
     "lesson_id": "P13-C02-S02",
     "title": "剩余网络的功能评价",
-    "statement": "用最大连通分量（connected component）大小描述结构。剩余网络仍连通，但所有剩余节点的处理容量都低于需求。哪项成立？",
+    "statement": "一个受损网络的剩余节点仍彼此连通，但这些节点的处理容量都低于题设需求。仅依据最大连通分量的大小，能得出什么结论？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -783,7 +783,7 @@
     "chapter": "13.2",
     "lesson_id": "P13-C02-S02",
     "title": "区分结构和阈值",
-    "statement": "要分别考察增加网络连接和提高失效阈值怎样改变最终失效节点数，应选择哪种实验安排？",
+    "statement": "希望分别了解增加网络连接和提高失效阈值怎样影响最终失效节点数。怎样安排对照，才能分清这两项改变？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -822,7 +822,7 @@
     "chapter": "13.2",
     "lesson_id": "P13-C02-S02",
     "title": "提高阈值后的边界",
-    "statement": "在相同图与相同种子下，仅逐节点提高正整数阈值，以下哪项对本题不可逆同步规则成立？",
+    "statement": "保持网络、初始损伤和同步失效规则相同，只提高部分或全部节点的正整数阈值，其余阈值保持原值。关于最终结果，哪项必然成立？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -848,7 +848,7 @@
       },
       {
         "id": "D",
-        "text": "提高阈值后，剩余网络的最大连通分量（connected component）会至少增加一个节点。"
+        "text": "提高阈值后，剩余网络的最大连通分量会至少增加一个节点。"
       }
     ],
     "constraints": []
@@ -861,7 +861,7 @@
     "chapter": "13.3",
     "lesson_id": "P13-C03-S01",
     "title": "计算扰动后的返回轨迹",
-    "statement": "模型（model） dx/dt=-rate*x*(1-x/boundary)，0 是稳定平衡（equilibrium），正 boundary 是吸引域（basin of attraction）边界。用显式 Euler 从 initial 更新 steps 次，返回包含初值（initial condition）的完整轨迹（trajectory）。",
+    "statement": "用 x 表示偏离参考状态 0 的程度，模型为 dx/dt=−rate*x*(1−x/boundary)，其中 rate、boundary 都为正。在非负 x 范围内，0≤x<boundary 的连续轨迹返回 0；x=boundary 是另一平衡点。用显式 Euler 从 initial 更新 steps 次，返回完整数值轨迹。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -876,31 +876,31 @@
       {
         "name": "rate",
         "type": "float",
-        "description": "局部恢复率（local recovery rate），正数。",
+        "description": "零点附近的局部恢复率，必须为正。",
         "unit": "1/T"
       },
       {
         "name": "boundary",
         "type": "float",
-        "description": "正向吸引域边界，正数。",
+        "description": "正方向上的吸引域边界，必须为正，与 x 使用相同单位。",
         "unit": "状态单位"
       },
       {
         "name": "initial",
         "type": "float",
-        "description": "正向初始扰动。",
+        "description": "时刻 0 的扰动值，与 boundary 使用相同单位。",
         "unit": "状态单位"
       },
       {
         "name": "dt",
         "type": "float",
-        "description": "时间步长（time step）。",
+        "description": "每次更新的时间间隔。",
         "unit": "T"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "更新步数。",
+        "description": "执行的更新次数。",
         "unit": "步"
       }
     ],
@@ -908,13 +908,13 @@
       {
         "name": "path",
         "type": "list[float]",
-        "description": "每个时间点的状态（state）值，含初值。",
+        "description": "按时间先后排列的 x：先是 initial，再是每次 Euler 更新的结果，长度为 steps+1。",
         "unit": "状态单位"
       }
     ],
-    "contract": "按题定右端逐步更新；不要把局部线性指数解代替非线性有限扰动轨迹。",
+    "contract": "每步先用当前 x 算 f=−rate*x*(1−x/boundary)，再更新 x=x+dt*f。始终使用完整非线性右端；不以局部指数近似替代它。steps=0 时返回 [initial]。",
     "constraints": [
-      "所有比较使用题定模型和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -922,7 +922,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "小正扰动朝0返回；超过边界的正扰动先远离0，不能把局部速率外推至全域。",
+    "hint": "先判断当前 x 与 boundary 的大小关系，再算变化率。数值步长也会影响轨迹，不能把一次离散更新当成连续过程的全部结论。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -948,7 +948,7 @@
           0.168,
           0.1400448
         ],
-        "explanation": "小正扰动朝0返回；超过边界的正扰动先远离0，不能把局部速率外推至全域。"
+        "explanation": "第一步变化率为 −2×0.2×(1−0.2)=−0.32，得到 0.2+0.1×(−0.32)=0.168。第二步用新的 0.168 重新算变化率，得到 0.1400448。"
       }
     ]
   },
@@ -960,7 +960,7 @@
     "chapter": "13.3",
     "lesson_id": "P13-C03-S01",
     "title": "改变非线性参数后的恢复",
-    "statement": "dx/dt=−rate*x*(1−x/boundary)，rate>0固定，boundary从1改为2。零点（zero）附近恢复率和正向吸引域（basin of attraction）边界怎样变化？",
+    "statement": "模型 dx/dt=−rate*x*(1−x/boundary) 中，rate>0 保持固定，boundary 从 1 改为 2。零点附近的线性恢复率与正方向上的吸引域边界分别怎样变化？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1000,7 +1000,7 @@
     "chapter": "13.3",
     "lesson_id": "P13-C03-S01",
     "title": "判断有限扰动的去向",
-    "statement": "零点（zero）是稳定平衡（equilibrium），局部线性化（linearization）给出恢复时间1/rate。要判断正初值（initial condition）x0=1.4是否返回零点，还需检查什么？",
+    "statement": "已知 0 是稳定平衡点，局部线性近似给出恢复时间 1/rate。现在施加 x0=1.4 的正扰动。要判断它是否最终返回 0，还需要哪类信息？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1019,7 +1019,7 @@
       },
       {
         "id": "B",
-        "text": "提高零点附近恢复时间的测量精度，得到更精确的局部恢复率（local recovery rate）。"
+        "text": "提高零点附近恢复时间的测量精度，得到更精确的局部恢复率。"
       },
       {
         "id": "C",
@@ -1027,7 +1027,7 @@
       },
       {
         "id": "D",
-        "text": "检查0到1.4之间的变化方向，判断返回途中是否存在其他平衡（equilibrium）或吸引域（basin of attraction）边界。"
+        "text": "检查0到1.4之间的变化方向，判断返回途中是否存在其他平衡或吸引域边界。"
       }
     ],
     "constraints": []
@@ -1040,7 +1040,7 @@
     "chapter": "13.3",
     "lesson_id": "P13-C03-S01",
     "title": "数值返回也需核验",
-    "statement": "用显式Euler计算恢复过程时，得到一条在零点（zero）两侧交替变化的轨迹（trajectory）。哪项检查能帮助判断这种交替是否来自时间离散？",
+    "statement": "用显式 Euler 计算零点附近的恢复时，数值轨迹在 0 的两侧交替。怎样检查这种交替是否由时间步长造成？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1063,7 +1063,7 @@
       },
       {
         "id": "C",
-        "text": "减小时间步，比较轨迹是否接近零点（zero）附近的解析指数衰减。"
+        "text": "减小时间步，比较轨迹是否接近零点附近的解析指数衰减。"
       },
       {
         "id": "D",
@@ -1080,7 +1080,7 @@
     "chapter": "13.3",
     "lesson_id": "P13-C03-S02",
     "title": "只用过去窗口计算指标",
-    "statement": "在 time_index 时仅使用含当前样本在内的过去 window 个观测（observation），返回该窗总体方差（variance）和相隔 lag 个样本的 Pearson 相关。窗不足或任一配对序列恒定时，相关项返回 None。",
+    "statement": "观测列表按时间排列，time_index 指定当前最后可用样本的位置，从 0 开始编号。取截至该位置、含当前样本的 window 项，返回窗口方差和相隔 lag 项的 Pearson 相关系数。方差的平方偏差和除以 window。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1095,25 +1095,25 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "按时间排列的观测序列。",
+        "description": "完整观测列表；其中可能保存了 time_index 之后尚不可使用的值。",
         "unit": "观测单位"
       },
       {
         "name": "time_index",
         "type": "int",
-        "description": "当前可用观测的末索引。",
+        "description": "当前可用的末样本位置，从 0 开始编号。",
         "unit": "样本编号"
       },
       {
         "name": "window",
         "type": "int",
-        "description": "过去窗口样本数。",
+        "description": "窗口包含的样本数，含当前样本。",
         "unit": "样本"
       },
       {
         "name": "lag",
         "type": "int",
-        "description": "配对样本的索引差，介于1和window-1。",
+        "description": "配对样本的位置差，需满足 1≤lag<window。",
         "unit": "样本"
       }
     ],
@@ -1121,13 +1121,13 @@
       {
         "name": "indicators",
         "type": "list[float | None]",
-        "description": "总体方差、指定滞后（lag）的 Pearson 相关；无法定义时为 None。",
+        "description": "两项依次为窗口方差、滞后相关系数；窗口不足时为 [None, None]，任一配对片段恒定时，第二项为 None。",
         "unit": "依输入单位²、无量纲"
       }
     ],
-    "contract": "配对片段各自中心化；不能读取 time_index 之后的样本。",
+    "contract": "窗口为 values[time_index−window+1:time_index+1]。窗口完整且 lag 有效时，用其前 window−lag 项与后 window−lag 项配对，各自减去自身平均值，再求 Pearson 相关。任一配对片段恒定时相关为 None；窗口不足或 lag 无效时两项均为 None。不得读取未来样本。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1135,7 +1135,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "第一个样例末尾的99是未来数据，必须忽略；恒定窗的相关系数分母为0，返回 None。",
+    "hint": "time_index=3、window=4 时只取位置 0、1、2、3。列表后面的 99 不在当前窗口内。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1165,7 +1165,7 @@
           1.25,
           1.0
         ],
-        "explanation": "第一个样例末尾的99是未来数据，必须忽略；恒定窗的相关系数（correlation coefficient）分母为0，返回 None。"
+        "explanation": "窗口是 [0, 1, 2, 3]，均值 1.5，方差为 (2.25+0.25+0.25+2.25)/4=1.25。lag=1 的配对片段为 [0, 1, 2] 和 [1, 2, 3]，各自中心化后相同，相关为 1。"
       }
     ]
   },
@@ -1177,7 +1177,7 @@
     "chapter": "13.3",
     "lesson_id": "P13-C03-S02",
     "title": "慢化指标的条件",
-    "statement": "稳定 AR(1) x_{t+1}=rho*x_t+epsilon_t，噪声方差（variance）固定且 |rho|<1。rho 从0.5升至0.9时哪项成立？",
+    "statement": "在固定采样间隔下，一阶自回归过程满足 x_{t+1}=rho*x_t+epsilon_t。各步噪声独立、均值为 0、方差固定，并与此前状态独立。每个固定参数段均满足 |rho|<1。rho 从 0.5 改为 0.9 后，两段各自的理论平稳方差和一步自相关怎样比较？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1217,7 +1217,7 @@
     "chapter": "13.3",
     "lesson_id": "P13-C03-S02",
     "title": "改变噪声强度后的指标",
-    "statement": "平稳AR(1)的rho保持0.7，仅过程噪声（process noise）标准差（standard deviation）从0.2升至0.5。理论平稳方差（variance）和一步相关怎样变化？",
+    "statement": "在固定采样间隔下，平稳一阶自回归模型的 rho=0.7 保持不变，只把独立、零均值过程噪声的标准差从 0.2 改为 0.5。理论平稳方差和一步自相关怎样变化？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1257,7 +1257,7 @@
     "chapter": "13.3",
     "lesson_id": "P13-C03-S02",
     "title": "固定物理滞后",
-    "statement": "观测（observation）采样（sampling）间隔从1 T缩短到0.5 T。为了比较同一个1 T的自相关，应如何选择样本滞后（lag）？",
+    "statement": "同一过程的采样间隔从 1 T 改为 0.5 T。希望比较的都是相隔 1 T 的两个观测值之间的相关，应分别采用多大的样本位置差？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1297,7 +1297,7 @@
     "chapter": "13.4",
     "lesson_id": "P13-C04-S01",
     "title": "计算粗尺度与局部相关",
-    "statement": "采用周期边界（periodic boundary）的一维二值环在下一步按左右旧邻居异或同步更新（synchronous update）。返回当前密度 p、左右邻居两点同为1的频率 c2，以及由二者精确得到的下一步密度。",
+    "statement": "一维环形格子只取 0、1，首尾相接。每步同时读取左右旧邻格：取值不同则新值为 1，相同则为 0。给定当前状态，计算取 1 的密度 p、每个格子左右邻格同时取 1 的频率 c2，以及下一步的密度。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -1312,7 +1312,7 @@
       {
         "name": "state",
         "type": "list[int]",
-        "description": "至少4格、采用周期边界的二值状态（state）。",
+        "description": "按环上位置排列的 0、1 列表，至少 4 格；最后一格与第一格相邻。",
         "unit": "类别"
       }
     ],
@@ -1320,13 +1320,13 @@
       {
         "name": "features",
         "type": "list[float]",
-        "description": "依次为 p、c2 和下一步密度。",
+        "description": "三项依次为当前密度 p、相距两格的 1—1 配对频率 c2、下一步密度。",
         "unit": "无量纲"
       }
     ],
-    "contract": "c2=(1/n)Σ_i state[(i-1)%n]*state[(i+1)%n]；下一步密度=2p-2c2。",
+    "contract": "令 n=len(state)。p=sum(state)/n；c2=sum(state[(i−1)%n]*state[(i+1)%n] for i in range(n))/n；下一步密度为 2p−2c2。c2 的每一项对应一个中心格子的左右邻格，不是相邻两格的乘积。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1334,7 +1334,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "两个四格初态密度同为0.5，但距离两格的相关量不同；仅看均值无法预测下一步。",
+    "hint": "先依次以每格为中心找左右邻格，再数它们是否都为 1。密度相同的两个排列，c2 可以不同。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1361,7 +1361,7 @@
           0.5,
           0.0
         ],
-        "explanation": "两个四格初态密度同为0.5，但距离两格的相关量不同；仅看均值无法预测下一步。"
+        "explanation": "状态 [1, 0, 1, 0] 有一半格子为 1，所以 p=0.5。以四格为中心的左右乘积依次为 0、1、0、1，c2=0.5，下一步密度为 2×0.5−2×0.5=0。"
       }
     ]
   },
@@ -1373,7 +1373,7 @@
     "chapter": "13.4",
     "lesson_id": "P13-C04-S01",
     "title": "密度之外的统计量",
-    "statement": "周期二值环1010与1100的密度都为0.5，但左右旧邻格异或同步更新（synchronous update）后的密度不同。哪一统计量（statistic）能补充解释该差异？",
+    "statement": "四格环 [1, 0, 1, 0] 与 [1, 1, 0, 0] 的密度都为 0.5。每步同时读取每格的左右旧邻格：两者不同则该格新值为 1，相同则新值为 0。两种排列下一步的密度不同，补充哪项统计量能解释这个差异？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1413,7 +1413,7 @@
     "chapter": "13.4",
     "lesson_id": "P13-C04-S01",
     "title": "粗观测能辨认什么",
-    "statement": "已知周期环有N格，观测（observation）只记录当前平均密度p。仅凭这一记录，可以确定什么？",
+    "statement": "已知一个 0、1 环有 N 格，目前只观测到取 1 的比例 p，没有保存各格位置。仅凭 N 和 p，可以确定什么？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1453,7 +1453,7 @@
     "chapter": "13.4",
     "lesson_id": "P13-C04-S01",
     "title": "相关量也有边界",
-    "statement": "周期异或规则下，已推导下一步密度p_next=2p−2c2。仅由这个结果，可以支持哪项判断？",
+    "statement": "在本章环形异或模型中，p 是当前取 1 的比例，c2 是相距两格同时取 1 的频率。已推导下一步密度 p_next=2p−2c2。这个式子直接支持哪项判断？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1493,7 +1493,7 @@
     "chapter": "13.4",
     "lesson_id": "P13-C04-S02",
     "title": "分项计算三种差异",
-    "statement": "给定同一评价指标的共同参考结果及只改变参数（parameter）、只改变观测（observation）处理、只改变模型结构（model structure）的三个结果。返回各自相对参考的有符号差，不把它们误称为独立方差（variance）贡献。",
+    "statement": "选择同一个评价指标，固定实验时长和单位。给定共同参考值，以及只改参数、只改观测处理、只改模型结构时的三个指标值，返回这三项分别减去参考值的结果，保留正负号。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -1508,25 +1508,25 @@
       {
         "name": "reference",
         "type": "float",
-        "description": "共同参考结果。",
+        "description": "所有比较共用的参考指标值。",
         "unit": "指标单位"
       },
       {
         "name": "parameter_only",
         "type": "float",
-        "description": "仅改变参数得到的结果。",
+        "description": "其他条件固定，只改变参数后得到的指标值。",
         "unit": "指标单位"
       },
       {
         "name": "observation_only",
         "type": "float",
-        "description": "仅改变观测方式得到的结果。",
+        "description": "其他条件固定，只改变观测处理后得到的指标值。",
         "unit": "指标单位"
       },
       {
         "name": "structure_only",
         "type": "float",
-        "description": "仅改变模型结构得到的结果。",
+        "description": "其他条件固定，只改变模型结构后得到的指标值。",
         "unit": "指标单位"
       }
     ],
@@ -1534,13 +1534,13 @@
       {
         "name": "differences",
         "type": "list[float]",
-        "description": "参数、观测、结构相对参考的有符号差。",
+        "description": "三项依次为参数改变、观测处理改变、结构改变的指标值减去 reference，单位与原指标相同。",
         "unit": "指标单位"
       }
     ],
-    "contract": "三组差异都以同一 reference 为基线；交互效应未包含，不能把差异直接相加预测组合条件。",
+    "contract": "返回 [parameter_only−reference, observation_only−reference, structure_only−reference]。每项都与共同参考比较；不把它们相加作为联合改变的结果，也不把平方差称为独立方差贡献。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1548,7 +1548,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "保持单位和共同参考一致；有符号差说明方向，不等于统计方差分解。",
+    "hint": "同一个 reference 参与三次减法。正值表示指标上升，负值表示下降；是否更好取决于指标的评价方向。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1573,7 +1573,7 @@
           -0.19999999999999996,
           0.5
         ],
-        "explanation": "保持单位和共同参考一致；有符号差说明方向，不等于统计方差分解。"
+        "explanation": "共同参考为 1。参数组 1.2−1=0.2，观测组 0.8−1=−0.2，结构组 1.5−1=0.5；返回顺序对应这三种来源。"
       }
     ]
   },
@@ -1585,7 +1585,7 @@
     "chapter": "13.4",
     "lesson_id": "P13-C04-S02",
     "title": "预测变化的来源",
-    "statement": "改变参数（parameter）范围、观测（observation）采样（sampling）间隔或网络结构，都会改变模型（model）对下一步平均密度的预测。怎样安排比较，才能区分这些变化的来源？",
+    "statement": "改变参数范围、采样间隔或网络结构，都可能改变下一步平均密度的预测。怎样比较，才能分清这些来源并检查它们是否相互影响？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1608,7 +1608,7 @@
       },
       {
         "id": "C",
-        "text": "将三个因素分别变化得到的结果合在一组，作为同一随机实验的重复来计算标准差（standard deviation）。"
+        "text": "将三个因素分别变化得到的结果合在一组，作为同一随机实验的重复来计算标准差。"
       },
       {
         "id": "D",
@@ -1625,7 +1625,7 @@
     "chapter": "13.4",
     "lesson_id": "P13-C04-S02",
     "title": "两个尺度的得分比较",
-    "statement": "两个干预 A、B 在粗尺度得分为0.8、0.7，在细尺度得分为0.4、0.6（均为越高越好）。哪项正确？",
+    "statement": "两个干预 A、B 的评分都按越高越好解释。粗尺度下分别为 0.8、0.7，细尺度下分别为 0.4、0.6。怎样报告这两个比较？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1665,7 +1665,7 @@
     "chapter": "13.4",
     "lesson_id": "P13-C04-S02",
     "title": "敏感性有声明范围",
-    "statement": "数值核验在指定模型（model）的参数（parameter）theta∈[0.9,1.1]内，输出（output）最大变动不超过0.03。该核验直接约束哪一个量？",
+    "statement": "在指定模型中，将参数 theta 的变化范围限定为 [0.9,1.1]。已知该输出在这个区间内的最大变动不超过 0.03。这项结果直接说明什么？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1680,7 +1680,7 @@
     "options": [
       {
         "id": "A",
-        "text": "该区间内每处输出导数（derivative）的绝对值都不超过0.03。"
+        "text": "该区间内每处输出导数的绝对值都不超过0.03。"
       },
       {
         "id": "B",
@@ -1692,7 +1692,7 @@
       },
       {
         "id": "D",
-        "text": "更换模型结构（model structure）后输出的最大变动仍不超过0.03。"
+        "text": "更换模型结构后输出的最大变动仍不超过0.03。"
       }
     ],
     "constraints": []
@@ -1705,7 +1705,7 @@
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
     "title": "有限规模的临界证据",
-    "statement": "三种规模各有重复轨迹（trajectory），有限观察窗中序参量（order parameter）曲线逐渐变陡。要进一步研究极限（limit）行为，应优先怎样补充检查？",
+    "statement": "三种群体规模都进行了重复模拟。相同有限观察时段内，描述一致程度的序参量曲线随规模增大而变陡。若要进一步研究无限规模极限，应先补充哪种检查？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -1724,7 +1724,7 @@
       },
       {
         "id": "B",
-        "text": "在最大规模的曲线上选一段拟合直线，将所得斜率（slope）作为普适临界指数（critical exponent）。"
+        "text": "在最大规模的曲线上选一段拟合直线，将所得斜率作为普适临界指数。"
       },
       {
         "id": "C",
@@ -1732,7 +1732,7 @@
       },
       {
         "id": "D",
-        "text": "延长各规模的观察时间，比较多次模拟的序参量分布（distribution），以及曲线是否仍随规模增大而变陡。"
+        "text": "延长各规模的观察时间，比较多次模拟的序参量分布，以及曲线是否仍随规模增大而变陡。"
       }
     ],
     "constraints": []
@@ -1745,7 +1745,7 @@
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
     "title": "恢复速度与吸引域",
-    "statement": "两个系统在平衡（equilibrium）点附近的恢复率相同，一个正向吸引域（basin of attraction）边界为1，另一个为2；施加大小1.5的正扰动。哪项正确？",
+    "statement": "两个模型都以 0 为参考平衡点，零点附近的线性恢复率相同。在非负状态范围内，能返回 0 的初值分别位于 [0,1) 和 [0,2)。对两者施加大小 1.5 的正扰动，怎样判断？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1760,19 +1760,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两个系统对小扰动的恢复速度相同，1.5的正扰动只在第二个系统的吸引域内。"
+        "text": "线性近似下的小扰动恢复速度相同，1.5 的正扰动只在第二个模型的吸引域内。"
       },
       {
         "id": "B",
-        "text": "两个系统对小扰动的恢复速度相同，1.5的正扰动在两个系统的吸引域内。"
+        "text": "线性近似下的小扰动恢复速度相同，1.5 的正扰动在两个模型的吸引域内。"
       },
       {
         "id": "C",
-        "text": "第二个系统对小扰动恢复得更快，而1.5的正扰动在两个系统的吸引域外。"
+        "text": "第二个模型的局部恢复更快，1.5 的正扰动在两个模型的吸引域外。"
       },
       {
         "id": "D",
-        "text": "第二个系统对小扰动恢复得更慢，而1.5的正扰动只在第一个系统的吸引域内。"
+        "text": "第二个模型的局部恢复更慢，1.5 的正扰动只在第一个模型的吸引域内。"
       }
     ],
     "constraints": []
@@ -1785,7 +1785,7 @@
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
     "title": "综合题：计算级联各轮",
-    "statement": "按题给无向网络与正整数阈值返回第0轮种子和各轮新增失效集合；不能把本轮新增节点立即纳入本轮邻居计数。",
+    "statement": "在给定无向网络中，第 0 轮 seeds 指定直接失效节点。此后仍可用节点在已失效邻居数达到自己的正整数阈值时永久失效。每轮同时读取上一轮末的累计失效情况，返回各轮新失效节点。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1800,25 +1800,25 @@
       {
         "name": "n",
         "type": "int",
-        "description": "原节点数。",
+        "description": "原网络节点数，编号为 0 到 n−1。",
         "unit": "节点"
       },
       {
         "name": "edges",
         "type": "list[list[int]]",
-        "description": "无向边。",
+        "description": "每项 [a, b] 表示一条双向联系，每条边列一次。",
         "unit": "边"
       },
       {
         "name": "thresholds",
         "type": "list[int]",
-        "description": "逐节点失效邻居数阈值，均至少1。",
+        "description": "按节点编号排列的触发阈值，至少为 1；第 i 项对应节点 i。",
         "unit": "邻居"
       },
       {
         "name": "seeds",
         "type": "list[int]",
-        "description": "初始直接损伤。",
+        "description": "第 0 轮因外部损伤直接失效的节点编号。",
         "unit": "节点编号"
       }
     ],
@@ -1826,13 +1826,13 @@
       {
         "name": "rounds",
         "type": "list[list[int]]",
-        "description": "逐轮新增失效，含第0轮。",
+        "description": "外层按轮次排列，第一项为第 0 轮；内层是该轮新失效的节点编号，升序排列。",
         "unit": "节点编号"
       }
     ],
-    "contract": "同步轮次与不可逆失败，结果升序且无重复节点。",
+    "contract": "失效后不恢复，每个节点只在首次失效的轮次出现。先收集本轮新增，再同时加入累计集合；没有新增时停止，不追加空终止轮。没有初始损伤时返回 [[]]。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1840,7 +1840,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "直接损伤与继发失效分开；阈值高或无连接都可能阻断级联。",
+    "hint": "把累计失效集合和本轮新失效列表分开；从一个节点向邻居传递失效至少要到下一轮。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1902,7 +1902,7 @@
             4
           ]
         ],
-        "explanation": "直接损伤与继发失效分开；阈值高或无连接都可能阻断级联。"
+        "explanation": "五节点链从 0 开始失效，各节点阈值均为 1。第 0 到第 4 轮分别新失效 0、1、2、3、4，返回五个单节点列表。"
       }
     ]
   },
@@ -1914,7 +1914,7 @@
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
     "title": "综合题：多次序参量摘要",
-    "statement": "按统一 burnin 对每条有符号序参量（order parameter）轨迹（trajectory）求尾窗 |m| 平均，再返回重复均值与重复间总体标准差（standard deviation）。",
+    "statement": "同一规模和参数下，每次重复都保存有符号平均 m 的时间列表。对每条列表舍弃开头 burnin 项，对余下 |m| 求平均，再返回这些重复结果的平均值和重复间标准差。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1929,13 +1929,13 @@
       {
         "name": "paths",
         "type": "list[list[float]]",
-        "description": "同一规模和参数（parameter）下的重复轨迹。",
+        "description": "各次重复的 m 列表；内层按时间先后排列，取值在 −1 到 1 之间。",
         "unit": "无量纲"
       },
       {
         "name": "burnin",
         "type": "int",
-        "description": "舍弃的起始点数。",
+        "description": "每条列表开头舍弃的项数；至少留下一项用于计算。",
         "unit": "步"
       }
     ],
@@ -1943,13 +1943,13 @@
       {
         "name": "summary",
         "type": "list[float]",
-        "description": "重复均值和重复间总体标准差。",
+        "description": "两项依次为重复结果的平均值、重复间标准差；标准差的平方偏差和除以重复次数 R。",
         "unit": "无量纲"
       }
     ],
-    "contract": "必须先在每次重复内部汇总，不能先跨重复抵消正负号。",
+    "contract": "先对每个 paths[j][burnin:] 内的绝对值求平均，得到 a_j，再返回 [mean(a_j), sqrt(sum((a_j−mean(a_j))²)/R)]。即使轨迹方向相反，也不能先平均有符号 m。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1957,7 +1957,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "同等幅度的对称轨迹不会在绝对序参量中抵消。",
+    "hint": "每次重复先得到一个幅度平均，再比较这些平均。只有一次重复时，重复间标准差为 0。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1990,7 +1990,7 @@
           0.5,
           0.0
         ],
-        "explanation": "同等幅度的对称轨迹不会在绝对序参量中抵消。"
+        "explanation": "舍弃起点 0 后，两条轨迹的绝对值都是 0.6、0.4，各自平均为 0.5，因此返回 [0.5, 0]。"
       }
     ]
   },
@@ -2002,7 +2002,7 @@
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
     "title": "综合题：无未来信息的预警窗",
-    "statement": "只用 time_index 及其以前的 window 个观测（observation），求总体方差（variance）和相隔 lag 个样本的相关；无法定义的相关返回 None。",
+    "statement": "固定当前评估位置 time_index，只用截至该位置、含当前值的 window 个观测。返回窗口方差和相隔 lag 项的 Pearson 相关系数。列表即使另含未来值，当前结果也不能依赖它们。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2017,25 +2017,25 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "全部观测，可能含尚不可用的未来值。",
+        "description": "按时间先后排列的观测；可能含 time_index 之后的未来样本。",
         "unit": "观测单位"
       },
       {
         "name": "time_index",
         "type": "int",
-        "description": "当前末索引。",
+        "description": "当前最后可用样本的位置，从 0 开始编号。",
         "unit": "样本编号"
       },
       {
         "name": "window",
         "type": "int",
-        "description": "过去窗口宽度。",
+        "description": "含当前样本的窗口项数。",
         "unit": "样本"
       },
       {
         "name": "lag",
         "type": "int",
-        "description": "滞后（lag）样本数。",
+        "description": "两个配对样本的位置差，需满足 1≤lag<window。",
         "unit": "样本"
       }
     ],
@@ -2043,13 +2043,13 @@
       {
         "name": "indicators",
         "type": "list[float | None]",
-        "description": "方差和相关。",
+        "description": "先返回平方偏差和除以 window 的窗口方差，再返回指定滞后的相关系数；无法定义的项用 None。",
         "unit": "依输入单位²、无量纲"
       }
     ],
-    "contract": "窗口止于当前索引；未来极端值也不得改变当前结果。",
+    "contract": "窗口为 values[time_index−window+1:time_index+1]。方差使用整窗均值，除数为 window。相关把窗口的前 window−lag 项与后 window−lag 项配对，两段各自减去自身均值；任一片段恒定时相关为 None。窗口不足或 lag 无效时返回 [None, None]。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2057,7 +2057,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先固定评估时刻；恒定窗口相关分母为0，不能伪造零相关。",
+    "hint": "先截取当前可用窗口，再计算两段配对数据。恒定片段没有可定义的 Pearson 相关，不能用 0 替代 None。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2087,7 +2087,7 @@
           1.25,
           1.0
         ],
-        "explanation": "先固定评估时刻；恒定窗口相关分母为0，不能伪造零相关。"
+        "explanation": "当前位置 3 只允许使用 [1, 2, 3, 4]，末尾的 100 不参与。整窗方差为 1.25；lag=1 的两段中心化后相同，因此相关为 1。"
       }
     ]
   },
@@ -2099,7 +2099,7 @@
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
     "title": "综合题：不确定性单因素对照",
-    "statement": "在同一指标和单位下，分别只改变参数（parameter）、观测（observation）处理和结构，返回它们相对共同参考的有符号差。",
+    "statement": "给定共同参考指标，以及只改参数、只改观测处理、只改模型结构时的三个指标。所有结果使用同一指标定义和单位，分别计算改变后的值减去参考值，保留正负号。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2114,25 +2114,25 @@
       {
         "name": "reference",
         "type": "float",
-        "description": "参考场景指标。",
+        "description": "共同参考场景的指标值。",
         "unit": "指标单位"
       },
       {
         "name": "parameter_only",
         "type": "float",
-        "description": "仅改变参数的指标。",
+        "description": "仅改变参数、其余条件固定时的指标值。",
         "unit": "指标单位"
       },
       {
         "name": "observation_only",
         "type": "float",
-        "description": "仅改变观测处理的指标。",
+        "description": "仅改变观测处理、其余条件固定时的指标值。",
         "unit": "指标单位"
       },
       {
         "name": "structure_only",
         "type": "float",
-        "description": "仅改变模型结构（model structure）的指标。",
+        "description": "仅改变模型结构、其余条件固定时的指标值。",
         "unit": "指标单位"
       }
     ],
@@ -2140,13 +2140,13 @@
       {
         "name": "differences",
         "type": "list[float]",
-        "description": "参数、观测和结构的三个有符号差。",
+        "description": "依次返回参数、观测处理和结构三组相对共同参考的有符号差，单位与指标相同。",
         "unit": "指标单位"
       }
     ],
-    "contract": "三项都使用同一参考；无需假设它们独立可加。",
+    "contract": "返回 [parameter_only−reference, observation_only−reference, structure_only−reference]。三次减法都使用同一个 reference；本题没有要求相加或作方差分解。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2154,7 +2154,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "分别报告来源；相加需要另外检验交互，而不是默认成立。",
+    "hint": "分别计算三项差值。联合改变是否等于它们之和，需要另做比较检查。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2179,7 +2179,7 @@
           -0.09999999999999998,
           0.4
         ],
-        "explanation": "分别报告来源；相加需要另外检验交互，而不是默认成立。"
+        "explanation": "参考为 0.5。三组分别得到 0.6−0.5=0.1、0.4−0.5=−0.1、0.9−0.5=0.4，按参数、观测处理、结构的顺序返回。"
       }
     ]
   },
@@ -2191,7 +2191,7 @@
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
     "title": "综合题：误报和漏报",
-    "statement": "一个事件（event）在前 horizon 个离散时刻内至少有一次预警即算被检出；没有任何后续事件落入窗口的预警为误报（false alarm）。返回检出事件数、误报预警数、漏报（missed event）事件数。",
+    "statement": "报警和真实事件都按离散时刻记录，重复时刻只算一次。若事件 e 发生前 horizon 步内至少有一次报警 a，即 e−horizon≤a<e，就算检出该事件。若报警后 horizon 步内没有真实事件，这次报警就是误报。返回检出、误报和漏报的个数。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2206,19 +2206,19 @@
       {
         "name": "alert_times",
         "type": "list[int]",
-        "description": "报警时刻，按集合语义去重。",
+        "description": "报警时刻列表；相同的时刻合为一次报警。",
         "unit": "时刻"
       },
       {
         "name": "event_times",
         "type": "list[int]",
-        "description": "真实转变时刻，按集合语义去重。",
+        "description": "真实事件时刻列表；相同的时刻合为一个事件。",
         "unit": "时刻"
       },
       {
         "name": "horizon",
         "type": "int",
-        "description": "报警后的预测窗口长度，正整数。",
+        "description": "报警后考察的步数，为正整数。",
         "unit": "步"
       }
     ],
@@ -2226,13 +2226,13 @@
       {
         "name": "counts",
         "type": "list[int]",
-        "description": "检出事件、误报预警、漏报事件的个数。",
+        "description": "三项依次为检出事件数、误报报警数、漏报事件数。前后两项数事件，中间一项数报警。",
         "unit": "个"
       }
     ],
-    "contract": "事件发生当刻的报警不算提前预警；一项报警可覆盖窗口内事件，但误报按报警次数计。",
+    "contract": "事件 e 的有效提前报警区间是 [e−horizon,e)，报警 a 对应的未来事件区间是 (a,a+horizon]。事件发生当刻的报警不算提前。一个事件有多次提前报警仍只算检出一次；漏报数=事件总数−检出数。",
     "constraints": [
-      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+      "按题设模型和单位计算，仅返回规定的结果；不读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2240,7 +2240,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先固定事件、时刻和窗口，再分开计事件级检出与报警级误报。",
+    "hint": "先分别去重。检出要逐个检查事件，误报要逐个检查报警，二者的计数对象不同。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2271,7 +2271,7 @@
           2,
           1
         ],
-        "explanation": "先固定事件、时刻和窗口，再分开计事件级检出与报警级误报。"
+        "explanation": "事件 5 的提前窗口是 [3,5)，有报警 4，因此检出；事件 12 的窗口 [10,12) 没有报警，因此漏报。报警 2 和 8 各自之后两步内都没有事件，所以返回 [1,2,1]。"
       }
     ]
   },
@@ -2283,7 +2283,7 @@
     "chapter": "13.summary",
     "lesson_id": "P13-SUMMARY",
     "title": "改变尺度后的韧性结论",
-    "statement": "某干预减少了有限网络中最终失效的节点数，但小扰动幅度减半所需的时间没有缩短，预警中也出现了误报（false alarm）。哪项结论符合这些记录？",
+    "statement": "一次干预减少了有限网络中最终失效的节点数，但小扰动幅度减半所需时间没有缩短，报警后也有未在预定窗口内发生事件的情况。怎样报告这些结果？",
     "type": "choice",
     "learning_targets": [
       "T4"

@@ -1,0 +1,637 @@
+{
+  "date": "2026-10-06",
+  "baseline": "3efa32a23c2fce02361eab40d82a9ef60ee1655e",
+  "scope": "Part 13 formal teaching, exercises, guides and web display text only; pending unified user reading acceptance",
+  "notebooks": [
+    {
+      "id": "P13-C01-S01",
+      "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/01-序参量与有限随机重复.ipynb",
+      "sha256": "36a3058bb46b8a26251a21a3f1c01e39df94225c492be1b08c0465d797ef0d11",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "e5e1b670e93f73813a73b1657bc702576c11da6fb0f1a78c8cd51a1712caf864"
+    },
+    {
+      "id": "P13-C01-S02",
+      "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/02-规模、暂态与阈值证据.ipynb",
+      "sha256": "e3230e22113c642f8ba9a2b22c2fa0be790c8dede1ca0c8b7f75c164eeb39d28",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "eb54f073f8629c2ac240026d5079221495bc732f4158fe2471a4f371de820523"
+    },
+    {
+      "id": "P13-C02-S01",
+      "path": "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/01-从初始损伤到级联.ipynb",
+      "sha256": "63e00cc2ef167d682307b0c26eaa7f238acd8e0b5b676c7c70e442aa1246e7bf",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "44b3e5b15bb29b37fedc0a26b64c485cf060690e5850dc1e2f978417733120fc"
+    },
+    {
+      "id": "P13-C02-S02",
+      "path": "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/02-结构、阈值与剩余功能.ipynb",
+      "sha256": "148a6841ec741c83fe7b49177be566b3ea69536d2e78ea46637ee85b3f777c0d",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "bf3a82e83a2bed7d03b088da30dbc2648e87bbf3c514d73922a7817f4ea7111f"
+    },
+    {
+      "id": "P13-C03-S01",
+      "path": "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/01-局部恢复与吸引域.ipynb",
+      "sha256": "c558847d4fcdd75f9c4958e05e2f9638efce4cceb6b2c0decd985f56c70733d1",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "25c4e5bd8463c965afc3f4769c6256a52d17e84dd765a491967dbb9d8ac20499"
+    },
+    {
+      "id": "P13-C03-S02",
+      "path": "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/02-过去窗口与预警误差.ipynb",
+      "sha256": "d9a14fad7404808c04059e4050260ce7b0e7a29aeefd4ddc2e0e0f274bf7fc23",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "71fa5d0ee0491d28d468fcf3fdc9d4753c1199e0a5fb2c9c87275b640a1bb696"
+    },
+    {
+      "id": "P13-C04-S01",
+      "path": "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/01-同一均值的不同局部结构.ipynb",
+      "sha256": "4e75026b6ab3a74c3ba36dbd76ff6749c50c483569b8174ec300c25975b78b23",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "2781961a79a8f007b82fd6e992636bd5920ba989acc19fd6e78ce69d67445d12"
+    },
+    {
+      "id": "P13-C04-S02",
+      "path": "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/02-分解不确定性与排序反转.ipynb",
+      "sha256": "ae01ba7e7989c23592eab5ca21af775ef9e2186080c28b17ff6bb37b9c456299",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "3fd9ba8a2f6b1c771e599d497fd7b95374ba09343494f82a87d69ab98fde2a2c"
+    },
+    {
+      "id": "P13-SUMMARY",
+      "path": "notebooks/13-临界变化与韧性/05-篇末综合/01-有限证据与韧性判断.ipynb",
+      "sha256": "d7e822da2f4f46eb1b9e76125be1c7cb6dcc7e482a668a320e26736d0f2832d3",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "1e3d8406dd9d3e72c8ad303130774af13740d83b9dbd2964d77416f2d57932c5"
+    }
+  ],
+  "questions": {
+    "reviewed": 40,
+    "choice": 27,
+    "python": 13,
+    "wording_changed": 40,
+    "wording_changed_ids": [
+      "p13-finite-order-summary",
+      "p13-signed-vs-absolute",
+      "p13-finite-fluctuation",
+      "p13-finite-evidence",
+      "p13-deterministic-meanfield",
+      "p13-meanfield-threshold",
+      "p13-size-comparison",
+      "p13-critical-language",
+      "p13-cascade-rounds",
+      "p13-direct-vs-secondary",
+      "p13-cascade-no-seed",
+      "p13-cascade-is-not-contagion",
+      "p13-largest-survivor",
+      "p13-connected-not-functional",
+      "p13-control-one-factor",
+      "p13-threshold-monotonic",
+      "p13-recovery-trajectory",
+      "p13-local-rate-vs-basin",
+      "p13-finite-perturbation",
+      "p13-recovery-euler-step",
+      "p13-past-window-indicators",
+      "p13-ar1-warning-condition",
+      "p13-noise-control",
+      "p13-lag-physical-time",
+      "p13-coarse-xor",
+      "p13-same-average-different-structure",
+      "p13-scale-identifiability",
+      "p13-pair-not-universal",
+      "p13-one-factor-contrasts",
+      "p13-uncertainty-sources",
+      "p13-ranking-reversal",
+      "p13-sensitivity-range",
+      "p13-capstone-finite-claim",
+      "p13-capstone-basin",
+      "p13-capstone-cascade",
+      "p13-capstone-size-summary",
+      "p13-capstone-past-window",
+      "p13-capstone-uncertainty",
+      "p13-capstone-alert-errors",
+      "p13-capstone-scale-limit"
+    ],
+    "explanation_changed": 40,
+    "explanation_changed_ids": [
+      "p13-finite-order-summary",
+      "p13-signed-vs-absolute",
+      "p13-finite-fluctuation",
+      "p13-finite-evidence",
+      "p13-deterministic-meanfield",
+      "p13-meanfield-threshold",
+      "p13-size-comparison",
+      "p13-critical-language",
+      "p13-cascade-rounds",
+      "p13-direct-vs-secondary",
+      "p13-cascade-no-seed",
+      "p13-cascade-is-not-contagion",
+      "p13-largest-survivor",
+      "p13-connected-not-functional",
+      "p13-control-one-factor",
+      "p13-threshold-monotonic",
+      "p13-recovery-trajectory",
+      "p13-local-rate-vs-basin",
+      "p13-finite-perturbation",
+      "p13-recovery-euler-step",
+      "p13-past-window-indicators",
+      "p13-ar1-warning-condition",
+      "p13-noise-control",
+      "p13-lag-physical-time",
+      "p13-coarse-xor",
+      "p13-same-average-different-structure",
+      "p13-scale-identifiability",
+      "p13-pair-not-universal",
+      "p13-one-factor-contrasts",
+      "p13-uncertainty-sources",
+      "p13-ranking-reversal",
+      "p13-sensitivity-range",
+      "p13-capstone-finite-claim",
+      "p13-capstone-basin",
+      "p13-capstone-cascade",
+      "p13-capstone-size-summary",
+      "p13-capstone-past-window",
+      "p13-capstone-uncertainty",
+      "p13-capstone-alert-errors",
+      "p13-capstone-scale-limit"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "corrected_explanatory_copy_errors": [
+    "P13-SUMMARY cascade formula now excludes previously failed nodes",
+    "Window and repeated-result variance is descriptive with explicit divisor",
+    "Alert result explains counts and their counting objects instead of implying already computed rates"
+  ],
+  "corrected_experiment_descriptions": [
+    "P13-C01-S01 retained indices 40–120, 81 observations",
+    "P13-C01-S02 retained indices 50–120, 71 observations; main figure plots five-parameter finite means",
+    "P13-C02-S02 columns are secondary failures and largest surviving component node count",
+    "P13-C03-S02 new parameter first generates sample 121; figure shows window variance, not a plotted correlation series",
+    "P13-C04-S02 presents given single-factor tables and rankings, not an executed parameter-range scan",
+    "P13-SUMMARY N=50, five repeats, 50 updates, retained 15–50, 36 samples; recovery endpoint x/2 and coarse score difference are distinct metrics"
+  ],
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Read-only unbound PracticeEngine.progress with original in-memory records and current bank/assessment; no judging or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_model_unchanged": true,
+    "web_controller_changes_exactly_match_display_text_replacements": true,
+    "slider_keys_ranges_steps_initial_values_labels_preserved": true,
+    "official_checker_and_glossary_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "independent_hand_examples_and_algebra": [
+      "Signed ±0.8 example, independent conditional variance 1/N, fixed four-draw update, tanh one-step values and all three written retained-index counts checked.",
+      "Direct/new/cumulative counts and the stated largest-component ratios checked as finite table arithmetic; no cascade experiment rerun.",
+      "Recovery derivatives 0.84/−0.63/−0.24/−0.27, four Euler first values, local time 2/3 T and finite display end times 0.5/0.8 T checked with rational arithmetic.",
+      "AR(1) stationary reference values, noise variance ratio 6.25, four-point window variance and paired centers, equal physical lags and event/alert interval hand example [1,2,1] checked.",
+      "Two written four-cell feature triples, reference-table differences 0.10/−0.05/0.22, interaction counterexample 3≠2 and two scale-score differences checked."
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    },
+    {
+      "id": "p08-conditioning",
+      "version": "1",
+      "location": "Option B, marked correct in the existing answer",
+      "issue": "不发散与误差收敛到零混用。B要求步长严格小于上界才不发散，但H₂较大曲率方向在η=2/100时因子为−1，误差等幅交替且不发散。",
+      "evidence": "e[k+1]=(1−100η)e[k]；η=0.02给出e[k+1]=−e[k]。严格上界针对误差衰减到零，而不是仅不发散。",
+      "required_substantive_change": "后续明确B要判断误差衰减/收敛，或修订不发散条件及对应答案，再依版本规则处理；本轮没有暗改答案、条件意图或版本。",
+      "status": "登记，待实质题库修订；当前正确答案与旧成绩保留"
+    }
+  ],
+  "new_unresolved": [],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 96,
+    "core_changed": 87,
+    "exercise_cells_synchronized": 9
+  },
+  "teaching_check": {
+    "notebooks": 9,
+    "questions": 40,
+    "question_links": 40,
+    "issues": []
+  },
+  "teaching_check_method": "Existing check_teaching logic with actual vocabulary from Parts 0–12 and preceding Part 13 lessons. Exercises inherit their lesson explanations; overviews inherit earlier chapters. Original checker, glossary and range rules remain unchanged.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/13-01-相变、临界性与有限规模/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/13-02-级联失效与结构鲁棒性/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/13-03-扰动、恢复与早期预警/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/13-04-多尺度、粗粒化与不确定性/",
+        "status": 200
+      },
+      {
+        "path": "/parts/13-临界变化与韧性/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/13-01-相变、临界性与有限规模/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/13-02-级联失效与结构鲁棒性/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/13-03-扰动、恢复与早期预警/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p13-signed-vs-absolute",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-direct-vs-secondary",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-local-rate-vs-basin",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-same-average-different-structure",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-recovery-trajectory",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-past-window-indicators",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-coarse-xor",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-one-factor-contrasts",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-capstone-size-summary",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-capstone-cascade",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-capstone-past-window",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p13-capstone-alert-errors",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      }
+    ],
+    "served_catalog_and_controller_equal_current_files": true,
+    "local_file_link_targets_checked": 22,
+    "html_rendered_without_execution": [
+      "P13-C01-S01",
+      "P13-C01-S02",
+      "P13-C02-S01",
+      "P13-C02-S02",
+      "P13-C03-S01",
+      "P13-C03-S02",
+      "P13-C04-S01",
+      "P13-C04-S02",
+      "P13-SUMMARY"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout, MathJax rendering or interaction behavior."
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_multilayer-perceptrons/underfit-overfit.html",
+      "focus": "从具体困难引出概念，再用比较、假设与例子分清模型选择中的判断。借鉴讲解顺序，应用于有限证据及临界性判断，不移植深度学习模型。"
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/12-Doubly-Robust-Estimation.html",
+      "focus": "先回接已学方法，提出当前困难，再通过具体例子衔接假设、公式与实现。采用这种连贯解释方式，不将双重稳健估计加入本篇。"
+    }
+  ],
+  "authorization": "Current dispatch covers Part 13 only. The human-authorized sequential Parts 2–17 workflow uses final unified reading acceptance. Normal commit/push is authorized; learning records, environments and temporary helpers are excluded. Await Part 14 dispatch.",
+  "specific_prose_corrections": [
+    "The direction variable takes ±1, while |m| describes agreement without its sign. Fixed draws bridge independent updates to conditional mean and variance; averaging order and each retained-index count are explicit.",
+    "The deterministic reference replaces each random update by its conditional expectation. It is not claimed to equal the unconditional finite-ensemble mean, and beta=1 is distinguished from a proved infinite-size phase boundary.",
+    "Cascade rounds name new failures, cumulative sets and direct damage separately. The triggering formula excludes earlier failed nodes, compares the previous cumulative set synchronously, and preserves failed-neighbor influence when evaluating failure.",
+    "A chain and a star with equal nodes and edges are compared under the same seed and thresholds. Largest surviving connectivity is a functional proxy rather than proof of sufficient capacity.",
+    "Local rate, its time unit, the unstable positive equilibrium and the nonnegative basin [0,B) are established before comparing finite perturbations. Same linear rate does not assert identical finite perturbation trajectories.",
+    "AR(1) innovation assumptions, sampling time, stationary variance and physical lag are explained. Window variance uses its descriptive divisor; the two Pearson segments have separate centers and constant segments make correlation undefined.",
+    "The alert example defines a pre-event detection interval and post-alert false-positive interval. Repeated times count once; detected and missed objects are events while false-positive objects are alerts, and counts are not rates.",
+    "Two explicit four-cell rings with equal density have different distance-two joint frequencies and next density. The exact one-step relation p_next=2p-2c2 is not a complete multi-step closure or recovery of individual positions.",
+    "Three source-specific contrasts share one reference, measure and unit. A multiplicative hand example demonstrates nonadditive joint change. Two scale comparisons show a ranking reversal; no absent parameter-range scan is reported as executed.",
+    "The capstone describes its actual five finite repetitions, 36 retained samples, four-node chain, recovery endpoint normalized by B=2 and coarse A-minus-B score. These are distinct metrics rather than a general composite resilience score.",
+    "Final option review clarified two parallel averages, the old-neighbor XOR rule and the exact stated interval bound, and replaced cumulative people count by failed-node count. Correct answers, identities, versions and grading data are unchanged.",
+    "The three web views preserve all numerical functions and controls while explaining actual lengths, parameters, threshold rounds and sampling units in display text."
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part13-rewrite-20261006/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part13-rewrite-20261006/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part13-rewrite-20261006/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part13-rewrite-20261006/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/resilience/app.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    "docs/13-临界变化与韧性.md": "986188547d25d96ca6e8db5f123f994c0d10744f3db512abb45c89cf93e53e1b",
+    "exercises/13-临界变化与韧性/questions.json": "07a080ae0766696fe9d738d08fa3e799cc46c315ed5f644d4e89c2a9587f95d3",
+    "exercises/13-临界变化与韧性/verification.json": "499c32ac48a950a24418b055e930bf6fdde759e0ac783f5435f202defbe7987a",
+    "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/01-序参量与有限随机重复.ipynb": "36a3058bb46b8a26251a21a3f1c01e39df94225c492be1b08c0465d797ef0d11",
+    "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/02-规模、暂态与阈值证据.ipynb": "e3230e22113c642f8ba9a2b22c2fa0be790c8dede1ca0c8b7f75c164eeb39d28",
+    "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/01-从初始损伤到级联.ipynb": "63e00cc2ef167d682307b0c26eaa7f238acd8e0b5b676c7c70e442aa1246e7bf",
+    "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/02-结构、阈值与剩余功能.ipynb": "148a6841ec741c83fe7b49177be566b3ea69536d2e78ea46637ee85b3f777c0d",
+    "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/01-局部恢复与吸引域.ipynb": "c558847d4fcdd75f9c4958e05e2f9638efce4cceb6b2c0decd985f56c70733d1",
+    "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/02-过去窗口与预警误差.ipynb": "d9a14fad7404808c04059e4050260ce7b0e7a29aeefd4ddc2e0e0f274bf7fc23",
+    "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/01-同一均值的不同局部结构.ipynb": "4e75026b6ab3a74c3ba36dbd76ff6749c50c483569b8174ec300c25975b78b23",
+    "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/02-分解不确定性与排序反转.ipynb": "ae01ba7e7989c23592eab5ca21af775ef9e2186080c28b17ff6bb37b9c456299",
+    "notebooks/13-临界变化与韧性/05-篇末综合/01-有限证据与韧性判断.ipynb": "d7e822da2f4f46eb1b9e76125be1c7cb6dcc7e482a668a320e26736d0f2832d3",
+    "notebooks/13-临界变化与韧性/README.md": "28160288e002d61d2365cd8448f68637566570159cebd64d10ceb55e5d3466c8",
+    "notebooks/13-临界变化与韧性/catalog.json": "74c1fbce3c46f28e0031260c50d90908cd8ff674f3da7bf235d34bd10e20e12e",
+    "web/course/catalog.json": "19da2fdffc255edf4bf39294656ddc8d9f1f1dea3d85649f6a18be0f919b4312",
+    "web/resilience/app.mjs": "04779152aa689c3cb6a39b55027a3313108d081e6c0f1e5b9b319e3cfc1b667f",
+    "web/resilience/index.html": "5eedd60ff32e6dee5ba0c61379ed973521fb0e1df939ac7fa8d2f5cfc780e17f"
+  }
+}
