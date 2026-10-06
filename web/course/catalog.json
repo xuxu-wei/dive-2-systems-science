@@ -8380,14 +8380,15 @@
           "id": "15.1",
           "title": "神经网络与自动微分",
           "url": "/chapters/15-01-神经网络与自动微分/",
-          "goals": "从计算图（computational graph）推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
-          "prerequisites": "3.4、8.2、9.5；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、目标函数、梯度、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、神经网络（neural network）、计算图、自动微分（automatic differentiation，AD）与反向传播。",
+          "goals": "先计算单神经元预测与半平方损失，再逐项推导参数导数，以反向累加与差分扫描核验，并用于训练。",
+          "prerequisites": "8.2的梯度与链式法则；基本Python函数和指数函数。",
           "knowledge": [
-            "引入小型神经网络（neural network）的参数（parameter）、激活和计算图",
-            "从链式法则推导反向模式自动微分（automatic differentiation，AD），逐项实现小图反传",
-            "组织损失、批次、初始化和训练/验证边界，解释自动微分与数值差分的区别"
+            "输入参考量、四参数与tanh响应",
+            "计算图（computational graph）的依赖和半平方损失",
+            "链式导数、共享误差两条路径与中心差分",
+            "15点训练、14点验证和范围外输入"
           ],
-          "focus": "把有单位的输入（input）转换为无量纲（dimensionless）数值；沿计算图应用链式法则，用差分核对梯度。",
+          "focus": "物理输入除以参考量后成为网络数值；四个参数的梯度有明确顺序，共享节点的贡献需相加。",
           "available": true,
           "lessons": [
             {
@@ -8395,7 +8396,7 @@
               "chapter_id": "15.1",
               "number": "15.1.1",
               "title": "从计算图到小型神经网络",
-              "outcome": "写出一层标量网络的前向计算，并逐项解释参数、激活和损失。",
+              "outcome": "按输入、加权、激活、预测与损失的顺序，解释四个参数和响应单位。",
               "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb",
               "visualization": "web/differentiable/index.html",
               "questions": [
@@ -8431,7 +8432,7 @@
               "chapter_id": "15.1",
               "number": "15.1.2",
               "title": "反向传播与梯度核验",
-              "outcome": "对同一计算图手推、反向累积并用中心差分核验梯度；识别不可微点。",
+              "outcome": "逐项反传四个参数导数，以共享误差和差分扫描连接实现与训练。",
               "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.ipynb",
               "visualization": "web/differentiable/index.html",
               "questions": [
@@ -8469,14 +8470,15 @@
           "id": "15.2",
           "title": "离散动力学学习",
           "url": "/chapters/15-02-离散动力学学习/",
-          "goals": "学习离散状态（state）转移模型（model），区分一步训练、自由滚动和训练分布（distribution）外预测。",
-          "prerequisites": "15.1、14.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
+          "goals": "把完整状态路径配成当前状态/输入/下一状态样本，拟合固定特征的三个系数，比较一步误差与自由滚动。",
+          "prerequisites": "15.1的小网络、损失和参数导数；14.5的独立模型评估；离散状态更新。",
           "knowledge": [
-            "以离散转移映射定义网络输入（input）、输出（output）、时间间隔和尺度",
-            "比较一步损失与有限滚动损失，避免将未来真实状态混入自由运行（free-run simulation）",
-            "在新初值（initial condition）与输入下比较机制、线性和小网络基线，记录稳定性与预算"
+            "状态保留、输入贡献与tanh修正",
+            "样本行、三列特征和最小二乘",
+            "新初值与新输入顺序",
+            "误差递推、完整轨迹留出和两种训练目标"
           ],
-          "focus": "将一步状态映射连续使用；比较一步拟合、滚动误差与训练范围外的预测。",
+          "focus": "采样下标与输入步数先定义；tanh使用总量参考量，一步预测读取真状态，自由滚动读取自己的预测。",
           "available": true,
           "lessons": [
             {
@@ -8484,7 +8486,7 @@
               "chapter_id": "15.2",
               "number": "15.2.1",
               "title": "固定采样间隔的一步映射",
-              "outcome": "把状态与输入组成离散转移，分清一步拟合的训练和留出轨迹。",
+              "outcome": "配对当前状态、输入与下一状态，拟合三系数并比较真实状态输入与自由递推。",
               "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.ipynb",
               "visualization": "web/differentiable/index.html",
               "questions": [
@@ -8520,7 +8522,7 @@
               "chapter_id": "15.2",
               "number": "15.2.2",
               "title": "自由滚动、数据划分与外推",
-              "outcome": "按完整轨迹划分数据，比较一步损失、多步误差和新初值。",
+              "outcome": "展开误差传播，比较两种训练目标选参和新初值下的实际结果。",
               "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.ipynb",
               "visualization": "web/differentiable/index.html",
               "questions": [
@@ -8558,16 +8560,16 @@
           "id": "15.3",
           "title": "神经微分方程",
           "url": "/chapters/15-03-神经微分方程/",
-          "goals": "以网络表示连续动力学右端，推导前向和伴随灵敏度（adjoint sensitivity），核验两种求导路线并区分求解误差和模型（model）误差。",
-          "prerequisites": "15.2、2.4；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、指数函数（exponential function）的二阶展开、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、ODE 参数（parameter）前向灵敏度（forward sensitivity）、分部积分、伴随终值方程、参数梯度（gradient）积分与观测（observation）时刻跳跃。",
+          "goals": "由连续清除预测引入参数灵敏度，对Euler更新另求导；再逐观测推导连续伴随跳跃及离散反向累加。",
+          "prerequisites": "15.2的下一状态映射；2.4的Euler时间推进与误差；8.2的链式法则。",
           "knowledge": [
-            "建立神经常微分方程（neural ordinary differential equation，Neural ODE）的右端与观测损失",
-            "先对固定步长求解程序显式求导，用链式法则（chain rule）推导连续前向灵敏度方程",
-            "引入分部积分与伴随灵敏度（adjoint sensitivity），完整推导低维伴随终值方程、参数梯度积分及固定观测时刻的跳跃条件",
-            "声明固定初态、可微右端与固定观测时刻，比较离散求导与连续伴随后数值离散的误差",
-            "比较容差、反向状态（state）重建、观测稀疏与不同初值，一般函数空间证明作为拓展"
+            "连续状态与Euler终点",
+            "s=∂x/∂k、固定初态和两个灵敏度方程",
+            "观测损失、伴随与乘积求导",
+            "观测跳跃、分段积分与离散回传",
+            "状态重建和一个非线性幅度的网格拟合"
           ],
-          "focus": "比较对离散程序求导和对连续方程求灵敏度；跟踪观测时刻的伴随跳跃与积分误差。",
+          "focus": "状态导数与损失梯度各有对象；固定观测时刻的伴随加入残差，负时间步Euler与代数求逆不同。",
           "available": true,
           "lessons": [
             {
@@ -8575,7 +8577,7 @@
               "chapter_id": "15.3",
               "number": "15.3.1",
               "title": "连续右端、求解器与前向灵敏度",
-              "outcome": "区分连续模型、离散求解程序和两者各自的参数导数。",
+              "outcome": "分别推导连续灵敏度与Euler递推，在共同终点检查状态和导数的细化。",
               "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb",
               "visualization": "web/differentiable/index.html",
               "questions": [
@@ -8611,7 +8613,7 @@
               "chapter_id": "15.3",
               "number": "15.3.2",
               "title": "伴随跳跃与反向重建的边界",
-              "outcome": "推导多时刻观测的伴随跳跃和参数梯度，比较离散反传与反向重建。",
+              "outcome": "逐观测解释伴随跳跃，核对离散反向累加，并分开状态回退误差。",
               "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.ipynb",
               "visualization": "web/differentiable/index.html",
               "questions": [
@@ -8649,14 +8651,15 @@
           "id": "15.4",
           "title": "物理约束学习",
           "url": "/chapters/15-04-物理约束学习/",
-          "goals": "构造数据、方程及初边值残差（residual）损失，评价物理约束学习（physics-informed learning）的权重、覆盖与失效。",
-          "prerequisites": "15.3、12.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
+          "goals": "从可微候选的函数值与时间导数建立数据、方程、初值损失，再扩展到扩散边界与参考解。",
+          "prerequisites": "15.3的连续右端；15.1的可微函数；12.4的一维扩散与无通量边界。",
           "knowledge": [
-            "建立物理信息神经网络（physics-informed neural network，PINN）的函数表示和残差",
-            "用自动微分计算所需导数（derivative），明确配点（collocation point）、数据和初边值损失及单位尺度",
-            "比较权重、配点覆盖和错误机制；先做常微分方程（ordinary differential equation，ODE），再给小型空间问题"
+            "tanh候选值和时间导数",
+            "常量候选反例、三项原始损失与尺度",
+            "余弦扩散偏差与归一化长度",
+            "方程/端点/初值求导、配点（collocation point）配对和参考网格"
           ],
-          "focus": "分别检查方程、初值（initial condition）、边界和观测（observation）拟合；理解残差尺度与损失权重如何影响学习。",
+          "focus": "不同分项比较不同对象且单位不同；线性空间项可不增加方程残差，却同时改变初始分布和端点导数。",
           "available": true,
           "lessons": [
             {
@@ -8664,7 +8667,7 @@
               "chapter_id": "15.4",
               "number": "15.4.1",
               "title": "数据、方程与初值的分项损失",
-              "outcome": "对光滑候选函数计算导数与方程残差，分开报告数据、物理和初值误差。",
+              "outcome": "从候选取值和导数分别构成数据、方程、初值损失，说明尺度。",
               "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.ipynb",
               "visualization": "web/differentiable/index.html",
               "questions": [
@@ -8700,7 +8703,7 @@
               "chapter_id": "15.4",
               "number": "15.4.2",
               "title": "扩散残差与无通量边界",
-              "outcome": "计算一维扩散候选的方程及边界残差，识别只查内点的漏洞。",
+              "outcome": "逐项求导解释线性空间项怎样同时改变初值和无通量条件。",
               "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.ipynb",
               "visualization": "web/differentiable/index.html",
               "questions": [
@@ -8738,14 +8741,16 @@
           "id": "15.5",
           "title": "混合模型与可辨识性",
           "url": "/chapters/15-05-混合模型与可辨识性/",
-          "goals": "构造机制与学习修正的混合模型（model），检查可辨识性（identifiability）、约束和预测不确定性。",
-          "prerequisites": "15.4、9.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、后验（posterior）归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新。",
+          "goals": "保留已知收支项，固定机制参数学习修正幅度，比较新输入预测，再用等价参数解释辨识与预测散布。",
+          "prerequisites": "15.4的方程残差；1.2的总量收支；9.1的参数与预测不确定性。",
           "knowledge": [
-            "以已知收支（mass balance）项加可学习修正构成混合模型，明确修正进入的位置与单位",
-            "在固定参数与联合学习两种条件下讨论机制参数和网络补偿的混淆",
-            "复用后验预测（posterior predictive inference）与变分基础比较不确定性、独立预测和错误机制；完整贝叶斯网络作为拓展"
+            "机制和修正的单位、符号与Euler第一步",
+            "一个幅度的训练和新输入比较",
+            "同形线性修正与k−θ等价",
+            "非零状态处的独立通量",
+            "候选权重归一化及预测矩"
           ],
-          "focus": "把机制项与学习修正组合；用等价参数（parameter）反例理解预测准确与机制可辨识的区别。",
+          "focus": "输入率与总量分清；tanh幅度为U/T，线性修正系数为1/T；改变输入仍不能拆开只通过差值进入方程的参数。",
           "available": true,
           "lessons": [
             {
@@ -8753,7 +8758,7 @@
               "chapter_id": "15.5",
               "number": "15.5.1",
               "title": "已知收支加可学习修正",
-              "outcome": "给机制项和修正项分别标单位，并在新输入下比较机制与混合模型。",
+              "outcome": "固定机制参数学习一个修正幅度，在同网格的新输入下比较预测。",
               "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.ipynb",
               "visualization": "web/differentiable/index.html",
               "questions": [
@@ -8789,7 +8794,7 @@
               "chapter_id": "15.5",
               "number": "15.5.2",
               "title": "参数混淆、观测与预测不确定性",
-              "outcome": "构造不可辨识参数对，说明新输入和额外测量的不同作用。",
+              "outcome": "以相同净系数说明参数混淆，再用独立通量和候选方差解释信息。",
               "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.ipynb",
               "visualization": "web/differentiable/index.html",
               "questions": [
@@ -8829,14 +8834,14 @@
         "assessment": true,
         "title": "机制与学习模型的独立比较",
         "url": "/parts/15-可微分建模与机制融合/综合练习/",
-        "goals": "连接计算图（computational graph）、动力学梯度（gradient）与损失，用新输入（input）比较机制模型（model）与学习修正。",
-        "prerequisites": "本篇 15.1—15.5；第 14 篇模型验证。",
-        "focus": "损失下降、梯度正确、可辨识和外推是不同证据。",
+        "goals": "将计算图导数、连续与离散求导、损失尺度及混合预测连回同一个清除问题。",
+        "prerequisites": "15.1—15.5的小网络、状态递推、灵敏度与伴随、分项损失和机制修正。",
+        "focus": "先确定输出与优化目标，再用相应导数和共同网格核验，最后解释新输入误差与参数等价。",
         "knowledge": [
-          "计算图与梯度",
-          "离散和连续动力学",
-          "方程残差（residual）与边界",
-          "混合模型与独立比较"
+          "输入参考尺度、损失和参数导数顺序",
+          "连续状态、Euler更新与观测损失梯度",
+          "数据、方程、初边值残差的尺度与分项",
+          "新输入下的自由预测、参数差值与独立通量"
         ],
         "lessons": [
           {
@@ -8844,18 +8849,18 @@
             "chapter_id": "15.summary",
             "number": "15.综合",
             "title": "机制与学习模型的独立比较",
-            "outcome": "在共同观测和独立输入下核验梯度、方程损失与混合模型预测。",
+            "outcome": "连接导数目标、步长、损失尺度和独立预测，保留机制辨识问题。",
             "path": "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "连接计算图、动力学梯度与损失，用新输入比较机制模型与学习修正。",
-              "prerequisites": "本篇 15.1—15.5；第 14 篇模型验证。",
-              "focus": "损失下降、梯度正确、可辨识和外推是不同证据。",
+              "goals": "将计算图导数、连续与离散求导、损失尺度及混合预测连回同一个清除问题。",
+              "prerequisites": "15.1—15.5的小网络、状态递推、灵敏度与伴随、分项损失和机制修正。",
+              "focus": "先确定输出与优化目标，再用相应导数和共同网格核验，最后解释新输入误差与参数等价。",
               "knowledge": [
-                "计算图与梯度",
-                "离散和连续动力学",
-                "方程残差与边界",
-                "混合模型与独立比较"
+                "输入参考尺度、损失和参数导数顺序",
+                "连续状态、Euler更新与观测损失梯度",
+                "数据、方程、初边值残差的尺度与分项",
+                "新输入下的自由预测、参数差值与独立通量"
               ]
             },
             "questions": [

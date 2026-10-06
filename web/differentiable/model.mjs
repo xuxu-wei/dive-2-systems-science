@@ -13,11 +13,11 @@ export function graphView(exponent,x){
  }
  const h=10**exponent,numeric=(loss(w+h)-loss(w-h))/(2*h),absolute=Math.abs(numeric-analytic);
  return {
-  series:[{label:'中心差分绝对误差的 log10',color:blue,points:rows},
+  series:[{label:'梯度绝对差的十进对数',color:blue,points:rows},
           {label:'当前步长',color:pink,points:[[exponent,Math.log10(Math.max(absolute,1e-16))]],dots:true}],
-  stats:[['解析 w 梯度',round(analytic,6)],['中心差分梯度',round(numeric,6)],['绝对差',absolute.toExponential(2)]],
+  stats:[['手推的损失对 w 导数',round(analytic,6)],['差分的损失对 w 导数',round(numeric,6)],['绝对差',absolute.toExponential(2)]],
   condition:'实际输入 '+round(x)+' U 除以参考量 1 U 后，网络收到无量纲数值 x='+round(x)+'；中心差分步长 10^'+round(exponent,1)+'；其余权重与目标固定。',
-  finding:'中等差分步长常较可靠；极小步长会受浮点抵消影响。这里核验的是当前计算图的梯度，并非模型的机制正确性。'
+  finding:'先看步长缩小时差分误差是否下降，再看极小步长处的舍入影响。这个比较核对当前损失对 w 的局部导数，预测与机制仍需另外的证据。'
  };
 }
 
@@ -33,10 +33,10 @@ export function rolloutView(a,steps,kind){
  const mse=truth.slice(1).reduce((sum,row,i)=>sum+(row[1]-candidate[i+1][1])**2,0)/steps;
  return {
   series:[{label:'已知生成映射',color:blue,points:truth},
-          {label:kind==='one'?'每步用真实旧状态':'从初态自由滚动',color:pink,points:candidate}],
+          {label:kind==='one'?'每步使用真实当前状态':'从初态自由滚动',color:pink,points:candidate}],
   stats:[['后续步 MSE / U²',round(mse,6)],['终点绝对差 / U',round(Math.abs(actual-pred),6)],['候选 a',round(a,3)]],
   condition:'输入每步 0.3 U；初态 1.4 U；tanh 的状态输入先除以参考量 1 U；'+steps+' 步；当前为'+(kind==='one'?'一步预测':'自由滚动')+'。',
-  finding:kind==='one'?'当前候选每步获得真实旧状态，不能以这条曲线证明自主长时预测。':'当前候选只用自己的上一状态；局部映射差异会在后续步积累。'
+  finding:kind==='one'?'每步从真实状态重新出发，使此前偏差被重置；这条曲线评估一步映射在真实路径附近的表现。':'每步使用自己的上一状态，当前偏差会通过状态依赖传入后续预测；结合均方与终点误差看这条自由路径。'
  };
 }
 
@@ -53,11 +53,11 @@ export function odeView(requestedStep,k,kind){
  }
  const gap=Math.abs(truth.at(-1)[1]-euler.at(-1)[1]);
  return {
-  series:[{label:kind==='state'?'连续解析状态':'连续解析梯度',color:blue,points:truth},
-          {label:kind==='state'?'Euler 状态':'Euler 程序梯度',color:pink,points:euler}],
+  series:[{label:kind==='state'?'连续解析状态':'连续状态对 k 的导数',color:blue,points:truth},
+          {label:kind==='state'?'Euler 状态':'Euler 状态对 k 的导数',color:pink,points:euler}],
   stats:[['实际步长 / T',round(h,5)],['终点绝对差',round(gap,6)],['网格步数',N]],
-  condition:'一阶消除系数 k='+round(k)+'/T；固定终点 2 T；请求步长 '+round(requestedStep)+' T，实际采用 '+round(h,5)+' T 使终点对齐。',
-  finding:kind==='state'?'细化网格可检查求解器状态误差；它与模型失配不是同一种误差。':'自动微分穿过 Euler 得到离散程序梯度；有限步长下不必与连续解析梯度完全相同。'
+  condition:'一阶消除常数 k='+round(k)+'/T；固定终点 2 T；请求步长 '+round(requestedStep)+' T，实际采用 '+round(h,5)+' T 使终点对齐。',
+  finding:kind==='state'?'固定参数时，细化网格使本例Euler状态靠近连续解。改变模型参数再比较，还会混入模型本身的变化。':'粉色曲线对每次Euler更新求导，蓝色曲线对连续解析状态求导；有限步长下的差异随前向状态的离散近似而来。'
  };
 }
 
@@ -74,11 +74,11 @@ export function pinnView(rate,slope){
   residual+=r*r;solutionError+=(trial-expected)**2;initialError+=(slope*x)**2;
  }
  return {
-  series:[{label:'满足方程与零通量的解析模态',color:blue,points:reference},
+  series:[{label:'满足初值与无通量条件的解析剖面',color:blue,points:reference},
           {label:'当前候选函数',color:pink,points:candidate}],
-  stats:[['方程残差均方',round(residual/41,6)],['边界导数平方',round(slope*slope,6)],['初值偏差 RMSE',round(Math.sqrt(initialError/41),6)],['参考网格 RMSE',round(Math.sqrt(solutionError/41),6)]],
-  condition:'归一化位置 x∈[0,1]；观察时间 0.5 T；D=0.2/T；候选衰减率 '+round(rate)+'/T，边界斜率 '+round(slope)+'。',
-  finding:Math.abs(rate-exactRate)<.02&&slope>.001?'方程残差几乎为零，但 s·x 同时改变了初始分布和端点条件；这不是只改变边界的单因素实验。':'分别看方程残差、初值、边界和参考网格误差；本页没有训练过程，参考网格不是独立测试集。'
+  stats:[['方程残差均方 / (U/V/T)²',round(residual/41,6)],['端点导数平方均值 / (U/V)²',round(slope*slope,6)],['初值均方根偏差 / (U/V)',round(Math.sqrt(initialError/41),6)],['参考剖面均方根误差 / (U/V)',round(Math.sqrt(solutionError/41),6)]],
+  condition:'归一化位置 x∈[0,1]；观察时间 0.5 T；D=0.2/T；候选衰减率 '+round(rate)+'/T，线性项系数 '+round(slope)+'。',
+  finding:Math.abs(rate-exactRate)<.02&&slope>.001?'衰减率接近Dπ²使方程残差很小，但s·x留下初值差sx与端点导数s；用这两项检查能发现方程项看不见的变化。':'方程检查变化率关系，初值检查起始剖面，端点检查无通量条件，参考误差比较当前函数值；先分别解释四项，再看它们怎样随候选改变。'
  };
 }
 
@@ -98,9 +98,9 @@ export function hybridView(k,theta,kind){
  return {
   series:[{label:view==='flux'?'基线清除通量':'基线总量',color:blue,points:baseline[view]},
           {label:view==='flux'?'候选清除通量':'候选总量',color:pink,points:candidate[view]}],
-  stats:[['有效消除系数 /T',round(k-theta,3)],['终点总量差 / U',round(gap,6)],['初始通量差 / U/T',round(Math.abs(k-.4),3)]],
+  stats:[['净消除系数 / (1/T)',round(k-theta,3)],['终点总量差 / U',round(gap,6)],['初始通量差 / U/T',round(Math.abs(k-.4),3)]],
   condition:'基线 k=0.4/T、θ=0.1/T；候选 k='+round(k,2)+'/T、θ='+round(theta,2)+'/T；输入在 2 T 时变化。',
-  finding:Math.abs(k-theta-.3)<1e-9?'两组总量轨迹在任何已知输入下都相同；独立清除通量测量才可拆分这两个同形参数。':'总量差主要由有效率 k−θ 改变；仅凭总量轨迹仍不能分别给 k 与 θ 唯一机制身份。'
+  finding:Math.abs(k-theta-.3)<1e-9?'两组参数的净系数相同，因此任何同一已知输入下总量路径都相同。在非零总量处，独立机制消除通量可以进一步区分两个参数。':'当前候选改变了净系数k−θ，所以总量路径分开；这类总量信息仍只确定参数差值，需要另一种测量才能分开两系数。'
  };
 }
 

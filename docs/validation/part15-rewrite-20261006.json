@@ -1,0 +1,741 @@
+{
+  "date": "2026-10-06",
+  "baseline": "876961097b1610cfe979650764d99c03ad57dbc2",
+  "scope": "Part 15 formal teaching, exercise prose, guides and web display text, plus exactly one dispatched nonzero-x condition in Part 14. Pending unified user reading acceptance.",
+  "notebooks": [
+    {
+      "id": "P15-C01-S01",
+      "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb",
+      "sha256": "ffc94e02927f2d6518065f7fa28a1e9e2b7dd0951c1cdc720c7d65c3df00ef99",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        16,
+        17
+      ],
+      "code_cells_unchanged": 7,
+      "code_and_output_sha256": "5915bbcb2e5058a88f59f28d1221ea27abd1a1bf6939d5c8238001200fd50bae"
+    },
+    {
+      "id": "P15-C01-S02",
+      "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.ipynb",
+      "sha256": "972865586ec32cdae97bfc441be833e56fd3c396ae090dd4a2ffe32a68a6be76",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b24cf7228d1f3f1b3d5739ab335c8f0e0a6ba2356db2dc64ab78e747ceb66922"
+    },
+    {
+      "id": "P15-C02-S01",
+      "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.ipynb",
+      "sha256": "a6261ebfed2e17a227aa87464feb2256d731e08704bde300538c26e42ca94df0",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "a41c9a5c83a302c67812d67c8fd845a28f5f70fa133142cae81b170deb6facc5"
+    },
+    {
+      "id": "P15-C02-S02",
+      "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.ipynb",
+      "sha256": "8a94e7134625029f2ae5771e1d67cdb14614de001c8af3ab8eab34aedc097070",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "45182717a254dd9b000eb1f6e975f51f3bf8dbdb6760c6ed60cccc4840d5ca01"
+    },
+    {
+      "id": "P15-C03-S01",
+      "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb",
+      "sha256": "ade4e7ac6bc26cc48597479dd4ef6122a8a02f110c28c3da1c1d09a858a52617",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "d200eee89132be78acd5ade36a3417d3b40cf36e1d69540361e187d64b4aef5b"
+    },
+    {
+      "id": "P15-C03-S02",
+      "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.ipynb",
+      "sha256": "c5fb5b7a564fa66bde79b4830bebac8d7d786e05d24e1697350cdddf95d6fdff",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "1059a82fa865442ba1be2d0207732396ce977dc794a068481e34b0e80ff1743f"
+    },
+    {
+      "id": "P15-C04-S01",
+      "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.ipynb",
+      "sha256": "da2beaba897b8718f83508fe0712c5920433061c9d9971968d0301758b686ad5",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "499ee3b5d3b679cf4a13def7ce1db59ae856f6bd43c5f457bf3258b7567ea3f8"
+    },
+    {
+      "id": "P15-C04-S02",
+      "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.ipynb",
+      "sha256": "3ef4e105ec3406069bafbe087d2f28d9e8ab03868a2361b0e8380cbbb2de2038",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "cb702559a26bc94346e647aee3fc88e6019acaca1b19325279fc6659a6e4e2a5"
+    },
+    {
+      "id": "P15-C05-S01",
+      "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.ipynb",
+      "sha256": "b04012d0fb57d773d6a2a7305a9d0b70e62215dbabdb0a70e7573aea3081d2e4",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "f1aa75f0744efd2b76a50a78a0708f04d6850498a5cede95bf920e3e559a81c1"
+    },
+    {
+      "id": "P15-C05-S02",
+      "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.ipynb",
+      "sha256": "e52a74791a0c0bd8d3b3e56c8022e6bfb20ac937f4072ef3803faf78d472340c",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "28ba444e6b37c36e59ad0099e1c8f6d377b37148b9054b7a16d4bcf36d721be9"
+    },
+    {
+      "id": "P15-SUMMARY",
+      "path": "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb",
+      "sha256": "e70d40b57dd00d1e43bfc32351981dd23998809745061cb71e0cba8d7fec4ccc",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "41e08600274c638c0130e9ccd8a773a01b16ce50c683d69ad2d1154950dd696c"
+    }
+  ],
+  "questions": {
+    "reviewed": 48,
+    "choice": 24,
+    "python": 24,
+    "wording_changed": 48,
+    "wording_changed_ids": [
+      "p15-graph-order",
+      "p15-static-not-ode",
+      "p15-gradient-object",
+      "p15-nonsmooth",
+      "p15-one-step-input",
+      "p15-sampling-object",
+      "p15-split-trajectories",
+      "p15-rollout-leak",
+      "p15-two-gradients",
+      "p15-sensitivity-initial",
+      "p15-adjoint-jump",
+      "p15-reverse-state",
+      "p15-network-value",
+      "p15-network-loss-gradient",
+      "p15-reverse-graph",
+      "p15-difference-check",
+      "p15-fixed-map",
+      "p15-teacher-forced",
+      "p15-free-rollout",
+      "p15-rollout-error",
+      "p15-exact-decay",
+      "p15-euler-sensitivity",
+      "p15-continuous-gradient",
+      "p15-discrete-adjoint",
+      "p15-pinn-parts",
+      "p15-loss-unit",
+      "p15-boundary-needed",
+      "p15-collocation-limit",
+      "p15-zero-correction",
+      "p15-mechanism-claim",
+      "p15-confounding-input",
+      "p15-candidate-variance",
+      "p15-trial-derivative",
+      "p15-ode-loss-parts",
+      "p15-diffusion-profile",
+      "p15-diffusion-residual",
+      "p15-hybrid-right-side",
+      "p15-hybrid-steps",
+      "p15-indistinguishable-rate",
+      "p15-candidate-moments",
+      "p15-capstone-gradient-object",
+      "p15-capstone-identifiability",
+      "p15-capstone-small-gradient",
+      "p15-capstone-forward-gradient",
+      "p15-capstone-scaled-loss",
+      "p15-capstone-independent-error",
+      "p15-capstone-grid-transfer",
+      "p15-capstone-hybrid-ablation"
+    ],
+    "explanation_changed": 48,
+    "explanation_changed_ids": [
+      "p15-graph-order",
+      "p15-static-not-ode",
+      "p15-gradient-object",
+      "p15-nonsmooth",
+      "p15-one-step-input",
+      "p15-sampling-object",
+      "p15-split-trajectories",
+      "p15-rollout-leak",
+      "p15-two-gradients",
+      "p15-sensitivity-initial",
+      "p15-adjoint-jump",
+      "p15-reverse-state",
+      "p15-network-value",
+      "p15-network-loss-gradient",
+      "p15-reverse-graph",
+      "p15-difference-check",
+      "p15-fixed-map",
+      "p15-teacher-forced",
+      "p15-free-rollout",
+      "p15-rollout-error",
+      "p15-exact-decay",
+      "p15-euler-sensitivity",
+      "p15-continuous-gradient",
+      "p15-discrete-adjoint",
+      "p15-pinn-parts",
+      "p15-loss-unit",
+      "p15-boundary-needed",
+      "p15-collocation-limit",
+      "p15-zero-correction",
+      "p15-mechanism-claim",
+      "p15-confounding-input",
+      "p15-candidate-variance",
+      "p15-trial-derivative",
+      "p15-ode-loss-parts",
+      "p15-diffusion-profile",
+      "p15-diffusion-residual",
+      "p15-hybrid-right-side",
+      "p15-hybrid-steps",
+      "p15-indistinguishable-rate",
+      "p15-candidate-moments",
+      "p15-capstone-gradient-object",
+      "p15-capstone-identifiability",
+      "p15-capstone-small-gradient",
+      "p15-capstone-forward-gradient",
+      "p15-capstone-scaled-loss",
+      "p15-capstone-independent-error",
+      "p15-capstone-grid-transfer",
+      "p15-capstone-hybrid-ablation"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "previous_part_followups": [
+    {
+      "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.ipynb",
+      "cell": 4,
+      "old": "由于$x^2/x=x$",
+      "new": "对非零$x$，由于$x^2/x=x$",
+      "all_other_cells_metadata_code_outputs_preserved": true
+    }
+  ],
+  "corrected_experiment_descriptions": [
+    "Single-neuron forward values and plotting parameters distinguished; gradient tuple order and half-square training versus MSE reporting explained.",
+    "Fixed tanh feature fit uses least squares; free-roll inputs and complete held trajectory are explicit.",
+    "The misspecified q=0 family uses two training objectives; the one-step-selected coefficient actually wins on the stored held initial condition.",
+    "Continuous states and objectives, Euler states/objectives, continuous observation jumps, and backward Euler reconstruction are separate.",
+    "The nonlinear ODE example selects one amplitude by grid search on a fixed Euler mesh; it does not demonstrate adjoint training.",
+    "ODE candidate parameters are fixed, with the same nine observation/collocation times; the 101-point display is a reference comparison.",
+    "Diffusion points/times are zipped, not a mesh product; the heatmap uses declared unit reference scales, and sx changes both initial and endpoint conditions.",
+    "Tanh hybrid training fixes k/scale, includes the common initial state in its reported MSE/RMSE; capstone prediction metrics exclude the initial state.",
+    "The capstone main plot uses fixed −0.08 correction and new input; no extra fitting claimed.",
+    "Preset candidate weights represent only their weighted spread, not posterior or full model uncertainty."
+  ],
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Read-only PracticeEngine.progress with original in-memory records and current questions/assessment; no judging and no record writes."
+  },
+  "scope_protection": {
+    "other_course_parts_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_operations_unchanged": true,
+    "web_edits_exactly_match_display_text_transformations": true,
+    "slider_keys_ranges_steps_initial_values_and_handlers_preserved": true,
+    "official_checker_and_glossary_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "independent_hand_examples_and_algebra": [
+      "Network zero-activation hand point gives loss 0.5 and ordered gradient [−6,−3,0,−1]; shared error paths sum to e; ReLU left/right slopes and symmetric difference distinguished; stated nonzero prediction/loss checked independently.",
+      "Discrete zero-state next amount 0.08 U, nonlinear first state ≈0.970464 U, two-step error mean 0.025 U²/endpoint 0.2 U and 281-point coefficient spacing checked.",
+      "Euler old-state sensitivity hand steps [2,1.8,1.62]/[0,−0.4,−0.72] and discrete reverse residual 0.12 give −0.0864; forward/backward multiplier 0.99, and continuous/Euler stated terminal values checked.",
+      "Continuous two-observation loss/gradient and the constant λ-contribution times state on each observation interval checked without invoking any original sensitivity or adjoint function.",
+      "Constant-candidate data/initial-zero versus equation residual 0.5; fixed tanh initial loss 0.25; scales [2,3,1] give total 3; diffusion endpoint squares 0.09/0.04 and simultaneous sx initial change checked.",
+      "Hybrid input/clearance/correction units and first state ≈0.801360, zero-correction states 0.808/0.81568, equal net coefficient 0.3 versus distinct fluxes 0.4/0.6, weighted mean 2.5 and variance 0.75 checked."
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    },
+    {
+      "id": "p08-conditioning",
+      "version": "1",
+      "location": "Option B, marked correct in the existing answer",
+      "issue": "不发散与误差收敛到零混用。B要求步长严格小于上界才不发散，但H₂较大曲率方向在η=2/100时因子为−1，误差等幅交替且不发散。",
+      "evidence": "e[k+1]=(1−100η)e[k]；η=0.02给出e[k+1]=−e[k]。严格上界针对误差衰减到零，而不是仅不发散。",
+      "required_substantive_change": "后续明确B要判断误差衰减/收敛，或修订不发散条件及对应答案，再依版本规则处理；本轮没有暗改答案、条件意图或版本。",
+      "status": "登记，待实质题库修订；当前正确答案与旧成绩保留"
+    }
+  ],
+  "new_unresolved": [],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 120,
+    "core_changed": 109,
+    "exercise_cells_synchronized": 11,
+    "previous_part_specified_sentences": 1
+  },
+  "teaching_check": {
+    "notebooks": 11,
+    "questions": 48,
+    "question_links": 48,
+    "issues": []
+  },
+  "teaching_check_method": "Existing check_teaching logic with vocabulary actually used in Parts 0–14 and preceding Part 15 lessons. Exercises inherit their lesson explanations; overviews inherit earlier chapters. Original checker, glossary and range rules unchanged.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/15-01-神经网络与自动微分/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/15-02-离散动力学学习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/15-03-神经微分方程/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/15-04-物理约束学习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/15-05-混合模型与可辨识性/",
+        "status": 200
+      },
+      {
+        "path": "/parts/15-可微分建模与机制融合/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/15-01-神经网络与自动微分/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/15-02-离散动力学学习/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/15-03-神经微分方程/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/15-04-物理约束学习/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/15-05-混合模型与可辨识性/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p15-graph-order",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-one-step-input",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-two-gradients",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-pinn-parts",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-zero-correction",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-network-loss-gradient",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-reverse-graph",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-euler-sensitivity",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-continuous-gradient",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-discrete-adjoint",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-ode-loss-parts",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-diffusion-residual",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-capstone-scaled-loss",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-capstone-independent-error",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      }
+    ],
+    "served_catalog_controllers_model_and_html_equal_current_files": true,
+    "local_file_link_targets_checked": 24,
+    "html_rendered_without_execution": [
+      "P15-C01-S01",
+      "P15-C01-S02",
+      "P15-C02-S01",
+      "P15-C02-S02",
+      "P15-C03-S01",
+      "P15-C03-S02",
+      "P15-C04-S01",
+      "P15-C04-S02",
+      "P15-C05-S01",
+      "P15-C05-S02",
+      "P15-SUMMARY"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout, MathJax rendering or interaction behavior."
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_multilayer-perceptrons/backprop.html",
+      "focus": "先解释前向输出与误差目标，再逐项连接参数、计算图和反向局部导数。本篇借鉴这种推理顺序，以单神经元手算和清除/扩散例独立展开。"
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/05-The-Unreasonable-Effectiveness-of-Linear-Regression.html",
+      "focus": "从具体预测问题、输入与输出进入误差，建立目标后才推导导数并回到数据结果。借鉴教学表达，没有添加对应因果回归方法。"
+    }
+  ],
+  "authorization": "Current dispatch covers Part 15 plus one specified nonzero-x condition in Part 14. Human-authorized sequential Parts 2–17 workflow uses final unified reading acceptance. Normal commit/push authorized; learning records, environments and temporary helpers excluded. Await Part 16 dispatch.",
+  "specific_prose_corrections": [
+    "Input/output meaning precedes loss and derivative. Physical input divided by a reference amount, neural intermediate values, parameter ordering and response units are explicit.",
+    "The zero-activation hand point explains each parameter route; shared error multiplication adds both paths, and finite differences perturb one parameter at a time.",
+    "Training uses numerical reference coordinates and average half-square gradients while the plot reports MSE. Fixed curves, preview parameters and training are distinguished.",
+    "Fixed-interval state samples define n, current/next pairing and external inputs. The three-feature least-squares fit is accurately described.",
+    "The rollout error decomposition separates propagation of past state bias from local mapping error. Stored one-step versus rollout parameter choices and held-out ordering are reported.",
+    "Continuous states, continuous observation objectives, Euler states/objectives and their sensitivities are separate. Observation pairs and gradient objects are defined before use.",
+    "The adjoint is motivated by future-loss dependence; product differentiation, residual jumps, before/after time notation, and piecewise integrals are explained with a two-step discrete example.",
+    "Negative-step Euler reconstruction is contrasted with algebraic inversion; its error is not folded into a claim about exact continuous adjoints.",
+    "The nonlinear ODE amplitude example uses grid search on a fixed Euler mesh, and its new-initial result is relative to that same discrete generator.",
+    "Fixed PINN candidates, shared observation/collocation times and reference plotting grid are described according to actual execution. Data, equation and initial losses carry separate units and scales.",
+    "The diffusion candidate is a concentration deviation; physical length normalization, amplitude reference, paired points, heatmap axes/scales, endpoint derivatives and sx initial changes are explicit.",
+    "Hybrid input rates differ from discrete per-step amounts. Mechanism parameters stay fixed during the single-amplitude search; its initial-inclusive metric and capstone initial-excluding metric are stated.",
+    "A linear correction has different units from the tanh amplitude. Parameter-difference invariance, nonzero-state independent flux and weighted candidate spread are connected by hand examples.",
+    "The capstone uses a fixed candidate amplitude, not another fit. Its error statistics and separate gradient/loss-scale exercises are accurately described.",
+    "All 48 question statements/contracts stand independently. List/tuple order, sample record fields, initial inclusion and zero input versus empty input are explicit; answer/option identities are preserved.",
+    "Chapter prerequisites use the needed prior knowledge rather than expanding new chapter concepts as prerequisites. Five web views share notebook notation and label state derivatives separately from loss gradients."
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part15-rewrite-20261006/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part15-rewrite-20261006/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part15-rewrite-20261006/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part15-rewrite-20261006/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/differentiable/app.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/differentiable/model.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    "docs/15-可微分建模与机制融合.md": "641b9beb15e9c74f2b587a57f9af0d431041955dae973aff98bc0074f7f5f73a",
+    "exercises/15-可微分建模与机制融合/questions.json": "99cd73af167d32ab0d87f73e141292bdd3c7df72476bfc7edabe2e0d45d92ddc",
+    "exercises/15-可微分建模与机制融合/verification.json": "db7bcf33b3c59e5964c6643a13aea20e8dddebe15175b904498db86b430605af",
+    "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.ipynb": "9261cd63848afd5fe56ea70a3f36d793d08279dcb3c5ca9922b6501ce02a96bc",
+    "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb": "ffc94e02927f2d6518065f7fa28a1e9e2b7dd0951c1cdc720c7d65c3df00ef99",
+    "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.ipynb": "972865586ec32cdae97bfc441be833e56fd3c396ae090dd4a2ffe32a68a6be76",
+    "notebooks/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.ipynb": "a6261ebfed2e17a227aa87464feb2256d731e08704bde300538c26e42ca94df0",
+    "notebooks/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.ipynb": "8a94e7134625029f2ae5771e1d67cdb14614de001c8af3ab8eab34aedc097070",
+    "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb": "ade4e7ac6bc26cc48597479dd4ef6122a8a02f110c28c3da1c1d09a858a52617",
+    "notebooks/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.ipynb": "c5fb5b7a564fa66bde79b4830bebac8d7d786e05d24e1697350cdddf95d6fdff",
+    "notebooks/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.ipynb": "da2beaba897b8718f83508fe0712c5920433061c9d9971968d0301758b686ad5",
+    "notebooks/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.ipynb": "3ef4e105ec3406069bafbe087d2f28d9e8ab03868a2361b0e8380cbbb2de2038",
+    "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.ipynb": "b04012d0fb57d773d6a2a7305a9d0b70e62215dbabdb0a70e7573aea3081d2e4",
+    "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.ipynb": "e52a74791a0c0bd8d3b3e56c8022e6bfb20ac937f4072ef3803faf78d472340c",
+    "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb": "e70d40b57dd00d1e43bfc32351981dd23998809745061cb71e0cba8d7fec4ccc",
+    "notebooks/15-可微分建模与机制融合/README.md": "267c4f2ea211a07f5d85c7b4d88c7d280cb4e50ae5d1ffaa0d23c72700a9800f",
+    "notebooks/15-可微分建模与机制融合/catalog.json": "294addfb2b973c92793328bceced4cc2e6131d49d39655214af1410cc249b888",
+    "web/course/catalog.json": "164e7568812e88975f0634723047a47e9fa7773ebc6426a72f4eb64c3a8e7d94",
+    "web/differentiable/app.mjs": "8d52770248ccb4e5a3abf455400d25516d656e658d37faa80f91606860eb9df8",
+    "web/differentiable/index.html": "e4e93beacb9402dcdc9f9915ae5fc0c724c049f26dad510b22895f98b4bbfea0",
+    "web/differentiable/model.mjs": "d6486d95e652388cdfad8061abe0bc0a1f45cddc91b68626fb0279122fdf28c5"
+  }
+}

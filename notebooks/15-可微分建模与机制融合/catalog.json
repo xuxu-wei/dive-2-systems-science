@@ -4,7 +4,7 @@
     "chapter_id": "15.1",
     "number": "15.1.1",
     "title": "从计算图到小型神经网络",
-    "outcome": "写出一层标量网络的前向计算，并逐项解释参数、激活和损失。",
+    "outcome": "按输入、加权、激活、预测与损失的顺序，解释四个参数和响应单位。",
     "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb",
     "visualization": "web/differentiable/index.html"
   },
@@ -13,7 +13,7 @@
     "chapter_id": "15.1",
     "number": "15.1.2",
     "title": "反向传播与梯度核验",
-    "outcome": "对同一计算图手推、反向累积并用中心差分核验梯度；识别不可微点。",
+    "outcome": "逐项反传四个参数导数，以共享误差和差分扫描连接实现与训练。",
     "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.ipynb",
     "visualization": "web/differentiable/index.html"
   },
@@ -22,7 +22,7 @@
     "chapter_id": "15.2",
     "number": "15.2.1",
     "title": "固定采样间隔的一步映射",
-    "outcome": "把状态与输入组成离散转移，分清一步拟合的训练和留出轨迹。",
+    "outcome": "配对当前状态、输入与下一状态，拟合三系数并比较真实状态输入与自由递推。",
     "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.ipynb",
     "visualization": "web/differentiable/index.html"
   },
@@ -31,7 +31,7 @@
     "chapter_id": "15.2",
     "number": "15.2.2",
     "title": "自由滚动、数据划分与外推",
-    "outcome": "按完整轨迹划分数据，比较一步损失、多步误差和新初值。",
+    "outcome": "展开误差传播，比较两种训练目标选参和新初值下的实际结果。",
     "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.ipynb",
     "visualization": "web/differentiable/index.html"
   },
@@ -40,7 +40,7 @@
     "chapter_id": "15.3",
     "number": "15.3.1",
     "title": "连续右端、求解器与前向灵敏度",
-    "outcome": "区分连续模型、离散求解程序和两者各自的参数导数。",
+    "outcome": "分别推导连续灵敏度与Euler递推，在共同终点检查状态和导数的细化。",
     "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb",
     "visualization": "web/differentiable/index.html"
   },
@@ -49,7 +49,7 @@
     "chapter_id": "15.3",
     "number": "15.3.2",
     "title": "伴随跳跃与反向重建的边界",
-    "outcome": "推导多时刻观测的伴随跳跃和参数梯度，比较离散反传与反向重建。",
+    "outcome": "逐观测解释伴随跳跃，核对离散反向累加，并分开状态回退误差。",
     "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.ipynb",
     "visualization": "web/differentiable/index.html"
   },
@@ -58,7 +58,7 @@
     "chapter_id": "15.4",
     "number": "15.4.1",
     "title": "数据、方程与初值的分项损失",
-    "outcome": "对光滑候选函数计算导数与方程残差，分开报告数据、物理和初值误差。",
+    "outcome": "从候选取值和导数分别构成数据、方程、初值损失，说明尺度。",
     "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.ipynb",
     "visualization": "web/differentiable/index.html"
   },
@@ -67,7 +67,7 @@
     "chapter_id": "15.4",
     "number": "15.4.2",
     "title": "扩散残差与无通量边界",
-    "outcome": "计算一维扩散候选的方程及边界残差，识别只查内点的漏洞。",
+    "outcome": "逐项求导解释线性空间项怎样同时改变初值和无通量条件。",
     "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.ipynb",
     "visualization": "web/differentiable/index.html"
   },
@@ -76,7 +76,7 @@
     "chapter_id": "15.5",
     "number": "15.5.1",
     "title": "已知收支加可学习修正",
-    "outcome": "给机制项和修正项分别标单位，并在新输入下比较机制与混合模型。",
+    "outcome": "固定机制参数学习一个修正幅度，在同网格的新输入下比较预测。",
     "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.ipynb",
     "visualization": "web/differentiable/index.html"
   },
@@ -85,7 +85,7 @@
     "chapter_id": "15.5",
     "number": "15.5.2",
     "title": "参数混淆、观测与预测不确定性",
-    "outcome": "构造不可辨识参数对，说明新输入和额外测量的不同作用。",
+    "outcome": "以相同净系数说明参数混淆，再用独立通量和候选方差解释信息。",
     "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.ipynb",
     "visualization": "web/differentiable/index.html"
   },
@@ -94,18 +94,18 @@
     "chapter_id": "15.summary",
     "number": "15.综合",
     "title": "机制与学习模型的独立比较",
-    "outcome": "在共同观测和独立输入下核验梯度、方程损失与混合模型预测。",
+    "outcome": "连接导数目标、步长、损失尺度和独立预测，保留机制辨识问题。",
     "path": "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb",
     "visualization": null,
     "overview": {
-      "goals": "连接计算图、动力学梯度与损失，用新输入比较机制模型与学习修正。",
-      "prerequisites": "本篇 15.1—15.5；第 14 篇模型验证。",
-      "focus": "损失下降、梯度正确、可辨识和外推是不同证据。",
+      "goals": "将计算图导数、连续与离散求导、损失尺度及混合预测连回同一个清除问题。",
+      "prerequisites": "15.1—15.5的小网络、状态递推、灵敏度与伴随、分项损失和机制修正。",
+      "focus": "先确定输出与优化目标，再用相应导数和共同网格核验，最后解释新输入误差与参数等价。",
       "knowledge": [
-        "计算图与梯度",
-        "离散和连续动力学",
-        "方程残差与边界",
-        "混合模型与独立比较"
+        "输入参考尺度、损失和参数导数顺序",
+        "连续状态、Euler更新与观测损失梯度",
+        "数据、方程、初边值残差的尺度与分项",
+        "新输入下的自由预测、参数差值与独立通量"
       ]
     }
   }
