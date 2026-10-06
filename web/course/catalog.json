@@ -7831,14 +7831,15 @@
           "id": "14.1",
           "title": "低秩分解与模型降阶",
           "url": "/chapters/14-01-低秩分解与模型降阶/",
-          "goals": "从快照矩阵（matrix）构造低秩（rank）表示，推导截断误差（truncation error）并区分重建精度与动态预测精度。",
-          "prerequisites": "3.2、6.4、8.3；数学：向量（vector）、矩阵、内积（inner product）、范数（norm）、秩、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩投影。",
+          "goals": "说明快照行列与奇异值平方和，以截断投影解释重建，再由已知方程构造低维动态。",
+          "prerequisites": "3.2、6.4、8.3；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩投影。",
           "knowledge": [
-            "建立快照、中心化与变量尺度约定，推导奇异值分解（singular value decomposition，SVD）及伪逆",
-            "由投影误差引入本征正交分解（proper orthogonal decomposition，POD）与截断秩",
-            "将机制方程投影到低维坐标，检查初值（initial condition）映射、守恒和截断影响"
+            "状态列、训练中心和原快照投影",
+            "奇异值平方和、保留比例和尾项误差",
+            "两室手算与三室Galerkin方程",
+            "新初值快方向及五格扩散快照"
           ],
-          "focus": "由奇异值分解提取主要数据模式；区分重建误差、数据能量占比与动态预测误差。",
+          "focus": "数据能量是矩阵元素平方和；重建误差、新初值投影误差与后续动态误差各有不同对象。",
           "available": true,
           "lessons": [
             {
@@ -7846,7 +7847,7 @@
               "chapter_id": "14.1",
               "number": "14.1.1",
               "title": "从快照到截断奇异值",
-              "outcome": "从训练快照建立低秩表示，计算投影误差，并判断能量比例能否证明动态预测有效。",
+              "outcome": "先说明快照的行列与数据能量，再手算投影及奇异值截断误差。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/01-从快照到截断奇异值.ipynb",
               "visualization": "web/lowrank/index.html",
               "questions": [
@@ -7882,7 +7883,7 @@
               "chapter_id": "14.1",
               "number": "14.1.2",
               "title": "投影动力学与新初值",
-              "outcome": "把已知交换方程投影到低维坐标，分别检查训练重建、新初值误差和动态预测误差。",
+              "outcome": "由两室一步投影进入三室Galerkin动态，分开初值映射与后续误差。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/02-投影动力学与新初值.ipynb",
               "visualization": "web/lowrank/index.html",
               "questions": [
@@ -7920,14 +7921,15 @@
           "id": "14.2",
           "title": "动态模态分解",
           "url": "/chapters/14-02-动态模态分解/",
-          "goals": "由配对快照拟合线性传播，计算动态模态分解（dynamic mode decomposition，DMD）并验证离散与连续时间解释。",
-          "prerequisites": "14.1、6.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影（projection）。",
+          "goals": "从配对状态拟合完整传播矩阵，再把一步特征值的幅度、相角与采样间隔相连。",
+          "prerequisites": "14.1、6.5；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、奇异值分解、截断、伪逆（pseudoinverse）与低秩投影。",
           "knowledge": [
-            "从最小二乘传播矩阵进入动态模态分解（dynamic mode decomposition，DMD）",
-            "在截断子空间计算特征值与模态，解释重建和滚动预测",
-            "讨论采样（sampling）间隔、模态混叠（aliasing）及对数分支，区分一步误差和长期行为"
+            "一维乘子与二维独立列手算",
+            "截断SVD伪逆及完整n×n一步矩阵",
+            "新初值连续预测",
+            "模态的离散乘子、有符号衰减率、整圈混叠与振幅范围"
           ],
-          "focus": "从成对快照拟合传播矩阵（matrix）；连接离散特征值（eigenvalue）、模态（mode）和连续时间解释。",
+          "focus": "同列配对与变量顺序决定回归含义；伪逆在未见方向选零作用，不提供该方向的真实传播。",
           "available": true,
           "lessons": [
             {
@@ -7935,7 +7937,7 @@
               "chapter_id": "14.2",
               "number": "14.2.1",
               "title": "配对快照与线性传播",
-              "outcome": "从相邻快照拟合传播矩阵，比较训练一步残差和独立初值的滚动误差。",
+              "outcome": "配对当前和下一步状态，用独立列求传播系数，再检验新初值。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/01-配对快照与线性传播.ipynb",
               "visualization": "web/datadriven/index.html",
               "questions": [
@@ -7971,7 +7973,7 @@
               "chapter_id": "14.2",
               "number": "14.2.2",
               "title": "模态、采样与预测范围",
-              "outcome": "从离散特征值解释衰减与角频率，识别采样混叠和局部拟合的外推限制。",
+              "outcome": "将每步幅度和相角换成时间速率，解释整圈混叠与振幅范围。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/02-模态、采样与预测范围.ipynb",
               "visualization": "web/datadriven/index.html",
               "questions": [
@@ -8009,14 +8011,15 @@
           "id": "14.3",
           "title": "Koopman 表示与有限字典",
           "url": "/chapters/14-03-Koopman 表示与有限字典/",
-          "goals": "理解作用于观测（observation）函数的线性传播，实现有限字典近似并解释闭合误差。",
-          "prerequisites": "14.2；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、海森矩阵（Hessian matrix）、二次型、正定性（positive definiteness）与凸性（convexity）、函数观测、线性算子、有限字典与投影（projection）、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影。",
+          "goals": "按函数顺序建立特征列，逐项推导函数传播，再用有限数据回归解释闭合与近似。",
+          "prerequisites": "14.2；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性、函数观测、线性算子、有限字典与投影、奇异值分解、截断、伪逆与低秩投影。",
           "knowledge": [
-            "从非线性状态（state）更新引入 Koopman 算子（Koopman operator），先讲函数与算子的必要定义",
-            "构造扩展动态模态分解（extended dynamic mode decomposition，EDMD）的字典与数据矩阵",
-            "比较字典、投影、正则化（regularization）与状态重建，限定有限字典的闭合条件"
+            "两个初值的状态与平方手算",
+            "字典、算子、三行闭合矩阵及读出",
+            "特征列的配对回归",
+            "非对称遗漏项手算、岭方程和饱和复合函数更新"
           ],
-          "focus": "通过观测函数表达动力学；区分直接删项与重新拟合，解释有限字典的闭合误差。",
+          "focus": "Koopman线性作用于函数；短字典重新回归与完整矩阵删项是不同计算，系数还受训练状态和特征尺度影响。",
           "available": true,
           "lessons": [
             {
@@ -8024,7 +8027,7 @@
               "chapter_id": "14.3",
               "number": "14.3.1",
               "title": "从非线性状态到线性观测",
-              "outcome": "构造恰好闭合的有限观测字典，手算并核验其线性传播。",
+              "outcome": "按函数顺序建立特征列，逐行推导平方项的闭合及状态读出。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/01-从非线性状态到线性观测.ipynb",
               "visualization": "web/datadriven/index.html",
               "questions": [
@@ -8060,7 +8063,7 @@
               "chapter_id": "14.3",
               "number": "14.3.2",
               "title": "字典失配与正则化",
-              "outcome": "比较相同数据上的短字典与闭合字典，解释正则化和分布外误差。",
+              "outcome": "重新拟合短字典与完整字典，比较遗漏、正则及复合函数更新。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.ipynb",
               "visualization": "web/datadriven/index.html",
               "questions": [
@@ -8098,14 +8101,16 @@
           "id": "14.4",
           "title": "稀疏动力学辨识",
           "url": "/chapters/14-04-稀疏动力学辨识/",
-          "goals": "构造候选机制字典并实施稀疏回归，区分方程拟合、结构恢复与可辨识性（identifiability）。",
-          "prerequisites": "14.3、8.3、4.6；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影（projection）、散度（divergence）与体积变化、连续变分方程、分段归一化和时间增长率。",
+          "goals": "用样本行与候选列回归变化率，解释阈值筛选、列缩放和差分误差，再检查独立预测。",
+          "prerequisites": "14.3、8.3、4.6；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、正则化、非光滑目标、近端更新与软阈值、奇异值分解、截断、伪逆与低秩投影、散度与体积变化、连续变分方程、分段归一化和时间增长率。",
           "knowledge": [
-            "从导数（derivative）或离散增量的回归引入稀疏动力学辨识（sparse identification of nonlinear dynamics，SINDy）",
-            "显式实现顺序阈值最小二乘（sequential thresholded least squares，STLSQ），公开阈值、列缩放和停止规则",
-            "比较候选项共线性、导数估计与观测（observation）噪声，使用完整轨迹（trajectory）留出验证"
+            "Logistic三处导数和[1,x,x²]",
+            "列归一化、阈值等号和支持集重新拟合",
+            "四阈值实际输出",
+            "中心及端点差分噪声",
+            "重复系数、独立Logistic预测与真实Lorenz导数"
           ],
-          "focus": "把候选机制组成字典并逐步筛选；比较求导误差、稀疏阈值和新初态预测。",
+          "focus": "阈值作用于归一化系数，返回下标对应字典列；等距差分的观测误差按1/h进入导数。",
           "available": true,
           "lessons": [
             {
@@ -8113,7 +8118,7 @@
               "chapter_id": "14.4",
               "number": "14.4.1",
               "title": "候选字典与顺序阈值回归",
-              "outcome": "从明确的候选项与导数构造稀疏方程，公开列尺度、阈值和停止规则。",
+              "outcome": "逐行建立候选表，说明列归一化、阈值筛选、重新拟合与列索引。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/01-候选字典与顺序阈值回归.ipynb",
               "visualization": "web/datadriven/index.html",
               "questions": [
@@ -8149,7 +8154,7 @@
               "chapter_id": "14.4",
               "number": "14.4.2",
               "title": "导数噪声与独立轨迹",
-              "outcome": "比较真实导数与含噪有限差分，使用独立初值检验候选方程。",
+              "outcome": "推导等距差分的噪声方差，比较重复系数与独立初值预测。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/02-导数噪声与独立轨迹.ipynb",
               "visualization": "web/datadriven/index.html",
               "questions": [
@@ -8187,14 +8192,16 @@
           "id": "14.5",
           "title": "噪声、外推与结构保持",
           "url": "/chapters/14-05-噪声、外推与结构保持/",
-          "goals": "在共同协议下比较降阶与动力学发现，检查守恒、非负性（nonnegativity）、外推和噪声敏感性。",
-          "prerequisites": "14.4、13.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩（rank）投影（projection）。",
+          "goals": "由逐室收支检查连续矩阵及Euler一步，再在共同数据和窗口上分别评价预测与结构。",
+          "prerequisites": "14.4、13.4；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估、正则化、非光滑目标、近端更新与软阈值、奇异值分解、截断、伪逆与低秩投影。",
           "knowledge": [
-            "对齐物理变量、采样（sampling）、数据量和预测时域，固定结构误差与数值误差（numerical error）的分项指标",
-            "由多室交换的列和及符号条件检查候选线性模型（model）的守恒与非负性",
-            "在新初值（initial condition）、新输入（input）和噪声变化下评价预测与结构，保留失败轨迹（trajectory）"
+            "两室逐项收支与错误列",
+            "非对角符号、Euler矩阵及过大步长手算",
+            "三室共同训练与不同先验信息",
+            "RMSE、总量差和负值数",
+            "噪声、单通道及新增输入"
           ],
-          "focus": "在新条件下检查学得动态；结合守恒、正性与噪声对照判断结构保持和外推表现。",
+          "focus": "总量坐标的列和条件与浓度加权收支不同；守恒、连续正性、Euler非负性及路径负值各自判断。",
           "available": true,
           "lessons": [
             {
@@ -8202,7 +8209,7 @@
               "chapter_id": "14.5",
               "number": "14.5.1",
               "title": "守恒、正性与离散步长",
-              "outcome": "用矩阵的列和与非对角符号检查闭合交换，辨认 Euler 步长造成的非负性失效。",
+              "outcome": "从两室收支推导列和与转移符号，再手算Euler过大步长反例。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/01-守恒、正性与离散步长.ipynb",
               "visualization": "web/datadriven/index.html",
               "questions": [
@@ -8238,7 +8245,7 @@
               "chapter_id": "14.5",
               "number": "14.5.2",
               "title": "同一预算下的外推比较",
-              "outcome": "统一训练轨迹与预测时域，分别汇报预测、总量与非负性证据。",
+              "outcome": "在共同数据和预测窗口上分别解释状态误差、总量差与负值数。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/02-同一预算下的外推比较.ipynb",
               "visualization": "web/datadriven/index.html",
               "questions": [
@@ -8278,14 +8285,14 @@
         "assessment": true,
         "title": "交换系统的降阶与动力学发现",
         "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/",
-        "goals": "在共同训练与留出协议下比较表示、辨识与结构证据。",
-        "prerequisites": "本篇14.1—14.5；第8篇的模型（model）验证。",
-        "focus": "分别计算训练重建、一步拟合与留出预测，解释三类误差的来源。",
+        "goals": "用三室交换比较训练一步残差和独立初值预测，并选择重建、字典、稀疏及结构问题所需的证据。",
+        "prerequisites": "14.1—14.5：快照、投影、配对传播、有限字典、阈值回归和交换收支。",
+        "focus": "先解释数据表的行列与系数顺序，再分清训练覆盖、新初值误差、总量相消和负值。",
         "knowledge": [
-          "截断与投影（projection）",
-          "有限字典与模态（mode）",
-          "稀疏候选方程",
-          "守恒、噪声与外推"
+          "低秩重建、初值投影与已知方程的Galerkin动态",
+          "配对状态和特征传播、采样相角与函数闭合",
+          "样本行、候选列、归一化系数与导数误差",
+          "同一评估窗口的状态、总量和非负性指标"
         ],
         "lessons": [
           {
@@ -8293,18 +8300,18 @@
             "chapter_id": "14.summary",
             "number": "14.综合",
             "title": "交换系统的降阶与动力学发现",
-            "outcome": "在同一独立条件下比较投影、提升、稀疏方程与结构约束。",
+            "outcome": "将重建、一步拟合、独立预测和结构条件分别连回交换问题。",
             "path": "notebooks/14-数据驱动动力学与模型降阶/99-篇末综合/01-交换系统的降阶与动力学发现.ipynb",
             "visualization": null,
             "overview": {
-              "goals": "在共同训练与留出协议下比较表示、辨识与结构证据。",
-              "prerequisites": "本篇14.1—14.5；第8篇的模型验证。",
-              "focus": "分别计算训练重建、一步拟合与留出预测，解释三类误差的来源。",
+              "goals": "用三室交换比较训练一步残差和独立初值预测，并选择重建、字典、稀疏及结构问题所需的证据。",
+              "prerequisites": "14.1—14.5：快照、投影、配对传播、有限字典、阈值回归和交换收支。",
+              "focus": "先解释数据表的行列与系数顺序，再分清训练覆盖、新初值误差、总量相消和负值。",
               "knowledge": [
-                "截断与投影",
-                "有限字典与模态",
-                "稀疏候选方程",
-                "守恒、噪声与外推"
+                "低秩重建、初值投影与已知方程的Galerkin动态",
+                "配对状态和特征传播、采样相角与函数闭合",
+                "样本行、候选列、归一化系数与导数误差",
+                "同一评估窗口的状态、总量和非负性指标"
               ]
             },
             "questions": [

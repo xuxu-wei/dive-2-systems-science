@@ -7,7 +7,7 @@
     "chapter": "14.1",
     "lesson_id": "P14-C01-S01",
     "title": "截断 SVD 的投影重建",
-    "statement": "snapshots 的每一列是同一时刻的 n 维状态（state）。取其前 rank 个左奇异方向，返回投影（projection）后的快照、n×n 投影矩阵（matrix）和 Frobenius 残差（residual）范数（norm）；比较结果按投影矩阵而不是单个奇异向量（vector）符号判定。",
+    "statement": "snapshots 按列保存训练快照：一列含同一时刻的 n 个变量，一行记录同一变量在各时刻的值。保留前 rank 个左奇异方向，依次返回重建快照、投影矩阵和整体重建残差。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -23,13 +23,13 @@
       {
         "name": "snapshots",
         "type": "list[list[float]]",
-        "description": "n×m 训练快照矩阵；每一行表示同一变量。",
+        "description": "n×m 数值表；第 i 行是第 i 个变量，第 j 列是第 j 个时刻的完整状态。",
         "unit": "U"
       },
       {
         "name": "rank",
         "type": "int",
-        "description": "截断秩（rank），允许0，且不大于 min(n,m)。",
+        "description": "保留的方向数，允许为 0，最多为 min(n,m)。",
         "unit": "个"
       }
     ],
@@ -37,25 +37,25 @@
       {
         "name": "reconstruction",
         "type": "list[list[float]]",
-        "description": "投影后的 n×m 快照矩阵。",
+        "description": "投影重建后的 n×m 数值表，行列含义与 snapshots 相同。",
         "unit": "U"
       },
       {
         "name": "projection",
         "type": "list[list[float]]",
-        "description": "投影到所选左奇异子空间的 n×n 矩阵。",
+        "description": "n×n 矩阵 P，使每列重建值为 P 乘原快照。",
         "unit": "1"
       },
       {
         "name": "residual",
         "type": "float",
-        "description": "原快照减重建快照的 Frobenius 范数。",
+        "description": "原快照减去重建快照后，全部元素平方和的平方根。",
         "unit": "U"
       }
     ],
-    "contract": "直接对题给快照做 SVD，不中心化；rank=0 时返回全零重建和投影。奇异向量改号不改变投影；本题不在重复奇异值（singular value）中截断。用 numpy.linalg.svd。",
+    "contract": "对 snapshots 原数值作 SVD，不减去均值。若 U_r 含前 rank 个左奇异向量，则 P=U_r U_rᵀ，重建为 P·snapshots。rank=0 时重建和 P 都为零。使用 numpy.linalg.svd；截断处没有重复奇异值，基向量整体改号不影响 P。",
     "constraints": [
-      "输入（input）矩阵有限；按照给定秩与顺序返回普通 Python 列表及浮点数。",
+      "给定数值有限；按题设规则与顺序返回普通 Python 列表和数值。",
       "n≥m≥1；快照矩阵列满秩。若 0<rank<m，则截断处 σ_rank>σ_(rank+1)，不在重复奇异值中截断。"
     ],
     "entrypoint": "solve",
@@ -64,7 +64,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例只保留第一坐标方向，重建 [[3,0],[0,0]]，残差为2；奇异向量整体改号不改变投影。",
+    "hint": "样例矩阵的两条方向沿坐标轴，奇异值为 3、2；保留较大的一项后，只有数值 2 被舍弃。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -114,7 +114,7 @@
           ],
           2.0
         ],
-        "explanation": "首例只保留第一坐标方向，重建 [[3,0],[0,0]]，残差为2；奇异向量整体改号不改变投影。"
+        "explanation": "保留第一坐标方向时，P=[[1,0],[0,0]]，重建为 [[3,0],[0,0]]，残差为 sqrt(2²)=2 U。"
       }
     ]
   },
@@ -126,7 +126,7 @@
     "chapter": "14.1",
     "lesson_id": "P14-C01-S01",
     "title": "高能量比例意味着什么",
-    "statement": "训练快照的首个奇异值（singular value）平方占所有奇异值平方和的99%。以原快照的Frobenius范数（norm）归一化，最优秩（rank）1重建具有哪项误差性质？",
+    "statement": "训练快照的最大奇异值平方占全部奇异值平方和的 99%。把秩1最优重建的 Frobenius 残差除以原快照的 Frobenius 范数，所得相对误差满足哪项关系？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -142,19 +142,19 @@
     "options": [
       {
         "id": "A",
-        "text": "训练快照整体的相对重建误差约为0.01。"
+        "text": "训练快照整体的相对重建误差约为 0.01。"
       },
       {
         "id": "B",
-        "text": "训练快照整体的相对重建误差平方约为0.01。"
+        "text": "训练快照整体的相对重建误差平方约为 0.01。"
       },
       {
         "id": "C",
-        "text": "训练快照中每个时刻的相对重建误差都不超过0.01。"
+        "text": "每个时刻的快照相对重建误差都不超过 0.01。"
       },
       {
         "id": "D",
-        "text": "新轨迹（trajectory）的相对预测误差平方不超过0.01。"
+        "text": "新轨迹的相对预测误差平方不超过 0.01。"
       }
     ],
     "constraints": []
@@ -167,7 +167,7 @@
     "chapter": "14.1",
     "lesson_id": "P14-C01-S01",
     "title": "基应从哪些轨迹取得",
-    "statement": "目标是检查用训练轨迹（trajectory）得到的低秩（rank）基能否预测新初值（initial condition）。如何划分数据？",
+    "statement": "要检验训练轨迹得到的低秩表示能否用于新初值预测，最终评估轨迹应怎样使用？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -183,19 +183,19 @@
     "options": [
       {
         "id": "A",
-        "text": "用训练与留出轨迹共同计算基，再只用训练轨迹拟合传播系数。"
+        "text": "用训练与最终评估轨迹共同求基，再只用训练轨迹拟合传播系数。"
       },
       {
         "id": "B",
-        "text": "用训练轨迹计算基，但用训练与留出轨迹共同计算中心。"
+        "text": "只用训练轨迹求基，但用训练与最终评估轨迹共同求中心。"
       },
       {
         "id": "C",
-        "text": "用训练轨迹计算中心和基，留出轨迹只用于评价新初值的预测。"
+        "text": "只用训练轨迹求中心和基，最终评估轨迹用于检查新初值预测。"
       },
       {
         "id": "D",
-        "text": "用训练轨迹计算基，再按留出轨迹的误差选择秩，并将同一误差作为最终测试结果。"
+        "text": "用最终评估轨迹选择截断秩，再把同一批轨迹的误差作为最终测试结果。"
       }
     ],
     "constraints": []
@@ -208,7 +208,7 @@
     "chapter": "14.1",
     "lesson_id": "P14-C01-S01",
     "title": "奇异向量改号后的判定",
-    "statement": "两个奇异值分解（singular value decomposition，SVD）程序得到归一化的首个左奇异向量（vector）u与−u。比较它们分别形成的投影（projection）矩阵（matrix），哪项成立？",
+    "statement": "两个 SVD 程序分别给出单位长度的首个左奇异向量 u 和 −u。各自用该方向构造投影矩阵，两个投影之间是什么关系？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -228,15 +228,15 @@
       },
       {
         "id": "B",
-        "text": "两个投影矩阵相同。"
+        "text": "两个投影矩阵完全相同。"
       },
       {
         "id": "C",
-        "text": "两个投影矩阵的乘积为零。"
+        "text": "两个投影矩阵相乘得到零矩阵。"
       },
       {
         "id": "D",
-        "text": "两个投影矩阵相差单位矩阵（identity matrix）。"
+        "text": "两个投影矩阵的差是单位矩阵。"
       }
     ],
     "constraints": []
@@ -249,7 +249,7 @@
     "chapter": "14.1",
     "lesson_id": "P14-C01-S02",
     "title": "已知方程的降阶显式更新",
-    "statement": "完整模型（model）满足 dx/dt=−Lx。给定正交（orthogonality）列基 basis、中心 mean 和初始状态（state） initial，把初值（initial condition）先投影（projection），再对降阶坐标做 steps 次显式 Euler 更新；返回含投影初态的每步 n 维重建状态。",
+    "statement": "完整模型为 dx/dt=−Lx。basis 的各列是给定的单位正交方向，mean 是固定中心。先把 initial 投影到这些方向，再更新低维坐标 steps 次，返回起点及各步重建出的 n 个状态值。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -265,37 +265,37 @@
       {
         "name": "laplacian",
         "type": "list[list[float]]",
-        "description": "已知 n×n 对称交换拉普拉斯。",
+        "description": "n×n 对称交换拉普拉斯 L，决定完整方程中的变化率。",
         "unit": "1/T"
       },
       {
         "name": "basis",
         "type": "list[list[float]]",
-        "description": "n×r 正交列基，r 至少1。",
+        "description": "n×r 数值表；一列是一条方向，各列单位长度且两两正交，r≥1。",
         "unit": "1"
       },
       {
         "name": "mean",
         "type": "list[float]",
-        "description": "训练得到的 n 维中心；本题直接给出。",
+        "description": "含 n 项的固定训练中心。",
         "unit": "U"
       },
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "新条件下的 n 维初始总量。",
+        "description": "含 n 项的新初始总量，顺序与 L 的行一致。",
         "unit": "U"
       },
       {
         "name": "dt",
         "type": "float",
-        "description": "正时间步。",
+        "description": "每次 Euler 更新的正时间间隔。",
         "unit": "T"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "非负更新步数。",
+        "description": "从投影初态开始的更新次数，允许为 0。",
         "unit": "步"
       }
     ],
@@ -303,13 +303,13 @@
       {
         "name": "history",
         "type": "list[list[float]]",
-        "description": "投影初态及之后每一步的重建状态，共 steps+1 行。",
+        "description": "按时间排列的 steps+1 个状态列表；第一项已经投影，每个列表含 n 个重建值。",
         "unit": "U"
       }
     ],
-    "contract": "a0=basisᵀ(initial−mean)；每步只读旧 a，用 a_next=a−dt·basisᵀ L(mean+basis·a) 更新；返回 mean+basis·a。题给 basis 已正交，不重拟合。",
+    "contract": "令 U=basis、μ=mean，起始坐标 a=Uᵀ(initial−μ)。每步只读取旧 a，计算 a_next=a−dt·UᵀL(μ+Ua)，随后重建 μ+Ua_next。起点也用 μ+Ua 重建；不重新拟合给定中心和方向。",
     "constraints": [
-      "输入（input）矩阵（matrix）有限；按照给定秩（rank）与顺序返回普通 Python 列表及浮点数。"
+      "给定数值有限；按题设规则与顺序返回普通 Python 列表和数值。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -317,7 +317,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例初值落在给定基上；一步后第一室为1.8 U、第二室为0，第二步为1.62 U 与0。降阶结果不自动保留完整模型的守恒。",
+    "hint": "样例只保留第一坐标方向，重建的第二室始终为 0；第一室每步乘 1−0.1=0.9。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -375,7 +375,7 @@
             0.0
           ]
         ],
-        "explanation": "首例初值落在给定基上；一步后第一室为1.8 U、第二室为0，第二步为1.62 U 与0。降阶结果不自动保留完整模型的守恒。"
+        "explanation": "起点重建为 [2,0]，两次更新依次为 [1.8,0]、[1.62,0] U。这里的基没有保留第二室交换，所以重建总量也随之改变。"
       }
     ]
   },
@@ -387,7 +387,7 @@
     "chapter": "14.1",
     "lesson_id": "P14-C01-S02",
     "title": "预测误差从何时开始",
-    "statement": "中心化训练轨迹（trajectory）的秩（rank）1重建残差（residual）接近0。新初值（initial condition）减去训练中心后，仍有非零分量与训练基正交（orthogonality）。降阶初始化时会怎样？",
+    "statement": "训练快照经中心化后可被秩1基几乎无损重建。新初值减去训练中心后，还有非零分量与这条基方向正交。将新初值初始化到降阶模型时，这个分量怎样处理？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -403,19 +403,19 @@
     "options": [
       {
         "id": "A",
-        "text": "把新初值投影（projection）到训练基后，初始重建值中不再包含该正交分量。"
+        "text": "初始化投影就舍弃这个正交分量。"
       },
       {
         "id": "B",
-        "text": "初始重建值仍保留该正交分量，直到第一次Euler更新才将它去掉。"
+        "text": "初始化仍保留这个分量，第一次 Euler 更新时才舍弃。"
       },
       {
         "id": "C",
-        "text": "给投影结果加回训练中心时，该正交分量也会重新出现在初始重建值中。"
+        "text": "投影后加回训练中心，就会把这个分量补回。"
       },
       {
         "id": "D",
-        "text": "将积分时间步减小后，初始重建值中会重新出现该正交分量。"
+        "text": "减小时间步长，就会把这个分量加入初始化结果。"
       }
     ],
     "constraints": []
@@ -428,7 +428,7 @@
     "chapter": "14.1",
     "lesson_id": "P14-C01-S02",
     "title": "投影后是否仍守恒",
-    "statement": "完整无输入（input）交换方程守恒。采用低秩（rank）投影（projection）后，要判断降阶模型（model）是否守恒且非负，应怎样检查？",
+    "statement": "完整的无输入交换方程保持物质总量。把它投影到较少方向后，要判断重建状态是否仍守恒、是否会出现负值，应该检查什么？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -444,19 +444,19 @@
     "options": [
       {
         "id": "A",
-        "text": "计算训练快照被舍弃的能量比例，用这个比例判断总量是否守恒和各室是否非负。"
+        "text": "用训练快照舍弃的能量比例判断守恒与非负性。"
       },
       {
         "id": "B",
-        "text": "检查训练基是否正交（orthogonality），用基的正交性判断总量是否守恒和各室是否非负。"
+        "text": "用基向量之间的正交关系判断守恒与非负性。"
       },
       {
         "id": "C",
-        "text": "检查重建后各室总量之和怎样随时间变化，并检查非负初态是否会产生负的重建分量。"
+        "text": "检查重建总量随时间的变化，以及非负初态是否产生负的重建分量。"
       },
       {
         "id": "D",
-        "text": "检查训练均值的总量是否正确，用这一均值判断所有新轨迹（trajectory）是否守恒和非负。"
+        "text": "用训练中心的总量判断所有新初值的守恒与非负性。"
       }
     ],
     "constraints": []
@@ -469,7 +469,7 @@
     "chapter": "14.1",
     "lesson_id": "P14-C01-S02",
     "title": "区分时间误差与降阶误差",
-    "statement": "同一新初值（initial condition）下，完整模型（model）的 Euler 轨迹（trajectory）与解析解（analytical solution）接近，降阶 Euler 轨迹却从 t=0 起偏离完整模型。优先检查什么？",
+    "statement": "对同一新初值，完整模型的 Euler 轨迹接近解析解，而降阶结果在 t=0 就与完整状态不同。要定位这项起始误差，先做哪项比较？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -485,19 +485,19 @@
     "options": [
       {
         "id": "A",
-        "text": "保持时间步不变，计算新初值与投影（projection）重建初值之间的差。"
+        "text": "比较新初值与它在训练基上的投影重建值。"
       },
       {
         "id": "B",
-        "text": "保持训练基不变，将绘图点之间的时间间隔减半后再比较初始偏差。"
+        "text": "加密图中的绘制点，再比较图上初始偏差。"
       },
       {
         "id": "C",
-        "text": "保持初值投影不变，改变Euler时间步后再比较t=0时的偏差。"
+        "text": "改变 Euler 时间步，再比较 t=0 的重建状态。"
       },
       {
         "id": "D",
-        "text": "保持新初值不变，计算训练快照中保留下来的奇异值（singular value）平方占比。"
+        "text": "计算训练快照保留的奇异值平方占比。"
       }
     ],
     "constraints": []
@@ -510,7 +510,7 @@
     "chapter": "14.2",
     "lesson_id": "P14-C02-S01",
     "title": "从配对快照拟合传播矩阵",
-    "statement": "past 和 future 的第 j 列是同一轨迹（trajectory）相邻时刻。按题定截断伪逆（pseudoinverse）返回 n×n 的一步传播矩阵（matrix）；不必返回奇异向量（vector）。",
+    "statement": "past 与 future 按列配对：第 j 列分别是同一条轨迹当前时刻和下一采样时刻的 n 维状态。按给定截断伪逆拟合 future≈A·past，返回 n×n 的 A。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -526,19 +526,19 @@
       {
         "name": "past",
         "type": "list[list[float]]",
-        "description": "n×m 旧状态（state）快照，按列配对。",
+        "description": "n×m 当前快照表，一行是一变量，一列是一时刻。",
         "unit": "U"
       },
       {
         "name": "future",
         "type": "list[list[float]]",
-        "description": "n×m 下一步快照。",
+        "description": "n×m 下一步快照表，与 past 的同一列相对应。",
         "unit": "U"
       },
       {
         "name": "rank",
         "type": "int",
-        "description": "保留的左奇异方向数，允许0。",
+        "description": "保留的左奇异方向数，允许为 0。",
         "unit": "个"
       }
     ],
@@ -546,11 +546,11 @@
       {
         "name": "operator",
         "type": "list[list[float]]",
-        "description": "使 future≈operator·past 的 n×n 算子。",
+        "description": "n×n 传播矩阵 A，左乘当前状态列向量以预测下一步。",
         "unit": "1"
       }
     ],
-    "contract": "对 past 作 SVD，取前 rank 个奇异方向；逆奇异值（singular value）只用于大于首奇异值的 10⁻¹² 倍的项，其余逆置零。rank=0 时返回零矩阵。若在重复奇异值处截断，最优方向可不唯一；本题非端点截断只给严格间隙。",
+    "contract": "对 X=past 作 SVD：X=UΣVᵀ。取前 rank 个方向，奇异值严格大于最大奇异值的 10⁻¹² 倍时取倒数，其余倒数置零。返回 A=YV_rΣ_r⁺U_rᵀ，其中 Y=future。rank=0 返回零矩阵；非端点截断处有严格奇异值间隙。",
     "constraints": [
       "n≥1，m≥1，0≤rank≤min(n,m)；非端点截断处有严格奇异值间隙。"
     ],
@@ -560,7 +560,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例 past 是单位矩阵，所以返回的算子就是 future；秩不足时不能从数据确定未激发方向。",
+    "hint": "样例的两列当前快照分别是 [1,0]、[0,1]，恰好构成单位矩阵；拟合矩阵的两列因此就是对应的 future 列。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -607,7 +607,7 @@
             0.8
           ]
         ],
-        "explanation": "首例 past 是单位矩阵（identity matrix），所以返回的算子就是 future；秩（rank）不足时不能从数据确定未激发方向。"
+        "explanation": "past 为单位矩阵，A·past=A，所以 A=future=[[0.9,0.1],[0,0.8]]。"
       }
     ]
   },
@@ -619,7 +619,7 @@
     "chapter": "14.2",
     "lesson_id": "P14-C02-S01",
     "title": "一步拟合后的评估",
-    "statement": "模型（model）在训练快照配对上的一步残差（residual）很小。要检验它对新初值（initial condition）的自主多步预测，应怎样评估？",
+    "statement": "模型在训练快照上预测下一步的残差很小。要评价从新初值出发、连续使用自身预测的多步结果，应该怎样做？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -635,19 +635,19 @@
     "options": [
       {
         "id": "A",
-        "text": "反复拟合同一批训练配对，记录其中最低的训练残差。"
+        "text": "反复拟合同一组训练配对，报告其中最低的训练残差。"
       },
       {
         "id": "B",
-        "text": "同时打乱X、Y中对应列的顺序，再用原模型计算这些配对的平均残差。"
+        "text": "同时重排 X、Y 的配对列，再计算原模型的训练残差。"
       },
       {
         "id": "C",
-        "text": "每一步都输入（input）真实状态（state），把连续的一步预测（one-step-ahead prediction）误差相加作为自主多步预测误差。"
+        "text": "每一步都输入真实状态，再把这些一步预测误差作为自主多步误差。"
       },
       {
         "id": "D",
-        "text": "从未用于训练的新初值（initial condition）出发，每一步使用上一步预测作为输入，连续预测多个时刻。"
+        "text": "从未参与训练的新初值出发，每步以此前的预测继续向前更新。"
       }
     ],
     "constraints": []
@@ -660,7 +660,7 @@
     "chapter": "14.2",
     "lesson_id": "P14-C02-S01",
     "title": "未激发方向的传播",
-    "statement": "训练快照只沿一个方向变化，却要预测二维新初值（initial condition）。哪项判断正确？",
+    "statement": "二维训练快照只覆盖一条方向。仅用这些快照拟合，再预测含另一方向分量的新初值，可以怎样理解得到的传播矩阵？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -676,19 +676,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两个传播矩阵（matrix）可以对训练方向给出相同结果，而对另一个方向给出不同结果。"
+        "text": "不同矩阵可在训练方向上作用相同，却在另一方向上作用不同。"
       },
       {
         "id": "B",
-        "text": "两个传播矩阵只要具有相同训练误差，它们的全部元素就相同。"
+        "text": "只要训练误差相同，两个传播矩阵的全部元素就相同。"
       },
       {
         "id": "C",
-        "text": "将指定的截断秩（rank）从1改为2后，就能从原快照求出另一个方向的传播。"
+        "text": "把指定截断秩从 1 改为 2，就能从原数据确定另一方向的传播。"
       },
       {
         "id": "D",
-        "text": "沿原来的方向增加采样（sampling）点后，就能从这些点确定另一个方向的传播。"
+        "text": "沿原方向增加采样点，就能确定另一方向的传播。"
       }
     ],
     "constraints": []
@@ -701,7 +701,7 @@
     "chapter": "14.2",
     "lesson_id": "P14-C02-S01",
     "title": "配对列的时间含义",
-    "statement": "构造 X 与 Y 时，下列哪一项保持了同一采样（sampling）间隔的一步配对？",
+    "statement": "轨迹按等间隔记录为 x_0、x_1、x_2……，其中 x_j 含该时刻的全部状态变量。拟合向前一步的传播时，X 和 Y 的对应列应怎样取？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -717,19 +717,19 @@
     "options": [
       {
         "id": "A",
-        "text": "将x_j放入X的第j列，将x_(j+1)放入Y的第j列。"
+        "text": "X 的第 j 列取 x_j，Y 的对应列取 x_(j+1)。"
       },
       {
         "id": "B",
-        "text": "将x_j放入X的第j列，将x_(j−1)放入Y的第j列。"
+        "text": "X 的第 j 列取 x_j，Y 的对应列取 x_(j−1)。"
       },
       {
         "id": "C",
-        "text": "将x_j放入X的第j列，将x_(j+2)放入Y的第j列。"
+        "text": "X 的第 j 列取 x_j，Y 的对应列取 x_(j+2)。"
       },
       {
         "id": "D",
-        "text": "将x_j同时放入X和Y的第j列。"
+        "text": "X 和 Y 的对应列都取 x_j。"
       }
     ],
     "constraints": []
@@ -742,7 +742,7 @@
     "chapter": "14.2",
     "lesson_id": "P14-C02-S02",
     "title": "从离散特征值读主值速率",
-    "statement": "给定非零复特征值（eigenvalue）的实部、虚部和采样（sampling）间隔，返回连续时间主值衰减率与主值角频率。",
+    "statement": "非零离散特征值 λ 的实部、虚部和采样间隔 dt 已给出。计算 log(|λ|)/dt 及 atan2(imag,real)/dt，依次返回有符号幅度变化率和主值角频率。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -758,19 +758,19 @@
       {
         "name": "real",
         "type": "float",
-        "description": "离散特征值的实部。",
+        "description": "λ 的实部，描述每步传播的无量纲数值。",
         "unit": "1"
       },
       {
         "name": "imag",
         "type": "float",
-        "description": "离散特征值的虚部。",
+        "description": "λ 的虚部，与 real 一同确定模和相角。",
         "unit": "1"
       },
       {
         "name": "dt",
         "type": "float",
-        "description": "正采样间隔。",
+        "description": "相邻采样时刻的正时间间隔。",
         "unit": "T"
       }
     ],
@@ -778,13 +778,13 @@
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "依次为 log(|λ|)/dt 和 atan2(imag,real)/dt。",
+        "description": "两项依次为 log(|λ|)/dt、atan2(imag,real)/dt；第一项为负时表示幅度衰减。",
         "unit": "1/T"
       }
     ],
-    "contract": "特征值非零，角度采用 atan2 的主值区间；不得以主值直接断言真实频率无混叠（aliasing）。",
+    "contract": "λ 非零，模为 sqrt(real²+imag²)，相角使用 atan2(imag,real) 返回的主值。用同一个 dt 分别换算两项速率；相角还可相差整圈，所以这项主值没有唯一确定真实连续角频率。",
     "constraints": [
-      "dt>0，real²+imag²>0；全部输入（input）有限。"
+      "dt>0，real²+imag²>0；全部输入有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -792,7 +792,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例幅度不变而相角为 π/2，所以衰减率为0，主值角频率为 π/T；整圈混叠仍可能存在。",
+    "hint": "样例 λ=i 的模为 1、主值相角为 π/2；两者分别代入公式，再除以 dt=0.5 T。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -815,7 +815,7 @@
           0.0,
           3.141592653589793
         ],
-        "explanation": "首例幅度不变而相角为 π/2，所以衰减率为0，主值角频率为 π/T；整圈混叠仍可能存在。"
+        "explanation": "log(1)/0.5=0，(π/2)/0.5=π/T，得到 [0,π]。"
       }
     ]
   },
@@ -827,7 +827,7 @@
     "chapter": "14.2",
     "lesson_id": "P14-C02-S02",
     "title": "同一个离散旋转",
-    "statement": "离散特征值（eigenvalue）的相角为0.5 rad，采样（sampling）间隔Δt=2 T。哪些连续角频率组成可产生同一离散相角的完整集合？",
+    "statement": "每次采样得到的离散相角为 0.5 rad，采样间隔为 2 T。以下哪组连续角频率完整列出了相隔整圈、因而产生同一离散相角的可能值？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -843,19 +843,19 @@
     "options": [
       {
         "id": "A",
-        "text": "所有这样的角频率可写为ω=(0.25+πk) rad/T，其中k为任意整数。"
+        "text": "ω=(0.25+πk) rad/T，k 取任意整数。"
       },
       {
         "id": "B",
-        "text": "所有这样的角频率可写为ω=(0.25+πk/2) rad/T，其中k为任意整数。"
+        "text": "ω=(0.25+πk/2) rad/T，k 取任意整数。"
       },
       {
         "id": "C",
-        "text": "所有这样的角频率可写为ω=(0.5+πk) rad/T，其中k为任意整数。"
+        "text": "ω=(0.5+πk) rad/T，k 取任意整数。"
       },
       {
         "id": "D",
-        "text": "所有这样的角频率可写为ω=(0.25+2πk) rad/T，其中k为任意整数。"
+        "text": "ω=(0.25+2πk) rad/T，k 取任意整数。"
       }
     ],
     "constraints": []
@@ -868,7 +868,7 @@
     "chapter": "14.2",
     "lesson_id": "P14-C02-S02",
     "title": "模态幅度的每步变化",
-    "statement": "某线性模态（mode）的离散特征值（eigenvalue）模为0.8。只考虑该模态，其幅度经过两步后如何变化？",
+    "statement": "一个线性模态每次更新都乘同一离散特征值，该特征值的模为 0.8。经过两次更新，这个模态的幅度变为原来的多少？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -884,19 +884,19 @@
     "options": [
       {
         "id": "A",
-        "text": "经过两步，该模态的幅度变为原来的0.8倍。"
+        "text": "两步后幅度为原来的 0.8 倍。"
       },
       {
         "id": "B",
-        "text": "经过两步，该模态的幅度变为原来的0.64倍。"
+        "text": "两步后幅度为原来的 0.64 倍。"
       },
       {
         "id": "C",
-        "text": "经过两步，该模态的幅度变为原来的0.6倍。"
+        "text": "两步后幅度为原来的 0.6 倍。"
       },
       {
         "id": "D",
-        "text": "经过两步，该模态的幅度变为原来的1.6倍。"
+        "text": "两步后幅度为原来的 1.6 倍。"
       }
     ],
     "constraints": []
@@ -909,7 +909,7 @@
     "chapter": "14.2",
     "lesson_id": "P14-C02-S02",
     "title": "局部拟合的边界",
-    "statement": "小幅振荡训练得到的动态模态分解（dynamic mode decomposition，DMD）在大幅留出初值（initial condition）上偏离。怎样进一步检验拟合范围的影响？",
+    "statement": "用小振幅轨迹拟合的 DMD，在较大振幅的新初值上出现预测偏差。怎样比较才能看出训练振幅范围对预测的影响？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -925,19 +925,19 @@
     "options": [
       {
         "id": "A",
-        "text": "将大幅初态的预测误差缩放到小幅训练误差的量级，再将两者合并报告。"
+        "text": "把大振幅误差事后缩放到小振幅误差的量级，再合并报告。"
       },
       {
         "id": "B",
-        "text": "将大幅初态的轨迹（trajectory）加入拟合，再用这条轨迹报告原先的独立测试结果。"
+        "text": "把大振幅测试轨迹加入拟合，再把该轨迹的误差作为原独立测试结果。"
       },
       {
         "id": "C",
-        "text": "根据小幅训练轨迹的一步误差评价模型（model），将大幅初态的预测偏差排除在比较之外。"
+        "text": "只报告小振幅训练的一步误差，排除大振幅的预测结果。"
       },
       {
         "id": "D",
-        "text": "在多个未参与拟合的初始振幅（amplitude）下进行自主多步预测，比较各组的预测误差。"
+        "text": "对多个未参与拟合的初始振幅分别连续预测，比较各组误差。"
       }
     ],
     "constraints": []
@@ -950,7 +950,7 @@
     "chapter": "14.3",
     "lesson_id": "P14-C03-S01",
     "title": "从观测特征拟合传播",
-    "statement": "feature_past 与 feature_next 以列对应。返回左乘特征列的传播矩阵（matrix） K；ridge=0 时使用题定伪逆（pseudoinverse），ridge>0 时用岭式矩阵解。",
+    "statement": "每列给出一个状态在固定字典中的全部特征，feature_past 与 feature_next 的同一列分别对应当前和下一步。拟合左乘特征列的矩阵 K，返回这个 d×d 传播矩阵。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -966,19 +966,19 @@
       {
         "name": "feature_past",
         "type": "list[list[float]]",
-        "description": "d×m 旧特征列。",
+        "description": "d×m 特征表；一行是一项字典函数，一列是一个当前状态的函数值。",
         "unit": "按特征声明"
       },
       {
         "name": "feature_next",
         "type": "list[list[float]]",
-        "description": "d×m 新特征列。",
+        "description": "d×m 下一步特征表，行顺序相同，每列与 feature_past 配对。",
         "unit": "按特征声明"
       },
       {
         "name": "ridge",
         "type": "float",
-        "description": "非负岭参数（parameter）。",
+        "description": "非负岭参数，按给定特征数值尺度使用。",
         "unit": "按特征尺度"
       }
     ],
@@ -986,11 +986,11 @@
       {
         "name": "operator",
         "type": "list[list[float]]",
-        "description": "d×d 特征传播矩阵。",
+        "description": "d×d 的 K，使下一步特征近似为 K 乘当前特征。",
         "unit": "按特征尺度"
       }
     ],
-    "contract": "ridge=0：K=Y·pinv(X)，伪逆相对阈值10⁻¹²；ridge>0：K=YXᵀ(XXᵀ+ridge·I)⁻¹。输入（input）特征已按题意构造，不在函数内重复提升。",
+    "contract": "记 X=feature_past、Y=feature_next。ridge=0 时返回 K=Y·pinv(X)，伪逆相对阈值为 10⁻¹²；ridge>0 时返回 K=YXᵀ(XXᵀ+ridge·I)⁻¹。给定数组已是特征值，使用这些数组拟合。",
     "constraints": [
       "特征矩阵同形且 d,m≥1；ridge≥0；全部数值有限。"
     ],
@@ -1000,7 +1000,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例旧特征是单位矩阵，因而 K 等于新特征矩阵；正则化会收缩系数。",
+    "hint": "样例 X 为单位矩阵，无正则时 K=Y；同一样例若 ridge=1，XXᵀ+I=2I，矩阵系数均减半。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1047,7 +1047,7 @@
             0.7
           ]
         ],
-        "explanation": "首例旧特征是单位矩阵（identity matrix），因而 K 等于新特征矩阵；正则化（regularization）会收缩系数。"
+        "explanation": "ridge=0 且 X=I，返回 [[0.8,0],[0.4,0.7]]，恰好把当前两个坐标列映射到给定下一步列。"
       }
     ]
   },
@@ -1059,7 +1059,7 @@
     "chapter": "14.3",
     "lesson_id": "P14-C03-S01",
     "title": "算子作用在哪里",
-    "statement": "状态（state）更新为x_next=F(x)，标量观测（observation）函数为g。Koopman算子K作用于g后，在x处怎样取值？",
+    "statement": "状态更新规则是 x_next=F(x)，g 是对状态取一个标量的观测函数。Koopman 算子作用于 g 后，(Kg)(x) 表示下一步的哪个数值？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1075,19 +1075,19 @@
     "options": [
       {
         "id": "A",
-        "text": "先计算观测值g(x)，再代入F，得到(Kg)(x)=F(g(x))。"
+        "text": "先求 g(x)，再计算 F(g(x))。"
       },
       {
         "id": "B",
-        "text": "先计算下一步状态F(x)，再代入g，得到(Kg)(x)=g(F(x))。"
+        "text": "先求下一步状态 F(x)，再计算 g(F(x))。"
       },
       {
         "id": "C",
-        "text": "将当前观测值与下一步状态相加，得到(Kg)(x)=g(x)+F(x)。"
+        "text": "把当前观测与下一步状态相加，得到 g(x)+F(x)。"
       },
       {
         "id": "D",
-        "text": "将当前观测值与下一步状态相乘，得到(Kg)(x)=g(x)F(x)。"
+        "text": "把当前观测与下一步状态相乘，得到 g(x)F(x)。"
       }
     ],
     "constraints": []
@@ -1100,7 +1100,7 @@
     "chapter": "14.3",
     "lesson_id": "P14-C03-S01",
     "title": "三角映射为何闭合",
-    "statement": "x⁺=ax，y⁺=by+cx²。字典 [x,y,x²] 的第三项下一步为何仍在字典中？",
+    "statement": "状态按 x⁺=ax、y⁺=by+cx² 更新，字典依次包含 x、y、x²。下一步的第三项能怎样写成现有字典项的组合？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1116,19 +1116,19 @@
     "options": [
       {
         "id": "A",
-        "text": "第三项下一步等于a²x，可以由字典的第一项表示。"
+        "text": "第三项更新为 a²x，即第一项乘 a²。"
       },
       {
         "id": "B",
-        "text": "第三项下一步等于ax²，可以由字典的第三项表示。"
+        "text": "第三项更新为 ax²，即第三项乘 a。"
       },
       {
         "id": "C",
-        "text": "第三项下一步等于a²x²，可以由字典的第三项表示。"
+        "text": "第三项更新为 a²x²，即第三项乘 a²。"
       },
       {
         "id": "D",
-        "text": "第三项下一步等于2ax²，可以由字典的第三项表示。"
+        "text": "第三项更新为 2ax²，即第三项乘 2a。"
       }
     ],
     "constraints": []
@@ -1141,7 +1141,7 @@
     "chapter": "14.3",
     "lesson_id": "P14-C03-S01",
     "title": "状态读出的作用",
-    "statement": "提升变量z=[x,y,x²]，分量从z1开始编号。如何从z精确恢复本例原状态（state）(x,y)？",
+    "statement": "三个提升分量依次是 z1=x、z2=y、z3=x²。要还原原来的两个状态分量 (x,y)，应该输出哪一对？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1157,19 +1157,19 @@
     "options": [
       {
         "id": "A",
-        "text": "将(z1+z3,z2)作为恢复出的(x,y)。"
+        "text": "输出 (z1+z3,z2)。"
       },
       {
         "id": "B",
-        "text": "将(z1,z3)作为恢复出的(x,y)。"
+        "text": "输出 (z1,z3)。"
       },
       {
         "id": "C",
-        "text": "将(z2,z3)作为恢复出的(x,y)。"
+        "text": "输出 (z2,z3)。"
       },
       {
         "id": "D",
-        "text": "将(z1,z2)作为恢复出的(x,y)。"
+        "text": "输出 (z1,z2)。"
       }
     ],
     "constraints": []
@@ -1182,7 +1182,7 @@
     "chapter": "14.3",
     "lesson_id": "P14-C03-S02",
     "title": "在固定字典中滚动预测",
-    "statement": "给定已拟合的特征传播矩阵（matrix）、状态（state）读出和初始特征，返回含初态的每步状态预测。",
+    "statement": "给定特征传播矩阵 operator、状态读出矩阵 readout 和初始特征 initial_feature。每步在特征空间更新，再读出原状态，返回第0步至第 steps 步的状态预测。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1198,25 +1198,25 @@
       {
         "name": "operator",
         "type": "list[list[float]]",
-        "description": "d×d 左乘特征矩阵。",
+        "description": "d×d 的 K，左乘长度为 d 的特征向量。",
         "unit": "按特征声明"
       },
       {
         "name": "readout",
         "type": "list[list[float]]",
-        "description": "n×d 状态读出矩阵。",
+        "description": "n×d 的 C，把特征 z 转成长度为 n 的状态 Cz。",
         "unit": "按状态/特征"
       },
       {
         "name": "initial_feature",
         "type": "list[float]",
-        "description": "d 维初始特征。",
+        "description": "按字典顺序给出的 d 项初始特征值。",
         "unit": "按特征声明"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "非负预测步数。",
+        "description": "向前传播的次数，允许为 0。",
         "unit": "步"
       }
     ],
@@ -1224,13 +1224,13 @@
       {
         "name": "states",
         "type": "list[list[float]]",
-        "description": "依次为第0步到第 steps 步的 n 维状态。",
+        "description": "按步排列的 steps+1 个状态列表，每个列表含 n 项；首项为 readout·initial_feature。",
         "unit": "U"
       }
     ],
-    "contract": "每步先以 operator 左乘旧特征，再以 readout 取状态；本题不在滚动过程中从预测状态重新生成非线性字典。",
+    "contract": "从 z=initial_feature 开始，先保存 Cz；每步计算 z_next=operator·z，再保存 C z_next。后续使用上一预测特征继续更新，不从读出的状态重新计算非线性字典。",
     "constraints": [
-      "矩阵维度相容；steps≥0；全部输入（input）有限。"
+      "矩阵维度相容；steps≥0；全部输入有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1238,7 +1238,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例第0步读数为3，第一步为2.1，第二步为1.53；始终使用同一个特征传播。",
+    "hint": "样例读出是两项相加。特征从 [2,1] 更新为 [1.6,0.5]，下一步为 [1.28,0.25]。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1286,7 +1286,7 @@
             1.5300000000000002
           ]
         ],
-        "explanation": "首例第0步读数为3，第一步为2.1，第二步为1.53；始终使用同一个特征传播。"
+        "explanation": "读出三项时间结果分别为 2+1=3、1.6+0.5=2.1、1.28+0.25=1.53 U。"
       }
     ]
   },
@@ -1298,7 +1298,7 @@
     "chapter": "14.3",
     "lesson_id": "P14-C03-S02",
     "title": "增加字典后的证据",
-    "statement": "增加字典项后训练残差（residual）下降。以下哪项结论尚缺少证据？",
+    "statement": "在同一批训练配对上增加字典项后，训练残差下降了。以下哪项关于新字典的判断，还需要另外的预测证据？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1314,19 +1314,19 @@
     "options": [
       {
         "id": "A",
-        "text": "训练误差下降后，仍需检查新增列是否使拟合矩阵（matrix）接近奇异。"
+        "text": "还需检查字典列是否接近线性依赖，以了解回归的稳定性。"
       },
       {
         "id": "B",
-        "text": "新增字典项进入了拟合所用的候选函数集合。"
+        "text": "新增函数已经进入拟合所用的候选表示。"
       },
       {
         "id": "C",
-        "text": "在独立测试轨迹（trajectory）上，预测误差也会随训练残差一起下降。"
+        "text": "独立测试轨迹的预测误差也会随训练残差一同下降。"
       },
       {
         "id": "D",
-        "text": "将预测特征还原为原状态（state）后，还需计算这些状态的误差。"
+        "text": "还需将预测特征读出为原状态，计算状态误差。"
       }
     ],
     "constraints": []
@@ -1339,7 +1339,7 @@
     "chapter": "14.3",
     "lesson_id": "P14-C03-S02",
     "title": "正则参数的选择",
-    "statement": "最小二乘拟合原先以平方残差（residual）为目标。引入正的岭参数（parameter）lambda后，目标函数如何改变？",
+    "statement": "原最小二乘目标只计算平方残差。对拟合系数加入正的岭参数 lambda 时，新的最小化目标是哪一项？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1355,19 +1355,19 @@
     "options": [
       {
         "id": "A",
-        "text": "新目标在平方残差上减去lambda乘各系数平方和。"
+        "text": "平方残差减去 lambda 乘各系数平方和。"
       },
       {
         "id": "B",
-        "text": "新目标在平方残差上加上lambda乘各系数平方和。"
+        "text": "平方残差加上 lambda 乘各系数平方和。"
       },
       {
         "id": "C",
-        "text": "新目标在平方残差上加上lambda乘各系数的有符号总和。"
+        "text": "平方残差加上 lambda 乘各系数的有符号和。"
       },
       {
         "id": "D",
-        "text": "新目标将平方残差除以非零系数的个数。"
+        "text": "平方残差除以非零系数的个数。"
       }
     ],
     "constraints": []
@@ -1380,7 +1380,7 @@
     "chapter": "14.3",
     "lesson_id": "P14-C03-S02",
     "title": "线性滚动后的特征",
-    "statement": "使用字典z=[x,y,x²]，但有限线性拟合没有保证闭合。滚动一步得到z后，怎样检查它是否仍对应某个真实状态（state）的字典值？",
+    "statement": "字典分量依次为 z1=x、z2=y、z3=x²。用尚未证明闭合的线性拟合传播一步后，要检查预测特征仍符合这个字典，应该检验哪项关系？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -1396,19 +1396,19 @@
     "options": [
       {
         "id": "A",
-        "text": "检查第三个预测分量z3是否等于第一个预测分量z1的平方。"
+        "text": "检查预测的 z3 是否等于预测的 z1 平方。"
       },
       {
         "id": "B",
-        "text": "检查三个预测分量之和是否为零，以此判断它们是否来自该字典。"
+        "text": "检查三个预测分量之和是否为零。"
       },
       {
         "id": "C",
-        "text": "检查预测向量（vector）z的范数（norm）是否减小，以此判断它是否来自该字典。"
+        "text": "检查预测特征向量的范数是否减小。"
       },
       {
         "id": "D",
-        "text": "检查传播矩阵（matrix）的秩（rank）是否为3，以此判断预测向量是否来自该字典。"
+        "text": "检查传播矩阵的秩是否为 3。"
       }
     ],
     "constraints": []
@@ -1421,7 +1421,7 @@
     "chapter": "14.4",
     "lesson_id": "P14-C04-S01",
     "title": "按列归一化的稀疏辨识",
-    "statement": "给定候选字典 theta 与导数（derivative）观测（observation），按题定顺序阈值最小二乘（sequential thresholded least squares，STLSQ）返回原单位系数及活动列索引。",
+    "statement": "theta 的一行对应一次状态观测，一列对应一个候选函数，derivative 给出各行的导数。按列归一化后做顺序阈值最小二乘，返回原列尺度的系数，以及仍保留的列索引。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1437,25 +1437,25 @@
       {
         "name": "theta",
         "type": "list[list[float]]",
-        "description": "N×p 候选项设计矩阵（design matrix）。",
+        "description": "N×p 候选项表；列顺序就是最终系数的顺序。",
         "unit": "按列定义"
       },
       {
         "name": "derivative",
         "type": "list[float]",
-        "description": "N 个导数观测。",
+        "description": "与 theta 各行对应的 N 个导数值。",
         "unit": "U/T"
       },
       {
         "name": "threshold",
         "type": "float",
-        "description": "归一化系数的正阈值。",
+        "description": "对归一化列系数使用的正阈值，恰好等于阈值的项保留。",
         "unit": "U/T"
       },
       {
         "name": "max_iter",
         "type": "int",
-        "description": "最多重新拟合次数，允许0。",
+        "description": "最多在保留列上重新拟合的次数，允许为 0。",
         "unit": "次"
       }
     ],
@@ -1463,19 +1463,19 @@
       {
         "name": "coefficients",
         "type": "list[float]",
-        "description": "按原候选列顺序的物理系数。",
+        "description": "长度为 p 的原列系数，删除项为 0。",
         "unit": "按列定义"
       },
       {
         "name": "active",
         "type": "list[int]",
-        "description": "非零活动列的从0开始索引。",
+        "description": "保留列的索引，按原顺序排列，从 0 开始编号。",
         "unit": "个"
       }
     ],
-    "contract": "列二范数（norm）归一化；零列尺度设1。先全列最小二乘，取绝对系数≥threshold 的支持，再最多 max_iter 次仅在支持上拟合并重定支持；支持不变即停止。最后低于阈值的系数置0，并除以列尺度。最小二乘使用 numpy.linalg.lstsq 的默认秩（rank）判定。",
+    "contract": "每列除以该列二范数，零列的除数设为 1。先用全列做最小二乘，保留绝对系数≥threshold 的列；随后最多 max_iter 次仅在保留列上重拟合，再按同一阈值筛选，保留集合不变就停止。最后将低于阈值的系数置零，除以原列尺度；最小二乘使用 numpy.linalg.lstsq 的默认秩判定。",
     "constraints": [
-      "N,p≥1，threshold>0，max_iter≥0；全部输入（input）有限。"
+      "N,p≥1，threshold>0，max_iter≥0；全部输入有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1483,7 +1483,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例只有第二列活动，系数为 [0,2]；阈值和列尺度是答案的一部分。",
+    "hint": "样例两列均为单位坐标列，归一化不改变它们；全列系数为 [0,2]，只有索引1满足阈值。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1524,7 +1524,7 @@
             1
           ]
         ],
-        "explanation": "首例只有第二列活动，系数为 [0,2]；阈值和列尺度是答案的一部分。"
+        "explanation": "返回系数 [0,2] 与保留索引 [1]。这里的1表示从0编号的第二列。"
       }
     ]
   },
@@ -1536,7 +1536,7 @@
     "chapter": "14.4",
     "lesson_id": "P14-C04-S01",
     "title": "为何声明列尺度",
-    "statement": "将一个候选列的全部数值乘10，并且只调整这一列的系数，使该项对预测的贡献保持不变。若仍按系数绝对值使用原数值阈值，系数和删除判断会怎样变化？",
+    "statement": "把某个候选列全部乘 10，并调整该列原尺度下的系数，使它对预测的贡献不变。仍用同一数值阈值判断这个原列系数的绝对值，系数与删项判断怎样变化？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1552,19 +1552,19 @@
     "options": [
       {
         "id": "A",
-        "text": "系数应变为原来的1/10，因为列数值变大，它反而更难低于原系数阈值。"
+        "text": "系数变为原来的 1/10，却因为列数值变大而更难低于原阈值。"
       },
       {
         "id": "B",
-        "text": "系数应变为原来的10倍，因此它更难低于原系数阈值。"
+        "text": "系数变为原来的 10 倍，因而更难低于原阈值。"
       },
       {
         "id": "C",
-        "text": "系数保持不变，因此按原系数阈值判断时是否删去它也不变。"
+        "text": "系数不变，按原阈值作出的删项判断也不变。"
       },
       {
         "id": "D",
-        "text": "系数应变为原来的1/10，因此它更容易低于原系数阈值而被删去。"
+        "text": "系数变为原来的 1/10，因而更容易低于原阈值而被删去。"
       }
     ],
     "constraints": []
@@ -1577,7 +1577,7 @@
     "chapter": "14.4",
     "lesson_id": "P14-C04-S01",
     "title": "共线候选的边界",
-    "statement": "训练范围内x与x²几乎共线，两个稀疏方程都拟合得好。要提高区分这两项的能力，哪项最有针对性？",
+    "statement": "现有训练状态范围很窄，候选表中的 x、x² 两列几乎成比例，两种稀疏方程都拟合得很好。哪项新比较最能帮助区分这两项？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1593,19 +1593,19 @@
     "options": [
       {
         "id": "A",
-        "text": "将x²列乘以常数，再用原有状态（state）范围的数据判断应保留哪一项。"
+        "text": "把 x² 列乘常数，继续用原状态范围的数据比较。"
       },
       {
         "id": "B",
-        "text": "在原来的狭窄状态范围内重复采样（sampling），按最低训练误差选出一个方程。"
+        "text": "仍在原狭窄范围重复采样，按最低训练误差选方程。"
       },
       {
         "id": "C",
-        "text": "扩大取样的状态（state）范围，使x与x²在这些数据中不再接近成比例。"
+        "text": "扩大采样状态范围，让 x、x² 两列不再近似成比例。"
       },
       {
         "id": "D",
-        "text": "将两个拟合结果的系数分别取平均，把平均后的方程定为唯一结构。"
+        "text": "把两种方程的系数平均，作为唯一确定的结构。"
       }
     ],
     "constraints": []
@@ -1618,7 +1618,7 @@
     "chapter": "14.4",
     "lesson_id": "P14-C04-S01",
     "title": "候选项与机制",
-    "statement": "字典中出现 x² 且其拟合系数非零，意味着什么？",
+    "statement": "在给定数据和候选字典中，x² 项拟合得到非零系数。这一结果能够说明什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1634,19 +1634,19 @@
     "options": [
       {
         "id": "A",
-        "text": "未进入候选库的变量，对观测（observation）到的状态（state）变化没有贡献。"
+        "text": "未放入字典的变量对状态变化没有贡献。"
       },
       {
         "id": "B",
-        "text": "x²项的拟合系数，表示独立改变x²会对状态变化产生多大的因果作用。"
+        "text": "该系数给出独立干预 x² 对状态变化的因果作用。"
       },
       {
         "id": "C",
-        "text": "换用其他候选库后，x²项仍会被保留，而且拟合系数保持相同。"
+        "text": "更换候选字典后，x² 的系数仍保持原值。"
       },
       {
         "id": "D",
-        "text": "在当前数据和候选库下，拟合方程用一个非零系数乘x²来近似状态变化。"
+        "text": "当前候选方程用非零系数乘 x² 来近似观测到的变化。"
       }
     ],
     "constraints": []
@@ -1659,7 +1659,7 @@
     "chapter": "14.4",
     "lesson_id": "P14-C04-S02",
     "title": "从等距采样估计变化率",
-    "statement": "对等距采样（sampling）的状态（state）观测（observation），返回每个时刻的有限差分（finite difference）导数（derivative）估计：内部点用两侧观测作中心差分（central difference），首末点用相邻两点作单侧差分。",
+    "statement": "times 与 observations 按同一时间顺序配对，采样等距。用内部点的两侧观测作中心差分，首末点用相邻两点作单侧差分，返回每个给定时刻的导数估计。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1675,13 +1675,13 @@
       {
         "name": "times",
         "type": "list[float]",
-        "description": "严格递增的采样（sampling）时刻。",
+        "description": "严格递增且等距的时刻列表，相邻间隔为同一个 h>0。",
         "unit": "T"
       },
       {
         "name": "observations",
         "type": "list[float]",
-        "description": "对应状态（state）观测（observation）。",
+        "description": "各给定时刻的状态读数，长度与 times 相同。",
         "unit": "U"
       }
     ],
@@ -1689,11 +1689,11 @@
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "按原顺序的导数估计。",
+        "description": "与输入时刻一一对应的变化率列表，单位为状态单位除以时间单位。",
         "unit": "U/T"
       }
     ],
-    "contract": "设相邻时刻等距 h>0；内部 i 用 (y_(i+1)-y_(i-1))/(2h)，端点分别用相邻两点的斜率（slope）。该公式仅用于本题的等距时刻；不等距三点导数估计需要不同权重。差分结果不等于无噪声真导数。",
+    "contract": "内部点 i 用 (y_(i+1)−y_(i−1))/(2h)；首点用 (y_1−y_0)/h，末点用 (y_last−y_previous)/h。这里 h 是固定采样间隔，结果是差分估计；不等距三点在中心时刻求导需要另推权重。",
     "constraints": [
       "时刻长度≥2且严格递增、等距：存在 h>0 使相邻时刻之差均为 h；观测等长，全部数值有限。"
     ],
@@ -1703,7 +1703,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例三处差分均为 2 U/T；内部差分只读两侧观测。",
+    "hint": "样例的时刻为 0、1、2 T，读数每隔 1 T 增加 2 U；三个位置都得到 2 U/T。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1734,7 +1734,7 @@
           2.0,
           2.0
         ],
-        "explanation": "首例三处差分均为 2 U/T；内部差分只读两侧观测。"
+        "explanation": "两端用 2/1，内部用 (4−0)/(2−0)，所以结果为 [2,2,2] U/T。"
       }
     ]
   },
@@ -1746,7 +1746,7 @@
     "chapter": "14.4",
     "lesson_id": "P14-C04-S02",
     "title": "缩短采样一定更好吗",
-    "statement": "相邻观测（observation）有独立、同方差（homoscedasticity）sigma²的加性噪声。用前向差分估计导数（derivative），采样（sampling）间隔h减半后，仅噪声造成的导数估计方差（variance）怎样变？",
+    "statement": "各时刻的加性观测噪声相互独立，方差均为 sigma²。用相邻两点的前向差分估计导数，若采样间隔 h 减半，仅由这些噪声造成的导数方差如何变化？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1762,19 +1762,19 @@
     "options": [
       {
         "id": "A",
-        "text": "噪声引起的导数方差变为原来的4倍。"
+        "text": "导数中的噪声方差变为原来的 4 倍。"
       },
       {
         "id": "B",
-        "text": "噪声引起的导数方差变为原来的2倍。"
+        "text": "导数中的噪声方差变为原来的 2 倍。"
       },
       {
         "id": "C",
-        "text": "噪声引起的导数方差变为原来的1/2。"
+        "text": "导数中的噪声方差变为原来的 1/2。"
       },
       {
         "id": "D",
-        "text": "噪声引起的导数方差变为原来的1/4。"
+        "text": "导数中的噪声方差变为原来的 1/4。"
       }
     ],
     "constraints": []
@@ -1787,7 +1787,7 @@
     "chapter": "14.4",
     "lesson_id": "P14-C04-S02",
     "title": "何为独立轨迹验证",
-    "statement": "要检验辨识方程对新初值（initial condition）的预测，应怎样分割轨迹（trajectory）数据？",
+    "statement": "要检查辨识方程对新初值的预测，同时还需要选择稀疏阈值。怎样安排训练、验证与最终测试轨迹？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1803,19 +1803,19 @@
     "options": [
       {
         "id": "A",
-        "text": "留出完整轨迹，按这些轨迹的误差选择阈值，再把同一误差作为最终测试结果。"
+        "text": "用留出的完整轨迹选择阈值，再把同一误差当作最终测试。"
       },
       {
         "id": "B",
-        "text": "将同一轨迹的相邻时间点随机分组，将其中一组当作不同初值的测试数据。"
+        "text": "把同一轨迹的相邻点随机分组，将一组当作新初值测试。"
       },
       {
         "id": "C",
-        "text": "留出完整轨迹作为最终测试，另用验证轨迹选择稀疏阈值。"
+        "text": "用验证轨迹选择阈值，另留未参与选择的完整轨迹作最终测试。"
       },
       {
         "id": "D",
-        "text": "用一条轨迹的前半段训练，将它的后半段当作不同初值的测试数据。"
+        "text": "用同一轨迹前半段训练，把后半段作为新初值测试。"
       }
     ],
     "constraints": []
@@ -1828,7 +1828,7 @@
     "chapter": "14.4",
     "lesson_id": "P14-C04-S02",
     "title": "混沌基准的比较",
-    "statement": "在相同初值（initial condition）与数值精度约定下，两个Lorenz类混沌（chaos）模型（model）的长时轨迹（trajectory）逐点分离。怎样进一步比较最有信息？",
+    "statement": "两个 Lorenz 类混沌模型从同一初值出发，在相同数值精度约定下，长时轨迹逐点分离。接下来怎样比较，能同时了解短时预测和较长时间行为？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1844,19 +1844,19 @@
     "options": [
       {
         "id": "A",
-        "text": "比较最终时刻的逐点误差，将误差较大的模型判为没有拟合过训练数据。"
+        "text": "只比较终点误差，误差较大就判定模型没有拟合过训练数据。"
       },
       {
         "id": "B",
-        "text": "比较短时预测误差，并在预定长时间窗内比较状态（state）的均值、方差（variance）或轨迹分布（distribution）的几何形状。"
+        "text": "比较短时误差，并在预定长时间窗内比较均值、方差或轨迹分布的几何形状。"
       },
       {
         "id": "C",
-        "text": "比较吸引子（attractor）图形的外观，将形状相近的两个模型判为具有相同机制。"
+        "text": "只比较吸引子图形，外观相近就判定两个模型的机制相同。"
       },
       {
         "id": "D",
-        "text": "事后将两条曲线沿时间轴平移至更接近，把平移后的差异作为原预测误差。"
+        "text": "事后平移时间轴使曲线接近，再把调整后的差异当作原预测误差。"
       }
     ],
     "constraints": []
@@ -1869,7 +1869,7 @@
     "chapter": "14.5",
     "lesson_id": "P14-C05-S01",
     "title": "检查交换矩阵与 Euler 一步",
-    "statement": "状态（state）为各室总量，方程 dx/dt=operator·x。返回列和最大偏差、最小非对角元、最小 Euler 对角元，以及连续闭合交换条件和 Euler 非负条件的布尔值。",
+    "statement": "x 的各项是各室总量，连续方程为 dx/dt=A·x，其中 A=operator。依次计算列和偏差、最小非对角元、Euler 一步最小对角元，并分别判断连续交换结构与完整一步矩阵的非负条件。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -1885,13 +1885,13 @@
       {
         "name": "operator",
         "type": "list[list[float]]",
-        "description": "n×n 连续时间线性矩阵（matrix）。",
+        "description": "n×n 的连续时间系数 A，一行对应一个室的变化率，一列对应一个来源室。",
         "unit": "1/T"
       },
       {
         "name": "dt",
         "type": "float",
-        "description": "正 Euler 步长。",
+        "description": "显式 Euler 每步使用的正时间间隔。",
         "unit": "T"
       }
     ],
@@ -1899,35 +1899,35 @@
       {
         "name": "max_balance",
         "type": "float",
-        "description": "各列和绝对值最大值。",
+        "description": "每列元素之和先取绝对值，再取其中最大值。",
         "unit": "1/T"
       },
       {
         "name": "min_offdiag",
         "type": "float",
-        "description": "最小非对角元；n=1 时定义为0。",
+        "description": "所有非对角元素的最小值；只有一室时约定为 0。",
         "unit": "1/T"
       },
       {
         "name": "min_euler_diag",
         "type": "float",
-        "description": "最小的 1+dt·A_ii。",
+        "description": "各个 1+dt·A_ii 的最小值。",
         "unit": "1"
       },
       {
         "name": "closed_exchange",
         "type": "bool",
-        "description": "列和误差<10⁻¹⁰且非对角元≥−10⁻¹⁰。",
+        "description": "列和最大偏差<10⁻¹⁰，且最小非对角元≥−10⁻¹⁰ 时为 True。",
         "unit": "1"
       },
       {
         "name": "euler_nonnegative",
         "type": "bool",
-        "description": "完整一步矩阵 I+dt·A 的每个元素均≥−10⁻¹⁰。",
+        "description": "I+dt·A 的全部元素均≥−10⁻¹⁰ 时为 True。",
         "unit": "1"
       }
     ],
-    "contract": "按总量坐标检查列和。closed_exchange 对连续矩阵 A 按题定容差检查；euler_nonnegative 对完整一步矩阵 I+dt·A 的所有元素按同一数值容差检查。两项分别报告；容差只用于浮点判定，不能把 A 的非对角元容差直接用于 dt·A。",
+    "contract": "在总量坐标下，连续交换检查使用 A 的列和及非对角元；Euler 检查使用完整矩阵 I+dt·A。两项都按各自矩阵中的数值与给定 10⁻¹⁰ 容差比较，分别返回。A 中的小负元经过 dt 放大后，仍须在一步矩阵中重新判断。",
     "constraints": [
       "n≥1，operator 为 n×n 有限矩阵，dt>0。"
     ],
@@ -1937,7 +1937,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例列和为零、非对角元非负，且一步 Euler 的最小对角为0.8；两种布尔检查都成立。 Euler 标志须检查 I+dt·A 的全部元素，而非只查 A 的非对角元。",
+    "hint": "样例 A 的两列和都为 0，非对角元为 0.2、1；dt=0.2 时一步对角元为 0.8、0.96。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1971,7 +1971,7 @@
           true,
           true
         ],
-        "explanation": "首例列和为零、非对角元非负，且一步 Euler 的最小对角为0.8；两种布尔检查都成立。"
+        "explanation": "三项数值是 0、0.2、0.8，连续结构与一步非负检查均为 True。"
       }
     ]
   },
@@ -1983,7 +1983,7 @@
     "chapter": "14.5",
     "lesson_id": "P14-C05-S01",
     "title": "总量守恒看哪一项",
-    "statement": "状态（state）是各室总量，dx/dt=A x。要求所有初态的总量守恒，应检查什么？",
+    "statement": "状态列向量 x 记录各室物质总量，满足 dx/dt=A·x。要使每一种初态的各室总量之和都保持不变，A 应满足哪项关系？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1999,19 +1999,19 @@
     "options": [
       {
         "id": "A",
-        "text": "检查A的每一行元素之和是否为0。"
+        "text": "A 的每一行元素之和为 0。"
       },
       {
         "id": "B",
-        "text": "检查A的每一列元素之和是否为0。"
+        "text": "A 的每一列元素之和为 0。"
       },
       {
         "id": "C",
-        "text": "检查某一个初值（initial condition）的轨迹（trajectory）是否保持总量不变。"
+        "text": "某一个初值的轨迹保持总量不变。"
       },
       {
         "id": "D",
-        "text": "检查A的对角元素之和是否为0。"
+        "text": "A 的全部对角元素之和为 0。"
       }
     ],
     "constraints": []
@@ -2024,7 +2024,7 @@
     "chapter": "14.5",
     "lesson_id": "P14-C05-S01",
     "title": "连续正性与一步正性",
-    "statement": "闭合交换矩阵（matrix）A的列和为0、非对角元非负。显式Euler一步矩阵I+hA在h过大时可能怎样？",
+    "statement": "连续交换矩阵 A 的列和为零、非对角元非负。改用显式 Euler 的一步矩阵 I+hA 后，如果 h 太大，可能出现什么情况？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2040,19 +2040,19 @@
     "options": [
       {
         "id": "A",
-        "text": "一步矩阵的每列元素之和仍为1，但其中的对角元素可能为负。"
+        "text": "一步矩阵各列和仍为 1，但某些对角元变为负值。"
       },
       {
         "id": "B",
-        "text": "一步矩阵的每列元素之和仍为0，而且对角元素保持非负。"
+        "text": "一步矩阵各列和仍为 0，而且对角元保持非负。"
       },
       {
         "id": "C",
-        "text": "一步矩阵的列和随h增大，而且非对角元素会变为负值。"
+        "text": "一步矩阵列和随 h 增大，非对角元变为负值。"
       },
       {
         "id": "D",
-        "text": "一步矩阵的列和会变成负数，但对角元素保持非负。"
+        "text": "一步矩阵列和变为负数，但对角元保持非负。"
       }
     ],
     "constraints": []
@@ -2065,7 +2065,7 @@
     "chapter": "14.5",
     "lesson_id": "P14-C05-S01",
     "title": "何时不能照搬列和",
-    "statement": "改用不同固定容积的浓度（concentration）作为状态（state），满足dc/dt=A c。要对所有初态保持总量守恒，应检查什么？",
+    "statement": "各室容积固定但不同，状态 c_i 改为该室浓度，满足 dc/dt=A·c。各室总量为 V_i c_i。要对所有初态保持总量守恒，应检查哪项？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2081,19 +2081,19 @@
     "options": [
       {
         "id": "A",
-        "text": "检查A的每一行元素之和是否为零，将它作为总量守恒的条件。"
+        "text": "检查 A 的每一行元素之和为零。"
       },
       {
         "id": "B",
-        "text": "用全1行向量（vector）检查1ᵀA=0，将它作为总量守恒的条件。"
+        "text": "用全1行向量检查 1ᵀA=0。"
       },
       {
         "id": "C",
-        "text": "将各室容积的倒数作为行向量分量，检查该行向量左乘A是否为零。"
+        "text": "用容积倒数组成行向量，检查它左乘 A 为零。"
       },
       {
         "id": "D",
-        "text": "将各室容积作为行向量Vᵀ的分量，检查VᵀA是否为零。"
+        "text": "用容积组成行向量 Vᵀ，检查 VᵀA=0。"
       }
     ],
     "constraints": []
@@ -2106,7 +2106,7 @@
     "chapter": "14.5",
     "lesson_id": "P14-C05-S02",
     "title": "同一时域下报告失败",
-    "statement": "给定等形状真值与预测轨迹（trajectory），按题定规则返回逐元素 RMSE、加权总量差的时间最大值及显著负值个数。",
+    "statement": "truth 与 prediction 每行对应同一评估时刻，每列对应同一变量。保留所有给定时刻，依次返回全部元素的均方根误差、相对真值的加权总量最大差，以及预测中低于 −10⁻¹⁰ 的元素个数。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2122,19 +2122,19 @@
       {
         "name": "truth",
         "type": "list[list[float]]",
-        "description": "N×n 真实状态（state）。",
+        "description": "N×n 真值表；一行含一个时刻的 n 个状态值。",
         "unit": "U"
       },
       {
         "name": "prediction",
         "type": "list[list[float]]",
-        "description": "N×n 预测状态。",
+        "description": "与 truth 同形的预测表，按相同时刻和变量顺序排列。",
         "unit": "U"
       },
       {
         "name": "weights",
         "type": "list[float]",
-        "description": "n 个总量权重；各室总量时均为1。",
+        "description": "按变量顺序给出的 n 个权重；直接相加各室总量时均取 1。",
         "unit": "1"
       }
     ],
@@ -2142,23 +2142,23 @@
       {
         "name": "rmse",
         "type": "float",
-        "description": "所有 Nn 元素的均方根误差（root mean squared error，RMSE）。",
+        "description": "所有 Nn 个预测误差平方的平均值再开平方。",
         "unit": "U"
       },
       {
         "name": "max_balance",
         "type": "float",
-        "description": "各时刻 weights·(prediction−truth) 绝对值最大值。",
+        "description": "各时刻权重乘以逐分量误差后相加，其绝对值的最大值。",
         "unit": "U"
       },
       {
         "name": "negatives",
         "type": "int",
-        "description": "prediction 中低于 −10⁻¹⁰ 的元素个数。",
+        "description": "在整个预测表中，数值严格低于 −10⁻¹⁰ 的元素数量。",
         "unit": "个"
       }
     ],
-    "contract": "预测轨迹包括失败时刻，不得删去。max_balance 衡量相对于真值的加权总量差，不等同于单条预测轨迹对其自身初值（initial condition）的漂移。",
+    "contract": "RMSE=sqrt(sum((prediction−truth)²)/(Nn))；总量差取 max_k|sum_i weights_i·(prediction_ki−truth_ki)|。第三项数预测元素，同一室在不同时刻为负会分别计入。各项使用全部给定时刻；总量差相对于真值，不是相对于预测自身起点。",
     "constraints": [
       "N,n≥1，三组维度相容，全部数值有限。"
     ],
@@ -2168,7 +2168,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例第二时刻两室误差互相抵消，总量差为0，但逐元素 RMSE 仍大于0。",
+    "hint": "样例第二个时刻的两项误差为 +0.2、−0.2；总量误差抵消，但误差平方相加。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2213,7 +2213,7 @@
           0.0,
           0
         ],
-        "explanation": "首例第二时刻两室误差互相抵消，总量差为0，但逐元素 RMSE 仍大于0。"
+        "explanation": "四个元素的误差为 0、0、0.2、−0.2。RMSE=sqrt(0.08/4)≈0.141421 U，总量最大差为 0，负值数为 0。"
       }
     ]
   },
@@ -2225,7 +2225,7 @@
     "chapter": "14.5",
     "lesson_id": "P14-C05-S02",
     "title": "怎样比较不同模型",
-    "statement": "要比较机制模型（model）、低秩（rank）模型和数据传播模型的预测误差，应如何安排共同条件并记录信息来源？",
+    "statement": "要比较已知机制模型、低秩模型和数据传播模型对新条件的预测，应怎样确定共同条件，并说明每种方法得到的信息？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2241,19 +2241,19 @@
     "options": [
       {
         "id": "A",
-        "text": "各方法先删除预测失败的轨迹（trajectory），再取相同数量的成功轨迹比较误差。"
+        "text": "先删去各方法预测失败的轨迹，再取同样多的成功轨迹比较。"
       },
       {
         "id": "B",
-        "text": "各方法使用相同数量的观测（observation），但不把额外提供的真实参数（parameter）列入信息来源。"
+        "text": "给各方法同样多的观测，但不说明额外提供的真实参数。"
       },
       {
         "id": "C",
-        "text": "各方法先达到相同训练误差，再各自选择测试初值（initial condition）和预测时长。"
+        "text": "先让各方法达到相同训练误差，再各自选择测试初值和预测时长。"
       },
       {
         "id": "D",
-        "text": "各方法使用同一批训练观测与测试初值、预测时长，并列出各自预先知道的方程结构或参数信息。"
+        "text": "使用同一批训练观测、测试初值和预测时长，并说明各自已知的方程结构或参数。"
       }
     ],
     "constraints": []
@@ -2266,7 +2266,7 @@
     "chapter": "14.5",
     "lesson_id": "P14-C05-S02",
     "title": "初始时刻的偏差",
-    "statement": "降阶模型（model）在 t=0 已偏离留出初值（initial condition），完整 Euler 尚未更新。先检查什么？",
+    "statement": "降阶重建在 t=0 就偏离了新的初始状态，完整模型此时还没有做 Euler 更新。应先计算哪项量来定位偏差？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2282,19 +2282,19 @@
     "options": [
       {
         "id": "A",
-        "text": "计算训练集（training set）最后一步与第一步的时间差。"
+        "text": "训练轨迹首末时刻之间的时间差。"
       },
       {
         "id": "B",
-        "text": "计算Euler一步的截断误差（truncation error）并向前推进。"
+        "text": "Euler 一步截断误差（truncation error），再向前推进。"
       },
       {
         "id": "C",
-        "text": "计算新初值减去其训练基重建值的差。"
+        "text": "新初值与训练基重建初值之间的差。"
       },
       {
         "id": "D",
-        "text": "计算训练快照被舍弃奇异值（singular value）的总平方和。"
+        "text": "训练快照被舍弃奇异值的平方和。"
       }
     ],
     "constraints": []
@@ -2307,7 +2307,7 @@
     "chapter": "14.5",
     "lesson_id": "P14-C05-S02",
     "title": "重复观测噪声实验",
-    "statement": "10 次预定种子下的预测误差差异较大，怎样报告较合适？",
+    "statement": "使用预先确定的 10 个随机种子重复加入观测噪声，预测误差相差较大。怎样汇总这组重复结果？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2323,19 +2323,19 @@
     "options": [
       {
         "id": "A",
-        "text": "先把10次预测逐点平均，再计算这条平均曲线的误差，并把它当成单次预测的典型误差。"
+        "text": "先平均10条预测曲线，只计算平均曲线误差，作为单次预测的典型误差。"
       },
       {
         "id": "B",
-        "text": "选出预测误差最低的5次，使用这5次结果计算平均误差和误差范围。"
+        "text": "只保留误差较低的5次，计算这5次的平均和范围。"
       },
       {
         "id": "C",
-        "text": "汇总预定10次模拟的全部误差，并记录所用随机种子（random seed）、测试初值（initial condition）与预测时长。"
+        "text": "汇总预定10次的全部误差，并说明种子、测试初值和预测时长。"
       },
       {
         "id": "D",
-        "text": "查看测试误差后重新挑选10个随机种子，再把选出的结果作为原预定实验的报告。"
+        "text": "看到测试结果后重新挑10个种子，把新结果作为原实验的报告。"
       }
     ],
     "constraints": []
@@ -2348,7 +2348,7 @@
     "chapter": "14.summary",
     "lesson_id": "P14-SUMMARY",
     "title": "投影误差与动态误差",
-    "statement": "训练快照秩（rank）1重建误差为0，留出初值（initial condition）有未激发方向。怎样检查留出预测的误差来源？",
+    "statement": "秩1基完整重建了训练快照，而新初值含训练未覆盖的方向。要解释新轨迹的预测误差，应怎样分开初始化与后续演化？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -2364,19 +2364,19 @@
     "options": [
       {
         "id": "A",
-        "text": "将训练重建误差为零解释为所有留出轨迹（trajectory）的预测误差也为零。"
+        "text": "把训练重建误差为零解释为全部新轨迹的预测误差为零。"
       },
       {
         "id": "B",
-        "text": "先计算新初值与投影（projection）重建值的差，再计算时间推进后产生的预测偏差。"
+        "text": "先算新初值与投影重建值的差，再算向前更新后的预测偏差。"
       },
       {
         "id": "C",
-        "text": "将训练快照中被舍弃的奇异值（singular value）之和，作为新初值的精确重建误差。"
+        "text": "把训练舍弃奇异值之和当作新初值的精确重建误差。"
       },
       {
         "id": "D",
-        "text": "减小Euler时间步，使原来与训练基正交（orthogonality）的初值分量进入重建结果。"
+        "text": "减小 Euler 时间步，让正交的初值分量进入原基重建。"
       }
     ],
     "constraints": []
@@ -2389,7 +2389,7 @@
     "chapter": "14.summary",
     "lesson_id": "P14-SUMMARY",
     "title": "线性提升的保证",
-    "statement": "三项字典在教学三角映射中闭合。要把它用于一个新系统，怎样检查精确闭合是否仍成立？",
+    "statement": "三项字典在原教学三角映射下精确闭合。换成新的状态更新规则后，要判断同一字典是否仍精确闭合，应该做什么？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -2405,19 +2405,19 @@
     "options": [
       {
         "id": "A",
-        "text": "确认字典仍有三项，用项数没有改变来判断新系统中也闭合。"
+        "text": "确认字典项数仍是三，用项数判断闭合。"
       },
       {
         "id": "B",
-        "text": "将新系统的更新公式代入每个字典项，检查结果能否写成原字典项的线性组合。"
+        "text": "把新规则代入各项函数，检查是否仍为原字典项的固定线性组合。"
       },
       {
         "id": "C",
-        "text": "增加训练样本，用接近零的训练误差判断该字典在所有状态（state）上闭合。"
+        "text": "增加训练样本，用接近零的样本残差判断全状态范围闭合。"
       },
       {
         "id": "D",
-        "text": "提高拟合矩阵（matrix）的秩（rank），用满秩来判断字典在新系统中闭合。"
+        "text": "使拟合矩阵满秩，用矩阵秩判断闭合。"
       }
     ],
     "constraints": []
@@ -2430,7 +2430,7 @@
     "chapter": "14.summary",
     "lesson_id": "P14-SUMMARY",
     "title": "综合：低秩投影与重建",
-    "statement": "给定训练快照和截断秩（rank），返回正交投影（orthogonal projection）、重建矩阵（matrix）与 Frobenius 残差（residual），以供后续模型（model）比较。",
+    "statement": "训练快照按列排列，一行记录同一变量。保留给定 rank 个左奇异方向，依次返回重建快照、正交投影矩阵和整体 Frobenius 残差。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -2446,13 +2446,13 @@
       {
         "name": "snapshots",
         "type": "list[list[float]]",
-        "description": "n×m 训练快照。",
+        "description": "n×m 数值表，一列含同一时刻的 n 个变量。",
         "unit": "U"
       },
       {
         "name": "rank",
         "type": "int",
-        "description": "截断秩。",
+        "description": "保留的左奇异方向数。",
         "unit": "个"
       }
     ],
@@ -2460,23 +2460,23 @@
       {
         "name": "reconstruction",
         "type": "list[list[float]]",
-        "description": "投影（projection）重建矩阵。",
+        "description": "与原快照同形的投影重建表。",
         "unit": "U"
       },
       {
         "name": "projection",
         "type": "list[list[float]]",
-        "description": "n×n 正交投影矩阵。",
+        "description": "n×n 的 P=U_rU_rᵀ。",
         "unit": "1"
       },
       {
         "name": "residual",
         "type": "float",
-        "description": "训练 Frobenius 残差。",
+        "description": "原快照减重建后，全部元素平方和的平方根。",
         "unit": "U"
       }
     ],
-    "contract": "不中心化；奇异向量（vector）符号不影响投影。非端点截断有严格奇异值（singular value）间隙；rank=0 返回零投影。",
+    "contract": "对给定快照作 SVD，不减去均值。重建为 P·snapshots；rank=0 时 P 和重建均为零。非端点截断有严格奇异值间隙；基向量整体改号保留同一投影。",
     "constraints": [
       "n≥m≥1，快照列满秩，0≤rank≤m；非端点截断处有严格间隙。"
     ],
@@ -2486,7 +2486,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例保留第一方向，投影重建第二行变0，残差为1 U。",
+    "hint": "样例两条坐标方向的奇异值为 4、1，保留第一项就舍弃第二行的 1。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2536,7 +2536,7 @@
           ],
           1.0
         ],
-        "explanation": "首例保留第一方向，投影重建第二行变0，残差为1 U。"
+        "explanation": "P=[[1,0],[0,0]]，重建为 [[4,0],[0,0]]，残差为 1 U。"
       }
     ]
   },
@@ -2548,7 +2548,7 @@
     "chapter": "14.summary",
     "lesson_id": "P14-SUMMARY",
     "title": "综合：提升传播及训练残差",
-    "statement": "固定字典的相邻特征列已给出。按题定岭式回归返回特征传播矩阵（matrix）和训练 Frobenius 残差（residual）。",
+    "statement": "固定字典的当前与下一步特征表已经按列配对。按给定岭参数拟合 K，依次返回左乘特征列的传播矩阵，以及它在这组训练配对上的 Frobenius 残差。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2564,19 +2564,19 @@
       {
         "name": "feature_past",
         "type": "list[list[float]]",
-        "description": "d×m 旧特征。",
+        "description": "d×m 当前特征表；行对应字典函数，列对应状态。",
         "unit": "按特征声明"
       },
       {
         "name": "feature_next",
         "type": "list[list[float]]",
-        "description": "d×m 新特征。",
+        "description": "d×m 下一步特征表，行顺序相同，各列与当前表配对。",
         "unit": "按特征声明"
       },
       {
         "name": "ridge",
         "type": "float",
-        "description": "非负岭参数（parameter）。",
+        "description": "按给定特征尺度使用的非负岭参数。",
         "unit": "按特征尺度"
       }
     ],
@@ -2584,17 +2584,17 @@
       {
         "name": "operator",
         "type": "list[list[float]]",
-        "description": "d×d 特征传播。",
+        "description": "d×d 矩阵 K，满足 feature_next≈K·feature_past。",
         "unit": "按特征尺度"
       },
       {
         "name": "residual",
         "type": "float",
-        "description": "||Y−KX||_F。",
+        "description": "训练特征误差 Y−KX 的全部元素平方和的平方根。",
         "unit": "按特征尺度"
       }
     ],
-    "contract": "K 左乘特征列；ridge=0 用 rcond=10⁻¹² 的伪逆（pseudoinverse），ridge>0 用 YXᵀ(XXᵀ+ridge I)⁻¹。训练残差不是独立预测误差。",
+    "contract": "记 X=feature_past、Y=feature_next。ridge=0 时 K=Y·pinv(X)，伪逆 rcond=10⁻¹²；ridge>0 时 K=YXᵀ(XXᵀ+ridge·I)⁻¹。随后计算 ||Y−KX||_F；这项残差使用训练配对。",
     "constraints": [
       "d,m≥1，矩阵同形，ridge≥0；全部有限。"
     ],
@@ -2604,7 +2604,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例字典配对构成对角传播，矩阵为 diag(0.8,0.6)，训练残差为0。",
+    "hint": "样例 X=I、ridge=0，K 的两条对角值分别是 0.8、0.6，恰好给出所有下一步特征。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2654,7 +2654,7 @@
           ],
           0.0
         ],
-        "explanation": "首例字典配对构成对角传播，矩阵为 diag(0.8,0.6)，训练残差为0。"
+        "explanation": "返回 [[0.8,0],[0,0.6]] 和残差 0；两列预测都等于给定的下一步列。"
       }
     ]
   },
@@ -2666,7 +2666,7 @@
     "chapter": "14.summary",
     "lesson_id": "P14-SUMMARY",
     "title": "综合：稀疏辨识与新状态导数",
-    "statement": "从题定候选字典和导数（derivative）拟合稀疏系数，并用独立给定的新状态（state）特征预测其导数。",
+    "statement": "theta 按行保存训练状态的候选函数值，derivative 给出对应导数。列归一化后拟合并按阈值筛选，返回原尺度系数、保留列索引和 test_features 对应的新状态导数预测。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2682,31 +2682,31 @@
       {
         "name": "theta",
         "type": "list[list[float]]",
-        "description": "N×p 训练候选字典。",
+        "description": "N×p 候选项表，列顺序固定。",
         "unit": "按列定义"
       },
       {
         "name": "derivative",
         "type": "list[float]",
-        "description": "训练导数。",
+        "description": "与各行训练状态对应的 N 个导数值。",
         "unit": "U/T"
       },
       {
         "name": "threshold",
         "type": "float",
-        "description": "正的归一化系数阈值。",
+        "description": "对归一化系数使用的正阈值。",
         "unit": "U/T"
       },
       {
         "name": "max_iter",
         "type": "int",
-        "description": "最多重拟合次数。",
+        "description": "最多在保留列上重拟合的次数，允许为 0。",
         "unit": "次"
       },
       {
         "name": "test_features",
         "type": "list[float]",
-        "description": "未用于拟合的 p 个候选项数值。",
+        "description": "按相同候选列顺序给出的 p 项新状态函数值。",
         "unit": "按列定义"
       }
     ],
@@ -2714,23 +2714,23 @@
       {
         "name": "coefficients",
         "type": "list[float]",
-        "description": "原列尺度的系数。",
+        "description": "长度为 p 的原列系数，删除项为 0。",
         "unit": "按列定义"
       },
       {
         "name": "active",
         "type": "list[int]",
-        "description": "从0开始的活动列。",
+        "description": "保留列索引，从 0 编号，按原顺序排列。",
         "unit": "个"
       },
       {
         "name": "prediction",
         "type": "float",
-        "description": "test_features 与系数的点积。",
+        "description": "新特征与原尺度系数逐项相乘再相加的导数预测。",
         "unit": "U/T"
       }
     ],
-    "contract": "归一化、阈值、重拟合和零列规则与 14.4.1 一致；新特征只用于最后计算，不参与选择支持。",
+    "contract": "每列除以其二范数，零列除数设 1。先全列最小二乘，再保留绝对系数≥threshold 的列；最多 max_iter 次仅在保留列上重拟合并按同一阈值筛选，集合不变就停止。最后将低于阈值的系数置零并除以列尺度。test_features 只在最终与这些系数作点积。",
     "constraints": [
       "N,p≥1，threshold>0，max_iter≥0；全部有限。"
     ],
@@ -2740,7 +2740,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例只有第二项活动，独立新特征 [1,3] 给出的导数预测为6。",
+    "hint": "样例系数为 [0,2]，保留索引为 [1]；新特征 [1,3] 与系数相乘得到 0×1+2×3。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2786,7 +2786,7 @@
           ],
           6.0
         ],
-        "explanation": "首例只有第二项活动，独立新特征 [1,3] 给出的导数预测为6。"
+        "explanation": "返回 [0,2]、[1]、6 U/T。新状态的特征只参与最后一项预测。"
       }
     ]
   },
@@ -2798,7 +2798,7 @@
     "chapter": "14.summary",
     "lesson_id": "P14-SUMMARY",
     "title": "综合：外推误差与结构失败",
-    "statement": "比较同一评估轨迹（trajectory）下的真值与候选预测，返回 RMSE、加权总量最大差及负值数；失败时刻不能删去。",
+    "statement": "真值与候选预测按相同评估时刻和变量排列。用所有给定结果，依次返回逐元素 RMSE、相对真值的加权总量最大差和低于 −10⁻¹⁰ 的预测元素个数。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2814,19 +2814,19 @@
       {
         "name": "truth",
         "type": "list[list[float]]",
-        "description": "N×n 留出真值。",
+        "description": "N×n 留出真值表，一行对应一个时刻。",
         "unit": "U"
       },
       {
         "name": "prediction",
         "type": "list[list[float]]",
-        "description": "N×n 候选预测。",
+        "description": "同形候选预测表，时刻和变量顺序与真值一致。",
         "unit": "U"
       },
       {
         "name": "weights",
         "type": "list[float]",
-        "description": "n 个守恒权重。",
+        "description": "按变量顺序给出的 n 个加权总量权重。",
         "unit": "1"
       }
     ],
@@ -2834,25 +2834,25 @@
       {
         "name": "rmse",
         "type": "float",
-        "description": "逐元素均方根误差（root mean squared error，RMSE）。",
+        "description": "所有 Nn 个分量误差平方的平均值再开平方。",
         "unit": "U"
       },
       {
         "name": "max_balance",
         "type": "float",
-        "description": "相对于真值的加权总量差最大值。",
+        "description": "每个时刻的加权预测减真值后取绝对值，再取时间最大值。",
         "unit": "U"
       },
       {
         "name": "negatives",
         "type": "int",
-        "description": "低于 −10⁻¹⁰ 的预测元素数。",
+        "description": "整个预测表中严格低于 −10⁻¹⁰ 的元素数。",
         "unit": "个"
       }
     ],
-    "contract": "三项指标各自报告，不把低 RMSE 自动解释为结构保持。",
+    "contract": "对全部 Nn 个误差求 RMSE；逐时计算 sum_i weights_i·(prediction_ki−truth_ki) 后取绝对值最大值；负值按预测元素计数，不删去出现负值的时刻。三项分别返回。",
     "constraints": [
-      "N,n≥1，矩阵（matrix）同形，权重长度 n；全部有限。"
+      "N,n≥1，矩阵同形，权重长度 n；全部有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2860,7 +2860,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例总量差仍为0，但逐室存在预测误差。",
+    "hint": "样例第二个时刻的分量误差为 +0.1、−0.1；总量差抵消，误差平方和仍为 0.02。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2905,7 +2905,7 @@
           1.1102230246251565e-16,
           0
         ],
-        "explanation": "首例总量差仍为0，但逐室存在预测误差。"
+        "explanation": "RMSE=sqrt(0.02/4)≈0.070711 U，总量差在浮点计算中接近零，负值数为 0。"
       }
     ]
   },
@@ -2917,7 +2917,7 @@
     "chapter": "14.summary",
     "lesson_id": "P14-SUMMARY",
     "title": "噪声下选择方程",
-    "statement": "导数（derivative）噪声下多个稀疏方程训练拟合接近，应怎样选择与检验？",
+    "statement": "含噪导数使几个稀疏方程的训练残差接近。要选择阈值并检验最终方程的预测，怎样分配轨迹？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2933,19 +2933,19 @@
     "options": [
       {
         "id": "A",
-        "text": "用验证轨迹（trajectory）选择阈值，再用另一组未参与选择的测试轨迹计算最终预测误差。"
+        "text": "用验证轨迹选阈值，再用另一组未参加选择的测试轨迹评价。"
       },
       {
         "id": "B",
-        "text": "用训练轨迹选择阈值，再用同一批训练数据的残差（residual）评价最终方程。"
+        "text": "用训练轨迹选阈值，再用同一批训练残差评价最终方程。"
       },
       {
         "id": "C",
-        "text": "用测试轨迹选择阈值，再用这些测试轨迹的误差评价最终方程。"
+        "text": "用测试轨迹选阈值，再用这些测试误差评价最终方程。"
       },
       {
         "id": "D",
-        "text": "用全部轨迹选择阈值，再从这些轨迹中随机抽出时间点作为最终测试。"
+        "text": "用全部轨迹选阈值，再随机抽取其中时间点作最终测试。"
       }
     ],
     "constraints": []
@@ -2958,7 +2958,7 @@
     "chapter": "14.summary",
     "lesson_id": "P14-SUMMARY",
     "title": "新输入后的结论边界",
-    "statement": "训练只含无外部输入（input）交换，新条件增加了时变输入。哪项结论合理？",
+    "statement": "原训练数据来自没有外部输入的交换过程。新条件增加了随时间变化的输入，要建立和检验相应预测模型，应怎样做？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2974,19 +2974,19 @@
     "options": [
       {
         "id": "A",
-        "text": "延长没有外部输入的训练轨迹（trajectory），用新增时间点代替包含时变输入的实验。"
+        "text": "延长无输入训练轨迹，用更多时间点代替有输入的实验。"
       },
       {
         "id": "B",
-        "text": "保留原来的无输入传播方程，将时变输入造成的偏差全部归于初值（initial condition）变化。"
+        "text": "保留无输入方程，将持续输入造成的偏差归为一次初值改变。"
       },
       {
         "id": "C",
-        "text": "将新输入下的轨迹加入拟合，再用同一批轨迹报告原来的独立测试结果。"
+        "text": "把有输入轨迹加入拟合，再用同一轨迹报告原独立测试结果。"
       },
       {
         "id": "D",
-        "text": "在方程中加入外部输入作用项，再用未参与拟合的输入过程检验新模型（model）的预测。"
+        "text": "给方程增加输入作用项，再用未参与拟合的输入过程检查预测。"
       }
     ],
     "constraints": []

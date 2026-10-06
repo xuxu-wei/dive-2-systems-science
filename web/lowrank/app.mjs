@@ -9,7 +9,7 @@ const fmt=value=>Number(value.toFixed(3)).toString();
 function svg(tag,attrs={},label){const node=document.createElementNS(ns,tag);for(const[key,value]of Object.entries(attrs))node.setAttribute(key,value);if(label!==undefined)node.textContent=label;return node;}
 function draw(){
  const chart=$('bars'),exact=trueState(settings.kind,settings.time),reduced=reducedState(settings.kind,settings.time,settings.rank);
- chart.replaceChildren(svg('title',{id:'bars-title'},'三室完整模型与降阶结果'),svg('desc',{id:'bars-desc'},'蓝色完整模型，粉色降阶模型；纵轴总量 U，可能出现负值。'));
+ chart.replaceChildren(svg('title',{id:'bars-title'},'三室完整模型与降阶结果'),svg('desc',{id:'bars-desc'},'横向为三个室，纵轴为该室总量/U。蓝色完整模型，粉色低秩结果；低于零的柱表示负值。'));
  const left=68,top=34,height=272,baseline=top+height*(3.2/4.2),scale=height/4.2;
  for(const value of [-1,0,1,2,3]){
   const y=baseline-value*scale;
@@ -29,7 +29,7 @@ function draw(){
  $('rank-value').textContent=String(settings.rank);$('time-value').textContent=fmt(settings.time)+' T';
  $('current-condition').textContent='当前：'+(settings.kind==='train'?'训练初值 [2,1,0]':'留出初值 [3,0,0]')+' U；保留 '+settings.rank+' 个方向。';
  $('toggle-initial').textContent=settings.kind==='train'?'切换到留出初值':'切换回训练初值';
- $('finding').textContent=settings.kind==='holdout'&&settings.rank===1?'留出初值包含训练未激发的快方向；当前降阶误差为 '+fmt(distance(exact,reduced))+' U。t=0 时该误差已经存在，与时间步长无关。':settings.rank===0?'秩0只保留训练均值；它无法跟随当前轨迹的变化。':'训练轨迹在这个特殊模型中恰由一个衰减方向描述；检查留出初值能发现表示限制。';
+ $('finding').textContent=settings.kind==='holdout'&&settings.rank===1?'新初值还含(1,−2,1)快方向，一维表示舍去了它。当前状态向量误差为 '+fmt(distance(exact,reduced))+' U。t=0时投影已给出[2.5,1,−0.5] U，总量仍为3 U，初始误差为√1.5 U。':settings.rank===0?'保留0个变化方向时，三个粉色柱始终显示训练均值。它是0至6 T的31个训练快照的平均，随观察时间不变。':'训练路径相对平衡只沿(1,0,−1)方向变化，一维表示可以跟随它。切换初值，检查额外的快方向与各室的值。';
 }
 function fail(error){$('loading-note').hidden=false;$('loading-note').classList.add('error');$('loading-note').textContent='探索未能运行：'+error.message+'。请刷新重试。';$('controls').disabled=true;}
 function guard(fn){try{fn();}catch(error){fail(error);}}

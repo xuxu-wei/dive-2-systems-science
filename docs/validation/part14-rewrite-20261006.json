@@ -1,0 +1,743 @@
+{
+  "date": "2026-10-06",
+  "baseline": "49c7cf54d7c36f9f0541eb39eb071aab1e0cb3b7",
+  "scope": "Part 14 formal teaching, exercises, guides and web text; exactly two dispatched Part 13 prose followups. Pending unified user reading acceptance.",
+  "notebooks": [
+    {
+      "id": "P14-C01-S01",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/01-从快照到截断奇异值.ipynb",
+      "sha256": "9e16a9d22201f2664ac74a0261a9d48f98bea1efef165260c806f3b726f92f15",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "e9d7da3433f9c9d502c6652c124a56e8d8663778604cf3abd7bc6625b32418a9"
+    },
+    {
+      "id": "P14-C01-S02",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/02-投影动力学与新初值.ipynb",
+      "sha256": "7ef1338f4d65f331a9e4addb8ee9d7ca8e97ce7d162a4a4f47ee02f1f52659d4",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "1af8356b34bbfaf665f943e35beec5b6576891cc37b7b0ccb2435907b517862b"
+    },
+    {
+      "id": "P14-C02-S01",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/01-配对快照与线性传播.ipynb",
+      "sha256": "065bb13095e1d5bce0eac7619684a370f2196cc17ace9918593e12be4cb80054",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "2fcef80a60fb4ef952ef1806034f9dd0aad7b4ba31d99c8e1a916befb939f167"
+    },
+    {
+      "id": "P14-C02-S02",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/02-模态、采样与预测范围.ipynb",
+      "sha256": "f0beb73d79bf2481c3afe2c49d18876b2ebf6fb3d0b51765003a15160f9d0e72",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "8d76fab97d7c3f325c9f4db4237864512767bb4033f33b799713e01bb70365e3"
+    },
+    {
+      "id": "P14-C03-S01",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/01-从非线性状态到线性观测.ipynb",
+      "sha256": "f42896fdebb836708263965770ca0b337f1ff65a4e5d715ab1712a5b430c8d2b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "e493a2690a36d3f0441990188dc3691799f476b834a9a4b25f3ecbd13667e993"
+    },
+    {
+      "id": "P14-C03-S02",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.ipynb",
+      "sha256": "8fe1d930ab68648c0da6a392f2e3785d0dfaf8a1719a30dd16289ea2e938ea3b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "7b406c547b20d2a5a72bcefbdb76fb8b5071661cf194441204411538404f181a"
+    },
+    {
+      "id": "P14-C04-S01",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/01-候选字典与顺序阈值回归.ipynb",
+      "sha256": "d04ddf84a9d14c665cbcc5db4f1791d306827500dce3464606709aa43690ec1e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "ff8b7d49cec7a510042c4a112ba686181786334b67d2606297cac34d7bbd2716"
+    },
+    {
+      "id": "P14-C04-S02",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/02-导数噪声与独立轨迹.ipynb",
+      "sha256": "cfb46a9ea2c370bd91e4c86ff493eb306e1df86815b656d4ae5ca82072a79922",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "781c178137b5c256ccd60f5b21cc9e98d8f7e1bf7b2373be8ec0aaa855d2d6ed"
+    },
+    {
+      "id": "P14-C05-S01",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/01-守恒、正性与离散步长.ipynb",
+      "sha256": "545b6135270a18cfd5449c4e4144477cf0411fb745ed048bf27c6d50423a9853",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "cf52bd98c0f8a962df3e4c4103cd622dce3b15e7ca8b5c643c6a4b541576e0e2"
+    },
+    {
+      "id": "P14-C05-S02",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/02-同一预算下的外推比较.ipynb",
+      "sha256": "e6c4f9c2879b04ffa387f3b0beabde7afa1236bba5732c6b42eb8b7031f04dd8",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "c5c525b686401c2786005ba682c10da09d8e975de1a611f4d7204b78189f2efa"
+    },
+    {
+      "id": "P14-SUMMARY",
+      "path": "notebooks/14-数据驱动动力学与模型降阶/99-篇末综合/01-交换系统的降阶与动力学发现.ipynb",
+      "sha256": "c8af5411d1c9cd9f7b9618d3af9d7a8bd553959a6499c9a4066638b86cbb94c4",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "90f0cc0a38250bfcdb6089ff28d1d0956f6faa630efeb53808cb29881d197e92"
+    }
+  ],
+  "questions": {
+    "reviewed": 48,
+    "choice": 34,
+    "python": 14,
+    "wording_changed": 48,
+    "wording_changed_ids": [
+      "p14-svd-reconstruction",
+      "p14-energy-limit",
+      "p14-holdout-basis",
+      "p14-sign-and-rank",
+      "p14-galerkin-euler",
+      "p14-initial-projection",
+      "p14-conservation-projection",
+      "p14-time-vs-reduction",
+      "p14-dmd-fit",
+      "p14-one-step-rollout",
+      "p14-null-direction",
+      "p14-paired-columns",
+      "p14-dmd-rates",
+      "p14-angle-alias",
+      "p14-eigen-modulus",
+      "p14-local-operator",
+      "p14-edmd-fit",
+      "p14-koopman-functions",
+      "p14-exact-closure",
+      "p14-readout",
+      "p14-lifted-roll",
+      "p14-dictionary-mismatch",
+      "p14-ridge-bias",
+      "p14-feature-drift",
+      "p14-sparse-stlsq",
+      "p14-column-scale",
+      "p14-collinear-terms",
+      "p14-candidate-mechanism",
+      "p14-finite-derivative",
+      "p14-noise-difference",
+      "p14-trajectory-split",
+      "p14-chaotic-long-term",
+      "p14-structure-metrics",
+      "p14-column-conservation",
+      "p14-euler-positive",
+      "p14-concentration-coordinates",
+      "p14-path-metrics",
+      "p14-fair-budget",
+      "p14-initial-error",
+      "p14-repeat-noise",
+      "p14-capstone-projection-claim",
+      "p14-capstone-lift-limit",
+      "p14-capstone-projection",
+      "p14-capstone-edmd",
+      "p14-capstone-sparse",
+      "p14-capstone-structure",
+      "p14-capstone-noisy-selection",
+      "p14-capstone-new-input"
+    ],
+    "explanation_changed": 48,
+    "explanation_changed_ids": [
+      "p14-svd-reconstruction",
+      "p14-energy-limit",
+      "p14-holdout-basis",
+      "p14-sign-and-rank",
+      "p14-galerkin-euler",
+      "p14-initial-projection",
+      "p14-conservation-projection",
+      "p14-time-vs-reduction",
+      "p14-dmd-fit",
+      "p14-one-step-rollout",
+      "p14-null-direction",
+      "p14-paired-columns",
+      "p14-dmd-rates",
+      "p14-angle-alias",
+      "p14-eigen-modulus",
+      "p14-local-operator",
+      "p14-edmd-fit",
+      "p14-koopman-functions",
+      "p14-exact-closure",
+      "p14-readout",
+      "p14-lifted-roll",
+      "p14-dictionary-mismatch",
+      "p14-ridge-bias",
+      "p14-feature-drift",
+      "p14-sparse-stlsq",
+      "p14-column-scale",
+      "p14-collinear-terms",
+      "p14-candidate-mechanism",
+      "p14-finite-derivative",
+      "p14-noise-difference",
+      "p14-trajectory-split",
+      "p14-chaotic-long-term",
+      "p14-structure-metrics",
+      "p14-column-conservation",
+      "p14-euler-positive",
+      "p14-concentration-coordinates",
+      "p14-path-metrics",
+      "p14-fair-budget",
+      "p14-initial-error",
+      "p14-repeat-noise",
+      "p14-capstone-projection-claim",
+      "p14-capstone-lift-limit",
+      "p14-capstone-projection",
+      "p14-capstone-edmd",
+      "p14-capstone-sparse",
+      "p14-capstone-structure",
+      "p14-capstone-noisy-selection",
+      "p14-capstone-new-input"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "previous_part_followups": [
+    {
+      "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/01-序参量与有限随机重复.ipynb",
+      "cell": 2,
+      "old": "下面的概率规则是教学设定；若用于生命系统，还需为这两个取值及其相互作用寻找具体依据。",
+      "new": "",
+      "all_other_cells_metadata_code_outputs_preserved": true
+    },
+    {
+      "path": "notebooks/13-临界变化与韧性/05-篇末综合/01-有限证据与韧性判断.ipynb",
+      "cell": 4,
+      "old": "；这些设置与13.1的较长、多规模实验不同，不能将展示点当成新的无限规模阈值估计。",
+      "new": "。本例用这些轨迹展示如何先逐次汇总，再比较重复结果。",
+      "all_other_cells_metadata_code_outputs_preserved": true
+    }
+  ],
+  "corrected_experiment_descriptions": [
+    "P14-C03-S02 symmetric notebook training makes short refit coefficients happen to equal the manually retained block; web positive-x training differs.",
+    "P14-C04-S01 all four printed thresholds retain the same two true terms; no absent deletion path claimed.",
+    "P14-C04-S02 20 repetitions report componentwise min/max; Lorenz fit uses true clean derivatives, and no unperformed long noisy benchmark is claimed.",
+    "P14-C05-S01 main total figure compares good/bad matrices only; negative transfer and large-step checks are distinct.",
+    "P14-C05-S02 Galerkin POD also uses known L; held-out truth is the same Euler rule, not a continuous exact reference.",
+    "P14-C05-S02 single-channel metric describes only first-room observations; new input begins with update 11 and adds 0.1 U per update.",
+    "P14-SUMMARY main experiment uses DMD only, while independent exercises cover other representations."
+  ],
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Read-only unbound PracticeEngine.progress with original in-memory records and current bank/assessment; no judging or record save."
+  },
+  "scope_protection": {
+    "other_course_parts_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_models_unchanged": true,
+    "web_controller_changes_exactly_match_display_text_replacements": true,
+    "slider_keys_ranges_steps_initial_values_labels_and_handlers_preserved": true,
+    "official_checker_and_glossary_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "independent_hand_examples_and_algebra": [
+      "Data energy 3²+1²=10, 90% retention with 1 U residual, 99% relative energy and 0.1 relative norm; two-room Euler and three-room slow/fast direction, new initial decomposition and √1.5 U projected error checked.",
+      "Two DMD pairs and nonzero determinant −0.3 checked; log(0.92)/0.4≈−0.208454/T, 0.5/0.4=1.25 rad/T and the 0.25+πℓ alias family checked.",
+      "Three-row Koopman action for both written initial states, the 0.36 omitted-term regression and saturation next state 37/40 with feature 37/77 checked.",
+      "Logistic rates 0.224/0.8/0.8, normalized true coefficient magnitudes above all four main thresholds, column/coordinate rescaling, central/end noise variances and 4× halved-step variance, stated sample intervals and 1204 Lorenz states checked.",
+      "Good/bad columns, Euler first states [1.6,0.4] and [−2,4], the tolerance-versus-large-step negative term, volume-weighted concentration condition, one-row RMSE √0.5 with zero total difference/one negative, train/test times and 1 U new input checked."
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    },
+    {
+      "id": "p08-conditioning",
+      "version": "1",
+      "location": "Option B, marked correct in the existing answer",
+      "issue": "不发散与误差收敛到零混用。B要求步长严格小于上界才不发散，但H₂较大曲率方向在η=2/100时因子为−1，误差等幅交替且不发散。",
+      "evidence": "e[k+1]=(1−100η)e[k]；η=0.02给出e[k+1]=−e[k]。严格上界针对误差衰减到零，而不是仅不发散。",
+      "required_substantive_change": "后续明确B要判断误差衰减/收敛，或修订不发散条件及对应答案，再依版本规则处理；本轮没有暗改答案、条件意图或版本。",
+      "status": "登记，待实质题库修订；当前正确答案与旧成绩保留"
+    }
+  ],
+  "new_unresolved": [],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 120,
+    "core_changed": 109,
+    "exercise_cells_synchronized": 11,
+    "previous_part_specified_sentences": 2
+  },
+  "teaching_check": {
+    "notebooks": 11,
+    "questions": 48,
+    "question_links": 48,
+    "issues": []
+  },
+  "teaching_check_method": "Existing check_teaching logic with actual vocabulary from Parts 0–13 and preceding Part 14 lessons. Exercises inherit their lesson explanations; overviews inherit earlier chapters. Original checker, glossary and range rules remain unchanged.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/14-01-低秩分解与模型降阶/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/14-02-动态模态分解/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/14-03-Koopman 表示与有限字典/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/14-04-稀疏动力学辨识/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/14-05-噪声、外推与结构保持/",
+        "status": 200
+      },
+      {
+        "path": "/parts/14-数据驱动动力学与模型降阶/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/14-01-低秩分解与模型降阶/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/14-02-动态模态分解/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/14-03-Koopman 表示与有限字典/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/14-04-稀疏动力学辨识/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/14-05-噪声、外推与结构保持/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p14-energy-limit",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-one-step-rollout",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-koopman-functions",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-column-scale",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-column-conservation",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-svd-reconstruction",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-dmd-fit",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-edmd-fit",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-sparse-stlsq",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-finite-derivative",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-structure-metrics",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-path-metrics",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-capstone-edmd",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p14-capstone-structure",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      }
+    ],
+    "served_catalog_and_controllers_equal_current_files": true,
+    "local_file_link_targets_checked": 26,
+    "html_rendered_without_execution": [
+      "P14-C01-S01",
+      "P14-C01-S02",
+      "P14-C02-S01",
+      "P14-C02-S02",
+      "P14-C03-S01",
+      "P14-C03-S02",
+      "P14-C04-S01",
+      "P14-C04-S02",
+      "P14-C05-S01",
+      "P14-C05-S02",
+      "P14-SUMMARY"
+    ],
+    "browser_ui_check": "No browser visual inspection in this round. HTTP responses and static HTML conversion do not establish visual layout, MathJax rendering or interaction behavior."
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_preliminaries/linear-algebra.html",
+      "focus": "逐项解释数据行列，从单个运算到矩阵与代码，用具体数量解释范数。本篇借鉴这些衔接方式，保留自己的交换模型与推导。"
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/06-Grouped-and-Dummy-Regression.html",
+      "focus": "先说明数据表的每行与每列，再解释表示改变及信息含义，并回到结果。借鉴教学表达，没有添加对应因果回归方法。"
+    }
+  ],
+  "authorization": "Current dispatch covers Part 14 and exactly two specified Part 13 prose followups. The human-authorized sequential Parts 2–17 workflow uses final unified reading acceptance. Normal commit/push is authorized; learning records, environments and temporary helpers are excluded. Await Part 15 dispatch.",
+  "specific_prose_corrections": [
+    "Snapshot columns, feature columns and candidate sample rows are defined before their formulas. Function and coefficient ordering, subscripts and return objects are connected to hand examples.",
+    "Data energy is defined as sum of squared singular values = squared Frobenius norm, with U² units for same-scale state data. It is distinct from physical energy and new-trajectory prediction.",
+    "The two-room Galerkin first step and three-room initial projection are derived with units. Known-L projection dynamics and a pure data fit are described according to their actual inputs.",
+    "DMD past/next pairs are explained as one-step regressions. Null directions, truncated pseudoinverse, signed amplitude rate and the integer alias branches are separated from multi-step testing.",
+    "Koopman acts linearly on functions. The triangular dictionary is proved closed row by row; its mixed feature units and state readout are explicit.",
+    "Short EDMD refitting is distinct from deleting a block. Symmetric notebook training happens to give the same remaining coefficients, while positive-x web training redistributes the omitted forcing; a non-symmetric 0.36 hand example explains this.",
+    "Four sparse thresholds in the stored experiment retain the same [x,x²] support. Column scaling, equality at the threshold, stopping, original-scale coefficients and index ordering are explained without claiming absent plotted deletion.",
+    "The finite derivative contract remains equidistant. Central/end noise variance, fixed step and units bridge difference calculations to both regression sides. Repeated ranges are not called confidence intervals.",
+    "The Lorenz coefficient check uses clean true derivatives and the explicit ten-function order; it is separated from noisy derivative estimation and unperformed long-time comparisons.",
+    "Column balance, nonnegative transfers and Euler matrix conditions are derived separately, including a total-preserving negative first-step example and volume-weighted concentration condition.",
+    "The shared comparison reports initial projection versus autonomous rollout, whole-table RMSE, maximum weighted total error and negative cells. Single-room evaluation and update-11 input are separate tasks.",
+    "The capstone main demo fits DMD only and is described that way; other functions support its independent exercises.",
+    "All five web views now explain their actual training domains, perturbation form, axes and sampling. Numerical model functions, slider conditions and event handlers are unchanged."
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part14-rewrite-20261006/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part14-rewrite-20261006/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part14-rewrite-20261006/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part14-rewrite-20261006/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/datadriven/app.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/lowrank/app.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    "docs/14-数据驱动动力学与模型降阶.md": "b654ef28f168b82100aacaed3bd55e5d09dc97bba04bf539dee24c9b68ae5497",
+    "exercises/14-数据驱动动力学与模型降阶/questions.json": "9fe0506db6257cba11bab6ee4bea8fe02988e99a79549e5e2c170e7ed881625b",
+    "exercises/14-数据驱动动力学与模型降阶/verification.json": "a47bcd5aacc043ed216dd00d6be6ef839f52416b6f2f617af2dc7f57ee5cd89e",
+    "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/01-序参量与有限随机重复.ipynb": "33ccc50f9b3d23507e6425f8fb11ada77b741001259d2d24a24003a271e5225f",
+    "notebooks/13-临界变化与韧性/05-篇末综合/01-有限证据与韧性判断.ipynb": "c3b7d3b80d36b30d7dfc357a118dde013c1b33d779e4bd9651d8df3c86641d2f",
+    "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/01-从快照到截断奇异值.ipynb": "9e16a9d22201f2664ac74a0261a9d48f98bea1efef165260c806f3b726f92f15",
+    "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/02-投影动力学与新初值.ipynb": "7ef1338f4d65f331a9e4addb8ee9d7ca8e97ce7d162a4a4f47ee02f1f52659d4",
+    "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/01-配对快照与线性传播.ipynb": "065bb13095e1d5bce0eac7619684a370f2196cc17ace9918593e12be4cb80054",
+    "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/02-模态、采样与预测范围.ipynb": "f0beb73d79bf2481c3afe2c49d18876b2ebf6fb3d0b51765003a15160f9d0e72",
+    "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/01-从非线性状态到线性观测.ipynb": "f42896fdebb836708263965770ca0b337f1ff65a4e5d715ab1712a5b430c8d2b",
+    "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.ipynb": "8fe1d930ab68648c0da6a392f2e3785d0dfaf8a1719a30dd16289ea2e938ea3b",
+    "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/01-候选字典与顺序阈值回归.ipynb": "d04ddf84a9d14c665cbcc5db4f1791d306827500dce3464606709aa43690ec1e",
+    "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/02-导数噪声与独立轨迹.ipynb": "cfb46a9ea2c370bd91e4c86ff493eb306e1df86815b656d4ae5ca82072a79922",
+    "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/01-守恒、正性与离散步长.ipynb": "545b6135270a18cfd5449c4e4144477cf0411fb745ed048bf27c6d50423a9853",
+    "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/02-同一预算下的外推比较.ipynb": "e6c4f9c2879b04ffa387f3b0beabde7afa1236bba5732c6b42eb8b7031f04dd8",
+    "notebooks/14-数据驱动动力学与模型降阶/99-篇末综合/01-交换系统的降阶与动力学发现.ipynb": "c8af5411d1c9cd9f7b9618d3af9d7a8bd553959a6499c9a4066638b86cbb94c4",
+    "notebooks/14-数据驱动动力学与模型降阶/README.md": "391f45eb4dc9c9a6cfb59df749187c25087f840f29c9c8f6ba2e0961e418d30f",
+    "notebooks/14-数据驱动动力学与模型降阶/catalog.json": "33a31d57c2d2df65dc85499847d53d47a4d70166a5f6df2faff765e41c82ca82",
+    "web/course/catalog.json": "c77caf90c61383fca34e6b43698c70f511891c82be7906d1f70ebcb9e2fb9195",
+    "web/datadriven/app.mjs": "9c052a1e4f0f8964b1d4e9552c41af7db07e11745e667639362664cad721377f",
+    "web/datadriven/index.html": "51774374898ce92d3e4ce5c640fd1d79d62f70ded89c9fd11ff6c691cc68e1de",
+    "web/lowrank/app.mjs": "c27802ac2ab3a7c93ee3ff7345cbdcaec09d8bc954dd5cf1be903b54ad21c74c",
+    "web/lowrank/index.html": "94a769d4d127310fd03551dd34b2c8a00362fd64e5e5688a3e0befacde137be9"
+  }
+}
