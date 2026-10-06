@@ -7,7 +7,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S01",
     "title": "哪一个输入进入能量导数",
-    "statement": "系统状态（state）的变化接收执行器的实际作用。请求输入（input）超过执行上限时，应按哪种顺序检验V的导数（derivative）？",
+    "statement": "在无延迟模型中，当前状态的变化率由执行器本次实际施加的输入决定。请求超过执行上限时，应怎样计算 $V=x^2/2$ 的当前变化率？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -49,7 +49,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S01",
     "title": "三次反馈的充分条件",
-    "statement": "无饱和模型（model）中，V=x²/2且dV/dt=−(a+k)x²+(β−c)x⁴，a+k>0、β>0。使四次项对所有x都不增加V的c取值范围是什么？",
+    "statement": "无饱和反馈给出 $V=x^2/2$、$\\dot V=-(a+k)x^2+(\\beta-c)x^4$，已知 $a+k>0$、$\\beta>0$。要使四次项对所有状态都不增加 V，系数 c 应满足什么条件？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -91,7 +91,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S02",
     "title": "小扰动恢复与全局结论",
-    "statement": "限幅控制在 x0=0.3 的轨迹（trajectory）恢复，能得出什么？",
+    "statement": "在给定模型、执行上限和数值网格下，从 $x_0=0.3$ U 出发的偏差逐步向零靠近。这项观察直接支持哪一判断？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -108,19 +108,19 @@
     "options": [
       {
         "id": "A",
-        "text": "从x0=0.3出发的数值轨迹返回了平衡（equilibrium）点，其他初值（initial condition）的轨迹还需分别分析。"
+        "text": "这项观察支持该初值在本次模拟中的恢复表现；其他初值需要另行分析。"
       },
       {
         "id": "B",
-        "text": "这条轨迹返回了平衡点，说明控制输入（input）在整个状态空间（state space）内都不会触发限幅。"
+        "text": "这项观察说明反馈请求在整个状态范围内都不会超过执行上限。"
       },
       {
         "id": "C",
-        "text": "这条轨迹返回了平衡点，说明从任意初值出发都能返回同一平衡点。"
+        "text": "这项观察说明任意初始偏差都能返回同一个平衡点。"
       },
       {
         "id": "D",
-        "text": "这条轨迹返回了平衡点，说明限幅前后的V导数（derivative）在所有状态（state）处都相同。"
+        "text": "这项观察说明限幅前后的 V 导数在所有状态处都相同。"
       }
     ],
     "constraints": []
@@ -133,7 +133,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S02",
     "title": "有限扫描的作用",
-    "statement": "扫描若干初值（initial condition）未发现失稳，何种表述合适？",
+    "statement": "在若干预先选定初值上进行数值模拟，所算轨迹都向平衡点靠近。对这次有限扫描，应怎样表述结果？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -150,19 +150,19 @@
     "options": [
       {
         "id": "A",
-        "text": "相邻扫描点距离较小，因此夹在它们之间的初值也都会返回平衡（equilibrium）点。"
+        "text": "相邻初值取样足够接近，便能据此保证两点之间的所有初值都恢复。"
       },
       {
         "id": "B",
-        "text": "已扫描的初值产生了返回平衡点的数值轨迹（trajectory），未扫描的初值是否返回还需验证。"
+        "text": "已选初值在本次模拟条件下产生了恢复轨迹；其他初值是否恢复仍需分析。"
       },
       {
         "id": "C",
-        "text": "这些返回轨迹已证明，V的导数（derivative）在所有非零状态（state）处都严格为负。"
+        "text": "这些恢复轨迹证明 V 的导数在所有非零状态处严格为负。"
       },
       {
         "id": "D",
-        "text": "扫描区域之外沿用同一控制律，因此这些区域的初值也都会返回平衡点。"
+        "text": "扫描范围之外使用相同控制律，因此这些初值也一定恢复。"
       }
     ],
     "constraints": []
@@ -175,7 +175,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S01",
     "title": "为什么要共同矩阵",
-    "statement": "要用顶点矩阵（matrix）的凸组合证明区间内存在共同二次证书，应如何处理正定（positive definite）矩阵P？",
+    "statement": "允许的闭环矩阵是给定顶点的凸组合。要用 $V=x^\\mathsf TPx$ 建立覆盖整个集合的共同证书，应怎样处理 P？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -217,7 +217,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S01",
     "title": "顶点法适用范围",
-    "statement": "顶点导数（derivative）矩阵（matrix）负定的推论依赖什么？",
+    "statement": "同一个正定 P 已使每个给定顶点的 $A_i^\\mathsf TP+PA_i$ 严格负定。要将这项条件推广到全部允许的闭环矩阵，还需哪一集合关系？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -234,7 +234,7 @@
     "options": [
       {
         "id": "A",
-        "text": "参数（parameter）位于两端点之间就足够，不论对应矩阵怎样随参数变化都可沿用顶点结论。"
+        "text": "参数位于两端点之间就足够，不论对应矩阵怎样随参数变化都可沿用顶点结论。"
       },
       {
         "id": "B",
@@ -259,7 +259,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S02",
     "title": "检查候选二次证书",
-    "statement": "某个候选 P 的 AᵀP+PA 有非负方向，哪项结论严谨？",
+    "statement": "对固定线性系统 $\\dot x=Ax$，一个候选正定 P 使 $A^\\mathsf TP+PA$ 在某个非零方向为非负。关于这次检查，哪项判断成立？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -276,7 +276,7 @@
     "options": [
       {
         "id": "A",
-        "text": "这个P没有使V在所有非零方向严格下降，可以另选P或检查系统特征值（eigenvalue）来判断稳定性。"
+        "text": "这个P没有使V在所有非零方向严格下降，可以另选P或检查系统特征值来判断稳定性。"
       },
       {
         "id": "B",
@@ -288,7 +288,7 @@
       },
       {
         "id": "D",
-        "text": "延长仿真的时间窗口，就会改变这个固定P对应的矩阵（matrix）不等式。"
+        "text": "延长仿真的时间窗口，就会改变这个固定P对应的矩阵不等式。"
       }
     ],
     "constraints": []
@@ -301,7 +301,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S02",
     "title": "集合外矩阵",
-    "statement": "区间内共同证书成立，集合外一个矩阵（matrix）出现正实部特征值（eigenvalue），应如何解释？",
+    "statement": "原凸包内已经建立共同稳定证书。另一个位于该凸包之外的矩阵有正实部特征值，应怎样同时解释原结论与新结果？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -322,11 +322,11 @@
       },
       {
         "id": "B",
-        "text": "这个外部模型（model）失稳，说明原凸包内已证明的稳定结论也应撤销。"
+        "text": "这个外部模型失稳，说明原凸包内已证明的稳定结论也应撤销。"
       },
       {
         "id": "C",
-        "text": "原凸包已有稳定证书，因此外部矩阵的正实部特征值不能导致状态（state）增长。"
+        "text": "原凸包已有稳定证书，因此外部矩阵的正实部特征值不能导致状态增长。"
       },
       {
         "id": "D",
@@ -343,7 +343,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S01",
     "title": "零回归量",
-    "statement": "标量递归最小二乘（recursive least squares，RLS）每步回归量φ=0，遗忘因子（forgetting factor）为λ∈(0,1]。估计与P怎样变化？",
+    "statement": "标量 RLS 每步回归量都为 $\\phi=0$，遗忘因子 $0<\\lambda\\le1$，估计未触发区间投影。按本节递推式，参数估计与 P 怎样更新？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -360,7 +360,7 @@
     "options": [
       {
         "id": "A",
-        "text": "参数（parameter）估计逐步趋向零，而P保持当前值不变。"
+        "text": "参数估计逐步趋向零，而P保持当前值不变。"
       },
       {
         "id": "B",
@@ -368,7 +368,7 @@
       },
       {
         "id": "C",
-        "text": "参数估计随新的观测（observation）值改变，而P保持当前值不变。"
+        "text": "参数估计随新的观测值改变，而P保持当前值不变。"
       },
       {
         "id": "D",
@@ -385,7 +385,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S01",
     "title": "递推先后",
-    "statement": "新观测（observation）y_n到达，旧参数（parameter）估计为a_hat_n，回归量为φ_n。本轮更新用的预测误差是哪一式？",
+    "statement": "第 n 次观测 $y_n$ 到达，对应回归量为 $\\phi_n$，更新前估计为 $\\hat a_n$。形成本次校正项的预测误差是哪一式？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -402,19 +402,19 @@
     "options": [
       {
         "id": "A",
-        "text": "本轮预测误差为y_n−φ_n*a_hat_(n+1)。"
+        "text": "用本次观测减去新估计的预测，得到 $y_n-\\phi_n\\hat a_{n+1}$。"
       },
       {
         "id": "B",
-        "text": "本轮预测误差为y_(n+1)−φ_n*a_hat_n。"
+        "text": "用下一次观测减去旧估计的预测，得到 $y_{n+1}-\\phi_n\\hat a_n$。"
       },
       {
         "id": "C",
-        "text": "本轮预测误差为y_n−φ_n*a_hat_n。"
+        "text": "用本次观测减去旧估计的预测，得到 $y_n-\\phi_n\\hat a_n$。"
       },
       {
         "id": "D",
-        "text": "本轮预测误差为φ_n−y_n*a_hat_n。"
+        "text": "将回归量减去观测乘旧估计，得到 $\\phi_n-y_n\\hat a_n$。"
       }
     ],
     "constraints": []
@@ -427,7 +427,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S02",
     "title": "在线控制的信息边界",
-    "statement": "在选择 u_n 时，下列哪项不可用？",
+    "statement": "控制器已经测得 $x_n$，将用已有估计 $\\hat a_n$ 选择输入 $u_n$。哪项信息在这次选择时尚不可用？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -444,19 +444,19 @@
     "options": [
       {
         "id": "A",
-        "text": "使用本轮动作执行之后才会观测（observation）到的x_(n+1)。"
+        "text": "使用本轮动作执行之后才会观测到的x_(n+1)。"
       },
       {
         "id": "B",
-        "text": "使用在本轮开始前已经更新好的参数（parameter）估计a_hat_n。"
+        "text": "使用在本轮开始前已经更新好的参数估计a_hat_n。"
       },
       {
         "id": "C",
-        "text": "使用本轮已经测得的当前状态（state）x_n。"
+        "text": "使用本轮已经测得的当前状态x_n。"
       },
       {
         "id": "D",
-        "text": "使用事先给定的输入（input）上限。"
+        "text": "使用事先给定的输入上限。"
       }
     ],
     "constraints": []
@@ -469,7 +469,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S02",
     "title": "跟踪与参数估计",
-    "statement": "系统参数（parameter）随时间变化，输出（output）与目标的跟踪误差很小，但估计a_hat偏离真实参数。应怎样理解这两项记录？",
+    "statement": "参数随时间变化的调节实验中，状态与目标相差很小，但 $\\hat a$ 仍偏离核验真值。怎样解释跟踪与参数估计这两项记录？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -486,7 +486,7 @@
     "options": [
       {
         "id": "A",
-        "text": "跟踪误差已经很小，因此可以用它代替参数（parameter）误差，判定估计值正确。"
+        "text": "跟踪误差已经很小，因此可以用它代替参数误差，判定估计值正确。"
       },
       {
         "id": "B",
@@ -494,7 +494,7 @@
       },
       {
         "id": "C",
-        "text": "继续提高反馈（feedback）增益（gain），将跟踪误差进一步减小作为参数收敛的证明。"
+        "text": "继续提高反馈增益，将跟踪误差进一步减小作为参数收敛的证明。"
       },
       {
         "id": "D",
@@ -511,7 +511,7 @@
     "chapter": "16.4",
     "lesson_id": "P16-C04-S01",
     "title": "随机增量的尺度",
-    "statement": "给标准正态 Z，长度 h 的布朗增量应如何生成？",
+    "statement": "标准正态随机数 Z 的均值为零、方差为一。要生成长度 h 的布朗增量，使其方差等于 h，应采用哪种缩放？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -553,7 +553,7 @@
     "chapter": "16.4",
     "lesson_id": "P16-C04-S01",
     "title": "同路径粗细比较",
-    "statement": "给定细网格布朗增量，构造对应粗路径的增量应怎样？",
+    "statement": "一粗步包含若干连续细步。已给出这些细步的布朗增量，要让粗细数值解共享同一随机路径，应怎样构造粗增量？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -570,19 +570,19 @@
     "options": [
       {
         "id": "A",
-        "text": "独立抽取一个新粗增量，使它的方差（variance）等于粗时间步长（time step）度。"
+        "text": "独立抽取一个新增量，使其方差等于粗步的时间长度。"
       },
       {
         "id": "B",
-        "text": "对这个粗时间区间内的全部细增量取平均，作为粗增量。"
+        "text": "将这个粗步内的全部细增量取平均，作为粗增量。"
       },
       {
         "id": "C",
-        "text": "将这个粗时间区间内的全部细增量相加，作为粗增量。"
+        "text": "将这个粗步内的全部细增量相加，作为粗增量。"
       },
       {
         "id": "D",
-        "text": "取这个粗时间区间内的第一个细增量，乘以该区间包含的细步数，作为粗增量。"
+        "text": "取这个粗步内第一个细增量，乘以细步数，作为粗增量。"
       }
     ],
     "constraints": []
@@ -595,7 +595,7 @@
     "chapter": "16.4",
     "lesson_id": "P16-C04-S02",
     "title": "平均值与越界统计",
-    "statement": "200次预定重复的终点平均值为0.98，安全阈值为1；其中20次终点超过1，最大终点1.20。该批终点违约率是多少？",
+    "statement": "200 次预定独立重复的终点均值为 0.98 U，上界为 1 U；其中 20 个终点超过上界，最大终点为 1.20 U。这一批的终点越界比例是多少？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -637,7 +637,7 @@
     "chapter": "16.4",
     "lesson_id": "P16-C04-S02",
     "title": "强误差与弱统计量",
-    "statement": "同路径状态（state）差和独立重复的均值差各回答什么？",
+    "statement": "比较两种随机数值解时，一项记录是相同驱动下的状态差，另一项是两组独立重复算出的样本均值差。它们分别比较什么？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -654,19 +654,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两种差异都表示每条随机路径上两个数值解的逐点误差。"
+        "text": "两项都给出每条随机路径上两种数值解的逐点误差。"
       },
       {
         "id": "B",
-        "text": "同路径状态差比较两个分布（distribution）的均值，而独立重复均值差比较两条配对路径。"
+        "text": "同驱动状态差比较分布均值，而独立重复均值差比较两条配对路径。"
       },
       {
         "id": "C",
-        "text": "同路径状态差与独立重复均值差在数值上相等，可以互相替代。"
+        "text": "同驱动状态差与两组样本均值差在数值上总相等，可以互相替代。"
       },
       {
         "id": "D",
-        "text": "同路径状态差比较同一随机驱动下的两个解，而独立重复均值差比较两个解分布的平均值。"
+        "text": "同驱动状态差比较一条配对路径上的两个解，样本均值差用于估计两个解分布的均值差。"
       }
     ],
     "constraints": []
@@ -679,7 +679,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S01",
     "title": "平均守恒的条件",
-    "statement": "无向对称图的 x⁺=(I-hL)x，为何平均保持？",
+    "statement": "无向对称权重给出 $x^+=(I-hL)x$。用 $\\mathbf1$ 表示全一列向量，哪一关系解释了节点状态平均保持？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -700,7 +700,7 @@
       },
       {
         "id": "B",
-        "text": "因为L1=0，每个节点从任意初值（initial condition）出发都保持原值。"
+        "text": "因为L1=0，每个节点从任意初值出发都保持原值。"
       },
       {
         "id": "C",
@@ -708,7 +708,7 @@
       },
       {
         "id": "D",
-        "text": "因为L的特征值（eigenvalue）都相等，每个节点在这一步都增加相同数值。"
+        "text": "因为L的特征值都相等，每个节点在这一步都增加相同数值。"
       }
     ],
     "constraints": []
@@ -721,7 +721,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S01",
     "title": "断连网络的极限",
-    "statement": "无向网络分成两个连通分量（connected component）时，满足适当步长后可保证什么？",
+    "statement": "无延迟、无输入限幅的无向网络由两个连通分量组成。步长使各分量非零拉普拉斯方向都收缩，节点最终趋向什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -738,7 +738,7 @@
     "options": [
       {
         "id": "A",
-        "text": "所有节点的状态（state）最终趋于两个分量合在一起计算的全网初始平均值。"
+        "text": "所有节点的状态最终趋于两个分量合在一起计算的全网初始平均值。"
       },
       {
         "id": "B",
@@ -750,7 +750,7 @@
       },
       {
         "id": "D",
-        "text": "每个分量的状态总和保持不变，而且其中每个节点的状态也保持初值（initial condition）不变。"
+        "text": "每个分量的状态总和保持不变，而且其中每个节点的状态也保持初值不变。"
       }
     ],
     "constraints": []
@@ -763,7 +763,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S02",
     "title": "延迟更新读取什么",
-    "statement": "x_{n+1}=x_n-hLx_{n-d} 中，哪个状态（state）用于差分耦合？",
+    "statement": "延迟规则为 $x_{n+1}=x_n-hLx_{n-d}$，$d>0$。下一状态从哪个值开始、用哪个值计算耦合调整？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -780,19 +780,19 @@
     "options": [
       {
         "id": "A",
-        "text": "从当前状态x_n中减去用当前状态计算的hLx_n。"
+        "text": "从当前 $x_n$ 开始，减去用当前状态算出的 $hLx_n$。"
       },
       {
         "id": "B",
-        "text": "从历史状态x_(n−d)中减去用同一历史状态计算的hLx_(n−d)。"
+        "text": "从历史 $x_{n-d}$ 开始，减去用同一历史状态算出的 $hLx_{n-d}$。"
       },
       {
         "id": "C",
-        "text": "从当前状态x_n中减去用历史状态计算的hLx_(n−d)。"
+        "text": "从当前 $x_n$ 开始，减去用历史状态算出的 $hLx_{n-d}$。"
       },
       {
         "id": "D",
-        "text": "从历史状态x_(n−d)中减去用下一步状态计算的hLx_(n+1)。"
+        "text": "从历史 $x_{n-d}$ 开始，减去用待求状态算出的 $hLx_{n+1}$。"
       }
     ],
     "constraints": []
@@ -805,7 +805,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S02",
     "title": "无延迟谱界",
-    "statement": "无延迟（delay）时，步长条件为h<2/λmax(L)。在更新中加入历史状态（state）后，应怎样判断这个步长条件是否仍适用？",
+    "statement": "无延迟的对称图在 $0<h<2/\\lambda_{\\max}(L)$ 时差异收缩。将规则改为 $x_{n+1}=x_n-hLx_{n-d}$、$d>0$ 后，应怎样检查步长？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -822,11 +822,11 @@
     "options": [
       {
         "id": "A",
-        "text": "总和仍然守恒，因此各差异模态（mode）还按照无延迟时的乘子变化。"
+        "text": "总和仍然守恒，因此各差异模态还按照无延迟时的乘子变化。"
       },
       {
         "id": "B",
-        "text": "引入延迟后，下一步取决于更早的状态，需要按新的递推关系（recurrence relation）重新求稳定范围。"
+        "text": "引入延迟后，下一步取决于更早的状态，需要按新的递推关系重新求稳定范围。"
       },
       {
         "id": "C",
@@ -834,7 +834,7 @@
       },
       {
         "id": "D",
-        "text": "无向图的特征值（eigenvalue）都是实数，因此加入延迟不会改变时间递推的特征方程。"
+        "text": "无向图的特征值都是实数，因此加入延迟不会改变时间递推的特征方程。"
       }
     ],
     "constraints": []
@@ -847,7 +847,7 @@
     "chapter": "16.6",
     "lesson_id": "P16-C06-S01",
     "title": "终止后价值",
-    "statement": "终止吸收态（absorbing state）从现在起每步奖励均为0，折扣因子γ∈(0,1)。固定策略下该状态（state）的价值是多少？",
+    "statement": "任务已到达零奖励终止吸收态，此后每一步奖励都为零。折扣因子 $0<\\gamma<1$ 时，这个状态的固定策略价值是多少？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -889,7 +889,7 @@
     "chapter": "16.6",
     "lesson_id": "P16-C06-S01",
     "title": "策略评价的对象",
-    "statement": "已知马尔可夫决策过程（Markov decision process，MDP）的转移表和奖励，求解固定策略的Vπ，得到什么？",
+    "statement": "在已知 MDP 的转移概率和奖励下，求解固定策略 $\\pi$ 的价值 $V^\\pi$。这个值描述什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -906,11 +906,11 @@
     "options": [
       {
         "id": "A",
-        "text": "Vπ给出固定策略下每条随机轨迹（trajectory）都会取得的同一个折扣回报。"
+        "text": "Vπ给出固定策略下每条随机轨迹都会取得的同一个折扣回报。"
       },
       {
         "id": "B",
-        "text": "Vπ给出所有可用策略中最大的期望（expectation）折扣回报。"
+        "text": "Vπ给出所有可用策略中最大的期望折扣回报。"
       },
       {
         "id": "C",
@@ -931,7 +931,7 @@
     "chapter": "16.6",
     "lesson_id": "P16-C06-S02",
     "title": "终止样本的 Q 目标",
-    "statement": "一次经验标记 done=True，Q 更新目标是什么？",
+    "statement": "一条经验的终止标记为 `done=True`。本步已经获得奖励 r，按本节 Q 更新规则，目标应是什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -948,19 +948,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这次Q更新的目标为本步奖励r。"
+        "text": "本次更新目标只取本步奖励 r。"
       },
       {
         "id": "B",
-        "text": "这次Q更新的目标为0。"
+        "text": "本次更新目标取零，舍去本步奖励。"
       },
       {
         "id": "C",
-        "text": "这次Q更新的目标为r+γmaxQ(next)。"
+        "text": "本次更新目标取本步奖励加下一状态的最大折扣 Q 值。"
       },
       {
         "id": "D",
-        "text": "这次Q更新的目标为训练集（training set）中的平均回报。"
+        "text": "本次更新目标取整批经验的平均回报。"
       }
     ],
     "constraints": []
@@ -973,7 +973,7 @@
     "chapter": "16.6",
     "lesson_id": "P16-C06-S02",
     "title": "有限经验的结论",
-    "statement": "固定短经验序列更新后 Q 表稳定，能声称原论文的最优收敛定理已适用吗？",
+    "statement": "固定短经验序列更新后，Q 表变化已经很小。要进一步讨论渐近最优收敛和所得策略的表现，哪项处理合适？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -990,7 +990,7 @@
     "options": [
       {
         "id": "A",
-        "text": "还需核对各状态（state）动作的访问次数和学习率序列是否符合定理前提，并在新轨迹（trajectory）上评估策略回报。"
+        "text": "还需核对各状态动作的访问次数和学习率序列是否符合定理前提，并在新轨迹上评估策略回报。"
       },
       {
         "id": "B",
@@ -1002,7 +1002,7 @@
       },
       {
         "id": "D",
-        "text": "Q表的数值变化很小，说明每个状态（state）动作组合都已得到充分访问。"
+        "text": "Q表的数值变化很小，说明每个状态动作组合都已得到充分访问。"
       }
     ],
     "constraints": []
@@ -1015,7 +1015,7 @@
     "chapter": "16.7",
     "lesson_id": "P16-C07-S01",
     "title": "预测约束与真实约束",
-    "statement": "估计模型（model）预测状态（state）在[0,2]内，但真实参数（parameter）不同。哪项检查能进一步支持实际约束结论？",
+    "statement": "预测器给出的下一状态在 [0,2] U 内，真实参数却可能与预测参数不同。哪项额外检查能支持实际下一状态也满足此界的判断？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1032,11 +1032,11 @@
     "options": [
       {
         "id": "A",
-        "text": "检查动作是否在执行器上限内，用输入（input）没有越界来判定实际状态也没有越界。"
+        "text": "检查动作是否在执行器上限内，用输入没有越界来判定实际状态也没有越界。"
       },
       {
         "id": "B",
-        "text": "估计模型误差能使实际状态偏离预测多少，再检查这一偏差范围是否仍位于[0,2]内。"
+        "text": "给出模型误差导致的下一状态偏差范围，检查预测值加上全部允许偏差后仍在 [0,2] U 内。"
       },
       {
         "id": "C",
@@ -1057,7 +1057,7 @@
     "chapter": "16.7",
     "lesson_id": "P16-C07-S01",
     "title": "无可行候选",
-    "statement": "在有限动作集合中，目标函数为预测目标误差平方加动作平方惩罚；可行动作还须满足输入（input）和预测状态（state）上下界。如果没有动作满足这些约束，应如何记录？",
+    "statement": "有限动作选择先检查动作上限和预测状态界，再最小化预测误差平方与动作惩罚。若所有候选都被原约束排除，应怎样保存这次结果？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1082,7 +1082,7 @@
       },
       {
         "id": "C",
-        "text": "放宽状态（state）上下界后重新求解，并将所得动作记为原约束下的可行解。"
+        "text": "放宽状态上下界后重新求解，并将所得动作记为原约束下的可行解。"
       },
       {
         "id": "D",
@@ -1099,7 +1099,7 @@
     "chapter": "16.7",
     "lesson_id": "P16-C07-S02",
     "title": "公平配对比较",
-    "statement": "两策略在相同测试场景比较，哪项必须保留？",
+    "statement": "两种策略在同一批预定场景中接受评价。哪种记录方式保留了预测、执行与求解结果之间的完整配对？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1128,7 +1128,7 @@
       },
       {
         "id": "D",
-        "text": "在全部共同场景中，逐一记录预测、实际输入（input）、约束是否越界，以及求解是否失败。"
+        "text": "在全部共同场景中，逐一记录预测、实际输入、约束是否越界，以及求解是否失败。"
       }
     ],
     "constraints": []
@@ -1141,7 +1141,7 @@
     "chapter": "16.7",
     "lesson_id": "P16-C07-S02",
     "title": "预测更准是否更安全",
-    "statement": "候选预测均方根误差（root mean squared error，RMSE）更低，但动作越界和求解失败更多。怎样比较这些结果？",
+    "statement": "相同测试场景中，候选预测 RMSE 更低，但动作越界与求解失败更多。哪种表述完整保留了这三项结果？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1183,7 +1183,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S01",
     "title": "实际输入下的能量导数",
-    "statement": "给定状态（state）和执行上限，返回请求输入（input）、实际输入、状态导数（derivative）及 V=x²/2 的导数。",
+    "statement": "给定偏差与反馈参数，先求执行器的实际输入，再计算状态方程及 $V=x^2/2$ 的变化率，返回规定顺序的四项结果。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1200,37 +1200,37 @@
       {
         "name": "x",
         "type": "float",
-        "description": "当前状态。",
+        "description": "当前待检验的偏差 x。",
         "unit": "U"
       },
       {
         "name": "a",
         "type": "float",
-        "description": "线性恢复率。",
+        "description": "状态方程线性恢复项 −a x 的系数。",
         "unit": "1/T"
       },
       {
         "name": "beta",
         "type": "float",
-        "description": "三次非线性系数。",
+        "description": "状态方程三次项 beta*x³ 的系数。",
         "unit": "1/(U²T)"
       },
       {
         "name": "k",
         "type": "float",
-        "description": "线性反馈（feedback）系数。",
+        "description": "请求反馈中 −k x 的系数。",
         "unit": "1/T"
       },
       {
         "name": "c",
         "type": "float",
-        "description": "三次反馈系数。",
+        "description": "请求反馈中 −c x³ 的系数。",
         "unit": "1/(U²T)"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "输入绝对上限。",
+        "description": "实际输入率允许的绝对上限。",
         "unit": "U/T"
       }
     ],
@@ -1238,13 +1238,13 @@
       {
         "name": "result",
         "type": "list[float]",
-        "description": "依次为请求输入、实际输入、状态导数和能量导数。",
+        "description": "四项依次为请求输入、实际输入、状态变化率、V 变化率；前三项为 U/T，最后一项为 U²/T。",
         "unit": "混合"
       }
     ],
-    "contract": "请求输入 -k*x-c*x³；实际输入截到 [-limit,limit]；状态率 -a*x+beta*x³+实际输入；V=x²/2 的变化率为 x*状态率。",
+    "contract": "先算请求 $u_{\\rm req}=-kx-cx^3$，限幅到 [-limit,limit] 得实际输入。将实际输入代入 $\\dot x=-ax+\\beta x^3+u_{\\rm act}$，再算 $\\dot V=x\\dot x$；按这四项顺序返回。",
     "constraints": [
-      "limit>0；参数（parameter）和状态均为有限数值。"
+      "limit>0；参数和状态均为有限数值。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1252,7 +1252,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例请求输入为 -1.5，实际截为 -0.5；代入真实状态方程再计算 x·dx/dt。",
+    "hint": "样例请求为 −1.5 U/T，限幅后为 −0.5 U/T；状态变化率为 −1+0.5−0.5=−1 U/T，V 变化率为 −1 U²/T。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1280,7 +1280,7 @@
           -1.0,
           -1.0
         ],
-        "explanation": "首例请求输入为 -1.5，实际截为 -0.5；代入真实状态方程再计算 x·dx/dt。"
+        "explanation": "样例请求为 −1.5 U/T，限幅后为 −0.5 U/T；状态变化率为 −1+0.5−0.5=−1 U/T，V 变化率为 −1 U²/T。"
       }
     ]
   },
@@ -1292,7 +1292,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S01",
     "title": "限幅反馈的离散路径",
-    "statement": "按显式 Euler 和每步实际限幅输入（input）返回状态（state）路径与输入路径。",
+    "statement": "使用给定固定步长逐次实施限幅反馈，并按显式 Euler 推进状态。返回完整状态列表与实际输入列表。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1309,49 +1309,49 @@
       {
         "name": "x0",
         "type": "float",
-        "description": "初始状态。",
+        "description": "开始时的偏差 x0。",
         "unit": "U"
       },
       {
         "name": "a",
         "type": "float",
-        "description": "线性恢复率。",
+        "description": "线性恢复项 −a x 的系数。",
         "unit": "1/T"
       },
       {
         "name": "beta",
         "type": "float",
-        "description": "三次系数。",
+        "description": "三次项 beta*x³ 的系数。",
         "unit": "1/(U²T)"
       },
       {
         "name": "k",
         "type": "float",
-        "description": "线性反馈（feedback）系数。",
+        "description": "反馈线性项 −k x 的系数。",
         "unit": "1/T"
       },
       {
         "name": "c",
         "type": "float",
-        "description": "三次反馈系数。",
+        "description": "反馈三次项 −c x³ 的系数。",
         "unit": "1/(U²T)"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "输入绝对上限。",
+        "description": "每次实际输入率的绝对上限。",
         "unit": "U/T"
       },
       {
         "name": "h",
         "type": "float",
-        "description": "Euler 步长。",
+        "description": "每次 Euler 更新的时间间隔。",
         "unit": "T"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "更新步数。",
+        "description": "从初态开始执行的更新次数。",
         "unit": "步"
       }
     ],
@@ -1359,19 +1359,19 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "含初态的状态路径。",
+        "description": "按时间排列的状态，第一项为 x0，随后是各次更新结果，共 steps+1 项。",
         "unit": "U"
       },
       {
         "name": "inputs",
         "type": "list[float]",
-        "description": "每步实际输入。",
+        "description": "每次更新实际施加的限幅输入，共 steps 项。",
         "unit": "U/T"
       }
     ],
-    "contract": "每步先按当前状态求实际限幅输入，再用显式 Euler 推进；返回含初态的状态和每步实际输入。",
+    "contract": "每次读取当前 x，先把 $-kx-cx^3$ 限幅为实际输入 u，再执行 $x_{\\rm next}=x+h(-ax+\\beta x^3+u)$。返回含初态的状态列表与各次实际输入列表；零次更新时保留初态、输入列表为空。",
     "constraints": [
-      "limit>0、h>0，0≤steps≤100；参数（parameter）和初态有限，生成路径保持有限。"
+      "limit>0、h>0，0≤steps≤100；参数和初态有限，生成路径保持有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1379,7 +1379,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首步限幅输入为 -0.5，故首步变化率 -1.5，状态由1变为0.85。",
+    "hint": "样例首步输入为 −0.5 U/T，变化率为 −1.5 U/T，状态由 1 变为 0.85 U；第二步仍限幅为 −0.5，得到 0.715 U。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1414,7 +1414,7 @@
             -0.5
           ]
         ],
-        "explanation": "首步限幅输入为 -0.5，故首步变化率 -1.5，状态由1变为0.85。"
+        "explanation": "样例首步输入为 −0.5 U/T，变化率为 −1.5 U/T，状态由 1 变为 0.85 U；第二步仍限幅为 −0.5，得到 0.715 U。"
       }
     ]
   },
@@ -1426,7 +1426,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S02",
     "title": "比较扰动与执行上限",
-    "statement": "计算一个指定状态（state）下的实际反馈（feedback）和 V 导数（derivative），判断当前参数（parameter）是否直接给出负导数。",
+    "statement": "对给定偏差和执行上限计算请求、实际输入、$\\dot x$ 与 $\\dot V$，用实际作用保留当前点的变化方向。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1443,37 +1443,37 @@
       {
         "name": "x",
         "type": "float",
-        "description": "待检验状态。",
+        "description": "当前待检验的偏差 x。",
         "unit": "U"
       },
       {
         "name": "a",
         "type": "float",
-        "description": "线性项系数。",
+        "description": "状态方程线性恢复项 −a x 的系数。",
         "unit": "1/T"
       },
       {
         "name": "beta",
         "type": "float",
-        "description": "三次项系数。",
+        "description": "状态方程三次项 beta*x³ 的系数。",
         "unit": "1/(U²T)"
       },
       {
         "name": "k",
         "type": "float",
-        "description": "线性反馈系数。",
+        "description": "请求反馈中 −k x 的系数。",
         "unit": "1/T"
       },
       {
         "name": "c",
         "type": "float",
-        "description": "三次反馈系数。",
+        "description": "请求反馈中 −c x³ 的系数。",
         "unit": "1/(U²T)"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "输入（input）上限。",
+        "description": "实际输入率允许的绝对上限。",
         "unit": "U/T"
       }
     ],
@@ -1481,11 +1481,11 @@
       {
         "name": "result",
         "type": "list[float]",
-        "description": "请求输入、实际输入、状态导数、V 导数。",
+        "description": "四项依次为请求输入、实际输入、状态变化率、V 变化率；前三项为 U/T，最后一项为 U²/T。",
         "unit": "混合"
       }
     ],
-    "contract": "请求输入 -k*x-c*x³；实际输入截到 [-limit,limit]；状态率 -a*x+beta*x³+实际输入；V=x²/2 的变化率为 x*状态率。",
+    "contract": "先算请求 $u_{\\rm req}=-kx-cx^3$，限幅到 [-limit,limit] 得实际输入。将实际输入代入 $\\dot x=-ax+\\beta x^3+u_{\\rm act}$，再算 $\\dot V=x\\dot x$；按这四项顺序返回。",
     "constraints": [
       "limit>0；参数和状态均为有限数值。"
     ],
@@ -1495,7 +1495,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "在 x=2 时请求输入远超上限，必须使用实际输入 -0.4 计算 V 导数。",
+    "hint": "样例 x=2 U，请求为 −6 U/T，实际只能施加 −0.4 U/T；状态变化率为 −2+4−0.4=1.6 U/T，V 变化率为 3.2 U²/T。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1523,7 +1523,7 @@
           1.6,
           3.2
         ],
-        "explanation": "在 x=2 时请求输入远超上限，必须使用实际输入 -0.4 计算 V 导数。"
+        "explanation": "样例 x=2 U，请求为 −6 U/T，实际只能施加 −0.4 U/T；状态变化率为 −2+4−0.4=1.6 U/T，V 变化率为 3.2 U²/T。"
       }
     ]
   },
@@ -1535,7 +1535,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S02",
     "title": "有限初值的反馈实验",
-    "statement": "给定初值（initial condition）只返回该初值的 Euler 路径与实际输入（input）；不得把有限路径当成全局证明。",
+    "statement": "从指定初始偏差出发，用题定实际反馈计算有限步 Euler 路径。保留每次状态和实际输入，供比较不同初态。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1552,49 +1552,49 @@
       {
         "name": "x0",
         "type": "float",
-        "description": "待实验初值。",
+        "description": "开始时的偏差 x0。",
         "unit": "U"
       },
       {
         "name": "a",
         "type": "float",
-        "description": "线性项系数。",
+        "description": "线性恢复项 −a x 的系数。",
         "unit": "1/T"
       },
       {
         "name": "beta",
         "type": "float",
-        "description": "三次项系数。",
+        "description": "三次项 beta*x³ 的系数。",
         "unit": "1/(U²T)"
       },
       {
         "name": "k",
         "type": "float",
-        "description": "线性反馈（feedback）系数。",
+        "description": "反馈线性项 −k x 的系数。",
         "unit": "1/T"
       },
       {
         "name": "c",
         "type": "float",
-        "description": "三次反馈系数。",
+        "description": "反馈三次项 −c x³ 的系数。",
         "unit": "1/(U²T)"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "输入上限。",
+        "description": "每次实际输入率的绝对上限。",
         "unit": "U/T"
       },
       {
         "name": "h",
         "type": "float",
-        "description": "步长。",
+        "description": "每次 Euler 更新的时间间隔。",
         "unit": "T"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "步数。",
+        "description": "从初态开始执行的更新次数。",
         "unit": "步"
       }
     ],
@@ -1602,19 +1602,19 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "包含初值的路径。",
+        "description": "按时间排列的状态，第一项为 x0，随后是各次更新结果，共 steps+1 项。",
         "unit": "U"
       },
       {
         "name": "inputs",
         "type": "list[float]",
-        "description": "逐步实际输入。",
+        "description": "每次更新实际施加的限幅输入，共 steps 项。",
         "unit": "U/T"
       }
     ],
-    "contract": "每步先按当前状态（state）求实际限幅输入，再用显式 Euler 推进；返回含初态的状态和每步实际输入。",
+    "contract": "每次读取当前 x，先把 $-kx-cx^3$ 限幅为实际输入 u，再执行 $x_{\\rm next}=x+h(-ax+\\beta x^3+u)$。返回含初态的状态列表与各次实际输入列表；零次更新时保留初态、输入列表为空。",
     "constraints": [
-      "limit>0、h>0，0≤steps≤100；参数（parameter）和初态有限，生成路径保持有限。"
+      "limit>0、h>0，0≤steps≤100；参数和初态有限，生成路径保持有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1622,7 +1622,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例未触发限幅，状态每步乘 0.8；只说明这个离散实验。",
+    "hint": "样例两步均未触发限幅，变化率为 −2x，步长 0.1 T 使状态每次乘 0.8；状态为 [0.5,0.4,0.32] U，实际输入为 [−0.5,−0.4] U/T。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1657,7 +1657,7 @@
             -0.4
           ]
         ],
-        "explanation": "首例未触发限幅，状态每步乘 0.8；只说明这个离散实验。"
+        "explanation": "样例两步均未触发限幅，变化率为 −2x，步长 0.1 T 使状态每次乘 0.8；状态为 [0.5,0.4,0.32] U，实际输入为 [−0.5,−0.4] U/T。"
       }
     ]
   },
@@ -1669,7 +1669,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S01",
     "title": "共同二次证书的顶点检查",
-    "statement": "对给定顶点矩阵（matrix）和同一个 P，返回 P 最小特征值（eigenvalue）、各顶点 AᵀP+PA 最大特征值及严格条件是否成立。",
+    "statement": "给定闭环顶点与同一个候选 P，检查 $P\\succ0$ 及每个 $A^\\mathsf TP+PA\\prec0$，按规定顺序返回特征值与布尔结果。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1686,13 +1686,13 @@
       {
         "name": "vertices",
         "type": "list[list[list[float]]]",
-        "description": "两个或更多二维顶点矩阵。",
+        "description": "按顺序排列的二维闭环顶点矩阵，每个矩阵为 2×2。",
         "unit": "1/T"
       },
       {
         "name": "P",
         "type": "list[list[float]]",
-        "description": "同一个对称候选矩阵。",
+        "description": "所有顶点共用的实对称候选矩阵 P。",
         "unit": "按状态尺度"
       }
     ],
@@ -1700,13 +1700,13 @@
       {
         "name": "result",
         "type": "list",
-        "description": "最小特征值、顶点最大特征值列表、布尔结论。",
+        "description": "依次为 P 的最小特征值、按顶点顺序排列的导数矩阵最大特征值列表，以及严格条件全部成立的布尔值。",
         "unit": "混合"
       }
     ],
-    "contract": "P 最小特征值应为正；逐顶点计算对称矩阵 AᵀP+PA 的最大特征值，均严格小于0才返回 True。",
+    "contract": "先算 P 的最小特征值；对每个顶点 A，计算对称矩阵 $A^\\mathsf TP+PA$ 的最大特征值。仅当 P 最小特征值严格为正、全部导数矩阵最大特征值严格为负时，第三项返回 True，否则为 False。",
     "constraints": [
-      "至少一个二维实矩阵顶点；P 为二维实对称候选矩阵；所有输入（input）有限。"
+      "至少一个二维实矩阵顶点；P 为二维实对称候选矩阵；所有输入有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1714,7 +1714,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "P=I 时首顶点导数矩阵的特征值为 -2、-4；两个顶点都严格为负。",
+    "hint": "样例 P=I 的最小特征值为 1。两个顶点导数矩阵的最大特征值分别为 −2、−1，都严格为负，因此返回 True。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1770,7 +1770,7 @@
           ],
           true
         ],
-        "explanation": "P=I 时首顶点导数（derivative）矩阵的特征值为 -2、-4；两个顶点都严格为负。"
+        "explanation": "样例 P=I 的最小特征值为 1。两个顶点导数矩阵的最大特征值分别为 −2、−1，都严格为负，因此返回 True。"
       }
     ]
   },
@@ -1782,7 +1782,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S01",
     "title": "构造区间内模型",
-    "statement": "按 A(α)=(1-α)A0+αA1 返回指定参数（parameter）的矩阵（matrix）。",
+    "statement": "按给定权重构造 $A(\\alpha)=(1-\\alpha)A_0+\\alpha A_1$，保留两个端点的行列顺序。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1799,19 +1799,19 @@
       {
         "name": "A0",
         "type": "list[list[float]]",
-        "description": "区间一端的二维矩阵。",
+        "description": "权重为零时的二维端点矩阵 A0。",
         "unit": "1/T"
       },
       {
         "name": "A1",
         "type": "list[list[float]]",
-        "description": "另一端的二维矩阵。",
+        "description": "权重为一时的二维端点矩阵 A1。",
         "unit": "1/T"
       },
       {
         "name": "alpha",
         "type": "float",
-        "description": "凸组合权重，范围[0,1]。",
+        "description": "A1 的无量纲凸组合权重，A0 的权重为 1−alpha。",
         "unit": "1"
       }
     ],
@@ -1819,11 +1819,11 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "给定 α 的二维矩阵。",
+        "description": "逐元素组合所得的 2×2 矩阵，行列顺序与两个端点相同。",
         "unit": "1/T"
       }
     ],
-    "contract": "逐元素计算 (1-alpha)*A0+alpha*A1。",
+    "contract": "对每个相同位置的元素计算 (1-alpha)*A0[i][j]+alpha*A1[i][j]，返回嵌套列表。",
     "constraints": [
       "A0、A1 为二维实矩阵；0≤alpha≤1；全部有限。"
     ],
@@ -1833,7 +1833,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "α=0.5 时逐元素取两个端点平均，得到对角项 -0.75 和 -1.5。",
+    "hint": "样例 alpha=0.5，逐元素取两端平均，两个对角元素分别为 −0.75、−1.5，非对角仍为零。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1880,7 +1880,7 @@
             -1.5
           ]
         ],
-        "explanation": "α=0.5 时逐元素取两个端点平均，得到对角项 -0.75 和 -1.5。"
+        "explanation": "样例 alpha=0.5，逐元素取两端平均，两个对角元素分别为 −0.75、−1.5，非对角仍为零。"
       }
     ]
   },
@@ -1892,7 +1892,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S02",
     "title": "证书与集合外反例",
-    "statement": "检验给定矩阵（matrix）集合的共同 P；返回数值条件而非猜测其他 P 的存在性。",
+    "statement": "将给定矩阵逐个放入同一个二次函数检查，保留哪个顶点未满足严格下降条件；返回当前候选的数值判定。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1909,13 +1909,13 @@
       {
         "name": "vertices",
         "type": "list[list[list[float]]]",
-        "description": "已声明集合的二维顶点。",
+        "description": "按顺序排列的二维闭环顶点矩阵，每个矩阵为 2×2。",
         "unit": "1/T"
       },
       {
         "name": "P",
         "type": "list[list[float]]",
-        "description": "共同候选矩阵。",
+        "description": "所有顶点共用的实对称候选矩阵 P。",
         "unit": "按状态尺度"
       }
     ],
@@ -1923,13 +1923,13 @@
       {
         "name": "result",
         "type": "list",
-        "description": "P 最小特征值（eigenvalue）、顶点导数（derivative）矩阵最大特征值及判定。",
+        "description": "依次为 P 的最小特征值、按顶点顺序排列的导数矩阵最大特征值列表，以及严格条件全部成立的布尔值。",
         "unit": "混合"
       }
     ],
-    "contract": "P 最小特征值应为正；逐顶点计算对称矩阵 AᵀP+PA 的最大特征值，均严格小于0才返回 True。",
+    "contract": "先算 P 的最小特征值；对每个顶点 A，计算对称矩阵 $A^\\mathsf TP+PA$ 的最大特征值。仅当 P 最小特征值严格为正、全部导数矩阵最大特征值严格为负时，第三项返回 True，否则为 False。",
     "constraints": [
-      "至少一个二维实矩阵顶点；P 为二维实对称候选矩阵；所有输入（input）有限。"
+      "至少一个二维实矩阵顶点；P 为二维实对称候选矩阵；所有输入有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1937,7 +1937,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例第二顶点有正向导数，当前 P 不能建立严格共同证书。",
+    "hint": "样例两个导数矩阵的最大特征值为 −2 与 0.2，第二个不为负，所以这个共同 P 的严格条件返回 False。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1993,7 +1993,7 @@
           ],
           false
         ],
-        "explanation": "首例第二顶点有正向导数，当前 P 不能建立严格共同证书。"
+        "explanation": "样例两个导数矩阵的最大特征值为 −2 与 0.2，第二个不为负，所以这个共同 P 的严格条件返回 False。"
       }
     ]
   },
@@ -2005,7 +2005,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S02",
     "title": "仿射不确定性下的矩阵",
-    "statement": "只在给定区间内用凸组合构造矩阵（matrix）；外部参数（parameter）不享受该证书。",
+    "statement": "已给出保证集合的两个矩阵端点。按区间内权重构造中间矩阵，返回其元素，供后续共同函数检验。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -2022,19 +2022,19 @@
       {
         "name": "A0",
         "type": "list[list[float]]",
-        "description": "端点矩阵。",
+        "description": "权重为零时的二维端点矩阵 A0。",
         "unit": "1/T"
       },
       {
         "name": "A1",
         "type": "list[list[float]]",
-        "description": "端点矩阵。",
+        "description": "权重为一时的二维端点矩阵 A1。",
         "unit": "1/T"
       },
       {
         "name": "alpha",
         "type": "float",
-        "description": "区间权重。",
+        "description": "A1 的无量纲凸组合权重，A0 的权重为 1−alpha。",
         "unit": "1"
       }
     ],
@@ -2042,11 +2042,11 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "仿射（affine）矩阵。",
+        "description": "逐元素组合所得的 2×2 矩阵，行列顺序与两个端点相同。",
         "unit": "1/T"
       }
     ],
-    "contract": "逐元素计算 (1-alpha)*A0+alpha*A1。",
+    "contract": "对每个相同位置的元素计算 (1-alpha)*A0[i][j]+alpha*A1[i][j]，返回嵌套列表。",
     "constraints": [
       "A0、A1 为二维实矩阵；0≤alpha≤1；全部有限。"
     ],
@@ -2056,7 +2056,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "α=1 返回第二端点；这里只执行矩阵构造，不自行推出稳定性。",
+    "hint": "样例 alpha=1 时 A0 权重为零，结果等于 A1；构造结果本身没有额外检验稳定性。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2103,7 +2103,7 @@
             -1.0
           ]
         ],
-        "explanation": "α=1 返回第二端点；这里只执行矩阵构造，不自行推出稳定性。"
+        "explanation": "样例 alpha=1 时 A0 权重为零，结果等于 A1；构造结果本身没有额外检验稳定性。"
       }
     ]
   },
@@ -2115,7 +2115,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S01",
     "title": "递推估计一个系数",
-    "statement": "按给定遗忘因子（forgetting factor）和投影（projection）范围，逐个读取 φ 与 y，返回每步估计和终点 P。",
+    "statement": "逐项配对回归量与观测，按题定遗忘与区间投影执行标量 RLS，返回含初始值的估计列表及终点 P。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2132,43 +2132,43 @@
       {
         "name": "regressors",
         "type": "list[float]",
-        "description": "逐步回归量。",
+        "description": "按观测顺序给出的回归量 phi。",
         "unit": "U"
       },
       {
         "name": "targets",
         "type": "list[float]",
-        "description": "相应观测（observation）。",
+        "description": "与 regressors 同位置配对的观测 y。",
         "unit": "U"
       },
       {
         "name": "theta0",
         "type": "float",
-        "description": "初始系数估计。",
+        "description": "读取第一条数据前的系数估计，作为返回列表的第一项。",
         "unit": "1"
       },
       {
         "name": "p0",
         "type": "float",
-        "description": "初始逆信息尺度。",
+        "description": "初始递推逆信息尺度 P。",
         "unit": "1/U²"
       },
       {
         "name": "forget",
         "type": "float",
-        "description": "遗忘因子。",
+        "description": "每次更新使用的遗忘因子 lambda。",
         "unit": "1"
       },
       {
         "name": "low",
         "type": "float",
-        "description": "估计下界。",
+        "description": "每次更新后估计允许的下界。",
         "unit": "1"
       },
       {
         "name": "high",
         "type": "float",
-        "description": "估计上界。",
+        "description": "每次更新后估计允许的上界。",
         "unit": "1"
       }
     ],
@@ -2176,17 +2176,17 @@
       {
         "name": "estimates",
         "type": "list[float]",
-        "description": "含初始估计的路径。",
+        "description": "初始估计及每条数据更新后的估计，长度为观测条数加一。",
         "unit": "1"
       },
       {
         "name": "P",
         "type": "float",
-        "description": "更新后的逆信息尺度。",
+        "description": "读取全部数据后得到的递推尺度 P。",
         "unit": "1/U²"
       }
     ],
-    "contract": "每步 K=P*phi/(forget+phi²P)，先以旧估计求残差（residual），再按 theta←clip(theta+K*(target-phi*theta),low,high)，P←(P-K*phi*P)/forget。",
+    "contract": "每条数据先用旧 theta 算残差 target−phi*theta，并用旧 P 算 K=P*phi/(forget+phi²P)。再将 theta+K*残差截到 [low,high]；P 更新为 (P−K*phi*P)/forget。返回估计列表与终点 P。",
     "constraints": [
       "回归量与观测等长，长度≤100；p0>0、0<forget≤1、low<high；全部有限。"
     ],
@@ -2196,7 +2196,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例增益为1/2，残差2，因此估计由0更新为1，P 变为1/2。",
+    "hint": "样例旧预测为零，残差为 2 U，增益为 1/2 U⁻¹；估计更新为 1，P 更新为 1/2 U⁻²。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2230,7 +2230,7 @@
           ],
           0.5
         ],
-        "explanation": "首例增益（gain）为1/2，残差2，因此估计由0更新为1，P 变为1/2。"
+        "explanation": "样例旧预测为零，残差为 2 U，增益为 1/2 U⁻¹；估计更新为 1，P 更新为 1/2 U⁻²。"
       }
     ]
   },
@@ -2242,7 +2242,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S01",
     "title": "弱激励时的递推",
-    "statement": "用相同更新规则返回零或微小回归量下的估计路径。",
+    "statement": "在零或很小回归量的数据上执行同一标量 RLS 规则，保存每次估计与最后的 P，以观察参数信息不足时的更新。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2259,43 +2259,43 @@
       {
         "name": "regressors",
         "type": "list[float]",
-        "description": "逐步回归量。",
+        "description": "按观测顺序给出的回归量 phi。",
         "unit": "U"
       },
       {
         "name": "targets",
         "type": "list[float]",
-        "description": "观测（observation）结果。",
+        "description": "与 regressors 同位置配对的观测 y。",
         "unit": "U"
       },
       {
         "name": "theta0",
         "type": "float",
-        "description": "初始估计。",
+        "description": "读取第一条数据前的系数估计，作为返回列表的第一项。",
         "unit": "1"
       },
       {
         "name": "p0",
         "type": "float",
-        "description": "初始 P。",
+        "description": "初始递推逆信息尺度 P。",
         "unit": "1/U²"
       },
       {
         "name": "forget",
         "type": "float",
-        "description": "遗忘因子（forgetting factor）。",
+        "description": "每次更新使用的遗忘因子 lambda。",
         "unit": "1"
       },
       {
         "name": "low",
         "type": "float",
-        "description": "下界。",
+        "description": "每次更新后估计允许的下界。",
         "unit": "1"
       },
       {
         "name": "high",
         "type": "float",
-        "description": "上界。",
+        "description": "每次更新后估计允许的上界。",
         "unit": "1"
       }
     ],
@@ -2303,17 +2303,17 @@
       {
         "name": "estimates",
         "type": "list[float]",
-        "description": "逐步估计。",
+        "description": "初始估计及每条数据更新后的估计，长度为观测条数加一。",
         "unit": "1"
       },
       {
         "name": "P",
         "type": "float",
-        "description": "最终 P。",
+        "description": "读取全部数据后得到的递推尺度 P。",
         "unit": "1/U²"
       }
     ],
-    "contract": "每步 K=P*phi/(forget+phi²P)，先以旧估计求残差（residual），再按 theta←clip(theta+K*(target-phi*theta),low,high)，P←(P-K*phi*P)/forget。",
+    "contract": "每条数据先用旧 theta 算残差 target−phi*theta，并用旧 P 算 K=P*phi/(forget+phi²P)。再将 theta+K*残差截到 [low,high]；P 更新为 (P−K*phi*P)/forget。返回估计列表与终点 P。",
     "constraints": [
       "回归量与观测等长，长度≤100；p0>0、0<forget≤1、low<high；全部有限。"
     ],
@@ -2323,7 +2323,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例每步增益都为零，估计仍是0.4；不能从观测声称已识别系数。",
+    "hint": "样例回归量全为零，每次增益为零，0.4 在允许区间内，所以三项估计均为 0.4；遗忘因子为 1，终点 P 仍为 1。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2360,7 +2360,7 @@
           ],
           1.0
         ],
-        "explanation": "首例每步增益（gain）都为零，估计仍是0.4；不能从观测声称已识别系数。"
+        "explanation": "样例回归量全为零，每次增益为零，0.4 在允许区间内，所以三项估计均为 0.4；遗忘因子为 1，终点 P 仍为 1。"
       }
     ]
   },
@@ -2372,7 +2372,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S02",
     "title": "在线辨识与控制先后",
-    "statement": "每步先以旧估计选输入（input），再由新观测（observation）更新估计；返回状态（state）、实际输入和估计路径。",
+    "statement": "把在线控制与辨识按信息到达顺序串起来：先用已有估计选择实际输入，随后观测下一状态，再更新估计。返回状态、输入、估计三条列表。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2389,55 +2389,55 @@
       {
         "name": "x0",
         "type": "float",
-        "description": "初态。",
+        "description": "第一次选择输入之前的状态 x0。",
         "unit": "U"
       },
       {
         "name": "true_coefficients",
         "type": "list[float]",
-        "description": "核验用真实逐步系数，控制器选输入时不可读取。",
+        "description": "每次推进真实系统的系数；仅用于生成核验状态，不参与控制器的输入选择。",
         "unit": "1"
       },
       {
         "name": "references",
         "type": "list[float]",
-        "description": "逐步目标。",
+        "description": "每次更新希望达到的下一状态，按执行顺序排列。",
         "unit": "U"
       },
       {
         "name": "theta0",
         "type": "float",
-        "description": "初始估计。",
+        "description": "开始时控制器已经持有的系数估计。",
         "unit": "1"
       },
       {
         "name": "p0",
         "type": "float",
-        "description": "初始 P。",
+        "description": "开始时的递推尺度 P。",
         "unit": "1/U²"
       },
       {
         "name": "forget",
         "type": "float",
-        "description": "遗忘因子（forgetting factor）。",
+        "description": "辨识更新使用的遗忘因子。",
         "unit": "1"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "输入绝对上限。",
+        "description": "每次实际加入量的绝对上限。",
         "unit": "U"
       },
       {
         "name": "low",
         "type": "float",
-        "description": "估计下界。",
+        "description": "每次更新后参数估计的下界。",
         "unit": "1"
       },
       {
         "name": "high",
         "type": "float",
-        "description": "估计上界。",
+        "description": "每次更新后参数估计的上界。",
         "unit": "1"
       }
     ],
@@ -2445,23 +2445,23 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "含初态的状态。",
+        "description": "初态及各次执行后的状态，长度为更新次数加一。",
         "unit": "U"
       },
       {
         "name": "inputs",
         "type": "list[float]",
-        "description": "实际逐步输入。",
+        "description": "各次已限幅的实际输入，长度为更新次数。",
         "unit": "U"
       },
       {
         "name": "estimates",
         "type": "list[float]",
-        "description": "含初始值的估计。",
+        "description": "初始估计及新观测到达后更新的估计，长度为更新次数加一。",
         "unit": "1"
       }
     ],
-    "contract": "先以旧 theta 与当前 x 选请求输入 reference-theta*x，限幅后生成 x_next=true_a*x+u；观测到 x_next 才用 phi=x、target=x_next-u 递推估计。",
+    "contract": "每次先用当前 x 与已有 theta 求 reference−theta*x，并限幅成实际 u；真实系统随后产生 x_next=true_a*x+u。新状态到达后才以 phi=x、target=x_next−u 执行题定 RLS 与估计投影，再进入下一次控制。",
     "constraints": [
       "真实系数与目标等长，长度≤100；p0>0、0<forget≤1、limit>0、low<high；全部有限。"
     ],
@@ -2471,7 +2471,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首步控制器只知 θ̂=0，故请求并执行1；观察到下一状态1.5以后才更新估计。",
+    "hint": "样例已有估计为零，先请求并执行 1 U；真实下一状态为 1.5 U。扣除实际输入后得到 y=0.5 U，再以增益 0.5 更新估计为 0.25。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2513,7 +2513,7 @@
             0.25
           ]
         ],
-        "explanation": "首步控制器只知 θ̂=0，故请求并执行1；观察到下一状态1.5以后才更新估计。"
+        "explanation": "样例已有估计为零，先请求并执行 1 U；真实下一状态为 1.5 U。扣除实际输入后得到 y=0.5 U，再以增益 0.5 更新估计为 0.25。"
       }
     ]
   },
@@ -2525,7 +2525,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S02",
     "title": "带限幅的自适应路径",
-    "statement": "输出（output）已执行输入（input）而非未限幅请求；在线估计只能使用已到达的观测（observation）。",
+    "statement": "给定实际执行上限与参数范围，按正确时序计算自适应路径。估计步骤扣除限幅后的实际输入，返回完整执行与估计记录。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2542,55 +2542,55 @@
       {
         "name": "x0",
         "type": "float",
-        "description": "初态。",
+        "description": "第一次选择输入之前的状态 x0。",
         "unit": "U"
       },
       {
         "name": "true_coefficients",
         "type": "list[float]",
-        "description": "仅生成核验状态（state）的真实参数（parameter）路径。",
+        "description": "每次推进真实系统的系数；仅用于生成核验状态，不参与控制器的输入选择。",
         "unit": "1"
       },
       {
         "name": "references",
         "type": "list[float]",
-        "description": "目标路径。",
+        "description": "每次更新希望达到的下一状态，按执行顺序排列。",
         "unit": "U"
       },
       {
         "name": "theta0",
         "type": "float",
-        "description": "初始估计。",
+        "description": "开始时控制器已经持有的系数估计。",
         "unit": "1"
       },
       {
         "name": "p0",
         "type": "float",
-        "description": "初始 P。",
+        "description": "开始时的递推尺度 P。",
         "unit": "1/U²"
       },
       {
         "name": "forget",
         "type": "float",
-        "description": "遗忘因子（forgetting factor）。",
+        "description": "辨识更新使用的遗忘因子。",
         "unit": "1"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "执行输入上限。",
+        "description": "每次实际加入量的绝对上限。",
         "unit": "U"
       },
       {
         "name": "low",
         "type": "float",
-        "description": "估计下界。",
+        "description": "每次更新后参数估计的下界。",
         "unit": "1"
       },
       {
         "name": "high",
         "type": "float",
-        "description": "估计上界。",
+        "description": "每次更新后参数估计的上界。",
         "unit": "1"
       }
     ],
@@ -2598,23 +2598,23 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "完整状态路径。",
+        "description": "初态及各次执行后的状态，长度为更新次数加一。",
         "unit": "U"
       },
       {
         "name": "inputs",
         "type": "list[float]",
-        "description": "限幅后的输入。",
+        "description": "各次已限幅的实际输入，长度为更新次数。",
         "unit": "U"
       },
       {
         "name": "estimates",
         "type": "list[float]",
-        "description": "估计路径。",
+        "description": "初始估计及新观测到达后更新的估计，长度为更新次数加一。",
         "unit": "1"
       }
     ],
-    "contract": "先以旧 theta 与当前 x 选请求输入 reference-theta*x，限幅后生成 x_next=true_a*x+u；观测到 x_next 才用 phi=x、target=x_next-u 递推估计。",
+    "contract": "每次先用当前 x 与已有 theta 求 reference−theta*x，并限幅成实际 u；真实系统随后产生 x_next=true_a*x+u。新状态到达后才以 phi=x、target=x_next−u 执行题定 RLS 与估计投影，再进入下一次控制。",
     "constraints": [
       "真实系数与目标等长，长度≤100；p0>0、0<forget≤1、limit>0、low<high；全部有限。"
     ],
@@ -2624,7 +2624,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例请求输入1.5，但实际只施加0.2，下一状态为1.0。",
+    "hint": "样例请求 2−0.5×1=1.5 U，实际只施加 0.2 U，下一状态为 1 U；辨识用 y=1−0.2=0.8 U，更新后估计为 0.65。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2666,7 +2666,7 @@
             0.65
           ]
         ],
-        "explanation": "首例请求输入1.5，但实际只施加0.2，下一状态为1.0。"
+        "explanation": "样例请求 2−0.5×1=1.5 U，实际只施加 0.2 U，下一状态为 1 U；辨识用 y=1−0.2=0.8 U，更新后估计为 0.65。"
       }
     ]
   },
@@ -2678,7 +2678,7 @@
     "chapter": "16.4",
     "lesson_id": "P16-C04-S01",
     "title": "固定随机增量的 Euler–Maruyama",
-    "statement": "对 OU 方程 dX=-aXdt+σdW 按给定布朗增量推进；函数不再自行抽样。",
+    "statement": "对稳态偏差的 OU 方程 $dX=-aX\\,dt+\\sigma\\,dW$，使用已给定布朗增量逐步执行 Euler–Maruyama，返回全部离散状态。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2695,31 +2695,31 @@
       {
         "name": "x0",
         "type": "float",
-        "description": "初态。",
+        "description": "随机过程在初始时刻的稳态偏差，可以为正或负。",
         "unit": "U"
       },
       {
         "name": "a",
         "type": "float",
-        "description": "恢复率。",
+        "description": "连续方程的线性恢复率。",
         "unit": "1/T"
       },
       {
         "name": "sigma",
         "type": "float",
-        "description": "噪声幅度。",
+        "description": "连续方程的随机扰动幅度。",
         "unit": "U/√T"
       },
       {
         "name": "h",
         "type": "float",
-        "description": "步长。",
+        "description": "相邻两个离散状态之间的时间间隔。",
         "unit": "T"
       },
       {
         "name": "increments",
         "type": "list[float]",
-        "description": "按步给定的布朗增量。",
+        "description": "按时间排列、已经包含 sqrt(h) 缩放的布朗增量。",
         "unit": "√T"
       }
     ],
@@ -2727,13 +2727,13 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "含初态的路径。",
+        "description": "初始偏差及每个增量之后的状态，长度为 increments 条数加一。",
         "unit": "U"
       }
     ],
-    "contract": "按给定布朗增量逐步计算 x_next=x-a*h*x+sigma*dw；不在函数内重新抽样。",
+    "contract": "每次用旧 x 与相应 dw 计算 x_next=x−a*h*x+sigma*dw。increments 已是布朗增量，不再次乘 sqrt(h)，也不在函数内抽样。返回含初态的状态列表。",
     "constraints": [
-      "a≥0、sigma≥0、h>0；增量长度≤100且所有输入（input）有限。"
+      "a≥0、sigma≥0、h>0；增量长度≤100且所有输入有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2741,7 +2741,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首步 1-0.1+0.5×0.2=1.0；固定增量便于逐项复核。",
+    "hint": "样例第一步为 1−0.1+0.5×0.2=1 U；第二步从 1 U 开始，得到 1−0.1−0.05=0.85 U。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2770,7 +2770,7 @@
           1.0,
           0.85
         ],
-        "explanation": "首步 1-0.1+0.5×0.2=1.0；固定增量便于逐项复核。"
+        "explanation": "样例第一步为 1−0.1+0.5×0.2=1 U；第二步从 1 U 开始，得到 1−0.1−0.05=0.85 U。"
       }
     ]
   },
@@ -2782,7 +2782,7 @@
     "chapter": "16.4",
     "lesson_id": "P16-C04-S01",
     "title": "粗细网格共用同一路径",
-    "statement": "把细网格布朗增量每 block 项求和，形成粗网格的对应增量。",
+    "statement": "将一条给定布朗驱动在细网格上的增量按 block 项一组相加，得到同一路径粗网格对应增量。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2799,13 +2799,13 @@
       {
         "name": "increments",
         "type": "list[float]",
-        "description": "细网格布朗增量。",
+        "description": "等长细时间区间上依次记录的布朗增量。",
         "unit": "√T"
       },
       {
         "name": "block",
         "type": "int",
-        "description": "每个粗步包含的细步数。",
+        "description": "每个粗时间区间包含的连续细步数。",
         "unit": "步"
       }
     ],
@@ -2813,11 +2813,11 @@
       {
         "name": "merged",
         "type": "list[float]",
-        "description": "逐块求和后的增量。",
+        "description": "按原时间顺序逐块相加所得的粗增量，条数为细增量条数除以 block。",
         "unit": "√T"
       }
     ],
-    "contract": "按 block 个连续细增量求和；输入（input）长度能被 block 整除。",
+    "contract": "从第一项开始，每 block 个连续细增量求和，形成一个粗增量；输入条数可被 block 整除，保留全部区间。",
     "constraints": [
       "block 为正整数，增量长度≤100 且可被 block 整除；全部有限。"
     ],
@@ -2827,7 +2827,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例两个粗步的增量分别为 -0.1 和0.7；求和而非平均。",
+    "hint": "样例每两项合并，0.1−0.2=−0.1，0.3+0.4=0.7；粗细累计变化都为 0.6，单位为 √T。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2854,7 +2854,7 @@
           -0.1,
           0.7
         ],
-        "explanation": "首例两个粗步的增量分别为 -0.1 和0.7；求和而非平均。"
+        "explanation": "样例每两项合并，0.1−0.2=−0.1，0.3+0.4=0.7；粗细累计变化都为 0.6，单位为 √T。"
       }
     ]
   },
@@ -2866,7 +2866,7 @@
     "chapter": "16.4",
     "lesson_id": "P16-C04-S02",
     "title": "OU 终点的解析矩",
-    "statement": "计算已声明 OU 模型（model）给定时刻的解析均值和方差（variance）。",
+    "statement": "计算连续 OU 偏差模型在指定时间的解析均值与方差，作为离散重复模拟的参考；初态确定。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2883,25 +2883,25 @@
       {
         "name": "x0",
         "type": "float",
-        "description": "确定初态。",
+        "description": "确定的初始稳态偏差。",
         "unit": "U"
       },
       {
         "name": "a",
         "type": "float",
-        "description": "恢复率。",
+        "description": "连续 OU 方程的恢复率，零表示没有恢复项。",
         "unit": "1/T"
       },
       {
         "name": "sigma",
         "type": "float",
-        "description": "噪声幅度。",
+        "description": "布朗扰动在状态方程中的幅度。",
         "unit": "U/√T"
       },
       {
         "name": "time",
         "type": "float",
-        "description": "目标时刻。",
+        "description": "从初始时刻经过的时间。",
         "unit": "T"
       }
     ],
@@ -2909,17 +2909,17 @@
       {
         "name": "mean",
         "type": "float",
-        "description": "终点期望（expectation）。",
+        "description": "连续模型在给定时间的偏差期望。",
         "unit": "U"
       },
       {
         "name": "variance",
         "type": "float",
-        "description": "终点方差。",
+        "description": "连续模型在给定时间的偏差方差。",
         "unit": "U²"
       }
     ],
-    "contract": "均值=x0*exp(-a*time)；a>0 时方差=sigma²*(1-exp(-2a*time))/(2a)，a=0 时为 sigma²*time。",
+    "contract": "返回均值 $x_0e^{-at}$。当 a>0，方差为 $\\sigma^2(1-e^{-2at})/(2a)$；当 a=0，方差为 $\\sigma^2t$。结果依次为均值与方差。",
     "constraints": [
       "a≥0、sigma≥0、time≥0；全部有限。"
     ],
@@ -2929,7 +2929,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例无恢复项，均值保持1，方差为 σ²t=2。",
+    "hint": "样例 a=0，均值保持初值 1 U，方差为 2²×0.5=2 U²。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2953,7 +2953,7 @@
           1.0,
           2.0
         ],
-        "explanation": "首例无恢复项，均值保持1，方差为 σ²t=2。"
+        "explanation": "样例 a=0，均值保持初值 1 U，方差为 2²×0.5=2 U²。"
       }
     ]
   },
@@ -2965,7 +2965,7 @@
     "chapter": "16.4",
     "lesson_id": "P16-C04-S02",
     "title": "指定路径的随机终点",
-    "statement": "在给定增量下计算整条 OU 离散路径，供配对试算。",
+    "statement": "在指定驱动下计算 OU 离散路径，保存含初始偏差的完整状态列表，供同一路径条件下比较。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2982,31 +2982,31 @@
       {
         "name": "x0",
         "type": "float",
-        "description": "初态。",
+        "description": "随机过程在初始时刻的稳态偏差，可以为正或负。",
         "unit": "U"
       },
       {
         "name": "a",
         "type": "float",
-        "description": "恢复率。",
+        "description": "连续方程的线性恢复率。",
         "unit": "1/T"
       },
       {
         "name": "sigma",
         "type": "float",
-        "description": "噪声幅度。",
+        "description": "连续方程的随机扰动幅度。",
         "unit": "U/√T"
       },
       {
         "name": "h",
         "type": "float",
-        "description": "步长。",
+        "description": "相邻两个离散状态之间的时间间隔。",
         "unit": "T"
       },
       {
         "name": "increments",
         "type": "list[float]",
-        "description": "已固定布朗增量。",
+        "description": "按时间排列、已经包含 sqrt(h) 缩放的布朗增量。",
         "unit": "√T"
       }
     ],
@@ -3014,13 +3014,13 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "含初态的状态（state）路径。",
+        "description": "初始偏差及每个增量之后的状态，长度为 increments 条数加一。",
         "unit": "U"
       }
     ],
-    "contract": "按给定布朗增量逐步计算 x_next=x-a*h*x+sigma*dw；不在函数内重新抽样。",
+    "contract": "每次用旧 x 与相应 dw 计算 x_next=x−a*h*x+sigma*dw。increments 已是布朗增量，不再次乘 sqrt(h)，也不在函数内抽样。返回含初态的状态列表。",
     "constraints": [
-      "a≥0、sigma≥0、h>0；增量长度≤100且所有输入（input）有限。"
+      "a≥0、sigma≥0、h>0；增量长度≤100且所有输入有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -3028,7 +3028,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例没有确定性恢复，状态依次为0、0.2、0.1。",
+    "hint": "样例 a=0，没有恢复项；依次加入 0.2、−0.1 U，状态列表为 [0,0.2,0.1] U。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3057,7 +3057,7 @@
           0.2,
           0.1
         ],
-        "explanation": "首例没有确定性恢复，状态依次为0、0.2、0.1。"
+        "explanation": "样例 a=0，没有恢复项；依次加入 0.2、−0.1 U，状态列表为 [0,0.2,0.1] U。"
       }
     ]
   },
@@ -3069,7 +3069,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S01",
     "title": "一次局部一致性更新",
-    "statement": "无向加权图每个节点只与邻居交换，返回一次 x+h(Wx-Dx)。",
+    "statement": "在给定无向加权图上，根据当前邻居差异同步更新一次，返回各节点的新状态。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -3086,19 +3086,19 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "各节点当前状态（state）。",
+        "description": "按节点编号排列的当前状态。",
         "unit": "U"
       },
       {
         "name": "weights",
         "type": "list[list[float]]",
-        "description": "对称、非负、零对角的边权矩阵（matrix）。",
+        "description": "行 i、列 j 为节点 j 对节点 i 的作用权重；题定矩阵对称、非负且对角为零。",
         "unit": "1/T"
       },
       {
         "name": "h",
         "type": "float",
-        "description": "步长。",
+        "description": "此次同步更新对应的时间间隔。",
         "unit": "T"
       }
     ],
@@ -3106,11 +3106,11 @@
       {
         "name": "next_states",
         "type": "list[float]",
-        "description": "一步后各节点状态。",
+        "description": "全部节点一次更新后的状态，节点顺序与输入相同。",
         "unit": "U"
       }
     ],
-    "contract": "每个节点按旧状态同步更新（synchronous update） x_i+h*Σ_j weights[i][j]*(x_j-x_i)。",
+    "contract": "每个节点读取同一轮旧状态，计算 states[i]+h*Σ_j weights[i][j]*(states[j]−states[i])。所有节点计算结束后共同形成新一行。",
     "constraints": [
       "2—10 个节点；矩阵对称、非负、零对角；h>0，全部有限。"
     ],
@@ -3120,7 +3120,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "两节点例中互相向对方移动0.5，结果为0.5和1.5，平均仍为1。",
+    "hint": "样例两个节点从 [0,2] U 出发，分别增加、减少 0.25×2=0.5 U，结果为 [0.5,1.5] U，平均保持 1 U。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3155,7 +3155,7 @@
           0.5,
           1.5
         ],
-        "explanation": "两节点例中互相向对方移动0.5，结果为0.5和1.5，平均仍为1。"
+        "explanation": "样例两个节点从 [0,2] U 出发，分别增加、减少 0.25×2=0.5 U，结果为 [0.5,1.5] U，平均保持 1 U。"
       }
     ]
   },
@@ -3167,7 +3167,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S01",
     "title": "断连图的一致性路径",
-    "statement": "按给定对称权重重复局部更新，返回包含初态的路径。",
+    "statement": "重复给定无向权重下的局部同步更新，返回包含初态的完整路径；没有连接的节点在该规则下不发生变化。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -3184,25 +3184,25 @@
       {
         "name": "states",
         "type": "list[float]",
-        "description": "各节点初态。",
+        "description": "按节点编号排列的初始状态。",
         "unit": "U"
       },
       {
         "name": "weights",
         "type": "list[list[float]]",
-        "description": "无向权重。",
+        "description": "各节点共用的固定无向权重矩阵，行列均按节点编号排列。",
         "unit": "1/T"
       },
       {
         "name": "h",
         "type": "float",
-        "description": "步长。",
+        "description": "每次同步更新的时间间隔。",
         "unit": "T"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "更新次数。",
+        "description": "从初态之后执行的更新次数。",
         "unit": "步"
       }
     ],
@@ -3210,13 +3210,13 @@
       {
         "name": "history",
         "type": "list[list[float]]",
-        "description": "含初态的逐步状态（state）。",
+        "description": "每行是一次完整节点状态，第一行为初态，随后按更新顺序排列，共 steps+1 行。",
         "unit": "U"
       }
     ],
-    "contract": "对同一无向权重重复同步更新（synchronous update），路径包含初态。",
+    "contract": "使用同一个无向权重矩阵重复题定同步局部更新，保留初态与每次完整新状态；零次更新时仅返回初态行。",
     "constraints": [
-      "2—10 个节点，0≤steps≤100；矩阵（matrix）对称、非负、零对角，h>0，全部有限。"
+      "2—10 个节点，0≤steps≤100；矩阵对称、非负、零对角，h>0，全部有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -3224,7 +3224,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例首步为[0.5,1.5]，第二步为[0.75,1.25]；孤立节点不变。",
+    "hint": "样例仅有两个相连节点：第一步为 [0.5,1.5] U，第二步为 [0.75,1.25] U。各行总和均为 2 U。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3270,7 +3270,7 @@
             1.25
           ]
         ],
-        "explanation": "首例首步为[0.5,1.5]，第二步为[0.75,1.25]；孤立节点不变。"
+        "explanation": "样例仅有两个相连节点：第一步为 [0.5,1.5] U，第二步为 [0.75,1.25] U。各行总和均为 2 U。"
       }
     ]
   },
@@ -3282,7 +3282,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S02",
     "title": "一轮延迟邻居更新",
-    "statement": "历史按 x_-d 到 x_0 排列；每步以当前 x 作基底，用 d 步前状态（state）算邻居差。",
+    "statement": "给定按时间排列的历史，按延迟同步规则计算未来节点状态。每次从当前状态推进，耦合差异读取 d 步前的完整状态。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -3299,31 +3299,31 @@
       {
         "name": "history",
         "type": "list[list[float]]",
-        "description": "长度为 delay+1 的旧状态序列。",
+        "description": "按 x_-delay 到 x_0 的时间顺序给出的完整历史，每行按节点编号排列。",
         "unit": "U"
       },
       {
         "name": "weights",
         "type": "list[list[float]]",
-        "description": "无向边权。",
+        "description": "固定的无向权重矩阵，行列均按节点编号排列。",
         "unit": "1/T"
       },
       {
         "name": "h",
         "type": "float",
-        "description": "步长。",
+        "description": "每次同步更新的时间间隔。",
         "unit": "T"
       },
       {
         "name": "delay",
         "type": "int",
-        "description": "整数延迟（delay）。",
+        "description": "差异信息滞后的整数步数。",
         "unit": "步"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "未来更新次数。",
+        "description": "从当前 x_0 开始执行的未来更新次数。",
         "unit": "步"
       }
     ],
@@ -3331,13 +3331,13 @@
       {
         "name": "states",
         "type": "list[list[float]]",
-        "description": "从当前状态起的完整新路径。",
+        "description": "从当前 x_0 开始的路径，共 steps+1 行；早于 x_0 的历史用于计算，不放入返回路径。",
         "unit": "U"
       }
     ],
-    "contract": "history 从 x_-delay 到 x_0；下一步用当前 x 作基底，用 x_-delay 计算全部邻居差，然后推进历史。",
+    "contract": "每次从当前状态 x_n 出发，用 d 步前的整行状态算全部邻居差，得到 x_(n+1)=x_n−h*L*x_(n−d)，再追加历史。d=0 时读取当前整行；返回 x_0 及未来更新，不返回负时刻历史。",
     "constraints": [
-      "2—10 个节点，0≤delay≤10；history 长度为 delay+1，0≤steps≤100；矩阵（matrix）对称、非负、零对角，h>0。"
+      "2—10 个节点，0≤delay≤10；history 长度为 delay+1，0≤steps≤100；矩阵对称、非负、零对角，h>0。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -3345,7 +3345,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例当前[1,1]不产生即时差，但用旧[0,2]得下一状态[1.5,0.5]。",
+    "hint": "样例历史先是 [0,2]、后是当前 [1,1] U；旧差异给出 [0.5,−0.5] U 调整量，所以返回当前 [1,1] 与下一行 [1.5,0.5]。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3394,7 +3394,7 @@
             0.5
           ]
         ],
-        "explanation": "首例当前[1,1]不产生即时差，但用旧[0,2]得下一状态[1.5,0.5]。"
+        "explanation": "样例历史先是 [0,2]、后是当前 [1,1] U；旧差异给出 [0.5,−0.5] U 调整量，所以返回当前 [1,1] 与下一行 [1.5,0.5]。"
       }
     ]
   },
@@ -3406,7 +3406,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S02",
     "title": "零延迟的退化检查",
-    "statement": "给定 delay=0，延迟（delay）公式应与普通局部更新逐步一致。",
+    "statement": "使用延迟更新接口计算给定历史之后的路径。样例 delay=0 时读取当前差异，可与普通同步更新逐步对照。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -3423,31 +3423,31 @@
       {
         "name": "history",
         "type": "list[list[float]]",
-        "description": "仅一行当前状态（state）。",
+        "description": "按 x_-delay 到 x_0 的时间顺序给出的完整历史，每行按节点编号排列。",
         "unit": "U"
       },
       {
         "name": "weights",
         "type": "list[list[float]]",
-        "description": "无向边权。",
+        "description": "固定的无向权重矩阵，行列均按节点编号排列。",
         "unit": "1/T"
       },
       {
         "name": "h",
         "type": "float",
-        "description": "步长。",
+        "description": "每次同步更新的时间间隔。",
         "unit": "T"
       },
       {
         "name": "delay",
         "type": "int",
-        "description": "本题限定为0。",
+        "description": "差异信息滞后的整数步数。",
         "unit": "步"
       },
       {
         "name": "steps",
         "type": "int",
-        "description": "更新次数。",
+        "description": "从当前 x_0 开始执行的未来更新次数。",
         "unit": "步"
       }
     ],
@@ -3455,13 +3455,13 @@
       {
         "name": "states",
         "type": "list[list[float]]",
-        "description": "当前至未来的路径。",
+        "description": "从当前 x_0 开始的路径，共 steps+1 行；早于 x_0 的历史用于计算，不放入返回路径。",
         "unit": "U"
       }
     ],
-    "contract": "history 从 x_-delay 到 x_0；下一步用当前 x 作基底，用 x_-delay 计算全部邻居差，然后推进历史。",
+    "contract": "每次从当前状态 x_n 出发，用 d 步前的整行状态算全部邻居差，得到 x_(n+1)=x_n−h*L*x_(n−d)，再追加历史。d=0 时读取当前整行；返回 x_0 及未来更新，不返回负时刻历史。",
     "constraints": [
-      "2—10 个节点，0≤delay≤10；history 长度为 delay+1，0≤steps≤100；矩阵（matrix）对称、非负、零对角，h>0。"
+      "2—10 个节点，0≤delay≤10；history 长度为 delay+1，0≤steps≤100；矩阵对称、非负、零对角，h>0。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -3469,7 +3469,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例退化为普通一致性更新，依次[0,2]、[0.5,1.5]、[0.75,1.25]。",
+    "hint": "样例只有当前行 [0,2] U，delay=0；两次普通同步更新得到 [0.5,1.5]、[0.75,1.25] U，返回三行含当前状态的路径。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3518,7 +3518,7 @@
             1.25
           ]
         ],
-        "explanation": "首例退化为普通一致性更新，依次[0,2]、[0.5,1.5]、[0.75,1.25]。"
+        "explanation": "样例只有当前行 [0,2] U，delay=0；两次普通同步更新得到 [0.5,1.5]、[0.75,1.25] U，返回三行含当前状态的路径。"
       }
     ]
   },
@@ -3530,7 +3530,7 @@
     "chapter": "16.6",
     "lesson_id": "P16-C06-S01",
     "title": "固定策略的折扣价值",
-    "statement": "按 Vπ=rπ+γPπVπ 解线性方程，返回各状态（state）价值。",
+    "statement": "从给定转移、奖励与固定动作列表构造 Bellman 线性方程，返回每个状态的固定策略价值。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -3547,25 +3547,25 @@
       {
         "name": "transitions",
         "type": "list",
-        "description": "数组（array）形状为状态×动作×后继状态，各行概率（probability）和为1。",
+        "description": "依次按当前状态、动作、下一状态排列的转移概率；固定前两项后的概率行和为一。",
         "unit": "1"
       },
       {
         "name": "rewards",
         "type": "list",
-        "description": "状态×动作的即时奖励。",
+        "description": "按当前状态、动作排列的平均即时奖励。",
         "unit": "奖励"
       },
       {
         "name": "policy",
         "type": "list[int]",
-        "description": "每状态选定的动作编号。",
+        "description": "按状态编号排列的固定动作编号，编号从零开始。",
         "unit": "1"
       },
       {
         "name": "gamma",
         "type": "float",
-        "description": "折扣因子。",
+        "description": "未来晚一步奖励所乘的折扣因子。",
         "unit": "1"
       }
     ],
@@ -3573,11 +3573,11 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "固定策略下每状态的期望（expectation）折扣回报。",
+        "description": "按状态编号排列、在给定模型与固定策略下的期望折扣回报。",
         "unit": "奖励"
       }
     ],
-    "contract": "按固定 policy 抽取 P_pi 与 r_pi，求解 (I-gamma*P_pi)V=r_pi。",
+    "contract": "对每个状态 s，用 policy[s] 取转移行与奖励，组成 $P_\\pi$、$r_\\pi$。求解 $(I-\\gamma P_\\pi)V=r_\\pi$，按状态编号返回 V；不另行选择或训练策略。",
     "constraints": [
       "2—8 个状态，每状态1—4个动作；转移非负且每行和为1；policy 动作合法，0≤gamma<1。"
     ],
@@ -3587,7 +3587,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例状态1为零奖励终止吸收态，价值0；状态0本步奖励1，因此价值1。",
+    "hint": "样例状态 0 获得本步奖励 1 后进入零奖励吸收态，状态 1 的价值为零，所以状态 0 的价值也只含这一次奖励。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3634,7 +3634,7 @@
           1.0,
           0.0
         ],
-        "explanation": "首例状态1为零奖励终止吸收态（absorbing state），价值0；状态0本步奖励1，因此价值1。"
+        "explanation": "样例状态 0 获得本步奖励 1 后进入零奖励吸收态，状态 1 的价值为零，所以状态 0 的价值也只含这一次奖励。"
       }
     ]
   },
@@ -3646,7 +3646,7 @@
     "chapter": "16.6",
     "lesson_id": "P16-C06-S01",
     "title": "两状态策略评价",
-    "statement": "给定策略而非学习策略，返回明确模型（model）下的 Bellman 价值。",
+    "statement": "评价给定固定策略在明确转移模型下的期望折扣回报，返回各状态价值，供不同固定策略比较。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -3663,25 +3663,25 @@
       {
         "name": "transitions",
         "type": "list",
-        "description": "状态（state）×动作×后继状态转移概率（probability）。",
+        "description": "依次按当前状态、动作、下一状态排列的转移概率；固定前两项后的概率行和为一。",
         "unit": "1"
       },
       {
         "name": "rewards",
         "type": "list",
-        "description": "状态×动作的即时奖励。",
+        "description": "按当前状态、动作排列的平均即时奖励。",
         "unit": "奖励"
       },
       {
         "name": "policy",
         "type": "list[int]",
-        "description": "各状态固定动作编号。",
+        "description": "按状态编号排列的固定动作编号，编号从零开始。",
         "unit": "1"
       },
       {
         "name": "gamma",
         "type": "float",
-        "description": "折扣率。",
+        "description": "未来晚一步奖励所乘的折扣因子。",
         "unit": "1"
       }
     ],
@@ -3689,11 +3689,11 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "每个状态的价值。",
+        "description": "按状态编号排列、在给定模型与固定策略下的期望折扣回报。",
         "unit": "奖励"
       }
     ],
-    "contract": "按固定 policy 抽取 P_pi 与 r_pi，求解 (I-gamma*P_pi)V=r_pi。",
+    "contract": "对每个状态 s，用 policy[s] 取转移行与奖励，组成 $P_\\pi$、$r_\\pi$。求解 $(I-\\gamma P_\\pi)V=r_\\pi$，按状态编号返回 V；不另行选择或训练策略。",
     "constraints": [
       "2—8 个状态，每状态1—4个动作；转移非负且每行和为1；policy 动作合法，0≤gamma<1。"
     ],
@@ -3703,7 +3703,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例状态0每步都得1，折扣和为1/(1-0.5)=2；状态1价值0。",
+    "hint": "样例状态 0 自循环并每步获得 1，价值为 1/(1−0.5)=2；状态 1 自循环但奖励恒为零，价值为零。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3750,7 +3750,7 @@
           2.0,
           0.0
         ],
-        "explanation": "首例状态0每步都得1，折扣和为1/(1-0.5)=2；状态1价值0。"
+        "explanation": "样例状态 0 自循环并每步获得 1，价值为 1/(1−0.5)=2；状态 1 自循环但奖励恒为零，价值为零。"
       }
     ]
   },
@@ -3762,7 +3762,7 @@
     "chapter": "16.6",
     "lesson_id": "P16-C06-S02",
     "title": "终止经验的 Q 更新",
-    "statement": "按经验出现顺序做表格 Q 更新；终止样本的目标只含本步奖励。",
+    "statement": "按给定经验的顺序更新表格动作价值。终止样本保留本步奖励，不再追加下一状态价值，返回完整 Q 表。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -3779,25 +3779,25 @@
       {
         "name": "initial",
         "type": "list[list[float]]",
-        "description": "状态（state）×动作初始 Q 表。",
+        "description": "行对应状态、列对应动作的初始 Q 表，行列编号均从零开始。",
         "unit": "奖励"
       },
       {
         "name": "experience",
         "type": "list",
-        "description": "每行[state,action,reward,next_state,done]。",
+        "description": "按更新顺序给出的 [state,action,reward,next_state,done]；done 为 True 表示这次转移终止。",
         "unit": "混合"
       },
       {
         "name": "alpha",
         "type": "float",
-        "description": "学习率。",
+        "description": "每条经验校正旧表项的学习率。",
         "unit": "1"
       },
       {
         "name": "gamma",
         "type": "float",
-        "description": "折扣因子。",
+        "description": "非终止经验中下一状态价值所乘的折扣因子。",
         "unit": "1"
       }
     ],
@@ -3805,11 +3805,11 @@
       {
         "name": "Q",
         "type": "list[list[float]]",
-        "description": "全部经验后的 Q 表。",
+        "description": "全部经验按顺序处理后的完整 Q 表，行列顺序与初始表相同。",
         "unit": "奖励"
       }
     ],
-    "contract": "按经验顺序更新 Q[s,a]；非终止目标 r+gamma*max_b Q[next,b]，终止目标只有 r。",
+    "contract": "逐条读取经验，仅更新相应 Q[state][action]。终止目标为 reward；否则为 reward+gamma*max(Q[next_state])。新表项为旧值+alpha*(目标−旧值)，后续经验读取这张已更新的表。",
     "constraints": [
       "Q 为2—8状态×1—4动作的有限表；经验长度≤100，索引合法；0<alpha≤1、0≤gamma<1。"
     ],
@@ -3819,7 +3819,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例目标为2，旧 Q=0、学习率0.5，因此新 Q[0,1]=1。",
+    "hint": "样例经验终止，目标为奖励 2；旧 Q[0,1]=0、学习率 0.5，新表项为 1，其他表项不变。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3866,7 +3866,7 @@
             0.0
           ]
         ],
-        "explanation": "首例目标为2，旧 Q=0、学习率0.5，因此新 Q[0,1]=1。"
+        "explanation": "样例经验终止，目标为奖励 2；旧 Q[0,1]=0、学习率 0.5，新表项为 1，其他表项不变。"
       }
     ]
   },
@@ -3878,7 +3878,7 @@
     "chapter": "16.6",
     "lesson_id": "P16-C06-S02",
     "title": "经验顺序影响有限次更新",
-    "statement": "按列表顺序逐条更新 Q；后一条可读取前一条已改过的表。",
+    "statement": "逐条更新 Q 表，后一条经验可读取前一条已经改过的值。保留给定顺序与终止标记，返回最终表。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -3895,25 +3895,25 @@
       {
         "name": "initial",
         "type": "list[list[float]]",
-        "description": "初始 Q 表。",
+        "description": "行对应状态、列对应动作的初始 Q 表，行列编号均从零开始。",
         "unit": "奖励"
       },
       {
         "name": "experience",
         "type": "list",
-        "description": "依次出现的五元组经验。",
+        "description": "按更新顺序给出的 [state,action,reward,next_state,done]；done 为 True 表示这次转移终止。",
         "unit": "混合"
       },
       {
         "name": "alpha",
         "type": "float",
-        "description": "学习率。",
+        "description": "每条经验校正旧表项的学习率。",
         "unit": "1"
       },
       {
         "name": "gamma",
         "type": "float",
-        "description": "折扣因子。",
+        "description": "非终止经验中下一状态价值所乘的折扣因子。",
         "unit": "1"
       }
     ],
@@ -3921,13 +3921,13 @@
       {
         "name": "Q",
         "type": "list[list[float]]",
-        "description": "最终 Q 表。",
+        "description": "全部经验按顺序处理后的完整 Q 表，行列顺序与初始表相同。",
         "unit": "奖励"
       }
     ],
-    "contract": "按经验顺序更新 Q[s,a]；非终止目标 r+gamma*max_b Q[next,b]，终止目标只有 r。",
+    "contract": "逐条读取经验，仅更新相应 Q[state][action]。终止目标为 reward；否则为 reward+gamma*max(Q[next_state])。新表项为旧值+alpha*(目标−旧值)，后续经验读取这张已更新的表。",
     "constraints": [
-      "Q 为2—8状态（state）×1—4动作的有限表；经验长度≤100，索引合法；0<alpha≤1、0≤gamma<1。"
+      "Q 为2—8状态×1—4动作的有限表；经验长度≤100，索引合法；0<alpha≤1、0≤gamma<1。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -3935,7 +3935,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例先把 Q[1,0] 更新为2，第二条再用它得到目标1+0.5×2=2。",
+    "hint": "样例第一条终止记录把 Q[1,0] 更新为 2；第二条非终止记录用它得到目标 1+0.5×2=2，学习率为 1，所以 Q[0,0] 也变为 2。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -3985,7 +3985,7 @@
             2.0
           ]
         ],
-        "explanation": "首例先把 Q[1,0] 更新为2，第二条再用它得到目标1+0.5×2=2。"
+        "explanation": "样例第一条终止记录把 Q[1,0] 更新为 2；第二条非终止记录用它得到目标 1+0.5×2=2，学习率为 1，所以 Q[0,0] 也变为 2。"
       }
     ]
   },
@@ -3997,7 +3997,7 @@
     "chapter": "16.7",
     "lesson_id": "P16-C07-S01",
     "title": "有限动作的预测可行选择",
-    "statement": "从满足输入（input）和预测状态（state）上下界的动作里最小化平方目标误差加动作惩罚；无可行解返回 None。",
+    "statement": "从给定有限动作中先检查动作上限和预测状态界，再选择预测代价最小者。保持公开并列规则；没有可行候选返回 None。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -4014,49 +4014,49 @@
       {
         "name": "x",
         "type": "float",
-        "description": "当前状态。",
+        "description": "本次已经观测的当前状态。",
         "unit": "U"
       },
       {
         "name": "target",
         "type": "float",
-        "description": "下一状态目标。",
+        "description": "希望下一次达到的状态。",
         "unit": "U"
       },
       {
         "name": "coefficient",
         "type": "float",
-        "description": "预测模型（model）的状态系数。",
+        "description": "已给定预测系数，用于 coefficient*x+action。",
         "unit": "1"
       },
       {
         "name": "actions",
         "type": "list[float]",
-        "description": "按题给顺序候选动作。",
+        "description": "需要逐个检查的有限候选动作列表。",
         "unit": "U"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "动作绝对上限。",
+        "description": "动作绝对值允许的上限。",
         "unit": "U"
       },
       {
         "name": "lower",
         "type": "float",
-        "description": "预测状态下界。",
+        "description": "预测下一状态允许的下界。",
         "unit": "U"
       },
       {
         "name": "upper",
         "type": "float",
-        "description": "预测状态上界。",
+        "description": "预测下一状态允许的上界。",
         "unit": "U"
       },
       {
         "name": "penalty",
         "type": "float",
-        "description": "动作平方惩罚。",
+        "description": "代价中动作平方项的无量纲权重。",
         "unit": "1"
       }
     ],
@@ -4064,11 +4064,11 @@
       {
         "name": "action",
         "type": "float | None",
-        "description": "最优预测可行动作；没有时为 None。",
+        "description": "满足原约束且预测代价最小的动作数值；没有可行候选时返回 None。",
         "unit": "U"
       }
     ],
-    "contract": "过滤 |action|>limit 或预测状态不在[lower,upper]的动作；在剩余动作中最小化 (预测-target)²+penalty*action²；并列时先选 |action| 小者，再选动作数值小者；无可行解返回 None。",
+    "contract": "先排除绝对值超过 limit 或 coefficient*x+action 不在 [lower,upper] 内的动作。在剩余候选中最小化 (coefficient*x+action−target)²+penalty*action²。代价并列时先选绝对值小者，再选数值小者；候选为空返回 None。",
     "constraints": [
       "候选动作非空且≤100；limit≥0、lower≤upper、penalty≥0；全部数值有限。"
     ],
@@ -4078,7 +4078,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例动作0预测状态1，代价0；第二例所有候选预测状态超过上界，应返回 None。",
+    "hint": "样例零动作预测状态为 1 U，正好达到目标，代价为零，因此选择 0 U。若全部候选被原约束排除，函数应返回 None。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -4107,7 +4107,7 @@
           "penalty": 0.1
         },
         "expected": 0.0,
-        "explanation": "首例动作0预测状态1，代价0；第二例所有候选预测状态超过上界，应返回 None。"
+        "explanation": "样例零动作预测状态为 1 U，正好达到目标，代价为零，因此选择 0 U。若全部候选被原约束排除，函数应返回 None。"
       }
     ]
   },
@@ -4119,7 +4119,7 @@
     "chapter": "16.7",
     "lesson_id": "P16-C07-S01",
     "title": "模型误差下的预测约束",
-    "statement": "按给定预测系数，在预测可行的动作中选择最小代价者；实际约束的检查使用之后得到的真实状态（state）。",
+    "statement": "按给定预测系数选择满足预测约束的最低代价动作。只返回选择结果，实际下一状态需要用执行记录另行核对。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -4136,49 +4136,49 @@
       {
         "name": "x",
         "type": "float",
-        "description": "当前状态（state）。",
+        "description": "本次已经观测的当前状态。",
         "unit": "U"
       },
       {
         "name": "target",
         "type": "float",
-        "description": "目标状态。",
+        "description": "希望下一次达到的状态。",
         "unit": "U"
       },
       {
         "name": "coefficient",
         "type": "float",
-        "description": "已拟合预测系数。",
+        "description": "已给定预测系数，用于 coefficient*x+action。",
         "unit": "1"
       },
       {
         "name": "actions",
         "type": "list[float]",
-        "description": "有限候选动作。",
+        "description": "需要逐个检查的有限候选动作列表。",
         "unit": "U"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "动作上限。",
+        "description": "动作绝对值允许的上限。",
         "unit": "U"
       },
       {
         "name": "lower",
         "type": "float",
-        "description": "预测状态下界。",
+        "description": "预测下一状态允许的下界。",
         "unit": "U"
       },
       {
         "name": "upper",
         "type": "float",
-        "description": "预测状态上界。",
+        "description": "预测下一状态允许的上界。",
         "unit": "U"
       },
       {
         "name": "penalty",
         "type": "float",
-        "description": "动作惩罚。",
+        "description": "代价中动作平方项的无量纲权重。",
         "unit": "1"
       }
     ],
@@ -4186,11 +4186,11 @@
       {
         "name": "action",
         "type": "float | None",
-        "description": "预测可行的最低代价动作或 None。",
+        "description": "满足原约束且预测代价最小的动作数值；没有可行候选时返回 None。",
         "unit": "U"
       }
     ],
-    "contract": "过滤 |action|>limit 或预测状态不在[lower,upper]的动作；在剩余动作中最小化 (预测-target)²+penalty*action²；并列时先选 |action| 小者，再选动作数值小者；无可行解返回 None。",
+    "contract": "先排除绝对值超过 limit 或 coefficient*x+action 不在 [lower,upper] 内的动作。在剩余候选中最小化 (coefficient*x+action−target)²+penalty*action²。代价并列时先选绝对值小者，再选数值小者；候选为空返回 None。",
     "constraints": [
       "候选动作非空且≤100；limit≥0、lower≤upper、penalty≥0；全部数值有限。"
     ],
@@ -4200,7 +4200,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例动作0.5 恰好达到预测上界且目标误差为0；不等于真实模型必满足约束。",
+    "hint": "样例动作 0.5 U 使预测下一状态恰为 1.5 U，达到目标且等于允许上界；惩罚为零，所以选择它。真实系数不同仍可能改变实际下一状态。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -4229,7 +4229,7 @@
           "penalty": 0.0
         },
         "expected": 0.5,
-        "explanation": "首例动作0.5 恰好达到预测上界且目标误差为0；不等于真实模型（model）必满足约束。"
+        "explanation": "样例动作 0.5 U 使预测下一状态恰为 1.5 U，达到目标且等于允许上界；惩罚为零，所以选择它。真实系数不同仍可能改变实际下一状态。"
       }
     ]
   },
@@ -4241,7 +4241,7 @@
     "chapter": "16.7",
     "lesson_id": "P16-C07-S02",
     "title": "统一条件下的决策指标",
-    "statement": "给定一批配对测试的真实状态（state）、预测、实际动作和失败标志，返回 RMSE、动作平方均值、动作越界率及失败率。",
+    "statement": "给定完整配对场景的真实状态、预测、实际动作和失败标记，按固定顺序返回四项指标。这里越界检查动作上限。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -4258,31 +4258,31 @@
       {
         "name": "truth",
         "type": "list[float]",
-        "description": "同一批测试的真实后继状态。",
+        "description": "按共同场景顺序排列的真实后继状态。",
         "unit": "U"
       },
       {
         "name": "prediction",
         "type": "list[float]",
-        "description": "相应预测后继状态。",
+        "description": "与 truth 相同场景配对的预测后继状态。",
         "unit": "U"
       },
       {
         "name": "inputs",
         "type": "list[float]",
-        "description": "实际执行动作。",
+        "description": "各场景实际执行的动作，包括题定的备用执行记录。",
         "unit": "U"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "动作绝对上限。",
+        "description": "全部场景共用的动作绝对上限。",
         "unit": "U"
       },
       {
         "name": "failures",
         "type": "list[bool]",
-        "description": "每场景求解失败标志。",
+        "description": "各场景的求解失败标记，True 为失败，False 为未失败。",
         "unit": "1"
       }
     ],
@@ -4290,11 +4290,11 @@
       {
         "name": "metrics",
         "type": "list[float]",
-        "description": "RMSE、动作平方均值、越界率、失败率。",
+        "description": "依次为预测 RMSE（U）、动作平方均值（U²）、动作越界比例、求解失败比例；后两项无量纲。",
         "unit": "混合"
       }
     ],
-    "contract": "四项依次为预测 RMSE、实际动作平方均值、实际动作绝对值超过 limit 的比例、求解失败比例；所有场景均保留。",
+    "contract": "使用全部共同场景作为分母。四项依次为 sqrt(mean((truth−prediction)²))、mean(inputs²)、实际动作绝对值严格超过 limit 的比例、True 失败标记的比例。相等不算越界，失败场景仍保留。",
     "constraints": [
       "truth、prediction、inputs、failures 四个列表等长且非空，长度≤100；limit 是全部场景共用的非负标量上限；全部数值有限。"
     ],
@@ -4304,7 +4304,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例误差为0和-1，RMSE=√(1/2)；两个动作中一个越界、一个求解失败。",
+    "hint": "样例预测减真值为 [0,−1] U，RMSE=√(1/2) U；动作平方均值为 2 U²。两个场景中一个动作越界、一个求解失败，后两项均为 1/2。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -4343,7 +4343,7 @@
           0.5,
           0.5
         ],
-        "explanation": "首例误差为0和-1，RMSE=√(1/2)；两个动作中一个越界、一个求解失败。"
+        "explanation": "样例预测减真值为 [0,−1] U，RMSE=√(1/2) U；动作平方均值为 2 U²。两个场景中一个动作越界、一个求解失败，后两项均为 1/2。"
       }
     ]
   },
@@ -4355,7 +4355,7 @@
     "chapter": "16.7",
     "lesson_id": "P16-C07-S02",
     "title": "不要遗漏失败场景",
-    "statement": "即使某次优化失败，也应在完整配对样本中计算失败率与其他已定义指标。",
+    "statement": "在包含求解失败的完整共同场景上计算预测、动作与失败四项指标，保留已给出的失败场景预测及执行记录。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -4372,31 +4372,31 @@
       {
         "name": "truth",
         "type": "list[float]",
-        "description": "完整测试场景真实值。",
+        "description": "按共同场景顺序排列的真实后继状态。",
         "unit": "U"
       },
       {
         "name": "prediction",
         "type": "list[float]",
-        "description": "对应预测。",
+        "description": "与 truth 相同场景配对的预测后继状态。",
         "unit": "U"
       },
       {
         "name": "inputs",
         "type": "list[float]",
-        "description": "记录的实际或备用动作。",
+        "description": "各场景实际执行的动作，包括题定的备用执行记录。",
         "unit": "U"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "动作上限。",
+        "description": "全部场景共用的动作绝对上限。",
         "unit": "U"
       },
       {
         "name": "failures",
         "type": "list[bool]",
-        "description": "求解失败标志。",
+        "description": "各场景的求解失败标记，True 为失败，False 为未失败。",
         "unit": "1"
       }
     ],
@@ -4404,11 +4404,11 @@
       {
         "name": "metrics",
         "type": "list[float]",
-        "description": "预测 RMSE、动作平方均值、越界率、失败率。",
+        "description": "依次为预测 RMSE（U）、动作平方均值（U²）、动作越界比例、求解失败比例；后两项无量纲。",
         "unit": "混合"
       }
     ],
-    "contract": "四项依次为预测 RMSE、实际动作平方均值、实际动作绝对值超过 limit 的比例、求解失败比例；所有场景均保留。",
+    "contract": "使用全部共同场景作为分母。四项依次为 sqrt(mean((truth−prediction)²))、mean(inputs²)、实际动作绝对值严格超过 limit 的比例、True 失败标记的比例。相等不算越界，失败场景仍保留。",
     "constraints": [
       "truth、prediction、inputs、failures 四个列表等长且非空，长度≤100；limit 是全部场景共用的非负标量上限；全部数值有限。"
     ],
@@ -4418,7 +4418,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例预测误差为0，但一半场景求解失败；RMSE 不能代替失败率。",
+    "hint": "样例预测全部等于真值，所以 RMSE 为零，动作也全为零；但两个场景中一个失败，失败比例仍为 1/2。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -4457,7 +4457,7 @@
           0.0,
           0.5
         ],
-        "explanation": "首例预测误差为0，但一半场景求解失败；RMSE 不能代替失败率。"
+        "explanation": "样例预测全部等于真值，所以 RMSE 为零，动作也全为零；但两个场景中一个失败，失败比例仍为 1/2。"
       }
     ]
   },
@@ -4469,7 +4469,7 @@
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
     "title": "稳定保证的适用范围",
-    "statement": "共同二次证书只在已声明仿射（affine）凸包内成立；一个外部模型（model）发散时，怎样陈述？",
+    "statement": "原仿射凸包内已经有共同二次稳定证书，另一个位于集合外的模型出现发散。要扩展保证范围，应怎样处理？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -4486,11 +4486,11 @@
     "options": [
       {
         "id": "A",
-        "text": "将外部模型加入原集合，继续使用原来的共同矩阵（matrix）而不重新检查不等式。"
+        "text": "将外部模型加入原集合，继续使用原来的共同矩阵而不重新检查不等式。"
       },
       {
         "id": "B",
-        "text": "从汇总中删去发散的外部轨迹（trajectory），仅报告原集合中的稳定结果。"
+        "text": "从汇总中删去发散的外部轨迹，仅报告原集合中的稳定结果。"
       },
       {
         "id": "C",
@@ -4511,7 +4511,7 @@
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
     "title": "随机路径的比较",
-    "statement": "比较两种步长的随机离散状态（state）误差时，什么设计支持同一路径比较？",
+    "statement": "比较同一随机驱动下粗细两种时间网格的数值状态差。已给出细网格布朗增量，哪种设计保持了这个配对？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -4528,19 +4528,19 @@
     "options": [
       {
         "id": "A",
-        "text": "重新独立抽取粗增量，使其方差（variance）等于粗时间步长（time step）度。"
+        "text": "另外独立抽取粗增量，使其方差等于粗步的时间长度。"
       },
       {
         "id": "B",
-        "text": "将每个粗时间区间内的所有细增量相加，作为该区间的粗增量。"
+        "text": "将每个粗时间区间内的全部细增量相加，作为该粗增量。"
       },
       {
         "id": "C",
-        "text": "将每个粗时间区间内的所有细增量取平均，作为该区间的粗增量。"
+        "text": "将每个粗时间区间内的全部细增量取平均，作为该粗增量。"
       },
       {
         "id": "D",
-        "text": "将每个粗时间区间内的首个细增量乘以细步数的平方根，作为该区间的粗增量。"
+        "text": "将每个粗时间区间的首个细增量乘细步数的平方根，作为该粗增量。"
       }
     ],
     "constraints": []
@@ -4553,7 +4553,7 @@
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
     "title": "有限训练的强化学习证据",
-    "statement": "对给定的短经验序列训练后，训练内回报上升。以下哪项结论符合这项观察？",
+    "statement": "给定短经验序列用于训练后，记录到这批经验内的回报上升。哪项结论与当前证据对应？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -4570,11 +4570,11 @@
     "options": [
       {
         "id": "A",
-        "text": "未访问过的状态（state）动作组合也已收敛，因为这些Q表项没有变化。"
+        "text": "未访问过的状态动作组合也已收敛，因为这些Q表项没有变化。"
       },
       {
         "id": "B",
-        "text": "以后用同一张Q表运行时，每条轨迹（trajectory）都会取得当前训练回报。"
+        "text": "以后用同一张Q表运行时，每条轨迹都会取得当前训练回报。"
       },
       {
         "id": "C",
@@ -4595,7 +4595,7 @@
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
     "title": "预测与决策结论",
-    "statement": "学习预测器 RMSE 较低，但约束违约率和失败率较高，应保留什么结论？",
+    "statement": "完整共同场景中，学习预测器 RMSE 较低，但实际动作越界比例和求解失败比例较高。哪种报告方式保留了这些结果？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -4624,7 +4624,7 @@
       },
       {
         "id": "D",
-        "text": "放宽状态（state）上限后重算候选的违约率，再与仍使用原上限的基线比较。"
+        "text": "放宽状态上限后重算候选的违约率，再与仍使用原上限的基线比较。"
       }
     ],
     "constraints": []
@@ -4637,7 +4637,7 @@
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
     "title": "综合：核验共同证书",
-    "statement": "在统一的不确定集合上检查同一 P 的顶点条件，并保留全部特征值（eigenvalue）证据。",
+    "statement": "综合核验给定模型凸包的顶点条件。返回 P 最小特征值、各顶点导数矩阵最大特征值及严格判定，保留每个顶点的对应位置。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -4654,13 +4654,13 @@
       {
         "name": "vertices",
         "type": "list[list[list[float]]]",
-        "description": "二维模型（model）集合的顶点。",
+        "description": "按顺序排列的二维闭环顶点矩阵，每个矩阵为 2×2。",
         "unit": "1/T"
       },
       {
         "name": "P",
         "type": "list[list[float]]",
-        "description": "统一候选矩阵（matrix）。",
+        "description": "所有顶点共用的实对称候选矩阵 P。",
         "unit": "按状态尺度"
       }
     ],
@@ -4668,13 +4668,13 @@
       {
         "name": "result",
         "type": "list",
-        "description": "P 最小特征值、各顶点导数（derivative）最大特征值、严格判定。",
+        "description": "依次为 P 的最小特征值、按顶点顺序排列的导数矩阵最大特征值列表，以及严格条件全部成立的布尔值。",
         "unit": "混合"
       }
     ],
-    "contract": "P 最小特征值应为正；逐顶点计算对称矩阵 AᵀP+PA 的最大特征值，均严格小于0才返回 True。",
+    "contract": "先算 P 的最小特征值；对每个顶点 A，计算对称矩阵 $A^\\mathsf TP+PA$ 的最大特征值。仅当 P 最小特征值严格为正、全部导数矩阵最大特征值严格为负时，第三项返回 True，否则为 False。",
     "constraints": [
-      "至少一个二维实矩阵顶点；P 为二维实对称候选矩阵；所有输入（input）有限。"
+      "至少一个二维实矩阵顶点；P 为二维实对称候选矩阵；所有输入有限。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -4682,7 +4682,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例 P 正定且两端导数矩阵负定，故整个仿射凸包获得此共同证书。",
+    "hint": "样例 P 最小特征值为 1，两个导数矩阵最大特征值为 −2、−0.8，严格条件都成立；同一个 P 可结合凸组合推理覆盖给定凸包。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -4738,7 +4738,7 @@
           ],
           true
         ],
-        "explanation": "首例 P 正定（positive definite）且两端导数矩阵负定，故整个仿射（affine）凸包获得此共同证书。"
+        "explanation": "样例 P 最小特征值为 1，两个导数矩阵最大特征值为 −2、−0.8，严格条件都成立；同一个 P 可结合凸组合推理覆盖给定凸包。"
       }
     ]
   },
@@ -4750,7 +4750,7 @@
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
     "title": "综合：独立核验随机终点",
-    "statement": "由解析 OU 公式返回均值和方差（variance），作为随机离散重复实验的对照。",
+    "statement": "由连续 OU 方程的解析公式给出终点均值与方差，保留零恢复率分支，供核对随机离散实验。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -4767,25 +4767,25 @@
       {
         "name": "x0",
         "type": "float",
-        "description": "确定初态。",
+        "description": "确定的初始稳态偏差。",
         "unit": "U"
       },
       {
         "name": "a",
         "type": "float",
-        "description": "恢复率。",
+        "description": "连续 OU 方程的恢复率，零表示没有恢复项。",
         "unit": "1/T"
       },
       {
         "name": "sigma",
         "type": "float",
-        "description": "噪声幅度。",
+        "description": "布朗扰动在状态方程中的幅度。",
         "unit": "U/√T"
       },
       {
         "name": "time",
         "type": "float",
-        "description": "终点。",
+        "description": "从初始时刻经过的时间。",
         "unit": "T"
       }
     ],
@@ -4793,17 +4793,17 @@
       {
         "name": "mean",
         "type": "float",
-        "description": "解析期望（expectation）。",
+        "description": "连续模型在给定时间的偏差期望。",
         "unit": "U"
       },
       {
         "name": "variance",
         "type": "float",
-        "description": "解析方差。",
+        "description": "连续模型在给定时间的偏差方差。",
         "unit": "U²"
       }
     ],
-    "contract": "均值=x0*exp(-a*time)；a>0 时方差=sigma²*(1-exp(-2a*time))/(2a)，a=0 时为 sigma²*time。",
+    "contract": "返回均值 $x_0e^{-at}$。当 a>0，方差为 $\\sigma^2(1-e^{-2at})/(2a)$；当 a=0，方差为 $\\sigma^2t$。结果依次为均值与方差。",
     "constraints": [
       "a≥0、sigma≥0、time≥0；全部有限。"
     ],
@@ -4813,7 +4813,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例是标准布朗扩散的数值尺度，终点均值0、方差2。",
+    "hint": "样例初态为零且 a=0，所以均值为零；sigma=1 时经过 2 T 的方差为 2 U²。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -4837,7 +4837,7 @@
           0.0,
           2.0
         ],
-        "explanation": "首例是标准布朗扩散的数值尺度，终点均值0、方差2。"
+        "explanation": "样例初态为零且 a=0，所以均值为零；sigma=1 时经过 2 T 的方差为 2 U²。"
       }
     ]
   },
@@ -4849,7 +4849,7 @@
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
     "title": "综合：固定策略的独立价值",
-    "statement": "对给定有限 MDP 解 Bellman 方程，不读取训练过程的 Q 表。",
+    "statement": "利用独立给定的有限 MDP 转移与奖励评价固定策略。解 Bellman 线性方程，返回各状态价值。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -4866,25 +4866,25 @@
       {
         "name": "transitions",
         "type": "list",
-        "description": "状态（state）×动作×后继状态概率（probability）。",
+        "description": "依次按当前状态、动作、下一状态排列的转移概率；固定前两项后的概率行和为一。",
         "unit": "1"
       },
       {
         "name": "rewards",
         "type": "list",
-        "description": "状态×动作即时奖励。",
+        "description": "按当前状态、动作排列的平均即时奖励。",
         "unit": "奖励"
       },
       {
         "name": "policy",
         "type": "list[int]",
-        "description": "固定策略。",
+        "description": "按状态编号排列的固定动作编号，编号从零开始。",
         "unit": "1"
       },
       {
         "name": "gamma",
         "type": "float",
-        "description": "折扣因子。",
+        "description": "未来晚一步奖励所乘的折扣因子。",
         "unit": "1"
       }
     ],
@@ -4892,11 +4892,11 @@
       {
         "name": "values",
         "type": "list[float]",
-        "description": "各状态的期望（expectation）折扣价值。",
+        "description": "按状态编号排列、在给定模型与固定策略下的期望折扣回报。",
         "unit": "奖励"
       }
     ],
-    "contract": "按固定 policy 抽取 P_pi 与 r_pi，求解 (I-gamma*P_pi)V=r_pi。",
+    "contract": "对每个状态 s，用 policy[s] 取转移行与奖励，组成 $P_\\pi$、$r_\\pi$。求解 $(I-\\gamma P_\\pi)V=r_\\pi$，按状态编号返回 V；不另行选择或训练策略。",
     "constraints": [
       "2—8 个状态，每状态1—4个动作；转移非负且每行和为1；policy 动作合法，0≤gamma<1。"
     ],
@@ -4906,7 +4906,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例状态0反复得到1，折扣价值2；吸收态价值0。",
+    "hint": "样例状态 0 的单位奖励折扣和为 2，零奖励吸收态为零；这些值由给定模型计算，没有读取训练 Q 表。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -4953,7 +4953,7 @@
           2.0,
           0.0
         ],
-        "explanation": "首例状态0反复得到1，折扣价值2；吸收态（absorbing state）价值0。"
+        "explanation": "样例状态 0 的单位奖励折扣和为 2，零奖励吸收态为零；这些值由给定模型计算，没有读取训练 Q 表。"
       }
     ]
   },
@@ -4965,7 +4965,7 @@
     "chapter": "16.summary",
     "lesson_id": "P16-SUMMARY",
     "title": "综合：配对报告四项指标",
-    "statement": "对完整共同测试集（test set）返回预测误差、动作成本、实际动作越界率和求解失败率。",
+    "statement": "对完整共同测试场景报告预测 RMSE、实际动作平方均值、动作越界比例与求解失败比例，按公开顺序返回。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -4982,31 +4982,31 @@
       {
         "name": "truth",
         "type": "list[float]",
-        "description": "各场景真实后继状态（state）。",
+        "description": "按共同场景顺序排列的真实后继状态。",
         "unit": "U"
       },
       {
         "name": "prediction",
         "type": "list[float]",
-        "description": "同场景预测。",
+        "description": "与 truth 相同场景配对的预测后继状态。",
         "unit": "U"
       },
       {
         "name": "inputs",
         "type": "list[float]",
-        "description": "实际执行动作。",
+        "description": "各场景实际执行的动作，包括题定的备用执行记录。",
         "unit": "U"
       },
       {
         "name": "limit",
         "type": "float",
-        "description": "动作绝对上限。",
+        "description": "全部场景共用的动作绝对上限。",
         "unit": "U"
       },
       {
         "name": "failures",
         "type": "list[bool]",
-        "description": "求解失败标志。",
+        "description": "各场景的求解失败标记，True 为失败，False 为未失败。",
         "unit": "1"
       }
     ],
@@ -5014,11 +5014,11 @@
       {
         "name": "metrics",
         "type": "list[float]",
-        "description": "RMSE、动作平方均值、越界率、失败率。",
+        "description": "依次为预测 RMSE（U）、动作平方均值（U²）、动作越界比例、求解失败比例；后两项无量纲。",
         "unit": "混合"
       }
     ],
-    "contract": "四项依次为预测 RMSE、实际动作平方均值、实际动作绝对值超过 limit 的比例、求解失败比例；所有场景均保留。",
+    "contract": "使用全部共同场景作为分母。四项依次为 sqrt(mean((truth−prediction)²))、mean(inputs²)、实际动作绝对值严格超过 limit 的比例、True 失败标记的比例。相等不算越界，失败场景仍保留。",
     "constraints": [
       "truth、prediction、inputs、failures 四个列表等长且非空，长度≤100；limit 是全部场景共用的非负标量上限；全部数值有限。"
     ],
@@ -5028,7 +5028,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "首例预测完全正确，但两个实际动作中一个越界且求解失败，不能报告为无风险。",
+    "hint": "三个场景的预测与真值各相差 0.1 U，RMSE 为 0.1 U；动作平方和为 1.41 U²，均值为 0.47 U²。一个动作超过上限且一个场景失败，两个比例均为 1/3。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -5067,7 +5067,7 @@
           0.5,
           0.5
         ],
-        "explanation": "首例预测完全正确，但两个实际动作中一个越界且求解失败，不能报告为无风险。"
+        "explanation": "三个场景的预测与真值各相差 0.1 U，RMSE 为 0.1 U；动作平方和为 1.41 U²，均值为 0.47 U²。一个动作超过上限且一个场景失败，两个比例均为 1/3。"
       }
     ]
   }

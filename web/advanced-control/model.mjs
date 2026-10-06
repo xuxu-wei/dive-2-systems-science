@@ -13,13 +13,13 @@ export function feedbackView(limit,x0,kind='energy'){
   return {series:[line('当前执行上限',pink,path(limit)),line('未触及限幅',blue,path(100))],
    stats:[['请求输入 / U/T',round(actual.requested)],['实际输入 / U/T',round(actual.actual)],['当前 V 导数 / U²/T',round(vdot)]],
    condition:`初态 ${round(x0)} U；上限 ${round(limit)} U/T；12 步、每步 0.02 T。`,
-   finding:'轨迹按当前初值用 Euler 计算；切换到能量导数，可检查限幅后哪些状态仍朝内运动。'};
+   finding:'每条轨迹从当前初值按Euler更新；切换到V导数，检查限幅后的偏差平方怎样变化。'};
  }
  const xs=Array.from({length:61},(_,i)=>i/30),cap=xs.map(x=>[x,x*feedback(x,limit).rate]),free=xs.map(x=>[x,x*feedback(x,100).rate]);
  return {series:[line('实际限幅后的 V 导数',pink,cap),line('未触及限幅的 V 导数',blue,free),line('当前状态',green,[[x0,vdot]],true)],
   stats:[['请求输入 / U/T',round(actual.requested)],['实际输入 / U/T',round(actual.actual)],['当前 V 导数 / U²/T',round(vdot)]],
   condition:`状态 ${round(x0)} U；执行上限 ${round(limit)} U/T；V=x²/2。`,
-  finding:vdot>0?'当前状态的能量上升，直接反驳把未限幅下降结论扩展到此条件。':'当前状态能量下降；单点结果不证明全局吸引。'};
+  finding:vdot>0?'当前V导数为正，偏差平方最初增大；未限幅的下降条件没有覆盖这一执行限制。':'当前V导数为负，偏差平方最初减小；其他初值需分别检查，或使用覆盖整个范围的推导。'};
 }
 
 const A0=[[-.4,.1],[0,-.5]],A1=[[-.8,.1],[0,-.5]];
@@ -29,9 +29,9 @@ export function robustView(alpha,p,kind='inside'){
  const rows=Array.from({length:51},(_,i)=>{const t=i/50;return [t,margin(matrix(t),p)];});
  const outside=[[.2,.1],[0,-.5]],selected=kind==='outside'?margin(outside,p):margin(matrix(alpha),p);
  return {series:[line('仿射区间内的最大导数特征值',blue,rows),line(kind==='outside'?'集合外矩阵':'当前区间参数',pink,[[kind==='outside'?1.15:alpha,selected]],true)],
-  stats:[['P 最小特征值',round(Math.min(p,1))],['两顶点最大裕度',round(Math.max(margin(A0,p),margin(A1,p)))],['当前矩阵最大裕度',round(selected)]],
+  stats:[['P 最小特征值',round(Math.min(p,1))],['两顶点的最大导数特征值',round(Math.max(margin(A0,p),margin(A1,p)))],['所选矩阵的最大导数特征值',round(selected)]],
   condition:kind==='outside'?`P=diag(${round(p)},1)；粉点 α=1.15 仅作集合外反例，不是该仿射式的外推。`:`A(α)=(1−α)A₀+αA₁；α=${round(alpha)}；P=diag(${round(p)},1)。`,
-  finding:kind==='outside'?'集合外矩阵具有不同的动态；返回凸包内，比较共同证书覆盖的范围。':'必须同用一个 P 且两个顶点严格负定，才能把结论覆盖到整个仿射区间。'};
+  finding:kind==='outside'?'集合外矩阵左上元素为+0.2，其状态可增长；回到0≤α≤1，检查共同P覆盖的模型。':'同一个正定P在两个顶点均给出严格负定的导数矩阵时，凸组合中的每个模型也满足下降条件。'};
 }
 
 export function adaptiveView(forget,limit,kind='estimate'){
@@ -46,7 +46,7 @@ export function adaptiveView(forget,limit,kind='estimate'){
  const series=kind==='state'?[line('实际状态',pink,xs),line('目标状态 1 U',blue,xs.map(([n])=>[n,1]))]:[line('在线估计',pink,hats),line('核验用真实系数',blue,truths)];
  return {series,stats:[['末步估计',round(theta)],['末步状态 / U',round(x)],['最大实际输入 / U',round(Math.max(...inputs.map(Math.abs)))]],
   condition:`第 11 步后真实系数由 0.65 变为 0.9；遗忘因子 ${round(forget,2)}；实际输入上限 ${round(limit)} U。`,
-  finding:kind==='state'?'当前状态和输入受限幅、模型变化共同影响；跟踪误差不是参数辨识误差。':'控制器先用旧估计选输入，下一状态到达后才更新；蓝线真实系数仅供教学核验。'};
+  finding:kind==='state'?'状态图显示离目标1 U的距离；还需查看参数图和实际输入，才能分别解释估计变化与跟踪。':'每次先用旧估计选实际输入，再用新状态扣除该输入形成回归观测；蓝线只供结果核对。'};
 }
 
 function seededNormal(seed){let value=seed>>>0;return ()=>{value=(1664525*value+1013904223)>>>0;const u=Math.max((value+.5)/4294967296,1e-12);value=(1664525*value+1013904223)>>>0;const v=(value+.5)/4294967296;return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);};}
@@ -70,10 +70,10 @@ export function stochasticView(a,sigma,kind='variance',options={}){
   discrete.push([round(time,3),kind==='mean'?discreteMean:discreteVar]);
  }
  const unit=kind==='mean'?'U':'U²';
- return {series:[line('连续方程理论结果',blue,analytic),line('当前离散更新理论结果',green,discrete),line(kind==='mean'?'有限重复的样本均值':'有限重复的样本方差',pink,empirical)],
+ return {series:[line('连续方程理论结果',blue,analytic),line('当前离散更新理论结果',green,discrete),line(kind==='mean'?'有限重复的样本均值':'有限路径的偏差平方平均',pink,empirical)],
   stats:[['终点连续理论 / '+unit,round(analytic.at(-1)[1])],['终点离散理论 / '+unit,round(discrete.at(-1)[1])],['终点模拟 / '+unit,round(empirical.at(-1)[1])],['重复路径',count],['实际步长 / T',round(h,4)]],
   condition:`稳态偏差 X：dX=−${round(a)}Xdt+${round(sigma)}dW；初始偏差 +1 U；固定终点 2 T、${steps} 步、${count} 条路径。`,
-  finding:'增加重复次数可减小模拟均值的抽样波动；连续理论与离散理论之间的距离由步长决定，再缩小步长比较。'};
+  finding:'粉线围绕当前离散规则的理论值波动；增加路径数后再比较，随后固定重复数缩小步长，观察绿线与蓝线的距离。'};
 }
 
 export function consensusView(h,delay,kind='states'){
@@ -83,7 +83,7 @@ export function consensusView(h,delay,kind='states'){
   [line('节点0',blue,rows.map((r,i)=>[i,r[0]])),line('节点1',pink,rows.map((r,i)=>[i,r[1]])),line('节点2',green,rows.map((r,i)=>[i,r[2]]))];
  return {series,stats:[['初始均值 / U',round(4/3)],['终点总和 / U',round(rows.at(-1).reduce((s,x)=>s+x,0))],['终点最大差 / U',round(Math.max(...rows.at(-1))-Math.min(...rows.at(-1)))]],
   condition:`三节点无向路径；初态 [0,4,0] U；h=${round(h)} T；延迟 ${delay} 步；18 步。`,
-  finding:delay===0?'无延迟时可用拉普拉斯谱界分析；总和守恒仍不自动说明给定步长收敛。':'延迟改变特征根；比较节点差距与总和，可以分别观察收敛和守恒。'};
+  finding:delay===0?'无延迟时λ最大值为3/T，下降模态需0<h<2/3 T。总和为4 U，还需检查节点差是否减小。':'延迟后的模态满足不同的特征方程；总和仍为4 U，节点差却可能增大。切换差距图单独检查。'};
 }
 
 export function learningView(alpha,gamma,kind='q'){
@@ -97,7 +97,7 @@ export function learningView(alpha,gamma,kind='q'){
   [line('Q(状态0,动作0)',blue,values.map(r=>[r[0],r[1]])),line('Q(状态0,动作1)',pink,values.map(r=>[r[0],r[2]]))];
  return {series,stats:[['最终 Q(0,0)',round(Q[0][0])],['最终 Q(0,1)',round(Q[0][1])],['各动作访问次数',visits.join(' / ')]],
   condition:`固定两条经验重复 30 次；学习率 ${round(alpha,2)}；折扣 ${round(gamma,2)}；终止经验不再追加未来价值。`,
-  finding:'这是固定有限经验表的计算示例；访问次数和训练内 Q 值不足以证明一般环境里的渐近最优性或安全性。'};
+  finding:'每轮固定访问状态0的两个动作；若要评价贪心策略，还需给出使用该策略的转移模型或独立场景。'};
 }
 
 export function decisionView(coefficient,limit,kind='prediction'){
@@ -109,7 +109,7 @@ export function decisionView(coefficient,limit,kind='prediction'){
                  line('状态允许上界',blue,actions.map(u=>[u,1.6])),...(choice?[line('预测选中动作',green,[[choice.u,choice[shown]]],true)]:[])],
   stats:[['预测可行动作',feasible.length],['选中动作 / U',choice?round(choice.u):'无可行解'],['选中动作实际状态 / U',choice?round(choice.actual):'无']],
   condition:`预测系数 ${round(coefficient)}；真实系数 0.9 仅供核验；动作上限 ${round(limit)} U；预测状态范围 [0,1.6] U。`,
-  finding:choice?`当前选择在预测模型下可行；实际状态 ${round(choice.actual)} U，必须另外检查是否在 [0,1.6] U。`:'没有预测可行候选；必须保留求解失败，不可假装返回了最优动作。'};
+  finding:choice?`当前选择在预测模型下可行；实际状态 ${round(choice.actual)} U，必须另外检查是否在 [0,1.6] U。`:'当前输入上限和预测范围下没有可行动作，本次决策返回失败。'};
 }
 
 export function nextKind(chapter,kind){

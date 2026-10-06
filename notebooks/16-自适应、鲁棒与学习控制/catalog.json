@@ -4,7 +4,7 @@
     "chapter_id": "16.1",
     "number": "16.1.1",
     "title": "非线性反馈与能量下降",
-    "outcome": "从候选能量函数推导无饱和反馈的稳定条件。",
+    "outcome": "从偏差恢复出发推导反馈，解释Lyapunov函数的下降条件及其单位。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/01-非线性反馈与能量下降.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -13,7 +13,7 @@
     "chapter_id": "16.1",
     "number": "16.1.2",
     "title": "执行饱和、初值与适用域",
-    "outcome": "把实际限幅输入代回方程，比较不同初值的恢复与离开。",
+    "outcome": "把限幅后的实际输入代回模型，手算不同初值为何可能朝相反方向变化。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/02-执行饱和、初值与适用域.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -22,7 +22,7 @@
     "chapter_id": "16.2",
     "number": "16.2.1",
     "title": "共同 Lyapunov 矩阵与顶点条件",
-    "outcome": "在给定仿射矩阵集合上用同一个正定矩阵核验导数。",
+    "outcome": "用同一个正定P检查两个顶点，再解释凸组合为何继承严格下降。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/01-共同 Lyapunov 矩阵与顶点条件.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -31,7 +31,7 @@
     "chapter_id": "16.2",
     "number": "16.2.2",
     "title": "集合外失效与鲁棒证据边界",
-    "outcome": "辨认候选矩阵集合、共同证书和集合外反例。",
+    "outcome": "区分模型集合内的共同论证、集合外反例与候选P未通过的含义。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/02-集合外失效与鲁棒证据边界.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -40,7 +40,7 @@
     "chapter_id": "16.3",
     "number": "16.3.1",
     "title": "递推估计、投影与激励",
-    "outcome": "按先预测后更新顺序实现标量递推辨识，展示零激励反例。",
+    "outcome": "先算预测残差再更新估计，以六次非零输入和零输入比较学习信息。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/01-递推估计、投影与激励.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -49,7 +49,7 @@
     "chapter_id": "16.3",
     "number": "16.3.2",
     "title": "估计进入控制的时间顺序",
-    "outcome": "按旧估计决策、观测新状态、再更新估计的顺序比较漂移。",
+    "outcome": "按旧估计选输入、新状态到达后更新的顺序，区分状态误差与参数误差。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/02-估计进入控制的时间顺序.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -58,7 +58,7 @@
     "chapter_id": "16.4",
     "number": "16.4.1",
     "title": "布朗增量与 Euler–Maruyama",
-    "outcome": "用固定增量实现稳态偏差的随机恢复，并区分噪声幅度随步长的缩放。",
+    "outcome": "按时间长度构造布朗增量，将细增量相加，比较同一噪声下的粗细终点。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/01-布朗增量与 Euler–Maruyama.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -67,7 +67,7 @@
     "chapter_id": "16.4",
     "number": "16.4.2",
     "title": "路径误差、分布统计与风险",
-    "outcome": "用重复轨迹比较解析矩、Monte Carlo 误差和约束违反。",
+    "outcome": "分别计算连续理论、离散理论和有限重复统计，解释阈值事件频率。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/02-路径误差、分布统计与风险.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -76,7 +76,7 @@
     "chapter_id": "16.5",
     "number": "16.5.1",
     "title": "局部通信与平均一致",
-    "outcome": "从图上的邻居差构造同步更新，并检查均值与连通分量。",
+    "outcome": "从邻居差手算同步更新，用总和与谱条件分别检查守恒和平均一致。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/01-局部通信与平均一致.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -85,7 +85,7 @@
     "chapter_id": "16.5",
     "number": "16.5.2",
     "title": "通信延迟、步长与稳定边界",
-    "outcome": "按给定历史执行延迟更新，并区分无延迟谱条件。",
+    "outcome": "沿初始历史读取过去差值，以两步手算和特征根解释延迟失效。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/02-通信延迟、步长与稳定边界.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -94,7 +94,7 @@
     "chapter_id": "16.6",
     "number": "16.6.1",
     "title": "有限决策过程与策略评价",
-    "outcome": "给定转移和策略，解 Bellman 线性方程并独立迭代核验。",
+    "outcome": "在已知转移模型中计算固定策略的期望折扣回报，并核对迭代。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/01-有限决策过程与策略评价.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -103,7 +103,7 @@
     "chapter_id": "16.6",
     "number": "16.6.2",
     "title": "固定经验的 Q 更新与独立评估",
-    "outcome": "实现表格 Q 更新，区分训练样本与独立策略评价。",
+    "outcome": "逐条解释经验的五个字段，计算终止与非终止更新，辨认已访问的范围。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/02-固定经验的 Q 更新与独立评估.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -112,7 +112,7 @@
     "chapter_id": "16.7",
     "number": "16.7.1",
     "title": "学得预测器进入约束决策",
-    "outcome": "在显式动作集合中检查预测约束、不可行与实际失配。",
+    "outcome": "在有限动作表中逐项筛选预测可行性，再用真实模型检查实际状态。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/01-学得预测器进入约束决策.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -121,7 +121,7 @@
     "chapter_id": "16.7",
     "number": "16.7.2",
     "title": "配对预算、失败与迁移范围",
-    "outcome": "在相同场景上计算误差、执行代价、违约和失败比例。",
+    "outcome": "在相同五个场景中分别比较预测误差、输入平方、超过上限和求解失败。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/02-配对预算、失败与迁移范围.ipynb",
     "visualization": "web/advanced-control/index.html"
   },
@@ -130,18 +130,18 @@
     "chapter_id": "16.summary",
     "number": "16.综合",
     "title": "不确定条件下的闭环证据链",
-    "outcome": "统一范围、随机样本和评估协议，区分稳定证书、辨识、学习与实际约束。",
+    "outcome": "分别核对限幅反馈、共同P、随机矩和固定策略，再解释约束决策的四个指标。",
     "path": "notebooks/16-自适应、鲁棒与学习控制/99-篇末综合/01-不确定条件下的闭环证据链.ipynb",
     "visualization": null,
     "overview": {
-      "goals": "综合计算稳定性、在线估计、随机波动与决策指标，解释各方法的表现。",
-      "prerequisites": "本篇 16.1—16.7；第 10 篇反馈控制。",
-      "focus": "将稳定性证书对应到模型集合，把预测误差与实际约束、失败情况一起比较。",
+      "goals": "把控制请求、实际执行、模型假设和评价指标连起来，解释每项结果回答了什么问题。",
+      "prerequisites": "16.1—16.7的反馈下降、共同P、递推估计、随机增量、图更新和价值计算。",
+      "focus": "先分清系统状态、参数估计与经验价值的对象，再分别检查稳定条件、随机波动、动作上限和求解失败。",
       "knowledge": [
-        "非线性与共同二次证书",
-        "在线辨识与随机路径",
-        "图一致性与策略评价",
-        "约束决策与失败记录"
+        "请求输入、限幅输入与Lyapunov导数",
+        "共同P的顶点条件及其模型集合",
+        "连续随机矩、离散更新与固定策略价值",
+        "同场景的预测误差、输入平方、超过上限与失败频率"
       ]
     }
   }

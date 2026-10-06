@@ -1,0 +1,898 @@
+{
+  "date": "2026-10-06",
+  "baseline": "13343fba9345342e5577d25b6286ead833b8c012",
+  "scope": "Part16 formal teaching, question prose, guides and web display text; specified Part15 prediction symbol display clarification. Pending unified user reading acceptance.",
+  "notebooks": [
+    {
+      "id": "P16-C01-S01",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/01-非线性反馈与能量下降.ipynb",
+      "sha256": "8cc41258e74ae49ec3b6e3bd597cd43051ddc4bd193e5bf5f51048c14d27b96a",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "b015855b5e3ffd710aee62903847319c9465fb6256679a12b361ddf098a9d146"
+    },
+    {
+      "id": "P16-C01-S02",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/02-执行饱和、初值与适用域.ipynb",
+      "sha256": "a9d44f133da3e09063e3dbb1cbe70e7be5f1dfc39942b433fa32f4f974e418b1",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "77f3c2091aecfc8011e808967912768f03cda40ca710f9242e9c2c52897b7dbc"
+    },
+    {
+      "id": "P16-C02-S01",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/01-共同 Lyapunov 矩阵与顶点条件.ipynb",
+      "sha256": "934477d8492ce84c48734c7481b4d1546f2dea2e885af5039178389fc24fa52b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "5a93b0a62248ee34308f5a11ec9a42b52f34b5a4267b249c4a3f03c103596ef9"
+    },
+    {
+      "id": "P16-C02-S02",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/02-集合外失效与鲁棒证据边界.ipynb",
+      "sha256": "3d25d9fd7ebd47edcfe59e0fc0d4e7cf62d1762ed412d4b9b30dc1032cdd7bed",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "9fa0f7f1c1a227f052ccc85e4ca3da73240026fcbc582aa4b544c3bb8c002bfe"
+    },
+    {
+      "id": "P16-C03-S01",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/01-递推估计、投影与激励.ipynb",
+      "sha256": "9ab83d6cd8e9e8e78abf76e43a37e94f8ba3786830f7b48abe9dc2a58bd6e3d4",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "f472cb4e5e4ef9f4097ff5263339bea4b5472f88046feadbe6d4a7c5ad6eabdf"
+    },
+    {
+      "id": "P16-C03-S02",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/02-估计进入控制的时间顺序.ipynb",
+      "sha256": "0e25ef55de35bf6cc521eb299b068c7737d7851db354e8cbc6d873d91efe9e27",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "c3c8f4fa304066d148b37384a401565b300f257bef668ed9d6f8d23c8c427484"
+    },
+    {
+      "id": "P16-C04-S01",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/01-布朗增量与 Euler–Maruyama.ipynb",
+      "sha256": "dc3343122b4bdb932a3c33a050fbfcd23a37b588c7f459029bc5d4228dc856e0",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "e0c4e18554f54f96245614bcf0ad7a5cadc2f539f5ec8053cb44fd15755e825e"
+    },
+    {
+      "id": "P16-C04-S02",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/02-路径误差、分布统计与风险.ipynb",
+      "sha256": "f5659b17a72ebc11824ea50821baa199f75d0a68352dc97816e6e4918bdd2201",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "986b6c17a136f9bfe535dff17efcb321f67b3a5467300013bb451f3df171ec03"
+    },
+    {
+      "id": "P16-C05-S01",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/01-局部通信与平均一致.ipynb",
+      "sha256": "4afae95b83f8b82b342fc23740648dddd2fdc00e6762dab33fa96c410d3ae2d4",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "a2b78748981ba3434762bef2a0c96acc10d4d2be66ac9a0ace4de38260a69785"
+    },
+    {
+      "id": "P16-C05-S02",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/02-通信延迟、步长与稳定边界.ipynb",
+      "sha256": "6b9534d95b2b83f6c8b290f62f2b2ef7caec78c6f9ed68a4991a698ff8fa99ef",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "31270fab0905a37c88a6571818a1e5381eca3c81a9b30413fc33dc928986b942"
+    },
+    {
+      "id": "P16-C06-S01",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/01-有限决策过程与策略评价.ipynb",
+      "sha256": "f71337fdf3a1f712081be4378d0de2988dbc340da8ba9d54e4ab52dfecd61704",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "14e13470f7222d6549c94aa157b9387e1c66694f9e92cb9fbe2ccda0fb17efb2"
+    },
+    {
+      "id": "P16-C06-S02",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/02-固定经验的 Q 更新与独立评估.ipynb",
+      "sha256": "9c4ed3f82ad823d29be44cc3e1d17c6d15dd60f67f10217056d3e910c66c3135",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "5bdd59e2b0572f194e32fc1f8e377a942b2112d00d09ecca647b9758ce3d1831"
+    },
+    {
+      "id": "P16-C07-S01",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/01-学得预测器进入约束决策.ipynb",
+      "sha256": "7f1814bd1a3e1faae717f29aafaa0cb52cd3ae8f58370dab2fd9f05dad8cf35e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "239ff5dda71c188ab24fab644337d77b7a014b441e3361120bf4d68e5c0c721c"
+    },
+    {
+      "id": "P16-C07-S02",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/02-配对预算、失败与迁移范围.ipynb",
+      "sha256": "28aa7d5a79d243cc3e2fb3c53333bc19ef3daf7aa612bac7fd3a9a71e2c636dd",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "d530c392dadec7a99f9d036d6a39acfaa56afeddafaed7345be1272e63621dec"
+    },
+    {
+      "id": "P16-SUMMARY",
+      "path": "notebooks/16-自适应、鲁棒与学习控制/99-篇末综合/01-不确定条件下的闭环证据链.ipynb",
+      "sha256": "d45e265570a1ee236d8e6b3fb5a91f2743f05f771f463ae0b2684919e60c991b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "d8a7dc5e2656b04059192609a5f02474cca31f8577615e80281beeb934b844ce"
+    }
+  ],
+  "questions": {
+    "reviewed": 64,
+    "choice": 32,
+    "python": 32,
+    "wording_changed": 64,
+    "wording_changed_ids": [
+      "p16-lyapunov-actual",
+      "p16-cubic-condition",
+      "p16-saturated-global",
+      "p16-finite-scan",
+      "p16-common-p",
+      "p16-vertex-scope",
+      "p16-certificate-failure",
+      "p16-outside-set",
+      "p16-zero-excitation",
+      "p16-rls-order",
+      "p16-no-lookahead",
+      "p16-tracking-not-id",
+      "p16-brownian-scale",
+      "p16-paired-refine",
+      "p16-mean-risk",
+      "p16-strong-weak",
+      "p16-symmetric-average",
+      "p16-disconnected",
+      "p16-delay-formula",
+      "p16-delay-condition",
+      "p16-terminal-reward",
+      "p16-policy-vs-learning",
+      "p16-terminal-q",
+      "p16-finite-q-claim",
+      "p16-pred-vs-actual",
+      "p16-infeasible-action",
+      "p16-paired-budget",
+      "p16-rmse-not-safety",
+      "p16-actual-lyapunov",
+      "p16-feedback-path",
+      "p16-saturation-boundary",
+      "p16-region-path",
+      "p16-common-certificate",
+      "p16-affine-model",
+      "p16-certificate-counterexample",
+      "p16-robust-interpolation",
+      "p16-rls-update",
+      "p16-weak-excitation",
+      "p16-adaptive-order",
+      "p16-bounded-adaptation",
+      "p16-em-increments",
+      "p16-brownian-merge",
+      "p16-ou-moments",
+      "p16-paired-ou",
+      "p16-local-consensus",
+      "p16-component-average",
+      "p16-delayed-update",
+      "p16-delay-zero",
+      "p16-policy-bellman",
+      "p16-policy-compare",
+      "p16-q-one-update",
+      "p16-q-sequential",
+      "p16-feasible-action",
+      "p16-prediction-feasible",
+      "p16-paired-metrics",
+      "p16-failure-rate",
+      "p16-capstone-scope",
+      "p16-capstone-random",
+      "p16-capstone-learning",
+      "p16-capstone-failure",
+      "p16-capstone-certificate",
+      "p16-capstone-stochastic",
+      "p16-capstone-policy",
+      "p16-capstone-decision"
+    ],
+    "explanation_changed": 64,
+    "explanation_changed_ids": [
+      "p16-lyapunov-actual",
+      "p16-cubic-condition",
+      "p16-saturated-global",
+      "p16-finite-scan",
+      "p16-common-p",
+      "p16-vertex-scope",
+      "p16-certificate-failure",
+      "p16-outside-set",
+      "p16-zero-excitation",
+      "p16-rls-order",
+      "p16-no-lookahead",
+      "p16-tracking-not-id",
+      "p16-brownian-scale",
+      "p16-paired-refine",
+      "p16-mean-risk",
+      "p16-strong-weak",
+      "p16-symmetric-average",
+      "p16-disconnected",
+      "p16-delay-formula",
+      "p16-delay-condition",
+      "p16-terminal-reward",
+      "p16-policy-vs-learning",
+      "p16-terminal-q",
+      "p16-finite-q-claim",
+      "p16-pred-vs-actual",
+      "p16-infeasible-action",
+      "p16-paired-budget",
+      "p16-rmse-not-safety",
+      "p16-actual-lyapunov",
+      "p16-feedback-path",
+      "p16-saturation-boundary",
+      "p16-region-path",
+      "p16-common-certificate",
+      "p16-affine-model",
+      "p16-certificate-counterexample",
+      "p16-robust-interpolation",
+      "p16-rls-update",
+      "p16-weak-excitation",
+      "p16-adaptive-order",
+      "p16-bounded-adaptation",
+      "p16-em-increments",
+      "p16-brownian-merge",
+      "p16-ou-moments",
+      "p16-paired-ou",
+      "p16-local-consensus",
+      "p16-component-average",
+      "p16-delayed-update",
+      "p16-delay-zero",
+      "p16-policy-bellman",
+      "p16-policy-compare",
+      "p16-q-one-update",
+      "p16-q-sequential",
+      "p16-feasible-action",
+      "p16-prediction-feasible",
+      "p16-paired-metrics",
+      "p16-failure-rate",
+      "p16-capstone-scope",
+      "p16-capstone-random",
+      "p16-capstone-learning",
+      "p16-capstone-failure",
+      "p16-capstone-certificate",
+      "p16-capstone-stochastic",
+      "p16-capstone-policy",
+      "p16-capstone-decision"
+    ],
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "previous_part_followups": [
+    {
+      "id": "p15-graph-order",
+      "baseline_actual_backslash_runs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "observation": "JSON解码后的题面及四选项实际均为单反斜杠；没有复现连续双反斜杠。不能将JSON文本层的双写当成LaTeX命令层双写。",
+      "change": "显式写为单命令加花括号的\\hat{y}；同步所属Notebook的题面。答案、顺序、计算及其余题保持。",
+      "notebook": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb"
+    }
+  ],
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25,
+    "method": "Read-only PracticeEngine.progress with original records and current questions/assessment; no judging or record writes."
+  },
+  "scope_protection": {
+    "other_course_parts_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_operations_unchanged": true,
+    "web_edits_exactly_match_display_text_transformations": true,
+    "slider_keys_ranges_steps_initial_values_and_handlers_preserved": true,
+    "official_checker_and_glossary_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_outputs_exactly_equal": true,
+    "existing_notebook_link_destinations_preserved": true,
+    "lesson_titles_and_notebook_identities_preserved": true,
+    "independent_hand_examples_and_algebra": [
+      "Nonlinear x=1/2 hand requests and rates, cap0.5 Vdot10.2, three initial rates, and capstone cap0.4 Vdot10.4 independently checked.",
+      "Two-by-two symmetric eigenvalues and three Euler mode factors 0.96/0.92/1.02 checked analytically; common-P convex-combination identity retained.",
+      "One-step RLS0.72 and six-observation analytic information sum3.46 give terminal0.766307; first closed-loop estimate0.760966 from old-state residual checked.",
+      "OU continuous terminal mean/variance for both noise amplitudes and capstone analytic variance checked; frequency11/400=0.0275; discrete q-moment formula separated from finite samples.",
+      "Consensus first step and total, one-delay first two rows, zero-delay factor−1.04 and one-delay conjugate-root modulus√1.2 checked independently.",
+      "Fixed-policy value25/7 and first two iterations1/1.72; Q hand targets yield0.78/0.6 for nonterminal/terminal; capstone value2 checked.",
+      "Action costs0.515/0.04/0.115, extra x2.6 predicted1.58 versus actual2.36, x4 infeasible minimum2.7, and capstone input-square0.47 checked."
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    },
+    {
+      "id": "p08-conditioning",
+      "version": "1",
+      "location": "Option B, marked correct in the existing answer",
+      "issue": "不发散与误差收敛到零混用。B要求步长严格小于上界才不发散，但H₂较大曲率方向在η=2/100时因子为−1，误差等幅交替且不发散。",
+      "evidence": "e[k+1]=(1−100η)e[k]；η=0.02给出e[k+1]=−e[k]。严格上界针对误差衰减到零，而不是仅不发散。",
+      "required_substantive_change": "后续明确B要判断误差衰减/收敛，或修订不发散条件及对应答案，再依版本规则处理；本轮没有暗改答案、条件意图或版本。",
+      "status": "登记，待实质题库修订；当前正确答案与旧成绩保留"
+    }
+  ],
+  "new_unresolved": [],
+  "status": "已修订，待用户统一阅读验收",
+  "markdown_coverage": {
+    "changed_total": 164,
+    "core_changed": 149,
+    "exercise_cells_synchronized": 15,
+    "previous_part_specified_display_question": 1
+  },
+  "teaching_check": {
+    "notebooks": 15,
+    "questions": 64,
+    "question_links": 64,
+    "issues": []
+  },
+  "teaching_check_method": "Existing check_teaching with terms actually used in Parts0–15 and preceding Part16 lessons. Exercises inherit their lesson explanations; overviews inherit previous chapters. Original checker/glossary unchanged.",
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/16-01-非线性反馈设计/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-02-模型不确定性与鲁棒控制/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-03-递推辨识与自适应控制/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-04-随机动力学与控制/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-05-分布式控制与通信限制/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-06-强化学习与策略评估/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-07-模型学习与约束决策/",
+        "status": 200
+      },
+      {
+        "path": "/parts/16-自适应、鲁棒与学习控制/综合练习/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-01-非线性反馈设计/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-02-模型不确定性与鲁棒控制/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-03-递推辨识与自适应控制/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-04-随机动力学与控制/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-05-分布式控制与通信限制/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-06-强化学习与策略评估/explore/",
+        "status": 200
+      },
+      {
+        "path": "/chapters/16-07-模型学习与约束决策/explore/",
+        "status": 200
+      },
+      {
+        "path": "/api/v1/exercises/p16-lyapunov-actual",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-actual-lyapunov",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-common-p",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-common-certificate",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-zero-excitation",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-rls-update",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-brownian-scale",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-em-increments",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-symmetric-average",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-local-consensus",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-terminal-reward",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-policy-bellman",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-pred-vs-actual",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-feasible-action",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-capstone-scope",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p16-capstone-certificate",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      },
+      {
+        "path": "/api/v1/exercises/p15-graph-order",
+        "status": 200,
+        "latest_visible_prose_contract_options_and_version": true
+      }
+    ],
+    "served_catalog_controllers_model_and_html_equal_current_files": true,
+    "local_file_link_targets_checked": 28,
+    "html_rendered_without_execution": [
+      "P16-C01-S01",
+      "P16-C01-S02",
+      "P16-C02-S01",
+      "P16-C02-S02",
+      "P16-C03-S01",
+      "P16-C03-S02",
+      "P16-C04-S01",
+      "P16-C04-S02",
+      "P16-C05-S01",
+      "P16-C05-S02",
+      "P16-C06-S01",
+      "P16-C06-S02",
+      "P16-C07-S01",
+      "P16-C07-S02",
+      "P16-SUMMARY"
+    ],
+    "prior_notebook_html_converted": "P15-C01-S01",
+    "browser_ui_check": {
+      "page": "p15-graph-order",
+      "method": "Codex in-app browser accessibility state and actual screenshot; no answer selected or submitted.",
+      "observed": "题面与四选项均显示单命令\\hat{y}的原始LaTeX。练习页面现有textContent显示未执行数学排版。未宣称MathJax渲染或全部第16篇浏览器操作验收。"
+    }
+  },
+  "service_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true
+  },
+  "reference_reading": [
+    {
+      "project": "https://github.com/d2l-ai/d2l-zh",
+      "read": "https://zh.d2l.ai/chapter_multilayer-perceptrons/weight-decay.html",
+      "focus": "由已遇到的困难引出目标和参数，再解释公式怎样形成可执行更新；本篇以原有反馈与估计模型独立展开。"
+    },
+    {
+      "project": "https://github.com/matheusfacure/python-causality-handbook",
+      "read": "https://matheusfacure.github.io/python-causality-handbook/02-Randomised-Experiments.html",
+      "focus": "用具体情境比较相同与改变的条件，再解释方法结论依赖什么信息；本篇用于范围、随机和配对实验解释，没有引入新的因果估计算法。"
+    }
+  ],
+  "authorization": "Current dispatch covers Part16 and one specified Part15 display followup. Sequential Parts2–17 and normal commit/push are human-authorized; final unified reading acceptance remains pending. Wait for Part17 dispatch.",
+  "specific_prose_corrections": [
+    "V=x²/2 is a deviation-square Lyapunov quantity, not physical energy; requested and saturated continuous inputs carry U/T.",
+    "The common-P vertex argument is sufficient on its affine convex set. A candidate failure is separate from an eigenvalue proving a particular outside model grows.",
+    "RLS old prediction, gain, projection and scale are explicit. No excitation does not identify parameters; the six-sample information formula gives0.766307.",
+    "Control first uses the old estimate; then the new state minus actual input forms the regression target. The stored adaptive experiment has zero saturation hits.",
+    "OU state is a signed deviation. Fine Brownian increments already contain the √h factor; coarse increments sum fine increments over the same horizon.",
+    "Continuous moments, discrete q-moments and finite-sample mean/variance/threshold frequency are separate. The web descriptive variance divides by R; notebook sample variance divides by R−1.",
+    "Consensus defines node/list order, row/column weight direction and initial history. Total preservation and modal convergence are distinct; one-delay roots explain the counterexample.",
+    "Known-model fixed policy evaluation precedes fixed-experience Q updates. The terminal flag removes only future bootstrap; visits and independent policy evaluation use different information.",
+    "Finite action pairs define cost and tie order. The original x0.2–2 scan has no actual bound violation; the x2.6 counterexample is explicitly additional hand calculation and x4 is infeasible.",
+    "The five paired scenario records are given values, not another learned-controller run. RMSE, input mean-square, strict input upper-limit frequency and solve-failure fraction remain separate.",
+    "Capstone component systems have independent declared states; its OU panel plots analytic variance, not random path estimates. The eight-question overview now matches the existing assessment.",
+    "All64 question statements, Python contracts/parameters/returns/hints/samples and verification prose were read and revised. Numeric grading fields are exact.",
+    "Seven web explanations define fixed initial states, actual coefficients, experience records, domains and units. Q display includes the terminal mask without changing calculation.",
+    "The Part15 nominated formula already has one backslash after JSON decoding; explicit braces were applied to exactly that question and its notebook copy. Browser inspection observes existing raw-TeX web display."
+  ],
+  "unresolved_display": [
+    {
+      "location": "web/practice/app.mjs:200 and choice rendering",
+      "observed_page": "p15-graph-order",
+      "issue": "现有共享练习页面将含LaTeX的题面及选项作为textContent显示，实看显示原始命令；没有执行公式排版。",
+      "scope": "本次保留共享渲染行为，只改指定题符号源码和Notebook副本。数学网页显示需要单独处理，不属于改答案或判题数据事项。"
+    }
+  ],
+  "commands": [
+    {
+      "command": ".venv/Scripts/python.exe .work/part16-rewrite-20261006/teaching.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part16-rewrite-20261006/audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part16-rewrite-20261006/refresh.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe .work/part16-rewrite-20261006/preview.py",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/advanced-control/app.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check web/advanced-control/model.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    "docs/16-自适应、鲁棒与学习控制.md": "45bea80fa4e3ba59f08d0ea8886d06a9cd5c1669a5dd0b0fdeb6cffaa648abd4",
+    "exercises/15-可微分建模与机制融合/questions.json": "0b7a9f23566adf5e5d73a31dd46e6235e1c9619e2b2110beafdd9707292ebf58",
+    "exercises/16-自适应、鲁棒与学习控制/questions.json": "d4b5add13cb55b70cdcf38c222d4d596461576c25bf56cac98e09bce719dafba",
+    "exercises/16-自适应、鲁棒与学习控制/verification.json": "b3b0b8d8a7729d2b166321c7eadf5f51ec633c1c57f210252e778cb68ebf953f",
+    "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb": "2b3ffda121e57fd3d344a97662854ca9998dadc14bad0f6cdb8218245d3ca104",
+    "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/01-非线性反馈与能量下降.ipynb": "8cc41258e74ae49ec3b6e3bd597cd43051ddc4bd193e5bf5f51048c14d27b96a",
+    "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/02-执行饱和、初值与适用域.ipynb": "a9d44f133da3e09063e3dbb1cbe70e7be5f1dfc39942b433fa32f4f974e418b1",
+    "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/01-共同 Lyapunov 矩阵与顶点条件.ipynb": "934477d8492ce84c48734c7481b4d1546f2dea2e885af5039178389fc24fa52b",
+    "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/02-集合外失效与鲁棒证据边界.ipynb": "3d25d9fd7ebd47edcfe59e0fc0d4e7cf62d1762ed412d4b9b30dc1032cdd7bed",
+    "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/01-递推估计、投影与激励.ipynb": "9ab83d6cd8e9e8e78abf76e43a37e94f8ba3786830f7b48abe9dc2a58bd6e3d4",
+    "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/02-估计进入控制的时间顺序.ipynb": "0e25ef55de35bf6cc521eb299b068c7737d7851db354e8cbc6d873d91efe9e27",
+    "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/01-布朗增量与 Euler–Maruyama.ipynb": "dc3343122b4bdb932a3c33a050fbfcd23a37b588c7f459029bc5d4228dc856e0",
+    "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/02-路径误差、分布统计与风险.ipynb": "f5659b17a72ebc11824ea50821baa199f75d0a68352dc97816e6e4918bdd2201",
+    "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/01-局部通信与平均一致.ipynb": "4afae95b83f8b82b342fc23740648dddd2fdc00e6762dab33fa96c410d3ae2d4",
+    "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/02-通信延迟、步长与稳定边界.ipynb": "6b9534d95b2b83f6c8b290f62f2b2ef7caec78c6f9ed68a4991a698ff8fa99ef",
+    "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/01-有限决策过程与策略评价.ipynb": "f71337fdf3a1f712081be4378d0de2988dbc340da8ba9d54e4ab52dfecd61704",
+    "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/02-固定经验的 Q 更新与独立评估.ipynb": "9c4ed3f82ad823d29be44cc3e1d17c6d15dd60f67f10217056d3e910c66c3135",
+    "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/01-学得预测器进入约束决策.ipynb": "7f1814bd1a3e1faae717f29aafaa0cb52cd3ae8f58370dab2fd9f05dad8cf35e",
+    "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/02-配对预算、失败与迁移范围.ipynb": "28aa7d5a79d243cc3e2fb3c53333bc19ef3daf7aa612bac7fd3a9a71e2c636dd",
+    "notebooks/16-自适应、鲁棒与学习控制/99-篇末综合/01-不确定条件下的闭环证据链.ipynb": "d45e265570a1ee236d8e6b3fb5a91f2743f05f771f463ae0b2684919e60c991b",
+    "notebooks/16-自适应、鲁棒与学习控制/README.md": "5e3d18015804f0db68eb51d8e5f49c1830fc421e81974f5f4756116319353de7",
+    "notebooks/16-自适应、鲁棒与学习控制/catalog.json": "0731d5d8f430124d27949fa5647325cdce009c630ebc9397c3511b384c0ca0b7",
+    "web/advanced-control/app.mjs": "fbc989b748fd323d998dae27e5f369d656b3b38b347f4ded4613279c728848db",
+    "web/advanced-control/index.html": "fa7d555ec10764dfa1d7911200a6896f3269cb65889b77405eba4b5d502c9861",
+    "web/advanced-control/model.mjs": "7323d59ca38437e0a4cbfe4ee984610c90176024b828ad2d47628873d534a0a0",
+    "web/course/catalog.json": "3e838f83527f3bf202810dbcb5ecbc5232aaf0fdce4ac623909650212d0026d9"
+  }
+}
