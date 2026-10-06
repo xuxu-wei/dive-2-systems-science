@@ -7,7 +7,7 @@
     "chapter": "15.1",
     "lesson_id": "P15-C01-S01",
     "title": "计算图的前向顺序",
-    "statement": "给定输入 $x$ 和参数 $w,b,v,c$，网络先用 $z=wx+b$ 形成加权输入，再用 $a=\\tanh z$ 形成激活值，预测为 $\\hat{y}=va+c$。目标为 $y$，损失为 $L=(\\hat{y}-y)^2/2$。按照各量之间的依赖关系，一次前向计算应采用什么顺序？",
+    "statement": "给定输入 x 和参数 w,b,v,c，网络先用 z=wx+b 形成加权输入，再用 a=tanh(z) 形成激活值，预测为 ŷ=va+c。目标为 y，损失为 L=(ŷ−y)²/2。按照各量之间的依赖关系，一次前向计算应采用什么顺序？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -23,19 +23,19 @@
     "options": [
       {
         "id": "A",
-        "text": "先计算 $z$，再计算预测 $\\hat{y}$，然后计算 $a$，最后计算损失 $L$。"
+        "text": "先计算 z，再计算预测 ŷ，然后计算 a，最后计算损失 L。"
       },
       {
         "id": "B",
-        "text": "先计算 $a$，再计算 $z$，然后计算预测 $\\hat{y}$，最后计算损失 $L$。"
+        "text": "先计算 a，再计算 z，然后计算预测 ŷ，最后计算损失 L。"
       },
       {
         "id": "C",
-        "text": "先计算 $z$，再计算 $a$，然后计算预测 $\\hat{y}$，最后计算损失 $L$。"
+        "text": "先计算 z，再计算 a，然后计算预测 ŷ，最后计算损失 L。"
       },
       {
         "id": "D",
-        "text": "先计算 $z$，再计算 $a$，然后计算损失 $L$，最后计算预测 $\\hat{y}$。"
+        "text": "先计算 z，再计算 a，然后计算损失 L，最后计算预测 ŷ。"
       }
     ],
     "constraints": []
@@ -130,7 +130,7 @@
     "chapter": "15.1",
     "lesson_id": "P15-C01-S02",
     "title": "非光滑点的差分",
-    "statement": "令 $\\operatorname{ReLU}(z)=\\max(0,z)$。它在 $z=0$ 的左侧斜率为 0，右侧斜率为 1，而中心差分 $[\\operatorname{ReLU}(h)-\\operatorname{ReLU}(-h)]/(2h)$ 对任意 $h>0$ 都等于 0.5。这个结果应怎样解释？",
+    "statement": "令 ReLU(z)=max(0,z)。它在 z=0 的左侧斜率为 0，右侧斜率为 1，而中心差分 [ReLU(h)−ReLU(−h)]/(2h) 对任意 h>0 都等于 0.5。这个结果应怎样解释？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -335,7 +335,7 @@
     "chapter": "15.3",
     "lesson_id": "P15-C03-S01",
     "title": "连续与离散梯度",
-    "statement": "给定连续方程和观测损失，记连续解构成的损失为 $J$，步长为 $h$ 的 Euler 状态构成的损失为 $J_h$。固定 $h$，把每次 Euler 更新都放入计算图并对参数自动微分，求得的梯度对应什么？",
+    "statement": "给定连续方程和观测损失，记连续解构成的损失为 J，步长为 h 的 Euler 状态构成的损失为 J_h。固定 h，把每次 Euler 更新都放入计算图并对参数自动微分，求得的梯度对应什么？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -355,7 +355,7 @@
       },
       {
         "id": "B",
-        "text": "它给出连续目标 $J$ 的精确导数，因此改变 $h$ 不会改变结果。"
+        "text": "它给出连续目标 J 的精确导数，因此改变 h 不会改变结果。"
       },
       {
         "id": "C",
@@ -363,7 +363,7 @@
       },
       {
         "id": "D",
-        "text": "它对实际执行的离散目标 $J_h$ 求导，因此改变 $h$ 通常也会改变所得梯度。"
+        "text": "它对实际执行的离散目标 J_h 求导，因此改变 h 通常也会改变所得梯度。"
       }
     ],
     "constraints": []
@@ -376,7 +376,7 @@
     "chapter": "15.3",
     "lesson_id": "P15-C03-S01",
     "title": "固定初态的灵敏度",
-    "statement": "清除方程的初值为 $x(0)=x_0$，其中 $x_0$ 固定，不随参数 $k$ 改变。记状态对这个参数的灵敏度为 $s(t)=\\partial x(t)/\\partial k$。灵敏度的初值是什么？",
+    "statement": "清除方程的初值为 x(0)=x₀，其中 x₀ 固定，不随参数 k 改变。记状态对这个参数的灵敏度为 s(t)=∂x(t)/∂k。灵敏度的初值是什么？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -392,19 +392,19 @@
     "options": [
       {
         "id": "A",
-        "text": "灵敏度的初值为 $s(0)=0$。"
+        "text": "灵敏度的初值为 s(0)=0。"
       },
       {
         "id": "B",
-        "text": "灵敏度的初值为 $s(0)=x_0$。"
+        "text": "灵敏度的初值为 s(0)=x₀。"
       },
       {
         "id": "C",
-        "text": "灵敏度的初值为 $s(0)=-kx_0$。"
+        "text": "灵敏度的初值为 s(0)=−kx₀。"
       },
       {
         "id": "D",
-        "text": "灵敏度的初值为 $s(0)=1$。"
+        "text": "灵敏度的初值为 s(0)=1。"
       }
     ],
     "constraints": []
@@ -417,7 +417,7 @@
     "chapter": "15.3",
     "lesson_id": "P15-C03-S02",
     "title": "观测时刻的伴随跳跃",
-    "statement": "在固定时刻 $t_j$ 观测状态 $y_j$，损失为 $J=\\frac12\\sum_j[x(t_j)-y_j]^2$。伴随变量 $\\lambda$ 记录损失对该时刻状态的敏感程度，约定向更早时刻跨过观测点时，将这次观测损失对状态的导数加入 $\\lambda$。其中 $t_j^-$ 与 $t_j^+$ 分别指观测时刻之前和之后。更新 $\\lambda(t_j^-)$ 时应向 $\\lambda(t_j^+)$ 加入哪一项？",
+    "statement": "在固定时刻 tⱼ 观测状态 yⱼ，损失为 J=(1/2)∑ⱼ[x(tⱼ)−yⱼ]²。伴随变量 λ 记录损失对该时刻状态的敏感程度，约定向更早时刻跨过观测点时，将这次观测损失对状态的导数加入 λ。其中 tⱼ⁻ 与 tⱼ⁺ 分别指观测时刻之前和之后。更新 λ(tⱼ⁻) 时应向 λ(tⱼ⁺) 加入哪一项？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -433,19 +433,19 @@
     "options": [
       {
         "id": "A",
-        "text": "应加入 $[x(t_j)-y_j]^2$。"
+        "text": "应加入 [x(tⱼ)−yⱼ]²。"
       },
       {
         "id": "B",
-        "text": "应加入 $h[x(t_j)-y_j]$，其中 $h$ 为积分步长。"
+        "text": "应加入 h[x(tⱼ)−yⱼ]，其中 h 为积分步长。"
       },
       {
         "id": "C",
-        "text": "应加入 $-[x(t_j)-y_j]$。"
+        "text": "应加入 −[x(tⱼ)−yⱼ]。"
       },
       {
         "id": "D",
-        "text": "应加入 $x(t_j)-y_j$。"
+        "text": "应加入 x(tⱼ)−yⱼ。"
       }
     ],
     "constraints": []
@@ -458,7 +458,7 @@
     "chapter": "15.3",
     "lesson_id": "P15-C03-S02",
     "title": "反向状态重建",
-    "statement": "对 $dx/dt=-kx$，其中 $k>0$，从状态 $x$ 用 Euler 前进一步 $h$，再用 Euler 的时间步 $-h$ 回退一步。已知 $0<hk<1$，两次更新后得到什么状态？",
+    "statement": "对 dx/dt=−kx，其中 k>0，从状态 x 用 Euler 前进一步 h，再用 Euler 的时间步 −h 回退一步。已知 0<hk<1，两次更新后得到什么状态？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -474,19 +474,19 @@
     "options": [
       {
         "id": "A",
-        "text": "前进和回退的乘子互为倒数，两次更新后得到 $x$。"
+        "text": "前进和回退的乘子互为倒数，两次更新后得到 x。"
       },
       {
         "id": "B",
-        "text": "前进和回退的乘积为 $1-h^2k^2$，两次更新后得到 $(1-h^2k^2)x$。"
+        "text": "前进和回退的乘积为 1−h²k²，两次更新后得到 (1−h²k²)x。"
       },
       {
         "id": "C",
-        "text": "前进和回退的乘积为 $1+h^2k^2$，两次更新后得到 $(1+h^2k^2)x$。"
+        "text": "前进和回退的乘积为 1+h²k²，两次更新后得到 (1+h²k²)x。"
       },
       {
         "id": "D",
-        "text": "两次更新都乘 $1-hk$，最后得到 $(1-hk)^2x$。"
+        "text": "两次更新都乘 1−hk，最后得到 (1−hk)²x。"
       }
     ],
     "constraints": []
@@ -499,7 +499,7 @@
     "chapter": "15.1",
     "lesson_id": "P15-C01-S01",
     "title": "计算一神经元响应",
-    "statement": "给定输入与四个参数，计算小网络的响应预测 $\\hat y=v\\tanh(wx+b)+c$。函数接收的 $x$ 已是物理量除以参考量 $1\\,U$ 后的数值。",
+    "statement": "给定输入与四个参数，计算小网络的响应预测 ŷ=v×tanh(wx+b)+c。函数接收的 x 已是物理量除以参考量 1 U 后的数值。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -515,25 +515,25 @@
       {
         "name": "x",
         "type": "float",
-        "description": "物理量 $x_{\\mathrm{phys}}$ 除以参考量 $1\\,U$ 后得到的无量纲输入数值。",
+        "description": "物理量 x_phys 除以参考量 1 U 后得到的无量纲输入数值。",
         "unit": "1"
       },
       {
         "name": "w",
         "type": "float",
-        "description": "乘在输入 $x$ 上的无量纲权重。",
+        "description": "乘在输入 x 上的无量纲权重。",
         "unit": "1"
       },
       {
         "name": "b",
         "type": "float",
-        "description": "加在 $wx$ 上的无量纲偏置。",
+        "description": "加在 wx 上的无量纲偏置。",
         "unit": "1"
       },
       {
         "name": "v",
         "type": "float",
-        "description": "乘在激活值 $\\tanh(wx+b)$ 上的响应幅度。",
+        "description": "乘在激活值 tanh(wx+b) 上的响应幅度。",
         "unit": "U/T"
       },
       {
@@ -551,7 +551,7 @@
         "unit": "U/T"
       }
     ],
-    "contract": "先求 $z=wx+b$，再求 $\\hat y=v\\tanh z+c$，返回预测数值。",
+    "contract": "先求 z=wx+b，再求 ŷ=v×tanh(z)+c，返回预测数值。",
     "constraints": [
       "输入规模不超过100，全部数值有限。"
     ],
@@ -595,7 +595,7 @@
     "chapter": "15.1",
     "lesson_id": "P15-C01-S01",
     "title": "输出、损失与四个梯度",
-    "statement": "小网络的预测为 $\\hat y=v\\tanh(wx+b)+c$，目标为 $y$，损失为 $L=(\\hat y-y)^2/2$。返回预测、损失以及损失对四个参数的梯度；梯度列表按 $w,b,v,c$ 排列。",
+    "statement": "小网络的预测为 ŷ=v×tanh(wx+b)+c，目标为 y，损失为 L=(ŷ−y)²/2。返回预测、损失以及损失对四个参数的梯度；梯度列表按 w,b,v,c 排列。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -611,7 +611,7 @@
       {
         "name": "x",
         "type": "float",
-        "description": "物理量 $x_{\\mathrm{phys}}$ 除以参考量 $1\\,U$ 后得到的无量纲输入数值。",
+        "description": "物理量 x_phys 除以参考量 1 U 后得到的无量纲输入数值。",
         "unit": "1"
       },
       {
@@ -623,19 +623,19 @@
       {
         "name": "w",
         "type": "float",
-        "description": "乘在输入 $x$ 上的无量纲权重。",
+        "description": "乘在输入 x 上的无量纲权重。",
         "unit": "1"
       },
       {
         "name": "b",
         "type": "float",
-        "description": "加在 $wx$ 上的无量纲偏置。",
+        "description": "加在 wx 上的无量纲偏置。",
         "unit": "1"
       },
       {
         "name": "v",
         "type": "float",
-        "description": "乘在激活值 $\\tanh(wx+b)$ 上的响应幅度。",
+        "description": "乘在激活值 tanh(wx+b) 上的响应幅度。",
         "unit": "U/T"
       },
       {
@@ -661,11 +661,11 @@
       {
         "name": "gradient",
         "type": "list[float]",
-        "description": "损失对参数的四个偏导数，依次为 $[\\partial_wL,\\partial_bL,\\partial_vL,\\partial_cL]$。",
+        "description": "损失对参数的四个偏导数，依次为 [∂L/∂w, ∂L/∂b, ∂L/∂v, ∂L/∂c]。",
         "unit": "按参数"
       }
     ],
-    "contract": "令 $a=\\tanh(wx+b)$、$e=va+c-y$。返回 $(va+c,\\ e^2/2,\\ [ev(1-a^2)x,\\ ev(1-a^2),\\ ea,\\ e])$；第三项列表依次对应 $w,b,v,c$。",
+    "contract": "令 a=tanh(wx+b)、e=va+c−y。返回 (va+c, e²/2, [ev(1−a²)x, ev(1−a²), ea, e])；第三项列表依次对应 w,b,v,c。",
     "constraints": [
       "输入规模不超过100，全部数值有限。"
     ],
@@ -719,7 +719,7 @@
     "chapter": "15.1",
     "lesson_id": "P15-C01-S02",
     "title": "反向计算图梯度",
-    "statement": "用计算图实现 $z=wx+b$、$a=\\tanh z$、$\\hat y=va+c$ 和 $L=(\\hat y-y)^2/2$，从损失向输入方向累加局部导数。返回预测、损失，以及按 $w,b,v,c$ 排列的损失梯度。",
+    "statement": "用计算图实现 z=wx+b、a=tanh(z)、ŷ=va+c 和 L=(ŷ−y)²/2，从损失向输入方向累加局部导数。返回预测、损失，以及按 w,b,v,c 排列的损失梯度。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -735,7 +735,7 @@
       {
         "name": "x",
         "type": "float",
-        "description": "物理量 $x_{\\mathrm{phys}}$ 除以参考量 $1\\,U$ 后得到的无量纲输入数值。",
+        "description": "物理量 x_phys 除以参考量 1 U 后得到的无量纲输入数值。",
         "unit": "1"
       },
       {
@@ -747,19 +747,19 @@
       {
         "name": "w",
         "type": "float",
-        "description": "乘在输入 $x$ 上的无量纲权重。",
+        "description": "乘在输入 x 上的无量纲权重。",
         "unit": "1"
       },
       {
         "name": "b",
         "type": "float",
-        "description": "加在 $wx$ 上的无量纲偏置。",
+        "description": "加在 wx 上的无量纲偏置。",
         "unit": "1"
       },
       {
         "name": "v",
         "type": "float",
-        "description": "乘在激活值 $\\tanh(wx+b)$ 上的响应幅度。",
+        "description": "乘在激活值 tanh(wx+b) 上的响应幅度。",
         "unit": "U/T"
       },
       {
@@ -785,11 +785,11 @@
       {
         "name": "gradient",
         "type": "list[float]",
-        "description": "损失对参数的四个偏导数，依次为 $[\\partial_wL,\\partial_bL,\\partial_vL,\\partial_cL]$。",
+        "description": "损失对参数的四个偏导数，依次为 [∂L/∂w, ∂L/∂b, ∂L/∂v, ∂L/∂c]。",
         "unit": "按参数"
       }
     ],
-    "contract": "返回 $(\\hat y,L,[\\partial_wL,\\partial_bL,\\partial_vL,\\partial_cL])$。前向按题给依赖关系计算，反向从损失的导数 1 出发；同一节点经多条路径传回的导数贡献相加。",
+    "contract": "返回 (ŷ, L, [∂L/∂w, ∂L/∂b, ∂L/∂v, ∂L/∂c])。前向按题给依赖关系计算，反向从损失的导数 1 出发；同一节点经多条路径传回的导数贡献相加。",
     "constraints": [
       "输入规模不超过100，全部数值有限。"
     ],
@@ -843,7 +843,7 @@
     "chapter": "15.1",
     "lesson_id": "P15-C01-S02",
     "title": "中心差分核验",
-    "statement": "对损失 $L=[v\\tanh(wx+b)+c-y]^2/2$ 做中心差分，返回它对 $w,b,v,c$ 的四个数值导数。每次只扰动一个参数，输入 $x$、目标 $y$ 和其他参数保持不变。",
+    "statement": "对损失 L=[v×tanh(wx+b)+c−y]²/2 做中心差分，返回它对 w,b,v,c 的四个数值导数。每次只扰动一个参数，输入 x、目标 y 和其他参数保持不变。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -859,7 +859,7 @@
       {
         "name": "x",
         "type": "float",
-        "description": "物理量 $x_{\\mathrm{phys}}$ 除以参考量 $1\\,U$ 后得到的无量纲输入数值。",
+        "description": "物理量 x_phys 除以参考量 1 U 后得到的无量纲输入数值。",
         "unit": "1"
       },
       {
@@ -871,19 +871,19 @@
       {
         "name": "w",
         "type": "float",
-        "description": "乘在输入 $x$ 上的无量纲权重。",
+        "description": "乘在输入 x 上的无量纲权重。",
         "unit": "1"
       },
       {
         "name": "b",
         "type": "float",
-        "description": "加在 $wx$ 上的无量纲偏置。",
+        "description": "加在 wx 上的无量纲偏置。",
         "unit": "1"
       },
       {
         "name": "v",
         "type": "float",
-        "description": "乘在激活值 $\\tanh(wx+b)$ 上的响应幅度。",
+        "description": "乘在激活值 tanh(wx+b) 上的响应幅度。",
         "unit": "U/T"
       },
       {
@@ -903,11 +903,11 @@
       {
         "name": "gradient",
         "type": "list[float]",
-        "description": "按 $w,b,v,c$ 排列的四个中心差分导数数值。",
+        "description": "按 w,b,v,c 排列的四个中心差分导数数值。",
         "unit": "按参数"
       }
     ],
-    "contract": "对每个参数 $p$ 分别求 $[L(p+h)-L(p-h)]/(2h)$。每个损失都重新完成网络前向计算；返回四个结果组成的列表。",
+    "contract": "对每个参数 p 分别求 [L(p+h)−L(p−h)]/(2h)。每个损失都重新完成网络前向计算；返回四个结果组成的列表。",
     "constraints": [
       "h>0 且所有数值有限。"
     ],
@@ -958,7 +958,7 @@
     "chapter": "15.2",
     "lesson_id": "P15-C02-S01",
     "title": "固定间隔的一步状态",
-    "statement": "固定采样间隔下，下一状态映射为 $F(x,u)=ax+bu+q\\tanh(x/(1\\,U))$。给定当前总量 $x$、本步输入量 $u$ 和系数，计算下一次采样时的总量。参数中的 x、u、q 均传入以 U 为单位的数值。",
+    "statement": "固定采样间隔下，下一状态映射为 F(x,u)=ax+bu+q×tanh(x/(1 U))。给定当前总量 x、本步输入量 u 和系数，计算下一次采样时的总量。参数中的 x、u、q 均传入以 U 为单位的数值。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1010,7 +1010,7 @@
         "unit": "U"
       }
     ],
-    "contract": "用传入数值计算 `a*x+b*u+q*tanh(x)` 并返回；这里 `tanh(x)` 表示物理总量先除以参考量 $1\\,U$ 后再取 tanh。",
+    "contract": "用传入数值计算 `a*x+b*u+q*tanh(x)` 并返回；这里 `tanh(x)` 表示物理总量先除以参考量 1 U 后再取 tanh。",
     "constraints": [
       "输入规模不超过100，全部数值有限。"
     ],
@@ -1054,7 +1054,7 @@
     "chapter": "15.2",
     "lesson_id": "P15-C02-S01",
     "title": "真实旧状态的一步预测",
-    "statement": "已知一条含初态的真实状态路径与逐步输入。对映射 $F(x,u)=ax+bu+q\\tanh(x/(1\\,U))$，每次都使用真实当前状态预测下一状态，返回这些一步预测。",
+    "statement": "已知一条含初态的真实状态路径与逐步输入。对映射 F(x,u)=ax+bu+q×tanh(x/(1 U))，每次都使用真实当前状态预测下一状态，返回这些一步预测。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1106,7 +1106,7 @@
         "unit": "U"
       }
     ],
-    "contract": "列表下标从 0 开始。第 n 个预测计算 `a*states[n]+b*inputs[n]+q*tanh(states[n])`，不用上一次预测替换 `states[n]`；各状态数值采用 U 为单位，tanh 前的参考量为 $1\\,U$。",
+    "contract": "列表下标从 0 开始。第 n 个预测计算 `a*states[n]+b*inputs[n]+q*tanh(states[n])`，不用上一次预测替换 `states[n]`；各状态数值采用 U 为单位，tanh 前的参考量为 1 U。",
     "constraints": [
       "len(states)=len(inputs)+1，步数 0—100，全部有限。"
     ],
@@ -1160,7 +1160,7 @@
     "chapter": "15.2",
     "lesson_id": "P15-C02-S02",
     "title": "自由运行的状态路径",
-    "statement": "给定初态与逐步输入量，用 $x_{n+1}=ax_n+bu_n+q\\tanh(x_n/(1\\,U))$ 自由递推。后续步只使用模型自己的上一状态，返回包含初态的完整路径。",
+    "statement": "给定初态与逐步输入量，用 x[n+1]=ax[n]+bu[n]+q×tanh(x[n]/(1 U)) 自由递推。后续步只使用模型自己的上一状态，返回包含初态的完整路径。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1212,7 +1212,7 @@
         "unit": "U"
       }
     ],
-    "contract": "先将 x0 放入结果列表，逐项读取 inputs，用 `a*x+b*u+q*tanh(x)` 更新当前状态并追加结果。x 与 q 均为以 U 计的数值，tanh 使用参考量 $1\\,U$。",
+    "contract": "先将 x0 放入结果列表，逐项读取 inputs，用 `a*x+b*u+q*tanh(x)` 更新当前状态并追加结果。x 与 q 均为以 U 计的数值，tanh 使用参考量 1 U。",
     "constraints": [
       "步数 0—100，全部有限。"
     ],
@@ -1297,7 +1297,7 @@
         "unit": "U²、U"
       }
     ],
-    "contract": "设后续有 H 步，误差 $d_n=\\mathrm{prediction}[n]-\\mathrm{truth}[n]$，其中 $n=1,\\ldots,H$。返回 $[H^{-1}\\sum_{n=1}^H d_n^2,\\ |d_H|]$。",
+    "contract": "设后续有 H 步，误差 d[n]=prediction[n]−truth[n]，其中 n=1,…,H。返回 [从 n=1 到 H 的 d[n]² 之和除以 H, |d[H]|]。",
     "constraints": [
       "两条路径等长，至少含一个后续状态，全部有限。"
     ],
@@ -1349,7 +1349,7 @@
     "chapter": "15.3",
     "lesson_id": "P15-C03-S01",
     "title": "连续清除的解析状态",
-    "statement": "清除方程为 $dx/dt=-kx$，初态 $x_0$ 固定，$k\\ge0$。用解析解计算给定非负时刻的状态，并按 times 原有顺序返回。",
+    "statement": "清除方程为 dx/dt=−kx，初态 x₀ 固定，k≥0。用解析解计算给定非负时刻的状态，并按 times 原有顺序返回。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1389,7 +1389,7 @@
         "unit": "U"
       }
     ],
-    "contract": "对每个时刻 $t$ 计算 $x(t)=x_0e^{-kt}$，返回状态列表。",
+    "contract": "对每个时刻 t 计算 x(t)=x₀×exp(−k×t)，返回状态列表。",
     "constraints": [
       "x0≥0，k≥0，时刻非负且不超过 100 T。"
     ],
@@ -1439,7 +1439,7 @@
     "chapter": "15.3",
     "lesson_id": "P15-C03-S01",
     "title": "Euler 状态与参数灵敏度",
-    "statement": "对清除方程执行固定步长 Euler 更新，并同时对参数 $k$ 求导。初态 $x_0$ 不依赖 $k$。返回包含初值的状态路径与灵敏度路径，其中 $s_n=\\partial x_n/\\partial k$。",
+    "statement": "对清除方程执行固定步长 Euler 更新，并同时对参数 k 求导。初态 x₀ 不依赖 k。返回包含初值的状态路径与灵敏度路径，其中 s[n]=∂x[n]/∂k。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1491,7 +1491,7 @@
         "unit": "U·T"
       }
     ],
-    "contract": "初始 $x=x_0,s=0$。每步用同一对旧值计算 $x_{\\mathrm{new}}=(1-kh)x$ 与 $s_{\\mathrm{new}}=(1-kh)s-hx$。返回两个列表组成的二元组，顺序为状态、灵敏度。",
+    "contract": "初始 x=x₀,s=0。每步用同一对旧值计算 x_new=(1−kh)x 与 s_new=(1−kh)s−hx。返回两个列表组成的二元组，顺序为状态、灵敏度。",
     "constraints": [
       "x0≥0，k≥0，h>0，0≤steps≤100 且 k*h<1。"
     ],
@@ -1545,7 +1545,7 @@
     "chapter": "15.3",
     "lesson_id": "P15-C03-S02",
     "title": "固定观测时刻的连续损失梯度",
-    "statement": "固定初态和观测时刻，用连续解析解 $x(t)=x_0e^{-kt}$ 计算观测半平方损失之和，以及这个损失对 $k$ 的导数。每条观测记录按 `[时刻,观测总量]` 排列。",
+    "statement": "固定初态和观测时刻，用连续解析解 x(t)=x₀×exp(−k×t) 计算观测半平方损失之和，以及这个损失对 k 的导数。每条观测记录按 `[时刻,观测总量]` 排列。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1591,7 +1591,7 @@
         "unit": "U²·T"
       }
     ],
-    "contract": "每行先算 $x=x_0e^{-kt}$、$r=x-y$。返回二元组 $(\\sum r^2/2,\\ \\sum r(-tx))$；空观测列表的两个求和均为零。",
+    "contract": "每行先算 x=x₀×exp(−k×t)、r=x−y。返回二元组 (∑(r²)/2, ∑(r×(−t×x)))；空观测列表的两个求和均为零。",
     "constraints": [
       "x0≥0，k≥0；观测时刻非负，观测不超过 20 项。"
     ],
@@ -1601,7 +1601,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "固定时刻下 $\\partial x(t)/\\partial k=-t x(t)$，再乘该时刻预测减观测的残差。",
+    "hint": "固定时刻下 ∂x(t)/∂k=−t×x(t)，再乘该时刻预测减观测的残差。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1645,7 +1645,7 @@
     "chapter": "15.3",
     "lesson_id": "P15-C03-S02",
     "title": "带观测跳跃的离散梯度",
-    "statement": "清除状态按 $x_{n+1}=(1-kh)x_n$ 更新，观测在整数网格下标给出，下标 n 对应时刻 nh。目标是在这些网格点计算半平方误差之和，并返回这个离散目标对 $k$ 的导数。",
+    "statement": "清除状态按 x[n+1]=(1−kh)x[n] 更新，观测在整数网格下标给出，下标 n 对应时刻 nh。目标是在这些网格点计算半平方误差之和，并返回这个离散目标对 k 的导数。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1697,7 +1697,7 @@
         "unit": "U²·T"
       }
     ],
-    "contract": "先保存从下标 0 到最大观测下标的 Euler 状态。记 $r_n=x_n-y_n$（有观测时），无观测时为零；离散目标为 $J_h=\\frac12\\sum_{\\text{观测下标 }n}r_n^2$。反向累加各观测贡献，返回 $\\partial J_h/\\partial k$。",
+    "contract": "先保存从下标 0 到最大观测下标的 Euler 状态。记 r_n=x[n]−y[n]（有观测时），无观测时为零；离散目标为 J_h=(1/2)∑（有观测的下标 n）r[n]²。反向累加各观测贡献，返回 ∂J_h/∂k。",
     "constraints": [
       "x0≥0，k≥0，h>0，k*h<1；索引非负互异且不超过100，至少有一条观测，索引和目标两个列表等长且非空。"
     ],
@@ -1707,7 +1707,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "从最后一个网格点向更早时刻计算，先把本点观测残差加入伴随；经过第 n 步更新时，梯度增加 $-h x_{n-1}\\lambda_n$，再将伴随乘 $1-kh$ 传到前一状态。",
+    "hint": "从最后一个网格点向更早时刻计算，先把本点观测残差加入伴随；经过第 n 步更新时，梯度增加 −h x[n−1]λ[n]，再将伴随乘 1−kh 传到前一状态。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1788,7 +1788,7 @@
     "chapter": "15.4",
     "lesson_id": "P15-C04-S01",
     "title": "损失相加之前",
-    "statement": "数据均方误差的单位是 U²，状态变化方程的残差均方单位是 U²/T²。设总量参考尺度为 $U_0$，时间参考尺度为 $\\tau_0$，怎样将这两项组成尺度明确的共同目标？",
+    "statement": "数据均方误差的单位是 U²，状态变化方程的残差均方单位是 U²/T²。设总量参考尺度为 U₀，时间参考尺度为 τ₀，怎样将这两项组成尺度明确的共同目标？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1812,11 +1812,11 @@
       },
       {
         "id": "C",
-        "text": "将方程残差均方乘 $\\tau_0$，再与数据均方误差相加。"
+        "text": "将方程残差均方乘 τ₀，再与数据均方误差相加。"
       },
       {
         "id": "D",
-        "text": "将数据均方误差除以 $U_0^2$，方程残差均方除以 $(U_0/\\tau_0)^2$，再规定两项的相对权重。"
+        "text": "将数据均方误差除以 U₀²，方程残差均方除以 (U₀/τ₀)²，再规定两项的相对权重。"
       }
     ],
     "constraints": []
@@ -1829,7 +1829,7 @@
     "chapter": "15.4",
     "lesson_id": "P15-C04-S02",
     "title": "内点残差零时",
-    "statement": "归一化位置 $x\\in[0,1]$，扩散方程为 $\\partial_t\\phi=D\\partial_{xx}\\phi$，两端要求空间导数为零。候选浓度偏差为 $\\phi=e^{-D\\pi^2t}\\cos(\\pi x)+sx$，其中 $s\\ne0$。它的方程残差 $\\partial_t\\phi-D\\partial_{xx}\\phi$ 与两端空间导数分别是什么？",
+    "statement": "归一化位置 x∈[0,1]，扩散方程为 ∂φ/∂t=D×∂²φ/∂x²，两端要求空间导数为零。候选浓度偏差为 φ=exp(−D×π²×t)×cos(π×x)+sx，其中 s≠0。它的方程残差 ∂φ/∂t−D×∂²φ/∂x² 与两端空间导数分别是什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1849,15 +1849,15 @@
       },
       {
         "id": "B",
-        "text": "方程残差为 $s$，两个端点的空间导数都为零。"
+        "text": "方程残差为 s，两个端点的空间导数都为零。"
       },
       {
         "id": "C",
-        "text": "方程残差为零，两个端点的空间导数都为 $s$。"
+        "text": "方程残差为零，两个端点的空间导数都为 s。"
       },
       {
         "id": "D",
-        "text": "方程残差为 $s$，两个端点的空间导数也都为 $s$。"
+        "text": "方程残差为 s，两个端点的空间导数也都为 s。"
       }
     ],
     "constraints": []
@@ -1911,7 +1911,7 @@
     "chapter": "15.5",
     "lesson_id": "P15-C05-S01",
     "title": "零修正的极限",
-    "statement": "总量变化率写为 $\\dot x=u-kx+\\theta\\tanh(x/s)$，其中 $u$ 是输入率，$kx$ 是机制消除率，$s>0$ 是状态参考尺度。令修正幅度 $\\theta=0$，变化率变成什么？",
+    "statement": "总量变化率写为 x′=u−kx+θ×tanh(x/s)，其中 u 是输入率，kx 是机制消除率，s>0 是状态参考尺度。令修正幅度 θ=0，变化率变成什么？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -1927,11 +1927,11 @@
     "options": [
       {
         "id": "A",
-        "text": "变化率变为 $u-kx$。"
+        "text": "变化率变为 u−kx。"
       },
       {
         "id": "B",
-        "text": "变化率变为 $-kx$。"
+        "text": "变化率变为 −kx。"
       },
       {
         "id": "C",
@@ -1939,7 +1939,7 @@
       },
       {
         "id": "D",
-        "text": "变化率变为 $u$。"
+        "text": "变化率变为 u。"
       }
     ],
     "constraints": []
@@ -1993,7 +1993,7 @@
     "chapter": "15.5",
     "lesson_id": "P15-C05-S02",
     "title": "新输入能否破除同形混淆",
-    "statement": "总量满足 $\\dot x=u(t)-(k-\\theta)x$。输入率 $u(t)$ 已知，只观测总量 $x(t)$。改变输入随时间的变化方式后，能怎样判断 $k$ 与 $\\theta$ 的可辨识性？",
+    "statement": "总量满足 x′=u(t)−(k−θ)x。输入率 u(t) 已知，只观测总量 x(t)。改变输入随时间的变化方式后，能怎样判断 k 与 θ 的可辨识性？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2009,19 +2009,19 @@
     "options": [
       {
         "id": "A",
-        "text": "只要让 $u(t)$ 有更多时间变化，就能由 $x(t)$ 分别确定 $k$ 和 $\\theta$。"
+        "text": "只要让 u(t) 有更多时间变化，就能由 x(t) 分别确定 k 和 θ。"
       },
       {
         "id": "B",
-        "text": "只要将数值积分步长减到足够小，就能由 $x(t)$ 分别确定 $k$ 和 $\\theta$。"
+        "text": "只要将数值积分步长减到足够小，就能由 x(t) 分别确定 k 和 θ。"
       },
       {
         "id": "C",
-        "text": "只要提高 $x(t)$ 的采样频率，就能由更多时间点分别确定 $k$ 和 $\\theta$。"
+        "text": "只要提高 x(t) 的采样频率，就能由更多时间点分别确定 k 和 θ。"
       },
       {
         "id": "D",
-        "text": "同时给 $k$ 和 $\\theta$ 加上同一个数仍不改变方程，所以改变输入后只观测 $x(t)$ 仍不能分别确定两者。"
+        "text": "同时给 k 和 θ 加上同一个数仍不改变方程，所以改变输入后只观测 x(t) 仍不能分别确定两者。"
       }
     ],
     "constraints": []
@@ -2075,7 +2075,7 @@
     "chapter": "15.4",
     "lesson_id": "P15-C04-S01",
     "title": "光滑候选值与导数",
-    "statement": "候选总量曲线为 $\\phi(t)=c+v\\tanh(wt+b)$。给定时刻与参数，返回曲线值及它对时间的导数。时间用 T、总量用 U 记录，$wt+b$ 无量纲。",
+    "statement": "候选总量曲线为 φ(t)=c+v×tanh(wt+b)。给定时刻与参数，返回曲线值及它对时间的导数。时间用 T、总量用 U 记录，wt+b 无量纲。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2133,7 +2133,7 @@
         "unit": "U/T"
       }
     ],
-    "contract": "令 $a=\\tanh(wt+b)$，返回二元组 $(c+va,\\ vw(1-a^2))$，依次为函数值、时间导数。",
+    "contract": "令 a=tanh(wt+b)，返回二元组 (c+va, vw(1−a²))，依次为函数值、时间导数。",
     "constraints": [
       "输入规模不超过100，全部数值有限。"
     ],
@@ -2143,7 +2143,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "对时间求导时，tanh 的导数之外还需乘内部量 $wt+b$ 对时间的导数 $w$。",
+    "hint": "对时间求导时，tanh 的导数之外还需乘内部量 wt+b 对时间的导数 w。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2180,7 +2180,7 @@
     "chapter": "15.4",
     "lesson_id": "P15-C04-S01",
     "title": "数据、方程与初值损失",
-    "statement": "候选曲线为 $\\phi(t)=c+v\\tanh(wt+b)$，已知方程为 $\\phi^\\prime=-k\\phi$。本题在同一组 times 上比较观测值并检查方程，另检查时刻 0 的指定初值。返回数据、方程、初值三个未加权损失。",
+    "statement": "候选曲线为 φ(t)=c+v×tanh(wt+b)，已知方程为 φ′=−kφ。本题在同一组 times 上比较观测值并检查方程，另检查时刻 0 的指定初值。返回数据、方程、初值三个未加权损失。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2250,7 +2250,7 @@
         "unit": "依分项"
       }
     ],
-    "contract": "对每个 times 中的时刻求 $\\phi,\\phi^\\prime$。数据项为 $(\\phi-\\mathrm{observed})^2$ 的平均；方程项为 $(\\phi^\\prime+k\\phi)^2$ 的平均；初值项为 $[\\phi(0)-\\mathrm{initial}]^2$。三项分别返回，不加权也不相加。",
+    "contract": "对每个 times 中的时刻求 φ,φ′。数据项为 (φ−observed)² 的平均；方程项为 (φ′+kφ)² 的平均；初值项为 [φ(0)−initial]²。三项分别返回，不加权也不相加。",
     "constraints": [
       "配点与观测等长且至少一个，全部数值有限。"
     ],
@@ -2307,7 +2307,7 @@
     "chapter": "15.4",
     "lesson_id": "P15-C04-S02",
     "title": "扩散候选的空间取值",
-    "statement": "归一化位置 $x\\in[0,1]$，候选为 $\\phi(x,t)=e^{-rt}\\cos(\\pi x)+sx$，表示相对均匀背景的浓度偏差。给定多个位置与同一个时刻，返回各位置的偏差数值。浓度参考量为 $1\\,U/V$，所以负值表示低于背景。",
+    "statement": "归一化位置 x∈[0,1]，候选为 φ(x,t)=exp(−r×t)×cos(π×x)+sx，表示相对均匀背景的浓度偏差。给定多个位置与同一个时刻，返回各位置的偏差数值。浓度参考量为 1 U/V，所以负值表示低于背景。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2353,7 +2353,7 @@
         "unit": "U/V"
       }
     ],
-    "contract": "对每个位置计算 `exp(-rate*time)*cos(pi*x)+slope*x`。余弦项初始幅度取 $1\\,U/V$，各项都返回以 U/V 计的数值。",
+    "contract": "对每个位置计算 `exp(-rate*time)*cos(pi*x)+slope*x`。余弦项初始幅度取 1 U/V，各项都返回以 U/V 计的数值。",
     "constraints": [
       "位置位于[0,1]，time≥0，rate≥0。"
     ],
@@ -2404,7 +2404,7 @@
     "chapter": "15.4",
     "lesson_id": "P15-C04-S02",
     "title": "方程与无通量边界残差",
-    "statement": "候选浓度偏差为 $\\phi(x,t)=e^{-rt}\\cos(\\pi x)+sx$。扩散方程为 $\\partial_t\\phi=D\\partial_{xx}\\phi$，两端要求 $\\partial_x\\phi=0$。在给定时空配点上计算方程残差均方，并单独返回两个端点导数的平方平均。",
+    "statement": "候选浓度偏差为 φ(x,t)=exp(−r×t)×cos(π×x)+sx。扩散方程为 ∂φ/∂t=D×∂²φ/∂x²，两端要求 ∂φ/∂x=0。在给定时空配点上计算方程残差均方，并单独返回两个端点导数的平方平均。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2456,7 +2456,7 @@
         "unit": "按分项"
       }
     ],
-    "contract": "每个配点的方程残差为 $(D\\pi^2-r)e^{-rt}\\cos(\\pi x)$，第一项是这些残差的平方平均。两端导数都为 $s$，第二项为 $(s^2+s^2)/2=s^2$。即使配点包含端点，仍分别计算边界项。",
+    "contract": "每个配点的方程残差为 (Dπ²−r)exp(−r×t)×cos(π×x)，第一项是这些残差的平方平均。两端导数都为 s，第二项为 (s²+s²)/2=s²。即使配点包含端点，仍分别计算边界项。",
     "constraints": [
       "位置与时刻等长且至少一个；位置位于[0,1]，时刻非负，扩散系数正。"
     ],
@@ -2466,7 +2466,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "线性项 $sx$ 的时间导数与二阶空间导数都为零，但它的一阶空间导数为 $s$。",
+    "hint": "线性项 sx 的时间导数与二阶空间导数都为零，但它的一阶空间导数为 s。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2511,7 +2511,7 @@
     "chapter": "15.5",
     "lesson_id": "P15-C05-S01",
     "title": "机制与修正的总变化率",
-    "statement": "总量变化率为 $\\dot x=u-kx+\\theta\\tanh(x/s)$。给定当前总量、输入率、机制参数和修正参数，计算这个时刻的变化率；函数中的 scale 对应正参考尺度 $s$。",
+    "statement": "总量变化率为 x′=u−kx+θ×tanh(x/s)。给定当前总量、输入率、机制参数和修正参数，计算这个时刻的变化率；函数中的 scale 对应正参考尺度 s。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2607,7 +2607,7 @@
     "chapter": "15.5",
     "lesson_id": "P15-C05-S01",
     "title": "混合模型的固定步长轨迹",
-    "statement": "对 $\\dot x=u-kx+\\theta\\tanh(x/s)$ 用显式 Euler 推进。各步输入率由 inputs 给出，参考尺度 $s$ 对应 scale。返回从初态开始、包含每次更新后总量的路径。",
+    "statement": "对 x′=u−kx+θ×tanh(x/s) 用显式 Euler 推进。各步输入率由 inputs 给出，参考尺度 s 对应 scale。返回从初态开始、包含每次更新后总量的路径。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2717,7 +2717,7 @@
     "chapter": "15.5",
     "lesson_id": "P15-C05-S02",
     "title": "同形修正的变化率",
-    "statement": "总量模型的右端为 $u-(k-\\theta)x$。给定当前总量、输入率与两个系数，返回瞬时变化率，并观察两个系数以什么组合进入结果。",
+    "statement": "总量模型的右端为 u−(k−θ)x。给定当前总量、输入率与两个系数，返回瞬时变化率，并观察两个系数以什么组合进入结果。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2840,7 +2840,7 @@
         "unit": "U、U²"
       }
     ],
-    "contract": "令归一化权重 $p_i=w_i/\\sum_jw_j$，均值 $\\bar x=\\sum_i p_i x_i$，方差 $V=\\sum_i p_i(x_i-\\bar x)^2$。返回 $[\\bar x,V]$，方差不作样本数修正。",
+    "contract": "令归一化权重 p[i]=w[i]/∑ⱼw[j]，均值 x̄=∑ᵢp[i]×x[i]，方差 V=∑ᵢp[i]×(x[i]−x̄)²。返回 [x̄,V]，方差不作样本数修正。",
     "constraints": [
       "状态与权重等长且非空；权重非负且和为正。"
     ],
@@ -2931,7 +2931,7 @@
     "chapter": "15.summary",
     "lesson_id": "P15-SUMMARY",
     "title": "综合：机制参数是否可辨",
-    "statement": "方程为 $\\dot x=u-(k-\\theta)x$，只观测总量 $x$，已知输入率 $u$。总量记录只能确定差值 $k-\\theta$ 时，下面哪种新增信息能够进一步区分两个参数？",
+    "statement": "方程为 x′=u−(k−θ)x，只观测总量 x，已知输入率 u。总量记录只能确定差值 k−θ 时，下面哪种新增信息能够进一步区分两个参数？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2955,7 +2955,7 @@
       },
       {
         "id": "C",
-        "text": "在 $x\\ne0$ 时，独立测量机制消除通量 $kx$。"
+        "text": "在 x≠0 时，独立测量机制消除通量 kx。"
       },
       {
         "id": "D",
@@ -2972,7 +2972,7 @@
     "chapter": "15.summary",
     "lesson_id": "P15-SUMMARY",
     "title": "综合：网络预测与梯度",
-    "statement": "网络预测为 $\\hat y=v\\tanh(wx+b)+c$，目标为 $y$，半平方损失为 $L=(\\hat y-y)^2/2$。返回预测、损失和损失对 $w,b,v,c$ 的四个偏导数，按此顺序排列。输入 $x$ 已除以参考量 $1\\,U$。",
+    "statement": "网络预测为 ŷ=v×tanh(wx+b)+c，目标为 y，半平方损失为 L=(ŷ−y)²/2。返回预测、损失和损失对 w,b,v,c 的四个偏导数，按此顺序排列。输入 x 已除以参考量 1 U。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -2988,7 +2988,7 @@
       {
         "name": "x",
         "type": "float",
-        "description": "物理状态除以参考量 $1\\,U$ 后的无量纲数值。",
+        "description": "物理状态除以参考量 1 U 后的无量纲数值。",
         "unit": "1"
       },
       {
@@ -3038,11 +3038,11 @@
       {
         "name": "gradient",
         "type": "list[float]",
-        "description": "四项列表 $[\\partial_wL,\\partial_bL,\\partial_vL,\\partial_cL]$，每项都是损失对相应参数的偏导数。",
+        "description": "四项列表 [∂L/∂w, ∂L/∂b, ∂L/∂v, ∂L/∂c]，每项都是损失对相应参数的偏导数。",
         "unit": "按参数"
       }
     ],
-    "contract": "令 $a=\\tanh(wx+b)$、$e=va+c-y$，返回 $(va+c,e^2/2,[ev(1-a^2)x,ev(1-a^2),ea,e])$。",
+    "contract": "令 a=tanh(wx+b)、e=va+c−y，返回 (va+c,e²/2,[ev(1−a²)x,ev(1−a²),ea,e])。",
     "constraints": [
       "输入规模不超过100，全部数值有限。"
     ],
@@ -3096,7 +3096,7 @@
     "chapter": "15.summary",
     "lesson_id": "P15-SUMMARY",
     "title": "综合：连续方程的离散梯度",
-    "statement": "对 $x^\\prime=-kx$ 固定 Euler 步长和更新次数，初态不依赖 $k$。同时保存状态与 $s_n=\\partial x_n/\\partial k$，返回两条包含初值的路径。",
+    "statement": "对 x′=−kx 固定 Euler 步长和更新次数，初态不依赖 k。同时保存状态与 s[n]=∂x[n]/∂k，返回两条包含初值的路径。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -3148,7 +3148,7 @@
         "unit": "U·T"
       }
     ],
-    "contract": "每步用旧 $x,s$ 计算 $x_{\\mathrm{new}}=(1-kh)x$、$s_{\\mathrm{new}}=(1-kh)s-hx$。返回二元组，第一项为状态列表，第二项为灵敏度列表。",
+    "contract": "每步用旧 x,s 计算 x_new=(1−kh)x、s_new=(1−kh)s−hx。返回二元组，第一项为状态列表，第二项为灵敏度列表。",
     "constraints": [
       "x0≥0，k≥0，h>0，0≤steps≤100 且 k*h<1。"
     ],
@@ -3256,7 +3256,7 @@
         "unit": "1"
       }
     ],
-    "contract": "令三个尺度依次为 data_scale、physics_scale、boundary_scale。返回 $\\sum_{i=0}^2 w_i\\,\\mathrm{parts}[i]/\\mathrm{scale}[i]^2$；这里尺度针对残差，parts 已经是残差平方损失。",
+    "contract": "令三个尺度依次为 data_scale、physics_scale、boundary_scale。返回 从 i=0 到 2 求和：w[i]×parts[i]/scale[i]²；这里尺度针对残差，parts 已经是残差平方损失。",
     "constraints": [
       "parts 和 weights 各恰有三项；三个尺度正，损失和权重非负。"
     ],
@@ -3342,7 +3342,7 @@
         "unit": "U²、U"
       }
     ],
-    "contract": "若后续有 H 步，令 $d_n=\\mathrm{prediction}[n]-\\mathrm{truth}[n]$，$n=1,\\ldots,H$，返回 $[H^{-1}\\sum d_n^2,\\ |d_H|]$。",
+    "contract": "若后续有 H 步，令 d[n]=prediction[n]−truth[n]，n=1,…,H，返回 [从 n=1 到 H 的 d[n]² 之和除以 H, |d[H]|]。",
     "constraints": [
       "两条路径等长，至少含一个后续状态，全部有限。"
     ],
@@ -3437,7 +3437,7 @@
     "chapter": "15.summary",
     "lesson_id": "P15-SUMMARY",
     "title": "综合：混合修正的证据",
-    "statement": "模型为 $\\dot x=u-kx+\\theta x$，只观测总量 $x$。保留已选定的机制参数，去掉修正项 $\\theta x$ 后，一组新输入下的预测误差增大。这个比较支持什么结论？",
+    "statement": "模型为 x′=u−kx+θ x，只观测总量 x。保留已选定的机制参数，去掉修正项 θ x 后，一组新输入下的预测误差增大。这个比较支持什么结论？",
     "type": "choice",
     "learning_targets": [
       "T4"

@@ -7,7 +7,7 @@
     "chapter": "17.1",
     "lesson_id": "P17-C01-S01",
     "title": "原论文参数与课程窗口",
-    "statement": "课程Lorenz实验使用前4个时间单位、二次字典和已知方程给出的导数（derivative）。这些计算可以完成哪项核验？",
+    "statement": "Lorenz 课程实验取前 4 个归一化时间单位，使用二次候选字典和生成方程给出的精确导数。用这些数据估计系数后，可以直接完成哪项核验？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -22,19 +22,19 @@
     "options": [
       {
         "id": "A",
-        "text": "检验从带噪状态（state）读数做差分后，是否仍能恢复相同的方程项。"
+        "text": "检查带噪状态读数经过差分后，能否恢复相同的方程项。"
       },
       {
         "id": "B",
-        "text": "检验将预测延长到原论文的时间窗口后，逐点误差是否保持不变。"
+        "text": "检查预测延长到原论文时间窗口后，逐点误差是否保持当前水平。"
       },
       {
         "id": "C",
-        "text": "检验将二次字典扩展到五次后，所保留的方程项和拟合误差是否保持不变。"
+        "text": "检查候选字典扩展到五次后，方程项与拟合误差是否保持不变。"
       },
       {
         "id": "D",
-        "text": "用已知方程核对在这4个时间单位和二次字典下恢复出的方程项与系数。"
+        "text": "把当前窗口、当前字典下恢复的方程项与系数，和已知生成方程逐项比较。"
       }
     ],
     "constraints": []
@@ -47,7 +47,7 @@
     "chapter": "17.1",
     "lesson_id": "P17-C01-S01",
     "title": "真值导数的范围",
-    "statement": "使用已知 Lorenz 方程提供导数（derivative），主要消除了什么难题？",
+    "statement": "直接把状态代入已知 Lorenz 方程，得到用于拟合的导数。这一步绕过了哪项困难？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -62,19 +62,19 @@
     "options": [
       {
         "id": "A",
-        "text": "不再需要处理候选列接近成比例时，拟合系数难以分别确定的问题。"
+        "text": "候选列接近成比例时，分别确定各列系数的困难。"
       },
       {
         "id": "B",
-        "text": "不再需要选择阈值来决定哪些系数保留为非零。"
+        "text": "选择稀疏阈值、决定保留哪些系数的困难。"
       },
       {
         "id": "C",
-        "text": "不再需要从带噪观测（observation）中做数值差分来估计导数。"
+        "text": "从带噪状态读数通过数值差分估计导数的困难。"
       },
       {
         "id": "D",
-        "text": "不再需要检验新初值（initial condition）上的预测是否接近真实轨迹（trajectory）。"
+        "text": "评价新初态上的预测是否接近真实路径的困难。"
       }
     ],
     "constraints": []
@@ -87,7 +87,7 @@
     "chapter": "17.1",
     "lesson_id": "P17-C01-S02",
     "title": "相似曲线与论文结果",
-    "statement": "课程二维螺旋采用四参数（parameter）向量场（vector field）、固定网格连续伴随与独立初态测试，没有潜变量编码器。这项实验包含下列哪项工作？",
+    "statement": "课程用二维可见状态、四参数向量场和固定网格连续伴随学习螺旋，再从新初态测试。该实现没有潜变量编码器。下列哪项工作由这一实验实际完成？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -102,19 +102,19 @@
     "options": [
       {
         "id": "A",
-        "text": "计算低维向量场生成的轨迹（trajectory），并用连续伴随求参数梯度（gradient）和核对梯度计算。"
+        "text": "由低维向量场生成轨迹，计算连续伴随参数梯度，并与独立梯度参考比较。"
       },
       {
         "id": "B",
-        "text": "比较自适应求解器怎样控制积分误差，以及它在不同设置下花费多少计算时间。"
+        "text": "比较自适应求解器在不同容差下的积分误差与计算时间。"
       },
       {
         "id": "C",
-        "text": "训练潜变量编码器，并检验它如何从稀疏观测（observation）预测新的轨迹。"
+        "text": "训练潜变量编码器，从稀疏观测推断潜变量初态并预测新轨迹。"
       },
       {
         "id": "D",
-        "text": "按原论文的完整模型（model）、数据与训练配置，重新计算结果表中各方法的数字。"
+        "text": "按原论文完整模型、数据与训练设置重新计算各方法的结果表。"
       }
     ],
     "constraints": []
@@ -127,7 +127,7 @@
     "chapter": "17.1",
     "lesson_id": "P17-C01-S02",
     "title": "观测跳跃",
-    "statement": "标量状态（state）在tj有点观测（observation）损失ℓ_j，记其状态梯度（gradient）为g。连续伴随从右侧向左侧跨过tj，跳跃更新采用哪一式？",
+    "statement": "在观测时刻 tⱼ，标量状态有一个点损失 ℓⱼ，记 g=∂ℓⱼ/∂z。λ 表示连续伴随变量，tⱼ−、tⱼ+ 分别为该时刻左侧与右侧。反向越过观测时刻应怎样更新？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -142,19 +142,19 @@
     "options": [
       {
         "id": "A",
-        "text": "在观测时刻，将伴随变量更新为λ(tj−)=λ(tj+)+ℓ_j。"
+        "text": "λ(tⱼ−)=λ(tⱼ+)+ℓⱼ。"
       },
       {
         "id": "B",
-        "text": "在观测时刻，将伴随变量更新为λ(tj−)=λ(tj+)+g。"
+        "text": "λ(tⱼ−)=λ(tⱼ+)+g。"
       },
       {
         "id": "C",
-        "text": "在观测时刻，将伴随变量更新为λ(tj−)=λ(tj+)+h*g。"
+        "text": "λ(tⱼ−)=λ(tⱼ+)+h×g，其中 h 是积分步长。"
       },
       {
         "id": "D",
-        "text": "在观测时刻，将伴随变量更新为λ(tj−)=g。"
+        "text": "λ(tⱼ−)=g。"
       }
     ],
     "constraints": []
@@ -167,7 +167,7 @@
     "chapter": "17.2",
     "lesson_id": "P17-C02-S01",
     "title": "公平轨迹划分",
-    "statement": "要检验发现的方程能否预测未参与拟合的新初态轨迹（trajectory），应如何安排数据和评价？",
+    "statement": "要检查发现方程能否预测未参加拟合的新初态轨迹，下面哪种数据安排提供了相应的独立测试？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -182,19 +182,19 @@
     "options": [
       {
         "id": "A",
-        "text": "用另一初态的轨迹（trajectory）选择稀疏阈值，再把该轨迹的误差作为最终测试结果。"
+        "text": "用另一初态的轨迹选择阈值，再把同一轨迹的误差作为最终测试误差。"
       },
       {
         "id": "B",
-        "text": "将同一初态轨迹的时间点交错分为两组，把两组当作不同初态的数据。"
+        "text": "把同一初态轨迹的时间点交错分成两组，视为两个初态的数据。"
       },
       {
         "id": "C",
-        "text": "在拟合前留出另一初态的完整轨迹，选择方程和参数（parameter）结束后再计算它的预测误差。"
+        "text": "在拟合前留出另一初态的完整轨迹，结束方程与参数选择后才评价它。"
       },
       {
         "id": "D",
-        "text": "先计算多个初态上的测试误差，再选误差最低的一条轨迹报告。"
+        "text": "先计算多个初态的测试误差，再只报告误差最低的一条轨迹。"
       }
     ],
     "constraints": []
@@ -207,7 +207,7 @@
     "chapter": "17.2",
     "lesson_id": "P17-C02-S01",
     "title": "阈值重拟合",
-    "statement": "顺序阈值最小二乘（sequential thresholded least squares，STLSQ）每轮为何重拟合？",
+    "statement": "顺序阈值最小二乘删除小系数后，为什么还要在保留列上重新拟合？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -222,19 +222,19 @@
     "options": [
       {
         "id": "A",
-        "text": "重拟合让已经删除的项恢复原系数，使非零项集合回到删除之前。"
+        "text": "恢复被删项的原系数，让非零项集合回到删除前。"
       },
       {
         "id": "B",
-        "text": "重拟合根据剩余项修改导数（derivative）观测（observation），使修改后的数据更接近当前方程。"
+        "text": "修改导数目标，让目标更接近当前候选方程。"
       },
       {
         "id": "C",
-        "text": "重拟合将所有保留系数按同一比例缩小，使它们更接近删除阈值。"
+        "text": "按同一比例缩小全部保留系数，使它们接近阈值。"
       },
       {
         "id": "D",
-        "text": "重拟合只使用保留的候选列，重新估计这些列的系数以减小当前拟合误差。"
+        "text": "重新估计剩余候选列的系数，减小删列后这个最小二乘问题的误差。"
       }
     ],
     "constraints": []
@@ -247,7 +247,7 @@
     "chapter": "17.2",
     "lesson_id": "P17-C02-S02",
     "title": "基线信息公平",
-    "statement": "候选方法与机制基线都需要估计参数（parameter）。要比较它们从同一批观测（observation）学到的预测能力，应采用哪个方案？",
+    "statement": "候选向量场和线性机制基线都需要从观测估计参数。怎样比较它们从同一数据学到的预测能力？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -262,19 +262,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两种方法用同一批训练观测，但机制基线还使用测试条件下的真实系数。"
+        "text": "使用同一训练观测，但另给机制基线测试条件的真实系数。"
       },
       {
         "id": "B",
-        "text": "两种方法用同一批训练观测、测试初态和预测时长，并说明各自预先知道的方程结构。"
+        "text": "使用同一训练观测、测试初态和预测时长，并说明各自预先知道的方程结构。"
       },
       {
         "id": "C",
-        "text": "两种方法用同一批训练观测，但候选方法按最终测试误差选择参数。"
+        "text": "使用同一训练观测，但用最终测试误差选择候选方法的参数。"
       },
       {
         "id": "D",
-        "text": "两种方法用同一批训练观测，但分别选择使自身预测误差最低的测试时长。"
+        "text": "使用同一训练观测，再各自选择使自身误差最低的测试时长。"
       }
     ],
     "constraints": []
@@ -287,7 +287,7 @@
     "chapter": "17.2",
     "lesson_id": "P17-C02-S02",
     "title": "梯度核验",
-    "statement": "在多个适当的差分步长下，连续伴随实现的梯度（gradient）与中心差分（central difference）相近。这项比较支持哪种结论？",
+    "statement": "固定参数与积分设置，在多个合适的差分步长下，连续伴随梯度与中心差分梯度接近。这项核对支持哪个结论？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -302,19 +302,19 @@
     "options": [
       {
         "id": "A",
-        "text": "在当前参数（parameter）和求解设置下，伴随计算的梯度与数值差分得到了相近结果。"
+        "text": "当前参数与求解设置下，两种梯度计算给出了相近结果。"
       },
       {
         "id": "B",
-        "text": "更换积分步长后，这个实现仍会保持与当前相同的梯度精度。"
+        "text": "改变积分步长后，伴随实现仍会保持相同梯度精度。"
       },
       {
         "id": "C",
-        "text": "当前参数使目标函数在所有可能参数中达到最小值。"
+        "text": "当前参数已使目标函数在全部可能参数中达到最小。"
       },
       {
         "id": "D",
-        "text": "当前向量场（vector field）在新初态上的预测误差已经低于机制基线。"
+        "text": "当前向量场的新初态预测误差已经低于机制基线。"
       }
     ],
     "constraints": []
@@ -327,7 +327,7 @@
     "chapter": "17.3",
     "lesson_id": "P17-C03-S01",
     "title": "消融隔离",
-    "statement": "要单独考察稀疏阈值怎样改变保留项数和训练误差，应怎样安排对照？",
+    "statement": "要单独考察稀疏阈值对保留项数与训练残差的影响，应怎样安排对照？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -342,19 +342,19 @@
     "options": [
       {
         "id": "A",
-        "text": "保持阈值不变，同时改变候选字典和导数（derivative）噪声，再比较非零项数。"
+        "text": "阈值不变，同时改变字典与导数噪声，再比较非零项数。"
       },
       {
         "id": "B",
-        "text": "保持训练残差（residual）相同，同时调整阈值和测试初态，再比较预测误差。"
+        "text": "维持相同训练残差，同时改变阈值与测试初态，再比较预测。"
       },
       {
         "id": "C",
-        "text": "保持字典不变，每个阈值选出训练误差最低的随机种子（random seed），再比较拟合结果。"
+        "text": "字典不变，为每个阈值挑出训练误差最低的随机种子。"
       },
       {
         "id": "D",
-        "text": "保持轨迹（trajectory）、导数数据和字典不变，只改变阈值，再比较非零项数与训练残差。"
+        "text": "轨迹、导数目标与字典保持相同，只改变阈值，比较项数与残差。"
       }
     ],
     "constraints": []
@@ -367,7 +367,7 @@
     "chapter": "17.3",
     "lesson_id": "P17-C03-S01",
     "title": "导数污染",
-    "statement": "保持训练状态（state）和候选字典不变，先使用已知导数（derivative）拟合，再给导数数据添加预定分布（distribution）的噪声并重复拟合。这个对照检验了什么？",
+    "statement": "保持状态表与字典不变，先拟合精确导数，再向导数标签添加预定分布的噪声并重新拟合。这一对照检查什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -382,19 +382,19 @@
     "options": [
       {
         "id": "A",
-        "text": "它比较给导数数据添加这类噪声前后，拟合系数和保留项怎样改变。"
+        "text": "这类导数扰动怎样改变拟合系数与保留项。"
       },
       {
         "id": "B",
-        "text": "它比较状态测量噪声（measurement noise）经过数值差分后，导数误差被放大多少。"
+        "text": "带噪状态经过差分后，导数误差被放大多少。"
       },
       {
         "id": "C",
-        "text": "它使候选列不再相关，因此能消除列相关性对方程选择的影响。"
+        "text": "加入噪声后，候选列之间的相关性是否已被消除。"
       },
       {
         "id": "D",
-        "text": "它通过重复采样（sampling）确定了所选方程项各自对应的真实机制。"
+        "text": "重复采样能否直接确定每个保留项的真实因果机制。"
       }
     ],
     "constraints": []
@@ -407,7 +407,7 @@
     "chapter": "17.3",
     "lesson_id": "P17-C03-S02",
     "title": "精度与性能",
-    "statement": "固定候选参数（parameter），细化积分网格后梯度（gradient）变化变小。怎样解释该结果？",
+    "statement": "保持观测时刻、目标与候选参数相同，减小积分步长后，梯度变化变小。怎样解释这一结果？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -422,19 +422,19 @@
     "options": [
       {
         "id": "A",
-        "text": "减小时间步对所算梯度的影响正在变小，新初值（initial condition）的预测误差仍需另行计算。"
+        "text": "梯度对继续减小步长较不敏感，新初态预测还需要单独评价。"
       },
       {
         "id": "B",
-        "text": "积分点增多后，新初值上的预测误差已经随之下降。"
+        "text": "积分点增多已经使新初态预测误差下降。"
       },
       {
         "id": "C",
-        "text": "积分点增多相当于增加独立训练观测（observation），可以代替新初值测试。"
+        "text": "积分点相当于新增独立训练观测，可以替代新初态测试。"
       },
       {
         "id": "D",
-        "text": "梯度变化变小说明模型结构（model structure）已经正确，无需再与机制基线比较。"
+        "text": "梯度变化变小已经证明方程结构正确，无需再比较基线。"
       }
     ],
     "constraints": []
@@ -447,7 +447,7 @@
     "chapter": "17.3",
     "lesson_id": "P17-C03-S02",
     "title": "模型自由度",
-    "statement": "真生成场是线性螺旋，增加 tanh 项后应该报告什么？",
+    "statement": "数据由线性螺旋生成。为模型增加 tanh 修正项后，怎样报告它是否带来预测收益？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -462,19 +462,19 @@
     "options": [
       {
         "id": "A",
-        "text": "报告训练误差，并用新增参数（parameter）的个数换算出测试误差。"
+        "text": "只报告训练误差，再按新增参数个数换算测试误差。"
       },
       {
         "id": "B",
-        "text": "同时报告训练误差和独立新初态上的预测误差，并与使用同一数据的线性模型（model）比较。"
+        "text": "同时报告训练误差与独立新初态误差，并与同数据拟合的线性模型比较。"
       },
       {
         "id": "C",
-        "text": "报告取得的最低训练误差，将它作为不同初态上的预测误差。"
+        "text": "把取得的最低训练误差直接作为新初态预测误差。"
       },
       {
         "id": "D",
-        "text": "为每个模型（model）选择使自身预测误差最低的初态，再比较这些误差。"
+        "text": "为各模型选择最有利的测试初态，再比较所得误差。"
       }
     ],
     "constraints": []
@@ -487,7 +487,7 @@
     "chapter": "17.4",
     "lesson_id": "P17-C04-S01",
     "title": "交换守恒",
-    "statement": "两室总量方程中，室1含交换项−q，室2含+q；另有外部输入（input）和清除。两室方程相加后，总量变化率是什么？",
+    "statement": "q 是两室之间的物质转移率，第一室的变化率含 −q，第二室含 +q。将两室作为整体，另有从系统外进入的物质与清除。总量变化率是什么？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -502,19 +502,19 @@
     "options": [
       {
         "id": "A",
-        "text": "两室总量的变化率为输入−清除+2q。"
+        "text": "总输入率−总清除率+2q。"
       },
       {
         "id": "B",
-        "text": "两室总量的变化率为输入−清除−2q。"
+        "text": "总输入率−总清除率−2q。"
       },
       {
         "id": "C",
-        "text": "两室总量的变化率为输入−清除。"
+        "text": "总输入率−总清除率。"
       },
       {
         "id": "D",
-        "text": "两室总量的变化率为0。"
+        "text": "总量变化率为零。"
       }
     ],
     "constraints": []
@@ -527,7 +527,7 @@
     "chapter": "17.4",
     "lesson_id": "P17-C04-S01",
     "title": "论文任务边界",
-    "statement": "把非线性动力学稀疏辨识（sparse identification of nonlinear dynamics，SINDy）从Lorenz实验用于人工双室清除模型（model）。应怎样描述这项工作？",
+    "statement": "把用于 Lorenz 数据的稀疏发现方法，改用于已知双室清除方程生成的数据。应怎样描述当前工作？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -542,19 +542,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这项工作仍以Lorenz系统为对象，只改变采样（sampling）频率来检查原实验。"
+        "text": "研究对象仍是 Lorenz，只改变采样频率。"
       },
       {
         "id": "B",
-        "text": "这项工作保持原来的预测任务，只重新实现最小二乘计算来检查数值结果。"
+        "text": "原预测任务不变，只重新实现最小二乘数值计算。"
       },
       {
         "id": "C",
-        "text": "这项工作保持原训练数据，只改变候选字典来比较保留项。"
+        "text": "原训练数据不变，只改变候选字典。"
       },
       {
         "id": "D",
-        "text": "这项工作沿用稀疏发现方法，但将生成数据的系统从Lorenz换成了双室方程。"
+        "text": "沿用稀疏发现方法，把生成系统从 Lorenz 换成双室方程。"
       }
     ],
     "constraints": []
@@ -567,7 +567,7 @@
     "chapter": "17.4",
     "lesson_id": "P17-C04-S02",
     "title": "低 RMSE 与失败",
-    "statement": "候选平均均方根误差（root mean squared error，RMSE）较低，却在部分条件出现负总量预测。怎样汇总原候选的结果？",
+    "statement": "候选的平均 RMSE 较低，但某些物质量预测为负。怎样保留原候选的结果并评价质量？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -582,19 +582,19 @@
     "options": [
       {
         "id": "A",
-        "text": "将所有负总量改为零，再只报告修改后预测的RMSE。"
+        "text": "把负量截断为零，只报告截断后的 RMSE。"
       },
       {
         "id": "B",
-        "text": "删除出现负总量的实验条件，再计算剩余条件的平均RMSE。"
+        "text": "删去出现负量的条件，只计算剩余条件的平均 RMSE。"
       },
       {
         "id": "C",
-        "text": "将负总量取绝对值，再把修改后的误差记为原模型（model）的预测误差。"
+        "text": "把负量取绝对值，把修改后误差记作原预测误差。"
       },
       {
         "id": "D",
-        "text": "保留每个条件的RMSE，同时记录总量变化与收支（mass balance）方程的偏差，以及出现负总量的次数。"
+        "text": "保留各条件的 RMSE，同时记录总量收支残差与负量出现次数。"
       }
     ],
     "constraints": []
@@ -607,7 +607,7 @@
     "chapter": "17.4",
     "lesson_id": "P17-C04-S02",
     "title": "证据范围",
-    "statement": "一组人工双室条件下方法误差较低，可以得出什么？",
+    "statement": "在一批固定人工双室数据与测试条件下，一个方法误差低于所比较的其他方法。当前证据直接支持哪个结论？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -622,19 +622,19 @@
     "options": [
       {
         "id": "A",
-        "text": "改成只测单室的传感器后，该方法与其他方法的误差排序仍相同。"
+        "text": "改成只测一个室的传感器后，误差排序保持相同。"
       },
       {
         "id": "B",
-        "text": "将输入（input）强度扩大到未测试范围后，该方法与其他方法的误差排序仍相同。"
+        "text": "把输入强度扩大到未测范围后，误差排序保持相同。"
       },
       {
         "id": "C",
-        "text": "将短期预测延长为长期预测后，该方法与其他方法的误差排序仍相同。"
+        "text": "把短期预测延长到长期后，误差排序保持相同。"
       },
       {
         "id": "D",
-        "text": "在这批观测（observation）、测试初态和预测时长下，该方法的预测误差低于所比较的其他方法。"
+        "text": "在这批观测、初态与预测时长下，它的误差更低。"
       }
     ],
     "constraints": []
@@ -647,7 +647,7 @@
     "chapter": "17.1",
     "lesson_id": "P17-C01-S01",
     "title": "原方程瞬时导数",
-    "statement": "原论文报告从数据中发现 Lorenz 方程。本节究竟能核查方程项、系数、短时预测，还是全部长期混沌（chaos）轨迹（trajectory）？本题计算“原方程瞬时导数（derivative）”：依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态（state）与时间均按 Lorenz 无量纲（dimensionless）形式给出。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "给定当前状态 state=[x,y,z] 和 Lorenz 参数 sigma、rho、beta，计算此时三个状态的变化率。状态与时间均按归一化无量纲形式处理；返回顺序与状态顺序相同。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -662,25 +662,25 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "按 x、y、z 顺序的无量纲当前状态。",
+        "description": "当前状态，第一至第三项依次为 x、y、z。",
         "unit": "1"
       },
       {
         "name": "sigma",
         "type": "float",
-        "description": "归一化 Lorenz 参数。",
+        "description": "方程 x′=sigma×(y−x) 中的参数。",
         "unit": "1"
       },
       {
         "name": "rho",
         "type": "float",
-        "description": "归一化 Lorenz 参数。",
+        "description": "方程 y′=x×(rho−z)−y 中的参数。",
         "unit": "1"
       },
       {
         "name": "beta",
         "type": "float",
-        "description": "归一化 Lorenz 参数。",
+        "description": "方程 z′=x×y−beta×z 中的参数。",
         "unit": "1"
       }
     ],
@@ -688,14 +688,14 @@
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "三个状态对归一化时间的变化率。",
+        "description": "按 x′、y′、z′ 顺序排列的瞬时变化率。",
         "unit": "1"
       }
     ],
-    "contract": "依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态与时间均按 Lorenz 无量纲形式给出。",
+    "contract": "读取 x、y、z，依次计算 sigma×(y−x)、x×(rho−z)−y、x×y−beta×z，并返回三项列表；不推进时间。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -703,7 +703,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "把初态代入每条方程。注意第三项是 x×y 减 beta×z。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -732,7 +732,7 @@
           -15.0,
           -128.0
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态与时间均按 Lorenz 无量纲形式给出。"
+        "explanation": "三式分别给出 150、−15、−128。列表中的数是当前变化率，而非下一步状态。"
       }
     ]
   },
@@ -744,7 +744,7 @@
     "chapter": "17.1",
     "lesson_id": "P17-C01-S01",
     "title": "二次候选项顺序",
-    "statement": "原论文报告从数据中发现 Lorenz 方程。本节究竟能核查方程项、系数、短时预测，还是全部长期混沌（chaos）轨迹（trajectory）？本题计算“二次候选项顺序”：返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "将一个三维状态 state=[x,y,z] 展开成二次候选字典的一行。先返回常数项，再按指定顺序返回一次项与二次项，便于系数和函数列一一对应。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -759,7 +759,7 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "三个状态（state） x、y、z。",
+        "description": "当前三维状态，列表顺序为 x、y、z。",
         "unit": "模型状态"
       }
     ],
@@ -767,14 +767,14 @@
       {
         "name": "terms",
         "type": "list[float]",
-        "description": "常数、一次和二次项的固定顺序。",
+        "description": "十个候选值，顺序为 1、x、y、z、x²、x×y、x×z、y²、y×z、z²。",
         "unit": "混合"
       }
     ],
-    "contract": "返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。",
+    "contract": "返回 [1,x,y,z,x²,x×y,x×z,y²,y×z,z²]，保持这十个位置的顺序。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -782,7 +782,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "先写常数和三个坐标，再算三个平方及三个交叉乘积，按题定顺序放回列表。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -815,7 +815,7 @@
           12.0,
           16.0
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。"
+        "explanation": "(2,3,4) 展开为 [1,2,3,4,4,6,8,9,12,16]；第五至第十项对应指定的二次项。"
       }
     ]
   },
@@ -827,7 +827,7 @@
     "chapter": "17.1",
     "lesson_id": "P17-C01-S02",
     "title": "缩减神经向量场",
-    "statement": "原论文用神经常微分方程（neural ordinary differential equation，Neural ODE）学习低维螺旋。只画一条类似螺旋，能否称为原结果复现？本题计算“缩减神经向量场（vector field）”：f=[-a*x-omega*y+c*tanh(x),omega*x-a*y+d*tanh(y)]。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "二维状态为 state=[x,y]，参数按 parameters=[a,omega,c,d] 排列。计算线性衰减与旋转加 tanh 修正后的两个瞬时变化率；状态无量纲，参数单位为 1/T。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -842,13 +842,13 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "二维当前状态（state）。",
+        "description": "二维当前状态，顺序为 x、y。",
         "unit": "1"
       },
       {
         "name": "parameters",
         "type": "list[float]",
-        "description": "按 a、omega、c、d 顺序的向量场参数。",
+        "description": "依次为衰减参数 a、角频率 omega、x 方向修正 c、y 方向修正 d。",
         "unit": "1/T"
       }
     ],
@@ -856,14 +856,14 @@
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "二维状态变化率。",
+        "description": "按 x′、y′ 顺序排列的变化率。",
         "unit": "1/T"
       }
     ],
-    "contract": "f=[-a*x-omega*y+c*tanh(x),omega*x-a*y+d*tanh(y)]。",
+    "contract": "返回 [−a×x−omega×y+c×tanh(x), omega×x−a×y+d×tanh(y)]。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -871,7 +871,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "分别列出衰减、旋转和修正项。c=d=0 时，两个修正项都消失。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -901,7 +901,7 @@
           -0.1,
           2.0
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；f=[-a*x-omega*y+c*tanh(x),omega*x-a*y+d*tanh(y)]。"
+        "explanation": "修正参数均为零。代入两条式子，得到 [−0.1,2]。"
       }
     ]
   },
@@ -913,7 +913,7 @@
     "chapter": "17.1",
     "lesson_id": "P17-C01-S02",
     "title": "解析螺旋参考",
-    "statement": "原论文用神经常微分方程（neural ordinary differential equation，Neural ODE）学习低维螺旋。只画一条类似螺旋，能否称为原结果复现？本题计算“解析螺旋参考”：每个时刻用 exp(-a*t) 乘旋转矩阵（matrix）作用于 initial。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "给定二维线性螺旋初态 initial=[x0,y0]、衰减率 a、角频率 omega 与时刻列表 times。用解析解计算每个时刻的二维状态，作为数值积分或新初态预测的参考。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -928,25 +928,25 @@
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "二维线性螺旋初态。",
+        "description": "t=0 时的二维状态，顺序为 x0、y0。",
         "unit": "归一化状态"
       },
       {
         "name": "a",
         "type": "float",
-        "description": "指数衰减率。",
+        "description": "指数衰减率，单位 1/T。",
         "unit": "1/T"
       },
       {
         "name": "omega",
         "type": "float",
-        "description": "旋转角频率。",
+        "description": "旋转角频率，单位 1/T。",
         "unit": "1/T"
       },
       {
         "name": "times",
         "type": "list[float]",
-        "description": "从初态开始的时间。",
+        "description": "相对于初始时刻的时间，按列表给定顺序使用。",
         "unit": "T"
       }
     ],
@@ -954,14 +954,14 @@
       {
         "name": "states",
         "type": "list[list[float]]",
-        "description": "每个时间对应的二维解析状态（state）。",
+        "description": "一行对应一个给定时刻，每行依次为 x(t)、y(t)。",
         "unit": "归一化状态"
       }
     ],
-    "contract": "每个时刻用 exp(-a*t) 乘旋转矩阵作用于 initial。",
+    "contract": "每个 t 令 E=exp(−a×t)、C=cos(omega×t)、S=sin(omega×t)，返回 [E×(x0×C−y0×S), E×(x0×S+y0×C)]；各行按 times 的顺序排列。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -969,7 +969,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "旋转先由 omega×t 决定，再把两个坐标都乘同一个衰减因子。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1005,7 +1005,7 @@
             0.0
           ]
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；每个时刻用 exp(-a*t) 乘旋转矩阵作用于 initial。"
+        "explanation": "没有衰减也没有旋转，两个时刻的状态均为 [1,0]。"
       }
     ]
   },
@@ -1017,7 +1017,7 @@
     "chapter": "17.2",
     "lesson_id": "P17-C02-S01",
     "title": "划分交叉审计",
-    "statement": "若训练导数（derivative）几乎完全拟合，如何知道阈值筛项有用？独立初态会不会立即失配？本题计算“划分交叉审计”：求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "训练、验证与最终测试分别给出轨迹编号列表。检查是否有某个编号出现在两个或三个不同集合中；返回无交叉标志和全部交叉编号。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1032,19 +1032,19 @@
       {
         "name": "train_ids",
         "type": "list[int]",
-        "description": "训练轨迹（trajectory）编号。",
+        "description": "训练使用的轨迹编号。",
         "unit": "轨迹"
       },
       {
         "name": "validation_ids",
         "type": "list[int]",
-        "description": "验证轨迹编号。",
+        "description": "选择模型或参数时使用的验证轨迹编号。",
         "unit": "轨迹"
       },
       {
         "name": "test_ids",
         "type": "list[int]",
-        "description": "独立测试轨迹编号。",
+        "description": "只用于最终评价的轨迹编号。",
         "unit": "轨迹"
       }
     ],
@@ -1052,14 +1052,14 @@
       {
         "name": "result",
         "type": "list",
-        "description": "首项为无交叉标志，第二项为升序重复编号。",
+        "description": "两项列表：第一项表示三个集合两两不相交，第二项是去重后按升序排列的交叉编号。",
         "unit": "混合"
       }
     ],
-    "contract": "求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。",
+    "contract": "求训练与验证、训练与测试、验证与测试的交集，再取它们的并集并排序。交叉列表为空时返回 [True,[]]，否则返回 [False,交叉列表]。同一集合内部重复不构成集合之间交叉。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1067,7 +1067,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "转成集合后检查三对交集，再合并编号；不要仅检查训练与测试一对。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1100,7 +1100,7 @@
             2
           ]
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。"
+        "explanation": "训练与测试共享编号 2，三对交集的并集为 {2}；因此无交叉标志为 False。"
       }
     ]
   },
@@ -1112,7 +1112,7 @@
     "chapter": "17.2",
     "lesson_id": "P17-C02-S01",
     "title": "顺序阈值重拟合",
-    "statement": "若训练导数（derivative）几乎完全拟合，如何知道阈值筛项有用？独立初态会不会立即失配？本题计算“顺序阈值重拟合”：先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态（state）列只在保留列上重拟合。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "给定候选特征表 features 与导数目标 derivatives，执行顺序阈值最小二乘。两表行都对应相同样本；先全列拟合，再按阈值分别筛选各个导数，并在保留列上重拟合。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1127,25 +1127,25 @@
       {
         "name": "features",
         "type": "list[list[float]]",
-        "description": "样本×候选项设计矩阵（design matrix）。",
+        "description": "每行一个样本、每列一个候选项的特征表。",
         "unit": "混合"
       },
       {
         "name": "derivatives",
         "type": "list[list[float]]",
-        "description": "样本×状态导数矩阵（matrix）。",
+        "description": "与 features 同序的目标表；每列对应一个状态导数。",
         "unit": "状态/T"
       },
       {
         "name": "threshold",
         "type": "float",
-        "description": "原系数量纲（dimension）下的绝对值阈值。",
+        "description": "按各系数自身单位使用的绝对值筛选阈值。",
         "unit": "系数"
       },
       {
         "name": "iterations",
         "type": "int",
-        "description": "顺序筛除并重拟合次数。",
+        "description": "完成筛选与重拟合的轮数。",
         "unit": "轮"
       }
     ],
@@ -1153,14 +1153,14 @@
       {
         "name": "coefficients",
         "type": "list[list[float]]",
-        "description": "候选项×状态的系数矩阵。",
+        "description": "每行对应候选项、每列对应目标导数的系数表。",
         "unit": "混合"
       }
     ],
-    "contract": "先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态列只在保留列上重拟合。",
+    "contract": "先解最小二乘。每轮按当前系数绝对值≥threshold 标记保留位置，对每个目标列只用其保留特征列重拟合，其他位置为零；保留列为空时该目标的系数全为零。完成 iterations 轮后返回系数表。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1168,7 +1168,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "保留掩码按目标列分别计算。目标数据固定，删列后重新估计剩余系数。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1219,7 +1219,7 @@
             1.9999999999999998
           ]
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态列只在保留列上重拟合。"
+        "explanation": "三个目标满足 1+2x，两个候选项均保留；浮点计算返回约 [[1],[2]]。"
       }
     ]
   },
@@ -1231,7 +1231,7 @@
     "chapter": "17.2",
     "lesson_id": "P17-C02-S02",
     "title": "伴随状态 Jacobian",
-    "statement": "训练点上的损失下降，能否证明神经向量场（vector field）优于简单线性螺旋机制？本题计算“伴随状态（state） Jacobian”：对 f 的 x、y 分别求导；tanh 的导数（derivative）为 1-tanh²。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "对二维函数 f=[−a×x−omega×y+c×tanh(x), omega×x−a×y+d×tanh(y)] 求状态 Jacobian。state=[x,y]，parameters=[a,omega,c,d]；矩阵行对应两个变化率，列对应 x、y。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1246,13 +1246,13 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "二维状态。",
+        "description": "按 x、y 排列的二维状态。",
         "unit": "1"
       },
       {
         "name": "parameters",
         "type": "list[float]",
-        "description": "a、omega、c、d。",
+        "description": "按 a、omega、c、d 排列的四个向量场参数。",
         "unit": "1/T"
       }
     ],
@@ -1260,14 +1260,14 @@
       {
         "name": "jacobian",
         "type": "list[list[float]]",
-        "description": "对状态的 2×2 Jacobian。",
+        "description": "2×2 偏导表，第一、第二列分别为对 x、y 的偏导。",
         "unit": "1/T"
       }
     ],
-    "contract": "对 f 的 x、y 分别求导；tanh 的导数为 1-tanh²。",
+    "contract": "tanh(v) 的导数为 1−tanh(v)²。返回 [[−a+c×(1−tanh(x)²),−omega],[omega,−a+d×(1−tanh(y)²)]]。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1275,7 +1275,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "交叉项给出 −omega 和 omega；两个 tanh 项各只影响一个对角位置。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1311,7 +1311,7 @@
             0.30000000000000004
           ]
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；对 f 的 x、y 分别求导；tanh 的导数为 1-tanh²。"
+        "explanation": "依次填入两个对角导数与旋转交叉导数，结果约为 [[0.2,−2],[2,0.3]]。"
       }
     ]
   },
@@ -1323,7 +1323,7 @@
     "chapter": "17.2",
     "lesson_id": "P17-C02-S02",
     "title": "伴随参数 Jacobian",
-    "statement": "训练点上的损失下降，能否证明神经向量场（vector field）优于简单线性螺旋机制？本题计算“伴随参数（parameter） Jacobian”：两行依次为 [-x,-y,tanh(x),0]、[-y,x,0,tanh(y)]。请按下方具名参数和返回结构实现 solve。",
+    "statement": "函数 f=[−a×x−omega×y+c×tanh(x), omega×x−a×y+d×tanh(y)] 的参数顺序为 a、omega、c、d。计算对参数的 2×4 Jacobian；行对应 x′、y′，列对应这四个参数。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -1338,13 +1338,13 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "二维状态（state）。",
+        "description": "二维状态，顺序为 x、y。",
         "unit": "1"
       },
       {
         "name": "parameters",
         "type": "list[float]",
-        "description": "a、omega、c、d；该式的导数（derivative）不显含这些值。",
+        "description": "参数列表按 a、omega、c、d 排列；该函数的参数偏导只依赖当前状态。",
         "unit": "1/T"
       }
     ],
@@ -1352,14 +1352,14 @@
       {
         "name": "jacobian",
         "type": "list[list[float]]",
-        "description": "对四参数的 2×4 Jacobian。",
+        "description": "两行四列的参数偏导表，列顺序为 a、omega、c、d。",
         "unit": "1"
       }
     ],
-    "contract": "两行依次为 [-x,-y,tanh(x),0]、[-y,x,0,tanh(y)]。",
+    "contract": "第一行返回 [−x,−y,tanh(x),0]，第二行返回 [−y,x,0,tanh(y)]。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1367,7 +1367,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "保持状态不变，对每个参数分别求偏导，例如 omega 列为 [−y,x]。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1407,7 +1407,7 @@
             0.0
           ]
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；两行依次为 [-x,-y,tanh(x),0]、[-y,x,0,tanh(y)]。"
+        "explanation": "把给定状态代入 [−x,−y,tanh(x),0] 与 [−y,x,0,tanh(y)]；行列保持题定顺序。"
       }
     ]
   },
@@ -1419,7 +1419,7 @@
     "chapter": "17.3",
     "lesson_id": "P17-C03-S01",
     "title": "带噪导数重拟合",
-    "statement": "移除稀疏阈值或污染导数（derivative）后，训练拟合与结构恢复会同向变化吗？本题计算“带噪导数重拟合”：先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态（state）列只在保留列上重拟合。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "给定候选特征表 features 与导数目标 derivatives，执行顺序阈值最小二乘。两表行都对应相同样本；先全列拟合，再按阈值分别筛选各个导数，并在保留列上重拟合。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1434,25 +1434,25 @@
       {
         "name": "features",
         "type": "list[list[float]]",
-        "description": "样本×候选项设计矩阵（design matrix）。",
+        "description": "每行一个样本、每列一个候选项的特征表。",
         "unit": "混合"
       },
       {
         "name": "derivatives",
         "type": "list[list[float]]",
-        "description": "样本×状态导数矩阵（matrix）。",
+        "description": "与 features 同序的目标表；每列对应一个状态导数。",
         "unit": "状态/T"
       },
       {
         "name": "threshold",
         "type": "float",
-        "description": "原系数量纲（dimension）下的绝对值阈值。",
+        "description": "按各系数自身单位使用的绝对值筛选阈值。",
         "unit": "系数"
       },
       {
         "name": "iterations",
         "type": "int",
-        "description": "顺序筛除并重拟合次数。",
+        "description": "完成筛选与重拟合的轮数。",
         "unit": "轮"
       }
     ],
@@ -1460,14 +1460,14 @@
       {
         "name": "coefficients",
         "type": "list[list[float]]",
-        "description": "候选项×状态的系数矩阵。",
+        "description": "每行对应候选项、每列对应目标导数的系数表。",
         "unit": "混合"
       }
     ],
-    "contract": "先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态列只在保留列上重拟合。",
+    "contract": "先解最小二乘。每轮按当前系数绝对值≥threshold 标记保留位置，对每个目标列只用其保留特征列重拟合，其他位置为零；保留列为空时该目标的系数全为零。完成 iterations 轮后返回系数表。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1475,7 +1475,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "保留掩码按目标列分别计算。目标数据固定，删列后重新估计剩余系数。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1526,7 +1526,7 @@
             1.9999999999999998
           ]
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；先最小二乘，再迭代将 |系数|<threshold 的位置清零；各状态列只在保留列上重拟合。"
+        "explanation": "三个目标满足 1+2x，两个候选项均保留；浮点计算返回约 [[1],[2]]。"
       }
     ]
   },
@@ -1538,7 +1538,7 @@
     "chapter": "17.3",
     "lesson_id": "P17-C03-S01",
     "title": "候选支持项",
-    "statement": "移除稀疏阈值或污染导数（derivative）后，训练拟合与结构恢复会同向变化吗？本题计算“候选支持项”：返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "将一个三维状态 state=[x,y,z] 展开成二次候选字典的一行。先返回常数项，再按指定顺序返回一次项与二次项，便于系数和函数列一一对应。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1553,7 +1553,7 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "三个状态（state） x、y、z。",
+        "description": "当前三维状态，列表顺序为 x、y、z。",
         "unit": "模型状态"
       }
     ],
@@ -1561,14 +1561,14 @@
       {
         "name": "terms",
         "type": "list[float]",
-        "description": "常数、一次和二次项的固定顺序。",
+        "description": "十个候选值，顺序为 1、x、y、z、x²、x×y、x×z、y²、y×z、z²。",
         "unit": "混合"
       }
     ],
-    "contract": "返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。",
+    "contract": "返回 [1,x,y,z,x²,x×y,x×z,y²,y×z,z²]，保持这十个位置的顺序。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1576,7 +1576,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "先写常数和三个坐标，再算三个平方及三个交叉乘积，按题定顺序放回列表。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1609,7 +1609,7 @@
           12.0,
           16.0
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；返回 [1,x,y,z,x²,xy,xz,y²,yz,z²]。"
+        "explanation": "(2,3,4) 展开为 [1,2,3,4,4,6,8,9,12,16]；第五至第十项对应指定的二次项。"
       }
     ]
   },
@@ -1621,7 +1621,7 @@
     "chapter": "17.3",
     "lesson_id": "P17-C03-S02",
     "title": "独立初态解析线",
-    "statement": "更细的求解网格和更多向量场（vector field）参数（parameter），总能改善独立初态的预测吗？本题计算“独立初态解析线”：每个时刻用 exp(-a*t) 乘旋转矩阵（matrix）作用于 initial。请按下方具名参数和返回结构实现 solve。",
+    "statement": "给定二维线性螺旋初态 initial=[x0,y0]、衰减率 a、角频率 omega 与时刻列表 times。用解析解计算每个时刻的二维状态，作为数值积分或新初态预测的参考。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1636,25 +1636,25 @@
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "二维线性螺旋初态。",
+        "description": "t=0 时的二维状态，顺序为 x0、y0。",
         "unit": "归一化状态"
       },
       {
         "name": "a",
         "type": "float",
-        "description": "指数衰减率。",
+        "description": "指数衰减率，单位 1/T。",
         "unit": "1/T"
       },
       {
         "name": "omega",
         "type": "float",
-        "description": "旋转角频率。",
+        "description": "旋转角频率，单位 1/T。",
         "unit": "1/T"
       },
       {
         "name": "times",
         "type": "list[float]",
-        "description": "从初态开始的时间。",
+        "description": "相对于初始时刻的时间，按列表给定顺序使用。",
         "unit": "T"
       }
     ],
@@ -1662,14 +1662,14 @@
       {
         "name": "states",
         "type": "list[list[float]]",
-        "description": "每个时间对应的二维解析状态（state）。",
+        "description": "一行对应一个给定时刻，每行依次为 x(t)、y(t)。",
         "unit": "归一化状态"
       }
     ],
-    "contract": "每个时刻用 exp(-a*t) 乘旋转矩阵作用于 initial。",
+    "contract": "每个 t 令 E=exp(−a×t)、C=cos(omega×t)、S=sin(omega×t)，返回 [E×(x0×C−y0×S), E×(x0×S+y0×C)]；各行按 times 的顺序排列。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1677,7 +1677,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "旋转先由 omega×t 决定，再把两个坐标都乘同一个衰减因子。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1713,7 +1713,7 @@
             0.0
           ]
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；每个时刻用 exp(-a*t) 乘旋转矩阵作用于 initial。"
+        "explanation": "没有衰减也没有旋转，两个时刻的状态均为 [1,0]。"
       }
     ]
   },
@@ -1725,7 +1725,7 @@
     "chapter": "17.3",
     "lesson_id": "P17-C03-S02",
     "title": "保留失败的配对统计",
-    "statement": "更细的求解网格和更多向量场（vector field）参数（parameter），总能改善独立初态的预测吗？本题计算“保留失败的配对统计”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败表示候选仍有数值预测，但未通过质量检查；对应误差继续参与配对统计，失败率使用全部场景。请按下方具名参数和返回结构实现 solve。",
+    "statement": "baseline 与 method 在相同位置记录同一测试条件的误差，failures 记录候选是否未通过质量检查。每组都已有有效数值预测，质量失败时误差仍有定义。汇总基线减候选的平均差、标准误和候选失败率。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1740,19 +1740,19 @@
       {
         "name": "baseline",
         "type": "list[float]",
-        "description": "全部场景的基线误差。",
+        "description": "全部预定条件的基线误差，按条件顺序排列。",
         "unit": "U"
       },
       {
         "name": "method",
         "type": "list[float]",
-        "description": "同序候选数值预测的误差；质量检查失败时仍有定义。",
+        "description": "相同条件、相同顺序的候选误差；每项均有有效数值。",
         "unit": "U"
       },
       {
         "name": "failures",
         "type": "list[bool]",
-        "description": "候选有数值预测，但未通过预设质量检查（如收支（mass balance）或非负性（nonnegativity））的标志。",
+        "description": "同序布尔标记；True 表示候选已有数值预测，但未通过预定收支或非负性等检查。",
         "unit": "1"
       }
     ],
@@ -1760,14 +1760,14 @@
       {
         "name": "report",
         "type": "list[float]",
-        "description": "基线减候选的均值、样本标准误和失败率。",
+        "description": "三项列表，顺序为平均配对差、按样本标准差计算的标准误、全部条件中的候选失败比例。",
         "unit": "混合"
       }
     ],
-    "contract": "每组都有定义明确的基线和候选误差；failures=True 仅表示候选数值预测未通过预设质量检查。全部场景均进入 d=baseline-method 的均值和标准误计算；标准误为样本标准差/sqrt(n)，n=1 时取 0。失败率为 True 数量/全部场景数。无有效数值输出（output）的求解失败不属于本接口；此时应另报双方成功场景的配对统计和全体失败率。",
+    "contract": "全部 n 组都进入 d=baseline−method 的统计。返回 mean(d)、std(d,ddof=1)/sqrt(n)、True 个数/n；n=1 时接口规定标准误为 0。没有有效输出的求解失败不属于这些输入，应另在双方成功子集上报告误差，并按全部条件报告失败率。",
     "constraints": [
       "三个列表等长且至少一组；全部误差有限，列表规模不超过 100；按题给顺序返回。",
-      "输入（input）满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1775,7 +1775,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "按同一位置相减，保留质量失败组。两组差为 0.1 与 −0.1 时，均值为零，但样本标准差不为零。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1808,7 +1808,7 @@
           0.09999999999999998,
           0.5
         ],
-        "explanation": "第二组虽标记质量检查失败，候选误差 0.5 U 仍有定义。两组配对差为 0.1 与 -0.1 U，均值为 0、标准误为 0.1 U；失败率为 1/2。"
+        "explanation": "第二组质量失败但已有误差 0.5 U。全部两组得到平均差 0、标准误 0.1 U、失败率 0.5。"
       }
     ]
   },
@@ -1820,7 +1820,7 @@
     "chapter": "17.4",
     "lesson_id": "P17-C04-S01",
     "title": "双室收支变化率",
-    "statement": "在生命系统中看到良好短时预测，怎样同时检查交换项符号与总量收支（mass balance）？本题计算“双室收支变化率”：室1=u1-k1*A1-e*(A1-A2)；室2=u2-k2*A2+e*(A1-A2)。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "两个室的物质量按 amounts=[A1,A2] 排列。inputs=[u1,u2] 是从系统外进入各室的量率，clearance=[k1,k2] 是一阶清除系数，exchange=e 是量差交换系数。分别计算两室当前变化率。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -1835,25 +1835,25 @@
       {
         "name": "amounts",
         "type": "list[float]",
-        "description": "双室当前总量。",
+        "description": "第一、第二室当前物质量，单位 U。",
         "unit": "U"
       },
       {
         "name": "inputs",
         "type": "list[float]",
-        "description": "双室输入（input）率。",
+        "description": "按第一、第二室排列的外部输入率，单位 U/T。",
         "unit": "U/T"
       },
       {
         "name": "clearance",
         "type": "list[float]",
-        "description": "双室一阶清除率。",
+        "description": "按第一、第二室排列的一阶清除系数，单位 1/T。",
         "unit": "1/T"
       },
       {
         "name": "exchange",
         "type": "float",
-        "description": "对称交换率。",
+        "description": "量差交换系数 e，单位 1/T；交换量率为 e×(A1−A2)。",
         "unit": "1/T"
       }
     ],
@@ -1861,14 +1861,14 @@
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "两个室的总量变化率。",
+        "description": "按第一、第二室排列的物质量变化率，单位 U/T。",
         "unit": "U/T"
       }
     ],
-    "contract": "室1=u1-k1*A1-e*(A1-A2)；室2=u2-k2*A2+e*(A1-A2)。",
+    "contract": "返回 [u1−k1×A1−e×(A1−A2),u2−k2×A2+e×(A1−A2)]。同一交换项在两个室的符号相反。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1876,7 +1876,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "先算一笔交换率，再在第一室扣除、第二室加入。相加后检查总输入减总清除。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -1909,7 +1909,7 @@
           -0.3,
           0.09999999999999998
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；室1=u1-k1*A1-e*(A1-A2)；室2=u2-k2*A2+e*(A1-A2)。"
+        "explanation": "两室分别得到 −0.3 和 0.1 U/T；交换贡献相消，整体变化率为总输入 0.2 减总清除 0.4。"
       }
     ]
   },
@@ -1921,7 +1921,7 @@
     "chapter": "17.4",
     "lesson_id": "P17-C04-S01",
     "title": "迁移的三项指标",
-    "statement": "在生命系统中看到良好短时预测，怎样同时检查交换项符号与总量收支（mass balance）？本题计算“迁移的三项指标”：残差（residual）为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "给定同序参考值 truth、预测值 prediction，以及整段的起末总量、累计输入和累计清除。分别计算预测 RMSE、总量收支残差和负预测值个数，按这个顺序返回。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -1936,37 +1936,37 @@
       {
         "name": "truth",
         "type": "list[float]",
-        "description": "共同测试的真实状态（state）。",
+        "description": "用于评价预测的参考值，按给定条件或位置排列。",
         "unit": "U"
       },
       {
         "name": "prediction",
         "type": "list[float]",
-        "description": "同序预测状态。",
+        "description": "与 truth 同序的预测值，保留原数值进行检查。",
         "unit": "U"
       },
       {
         "name": "total_input",
         "type": "float",
-        "description": "评估窗输入（input）积分。",
+        "description": "整段从系统外进入的累计量，单位 U。",
         "unit": "U"
       },
       {
         "name": "total_removed",
         "type": "float",
-        "description": "评估窗清除积分。",
+        "description": "整段累计清除量，单位 U。",
         "unit": "U"
       },
       {
         "name": "initial_total",
         "type": "float",
-        "description": "起点总量。",
+        "description": "整段起点总量，单位 U。",
         "unit": "U"
       },
       {
         "name": "final_total",
         "type": "float",
-        "description": "终点总量。",
+        "description": "整段终点总量，单位 U。",
         "unit": "U"
       }
     ],
@@ -1974,14 +1974,14 @@
       {
         "name": "score",
         "type": "list",
-        "description": "RMSE、总量收支残差、负预测值个数。",
+        "description": "三项列表：RMSE（U）、绝对收支残差（U）、严格小于零的预测值个数。",
         "unit": "混合"
       }
     ],
-    "contract": "残差为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。",
+    "contract": "RMSE 为 sqrt(mean((truth−prediction)²))。收支残差为 abs(final_total−initial_total−total_input+total_removed)。负值数统计 prediction 中严格小于 0 的元素；三个指标分开返回，不截断负预测。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -1989,7 +1989,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "预测误差用两个数组，收支用四个总量记录；分别计算，不把零残差当作没有负值。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2022,7 +2022,7 @@
           1.6653345369377348e-16,
           1
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；残差为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。"
+        "explanation": "预测数组给出 RMSE≈2.1213 U 和一个负值；另给总量记录的收支残差仅有浮点舍入量级。"
       }
     ]
   },
@@ -2034,7 +2034,7 @@
     "chapter": "17.4",
     "lesson_id": "P17-C04-S02",
     "title": "公平配对效果",
-    "statement": "一个方法训练误差较小，却在新输入（input）下违反收支（mass balance）或状态（state）非负；比较表应怎样保留这个失败？本题计算“公平配对效果”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败表示候选仍有数值预测，但未通过质量检查；对应误差继续参与配对统计，失败率使用全部场景。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "baseline 与 method 在相同位置记录同一测试条件的误差，failures 记录候选是否未通过质量检查。每组都已有有效数值预测，质量失败时误差仍有定义。汇总基线减候选的平均差、标准误和候选失败率。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2049,19 +2049,19 @@
       {
         "name": "baseline",
         "type": "list[float]",
-        "description": "全部场景的基线误差。",
+        "description": "全部预定条件的基线误差，按条件顺序排列。",
         "unit": "U"
       },
       {
         "name": "method",
         "type": "list[float]",
-        "description": "同序候选数值预测的误差；质量检查失败时仍有定义。",
+        "description": "相同条件、相同顺序的候选误差；每项均有有效数值。",
         "unit": "U"
       },
       {
         "name": "failures",
         "type": "list[bool]",
-        "description": "候选有数值预测，但未通过预设质量检查（如收支（mass balance）或非负性（nonnegativity））的标志。",
+        "description": "同序布尔标记；True 表示候选已有数值预测，但未通过预定收支或非负性等检查。",
         "unit": "1"
       }
     ],
@@ -2069,14 +2069,14 @@
       {
         "name": "report",
         "type": "list[float]",
-        "description": "基线减候选的均值、样本标准误和失败率。",
+        "description": "三项列表，顺序为平均配对差、按样本标准差计算的标准误、全部条件中的候选失败比例。",
         "unit": "混合"
       }
     ],
-    "contract": "每组都有定义明确的基线和候选误差；failures=True 仅表示候选数值预测未通过预设质量检查。全部场景均进入 d=baseline-method 的均值和标准误计算；标准误为样本标准差/sqrt(n)，n=1 时取 0。失败率为 True 数量/全部场景数。无有效数值输出（output）的求解失败不属于本接口；此时应另报双方成功场景的配对统计和全体失败率。",
+    "contract": "全部 n 组都进入 d=baseline−method 的统计。返回 mean(d)、std(d,ddof=1)/sqrt(n)、True 个数/n；n=1 时接口规定标准误为 0。没有有效输出的求解失败不属于这些输入，应另在双方成功子集上报告误差，并按全部条件报告失败率。",
     "constraints": [
       "三个列表等长且至少一组；全部误差有限，列表规模不超过 100；按题给顺序返回。",
-      "输入满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2084,7 +2084,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "按同一位置相减，保留质量失败组。两组差为 0.1 与 −0.1 时，均值为零，但样本标准差不为零。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2117,7 +2117,7 @@
           0.09999999999999998,
           0.5
         ],
-        "explanation": "第二组虽标记质量检查失败，候选误差 0.5 U 仍有定义。两组配对差为 0.1 与 -0.1 U，均值为 0、标准误为 0.1 U；失败率为 1/2。"
+        "explanation": "第二组质量失败但已有误差 0.5 U。全部两组得到平均差 0、标准误 0.1 U、失败率 0.5。"
       }
     ]
   },
@@ -2129,7 +2129,7 @@
     "chapter": "17.4",
     "lesson_id": "P17-C04-S02",
     "title": "最终轨迹隔离",
-    "statement": "一个方法训练误差较小，却在新输入（input）下违反收支（mass balance）或状态（state）非负；比较表应怎样保留这个失败？本题计算“最终轨迹（trajectory）隔离”：求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "训练、验证与最终测试分别给出轨迹编号列表。检查是否有某个编号出现在两个或三个不同集合中；返回无交叉标志和全部交叉编号。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2144,19 +2144,19 @@
       {
         "name": "train_ids",
         "type": "list[int]",
-        "description": "训练轨迹编号。",
+        "description": "训练使用的轨迹编号。",
         "unit": "轨迹"
       },
       {
         "name": "validation_ids",
         "type": "list[int]",
-        "description": "验证轨迹编号。",
+        "description": "选择模型或参数时使用的验证轨迹编号。",
         "unit": "轨迹"
       },
       {
         "name": "test_ids",
         "type": "list[int]",
-        "description": "独立测试轨迹编号。",
+        "description": "只用于最终评价的轨迹编号。",
         "unit": "轨迹"
       }
     ],
@@ -2164,14 +2164,14 @@
       {
         "name": "result",
         "type": "list",
-        "description": "首项为无交叉标志，第二项为升序重复编号。",
+        "description": "两项列表：第一项表示三个集合两两不相交，第二项是去重后按升序排列的交叉编号。",
         "unit": "混合"
       }
     ],
-    "contract": "求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。",
+    "contract": "求训练与验证、训练与测试、验证与测试的交集，再取它们的并集并排序。交叉列表为空时返回 [True,[]]，否则返回 [False,交叉列表]。同一集合内部重复不构成集合之间交叉。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入满足模型（model）和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2179,7 +2179,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "转成集合后检查三对交集，再合并编号；不要仅检查训练与测试一对。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2212,7 +2212,7 @@
             2
           ]
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；求三个集合两两交集的并集并排序；没有交叉时返回 [True,[]]。"
+        "explanation": "训练与测试共享编号 2，三对交集的并集为 {2}；因此无交叉标志为 False。"
       }
     ]
   },
@@ -2224,7 +2224,7 @@
     "chapter": "17.summary",
     "lesson_id": "P17-SUMMARY",
     "title": "主张与证据",
-    "statement": "缩减Lorenz实验采用二次字典、短窗口和生成方程的真值导数（derivative），并与已知系数比较。哪项核验由当前实验覆盖？",
+    "statement": "缩减 Lorenz 实验使用短窗口、二次字典和生成方程提供的精确导数，并将拟合系数与已知方程比较。哪一项由这一计算直接核验？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -2239,19 +2239,19 @@
     "options": [
       {
         "id": "A",
-        "text": "用当前短窗口和字典恢复出的方程项，可以与已知方程逐项比较。"
+        "text": "当前窗口、当前字典下恢复出的项与已知方程是否一致。"
       },
       {
         "id": "B",
-        "text": "改用带噪状态（state）差分得到的导数后，同一组系数仍能保持当前的恢复精度。"
+        "text": "改用带噪状态差分后，是否仍保持当前系数精度。"
       },
       {
         "id": "C",
-        "text": "其他字典只要达到相同训练误差，就对应相同的物理机制。"
+        "text": "其他字典只要训练误差相同，是否就对应相同物理机制。"
       },
       {
         "id": "D",
-        "text": "将独立测试延长到更长时间后，逐点预测误差仍保持当前短窗口的水平。"
+        "text": "延长独立测试后，是否仍保持当前短窗逐点误差。"
       }
     ],
     "constraints": []
@@ -2264,7 +2264,7 @@
     "chapter": "17.summary",
     "lesson_id": "P17-SUMMARY",
     "title": "复现与改编身份",
-    "statement": "二维四参数（parameter）螺旋加连续伴随，但不含潜变量编码器，如何标记？",
+    "statement": "实验用二维可见状态与四参数函数生成螺旋，通过连续伴随求梯度，没有潜变量编码器。相对于原论文潜变量任务，怎样描述这项实现？",
     "type": "choice",
     "learning_targets": [
       "T4"
@@ -2279,19 +2279,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这项实验重复了原论文的潜变量编码和完整预测流程。"
+        "text": "重复了原论文的潜变量编码与完整预测流程。"
       },
       {
         "id": "B",
-        "text": "这项实验保留连续伴随计算，但将动力学表示简化为二维四参数向量场（vector field）。"
+        "text": "保留连续伴随计算，将动力学表示简化为二维四参数向量场。"
       },
       {
         "id": "C",
-        "text": "这项实验只改变随机种子（random seed），原论文的其他模型（model）与训练设置都保持不变。"
+        "text": "只改变随机种子，其余模型与训练设置都相同。"
       },
       {
         "id": "D",
-        "text": "这项实验只改变绘图方式，原论文的训练程序保持不变。"
+        "text": "只改变画图方式，训练程序保持相同。"
       }
     ],
     "constraints": []
@@ -2304,7 +2304,7 @@
     "chapter": "17.summary",
     "lesson_id": "P17-SUMMARY",
     "title": "协议缺口",
-    "statement": "实验声称要评价新初态上的预测，但训练与最终测试使用同一条轨迹（trajectory）的交错时间点。这种划分存在什么问题？",
+    "statement": "目标是评价新初态预测，却把同一条初态轨迹的交错时间点分作训练与最终测试。这里首先缺少什么？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -2319,19 +2319,19 @@
     "options": [
       {
         "id": "A",
-        "text": "这说明训练误差偏高，需要继续减小积分时间步。"
+        "text": "更小积分步长带来的训练误差下降。"
       },
       {
         "id": "B",
-        "text": "训练和测试仍来自同一初态轨迹，测试没有检验另一初态的预测误差。"
+        "text": "另一初态的独立预测证据。"
       },
       {
         "id": "C",
-        "text": "这说明候选字典的项数过少，需要加入更高次项。"
+        "text": "更高次候选项提供的字典容量。"
       },
       {
         "id": "D",
-        "text": "这说明参数（parameter）估计有偏差，需要延长训练轨迹。"
+        "text": "更长训练窗口带来的参数估计。"
       }
     ],
     "constraints": []
@@ -2344,7 +2344,7 @@
     "chapter": "17.summary",
     "lesson_id": "P17-SUMMARY",
     "title": "失败能否反驳主张",
-    "statement": "原主张仅覆盖当前观测（observation）条件，换成原实验以外的新传感器后失败，最准确的判断是什么？",
+    "statement": "原主张限定在原传感器的观测条件。换用新传感器后方法失败，如何解释这一结果？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -2359,19 +2359,19 @@
     "options": [
       {
         "id": "A",
-        "text": "新传感器下的失败已经否定原传感器条件下的实验结论。"
+        "text": "新条件失败已经否定了原条件下的实验结论。"
       },
       {
         "id": "B",
-        "text": "新传感器使当前方法失败，说明其他方法在同一条件下也会失败。"
+        "text": "当前方法失败说明其他方法在新条件下也会失败。"
       },
       {
         "id": "C",
-        "text": "当前方法在新传感器条件下失败，而原传感器条件下的结论仍应由原条件的结果判断。"
+        "text": "失败说明当前方法未适用于新条件，原条件结论仍由原条件证据判断。"
       },
       {
         "id": "D",
-        "text": "原主张没有包括新传感器，因此报告中可以省去这次失败记录。"
+        "text": "新条件未包含在原主张中，因此可以省去失败记录。"
       }
     ],
     "constraints": []
@@ -2384,7 +2384,7 @@
     "chapter": "17.summary",
     "lesson_id": "P17-SUMMARY",
     "title": "复现实验的结论边界",
-    "statement": "在预定的一组条件中，候选方法的平均预测误差较低，但有一个条件求解失败。怎样报告这次比较？",
+    "statement": "预定条件中，候选在有有效输出的测试上平均误差较低，但有一组求解失败。怎样报告这次比较？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -2399,19 +2399,19 @@
     "options": [
       {
         "id": "A",
-        "text": "仅对两种方法都求解成功的条件计算平均误差，并将它报告为全部条件的平均误差。"
+        "text": "仅取双方成功的条件算平均误差，把它作为全部条件的平均误差。"
       },
       {
         "id": "B",
-        "text": "用成功条件的平均误差填补失败条件，再计算每个条件下两种方法的误差差值。"
+        "text": "用成功条件的平均误差填补失败组，再计算全部误差差值。"
       },
       {
         "id": "C",
-        "text": "保留全部预定条件，分别报告两种方法在相同条件下的误差差值和各自失败的比例。"
+        "text": "保留全部条件；在双方有有效输出的相同条件上报告误差差值，并按全部条件报告各自失败比例。"
       },
       {
         "id": "D",
-        "text": "根据候选方法的误差挑选测试条件，再只在这些条件下与基线比较。"
+        "text": "先按候选误差挑出有利条件，只在这些条件上比较基线。"
       }
     ],
     "constraints": []
@@ -2424,7 +2424,7 @@
     "chapter": "17.summary",
     "lesson_id": "P17-SUMMARY",
     "title": "复现关键数值步骤",
-    "statement": "综合任务给定了独立的模型（model）输入（input）与评价条件。本题计算“复现关键数值步骤”：依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态（state）与时间均按 Lorenz 无量纲（dimensionless）形式给出。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "给定当前状态 state=[x,y,z] 和 Lorenz 参数 sigma、rho、beta，计算此时三个状态的变化率。状态与时间均按归一化无量纲形式处理；返回顺序与状态顺序相同。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2439,25 +2439,25 @@
       {
         "name": "state",
         "type": "list[float]",
-        "description": "按 x、y、z 顺序的无量纲当前状态。",
+        "description": "当前状态，第一至第三项依次为 x、y、z。",
         "unit": "1"
       },
       {
         "name": "sigma",
         "type": "float",
-        "description": "归一化 Lorenz 参数。",
+        "description": "方程 x′=sigma×(y−x) 中的参数。",
         "unit": "1"
       },
       {
         "name": "rho",
         "type": "float",
-        "description": "归一化 Lorenz 参数。",
+        "description": "方程 y′=x×(rho−z)−y 中的参数。",
         "unit": "1"
       },
       {
         "name": "beta",
         "type": "float",
-        "description": "归一化 Lorenz 参数。",
+        "description": "方程 z′=x×y−beta×z 中的参数。",
         "unit": "1"
       }
     ],
@@ -2465,14 +2465,14 @@
       {
         "name": "rates",
         "type": "list[float]",
-        "description": "三个状态对归一化时间的变化率。",
+        "description": "按 x′、y′、z′ 顺序排列的瞬时变化率。",
         "unit": "1"
       }
     ],
-    "contract": "依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态与时间均按 Lorenz 无量纲形式给出。",
+    "contract": "读取 x、y、z，依次计算 sigma×(y−x)、x×(rho−z)−y、x×y−beta×z，并返回三项列表；不推进时间。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入满足模型和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2480,7 +2480,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "把初态代入每条方程。注意第三项是 x×y 减 beta×z。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2509,7 +2509,7 @@
           -15.0,
           -128.0
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；依次计算 sigma*(y-x)、x*(rho-z)-y、x*y-beta*z；状态与时间均按 Lorenz 无量纲形式给出。"
+        "explanation": "三式分别给出 150、−15、−128。列表中的数是当前变化率，而非下一步状态。"
       }
     ]
   },
@@ -2521,7 +2521,7 @@
     "chapter": "17.summary",
     "lesson_id": "P17-SUMMARY",
     "title": "消融的配对统计",
-    "statement": "综合任务给定了独立的模型（model）输入（input）与评价条件。本题计算“消融的配对统计”：配对差 d=baseline-method；标准误（standard error）为样本标准差（standard deviation）/sqrt(n)，n=1 时规定为0；失败表示候选仍有数值预测，但未通过质量检查；对应误差继续参与配对统计，失败率使用全部场景。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "baseline 与 method 在相同位置记录同一测试条件的误差，failures 记录候选是否未通过质量检查。每组都已有有效数值预测，质量失败时误差仍有定义。汇总基线减候选的平均差、标准误和候选失败率。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2536,19 +2536,19 @@
       {
         "name": "baseline",
         "type": "list[float]",
-        "description": "全部场景的基线误差。",
+        "description": "全部预定条件的基线误差，按条件顺序排列。",
         "unit": "U"
       },
       {
         "name": "method",
         "type": "list[float]",
-        "description": "同序候选数值预测的误差；质量检查失败时仍有定义。",
+        "description": "相同条件、相同顺序的候选误差；每项均有有效数值。",
         "unit": "U"
       },
       {
         "name": "failures",
         "type": "list[bool]",
-        "description": "候选有数值预测，但未通过预设质量检查（如收支（mass balance）或非负性（nonnegativity））的标志。",
+        "description": "同序布尔标记；True 表示候选已有数值预测，但未通过预定收支或非负性等检查。",
         "unit": "1"
       }
     ],
@@ -2556,14 +2556,14 @@
       {
         "name": "report",
         "type": "list[float]",
-        "description": "基线减候选的均值、样本标准误和失败率。",
+        "description": "三项列表，顺序为平均配对差、按样本标准差计算的标准误、全部条件中的候选失败比例。",
         "unit": "混合"
       }
     ],
-    "contract": "每组都有定义明确的基线和候选误差；failures=True 仅表示候选数值预测未通过预设质量检查。全部场景均进入 d=baseline-method 的均值和标准误计算；标准误为样本标准差/sqrt(n)，n=1 时取 0。失败率为 True 数量/全部场景数。无有效数值输出（output）的求解失败不属于本接口；此时应另报双方成功场景的配对统计和全体失败率。",
+    "contract": "全部 n 组都进入 d=baseline−method 的统计。返回 mean(d)、std(d,ddof=1)/sqrt(n)、True 个数/n；n=1 时接口规定标准误为 0。没有有效输出的求解失败不属于这些输入，应另在双方成功子集上报告误差，并按全部条件报告失败率。",
     "constraints": [
       "三个列表等长且至少一组；全部误差有限，列表规模不超过 100；按题给顺序返回。",
-      "输入满足模型和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2571,7 +2571,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "按同一位置相减，保留质量失败组。两组差为 0.1 与 −0.1 时，均值为零，但样本标准差不为零。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2604,7 +2604,7 @@
           0.09999999999999998,
           0.5
         ],
-        "explanation": "第二组虽标记质量检查失败，候选误差 0.5 U 仍有定义。两组配对差为 0.1 与 -0.1 U，均值为 0、标准误为 0.1 U；失败率为 1/2。"
+        "explanation": "第二组质量失败但已有误差 0.5 U。全部两组得到平均差 0、标准误 0.1 U、失败率 0.5。"
       }
     ]
   },
@@ -2616,7 +2616,7 @@
     "chapter": "17.summary",
     "lesson_id": "P17-SUMMARY",
     "title": "跨方法约束指标",
-    "statement": "综合任务给定了独立的模型（model）输入（input）与评价条件。本题计算“跨方法约束指标”：残差（residual）为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。请按下方具名参数（parameter）和返回结构实现 solve。",
+    "statement": "给定同序参考值 truth、预测值 prediction，以及整段的起末总量、累计输入和累计清除。分别计算预测 RMSE、总量收支残差和负预测值个数，按这个顺序返回。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2631,37 +2631,37 @@
       {
         "name": "truth",
         "type": "list[float]",
-        "description": "共同测试的真实状态（state）。",
+        "description": "用于评价预测的参考值，按给定条件或位置排列。",
         "unit": "U"
       },
       {
         "name": "prediction",
         "type": "list[float]",
-        "description": "同序预测状态。",
+        "description": "与 truth 同序的预测值，保留原数值进行检查。",
         "unit": "U"
       },
       {
         "name": "total_input",
         "type": "float",
-        "description": "评估窗输入积分。",
+        "description": "整段从系统外进入的累计量，单位 U。",
         "unit": "U"
       },
       {
         "name": "total_removed",
         "type": "float",
-        "description": "评估窗清除积分。",
+        "description": "整段累计清除量，单位 U。",
         "unit": "U"
       },
       {
         "name": "initial_total",
         "type": "float",
-        "description": "起点总量。",
+        "description": "整段起点总量，单位 U。",
         "unit": "U"
       },
       {
         "name": "final_total",
         "type": "float",
-        "description": "终点总量。",
+        "description": "整段终点总量，单位 U。",
         "unit": "U"
       }
     ],
@@ -2669,14 +2669,14 @@
       {
         "name": "score",
         "type": "list",
-        "description": "RMSE、总量收支（mass balance）残差、负预测值个数。",
+        "description": "三项列表：RMSE（U）、绝对收支残差（U）、严格小于零的预测值个数。",
         "unit": "混合"
       }
     ],
-    "contract": "残差为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。",
+    "contract": "RMSE 为 sqrt(mean((truth−prediction)²))。收支残差为 abs(final_total−initial_total−total_input+total_removed)。负值数统计 prediction 中严格小于 0 的元素；三个指标分开返回，不截断负预测。",
     "constraints": [
       "全部数值有限；列表规模不超过 100；按题给顺序返回。",
-      "输入满足模型和矩阵（matrix）维度要求；不在函数内抽样或读取外部文件。"
+      "输入满足题给维度；函数使用给定数据，不在内部抽样或读取外部文件。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -2684,7 +2684,7 @@
       "numpy"
     ],
     "example_format": "parameters",
-    "hint": "先按给定公式手算公开样例，再核对数组（array）形状与返回顺序。",
+    "hint": "预测误差用两个数组，收支用四个总量记录；分别计算，不把零残差当作没有负值。",
     "limits": {
       "seconds": 15,
       "source_bytes": 65536,
@@ -2717,7 +2717,7 @@
           1.6653345369377348e-16,
           1
         ],
-        "explanation": "输入样例代入计算规则后得到所示输出（output）；残差为 abs(final_total-initial_total-total_input+total_removed)；负值严格按 prediction<0 计数。"
+        "explanation": "预测数组给出 RMSE≈2.1213 U 和一个负值；另给总量记录的收支残差仅有浮点舍入量级。"
       }
     ]
   }

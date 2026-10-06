@@ -7,7 +7,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S01",
     "title": "哪一个输入进入能量导数",
-    "statement": "在无延迟模型中，当前状态的变化率由执行器本次实际施加的输入决定。请求超过执行上限时，应怎样计算 $V=x^2/2$ 的当前变化率？",
+    "statement": "在无延迟模型中，当前状态的变化率由执行器本次实际施加的输入决定。请求超过执行上限时，应怎样计算 V=x²/2 的当前变化率？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -49,7 +49,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S01",
     "title": "三次反馈的充分条件",
-    "statement": "无饱和反馈给出 $V=x^2/2$、$\\dot V=-(a+k)x^2+(\\beta-c)x^4$，已知 $a+k>0$、$\\beta>0$。要使四次项对所有状态都不增加 V，系数 c 应满足什么条件？",
+    "statement": "无饱和反馈给出 V=x²/2、V′=−(a+k)x²+(β−c)x⁴，已知 a+k>0、β>0。要使四次项对所有状态都不增加 V，系数 c 应满足什么条件？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -91,7 +91,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S02",
     "title": "小扰动恢复与全局结论",
-    "statement": "在给定模型、执行上限和数值网格下，从 $x_0=0.3$ U 出发的偏差逐步向零靠近。这项观察直接支持哪一判断？",
+    "statement": "在给定模型、执行上限和数值网格下，从 x₀=0.3 U 出发的偏差逐步向零靠近。这项观察直接支持哪一判断？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -175,7 +175,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S01",
     "title": "为什么要共同矩阵",
-    "statement": "允许的闭环矩阵是给定顶点的凸组合。要用 $V=x^\\mathsf TPx$ 建立覆盖整个集合的共同证书，应怎样处理 P？",
+    "statement": "允许的闭环矩阵是给定顶点的凸组合。要用 V=xᵀPx 建立覆盖整个集合的共同证书，应怎样处理 P？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -217,7 +217,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S01",
     "title": "顶点法适用范围",
-    "statement": "同一个正定 P 已使每个给定顶点的 $A_i^\\mathsf TP+PA_i$ 严格负定。要将这项条件推广到全部允许的闭环矩阵，还需哪一集合关系？",
+    "statement": "同一个正定 P 已使每个给定顶点的 AᵢᵀP+PAᵢ 严格负定。要将这项条件推广到全部允许的闭环矩阵，还需哪一集合关系？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -259,7 +259,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S02",
     "title": "检查候选二次证书",
-    "statement": "对固定线性系统 $\\dot x=Ax$，一个候选正定 P 使 $A^\\mathsf TP+PA$ 在某个非零方向为非负。关于这次检查，哪项判断成立？",
+    "statement": "对固定线性系统 x′=Ax，一个候选正定 P 使 AᵀP+PA 在某个非零方向为非负。关于这次检查，哪项判断成立？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -343,7 +343,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S01",
     "title": "零回归量",
-    "statement": "标量 RLS 每步回归量都为 $\\phi=0$，遗忘因子 $0<\\lambda\\le1$，估计未触发区间投影。按本节递推式，参数估计与 P 怎样更新？",
+    "statement": "标量 RLS 每步回归量都为 φ=0，遗忘因子 0<λ≤1，估计未触发区间投影。按本节递推式，参数估计与 P 怎样更新？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -385,7 +385,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S01",
     "title": "递推先后",
-    "statement": "第 n 次观测 $y_n$ 到达，对应回归量为 $\\phi_n$，更新前估计为 $\\hat a_n$。形成本次校正项的预测误差是哪一式？",
+    "statement": "第 n 次观测 y[n] 到达，对应回归量为 φ[n]，更新前估计为 â[n]。形成本次校正项的预测误差是哪一式？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -402,19 +402,19 @@
     "options": [
       {
         "id": "A",
-        "text": "用本次观测减去新估计的预测，得到 $y_n-\\phi_n\\hat a_{n+1}$。"
+        "text": "用本次观测减去新估计的预测，得到 y[n]−φ[n]â[n+1]。"
       },
       {
         "id": "B",
-        "text": "用下一次观测减去旧估计的预测，得到 $y_{n+1}-\\phi_n\\hat a_n$。"
+        "text": "用下一次观测减去旧估计的预测，得到 y[n+1]−φ[n]â[n]。"
       },
       {
         "id": "C",
-        "text": "用本次观测减去旧估计的预测，得到 $y_n-\\phi_n\\hat a_n$。"
+        "text": "用本次观测减去旧估计的预测，得到 y[n]−φ[n]â[n]。"
       },
       {
         "id": "D",
-        "text": "将回归量减去观测乘旧估计，得到 $\\phi_n-y_n\\hat a_n$。"
+        "text": "将回归量减去观测乘旧估计，得到 φ[n]−y[n]â[n]。"
       }
     ],
     "constraints": []
@@ -427,7 +427,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S02",
     "title": "在线控制的信息边界",
-    "statement": "控制器已经测得 $x_n$，将用已有估计 $\\hat a_n$ 选择输入 $u_n$。哪项信息在这次选择时尚不可用？",
+    "statement": "控制器已经测得 x[n]，将用已有估计 â[n] 选择输入 u[n]。哪项信息在这次选择时尚不可用？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -469,7 +469,7 @@
     "chapter": "16.3",
     "lesson_id": "P16-C03-S02",
     "title": "跟踪与参数估计",
-    "statement": "参数随时间变化的调节实验中，状态与目标相差很小，但 $\\hat a$ 仍偏离核验真值。怎样解释跟踪与参数估计这两项记录？",
+    "statement": "参数随时间变化的调节实验中，状态与目标相差很小，但 â 仍偏离核验真值。怎样解释跟踪与参数估计这两项记录？",
     "type": "choice",
     "learning_targets": [
       "T2"
@@ -679,7 +679,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S01",
     "title": "平均守恒的条件",
-    "statement": "无向对称权重给出 $x^+=(I-hL)x$。用 $\\mathbf1$ 表示全一列向量，哪一关系解释了节点状态平均保持？",
+    "statement": "无向对称权重给出 x⁺=(I−hL)x。用 1（所有分量为 1 的向量） 表示全一列向量，哪一关系解释了节点状态平均保持？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -763,7 +763,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S02",
     "title": "延迟更新读取什么",
-    "statement": "延迟规则为 $x_{n+1}=x_n-hLx_{n-d}$，$d>0$。下一状态从哪个值开始、用哪个值计算耦合调整？",
+    "statement": "延迟规则为 x[n+1]=x[n]−hLx[n−d]，d>0。下一状态从哪个值开始、用哪个值计算耦合调整？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -780,19 +780,19 @@
     "options": [
       {
         "id": "A",
-        "text": "从当前 $x_n$ 开始，减去用当前状态算出的 $hLx_n$。"
+        "text": "从当前 x[n] 开始，减去用当前状态算出的 hLx[n]。"
       },
       {
         "id": "B",
-        "text": "从历史 $x_{n-d}$ 开始，减去用同一历史状态算出的 $hLx_{n-d}$。"
+        "text": "从历史 x[n−d] 开始，减去用同一历史状态算出的 hLx[n−d]。"
       },
       {
         "id": "C",
-        "text": "从当前 $x_n$ 开始，减去用历史状态算出的 $hLx_{n-d}$。"
+        "text": "从当前 x[n] 开始，减去用历史状态算出的 hLx[n−d]。"
       },
       {
         "id": "D",
-        "text": "从历史 $x_{n-d}$ 开始，减去用待求状态算出的 $hLx_{n+1}$。"
+        "text": "从历史 x[n−d] 开始，减去用待求状态算出的 hLx[n+1]。"
       }
     ],
     "constraints": []
@@ -805,7 +805,7 @@
     "chapter": "16.5",
     "lesson_id": "P16-C05-S02",
     "title": "无延迟谱界",
-    "statement": "无延迟的对称图在 $0<h<2/\\lambda_{\\max}(L)$ 时差异收缩。将规则改为 $x_{n+1}=x_n-hLx_{n-d}$、$d>0$ 后，应怎样检查步长？",
+    "statement": "无延迟的对称图在 0<h<2/λmax(L) 时差异收缩。将规则改为 x[n+1]=x[n]−hLx[n−d]、d>0 后，应怎样检查步长？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -847,7 +847,7 @@
     "chapter": "16.6",
     "lesson_id": "P16-C06-S01",
     "title": "终止后价值",
-    "statement": "任务已到达零奖励终止吸收态，此后每一步奖励都为零。折扣因子 $0<\\gamma<1$ 时，这个状态的固定策略价值是多少？",
+    "statement": "任务已到达零奖励终止吸收态，此后每一步奖励都为零。折扣因子 0<γ<1 时，这个状态的固定策略价值是多少？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -889,7 +889,7 @@
     "chapter": "16.6",
     "lesson_id": "P16-C06-S01",
     "title": "策略评价的对象",
-    "statement": "在已知 MDP 的转移概率和奖励下，求解固定策略 $\\pi$ 的价值 $V^\\pi$。这个值描述什么？",
+    "statement": "在已知 MDP 的转移概率和奖励下，求解固定策略 π 的价值 V^π。这个值描述什么？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1183,7 +1183,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S01",
     "title": "实际输入下的能量导数",
-    "statement": "给定偏差与反馈参数，先求执行器的实际输入，再计算状态方程及 $V=x^2/2$ 的变化率，返回规定顺序的四项结果。",
+    "statement": "给定偏差与反馈参数，先求执行器的实际输入，再计算状态方程及 V=x²/2 的变化率，返回规定顺序的四项结果。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1242,7 +1242,7 @@
         "unit": "混合"
       }
     ],
-    "contract": "先算请求 $u_{\\rm req}=-kx-cx^3$，限幅到 [-limit,limit] 得实际输入。将实际输入代入 $\\dot x=-ax+\\beta x^3+u_{\\rm act}$，再算 $\\dot V=x\\dot x$；按这四项顺序返回。",
+    "contract": "先算请求 u_req=−kx−cx³，限幅到 [-limit,limit] 得实际输入。将实际输入代入 x′=−ax+β x³+u_act，再算 V′=x×x′；按这四项顺序返回。",
     "constraints": [
       "limit>0；参数和状态均为有限数值。"
     ],
@@ -1369,7 +1369,7 @@
         "unit": "U/T"
       }
     ],
-    "contract": "每次读取当前 x，先把 $-kx-cx^3$ 限幅为实际输入 u，再执行 $x_{\\rm next}=x+h(-ax+\\beta x^3+u)$。返回含初态的状态列表与各次实际输入列表；零次更新时保留初态、输入列表为空。",
+    "contract": "每次读取当前 x，先把 −kx−cx³ 限幅为实际输入 u，再执行 x_next=x+h(−ax+β x³+u)。返回含初态的状态列表与各次实际输入列表；零次更新时保留初态、输入列表为空。",
     "constraints": [
       "limit>0、h>0，0≤steps≤100；参数和初态有限，生成路径保持有限。"
     ],
@@ -1426,7 +1426,7 @@
     "chapter": "16.1",
     "lesson_id": "P16-C01-S02",
     "title": "比较扰动与执行上限",
-    "statement": "对给定偏差和执行上限计算请求、实际输入、$\\dot x$ 与 $\\dot V$，用实际作用保留当前点的变化方向。",
+    "statement": "对给定偏差和执行上限计算请求、实际输入、x′ 与 V′，用实际作用保留当前点的变化方向。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1485,7 +1485,7 @@
         "unit": "混合"
       }
     ],
-    "contract": "先算请求 $u_{\\rm req}=-kx-cx^3$，限幅到 [-limit,limit] 得实际输入。将实际输入代入 $\\dot x=-ax+\\beta x^3+u_{\\rm act}$，再算 $\\dot V=x\\dot x$；按这四项顺序返回。",
+    "contract": "先算请求 u_req=−kx−cx³，限幅到 [-limit,limit] 得实际输入。将实际输入代入 x′=−ax+β x³+u_act，再算 V′=x×x′；按这四项顺序返回。",
     "constraints": [
       "limit>0；参数和状态均为有限数值。"
     ],
@@ -1612,7 +1612,7 @@
         "unit": "U/T"
       }
     ],
-    "contract": "每次读取当前 x，先把 $-kx-cx^3$ 限幅为实际输入 u，再执行 $x_{\\rm next}=x+h(-ax+\\beta x^3+u)$。返回含初态的状态列表与各次实际输入列表；零次更新时保留初态、输入列表为空。",
+    "contract": "每次读取当前 x，先把 −kx−cx³ 限幅为实际输入 u，再执行 x_next=x+h(−ax+β x³+u)。返回含初态的状态列表与各次实际输入列表；零次更新时保留初态、输入列表为空。",
     "constraints": [
       "limit>0、h>0，0≤steps≤100；参数和初态有限，生成路径保持有限。"
     ],
@@ -1669,7 +1669,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S01",
     "title": "共同二次证书的顶点检查",
-    "statement": "给定闭环顶点与同一个候选 P，检查 $P\\succ0$ 及每个 $A^\\mathsf TP+PA\\prec0$，按规定顺序返回特征值与布尔结果。",
+    "statement": "给定闭环顶点与同一个候选 P，检查 P 为正定矩阵 及每个 AᵀP+PA 为负定矩阵，按规定顺序返回特征值与布尔结果。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1704,7 +1704,7 @@
         "unit": "混合"
       }
     ],
-    "contract": "先算 P 的最小特征值；对每个顶点 A，计算对称矩阵 $A^\\mathsf TP+PA$ 的最大特征值。仅当 P 最小特征值严格为正、全部导数矩阵最大特征值严格为负时，第三项返回 True，否则为 False。",
+    "contract": "先算 P 的最小特征值；对每个顶点 A，计算对称矩阵 AᵀP+PA 的最大特征值。仅当 P 最小特征值严格为正、全部导数矩阵最大特征值严格为负时，第三项返回 True，否则为 False。",
     "constraints": [
       "至少一个二维实矩阵顶点；P 为二维实对称候选矩阵；所有输入有限。"
     ],
@@ -1782,7 +1782,7 @@
     "chapter": "16.2",
     "lesson_id": "P16-C02-S01",
     "title": "构造区间内模型",
-    "statement": "按给定权重构造 $A(\\alpha)=(1-\\alpha)A_0+\\alpha A_1$，保留两个端点的行列顺序。",
+    "statement": "按给定权重构造 A(α)=(1−α)A₀+α A₁，保留两个端点的行列顺序。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -1927,7 +1927,7 @@
         "unit": "混合"
       }
     ],
-    "contract": "先算 P 的最小特征值；对每个顶点 A，计算对称矩阵 $A^\\mathsf TP+PA$ 的最大特征值。仅当 P 最小特征值严格为正、全部导数矩阵最大特征值严格为负时，第三项返回 True，否则为 False。",
+    "contract": "先算 P 的最小特征值；对每个顶点 A，计算对称矩阵 AᵀP+PA 的最大特征值。仅当 P 最小特征值严格为正、全部导数矩阵最大特征值严格为负时，第三项返回 True，否则为 False。",
     "constraints": [
       "至少一个二维实矩阵顶点；P 为二维实对称候选矩阵；所有输入有限。"
     ],
@@ -2678,7 +2678,7 @@
     "chapter": "16.4",
     "lesson_id": "P16-C04-S01",
     "title": "固定随机增量的 Euler–Maruyama",
-    "statement": "对稳态偏差的 OU 方程 $dX=-aX\\,dt+\\sigma\\,dW$，使用已给定布朗增量逐步执行 Euler–Maruyama，返回全部离散状态。",
+    "statement": "对稳态偏差的 OU 方程 dX=−a×X×dt+σ×dW，使用已给定布朗增量逐步执行 Euler–Maruyama，返回全部离散状态。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2919,7 +2919,7 @@
         "unit": "U²"
       }
     ],
-    "contract": "返回均值 $x_0e^{-at}$。当 a>0，方差为 $\\sigma^2(1-e^{-2at})/(2a)$；当 a=0，方差为 $\\sigma^2t$。结果依次为均值与方差。",
+    "contract": "返回均值 x₀×exp(−a×t)。当 a>0，方差为 σ²(1−exp(−2×a×t))/(2a)；当 a=0，方差为 σ²t。结果依次为均值与方差。",
     "constraints": [
       "a≥0、sigma≥0、time≥0；全部有限。"
     ],
@@ -3577,7 +3577,7 @@
         "unit": "奖励"
       }
     ],
-    "contract": "对每个状态 s，用 policy[s] 取转移行与奖励，组成 $P_\\pi$、$r_\\pi$。求解 $(I-\\gamma P_\\pi)V=r_\\pi$，按状态编号返回 V；不另行选择或训练策略。",
+    "contract": "对每个状态 s，用 policy[s] 取转移行与奖励，组成 Pπ、rπ。求解 (I−γ Pπ)V=rπ，按状态编号返回 V；不另行选择或训练策略。",
     "constraints": [
       "2—8 个状态，每状态1—4个动作；转移非负且每行和为1；policy 动作合法，0≤gamma<1。"
     ],
@@ -3693,7 +3693,7 @@
         "unit": "奖励"
       }
     ],
-    "contract": "对每个状态 s，用 policy[s] 取转移行与奖励，组成 $P_\\pi$、$r_\\pi$。求解 $(I-\\gamma P_\\pi)V=r_\\pi$，按状态编号返回 V；不另行选择或训练策略。",
+    "contract": "对每个状态 s，用 policy[s] 取转移行与奖励，组成 Pπ、rπ。求解 (I−γ Pπ)V=rπ，按状态编号返回 V；不另行选择或训练策略。",
     "constraints": [
       "2—8 个状态，每状态1—4个动作；转移非负且每行和为1；policy 动作合法，0≤gamma<1。"
     ],
@@ -4672,7 +4672,7 @@
         "unit": "混合"
       }
     ],
-    "contract": "先算 P 的最小特征值；对每个顶点 A，计算对称矩阵 $A^\\mathsf TP+PA$ 的最大特征值。仅当 P 最小特征值严格为正、全部导数矩阵最大特征值严格为负时，第三项返回 True，否则为 False。",
+    "contract": "先算 P 的最小特征值；对每个顶点 A，计算对称矩阵 AᵀP+PA 的最大特征值。仅当 P 最小特征值严格为正、全部导数矩阵最大特征值严格为负时，第三项返回 True，否则为 False。",
     "constraints": [
       "至少一个二维实矩阵顶点；P 为二维实对称候选矩阵；所有输入有限。"
     ],
@@ -4803,7 +4803,7 @@
         "unit": "U²"
       }
     ],
-    "contract": "返回均值 $x_0e^{-at}$。当 a>0，方差为 $\\sigma^2(1-e^{-2at})/(2a)$；当 a=0，方差为 $\\sigma^2t$。结果依次为均值与方差。",
+    "contract": "返回均值 x₀×exp(−a×t)。当 a>0，方差为 σ²(1−exp(−2×a×t))/(2a)；当 a=0，方差为 σ²t。结果依次为均值与方差。",
     "constraints": [
       "a≥0、sigma≥0、time≥0；全部有限。"
     ],
@@ -4896,7 +4896,7 @@
         "unit": "奖励"
       }
     ],
-    "contract": "对每个状态 s，用 policy[s] 取转移行与奖励，组成 $P_\\pi$、$r_\\pi$。求解 $(I-\\gamma P_\\pi)V=r_\\pi$，按状态编号返回 V；不另行选择或训练策略。",
+    "contract": "对每个状态 s，用 policy[s] 取转移行与奖励，组成 Pπ、rπ。求解 (I−γ Pπ)V=rπ，按状态编号返回 V；不另行选择或训练策略。",
     "constraints": [
       "2—8 个状态，每状态1—4个动作；转移非负且每行和为1；policy 动作合法，0≤gamma<1。"
     ],

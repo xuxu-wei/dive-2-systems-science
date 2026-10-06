@@ -4,7 +4,7 @@
     "chapter_id": "17.1",
     "number": "17.1.1",
     "title": "锁定 Lorenz 稀疏发现的主张",
-    "outcome": "从原论文给出可检验的方程发现问题，并标记课程缩减。",
+    "outcome": "从 Lorenz 初态代入三个导数，按十列二次字典展开状态，说明本次方程恢复要核对什么。",
     "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/01-锁定 Lorenz 稀疏发现的主张.ipynb",
     "visualization": "web/research-practice/index.html"
   },
@@ -13,7 +13,7 @@
     "chapter_id": "17.1",
     "number": "17.1.2",
     "title": "锁定 Neural ODE 任务与改编边界",
-    "outcome": "区分连续伴随方法、原论文潜变量螺旋实验和本课程二维缩减实验。",
+    "outcome": "用旋转与衰减建立解析螺旋，核对数值积分，并说明可见二维状态与原论文潜变量任务的区别。",
     "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/02-锁定 Neural ODE 任务与改编边界.ipynb",
     "visualization": "web/research-practice/index.html"
   },
@@ -22,7 +22,7 @@
     "chapter_id": "17.2",
     "number": "17.2.1",
     "title": "阈值最小二乘与独立 Lorenz 轨迹",
-    "outcome": "手写顺序阈值最小二乘，分别检查稀疏项和未参与拟合的初态。",
+    "outcome": "逐轮筛选并重拟合候选系数，核对七个非零项，再从独立初态比较短窗预测。",
     "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/01-阈值最小二乘与独立 Lorenz 轨迹.ipynb",
     "visualization": "web/research-practice/index.html"
   },
@@ -31,7 +31,7 @@
     "chapter_id": "17.2",
     "number": "17.2.2",
     "title": "连续伴随与公平外推基线",
-    "outcome": "在同一二维螺旋观测上核对伴随梯度、数值精度和机制基线。",
+    "outcome": "分清积分点与观测点，核对伴随梯度，并在同观测条件下比较四参数学习与线性基线。",
     "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/02-连续伴随与公平外推基线.ipynb",
     "visualization": "web/research-practice/index.html"
   },
@@ -40,7 +40,7 @@
     "chapter_id": "17.3",
     "number": "17.3.1",
     "title": "稀疏性与导数噪声的失效实验",
-    "outcome": "在同一轨迹上隔离稀疏阈值和导数噪声的影响。",
+    "outcome": "在同档导数噪声下比较两种阈值，分别读取残差和项数，区分拟合改善与结构恢复。",
     "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/01-稀疏性与导数噪声的失效实验.ipynb",
     "visualization": "web/research-practice/index.html"
   },
@@ -49,7 +49,7 @@
     "chapter_id": "17.3",
     "number": "17.3.2",
     "title": "伴随精度与模型消融",
-    "outcome": "改变数值步长及非线性项，识别训练改善和独立外推的边界。",
+    "outcome": "保持二十一个观测与候选参数固定，查看三档步长的影响，再解释固定模型的新初态反例。",
     "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/02-伴随精度与模型消融.ipynb",
     "visualization": "web/research-practice/index.html"
   },
@@ -58,7 +58,7 @@
     "chapter_id": "17.4",
     "number": "17.4.1",
     "title": "迁移到双室物质清除",
-    "outcome": "把稀疏发现迁到双室守恒模型，与同观测的机制基线比较。",
+    "outcome": "从双室逐项收支读出一阶系数表，解释交换抵消，并核对固定条件下的继续预测。",
     "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/01-迁移到双室物质清除.ipynb",
     "visualization": "web/research-practice/index.html"
   },
@@ -67,7 +67,7 @@
     "chapter_id": "17.4",
     "number": "17.4.2",
     "title": "共同指标、失败记录与结论边界",
-    "outcome": "用独立测试、守恒与失败记录写出证据能够支持的最窄结论。",
+    "outcome": "逐组计算配对差，分别报告误差、收支与失败；区分质量失败和没有有效输出的求解失败。",
     "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/02-共同指标、失败记录与结论边界.ipynb",
     "visualization": "web/research-practice/index.html"
   },
@@ -76,7 +76,7 @@
     "chapter_id": "17.summary",
     "number": "17.综合",
     "title": "从论文主张到有界复现证据",
-    "outcome": "把两个固定论文任务、课程缩减、独立参考、失败与生命系统迁移写成可复查的证据链。",
+    "outcome": "把论文任务、课程计算与迁移证据逐项连接，完成方程、配对统计及约束评价。",
     "path": "notebooks/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.ipynb",
     "visualization": null,
     "overview": {

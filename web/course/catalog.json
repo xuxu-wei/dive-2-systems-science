@@ -9663,14 +9663,15 @@
           "id": "17.1",
           "title": "研究问题与证据",
           "url": "/chapters/17-01-研究问题与证据/",
-          "goals": "把论文主张转成有明确假设、对象、指标和证据范围的可复现问题。",
-          "prerequisites": "9.5、13.4、14.5、15.5、16.7；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估。",
+          "goals": "把方程发现和轨迹学习的主张转成对象、候选表示与独立参照明确的问题。",
+          "prerequisites": "9.5、13.4、14.5、15.5、16.7；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
-            "固定原论文及版本，区分方法定义、原实验结论与作者解释",
-            "将原问题缩为普通 CPU 可运行的低维实验，声明缩减改变了哪些条件",
-            "形成主张、基线、数据和评价的对应表，区分原结果复现与课程改编"
+            "从 Lorenz 初态代入导数",
+            "按十列字典展开每行状态",
+            "从旋转和衰减建立解析螺旋",
+            "说明可见状态与潜变量表示的区别"
           ],
-          "focus": "把论文主张转成可计算的问题；明确训练数据、评价对象和课程复现实验的配置。",
+          "focus": "解释候选列和参数列表的顺序；把原论文任务与当前配置联系起来。",
           "available": true,
           "lessons": [
             {
@@ -9678,7 +9679,7 @@
               "chapter_id": "17.1",
               "number": "17.1.1",
               "title": "锁定 Lorenz 稀疏发现的主张",
-              "outcome": "从原论文给出可检验的方程发现问题，并标记课程缩减。",
+              "outcome": "从 Lorenz 初态代入三个导数，按十列二次字典展开状态，说明本次方程恢复要核对什么。",
               "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/01-锁定 Lorenz 稀疏发现的主张.ipynb",
               "visualization": "web/research-practice/index.html",
               "questions": [
@@ -9714,7 +9715,7 @@
               "chapter_id": "17.1",
               "number": "17.1.2",
               "title": "锁定 Neural ODE 任务与改编边界",
-              "outcome": "区分连续伴随方法、原论文潜变量螺旋实验和本课程二维缩减实验。",
+              "outcome": "用旋转与衰减建立解析螺旋，核对数值积分，并说明可见二维状态与原论文潜变量任务的区别。",
               "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/02-锁定 Neural ODE 任务与改编边界.ipynb",
               "visualization": "web/research-practice/index.html",
               "questions": [
@@ -9752,14 +9753,15 @@
           "id": "17.2",
           "title": "复现协议与公平基线",
           "url": "/chapters/17-02-复现协议与公平基线/",
-          "goals": "制定能运行且公平的复现协议，隔离训练和评估信息并记录计算预算。",
-          "prerequisites": "17.1；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、ODE 参数（parameter）前向灵敏度（forward sensitivity）、分部积分、伴随终值方程、参数梯度（gradient）积分与观测（observation）时刻跳跃。",
+          "goals": "实现筛选与伴随计算，在不参与选择的新初态上评价预测。",
+          "prerequisites": "17.1；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、ODE 参数前向灵敏度、分部积分、伴随终值方程、参数梯度积分与观测时刻跳跃。",
           "knowledge": [
-            "定义数据、轨迹（trajectory）和随机流的划分边界，固定方法输入（input）与调参资源",
-            "建立显式算法、成熟实现和简单机制基线的对应，核对允许的信息差异",
-            "记录环境、代码版本、参数、种子、重复次数和失败处理，先做最小核验再完整运行"
+            "手算直线的最小二乘系数",
+            "逐轮筛选、重拟合 Lorenz 字典",
+            "从另一初态预测",
+            "在共同带噪螺旋观测上训练四参数函数、估计线性基线并比较"
           ],
-          "focus": "为方法与基线提供相同信息和预算；用新初态和独立窗口比较预测。",
+          "focus": "分清观测点和积分点、局部梯度检查和测试误差；解释比较双方已知的信息。",
           "available": true,
           "lessons": [
             {
@@ -9767,7 +9769,7 @@
               "chapter_id": "17.2",
               "number": "17.2.1",
               "title": "阈值最小二乘与独立 Lorenz 轨迹",
-              "outcome": "手写顺序阈值最小二乘，分别检查稀疏项和未参与拟合的初态。",
+              "outcome": "逐轮筛选并重拟合候选系数，核对七个非零项，再从独立初态比较短窗预测。",
               "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/01-阈值最小二乘与独立 Lorenz 轨迹.ipynb",
               "visualization": "web/research-practice/index.html",
               "questions": [
@@ -9803,7 +9805,7 @@
               "chapter_id": "17.2",
               "number": "17.2.2",
               "title": "连续伴随与公平外推基线",
-              "outcome": "在同一二维螺旋观测上核对伴随梯度、数值精度和机制基线。",
+              "outcome": "分清积分点与观测点，核对伴随梯度，并在同观测条件下比较四参数学习与线性基线。",
               "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/02-连续伴随与公平外推基线.ipynb",
               "visualization": "web/research-practice/index.html",
               "questions": [
@@ -9841,14 +9843,15 @@
           "id": "17.3",
           "title": "消融、失效与结论边界",
           "url": "/chapters/17-03-消融、失效与结论边界/",
-          "goals": "通过消融、重复和失效实验定位效果来源，区分统计波动与可支持的机制解释。",
-          "prerequisites": "17.2；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估。",
+          "goals": "保持其他条件相同，分别解释导数噪声、阈值及积分网格造成的变化。",
+          "prerequisites": "17.2；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
-            "预先确定消融因素、配对场景和评价量，保持其他条件可比",
-            "比较重复效果差和不确定性，保留全部失败与未复现结果",
-            "分别排查模型（model）、数值、优化、数据和评价差异，并限定原因解释的强度"
+            "对同一状态与字典添加三档导数噪声",
+            "每档比较两种阈值",
+            "固定二十一个螺旋观测与候选参数，细化积分步长",
+            "从新初态核对预设模型"
           ],
-          "focus": "通过消融和成对重复定位效果来源；同时报告误差差异、随机波动和失败情况。",
+          "focus": "区分残差与结构恢复、积分网格与测量数据、固定参数对照与重新训练。",
           "available": true,
           "lessons": [
             {
@@ -9856,7 +9859,7 @@
               "chapter_id": "17.3",
               "number": "17.3.1",
               "title": "稀疏性与导数噪声的失效实验",
-              "outcome": "在同一轨迹上隔离稀疏阈值和导数噪声的影响。",
+              "outcome": "在同档导数噪声下比较两种阈值，分别读取残差和项数，区分拟合改善与结构恢复。",
               "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/01-稀疏性与导数噪声的失效实验.ipynb",
               "visualization": "web/research-practice/index.html",
               "questions": [
@@ -9892,7 +9895,7 @@
               "chapter_id": "17.3",
               "number": "17.3.2",
               "title": "伴随精度与模型消融",
-              "outcome": "改变数值步长及非线性项，识别训练改善和独立外推的边界。",
+              "outcome": "保持二十一个观测与候选参数固定，查看三档步长的影响，再解释固定模型的新初态反例。",
               "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/02-伴随精度与模型消融.ipynb",
               "visualization": "web/research-practice/index.html",
               "questions": [
@@ -9930,14 +9933,15 @@
           "id": "17.4",
           "title": "研究方法综合比较",
           "url": "/chapters/17-04-研究方法综合比较/",
-          "goals": "把机制、推断和学习结果组织为可追溯比较，在新条件下判断结论仍成立的范围。",
-          "prerequisites": "17.3；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估、神经网络（neural network）、计算图（computational graph）、自动微分（automatic differentiation，AD）与反向传播（backpropagation）。",
+          "goals": "把方法迁移到双室收支，并用逐组误差和失败记录解释比较。",
+          "prerequisites": "17.3；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估、神经网络、计算图、自动微分与反向传播。",
           "knowledge": [
-            "以三组贯穿案例整理观测（observation）条件、状态（state）/参数（parameter）问题及可选择的方法",
-            "连接独立评估、预算、失效与不确定性，分别给出可以和不能支持的结论",
-            "结合可运行实例，完成研究过程与结果解释的综合练习"
+            "逐室计算输入、交换与清除",
+            "按一阶字典恢复系数",
+            "在两个状态上核对交换抵消",
+            "手算配对差并汇总五组给定结果"
           ],
-          "focus": "将机制、推断和学习方法用于同一双室问题；通过新条件和收支（mass balance）核对解释方法差异。",
+          "focus": "读清一阶系数表的行列；区分质量失败与无有效输出时的统计处理。",
           "available": true,
           "lessons": [
             {
@@ -9945,7 +9949,7 @@
               "chapter_id": "17.4",
               "number": "17.4.1",
               "title": "迁移到双室物质清除",
-              "outcome": "把稀疏发现迁到双室守恒模型，与同观测的机制基线比较。",
+              "outcome": "从双室逐项收支读出一阶系数表，解释交换抵消，并核对固定条件下的继续预测。",
               "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/01-迁移到双室物质清除.ipynb",
               "visualization": "web/research-practice/index.html",
               "questions": [
@@ -9981,7 +9985,7 @@
               "chapter_id": "17.4",
               "number": "17.4.2",
               "title": "共同指标、失败记录与结论边界",
-              "outcome": "用独立测试、守恒与失败记录写出证据能够支持的最窄结论。",
+              "outcome": "逐组计算配对差，分别报告误差、收支与失败；区分质量失败和没有有效输出的求解失败。",
               "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/02-共同指标、失败记录与结论边界.ipynb",
               "visualization": "web/research-practice/index.html",
               "questions": [
@@ -10023,12 +10027,12 @@
         "url": "/parts/17-研究复现与综合实践/综合练习/",
         "goals": "从论文主张出发组织实验，用基线、消融和新条件检验方法。",
         "prerequisites": "本篇 17.1—17.4；第 14—16 篇相关方法。",
-        "focus": "连接任务配置、实际计算与评价结果，区分算法误差和模型（model）失配。",
+        "focus": "连接任务配置、实际计算与评价结果，区分算法误差和模型失配。",
         "knowledge": [
           "论文版本与实验配置",
           "SINDy 与连续伴随",
           "基线和失效",
-          "双室迁移与收支（mass balance）核对"
+          "双室迁移与收支核对"
         ],
         "lessons": [
           {
@@ -10036,7 +10040,7 @@
             "chapter_id": "17.summary",
             "number": "17.综合",
             "title": "从论文主张到有界复现证据",
-            "outcome": "把两个固定论文任务、课程缩减、独立参考、失败与生命系统迁移写成可复查的证据链。",
+            "outcome": "把论文任务、课程计算与迁移证据逐项连接，完成方程、配对统计及约束评价。",
             "path": "notebooks/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.ipynb",
             "visualization": null,
             "overview": {

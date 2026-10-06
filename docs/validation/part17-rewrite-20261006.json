@@ -1,0 +1,1288 @@
+{
+  "date": "2026-10-06",
+  "baseline": "ab0c8c2e9f87a47f80a0122bdc4b26e6ec1b9874",
+  "scope": "Part17 teaching and specified Part16 sentence deletions, Part15/16 source math display cleanup and synchronized exercise tails. Pending unified user acceptance.",
+  "notebooks": [
+    {
+      "id": "P17-C01-S01",
+      "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/01-锁定 Lorenz 稀疏发现的主张.ipynb",
+      "sha256": "22bd111230933af4763bc95c5223fa876da38a36c61eac183189a5761d7040d6",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "909006ff9ed0840bc40b56d0136be7802ec56f01c071482bd1801343b9c3948e"
+    },
+    {
+      "id": "P17-C01-S02",
+      "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/02-锁定 Neural ODE 任务与改编边界.ipynb",
+      "sha256": "78528cbc666460f91210f9263ad9ecdf135084f9db6b5cb309b4ba5ea2fa6371",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "38bd0a710568729db729fe688cdae626aefd8b82dde0aaa64b110e3ac7aec6bd"
+    },
+    {
+      "id": "P17-C02-S01",
+      "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/01-阈值最小二乘与独立 Lorenz 轨迹.ipynb",
+      "sha256": "756eed00911ee96373507ae63991de4977d3fec28f73cd7e85bdb3355c28ac69",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "d627918f00dbea2eb8c312bc0d7489b82f0df7368a3945093b3a4f9e8d81c5fc"
+    },
+    {
+      "id": "P17-C02-S02",
+      "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/02-连续伴随与公平外推基线.ipynb",
+      "sha256": "fb8067cbe06daf79115df0762043b48881be267e4df8e7dd6d1f9448146b5927",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "5bf3eb060422a6af47792e37fc7a8b23c88cc7f81631932166f7f97f25ecb7fd"
+    },
+    {
+      "id": "P17-C03-S01",
+      "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/01-稀疏性与导数噪声的失效实验.ipynb",
+      "sha256": "543528580ea8a4a037ca0bb2cea48fb443bc8f4eb0763761dc8bebf750aec2bb",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "79d05d792da57fb622933c06689701e008b54fdca4ecb64790f3ac5dff0a362a"
+    },
+    {
+      "id": "P17-C03-S02",
+      "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/02-伴随精度与模型消融.ipynb",
+      "sha256": "62d9a8b0b56902417ec26e0927a066e09a87556656781154120e842edf267e3e",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "5e18c39ec3603adafa19638a070b898b1cd364594c11326f8982d339592205ab"
+    },
+    {
+      "id": "P17-C04-S01",
+      "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/01-迁移到双室物质清除.ipynb",
+      "sha256": "112f1bd5d15033f0db4d877be42523f55a4841145c1b06b1bbe78f25193905f5",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "1750000424edf97f004ec7cc14be876e7c7c3791ec174ec5295d26197e41bd73"
+    },
+    {
+      "id": "P17-C04-S02",
+      "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/02-共同指标、失败记录与结论边界.ipynb",
+      "sha256": "f9280aac3e17661731b87561e1e02da56e581fee52ba9bf90cdc53b36aca5246",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "0b8db27f3e3b28524bd57805afa74446a710a64f1a17d3f136b1cdeb68287020"
+    },
+    {
+      "id": "P17-SUMMARY",
+      "path": "notebooks/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.ipynb",
+      "sha256": "45d9f696a03a1adad158ff7a36a06464b47cc3b80315e841bde5ec23b759929b",
+      "changed_markdown_cells": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "code_cells_unchanged": 6,
+      "code_and_output_sha256": "ba4573e64faa52935a0cd888dd8c3038e33dfae33a630442b0d7f1efd94b133c"
+    }
+  ],
+  "questions": {
+    "reviewed": 40,
+    "choice": 21,
+    "python": 19,
+    "wording_changed": 40,
+    "explanation_changed": 40,
+    "identities_versions_titles_option_order_answers_signatures_units_samples_cases_solutions_assessment_preserved": true,
+    "numeric_constraints_preserved": true
+  },
+  "display_cleanup": {
+    "parts2_to14_scanned": true,
+    "parts2_to14_source_edits_needed": false,
+    "changed_source_files": [
+      "exercises/15-可微分建模与机制融合/questions.json",
+      "exercises/15-可微分建模与机制融合/verification.json",
+      "exercises/16-自适应、鲁棒与学习控制/questions.json",
+      "exercises/16-自适应、鲁棒与学习控制/verification.json"
+    ],
+    "expression_mappings": {
+      "x": "x",
+      "w,b,v,c": "w,b,v,c",
+      "z=wx+b": "z=wx+b",
+      "a=\\tanh z": "a=tanh(z)",
+      "\\hat{y}=va+c": "ŷ=va+c",
+      "y": "y",
+      "L=(\\hat{y}-y)^2/2": "L=(ŷ−y)²/2",
+      "z": "z",
+      "\\hat{y}": "ŷ",
+      "a": "a",
+      "L": "L",
+      "\\operatorname{ReLU}(z)=\\max(0,z)": "ReLU(z)=max(0,z)",
+      "z=0": "z=0",
+      "[\\operatorname{ReLU}(h)-\\operatorname{ReLU}(-h)]/(2h)": "[ReLU(h)−ReLU(−h)]/(2h)",
+      "h>0": "h>0",
+      "J": "J",
+      "h": "h",
+      "J_h": "J_h",
+      "x(0)=x_0": "x(0)=x₀",
+      "x_0": "x₀",
+      "k": "k",
+      "s(t)=\\partial x(t)/\\partial k": "s(t)=∂x(t)/∂k",
+      "s(0)=0": "s(0)=0",
+      "s(0)=x_0": "s(0)=x₀",
+      "s(0)=-kx_0": "s(0)=−kx₀",
+      "s(0)=1": "s(0)=1",
+      "t_j": "tⱼ",
+      "y_j": "yⱼ",
+      "J=\\frac12\\sum_j[x(t_j)-y_j]^2": "J=(1/2)∑ⱼ[x(tⱼ)−yⱼ]²",
+      "\\lambda": "λ",
+      "t_j^-": "tⱼ⁻",
+      "t_j^+": "tⱼ⁺",
+      "\\lambda(t_j^-)": "λ(tⱼ⁻)",
+      "\\lambda(t_j^+)": "λ(tⱼ⁺)",
+      "[x(t_j)-y_j]^2": "[x(tⱼ)−yⱼ]²",
+      "h[x(t_j)-y_j]": "h[x(tⱼ)−yⱼ]",
+      "-[x(t_j)-y_j]": "−[x(tⱼ)−yⱼ]",
+      "x(t_j)-y_j": "x(tⱼ)−yⱼ",
+      "dx/dt=-kx": "dx/dt=−kx",
+      "k>0": "k>0",
+      "-h": "−h",
+      "0<hk<1": "0<hk<1",
+      "1-h^2k^2": "1−h²k²",
+      "(1-h^2k^2)x": "(1−h²k²)x",
+      "1+h^2k^2": "1+h²k²",
+      "(1+h^2k^2)x": "(1+h²k²)x",
+      "1-hk": "1−hk",
+      "(1-hk)^2x": "(1−hk)²x",
+      "\\hat y=v\\tanh(wx+b)+c": "ŷ=v×tanh(wx+b)+c",
+      "1\\,U": "1 U",
+      "x_{\\mathrm{phys}}": "x_phys",
+      "wx": "wx",
+      "\\tanh(wx+b)": "tanh(wx+b)",
+      "\\hat y=v\\tanh z+c": "ŷ=v×tanh(z)+c",
+      "L=(\\hat y-y)^2/2": "L=(ŷ−y)²/2",
+      "[\\partial_wL,\\partial_bL,\\partial_vL,\\partial_cL]": "[∂L/∂w, ∂L/∂b, ∂L/∂v, ∂L/∂c]",
+      "a=\\tanh(wx+b)": "a=tanh(wx+b)",
+      "e=va+c-y": "e=va+c−y",
+      "(va+c,\\ e^2/2,\\ [ev(1-a^2)x,\\ ev(1-a^2),\\ ea,\\ e])": "(va+c, e²/2, [ev(1−a²)x, ev(1−a²), ea, e])",
+      "\\hat y=va+c": "ŷ=va+c",
+      "(\\hat y,L,[\\partial_wL,\\partial_bL,\\partial_vL,\\partial_cL])": "(ŷ, L, [∂L/∂w, ∂L/∂b, ∂L/∂v, ∂L/∂c])",
+      "L=[v\\tanh(wx+b)+c-y]^2/2": "L=[v×tanh(wx+b)+c−y]²/2",
+      "p": "p",
+      "[L(p+h)-L(p-h)]/(2h)": "[L(p+h)−L(p−h)]/(2h)",
+      "F(x,u)=ax+bu+q\\tanh(x/(1\\,U))": "F(x,u)=ax+bu+q×tanh(x/(1 U))",
+      "u": "u",
+      "x_{n+1}=ax_n+bu_n+q\\tanh(x_n/(1\\,U))": "x[n+1]=ax[n]+bu[n]+q×tanh(x[n]/(1 U))",
+      "d_n=\\mathrm{prediction}[n]-\\mathrm{truth}[n]": "d[n]=prediction[n]−truth[n]",
+      "n=1,\\ldots,H": "n=1,…,H",
+      "[H^{-1}\\sum_{n=1}^H d_n^2,\\ |d_H|]": "[从 n=1 到 H 的 d[n]² 之和除以 H, |d[H]|]",
+      "k\\ge0": "k≥0",
+      "t": "t",
+      "x(t)=x_0e^{-kt}": "x(t)=x₀×exp(−k×t)",
+      "s_n=\\partial x_n/\\partial k": "s[n]=∂x[n]/∂k",
+      "x=x_0,s=0": "x=x₀,s=0",
+      "x_{\\mathrm{new}}=(1-kh)x": "x_new=(1−kh)x",
+      "s_{\\mathrm{new}}=(1-kh)s-hx": "s_new=(1−kh)s−hx",
+      "x=x_0e^{-kt}": "x=x₀×exp(−k×t)",
+      "r=x-y": "r=x−y",
+      "(\\sum r^2/2,\\ \\sum r(-tx))": "(∑(r²)/2, ∑(r×(−t×x)))",
+      "\\partial x(t)/\\partial k=-t x(t)": "∂x(t)/∂k=−t×x(t)",
+      "x_{n+1}=(1-kh)x_n": "x[n+1]=(1−kh)x[n]",
+      "r_n=x_n-y_n": "r_n=x[n]−y[n]",
+      "J_h=\\frac12\\sum_{\\text{观测下标 }n}r_n^2": "J_h=(1/2)∑（有观测的下标 n）r[n]²",
+      "\\partial J_h/\\partial k": "∂J_h/∂k",
+      "-h x_{n-1}\\lambda_n": "−h x[n−1]λ[n]",
+      "1-kh": "1−kh",
+      "U_0": "U₀",
+      "\\tau_0": "τ₀",
+      "U_0^2": "U₀²",
+      "(U_0/\\tau_0)^2": "(U₀/τ₀)²",
+      "x\\in[0,1]": "x∈[0,1]",
+      "\\partial_t\\phi=D\\partial_{xx}\\phi": "∂φ/∂t=D×∂²φ/∂x²",
+      "\\phi=e^{-D\\pi^2t}\\cos(\\pi x)+sx": "φ=exp(−D×π²×t)×cos(π×x)+sx",
+      "s\\ne0": "s≠0",
+      "\\partial_t\\phi-D\\partial_{xx}\\phi": "∂φ/∂t−D×∂²φ/∂x²",
+      "s": "s",
+      "\\dot x=u-kx+\\theta\\tanh(x/s)": "x′=u−kx+θ×tanh(x/s)",
+      "kx": "kx",
+      "s>0": "s>0",
+      "\\theta=0": "θ=0",
+      "u-kx": "u−kx",
+      "-kx": "−kx",
+      "\\dot x=u(t)-(k-\\theta)x": "x′=u(t)−(k−θ)x",
+      "u(t)": "u(t)",
+      "x(t)": "x(t)",
+      "\\theta": "θ",
+      "\\phi(t)=c+v\\tanh(wt+b)": "φ(t)=c+v×tanh(wt+b)",
+      "wt+b": "wt+b",
+      "a=\\tanh(wt+b)": "a=tanh(wt+b)",
+      "(c+va,\\ vw(1-a^2))": "(c+va, vw(1−a²))",
+      "w": "w",
+      "\\phi^\\prime=-k\\phi": "φ′=−kφ",
+      "\\phi,\\phi^\\prime": "φ,φ′",
+      "(\\phi-\\mathrm{observed})^2": "(φ−observed)²",
+      "(\\phi^\\prime+k\\phi)^2": "(φ′+kφ)²",
+      "[\\phi(0)-\\mathrm{initial}]^2": "[φ(0)−initial]²",
+      "\\phi(x,t)=e^{-rt}\\cos(\\pi x)+sx": "φ(x,t)=exp(−r×t)×cos(π×x)+sx",
+      "1\\,U/V": "1 U/V",
+      "\\partial_x\\phi=0": "∂φ/∂x=0",
+      "(D\\pi^2-r)e^{-rt}\\cos(\\pi x)": "(Dπ²−r)exp(−r×t)×cos(π×x)",
+      "(s^2+s^2)/2=s^2": "(s²+s²)/2=s²",
+      "sx": "sx",
+      "u-(k-\\theta)x": "u−(k−θ)x",
+      "p_i=w_i/\\sum_jw_j": "p[i]=w[i]/∑ⱼw[j]",
+      "\\bar x=\\sum_i p_i x_i": "x̄=∑ᵢp[i]×x[i]",
+      "V=\\sum_i p_i(x_i-\\bar x)^2": "V=∑ᵢp[i]×(x[i]−x̄)²",
+      "[\\bar x,V]": "[x̄,V]",
+      "\\dot x=u-(k-\\theta)x": "x′=u−(k−θ)x",
+      "k-\\theta": "k−θ",
+      "x\\ne0": "x≠0",
+      "(va+c,e^2/2,[ev(1-a^2)x,ev(1-a^2),ea,e])": "(va+c,e²/2,[ev(1−a²)x,ev(1−a²),ea,e])",
+      "x^\\prime=-kx": "x′=−kx",
+      "x,s": "x,s",
+      "\\sum_{i=0}^2 w_i\\,\\mathrm{parts}[i]/\\mathrm{scale}[i]^2": "从 i=0 到 2 求和：w[i]×parts[i]/scale[i]²",
+      "[H^{-1}\\sum d_n^2,\\ |d_H|]": "[从 n=1 到 H 的 d[n]² 之和除以 H, |d[H]|]",
+      "\\dot x=u-kx+\\theta x": "x′=u−kx+θ x",
+      "\\theta x": "θ x",
+      "s(0)=\\partial x_0/\\partial k": "s(0)=∂x₀/∂k",
+      "-kx_0": "−kx₀",
+      "\\frac12[x(t_j)-y_j]^2": "(1/2)[x(tⱼ)−yⱼ]²",
+      "x(t_j)": "x(tⱼ)",
+      "1+hk": "1+hk",
+      "(1+hk)(1-hk)x=(1-h^2k^2)x": "(1+hk)(1−hk)x=(1−h²k²)x",
+      "e": "e",
+      "ev(1-a^2)": "ev(1−a²)",
+      "w,b": "w,b",
+      "v,c": "v,c",
+      "ea,e": "ea,e",
+      "L=e\\cdot e/2": "L=e× e/2",
+      "e/2": "e/2",
+      "-hx_n": "−hx[n]",
+      "(1-kh)s_n": "(1−kh)s[n]",
+      "(k,\\theta)\\mapsto(k+\\delta,\\theta+\\delta)": "(k,θ) → (k+δ,θ+δ)",
+      "V=x^2/2": "V=x²/2",
+      "\\dot V=-(a+k)x^2+(\\beta-c)x^4": "V′=−(a+k)x²+(β−c)x⁴",
+      "a+k>0": "a+k>0",
+      "\\beta>0": "β>0",
+      "x_0=0.3": "x₀=0.3",
+      "V=x^\\mathsf TPx": "V=xᵀPx",
+      "A_i^\\mathsf TP+PA_i": "AᵢᵀP+PAᵢ",
+      "\\dot x=Ax": "x′=Ax",
+      "A^\\mathsf TP+PA": "AᵀP+PA",
+      "\\phi=0": "φ=0",
+      "0<\\lambda\\le1": "0<λ≤1",
+      "y_n": "y[n]",
+      "\\phi_n": "φ[n]",
+      "\\hat a_n": "â[n]",
+      "y_n-\\phi_n\\hat a_{n+1}": "y[n]−φ[n]â[n+1]",
+      "y_{n+1}-\\phi_n\\hat a_n": "y[n+1]−φ[n]â[n]",
+      "y_n-\\phi_n\\hat a_n": "y[n]−φ[n]â[n]",
+      "\\phi_n-y_n\\hat a_n": "φ[n]−y[n]â[n]",
+      "x_n": "x[n]",
+      "u_n": "u[n]",
+      "\\hat a": "â",
+      "x^+=(I-hL)x": "x⁺=(I−hL)x",
+      "\\mathbf1": "1（所有分量为 1 的向量）",
+      "x_{n+1}=x_n-hLx_{n-d}": "x[n+1]=x[n]−hLx[n−d]",
+      "d>0": "d>0",
+      "hLx_n": "hLx[n]",
+      "x_{n-d}": "x[n−d]",
+      "hLx_{n-d}": "hLx[n−d]",
+      "hLx_{n+1}": "hLx[n+1]",
+      "0<h<2/\\lambda_{\\max}(L)": "0<h<2/λmax(L)",
+      "0<\\gamma<1": "0<γ<1",
+      "\\pi": "π",
+      "V^\\pi": "V^π",
+      "u_{\\rm req}=-kx-cx^3": "u_req=−kx−cx³",
+      "\\dot x=-ax+\\beta x^3+u_{\\rm act}": "x′=−ax+β x³+u_act",
+      "\\dot V=x\\dot x": "V′=x×x′",
+      "-kx-cx^3": "−kx−cx³",
+      "x_{\\rm next}=x+h(-ax+\\beta x^3+u)": "x_next=x+h(−ax+β x³+u)",
+      "\\dot x": "x′",
+      "\\dot V": "V′",
+      "P\\succ0": "P 为正定矩阵",
+      "A^\\mathsf TP+PA\\prec0": "AᵀP+PA 为负定矩阵",
+      "A(\\alpha)=(1-\\alpha)A_0+\\alpha A_1": "A(α)=(1−α)A₀+α A₁",
+      "dX=-aX\\,dt+\\sigma\\,dW": "dX=−a×X×dt+σ×dW",
+      "x_0e^{-at}": "x₀×exp(−a×t)",
+      "\\sigma^2(1-e^{-2at})/(2a)": "σ²(1−exp(−2×a×t))/(2a)",
+      "\\sigma^2t": "σ²t",
+      "P_\\pi": "Pπ",
+      "r_\\pi": "rπ",
+      "(I-\\gamma P_\\pi)V=r_\\pi": "(I−γ Pπ)V=rπ",
+      "x^4\\ge0": "x⁴≥0",
+      "\\beta-c\\le0": "β−c≤0",
+      "c\\ge\\beta": "c≥β",
+      "c<\\beta": "c<β",
+      "c\\le-\\beta": "c≤−β",
+      "\\beta-c>0": "β−c>0",
+      "0<c<\\beta": "0<c<β",
+      "\\phi": "φ",
+      "P_{\\rm new}=P/\\lambda": "P_new=P/λ",
+      "y_n=a\\phi_n": "y[n]=aφ[n]",
+      "h^2": "h²",
+      "\\sqrt h": "sqrt(h)",
+      "(\\sqrt h)^2=h": "(sqrt(h))²=h",
+      "1/h^2": "1/h²",
+      "-h\\mathbf1^\\mathsf TLx=0": "−h×1ᵀLx=0",
+      "L\\mathbf1=0": "L1=0"
+    },
+    "questions": [
+      {
+        "part": 15,
+        "questions_with_math_display_changed": 36,
+        "ids": [
+          "p15-graph-order",
+          "p15-nonsmooth",
+          "p15-two-gradients",
+          "p15-sensitivity-initial",
+          "p15-adjoint-jump",
+          "p15-reverse-state",
+          "p15-network-value",
+          "p15-network-loss-gradient",
+          "p15-reverse-graph",
+          "p15-difference-check",
+          "p15-fixed-map",
+          "p15-teacher-forced",
+          "p15-free-rollout",
+          "p15-rollout-error",
+          "p15-exact-decay",
+          "p15-euler-sensitivity",
+          "p15-continuous-gradient",
+          "p15-discrete-adjoint",
+          "p15-loss-unit",
+          "p15-boundary-needed",
+          "p15-zero-correction",
+          "p15-confounding-input",
+          "p15-trial-derivative",
+          "p15-ode-loss-parts",
+          "p15-diffusion-profile",
+          "p15-diffusion-residual",
+          "p15-hybrid-right-side",
+          "p15-hybrid-steps",
+          "p15-indistinguishable-rate",
+          "p15-candidate-moments",
+          "p15-capstone-identifiability",
+          "p15-capstone-small-gradient",
+          "p15-capstone-forward-gradient",
+          "p15-capstone-scaled-loss",
+          "p15-capstone-independent-error",
+          "p15-capstone-hybrid-ablation"
+        ]
+      },
+      {
+        "part": 16,
+        "questions_with_math_display_changed": 29,
+        "ids": [
+          "p16-lyapunov-actual",
+          "p16-cubic-condition",
+          "p16-saturated-global",
+          "p16-common-p",
+          "p16-vertex-scope",
+          "p16-certificate-failure",
+          "p16-zero-excitation",
+          "p16-rls-order",
+          "p16-no-lookahead",
+          "p16-tracking-not-id",
+          "p16-symmetric-average",
+          "p16-delay-formula",
+          "p16-delay-condition",
+          "p16-terminal-reward",
+          "p16-policy-vs-learning",
+          "p16-actual-lyapunov",
+          "p16-feedback-path",
+          "p16-saturation-boundary",
+          "p16-region-path",
+          "p16-common-certificate",
+          "p16-affine-model",
+          "p16-certificate-counterexample",
+          "p16-em-increments",
+          "p16-ou-moments",
+          "p16-policy-bellman",
+          "p16-policy-compare",
+          "p16-capstone-certificate",
+          "p16-capstone-stochastic",
+          "p16-capstone-policy"
+        ]
+      }
+    ],
+    "notebook_tails": [
+      {
+        "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb",
+        "sha256": "baa9eef5b2db55ac8a2370784cfd2a09b8b927722244d5a8cdc908f3c32b894a",
+        "changed_markdown_cells": [
+          17
+        ],
+        "code_cells_unchanged": 7,
+        "code_and_output_sha256": "5915bbcb2e5058a88f59f28d1221ea27abd1a1bf6939d5c8238001200fd50bae"
+      },
+      {
+        "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.ipynb",
+        "sha256": "58898b28864cb7506921881009618b126f04a8a91f6a974b213a19173c3e18ec",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "b24cf7228d1f3f1b3d5739ab335c8f0e0a6ba2356db2dc64ab78e747ceb66922"
+      },
+      {
+        "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.ipynb",
+        "sha256": "edf650c503ca9564a9144bcf4cab587473ab72df055540c9a0f47eafc3b901f3",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "a41c9a5c83a302c67812d67c8fd845a28f5f70fa133142cae81b170deb6facc5"
+      },
+      {
+        "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.ipynb",
+        "sha256": "deee3798d677c454c8e2330aed324d83f7279f3406be0da6449fbcb6964330b9",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "45182717a254dd9b000eb1f6e975f51f3bf8dbdb6760c6ed60cccc4840d5ca01"
+      },
+      {
+        "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb",
+        "sha256": "7de6f3ecc0ef5ed0a56c54a94441cbc852447c2002b5bed144f0077d3151372c",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "d200eee89132be78acd5ade36a3417d3b40cf36e1d69540361e187d64b4aef5b"
+      },
+      {
+        "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.ipynb",
+        "sha256": "903f0403f4bfa3079c2207e3c2801d47ce02a0fee22cf12fbdfa672edc039ef1",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "1059a82fa865442ba1be2d0207732396ce977dc794a068481e34b0e80ff1743f"
+      },
+      {
+        "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.ipynb",
+        "sha256": "dd1205df28e8ad47e7a3bc81d8a1953124bbf4b8d88f9279735e63ab0281d82b",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "499ee3b5d3b679cf4a13def7ce1db59ae856f6bd43c5f457bf3258b7567ea3f8"
+      },
+      {
+        "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.ipynb",
+        "sha256": "19718efe9dd40db00f788a9fc9f82ad7f0cd3483cbaef55b41e954f7916ccea7",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "cb702559a26bc94346e647aee3fc88e6019acaca1b19325279fc6659a6e4e2a5"
+      },
+      {
+        "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.ipynb",
+        "sha256": "b551c5a9f0aa2767e48b7415c55877e55e90f29bdd5914a28bfd7a2f82cec97b",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "f1aa75f0744efd2b76a50a78a0708f04d6850498a5cede95bf920e3e559a81c1"
+      },
+      {
+        "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.ipynb",
+        "sha256": "d9cdf6f661d514e8cf603a098d1f6fabcb34fea265e0c7c1f5a7a00801c9438d",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "28ba444e6b37c36e59ad0099e1c8f6d377b37148b9054b7a16d4bcf36d721be9"
+      },
+      {
+        "path": "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb",
+        "sha256": "6a60f051bce839d9eb2b06a1290e484c68cc0d9437986e4a11a390778c74d1ac",
+        "changed_markdown_cells": [
+          15
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "41e08600274c638c0130e9ccd8a773a01b16ce50c683d69ad2d1154950dd696c"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/01-非线性反馈与能量下降.ipynb",
+        "sha256": "1bb17eba8a6c34b1c1e25299e2c76e827427e777e7149c8fe96c3c59ac42bc5d",
+        "changed_markdown_cells": [
+          2,
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "b015855b5e3ffd710aee62903847319c9465fb6256679a12b361ddf098a9d146"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/02-执行饱和、初值与适用域.ipynb",
+        "sha256": "95b02680caa6ff14aa2185c150ffab2dffcfa572916f182341d9578f51dbc5fd",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "77f3c2091aecfc8011e808967912768f03cda40ca710f9242e9c2c52897b7dbc"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/01-共同 Lyapunov 矩阵与顶点条件.ipynb",
+        "sha256": "6a19c085c1a700e19314ea0dca96df9705e92c0c584cb6cf2203a79855a8fe24",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "5a93b0a62248ee34308f5a11ec9a42b52f34b5a4267b249c4a3f03c103596ef9"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/02-集合外失效与鲁棒证据边界.ipynb",
+        "sha256": "26906ed6bcf3c0f08f3881d82bad684bfff4a7caeb9ae8dc99d26afe01d083f2",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "9fa0f7f1c1a227f052ccc85e4ca3da73240026fcbc582aa4b544c3bb8c002bfe"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/01-递推估计、投影与激励.ipynb",
+        "sha256": "a07c50e1ece3e7abfec4b9c7f76cccf79b58e293452f6c6b0f5eeee629b84d74",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "f472cb4e5e4ef9f4097ff5263339bea4b5472f88046feadbe6d4a7c5ad6eabdf"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/02-估计进入控制的时间顺序.ipynb",
+        "sha256": "cf6fd955753f62f59e159860508e547cd94a983fbbb00d9aab1526280431278c",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "c3c8f4fa304066d148b37384a401565b300f257bef668ed9d6f8d23c8c427484"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/01-布朗增量与 Euler–Maruyama.ipynb",
+        "sha256": "4f0a5aae1c6850dc7fd84858ddccf7a60b94c971df0bafa70f745282484b5ce9",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "e0c4e18554f54f96245614bcf0ad7a5cadc2f539f5ec8053cb44fd15755e825e"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/02-路径误差、分布统计与风险.ipynb",
+        "sha256": "2880b1b535e9caa741471c7587774df7595d426b11ccdf9b35fdfa18b5ecc209",
+        "changed_markdown_cells": [
+          2,
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "986b6c17a136f9bfe535dff17efcb321f67b3a5467300013bb451f3df171ec03"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/01-局部通信与平均一致.ipynb",
+        "sha256": "c830b48e8f28408770ed16408659219b67ab58c8aab0e2be98e98a2d8dec3d33",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "a2b78748981ba3434762bef2a0c96acc10d4d2be66ac9a0ace4de38260a69785"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/02-通信延迟、步长与稳定边界.ipynb",
+        "sha256": "cc5d205e683fe7965366ee09cfc31c1470b186e9755f93a5880f99ba63f1db8a",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "31270fab0905a37c88a6571818a1e5381eca3c81a9b30413fc33dc928986b942"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/01-有限决策过程与策略评价.ipynb",
+        "sha256": "5fdb1f10bad441634da54163113db7047c63d3374f5f63963824b50c4af3e142",
+        "changed_markdown_cells": [
+          16
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "14e13470f7222d6549c94aa157b9387e1c66694f9e92cb9fbe2ccda0fb17efb2"
+      },
+      {
+        "path": "notebooks/16-自适应、鲁棒与学习控制/99-篇末综合/01-不确定条件下的闭环证据链.ipynb",
+        "sha256": "67f1b47451624543632b5fecf60aae125a3751748accbd7a51d220480aa8908c",
+        "changed_markdown_cells": [
+          15
+        ],
+        "code_cells_unchanged": 6,
+        "code_and_output_sha256": "d8a7dc5e2656b04059192609a5f02474cca31f8577615e80281beeb934b844ce"
+      }
+    ],
+    "two_sentences_deleted": [
+      "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/01-非线性反馈与能量下降.ipynb",
+      "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/02-路径误差、分布统计与风险.ipynb"
+    ],
+    "math_meanings_and_function_contract_semantics_preserved": true,
+    "code_samples_unchanged": true,
+    "renderer_unchanged": true,
+    "notebook_core_math_preserved": true,
+    "double_backslash_claim": "Previous actual-double-backslash scan remained zero; this repair addresses literal single-backslash LaTeX on a plain-text page."
+  },
+  "learning_records": {
+    "original_files_unchanged": 73,
+    "progress_equal_using_actual_engine": true,
+    "original_passed": 25,
+    "original_started": 25
+  },
+  "scope_protection": {
+    "other_course_parts_unchanged": true,
+    "AGENTS_unchanged": true,
+    "web_numerical_operations_and_template_expressions_unchanged": true,
+    "official_checker_glossary_and_practice_renderer_unchanged": true
+  },
+  "validation": {
+    "nbformat": true,
+    "all_code_and_saved_outputs_exactly_equal": true,
+    "existing_notebook_link_targets_preserved": true,
+    "independent_hand_examples_and_algebra": [
+      "Lorenz three rates and ten-feature row; straight-line intercept1/slope2 checked with exact arithmetic.",
+      "Spiral hand endpoint, 21 observations every5 grid steps, and 21/41/81 integration-grid counts independently checked.",
+      "Two-room hand rates−0.3/0.1, first-degree coefficient rows, exchange cancellation and last training time2.45 checked.",
+      "Five-pair mean0.03/SE0.0583095, three-pair mean1/60 and sample balance0 checked without executing models."
+    ],
+    "notebooks_reexecuted": false,
+    "grading_reexecuted": false,
+    "source_sha256_guard_before_staging": true,
+    "git_whitespace_check": true,
+    "javascript_syntax_checks_passed": [
+      "web/research-practice/app.mjs",
+      "web/research-practice/model.mjs"
+    ],
+    "new_report_local_links_checked": 20
+  },
+  "unresolved": [
+    {
+      "id": "p02-timescale",
+      "issue": "Non-equilibrium starting condition is not stated; at A0=u/k the total is constant and a nonzero-deviation decay time cannot be observed.",
+      "action": "Recorded separately; conditions, answers and version unchanged."
+    },
+    {
+      "id": "p02-exact",
+      "issue": "The last existing verification case uses k=1e-320, outside the declared positive range 1e-14<=k<=2.",
+      "action": "Recorded separately; numeric domain, cases, answers and version unchanged. Stable equivalent formula explained in prose."
+    },
+    {
+      "id": "p03-complex-meaning",
+      "version": "2",
+      "issue": "选项A未限定非零角速度或非零初始偏差，实际旋转的读法有歧义。",
+      "counterexample": "alpha=1/T、omega=0、初值[1,0] U时只沿原方向指数衰减。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p03-exchange-no-oscillation",
+      "version": "2",
+      "issue": "选项D未限定两室总量之和为正；实际占比在零总量时无定义。",
+      "counterexample": "a=0.2/T、b=0.1/T、初值[0,0] U时平衡[0,0] U，占比A1/(A1+A2)为0/0。",
+      "action": "单独登记；本轮未改变题目条件范围、版本、原答案或用例。"
+    },
+    {
+      "id": "p04-cap-equilibrium",
+      "version": "3",
+      "issue": "Option B says the radial oscillator radius tends to 1 without specifying a nonzero initial radius. The Cartesian origin remains stationary, so R0=0 is a counterexample.",
+      "counterexample": {
+        "model": "R prime = R(1-R squared); theta prime = 1",
+        "initial_state": [
+          0,
+          0
+        ],
+        "radius_for_all_times": 0
+      },
+      "action": "Registered separately; option, answer A/B and version preserved in this language-only revision."
+    },
+    {
+      "id": "p05-moments",
+      "version": "1",
+      "issue": "题面将 values 定义为释放量，约束却允许负值，第二个原有用例为 [-2,2]；物理量含义与允许输入不一致。",
+      "counterexample": {
+        "values": [
+          -2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.5
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      "action": "单独登记；需后续明确为可带符号的偏差，或调整输入范围与用例。本轮保留物理指代、版本、答案和原用例。"
+    },
+    {
+      "id": "p05-cap-bayes",
+      "version": "1",
+      "issue": "题面指定三个或更多候选状态，约束允许长度 1—20，原有用例包含两个状态。",
+      "counterexample": {
+        "prior": [
+          0.2,
+          0.8
+        ],
+        "likelihood": [
+          0.9,
+          0.1
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围，不暗改为另一个输入范围。"
+    },
+    {
+      "id": "p05-cap-propagation",
+      "version": "1",
+      "issue": "题面指定三个标签，约束允许维数 1—5，原有用例包含一态及两态矩阵。",
+      "counterexample": {
+        "matrix": [
+          [
+            1
+          ]
+        ],
+        "initial": [
+          1
+        ],
+        "steps": 0,
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      "action": "单独登记；本轮保留题面状态数条件、版本和原判题范围。"
+    },
+    {
+      "id": "p06-bootstrap-unit",
+      "version": "2",
+      "issue": "选项 D 仅给出随机设计下观测对相互独立，仍被列为合理方案；独立本身不足以一般地论证同一经验分布下的成对重抽样，还需同分布条件或与原抽样机制相容的论证。",
+      "action": "本轮保留选项条件、正确答案 B/C/D 和版本，不暗加同分布条件或更换答案。后续实质修订应补足抽样条件并同步版本及记录兼容策略。正文的成对自助例已明确采用独立同分布观测对。",
+      "reference": "https://stat.cmu.edu/~cshalizi/mreg/15/lectures/28/lecture-28.pdf",
+      "reference_access": "检索结果显示普通 case/pairs bootstrap 对观测对的独立同分布条件；本轮直接打开 PDF 未成功，未声称逐页阅读。"
+    },
+    {
+      "id": "p08-conditioning",
+      "version": "1",
+      "location": "Option B, marked correct in the existing answer",
+      "issue": "不发散与误差收敛到零混用。B要求步长严格小于上界才不发散，但H₂较大曲率方向在η=2/100时因子为−1，误差等幅交替且不发散。",
+      "evidence": "e[k+1]=(1−100η)e[k]；η=0.02给出e[k+1]=−e[k]。严格上界针对误差衰减到零，而不是仅不发散。",
+      "required_substantive_change": "后续明确B要判断误差衰减/收敛，或修订不发散条件及对应答案，再依版本规则处理；本轮没有暗改答案、条件意图或版本。",
+      "status": "登记，待实质题库修订；当前正确答案与旧成绩保留"
+    }
+  ],
+  "new_unresolved": [],
+  "delivery_status": "文字与指定收尾完成，待用户统一阅读验收。",
+  "coverage_counts": {
+    "part17_notebooks": 9,
+    "part17_changed_markdown_cells": 98,
+    "part17_code_cells_unchanged": 54,
+    "all_touched_notebooks": 32,
+    "all_touched_code_cells_unchanged": 193,
+    "source_files": 45,
+    "http_checks": 27,
+    "local_guide_links": 21,
+    "static_html_exports": 9,
+    "browser_practice_pages": 2
+  },
+  "teaching_sync_check": {
+    "notebooks": 9,
+    "questions": 40,
+    "question_links": 40,
+    "issues": [],
+    "term_context": "使用实际第0—16篇和本篇此前小节的解释作为先修上下文；未修改正式教学检查器。"
+  },
+  "style_reference_reading": [
+    {
+      "url": "https://zh.d2l.ai/chapter_multilayer-perceptrons/environment.html",
+      "chapter": "环境和分布偏移",
+      "application": "从数据来源和预测问题进入具体变化情境，再解释条件和形式表达。"
+    },
+    {
+      "url": "https://matheusfacure.github.io/python-causality-handbook/03-Stats-Review-The-Most-Dangerous-Equation.html",
+      "chapter": "Stats Review: The Most Dangerous Equation",
+      "application": "先比较具体结果，再解释有限样本的不确定性及计算；本篇配对差与失败记录独立组织。"
+    }
+  ],
+  "scientific_reference_check": [
+    {
+      "url": "https://arxiv.org/abs/1509.03580",
+      "version": "v1",
+      "section": "4.2",
+      "scope": "原Lorenz配置、候选库、导数噪声与课程缩减实验的区别；原论文参考链接保留。"
+    },
+    {
+      "url": "https://arxiv.org/abs/1806.07366",
+      "version": "v1",
+      "section": "5.1",
+      "scope": "原潜在状态任务、编码器/解码器与课程直接状态拟合的区别；原论文参考链接保留。"
+    }
+  ],
+  "preview": {
+    "http": [
+      {
+        "path": "/chapters/17-01-研究问题与证据/",
+        "status": 200,
+        "kind": "route"
+      },
+      {
+        "path": "/chapters/17-02-复现协议与公平基线/",
+        "status": 200,
+        "kind": "route"
+      },
+      {
+        "path": "/chapters/17-03-消融、失效与结论边界/",
+        "status": 200,
+        "kind": "route"
+      },
+      {
+        "path": "/chapters/17-04-研究方法综合比较/",
+        "status": 200,
+        "kind": "route"
+      },
+      {
+        "path": "/parts/17-研究复现与综合实践/综合练习/",
+        "status": 200,
+        "kind": "route"
+      },
+      {
+        "path": "/chapters/17-01-研究问题与证据/explore/",
+        "status": 200,
+        "kind": "route"
+      },
+      {
+        "path": "/chapters/17-02-复现协议与公平基线/explore/",
+        "status": 200,
+        "kind": "route"
+      },
+      {
+        "path": "/chapters/17-03-消融、失效与结论边界/explore/",
+        "status": 200,
+        "kind": "route"
+      },
+      {
+        "path": "/chapters/17-04-研究方法综合比较/explore/",
+        "status": 200,
+        "kind": "route"
+      },
+      {
+        "path": "/web/course/catalog.json",
+        "status": 200,
+        "kind": "source"
+      },
+      {
+        "path": "/web/research-practice/app.mjs",
+        "status": 200,
+        "kind": "source"
+      },
+      {
+        "path": "/web/research-practice/model.mjs",
+        "status": 200,
+        "kind": "source"
+      },
+      {
+        "path": "/web/research-practice/index.html",
+        "status": 200,
+        "kind": "source"
+      },
+      {
+        "path": "/api/v1/exercises/p17-c1s1-choice1",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p17-lorenz-vector",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p17-c2s1-choice1",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p17-disjoint-trajectories",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p17-c3s1-choice1",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p17-noisy-refit",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p17-c4s1-choice1",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p17-two-compartment",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p17-capstone-claim",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p17-capstone-lorenz",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p15-graph-order",
+        "status": 200,
+        "kind": "exercise"
+      },
+      {
+        "path": "/api/v1/exercises/p16-common-certificate",
+        "status": 200,
+        "kind": "exercise"
+      }
+    ],
+    "local_links": [
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "../notebooks/17-研究复现与综合实践/README.md"
+      },
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "教材设计.md#part-17"
+      },
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "16-自适应、鲁棒与学习控制.md"
+      },
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "../ROADMAP.md#milestone-m18"
+      },
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "validation/m18-20260920.json"
+      },
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "教材设计.md#lesson-standard"
+      },
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "教材设计.md#assessment-design"
+      },
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "网页设计规范.md"
+      },
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "交互练习与判题系统设计.md"
+      },
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "教材设计.md#capstone-assessment"
+      },
+      {
+        "from": "docs/17-研究复现与综合实践.md",
+        "to": "教材设计.md#references"
+      },
+      {
+        "from": "notebooks/17-研究复现与综合实践/README.md",
+        "to": "01-%E7%A0%94%E7%A9%B6%E9%97%AE%E9%A2%98%E4%B8%8E%E8%AF%81%E6%8D%AE/01-%E9%94%81%E5%AE%9A%20Lorenz%20%E7%A8%80%E7%96%8F%E5%8F%91%E7%8E%B0%E7%9A%84%E4%B8%BB%E5%BC%A0.ipynb"
+      },
+      {
+        "from": "notebooks/17-研究复现与综合实践/README.md",
+        "to": "01-%E7%A0%94%E7%A9%B6%E9%97%AE%E9%A2%98%E4%B8%8E%E8%AF%81%E6%8D%AE/02-%E9%94%81%E5%AE%9A%20Neural%20ODE%20%E4%BB%BB%E5%8A%A1%E4%B8%8E%E6%94%B9%E7%BC%96%E8%BE%B9%E7%95%8C.ipynb"
+      },
+      {
+        "from": "notebooks/17-研究复现与综合实践/README.md",
+        "to": "02-%E5%A4%8D%E7%8E%B0%E5%8D%8F%E8%AE%AE%E4%B8%8E%E5%85%AC%E5%B9%B3%E5%9F%BA%E7%BA%BF/01-%E9%98%88%E5%80%BC%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E4%B8%8E%E7%8B%AC%E7%AB%8B%20Lorenz%20%E8%BD%A8%E8%BF%B9.ipynb"
+      },
+      {
+        "from": "notebooks/17-研究复现与综合实践/README.md",
+        "to": "02-%E5%A4%8D%E7%8E%B0%E5%8D%8F%E8%AE%AE%E4%B8%8E%E5%85%AC%E5%B9%B3%E5%9F%BA%E7%BA%BF/02-%E8%BF%9E%E7%BB%AD%E4%BC%B4%E9%9A%8F%E4%B8%8E%E5%85%AC%E5%B9%B3%E5%A4%96%E6%8E%A8%E5%9F%BA%E7%BA%BF.ipynb"
+      },
+      {
+        "from": "notebooks/17-研究复现与综合实践/README.md",
+        "to": "03-%E6%B6%88%E8%9E%8D%E3%80%81%E5%A4%B1%E6%95%88%E4%B8%8E%E7%BB%93%E8%AE%BA%E8%BE%B9%E7%95%8C/01-%E7%A8%80%E7%96%8F%E6%80%A7%E4%B8%8E%E5%AF%BC%E6%95%B0%E5%99%AA%E5%A3%B0%E7%9A%84%E5%A4%B1%E6%95%88%E5%AE%9E%E9%AA%8C.ipynb"
+      },
+      {
+        "from": "notebooks/17-研究复现与综合实践/README.md",
+        "to": "03-%E6%B6%88%E8%9E%8D%E3%80%81%E5%A4%B1%E6%95%88%E4%B8%8E%E7%BB%93%E8%AE%BA%E8%BE%B9%E7%95%8C/02-%E4%BC%B4%E9%9A%8F%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A8%A1%E5%9E%8B%E6%B6%88%E8%9E%8D.ipynb"
+      },
+      {
+        "from": "notebooks/17-研究复现与综合实践/README.md",
+        "to": "04-%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/01-%E8%BF%81%E7%A7%BB%E5%88%B0%E5%8F%8C%E5%AE%A4%E7%89%A9%E8%B4%A8%E6%B8%85%E9%99%A4.ipynb"
+      },
+      {
+        "from": "notebooks/17-研究复现与综合实践/README.md",
+        "to": "04-%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/02-%E5%85%B1%E5%90%8C%E6%8C%87%E6%A0%87%E3%80%81%E5%A4%B1%E8%B4%A5%E8%AE%B0%E5%BD%95%E4%B8%8E%E7%BB%93%E8%AE%BA%E8%BE%B9%E7%95%8C.ipynb"
+      },
+      {
+        "from": "notebooks/17-研究复现与综合实践/README.md",
+        "to": "99-%E7%AF%87%E6%9C%AB%E7%BB%BC%E5%90%88/01-%E4%BB%8E%E8%AE%BA%E6%96%87%E4%B8%BB%E5%BC%A0%E5%88%B0%E6%9C%89%E7%95%8C%E5%A4%8D%E7%8E%B0%E8%AF%81%E6%8D%AE.ipynb"
+      },
+      {
+        "from": "notebooks/17-研究复现与综合实践/README.md",
+        "to": "../../docs/17-研究复现与综合实践.md"
+      }
+    ],
+    "static_notebook_html_exports": [
+      {
+        "id": "P17-C01-S01",
+        "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/01-锁定 Lorenz 稀疏发现的主张.ipynb",
+        "export_sha256": "217f4ef040cf5908116f1d6168e74078515cc8c86ad57203d1ff4a52ca26e0e3",
+        "executed": false
+      },
+      {
+        "id": "P17-C01-S02",
+        "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/02-锁定 Neural ODE 任务与改编边界.ipynb",
+        "export_sha256": "2c7724576fd313c157813b58b32f7b259a1d1ee5442392d340a78fccef421cdb",
+        "executed": false
+      },
+      {
+        "id": "P17-C02-S01",
+        "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/01-阈值最小二乘与独立 Lorenz 轨迹.ipynb",
+        "export_sha256": "f2db03e3c0e4bec3813af9f6a30f8fa8f3868d351c712d099b3cc32135be4f46",
+        "executed": false
+      },
+      {
+        "id": "P17-C02-S02",
+        "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/02-连续伴随与公平外推基线.ipynb",
+        "export_sha256": "eb5f57cceb18d29f416f8c2d364d6243dddce9a7062bc756e5ca513402bb98d0",
+        "executed": false
+      },
+      {
+        "id": "P17-C03-S01",
+        "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/01-稀疏性与导数噪声的失效实验.ipynb",
+        "export_sha256": "967cc5f405fd24c2be2c7a0ed76d1d1ba69c2bba6c7e0e083fa92319a6af0f69",
+        "executed": false
+      },
+      {
+        "id": "P17-C03-S02",
+        "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/02-伴随精度与模型消融.ipynb",
+        "export_sha256": "33e3383509bf52c32b62f6e10e57d4ef0cdf40aefee8558a7b27e3096b6198cb",
+        "executed": false
+      },
+      {
+        "id": "P17-C04-S01",
+        "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/01-迁移到双室物质清除.ipynb",
+        "export_sha256": "442a0b70c83f26a6674b8f4bdcf490c50d05c25574104e8112560ed87301a90b",
+        "executed": false
+      },
+      {
+        "id": "P17-C04-S02",
+        "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/02-共同指标、失败记录与结论边界.ipynb",
+        "export_sha256": "6c53220749d11b959c4af8727391ebcc6ed078cdd0c8fc943c5bf736a098cee3",
+        "executed": false
+      },
+      {
+        "id": "P17-SUMMARY",
+        "path": "notebooks/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.ipynb",
+        "export_sha256": "22496fb34a0d204e59239ad05d15f04a78d2b413615b935d0a544a383b3b8308",
+        "executed": false
+      }
+    ],
+    "browser_checks": [
+      {
+        "id": "p15-graph-order",
+        "method": "CUA DOM and screenshot read-only",
+        "result": "Statement and four options show ŷ and squared loss; no dollar delimiter or LaTeX command. No answer selected or submitted."
+      },
+      {
+        "id": "p16-common-certificate",
+        "method": "CUA DOM and screenshot read-only",
+        "result": "Statement and displayed calculation rule show AᵀP+PA and positive/negative definiteness; signature and input/return tables retained. No code edited or submitted."
+      }
+    ],
+    "browser_scope": "Two repaired practice pages inspected. This does not claim full browser regression or every question layout.",
+    "grading_reexecuted": false,
+    "notebooks_reexecuted": false
+  },
+  "service_cache_refresh": {
+    "method": "Read-only guard confirms every existing attempt is FINISHED, live active is null and there are no unreadable records. The existing service refresh method refuses shutdown during active judging.",
+    "result": "The stale cached question bank was refreshed. All attempt hashes and the complete progress object remained identical; no answer was submitted.",
+    "records_unchanged": 73,
+    "live_progress_unchanged": true,
+    "refreshes_in_this_delivery": 2
+  },
+  "display_final_check": {
+    "corrected_alias_api_checks": [
+      {
+        "id": "p15-euler-sensitivity",
+        "status": 200,
+        "contract_equals_final_source": true
+      },
+      {
+        "id": "p15-capstone-forward-gradient",
+        "status": 200,
+        "contract_equals_final_source": true
+      }
+    ],
+    "parts2_to16_raw_display_markers_remaining_outside_code": 0,
+    "original_record_files_unchanged": 73
+  },
+  "display_alias_correction": {
+    "corrected_question_ids": [
+      "p15-euler-sensitivity",
+      "p15-capstone-forward-gradient"
+    ],
+    "synchronized_notebook_tails": [
+      "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb",
+      "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb"
+    ],
+    "correction": "s[n]ew → s_new; the sensitivity update and function I/O are unchanged."
+  },
+  "source_sha256": {
+    "docs/17-研究复现与综合实践.md": "c366a26284309992d05fcfc56a4af83535198b5aea04b4900d35d31cfc738960",
+    "exercises/15-可微分建模与机制融合/questions.json": "f1df226d0f2cfce923ef0ae1c4250482ff3694677d82ecc884bd5f4b395bca36",
+    "exercises/15-可微分建模与机制融合/verification.json": "93ac160fc91f7399a7d292295c9a86c89f099db1e1193848c88ce8b09bcc37ab",
+    "exercises/16-自适应、鲁棒与学习控制/questions.json": "6994b386080b3ac320177df5c98a809485934ae64d0cebaec0b7f45958771971",
+    "exercises/16-自适应、鲁棒与学习控制/verification.json": "65e78a7222606afb21fe78a2cdc9151a77a42ce3cbefc51939e6e9f245b652a7",
+    "exercises/17-研究复现与综合实践/questions.json": "e7c382b53b704e8549a9ae7b80afbd155ace3d65821c82e216276d8587835506",
+    "exercises/17-研究复现与综合实践/verification.json": "833b1ca37407a3b14096dbadf21cc781d8e9368f2cd5126e1d7ce265b4219bc0",
+    "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb": "baa9eef5b2db55ac8a2370784cfd2a09b8b927722244d5a8cdc908f3c32b894a",
+    "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.ipynb": "58898b28864cb7506921881009618b126f04a8a91f6a974b213a19173c3e18ec",
+    "notebooks/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.ipynb": "edf650c503ca9564a9144bcf4cab587473ab72df055540c9a0f47eafc3b901f3",
+    "notebooks/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.ipynb": "deee3798d677c454c8e2330aed324d83f7279f3406be0da6449fbcb6964330b9",
+    "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb": "7de6f3ecc0ef5ed0a56c54a94441cbc852447c2002b5bed144f0077d3151372c",
+    "notebooks/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.ipynb": "903f0403f4bfa3079c2207e3c2801d47ce02a0fee22cf12fbdfa672edc039ef1",
+    "notebooks/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.ipynb": "dd1205df28e8ad47e7a3bc81d8a1953124bbf4b8d88f9279735e63ab0281d82b",
+    "notebooks/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.ipynb": "19718efe9dd40db00f788a9fc9f82ad7f0cd3483cbaef55b41e954f7916ccea7",
+    "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.ipynb": "b551c5a9f0aa2767e48b7415c55877e55e90f29bdd5914a28bfd7a2f82cec97b",
+    "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.ipynb": "d9cdf6f661d514e8cf603a098d1f6fabcb34fea265e0c7c1f5a7a00801c9438d",
+    "notebooks/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.ipynb": "6a60f051bce839d9eb2b06a1290e484c68cc0d9437986e4a11a390778c74d1ac",
+    "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/01-非线性反馈与能量下降.ipynb": "1bb17eba8a6c34b1c1e25299e2c76e827427e777e7149c8fe96c3c59ac42bc5d",
+    "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/02-执行饱和、初值与适用域.ipynb": "95b02680caa6ff14aa2185c150ffab2dffcfa572916f182341d9578f51dbc5fd",
+    "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/01-共同 Lyapunov 矩阵与顶点条件.ipynb": "6a19c085c1a700e19314ea0dca96df9705e92c0c584cb6cf2203a79855a8fe24",
+    "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/02-集合外失效与鲁棒证据边界.ipynb": "26906ed6bcf3c0f08f3881d82bad684bfff4a7caeb9ae8dc99d26afe01d083f2",
+    "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/01-递推估计、投影与激励.ipynb": "a07c50e1ece3e7abfec4b9c7f76cccf79b58e293452f6c6b0f5eeee629b84d74",
+    "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/02-估计进入控制的时间顺序.ipynb": "cf6fd955753f62f59e159860508e547cd94a983fbbb00d9aab1526280431278c",
+    "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/01-布朗增量与 Euler–Maruyama.ipynb": "4f0a5aae1c6850dc7fd84858ddccf7a60b94c971df0bafa70f745282484b5ce9",
+    "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/02-路径误差、分布统计与风险.ipynb": "2880b1b535e9caa741471c7587774df7595d426b11ccdf9b35fdfa18b5ecc209",
+    "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/01-局部通信与平均一致.ipynb": "c830b48e8f28408770ed16408659219b67ab58c8aab0e2be98e98a2d8dec3d33",
+    "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/02-通信延迟、步长与稳定边界.ipynb": "cc5d205e683fe7965366ee09cfc31c1470b186e9755f93a5880f99ba63f1db8a",
+    "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/01-有限决策过程与策略评价.ipynb": "5fdb1f10bad441634da54163113db7047c63d3374f5f63963824b50c4af3e142",
+    "notebooks/16-自适应、鲁棒与学习控制/99-篇末综合/01-不确定条件下的闭环证据链.ipynb": "67f1b47451624543632b5fecf60aae125a3751748accbd7a51d220480aa8908c",
+    "notebooks/17-研究复现与综合实践/01-研究问题与证据/01-锁定 Lorenz 稀疏发现的主张.ipynb": "22bd111230933af4763bc95c5223fa876da38a36c61eac183189a5761d7040d6",
+    "notebooks/17-研究复现与综合实践/01-研究问题与证据/02-锁定 Neural ODE 任务与改编边界.ipynb": "78528cbc666460f91210f9263ad9ecdf135084f9db6b5cb309b4ba5ea2fa6371",
+    "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/01-阈值最小二乘与独立 Lorenz 轨迹.ipynb": "756eed00911ee96373507ae63991de4977d3fec28f73cd7e85bdb3355c28ac69",
+    "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/02-连续伴随与公平外推基线.ipynb": "fb8067cbe06daf79115df0762043b48881be267e4df8e7dd6d1f9448146b5927",
+    "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/01-稀疏性与导数噪声的失效实验.ipynb": "543528580ea8a4a037ca0bb2cea48fb443bc8f4eb0763761dc8bebf750aec2bb",
+    "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/02-伴随精度与模型消融.ipynb": "62d9a8b0b56902417ec26e0927a066e09a87556656781154120e842edf267e3e",
+    "notebooks/17-研究复现与综合实践/04-研究方法综合比较/01-迁移到双室物质清除.ipynb": "112f1bd5d15033f0db4d877be42523f55a4841145c1b06b1bbe78f25193905f5",
+    "notebooks/17-研究复现与综合实践/04-研究方法综合比较/02-共同指标、失败记录与结论边界.ipynb": "f9280aac3e17661731b87561e1e02da56e581fee52ba9bf90cdc53b36aca5246",
+    "notebooks/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.ipynb": "45d9f696a03a1adad158ff7a36a06464b47cc3b80315e841bde5ec23b759929b",
+    "notebooks/17-研究复现与综合实践/README.md": "6a83d67dfff401223fd431f916cd79129b61816bee52b5ec7780ac8a4e551653",
+    "notebooks/17-研究复现与综合实践/catalog.json": "a1a83f3215a65f2737c236f44588dcd4aba79c8f0066c059934dec29cad1c947",
+    "web/course/catalog.json": "8b9ac958dbe9619f3ab34c5a51c2d25dbeb5af0951d69b9b68e10a6ebe42a338",
+    "web/research-practice/app.mjs": "eb1d8fba1cfda352a55ff60e7421b253d4cbcd4d5736ae9a4579dc577c291f4b",
+    "web/research-practice/index.html": "23d04af6c37998b92b63ccd25ab40a8e0fc9c5aac759dcb4d070d19da95f27d7",
+    "web/research-practice/model.mjs": "0fa3a0548fa32933e16fae56a5e18a369aabad484a88b5671bababaa7b9aa619"
+  },
+  "verification_limits": "核验修改内容、保护字段、教学同步、手算、接口和两页实际显示。未重执行未改动的模型或判题；未完成全篇浏览器交互、目标读者试学或用户统一阅读验收。"
+}
