@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.5.1 后验预测、总方差与预测区间 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P09-C05-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P09-C05-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments">本节练习 · 5 题</a><a class="button" href="/chapters/09-05-后验预测与模型检验/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>9.5.1 后验预测、总方差与预测区间</h1>
+<p>学完本节，你应能按参数后验计算新读数的均值与方差，解释非线性模型中两种平均顺序的区别，并用累计概率构造预测区间。</p>
+<p><strong>先修知识</strong>：9.1 的后验积分，第 5 篇的条件期望与方差，9.3 的近似分布。</p>
+<h2 id="new-readings-under-two-parameter-values">两个参数情形下的新读数</h2>
+<p>两种参数推断可能给出相近的均值，却画出不同宽度的未来读数区间。要理解差别，可以先用两个参数情形手算。</p>
+<p>已有数据给这两个情形的相对权重为 1 和 3，归一化后为 $1/4$ 和 $3/4$。给定每个情形，新读数的分布如下：</p>
+<table>
+<thead>
+<tr>
+  <th>参数情形</th>
+  <th style="text-align:right">后验权重</th>
+  <th style="text-align:right">新读数条件均值 / U</th>
+  <th style="text-align:right">新读数条件方差 / U²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">$1/4$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">$3/4$</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1</td>
+</tr>
+</tbody>
+</table>
+<p>新读数的总体均值是</p>
+<p>$$\bar m=\frac14\times0+\frac34\times2=1.5\ \mathrm U.$$</p>
+<p>在每个参数情形内部，读数还各有 $1\ \mathrm U^2$ 的方差。与此同时，两种情形的均值又围绕 $1.5\ \mathrm U$ 变化，贡献</p>
+<p>$$\frac14(0-1.5)^2+\frac34(2-1.5)^2=0.75\ \mathrm U^2.$$</p>
+<p>这两部分加在一起，得到总方差 $1.75\ \mathrm U^2$。下面从后验预测的定义解释为什么应当这样相加。</p>
+<h2 id="posterior-predictive-distribution-and-conditional-averaging">后验预测分布与条件平均</h2>
+<p>把已经取得的训练读数记为 $y$，未知参数记为 $\theta$，未来新读数记为 $Y_{\mathrm{new}}$。已有读数确定后，参数由后验 $p(\theta\mid y)$ 描述；给定一种参数情形，新读数由条件分布 $p(y_{\mathrm{new}}\mid\theta,y)$ 描述。</p>
+<p><strong>后验预测分布（posterior predictive distribution）</strong>对这些条件分布按后验权重求平均：</p>
+<p>$$p(y_{\mathrm{new}}\mid y)=\int p(y_{\mathrm{new}}\mid\theta,y)\,p(\theta\mid y)\,\mathrm d\theta.$$</p>
+<p>可以把计算理解为两层：先选一种符合已有数据的参数情形，再在该情形下生成新读数。积分将所有参数情形的贡献合在一起。计算中已有 $y$ 固定，变化的是参数和还未取得的新读数。</p>
+<p>设条件均值与条件方差为</p>
+<p>$$m(\theta)=E[Y_{\mathrm{new}}\mid\theta,y],\qquad
+v(\theta)=\operatorname{Var}(Y_{\mathrm{new}}\mid\theta,y).$$</p>
+<p>用 $E_\theta$ 表示按后验 $p(\theta\mid y)$ 求期望。先对新读数求条件平均，再对参数平均，就得到</p>
+<p>$$\bar m=E[Y_{\mathrm{new}}\mid y]=E_\theta[m(\theta)].$$</p>
+<p>若后验用节点 $\theta_i$ 和归一化权重 $w_i$ 表示，则 $\bar m=\sum_iw_im(\theta_i)$。这里 $i$ 是参数情形的序号。积分网格的权重同时包含密度和节点间距，采样点的权重则由相应的样本表示确定。</p>
+<h2 id="two-contributions-to-total-variance">总方差的两项贡献</h2>
+<p>把一次新读数相对总体均值的偏差拆开：</p>
+<p>$$Y_{\mathrm{new}}-\bar m=
+\underbrace{Y_{\mathrm{new}}-m(\theta)}_{\text{给定参数后的读数波动}}
++\underbrace{m(\theta)-\bar m}_{\text{参数不同引起的均值变化}}.$$</p>
+<p>平方后出现两个平方项和一个交叉项。给定 $\theta,y$，第一个偏差的期望为零，因此</p>
+<p>$$E\!\left[(Y_{\mathrm{new}}-m(\theta))(m(\theta)-\bar m)\mid\theta,y\right]=0.$$</p>
+<p>第一项平方的条件期望为 $v(\theta)$，第二项只随参数变化。再按参数后验平均，便得到<strong>总方差公式（law of total variance）</strong>：</p>
+<p>$$\boxed{\operatorname{Var}(Y_{\mathrm{new}}\mid y)
+=E_\theta[v(\theta)]+\operatorname{Var}_\theta[m(\theta)].}$$</p>
+<p>对离散节点，记 $m_i=m(\theta_i)$、$v_i=v(\theta_i)$，具体计算为</p>
+<p>$$V=\underbrace{\sum_iw_iv_i}_{V_{\mathrm{within}}}
++\underbrace{\sum_iw_i(m_i-\bar m)^2}_{V_{\mathrm{between}}}.$$</p>
+<p>第一项平均每种参数下的新读数方差，第二项衡量各条件均值彼此相差多少。开头的两节点例子分别给出 1 和 $0.75\ \mathrm U^2$。也可以先算 $E[Y_{\mathrm{new}}^2]=\sum_iw_i(v_i+m_i^2)$，再减去 $\bar m^2$，得到同样的 $1.75\ \mathrm U^2$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments">分解预测方差</a></li></ul></nav>
+
+<p>如果只对参数样本计算无噪声轨迹 $m(\theta_i)$，得到的是平均响应的分布，方差对应第二项。研究单次未来读数时，还需要加入第一项所描述的新一次随机波动。增加参数样本数使后验平均算得更精确，读数自身的条件方差仍由模型提供。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-conditional-variance">为什么还要条件方差</a></li></ul></nav>
+
+<h2 id="averaging-in-a-nonlinear-prediction">非线性预测中的平均顺序</h2>
+<p>第 2 篇无输入消除模型的解为 $A(t)=A_0e^{-kt}$。若 $k$ 仍有后验不确定性，平均响应应为</p>
+<p>$$E[A(t)\mid y]=A_0E[e^{-kt}\mid y].$$</p>
+<p>这与先计算平均参数 $\bar k=E[k\mid y]$、再代入得到的 $A_0e^{-\bar k t}$ 一般不同。</p>
+<p>例如 $A_0=5\ \mathrm U$，后验给 $k=0.1/\mathrm T$ 和 $0.7/\mathrm T$ 各一半权重。在 $t=5\ \mathrm T$，分别预测再平均得到</p>
+<p>$$\frac52\left(e^{-0.5}+e^{-3.5}\right)\approx1.592\ \mathrm U,$$</p>
+<p>平均速率为 $0.4/\mathrm T$，代入后却得到</p>
+<p>$$5e^{-0.4\times5}\approx0.677\ \mathrm U.$$</p>
+<p>慢速消除情形在较晚时刻仍保留较多总量，对平均值的贡献因而更加明显。从函数形状也能理解这一方向：$t&gt;0$ 时，$e^{-kt}$ 关于 $k$ 的二阶导数为 $t^2e^{-kt}&gt;0$，凸性使后验平均不小于平均参数代入的结果。后验很窄时，两种计算可以接近，差距可用同一后验表示直接计算。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-nonlinear-expectation">把平均参数代入就行吗</a></li></ul></nav>
+
+<h2 id="mixture-quantiles-and-prediction-intervals">混合分布、分位数与预测区间</h2>
+<p>均值和方差概括了位置与总体离散程度，完整预测还决定概率集中在哪里。若各条件分布为高斯，混合预测的累计分布函数为</p>
+<p>$$F(z)=P(Y_{\mathrm{new}}\le z\mid y)
+=\sum_iw_i\Phi\!\left(\frac{z-m_i}{\sqrt{v_i}}\right),\qquad v_i&gt;0,$$</p>
+<p>其中 $\Phi$ 为标准高斯累计分布函数。<strong>$p$ 分位数（quantile）</strong>是累计概率达到 $p$ 的位置；对这里连续且严格递增的 $F$，求解 $F(z_p)=p$ 即可。</p>
+<p>找出 $F(l)=0.025$ 与 $F(u)=0.975$，便得到覆盖 95% 预测概率的<strong>等尾预测区间（equal-tailed prediction interval）</strong> $[l,u]$，上下两端各留下 2.5% 的预测概率。数值求解时，可先找到累计概率低于和高于目标值的两个端点，再不断二分。</p>
+<p>单个高斯分布的 $\bar m\pm1.96\sqrt V$ 约包含 95% 概率。混合分布即使有同样的 $\bar m,V$，峰的位置与尾部仍可不同，所含概率应由 $F(u)-F(l)$ 计算。</p>
+<p>下图左侧是两个等权高斯的混合，均值分别为 $-2,2\ \mathrm U$，分量方差均为 $0.25\ \mathrm U^2$；虚线高斯具有相同总体均值 0 和方差 $4.25\ \mathrm U^2$。右侧比较刚才的后验平均消除曲线与平均速率代入曲线。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P09-C05-S01-ff27d503-0.png" alt="后验预测、总方差与预测区间：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图中间的概率谷说明，相同的两个矩可以对应不同形状。用混合累计概率求出的区间包含设定的 95% 概率；矩匹配高斯区间在这个例子中更宽。右图则显示，非线性平均顺序的差异随时间展开。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-mixture-not-normal">只有均值和方差还不够</a></li></ul></nav>
+
+<p>参数可信区间描述未知参数落在哪里，读数预测区间描述未来新读数落在哪里。例如高斯共同偏差模型中，参数后验方差为 $v$，独立新噪声方差为 $r$，则新读数方差为 $v+r$。两种区间对应不同对象，宽度也随之不同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-interval-meaning">同样是95%区间</a></li></ul></nav>
+
+<p>探索页把参数后验固定为 $N(1.6,v)$，假定新噪声方差为 $1\ \mathrm U^2$。先比较参数区间与新读数区间，再增大实际噪声倍率，观察原预测区间包含的概率怎样变化。下一节将用取得的新读数，计算预测误差与区间覆盖比例。</p>
+<p class="concept-explore"><a href="/chapters/09-05-后验预测与模型检验/explore/?concept=P09-C05-S01%3Amixture-quantiles-and-prediction-intervals">可视化与探索：混合分布、分位数与预测区间 →</a></p>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://probml.github.io/pml-book/book2.html">Murphy，《Probabilistic Machine Learning: Advanced Topics》</a>讨论通过后验平均构造预测分布；<a href="https://mc-stan.org/docs/stan-users-guide/posterior-predictive-checks.html">Stan 用户指南：后验预测检查</a>展示如何生成预测数据并比较数据特征。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/09-04-隐变量与参数学习/read/2/">← 9.4.2 平滑矩与动态参数更新</a><a href="/chapters/09-05-后验预测与模型检验/read/2/">9.5.2 留出预测、覆盖与模型失配 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.2.1 Metropolis–Hastings采样与详细平衡 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P09-C02-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P09-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay">本节练习 · 5 题</a><a class="button" href="/chapters/09-02-马尔可夫链采样与诊断/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>9.2.1 Metropolis–Hastings采样与详细平衡</h1>
+<p>参数维数增加后，后验归一化需要的积分可能很难计算，但两个参数值的未归一化密度往往仍能比较。可以利用这些密度比，设计一条更多访问高概率区域的采样链，再用访问到的状态估计后验平均。这类方法称为<strong>马尔可夫链蒙特卡洛（Markov chain Monte Carlo，MCMC）</strong>。本节采用其中的Metropolis–Hastings（MH）方法。</p>
+<p>学完本节，应能从两状态概率流推导MH接受规则，检查反向提议比，并逐步保存接受与拒绝后的状态。先修为9.1的目标密度与归一化，以及第5篇的转移矩阵和平稳分布。</p>
+<h2 id="detailed-balance">两状态概率流与详细平衡</h2>
+<p>目标分布在状态0和1的概率分别为 $\pi_0=1/4$、$\pi_1=3/4$。每次都提议换到另一个状态：从0到1总接受，从1到0只以 $1/3$ 的概率接受，其余时间留在1。转移矩阵为</p>
+<p>$$P=\begin{pmatrix}0&amp;1\\1/3&amp;2/3\end{pmatrix}.$$</p>
+<p>行是当前状态，列是下一状态。若当前已服从 $\pi$，一轮中两个方向交换的概率分别为</p>
+<p>$$\pi_0P_{01}=\frac14\times1=\frac14,\qquad
+\pi_1P_{10}=\frac34\times\frac13=\frac14.$$</p>
+<p>任意一对状态满足 $\pi_iP_{ij}=\pi_jP_{ji}$，称为<strong>详细平衡（detailed balance）</strong>。它使每一对状态之间流出的概率由反向流入抵消。对所有来源 $i$ 求和，</p>
+<p>$$\sum_i\pi_iP_{ij}=\pi_j\sum_iP_{ji}=\pi_j,$$</p>
+<p>右侧最后的求和是第 $j$ 行的行和，等于1。所以详细平衡给出了保持目标分布的一种构造方法。</p>
+<h2 id="metropolis-hastings-ratio">提议分布与MH接受比</h2>
+<p>对连续参数，先从当前状态 $x$ 提议候选 $x'$。用 $q(x'\mid x)$ 表示提议密度，$\widetilde\pi$ 表示未归一化目标。<strong>Metropolis–Hastings接受概率</strong>为</p>
+<p>$$\boxed{\alpha(x,x')=\min\left(1,
+\frac{\widetilde\pi(x')q(x\mid x')}{\widetilde\pi(x)q(x'\mid x)}\right).}$$</p>
+<p>目标的归一化常数在比值中相消。对于实际提议出的候选，$q(x'\mid x)&gt;0$；反向提议更困难时，分子的 $q(x\mid x')$ 会降低接受概率，抵消提议方向的偏向。</p>
+<p>为什么这样选？两个不同位置之间的概率流为</p>
+<p>$$\pi(x)q(x'\mid x)\alpha(x,x')
+=\min\{\pi(x)q(x'\mid x),\pi(x')q(x\mid x')\}.$$</p>
+<p>交换 $x,x'$，右侧不变，于是满足详细平衡。未接受的概率留在原状态，使总转移概率等于1。</p>
+<p>例如仍取目标概率 $(1/4,3/4)$，但令正向提议概率 $Q_{01}=0.8$、反向 $Q_{10}=0.2$。从0到1的接受概率变为</p>
+<p>$$\min\left(1,\frac{(3/4)\times0.2}{(1/4)\times0.8}\right)=0.75.$$</p>
+<p>因此 $P_{01}=0.8\times0.75=0.6$；反向总接受，$P_{10}=0.2$。两边流量都是0.15，仍然相等。若只用目标比而忽略提议比，就会破坏这次平衡。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-proposal-ratio">提议方向不要写反</a></li></ul></nav>
+
+<p>有限状态计算可以直接写成</p>
+<p>$$P_{ij}=\min\left(Q_{ij},\frac{\pi_jQ_{ji}}{\pi_i}\right)\quad(i\ne j,\ Q_{ij}&gt;0),$$</p>
+<p>没有正向提议时设 $P_{ij}=0$，最后令 $P_{ii}=1-\sum_{j\ne i}P_{ij}$。这样，对角项同时计入原本提议留在原处及拒绝其他候选的概率。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-finite-kernel">构造有限状态转移核</a></li></ul></nav>
+
+<h2 id="acceptance-and-rejection">对数接受规则与拒绝停留</h2>
+<p>为处理很小的密度，计算时使用对数：</p>
+<p>$$\log\alpha=\min\left(0,\log\widetilde\pi(x')-\log\widetilde\pi(x)
++\log q(x\mid x')-\log q(x'\mid x)\right).$$</p>
+<p>每步取均匀数 $u\in[0,1)$，比较 $u&lt;\alpha$；对当前正密度例子，在 $u=0$ 时接受，其余用 $\log u&lt;\log\alpha$ 判断。接受后状态变为候选，拒绝后状态保持不变。每轮判断后都记录一次状态，才会保留各区域的停留时间。</p>
+<p>用标准高斯目标 $\pi=N(0,1)$、对称提议，按给定候选跟算三步：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">当前状态</th>
+  <th style="text-align:right">候选</th>
+  <th style="text-align:right">接受概率</th>
+  <th style="text-align:right">给定 $u$</th>
+  <th style="text-align:right">判断后状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">$e^{-1/2}\approx0.607$</td>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">$e^{-7.5}\approx0.000553$</td>
+  <td style="text-align:right">0.9</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">−1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.3</td>
+  <td style="text-align:right">−1</td>
+</tr>
+</tbody>
+</table>
+<p>含起点的路径为 $(0,1,1,-1)$，三个接受标记依次为真、假、真。第二轮留在1，这次停留也参与后验平均；只保留接受后的不同位置，会减少这里的权重。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay">重放一次次接受与拒绝</a></li><li><a href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-rejections">拒绝时要不要记录</a></li></ul></nav>
+
+<h2 id="stationarity-and-convergence">平稳分布与从初态收敛</h2>
+<p>详细平衡说明：已经服从目标分布的状态，更新后仍服从它。从特定起点运行时，还要研究状态分布怎样向目标靠近。</p>
+<p>例如恒等转移 $P=I$ 对任意目标都满足详细平衡，却永远留在初态。第5篇的有限状态结论给出了更强要求：不可约使各状态互相可达，非周期避免分布被固定循环限制；两者成立时，有限链有唯一平稳分布，并从任意初始分布逐步收敛到它。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-stationary-vs-convergence">保持目标就一定收敛吗</a></li></ul></nav>
+
+<h2 id="random-walk-scale">随机游走步幅与目标探索</h2>
+<p>连续实验采用无量纲状态 $x$，目标为两个等权高斯的混合：</p>
+<p>$$\pi(x)=\tfrac12N(x\mid-d,1)+\tfrac12N(x\mid d,1).$$</p>
+<p>$d$ 控制两个分量的位置，$d=0$ 时为标准高斯。这里的链状态是待积分参数的取值，采样次数记录计算更新，与系统的物理时间分开。</p>
+<p><strong>随机游走提议（random-walk proposal）</strong>令 $x'=x+s\xi$，其中 $\xi\sim N(0,1)$。提议围绕当前位置对称，因此反向与正向密度相同，接受比化为目标密度比。步幅 $s$ 小时，新旧位置接近，容易接受但单步移动也小；$s$ 大时可以跨得更远，候选落在低密度处的机会也增加。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P09-C02-S01-b71f184f-1.png" alt="Metropolis–Hastings采样与详细平衡：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中先取单峰目标 $d=0$，从3出发，使用相同的400个基础正态增量与均匀数，分别以 $s=0.1$ 和1.8缩放。绿色虚线为目标均值0。比较轨迹离开起点和访问不同区间的速度，再看标题中的接受率，就能把“容易接受”与“移动充分”联系起来。</p>
+<p>探索页将目标改为可调间距的两个分量，两链分别从两侧出发，各运行600步。增大 $d$，看看小步提议能否跨过中间的低密度区；再改变步幅，比较访问两侧的次数。下一节将为这些轨迹增加相关性和多链统计。</p>
+<p class="concept-explore"><a href="/chapters/09-02-马尔可夫链采样与诊断/explore/?concept=P09-C02-S01%3Arandom-walk-scale">可视化与探索：随机游走步幅与目标探索 →</a></p>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://probml.github.io/pml-book/book2.html">Murphy：《Probabilistic Machine Learning: Advanced Topics》</a>，MCMC与Metropolis–Hastings方法；<a href="https://mc-stan.org/docs/reference-manual/analysis.html">Stan参考手册：Posterior Analysis</a>，采样链与后验计算。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/09-01-贝叶斯建模与后验近似/read/2/">← 9.1.2 Laplace近似、数值积分与参数变换</a><a href="/chapters/09-02-马尔可夫链采样与诊断/read/2/">9.2.2 多链诊断、自相关与有效样本量 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

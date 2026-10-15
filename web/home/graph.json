@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "03e428acb88b2be44da68518f516e213933d4bdeac1adee0646ac9d571637d37",
+    "catalogSha256": "17f67fb02ad1bb05e79d03ba9981087f3a55686becea86001f76b3b4ab325690",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -11622,8 +11622,8 @@
       "english": null,
       "number": "9.1.1",
       "parentId": "9.1",
-      "url": "/notebook/?id=P09-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/",
+      "readingUrl": "/chapters/09-01-贝叶斯建模与后验近似/read/1/",
       "practiceUrl": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update",
       "description": "从两次读数手算精度与后验，再区分固定参数方差和未来读数方差。",
       "categories": [
@@ -11642,7 +11642,7 @@
       "total": 1,
       "lessonId": "P09-C01-S01",
       "lessonNumber": "9.1.1",
-      "lessonTitle": "从先验与观测到参数后验",
+      "lessonTitle": "参数后验与后验预测",
       "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11653,8 +11653,8 @@
       "english": null,
       "number": "9.1.1",
       "parentId": "9.1",
-      "url": "/notebook/?id=P09-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/",
+      "readingUrl": "/chapters/09-01-贝叶斯建模与后验近似/read/1/",
       "practiceUrl": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update",
       "description": "从两次读数手算精度与后验，再区分固定参数方差和未来读数方差。",
       "categories": [
@@ -11673,7 +11673,7 @@
       "total": 1,
       "lessonId": "P09-C01-S01",
       "lessonNumber": "9.1.1",
-      "lessonTitle": "从先验与观测到参数后验",
+      "lessonTitle": "参数后验与后验预测",
       "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11684,8 +11684,8 @@
       "english": null,
       "number": "9.1.1",
       "parentId": "9.1",
-      "url": "/notebook/?id=P09-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/",
+      "readingUrl": "/chapters/09-01-贝叶斯建模与后验近似/read/1/",
       "practiceUrl": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update",
       "description": "从两次读数手算精度与后验，再区分固定参数方差和未来读数方差。",
       "categories": [
@@ -11704,7 +11704,7 @@
       "total": 1,
       "lessonId": "P09-C01-S01",
       "lessonNumber": "9.1.1",
-      "lessonTitle": "从先验与观测到参数后验",
+      "lessonTitle": "参数后验与后验预测",
       "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11715,8 +11715,8 @@
       "english": null,
       "number": "9.1.2",
       "parentId": "9.1",
-      "url": "/notebook/?id=P09-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/",
+      "readingUrl": "/chapters/09-01-贝叶斯建模与后验近似/read/2/",
       "practiceUrl": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local",
       "description": "先用Gamma计数例求导，再推导清除后验曲率，检查边界、积分权重和对数坐标雅可比。",
       "categories": [
@@ -11735,7 +11735,7 @@
       "total": 1,
       "lessonId": "P09-C01-S02",
       "lessonNumber": "9.1.2",
-      "lessonTitle": "后验曲率边界与参数变换",
+      "lessonTitle": "Laplace近似、数值积分与参数变换",
       "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11746,8 +11746,8 @@
       "english": null,
       "number": "9.1.2",
       "parentId": "9.1",
-      "url": "/notebook/?id=P09-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/",
+      "readingUrl": "/chapters/09-01-贝叶斯建模与后验近似/read/2/",
       "practiceUrl": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local",
       "description": "先用Gamma计数例求导，再推导清除后验曲率，检查边界、积分权重和对数坐标雅可比。",
       "categories": [
@@ -11766,7 +11766,7 @@
       "total": 1,
       "lessonId": "P09-C01-S02",
       "lessonNumber": "9.1.2",
-      "lessonTitle": "后验曲率边界与参数变换",
+      "lessonTitle": "Laplace近似、数值积分与参数变换",
       "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11777,8 +11777,8 @@
       "english": null,
       "number": "9.1.2",
       "parentId": "9.1",
-      "url": "/notebook/?id=P09-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/",
+      "readingUrl": "/chapters/09-01-贝叶斯建模与后验近似/read/2/",
       "practiceUrl": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local",
       "description": "先用Gamma计数例求导，再推导清除后验曲率，检查边界、积分权重和对数坐标雅可比。",
       "categories": [
@@ -11797,7 +11797,7 @@
       "total": 1,
       "lessonId": "P09-C01-S02",
       "lessonNumber": "9.1.2",
-      "lessonTitle": "后验曲率边界与参数变换",
+      "lessonTitle": "Laplace近似、数值积分与参数变换",
       "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11845,8 +11845,8 @@
       "english": null,
       "number": "9.2.1",
       "parentId": "9.2",
-      "url": "/notebook/?id=P09-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/",
+      "readingUrl": "/chapters/09-02-马尔可夫链采样与诊断/read/1/",
       "practiceUrl": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay",
       "description": "手算两状态的双向概率流，推导接受比，并按固定候选逐步记录接受与拒绝。",
       "categories": [
@@ -11865,7 +11865,7 @@
       "total": 1,
       "lessonId": "P09-C02-S01",
       "lessonNumber": "9.2.1",
-      "lessonTitle": "构造保持目标分布的采样链",
+      "lessonTitle": "Metropolis–Hastings采样与详细平衡",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11876,8 +11876,8 @@
       "english": null,
       "number": "9.2.1",
       "parentId": "9.2",
-      "url": "/notebook/?id=P09-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/",
+      "readingUrl": "/chapters/09-02-马尔可夫链采样与诊断/read/1/",
       "practiceUrl": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay",
       "description": "手算两状态的双向概率流，推导接受比，并按固定候选逐步记录接受与拒绝。",
       "categories": [
@@ -11896,7 +11896,7 @@
       "total": 1,
       "lessonId": "P09-C02-S01",
       "lessonNumber": "9.2.1",
-      "lessonTitle": "构造保持目标分布的采样链",
+      "lessonTitle": "Metropolis–Hastings采样与详细平衡",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11907,8 +11907,8 @@
       "english": "detailed balance",
       "number": "9.2.1",
       "parentId": "9.2",
-      "url": "/notebook/?id=P09-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/",
+      "readingUrl": "/chapters/09-02-马尔可夫链采样与诊断/read/1/",
       "practiceUrl": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay",
       "description": "手算两状态的双向概率流，推导接受比，并按固定候选逐步记录接受与拒绝。",
       "categories": [
@@ -11927,7 +11927,7 @@
       "total": 1,
       "lessonId": "P09-C02-S01",
       "lessonNumber": "9.2.1",
-      "lessonTitle": "构造保持目标分布的采样链",
+      "lessonTitle": "Metropolis–Hastings采样与详细平衡",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11938,8 +11938,8 @@
       "english": null,
       "number": "9.2.2",
       "parentId": "9.2",
-      "url": "/notebook/?id=P09-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/",
+      "readingUrl": "/chapters/09-02-马尔可夫链采样与诊断/read/2/",
       "practiceUrl": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics",
       "description": "从样本平均方差解释相关性，用链内、链间差异与独立重复检查有限计算。",
       "categories": [
@@ -11958,7 +11958,7 @@
       "total": 1,
       "lessonId": "P09-C02-S02",
       "lessonNumber": "9.2.2",
-      "lessonTitle": "多链相关性与有限计算预算",
+      "lessonTitle": "多链诊断、自相关与有效样本量",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11969,8 +11969,8 @@
       "english": null,
       "number": "9.2.2",
       "parentId": "9.2",
-      "url": "/notebook/?id=P09-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/",
+      "readingUrl": "/chapters/09-02-马尔可夫链采样与诊断/read/2/",
       "practiceUrl": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics",
       "description": "从样本平均方差解释相关性，用链内、链间差异与独立重复检查有限计算。",
       "categories": [
@@ -11989,7 +11989,7 @@
       "total": 1,
       "lessonId": "P09-C02-S02",
       "lessonNumber": "9.2.2",
-      "lessonTitle": "多链相关性与有限计算预算",
+      "lessonTitle": "多链诊断、自相关与有效样本量",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12000,8 +12000,8 @@
       "english": null,
       "number": "9.2.2",
       "parentId": "9.2",
-      "url": "/notebook/?id=P09-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/",
+      "readingUrl": "/chapters/09-02-马尔可夫链采样与诊断/read/2/",
       "practiceUrl": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics",
       "description": "从样本平均方差解释相关性，用链内、链间差异与独立重复检查有限计算。",
       "categories": [
@@ -12020,7 +12020,7 @@
       "total": 1,
       "lessonId": "P09-C02-S02",
       "lessonNumber": "9.2.2",
-      "lessonTitle": "多链相关性与有限计算预算",
+      "lessonTitle": "多链诊断、自相关与有效样本量",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12031,8 +12031,8 @@
       "english": null,
       "number": "9.2.2",
       "parentId": "9.2",
-      "url": "/notebook/?id=P09-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/",
+      "readingUrl": "/chapters/09-02-马尔可夫链采样与诊断/read/2/",
       "practiceUrl": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics",
       "description": "从样本平均方差解释相关性，用链内、链间差异与独立重复检查有限计算。",
       "categories": [
@@ -12051,7 +12051,7 @@
       "total": 1,
       "lessonId": "P09-C02-S02",
       "lessonNumber": "9.2.2",
-      "lessonTitle": "多链相关性与有限计算预算",
+      "lessonTitle": "多链诊断、自相关与有效样本量",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12099,8 +12099,8 @@
       "english": "evidence lower bound",
       "number": "9.3.1",
       "parentId": "9.3",
-      "url": "/notebook/?id=P09-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-03-变分推断/read/1/",
+      "readingUrl": "/chapters/09-03-变分推断/read/1/",
       "practiceUrl": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
       "description": "由下界恒等式推导顺序因子更新，以二维高斯区分优化误差和独立族的限制。",
       "categories": [
@@ -12119,7 +12119,7 @@
       "total": 1,
       "lessonId": "P09-C03-S01",
       "lessonNumber": "9.3.1",
-      "lessonTitle": "从相对熵到均值场更新",
+      "lessonTitle": "证据下界与均值场更新",
       "chapterUrl": "/chapters/09-03-变分推断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12130,8 +12130,8 @@
       "english": null,
       "number": "9.3.1",
       "parentId": "9.3",
-      "url": "/notebook/?id=P09-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-03-变分推断/read/1/",
+      "readingUrl": "/chapters/09-03-变分推断/read/1/",
       "practiceUrl": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
       "description": "由下界恒等式推导顺序因子更新，以二维高斯区分优化误差和独立族的限制。",
       "categories": [
@@ -12150,7 +12150,7 @@
       "total": 1,
       "lessonId": "P09-C03-S01",
       "lessonNumber": "9.3.1",
-      "lessonTitle": "从相对熵到均值场更新",
+      "lessonTitle": "证据下界与均值场更新",
       "chapterUrl": "/chapters/09-03-变分推断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12161,8 +12161,8 @@
       "english": null,
       "number": "9.3.1",
       "parentId": "9.3",
-      "url": "/notebook/?id=P09-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-03-变分推断/read/1/",
+      "readingUrl": "/chapters/09-03-变分推断/read/1/",
       "practiceUrl": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
       "description": "由下界恒等式推导顺序因子更新，以二维高斯区分优化误差和独立族的限制。",
       "categories": [
@@ -12181,7 +12181,7 @@
       "total": 1,
       "lessonId": "P09-C03-S01",
       "lessonNumber": "9.3.1",
-      "lessonTitle": "从相对熵到均值场更新",
+      "lessonTitle": "证据下界与均值场更新",
       "chapterUrl": "/chapters/09-03-变分推断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12192,8 +12192,8 @@
       "english": null,
       "number": "9.3.1",
       "parentId": "9.3",
-      "url": "/notebook/?id=P09-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-03-变分推断/read/1/",
+      "readingUrl": "/chapters/09-03-变分推断/read/1/",
       "practiceUrl": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
       "description": "由下界恒等式推导顺序因子更新，以二维高斯区分优化误差和独立族的限制。",
       "categories": [
@@ -12212,7 +12212,7 @@
       "total": 1,
       "lessonId": "P09-C03-S01",
       "lessonNumber": "9.3.1",
-      "lessonTitle": "从相对熵到均值场更新",
+      "lessonTitle": "证据下界与均值场更新",
       "chapterUrl": "/chapters/09-03-变分推断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12223,8 +12223,8 @@
       "english": null,
       "number": "9.3.2",
       "parentId": "9.3",
-      "url": "/notebook/?id=P09-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-03-变分推断/read/2/",
+      "readingUrl": "/chapters/09-03-变分推断/read/2/",
       "practiceUrl": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate",
       "description": "枚举四种细胞联合状态，跟算开启概率更新，比较对称初值与两个局部解。",
       "categories": [
@@ -12243,7 +12243,7 @@
       "total": 1,
       "lessonId": "P09-C03-S02",
       "lessonNumber": "9.3.2",
-      "lessonTitle": "近似族与多峰中的初始化",
+      "lessonTitle": "四状态近似与初始化",
       "chapterUrl": "/chapters/09-03-变分推断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12254,8 +12254,8 @@
       "english": null,
       "number": "9.3.2",
       "parentId": "9.3",
-      "url": "/notebook/?id=P09-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-03-变分推断/read/2/",
+      "readingUrl": "/chapters/09-03-变分推断/read/2/",
       "practiceUrl": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate",
       "description": "枚举四种细胞联合状态，跟算开启概率更新，比较对称初值与两个局部解。",
       "categories": [
@@ -12274,7 +12274,7 @@
       "total": 1,
       "lessonId": "P09-C03-S02",
       "lessonNumber": "9.3.2",
-      "lessonTitle": "近似族与多峰中的初始化",
+      "lessonTitle": "四状态近似与初始化",
       "chapterUrl": "/chapters/09-03-变分推断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12285,8 +12285,8 @@
       "english": null,
       "number": "9.3.2",
       "parentId": "9.3",
-      "url": "/notebook/?id=P09-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-03-变分推断/read/2/",
+      "readingUrl": "/chapters/09-03-变分推断/read/2/",
       "practiceUrl": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate",
       "description": "枚举四种细胞联合状态，跟算开启概率更新，比较对称初值与两个局部解。",
       "categories": [
@@ -12305,7 +12305,7 @@
       "total": 1,
       "lessonId": "P09-C03-S02",
       "lessonNumber": "9.3.2",
-      "lessonTitle": "近似族与多峰中的初始化",
+      "lessonTitle": "四状态近似与初始化",
       "chapterUrl": "/chapters/09-03-变分推断/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12352,8 +12352,8 @@
       "english": "responsibility",
       "number": "9.4.1",
       "parentId": "9.4",
-      "url": "/notebook/?id=P09-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-04-隐变量与参数学习/read/1/",
+      "readingUrl": "/chapters/09-04-隐变量与参数学习/read/1/",
       "practiceUrl": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update",
       "description": "从归组概率推导EM加权更新，说明责任度固定、标签交换与似然不下降的条件。",
       "categories": [
@@ -12372,7 +12372,7 @@
       "total": 1,
       "lessonId": "P09-C04-S01",
       "lessonNumber": "9.4.1",
-      "lessonTitle": "责任度与混合模型参数学习",
+      "lessonTitle": "责任度与期望最大化",
       "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12383,8 +12383,8 @@
       "english": null,
       "number": "9.4.1",
       "parentId": "9.4",
-      "url": "/notebook/?id=P09-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-04-隐变量与参数学习/read/1/",
+      "readingUrl": "/chapters/09-04-隐变量与参数学习/read/1/",
       "practiceUrl": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update",
       "description": "从归组概率推导EM加权更新，说明责任度固定、标签交换与似然不下降的条件。",
       "categories": [
@@ -12403,7 +12403,7 @@
       "total": 1,
       "lessonId": "P09-C04-S01",
       "lessonNumber": "9.4.1",
-      "lessonTitle": "责任度与混合模型参数学习",
+      "lessonTitle": "责任度与期望最大化",
       "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12414,8 +12414,8 @@
       "english": null,
       "number": "9.4.1",
       "parentId": "9.4",
-      "url": "/notebook/?id=P09-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-04-隐变量与参数学习/read/1/",
+      "readingUrl": "/chapters/09-04-隐变量与参数学习/read/1/",
       "practiceUrl": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update",
       "description": "从归组概率推导EM加权更新，说明责任度固定、标签交换与似然不下降的条件。",
       "categories": [
@@ -12434,7 +12434,7 @@
       "total": 1,
       "lessonId": "P09-C04-S01",
       "lessonNumber": "9.4.1",
-      "lessonTitle": "责任度与混合模型参数学习",
+      "lessonTitle": "责任度与期望最大化",
       "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12445,8 +12445,8 @@
       "english": null,
       "number": "9.4.2",
       "parentId": "9.4",
-      "url": "/notebook/?id=P09-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-04-隐变量与参数学习/read/2/",
+      "readingUrl": "/chapters/09-04-隐变量与参数学习/read/2/",
       "practiceUrl": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments",
       "description": "用两时刻手算补回方差和协方差，再从平滑分布推导动态系数更新。",
       "categories": [
@@ -12465,7 +12465,7 @@
       "total": 1,
       "lessonId": "P09-C04-S02",
       "lessonNumber": "9.4.2",
-      "lessonTitle": "从平滑矩到动态参数更新",
+      "lessonTitle": "平滑矩与动态参数更新",
       "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12476,8 +12476,8 @@
       "english": null,
       "number": "9.4.2",
       "parentId": "9.4",
-      "url": "/notebook/?id=P09-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-04-隐变量与参数学习/read/2/",
+      "readingUrl": "/chapters/09-04-隐变量与参数学习/read/2/",
       "practiceUrl": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments",
       "description": "用两时刻手算补回方差和协方差，再从平滑分布推导动态系数更新。",
       "categories": [
@@ -12496,7 +12496,7 @@
       "total": 1,
       "lessonId": "P09-C04-S02",
       "lessonNumber": "9.4.2",
-      "lessonTitle": "从平滑矩到动态参数更新",
+      "lessonTitle": "平滑矩与动态参数更新",
       "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12507,8 +12507,8 @@
       "english": "conditional expectation",
       "number": "9.4.2",
       "parentId": "9.4",
-      "url": "/notebook/?id=P09-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-04-隐变量与参数学习/read/2/",
+      "readingUrl": "/chapters/09-04-隐变量与参数学习/read/2/",
       "practiceUrl": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments",
       "description": "用两时刻手算补回方差和协方差，再从平滑分布推导动态系数更新。",
       "categories": [
@@ -12527,7 +12527,7 @@
       "total": 1,
       "lessonId": "P09-C04-S02",
       "lessonNumber": "9.4.2",
-      "lessonTitle": "从平滑矩到动态参数更新",
+      "lessonTitle": "平滑矩与动态参数更新",
       "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12574,8 +12574,8 @@
       "english": null,
       "number": "9.5.1",
       "parentId": "9.5",
-      "url": "/notebook/?id=P09-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-05-后验预测与模型检验/read/1/",
+      "readingUrl": "/chapters/09-05-后验预测与模型检验/read/1/",
       "practiceUrl": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments",
       "description": "拆开读数偏差推导总方差，用混合累计概率构造区间，并检查非线性平均。",
       "categories": [
@@ -12594,7 +12594,7 @@
       "total": 1,
       "lessonId": "P09-C05-S01",
       "lessonNumber": "9.5.1",
-      "lessonTitle": "把参数不确定性带入预测",
+      "lessonTitle": "后验预测、总方差与预测区间",
       "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12605,8 +12605,8 @@
       "english": null,
       "number": "9.5.1",
       "parentId": "9.5",
-      "url": "/notebook/?id=P09-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-05-后验预测与模型检验/read/1/",
+      "readingUrl": "/chapters/09-05-后验预测与模型检验/read/1/",
       "practiceUrl": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments",
       "description": "拆开读数偏差推导总方差，用混合累计概率构造区间，并检查非线性平均。",
       "categories": [
@@ -12625,7 +12625,7 @@
       "total": 1,
       "lessonId": "P09-C05-S01",
       "lessonNumber": "9.5.1",
-      "lessonTitle": "把参数不确定性带入预测",
+      "lessonTitle": "后验预测、总方差与预测区间",
       "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12636,8 +12636,8 @@
       "english": null,
       "number": "9.5.1",
       "parentId": "9.5",
-      "url": "/notebook/?id=P09-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/09-05-后验预测与模型检验/read/1/",
+      "readingUrl": "/chapters/09-05-后验预测与模型检验/read/1/",
       "practiceUrl": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments",
       "description": "拆开读数偏差推导总方差，用混合累计概率构造区间，并检查非线性平均。",
       "categories": [
@@ -12656,7 +12656,7 @@
       "total": 1,
       "lessonId": "P09-C05-S01",
       "lessonNumber": "9.5.1",
-      "lessonTitle": "把参数不确定性带入预测",
+      "lessonTitle": "后验预测、总方差与预测区间",
       "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12667,8 +12667,8 @@
       "english": null,
       "number": "9.5.2",
       "parentId": "9.5",
-      "url": "/notebook/?id=P09-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-05-后验预测与模型检验/read/2/",
+      "readingUrl": "/chapters/09-05-后验预测与模型检验/read/2/",
       "practiceUrl": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score",
       "description": "先固定四种预测，再比较留出分数与覆盖，区分固定场景、复制检查与联合重复。",
       "categories": [
@@ -12687,7 +12687,7 @@
       "total": 1,
       "lessonId": "P09-C05-S02",
       "lessonNumber": "9.5.2",
-      "lessonTitle": "留出预测覆盖与模型失配",
+      "lessonTitle": "留出预测、覆盖与模型失配",
       "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12698,8 +12698,8 @@
       "english": null,
       "number": "9.5.2",
       "parentId": "9.5",
-      "url": "/notebook/?id=P09-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-05-后验预测与模型检验/read/2/",
+      "readingUrl": "/chapters/09-05-后验预测与模型检验/read/2/",
       "practiceUrl": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score",
       "description": "先固定四种预测，再比较留出分数与覆盖，区分固定场景、复制检查与联合重复。",
       "categories": [
@@ -12718,7 +12718,7 @@
       "total": 1,
       "lessonId": "P09-C05-S02",
       "lessonNumber": "9.5.2",
-      "lessonTitle": "留出预测覆盖与模型失配",
+      "lessonTitle": "留出预测、覆盖与模型失配",
       "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -12729,8 +12729,8 @@
       "english": null,
       "number": "9.5.2",
       "parentId": "9.5",
-      "url": "/notebook/?id=P09-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/09-05-后验预测与模型检验/read/2/",
+      "readingUrl": "/chapters/09-05-后验预测与模型检验/read/2/",
       "practiceUrl": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score",
       "description": "先固定四种预测，再比较留出分数与覆盖，区分固定场景、复制检查与联合重复。",
       "categories": [
@@ -12749,7 +12749,7 @@
       "total": 1,
       "lessonId": "P09-C05-S02",
       "lessonNumber": "9.5.2",
-      "lessonTitle": "留出预测覆盖与模型失配",
+      "lessonTitle": "留出预测、覆盖与模型失配",
       "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },

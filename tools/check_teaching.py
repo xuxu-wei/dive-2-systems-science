@@ -16,9 +16,17 @@ from build_lessons import DIRECTIVE
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Reviewed contexts: sampling-step separation, rather than hysteresis or delay.
+# Keep these choices local to their actual teaching units; do not infer from words.
+REVIEWED_SENSES = {
+    'P09-C02-S02': {'滞后': 'lag'},
+    'p09-basic-diagnostics': {'滞后': 'lag'},
+    'overview:9.2': {'滞后': 'lag'},
+}
 
-def check_terms(text, part, **options):
-    issues, terms = check_text(text, part, **options)
+
+def check_terms(text, part, *, unit=None, **options):
+    issues, terms = check_text(text, part, senses=REVIEWED_SENSES.get(unit), **options)
     return [issue.message for issue in issues], terms
 
 
@@ -55,7 +63,7 @@ def main():
             strings = [q['statement'], *(p['description'] for p in q.get('parameters', []) + q.get('returns', [])), q.get('contract', ''), *q.get('constraints', []), *(s['explanation'] for s in q.get('samples', [])), *(o['text'] for o in q.get('options', [])), q.get('hint', '')]
             strings += list(verification[q['id']].get('explanations', {}).values())
             strings.append(verification[q['id']].get('explanation', ''))
-            missing, terms = check_terms('\n'.join(strings), part, require_first=not lesson.get('reading'))
+            missing, terms = check_terms('\n'.join(strings), part, unit=q['id'], require_first=not lesson.get('reading'))
             issues.extend(f'{q["id"]}: {t}' for t in missing)
             evidence.append({'unit': q['id'], 'terms': terms})
         path = ROOT / lesson['path']
@@ -82,7 +90,7 @@ def main():
                         url = urlsplit(destination)
                         if url.hostname == '127.0.0.1':
                             assert unquote(url.path) in routes, destination
-            missing, terms = check_terms(source, part, require_first=False)
+            missing, terms = check_terms(source, part, unit=lesson['id'], require_first=False)
             issues.extend(f'{lesson["id"]}: {t}' for t in missing)
             evidence.append({'unit': lesson['id'], 'source': lesson['reading'], 'terms': terms})
             links += len(bank)
@@ -110,14 +118,14 @@ def main():
                         assert any(q['slug'] == slug for q in bank), destination
                         links += 1
         core = '\n'.join(c.source for c in nb.cells[:-1] if c.cell_type == 'markdown')
-        missing, terms = check_terms(core, part)
+        missing, terms = check_terms(core, part, unit=lesson['id'])
         issues.extend(f'{lesson["id"]}: {t}' for t in missing)
         evidence.append({'unit': lesson['id'], 'terms': terms})
     for chapter in chapters.values():
         if args.part is not None and int(chapter['id'].split('.')[0]) != args.part:
             continue
         prose = '\n'.join([chapter.get('goals', ''), chapter.get('prerequisites', ''), chapter.get('focus', ''), *chapter.get('knowledge', [])])
-        missing, terms = check_terms(prose, 99, require_first=False)
+        missing, terms = check_terms(prose, 99, unit='overview:' + chapter['id'], require_first=False)
         issues.extend(f'导览 {chapter["id"]}: {t}' for t in missing)
         evidence.append({'unit': 'overview:' + chapter['id'], 'terms': terms})
     assert links == len(questions)

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.4.2 平滑矩与动态参数更新 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P09-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P09-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments">本节练习 · 5 题</a><a class="button" href="/chapters/09-04-隐变量与参数学习/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>9.4.2 平滑矩与动态参数更新</h1>
+<p>第7篇的平滑得到一整段隐藏状态的条件分布。现在希望用这段分布学习动态系数。如果把平滑均值当作精确状态来回归，相邻状态仍未确定的共同变化就会被遗漏。参数更新需要把这些变化一起平均进去。</p>
+<p>学完本节，你应能从平滑均值、方差和相邻协方差构成二阶矩，推导一次动态系数更新，并解释每轮为何要重新平滑。先修为第7篇的固定区间平滑、高斯条件分布，以及上一节的EM。</p>
+<h2 id="dynamic-parameter-model">线性状态模型与参数学习</h2>
+<p>用$x_t$表示相对参考水平的状态偏差，$y_t$表示对应读数，单位均为U。采用标量模型</p>
+<p>$$x_{t+1}=a x_t+w_t,\qquad y_t=x_t+v_t.$$</p>
+<p>观测覆盖$t=0,\ldots,T$，相邻转移覆盖$t=0,\ldots,T-1$。过程噪声$w_t$与测量噪声$v_t$均为零均值高斯，方差分别固定为$Q=0.2$ U²、$R=0.4$ U²；各时刻两类噪声彼此独立。初态$x_0\sim N(0,1\ \mathrm U^2)$，独立于全部噪声，其分布也不随$a$变化。</p>
+<p>本次求无量纲系数$a$的无约束最大似然估计。固定旧参数$a^{\rm old}$，E步对全部$y_{0:T}=(y_0,\ldots,y_T)$作条件，求状态的平滑分布；M步在这一个分布下对新$a$优化。状态分布与动态系数，分别是两步要处理的未知对象。</p>
+<h2 id="smoothed-second-moments">平滑二阶矩</h2>
+<p>记旧参数下的平滑均值、方差和相邻协方差为</p>
+<p>$$m_t=E[x_t\mid y_{0:T}],\quad V_t=\operatorname{Var}(x_t\mid y_{0:T}),$$
+$$C_t=\operatorname{Cov}(x_{t+1},x_t\mid y_{0:T}).$$</p>
+<p>条件期望均取自刚完成的E步。由方差与协方差定义，</p>
+<p>$$\boxed{E[x_t^2\mid y_{0:T}]=V_t+m_t^2,}$$
+$$\boxed{E[x_{t+1}x_t\mid y_{0:T}]=C_t+m_{t+1}m_t.}$$</p>
+<p>两个期望都包含均值以外的项。平方的平均要加方差，相邻乘积的平均要加协方差。</p>
+<p>先手算一组两时刻平滑矩：$m_0=1$ U、$m_1=2$ U，$V_0=V_1=1$ U²，$C_0=0.5$ U²。于是</p>
+<p>$$E[x_0^2\mid y]=2\ \mathrm U^2,\qquad E[x_1x_0\mid y]=2.5\ \mathrm U^2.$$</p>
+<p>若只乘两个均值，相邻乘积会被写成2 U²，漏掉共同波动的0.5 U²。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-smoothing-products">为什么不能只回归平滑均值</a></li></ul></nav>
+
+<h2 id="dynamic-coefficient-m-step">动态系数的M步</h2>
+<p>完整状态已知时，包含$a$的对数似然部分为</p>
+<p>$$-\frac1{2Q}\sum_{t=0}^{T-1}(x_{t+1}-a x_t)^2.$$</p>
+<p>$Q$与初态分布固定，使其他项不随$a$变化。E步已经给出状态分布，因此M步最小化</p>
+<p>$$\sum_{t=0}^{T-1}E[(x_{t+1}-a x_t)^2\mid y_{0:T}].$$</p>
+<p>先展开每一项：</p>
+<p>$$E[x_{t+1}^2\mid y]-2aE[x_{t+1}x_t\mid y]+a^2E[x_t^2\mid y].$$</p>
+<p>三个条件期望在这次优化里都保持不变。对新$a$求导，令其为零，得到</p>
+<p>$$\sum_tE[x_{t+1}x_t\mid y]-a\sum_tE[x_t^2\mid y]=0.$$</p>
+<p>记分子为$N$、分母为$D$。当$D&gt;0$时，目标的二次曲率为正，唯一更新为</p>
+<p>$$\boxed{a^{\rm new}=\frac ND=
+\frac{\sum_{t=0}^{T-1}(C_t+m_{t+1}m_t)}
+{\sum_{t=0}^{T-1}(V_t+m_t^2)}.}$$</p>
+<p>分子、分母单位同为U²，相除得到无量纲系数。用前面的两时刻数值，$a^{\rm new}=2.5/2=1.25$；只回归均值会得到$2/1=2$。两者差异来自被遗漏的方差和协方差。</p>
+<p>同一平滑分布还可给出新系数下的平均残差平方期望：</p>
+<p>$$\frac1T\sum_{t=0}^{T-1}\left[
+V_{t+1}+m_{t+1}^2-2a^{\rm new}(C_t+m_{t+1}m_t)
++(a^{\rm new})^2(V_t+m_t^2)\right].$$</p>
+<p>两时刻例得到$5-2\times1.25\times2.5+1.25^2\times2=1.875$ U²。它衡量这个分布下的转移残差，本次模型中的$Q$仍取0.2 U²。若给定的平滑矩使$D=0$，所有被回归的前一状态都恒为零，目标不能确定$a$，计算题返回$(\texttt{None},\texttt{None})$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments">用平滑矩更新转移系数</a></li></ul></nav>
+
+<h2 id="rts-lag-covariance">RTS平滑的相邻协方差</h2>
+<p>第7篇的RTS递推已经求出$m_t,V_t$。现在还需要$C_t$。用上标$f$表示滤波量，$\mathrm{pred}$表示一步预测量，采用旧$a$计算</p>
+<p>$$m_{t+1}^{\rm pred}=a m_t^f,\quad
+P_{t+1}^{\rm pred}=a^2P_t^f+Q,\quad
+J_t=\frac{P_t^f a}{P_{t+1}^{\rm pred}}.$$</p>
+<p>给定截至$t$的观测，$(x_t,x_{t+1})$联合高斯，交叉协方差为$P_t^f a$。由高斯条件公式，当前状态可写为</p>
+<p>$$x_t=m_t^f+J_t(x_{t+1}-m_{t+1}^{\rm pred})+e_t,$$</p>
+<p>其中剩余项$e_t$与$x_{t+1}$独立。未来观测通过$x_{t+1}$及后续独立噪声产生，因此这些观测也不会再改变剩余项。条件于全部观测后，对上式与$x_{t+1}$求协方差，得到</p>
+<p>$$\boxed{C_t=J_tV_{t+1}.}$$</p>
+<p>右边的$V_{t+1}$是平滑方差。保存一条平滑均值曲线不能提供这个量；各时刻方差与相邻协方差一起，才构成参数更新需要的二阶信息。长度为$T+1$的均值和方差列表，对应长度为$T$的相邻协方差列表，第$t$项描述$(t+1,t)$这一对。</p>
+<h2 id="initial-distribution-and-constraints">初态分布与允许的参数范围</h2>
+<p>更新式$N/D$使用了初态分布不依赖$a$这一条件。若改用平稳初态，方差为$Q/(1-a^2)$，初态密度本身就随$a$变化，而且要求$|a|&lt;1$。此时应把初态的对数密度放回优化目标，重新求参数。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-initial-parameter">初始分布也依赖a</a></li></ul></nav>
+
+<p>同样，如果应用要求动态系数稳定，就要把稳定范围纳入参数问题。无约束M步可能得到1.1；将它事后裁剪成0.99，已经改变了原来的更新。第8篇的方法可以用来求有约束的M步，并检查它改善的是哪个目标。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-unstable-estimate">更新得到a大于1</a></li></ul></nav>
+
+<h2 id="state-em-experiment">反复平滑与似然变化</h2>
+<p>实验使用10条固定读数$(0.2,0.6,0.5,0.9,0.1,-0.2,0.2,0.5,0.1,-0.3)$ U，从$a=0.2$开始，做12次平滑与M步更新。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P09-C04-S02-ab623003-0.png" alt="平滑矩与动态参数更新：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图记录每组参数下的观测对数似然，右图画最终状态的平滑均值，阴影为均值加减一个后验标准差。最后$a\approx0.373183$。每轮改变$a$，都会改变相邻状态的联系，因此下一轮需重新求平滑分布，再更新其中的二阶矩。</p>
+<p>这里采用精确线性高斯平滑与精确无约束M步，延续上一节的下界比较，使观测似然不下降。若换成有偏的近似平滑，旧参数处的下界可能不再与观测似然相等。此时可以逐轮计算原观测似然，或依据近似算法实际优化的目标解释变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-approximate-e-step">近似平滑代替精确E步</a></li></ul></nav>
+
+<p>参数学习利用整段读数中的状态分布；固定参数以后，再用后续未参与学习的读数检查预测。下一章将把参数后验或候选参数节点带入预测，比较未来读数的不确定性与实际误差。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf">Särkkä，Bayesian Filtering and Smoothing，第8、12章</a>分别讨论平滑与状态空间模型参数估计。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/09-04-隐变量与参数学习/read/1/">← 9.4.1 责任度与期望最大化</a><a href="/chapters/09-05-后验预测与模型检验/read/1/">9.5.1 后验预测、总方差与预测区间 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

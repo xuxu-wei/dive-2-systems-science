@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.3.1 证据下界与均值场更新 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P09-C03-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P09-C03-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate">本节练习 · 5 题</a><a class="button" href="/chapters/09-03-变分推断/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>9.3.1 证据下界与均值场更新</h1>
+<p>两个参数可以相互补偿，因而后验沿一个斜向方向伸展。若为了计算方便，把它们近似成相互独立的分布，均值能调整到正确位置，斜向联系却会消失。这一节将后验近似写成优化问题，再用一个可以精确计算的高斯目标区分这两种变化。</p>
+<p>学完本节，你应能说明下界中的期望对谁计算，推导一轮顺序因子更新，并区分优化尚未完成与近似族本身的误差。先修为第5篇的概率与期望、第7篇的高斯分布和第8篇的二次目标。</p>
+<h2 id="kl-direction">相对熵与分布近似的方向</h2>
+<p>记已经取得的观测为$y$，未知量为$z$，联合密度为$p(y,z)$。求后验时$y$固定，变化的是$z$。选择一个便于计算的分布$q(z)$，用它近似$p(z\mid y)$。</p>
+<p><strong>相对熵（relative entropy，也称KL散度）</strong>用概率或密度之比的对数比较两个分布。这里定义为</p>
+<p>$$\operatorname{KL}(q\|p(\cdot\mid y))=
+\int q(z)\log\frac{q(z)}{p(z\mid y)}\,dz.$$</p>
+<p>这个式子按$q$对“近似概率与目标概率之比的对数”求平均：$q$经常出现的区域在比较中占较大权重。交换两个分布，就会改变这些权重，通常也会得到不同结果。相对熵非负，恰在两个分布一致时为零；这里使用自然对数，数值以nat计。若$q$在后验为零的区域放置正质量，密度比会使该方向的相对熵无穷大。</p>
+<p>例如两个状态的目标概率为$(0.25,0.75)$，候选$q=(0.5,0.5)$，则</p>
+<p>$$\operatorname{KL}(q\|p)=\tfrac12\log2+\tfrac12\log(2/3)\approx0.143841\ \text{nat}.$$</p>
+<p>候选把较少见的第一状态估得更常见，两项对数比的加权平均为正。若候选逐项等于目标，每个比值都为1，结果就是零。</p>
+<p><strong>变分推断（variational inference）</strong>先选择一组候选分布，称为近似族$\mathcal Q$，再在其中求</p>
+<p>$$q^*=\underset{q\in\mathcal Q}{\arg\min}
+\operatorname{KL}(q\|p(\cdot\mid y)).$$</p>
+<p>优化变量现在是分布。用少数均值、方差描述$q$，就能把这个问题变成参数优化；选择怎样的近似族，也决定了哪些后验形状可能被表达。</p>
+<h2 id="evidence-lower-bound">证据下界与后验恒等式</h2>
+<p>直接计算相对熵需要后验的归一化常数。为了得到可计算的目标，定义</p>
+<p>$$\mathcal L(q)=E_q[\log p(y,z)]-E_q[\log q(z)].$$</p>
+<p>$E_q$表示按$q(z)$对$z$求平均，两项里的观测$y$都保持不变。将</p>
+<p>$$\log p(z\mid y)=\log p(y,z)-\log p(y)$$</p>
+<p>代入相对熵，并利用$\int q(z)\,dz=1$，得到</p>
+<p>$$\begin{aligned}
+\operatorname{KL}(q\|p(\cdot\mid y))
+&amp;=E_q\log q-E_q\log p(y,z)+\log p(y),\\
+&amp;\boxed{\log p(y)=\mathcal L(q)+\operatorname{KL}(q\|p(\cdot\mid y)).}
+\end{aligned}$$</p>
+<p>$\log p(y)$是固定观测的对数证据，不随$q$变化。因此$\mathcal L(q)\le\log p(y)$，称为<strong>证据下界（evidence lower bound，ELBO）</strong>。最大化它，正好等价于在同一近似族中最小化上面的相对熵。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-03-变分推断/practice/?question=p09-kl-direction">下界中的距离方向</a></li></ul></nav>
+
+<p>例如两个隐状态的联合质量为0.1与0.3，证据为0.4，后验概率为$(0.25,0.75)$。取$q$等于这个后验，则</p>
+<p>$$\mathcal L=0.25\log\frac{0.1}{0.25}+0.75\log\frac{0.3}{0.75}
+=\log0.4,$$</p>
+<p>下界与对数证据的差恰好为零。有限状态时，将积分改为求和；$q(z)=0$的项按$0\log0=0$处理。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-03-变分推断/practice/?question=p09-finite-bound">直接枚举证据下界</a></li></ul></nav>
+
+<h2 id="jensen-bound">Jensen不等式与平均的次序</h2>
+<p>下界也能从“先平均还是先取对数”理解。<strong>Jensen不等式（Jensen's inequality）</strong>对凹函数$\phi$给出</p>
+<p>$$E[\phi(W)]\le\phi(E[W]).$$</p>
+<p>凹函数的图像位于两点连线之上；把两点推广成按概率加权的多个点，就得到这个关系。对数是凹函数，所以正随机量$W$满足$E\log W\le\log E W$。</p>
+<p>这也证明相对熵非负。记目标后验为$\pi$，在$q&gt;0$的区域，</p>
+<p>$$-\operatorname{KL}(q\|\pi)=E_q\log\frac{\pi}{q}
+\le\log\int_{q&gt;0}\pi(z)\,dz\le0.$$</p>
+<p>再令$W=p(y,z)/q(z)$，在同一区域按$q$积分：</p>
+<p>$$\mathcal L(q)=E_q\log\frac{p(y,z)}{q(z)}
+\le\log\int_{q&gt;0}p(y,z)\,dz\le\log p(y).$$</p>
+<p>若$q$覆盖联合密度的全部支持，最后一项积分就是证据。这里的平均次序解释了为什么优化得到的是下界；下界等于证据，还要求候选分布与后验的概率分配相同。</p>
+<h2 id="mean-field-coordinates">均值场因子与坐标更新</h2>
+<p>取近似$q(z)=\prod_{j=1}^d q_j(z_j)$，称为<strong>均值场近似（mean-field approximation）</strong>。乘积形式让近似分布中的各变量独立，计算时可以逐个调整因子。</p>
+<p>固定除第$j$个以外的因子，合记为$q_{-j}$。定义</p>
+<p>$$h_j(z_j)=E_{q_{-j}}[\log p(y,z)].$$</p>
+<p>这个期望只平均其余变量，留下$z_j$作为自变量。例如更新第一因子时，用第二因子的当前分布求平均，得到一个关于$z_1$的函数。</p>
+<p>下界中随$q_j$变化的部分为</p>
+<p>$$\int q_j(z_j)h_j(z_j)\,dz_j-\int q_j(z_j)\log q_j(z_j)\,dz_j.$$</p>
+<p>令$Z_j=\int e^{h_j(z_j)}\,dz_j$，在它有限且为正时，配成</p>
+<p>$$\log Z_j-\operatorname{KL}\left(q_j\,\middle\|\,e^{h_j}/Z_j\right).$$</p>
+<p>要最大化这一项，就让相对熵为零，得到</p>
+<p>$$\boxed{q_j^{\rm new}(z_j)\propto\exp\bigl(E_{q_{-j}}\log p(y,z)\bigr).}$$</p>
+<p>精确更新一个因子使下界不下降。随后更新下一因子时，使用刚得到的新分布，这就是顺序坐标更新。</p>
+<h2 id="gaussian-mean-field">相关高斯的均值场解</h2>
+<p>设目标为二维高斯$N(\mu,P^{-1})$，$P$是对称正定的精度矩阵，变量已经按参考尺度化为无量纲数。取两个独立高斯因子，均值为$m_1,m_2$，方差为$v_1,v_2$。目标的对数密度含</p>
+<p>$$-\tfrac12(z-\mu)^{\mathsf T}P(z-\mu).$$</p>
+<p>更新第一因子时，与$z_1$有关的期望为</p>
+<p>$$-\frac{P_{11}}2(z_1-\mu_1)^2-P_{12}(z_1-\mu_1)(m_2-\mu_2)+C.$$</p>
+<p>对$z_1$配方，读出均值和方差；再用新均值更新第二个因子：</p>
+<p>$$\begin{aligned}
+m_1&amp;\leftarrow\mu_1-\frac{P_{12}}{P_{11}}(m_2-\mu_2),&amp;v_1&amp;=P_{11}^{-1},\\
+m_2&amp;\leftarrow\mu_2-\frac{P_{21}}{P_{22}}(m_1-\mu_1),&amp;v_2&amp;=P_{22}^{-1}.
+\end{aligned}$$</p>
+<p>例如$P=\begin{pmatrix}2&amp;-1\\-1&amp;2\end{pmatrix}$、$\mu=0$，从$m=(2,2)^{\mathsf T}$开始。第一步$m_1$变为1；第二步用新$m_1$，所以$m_2$变为0.5。两个方差都是0.5。</p>
+<p>若近似协方差为$V=\operatorname{diag}(v_1,v_2)$、均值偏差为$\delta=m-\mu$，高斯相对熵为</p>
+<p>$$\operatorname{KL}(q\|p)=\frac12\left[
+\operatorname{tr}(PV)+\delta^{\mathsf T}P\delta-2-\log(\det P\det V)\right].$$</p>
+<p>这里$\operatorname{tr}$是对角元素之和，$\det$表示行列式。公式来自两项对数高斯密度的期望，其中目标二次型的期望为$\operatorname{tr}(PV)+\delta^{\mathsf T}P\delta$，近似自身二次型的期望为维数2。对刚才的一轮，$\operatorname{tr}(PV)=2$、$\delta^{\mathsf T}P\delta=1.5$、$\det P\det V=0.75$，得到$\operatorname{KL}\approx0.893841$ nat。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate">完成一轮均值场坐标更新</a></li></ul></nav>
+
+<h2 id="optimization-and-family-error">优化误差与近似族的限制</h2>
+<p>取目标均值为零、协方差为</p>
+<p>$$\Sigma=\begin{pmatrix}1&amp;\rho\\\rho&amp;1\end{pmatrix},\qquad |\rho|&lt;1.$$</p>
+<p>其精度矩阵为$(1-\rho^2)^{-1}\begin{pmatrix}1&amp;-\rho\\-\rho&amp;1\end{pmatrix}$，更新化为$m_1\leftarrow\rho m_2$、$m_2\leftarrow\rho m_1$，因子方差都为$1-\rho^2$。在$\rho=0.8$时，目标的两个边缘方差为1，独立近似却取0.36。</p>
+<p>下面从$m=(3,-3)^{\mathsf T}$开始做30轮更新。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P09-C03-S01-9c2aaca3-0.png" alt="证据下界与均值场更新：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图蓝色轮廓沿斜向伸展，虚线独立轮廓沿坐标轴排列。右图相对熵下降后停在正值。当均值达到零时，代入上式还剩</p>
+<p>$$\operatorname{KL}_{\min}=-\tfrac12\log(1-\rho^2)\approx0.510826\ \text{nat}.$$</p>
+<p>当前相对熵高于这个最低值的部分来自尚未完成的均值优化；这个最低值本身来自独立族无法表达相关性。继续更新能减小前一部分，改变近似族才能处理后一部分。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-03-变分推断/practice/?question=p09-gaussian-variance">独立近似丢掉了什么</a></li><li><a href="/chapters/09-03-变分推断/practice/?question=p09-optimization-error">下界停止上升</a></li></ul></nav>
+
+<p>探索页使用同一个零均值高斯目标，从$m=(2,-2)^{\mathsf T}$开始做20轮更新。切换独立目标与相关目标，再逐步增大$\rho$，比较因子宽度及最终差距。右图用$\log_{10}(1+\operatorname{KL})$显示数值，横线对应同一近似族的最低差距。</p>
+<p class="concept-explore"><a href="/chapters/09-03-变分推断/explore/?concept=P09-C03-S01%3Aoptimization-and-family-error">可视化与探索：优化误差与近似族的限制 →</a></p>
+
+<p>高斯例里均值优化具有明确的终点。下一节改用四个离散状态，看看一个近似族内为何还可能出现不同的优化结果。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/html/1601.00670v9">Blei、Kucukelbir与McAuliffe，Variational Inference，第2.2—2.4节，v9</a>讨论证据下界、均值场与坐标更新。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/09-02-马尔可夫链采样与诊断/read/2/">← 9.2.2 多链诊断、自相关与有效样本量</a><a href="/chapters/09-03-变分推断/read/2/">9.3.2 四状态近似与初始化 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -4,9 +4,11 @@
 
 ## [未发布]
 
-网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)。
+网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)。
 
 ### 新增
+
+- 第9篇十一节网页讲授和独立实验，以58道原题连接参数后验、采样、变分、隐变量学习及预测检验。
 
 - 第8篇十一节网页讲授和独立实验，以50道原题连接目标几何、迭代方法、正则化与约束优化。
 
@@ -21,6 +23,8 @@
 - 从网页新标签页打开指定 JupyterLab 实验，自动使用本项目 Python 环境。
 
 ### 变更
+
+- 第9篇用配方、概率流、条件期望和手算建立推理；五张探索关联实际模型，Notebook保留原算法，题目身份与版本保持。
 
 - 第8篇补齐逐行求导、步长倍率、软阈值与KKT手算；四张探索按真实模型关联具体概念，Notebook保留原算法。
 

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>篇末综合 同一观测下的后验与预测比较 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P09-SUMMARY">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P09-SUMMARY" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-prior">本节练习 · 8 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>篇末综合 同一观测下的后验与预测比较</h1>
+<p>本篇从重复读数走到后验、采样、变分、隐变量学习与未来预测。现在用三个可解的参照，把不同结果与产生它的计算联系起来。</p>
+<p><strong>先修知识</strong>：9.1—9.5 的后验积分、MH 转移、变分更新、EM 和预测检查。</p>
+<h2 id="parameters-latent-variables-and-new-readings">参数、隐变量与新读数</h2>
+<p>对同一组读数，可以问三个不同问题：未知参数是多少，一次观测更可能来自哪类隐状态，以及下一次会读到什么数。参数后验、隐变量条件分布和新读数预测，分别回答这些问题。</p>
+<p>建立计算时，先沿用同一组先验、似然和观测。似然在固定数据下比较参数，后验将先验与这一次信息结合；未来预测再对参数后验平均，并加入新一次随机波动。沿这个顺序，区间宽度才能与它描述的对象对应起来。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-prior">先明确预测对象</a></li></ul></nav>
+
+<p>下面的三个参照分别检查：后验峰顶能否概括整个分布，独立近似能否表示相关性，以及未来读数还需要加入多少方差。</p>
+<h2 id="gamma-posterior-and-local-gaussian-approximation">Gamma 后验与局部高斯近似</h2>
+<p>先用一个事件计数模型。正参数 $k$ 的单位为 $1/\mathrm T$，已知暴露时长为 $E$，观察到的事件数为 $c$：</p>
+<p>$$c\mid k\sim\operatorname{Poisson}(kE),\qquad k\sim\operatorname{Gamma}(a,b),$$</p>
+<p>其中 $b$ 是单位为 T 的率参数。固定 $c,E$ 后，先验与似然中依赖 $k$ 的部分相乘，得到</p>
+<p>$$k^{a-1}e^{-bk}\,k^ce^{-kE}
+=k^{a+c-1}e^{-(b+E)k}.$$</p>
+<p>因此后验仍是 Gamma 分布，更新形状 $a'=a+c$、率 $b'=b+E$。计数似然在这里利用事件总数与暴露时长；消除曲线加高斯测量误差的模型则利用各时刻的连续读数。</p>
+<p>取 $a=1$、$b=1\ \mathrm T$、$c=2$、$E=1\ \mathrm T$，得到后验 $\operatorname{Gamma}(3,2\ \mathrm T)$。其精确均值与方差为</p>
+<p>$$E[k]=\frac{a'}{b'}=1.5/\mathrm T,\qquad
+\operatorname{Var}(k)=\frac{a'}{(b')^2}=0.75/\mathrm T^2.$$</p>
+<p>再求峰顶与曲率。负对数密度去掉常数后的一、二阶导数为</p>
+<p>$$f'(k)=b'-\frac{a'-1}{k},\qquad
+f''(k)=\frac{a'-1}{k^2}.$$</p>
+<p>当 $a'&gt;1$，内点众数为 $k_{\mathrm{mode}}=(a'-1)/b'$，局部高斯方差取该处曲率的倒数：</p>
+<p>$$V_{\mathrm{local}}=\frac{a'-1}{(b')^2}.$$</p>
+<p>本例众数为 $1/\mathrm T$、局部方差为 $0.5/\mathrm T^2$。峰顶附近的弯曲与完整后验的偏斜，因而给出不同的均值和方差。若 $a'\le1$，密度在正半轴没有内点众数，应按边界情形处理。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-local">后验局部近似与边界</a></li></ul></nav>
+
+<h2 id="mh-transitions-and-finite-chain-exploration">MH 转移与有限链探索</h2>
+<p>网格可以在低维中逐点计算概率质量；采样则构造以目标分布为平稳分布的转移。给定当前状态 $x$ 和候选 $x'$，MH 使用</p>
+<p>$$\log\alpha=\min\left(0,\log\pi(x')-\log\pi(x)
++\log q(x\mid x')-\log q(x'\mid x)\right).$$</p>
+<p>再与本轮均匀数比较，决定到达候选还是继续停在当前点。拒绝后重复的状态也属于链记录。</p>
+<p>以标准高斯目标的一步为例，从 0 提议到 1，目标对数密度减少 0.5。若反向与正向提议密度之比为 2，总对数比为 $-0.5+\log2&gt;0$，接受概率就是 1。接着从 1 提议到 $-1$，目标密度相同，但若提议比为 0.1，便只以 0.1 的概率接受。目标密度相同仍要保留非对称提议的影响。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-mh">固定提议下的接受与拒绝</a></li></ul></nav>
+
+<p>转移公式与实际探索还需要分别检查。若两条短链一直分别停在两个峰，80% 的接受率可能只说明峰内的小步很容易接受。估计整个后验均值，需要样本按目标概率访问相关区域；轨迹、跨峰移动、各侧占比与重复计算，可以一起帮助判断当前结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-diagnostic">收敛声明需要哪些证据</a></li></ul></nav>
+
+<h2 id="correlated-gaussian-and-independent-approximation">相关高斯与独立近似</h2>
+<p>第二个参照直接给出二维高斯目标</p>
+<p>$$p=N(0,\Sigma),\qquad
+\Sigma=\begin{bmatrix}1&amp;\rho\\\rho&amp;1\end{bmatrix},\qquad |\rho|&lt;1.$$</p>
+<p>两个坐标已经无量纲化。用独立高斯乘积 $q$ 近似它，并最小化 $\operatorname{KL}(q\|p)$。沿用 9.3 的坐标更新，若 $P=\Sigma^{-1}$，一轮依次得到</p>
+<p>$$m_1\leftarrow-\frac{P_{12}}{P_{11}}m_2,\qquad
+m_2\leftarrow-\frac{P_{21}}{P_{22}}m_1.$$</p>
+<p>第二式使用刚更新的 $m_1$，每个因子的方差为 $1/P_{ii}$。对于这里的协方差，等价于</p>
+<p>$$m_1\leftarrow\rho m_2,\qquad m_2\leftarrow\rho m_1,\qquad
+v_1=v_2=1-\rho^2.$$</p>
+<p>取 $\rho=0.8$，从 $(2,-2)$ 开始，第一轮均值是 $(-1.6,-1.28)$，两个因子方差都是 0.36。继续更新，均值趋近零，但独立乘积的交叉协方差始终为零，无法成为相关目标。</p>
+<p>将最优均值零和方差 $1-\rho^2$ 代入高斯 KL，得到族内可达到的最小差距</p>
+<p>$$\operatorname{KL}_{\min}=-\frac12\log(1-\rho^2).$$</p>
+<p>$\rho=0.8$ 时约为 0.510826 nat。更新初期的 KL 还包含均值尚未到位造成的差距；接近这条水平线后，剩余部分来自独立族的结构。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-variational">均值场更新与证据差距</a></li></ul></nav>
+
+<p>下图左侧比较刚才的 Gamma 后验和局部高斯，右侧记录 30 轮均值场更新的 KL。它们分别展示局部形状近似和独立分布族怎样影响结果。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P09-SUMMARY-5512e017-0.png" alt="同一观测下的后验与预测比较：实验结果图" loading="lazy"></figure>
+</section>
+<h2 id="shared-offset-and-new-reading-prediction">共同偏差与新读数预测</h2>
+<p>第三个参照让三次测量共享一个偏差参数：</p>
+<p>$$\theta\sim N(0,4),\qquad Y_i\mid\theta\sim N(\theta,1).$$</p>
+<p>参数以 U 计，各测量噪声彼此独立，并与参数独立。训练读数为 $1,2,3\ \mathrm U$。记先验方差 $v_0=4\ \mathrm U^2$、测量方差 $r=1\ \mathrm U^2$，则</p>
+<p>$$v=\left(\frac1{v_0}+\frac3r\right)^{-1}=\frac4{13}\ \mathrm U^2,\qquad
+m=v\frac{y_1+y_2+y_3}{r}=\frac{24}{13}\ \mathrm U.$$</p>
+<p>新读数还包含一次独立噪声，所以预测方差为</p>
+<p>$$V=v+r=\frac{17}{13}\ \mathrm U^2.$$</p>
+<p>若先把参数替换成后验均值，所得新读数方差只有 $1\ \mathrm U^2$，两者相差的 $4/13\ \mathrm U^2$ 正是参数仍未知的贡献。</p>
+<p>对给定预测的评估，也要使用与对象对应的量：MSE 比较预测均值，平均对数分数评价完整密度，覆盖比例计算读数落在预定区间内的频率。评分使用预测固定之后取得的留出读数，并保留构建预测的计算预算。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-predictive">同一留出条件下的评分与预算</a></li></ul></nav>
+
+<h2 id="latent-variable-learning-and-new-condition-prediction">隐变量学习与新条件预测</h2>
+<p>混合模型的 EM 则调整参数以提高观测似然。E 步在旧参数下计算隐标签责任度，M 步将这些权重固定，再更新参数。标签交换可能给出同一个观测密度，因此解释分量时还要联系它们表示的变量。</p>
+<p>当分量方差也可调整时，某个均值贴住单个样本、方差趋近零，可以造成退化的高似然。此时有必要查看各分量的方差与样本分配，并在留出数据上检查预测，而不只比较训练似然的大小。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-em">似然变大是否代表机制成立</a></li></ul></nav>
+
+<p>将这些计算用于新条件预测时，可以先保留原预测，再把偏差出现的位置与条件变化对应起来。例如，多种后验算法在无输入训练模型下给出相近预测，而带输入运行的读数整体偏高。加密积分帮助确认后验平均是否稳定；描述输入的关系则帮助更新预测均值。更新模型以后，用新的留出读数检查它在该条件下的表现。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-misspecification">新条件下的校准失败</a></li></ul></nav>
+
+<p>三个参照把计算逐步展开：Gamma 的精确矩检查峰顶近似，相关高斯的 KL 检查独立近似，重复测量的预测方差检查新读数还包含哪些变化。下一篇将把这些模型与估计用于反馈调节，进一步讨论输入怎样影响系统的后续演化。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://probml.github.io/pml-book/book2.html">Murphy，《Probabilistic Machine Learning: Advanced Topics》</a>给出后验近似、采样与预测的统一背景；<a href="https://arxiv.org/html/1601.00670v9">Blei 等的变分推断综述，第 2 节</a>讨论优化误差与近似分布族的区别。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/09-05-后验预测与模型检验/read/2/">← 9.5.2 留出预测、覆盖与模型失配</a><a href="/parts/10-反馈与最优控制/">继续：第 10 篇 反馈与最优控制 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

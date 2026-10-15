@@ -16,9 +16,9 @@ COURSE=json.loads((ROOT/'web/course/catalog.json').read_text(encoding='utf-8'))
 LESSONS=[l for c in course_chapters(COURSE) for l in c['lessons'] if l.get('reading')]
 
 
-def test_migration_covers_intro_first_eight_parts_and_keeps_later_lessons_available():
-    assert len(LESSONS)==105
-    assert {l['chapter_id'].split('.')[0] for l in LESSONS}=={'0','1','2','3','4','5','6','7','8'}
+def test_migration_covers_intro_first_nine_parts_and_keeps_later_lessons_available():
+    assert len(LESSONS)==116
+    assert {l['chapter_id'].split('.')[0] for l in LESSONS}=={'0','1','2','3','4','5','6','7','8','9'}
     for c in course_chapters(COURSE):
         for l in c['lessons']:
             assert (ROOT/l['path']).is_file()

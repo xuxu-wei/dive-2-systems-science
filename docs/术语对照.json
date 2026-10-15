@@ -2201,5 +2201,25 @@
     "zh": "平滑增益",
     "en": "smoothing gain",
     "scope": "part07"
+  },
+  {
+    "zh": "Gamma分布",
+    "en": "Gamma distribution",
+    "scope": "part09"
+  },
+  {
+    "zh": "高斯混合模型",
+    "en": "Gaussian mixture model",
+    "scope": "part09"
+  },
+  {
+    "zh": "后验预测分布",
+    "en": "posterior predictive distribution",
+    "scope": "part09"
+  },
+  {
+    "zh": "等尾预测区间",
+    "en": "equal-tailed prediction interval",
+    "scope": "part09"
   }
 ]

@@ -154,3 +154,23 @@ def test_part06_compound_annotations_do_not_split_into_shorter_terms(source):
 def test_part07_complete_annotations_keep_their_distribution_and_algorithm_meaning(source):
     issues, _ = check_text(source, 7, require_first=False)
     assert issues == []
+
+
+@pytest.mark.parametrize('source', [
+    'Gamma分布（Gamma distribution）采用形状与率参数。',
+    '高斯混合模型（Gaussian mixture model）按权重合并分量。',
+    '后验预测分布（posterior predictive distribution）平均条件分布。',
+    '等尾预测区间（equal-tailed prediction interval）在两尾留下相同概率。',
+])
+def test_part09_complete_probability_terms_are_not_shorter_annotations(source):
+    issues, _ = check_text(source, 9, require_first=False)
+    assert issues == []
+
+
+def test_reviewed_sampling_lag_context_does_not_require_repeated_glosses():
+    from check_teaching import check_terms
+    text = '按固定滞后截断计算自相关，再比较最大滞后。'
+    for unit in ['P09-C02-S02', 'p09-basic-diagnostics', 'overview:9.2']:
+        assert check_terms(text, 9, unit=unit, require_first=False)[0] == []
+        assert check_terms('滞后（hysteresis）', 9, unit=unit, require_first=False)[0]
+    assert check_terms(text, 9, unit='unreviewed', require_first=False)[0]

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.2.2 多链诊断、自相关与有效样本量 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P09-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P09-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics">本节练习 · 5 题</a><a class="button" href="/chapters/09-02-马尔可夫链采样与诊断/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>9.2.2 多链诊断、自相关与有效样本量</h1>
+<p>两条链分别停在−3和3附近，各自的平均值都不再明显变化，给出的答案却相差很远。若只查看其中一条，这种分歧就不会出现。还可能有所有链都停在同一侧的情形，因此要同时查看移动范围、链间差异和相邻点的相关性。</p>
+<p>学完本节，应能从平均值方差解释相关性有效样本量，手算基本多链诊断，并区分后验宽度与重复计算的误差。先修为9.2.1的采样规则、第5篇的方差与重复实验，以及第6篇的相关序列。</p>
+<h2 id="autocorrelation-and-mean-variance">自相关与样本平均的方差</h2>
+<p>先考虑已经平稳的标量链 $X_1,\ldots,X_N$。它在每个位置具有相同方差 $\sigma^2&gt;0$，相隔 $k$ 步的相关系数记为 $\rho_k$；这称为滞后 $k$ 的<strong>自相关（autocorrelation）</strong>。$k$ 衡量采样步骤间的距离。</p>
+<p>平均值为 $\bar X_N=N^{-1}\sum_tX_t$。展开方差时，对角项有 $N$ 个；相隔 $k$ 步的点对有 $N-k$ 个，每对在双重求和中出现两次，所以</p>
+<p>$$\begin{aligned}
+\operatorname{Var}(\bar X_N)
+&amp;=\frac1{N^2}\sum_{s=1}^N\sum_{t=1}^N\operatorname{Cov}(X_s,X_t)\\
+&amp;=\frac{\sigma^2}{N}\left[1+2\sum_{k=1}^{N-1}(1-k/N)\rho_k\right].
+\end{aligned}$$</p>
+<p>若各点独立，自相关项为零，就回到 $\sigma^2/N$。相邻状态相似时，正相关使平均值的波动变大：记录了很多点，却包含较多重复的信息。</p>
+<h2 id="autocorrelation-effective-sample-size">相关性有效样本量</h2>
+<p>当自协方差可求和，且长期方差因子为正，大样本下可写成</p>
+<p>$$\operatorname{Var}(\bar X_N)\approx\frac{\sigma^2\tau}{N},\qquad
+\tau=1+2\sum_{k=1}^{\infty}\rho_k.$$</p>
+<p>把这个方差与独立样本的 $\sigma^2/N_{\rm eff}$ 相比较，定义</p>
+<p>$$\boxed{N_{\rm eff}=N/\tau.}$$</p>
+<p>这是针对当前平均值的<strong>有效样本量（effective sample size，ESS）</strong>：大约需要多少个独立目标样本，才能得到同样大小的平均值方差。例如 $N=1000,\tau=5$，对应约200个独立样本。负相关也可能降低平均值波动，使有效样本量大于记录点数。</p>
+<p>第7篇的粒子ESS由 $1/\sum_iw_i^2$ 计算，描述一组权重是否集中。这里每个保留状态等权，而相关性跨采样步骤累积，两种ESS使用的依据不同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-ess-not-particles">两个ESS名字相同</a></li></ul></nav>
+
+<p>有限序列只能估计若干个滞后。对长度为 $n$、均值为 $\bar x$ 的记录，本节采用</p>
+<p>$$\hat\rho_k=\frac{\sum_{t=1}^{n-k}(x_t-\bar x)(x_{t+k}-\bar x)}
+{\sum_{t=1}^n(x_t-\bar x)^2},\qquad
+\hat\tau=1+2\sum_{k=1}^K\hat\rho_k,\qquad
+\widehat N_{\rm eff}=n/\hat\tau.$$</p>
+<p>$K&lt;n$ 是固定的最大滞后，因而这是<strong>固定滞后截断的ESS估计</strong>。$K=0$ 时得到 $n$；零方差使自相关分母为零，或估出的 $\hat\tau\le0$ 时，计算题返回 <code>None</code>，表示当前公式不能给出有效估计。增加 $K$ 会纳入更长距离的相关，也会纳入更难估计的尾部波动。</p>
+<h2 id="basic-rhat">链内、链间差异与基本R-hat</h2>
+<p>再取 $m\ge2$ 条独立运行的等长保留链，每条有 $n\ge2$ 个状态，记第 $j$ 条的均值为 $\mu_j$、无偏样本方差为 $s_j^2$，所有链均值的平均为 $\bar\mu$。分别计算</p>
+<p>$$W=\frac1m\sum_{j=1}^m s_j^2,\qquad
+B=\frac n{m-1}\sum_{j=1}^m(\mu_j-\bar\mu)^2.$$</p>
+<p>$W$ 平均各链内部的波动；$B$ 衡量链均值之间的分歧，并乘上链长 $n$，各链中的取值均为同一目标的独立样本时，$B$ 与 $W$ 具有相同的期望。组合成方差估计，再与链内方差比较：</p>
+<p>$$\widehat V=\frac{n-1}nW+\frac Bn,\qquad
+\boxed{\hat R=\sqrt{\widehat V/W}.}$$</p>
+<p>这个<strong>基本R-hat</strong>直接使用原始完整链，未分链。当不同起点仍给出不同均值，$B$ 相对 $W$ 较大，$\hat R$ 会提示需要进一步探索。</p>
+<p>手算两条四点链 $(0,1,2,3)$ 与 $(1,2,3,4)$：均值分别为1.5、2.5，两条无偏方差都是 $5/3$，所以</p>
+<p>$$W=5/3,\qquad B=\frac4{2-1}(0.5^2+0.5^2)=2,$$</p>
+<p>$$\hat R=\sqrt{\frac{(3/4)(5/3)+2/4}{5/3}}=\sqrt{1.05}\approx1.0247.$$</p>
+<p>每条链的中心化平方和为5，相邻乘积和为1.25，因此 $\hat\rho_1=0.25$。只截断到 $K=1$ 时，$\hat\tau=1.5$，各链ESS为 $4/1.5=8/3$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics">计算基本多链与相关性指标</a></li></ul></nav>
+
+<p>若两条链各自恒定为−3与3，$W=0$，R-hat公式没有定义；相同位置的一组常数同样没有内部探索。另一方面，多条链都遗漏同一个峰时，均值可以很接近，R-hat也可能接近1。有限样本的估计波动也可能使基本R-hat略小于1。它把链内与链间差异浓缩成一个数，轨迹仍负责展示这个数来自哪些访问位置。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-same-mode">多条链看起来一致</a></li></ul></nav>
+
+<h2 id="warmup-and-mode-exploration">分散起点、预热与双峰访问</h2>
+<p>实验沿用</p>
+<p>$$\pi(x)=\tfrac12N(x\mid-d,1)+\tfrac12N(x\mid d,1).$$</p>
+<p>目标均值为0，方差为 $1+d^2$，正半轴概率为0.5。分别令 $d=0$ 与4，从−4、4开始运行两条链，提议标准差取0.6。每条执行6000步，前1000步作为<strong>预热（warmup）</strong>舍去，后5000步用于统计，以减少固定起点对结果的影响。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P09-C02-S02-f41e9d5d-1.png" alt="多链诊断、自相关与有效样本量：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中保留整条轨迹，竖虚线标出预热终点。单峰目标的两链都在0附近来回移动；双峰目标中，小步提议较难跨过中间低密度区，两链长期留在不同侧。后者即使接受很多局部移动，仍会给出不同均值和正半轴占比。</p>
+<p>因此先看访问范围，再比较相关性、基本R-hat与截断ESS。步幅很小且接受率接近100%时，检查是否仍在起点附近，并从分散位置重新运行，能够揭示只看接受率遗漏的信息。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-high-acceptance">接受率99%是好消息吗</a></li></ul></nav>
+
+<p>探索页也从两侧运行两条链，用600步展示峰间距与步幅的影响。右侧占比计入起点和全部已展示状态；它随轨迹同步变化。将 $d$ 从4减为0，再改变提议标准差，观察两条占比靠近0.5的过程，同时查看各链实际访问的位置。</p>
+<p class="concept-explore"><a href="/chapters/09-02-马尔可夫链采样与诊断/explore/?concept=P09-C02-S02%3Awarmup-and-mode-exploration">可视化与探索：分散起点、预热与双峰访问 →</a></p>
+
+<h2 id="replicated-computation-error">重复运行与计算标准误</h2>
+<p>后验宽度和计算误差回答不同问题。标准高斯目标的标准差始终为1，表示参数在目标分布中的散布；重复采样得到的均值却会因随机路径不同而略有变化。</p>
+<p>实验另对单峰目标独立运行30次，每次6000步、丢弃前1000步，提议标准差为1.8。30个均值估计的平均约为−0.00490，跨运行标准差约为0.03699。前者比较整体是否靠近精确均值0；后者描述一次完整运行所产生的均值波动。</p>
+<p>这30个估计的平均又有更小的标准误：</p>
+<p>$$\operatorname{SE}(\text{30个估计的平均})\approx\frac{0.03699}{\sqrt{30}}=0.00675.$$</p>
+<p>增加采样长度或独立重复，可以减小估计的计算波动；目标本身的标准差仍为1。比较两种步幅时，固定目标，预先给出密度评估次数，再比较重复运行的均值波动，便能把精度与计算代价对应起来。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-budget-repeat">怎样报告随机计算误差</a></li></ul></nav>
+
+<p>采样把积分转为状态平均，质量取决于链访问到了哪里，以及访问之间有多强的相关。下一章采用另一条路线：在便于计算的分布族中寻找接近后验的分布，直接优化近似本身。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://mc-stan.org/docs/reference-manual/analysis.html">Stan参考手册：Posterior Analysis</a>介绍自相关、R-hat与ESS。这里用基本未分链R-hat和固定截断公式逐项手算；该资料还介绍分链与秩归一化等后续方法。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/09-02-马尔可夫链采样与诊断/read/1/">← 9.2.1 Metropolis–Hastings采样与详细平衡</a><a href="/chapters/09-03-变分推断/read/1/">9.3.1 证据下界与均值场更新 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

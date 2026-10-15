@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.5.2 留出预测、覆盖与模型失配 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P09-C05-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P09-C05-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score">本节练习 · 5 题</a><a class="button" href="/chapters/09-05-后验预测与模型检验/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>9.5.2 留出预测、覆盖与模型失配</h1>
+<p>学完本节，你应能在相同观测条件下比较四种预测，计算误差、对数分数与覆盖比例，并分清后验复制检查和独立未来读数各自提供的信息。</p>
+<p><strong>先修知识</strong>：9.1 的消除参数后验，9.2 的采样，9.3 的变分下界，9.5.1 的混合预测。</p>
+<h2 id="shared-model-and-four-predictions">共同模型与四种预测</h2>
+<p>一次预测偏低，可能因为参数后验算得不够准确，也可能因为模型漏掉了会提高总量的输入。先在相同模型和训练读数上构造预测，再改变未来运行条件，便能分别观察这两种影响。</p>
+<p>沿用无输入模型</p>
+<p>$$A(t)=5e^{-kt},\qquad k&gt;0,$$</p>
+<p>其中初始总量为 $5\ \mathrm U$，时间以 T 计，一阶消除速率常数 $k$ 以 $1/\mathrm T$ 计。先验为形状 2、率 $4\ \mathrm T$ 的 Gamma 分布；各次测量误差独立、与参数独立，均服从均值零、方差 $r=0.16\ \mathrm U^2$ 的高斯分布。</p>
+<p>训练记录为：</p>
+<table>
+<thead>
+<tr>
+  <th>时间 / T</th>
+  <th style="text-align:right">0</th>
+  <th style="text-align:right">1</th>
+  <th style="text-align:right">2</th>
+  <th style="text-align:right">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>总量读数 / U</td>
+  <td style="text-align:right">5.1</td>
+  <td style="text-align:right">3.2</td>
+  <td style="text-align:right">1.6</td>
+  <td style="text-align:right">1.2</td>
+</tr>
+</tbody>
+</table>
+<p>预测目标是 $t=5\ \mathrm T$ 的新一次读数。用相同先验、似然和这四条记录，分别构造：</p>
+<table>
+<thead>
+<tr>
+  <th>方法</th>
+  <th>参数的表示</th>
+  <th>新读数预测怎样得到</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>MAP 代入</td>
+  <td>后验峰顶处的一个 $k$</td>
+  <td>在该参数下加入一次测量噪声</td>
+</tr>
+<tr>
+  <td>网格积分</td>
+  <td>带积分权重的参数节点</td>
+  <td>按节点权重混合新读数分布</td>
+</tr>
+<tr>
+  <td>Metropolis–Hastings</td>
+  <td>有限链保留的参数样本</td>
+  <td>对各样本下的新读数分布求平均</td>
+</tr>
+<tr>
+  <td>变分近似</td>
+  <td>$\log k$ 上的一个高斯分布</td>
+  <td>对近似分布平均新读数分布</td>
+</tr>
+</tbody>
+</table>
+<p>MAP 代入保留新噪声，但把参数后验替换成一个点；其他三种方式保留了各自表示中的参数变化。四种预测及其 95% 区间均在取得评估读数前确定。</p>
+<h2 id="sampling-and-variational-approximation-for-positive-rates">正参数上的采样与变分近似</h2>
+<p>用 $f(k)$ 表示 9.1.2 中的负对数未归一化后验。计算时取 $k$ 以 $1/\mathrm T$ 为单位的数值，并令 $\eta=\log k$。由变量变换，$\eta$ 的目标对数密度为</p>
+<p>$$\log\widetilde p_\eta(\eta)=-f(e^\eta)+\eta.$$</p>
+<p>其中 $+\eta$ 是雅可比项。MH 在 $\eta$ 上提出随机步，再将接受的状态转换回正参数 $k$。实验运行 12000 步，移除前 2000 步，每隔 10 步保留一个样本用于预测，共保留 1000 点；减少保留点数可以节省预测混合与分位数计算，样本的相关性仍由链决定。</p>
+<p>变分近似选择 $q_\eta=N(m,s^2)$。将变换后的对数密度代入证据下界，得到</p>
+<p>$$\mathcal L(m,s)=E_q[-f(e^\eta)+\eta]+\frac12\log(2\pi e s^2).$$</p>
+<p>第一项对 $q$ 中的 $\eta$ 求平均，第二项为高斯熵。实验用高斯求积估计期望：若 $z_j,w_j$ 是 Gauss–Hermite 节点与权重，则</p>
+<p>$$E_q[g(\eta)]\approx\frac1{\sqrt\pi}\sum_jw_jg(m+\sqrt2s z_j).$$</p>
+<p>对每个待比较的 $m,s$，这只是把函数在若干给定位置的值做加权平均。这里采用 40 个节点，对 $m,s$ 做三轮有限网格搜索，每轮围绕当前最好位置缩小范围；再用 80 个节点核对最终下界。搜索得到的是这次计算找到的近似，网格参照则帮助判断它与目标后验相差多少。</p>
+<h2 id="predictive-scores-and-interval-coverage">预测评分与区间覆盖</h2>
+<p>设固定预测密度为 $p_{\mathrm{pred}}$、均值为 $\bar m$，随后取得 $N$ 个留出读数 $y_i^{\mathrm{test}}$。这里 $i$ 表示评估读数的序号。用三项指标分别检查预测中心、完整密度和区间：</p>
+<p>$$\operatorname{MSE}=\frac1N\sum_{i=1}^N(y_i^{\mathrm{test}}-\bar m)^2,$$</p>
+<p>$$\text{平均对数分数}=\frac1N\sum_{i=1}^N\log p_{\mathrm{pred}}(y_i^{\mathrm{test}}),$$</p>
+<p>$$\widehat c=\frac1N\sum_{i=1}^N\mathbf1\{l_i\le y_i^{\mathrm{test}}\le u_i\}.$$</p>
+<p>$[l_i,u_i]$ 是与该次读数对应的预定区间，$\mathbf1\{\cdot\}$ 在括号内条件成立时取 1，否则取 0。MSE 越小，预测均值越接近读数；平均对数分数越大，模型给实际读数分配的密度越高。比较对数密度时保持相同的 U 数值单位。</p>
+<p>混合预测的对数分数要先合并分量密度，再取对数。例如两个等权高斯给出</p>
+<p>$$\log p_{\mathrm{pred}}(y)=\log\left[\frac12N(y\mid m_1,v_1)+\frac12N(y\mid m_2,v_2)\right].$$</p>
+<p>分别求两个对数再平均，对应的是另一项计算。</p>
+<p>覆盖比例也要与区间宽度一起看：更宽的区间往往包含更多读数。若各次覆盖指示量独立、成功概率相同，其比例的标准误可用</p>
+<p>$$\widehat{\operatorname{SE}}=\sqrt{\frac{\widehat c(1-\widehat c)}N}$$</p>
+<p>估计。例如 20 次中覆盖 18 次，$\widehat c=0.9$，标准误约为 0.067。小样本或覆盖比例恰为 0、1 时，二项比例区间能更完整地表达抽样不确定性。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-coverage-uncertainty">18次覆盖足够下结论吗</a></li><li><a href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score">在留出观测上比较预测</a></li></ul></nav>
+
+<h2 id="paired-comparison-with-fixed-training-data">固定训练数据下的配对比较</h2>
+<p>四种预测构建完成后，实验固定真实参数 $k=0.45/\mathrm T$，在 $t=5\ \mathrm T$ 独立生成 200 次新测量噪声。先把它们加到无输入模型均值上，再用同一组噪声比较另一种运行条件。</p>
+<p>第二种运行从初始时刻起存在恒定输入 $u=0.5\ \mathrm U/\mathrm T$。由第 2 篇的解，其总量均值为</p>
+<p>$$5e^{-kt}+\frac uk(1-e^{-kt}).$$</p>
+<p>在 $t=5\ \mathrm T$，相较无输入运行，它增加约 $0.994\ \mathrm U$。两组评估读数逐个共用相同噪声，因此配对差值正好是输入造成的均值位移；组内的 200 次噪声则相互独立。</p>
+<p>四种方法仍使用原来的无输入预测。下方第一幅图左侧比较这些预测密度，右侧比较它们在两种条件下的覆盖比例。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P09-C05-S02-4dfa0dbb-0.png" alt="留出预测、覆盖与模型失配：实验结果图" loading="lazy"></figure>
+<figure><img src="/web/reading/assets/P09-C05-S02-4dfa0dbb-3.png" alt="留出预测、覆盖与模型失配：实验结果图" loading="lazy"></figure>
+</section>
+<p>在相同条件下，预测曲线之间的差异反映各自参数表示的影响。加入未建模输入后，新读数整体上移，多种方法可能一起预测偏低。加密后验积分会改变参数平均的计算精度，补上输入项才会改变这里遗漏的均值位移。</p>
+<p>实验同时记录构建参数表示所用的目标密度评估次数：</p>
+<table>
+<thead>
+<tr>
+  <th>方法</th>
+  <th style="text-align:right">目标密度评估次数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>MAP 搜索</td>
+  <td style="text-align:right">1141</td>
+</tr>
+<tr>
+  <td>网格积分</td>
+  <td style="text-align:right">4001</td>
+</tr>
+<tr>
+  <td>MH 链</td>
+  <td style="text-align:right">12001</td>
+</tr>
+<tr>
+  <td>有限变分搜索</td>
+  <td style="text-align:right">60000</td>
+</tr>
+</tbody>
+</table>
+<p>这列数把本次搜索范围、节点数和迭代预算连到结果。预测混合所用的节点数及后续评分开销还取决于各自表示。比较方法时，应把共同模型、训练读数、预测对象、评估条件和实际计算安排一起列明。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-fair-prediction">怎样比较两种推断方法</a></li></ul></nav>
+
+<h2 id="posterior-replicates-and-residual-checks">后验复制数据与残差检查</h2>
+<p>除了预测未来，还可以问：当前模型能否生成与训练记录具有相似特征的数据？<strong>后验预测检查（posterior predictive check）</strong>从训练后验抽参数，再按原观测设计生成复制数据，与实际记录比较选定特征。</p>
+<p>这里重复 500 次。每次先从网格后验抽一个 $k$，在原来的四个训练时刻计算 $m_i(k)=5e^{-kt_i}$，再加入独立测量噪声生成 $y_i^{\mathrm{rep}}$。用平方标准化残差和概括一组数据与模型均值的偏离：</p>
+<p>$$T(y,k)=\sum_i\frac{(y_i-m_i(k))^2}{r}.$$</p>
+<p>对同一个抽到的 $k$，分别计算实际记录的 $T(y,k)$ 和复制记录的 $T(y^{\mathrm{rep}},k)$。上方第二幅图比较这两组数的分布。复制检查量不小于实际检查量的次数占比，便是本次检查的尾部比例。</p>
+<p>这项比较从已经用于推断的训练记录出发，检查当前模型生成的残差特征。留出评估则把事先固定的预测交给后来取得的读数。若复制检查帮助我们修改了模型，新的预测可再用未参与修改的数据评估；两种检查由此衔接起来。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-posterior-check-reuse">后验预测检验是否独立验证</a></li></ul></nav>
+
+<h2 id="fixed-scenario-and-joint-repetition-coverage">固定场景与联合重复中的覆盖</h2>
+<p>前面的 200 次新读数共享真实参数和训练记录，比例估计的是这个固定场景下的覆盖。标在区间上的 95%，则来自对参数后验与新读数噪声一起平均后的概率。固定某一个真实参数后，覆盖概率可以与 95% 不同。</p>
+<p>要观察模型下的联合覆盖，实验另用一个可解析的高斯模型，独立生成 2000 个场景。每个场景都重新抽取：</p>
+<p>$$\theta\sim N(0,4),\qquad
+Y_1,Y_2,Y_3\mid\theta\overset{\mathrm{ind}}\sim N(\theta,1),\qquad
+Y_{\mathrm{new}}\mid\theta\sim N(\theta,1).$$</p>
+<p>各测量噪声彼此独立，并与参数独立。每个场景根据自己的三条训练读数求后验，再构造一个新读数预测区间，最后检查该场景的新读数是否落入区间。</p>
+<p>若预测使用的先验和噪声正是上述生成机制，给定训练数据的区间包含 95% 后验预测概率；再对训练数据平均，联合覆盖仍为 95%。2000 次场景只是用有限样本观察这个比例，因此还带有抽样波动。</p>
+<p>同一批场景另用偏小的假定噪声方差 $0.16\ \mathrm U^2$ 构造区间，而实际噪声方差保持 $1\ \mathrm U^2$。区间通常随之收窄，覆盖也降低。这次变化来自共同噪声设定，对后验做更精细的积分或更长的采样，并不会把缺失的噪声方差加进去。</p>
+<p>探索页用可解析的正态预测把这一点单独画出来：参数后验为 $N(1.6,v)$，预测按噪声方差 $r=1\ \mathrm U^2$ 固定区间；实际新噪声改为 $cr$ 时，核验分布为 $N(1.6,v+cr)$。图中计算的是原区间在这条密度下的概率。先保持 $c=1$，再切换到 $c=4$，观察区间宽度与所含概率分别怎样变化。</p>
+<p class="concept-explore"><a href="/chapters/09-05-后验预测与模型检验/explore/?concept=P09-C05-S02%3Afixed-scenario-and-joint-repetition-coverage">可视化与探索：固定场景与联合重复中的覆盖 →</a></p>
+
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-05-后验预测与模型检验/practice/?question=p09-noise-misspecification">所有推断方法都漏覆盖</a></li></ul></nav>
+
+<p>到这里，预测检查形成了连贯的次序：先固定模型和预测，再看新读数偏在何处；用数值参照检查后验计算，用残差或新条件寻找模型需要增加的关系。篇末综合会用三种可解模型再次梳理这些对应。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://mc-stan.org/docs/stan-users-guide/posterior-predictive-checks.html">Stan 用户指南：后验预测检查</a>讨论复制数据及检查统计量；<a href="https://arxiv.org/html/1601.00670v9">Blei、Kucukelbir 与 McAuliffe 的变分推断综述，第 2 节</a>说明证据下界与近似分布的关系。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/09-05-后验预测与模型检验/read/1/">← 9.5.1 后验预测、总方差与预测区间</a><a href="/parts/09-概率建模与近似推断/综合练习/read/1/">篇末综合 同一观测下的后验与预测比较 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

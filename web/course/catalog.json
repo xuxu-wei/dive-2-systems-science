@@ -13270,89 +13270,248 @@
               "id": "P09-C01-S01",
               "chapter_id": "9.1",
               "number": "9.1.1",
-              "title": "从先验与观测到参数后验",
+              "title": "参数后验与后验预测",
               "outcome": "从两次读数手算精度与后验，再区分固定参数方差和未来读数方差。",
               "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/01-从先验与观测到参数后验.ipynb",
               "visualization": "web/inference/index.html",
+              "reading": "lessons/09-概率建模与近似推断/01-贝叶斯建模与后验近似/01-从先验与观测到参数后验.md",
               "questions": [
                 {
                   "id": "p09-normal-update",
                   "slug": "p09-normal-update",
                   "title": "把读数变成参数后验",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#posterior-predictive",
+                  "concept_title": "新读数的后验预测",
+                  "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update"
                 },
                 {
                   "id": "p09-likelihood-object",
                   "slug": "p09-likelihood-object",
                   "title": "似然是在比较什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#likelihood-and-normalization",
+                  "concept_title": "似然、归一化与参数后验",
+                  "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-likelihood-object"
                 },
                 {
                   "id": "p09-posterior-predictive",
                   "slug": "p09-posterior-predictive",
                   "title": "参数知道得更准以后",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#posterior-predictive",
+                  "concept_title": "新读数的后验预测",
+                  "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-posterior-predictive"
                 },
                 {
                   "id": "p09-prior-vs-data",
                   "slug": "p09-prior-vs-data",
                   "title": "先验强度怎样起作用",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#prior-weight-and-map",
+                  "concept_title": "先验权重与最大后验估计",
+                  "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-prior-vs-data"
                 },
                 {
                   "id": "p09-normalizer-zero",
                   "slug": "p09-normalizer-zero",
                   "title": "后验什么时候存在",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#likelihood-and-normalization",
+                  "concept_title": "似然、归一化与参数后验",
+                  "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normalizer-zero"
                 }
               ],
               "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update",
               "notebook_url": "/notebook/?id=P09-C01-S01",
-              "url": "/notebook/?id=P09-C01-S01"
+              "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/",
+              "concepts": [
+                {
+                  "id": "fixed-parameter-and-measurements",
+                  "title": "固定参数与重复测量",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C01-S01:fixed-parameter-and-measurements",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#fixed-parameter-and-measurements"
+                },
+                {
+                  "id": "likelihood-and-normalization",
+                  "title": "似然、归一化与参数后验",
+                  "question_ids": [
+                    "p09-likelihood-object",
+                    "p09-normalizer-zero"
+                  ],
+                  "explore": false,
+                  "key": "P09-C01-S01:likelihood-and-normalization",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#likelihood-and-normalization"
+                },
+                {
+                  "id": "gaussian-posterior",
+                  "title": "高斯配方与精度更新",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C01-S01:gaussian-posterior",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#gaussian-posterior"
+                },
+                {
+                  "id": "prior-weight-and-map",
+                  "title": "先验权重与最大后验估计",
+                  "question_ids": [
+                    "p09-prior-vs-data"
+                  ],
+                  "explore": false,
+                  "key": "P09-C01-S01:prior-weight-and-map",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#prior-weight-and-map"
+                },
+                {
+                  "id": "posterior-predictive",
+                  "title": "新读数的后验预测",
+                  "question_ids": [
+                    "p09-normal-update",
+                    "p09-posterior-predictive"
+                  ],
+                  "explore": true,
+                  "key": "P09-C01-S01:posterior-predictive",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#posterior-predictive",
+                  "explore_url": "/chapters/09-01-贝叶斯建模与后验近似/explore/?concept=P09-C01-S01%3Aposterior-predictive"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C01-S01:references",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/#references"
+                }
+              ],
+              "url": "/chapters/09-01-贝叶斯建模与后验近似/read/1/"
             },
             {
               "id": "P09-C01-S02",
               "chapter_id": "9.1",
               "number": "9.1.2",
-              "title": "后验曲率边界与参数变换",
+              "title": "Laplace近似、数值积分与参数变换",
               "outcome": "先用Gamma计数例求导，再推导清除后验曲率，检查边界、积分权重和对数坐标雅可比。",
               "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/02-后验曲率边界与参数变换.ipynb",
               "visualization": "web/inference/index.html",
+              "reading": "lessons/09-概率建模与近似推断/01-贝叶斯建模与后验近似/02-后验曲率边界与参数变换.md",
               "questions": [
                 {
                   "id": "p09-gamma-local",
                   "slug": "p09-gamma-local",
                   "title": "检查局部近似能否成立",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#laplace-approximation",
+                  "concept_title": "众数曲率与Laplace近似",
+                  "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local"
                 },
                 {
                   "id": "p09-grid-masses",
                   "slug": "p09-grid-masses",
                   "title": "积分节点不等于等权样本",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#grid-integration",
+                  "concept_title": "梯形积分与节点概率权重",
+                  "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-grid-masses"
                 },
                 {
                   "id": "p09-coordinate-map",
                   "slug": "p09-coordinate-map",
                   "title": "模态会随参数化改变吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#parameter-transformation",
+                  "concept_title": "参数变换与雅可比",
+                  "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-coordinate-map"
                 },
                 {
                   "id": "p09-single-mode",
                   "slug": "p09-single-mode",
                   "title": "一个漂亮的局部高斯",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#laplace-approximation",
+                  "concept_title": "众数曲率与Laplace近似",
+                  "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-single-mode"
                 },
                 {
                   "id": "p09-grid-domain",
                   "slug": "p09-grid-domain",
                   "title": "网格变密但区间未扩大",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#grid-integration",
+                  "concept_title": "梯形积分与节点概率权重",
+                  "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-grid-domain"
                 }
               ],
               "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local",
               "notebook_url": "/notebook/?id=P09-C01-S02",
-              "url": "/notebook/?id=P09-C01-S02"
+              "reading_url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/",
+              "concepts": [
+                {
+                  "id": "gamma-poisson-model",
+                  "title": "Gamma先验与Poisson计数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C01-S02:gamma-poisson-model",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#gamma-poisson-model"
+                },
+                {
+                  "id": "laplace-approximation",
+                  "title": "众数曲率与Laplace近似",
+                  "question_ids": [
+                    "p09-gamma-local",
+                    "p09-single-mode"
+                  ],
+                  "explore": false,
+                  "key": "P09-C01-S02:laplace-approximation",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#laplace-approximation"
+                },
+                {
+                  "id": "clearance-posterior",
+                  "title": "非线性清除读数的后验",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C01-S02:clearance-posterior",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#clearance-posterior"
+                },
+                {
+                  "id": "grid-integration",
+                  "title": "梯形积分与节点概率权重",
+                  "question_ids": [
+                    "p09-grid-masses",
+                    "p09-grid-domain"
+                  ],
+                  "explore": false,
+                  "key": "P09-C01-S02:grid-integration",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#grid-integration"
+                },
+                {
+                  "id": "local-and-global-shape",
+                  "title": "局部曲率与整体后验形状",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C01-S02:local-and-global-shape",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#local-and-global-shape"
+                },
+                {
+                  "id": "parameter-transformation",
+                  "title": "参数变换与雅可比",
+                  "question_ids": [
+                    "p09-coordinate-map"
+                  ],
+                  "explore": false,
+                  "key": "P09-C01-S02:parameter-transformation",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#parameter-transformation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C01-S02:references",
+                  "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/#references"
+                }
+              ],
+              "url": "/chapters/09-01-贝叶斯建模与后验近似/read/2/"
             }
           ],
           "visualization": "web/inference/index.html"
@@ -13375,89 +13534,242 @@
               "id": "P09-C02-S01",
               "chapter_id": "9.2",
               "number": "9.2.1",
-              "title": "构造保持目标分布的采样链",
+              "title": "Metropolis–Hastings采样与详细平衡",
               "outcome": "手算两状态的双向概率流，推导接受比，并按固定候选逐步记录接受与拒绝。",
               "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/01-构造保持目标分布的采样链.ipynb",
               "visualization": "web/inference/index.html",
+              "reading": "lessons/09-概率建模与近似推断/02-马尔可夫链采样与诊断/01-构造保持目标分布的采样链.md",
               "questions": [
                 {
                   "id": "p09-mh-replay",
                   "slug": "p09-mh-replay",
                   "title": "重放一次次接受与拒绝",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#acceptance-and-rejection",
+                  "concept_title": "对数接受规则与拒绝停留",
+                  "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay"
                 },
                 {
                   "id": "p09-finite-kernel",
                   "slug": "p09-finite-kernel",
                   "title": "构造有限状态转移核",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#metropolis-hastings-ratio",
+                  "concept_title": "提议分布与MH接受比",
+                  "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-finite-kernel"
                 },
                 {
                   "id": "p09-proposal-ratio",
                   "slug": "p09-proposal-ratio",
                   "title": "提议方向不要写反",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#metropolis-hastings-ratio",
+                  "concept_title": "提议分布与MH接受比",
+                  "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-proposal-ratio"
                 },
                 {
                   "id": "p09-stationary-vs-convergence",
                   "slug": "p09-stationary-vs-convergence",
                   "title": "保持目标就一定收敛吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#stationarity-and-convergence",
+                  "concept_title": "平稳分布与从初态收敛",
+                  "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-stationary-vs-convergence"
                 },
                 {
                   "id": "p09-rejections",
                   "slug": "p09-rejections",
                   "title": "拒绝时要不要记录",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#acceptance-and-rejection",
+                  "concept_title": "对数接受规则与拒绝停留",
+                  "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-rejections"
                 }
               ],
               "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay",
               "notebook_url": "/notebook/?id=P09-C02-S01",
-              "url": "/notebook/?id=P09-C02-S01"
+              "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/",
+              "concepts": [
+                {
+                  "id": "detailed-balance",
+                  "title": "两状态概率流与详细平衡",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C02-S01:detailed-balance",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#detailed-balance"
+                },
+                {
+                  "id": "metropolis-hastings-ratio",
+                  "title": "提议分布与MH接受比",
+                  "question_ids": [
+                    "p09-proposal-ratio",
+                    "p09-finite-kernel"
+                  ],
+                  "explore": false,
+                  "key": "P09-C02-S01:metropolis-hastings-ratio",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#metropolis-hastings-ratio"
+                },
+                {
+                  "id": "acceptance-and-rejection",
+                  "title": "对数接受规则与拒绝停留",
+                  "question_ids": [
+                    "p09-mh-replay",
+                    "p09-rejections"
+                  ],
+                  "explore": false,
+                  "key": "P09-C02-S01:acceptance-and-rejection",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#acceptance-and-rejection"
+                },
+                {
+                  "id": "stationarity-and-convergence",
+                  "title": "平稳分布与从初态收敛",
+                  "question_ids": [
+                    "p09-stationary-vs-convergence"
+                  ],
+                  "explore": false,
+                  "key": "P09-C02-S01:stationarity-and-convergence",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#stationarity-and-convergence"
+                },
+                {
+                  "id": "random-walk-scale",
+                  "title": "随机游走步幅与目标探索",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P09-C02-S01:random-walk-scale",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#random-walk-scale",
+                  "explore_url": "/chapters/09-02-马尔可夫链采样与诊断/explore/?concept=P09-C02-S01%3Arandom-walk-scale"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C02-S01:references",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/#references"
+                }
+              ],
+              "url": "/chapters/09-02-马尔可夫链采样与诊断/read/1/"
             },
             {
               "id": "P09-C02-S02",
               "chapter_id": "9.2",
               "number": "9.2.2",
-              "title": "多链相关性与有限计算预算",
+              "title": "多链诊断、自相关与有效样本量",
               "outcome": "从样本平均方差解释相关性，用链内、链间差异与独立重复检查有限计算。",
               "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/02-多链相关性与有限计算预算.ipynb",
               "visualization": "web/inference/index.html",
+              "reading": "lessons/09-概率建模与近似推断/02-马尔可夫链采样与诊断/02-多链相关性与有限计算预算.md",
               "questions": [
                 {
                   "id": "p09-basic-diagnostics",
                   "slug": "p09-basic-diagnostics",
                   "title": "计算基本多链与相关性指标",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#basic-rhat",
+                  "concept_title": "链内、链间差异与基本R-hat",
+                  "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics"
                 },
                 {
                   "id": "p09-high-acceptance",
                   "slug": "p09-high-acceptance",
                   "title": "接受率99%是好消息吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#warmup-and-mode-exploration",
+                  "concept_title": "分散起点、预热与双峰访问",
+                  "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-high-acceptance"
                 },
                 {
                   "id": "p09-same-mode",
                   "slug": "p09-same-mode",
                   "title": "多条链看起来一致",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#basic-rhat",
+                  "concept_title": "链内、链间差异与基本R-hat",
+                  "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-same-mode"
                 },
                 {
                   "id": "p09-ess-not-particles",
                   "slug": "p09-ess-not-particles",
                   "title": "两个ESS名字相同",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#autocorrelation-effective-sample-size",
+                  "concept_title": "相关性有效样本量",
+                  "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-ess-not-particles"
                 },
                 {
                   "id": "p09-budget-repeat",
                   "slug": "p09-budget-repeat",
                   "title": "怎样报告随机计算误差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#replicated-computation-error",
+                  "concept_title": "重复运行与计算标准误",
+                  "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-budget-repeat"
                 }
               ],
               "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics",
               "notebook_url": "/notebook/?id=P09-C02-S02",
-              "url": "/notebook/?id=P09-C02-S02"
+              "reading_url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/",
+              "concepts": [
+                {
+                  "id": "autocorrelation-and-mean-variance",
+                  "title": "自相关与样本平均的方差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C02-S02:autocorrelation-and-mean-variance",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#autocorrelation-and-mean-variance"
+                },
+                {
+                  "id": "autocorrelation-effective-sample-size",
+                  "title": "相关性有效样本量",
+                  "question_ids": [
+                    "p09-ess-not-particles"
+                  ],
+                  "explore": false,
+                  "key": "P09-C02-S02:autocorrelation-effective-sample-size",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#autocorrelation-effective-sample-size"
+                },
+                {
+                  "id": "basic-rhat",
+                  "title": "链内、链间差异与基本R-hat",
+                  "question_ids": [
+                    "p09-basic-diagnostics",
+                    "p09-same-mode"
+                  ],
+                  "explore": false,
+                  "key": "P09-C02-S02:basic-rhat",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#basic-rhat"
+                },
+                {
+                  "id": "warmup-and-mode-exploration",
+                  "title": "分散起点、预热与双峰访问",
+                  "question_ids": [
+                    "p09-high-acceptance"
+                  ],
+                  "explore": true,
+                  "key": "P09-C02-S02:warmup-and-mode-exploration",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#warmup-and-mode-exploration",
+                  "explore_url": "/chapters/09-02-马尔可夫链采样与诊断/explore/?concept=P09-C02-S02%3Awarmup-and-mode-exploration"
+                },
+                {
+                  "id": "replicated-computation-error",
+                  "title": "重复运行与计算标准误",
+                  "question_ids": [
+                    "p09-budget-repeat"
+                  ],
+                  "explore": false,
+                  "key": "P09-C02-S02:replicated-computation-error",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#replicated-computation-error"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C02-S02:references",
+                  "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/#references"
+                }
+              ],
+              "url": "/chapters/09-02-马尔可夫链采样与诊断/read/2/"
             }
           ],
           "visualization": "web/inference/index.html"
@@ -13480,89 +13792,250 @@
               "id": "P09-C03-S01",
               "chapter_id": "9.3",
               "number": "9.3.1",
-              "title": "从相对熵到均值场更新",
+              "title": "证据下界与均值场更新",
               "outcome": "由下界恒等式推导顺序因子更新，以二维高斯区分优化误差和独立族的限制。",
               "path": "notebooks/09-概率建模与近似推断/03-变分推断/01-从相对熵到均值场更新.ipynb",
               "visualization": "web/inference/index.html",
+              "reading": "lessons/09-概率建模与近似推断/03-变分推断/01-从相对熵到均值场更新.md",
               "questions": [
                 {
                   "id": "p09-gaussian-coordinate",
                   "slug": "p09-gaussian-coordinate",
                   "title": "完成一轮均值场坐标更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-03-变分推断/read/1/#gaussian-mean-field",
+                  "concept_title": "相关高斯的均值场解",
+                  "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate"
                 },
                 {
                   "id": "p09-finite-bound",
                   "slug": "p09-finite-bound",
                   "title": "直接枚举证据下界",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-03-变分推断/read/1/#evidence-lower-bound",
+                  "concept_title": "证据下界与后验恒等式",
+                  "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-finite-bound"
                 },
                 {
                   "id": "p09-kl-direction",
                   "slug": "p09-kl-direction",
                   "title": "下界中的距离方向",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-03-变分推断/read/1/#evidence-lower-bound",
+                  "concept_title": "证据下界与后验恒等式",
+                  "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-kl-direction"
                 },
                 {
                   "id": "p09-gaussian-variance",
                   "slug": "p09-gaussian-variance",
                   "title": "独立近似丢掉了什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-03-变分推断/read/1/#optimization-and-family-error",
+                  "concept_title": "优化误差与近似族的限制",
+                  "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-variance"
                 },
                 {
                   "id": "p09-optimization-error",
                   "slug": "p09-optimization-error",
                   "title": "下界停止上升",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-03-变分推断/read/1/#optimization-and-family-error",
+                  "concept_title": "优化误差与近似族的限制",
+                  "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-optimization-error"
                 }
               ],
               "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
               "notebook_url": "/notebook/?id=P09-C03-S01",
-              "url": "/notebook/?id=P09-C03-S01"
+              "reading_url": "/chapters/09-03-变分推断/read/1/",
+              "concepts": [
+                {
+                  "id": "kl-direction",
+                  "title": "相对熵与分布近似的方向",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C03-S01:kl-direction",
+                  "url": "/chapters/09-03-变分推断/read/1/#kl-direction"
+                },
+                {
+                  "id": "evidence-lower-bound",
+                  "title": "证据下界与后验恒等式",
+                  "question_ids": [
+                    "p09-kl-direction",
+                    "p09-finite-bound"
+                  ],
+                  "explore": false,
+                  "key": "P09-C03-S01:evidence-lower-bound",
+                  "url": "/chapters/09-03-变分推断/read/1/#evidence-lower-bound"
+                },
+                {
+                  "id": "jensen-bound",
+                  "title": "Jensen不等式与平均的次序",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C03-S01:jensen-bound",
+                  "url": "/chapters/09-03-变分推断/read/1/#jensen-bound"
+                },
+                {
+                  "id": "mean-field-coordinates",
+                  "title": "均值场因子与坐标更新",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C03-S01:mean-field-coordinates",
+                  "url": "/chapters/09-03-变分推断/read/1/#mean-field-coordinates"
+                },
+                {
+                  "id": "gaussian-mean-field",
+                  "title": "相关高斯的均值场解",
+                  "question_ids": [
+                    "p09-gaussian-coordinate"
+                  ],
+                  "explore": false,
+                  "key": "P09-C03-S01:gaussian-mean-field",
+                  "url": "/chapters/09-03-变分推断/read/1/#gaussian-mean-field"
+                },
+                {
+                  "id": "optimization-and-family-error",
+                  "title": "优化误差与近似族的限制",
+                  "question_ids": [
+                    "p09-gaussian-variance",
+                    "p09-optimization-error"
+                  ],
+                  "explore": true,
+                  "key": "P09-C03-S01:optimization-and-family-error",
+                  "url": "/chapters/09-03-变分推断/read/1/#optimization-and-family-error",
+                  "explore_url": "/chapters/09-03-变分推断/explore/?concept=P09-C03-S01%3Aoptimization-and-family-error"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C03-S01:references",
+                  "url": "/chapters/09-03-变分推断/read/1/#references"
+                }
+              ],
+              "url": "/chapters/09-03-变分推断/read/1/"
             },
             {
               "id": "P09-C03-S02",
               "chapter_id": "9.3",
               "number": "9.3.2",
-              "title": "近似族与多峰中的初始化",
+              "title": "四状态近似与初始化",
               "outcome": "枚举四种细胞联合状态，跟算开启概率更新，比较对称初值与两个局部解。",
               "path": "notebooks/09-概率建模与近似推断/03-变分推断/02-近似族与多峰中的初始化.ipynb",
               "visualization": "web/inference/index.html",
+              "reading": "lessons/09-概率建模与近似推断/03-变分推断/02-近似族与多峰中的初始化.md",
               "questions": [
                 {
                   "id": "p09-discrete-coordinate",
                   "slug": "p09-discrete-coordinate",
                   "title": "在四个状态上检查近似",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-03-变分推断/read/2/#bernoulli-coordinate-updates",
+                  "concept_title": "Bernoulli因子的顺序更新",
+                  "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate"
                 },
                 {
                   "id": "p09-two-modes-family",
                   "slug": "p09-two-modes-family",
                   "title": "两个因子能表示相关双峰吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-03-变分推断/read/2/#four-state-joint-distribution",
+                  "concept_title": "四种联合状态与独立族",
+                  "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-two-modes-family"
                 },
                 {
                   "id": "p09-vi-initialization",
                   "slug": "p09-vi-initialization",
                   "title": "从两侧开始的优化",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-03-变分推断/read/2/#initialization-and-modes",
+                  "concept_title": "初始化与两个对称结果",
+                  "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-vi-initialization"
                 },
                 {
                   "id": "p09-elbo-monotone",
                   "slug": "p09-elbo-monotone",
                   "title": "坐标更新为什么不下降",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-03-变分推断/read/2/#discrete-elbo",
+                  "concept_title": "下界与坐标优化",
+                  "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-elbo-monotone"
                 },
                 {
                   "id": "p09-jensen-support",
                   "slug": "p09-jensen-support",
                   "title": "Jensen等号在哪里",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-03-变分推断/read/2/#joint-family-and-equality",
+                  "concept_title": "联合表示与下界取等",
+                  "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-jensen-support"
                 }
               ],
               "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate",
               "notebook_url": "/notebook/?id=P09-C03-S02",
-              "url": "/notebook/?id=P09-C03-S02"
+              "reading_url": "/chapters/09-03-变分推断/read/2/",
+              "concepts": [
+                {
+                  "id": "four-state-joint-distribution",
+                  "title": "四种联合状态与独立族",
+                  "question_ids": [
+                    "p09-two-modes-family"
+                  ],
+                  "explore": false,
+                  "key": "P09-C03-S02:four-state-joint-distribution",
+                  "url": "/chapters/09-03-变分推断/read/2/#four-state-joint-distribution"
+                },
+                {
+                  "id": "bernoulli-coordinate-updates",
+                  "title": "Bernoulli因子的顺序更新",
+                  "question_ids": [
+                    "p09-discrete-coordinate"
+                  ],
+                  "explore": false,
+                  "key": "P09-C03-S02:bernoulli-coordinate-updates",
+                  "url": "/chapters/09-03-变分推断/read/2/#bernoulli-coordinate-updates"
+                },
+                {
+                  "id": "discrete-elbo",
+                  "title": "下界与坐标优化",
+                  "question_ids": [
+                    "p09-elbo-monotone"
+                  ],
+                  "explore": false,
+                  "key": "P09-C03-S02:discrete-elbo",
+                  "url": "/chapters/09-03-变分推断/read/2/#discrete-elbo"
+                },
+                {
+                  "id": "initialization-and-modes",
+                  "title": "初始化与两个对称结果",
+                  "question_ids": [
+                    "p09-vi-initialization"
+                  ],
+                  "explore": false,
+                  "key": "P09-C03-S02:initialization-and-modes",
+                  "url": "/chapters/09-03-变分推断/read/2/#initialization-and-modes"
+                },
+                {
+                  "id": "joint-family-and-equality",
+                  "title": "联合表示与下界取等",
+                  "question_ids": [
+                    "p09-jensen-support"
+                  ],
+                  "explore": false,
+                  "key": "P09-C03-S02:joint-family-and-equality",
+                  "url": "/chapters/09-03-变分推断/read/2/#joint-family-and-equality"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C03-S02:references",
+                  "url": "/chapters/09-03-变分推断/read/2/#references"
+                }
+              ],
+              "url": "/chapters/09-03-变分推断/read/2/"
             }
           ],
           "visualization": "web/inference/index.html"
@@ -13585,89 +14058,257 @@
               "id": "P09-C04-S01",
               "chapter_id": "9.4",
               "number": "9.4.1",
-              "title": "责任度与混合模型参数学习",
+              "title": "责任度与期望最大化",
               "outcome": "从归组概率推导EM加权更新，说明责任度固定、标签交换与似然不下降的条件。",
               "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/01-责任度与混合模型参数学习.ipynb",
               "visualization": "web/inference/index.html",
+              "reading": "lessons/09-概率建模与近似推断/04-隐变量与参数学习/01-责任度与混合模型参数学习.md",
               "questions": [
                 {
                   "id": "p09-mixture-update",
                   "slug": "p09-mixture-update",
                   "title": "更新混合权重和分量均值",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-04-隐变量与参数学习/read/1/#weighted-m-step",
+                  "concept_title": "软权重与M步",
+                  "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update"
                 },
                 {
                   "id": "p09-em-two-targets",
                   "slug": "p09-em-two-targets",
                   "title": "EM是在做哪种推断",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-04-隐变量与参数学习/read/1/#em-likelihood-monotonicity",
+                  "concept_title": "下界与似然单调性",
+                  "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-em-two-targets"
                 },
                 {
                   "id": "p09-zero-component",
                   "slug": "p09-zero-component",
                   "title": "权重为零的分量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-04-隐变量与参数学习/read/1/#weighted-m-step",
+                  "concept_title": "软权重与M步",
+                  "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-zero-component"
                 },
                 {
                   "id": "p09-variance-collapse",
                   "slug": "p09-variance-collapse",
                   "title": "自由方差的危险",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-04-隐变量与参数学习/read/1/#labels-and-variance-collapse",
+                  "concept_title": "标签交换与方差塌缩",
+                  "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-variance-collapse"
                 },
                 {
                   "id": "p09-labels",
                   "slug": "p09-labels",
                   "title": "把两分量标签对换",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-04-隐变量与参数学习/read/1/#labels-and-variance-collapse",
+                  "concept_title": "标签交换与方差塌缩",
+                  "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-labels"
                 }
               ],
               "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update",
               "notebook_url": "/notebook/?id=P09-C04-S01",
-              "url": "/notebook/?id=P09-C04-S01"
+              "reading_url": "/chapters/09-04-隐变量与参数学习/read/1/",
+              "concepts": [
+                {
+                  "id": "latent-label-mixture",
+                  "title": "隐标签与高斯混合",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C04-S01:latent-label-mixture",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/1/#latent-label-mixture"
+                },
+                {
+                  "id": "responsibility-e-step",
+                  "title": "责任度与E步",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C04-S01:responsibility-e-step",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/1/#responsibility-e-step"
+                },
+                {
+                  "id": "weighted-m-step",
+                  "title": "软权重与M步",
+                  "question_ids": [
+                    "p09-mixture-update",
+                    "p09-zero-component"
+                  ],
+                  "explore": false,
+                  "key": "P09-C04-S01:weighted-m-step",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/1/#weighted-m-step"
+                },
+                {
+                  "id": "em-likelihood-monotonicity",
+                  "title": "下界与似然单调性",
+                  "question_ids": [
+                    "p09-em-two-targets"
+                  ],
+                  "explore": false,
+                  "key": "P09-C04-S01:em-likelihood-monotonicity",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/1/#em-likelihood-monotonicity"
+                },
+                {
+                  "id": "mixture-initialization",
+                  "title": "初始化与重合分量",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P09-C04-S01:mixture-initialization",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/1/#mixture-initialization",
+                  "explore_url": "/chapters/09-04-隐变量与参数学习/explore/?concept=P09-C04-S01%3Amixture-initialization"
+                },
+                {
+                  "id": "labels-and-variance-collapse",
+                  "title": "标签交换与方差塌缩",
+                  "question_ids": [
+                    "p09-labels",
+                    "p09-variance-collapse"
+                  ],
+                  "explore": false,
+                  "key": "P09-C04-S01:labels-and-variance-collapse",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/1/#labels-and-variance-collapse"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C04-S01:references",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/1/#references"
+                }
+              ],
+              "url": "/chapters/09-04-隐变量与参数学习/read/1/"
             },
             {
               "id": "P09-C04-S02",
               "chapter_id": "9.4",
               "number": "9.4.2",
-              "title": "从平滑矩到动态参数更新",
+              "title": "平滑矩与动态参数更新",
               "outcome": "用两时刻手算补回方差和协方差，再从平滑分布推导动态系数更新。",
               "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/02-从平滑矩到动态参数更新.ipynb",
               "visualization": "web/inference/index.html",
+              "reading": "lessons/09-概率建模与近似推断/04-隐变量与参数学习/02-从平滑矩到动态参数更新.md",
               "questions": [
                 {
                   "id": "p09-state-moments",
                   "slug": "p09-state-moments",
                   "title": "用平滑矩更新转移系数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-04-隐变量与参数学习/read/2/#dynamic-coefficient-m-step",
+                  "concept_title": "动态系数的M步",
+                  "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments"
                 },
                 {
                   "id": "p09-smoothing-products",
                   "slug": "p09-smoothing-products",
                   "title": "为什么不能只回归平滑均值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-04-隐变量与参数学习/read/2/#smoothed-second-moments",
+                  "concept_title": "平滑二阶矩",
+                  "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-smoothing-products"
                 },
                 {
                   "id": "p09-initial-parameter",
                   "slug": "p09-initial-parameter",
                   "title": "初始分布也依赖a",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-04-隐变量与参数学习/read/2/#initial-distribution-and-constraints",
+                  "concept_title": "初态分布与允许的参数范围",
+                  "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-initial-parameter"
                 },
                 {
                   "id": "p09-approximate-e-step",
                   "slug": "p09-approximate-e-step",
                   "title": "近似平滑代替精确E步",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-04-隐变量与参数学习/read/2/#state-em-experiment",
+                  "concept_title": "反复平滑与似然变化",
+                  "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-approximate-e-step"
                 },
                 {
                   "id": "p09-unstable-estimate",
                   "slug": "p09-unstable-estimate",
                   "title": "更新得到a大于1",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-04-隐变量与参数学习/read/2/#initial-distribution-and-constraints",
+                  "concept_title": "初态分布与允许的参数范围",
+                  "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-unstable-estimate"
                 }
               ],
               "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments",
               "notebook_url": "/notebook/?id=P09-C04-S02",
-              "url": "/notebook/?id=P09-C04-S02"
+              "reading_url": "/chapters/09-04-隐变量与参数学习/read/2/",
+              "concepts": [
+                {
+                  "id": "dynamic-parameter-model",
+                  "title": "线性状态模型与参数学习",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C04-S02:dynamic-parameter-model",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/2/#dynamic-parameter-model"
+                },
+                {
+                  "id": "smoothed-second-moments",
+                  "title": "平滑二阶矩",
+                  "question_ids": [
+                    "p09-smoothing-products"
+                  ],
+                  "explore": false,
+                  "key": "P09-C04-S02:smoothed-second-moments",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/2/#smoothed-second-moments"
+                },
+                {
+                  "id": "dynamic-coefficient-m-step",
+                  "title": "动态系数的M步",
+                  "question_ids": [
+                    "p09-state-moments"
+                  ],
+                  "explore": false,
+                  "key": "P09-C04-S02:dynamic-coefficient-m-step",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/2/#dynamic-coefficient-m-step"
+                },
+                {
+                  "id": "rts-lag-covariance",
+                  "title": "RTS平滑的相邻协方差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C04-S02:rts-lag-covariance",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/2/#rts-lag-covariance"
+                },
+                {
+                  "id": "initial-distribution-and-constraints",
+                  "title": "初态分布与允许的参数范围",
+                  "question_ids": [
+                    "p09-initial-parameter",
+                    "p09-unstable-estimate"
+                  ],
+                  "explore": false,
+                  "key": "P09-C04-S02:initial-distribution-and-constraints",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/2/#initial-distribution-and-constraints"
+                },
+                {
+                  "id": "state-em-experiment",
+                  "title": "反复平滑与似然变化",
+                  "question_ids": [
+                    "p09-approximate-e-step"
+                  ],
+                  "explore": false,
+                  "key": "P09-C04-S02:state-em-experiment",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/2/#state-em-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C04-S02:references",
+                  "url": "/chapters/09-04-隐变量与参数学习/read/2/#references"
+                }
+              ],
+              "url": "/chapters/09-04-隐变量与参数学习/read/2/"
             }
           ],
           "visualization": "web/inference/index.html"
@@ -13690,89 +14331,250 @@
               "id": "P09-C05-S01",
               "chapter_id": "9.5",
               "number": "9.5.1",
-              "title": "把参数不确定性带入预测",
+              "title": "后验预测、总方差与预测区间",
               "outcome": "拆开读数偏差推导总方差，用混合累计概率构造区间，并检查非线性平均。",
               "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/01-把参数不确定性带入预测.ipynb",
               "visualization": "web/inference/index.html",
+              "reading": "lessons/09-概率建模与近似推断/05-后验预测与模型检验/01-把参数不确定性带入预测.md",
               "questions": [
                 {
                   "id": "p09-predictive-moments",
                   "slug": "p09-predictive-moments",
                   "title": "分解预测方差",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-05-后验预测与模型检验/read/1/#two-contributions-to-total-variance",
+                  "concept_title": "总方差的两项贡献",
+                  "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments"
                 },
                 {
                   "id": "p09-interval-meaning",
                   "slug": "p09-interval-meaning",
                   "title": "同样是95%区间",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-05-后验预测与模型检验/read/1/#mixture-quantiles-and-prediction-intervals",
+                  "concept_title": "混合分布、分位数与预测区间",
+                  "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-interval-meaning"
                 },
                 {
                   "id": "p09-nonlinear-expectation",
                   "slug": "p09-nonlinear-expectation",
                   "title": "把平均参数代入就行吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-05-后验预测与模型检验/read/1/#averaging-in-a-nonlinear-prediction",
+                  "concept_title": "非线性预测中的平均顺序",
+                  "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-nonlinear-expectation"
                 },
                 {
                   "id": "p09-mixture-not-normal",
                   "slug": "p09-mixture-not-normal",
                   "title": "只有均值和方差还不够",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-05-后验预测与模型检验/read/1/#mixture-quantiles-and-prediction-intervals",
+                  "concept_title": "混合分布、分位数与预测区间",
+                  "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-mixture-not-normal"
                 },
                 {
                   "id": "p09-conditional-variance",
                   "slug": "p09-conditional-variance",
                   "title": "为什么还要条件方差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-05-后验预测与模型检验/read/1/#two-contributions-to-total-variance",
+                  "concept_title": "总方差的两项贡献",
+                  "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-conditional-variance"
                 }
               ],
               "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments",
               "notebook_url": "/notebook/?id=P09-C05-S01",
-              "url": "/notebook/?id=P09-C05-S01"
+              "reading_url": "/chapters/09-05-后验预测与模型检验/read/1/",
+              "concepts": [
+                {
+                  "id": "new-readings-under-two-parameter-values",
+                  "title": "两个参数情形下的新读数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C05-S01:new-readings-under-two-parameter-values",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/1/#new-readings-under-two-parameter-values"
+                },
+                {
+                  "id": "posterior-predictive-distribution-and-conditional-averaging",
+                  "title": "后验预测分布与条件平均",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C05-S01:posterior-predictive-distribution-and-conditional-averaging",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/1/#posterior-predictive-distribution-and-conditional-averaging"
+                },
+                {
+                  "id": "two-contributions-to-total-variance",
+                  "title": "总方差的两项贡献",
+                  "question_ids": [
+                    "p09-predictive-moments",
+                    "p09-conditional-variance"
+                  ],
+                  "explore": false,
+                  "key": "P09-C05-S01:two-contributions-to-total-variance",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/1/#two-contributions-to-total-variance"
+                },
+                {
+                  "id": "averaging-in-a-nonlinear-prediction",
+                  "title": "非线性预测中的平均顺序",
+                  "question_ids": [
+                    "p09-nonlinear-expectation"
+                  ],
+                  "explore": false,
+                  "key": "P09-C05-S01:averaging-in-a-nonlinear-prediction",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/1/#averaging-in-a-nonlinear-prediction"
+                },
+                {
+                  "id": "mixture-quantiles-and-prediction-intervals",
+                  "title": "混合分布、分位数与预测区间",
+                  "question_ids": [
+                    "p09-mixture-not-normal",
+                    "p09-interval-meaning"
+                  ],
+                  "explore": true,
+                  "key": "P09-C05-S01:mixture-quantiles-and-prediction-intervals",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/1/#mixture-quantiles-and-prediction-intervals",
+                  "explore_url": "/chapters/09-05-后验预测与模型检验/explore/?concept=P09-C05-S01%3Amixture-quantiles-and-prediction-intervals"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C05-S01:references",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/1/#references"
+                }
+              ],
+              "url": "/chapters/09-05-后验预测与模型检验/read/1/"
             },
             {
               "id": "P09-C05-S02",
               "chapter_id": "9.5",
               "number": "9.5.2",
-              "title": "留出预测覆盖与模型失配",
+              "title": "留出预测、覆盖与模型失配",
               "outcome": "先固定四种预测，再比较留出分数与覆盖，区分固定场景、复制检查与联合重复。",
               "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/02-留出预测覆盖与模型失配.ipynb",
               "visualization": "web/inference/index.html",
+              "reading": "lessons/09-概率建模与近似推断/05-后验预测与模型检验/02-留出预测覆盖与模型失配.md",
               "questions": [
                 {
                   "id": "p09-predictive-score",
                   "slug": "p09-predictive-score",
                   "title": "在留出观测上比较预测",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/09-05-后验预测与模型检验/read/2/#predictive-scores-and-interval-coverage",
+                  "concept_title": "预测评分与区间覆盖",
+                  "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score"
                 },
                 {
                   "id": "p09-posterior-check-reuse",
                   "slug": "p09-posterior-check-reuse",
                   "title": "后验预测检验是否独立验证",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-05-后验预测与模型检验/read/2/#posterior-replicates-and-residual-checks",
+                  "concept_title": "后验复制数据与残差检查",
+                  "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-posterior-check-reuse"
                 },
                 {
                   "id": "p09-coverage-uncertainty",
                   "slug": "p09-coverage-uncertainty",
                   "title": "18次覆盖足够下结论吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-05-后验预测与模型检验/read/2/#predictive-scores-and-interval-coverage",
+                  "concept_title": "预测评分与区间覆盖",
+                  "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-coverage-uncertainty"
                 },
                 {
                   "id": "p09-fair-prediction",
                   "slug": "p09-fair-prediction",
                   "title": "怎样比较两种推断方法",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-05-后验预测与模型检验/read/2/#paired-comparison-with-fixed-training-data",
+                  "concept_title": "固定训练数据下的配对比较",
+                  "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-fair-prediction"
                 },
                 {
                   "id": "p09-noise-misspecification",
                   "slug": "p09-noise-misspecification",
                   "title": "所有推断方法都漏覆盖",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/09-05-后验预测与模型检验/read/2/#fixed-scenario-and-joint-repetition-coverage",
+                  "concept_title": "固定场景与联合重复中的覆盖",
+                  "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-noise-misspecification"
                 }
               ],
               "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score",
               "notebook_url": "/notebook/?id=P09-C05-S02",
-              "url": "/notebook/?id=P09-C05-S02"
+              "reading_url": "/chapters/09-05-后验预测与模型检验/read/2/",
+              "concepts": [
+                {
+                  "id": "shared-model-and-four-predictions",
+                  "title": "共同模型与四种预测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C05-S02:shared-model-and-four-predictions",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/2/#shared-model-and-four-predictions"
+                },
+                {
+                  "id": "sampling-and-variational-approximation-for-positive-rates",
+                  "title": "正参数上的采样与变分近似",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C05-S02:sampling-and-variational-approximation-for-positive-rates",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/2/#sampling-and-variational-approximation-for-positive-rates"
+                },
+                {
+                  "id": "predictive-scores-and-interval-coverage",
+                  "title": "预测评分与区间覆盖",
+                  "question_ids": [
+                    "p09-coverage-uncertainty",
+                    "p09-predictive-score"
+                  ],
+                  "explore": false,
+                  "key": "P09-C05-S02:predictive-scores-and-interval-coverage",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/2/#predictive-scores-and-interval-coverage"
+                },
+                {
+                  "id": "paired-comparison-with-fixed-training-data",
+                  "title": "固定训练数据下的配对比较",
+                  "question_ids": [
+                    "p09-fair-prediction"
+                  ],
+                  "explore": false,
+                  "key": "P09-C05-S02:paired-comparison-with-fixed-training-data",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/2/#paired-comparison-with-fixed-training-data"
+                },
+                {
+                  "id": "posterior-replicates-and-residual-checks",
+                  "title": "后验复制数据与残差检查",
+                  "question_ids": [
+                    "p09-posterior-check-reuse"
+                  ],
+                  "explore": false,
+                  "key": "P09-C05-S02:posterior-replicates-and-residual-checks",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/2/#posterior-replicates-and-residual-checks"
+                },
+                {
+                  "id": "fixed-scenario-and-joint-repetition-coverage",
+                  "title": "固定场景与联合重复中的覆盖",
+                  "question_ids": [
+                    "p09-noise-misspecification"
+                  ],
+                  "explore": true,
+                  "key": "P09-C05-S02:fixed-scenario-and-joint-repetition-coverage",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/2/#fixed-scenario-and-joint-repetition-coverage",
+                  "explore_url": "/chapters/09-05-后验预测与模型检验/explore/?concept=P09-C05-S02%3Afixed-scenario-and-joint-repetition-coverage"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P09-C05-S02:references",
+                  "url": "/chapters/09-05-后验预测与模型检验/read/2/#references"
+                }
+              ],
+              "url": "/chapters/09-05-后验预测与模型检验/read/2/"
             }
           ],
           "visualization": "web/inference/index.html"
@@ -13810,59 +14612,157 @@
                 "用完整预测密度评分，保留预算与失配场景，分别解释模型和计算误差"
               ]
             },
+            "reading": "lessons/09-概率建模与近似推断/06-篇末综合/01-同一观测下的后验与预测比较.md",
             "questions": [
               {
                 "id": "p09-cap-prior",
                 "slug": "p09-cap-prior",
                 "title": "先明确预测对象",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/09-概率建模与近似推断/综合练习/read/1/#parameters-latent-variables-and-new-readings",
+                "concept_title": "参数、隐变量与新读数",
+                "practice_url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-prior"
               },
               {
                 "id": "p09-cap-diagnostic",
                 "slug": "p09-cap-diagnostic",
                 "title": "收敛声明需要哪些证据",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/09-概率建模与近似推断/综合练习/read/1/#mh-transitions-and-finite-chain-exploration",
+                "concept_title": "MH 转移与有限链探索",
+                "practice_url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-diagnostic"
               },
               {
                 "id": "p09-cap-local",
                 "slug": "p09-cap-local",
                 "title": "后验局部近似与边界",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/09-概率建模与近似推断/综合练习/read/1/#gamma-posterior-and-local-gaussian-approximation",
+                "concept_title": "Gamma 后验与局部高斯近似",
+                "practice_url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-local"
               },
               {
                 "id": "p09-cap-mh",
                 "slug": "p09-cap-mh",
                 "title": "固定提议下的接受与拒绝",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/09-概率建模与近似推断/综合练习/read/1/#mh-transitions-and-finite-chain-exploration",
+                "concept_title": "MH 转移与有限链探索",
+                "practice_url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-mh"
               },
               {
                 "id": "p09-cap-variational",
                 "slug": "p09-cap-variational",
                 "title": "均值场更新与证据差距",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/09-概率建模与近似推断/综合练习/read/1/#correlated-gaussian-and-independent-approximation",
+                "concept_title": "相关高斯与独立近似",
+                "practice_url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-variational"
               },
               {
                 "id": "p09-cap-predictive",
                 "slug": "p09-cap-predictive",
                 "title": "同一留出条件下的评分与预算",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/09-概率建模与近似推断/综合练习/read/1/#shared-offset-and-new-reading-prediction",
+                "concept_title": "共同偏差与新读数预测",
+                "practice_url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-predictive"
               },
               {
                 "id": "p09-cap-em",
                 "slug": "p09-cap-em",
                 "title": "似然变大是否代表机制成立",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/09-概率建模与近似推断/综合练习/read/1/#latent-variable-learning-and-new-condition-prediction",
+                "concept_title": "隐变量学习与新条件预测",
+                "practice_url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-em"
               },
               {
                 "id": "p09-cap-misspecification",
                 "slug": "p09-cap-misspecification",
                 "title": "新条件下的校准失败",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/09-概率建模与近似推断/综合练习/read/1/#latent-variable-learning-and-new-condition-prediction",
+                "concept_title": "隐变量学习与新条件预测",
+                "practice_url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-misspecification"
               }
             ],
             "practice_url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-prior",
             "notebook_url": "/notebook/?id=P09-SUMMARY",
-            "url": "/notebook/?id=P09-SUMMARY"
+            "reading_url": "/parts/09-概率建模与近似推断/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "parameters-latent-variables-and-new-readings",
+                "title": "参数、隐变量与新读数",
+                "question_ids": [
+                  "p09-cap-prior"
+                ],
+                "explore": false,
+                "key": "P09-SUMMARY:parameters-latent-variables-and-new-readings",
+                "url": "/parts/09-概率建模与近似推断/综合练习/read/1/#parameters-latent-variables-and-new-readings"
+              },
+              {
+                "id": "gamma-posterior-and-local-gaussian-approximation",
+                "title": "Gamma 后验与局部高斯近似",
+                "question_ids": [
+                  "p09-cap-local"
+                ],
+                "explore": false,
+                "key": "P09-SUMMARY:gamma-posterior-and-local-gaussian-approximation",
+                "url": "/parts/09-概率建模与近似推断/综合练习/read/1/#gamma-posterior-and-local-gaussian-approximation"
+              },
+              {
+                "id": "mh-transitions-and-finite-chain-exploration",
+                "title": "MH 转移与有限链探索",
+                "question_ids": [
+                  "p09-cap-mh",
+                  "p09-cap-diagnostic"
+                ],
+                "explore": false,
+                "key": "P09-SUMMARY:mh-transitions-and-finite-chain-exploration",
+                "url": "/parts/09-概率建模与近似推断/综合练习/read/1/#mh-transitions-and-finite-chain-exploration"
+              },
+              {
+                "id": "correlated-gaussian-and-independent-approximation",
+                "title": "相关高斯与独立近似",
+                "question_ids": [
+                  "p09-cap-variational"
+                ],
+                "explore": false,
+                "key": "P09-SUMMARY:correlated-gaussian-and-independent-approximation",
+                "url": "/parts/09-概率建模与近似推断/综合练习/read/1/#correlated-gaussian-and-independent-approximation"
+              },
+              {
+                "id": "shared-offset-and-new-reading-prediction",
+                "title": "共同偏差与新读数预测",
+                "question_ids": [
+                  "p09-cap-predictive"
+                ],
+                "explore": false,
+                "key": "P09-SUMMARY:shared-offset-and-new-reading-prediction",
+                "url": "/parts/09-概率建模与近似推断/综合练习/read/1/#shared-offset-and-new-reading-prediction"
+              },
+              {
+                "id": "latent-variable-learning-and-new-condition-prediction",
+                "title": "隐变量学习与新条件预测",
+                "question_ids": [
+                  "p09-cap-em",
+                  "p09-cap-misspecification"
+                ],
+                "explore": false,
+                "key": "P09-SUMMARY:latent-variable-learning-and-new-condition-prediction",
+                "url": "/parts/09-概率建模与近似推断/综合练习/read/1/#latent-variable-learning-and-new-condition-prediction"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P09-SUMMARY:references",
+                "url": "/parts/09-概率建模与近似推断/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/09-概率建模与近似推断/综合练习/read/1/"
           }
         ],
         "available": true,

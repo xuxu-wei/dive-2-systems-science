@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.4.1 责任度与期望最大化 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P09-C04-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P09-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update">本节练习 · 5 题</a><a class="button" href="/chapters/09-04-隐变量与参数学习/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>9.4.1 责任度与期望最大化</h1>
+<p>一组读数可能来自两个均值不同的群体，而每个读数属于哪一组并没有被记录。靠近某一组均值的读数提供较强支持，位于两组之间的读数则保留归属上的不确定性。我们将这些归组概率作为权重，交替估计标签分布与群体参数。</p>
+<p>学完本节，你应能手算责任度与加权均值，推导期望最大化的两个步骤，并解释初始化、零权重与标签交换。先修为条件概率、9.3的下界和第8篇的约束优化。</p>
+<h2 id="latent-label-mixture">隐标签与高斯混合</h2>
+<p>第$i$条读数记为$y_i$，未观测的组别记为$z_i\in\{1,2\}$。以概率$w_j$属于第$j$组，并在给定标签后服从</p>
+<p>$$P(z_i=j)=w_j,\qquad y_i\mid z_i=j\sim N(\mu_j,v),
+\qquad w_j\ge0,\quad w_1+w_2=1.$$</p>
+<p>$y_i,\mu_j$的单位为U，正方差$v$以U²计。对标签求和，单个读数的密度为</p>
+<p>$$p(y_i\mid\theta)=w_1N(y_i\mid\mu_1,v)+w_2N(y_i\mid\mu_2,v),$$</p>
+<p>称为<strong>高斯混合模型（Gaussian mixture model）</strong>。这里$\theta=(w_1,w_2,\mu_1,\mu_2)$是待学习参数，$v$固定且已知，各个个体独立。</p>
+<p>若$n$个标签都已知，完整数据似然是$\prod_iw_{z_i}N(y_i\mid\mu_{z_i},v)$。现在只看到了读数，观测似然则为</p>
+<p>$$p(y\mid\theta)=\prod_{i=1}^n\sum_{j=1}^2w_jN(y_i\mid\mu_j,v).$$</p>
+<p>每个求和都保留了这个读数的两种可能来源。</p>
+<h2 id="responsibility-e-step">责任度与E步</h2>
+<p>固定当前参数$\theta^{\rm old}$，用条件概率计算</p>
+<p>$$\boxed{r_{ij}=P(z_i=j\mid y_i,\theta^{\rm old})
+=\frac{w_jN(y_i\mid\mu_j,v)}{\sum_{k=1}^2w_kN(y_i\mid\mu_k,v)}.}$$</p>
+<p>$r_{ij}$称为<strong>责任度（responsibility）</strong>，就是当前模型下第$i$个读数属于第$j$组的概率。每行两个数相加为1，它们将一条读数的权重分配给两组。</p>
+<p>取均值$(-1,1)$ U、方差$v=1$ U²、权重$(0.5,0.5)$。对$y=-1$ U，两组的高斯指数项分别为1与$e^{-2}$，共同的常数相消，得到</p>
+<p>$$r_1=\frac1{1+e^{-2}}\approx0.880797,\qquad r_2\approx0.119203.$$</p>
+<p>对$y=1$ U，两个概率相反。读数越贴近某组，相应权重越大；一次计算仍保留了另一种归属的可能。</p>
+<p>这个步骤固定旧参数，求隐标签的条件分布，称为E步。</p>
+<h2 id="weighted-m-step">软权重与M步</h2>
+<p>接下来保持全部$r_{ij}$不变，对新参数求完整数据对数似然的期望。加上标签分布的熵后就是上一章的下界；其中与新参数有关的部分为</p>
+<p>$$\mathcal L(q,\theta)=
+\sum_i\sum_jr_{ij}\left[\log w_j-\frac{(y_i-\mu_j)^2}{2v}\right]+C.$$</p>
+<p>此处$q$是E步的标签后验，$C$与新参数无关。固定责任度后，对$\mu_j$求导并令其为零：</p>
+<p>$$0=\frac1v\sum_i r_{ij}(y_i-\mu_j).$$</p>
+<p>定义$N_j=\sum_i r_{ij}$，就得到</p>
+<p>$$\boxed{\mu_j^{\rm new}=\frac{\sum_i r_{ij}y_i}{N_j}.}$$</p>
+<p>$N_j$是分给这组的总权重，可以不是整数。读数以责任度加权，而不是先硬分组再求普通平均。</p>
+<p>权重需要同时满足总和为1。对$\sum_jN_j\log w_j+\eta(1-\sum_jw_j)$求导，得到$N_j/w_j=\eta$。利用$\sum_jN_j=n$，可得</p>
+<p>$$\boxed{w_j^{\rm new}=N_j/n.}$$</p>
+<p>这一步固定标签概率、更新参数，称为M步。将两步交替执行，就是<strong>期望最大化（expectation-maximization，EM）</strong>算法。</p>
+<p>继续用前面两个对称读数$(-1,1)$ U，两组总责任度都是1，故新权重仍各为0.5。第一组均值成为$-0.880797+0.119203\approx-0.761594$ U，第二组约为0.761594 U。计算题返回的责任度和观测对数似然对应输入的旧参数；新权重与新均值则对应这次M步，须分清计算时刻。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update">更新混合权重和分量均值</a></li></ul></nav>
+
+<p>若某组$N_j=0$，当前目标没有给出选择该组均值的依据，实验保留旧均值，并将权重设为零。特别是旧权重已经为零时，该组的所有责任度也为零，后续标准更新会维持这个状态。要重新使用这个分量，需要加入新的初始化或重启安排。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-zero-component">权重为零的分量</a></li></ul></nav>
+
+<h2 id="em-likelihood-monotonicity">下界与似然单调性</h2>
+<p>E步取$q=p(z\mid y,\theta^{\rm old})$，使下界在旧参数处与观测对数似然相等。M步保持$q$固定，最大化下界，于是</p>
+<p>$$\log p(y\mid\theta^{\rm new})
+\ge\mathcal L(q,\theta^{\rm new})
+\ge\mathcal L(q,\theta^{\rm old})
+=\log p(y\mid\theta^{\rm old}).$$</p>
+<p>第一步来自下界，第二步来自参数优化，最后的等号来自精确标签后验。这个顺序也解释了两个任务的分工：E步得到隐标签的条件分布，M步得到参数的点估计。它们共同改善观测似然，仍可能停在不同局部结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-em-two-targets">EM是在做哪种推断</a></li></ul></nav>
+
+<h2 id="mixture-initialization">初始化与重合分量</h2>
+<p>实验固定8个读数$(-1.4,-1.1,-0.8,-0.5,0.6,0.9,1.2,1.6)$ U，采用共同方差$v=0.25$ U²。权重初始都为0.5，分别从均值$(-1,1)$ U与$(0,0)$ U开始，执行25次EM更新。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P09-C04-S01-a64b3e51-0.png" alt="责任度与期望最大化：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图显示分开初始化后，各读数属于第一分量的责任度。两端读数接近确定归组，中间读数仍有不同程度的模糊归属。右图比较观测对数似然：分开起点最终得到均值约$(-0.945584,1.071964)$ U，重合起点则让两个均值一起变成读数平均0.0625 U。</p>
+<p>重合为什么会持续？两组均值、方差和权重相同时，每条读数都被对半分。M步又让两组取同一个加权平均，下一轮便继续相同。似然不下降保证每次更新的方向，却没有让算法自动离开这个对称结果。</p>
+<p>探索页使用相同8个读数，共20次更新。切换分离与相同初始化，观察责任度和似然；再改变固定方差。每次实验内部仍保持这个方差不变。</p>
+<p class="concept-explore"><a href="/chapters/09-04-隐变量与参数学习/explore/?concept=P09-C04-S01%3Amixture-initialization">可视化与探索：初始化与重合分量 →</a></p>
+
+<h2 id="labels-and-variance-collapse">标签交换与方差塌缩</h2>
+<p>把两组均值和权重一起对换，混合密度中的两项只是交换次序，整体读数密度、观测似然与预测矩保持不变，责任度两列则互换。因此，分量编号先表示模型中的两个位置；将其解释为实际群体，还要结合群体的观测特征。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-labels">把两分量标签对换</a></li></ul></nav>
+
+<p>若进一步允许各分量拥有单独可调的方差，会出现另一种现象。让一个正权重分量的均值贴住某条读数，其方差$v_j$趋于零，该点的高斯密度峰$1/\sqrt{2\pi v_j}$会趋于无穷。只要其他分量仍为其余读数提供正密度，总似然就可能无界。这称为<strong>方差塌缩（variance collapse）</strong>：更高的似然此时来自越来越窄的尖峰。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/09-04-隐变量与参数学习/practice/?question=p09-variance-collapse">自由方差的危险</a></li></ul></nav>
+
+<p>当前实验使用固定正方差，主要比较归组与均值更新。下一节将相同的“先求隐变量分布、再更新参数”用于时间序列：隐藏状态相互联系，参数更新需要保留它们的方差与相邻协方差。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf">Särkkä，Bayesian Filtering and Smoothing，第12章</a>讨论隐变量模型的参数估计；<a href="https://arxiv.org/html/1601.00670v9">Blei等，第2.2节，v9</a>连接下界与期望最大化。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/09-03-变分推断/read/2/">← 9.3.2 四状态近似与初始化</a><a href="/chapters/09-04-隐变量与参数学习/read/2/">9.4.2 平滑矩与动态参数更新 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>
