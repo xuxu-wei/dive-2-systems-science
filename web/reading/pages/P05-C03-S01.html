@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.3.1 条件概率、贝叶斯公式与条件期望 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P05-C03-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P05-C03-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes">本节练习 · 4 题</a><a class="button" href="/chapters/05-03-条件概率与贝叶斯更新/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>5.3.1 条件概率、贝叶斯公式与条件期望</h1>
+<p>学完本节，你应能从联合概率表求条件概率，解释先验、似然与后验的不同含义，并按已知条件计算平均值。</p>
+<p><strong>先修知识</strong>：5.2 的联合概率表、边缘概率和期望；分数与加权平均。</p>
+<h2 id="conditional-probability">条件概率与样本范围</h2>
+<p>某个细胞活跃时，有 90% 的概率出现标记。看到标记，能否判断它有 90% 的概率处于活跃态？要回答这个问题，还需要知道静息细胞能否出现标记，以及活跃细胞原本占多少。</p>
+<p>设活跃细胞占 20%，静息细胞占 80%；静息时出现标记的概率为 10%。把这些概率按比例排成 100 份，得到下面的表。表内的数用来计算各类结果的比例。</p>
+<table>
+<thead>
+<tr>
+  <th>细胞状态</th>
+  <th style="text-align:right">出现标记</th>
+  <th style="text-align:right">没有标记</th>
+  <th style="text-align:right">合计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>活跃</td>
+  <td style="text-align:right">18</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">20</td>
+</tr>
+<tr>
+  <td>静息</td>
+  <td style="text-align:right">8</td>
+  <td style="text-align:right">72</td>
+  <td style="text-align:right">80</td>
+</tr>
+<tr>
+  <td>合计</td>
+  <td style="text-align:right">26</td>
+  <td style="text-align:right">74</td>
+  <td style="text-align:right">100</td>
+</tr>
+</tbody>
+</table>
+<p>已知出现标记后，考虑的范围就从全部 100 份缩到有标记的 26 份。其中 18 份活跃，因此所求概率为 $18/26=9/13$。</p>
+<p>把“活跃”记为事件 $A$，“出现标记”记为事件 $B$，$A\cap B$ 表示两者同时发生。<strong>条件概率</strong>定义为</p>
+<p>$$P(A\mid B)=\frac{P(A\cap B)}{P(B)},\qquad P(B)&gt;0.$$</p>
+<p>竖线右边是已经知道的条件。分子保留同时满足 $A$ 和 $B$ 的结果，分母用条件 $B$ 的总概率重新归一。这里</p>
+<p>$$P(A\cap B)=0.18,\qquad P(B)=0.26,\qquad P(A\mid B)=\frac9{13}.$$</p>
+<p>与之相比，$P(B\mid A)=0.9$ 是在活跃细胞中计算有标记的比例。两者的分子相同，计算比例时选取的范围不同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-base-rate">似然高为何后验仍未到九成</a></li></ul></nav>
+
+<h2 id="bayes-posterior">贝叶斯公式与后验概率</h2>
+<p>由条件概率的定义，联合概率也可以写成</p>
+<p>$$P(A\cap B)=P(B\mid A)P(A).$$</p>
+<p>把它代回上一式，就得到<strong>贝叶斯公式</strong>：</p>
+<p>$$P(A\mid B)=\frac{P(B\mid A)P(A)}{P(B)}.$$</p>
+<p>分母中的标记可以来自活跃或静息细胞。这两个状态互斥，而且涵盖全部可能，所以</p>
+<p>$$P(B)=P(B\mid A)P(A)+P(B\mid A^c)P(A^c)
+=0.9\times0.2+0.1\times0.8=0.26.$$</p>
+<p>这里 $A^c$ 表示 $A$ 的补事件，即静息。若把可能的状态或解释统一记为 $H_1,\ldots,H_m$，它们互斥且穷尽，看到离散观测 $Y=y$ 后，公式写成</p>
+<p>$$\boxed{P(H_i\mid Y=y)=
+\frac{P(Y=y\mid H_i)P(H_i)}
+{\sum_jP(Y=y\mid H_j)P(H_j)}.}$$</p>
+<p>各部分各自回答一个问题：</p>
+<table>
+<thead>
+<tr>
+  <th>名称</th>
+  <th>表达式</th>
+  <th>本例中按“活跃、静息”排列的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>先验（prior）</td>
+  <td>$P(H_i)$：看标记前如何分配状态概率</td>
+  <td>$[0.2,0.8]$</td>
+</tr>
+<tr>
+  <td>似然（likelihood）</td>
+  <td>固定已经看到的 $y$，比较各状态产生它的可能性 $P(Y=y\mid H_i)$</td>
+  <td>$[0.9,0.1]$</td>
+</tr>
+<tr>
+  <td>联合权重</td>
+  <td>$P(Y=y\mid H_i)P(H_i)$</td>
+  <td>$[0.18,0.08]$</td>
+</tr>
+<tr>
+  <td>后验（posterior）</td>
+  <td>$P(H_i\mid Y=y)$：看到标记后的状态概率</td>
+  <td>$[9/13,4/13]$</td>
+</tr>
+</tbody>
+</table>
+<p>分母 $P(Y=y)$ 是观测的<strong>证据或边际似然</strong>。它等于所有联合权重之和，使后验各项相加为 1。似然列表 $[0.9,0.1]$ 本例恰好相加为 1；一般情况下，固定观测后，不同假设下的似然并不要求相加为 1。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes">按新观测更新细胞状态概率</a></li></ul></nav>
+
+<p>如果某个假设的先验为零，乘上有限似然后，它的权重仍为零。若全部权重都为零，说明模型为这个观测给出的概率为零，条件概率公式就没有定义。计算时把这种情形单独返回，便能区分它与有明确依据的后验。</p>
+<h2 id="base-rate-and-new-markers">基础比例与连续标记更新</h2>
+<p>仍保持标记机制不变，活跃先验改为 $p$，一次标记后的活跃概率就是</p>
+<p>$$P(A\mid B)=\frac{0.9p}{0.9p+0.1(1-p)}.$$</p>
+<p>先验为 $0.2$ 时得到 $9/13$；先验为 $0.8$ 时得到 $36/37$。同一个标记在不同群体中意味着不同的后验，因为有标记的结果来自两类细胞的比例变了。</p>
+<p>如果对同一个固定标签获得第二次新标记，需要说明两次标记怎样产生。假设在给定标签后，它们相互独立，则</p>
+<p>$$P(y_1,y_2\mid H_i)=P(y_1\mid H_i)P(y_2\mid H_i).$$</p>
+<p>第一次的后验成为第二次更新的先验，也就等价于把两次似然乘到原先验上。本例两次都出现标记时，两个权重为 $0.2\times0.9^2=0.162$ 与 $0.8\times0.1^2=0.008$，活跃后验为 $81/85$。复制第一次记录没有重新产生标记，因此不增加这一乘法中的新因子。</p>
+<p>在探索页中，1 表示出现标记，0 表示没有标记；隐藏标签在整个序列中固定。保持同一标记序列，改变活跃先验，查看每次新证据怎样改变两类状态的相对权重。</p>
+<p class="concept-explore"><a href="/chapters/05-03-条件概率与贝叶斯更新/explore/?concept=P05-C03-S01%3Abase-rate-and-new-markers">可视化与探索：基础比例与连续标记更新 →</a></p>
+
+<p>下面的左图比较一次标记前后的两类概率；右图保持似然不变，只改变活跃先验。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P05-C03-S01-6feecdc5-0.png" alt="条件概率、贝叶斯公式与条件期望：实验结果图" loading="lazy"></figure>
+</section>
+<p>右图的后验曲线位于对角线上方：在这套机制下，出现标记支持活跃状态。曲线上不同的点仍对应不同的先验，标记没有抹掉群体原有比例的影响。</p>
+<h2 id="conditional-expectation">条件分布与条件期望</h2>
+<p>条件概率也可以用来重新计算平均读数。设 $X$ 为读数，可能取 $0\,\mathrm U$ 或 $2\,\mathrm U$；$Y=0,1$ 表示两种测量方式。它们的联合概率为</p>
+<table>
+<thead>
+<tr>
+  <th>读数 $X$</th>
+  <th style="text-align:right">$Y=0$</th>
+  <th style="text-align:right">$Y=1$</th>
+  <th style="text-align:right">$X$ 的边缘概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$0\,\mathrm U$</td>
+  <td style="text-align:right">$3/8$</td>
+  <td style="text-align:right">$1/8$</td>
+  <td style="text-align:right">$1/2$</td>
+</tr>
+<tr>
+  <td>$2\,\mathrm U$</td>
+  <td style="text-align:right">$1/8$</td>
+  <td style="text-align:right">$3/8$</td>
+  <td style="text-align:right">$1/2$</td>
+</tr>
+<tr>
+  <td>$Y$ 的边缘概率</td>
+  <td style="text-align:right">$1/2$</td>
+  <td style="text-align:right">$1/2$</td>
+  <td style="text-align:right">$1$</td>
+</tr>
+</tbody>
+</table>
+<p>已知 $Y=0$ 时，先取出这一列，再除以列和 $1/2$。两个读数的条件概率分别为 $3/4$、$1/4$，这组概率就是 $X$ 在条件 $Y=0$ 下的分布。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-conditioning">联合表怎样变成条件表</a></li></ul></nav>
+
+<p>用新的概率作权重，得到</p>
+<p>$$E[X\mid Y=0]=(0\,\mathrm U)\frac34+(2\,\mathrm U)\frac14=0.5\,\mathrm U.$$</p>
+<p>这叫作<strong>条件期望（conditional expectation）</strong>：已知某个条件后，对仍不确定的量求平均。对有限取值，</p>
+<p>$$E[X\mid Y=y]=\sum_x xP(X=x\mid Y=y),\qquad P(Y=y)&gt;0.$$</p>
+<p>读这个符号时，可以先说“固定测量方式 $Y=y$”，再说“按该条件下的概率对读数 $X$ 求平均”。固定的是竖线右侧的条件，平均的是左侧的量。</p>
+<p>换成 $Y=1$，两个条件概率为 $1/4$、$3/4$，所以</p>
+<p>$$E[X\mid Y=1]=(0\,\mathrm U)\frac14+(2\,\mathrm U)\frac34=1.5\,\mathrm U.$$</p>
+<h2 id="total-expectation">条件平均与总体平均</h2>
+<p>在尚未得知测量方式时，$E[X\mid Y]$ 表示随 $Y$ 而变的组内平均。它本身是一个随机变量：$Y=0$ 时取 $0.5\,\mathrm U$，$Y=1$ 时取 $1.5\,\mathrm U$；而 $E[X\mid Y=0]$ 是选定这一组以后得到的具体数值。</p>
+<p>两种方式各占一半，再按组的概率平均，便得到</p>
+<p>$$E[E[X\mid Y]]
+=\frac12(0.5\,\mathrm U)+\frac12(1.5\,\mathrm U)
+=1\,\mathrm U.$$</p>
+<p>直接用 $X$ 的边缘概率计算，也有</p>
+<p>$$E[X]=(0\,\mathrm U)\frac12+(2\,\mathrm U)\frac12=1\,\mathrm U.$$</p>
+<p>两条路线相同，因为先在组内除以组概率，最后按组概率加权，正好恢复原来各格的权重。一般地，在期望存在时，</p>
+<p>$$\boxed{E[E[X\mid Y]]=E[X].}$$</p>
+<p>这就是<strong>全期望公式</strong>：先在各组内平均，再按各组的比例平均，与对全部结果平均一致。下一节的未知偏差可以连续取值；我们会用同样的条件平均思想解释高斯后验均值。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/pages/lecture-notes/">MIT 6.041 第 2、7、12 讲</a>分别介绍条件概率与贝叶斯公式、条件期望及全期望。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/05-02-期望、方差、协方差与噪声/read/3/">← 5.2.3 过程噪声、测量噪声与个体差异</a><a href="/chapters/05-03-条件概率与贝叶斯更新/read/2/">5.3.2 高斯后验、精度与重复测量 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

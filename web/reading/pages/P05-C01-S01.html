@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.1.1 样本空间、随机变量与概率分布 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P05-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P05-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/05-01-从重复实验建立概率/practice/?question=p05-event-variable">本节练习 · 4 题</a><a class="button" href="/chapters/05-01-从重复实验建立概率/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>5.1.1 样本空间、随机变量与概率分布</h1>
+<p>学完本节，你应能分清可能结果、概率规则和已观察的频率，并用曲线下的面积计算测量误差落入某个区间的概率。</p>
+<p><strong>先修知识</strong>：有限求和、函数与定积分的面积意义，以及第 1 篇的模型假设。</p>
+<h2 id="sample-space-and-events">样本空间与事件</h2>
+<p>在同一培养条件下观察十个细胞，其中三个被标为活跃。这一批的活跃比例是 $3/10$。再观察十个，仍会恰好有三个活跃吗？已有的三个标签回答了这一批发生了什么；要讨论下一批，需要给可能的结果规定概率。</p>
+<p>先把实验缩小为观察一个细胞。只记录静息或活跃时，所有可能结果组成集合</p>
+<p>$$\Omega=\{\text{静息},\text{活跃}\}.$$</p>
+<p>$\Omega$ 称为<strong>样本空间（sample space）</strong>，其中一次实际发生的结果记为 $\omega$。我们关心的一组结果称为<strong>事件（event）</strong>，即样本空间的一个子集。例如，“观察到活跃细胞”对应集合 $A=\{\text{活跃}\}$。实验结果落在 $A$ 中，就说事件 $A$ 发生。</p>
+<p><strong>概率（probability）</strong>是概率模型赋给事件的数，表示该事件在模型中的发生可能性。用 $P(A)$ 表示事件 $A$ 的概率；概率非负，全部结果的概率为 $P(\Omega)=1$，互不重叠的事件可以相加。若本例规定</p>
+<p>$$P(\{\text{活跃}\})=0.3,$$</p>
+<p>那么静息的概率为 $1-0.3=0.7$。这两种结果互斥，又包含全部可能，概率正好相加为 1。类似地，若细胞可处于静息、活跃、恢复三种状态，前两种概率为 0.5、0.3，则留给恢复态的概率是 $1-0.5-0.3=0.2$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-01-从重复实验建立概率/practice/?question=p05-normalization">补齐细胞状态的概率</a></li></ul></nav>
+
+<h2 id="random-variable-and-realization">随机变量、分布与一次实现</h2>
+<p>为了计数，用 0 记录静息、1 记录活跃。这相当于定义一个函数</p>
+<p>$$X:\Omega\longrightarrow\{0,1\},\qquad
+X(\text{静息})=0,\quad X(\text{活跃})=1.$$</p>
+<p><strong>随机变量（random variable）</strong>是把每个实验结果映射为一个数的函数。规则 $X$ 已经确定，尚未观察时不确定的是这次将出现哪个结果。观察后得到的具体数 $x=0$ 或 $x=1$，称为 $X$ 的一次<strong>实现（realization）</strong>。大写 $X$ 表示这条数值记录规则，小写 $x$ 表示已经记录下来的值。</p>
+<p><strong>概率分布（probability distribution）</strong>说明随机变量落入各类取值的概率。对这个离散变量，逐个值给出的概率称为<strong>概率质量函数（probability mass function）</strong>，记为</p>
+<p>$$p_X(x)=P(X=x).$$</p>
+<p>这里 $\{X=x\}$ 表示所有被映射到数值 $x$ 的结果组成的事件。本例只有两项：</p>
+<table>
+<thead>
+<tr>
+  <th>标签 $x$</th>
+  <th>细胞状态</th>
+  <th>概率 $p_X(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>静息</td>
+  <td>0.7</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>活跃</td>
+  <td>0.3</td>
+</tr>
+</tbody>
+</table>
+<p>看到一个活跃细胞，得到的是 $x=1$；模型中的 $P(X=1)=0.3$ 仍描述再次观察时的概率规则。把同一规则用于多次观察，就能研究一批细胞的标签如何变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-01-从重复实验建立概率/practice/?question=p05-event-variable">事件、随机变量与一次观察</a></li></ul></nav>
+
+<h2 id="model-probability-and-frequency">模型概率与经验频率</h2>
+<p>给定十个标签</p>
+<p>$$0,1,0,0,1,0,1,0,0,0,$$</p>
+<p>其中 1 的个数为 3，所以<strong>经验频率（empirical frequency）</strong>为</p>
+<p>$$\hat p=\frac{\text{活跃数}}{\text{观察数}}
+=\frac1{10}\sum_{i=1}^{10}x_i=0.3.$$</p>
+<p>$p=0.3$ 来自模型规则，$\hat p=0.3$ 来自这一批计数。两者这次相等，下一批却可能出现两个、四个或其他数量的活跃细胞。频率会随样本改变，重复观察这种变化，才能看出概率规则怎样表现为数据。</p>
+<p>探索页逐个增加细胞，并画出当前累计活跃数除以累计观察数。先停在前十个标签，自己核对一次计数；再继续播放，观察固定的概率与不断变化的频率怎样同时出现。</p>
+<p class="concept-explore"><a href="/chapters/05-01-从重复实验建立概率/explore/?concept=P05-C01-S01%3Amodel-probability-and-frequency">可视化与探索：模型概率与经验频率 →</a></p>
+
+<h2 id="continuous-density-and-area">连续误差的概率密度</h2>
+<p>细胞标签只有两个值，仪器误差却可以在一段区间内变化。设理想读数为 $1\,\mathrm U$，实际读数为</p>
+<p>$$Y=1\,\mathrm U+E,$$</p>
+<p>其中误差 $E$ 在 $[-0.2,0.2]\,\mathrm U$ 上均匀分布。正误差表示读得偏高，负误差表示读得偏低。均匀分布把相同概率分给相同宽度的区间，因此可以用一条等高曲线表示。</p>
+<p><strong>概率密度（probability density）</strong>是一个非负函数 $f_E(e)$，其区间面积给出误差落入该区间的概率：</p>
+<p>$$P(l\le E\le r)=\int_l^r f_E(e)\,de,\qquad
+\int_{-\infty}^{\infty}f_E(e)\,de=1.$$</p>
+<p>总宽度为 $0.4\,\mathrm U$，要使整个矩形面积为 1，曲线高度应为</p>
+<p>$$f_E(e)=\begin{cases}
+1/(0.4\,\mathrm U)=2.5/\mathrm U,&amp;-0.2\,\mathrm U\le e\le0.2\,\mathrm U,\\
+0,&amp;\text{其他位置}.
+\end{cases}$$</p>
+<p>密度的单位为 $1/\mathrm U$，乘上以 U 计的宽度后才得到无单位的概率。密度高度为 2.5/U 并不表示概率大于 1；高矩形同时很窄，其总面积仍是 1。</p>
+<p>例如，误差落在 $[-0.05,0.05]\,\mathrm U$ 的概率为</p>
+<p>$$\frac{0.1\,\mathrm U}{0.4\,\mathrm U}=0.25.$$</p>
+<p>若查询区间超出误差范围，面积只取重叠部分。按 U 写出各端点的数值后，统一的计算式为</p>
+<p>$$P(l\le E\le r)=
+\frac{\max\!\bigl(0,\min(r,0.2)-\max(l,-0.2)\bigr)}{0.4}.$$</p>
+<p>先求重叠的右端点，再求左端点；两者之差为负时取零。比如查询 $[0.1,0.3]\,\mathrm U$，重叠区间为 $[0.1,0.2]\,\mathrm U$，所以概率仍为 $0.1/0.4=0.25$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-01-从重复实验建立概率/practice/?question=p05-uniform-area">密度曲线下的概率</a></li></ul></nav>
+
+<h2 id="point-probability-and-rounded-readings">精确零与舍入读数</h2>
+<p>把查询区间缩为单点 $\{0\}$，宽度为零，得到 $P(E=0)=0$。连续模型中每次观察都会得到某个具体误差，但每个单点的概率都可以为零，概率由一段区间上的面积累积起来。</p>
+<p>仪器若把误差四舍五入到 $0.1\,\mathrm U$，屏幕显示的 0.0 则代表大约 $[-0.05,0.05)\,\mathrm U$ 内的误差。这是一个有宽度的事件，概率为 0.25。端点的单点概率为零，选用左闭右开或两端都闭不会改变这里的数值。</p>
+<p>下图把两类分布并列：左边每根柱的高度已经是一个标签的概率，右边曲线的高度是密度，玫红阴影的面积才是“显示为零”的概率。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P05-C01-S01-e97b0739-0.png" alt="样本空间、随机变量与概率分布：实验结果图" loading="lazy"></figure>
+</section>
+<p>读图时先问纵轴表示什么，再确定所求事件。左图问 $X=1$，读出柱高 0.3；右图问 $|E|\le0.1\,\mathrm U$，应计算宽 $0.2\,\mathrm U$ 的面积，得到 0.5。弄清事件之后，计数与积分都在完成同一件事：把对应结果的概率合起来。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-01-从重复实验建立概率/practice/?question=p05-density-point">区间、密度与显示读数</a></li></ul></nav>
+
+<p>下一节将保持细胞的活跃概率不变，反复抽取整批细胞，比较频率的散布。</p>
+<h2 id="references">参考资料</h2>
+<ul>
+<li><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l01/">MIT 6.041 第 1 讲：概率模型与公理</a>：样本空间、事件及概率归一化。</li>
+<li><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l05/">MIT 6.041 第 5 讲：离散随机变量</a>与<a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l08/">第 8 讲：连续随机变量</a>：数值映射、概率质量与密度面积。</li>
+</ul>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/04-非线性动态行为/综合练习/read/1/">← 篇末综合 非线性行为、返回与稳定性</a><a href="/chapters/05-01-从重复实验建立概率/read/2/">5.1.2 独立抽样与重复实验 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

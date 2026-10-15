@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.5.1 离散熵、条件熵与互信息 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P05-C05-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P05-C05-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information">本节练习 · 5 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>5.5.1 离散熵、条件熵与互信息</h1>
+<p>学完本节，你应能从一张联合概率表计算熵和互信息，解释为什么随机读数可能没有帮助，而已知的完全翻转仍能保留信息。</p>
+<p><strong>先修知识</strong>：离散分布、联合与条件概率、期望和对数。</p>
+<h2 id="self-information-logarithm">信息量与对数</h2>
+<p>一次公平抛币尚未进行时，正、反两种结果同样可能；抛完以后，这个二选一问题就有了答案。若硬币几乎总是正面，看到正面通常不太意外，看到反面则会改变更多判断。我们先给这种“结果发生前有多不确定、发生后得知多少”一个可计算的量。</p>
+<p>对于概率为 $p&gt;0$ 的一次结果，定义其<strong>信息量（self-information）</strong>为</p>
+<p>$$\imath=-\log_2p.$$</p>
+<p>对数以2为底时，单位是<strong>比特（bit）</strong>。概率为1的结果有0 bit，概率为 $1/2$ 的结果有1 bit，概率为 $1/4$ 的结果有2 bit。概率越小，结果的信息量越大。</p>
+<p>为什么用对数？考虑两次独立公平抛币。指定的一对结果，例如“先正后反”，概率为 $1/4$。两次各提供1 bit，合起来应为2 bit。一般地，独立结果的概率相乘，而</p>
+<p>$$-\log_2(pq)=-\log_2p-\log_2q,$$</p>
+<p>恰好把两次信息量相加。这也是对数度量方便的地方。</p>
+<h2 id="discrete-entropy">离散熵与平均不确定性</h2>
+<p>一个标签每次可能出现不同结果，它的信息量也随结果改变。用各结果的概率作权重，得到<strong>离散熵（discrete entropy）</strong>：</p>
+<p>$$H(X)=\mathbb E[-\log_2p_X(X)]
+=-\sum_xp_X(x)\log_2p_X(x),$$</p>
+<p>其中 $x$ 遍历标签，$p_X(x)=\Pr(X=x)$。熵把一次结果的信息量取平均，描述按这个分布重复产生标签时，每次标签的平均不确定性。</p>
+<p>例如三个标签的概率为 $1/2,1/4,1/4$：</p>
+<table>
+<thead>
+<tr>
+  <th>标签</th>
+  <th style="text-align:right">概率</th>
+  <th style="text-align:right">一次结果的信息量 / bit</th>
+  <th style="text-align:right">概率乘信息量 / bit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>A</td>
+  <td style="text-align:right">$1/2$</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">$1/2$</td>
+</tr>
+<tr>
+  <td>B</td>
+  <td style="text-align:right">$1/4$</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">$1/2$</td>
+</tr>
+<tr>
+  <td>C</td>
+  <td style="text-align:right">$1/4$</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">$1/2$</td>
+</tr>
+</tbody>
+</table>
+<p>最后一列相加得 $H(X)=1.5$ bit。公平二值标签的两项各为 $-(1/2)\log_2(1/2)=1/2$，所以熵为1 bit；总是同一标签时，熵为0。</p>
+<p>概率为零的标签不会出现。熵公式将其贡献定义为0，与极限 $\lim_{p\to0^+}p\log_2p=0$ 一致，记为 $0\log_20:=0$。计算时跳过这些项即可。</p>
+<p>现在让细胞标签 $X$ 以相同概率取0、1。三个仪器分别复制 $X$、输出与 $X$ 独立的公平随机标签、输出 $1-X$。三个读数本身都各有一半为0、一半为1，所以读数熵都为1 bit。要判断哪个读数能帮助确定细胞标签，还需要知道标签和读数如何配对。</p>
+<h2 id="joint-table-conditional-entropy">联合表与条件熵</h2>
+<p>用 $Y$ 表示仪器读数。联合表的行依次对应 $X=0,1$，列依次对应 $Y=0,1$。复制与独立通道的联合概率分别为</p>
+<p>$$p_{\rm copy}=\begin{pmatrix}1/2&amp;0\\0&amp;1/2\end{pmatrix},
+\qquad
+p_{\rm independent}=\begin{pmatrix}1/4&amp;1/4\\1/4&amp;1/4\end{pmatrix}.$$</p>
+<p>读取 $Y=0$ 后，从第一列除以列和，就得到 $X$ 的条件分布。复制通道给出 $[1,0]$，标签完全确定，熵为0；独立通道仍给出 $[1/2,1/2]$，熵为1 bit。读取 $Y=1$ 时也分别得到0和1 bit。</p>
+<p>对每个有正概率的读数 $y$，按条件分布计算 $H(X\mid Y=y)$，再对所有读数取平均，定义<strong>条件熵（conditional entropy）</strong>：</p>
+<p>$$H(X\mid Y)=\sum_{y:p_Y(y)&gt;0}p_Y(y)H(X\mid Y=y).$$</p>
+<p>它回答“知道读数以后，对原标签平均还剩多少不确定性”。这里先固定读数算条件熵，再按读数概率平均；这与5.3的条件期望使用同一顺序。</p>
+<p>也可以对整张表求熵，得到<strong>联合熵（joint entropy）</strong> $H(X,Y)$。对正概率格使用 $p(x,y)=p_Y(y)p(x\mid y)$，逐项展开：</p>
+<p>$$\begin{aligned}
+H(X,Y)
+&amp;=-\sum_{x,y}p(x,y)\log_2[p_Y(y)p(x\mid y)]\\
+&amp;=-\sum_y p_Y(y)\log_2p_Y(y)
+-\sum_y p_Y(y)\sum_xp(x\mid y)\log_2p(x\mid y)\\
+&amp;=H(Y)+H(X\mid Y).
+\end{aligned}$$</p>
+<p>这条链式关系将“确定这一对标签”分成先确定读数、再确定读数条件下的原标签。</p>
+<h2 id="mutual-information-reduction">互信息与平均减少的不确定性</h2>
+<p>定义<strong>互信息（mutual information）</strong>为知道 $Y$ 后，$X$ 的熵平均减少了多少：</p>
+<p>$$I(X;Y)=H(X)-H(X\mid Y).$$</p>
+<p>将刚才的链式关系代入，得到</p>
+<p>$$I(X;Y)=H(X)+H(Y)-H(X,Y).$$</p>
+<p>右侧交换 $X,Y$ 不变，因此 $I(X;Y)=I(Y;X)$。再将三个熵的求和展开并合并，就得到适合联合表计算的形式：</p>
+<p>$$I(X;Y)=\sum_{x,y:p(x,y)&gt;0}p(x,y)
+\log_2\frac{p(x,y)}{p_X(x)p_Y(y)}.$$</p>
+<p>若 $X,Y$ 独立，每一格联合概率都等于边缘概率的乘积，正概率格中的比值为1，互信息为0。复制通道中，知道 $Y$ 后 $X$ 完全确定，故 $I(X;Y)=1-0=1$ bit。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-entropy">公平二值状态的熵</a></li></ul></nav>
+
+<p>以自然对数替换 $\log_2$ 时，信息量单位称为 <strong>nat</strong>，数值为原 bit 数值乘 $\ln2$。对数底的改变只更换度量单位。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-conditional-entropy">互信息减少的是什么</a></li></ul></nav>
+
+<h3>非负性从哪里来？</h3>
+<p>互信息按定义是两个熵的差，还要证明平均减少量确实非负。所需的不等式是</p>
+<p>$$\ln t\le t-1\quad(t&gt;0).$$</p>
+<p>可以用导数检查：$g(t)=t-1-\ln t$ 的导数为 $1-1/t$，在 $t&lt;1$ 时为负、$t&gt;1$ 时为正，因此最小值是 $g(1)=0$。</p>
+<p>在联合表中简写 $p=p(x,y)$、$q=p_X(x)p_Y(y)$。只要 $p&gt;0$，两个边缘概率也都为正。将 $t=q/p$ 代入并乘以 $p$，再对正概率格求和：</p>
+<p>$$-I(X;Y)\ln2
+=\sum_{p&gt;0}p\ln(q/p)
+\le\sum_{p&gt;0}(q-p)\le0.$$</p>
+<p>最后一步用到：这些格的 $p$ 之和为1，而 $q$ 在全表的和为1、在部分格的和至多为1。于是 $I(X;Y)\ge0$。条件熵又是若干非负熵的平均，所以</p>
+<p>$$0\le I(X;Y)\le\min\{H(X),H(Y)\}.$$</p>
+<p>这是对所有读数取平均的结论。某个特别的读数可能让条件分布更均匀，平均剩余熵仍满足上述关系。</p>
+<h2 id="binary-flip-channel">翻转通道与可恢复的信息</h2>
+<p>令仪器以概率 $\varepsilon$ 翻转标签，翻转选择与 $X$ 独立，$0\le\varepsilon\le1$。公平标签下，联合表为</p>
+<p>$$p(x,y)=\begin{pmatrix}
+(1-\varepsilon)/2&amp;\varepsilon/2\\
+\varepsilon/2&amp;(1-\varepsilon)/2
+\end{pmatrix}.$$</p>
+<p>每列的和仍为 $1/2$。例如看到 $Y=0$ 后，$X=0,1$ 的概率为 $1-\varepsilon,\varepsilon$。两种读数得到相同的条件熵，记</p>
+<p>$$h_2(\varepsilon)=-\varepsilon\log_2\varepsilon
+-(1-\varepsilon)\log_2(1-\varepsilon),$$</p>
+<p>就有</p>
+<p>$$H(X\mid Y)=h_2(\varepsilon),\qquad I(X;Y)=1-h_2(\varepsilon).$$</p>
+<p>取 $\varepsilon=1/4$，条件熵为</p>
+<p>$$-\frac14\log_2\frac14-\frac34\log_2\frac34
+\approx0.811278\ \text{bit},$$</p>
+<p>因此互信息约为0.188722 bit。完全复制时为1 bit；$\varepsilon=1/2$ 时，任一读数下的原标签仍各半，互信息为0；必定翻转时，按 $X=1-Y$ 恢复标签，互信息又为1 bit。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-channel-flip">计算翻转通道的信息</a></li></ul></nav>
+
+<p>下图在相同错误概率轴上比较读数熵与互信息。右侧的三根柱分别对应复制、独立和必定翻转。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P05-C05-S01-9140d33d-0.png" alt="离散熵、条件熵与互信息：实验结果图" loading="lazy"></figure>
+</section>
+<p>读数熵始终为1 bit，互信息却先下降再上升。两者的区别在于，前者描述读数自身有多不确定，后者描述读数与原标签的关系。已知的完整翻转改变了编码，随机翻转到一半则消除了这种关系。</p>
+<p>若拿到的是联合频数 $C_{ij}$，先除以总次数得到概率，再求行和、列和及上面的三个信息量。计算题按 $H(X),H(Y),I(X;Y)$ 的顺序返回；零行或零列没有正概率格，可以自然略过。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information">联合计数包含多少信息</a></li></ul></nav>
+
+<h2 id="information-and-measurement-question">信息与测量问题</h2>
+<p>本章问的“测量价值”首先是：知道这个读数以后，对隐藏标签的不确定性平均减少多少？要让这个数服务具体选择，还需要知道下一步准备做什么。</p>
+<p>例如标签有00、01、10、11四种，各占 $1/4$，原熵为2 bit。仪器准确报告第二位后，只剩两种可能，条件熵为1 bit，互信息为1 bit。如果接下来的任务是按第一位将样本分为两组，那么每个读数下第一位仍然各半；这1 bit没有帮助完成当前分组。改为报告第一位，互信息同样是1 bit，却足以完成该任务。</p>
+<p>关联的来源也要结合模型来解释。假设环境标签 $Z$ 以相同概率取0、1，且 $X=Z,Y=Z$，则 $X,Y$ 的互信息为1 bit，即使模型中没有从 $X$ 到 $Y$ 的作用关系。互信息对两个变量完全对称，方向要由额外的机制与实验来判断。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information-scope">解释正互信息</a></li></ul></nav>
+
+<p>到这里，我们一直用给定分布求精确值。下一节将概率替换成有限样本频率，看看相同公式为什么会得到有偏且有波动的估计。</p>
+<h2 id="further-reading">进一步阅读</h2>
+<p><a href="https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf">Shannon：A Mathematical Theory of Communication</a>的第6节从离散来源讨论熵；<a href="https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/pages/lecture-notes/">MIT 6.441讲义</a>第1—2章给出熵、条件熵和互信息的系统推导。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/05-04-随机过程与马尔可夫模型/read/3/">← 5.4.3 随机游走、漂移与扩散</a><a href="/chapters/05-05-熵、互信息与测量价值/read/2/">5.5.2 分箱、有限样本与信息估计 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

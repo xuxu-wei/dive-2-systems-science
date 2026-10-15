@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.1.2 独立抽样与重复实验 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P05-C01-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P05-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/05-01-从重复实验建立概率/practice/?question=p05-frequencies">本节练习 · 4 题</a><a class="button" href="/chapters/05-01-从重复实验建立概率/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>5.1.2 独立抽样与重复实验</h1>
+<p>学完本节，你应能说明每批细胞数和实验重复次数各改变什么，读出重复频率的分位范围，并按组或按细胞选择汇总权重。</p>
+<p><strong>先修知识</strong>：上一节的二值概率分布与经验频率，以及算术平均、列表和循环。</p>
+<h2 id="independent-cell-sampling">独立抽样的概率规则</h2>
+<p>活跃概率都为 0.3，一批观察 20 个细胞，另一批观察 200 个，哪一批的频率更接近 0.3？某次可能是大批更近，也可能是小批更近。要比较两种抽样方案，我们需要观察各方案反复使用时产生的整组频率。</p>
+<p>先规定每次观察如何产生标签。第 $i$ 个细胞记为 $X_i$，每个 $X_i$ 都按相同概率取 0 或 1：</p>
+<p>$$P(X_i=1)=p=0.3,\qquad P(X_i=0)=0.7.$$</p>
+<p>这些标签<strong>相互独立（mutually independent）</strong>，是说任意有限组给定标签同时出现的概率，等于各自概率的乘积。对一批中的 $n$ 个标签，</p>
+<p>$$P(X_1=x_1,\ldots,X_n=x_n)
+=\prod_{i=1}^nP(X_i=x_i),\qquad x_i\in\{0,1\}.$$</p>
+<p>例如，前两个都活跃的概率是 $0.3\times0.3=0.09$；先静息、后活跃的概率是 $0.7\times0.3=0.21$。同一个 $p$ 规定每个细胞的概率，独立性进一步规定多个标签怎样共同出现。</p>
+<p>如果一批细胞共享一次温度变化，温度又影响活跃概率，标签之间就可能一起偏向活跃或静息。组织独立重复时，应按所研究的抽样规则重新产生细胞与环境；共同环境属于模型的一部分，会改变频率的散布。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-01-从重复实验建立概率/practice/?question=p05-shared-environment">设计独立二值抽样</a></li></ul></nav>
+
+<h2 id="sample-size-and-repetitions">样本量与重复次数</h2>
+<p>一次实验抽 $n$ 个细胞。第 $b$ 次实验的活跃频率为</p>
+<p>$$\hat p_b=\frac1n\sum_{i=1}^{n}X_{b,i}.$$</p>
+<p>$X_{b,i}$ 表示第 $b$ 批的第 $i$ 个标签；$\hat p_b$ 是从这一批样本计算出的数，称为<strong>统计量（statistic）</strong>。在观察之前，它也随将要抽到的样本而变化。</p>
+<p>现在把整批实验独立重复 $B$ 次，得到 $\hat p_1,\ldots,\hat p_B$。这里有两层计数：</p>
+<table>
+<thead>
+<tr>
+  <th>操作</th>
+  <th>每批细胞数 $n$</th>
+  <th>重复批数 $B$</th>
+  <th>要回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>一批从 20 个增加到 200 个</td>
+  <td>增加</td>
+  <td>不变</td>
+  <td>每批频率的波动怎样变化？</td>
+</tr>
+<tr>
+  <td>从 200 批增加到 1000 批</td>
+  <td>不变</td>
+  <td>增加</td>
+  <td>这种频率波动能被观察得多充分？</td>
+</tr>
+</tbody>
+</table>
+<p>增加 $n$ 会改变一个频率所依据的数据量，增加 $B$ 则增加可供比较的频率个数。例如，重复一千批、每批仍抽 20 个细胞，得到的是一千个“小批频率”；每个频率仍由 20 个标签算出。</p>
+<p>在累计频率探索页中，固定活跃概率，增加细胞数，观察频率曲线后半段的波动；再换一组随机结果，比较另一条曲线。这个操作展示一批样本怎样逐步加长，下面的图则比较许多批独立结果。</p>
+<p class="concept-explore"><a href="/chapters/05-01-从重复实验建立概率/explore/?concept=P05-C01-S02%3Asample-size-and-repetitions">可视化与探索：样本量与重复次数 →</a></p>
+
+<h2 id="empirical-quantiles-of-frequencies">经验分位数与频率的散布</h2>
+<p>怎样用少量数字概括 $B$ 个频率？把它们从小到大排序，可以按位置寻找<strong>经验分位数（empirical quantile）</strong>。50% 分位数位于中间，称为中位数；5% 和 95% 分位数描述这组结果靠近低端与高端的位置。</p>
+<p>分位位置不一定恰好落在一个观测值上。本实验按排序位置作线性插值：若五个频率依次为 $0.1,0.2,0.3,0.4,0.5$，10% 对应从第一个到第五个位置走过全程的十分之一，即第 $1.4$ 个位置，插值得到</p>
+<p>$$0.1+0.4(0.2-0.1)=0.14.$$</p>
+<p>同一组数据的中位数为 0.3。这样得到的5%—95%范围概括了重复频率的中间部分。它回答“按该规则反复抽样，频率通常散布在哪里”，而参数置信区间要回答“从已经得到的数据怎样估计未知概率”，需要另外构造推断方法。</p>
+<p>下图保持 $p=0.3$，分别对 $n=20$ 和 $n=200$ 做 200 批独立抽样。点表示频率中位数，竖线连接5%和95%分位数，灰虚线为模型概率。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P05-C01-S02-602353fe-0.png" alt="独立抽样与重复实验：实验结果图" loading="lazy"></figure>
+</section>
+<p>大批细胞对应的竖线更短，说明多数大批频率更集中于 0.3 附近。两组范围仍有重叠，所以一次大批结果仍可能比另一次小批结果偏得更远。下一章会从方差推导这种“整体更集中”的数量关系。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-01-从重复实验建立概率/practice/?question=p05-repeat-band">重复频率的范围说明什么</a></li></ul></nav>
+
+<h2 id="group-mean-and-pooled-frequency">组平均与合并频率</h2>
+<p>若各批大小不同，怎样给出一个汇总频率？考虑两批观察：</p>
+<table>
+<thead>
+<tr>
+  <th>实验组</th>
+  <th>标签</th>
+  <th>细胞数 $n_b$</th>
+  <th>活跃数</th>
+  <th>组频率 $\hat p_b$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 组</td>
+  <td>$[1,0]$</td>
+  <td>2</td>
+  <td>1</td>
+  <td>$1/2$</td>
+</tr>
+<tr>
+  <td>第 2 组</td>
+  <td>$[1,1,1,0]$</td>
+  <td>4</td>
+  <td>3</td>
+  <td>$3/4$</td>
+</tr>
+</tbody>
+</table>
+<p>如果关心“随机选一组，它的频率平均有多大”，应让两组权重相同，得到</p>
+<p>$$\text{组平均}=\frac12\left(\frac12+\frac34\right)=\frac58=0.625.$$</p>
+<p>如果关心“这六个细胞中活跃的比例”，应让每个细胞权重相同，得到</p>
+<p>$$\text{合并频率}=\frac{1+3}{2+4}=\frac23.$$</p>
+<p>一般地，$B$ 组的两种汇总分别是</p>
+<p>$$\text{组平均}=\frac1B\sum_{b=1}^{B}\hat p_b,$$</p>
+<p>$$\text{合并频率}=\frac{\sum_{b=1}^{B}n_b\hat p_b}{\sum_{b=1}^{B}n_b}.$$</p>
+<p>第二式也可看成对组频率加权，权重为 $n_b/\sum_jn_j$。本例两组权重分别为 $1/3$、$2/3$，所以合并频率更接近第二组的 $3/4$。当各组大小相等时，两种权重相同，两个结果也相同。</p>
+<p>分母由要汇总的对象决定。先保留每组的细胞数与频率，就能按研究问题计算对应的平均，而不用从一个已经合并的数反推各组信息。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-01-从重复实验建立概率/practice/?question=p05-frequencies">不同大小实验组怎样汇总</a></li></ul></nav>
+
+<h2 id="random-seeds-and-replayed-samples">随机种子与实验复现</h2>
+<p>计算机通过确定的算法产生用于抽样的伪随机数。<strong>随机种子（random seed）</strong>指定这一串数的初始配置；在相同算法和配置下，相同种子重现相同的数列，也就重现相同的标签与频率。</p>
+<p>复现和重复实验各有用途。重放一批结果，便于检查计算或比较分析方法；研究频率的波动，则需要为每次重复生成新的一批标签。若每一批都把生成器重置为同一个种子，所得频率会完全相同，图上的散布就被重放操作抹掉了。</p>
+<p>本节实验让每批使用分别派生的随机序列，同时保存整组实验的配置。你可以先保持配置重跑，确认图形复现，再更换整组种子观察另一组频率。比较的核心仍是同一概率模型下的多批数据，而不是哪一个种子给出了更接近 0.3 的结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-01-从重复实验建立概率/practice/?question=p05-seed-repeats">解释相同种子的重复结果</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<ul>
+<li><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l03/">MIT 6.041 第 3 讲：独立性</a>：多个事件的独立性与乘积规则。</li>
+<li><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l19/">MIT 6.041 第 19 讲：大数定律</a>：独立重复中的经验平均。</li>
+<li><a href="https://numpy.org/doc/stable/reference/random/parallel.html">NumPy：并行随机数生成</a>：实验中分别派生随机序列的做法。</li>
+</ul>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/05-01-从重复实验建立概率/read/1/">← 5.1.1 样本空间、随机变量与概率分布</a><a href="/chapters/05-02-期望、方差、协方差与噪声/read/1/">5.2.1 期望、方差与独立平均 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

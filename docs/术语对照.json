@@ -2092,5 +2092,25 @@
     "zh": "上三角矩阵",
     "en": "upper triangular matrix",
     "scope": "part03"
+  },
+  {
+    "zh": "联合分布",
+    "en": "joint distribution",
+    "scope": "part05"
+  },
+  {
+    "zh": "边缘分布",
+    "en": "marginal distribution",
+    "scope": "part05"
+  },
+  {
+    "zh": "离散熵",
+    "en": "discrete entropy",
+    "scope": "part05"
+  },
+  {
+    "zh": "条件互信息",
+    "en": "conditional mutual information",
+    "scope": "part05"
   }
 ]

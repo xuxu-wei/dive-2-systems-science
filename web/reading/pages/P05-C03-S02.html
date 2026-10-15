@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.3.2 高斯后验、精度与重复测量 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P05-C03-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P05-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-normal-update">本节练习 · 5 题</a><a class="button" href="/chapters/05-03-条件概率与贝叶斯更新/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>5.3.2 高斯后验、精度与重复测量</h1>
+<p>学完本节，你应能由两个平方项配方求出高斯后验，手算两次更新，并解释测量精度和先验怎样共同影响结果。</p>
+<p><strong>先修知识</strong>：5.3.1 的贝叶斯公式与条件期望；5.2 的高斯密度、均值和方差；平方展开与配方。</p>
+<h2 id="fixed-offset-observation">固定未知偏差与测量模型</h2>
+<p>同一传感器的偏差在短暂校准期间保持不变，多次读数却不完全相同。我们要利用这些有误差的读数，逐渐缩小对偏差的判断范围。固定的是传感器的实际偏差，更新的是我们对它的知识。</p>
+<p>把未知偏差记为 $\theta$，以 U 为单位。观测前用高斯先验</p>
+<p>$$\theta\sim N(m,P),\qquad P&gt;0$$</p>
+<p>表示它的不确定性：$m$ 是当前的平均判断，单位 U；$P$ 是方差，单位 $\mathrm{U^2}$。第 $i$ 次校准读数为</p>
+<p>$$Y_i=\theta+v_i,\qquad v_i\sim N(0,R_i),\quad R_i&gt;0.$$</p>
+<p>各次误差相互独立，并与 $\theta$ 独立。因此，给定同一个 $\theta$ 后，各读数条件独立，均值都是 $\theta$，误差方差分别为已知的 $R_i$。例如，同一个 $1\,\mathrm U$ 的读数，可能来自精确仪器，也可能来自波动较大的仪器；$R_i$ 让我们在更新时区别对待这两种情况。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-fixed-quantity">连续更新固定未知量</a></li></ul></nav>
+
+<h2 id="gaussian-completing-square">高斯密度的平方配方</h2>
+<p>先处理一次读数 $Y=y$，其误差方差为 $R$。连续变量的贝叶斯公式使用密度：</p>
+<p>$$f_{\theta\mid Y}(\theta\mid y)
+=\frac{f_{Y\mid\theta}(y\mid\theta)f_\theta(\theta)}{f_Y(y)}.$$</p>
+<p>固定已经观察到的 $y$，分母是用来归一化的常数。先验与似然的指数相乘后，相当于把两个平方项相加：</p>
+<p>$$f_{\theta\mid Y}(\theta\mid y)\propto
+\exp\!\left[-\frac12\left(\frac{(\theta-m)^2}{P}+\frac{(y-\theta)^2}{R}\right)\right].$$</p>
+<p>逐项展开括号内的表达式：</p>
+<p>$$\begin{aligned}
+\frac{(\theta-m)^2}{P}+\frac{(y-\theta)^2}{R}
+&amp;=\left(\frac1P+\frac1R\right)\theta^2
+-2\left(\frac mP+\frac yR\right)\theta
++\frac{m^2}{P}+\frac{y^2}{R}.
+\end{aligned}$$</p>
+<p>把二次项系数记为 $a=1/P+1/R$，把一次项中括号内的量记为 $b=m/P+y/R$。利用</p>
+<p>$$a\theta^2-2b\theta=a\left(\theta-\frac ba\right)^2-\frac{b^2}{a},$$</p>
+<p>所有与 $\theta$ 有关的部分就变成一个平方。其余项合并到归一化常数中，后验仍为高斯分布：</p>
+<p>$$\boxed{P'=\left(\frac1P+\frac1R\right)^{-1},\qquad
+m'=P'\left(\frac mP+\frac yR\right).}$$</p>
+<p>其中 $m'=E[\theta\mid Y=y]$，就是已知本次读数后对偏差的条件平均；$P'$ 是相应的条件方差。配方既给出了新均值所在的位置，也给出了密度在这个位置周围的宽窄。</p>
+<h2 id="precision-and-gain">新读数权重与精度相加</h2>
+<p>将均值公式通分，可以改写为</p>
+<p>$$m'=\frac{R}{P+R}m+\frac{P}{P+R}y
+=m+K(y-m),\qquad K=\frac{P}{P+R}.$$</p>
+<p>两个权重都为正且相加为 1，新均值位于旧均值与读数之间。$y-m$ 是读数相对原判断的偏差，$K$ 决定我们沿这个方向调整多少。测量方差 $R$ 小，读数更精确，$K$ 就更大；先验方差 $P$ 小，则原判断更集中，$K$ 更小。</p>
+<p>后验方差为</p>
+<p>$$P'=\frac{PR}{P+R},\qquad \frac1{P'}=\frac1P+\frac1R.$$</p>
+<p><strong>精度（precision）</strong>定义为方差的倒数，单位为 $\mathrm{U^{-2}}$。在这个模型中，先验精度与一份新观测的精度相加。相加的是方差倒数，而不是标准差倒数。</p>
+<p>先验为 $m=0\,\mathrm U$、$P=1\,\mathrm{U^2}$，观察到 $y=1\,\mathrm U$ 时，可以手算两种测量质量：</p>
+<table>
+<thead>
+<tr>
+  <th>误差方差 $R$</th>
+  <th style="text-align:right">新读数权重 $K$</th>
+  <th style="text-align:right">后验均值 $m'$</th>
+  <th style="text-align:right">后验方差 $P'$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$1\,\mathrm{U^2}$</td>
+  <td style="text-align:right">$1/2$</td>
+  <td style="text-align:right">$0.5\,\mathrm U$</td>
+  <td style="text-align:right">$0.5\,\mathrm{U^2}$</td>
+</tr>
+<tr>
+  <td>$0.25\,\mathrm{U^2}$</td>
+  <td style="text-align:right">$4/5$</td>
+  <td style="text-align:right">$0.8\,\mathrm U$</td>
+  <td style="text-align:right">$0.2\,\mathrm{U^2}$</td>
+</tr>
+</tbody>
+</table>
+<p>更精确的读数使均值更靠近 1 U，也使剩余方差更小。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-precision">比较两种观测误差</a></li></ul></nav>
+
+<h2 id="sequential-and-batch-update">顺序更新与批量更新</h2>
+<p>每次获得误差独立的新测量，就把当前后验作为下一次的先验。先验仍为 $0\,\mathrm U$、$1\,\mathrm{U^2}$，前两次读数都为 $1\,\mathrm U$，误差方差都为 $1\,\mathrm{U^2}$。各步为</p>
+<table>
+<thead>
+<tr>
+  <th>已用观测数</th>
+  <th style="text-align:right">更新前的 $K$</th>
+  <th style="text-align:right">均值 / U</th>
+  <th style="text-align:right">方差 / $\mathrm{U^2}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td style="text-align:right">—</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">$1/(1+1)=1/2$</td>
+  <td style="text-align:right">$0+(1/2)(1-0)=1/2$</td>
+  <td style="text-align:right">$1/2$</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">$(1/2)/(1/2+1)=1/3$</td>
+  <td style="text-align:right">$1/2+(1/3)(1-1/2)=2/3$</td>
+  <td style="text-align:right">$1/3$</td>
+</tr>
+</tbody>
+</table>
+<p>第二次仍是一次有相同误差方差的新测量，但它在均值更新中的权重降到 $1/3$，因为此时已有的判断比最初更精确。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-normal-update">更新固定偏差的均值与方差</a></li></ul></nav>
+
+<p>连续使用 $N$ 次读数，精度和加权读数逐项累加：</p>
+<p>$$\boxed{\frac1{P_N}=\frac1{P_0}+\sum_{i=1}^N\frac1{R_i},\qquad
+m_N=P_N\left(\frac{m_0}{P_0}+\sum_{i=1}^N\frac{y_i}{R_i}\right).}$$</p>
+<p>求和顺序不影响结果，因此将读数及其误差方差成对重排，最终后验保持相同。中间步骤会改变，因为它们使用的数据子集不同。若没有新观测，两个求和项都为空，结果便保持为原先验。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-order">重排独立测量</a></li></ul></nav>
+
+<h2 id="independent-information">独立信息与复制记录</h2>
+<p>前面的两次读数碰巧都等于 1 U，仍可来自两个独立测量。它们各自有一次误差，因而贡献两份似然。如果第二条只是第一条的复制，已知第一条以后，复制值没有额外的随机性；联合观测中只有一份原始信息。</p>
+<p>在上面的数值例子中，真正使用一份读数时后验方差为 $1/2\,\mathrm{U^2}$。把它复制后误当成两次独立测量，会算出 $1/3\,\mathrm{U^2}$。这个缩小来自同一似然被乘了两次，而不是测量带来了更多信息。判断两条记录能否独立相乘，要看测量怎样产生，而不是只看读数是否相同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-duplicate-observation">处理被复制的读数</a></li></ul></nav>
+
+<h2 id="prior-sensitivity-and-credible-interval">先验差异与可信区间</h2>
+<p>再用四次读数比较两种先验。两者方差均为 $1\,\mathrm{U^2}$，均值分别为 $0\,\mathrm U$、$2\,\mathrm U$。读数与方差按同一行配对：</p>
+<table>
+<thead>
+<tr>
+  <th>次数</th>
+  <th style="text-align:right">读数 / U</th>
+  <th style="text-align:right">误差方差 / $\mathrm{U^2}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td style="text-align:right">0.8</td>
+  <td style="text-align:right">0.25</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td style="text-align:right">1.2</td>
+  <td style="text-align:right">0.25</td>
+</tr>
+</tbody>
+</table>
+<p>最终总精度为 $(1+1+1+4+4)\,\mathrm{U^{-2}}=11\,\mathrm{U^{-2}}$。读数的加权和在采用 U 为数值单位后为 $1+1+3.2+4.8=10$，所以两种末均值分别为</p>
+<p>$$m_N^{(0)}=\frac{10}{11}\,\mathrm U,\qquad
+m_N^{(2)}=\frac{12}{11}\,\mathrm U,
+\qquad P_N=\frac1{11}\,\mathrm{U^2}.$$</p>
+<p>更一般地，两种先验方差相同、使用同一组数据时，末均值之差为</p>
+<p>$$m_N^{(a)}-m_N^{(b)}=\frac{P_N}{P_0}(m_0^{(a)}-m_0^{(b)}).$$</p>
+<p>因此，本例先验均值原先相差 2 U，最后相差 $2/11\,\mathrm U$。有限观测减弱了先验的影响，并没有把两种判断完全变成一样。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-prior-sensitivity">有限观测后还剩多少先验差异</a></li></ul></nav>
+
+<p>下面左图比较这两种先验的逐次更新，阴影为各自高斯后验的 $m\pm1.96\sqrt P$；右图显示后验方差。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P05-C03-S02-bb3b03f7-0.png" alt="高斯后验、精度与重复测量：实验结果图" loading="lazy"></figure>
+</section>
+<p>这个阴影是约 95% 的<strong>可信区间（credible interval）</strong>：在给定观测后的高斯后验中，$\theta$ 落入区间的概率约为 0.95。后两次测量各增加 $4\,\mathrm{U^{-2}}$ 的精度，后验方差继续缩小。</p>
+<p>整个过程中，偏差 $\theta$ 保持固定；变化的是它的后验分布。下一章让细胞的状态本身随时间切换，届时分布变化还会来自系统的转移规则。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/pages/lecture-notes/">MIT 6.041 第 10、21—22 讲</a>介绍连续贝叶斯公式与固定未知量的贝叶斯推断。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/05-03-条件概率与贝叶斯更新/read/1/">← 5.3.1 条件概率、贝叶斯公式与条件期望</a><a href="/chapters/05-04-随机过程与马尔可夫模型/read/1/">5.4.1 随机过程、马尔可夫状态与分布传播 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

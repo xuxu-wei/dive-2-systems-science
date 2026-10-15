@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.2.2 联合分布、协方差与共享偏移 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P05-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P05-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-covariance">本节练习 · 5 题</a><a class="button" href="/chapters/05-02-期望、方差、协方差与噪声/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>5.2.2 联合分布、协方差与共享偏移</h1>
+<p>学完本节，你应能从成对概率表判断独立性，计算两个量相加后的波动，并解释共同偏移为什么会留在多次测量的平均里。</p>
+<p><strong>先修知识</strong>：期望、方差、独立平均，以及第 3 篇的向量和矩阵。</p>
+<h2 id="joint-and-marginal-distributions">联合分布与边缘分布</h2>
+<p>两台仪器若总在同一次测量中一起偏高，它们相加后的波动会怎样？单独给出每台仪器的方差，还没有保留“一起”这一信息。我们需要记录成对结果。</p>
+<p>先看一个便于手算的关系：$X$ 等概率取 $-1,0,1\,\mathrm U$，并令 $Y=X^2$，因此 $Y$ 的单位为 U²。三种可能的数对为</p>
+<p>$$(-1\,\mathrm U,1\,\mathrm{U^2}),\quad
+(0\,\mathrm U,0\,\mathrm{U^2}),\quad
+(1\,\mathrm U,1\,\mathrm{U^2}).$$</p>
+<p>两个变量同时取给定值的概率构成<strong>联合分布（joint distribution）</strong>。记</p>
+<p>$$p_{ij}=P(X=x_i,Y=y_j),$$</p>
+<p>把 $X$ 放在行、$Y$ 放在列，本例的概率表为</p>
+<table>
+<thead>
+<tr>
+  <th>$X$/U 与 $Y$/U²</th>
+  <th>$Y=0$</th>
+  <th>$Y=1$</th>
+  <th>行和</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$X=-1$</td>
+  <td>0</td>
+  <td>$1/3$</td>
+  <td>$1/3$</td>
+</tr>
+<tr>
+  <td>$X=0$</td>
+  <td>$1/3$</td>
+  <td>0</td>
+  <td>$1/3$</td>
+</tr>
+<tr>
+  <td>$X=1$</td>
+  <td>0</td>
+  <td>$1/3$</td>
+  <td>$1/3$</td>
+</tr>
+<tr>
+  <td>列和</td>
+  <td>$1/3$</td>
+  <td>$2/3$</td>
+  <td>1</td>
+</tr>
+</tbody>
+</table>
+<p>若只关心 $X$，将每行所有 $Y$ 的可能性加起来；若只关心 $Y$，将每列加起来。这两种单变量分布称为<strong>边缘分布（marginal distribution）</strong>，分别为</p>
+<p>$$p_X(x_i)=\sum_jp_{ij},\qquad p_Y(y_j)=\sum_ip_{ij}.$$</p>
+<p>上节的独立乘积规则在联合表里变得很具体：两个离散变量独立，当且仅当每个格子都满足</p>
+<p>$$p_{ij}=p_X(x_i)p_Y(y_j).$$</p>
+<p>本例中央格的概率是 $1/3$，行概率乘列概率却是 $1/3\times1/3=1/9$，因此 $X,Y$ 不独立。知道 $Y=0$ 就能确定 $X=0$，也直观地显示两者互相提供了信息。</p>
+<h2 id="covariance-and-nonlinear-dependence">协方差与非线性依赖</h2>
+<p>若想用一个数描述两量偏离各自中心时是否同向，可以将中心偏差相乘，再按联合分布求平均。这个量称为<strong>协方差（covariance）</strong>：</p>
+<p>$$\operatorname{Cov}(X,Y)
+=\mathbb E[(X-\mu_X)(Y-\mu_Y)],\qquad
+\mu_X=\mathbb E[X],\quad\mu_Y=\mathbb E[Y].$$</p>
+<p>两者同时偏高或同时偏低，乘积为正；一个偏高、另一个偏低，乘积为负。展开后得到</p>
+<p>$$\operatorname{Cov}(X,Y)=\mathbb E[XY]-\mu_X\mu_Y.$$</p>
+<p>对上面的三点关系，$\mu_X=0\,\mathrm U$、$\mu_Y=2/3\,\mathrm{U^2}$。逐项计算：</p>
+<table>
+<thead>
+<tr>
+  <th>$X$/U</th>
+  <th>$Y$/U²</th>
+  <th>中心乘积 / U³</th>
+  <th>概率加权后的贡献 / U³</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$-1$</td>
+  <td>1</td>
+  <td>$-1/3$</td>
+  <td>$-1/9$</td>
+</tr>
+<tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>1</td>
+  <td>$1/3$</td>
+  <td>$1/9$</td>
+</tr>
+</tbody>
+</table>
+<p>正负贡献相消，所以协方差为零。协方差为零称为<strong>不相关（uncorrelated）</strong>；本例已经由联合表确认存在依赖，却仍不相关。协方差保留了中心乘积的平均，而平方关系在左右两端产生相反贡献。</p>
+<p>独立且二阶矩有限时，$\mathbb E[XY]=\mathbb E[X]\mathbb E[Y]$，因此一定不相关；三点关系展示了逆向推理为何不成立。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-uncorrelated">协方差为零是否独立</a></li></ul></nav>
+
+<h2 id="covariance-of-paired-observations">成对数据的协方差</h2>
+<p>对于两通道已经记录的 $n$ 对读数 $(x_i,y_i)$，先分别求平均 $\bar x,\bar y$。描述这组记录的协方差为</p>
+<p>$$s_{xy,n}=\frac1n\sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y).$$</p>
+<p>这里沿用描述性方差的分母 $n$。配对顺序很重要：$x_i$ 和 $y_i$ 必须来自同一次观察。分别打乱两个列表，会改变中心偏差怎样配对，从而改变协方差。</p>
+<p>例如两通道读数分别为 $[0,1,2]\,\mathrm U$、$[2,1,0]\,\mathrm U$，两个平均都为 $1\,\mathrm U$。各自方差都为 $2/3\,\mathrm{U^2}$，协方差为</p>
+<p>$$\frac{(-1)(1)+0\times0+(1)(-1)}3
+=-\frac23\,\mathrm{U^2}.$$</p>
+<p>一个通道升高时，另一个等量降低，中心偏差的乘积始终非正。下一步可以检验，这种对应关系是否足以让两通道之和保持不变。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-covariance">配对观察的协方差</a></li></ul></nav>
+
+<h2 id="sum-variance-and-correlation">和的方差与相关系数</h2>
+<p>令两个中心偏差分别为 $X-\mu_X$、$Y-\mu_Y$，相加后平方，再求期望，得到</p>
+<p>$$\boxed{\operatorname{Var}(X+Y)
+=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y).}$$</p>
+<p>代入刚才的配对记录，描述性方差同样满足</p>
+<p>$$\frac23+\frac23+2\left(-\frac23\right)=0.$$</p>
+<p>逐对相加确实总为 $2\,\mathrm U$。若漏掉协方差，就会给一个恒定总和算出非零波动。相反，两个中心偏差常常同向时，正协方差会增加总和的方差。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-sum-variance">两个通道相加的波动</a></li></ul></nav>
+
+<p>协方差的单位是两个变量单位的乘积。要用无单位的数描述线性关联，可将它除以两边的标准差，得到<strong>相关系数（correlation coefficient）</strong></p>
+<p>$$\rho=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y},\qquad
+\sigma_X&gt;0,\quad\sigma_Y&gt;0.$$</p>
+<p>刚才两通道的相关系数为 $-1$。若一个通道在整组记录中恒定，其标准差为零，分母也为零，相关系数就没有定义；协方差仍可计算，并且为零。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-correlation-zero-var">计算恒定通道的相关</a></li></ul></nav>
+
+<p>对于多个变量，<strong>协方差矩阵（covariance matrix）</strong> $\Sigma$ 将 $\operatorname{Cov}(X_i,X_j)$ 放在第 $i$ 行、第 $j$ 列，对角线上就是各自方差。若按相同顺序排列变量向量 $\boldsymbol X$ 与常数权重 $\boldsymbol c$，组合量的方差为</p>
+<p>$$\operatorname{Var}(\boldsymbol c^T\boldsymbol X)
+=\boldsymbol c^T\Sigma\boldsymbol c\ge0.$$</p>
+<p>它就是刚才两量相加公式的多变量版本：每个方差按权重平方贡献，每对协方差按对应两权重的乘积贡献。</p>
+<h2 id="shared-offset-and-averaging-floor">共享偏移为何留在平均中</h2>
+<p>现在回到重复测量。设同一真值为 $\theta=1\,\mathrm U$，一组内第 $i$ 次读数为</p>
+<p>$$Y_i=\theta+B+V_i.$$</p>
+<p>每组开始时抽一次共同偏移 $B$，组内所有读数沿用它；每次测量另抽一个误差 $V_i$。设 $B\sim N(0,B_0)$，$V_i\sim N(0,R)$，各个 $V_i$ 相互独立，并与 $B$ 独立。这里 $B_0,R$ 是方差，单位都是 U²。</p>
+<p>每次读数的方差为 $B_0+R$，不同读数之间却保留共同的 $B$。对 $i\ne j$，</p>
+<p>$$\operatorname{Cov}(Y_i,Y_j)
+=\mathbb E[(B+V_i)(B+V_j)]
+=\mathbb E[B^2]=B_0,$$</p>
+<p>其余三项因独立且均值为零而消失。再把一组的 $n$ 次读数平均：</p>
+<p>$$\bar Y-\theta=B+\frac1n\sum_iV_i.$$</p>
+<p>独立误差按前节规律缩小，共同偏移则每次出现相同的值，平均后仍为 $B$。因此</p>
+<p>$$\boxed{\operatorname{Var}(\bar Y-\theta)=B_0+\frac Rn.}$$</p>
+<p>取 $B_0=0.04\,\mathrm{U^2}$、$R=0.09\,\mathrm{U^2}$，每组测量 5、50、500 次时，理论方差依次为</p>
+<table>
+<thead>
+<tr>
+  <th>每组测量数 $n$</th>
+  <th>独立误差贡献 $R/n$ / U²</th>
+  <th>总方差 / U²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>5</td>
+  <td>0.018</td>
+  <td>0.058</td>
+</tr>
+<tr>
+  <td>50</td>
+  <td>0.0018</td>
+  <td>0.0418</td>
+</tr>
+<tr>
+  <td>500</td>
+  <td>0.00018</td>
+  <td>0.04018</td>
+</tr>
+</tbody>
+</table>
+<p>下图左侧保留前面的平方关系，右侧对每种测量数重复 200 组，将组平均的经验方差与公式比较。每一组重新抽共同偏移，才能观察这个偏移在组与组之间带来的变化。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P05-C02-S02-f212d6f9-0.png" alt="联合分布、协方差与共享偏移：实验结果图" loading="lazy"></figure>
+</section>
+<p>随着测量数增加，理论曲线逐渐靠近灰色的 $B_0$ 水平。蓝色经验点来自每种条件下有限的 200 组结果，还会随抽样波动；图中测量 500 次的经验方差略高于 50 次，两个理论方差则分别为 0.04018、0.0418 U²。多测几次能减小每次重抽的误差，却不能校正这一组始终相同的偏移。要继续提高精度，应增加对偏移本身的认识，例如用参考样本校准仪器。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-shared-offset">多测几次能消除共同偏移吗</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<ul>
+<li><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l06/">MIT 6.041 第 6 讲：联合概率质量函数</a>和<a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l07/">第 7 讲：多个离散随机变量</a>：联合、边缘与独立性。</li>
+<li><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l11/">MIT 6.041 第 11 讲：协方差与相关</a>：中心乘积、和的方差以及相关系数。</li>
+</ul>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/05-02-期望、方差、协方差与噪声/read/1/">← 5.2.1 期望、方差与独立平均</a><a href="/chapters/05-02-期望、方差、协方差与噪声/read/3/">5.2.3 过程噪声、测量噪声与个体差异 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

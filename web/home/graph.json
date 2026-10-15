@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "f2daae4858518459fdfe7035d59f653d8b6a457dda6b9b1b46357e00ae41c9a6",
+    "catalogSha256": "76625e41e4ee486b558b106ab7aa0d0dffcfef3c41c9251e01e7bfd12d337cfb",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -5325,7 +5325,7 @@
       "number": "5",
       "parentId": null,
       "url": "/parts/05-随机性与信息/",
-      "description": "从重复实验建立概率 · 期望、方差、协方差与噪声 · 条件概率与贝叶斯更新 · 随机过程与马尔可夫模型 · 熵、互信息与测量价值",
+      "description": "概率与重复实验 · 期望、方差、协方差与噪声 · 条件概率与贝叶斯更新 · 随机过程与马尔可夫模型 · 熵、互信息与测量价值",
       "categories": [
         "cognition",
         "evolution"
@@ -5413,7 +5413,7 @@
     {
       "id": "5.1",
       "kind": "chapter",
-      "title": "从重复实验建立概率",
+      "title": "概率与重复实验",
       "number": "5.1",
       "parentId": "5",
       "url": "/chapters/05-01-从重复实验建立概率/",
@@ -5452,8 +5452,8 @@
       "english": null,
       "number": "5.1.1",
       "parentId": "5.1",
-      "url": "/notebook/?id=P05-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-01-从重复实验建立概率/read/1/",
+      "readingUrl": "/chapters/05-01-从重复实验建立概率/read/1/",
       "practiceUrl": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-event-variable",
       "description": "从细胞标签与误差区间进入概率，解释事件、变量、一次结果和密度面积。",
       "categories": [
@@ -5472,7 +5472,7 @@
       "total": 1,
       "lessonId": "P05-C01-S01",
       "lessonNumber": "5.1.1",
-      "lessonTitle": "事件分布与一次实现",
+      "lessonTitle": "样本空间、随机变量与概率分布",
       "chapterUrl": "/chapters/05-01-从重复实验建立概率/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5483,8 +5483,8 @@
       "english": "probability distribution",
       "number": "5.1.1",
       "parentId": "5.1",
-      "url": "/notebook/?id=P05-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-01-从重复实验建立概率/read/1/",
+      "readingUrl": "/chapters/05-01-从重复实验建立概率/read/1/",
       "practiceUrl": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-event-variable",
       "description": "从细胞标签与误差区间进入概率，解释事件、变量、一次结果和密度面积。",
       "categories": [
@@ -5503,7 +5503,7 @@
       "total": 1,
       "lessonId": "P05-C01-S01",
       "lessonNumber": "5.1.1",
-      "lessonTitle": "事件分布与一次实现",
+      "lessonTitle": "样本空间、随机变量与概率分布",
       "chapterUrl": "/chapters/05-01-从重复实验建立概率/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5514,8 +5514,8 @@
       "english": "realization",
       "number": "5.1.1",
       "parentId": "5.1",
-      "url": "/notebook/?id=P05-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-01-从重复实验建立概率/read/1/",
+      "readingUrl": "/chapters/05-01-从重复实验建立概率/read/1/",
       "practiceUrl": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-event-variable",
       "description": "从细胞标签与误差区间进入概率，解释事件、变量、一次结果和密度面积。",
       "categories": [
@@ -5534,7 +5534,7 @@
       "total": 1,
       "lessonId": "P05-C01-S01",
       "lessonNumber": "5.1.1",
-      "lessonTitle": "事件分布与一次实现",
+      "lessonTitle": "样本空间、随机变量与概率分布",
       "chapterUrl": "/chapters/05-01-从重复实验建立概率/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5545,10 +5545,10 @@
       "english": null,
       "number": "5.1.2",
       "parentId": "5.1",
-      "url": "/notebook/?id=P05-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-01-从重复实验建立概率/read/2/",
+      "readingUrl": "/chapters/05-01-从重复实验建立概率/read/2/",
       "practiceUrl": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-frequencies",
-      "description": "按相同概率重复抽取细胞，比较组长、重复次数及两种频率汇总方式。",
+      "description": "按相同概率重复抽取细胞，比较每组细胞数、重复次数及两种频率汇总方式。",
       "categories": [
         "cognition",
         "evolution"
@@ -5565,7 +5565,7 @@
       "total": 1,
       "lessonId": "P05-C01-S02",
       "lessonNumber": "5.1.2",
-      "lessonTitle": "把抽样变成可比较的重复实验",
+      "lessonTitle": "独立抽样与重复实验",
       "chapterUrl": "/chapters/05-01-从重复实验建立概率/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5576,10 +5576,10 @@
       "english": "random seed",
       "number": "5.1.2",
       "parentId": "5.1",
-      "url": "/notebook/?id=P05-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-01-从重复实验建立概率/read/2/",
+      "readingUrl": "/chapters/05-01-从重复实验建立概率/read/2/",
       "practiceUrl": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-frequencies",
-      "description": "按相同概率重复抽取细胞，比较组长、重复次数及两种频率汇总方式。",
+      "description": "按相同概率重复抽取细胞，比较每组细胞数、重复次数及两种频率汇总方式。",
       "categories": [
         "cognition",
         "evolution"
@@ -5596,7 +5596,7 @@
       "total": 1,
       "lessonId": "P05-C01-S02",
       "lessonNumber": "5.1.2",
-      "lessonTitle": "把抽样变成可比较的重复实验",
+      "lessonTitle": "独立抽样与重复实验",
       "chapterUrl": "/chapters/05-01-从重复实验建立概率/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5607,10 +5607,10 @@
       "english": null,
       "number": "5.1.2",
       "parentId": "5.1",
-      "url": "/notebook/?id=P05-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-01-从重复实验建立概率/read/2/",
+      "readingUrl": "/chapters/05-01-从重复实验建立概率/read/2/",
       "practiceUrl": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-frequencies",
-      "description": "按相同概率重复抽取细胞，比较组长、重复次数及两种频率汇总方式。",
+      "description": "按相同概率重复抽取细胞，比较每组细胞数、重复次数及两种频率汇总方式。",
       "categories": [
         "cognition",
         "evolution"
@@ -5627,7 +5627,7 @@
       "total": 1,
       "lessonId": "P05-C01-S02",
       "lessonNumber": "5.1.2",
-      "lessonTitle": "把抽样变成可比较的重复实验",
+      "lessonTitle": "独立抽样与重复实验",
       "chapterUrl": "/chapters/05-01-从重复实验建立概率/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5682,8 +5682,8 @@
       "english": "expectation",
       "number": "5.2.1",
       "parentId": "5.2",
-      "url": "/notebook/?id=P05-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/",
+      "readingUrl": "/chapters/05-02-期望、方差、协方差与噪声/read/1/",
       "practiceUrl": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-moments",
       "description": "用两种释放量手算期望和方差，再解释独立平均、样本分母及高斯误差。",
       "categories": [
@@ -5702,7 +5702,7 @@
       "total": 1,
       "lessonId": "P05-C02-S01",
       "lessonNumber": "5.2.1",
-      "lessonTitle": "用期望与方差描述随机量",
+      "lessonTitle": "期望、方差与独立平均",
       "chapterUrl": "/chapters/05-02-期望、方差、协方差与噪声/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5713,8 +5713,8 @@
       "english": "variance",
       "number": "5.2.1",
       "parentId": "5.2",
-      "url": "/notebook/?id=P05-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/",
+      "readingUrl": "/chapters/05-02-期望、方差、协方差与噪声/read/1/",
       "practiceUrl": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-moments",
       "description": "用两种释放量手算期望和方差，再解释独立平均、样本分母及高斯误差。",
       "categories": [
@@ -5733,7 +5733,7 @@
       "total": 1,
       "lessonId": "P05-C02-S01",
       "lessonNumber": "5.2.1",
-      "lessonTitle": "用期望与方差描述随机量",
+      "lessonTitle": "期望、方差与独立平均",
       "chapterUrl": "/chapters/05-02-期望、方差、协方差与噪声/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5744,8 +5744,8 @@
       "english": null,
       "number": "5.2.1",
       "parentId": "5.2",
-      "url": "/notebook/?id=P05-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/",
+      "readingUrl": "/chapters/05-02-期望、方差、协方差与噪声/read/1/",
       "practiceUrl": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-moments",
       "description": "用两种释放量手算期望和方差，再解释独立平均、样本分母及高斯误差。",
       "categories": [
@@ -5764,7 +5764,7 @@
       "total": 1,
       "lessonId": "P05-C02-S01",
       "lessonNumber": "5.2.1",
-      "lessonTitle": "用期望与方差描述随机量",
+      "lessonTitle": "期望、方差与独立平均",
       "chapterUrl": "/chapters/05-02-期望、方差、协方差与噪声/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5772,11 +5772,11 @@
       "id": "5.2.2:concept:1",
       "kind": "concept",
       "title": "联合分布",
-      "english": null,
+      "english": "joint distribution",
       "number": "5.2.2",
       "parentId": "5.2",
-      "url": "/notebook/?id=P05-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/",
+      "readingUrl": "/chapters/05-02-期望、方差、协方差与噪声/read/2/",
       "practiceUrl": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-covariance",
       "description": "从配对表求边缘与协方差，比较平方关系和共享偏移对独立平均的影响。",
       "categories": [
@@ -5796,7 +5796,7 @@
       "total": 1,
       "lessonId": "P05-C02-S02",
       "lessonNumber": "5.2.2",
-      "lessonTitle": "联合变化与协方差",
+      "lessonTitle": "联合分布、协方差与共享偏移",
       "chapterUrl": "/chapters/05-02-期望、方差、协方差与噪声/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5807,8 +5807,8 @@
       "english": "covariance",
       "number": "5.2.2",
       "parentId": "5.2",
-      "url": "/notebook/?id=P05-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/",
+      "readingUrl": "/chapters/05-02-期望、方差、协方差与噪声/read/2/",
       "practiceUrl": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-covariance",
       "description": "从配对表求边缘与协方差，比较平方关系和共享偏移对独立平均的影响。",
       "categories": [
@@ -5828,7 +5828,7 @@
       "total": 1,
       "lessonId": "P05-C02-S02",
       "lessonNumber": "5.2.2",
-      "lessonTitle": "联合变化与协方差",
+      "lessonTitle": "联合分布、协方差与共享偏移",
       "chapterUrl": "/chapters/05-02-期望、方差、协方差与噪声/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5839,8 +5839,8 @@
       "english": null,
       "number": "5.2.2",
       "parentId": "5.2",
-      "url": "/notebook/?id=P05-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/",
+      "readingUrl": "/chapters/05-02-期望、方差、协方差与噪声/read/2/",
       "practiceUrl": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-covariance",
       "description": "从配对表求边缘与协方差，比较平方关系和共享偏移对独立平均的影响。",
       "categories": [
@@ -5860,7 +5860,7 @@
       "total": 1,
       "lessonId": "P05-C02-S02",
       "lessonNumber": "5.2.2",
-      "lessonTitle": "联合变化与协方差",
+      "lessonTitle": "联合分布、协方差与共享偏移",
       "chapterUrl": "/chapters/05-02-期望、方差、协方差与噪声/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5871,8 +5871,8 @@
       "english": "process noise",
       "number": "5.2.3",
       "parentId": "5.2",
-      "url": "/notebook/?id=P05-C02-S03",
-      "readingUrl": null,
+      "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/",
+      "readingUrl": "/chapters/05-02-期望、方差、协方差与噪声/read/3/",
       "practiceUrl": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-path",
       "description": "把扰动放进状态与读数方程，推导两种方差，再解释固定个体差异和路径分位带。",
       "categories": [
@@ -5892,7 +5892,7 @@
       "total": 1,
       "lessonId": "P05-C02-S03",
       "lessonNumber": "5.2.3",
-      "lessonTitle": "过程测量与个体差异",
+      "lessonTitle": "过程噪声、测量噪声与个体差异",
       "chapterUrl": "/chapters/05-02-期望、方差、协方差与噪声/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5903,8 +5903,8 @@
       "english": "measurement noise",
       "number": "5.2.3",
       "parentId": "5.2",
-      "url": "/notebook/?id=P05-C02-S03",
-      "readingUrl": null,
+      "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/",
+      "readingUrl": "/chapters/05-02-期望、方差、协方差与噪声/read/3/",
       "practiceUrl": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-path",
       "description": "把扰动放进状态与读数方程，推导两种方差，再解释固定个体差异和路径分位带。",
       "categories": [
@@ -5924,7 +5924,7 @@
       "total": 1,
       "lessonId": "P05-C02-S03",
       "lessonNumber": "5.2.3",
-      "lessonTitle": "过程测量与个体差异",
+      "lessonTitle": "过程噪声、测量噪声与个体差异",
       "chapterUrl": "/chapters/05-02-期望、方差、协方差与噪声/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5935,8 +5935,8 @@
       "english": null,
       "number": "5.2.3",
       "parentId": "5.2",
-      "url": "/notebook/?id=P05-C02-S03",
-      "readingUrl": null,
+      "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/",
+      "readingUrl": "/chapters/05-02-期望、方差、协方差与噪声/read/3/",
       "practiceUrl": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-path",
       "description": "把扰动放进状态与读数方程，推导两种方差，再解释固定个体差异和路径分位带。",
       "categories": [
@@ -5956,7 +5956,7 @@
       "total": 1,
       "lessonId": "P05-C02-S03",
       "lessonNumber": "5.2.3",
-      "lessonTitle": "过程测量与个体差异",
+      "lessonTitle": "过程噪声、测量噪声与个体差异",
       "chapterUrl": "/chapters/05-02-期望、方差、协方差与噪声/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6003,8 +6003,8 @@
       "english": "conditional probability",
       "number": "5.3.1",
       "parentId": "5.3",
-      "url": "/notebook/?id=P05-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/",
+      "readingUrl": "/chapters/05-03-条件概率与贝叶斯更新/read/1/",
       "practiceUrl": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes",
       "description": "从标记的两种来源计算后验，再用联合表手算已知测量方式后的条件平均。",
       "categories": [
@@ -6023,7 +6023,7 @@
       "total": 1,
       "lessonId": "P05-C03-S01",
       "lessonNumber": "5.3.1",
-      "lessonTitle": "由条件概率推导贝叶斯更新",
+      "lessonTitle": "条件概率、贝叶斯公式与条件期望",
       "chapterUrl": "/chapters/05-03-条件概率与贝叶斯更新/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6034,8 +6034,8 @@
       "english": null,
       "number": "5.3.1",
       "parentId": "5.3",
-      "url": "/notebook/?id=P05-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/",
+      "readingUrl": "/chapters/05-03-条件概率与贝叶斯更新/read/1/",
       "practiceUrl": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes",
       "description": "从标记的两种来源计算后验，再用联合表手算已知测量方式后的条件平均。",
       "categories": [
@@ -6054,7 +6054,7 @@
       "total": 1,
       "lessonId": "P05-C03-S01",
       "lessonNumber": "5.3.1",
-      "lessonTitle": "由条件概率推导贝叶斯更新",
+      "lessonTitle": "条件概率、贝叶斯公式与条件期望",
       "chapterUrl": "/chapters/05-03-条件概率与贝叶斯更新/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6065,8 +6065,8 @@
       "english": null,
       "number": "5.3.1",
       "parentId": "5.3",
-      "url": "/notebook/?id=P05-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/",
+      "readingUrl": "/chapters/05-03-条件概率与贝叶斯更新/read/1/",
       "practiceUrl": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes",
       "description": "从标记的两种来源计算后验，再用联合表手算已知测量方式后的条件平均。",
       "categories": [
@@ -6085,7 +6085,7 @@
       "total": 1,
       "lessonId": "P05-C03-S01",
       "lessonNumber": "5.3.1",
-      "lessonTitle": "由条件概率推导贝叶斯更新",
+      "lessonTitle": "条件概率、贝叶斯公式与条件期望",
       "chapterUrl": "/chapters/05-03-条件概率与贝叶斯更新/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6096,8 +6096,8 @@
       "english": null,
       "number": "5.3.2",
       "parentId": "5.3",
-      "url": "/notebook/?id=P05-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/",
+      "readingUrl": "/chapters/05-03-条件概率与贝叶斯更新/read/2/",
       "practiceUrl": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-normal-update",
       "description": "对先验与似然的平方项配方，推导均值、方差和精度更新，比较剩余先验差异。",
       "categories": [
@@ -6117,7 +6117,7 @@
       "total": 1,
       "lessonId": "P05-C03-S02",
       "lessonNumber": "5.3.2",
-      "lessonTitle": "固定未知量的高斯更新",
+      "lessonTitle": "高斯后验、精度与重复测量",
       "chapterUrl": "/chapters/05-03-条件概率与贝叶斯更新/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6128,8 +6128,8 @@
       "english": null,
       "number": "5.3.2",
       "parentId": "5.3",
-      "url": "/notebook/?id=P05-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/",
+      "readingUrl": "/chapters/05-03-条件概率与贝叶斯更新/read/2/",
       "practiceUrl": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-normal-update",
       "description": "对先验与似然的平方项配方，推导均值、方差和精度更新，比较剩余先验差异。",
       "categories": [
@@ -6149,7 +6149,7 @@
       "total": 1,
       "lessonId": "P05-C03-S02",
       "lessonNumber": "5.3.2",
-      "lessonTitle": "固定未知量的高斯更新",
+      "lessonTitle": "高斯后验、精度与重复测量",
       "chapterUrl": "/chapters/05-03-条件概率与贝叶斯更新/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6160,8 +6160,8 @@
       "english": null,
       "number": "5.3.2",
       "parentId": "5.3",
-      "url": "/notebook/?id=P05-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/",
+      "readingUrl": "/chapters/05-03-条件概率与贝叶斯更新/read/2/",
       "practiceUrl": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-normal-update",
       "description": "对先验与似然的平方项配方，推导均值、方差和精度更新，比较剩余先验差异。",
       "categories": [
@@ -6181,7 +6181,7 @@
       "total": 1,
       "lessonId": "P05-C03-S02",
       "lessonNumber": "5.3.2",
-      "lessonTitle": "固定未知量的高斯更新",
+      "lessonTitle": "高斯后验、精度与重复测量",
       "chapterUrl": "/chapters/05-03-条件概率与贝叶斯更新/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6235,8 +6235,8 @@
       "english": "Markov chain",
       "number": "5.4.1",
       "parentId": "5.4",
-      "url": "/notebook/?id=P05-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/",
+      "readingUrl": "/chapters/05-04-随机过程与马尔可夫模型/read/1/",
       "practiceUrl": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-propagation",
       "description": "先按静息、活跃顺序算两步概率，再生成一条路径并比较同刻群体频率。",
       "categories": [
@@ -6256,7 +6256,7 @@
       "total": 1,
       "lessonId": "P05-C04-S01",
       "lessonNumber": "5.4.1",
-      "lessonTitle": "状态路径与概率分布的两种推进",
+      "lessonTitle": "随机过程、马尔可夫状态与分布传播",
       "chapterUrl": "/chapters/05-04-随机过程与马尔可夫模型/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6267,8 +6267,8 @@
       "english": null,
       "number": "5.4.1",
       "parentId": "5.4",
-      "url": "/notebook/?id=P05-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/",
+      "readingUrl": "/chapters/05-04-随机过程与马尔可夫模型/read/1/",
       "practiceUrl": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-propagation",
       "description": "先按静息、活跃顺序算两步概率，再生成一条路径并比较同刻群体频率。",
       "categories": [
@@ -6288,7 +6288,7 @@
       "total": 1,
       "lessonId": "P05-C04-S01",
       "lessonNumber": "5.4.1",
-      "lessonTitle": "状态路径与概率分布的两种推进",
+      "lessonTitle": "随机过程、马尔可夫状态与分布传播",
       "chapterUrl": "/chapters/05-04-随机过程与马尔可夫模型/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6299,8 +6299,8 @@
       "english": null,
       "number": "5.4.1",
       "parentId": "5.4",
-      "url": "/notebook/?id=P05-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/",
+      "readingUrl": "/chapters/05-04-随机过程与马尔可夫模型/read/1/",
       "practiceUrl": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-propagation",
       "description": "先按静息、活跃顺序算两步概率，再生成一条路径并比较同刻群体频率。",
       "categories": [
@@ -6320,7 +6320,7 @@
       "total": 1,
       "lessonId": "P05-C04-S01",
       "lessonNumber": "5.4.1",
-      "lessonTitle": "状态路径与概率分布的两种推进",
+      "lessonTitle": "随机过程、马尔可夫状态与分布传播",
       "chapterUrl": "/chapters/05-04-随机过程与马尔可夫模型/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6331,8 +6331,8 @@
       "english": "invariant distribution",
       "number": "5.4.2",
       "parentId": "5.4",
-      "url": "/notebook/?id=P05-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/",
+      "readingUrl": "/chapters/05-04-随机过程与马尔可夫模型/read/2/",
       "practiceUrl": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-stationary",
       "description": "用必定交替与两个吸收态区分不变和收敛，从两态偏差递推求长期行为。",
       "categories": [
@@ -6351,7 +6351,7 @@
       "total": 1,
       "lessonId": "P05-C04-S02",
       "lessonNumber": "5.4.2",
-      "lessonTitle": "不变分布与长期收敛的条件",
+      "lessonTitle": "不变分布、周期与长期收敛",
       "chapterUrl": "/chapters/05-04-随机过程与马尔可夫模型/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6362,8 +6362,8 @@
       "english": null,
       "number": "5.4.2",
       "parentId": "5.4",
-      "url": "/notebook/?id=P05-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/",
+      "readingUrl": "/chapters/05-04-随机过程与马尔可夫模型/read/2/",
       "practiceUrl": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-stationary",
       "description": "用必定交替与两个吸收态区分不变和收敛，从两态偏差递推求长期行为。",
       "categories": [
@@ -6382,7 +6382,7 @@
       "total": 1,
       "lessonId": "P05-C04-S02",
       "lessonNumber": "5.4.2",
-      "lessonTitle": "不变分布与长期收敛的条件",
+      "lessonTitle": "不变分布、周期与长期收敛",
       "chapterUrl": "/chapters/05-04-随机过程与马尔可夫模型/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6393,8 +6393,8 @@
       "english": null,
       "number": "5.4.2",
       "parentId": "5.4",
-      "url": "/notebook/?id=P05-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/",
+      "readingUrl": "/chapters/05-04-随机过程与马尔可夫模型/read/2/",
       "practiceUrl": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-stationary",
       "description": "用必定交替与两个吸收态区分不变和收敛，从两态偏差递推求长期行为。",
       "categories": [
@@ -6413,7 +6413,7 @@
       "total": 1,
       "lessonId": "P05-C04-S02",
       "lessonNumber": "5.4.2",
-      "lessonTitle": "不变分布与长期收敛的条件",
+      "lessonTitle": "不变分布、周期与长期收敛",
       "chapterUrl": "/chapters/05-04-随机过程与马尔可夫模型/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6424,8 +6424,8 @@
       "english": "random walk",
       "number": "5.4.3",
       "parentId": "5.4",
-      "url": "/notebook/?id=P05-C04-S03",
-      "readingUrl": null,
+      "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/",
+      "readingUrl": "/chapters/05-04-随机过程与马尔可夫模型/read/3/",
       "practiceUrl": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk",
       "description": "累加左右位移，分别求漂移与位置方差，解释零均值时群体仍会扩散。",
       "categories": [
@@ -6444,7 +6444,7 @@
       "total": 1,
       "lessonId": "P05-C04-S03",
       "lessonNumber": "5.4.3",
-      "lessonTitle": "随机游走中的漂移与扩散",
+      "lessonTitle": "随机游走、漂移与扩散",
       "chapterUrl": "/chapters/05-04-随机过程与马尔可夫模型/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6455,8 +6455,8 @@
       "english": null,
       "number": "5.4.3",
       "parentId": "5.4",
-      "url": "/notebook/?id=P05-C04-S03",
-      "readingUrl": null,
+      "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/",
+      "readingUrl": "/chapters/05-04-随机过程与马尔可夫模型/read/3/",
       "practiceUrl": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk",
       "description": "累加左右位移，分别求漂移与位置方差，解释零均值时群体仍会扩散。",
       "categories": [
@@ -6475,7 +6475,7 @@
       "total": 1,
       "lessonId": "P05-C04-S03",
       "lessonNumber": "5.4.3",
-      "lessonTitle": "随机游走中的漂移与扩散",
+      "lessonTitle": "随机游走、漂移与扩散",
       "chapterUrl": "/chapters/05-04-随机过程与马尔可夫模型/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6486,8 +6486,8 @@
       "english": null,
       "number": "5.4.3",
       "parentId": "5.4",
-      "url": "/notebook/?id=P05-C04-S03",
-      "readingUrl": null,
+      "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/",
+      "readingUrl": "/chapters/05-04-随机过程与马尔可夫模型/read/3/",
       "practiceUrl": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk",
       "description": "累加左右位移，分别求漂移与位置方差，解释零均值时群体仍会扩散。",
       "categories": [
@@ -6506,7 +6506,7 @@
       "total": 1,
       "lessonId": "P05-C04-S03",
       "lessonNumber": "5.4.3",
-      "lessonTitle": "随机游走中的漂移与扩散",
+      "lessonTitle": "随机游走、漂移与扩散",
       "chapterUrl": "/chapters/05-04-随机过程与马尔可夫模型/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6554,8 +6554,8 @@
       "english": null,
       "number": "5.5.1",
       "parentId": "5.5",
-      "url": "/notebook/?id=P05-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-05-熵、互信息与测量价值/read/1/",
+      "readingUrl": "/chapters/05-05-熵、互信息与测量价值/read/1/",
       "practiceUrl": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information",
       "description": "比较复制、独立和翻转读数，从联合表计算熵与互信息，解释平均减少的不确定性。",
       "categories": [
@@ -6575,7 +6575,7 @@
       "total": 1,
       "lessonId": "P05-C05-S01",
       "lessonNumber": "5.5.1",
-      "lessonTitle": "熵与互信息的离散定义",
+      "lessonTitle": "离散熵、条件熵与互信息",
       "chapterUrl": "/chapters/05-05-熵、互信息与测量价值/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6586,8 +6586,8 @@
       "english": "conditional entropy",
       "number": "5.5.1",
       "parentId": "5.5",
-      "url": "/notebook/?id=P05-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-05-熵、互信息与测量价值/read/1/",
+      "readingUrl": "/chapters/05-05-熵、互信息与测量价值/read/1/",
       "practiceUrl": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information",
       "description": "比较复制、独立和翻转读数，从联合表计算熵与互信息，解释平均减少的不确定性。",
       "categories": [
@@ -6607,7 +6607,7 @@
       "total": 1,
       "lessonId": "P05-C05-S01",
       "lessonNumber": "5.5.1",
-      "lessonTitle": "熵与互信息的离散定义",
+      "lessonTitle": "离散熵、条件熵与互信息",
       "chapterUrl": "/chapters/05-05-熵、互信息与测量价值/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6618,8 +6618,8 @@
       "english": "mutual information",
       "number": "5.5.1",
       "parentId": "5.5",
-      "url": "/notebook/?id=P05-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/05-05-熵、互信息与测量价值/read/1/",
+      "readingUrl": "/chapters/05-05-熵、互信息与测量价值/read/1/",
       "practiceUrl": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information",
       "description": "比较复制、独立和翻转读数，从联合表计算熵与互信息，解释平均减少的不确定性。",
       "categories": [
@@ -6639,7 +6639,7 @@
       "total": 1,
       "lessonId": "P05-C05-S01",
       "lessonNumber": "5.5.1",
-      "lessonTitle": "熵与互信息的离散定义",
+      "lessonTitle": "离散熵、条件熵与互信息",
       "chapterUrl": "/chapters/05-05-熵、互信息与测量价值/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6650,8 +6650,8 @@
       "english": null,
       "number": "5.5.2",
       "parentId": "5.5",
-      "url": "/notebook/?id=P05-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-05-熵、互信息与测量价值/read/2/",
+      "readingUrl": "/chapters/05-05-熵、互信息与测量价值/read/2/",
       "practiceUrl": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-bin-pairs",
       "description": "将配对读数编码成箱号，比较同一样本的嵌套分箱与独立重复中的估计偏差。",
       "categories": [
@@ -6671,7 +6671,7 @@
       "total": 1,
       "lessonId": "P05-C05-S02",
       "lessonNumber": "5.5.2",
-      "lessonTitle": "有限样本分箱与信息偏差",
+      "lessonTitle": "分箱、有限样本与信息估计",
       "chapterUrl": "/chapters/05-05-熵、互信息与测量价值/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6682,8 +6682,8 @@
       "english": "binning",
       "number": "5.5.2",
       "parentId": "5.5",
-      "url": "/notebook/?id=P05-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-05-熵、互信息与测量价值/read/2/",
+      "readingUrl": "/chapters/05-05-熵、互信息与测量价值/read/2/",
       "practiceUrl": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-bin-pairs",
       "description": "将配对读数编码成箱号，比较同一样本的嵌套分箱与独立重复中的估计偏差。",
       "categories": [
@@ -6703,7 +6703,7 @@
       "total": 1,
       "lessonId": "P05-C05-S02",
       "lessonNumber": "5.5.2",
-      "lessonTitle": "有限样本分箱与信息偏差",
+      "lessonTitle": "分箱、有限样本与信息估计",
       "chapterUrl": "/chapters/05-05-熵、互信息与测量价值/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6714,8 +6714,8 @@
       "english": null,
       "number": "5.5.2",
       "parentId": "5.5",
-      "url": "/notebook/?id=P05-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/05-05-熵、互信息与测量价值/read/2/",
+      "readingUrl": "/chapters/05-05-熵、互信息与测量价值/read/2/",
       "practiceUrl": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-bin-pairs",
       "description": "将配对读数编码成箱号，比较同一样本的嵌套分箱与独立重复中的估计偏差。",
       "categories": [
@@ -6735,7 +6735,7 @@
       "total": 1,
       "lessonId": "P05-C05-S02",
       "lessonNumber": "5.5.2",
-      "lessonTitle": "有限样本分箱与信息偏差",
+      "lessonTitle": "分箱、有限样本与信息估计",
       "chapterUrl": "/chapters/05-05-熵、互信息与测量价值/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },

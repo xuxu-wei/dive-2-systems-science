@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>篇末综合 重复测量、概率更新与信息 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P05-SUMMARY">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P05-SUMMARY" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-noise">本节练习 · 8 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>篇末综合 重复测量、概率更新与信息</h1>
+<p>学完本节，你应能分清每项计算描述的对象，组合均值、方差、贝叶斯更新、分布传播与信息量，并解释增加读数、推进时间和细化编码各改变了什么。</p>
+<p><strong>先修知识</strong>：本篇五章的概率分布、期望与方差、条件概率、马尔可夫模型和离散信息量。</p>
+<h2 id="noise-location-and-meaning">噪声进入状态与读数的位置</h2>
+<p>读数多一些、路径长一些、分箱细一些，都能产生更多数值。它们是否改善当前问题，要看增加的是什么。我们从三个熟悉的测量场景开始：固定量的重复读数、随时间变化的连续偏差、会切换类别的细胞标签。</p>
+<table>
+<thead>
+<tr>
+  <th>场景</th>
+  <th>模型中的量</th>
+  <th>当前问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>测量固定量</td>
+  <td>$y_i=\theta+b+v_i$</td>
+  <td>一组读数的平均离 $\theta$ 有多远？</td>
+</tr>
+<tr>
+  <td>记录动态偏差</td>
+  <td>$x_{n+1}=ax_n+w_n,\ y_n=x_n+v_n$</td>
+  <td>状态与读数的波动怎样随时间变化？</td>
+</tr>
+<tr>
+  <td>观察细胞标签</td>
+  <td>$\Pr(C_{n+1}=j\mid C_n=i)$</td>
+  <td>各标签的概率怎样变化，读数提供多少信息？</td>
+</tr>
+</tbody>
+</table>
+<p>第一行的下标 $i$ 表示同一固定量的第几次测量，$b$ 在这一组内保持相同，$v_i$ 随测量变化。第二、三行的下标 $n$ 表示演化周期，状态本身可能改变。连续量使用U作数值单位；类别编号只是标签，类别概率没有量纲。</p>
+<p>固定量模型中，平均读数为</p>
+<p>$$\bar y=\theta+b+\frac1m\sum_{i=1}^mv_i.$$</p>
+<p>独立零均值误差的平均波动随 $m$ 增加而缩小，共享的 $b$ 却仍在同一个位置。动态模型中，$w_n$ 进入下一步状态，影响还可能延续到以后；$v_n$ 只加在当次读数上。不同个体若分别保持不同的 $a$，改变的是各自的演化规则。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-noise">噪声进入何处</a></li></ul></nav>
+
+<h2 id="group-means-repeat-variation">实验组均值与重复间波动</h2>
+<p>设一轮实验得到一组读数，各轮独立进行。先求每轮均值 $m_r$，再观察这些均值如何变化。这里 $r=1,\ldots,B$ 是实验组号，$B$ 是实验组数。</p>
+<p>以三轮测量为例：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">实验组</th>
+  <th>本轮读数 / U</th>
+  <th style="text-align:right">组均值 / U</th>
+  <th style="text-align:right">相对3 U的平方偏差 / U²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">1</td>
+  <td>0、2</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">4</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td>2、4</td>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td>4、6</td>
+  <td style="text-align:right">5</td>
+  <td style="text-align:right">4</td>
+</tr>
+</tbody>
+</table>
+<p>三个组均值等权平均为</p>
+<p>$$\bar m=\frac{1+3+5}{3}=3\ \mathrm U,$$</p>
+<p>组均值的样本方差为</p>
+<p>$$s_m^2=\frac{(1-3)^2+(3-3)^2+(5-3)^2}{3-1}
+=4\ \mathrm U^2.$$</p>
+<p>这里描述的是“一轮实验的均值”在不同轮次间的波动。分母对应3个组均值，而非6个原始读数。每组读数个数不同时，等权组平均依然让每轮各占一份；合并所有读数则会让读数多的实验组占更大权重。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-summary">固定样本的重复间波动</a></li></ul></nav>
+
+<p>动态路径也可以这样组织重复。一轮生成相同数量、相同长度的独立路径，取各路径末时刻的数值求组均值；再用独立随机流重复整轮实验，得到组均值的分布。同一条路径的相邻时刻可能相关，把它们当作独立重复，会换掉正在比较的对象。复制已生成的数组则保留了原来同一次实现，不能产生新的组间波动。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-repeat">设计噪声机制对照</a></li></ul></nav>
+
+<h2 id="process-measurement-variance-path">过程与测量的方差递推</h2>
+<p>对动态偏差模型，设初态与全部扰动独立，各步的零均值过程扰动和测量误差彼此独立，方差分别为 $Q,R$。记</p>
+<p>$$P_n=\operatorname{Var}(x_n),\qquad S_n=\operatorname{Var}(y_n).$$</p>
+<p>因为独立量相加时协方差为零，状态与读数的方差满足</p>
+<p>$$P_{n+1}=a^2P_n+Q,\qquad S_n=P_n+R.$$</p>
+<p>令 $a=0.8,Q=0.04\ \mathrm U^2,R=0.09\ \mathrm U^2,P_0=0$。前两步为</p>
+<p>$$P_1=0.64\times0+0.04=0.04\ \mathrm U^2,$$</p>
+<p>$$P_2=0.64\times0.04+0.04=0.0656\ \mathrm U^2.$$</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">周期 $n$</th>
+  <th style="text-align:right">状态方差 $P_n$ / U²</th>
+  <th style="text-align:right">读数方差 $S_n$ / U²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0.09</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.04</td>
+  <td style="text-align:right">0.13</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">0.0656</td>
+  <td style="text-align:right">0.1556</td>
+</tr>
+</tbody>
+</table>
+<p>过程扰动加入状态递推；测量误差则使每个时刻的读数方差比状态方差多0.09 U²。由几何和，状态方差趋近 $Q/(1-a^2)=1/9\ \mathrm U^2$。增大测量噪声只抬高读数方差曲线，增大过程噪声则改变状态及随后的读数。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-variance">两种噪声的方差贡献</a></li></ul></nav>
+
+<h2 id="observation-posterior-update">观测后的概率更新</h2>
+<p>接着观察一个细胞，但不知道它属于标签0、1、2中的哪一类。先验概率依次为0.2、0.3、0.5，本次标记在各类下出现的概率依次为0.5、1、0。</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">候选标签</th>
+  <th style="text-align:right">先验</th>
+  <th style="text-align:right">标记出现的条件概率</th>
+  <th style="text-align:right">两者乘积</th>
+  <th style="text-align:right">后验</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">0.25</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.3</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.3</td>
+  <td style="text-align:right">0.75</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p>标记出现的总概率为 $0.1+0.3+0=0.4$。将每一行的联合权重除以0.4，就得到后验。原先概率最大的标签2，在该模型下无法产生本次标记，因此观测后的概率变为零。</p>
+<p>这一步使用新读数更新对当前标签的判断。若所有候选标签的联合权重都为零，标记在给定模型下是零概率事件，条件概率的分母为零；本题用 <code>None</code> 表示无法完成这次条件更新。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-bayes">由新证据更新概率</a></li></ul></nav>
+
+<h2 id="time-evolution-state-distribution">时间推进与标签分布</h2>
+<p>若细胞经过一个周期可以换标签，就需要转移矩阵。下面的另一个细胞从已知标签0出发，采用</p>
+<p>$$P=\begin{pmatrix}
+0.5&amp;0.5&amp;0\\
+0&amp;0.5&amp;0.5\\
+0&amp;0&amp;1
+\end{pmatrix}.$$</p>
+<p>矩阵第 $i$ 行、第 $j$ 列表示从当前标签 $i$ 到下一标签 $j$ 的概率，行、列按0、1、2排列。用行概率向量 $p_n$ 表示时刻 $n$ 的分布，则 $p_{n+1}=p_nP$。</p>
+<p>从 $p_0=[1,0,0]$ 出发，一步后为 $p_1=[0.5,0.5,0]$。第二步到标签1有两条来源：留在标签0的那一半再转入1，或已经在标签1的那一半继续留在1。因此</p>
+<p>$$\begin{aligned}
+p_2(0)&amp;=0.5\times0.5=0.25,\\
+p_2(1)&amp;=0.5\times0.5+0.5\times0.5=0.5,\\
+p_2(2)&amp;=0.5\times0.5=0.25.
+\end{aligned}$$</p>
+<p>三项相加仍为1。到达标签2后，每一步都保持标签2，因此它是吸收态。左到右推进时间，会逐渐把概率累积到这个标签。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-propagation">概率分布的多步传播</a></li></ul></nav>
+
+<p>下图左侧展示刚才的方差递推，右侧展示三态概率传播。横轴同为周期，纵轴各有自己的含义。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P05-SUMMARY-3aafa018-0.png" alt="重复测量、概率更新与信息：实验结果图" loading="lazy"></figure>
+</section>
+<p>左侧两条曲线保持0.09 U²的差，记录过程和测量误差的不同位置；右侧三条曲线的和始终为1，记录类别概率之间的转移。贝叶斯计算则在给定读数后重新分配当前标签的概率权重。按时间演化和按观测更新是两种不同的概率计算，后续动态估计将把它们连接起来。</p>
+<h2 id="encoding-and-channel-information">编码变化与通道信息</h2>
+<p>最后比较同一批配对读数的细箱与粗箱编码。细箱联合频数及合并结果为</p>
+<p>$$C_f=\begin{pmatrix}1&amp;0&amp;1&amp;0\\0&amp;1&amp;0&amp;1\\1&amp;0&amp;1&amp;0\\0&amp;1&amp;0&amp;1\end{pmatrix},
+\qquad
+C_c=\begin{pmatrix}2&amp;2\\2&amp;2\end{pmatrix}.$$</p>
+<p>$C_c$ 将 $C_f$ 的相邻两行、相邻两列分别合并。两张表的总数都是8；返回结果都按第一通道熵、第二通道熵、互信息排列，单位为bit。</p>
+<p>细表的两个边缘分布均为四类各 $1/4$，故两个熵都为2 bit；8个正概率格各贡献 $1/8$ bit，互信息为1 bit。粗表的两个边缘分布均为两类各 $1/2$，联合频率等于边缘乘积，因此结果为1、1、0 bit。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-bins">更换分箱后的信息量</a></li></ul></nav>
+
+<p>这次差异来自编码合并：粗箱不再区分一些原先可以区分的读数。若目的是比较两个传感器对真实标签的区分能力，还要固定样本量和分箱规则，组织独立重复，查看相同设置下独立通道的估计偏差与波动。</p>
+<p>例如独立通道的互信息真值为零，小样本估计仍可能为正。真实通道的结果应与这种参照并列比较；选择每个通道最大的那次估计，会把随机波动带来的高值挑出来。两个通道若有共同的环境影响，其关联也可能由这个环境产生，因此信息指标要接回相应的测量模型来解释。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-scope">解释通道比较结果</a></li></ul></nav>
+
+<h2 id="probability-to-measurement-modeling">从概率模型走向测量建模</h2>
+<p>本篇建立了几种连接模型与重复数据的方式：概率给出各种实现的权重，期望和方差概括重复变化，条件分布吸收新观测，转移矩阵推进标签概率，互信息概括两个变量的依赖。它们各有明确对象，数值才能回答对应问题。</p>
+<p>下一篇将反过来从测量记录寻找模型：采样怎样改变看到的动态，误差如何进入参数估计，拟合后的模型又怎样预测未参与拟合的数据。本篇的条件平均、误差方差和独立重复，将成为解释这些计算的基础。</p>
+<h2 id="further-reading">进一步阅读</h2>
+<p><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/pages/lecture-notes/">MIT 6.041讲义</a>汇集本篇使用的概率、条件期望与马尔可夫链主题；<a href="https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/pages/lecture-notes/">MIT 6.441讲义</a>第1—3章讨论信息量及其在条件化、编码变换中的关系。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/05-05-熵、互信息与测量价值/read/2/">← 5.5.2 分箱、有限样本与信息估计</a><a href="/parts/06-从测量走向模型/">继续：第 6 篇 从测量走向模型 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

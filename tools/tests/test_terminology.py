@@ -120,3 +120,14 @@ def test_overview_preserves_reviewed_text_without_automatic_annotations():
     from build_course import teaching_focus
     source = '- **教学重难点**：重复数、系数组合与自然指数函数按当前语境解释。'
     assert teaching_focus(source, '2.2') == '重复数、系数组合与自然指数函数按当前语境解释。'
+
+
+@pytest.mark.parametrize('source', [
+    '联合分布（joint distribution）描述成对结果。',
+    '边缘分布（marginal distribution）由对应方向求和得到。',
+    '离散熵（discrete entropy）是信息量的概率平均。',
+    '条件互信息（conditional mutual information）按条件分布计算。',
+])
+def test_part05_compound_annotations_keep_their_full_scientific_meaning(source):
+    issues, _ = check_text(source, 5, require_first=False)
+    assert issues == []

@@ -3,115 +3,127 @@
     "id": "P05-C01-S01",
     "chapter_id": "5.1",
     "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/01-事件分布与一次实现.ipynb",
-    "title": "事件分布与一次实现",
+    "title": "样本空间、随机变量与概率分布",
     "outcome": "从细胞标签与误差区间进入概率，解释事件、变量、一次结果和密度面积。",
     "number": "5.1.1",
-    "visualization": "web/probability/index.html"
+    "visualization": "web/probability/index.html",
+    "reading": "lessons/05-随机性与信息/01-从重复实验建立概率/01-事件分布与一次实现.md"
   },
   {
     "id": "P05-C01-S02",
     "chapter_id": "5.1",
     "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/02-把抽样变成可比较的重复实验.ipynb",
-    "title": "把抽样变成可比较的重复实验",
-    "outcome": "按相同概率重复抽取细胞，比较组长、重复次数及两种频率汇总方式。",
+    "title": "独立抽样与重复实验",
+    "outcome": "按相同概率重复抽取细胞，比较每组细胞数、重复次数及两种频率汇总方式。",
     "number": "5.1.2",
-    "visualization": "web/probability/index.html"
+    "visualization": "web/probability/index.html",
+    "reading": "lessons/05-随机性与信息/01-从重复实验建立概率/02-把抽样变成可比较的重复实验.md"
   },
   {
     "id": "P05-C02-S01",
     "chapter_id": "5.2",
     "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/01-用期望与方差描述随机量.ipynb",
-    "title": "用期望与方差描述随机量",
+    "title": "期望、方差与独立平均",
     "outcome": "用两种释放量手算期望和方差，再解释独立平均、样本分母及高斯误差。",
     "number": "5.2.1",
-    "visualization": "web/probability/index.html"
+    "visualization": "web/probability/index.html",
+    "reading": "lessons/05-随机性与信息/02-期望、方差、协方差与噪声/01-用期望与方差描述随机量.md"
   },
   {
     "id": "P05-C02-S02",
     "chapter_id": "5.2",
     "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/02-联合变化与协方差.ipynb",
-    "title": "联合变化与协方差",
+    "title": "联合分布、协方差与共享偏移",
     "outcome": "从配对表求边缘与协方差，比较平方关系和共享偏移对独立平均的影响。",
     "number": "5.2.2",
-    "visualization": "web/probability/index.html"
+    "visualization": "web/probability/index.html",
+    "reading": "lessons/05-随机性与信息/02-期望、方差、协方差与噪声/02-联合变化与协方差.md"
   },
   {
     "id": "P05-C02-S03",
     "chapter_id": "5.2",
     "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/03-过程测量与个体差异.ipynb",
-    "title": "过程测量与个体差异",
+    "title": "过程噪声、测量噪声与个体差异",
     "outcome": "把扰动放进状态与读数方程，推导两种方差，再解释固定个体差异和路径分位带。",
     "number": "5.2.3",
-    "visualization": "web/probability/index.html"
+    "visualization": "web/probability/index.html",
+    "reading": "lessons/05-随机性与信息/02-期望、方差、协方差与噪声/03-过程测量与个体差异.md"
   },
   {
     "id": "P05-C03-S01",
     "chapter_id": "5.3",
     "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.ipynb",
-    "title": "由条件概率推导贝叶斯更新",
+    "title": "条件概率、贝叶斯公式与条件期望",
     "outcome": "从标记的两种来源计算后验，再用联合表手算已知测量方式后的条件平均。",
     "number": "5.3.1",
-    "visualization": "web/probability/index.html"
+    "visualization": "web/probability/index.html",
+    "reading": "lessons/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.md"
   },
   {
     "id": "P05-C03-S02",
     "chapter_id": "5.3",
     "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/02-固定未知量的高斯更新.ipynb",
-    "title": "固定未知量的高斯更新",
+    "title": "高斯后验、精度与重复测量",
     "outcome": "对先验与似然的平方项配方，推导均值、方差和精度更新，比较剩余先验差异。",
     "number": "5.3.2",
-    "visualization": "web/probability/index.html"
+    "visualization": "web/probability/index.html",
+    "reading": "lessons/05-随机性与信息/03-条件概率与贝叶斯更新/02-固定未知量的高斯更新.md"
   },
   {
     "id": "P05-C04-S01",
     "chapter_id": "5.4",
     "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/01-状态路径与概率分布的两种推进.ipynb",
-    "title": "状态路径与概率分布的两种推进",
+    "title": "随机过程、马尔可夫状态与分布传播",
     "outcome": "先按静息、活跃顺序算两步概率，再生成一条路径并比较同刻群体频率。",
     "number": "5.4.1",
-    "visualization": "web/probability/index.html"
+    "visualization": "web/probability/index.html",
+    "reading": "lessons/05-随机性与信息/04-随机过程与马尔可夫模型/01-状态路径与概率分布的两种推进.md"
   },
   {
     "id": "P05-C04-S02",
     "chapter_id": "5.4",
     "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.ipynb",
-    "title": "不变分布与长期收敛的条件",
+    "title": "不变分布、周期与长期收敛",
     "outcome": "用必定交替与两个吸收态区分不变和收敛，从两态偏差递推求长期行为。",
     "number": "5.4.2",
-    "visualization": "web/probability/index.html"
+    "visualization": "web/probability/index.html",
+    "reading": "lessons/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.md"
   },
   {
     "id": "P05-C04-S03",
     "chapter_id": "5.4",
     "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/03-随机游走中的漂移与扩散.ipynb",
-    "title": "随机游走中的漂移与扩散",
+    "title": "随机游走、漂移与扩散",
     "outcome": "累加左右位移，分别求漂移与位置方差，解释零均值时群体仍会扩散。",
     "number": "5.4.3",
-    "visualization": "web/probability/index.html"
+    "visualization": "web/probability/index.html",
+    "reading": "lessons/05-随机性与信息/04-随机过程与马尔可夫模型/03-随机游走中的漂移与扩散.md"
   },
   {
     "id": "P05-C05-S01",
     "chapter_id": "5.5",
     "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.ipynb",
-    "title": "熵与互信息的离散定义",
+    "title": "离散熵、条件熵与互信息",
     "outcome": "比较复制、独立和翻转读数，从联合表计算熵与互信息，解释平均减少的不确定性。",
     "number": "5.5.1",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.md"
   },
   {
     "id": "P05-C05-S02",
     "chapter_id": "5.5",
     "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/02-有限样本分箱与信息偏差.ipynb",
-    "title": "有限样本分箱与信息偏差",
+    "title": "分箱、有限样本与信息估计",
     "outcome": "将配对读数编码成箱号，比较同一样本的嵌套分箱与独立重复中的估计偏差。",
     "number": "5.5.2",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/05-随机性与信息/05-熵、互信息与测量价值/02-有限样本分箱与信息偏差.md"
   },
   {
     "id": "P05-SUMMARY",
     "chapter_id": "5.summary",
     "path": "notebooks/05-随机性与信息/06-篇末综合/01-噪声概率更新与信息的综合实验.ipynb",
-    "title": "噪声概率更新与信息的综合实验",
+    "title": "重复测量、概率更新与信息",
     "outcome": "分别汇总实验组均值、推进噪声方差、更新标签概率和计算分箱信息量。",
     "number": "篇末综合",
     "visualization": null,
@@ -124,6 +136,7 @@
         "按同一标签顺序更新后验，再用行向量传播下一周期的概率",
         "对同一批读数比较粗细编码，并用独立重复参照解释信息估计"
       ]
-    }
+    },
+    "reading": "lessons/05-随机性与信息/06-篇末综合/01-噪声概率更新与信息的综合实验.md"
   }
 ]

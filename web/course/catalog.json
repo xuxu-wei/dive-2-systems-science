@@ -6090,7 +6090,7 @@
       "chapters": [
         {
           "id": "5.1",
-          "title": "从重复实验建立概率",
+          "title": "概率与重复实验",
           "url": "/chapters/05-01-从重复实验建立概率/",
           "goals": "从细胞标签与误差区间建立概率描述，用重复频率和密度面积解释一次结果与生成规则。",
           "prerequisites": "第 2.2—2.4 章的求和、函数、积分面积与计算验证；第 1.4 章的假设比较。事件、分布和抽样在本章首次引入。",
@@ -6099,84 +6099,230 @@
             "从误差区间面积解释密度与舍入读数",
             "保持相同概率重复抽样，再比较组平均、合并频率与经验分位范围"
           ],
-          "focus": "一次标签、样本频率和模型概率各描述什么；组长与重复次数分别改变哪种波动。",
+          "focus": "一次标签、样本频率和模型概率各描述什么；每组细胞数与实验重复次数分别改变哪种波动。",
           "available": true,
           "lessons": [
             {
               "id": "P05-C01-S01",
               "chapter_id": "5.1",
               "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/01-事件分布与一次实现.ipynb",
-              "title": "事件分布与一次实现",
+              "title": "样本空间、随机变量与概率分布",
               "outcome": "从细胞标签与误差区间进入概率，解释事件、变量、一次结果和密度面积。",
               "number": "5.1.1",
               "visualization": "web/probability/index.html",
+              "reading": "lessons/05-随机性与信息/01-从重复实验建立概率/01-事件分布与一次实现.md",
               "questions": [
                 {
                   "id": "p05-event-variable",
                   "slug": "p05-event-variable",
                   "title": "事件、随机变量与一次观察",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-01-从重复实验建立概率/read/1/#random-variable-and-realization",
+                  "concept_title": "随机变量、分布与一次实现",
+                  "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-event-variable"
                 },
                 {
                   "id": "p05-uniform-area",
                   "slug": "p05-uniform-area",
                   "title": "密度曲线下的概率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-01-从重复实验建立概率/read/1/#continuous-density-and-area",
+                  "concept_title": "连续误差的概率密度",
+                  "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-uniform-area"
                 },
                 {
                   "id": "p05-density-point",
                   "slug": "p05-density-point",
                   "title": "区间、密度与显示读数",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-01-从重复实验建立概率/read/1/#point-probability-and-rounded-readings",
+                  "concept_title": "精确零与舍入读数",
+                  "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-density-point"
                 },
                 {
                   "id": "p05-normalization",
                   "slug": "p05-normalization",
                   "title": "补齐细胞状态的概率",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-01-从重复实验建立概率/read/1/#sample-space-and-events",
+                  "concept_title": "样本空间与事件",
+                  "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-normalization"
                 }
               ],
               "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-event-variable",
               "notebook_url": "/notebook/?id=P05-C01-S01",
-              "url": "/notebook/?id=P05-C01-S01"
+              "reading_url": "/chapters/05-01-从重复实验建立概率/read/1/",
+              "concepts": [
+                {
+                  "id": "sample-space-and-events",
+                  "title": "样本空间与事件",
+                  "question_ids": [
+                    "p05-normalization"
+                  ],
+                  "explore": false,
+                  "key": "P05-C01-S01:sample-space-and-events",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/1/#sample-space-and-events"
+                },
+                {
+                  "id": "random-variable-and-realization",
+                  "title": "随机变量、分布与一次实现",
+                  "question_ids": [
+                    "p05-event-variable"
+                  ],
+                  "explore": false,
+                  "key": "P05-C01-S01:random-variable-and-realization",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/1/#random-variable-and-realization"
+                },
+                {
+                  "id": "model-probability-and-frequency",
+                  "title": "模型概率与经验频率",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P05-C01-S01:model-probability-and-frequency",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/1/#model-probability-and-frequency",
+                  "explore_url": "/chapters/05-01-从重复实验建立概率/explore/?concept=P05-C01-S01%3Amodel-probability-and-frequency"
+                },
+                {
+                  "id": "continuous-density-and-area",
+                  "title": "连续误差的概率密度",
+                  "question_ids": [
+                    "p05-uniform-area"
+                  ],
+                  "explore": false,
+                  "key": "P05-C01-S01:continuous-density-and-area",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/1/#continuous-density-and-area"
+                },
+                {
+                  "id": "point-probability-and-rounded-readings",
+                  "title": "精确零与舍入读数",
+                  "question_ids": [
+                    "p05-density-point"
+                  ],
+                  "explore": false,
+                  "key": "P05-C01-S01:point-probability-and-rounded-readings",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/1/#point-probability-and-rounded-readings"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C01-S01:references",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/1/#references"
+                }
+              ],
+              "url": "/chapters/05-01-从重复实验建立概率/read/1/"
             },
             {
               "id": "P05-C01-S02",
               "chapter_id": "5.1",
               "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/02-把抽样变成可比较的重复实验.ipynb",
-              "title": "把抽样变成可比较的重复实验",
-              "outcome": "按相同概率重复抽取细胞，比较组长、重复次数及两种频率汇总方式。",
+              "title": "独立抽样与重复实验",
+              "outcome": "按相同概率重复抽取细胞，比较每组细胞数、重复次数及两种频率汇总方式。",
               "number": "5.1.2",
               "visualization": "web/probability/index.html",
+              "reading": "lessons/05-随机性与信息/01-从重复实验建立概率/02-把抽样变成可比较的重复实验.md",
               "questions": [
                 {
                   "id": "p05-frequencies",
                   "slug": "p05-frequencies",
                   "title": "不同大小实验组怎样汇总",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-01-从重复实验建立概率/read/2/#group-mean-and-pooled-frequency",
+                  "concept_title": "组平均与合并频率",
+                  "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-frequencies"
                 },
                 {
                   "id": "p05-seed-repeats",
                   "slug": "p05-seed-repeats",
                   "title": "解释相同种子的重复结果",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-01-从重复实验建立概率/read/2/#random-seeds-and-replayed-samples",
+                  "concept_title": "随机种子与实验复现",
+                  "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-seed-repeats"
                 },
                 {
                   "id": "p05-repeat-band",
                   "slug": "p05-repeat-band",
                   "title": "重复频率的范围说明什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-01-从重复实验建立概率/read/2/#empirical-quantiles-of-frequencies",
+                  "concept_title": "经验分位数与频率的散布",
+                  "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-repeat-band"
                 },
                 {
                   "id": "p05-shared-environment",
                   "slug": "p05-shared-environment",
                   "title": "设计独立二值抽样",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-01-从重复实验建立概率/read/2/#independent-cell-sampling",
+                  "concept_title": "独立抽样的概率规则",
+                  "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-shared-environment"
                 }
               ],
               "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-frequencies",
               "notebook_url": "/notebook/?id=P05-C01-S02",
-              "url": "/notebook/?id=P05-C01-S02"
+              "reading_url": "/chapters/05-01-从重复实验建立概率/read/2/",
+              "concepts": [
+                {
+                  "id": "independent-cell-sampling",
+                  "title": "独立抽样的概率规则",
+                  "question_ids": [
+                    "p05-shared-environment"
+                  ],
+                  "explore": false,
+                  "key": "P05-C01-S02:independent-cell-sampling",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/2/#independent-cell-sampling"
+                },
+                {
+                  "id": "sample-size-and-repetitions",
+                  "title": "样本量与重复次数",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P05-C01-S02:sample-size-and-repetitions",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/2/#sample-size-and-repetitions",
+                  "explore_url": "/chapters/05-01-从重复实验建立概率/explore/?concept=P05-C01-S02%3Asample-size-and-repetitions"
+                },
+                {
+                  "id": "empirical-quantiles-of-frequencies",
+                  "title": "经验分位数与频率的散布",
+                  "question_ids": [
+                    "p05-repeat-band"
+                  ],
+                  "explore": false,
+                  "key": "P05-C01-S02:empirical-quantiles-of-frequencies",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/2/#empirical-quantiles-of-frequencies"
+                },
+                {
+                  "id": "group-mean-and-pooled-frequency",
+                  "title": "组平均与合并频率",
+                  "question_ids": [
+                    "p05-frequencies"
+                  ],
+                  "explore": false,
+                  "key": "P05-C01-S02:group-mean-and-pooled-frequency",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/2/#group-mean-and-pooled-frequency"
+                },
+                {
+                  "id": "random-seeds-and-replayed-samples",
+                  "title": "随机种子与实验复现",
+                  "question_ids": [
+                    "p05-seed-repeats"
+                  ],
+                  "explore": false,
+                  "key": "P05-C01-S02:random-seeds-and-replayed-samples",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/2/#random-seeds-and-replayed-samples"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C01-S02:references",
+                  "url": "/chapters/05-01-从重复实验建立概率/read/2/#references"
+                }
+              ],
+              "url": "/chapters/05-01-从重复实验建立概率/read/2/"
             }
           ],
           "visualization": "web/probability/index.html"
@@ -6199,127 +6345,368 @@
               "id": "P05-C02-S01",
               "chapter_id": "5.2",
               "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/01-用期望与方差描述随机量.ipynb",
-              "title": "用期望与方差描述随机量",
+              "title": "期望、方差与独立平均",
               "outcome": "用两种释放量手算期望和方差，再解释独立平均、样本分母及高斯误差。",
               "number": "5.2.1",
               "visualization": "web/probability/index.html",
+              "reading": "lessons/05-随机性与信息/02-期望、方差、协方差与噪声/01-用期望与方差描述随机量.md",
               "questions": [
                 {
                   "id": "p05-moments",
                   "slug": "p05-moments",
                   "title": "从概率表计算位置与散布",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#variance-standard-deviation-and-units",
+                  "concept_title": "方差、标准差与单位",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-moments"
                 },
                 {
                   "id": "p05-variance-units",
                   "slug": "p05-variance-units",
                   "title": "换单位后哪些量会改变",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#variance-standard-deviation-and-units",
+                  "concept_title": "方差、标准差与单位",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-units"
                 },
                 {
                   "id": "p05-gaussian-domain",
                   "slug": "p05-gaussian-domain",
                   "title": "解释一次负测量误差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#gaussian-density-and-moments",
+                  "concept_title": "高斯误差的密度与矩",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-gaussian-domain"
                 },
                 {
                   "id": "p05-sample-denominator",
                   "slug": "p05-sample-denominator",
                   "title": "两个方差分母的区别",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#sample-variance-denominators",
+                  "concept_title": "样本方差的两个分母",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-sample-denominator"
                 }
               ],
               "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-moments",
               "notebook_url": "/notebook/?id=P05-C02-S01",
-              "url": "/notebook/?id=P05-C02-S01"
+              "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/",
+              "concepts": [
+                {
+                  "id": "expectation-as-weighted-average",
+                  "title": "期望与概率加权平均",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C02-S01:expectation-as-weighted-average",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#expectation-as-weighted-average"
+                },
+                {
+                  "id": "variance-standard-deviation-and-units",
+                  "title": "方差、标准差与单位",
+                  "question_ids": [
+                    "p05-moments",
+                    "p05-variance-units"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S01:variance-standard-deviation-and-units",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#variance-standard-deviation-and-units"
+                },
+                {
+                  "id": "variance-of-independent-averages",
+                  "title": "独立平均的方差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C02-S01:variance-of-independent-averages",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#variance-of-independent-averages"
+                },
+                {
+                  "id": "sample-variance-denominators",
+                  "title": "样本方差的两个分母",
+                  "question_ids": [
+                    "p05-sample-denominator"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S01:sample-variance-denominators",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#sample-variance-denominators"
+                },
+                {
+                  "id": "gaussian-density-and-moments",
+                  "title": "高斯误差的密度与矩",
+                  "question_ids": [
+                    "p05-gaussian-domain"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S01:gaussian-density-and-moments",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#gaussian-density-and-moments"
+                },
+                {
+                  "id": "two-levels-of-averaging",
+                  "title": "两层平均与重复实验",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C02-S01:two-levels-of-averaging",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#two-levels-of-averaging"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C02-S01:references",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/#references"
+                }
+              ],
+              "url": "/chapters/05-02-期望、方差、协方差与噪声/read/1/"
             },
             {
               "id": "P05-C02-S02",
               "chapter_id": "5.2",
               "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/02-联合变化与协方差.ipynb",
-              "title": "联合变化与协方差",
+              "title": "联合分布、协方差与共享偏移",
               "outcome": "从配对表求边缘与协方差，比较平方关系和共享偏移对独立平均的影响。",
               "number": "5.2.2",
               "visualization": "web/probability/index.html",
+              "reading": "lessons/05-随机性与信息/02-期望、方差、协方差与噪声/02-联合变化与协方差.md",
               "questions": [
                 {
                   "id": "p05-covariance",
                   "slug": "p05-covariance",
                   "title": "配对观察的协方差",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#covariance-of-paired-observations",
+                  "concept_title": "成对数据的协方差",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-covariance"
                 },
                 {
                   "id": "p05-uncorrelated",
                   "slug": "p05-uncorrelated",
                   "title": "协方差为零是否独立",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#covariance-and-nonlinear-dependence",
+                  "concept_title": "协方差与非线性依赖",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-uncorrelated"
                 },
                 {
                   "id": "p05-sum-variance",
                   "slug": "p05-sum-variance",
                   "title": "两个通道相加的波动",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#sum-variance-and-correlation",
+                  "concept_title": "和的方差与相关系数",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-sum-variance"
                 },
                 {
                   "id": "p05-correlation-zero-var",
                   "slug": "p05-correlation-zero-var",
                   "title": "计算恒定通道的相关",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#sum-variance-and-correlation",
+                  "concept_title": "和的方差与相关系数",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-correlation-zero-var"
                 },
                 {
                   "id": "p05-shared-offset",
                   "slug": "p05-shared-offset",
                   "title": "多测几次能消除共同偏移吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#shared-offset-and-averaging-floor",
+                  "concept_title": "共享偏移为何留在平均中",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-shared-offset"
                 }
               ],
               "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-covariance",
               "notebook_url": "/notebook/?id=P05-C02-S02",
-              "url": "/notebook/?id=P05-C02-S02"
+              "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/",
+              "concepts": [
+                {
+                  "id": "joint-and-marginal-distributions",
+                  "title": "联合分布与边缘分布",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C02-S02:joint-and-marginal-distributions",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#joint-and-marginal-distributions"
+                },
+                {
+                  "id": "covariance-and-nonlinear-dependence",
+                  "title": "协方差与非线性依赖",
+                  "question_ids": [
+                    "p05-uncorrelated"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S02:covariance-and-nonlinear-dependence",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#covariance-and-nonlinear-dependence"
+                },
+                {
+                  "id": "covariance-of-paired-observations",
+                  "title": "成对数据的协方差",
+                  "question_ids": [
+                    "p05-covariance"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S02:covariance-of-paired-observations",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#covariance-of-paired-observations"
+                },
+                {
+                  "id": "sum-variance-and-correlation",
+                  "title": "和的方差与相关系数",
+                  "question_ids": [
+                    "p05-sum-variance",
+                    "p05-correlation-zero-var"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S02:sum-variance-and-correlation",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#sum-variance-and-correlation"
+                },
+                {
+                  "id": "shared-offset-and-averaging-floor",
+                  "title": "共享偏移为何留在平均中",
+                  "question_ids": [
+                    "p05-shared-offset"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S02:shared-offset-and-averaging-floor",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#shared-offset-and-averaging-floor"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C02-S02:references",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/#references"
+                }
+              ],
+              "url": "/chapters/05-02-期望、方差、协方差与噪声/read/2/"
             },
             {
               "id": "P05-C02-S03",
               "chapter_id": "5.2",
               "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/03-过程测量与个体差异.ipynb",
-              "title": "过程测量与个体差异",
+              "title": "过程噪声、测量噪声与个体差异",
               "outcome": "把扰动放进状态与读数方程，推导两种方差，再解释固定个体差异和路径分位带。",
               "number": "5.2.3",
               "visualization": "web/probability/index.html",
+              "reading": "lessons/05-随机性与信息/02-期望、方差、协方差与噪声/03-过程测量与个体差异.md",
               "questions": [
                 {
                   "id": "p05-variance-path",
                   "slug": "p05-variance-path",
                   "title": "过程扰动怎样逐步积累",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#state-variance-recursion",
+                  "concept_title": "方差递推与前两步手算",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-path"
                 },
                 {
                   "id": "p05-noise-location",
                   "slug": "p05-noise-location",
                   "title": "哪一种噪声会进入未来状态",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#process-and-measurement-noise",
+                  "concept_title": "过程噪声与测量噪声",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-noise-location"
                 },
                 {
                   "id": "p05-stationary-variance",
                   "slug": "p05-stationary-variance",
                   "title": "方差极限的条件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#geometric-sum-and-long-run-variance",
+                  "concept_title": "几何和与长期方差",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-stationary-variance"
                 },
                 {
                   "id": "p05-individual-fixed",
                   "slug": "p05-individual-fixed",
                   "title": "解释两群轨迹差异",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#fixed-individual-parameters",
+                  "concept_title": "固定个体参数与逐步扰动",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-individual-fixed"
                 },
                 {
                   "id": "p05-quantiles",
                   "slug": "p05-quantiles",
                   "title": "解释逐时刻分位带",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#paths-and-pointwise-quantile-bands",
+                  "concept_title": "单条路径、逐时刻分位带与群体方差",
+                  "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-quantiles"
                 }
               ],
               "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-path",
               "notebook_url": "/notebook/?id=P05-C02-S03",
-              "url": "/notebook/?id=P05-C02-S03"
+              "reading_url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/",
+              "concepts": [
+                {
+                  "id": "process-and-measurement-noise",
+                  "title": "过程噪声与测量噪声",
+                  "question_ids": [
+                    "p05-noise-location"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S03:process-and-measurement-noise",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#process-and-measurement-noise"
+                },
+                {
+                  "id": "zero-mean-noises-and-state-mean",
+                  "title": "零均值扰动与状态均值",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C02-S03:zero-mean-noises-and-state-mean",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#zero-mean-noises-and-state-mean"
+                },
+                {
+                  "id": "state-variance-recursion",
+                  "title": "方差递推与前两步手算",
+                  "question_ids": [
+                    "p05-variance-path"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S03:state-variance-recursion",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#state-variance-recursion"
+                },
+                {
+                  "id": "geometric-sum-and-long-run-variance",
+                  "title": "几何和与长期方差",
+                  "question_ids": [
+                    "p05-stationary-variance"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S03:geometric-sum-and-long-run-variance",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#geometric-sum-and-long-run-variance"
+                },
+                {
+                  "id": "fixed-individual-parameters",
+                  "title": "固定个体参数与逐步扰动",
+                  "question_ids": [
+                    "p05-individual-fixed"
+                  ],
+                  "explore": false,
+                  "key": "P05-C02-S03:fixed-individual-parameters",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#fixed-individual-parameters"
+                },
+                {
+                  "id": "paths-and-pointwise-quantile-bands",
+                  "title": "单条路径、逐时刻分位带与群体方差",
+                  "question_ids": [
+                    "p05-quantiles"
+                  ],
+                  "explore": true,
+                  "key": "P05-C02-S03:paths-and-pointwise-quantile-bands",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#paths-and-pointwise-quantile-bands",
+                  "explore_url": "/chapters/05-02-期望、方差、协方差与噪声/explore/?concept=P05-C02-S03%3Apaths-and-pointwise-quantile-bands"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C02-S03:references",
+                  "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/#references"
+                }
+              ],
+              "url": "/chapters/05-02-期望、方差、协方差与噪声/read/3/"
             }
           ],
           "visualization": "web/probability/index.html"
@@ -6343,83 +6730,240 @@
               "id": "P05-C03-S01",
               "chapter_id": "5.3",
               "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.ipynb",
-              "title": "由条件概率推导贝叶斯更新",
+              "title": "条件概率、贝叶斯公式与条件期望",
               "outcome": "从标记的两种来源计算后验，再用联合表手算已知测量方式后的条件平均。",
               "number": "5.3.1",
               "visualization": "web/probability/index.html",
+              "reading": "lessons/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.md",
               "questions": [
                 {
                   "id": "p05-bayes",
                   "slug": "p05-bayes",
                   "title": "按新观测更新细胞状态概率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/#bayes-posterior",
+                  "concept_title": "贝叶斯公式与后验概率",
+                  "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes"
                 },
                 {
                   "id": "p05-base-rate",
                   "slug": "p05-base-rate",
                   "title": "似然高为何后验仍未到九成",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/#conditional-probability",
+                  "concept_title": "条件概率与样本范围",
+                  "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-base-rate"
                 },
                 {
                   "id": "p05-duplicate-observation",
                   "slug": "p05-duplicate-observation",
                   "title": "处理被复制的读数",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#independent-information",
+                  "concept_title": "独立信息与复制记录",
+                  "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-duplicate-observation"
                 },
                 {
                   "id": "p05-conditioning",
                   "slug": "p05-conditioning",
                   "title": "联合表怎样变成条件表",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/#conditional-expectation",
+                  "concept_title": "条件分布与条件期望",
+                  "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-conditioning"
                 }
               ],
               "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes",
               "notebook_url": "/notebook/?id=P05-C03-S01",
-              "url": "/notebook/?id=P05-C03-S01"
+              "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/",
+              "concepts": [
+                {
+                  "id": "conditional-probability",
+                  "title": "条件概率与样本范围",
+                  "question_ids": [
+                    "p05-base-rate"
+                  ],
+                  "explore": false,
+                  "key": "P05-C03-S01:conditional-probability",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/#conditional-probability"
+                },
+                {
+                  "id": "bayes-posterior",
+                  "title": "贝叶斯公式与后验概率",
+                  "question_ids": [
+                    "p05-bayes"
+                  ],
+                  "explore": false,
+                  "key": "P05-C03-S01:bayes-posterior",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/#bayes-posterior"
+                },
+                {
+                  "id": "base-rate-and-new-markers",
+                  "title": "基础比例与连续标记更新",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P05-C03-S01:base-rate-and-new-markers",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/#base-rate-and-new-markers",
+                  "explore_url": "/chapters/05-03-条件概率与贝叶斯更新/explore/?concept=P05-C03-S01%3Abase-rate-and-new-markers"
+                },
+                {
+                  "id": "conditional-expectation",
+                  "title": "条件分布与条件期望",
+                  "question_ids": [
+                    "p05-conditioning"
+                  ],
+                  "explore": false,
+                  "key": "P05-C03-S01:conditional-expectation",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/#conditional-expectation"
+                },
+                {
+                  "id": "total-expectation",
+                  "title": "条件平均与总体平均",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C03-S01:total-expectation",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/#total-expectation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C03-S01:references",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/#references"
+                }
+              ],
+              "url": "/chapters/05-03-条件概率与贝叶斯更新/read/1/"
             },
             {
               "id": "P05-C03-S02",
               "chapter_id": "5.3",
               "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/02-固定未知量的高斯更新.ipynb",
-              "title": "固定未知量的高斯更新",
+              "title": "高斯后验、精度与重复测量",
               "outcome": "对先验与似然的平方项配方，推导均值、方差和精度更新，比较剩余先验差异。",
               "number": "5.3.2",
               "visualization": "web/probability/index.html",
+              "reading": "lessons/05-随机性与信息/03-条件概率与贝叶斯更新/02-固定未知量的高斯更新.md",
               "questions": [
                 {
                   "id": "p05-normal-update",
                   "slug": "p05-normal-update",
                   "title": "更新固定偏差的均值与方差",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#sequential-and-batch-update",
+                  "concept_title": "顺序更新与批量更新",
+                  "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-normal-update"
                 },
                 {
                   "id": "p05-prior-sensitivity",
                   "slug": "p05-prior-sensitivity",
                   "title": "有限观测后还剩多少先验差异",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#prior-sensitivity-and-credible-interval",
+                  "concept_title": "先验差异与可信区间",
+                  "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-prior-sensitivity"
                 },
                 {
                   "id": "p05-precision",
                   "slug": "p05-precision",
                   "title": "比较两种观测误差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#precision-and-gain",
+                  "concept_title": "新读数权重与精度相加",
+                  "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-precision"
                 },
                 {
                   "id": "p05-fixed-quantity",
                   "slug": "p05-fixed-quantity",
                   "title": "连续更新固定未知量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#fixed-offset-observation",
+                  "concept_title": "固定未知偏差与测量模型",
+                  "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-fixed-quantity"
                 },
                 {
                   "id": "p05-order",
                   "slug": "p05-order",
                   "title": "重排独立测量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#sequential-and-batch-update",
+                  "concept_title": "顺序更新与批量更新",
+                  "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-order"
                 }
               ],
               "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-normal-update",
               "notebook_url": "/notebook/?id=P05-C03-S02",
-              "url": "/notebook/?id=P05-C03-S02"
+              "reading_url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/",
+              "concepts": [
+                {
+                  "id": "fixed-offset-observation",
+                  "title": "固定未知偏差与测量模型",
+                  "question_ids": [
+                    "p05-fixed-quantity"
+                  ],
+                  "explore": false,
+                  "key": "P05-C03-S02:fixed-offset-observation",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#fixed-offset-observation"
+                },
+                {
+                  "id": "gaussian-completing-square",
+                  "title": "高斯密度的平方配方",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C03-S02:gaussian-completing-square",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#gaussian-completing-square"
+                },
+                {
+                  "id": "precision-and-gain",
+                  "title": "新读数权重与精度相加",
+                  "question_ids": [
+                    "p05-precision"
+                  ],
+                  "explore": false,
+                  "key": "P05-C03-S02:precision-and-gain",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#precision-and-gain"
+                },
+                {
+                  "id": "sequential-and-batch-update",
+                  "title": "顺序更新与批量更新",
+                  "question_ids": [
+                    "p05-normal-update",
+                    "p05-order"
+                  ],
+                  "explore": false,
+                  "key": "P05-C03-S02:sequential-and-batch-update",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#sequential-and-batch-update"
+                },
+                {
+                  "id": "independent-information",
+                  "title": "独立信息与复制记录",
+                  "question_ids": [
+                    "p05-duplicate-observation"
+                  ],
+                  "explore": false,
+                  "key": "P05-C03-S02:independent-information",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#independent-information"
+                },
+                {
+                  "id": "prior-sensitivity-and-credible-interval",
+                  "title": "先验差异与可信区间",
+                  "question_ids": [
+                    "p05-prior-sensitivity"
+                  ],
+                  "explore": false,
+                  "key": "P05-C03-S02:prior-sensitivity-and-credible-interval",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#prior-sensitivity-and-credible-interval"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C03-S02:references",
+                  "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/#references"
+                }
+              ],
+              "url": "/chapters/05-03-条件概率与贝叶斯更新/read/2/"
             }
           ],
           "visualization": "web/probability/index.html"
@@ -6442,121 +6986,358 @@
               "id": "P05-C04-S01",
               "chapter_id": "5.4",
               "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/01-状态路径与概率分布的两种推进.ipynb",
-              "title": "状态路径与概率分布的两种推进",
+              "title": "随机过程、马尔可夫状态与分布传播",
               "outcome": "先按静息、活跃顺序算两步概率，再生成一条路径并比较同刻群体频率。",
               "number": "5.4.1",
               "visualization": "web/probability/index.html",
+              "reading": "lessons/05-随机性与信息/04-随机过程与马尔可夫模型/01-状态路径与概率分布的两种推进.md",
               "questions": [
                 {
                   "id": "p05-propagation",
                   "slug": "p05-propagation",
                   "title": "从细胞切换规则传播概率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#transition-distribution",
+                  "concept_title": "转移矩阵与分布传播",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-propagation"
                 },
                 {
                   "id": "p05-path",
                   "slug": "p05-path",
                   "title": "由指定随机数生成一条路径",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#path-sampling",
+                  "concept_title": "按当前状态抽取下一步",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-path"
                 },
                 {
                   "id": "p05-markov-assumption",
                   "slug": "p05-markov-assumption",
                   "title": "解读时间齐次的状态模型",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#markov-state-sufficiency",
+                  "concept_title": "马尔可夫性质与状态的充分性",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-markov-assumption"
                 },
                 {
                   "id": "p05-path-distribution",
                   "slug": "p05-path-distribution",
                   "title": "解释某时刻的活跃概率",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#transition-distribution",
+                  "concept_title": "转移矩阵与分布传播",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-path-distribution"
                 },
                 {
                   "id": "p05-stochastic-matrix",
                   "slug": "p05-stochastic-matrix",
                   "title": "如何检查一个转移矩阵",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#transition-distribution",
+                  "concept_title": "转移矩阵与分布传播",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-stochastic-matrix"
                 }
               ],
               "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-propagation",
               "notebook_url": "/notebook/?id=P05-C04-S01",
-              "url": "/notebook/?id=P05-C04-S01"
+              "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/",
+              "concepts": [
+                {
+                  "id": "stochastic-process-and-path",
+                  "title": "随机过程与状态路径",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C04-S01:stochastic-process-and-path",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#stochastic-process-and-path"
+                },
+                {
+                  "id": "markov-state-sufficiency",
+                  "title": "马尔可夫性质与状态的充分性",
+                  "question_ids": [
+                    "p05-markov-assumption"
+                  ],
+                  "explore": false,
+                  "key": "P05-C04-S01:markov-state-sufficiency",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#markov-state-sufficiency"
+                },
+                {
+                  "id": "transition-distribution",
+                  "title": "转移矩阵与分布传播",
+                  "question_ids": [
+                    "p05-stochastic-matrix",
+                    "p05-propagation",
+                    "p05-path-distribution"
+                  ],
+                  "explore": true,
+                  "key": "P05-C04-S01:transition-distribution",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#transition-distribution",
+                  "explore_url": "/chapters/05-04-随机过程与马尔可夫模型/explore/?concept=P05-C04-S01%3Atransition-distribution"
+                },
+                {
+                  "id": "path-sampling",
+                  "title": "按当前状态抽取下一步",
+                  "question_ids": [
+                    "p05-path"
+                  ],
+                  "explore": true,
+                  "key": "P05-C04-S01:path-sampling",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#path-sampling",
+                  "explore_url": "/chapters/05-04-随机过程与马尔可夫模型/explore/?concept=P05-C04-S01%3Apath-sampling"
+                },
+                {
+                  "id": "ensemble-frequency",
+                  "title": "群体频率与抽样波动",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C04-S01:ensemble-frequency",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#ensemble-frequency"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C04-S01:references",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/#references"
+                }
+              ],
+              "url": "/chapters/05-04-随机过程与马尔可夫模型/read/1/"
             },
             {
               "id": "P05-C04-S02",
               "chapter_id": "5.4",
               "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.ipynb",
-              "title": "不变分布与长期收敛的条件",
+              "title": "不变分布、周期与长期收敛",
               "outcome": "用必定交替与两个吸收态区分不变和收敛，从两态偏差递推求长期行为。",
               "number": "5.4.2",
               "visualization": "web/probability/index.html",
+              "reading": "lessons/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.md",
               "questions": [
                 {
                   "id": "p05-stationary",
                   "slug": "p05-stationary",
                   "title": "解两态不变分布并保留退化情形",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/#two-state-invariant",
+                  "concept_title": "两态不变分布的求解",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-stationary"
                 },
                 {
                   "id": "p05-periodic",
                   "slug": "p05-periodic",
                   "title": "有不变分布为何仍不收敛",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/#invariant-and-convergent",
+                  "concept_title": "不变分布与收敛的不同问题",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-periodic"
                 },
                 {
                   "id": "p05-ergodic-conditions",
                   "slug": "p05-ergodic-conditions",
                   "title": "有限链的收敛条件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/#finite-chain-conditions",
+                  "concept_title": "有限链的不可约性与非周期性",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-ergodic-conditions"
                 },
                 {
                   "id": "p05-absorbing",
                   "slug": "p05-absorbing",
                   "title": "考察不转移的两状态链",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/#two-state-invariant",
+                  "concept_title": "两态不变分布的求解",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-absorbing"
                 }
               ],
               "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-stationary",
               "notebook_url": "/notebook/?id=P05-C04-S02",
-              "url": "/notebook/?id=P05-C04-S02"
+              "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/",
+              "concepts": [
+                {
+                  "id": "invariant-and-convergent",
+                  "title": "不变分布与收敛的不同问题",
+                  "question_ids": [
+                    "p05-periodic"
+                  ],
+                  "explore": false,
+                  "key": "P05-C04-S02:invariant-and-convergent",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/#invariant-and-convergent"
+                },
+                {
+                  "id": "two-state-invariant",
+                  "title": "两态不变分布的求解",
+                  "question_ids": [
+                    "p05-stationary",
+                    "p05-absorbing"
+                  ],
+                  "explore": false,
+                  "key": "P05-C04-S02:two-state-invariant",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/#two-state-invariant"
+                },
+                {
+                  "id": "two-state-convergence",
+                  "title": "偏离不变分布的递推",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C04-S02:two-state-convergence",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/#two-state-convergence"
+                },
+                {
+                  "id": "alternation-and-absorption",
+                  "title": "交替与吸收的边界情形",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P05-C04-S02:alternation-and-absorption",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/#alternation-and-absorption",
+                  "explore_url": "/chapters/05-04-随机过程与马尔可夫模型/explore/?concept=P05-C04-S02%3Aalternation-and-absorption"
+                },
+                {
+                  "id": "finite-chain-conditions",
+                  "title": "有限链的不可约性与非周期性",
+                  "question_ids": [
+                    "p05-ergodic-conditions"
+                  ],
+                  "explore": false,
+                  "key": "P05-C04-S02:finite-chain-conditions",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/#finite-chain-conditions"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C04-S02:references",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/#references"
+                }
+              ],
+              "url": "/chapters/05-04-随机过程与马尔可夫模型/read/2/"
             },
             {
               "id": "P05-C04-S03",
               "chapter_id": "5.4",
               "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/03-随机游走中的漂移与扩散.ipynb",
-              "title": "随机游走中的漂移与扩散",
+              "title": "随机游走、漂移与扩散",
               "outcome": "累加左右位移，分别求漂移与位置方差，解释零均值时群体仍会扩散。",
               "number": "5.4.3",
               "visualization": "web/probability/index.html",
+              "reading": "lessons/05-随机性与信息/04-随机过程与马尔可夫模型/03-随机游走中的漂移与扩散.md",
               "questions": [
                 {
                   "id": "p05-walk",
                   "slug": "p05-walk",
                   "title": "随机游走的漂移与散布",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#walk-variance",
+                  "concept_title": "一步方差与位置扩散",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk"
                 },
                 {
                   "id": "p05-walk-path",
                   "slug": "p05-walk-path",
                   "title": "均值为零的群体是否静止",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#rms-displacement",
+                  "concept_title": "均方根位移与两步枚举",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk-path"
                 },
                 {
                   "id": "p05-walk-boundary",
                   "slug": "p05-walk-boundary",
                   "title": "给随机游走加上边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#diffusion-scale-and-boundary",
+                  "concept_title": "扩散系数与空间边界",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk-boundary"
                 },
                 {
                   "id": "p05-walk-independence",
                   "slug": "p05-walk-independence",
                   "title": "比较相邻位置的协方差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#position-covariance",
+                  "concept_title": "同一路径的位置相关性",
+                  "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk-independence"
                 }
               ],
               "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk",
               "notebook_url": "/notebook/?id=P05-C04-S03",
-              "url": "/notebook/?id=P05-C04-S03"
+              "reading_url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/",
+              "concepts": [
+                {
+                  "id": "walk-increments-and-position",
+                  "title": "独立位移与位置路径",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C04-S03:walk-increments-and-position",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#walk-increments-and-position"
+                },
+                {
+                  "id": "walk-mean-and-drift",
+                  "title": "一步期望与多步漂移",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C04-S03:walk-mean-and-drift",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#walk-mean-and-drift"
+                },
+                {
+                  "id": "walk-variance",
+                  "title": "一步方差与位置扩散",
+                  "question_ids": [
+                    "p05-walk"
+                  ],
+                  "explore": false,
+                  "key": "P05-C04-S03:walk-variance",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#walk-variance"
+                },
+                {
+                  "id": "rms-displacement",
+                  "title": "均方根位移与两步枚举",
+                  "question_ids": [
+                    "p05-walk-path"
+                  ],
+                  "explore": false,
+                  "key": "P05-C04-S03:rms-displacement",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#rms-displacement"
+                },
+                {
+                  "id": "position-covariance",
+                  "title": "同一路径的位置相关性",
+                  "question_ids": [
+                    "p05-walk-independence"
+                  ],
+                  "explore": false,
+                  "key": "P05-C04-S03:position-covariance",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#position-covariance"
+                },
+                {
+                  "id": "walk-ensemble-experiment",
+                  "title": "漂移、散布与有限路径实验",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C04-S03:walk-ensemble-experiment",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#walk-ensemble-experiment"
+                },
+                {
+                  "id": "diffusion-scale-and-boundary",
+                  "title": "扩散系数与空间边界",
+                  "question_ids": [
+                    "p05-walk-boundary"
+                  ],
+                  "explore": false,
+                  "key": "P05-C04-S03:diffusion-scale-and-boundary",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#diffusion-scale-and-boundary"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C04-S03:references",
+                  "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/#references"
+                }
+              ],
+              "url": "/chapters/05-04-随机过程与马尔可夫模型/read/3/"
             }
           ],
           "visualization": "web/probability/index.html"
@@ -6579,89 +7360,256 @@
               "id": "P05-C05-S01",
               "chapter_id": "5.5",
               "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.ipynb",
-              "title": "熵与互信息的离散定义",
+              "title": "离散熵、条件熵与互信息",
               "outcome": "比较复制、独立和翻转读数，从联合表计算熵与互信息，解释平均减少的不确定性。",
               "number": "5.5.1",
               "visualization": null,
+              "reading": "lessons/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.md",
               "questions": [
                 {
                   "id": "p05-information",
                   "slug": "p05-information",
                   "title": "联合计数包含多少信息",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/1/#binary-flip-channel",
+                  "concept_title": "翻转通道与可恢复的信息",
+                  "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information"
                 },
                 {
                   "id": "p05-entropy",
                   "slug": "p05-entropy",
                   "title": "公平二值状态的熵",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/1/#mutual-information-reduction",
+                  "concept_title": "互信息与平均减少的不确定性",
+                  "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-entropy"
                 },
                 {
                   "id": "p05-conditional-entropy",
                   "slug": "p05-conditional-entropy",
                   "title": "互信息减少的是什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/1/#mutual-information-reduction",
+                  "concept_title": "互信息与平均减少的不确定性",
+                  "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-conditional-entropy"
                 },
                 {
                   "id": "p05-channel-flip",
                   "slug": "p05-channel-flip",
                   "title": "计算翻转通道的信息",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/1/#binary-flip-channel",
+                  "concept_title": "翻转通道与可恢复的信息",
+                  "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-channel-flip"
                 },
                 {
                   "id": "p05-information-scope",
                   "slug": "p05-information-scope",
                   "title": "解释正互信息",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/1/#information-and-measurement-question",
+                  "concept_title": "信息与测量问题",
+                  "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information-scope"
                 }
               ],
               "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information",
               "notebook_url": "/notebook/?id=P05-C05-S01",
-              "url": "/notebook/?id=P05-C05-S01"
+              "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/1/",
+              "concepts": [
+                {
+                  "id": "self-information-logarithm",
+                  "title": "信息量与对数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C05-S01:self-information-logarithm",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/1/#self-information-logarithm"
+                },
+                {
+                  "id": "discrete-entropy",
+                  "title": "离散熵与平均不确定性",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C05-S01:discrete-entropy",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/1/#discrete-entropy"
+                },
+                {
+                  "id": "joint-table-conditional-entropy",
+                  "title": "联合表与条件熵",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C05-S01:joint-table-conditional-entropy",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/1/#joint-table-conditional-entropy"
+                },
+                {
+                  "id": "mutual-information-reduction",
+                  "title": "互信息与平均减少的不确定性",
+                  "question_ids": [
+                    "p05-entropy",
+                    "p05-conditional-entropy"
+                  ],
+                  "explore": false,
+                  "key": "P05-C05-S01:mutual-information-reduction",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/1/#mutual-information-reduction"
+                },
+                {
+                  "id": "binary-flip-channel",
+                  "title": "翻转通道与可恢复的信息",
+                  "question_ids": [
+                    "p05-channel-flip",
+                    "p05-information"
+                  ],
+                  "explore": false,
+                  "key": "P05-C05-S01:binary-flip-channel",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/1/#binary-flip-channel"
+                },
+                {
+                  "id": "information-and-measurement-question",
+                  "title": "信息与测量问题",
+                  "question_ids": [
+                    "p05-information-scope"
+                  ],
+                  "explore": false,
+                  "key": "P05-C05-S01:information-and-measurement-question",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/1/#information-and-measurement-question"
+                },
+                {
+                  "id": "further-reading",
+                  "title": "进一步阅读",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C05-S01:further-reading",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/1/#further-reading"
+                }
+              ],
+              "url": "/chapters/05-05-熵、互信息与测量价值/read/1/"
             },
             {
               "id": "P05-C05-S02",
               "chapter_id": "5.5",
               "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/02-有限样本分箱与信息偏差.ipynb",
-              "title": "有限样本分箱与信息偏差",
+              "title": "分箱、有限样本与信息估计",
               "outcome": "将配对读数编码成箱号，比较同一样本的嵌套分箱与独立重复中的估计偏差。",
               "number": "5.5.2",
               "visualization": null,
+              "reading": "lessons/05-随机性与信息/05-熵、互信息与测量价值/02-有限样本分箱与信息偏差.md",
               "questions": [
                 {
                   "id": "p05-bin-pairs",
                   "slug": "p05-bin-pairs",
                   "title": "按显式边界统计联合频数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/2/#binning-paired-counts",
+                  "concept_title": "分箱与配对频数",
+                  "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-bin-pairs"
                 },
                 {
                   "id": "p05-finite-bias",
                   "slug": "p05-finite-bias",
                   "title": "解释有限样本的互信息",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/2/#estimation-bias-and-repetition",
+                  "concept_title": "估计偏差与重复波动",
+                  "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-finite-bias"
                 },
                 {
                   "id": "p05-coarsening",
                   "slug": "p05-coarsening",
                   "title": "同一张表合并箱会怎样",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/2/#nested-coarsening-information",
+                  "concept_title": "嵌套合箱与信息损失",
+                  "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-coarsening"
                 },
                 {
                   "id": "p05-binning-units",
                   "slug": "p05-binning-units",
                   "title": "解释分箱后的熵",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/2/#binning-paired-counts",
+                  "concept_title": "分箱与配对频数",
+                  "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-binning-units"
                 },
                 {
                   "id": "p05-comparison-budget",
                   "slug": "p05-comparison-budget",
                   "title": "比较两个测量通道",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/2/#correlated-readings-channel-comparison",
+                  "concept_title": "相关读数与通道比较",
+                  "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-comparison-budget"
                 }
               ],
               "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-bin-pairs",
               "notebook_url": "/notebook/?id=P05-C05-S02",
-              "url": "/notebook/?id=P05-C05-S02"
+              "reading_url": "/chapters/05-05-熵、互信息与测量价值/read/2/",
+              "concepts": [
+                {
+                  "id": "binning-paired-counts",
+                  "title": "分箱与配对频数",
+                  "question_ids": [
+                    "p05-bin-pairs",
+                    "p05-binning-units"
+                  ],
+                  "explore": false,
+                  "key": "P05-C05-S02:binning-paired-counts",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/2/#binning-paired-counts"
+                },
+                {
+                  "id": "plugin-estimator-finite-table",
+                  "title": "插件估计与有限样本表",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C05-S02:plugin-estimator-finite-table",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/2/#plugin-estimator-finite-table"
+                },
+                {
+                  "id": "estimation-bias-and-repetition",
+                  "title": "估计偏差与重复波动",
+                  "question_ids": [
+                    "p05-finite-bias"
+                  ],
+                  "explore": false,
+                  "key": "P05-C05-S02:estimation-bias-and-repetition",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/2/#estimation-bias-and-repetition"
+                },
+                {
+                  "id": "nested-coarsening-information",
+                  "title": "嵌套合箱与信息损失",
+                  "question_ids": [
+                    "p05-coarsening"
+                  ],
+                  "explore": false,
+                  "key": "P05-C05-S02:nested-coarsening-information",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/2/#nested-coarsening-information"
+                },
+                {
+                  "id": "independent-channel-binning-experiment",
+                  "title": "独立通道的分箱实验",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C05-S02:independent-channel-binning-experiment",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/2/#independent-channel-binning-experiment"
+                },
+                {
+                  "id": "correlated-readings-channel-comparison",
+                  "title": "相关读数与通道比较",
+                  "question_ids": [
+                    "p05-comparison-budget"
+                  ],
+                  "explore": false,
+                  "key": "P05-C05-S02:correlated-readings-channel-comparison",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/2/#correlated-readings-channel-comparison"
+                },
+                {
+                  "id": "further-reading",
+                  "title": "进一步阅读",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P05-C05-S02:further-reading",
+                  "url": "/chapters/05-05-熵、互信息与测量价值/read/2/#further-reading"
+                }
+              ],
+              "url": "/chapters/05-05-熵、互信息与测量价值/read/2/"
             }
           ],
           "visualization": null
@@ -6670,7 +7618,7 @@
       "assessment": {
         "id": "5.summary",
         "assessment": true,
-        "title": "噪声概率更新与信息的综合实验",
+        "title": "重复测量、概率更新与信息",
         "url": "/parts/05-随机性与信息/综合练习/",
         "goals": "分别汇总实验组均值、推进噪声方差、更新标签概率和计算分箱信息量。",
         "prerequisites": "本篇的独立重复、期望与方差、条件更新、转移矩阵和离散信息量。",
@@ -6685,7 +7633,7 @@
             "id": "P05-SUMMARY",
             "chapter_id": "5.summary",
             "path": "notebooks/05-随机性与信息/06-篇末综合/01-噪声概率更新与信息的综合实验.ipynb",
-            "title": "噪声概率更新与信息的综合实验",
+            "title": "重复测量、概率更新与信息",
             "outcome": "分别汇总实验组均值、推进噪声方差、更新标签概率和计算分箱信息量。",
             "number": "篇末综合",
             "visualization": null,
@@ -6699,59 +7647,165 @@
                 "对同一批读数比较粗细编码，并用独立重复参照解释信息估计"
               ]
             },
+            "reading": "lessons/05-随机性与信息/06-篇末综合/01-噪声概率更新与信息的综合实验.md",
             "questions": [
               {
                 "id": "p05-cap-noise",
                 "slug": "p05-cap-noise",
                 "title": "噪声进入何处",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/05-随机性与信息/综合练习/read/1/#noise-location-and-meaning",
+                "concept_title": "噪声进入状态与读数的位置",
+                "practice_url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-noise"
               },
               {
                 "id": "p05-cap-repeat",
                 "slug": "p05-cap-repeat",
                 "title": "设计噪声机制对照",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/05-随机性与信息/综合练习/read/1/#group-means-repeat-variation",
+                "concept_title": "实验组均值与重复间波动",
+                "practice_url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-repeat"
               },
               {
                 "id": "p05-cap-summary",
                 "slug": "p05-cap-summary",
                 "title": "固定样本的重复间波动",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/05-随机性与信息/综合练习/read/1/#group-means-repeat-variation",
+                "concept_title": "实验组均值与重复间波动",
+                "practice_url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-summary"
               },
               {
                 "id": "p05-cap-bayes",
                 "slug": "p05-cap-bayes",
                 "title": "由新证据更新概率",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/05-随机性与信息/综合练习/read/1/#observation-posterior-update",
+                "concept_title": "观测后的概率更新",
+                "practice_url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-bayes"
               },
               {
                 "id": "p05-cap-propagation",
                 "slug": "p05-cap-propagation",
                 "title": "概率分布的多步传播",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/05-随机性与信息/综合练习/read/1/#time-evolution-state-distribution",
+                "concept_title": "时间推进与标签分布",
+                "practice_url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-propagation"
               },
               {
                 "id": "p05-cap-variance",
                 "slug": "p05-cap-variance",
                 "title": "两种噪声的方差贡献",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/05-随机性与信息/综合练习/read/1/#process-measurement-variance-path",
+                "concept_title": "过程与测量的方差递推",
+                "practice_url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-variance"
               },
               {
                 "id": "p05-cap-bins",
                 "slug": "p05-cap-bins",
                 "title": "更换分箱后的信息量",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/05-随机性与信息/综合练习/read/1/#encoding-and-channel-information",
+                "concept_title": "编码变化与通道信息",
+                "practice_url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-bins"
               },
               {
                 "id": "p05-cap-scope",
                 "slug": "p05-cap-scope",
                 "title": "解释通道比较结果",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/05-随机性与信息/综合练习/read/1/#encoding-and-channel-information",
+                "concept_title": "编码变化与通道信息",
+                "practice_url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-scope"
               }
             ],
             "practice_url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-noise",
             "notebook_url": "/notebook/?id=P05-SUMMARY",
-            "url": "/notebook/?id=P05-SUMMARY"
+            "reading_url": "/parts/05-随机性与信息/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "noise-location-and-meaning",
+                "title": "噪声进入状态与读数的位置",
+                "question_ids": [
+                  "p05-cap-noise"
+                ],
+                "explore": false,
+                "key": "P05-SUMMARY:noise-location-and-meaning",
+                "url": "/parts/05-随机性与信息/综合练习/read/1/#noise-location-and-meaning"
+              },
+              {
+                "id": "group-means-repeat-variation",
+                "title": "实验组均值与重复间波动",
+                "question_ids": [
+                  "p05-cap-summary",
+                  "p05-cap-repeat"
+                ],
+                "explore": false,
+                "key": "P05-SUMMARY:group-means-repeat-variation",
+                "url": "/parts/05-随机性与信息/综合练习/read/1/#group-means-repeat-variation"
+              },
+              {
+                "id": "process-measurement-variance-path",
+                "title": "过程与测量的方差递推",
+                "question_ids": [
+                  "p05-cap-variance"
+                ],
+                "explore": false,
+                "key": "P05-SUMMARY:process-measurement-variance-path",
+                "url": "/parts/05-随机性与信息/综合练习/read/1/#process-measurement-variance-path"
+              },
+              {
+                "id": "observation-posterior-update",
+                "title": "观测后的概率更新",
+                "question_ids": [
+                  "p05-cap-bayes"
+                ],
+                "explore": false,
+                "key": "P05-SUMMARY:observation-posterior-update",
+                "url": "/parts/05-随机性与信息/综合练习/read/1/#observation-posterior-update"
+              },
+              {
+                "id": "time-evolution-state-distribution",
+                "title": "时间推进与标签分布",
+                "question_ids": [
+                  "p05-cap-propagation"
+                ],
+                "explore": false,
+                "key": "P05-SUMMARY:time-evolution-state-distribution",
+                "url": "/parts/05-随机性与信息/综合练习/read/1/#time-evolution-state-distribution"
+              },
+              {
+                "id": "encoding-and-channel-information",
+                "title": "编码变化与通道信息",
+                "question_ids": [
+                  "p05-cap-bins",
+                  "p05-cap-scope"
+                ],
+                "explore": false,
+                "key": "P05-SUMMARY:encoding-and-channel-information",
+                "url": "/parts/05-随机性与信息/综合练习/read/1/#encoding-and-channel-information"
+              },
+              {
+                "id": "probability-to-measurement-modeling",
+                "title": "从概率模型走向测量建模",
+                "question_ids": [],
+                "explore": false,
+                "key": "P05-SUMMARY:probability-to-measurement-modeling",
+                "url": "/parts/05-随机性与信息/综合练习/read/1/#probability-to-measurement-modeling"
+              },
+              {
+                "id": "further-reading",
+                "title": "进一步阅读",
+                "question_ids": [],
+                "explore": false,
+                "key": "P05-SUMMARY:further-reading",
+                "url": "/parts/05-随机性与信息/综合练习/read/1/#further-reading"
+              }
+            ],
+            "url": "/parts/05-随机性与信息/综合练习/read/1/"
           }
         ],
         "available": true,

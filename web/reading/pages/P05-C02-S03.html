@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.2.3 过程噪声、测量噪声与个体差异 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P05-C02-S03">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P05-C02-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-path">本节练习 · 5 题</a><a class="button" href="/chapters/05-02-期望、方差、协方差与噪声/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>5.2.3 过程噪声、测量噪声与个体差异</h1>
+<p>学完本节，你应能把扰动放在状态或观测的正确位置，手算状态方差的前两步，并从路径和群体分布区分逐步扰动与固定个体差异。</p>
+<p><strong>先修知识</strong>：期望、方差与协方差，几何和，以及状态与观测的区别。</p>
+<h2 id="process-and-measurement-noise">过程噪声与测量噪声</h2>
+<p>两次记录的曲线不同，差异可能来自哪里？一次外界扰动改变了系统的下一状态，另一种误差只是让仪器读得偏高。即使没有随机扰动，两个个体的恢复速度不同，也会给出不同曲线。要解释差异，应先把它放进对应的方程。</p>
+<p>沿用偏离参考水平的状态 $x_n$，下标 $n$ 表示第 $n$ 个观察周期；偏差可正可负，单位为 U。设</p>
+<p>$$\boxed{x_{n+1}=ax_n+w_n,\qquad y_n=x_n+v_n.}$$</p>
+<p>$a$ 是每周期保留偏差的倍数，没有单位。$w_n$ 是这一周期额外作用于状态的随机扰动，称为<strong>过程噪声（process noise）</strong>；$v_n$ 是记录状态时加入的误差，称为<strong>测量噪声（measurement noise）</strong>。$y_n$ 表示时刻 $n$ 的观测，$w_n,v_n$ 与 $x_n$ 都以 U 计。</p>
+<p>取 $a=0.8$、$x_n=1\,\mathrm U$，若本周期 $w_n=0.1\,\mathrm U$，下一状态为 $0.9\,\mathrm U$；这个变化还会通过下一次更新继续影响后续状态。相反，若当前测量误差为 $v_n=0.1\,\mathrm U$，当前仪器读出 $1.1\,\mathrm U$，状态仍是 $1\,\mathrm U$。在这个没有观测反馈的模型中，读数本身不进入状态更新。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-noise-location">哪一种噪声会进入未来状态</a></li></ul></nav>
+
+<h2 id="zero-mean-noises-and-state-mean">零均值扰动与状态均值</h2>
+<p>规定 $w_n\sim N(0,Q)$、$v_n\sim N(0,R)$，其中 $Q,R$ 为方差，单位为 U²；全部过程与测量噪声在各时刻相互独立，并与初态独立。于是新过程噪声 $w_n$ 与由先前扰动形成的当前状态 $x_n$ 独立，测量噪声也与被测状态独立。</p>
+<p>这些条件使每项方差贡献可以分开计算。先求均值，记 $\mu_n=\mathbb E[x_n]$：</p>
+<p>$$\mu_{n+1}=a\mu_n+\mathbb E[w_n]=a\mu_n.$$</p>
+<p>所以 $\mu_n=a^n\mu_0$，读数的期望同样为 $\mu_n$。本节让所有路径从 $x_0=0$ 开始，因此各时刻的理论均值都为零。一条具体路径仍会上下起伏，零均值描述的是同一时刻反复实验的平均位置。</p>
+<h2 id="state-variance-recursion">方差递推与前两步手算</h2>
+<p>记 $P_n=\operatorname{Var}(x_n)$。先用上一节的和的方差公式，不省略共同变化项：</p>
+<p>$$\begin{aligned}
+P_{n+1}
+&amp;=\operatorname{Var}(ax_n+w_n)\\
+&amp;=a^2P_n+Q+2a\operatorname{Cov}(x_n,w_n).
+\end{aligned}$$</p>
+<p>当前模型中 $x_n,w_n$ 独立，协方差为零，因此</p>
+<p>$$\boxed{P_{n+1}=a^2P_n+Q.}$$</p>
+<p>$a$ 缩放状态偏差，因而以 $a^2$ 缩放旧方差；新扰动再贡献 $Q$。取 $a=0.8$、$Q=0.04\,\mathrm{U^2}$，所有路径同从零出发，故 $P_0=0$。前两步为</p>
+<p>$$P_1=0.8^2\times0+0.04=0.04\,\mathrm{U^2},$$</p>
+<p>$$P_2=0.8^2\times0.04+0.04
+=0.0256+0.04=0.0656\,\mathrm{U^2}.$$</p>
+<p>这里 $P_2$ 的第一项来自上一步扰动保留下来的差异，第二项来自这一步新加入的差异。若用列表保存结果，应依时刻 $0,1,2,\ldots$ 排列，开头为 $[0,0.04,0.0656]$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-path">过程扰动怎样逐步积累</a></li></ul></nav>
+
+<p>观测方差则是</p>
+<p>$$\operatorname{Var}(y_n)=P_n+R.$$</p>
+<p>取 $R=0.09\,\mathrm{U^2}$，相应的状态与观测方差为</p>
+<table>
+<thead>
+<tr>
+  <th>周期 $n$</th>
+  <th>状态方差 $P_n$ / U²</th>
+  <th>观测方差 $P_n+R$ / U²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>0</td>
+  <td>0.09</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>0.04</td>
+  <td>0.13</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>0.0656</td>
+  <td>0.1556</td>
+</tr>
+</tbody>
+</table>
+<p>初态完全相同，仪器读数却从时刻 0 起就有散布。$R$ 每次加在观测方差中，下一步状态方差仍从 $P_n$ 推进。</p>
+<h2 id="geometric-sum-and-long-run-variance">几何和与长期方差</h2>
+<p>继续展开递推，能追踪每次扰动到当前时刻还剩多少贡献：</p>
+<p>$$\begin{aligned}
+P_1&amp;=a^2P_0+Q,\\
+P_2&amp;=a^4P_0+Q(1+a^2),\\
+P_3&amp;=a^6P_0+Q(1+a^2+a^4).
+\end{aligned}$$</p>
+<p>一般式为</p>
+<p>$$P_n=a^{2n}P_0+Q\sum_{j=0}^{n-1}a^{2j}.$$</p>
+<p>当 $|a|&lt;1$，较早扰动的贡献逐渐缩小。利用几何和，</p>
+<p>$$P_n=a^{2n}P_0+Q\frac{1-a^{2n}}{1-a^2}
+\longrightarrow P_\infty=\frac{Q}{1-a^2}.$$</p>
+<p>本例长期状态方差为 $0.04/(1-0.64)=1/9\,\mathrm{U^2}$，长期观测方差再加 $R$。持续加入的新扰动与旧差异的衰减达到平衡，均值虽然为零，群体仍保持一定散布。</p>
+<p>判断方差是否衰减要看 $|a|$。若 $a=-0.8$，一条路径中的旧偏差会换号，但其方差贡献仍乘以 0.64。若 $|a|=1$ 且 $Q&gt;0$，$P_n=P_0+nQ$，持续累积；若 $|a|&gt;1$，已有的非零方差或新扰动会被放大。$P_0=Q=0$ 时，方差则始终为零。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-stationary-variance">方差极限的条件</a></li></ul></nav>
+
+<h2 id="fixed-individual-parameters">固定个体参数与逐步扰动</h2>
+<p>不同个体还可能有不同的恢复倍数。用 $a_i$ 表示第 $i$ 个体的固定参数，先关掉两类噪声，让它从 $x_{i,0}=1\,\mathrm U$ 出发：</p>
+<p>$$x_{i,n+1}=a_ix_{i,n},\qquad x_{i,n}=a_i^n\,\mathrm U.$$</p>
+<p>若两个个体分别保持 $a_1=0.6$、$a_2=0.9$，经过一个周期的偏差为 $0.6\,\mathrm U$、$0.9\,\mathrm U$；两个周期后为 $0.36\,\mathrm U$、$0.81\,\mathrm U$。每个个体的整条曲线由其固定参数决定。</p>
+<p>这与每步新抽一个 $w_n$ 的机制不同。要研究固定个体差异，应在重复个体之间改变参数，并让同一个体沿用自身参数；要研究过程噪声，则在同一条路径的不同周期继续加入扰动。两类变化可以同时存在，方程中的位置说明各自如何影响结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-individual-fixed">解释两群轨迹差异</a></li></ul></nav>
+
+<h2 id="paths-and-pointwise-quantile-bands">单条路径、逐时刻分位带与群体方差</h2>
+<p>下面的实验从零初态生成 200 条独立路径，每条长 30 个周期。左图画其中一条状态路径及其读数；蓝色阴影则在每个时刻分别将 200 个状态值排序，连接5%和95%分位数。中图用全部路径估计每个时刻的状态与观测方差，和递推公式比较。右图关闭扰动，展示刚才两个固定 $a_i$ 的个体。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P05-C02-S03-9907936a-0.png" alt="过程噪声、测量噪声与个体差异：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图的玫红读数围绕同一条蓝色状态曲线起伏，显示测量误差加在何处。中图两条理论方差曲线相差 $R$，且随持续过程扰动先增大、再接近长期水平。经验曲线来自有限的 200 条路径，因此会在理论曲线附近波动。</p>
+<p>逐时刻分位带描述的是“此刻重新实验，状态落在哪里”。每个时刻都重新排序，带内对应的路径可以不断更换，所以一条路径可以多次进出阴影。这种带适合显示群体状态散布；估计一个固定参数的不确定范围是另一个问题，需要把数据怎样提供参数信息写进模型。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-quantiles">解释逐时刻分位带</a></li></ul></nav>
+
+<p>在探索页先将过程噪声设为零，只保留测量噪声，比较状态与读数；再增加过程噪声，观察跨路径状态方差如何变化。最后只改变测量噪声，核对状态方差和观测方差中究竟哪一项随之改变。</p>
+<p class="concept-explore"><a href="/chapters/05-02-期望、方差、协方差与噪声/explore/?concept=P05-C02-S03%3Apaths-and-pointwise-quantile-bands">可视化与探索：单条路径、逐时刻分位带与群体方差 →</a></p>
+
+<p>接下来，我们将给定读数，用它更新对一个固定未知量的判断。读数提供的信息如何改变不确定性，要从条件概率开始计算。</p>
+<h2 id="references">参考资料</h2>
+<ul>
+<li><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l07/">MIT 6.041 第 7 讲：多个变量的期望与独立性</a>和<a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l11/">第 11 讲：协方差</a>：方差传播中交叉项的来源。</li>
+<li><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l13/">MIT 6.041 第 13 讲：Bernoulli 过程</a>：将多个时刻的随机量组织成路径的例子。本节的偏差模型使用连续高斯扰动。</li>
+</ul>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/05-02-期望、方差、协方差与噪声/read/2/">← 5.2.2 联合分布、协方差与共享偏移</a><a href="/chapters/05-03-条件概率与贝叶斯更新/read/1/">5.3.1 条件概率、贝叶斯公式与条件期望 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

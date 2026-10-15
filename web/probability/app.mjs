@@ -1,5 +1,6 @@
 import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,el} from '../shared/course-shell.mjs';
+import {explorationReadingReferences} from '../shared/reading-links.mjs';
 import {createPlayback} from '../shared/playback.mjs';
 import {theme} from '../shared/theme.mjs';
 import {frequencyPath,variancePath,noisePath,bayesPath,chainExperiment,alternateSize,alternateNoise,alternatePrior,alternateChain} from './model.mjs';
@@ -8,26 +9,27 @@ const blue=theme.data['1'],pink=theme.data['2'],gray=theme.data.reference;
 const fmt=x=>Number(x.toFixed(5)).toString();
 const svg=(tag,attrs,text)=>{const n=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;};
 let chapter,mode,p={},playback,rows=[],theory=[],extra=[],end=40;
+let initialChain={alpha:.2,beta:.1};
 const markers=[1,1,0,1,0,1,1,0];
 const definitions={
- '5.1':{title:'一批细胞的活跃频率有多稳定',question:'每个标签 1 表示活跃、0 表示静息。保持活跃概率 p 不变，逐个观察标签，看累计频率怎样接近模型概率。',explanation:'每个细胞按概率 p 独立取活跃标签。左图是累计活跃频率，右图分别数出活跃与静息细胞；改变样本量沿用相同随机流的前缀，改变种子才得到另一次演示。'},
- '5.2':{title:'扰动进入状态，还是只进入读数',question:'状态偏差 x 随周期演化，读数 y 还包含测量误差。关闭过程扰动后，分别观察状态路径、读数和两种方差。',explanation:'x 是相对基准的偏差，单位为 U，可以为负。过程扰动 w 加入下一状态，测量误差 v 加入当前读数；本例没有依据读数的反馈。右图的 P[n] 表示状态方差，读数方差另加 R。'},
- '5.3':{title:'相同标记为何得到不同后验',question:'保持八次标记的顺序与误差概率不变，只改变观测前的活跃概率，看每次新标记怎样更新判断。',explanation:'细胞标签在观测期间固定。1 表示出现标记，0 表示未出现；给定标签后各次新标记独立产生。左图为活跃后验概率，右图的两个柱按活跃、静息排列，概率之和为 1。'},
- '5.4':{title:'一个细胞的路径与一群细胞的频率',question:'每周期按当前标签选择下一标签。比较一条路径、200 个细胞的同刻活跃频率与理论概率，再用必定交替的规则检查收敛。',explanation:'状态 0 表示静息，1 表示活跃；矩阵行表示当前状态，列表示下一状态，都按 0、1 排列。行向量按 p_next=pP 推进。左图蓝线是群体频率、玫红虚线是理论活跃概率，右图是其中一个细胞的标签。'}
+ '5.1':{title:'概率与抽样频率',question:'每个标签 1 表示活跃、0 表示静息。保持活跃概率 p 不变，逐个观察标签，看累计频率怎样接近模型概率。',explanation:'每个细胞按概率 p 独立取活跃标签。左图是累计活跃频率，右图分别数出活跃与静息细胞；改变样本量沿用相同随机流的前缀，改变种子才得到另一次演示。'},
+ '5.2':{title:'过程噪声与测量噪声',question:'状态偏差 x 随周期演化，读数 y 还包含测量误差。关闭过程扰动后，分别观察状态路径、读数和两种方差。',explanation:'x 是相对基准的偏差，单位为 U，可以为负。过程扰动 w 加入下一状态，测量误差 v 加入当前读数；本例没有依据读数的反馈。右图的 P[n] 表示状态方差，读数方差另加 R。'},
+ '5.3':{title:'条件概率与后验更新',question:'保持八次标记的顺序与误差概率不变，只改变观测前的活跃概率，看每次新标记怎样更新判断。',explanation:'细胞标签在观测期间固定。1 表示出现标记，0 表示未出现；给定标签后各次新标记独立产生。左图为活跃后验概率，右图的两个柱按活跃、静息排列，概率之和为 1。'},
+ '5.4':{title:'马尔可夫路径与分布传播',question:'每周期按当前标签选择下一标签。比较一条路径、200 个细胞的同刻活跃频率与理论概率，再用必定交替的规则检查收敛。',explanation:'状态 0 表示静息，1 表示活跃；矩阵行表示当前状态，列表示下一状态，都按 0、1 排列。行向量按 p_next=pP 推进。左图蓝线是群体频率、玫红虚线是理论活跃概率，右图是其中一个细胞的标签。'}
 };
 function slider(key,label,min,max,step,value){p[key]=value;const group=el('div',undefined,'slider'),lab=el('label',label),out=el('output',value),input=el('input');Object.assign(input,{id:key,type:'range',min,max,step,value});lab.htmlFor=key;out.id=key+'-value';out.htmlFor=key;input.addEventListener('input',()=>{p[key]=Number(input.value);out.value=input.value;guard(recompute);});group.append(lab,out,input);$('sliders').append(group);}
 function controls(){p={};$('sliders').replaceChildren();
  if(mode==='5.1'){slider('probability','活跃概率 p',0,1,.05,.3);slider('size','细胞数 n',20,200,20,20);}
  if(mode==='5.2'){slider('a','每步偏差倍数 a',-.9,.9,.1,.8);slider('q','过程方差 Q / U²',0,.1,.01,.04);slider('r','测量方差 R / U²',0,.2,.01,.09);}
  if(mode==='5.3'){slider('prior','活跃态先验概率',.05,.95,.05,.2);slider('error','标记翻转概率 ε',.05,.45,.05,.1);}
- if(mode==='5.4'){slider('alpha','静息 → 活跃的概率 α',0,1,.05,.2);slider('beta','活跃 → 静息的概率 β',0,1,.05,.1);slider('active','初始活跃概率',0,1,.05,0);}
+ if(mode==='5.4'){slider('alpha','静息 → 活跃的概率 α',0,1,.05,initialChain.alpha);slider('beta','活跃 → 静息的概率 β',0,1,.05,initialChain.beta);slider('active','初始活跃概率',0,1,.05,0);}
  slider('seed','演示随机种子（整数）',1,99,1,7);
  if(mode==='5.3'){$('seed').disabled=true;$('seed').closest('.slider').hidden=true;}
 }
 function set(values){for(const [k,v] of Object.entries(values)){p[k]=v;$(k).value=v;$(k+'-value').value=v;}guard(recompute);}
 function recompute(){
- if(mode==='5.1'){end=p.size;rows=frequencyPath(p.probability,p.size,p.seed);$('formula').textContent='频率 = 活跃数 / 已观察数；标签由 u < p 决定';$('alternate').textContent=p.size>40?'切换到 20 个细胞':'切换到 200 个细胞';$('preset-note').textContent=`当前 n=${p.size}，p=${fmt(p.probability)}；按钮只改变 n，同种子保留共同的前缀样本。`;$('chart-heading').textContent='累计频率与当前计数';$('chart-note').textContent='从 1 个观察开始，零观察的频率未定义。改变种子得到另一次演示；重复实验的波动范围在 Notebook 中比较。';}
- if(mode==='5.2'){end=40;rows=noisePath(p.a,p.q,p.r,end,p.seed);theory=variancePath(p.a,p.q,0,end);$('formula').textContent='x[n+1]=a x[n]+w[n]；y[n]=x[n]+v[n]；P[n+1]=a²P[n]+Q';$('alternate').textContent=p.q>0?'关闭过程扰动':'恢复过程扰动 Q=0.04';$('preset-note').textContent=`当前 Q=${fmt(p.q)} U²、R=${fmt(p.r)} U²；按钮保留 a、R 与随机种子。`;$('chart-heading').textContent='一条路径与理论方差';$('chart-note').textContent='演示采用零均值均匀扰动，范围分别为 ±√(3Q)、±√(3R)，因此方差为 Q、R。Notebook 使用高斯扰动；分布形状不同，独立性下的方差递推相同。';}
+ if(mode==='5.1'){end=p.size;rows=frequencyPath(p.probability,p.size,p.seed);$('formula').textContent='频率 = 活跃数 / 已观察数；标签由 u < p 决定';$('alternate').textContent=p.size>40?'切换到 20 个细胞':'切换到 200 个细胞';$('preset-note').textContent=`当前 n=${p.size}，p=${fmt(p.probability)}；按钮只改变 n，同种子保留共同的前缀样本。`;$('chart-heading').textContent='累计频率与当前计数';$('chart-note').textContent='从 1 个观察开始，零观察的频率未定义。改变种子得到另一次演示；比较每组细胞数不同的重复实验，可回到频率波动的讲解。';}
+ if(mode==='5.2'){end=40;rows=noisePath(p.a,p.q,p.r,end,p.seed);theory=variancePath(p.a,p.q,0,end);$('formula').textContent='x[n+1]=a x[n]+w[n]；y[n]=x[n]+v[n]；P[n+1]=a²P[n]+Q';$('alternate').textContent=p.q>0?'关闭过程扰动':'恢复过程扰动 Q=0.04';$('preset-note').textContent=`当前 Q=${fmt(p.q)} U²、R=${fmt(p.r)} U²；按钮保留 a、R 与随机种子。`;$('chart-heading').textContent='一条路径与理论方差';$('chart-note').textContent='每周期独立抽取均匀扰动，范围分别为 ±√(3Q)、±√(3R)，因此方差为 Q、R。网页讲授中的高斯实验使用另一种扰动分布；两者的方差都按右图公式递推。';}
  if(mode==='5.3'){end=markers.length;rows=bayesPath(p.prior,p.error,markers);$('formula').textContent='后验 ∝ 先验 × 似然；标记序列：1, 1, 0, 1, 0, 1, 1, 0';$('alternate').textContent=p.prior>.5?'切换到低先验 0.2':'切换到高先验 0.8';$('preset-note').textContent=`当前活跃先验=${fmt(p.prior)}，ε=${fmt(p.error)}；1 表示标记出现，P(1|活跃)=1−ε、P(1|静息)=ε。`;$('chart-heading').textContent='逐次更新与当前后验';$('chart-note').textContent='隐藏标签在这 8 次观测期间固定。每次新标记在给定标签后独立产生，复制已有标记会重复使用同一条证据。';}
  if(mode==='5.4'){end=40;const result=chainExperiment(p.alpha,p.beta,p.active,end,p.seed);theory=result.theory;extra=result.first;rows=result.frequency.map((x,n)=>[n,x]);$('formula').textContent=`P = [[${fmt(1-p.alpha)}, ${fmt(p.alpha)}], [${fmt(p.beta)}, ${fmt(1-p.beta)}]]`;$('alternate').textContent=p.alpha===1&&p.beta===1?'切换回普通切换示例':'切换到交替示例';$('preset-note').textContent=`当前 α=${fmt(p.alpha)}、β=${fmt(p.beta)}；按钮在 (0.2,0.1) 与 (1,1) 间往返，保留起始分布与种子。`;$('chart-heading').textContent='群体分布与单条路径';$('chart-note').textContent='概率列表按静息、活跃排列。α=β=1 时，[0.5,0.5] 一步后仍不变，其他初始分布却逐步交替；α=β=0 时各起点分别保持原分布。群体频率与理论概率的差异来自有限细胞抽样。';}
  $('assumptions').textContent=mode==='5.3'?'标签在观测期间固定，每条新读数更新我们对它的判断。':'固定随机种子可重播同一组结果；改变条件后，比较频率、分布或路径怎样变化。';
@@ -58,7 +60,10 @@ function draw(progress){const i=mode==='5.1'?Math.min(rows.length-1,Math.floor(p
 }
 function failed(error){$('loading-note').hidden=false;$('loading-note').classList.add('error');$('loading-note').textContent=`可视化未能运行：${error.message}。请刷新重试。`;for(const id of ['controls','play','replay','timeline'])$(id).disabled=true;playback?.pause();}
 function guard(fn){try{fn();}catch(error){failed(error);}}
-async function start(){({current:chapter}=await mountShell('explore'));mode=chapter?.id;if(!definitions[mode])throw Error('本章没有此探索页');$('eyebrow').textContent=chapter.id+' 章 · 可视化与探索';for(const id of ['title','question','explanation'])$(id).textContent=definitions[mode][id];controls();recompute();
+async function start(){({current:chapter}=await mountShell('explore'));mode=chapter?.id;if(!definitions[mode])throw Error('本章没有此探索页');$('eyebrow').textContent=chapter.id+' 章 · 可视化与探索';for(const id of ['title','question','explanation'])$(id).textContent=definitions[mode][id];
+ const selected=explorationReadingReferences(chapter,location.search).selected;
+ initialChain=mode==='5.4'&&selected?.lessonId==='P05-C04-S02'?{alpha:1,beta:1}:{alpha:.2,beta:.1};
+ controls();recompute();
  playback=createPlayback({duration:100,speed:8,update:draw,failed,changed:reason=>{$('play').textContent=reason==='playing'?'暂停':reason==='ended'?'再次播放':'播放';$('play-status').textContent=reason==='playing'?'正在播放，观察计数、曲线与读数的同步变化。':reason==='ended'?'已到终点，可重播或改变条件。':'已暂停；改变条件会回到起点。';}});
  $('play').addEventListener('click',()=>playback.running?playback.pause():playback.play());$('replay').addEventListener('click',()=>{playback.seek(0);playback.play();});$('timeline').addEventListener('input',()=>playback.seek(Number($('timeline').value)));
  $('alternate').addEventListener('click',()=>{if(mode==='5.1')set({size:alternateSize(p.size)});if(mode==='5.2')set({q:alternateNoise(p.q)});if(mode==='5.3')set({prior:alternatePrior(p.prior)});if(mode==='5.4')set(alternateChain(p.alpha,p.beta));});$('reset').addEventListener('click',()=>guard(()=>{controls();recompute();}));document.addEventListener('visibilitychange',()=>{if(document.hidden)playback.pause();});

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.2.1 期望、方差与独立平均 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P05-C02-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P05-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-moments">本节练习 · 4 题</a><a class="button" href="/chapters/05-02-期望、方差、协方差与噪声/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>5.2.1 期望、方差与独立平均</h1>
+<p>学完本节，你应能由概率表计算平均位置和波动大小，推导多次独立测量取平均后的波动，并说明样本方差两个分母各在计算什么。</p>
+<p><strong>先修知识</strong>：5.1 的分布、抽样和重复实验，以及求和、平方与定积分。</p>
+<h2 id="expectation-as-weighted-average">期望与概率加权平均</h2>
+<p>设一个理想细胞一次释放 $0\,\mathrm U$ 或 $2\,\mathrm U$，概率分别为 0.75、0.25。若想用一个数概括释放量的中心，应该把哪一种结果算得更重？大量重复时，约四分之三的释放为零、四分之一为 2 U，因此每次的平均释放量接近 $0.5\,\mathrm U$。</p>
+<p>将这种按概率求平均的计算定义为<strong>期望（expectation）</strong>。对取有限个值的随机变量 $X$，</p>
+<p>$$\mu=\mathbb E[X]=\sum_xx\,p_X(x).$$</p>
+<p>$\mathbb E$ 表示按分布求平均，$\mu$ 是这个平均的记号。把每种可能值乘以其概率，再加起来：</p>
+<table>
+<thead>
+<tr>
+  <th>释放量 $x$ / U</th>
+  <th>概率 $p_X(x)$</th>
+  <th>对期望的贡献 $xp_X(x)$ / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>0.75</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>0.25</td>
+  <td>0.5</td>
+</tr>
+<tr>
+  <td>合计</td>
+  <td>1</td>
+  <td>0.5</td>
+</tr>
+</tbody>
+</table>
+<p>所以 $\mu=0.5\,\mathrm U$。一次释放仍只能取 0 或 2 U；期望描述分布的中心，可以位于两个可能值之间。</p>
+<p>若要计算释放量经过函数 $g$ 变换后的平均，例如先平方再平均，直接按同一张概率表求和：</p>
+<p>$$\mathbb E[g(X)]=\sum_xg(x)p_X(x).$$</p>
+<p>对 $g(x)=x^2$，本例有 $\mathbb E[X^2]=0^2\times0.75+2^2\times0.25=1\,\mathrm{U^2}$。这与先求期望再平方所得的 $0.25\,\mathrm{U^2}$ 不同；两者之差正好可以用来衡量波动。</p>
+<h2 id="variance-standard-deviation-and-units">方差、标准差与单位</h2>
+<p><strong>方差（variance）</strong>是结果相对期望的平方偏差的期望：</p>
+<p>$$\operatorname{Var}(X)=\mathbb E[(X-\mu)^2].$$</p>
+<p>先减去共同中心，再平方，是为了让向上、向下的偏离都贡献正数。释放量的两种偏差为 $-0.5\,\mathrm U$、$1.5\,\mathrm U$，于是</p>
+<p>$$\operatorname{Var}(X)
+=0.75\times(-0.5)^2+0.25\times1.5^2
+=0.1875+0.5625=0.75\,\mathrm{U^2}.$$</p>
+<p>展开平方还可得到另一个计算式：</p>
+<p>$$\begin{aligned}
+\mathbb E[(X-\mu)^2]
+&amp;=\mathbb E[X^2]-2\mu\mathbb E[X]+\mu^2\\
+&amp;=\mathbb E[X^2]-\mu^2.
+\end{aligned}$$</p>
+<p>本例正是 $1-0.5^2=0.75\,\mathrm{U^2}$。方差的平方根称为<strong>标准差（standard deviation）</strong>，记为 $\sigma$。它与原变量同单位，本例为 $\sqrt{0.75}\,\mathrm U\approx0.866\,\mathrm U$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-moments">从概率表计算位置与散布</a></li></ul></nav>
+
+<p>若改用 $Y=aX+b$ 表示同一读数，期望与方差怎样改变？按加权平均展开，</p>
+<p>$$\mathbb E[Y]=a\mathbb E[X]+b=a\mu+b.$$</p>
+<p>再从 $Y$ 减去它的新期望，偏差变为 $a(X-\mu)$，因此</p>
+<p>$$\operatorname{Var}(Y)=a^2\operatorname{Var}(X).$$</p>
+<p>给所有值加上同一个偏移只移动中心；将数值乘以 1000，则标准差也乘以 1000、方差乘以 $10^6$。所以更换单位时，方差必须按单位的平方换算。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-units">换单位后哪些量会改变</a></li></ul></nav>
+
+<h2 id="variance-of-independent-averages">独立平均的方差</h2>
+<p>上章发现，大批细胞的活跃频率通常更集中。现在可以把这种现象写成公式。设 $X_1,\ldots,X_n$ <strong>独立同分布（independent and identically distributed）</strong>：它们相互独立，且服从同一个分布。各自期望为 $\mu$，有限方差为 $\sigma^2$。它们的平均为</p>
+<p>$$\bar X=\frac1n\sum_{i=1}^{n}X_i.$$</p>
+<p>期望的加法规则给出 $\mathbb E[\bar X]=\mu$；加法规则本身不要求独立。平均后的波动则取决于多个变量怎样共同变化。将偏差的平方展开：</p>
+<p>$$\begin{aligned}
+\operatorname{Var}(\bar X)
+&amp;=\frac1{n^2}\mathbb E\!\left[\left(\sum_i(X_i-\mu)\right)^2\right]\\
+&amp;=\frac1{n^2}\left\{\sum_i\mathbb E[(X_i-\mu)^2]
++2\sum_{i&lt;j}\mathbb E[(X_i-\mu)(X_j-\mu)]\right\}.
+\end{aligned}$$</p>
+<p>独立性使不同变量乘积的期望可以拆开，因此每个交叉项为</p>
+<p>$$\mathbb E[X_i-\mu]\mathbb E[X_j-\mu]=0\times0=0.$$</p>
+<p>剩下 $n$ 个方差相加，得到</p>
+<p>$$\boxed{\operatorname{Var}(\bar X)=\frac{\sigma^2}{n},\qquad
+\operatorname{SD}(\bar X)=\frac{\sigma}{\sqrt n}.}$$</p>
+<p>对二值标签，$X^2=X$，所以 $\mathbb E[X]=p$、$\mathbb E[X^2]=p$，方差为 $p-p^2=p(1-p)$。频率正是二值标签的平均，于是</p>
+<p>$$\operatorname{Var}(\hat p)=\frac{p(1-p)}n.$$</p>
+<p>取 $p=0.3$，每批 20 个细胞时标准差为 $\sqrt{0.21/20}\approx0.1025$；每批 200 个时为 $\sqrt{0.21/200}\approx0.0324$。细胞数增加十倍，频率的标准差缩为原来的 $1/\sqrt{10}$。它解释的是重复抽样中的散布尺度。</p>
+<h2 id="sample-variance-denominators">样本方差的两个分母</h2>
+<p>概率表已知时，我们按概率算总体方差；面对一组记录 $x_1,\ldots,x_n$，通常先算样本平均 $\bar x$。若要描述这组记录的散布，可以计算</p>
+<p>$$s_n^2=\frac1n\sum_{i=1}^{n}(x_i-\bar x)^2.$$</p>
+<p>例如数据为 $[0,0,0,2]\,\mathrm U$，平均值是 $0.5\,\mathrm U$，平方偏差和为</p>
+<p>$$3\times0.5^2+1.5^2=3\,\mathrm{U^2}.$$</p>
+<p>以 4 为分母，描述性方差为 $0.75\,\mathrm{U^2}$。这里是对已经记录的四个数求平方偏差的平均。</p>
+<p>若用这些样本估计产生它们的总体方差，样本中心本身也会波动。在独立同分布、方差为 $\sigma^2$ 的抽样下，可以计算 $s_n^2$ 的平均结果。先用</p>
+<p>$$\sum_i(X_i-\bar X)^2=\sum_iX_i^2-n\bar X^2.$$</p>
+<p>因为 $\mathbb E[X_i^2]=\sigma^2+\mu^2$，且上面已得</p>
+<p>$$\mathbb E[\bar X^2]=\operatorname{Var}(\bar X)+(\mathbb E[\bar X])^2
+=\frac{\sigma^2}{n}+\mu^2,$$</p>
+<p>所以</p>
+<p>$$\mathbb E\!\left[\sum_i(X_i-\bar X)^2\right]
+=n(\sigma^2+\mu^2)-n\left(\frac{\sigma^2}{n}+\mu^2\right)
+=(n-1)\sigma^2.$$</p>
+<p>除以 $n$ 时，平均得到 $(n-1)\sigma^2/n$；改除以 $n-1$，才平均得到 $\sigma^2$。因此 $n\ge2$ 时，</p>
+<p>$$s^2=\frac1{n-1}\sum_i(x_i-\bar x)^2$$</p>
+<p>是该抽样条件下总体方差的<strong>无偏估计（unbiased estimator）</strong>，即估计量在重复抽样中的期望等于要估计的真值。前面四个数以 3 为分母会得到 $1\,\mathrm{U^2}$。两个分母服务于不同问题：一个描述现有记录，一个在给定抽样条件下估计总体。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-sample-denominator">两个方差分母的区别</a></li></ul></nav>
+
+<h2 id="gaussian-density-and-moments">高斯误差的密度与矩</h2>
+<p>对于读数的有正有负的小偏差，一个常用模型是<strong>高斯分布（Gaussian distribution）</strong>，也称<strong>正态分布（normal distribution）</strong>。记为 $X\sim N(\mu,\sigma^2)$，波浪号表示“服从该分布”；$\sigma&gt;0$ 时密度为</p>
+<p>$$f_X(x)=\frac1{\sigma\sqrt{2\pi}}
+\exp\!\left[-\frac{(x-\mu)^2}{2\sigma^2}\right].$$</p>
+<p>曲线以 $\mu$ 为中心对称，$\sigma$ 控制宽度，前面的常数使总面积等于 1。指数中的偏差除以标准差后没有单位，密度则与 $x$ 的单位互为倒数。</p>
+<p>连续变量的加权平均把求和换为积分：</p>
+<p>$$\mathbb E[X]=\int_{-\infty}^{\infty}x f_X(x)\,dx,\qquad
+\operatorname{Var}(X)=\int_{-\infty}^{\infty}(x-\mu)^2f_X(x)\,dx.$$</p>
+<p>高斯密度左右对称，正、负中心偏差的积分抵消，所以期望为 $\mu$。令 $z=(x-\mu)/\sigma$，第二个积分变成</p>
+<p>$$\frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{\infty}z^2e^{-z^2/2}\,dz.$$</p>
+<p>用乘积求导可得</p>
+<p>$$(ze^{-z^2/2})'=e^{-z^2/2}-z^2e^{-z^2/2}.$$</p>
+<p>将等式两边从 $-\infty$ 积分到 $\infty$，左侧是 $ze^{-z^2/2}$ 在两端的差，等于零。因此 $\int z^2e^{-z^2/2}dz=\int e^{-z^2/2}dz=\sqrt{2\pi}$，上式给出的方差正是 $\sigma^2$。这解释了分布记号中两个参数的含义。</p>
+<p>高斯变量可取任意实数，适合在这里表示有正负的测量偏差。$N(0,0.04\,\mathrm{U^2})$ 的标准差为 $0.2\,\mathrm U$，区间概率仍应由曲线面积求得。$\sigma=0$ 时则是一个确定值 $X=\mu$，应按点质量描述。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-gaussian-domain">解释一次负测量误差</a></li></ul></nav>
+
+<h2 id="two-levels-of-averaging">两层平均与重复实验</h2>
+<p>下图左侧是零均值、标准差 $0.2\,\mathrm U$ 的单次误差密度；右侧分别将 10 次或 100 次独立误差取平均，再对每种方案重复 200 批，比较这些批平均的标准差与理论值。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P05-C02-S01-7dce683b-0.png" alt="期望、方差与独立平均：实验结果图" loading="lazy"></figure>
+</section>
+<p>每批平均值的理论方差分别为 $0.04/10=0.004\,\mathrm{U^2}$ 和 $0.04/100=0.0004\,\mathrm{U^2}$，对应标准差约为 $0.0632\,\mathrm U$ 与 $0.02\,\mathrm U$。图中蓝柱由有限的 200 个批平均估计，玫红柱来自公式，两者的差来自这 200 批本身的抽样波动。</p>
+<p>如果进一步把这 200 个批平均再次平均，这个最终统计量的标准差又缩小 $\sqrt{200}$ 倍，成为 $\sigma/\sqrt{200n}$。一个估计量在重复抽样中的标准差称为<strong>标准误（standard error）</strong>。在这里，$\sigma/\sqrt n$ 描述单个批平均的波动，$\sigma/\sqrt{200n}$ 描述 200 批总平均的波动；选择哪一个，要看正在讨论哪一层平均。</p>
+<p>以上平均方差的推导用到了独立性。若每次读数都含有同一个偏移，交叉项会保留下来。下一节将从两个量的共同变化计算这一贡献。</p>
+<h2 id="references">参考资料</h2>
+<ul>
+<li><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l05/">MIT 6.041 第 5 讲：期望与方差</a>：概率加权、函数的期望与平方偏差。</li>
+<li><a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l08/">MIT 6.041 第 8 讲：连续变量与高斯密度</a>及<a href="https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/resources/mit6_041f10_l19/">第 19 讲：独立平均</a>：积分形式与平均的波动。</li>
+</ul>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/05-01-从重复实验建立概率/read/2/">← 5.1.2 独立抽样与重复实验</a><a href="/chapters/05-02-期望、方差、协方差与噪声/read/2/">5.2.2 联合分布、协方差与共享偏移 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>
