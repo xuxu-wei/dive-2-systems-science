@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>篇末综合 部分观测、状态后验与历史重建 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P07-SUMMARY">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P07-SUMMARY" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-state-task">本节练习 · 8 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>篇末综合 部分观测、状态后验与历史重建</h1>
+<p>学完本节，你应能根据传感器和可用观测选择状态估计计算，连接离散递推、高斯更新、粒子近似与平滑，并用具体模型解释结果。</p>
+<p><strong>先修知识</strong>：本篇六章，尤其是状态排列、首步时钟、观测歧义与滤波和平滑的信息范围。</p>
+<h2 id="sensors-and-distinguishable-states">传感器与可区分状态</h2>
+<p>已知两室交换规则，只连续测到第一室，中间又缺了一次读数。估计第二室需要把三件事接起来：传感器能区分什么，当前读数怎样更新状态分布，后来的读数怎样重建缺测历史。</p>
+<p>状态向量按第一室、第二室排列，先看无扰动转移</p>
+<p>$$x_{t+1}=Fx_t,\qquad
+F=\begin{pmatrix}0.8&amp;0.2\\0.2&amp;0.8\end{pmatrix}.$$</p>
+<p>从 $[8,2]$ U出发，下一状态为 $[6.8,3.2]$ U。只读第一室的 $H=[1,0]$ 得到8、6.8 U；读两室合计的 $H=[1,1]$ 则得到10、10 U。两种两步能观矩阵为</p>
+<p>$$\mathcal O_1=\begin{pmatrix}1&amp;0\\0.8&amp;0.2\end{pmatrix},\qquad
+\mathcal O_{\rm sum}=\begin{pmatrix}1&amp;1\\1&amp;1\end{pmatrix}.$$</p>
+<p>前者行列式为0.2，能从这两项无噪读数区分两个初态分量；后者两行相同，只有总和方向。已知转移参数解决了“状态如何演化”的问题，传感器还决定哪些状态差异能通过读数被区分。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-state-task">辨认估计任务</a></li></ul></nav>
+
+<h2 id="current-and-historical-estimation-times">当前估计与历史估计的时刻</h2>
+<p>现在采用同一 $F$ 的线性高斯偏差模型。状态每项单位U，过程协方差 $Q=0.02I$ U²，测量方差 $R=0.16$ U²，初始均值 $[8,2]$ U、初始协方差 $I$ U²。高斯初态与各时刻的过程和测量噪声相互独立，噪声均值为零。</p>
+<p>第一室的五项观测按时刻0至4排列：</p>
+<p>$$[8.1,6.7,\text{缺测},5.5,5.2]\ \mathrm U.$$</p>
+<p>在时刻2，预测和滤波都只能利用已经取得的0、1时刻读数；缺测这一步仍按模型推进。到时刻4以后，固定区间平滑可利用全部五个位置中的有效读数，重新估计时刻2。</p>
+<table>
+<thead>
+<tr>
+  <th>状态 $x_t$ 的估计</th>
+  <th>使用的信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>观测前预测</td>
+  <td>截至 $t-1$ 的读数</td>
+</tr>
+<tr>
+  <td>实时滤波</td>
+  <td>截至 $t$ 的读数</td>
+</tr>
+<tr>
+  <td>本例固定区间平滑</td>
+  <td>截至4的整段记录</td>
+</tr>
+</tbody>
+</table>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-information">保证在线信息边界</a></li></ul></nav>
+
+<p>观测列表保留缺测位置，均值列表每项仍按两室排列，协方差的行列也保持同一顺序。这使索引2的项始终对应时刻2，而非删除空值后的另一个日期。</p>
+<h2 id="exact-hidden-state-probability-recursion">隐状态概率的精确递推</h2>
+<p>先用离散状态模型回顾“模型预测加观测更新”这条共同主线。细胞标签按静息、活跃、恢复排列，先验为 $[0.6,0.3,0.1]$。首项标记的似然为 $[0.8,0.4,0.1]$，得到未归一化质量</p>
+<p>$$[0.6(0.8),0.3(0.4),0.1(0.1)]=[0.48,0.12,0.01].$$</p>
+<p>总和0.61是这项标记的证据，除以它得到后验 $[48,12,1]/61$。首项直接使用时刻0先验，之后才以转移矩阵 $A$ 推进：</p>
+<p>$$p_t^-(j)=\sum_i p_{t-1}(i)A_{ij},\qquad
+p_t(j)=\frac{p_t^-(j)\ell_t(j)}
+{\sum_kp_t^-(k)\ell_t(k)}.$$</p>
+<p>每个下标都指同一种状态，行 $i$ 是当前状态，列 $j$ 是下一状态。缺测时 $\ell_t$ 全为1，后验就保持预测；证据为零时，这个模型无法条件化到该项标记，计算返回相应的不可能观测结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-hidden-update">隐藏状态的精确递推</a></li></ul></nav>
+
+<p>有限状态把预测积分变成求和，因此可以精确保存全部状态概率。接下来用相同顺序更新连续状态的均值和协方差。</p>
+<h2 id="linear-gaussian-update-hand-calculation">线性高斯观测的一次手算</h2>
+<p>回到两室模型，首项8.1 U比预测第一室8 U高0.1 U。初始协方差没有室间交叉项，因此</p>
+<p>$$S_0=HP_0^-H^{\mathsf T}+R=1.16\ \mathrm U^2,\qquad
+K_0=\frac{P_0^-H^{\mathsf T}}{S_0}
+=\begin{pmatrix}25/29\\0\end{pmatrix}.$$</p>
+<p>首项均值为</p>
+<p>$$m_0=\begin{pmatrix}8\\2\end{pmatrix}
++\begin{pmatrix}25/29\\0\end{pmatrix}(0.1)
+=\begin{pmatrix}8+5/58\\2\end{pmatrix}\mathrm U.$$</p>
+<p>第一室上调约0.0862 U，第二室暂时仍为2 U。更新后的协方差为</p>
+<p>$$P_0=P_0^--K_0S_0K_0^{\mathsf T}
+=\begin{pmatrix}4/29&amp;0\\0&amp;1\end{pmatrix}\mathrm U^2.$$</p>
+<p>下一时刻先计算 $m_1^-=Fm_0$、$P_1^-=FP_0F^{\mathsf T}+Q$，转移会把室间关系带进新的预测。随后再用时刻1实际读数更新。对缺测时刻只保留预测，并继续到下一天。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-gaussian-filter">部分观测二室恢复</a></li></ul></nav>
+
+<p>这个过程在线性高斯模型中给出精确条件矩。若观测关系改变，分布形状可能不再由一个均值和协方差完整描述。</p>
+<h2 id="squared-observation-and-posterior-shape">平方观测与后验形状</h2>
+<p>设先验对称于零，仪器测 $y=x^2+v$，读数支持 $|x|$ 接近2 U。正负两侧能同样解释观测，所以后验可以保留两峰，均值仍为零。</p>
+<p>EKF在零点对平方函数求导得到0，局部切线没有表达离零越远、平方越大的变化。UKF用代表点传播可以更准确地计算一些观测矩，但仍将状态表示为一个高斯。粒子近似则保留多个带权位置，网格积分能在这一低维例子里直接显示双峰。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-approximation">比较近似与真实后验</a></li></ul></nav>
+
+<p>因此比较近似时，要把它们放在同一先验与读数下，查看概率主要落在哪里。相同均值可能来自窄单峰、宽单峰或对称双峰；后验形状说明这些均值背后还有什么不同。</p>
+<h2 id="particle-weights-and-fixed-resampling-positions">粒子权重与固定复制位置</h2>
+<p>用四个已传播到当前时刻的粒子 $[-2,-1,1,2]$ U作手算。已有权重为 $[0.1,0.2,0.3,0.4]$，当前对数似然为 $[-1000,-1001,-1002,-1003]$。</p>
+<p>旧权重乘当前似然，在对数中就是相加。减去共同的 $-1000$ 后，可归一化的相对权重为</p>
+<p>$$[0.1,\ 0.2e^{-1},\ 0.3e^{-2},\ 0.4e^{-3}].$$</p>
+<p>归一化约得</p>
+<p>$$[0.427184,0.314304,0.173439,0.085073],\qquad
+\operatorname{ESS}\approx3.138814.$$</p>
+<p>固定重采样偏移0，对应位置 $[0,0.25,0.5,0.75]$。依次选择累计权重严格大于该位置的最小旧下标，得到 $[0,0,1,2]$，新粒子为 $[-2,-2,-1,1]$ U。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-particle">固定随机输入的粒子更新</a></li></ul></nav>
+
+<p>重采样前权重仍描述刚才的加权分布，复制后的粒子各取 $1/4$ 权重，用于后续传播。一个旧位置出现两次，并不是新增了两份观测信息；它说明当前权重让这个位置获得了两份后续计算。</p>
+<h2 id="backward-reconstruction-of-missing-history">缺测历史的后向重建</h2>
+<p>完成两室滤波以后，保存每项预测 $m_t^-,P_t^-$ 与滤波 $m_t,P_t$。末项平滑等于末项滤波，随后向前回传：</p>
+<p>$$G_t=P_tF^{\mathsf T}(P_{t+1}^-)^{-1},$$</p>
+<p>$$m_t^s=m_t+G_t(m_{t+1}^s-m_{t+1}^-),\qquad
+P_t^s=P_t+G_t(P_{t+1}^s-P_{t+1}^-)G_t^{\mathsf T}.$$</p>
+<p>下一项已经吸收的未来信息，通过 $G_t$ 送回当前项。第2时刻虽然没有读数，后来的第3、4时刻仍可以修正它。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-smoothing">缺测记录的后向重建</a></li></ul></nav>
+
+<p>下图只画第二室的两种均值：蓝线为各时刻的实时滤波，玫红虚线为取得整段读数后的平滑。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P07-SUMMARY-042b290b-0.png" alt="部分观测、状态后验与历史重建：实验结果图" loading="lazy"></figure>
+</section>
+<p>时刻0至3，平滑根据后来读数把第二室均值略向下调整；时刻4两条曲线重合。在缺测的时刻2，两种估计分别利用截至当时的读数和全部后续读数。图中显示的是这些条件分布的均值，要计算某条真实轨迹上的估计误差，还需要对应的状态真值。</p>
+<h2 id="sensor-changes-and-diagnostic-order">传感器变化与诊断顺序</h2>
+<p>如果把传感器改为读取两室合计，和方向与差方向的作用可以直接算出：</p>
+<p>$$[1,1]F=[1,1],\qquad F\begin{pmatrix}1\\-1\end{pmatrix}
+=0.6\begin{pmatrix}1\\-1\end{pmatrix}.$$</p>
+<p>合计读数只包含两室偏差之和；初态差量按已知动态衰减，却没有被这个读数区分。此时差量估计与不确定性应继续依赖初始分布、过程噪声和动态预测。人为将报告协方差缩小十倍，只改变了报告的区间，不增加读数中的区分信息。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-failure">传感器改变后的诊断</a></li></ul></nav>
+
+<p>诊断时可以先检查传感器和模型的可区分方向，再比较噪声设定与区间覆盖，最后查看近似是否保留了后验的主要形状。独立状态与观测重复用于评价误差和覆盖；固定观测的粒子重复则用于评价随机近似。这些比较分别定位问题发生在哪一步。</p>
+<p>下一篇研究怎样把目标、参数和约束写成可计算的优化问题，并逐步选择迭代方向、步长和停止条件。这里的条件均值、平方误差和概率近似，将提供可以具体计算与比较的目标。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf">Särkkä：Bayesian Filtering and Smoothing（2013）</a>第4章建立精确滤波，第5—7章讨论非线性近似，第8章讨论固定区间平滑。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/07-06-平滑与缺测处理/read/2/">← 7.6.2 RTS 平滑、全方差与连续缺测</a><a href="/parts/08-优化方法与计算/">继续：第 8 篇 优化方法与计算 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

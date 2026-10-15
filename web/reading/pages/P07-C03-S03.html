@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.3.3 创新检验、估计误差与区间覆盖 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P07-C03-S03">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P07-C03-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-coverage">本节练习 · 4 题</a><a class="button" href="/chapters/07-03-卡尔曼滤波/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>7.3.3 创新检验、估计误差与区间覆盖</h1>
+<p>学完本节，你应能分别计算点误差、区间覆盖和标准化创新，解释三者各自检查什么，并以独立轨迹评估终点统计的波动。</p>
+<p><strong>先修知识</strong>：7.3.2的创新与滤波协方差，第5篇的条件期望和独立重复，以及6.4的标准误与区间覆盖。</p>
+<h2 id="point-error-and-coverage">点估计误差与区间覆盖</h2>
+<p>两个滤波器可能画出相近的均值曲线，却报告很不一样的区间。误差较小，是否意味着标称95%的区间也可靠？先把点估计和区间分别计算。</p>
+<p>在同一目标时刻，对目标状态分量（例如第一室）做$M$次独立实验，第$j$次真值为$x_j$、该分量的估计均值为$m_j$。误差$e_j=x_j-m_j$，<strong>均方根误差（root mean squared error，RMSE）</strong>为</p>
+<p>$$\mathrm{RMSE}=\sqrt{\frac1M\sum_{j=1}^M e_j^2}.$$</p>
+<p>若第$j$次报告区间$[m_j-1.96s_j,m_j+1.96s_j]$，用指示量$I_j$记录是否覆盖：$|e_j|\le1.96s_j$时$I_j=1$，否则为0。<strong>覆盖比例</strong>为$\hat c=M^{-1}\sum_jI_j$。</p>
+<p>看一个半宽统一为2 U的手算例子：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">误差/U</th>
+  <th style="text-align:right">平方误差/U²</th>
+  <th>是否位于均值上下2 U的闭区间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td>是</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td>是</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">4</td>
+  <td>是，恰在端点</td>
+</tr>
+<tr>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">16</td>
+  <td>否</td>
+</tr>
+</tbody>
+</table>
+<p>RMSE为$\sqrt{21/4}\approx2.2913$ U，覆盖比例为$3/4=0.75$。前者计算偏离多远，后者计算区间包含真实状态的次数；扩大所有区间会提高覆盖，却不会改变这些点误差。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-coverage">误差与覆盖率分开算</a></li></ul></nav>
+
+<h2 id="standardized-innovation">标准化创新的理论尺度</h2>
+<p>滤波时通常不知道真实状态，却能观察读数与预测的差。上一节的创新为$r_t=y_t-Hm_t^-$，预测方差为$S_t$。定义<strong>标准化创新</strong></p>
+<p>$$z_t=\frac{r_t}{\sqrt{S_t}}.$$</p>
+<p>创新与其标准差单位相同，因此$z_t$无量纲。在线性高斯模型、噪声和初始分布均正确时，给定过去读数，$Y_t$的条件分布为$N(Hm_t^-,S_t)$，所以</p>
+<p>$$E[r_t\mid y_{0:t-1}]=0,\qquad
+\operatorname{Var}(r_t\mid y_{0:t-1})=S_t.$$</p>
+<p>因此标准化后具有理论均值0、方差1。这里的平均跨越模型中的可能读数；一段有限记录的样本平均仍会有随机波动。</p>
+<p>不同时刻的创新也不相关。对$s&lt;t$，$r_s$已经包含在过去记录中，利用条件期望与全期望，</p>
+<p>$$E[r_tr_s]=E\!\left[r_s E[r_t\mid y_{0:t-1}]\right]=0.$$</p>
+<p>状态本身可以强烈相关，创新却提取了尚未被过去读数预测的部分。持续正偏或负偏提示预测有系统差异；散布明显大于1，则可能低估了预测不确定性。不同模型问题可能产生相似统计，需要结合状态方程和测量关系进一步比较。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-innovation-whiteness">创新应该接近什么</a></li></ul></nav>
+
+<h2 id="independent-trajectories-coverage-se">独立轨迹与覆盖标准误</h2>
+<p>在正确模型中，给定截至当前的读数，第一室高斯后验的$m_1\pm1.96\sqrt{P_{11}}$约含95%的条件概率。重新生成独立状态和读数，在同一终点统计覆盖，也就得到约0.95的覆盖概率。</p>
+<p>设$M$个终点覆盖指示独立，真实覆盖概率为$c$。二值平均的方差为$c(1-c)/M$；用当前比例代入，得到估计标准误</p>
+<p>$$\widehat{\mathrm{SE}}(\hat c)=\sqrt{\frac{\hat c(1-\hat c)}M}.$$</p>
+<p>例如240条轨迹、覆盖接近0.95时，标准误约为$\sqrt{0.95\times0.05/240}\approx0.0141$。如果所有指示都为1，代入标准误会变成0；但在$c=0.99$的模型中，240次全部覆盖仍有$0.99^{240}\approx0.09$的概率。因此这个端点数值不表示真实覆盖概率已经没有不确定性。</p>
+<p>独立单位是整条重新生成的轨迹。同一路径的相邻时刻共享状态与过去读数，将其所有覆盖指示都当作独立终点样本，会夸大有效重复数。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-coverage-unit">谁是独立重复</a></li></ul></nav>
+
+<h2 id="noise-assumption-experiment">噪声设定的配对比较</h2>
+<p>下面按上一节的模型，生成240条独立轨迹，每条含时刻0至29的30条读数。初态、过程与测量误差均从模型中的高斯分布重新产生。每条轨迹交给两组滤波器：一组使用真实测量方差$R=0.16$ U²，另一组将它设为0.016 U²；其余模型与读数相同。</p>
+<p>评价固定在时刻29。每条轨迹分别记录第一室的误差、边际区间覆盖，以及最后一次标准化创新。下图柱高为终点覆盖比例，误差线为上下1.96个估计标准误，虚线标出0.95。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P07-C03-S03-2339678e-1.png" alt="创新检验、估计误差与区间覆盖：实验结果图" loading="lazy"></figure>
+</section>
+<p>同一批终点的三项结果为：</p>
+<table>
+<thead>
+<tr>
+  <th>测量方差设定</th>
+  <th style="text-align:right">终点RMSE/U</th>
+  <th style="text-align:right">终点覆盖比例</th>
+  <th style="text-align:right">末次标准化创新样本方差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>正确$R$</td>
+  <td style="text-align:right">约0.194</td>
+  <td style="text-align:right">约0.942</td>
+  <td style="text-align:right">约1.347</td>
+</tr>
+<tr>
+  <td>$R$缩小十倍</td>
+  <td style="text-align:right">约0.299</td>
+  <td style="text-align:right">约0.454</td>
+  <td style="text-align:right">约6.842</td>
+</tr>
+</tbody>
+</table>
+<p>缩小$R$后，算法把读数看得更精确，本批轨迹中的点误差增大、覆盖降低，创新的实际散布也远大于算法预计。正确$R$的覆盖接近名义比例，末次标准化创新的样本方差仍与理论值1有差别。理论矩描述重复分布，表格与柱图描述这240个终点，二者通过重复抽样联系起来。</p>
+<h2 id="error-coverage-diagnosis">误差、区间与模型诊断</h2>
+<p>假设甲的RMSE为0.5 U、标称95%区间覆盖70%，乙的RMSE为0.6 U、覆盖94%。甲的点误差更小，乙的覆盖更接近名义比例。仅凭这两个数字，还不知道哪组区间更宽；比较时需要分别读取对应指标。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-calibration-failure">误差小就校准好吗</a></li></ul></nav>
+
+<p>若创新长时间偏正，模型可能持续低估状态或遗漏传感器偏移；单纯增大方差并不会消除均值偏差。若创新均值接近零但散布大于模型预期，可以比较$Q,R$或转移规则是否低估了变化。检查的目标是找到哪条预测关系与读数不相符。</p>
+<p>前面的条件分布精确依靠线性高斯结构。下一章将让读数取状态的平方：即使状态与噪声原本高斯，观测后的形状也可能出现两个峰。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf">Särkkä（2013），第4.3节</a>给出线性高斯预测与观测分布；本节用独立模拟轨迹比较误差、后验区间覆盖与创新的模型尺度。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/07-03-卡尔曼滤波/read/2/">← 7.3.2 卡尔曼预测、创新与观测更新</a><a href="/chapters/07-04-非线性高斯滤波/read/1/">7.4.1 扩展卡尔曼滤波与局部线性化 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

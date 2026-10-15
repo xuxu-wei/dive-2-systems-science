@@ -10003,77 +10003,231 @@
               "id": "P07-C01-S01",
               "chapter_id": "7.1",
               "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb",
-              "title": "从有噪读数建立状态模型",
+              "title": "有噪状态空间模型与均值、协方差预测",
               "outcome": "手算两室转移与读数，区分过程和测量误差，再说明预测均值与协方差的含义。",
               "number": "7.1.1",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.md",
               "questions": [
                 {
                   "id": "p07-state-readings",
                   "slug": "p07-state-readings",
                   "title": "从状态到有噪读数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-01-状态空间与能观性/read/1/#process-pulse-and-reading-error",
+                  "concept_title": "过程变化与测量低报的对照",
+                  "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-state-readings"
                 },
                 {
                   "id": "p07-noise-location",
                   "slug": "p07-noise-location",
                   "title": "两种噪声加在哪里",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-01-状态空间与能观性/read/1/#state-transition-and-measurement-noise",
+                  "concept_title": "状态转移、过程扰动与观测误差",
+                  "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-noise-location"
                 },
                 {
                   "id": "p07-state-parameter",
                   "slug": "p07-state-parameter",
                   "title": "未知的是哪一类量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-01-状态空间与能观性/read/1/#state-estimation-and-parameter-identification",
+                  "concept_title": "状态估计与参数辨识",
+                  "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-state-parameter"
                 },
                 {
                   "id": "p07-independence",
                   "slug": "p07-independence",
                   "title": "条件独立的范围",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-01-状态空间与能观性/read/1/#conditional-independence-of-state-space-model",
+                  "concept_title": "条件独立与随机状态的充分性",
+                  "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-independence"
                 }
               ],
               "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-state-readings",
               "notebook_url": "/notebook/?id=P07-C01-S01",
-              "url": "/notebook/?id=P07-C01-S01"
+              "reading_url": "/chapters/07-01-状态空间与能观性/read/1/",
+              "concepts": [
+                {
+                  "id": "state-estimation-and-parameter-identification",
+                  "title": "状态估计与参数辨识",
+                  "question_ids": [
+                    "p07-state-parameter"
+                  ],
+                  "explore": false,
+                  "key": "P07-C01-S01:state-estimation-and-parameter-identification",
+                  "url": "/chapters/07-01-状态空间与能观性/read/1/#state-estimation-and-parameter-identification"
+                },
+                {
+                  "id": "state-transition-and-measurement-noise",
+                  "title": "状态转移、过程扰动与观测误差",
+                  "question_ids": [
+                    "p07-noise-location"
+                  ],
+                  "explore": false,
+                  "key": "P07-C01-S01:state-transition-and-measurement-noise",
+                  "url": "/chapters/07-01-状态空间与能观性/read/1/#state-transition-and-measurement-noise"
+                },
+                {
+                  "id": "conditional-independence-of-state-space-model",
+                  "title": "条件独立与随机状态的充分性",
+                  "question_ids": [
+                    "p07-independence"
+                  ],
+                  "explore": false,
+                  "key": "P07-C01-S01:conditional-independence-of-state-space-model",
+                  "url": "/chapters/07-01-状态空间与能观性/read/1/#conditional-independence-of-state-space-model"
+                },
+                {
+                  "id": "conditional-state-mean-and-covariance",
+                  "title": "状态均值与协方差矩阵",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C01-S01:conditional-state-mean-and-covariance",
+                  "url": "/chapters/07-01-状态空间与能观性/read/1/#conditional-state-mean-and-covariance"
+                },
+                {
+                  "id": "one-step-moment-prediction",
+                  "title": "均值与协方差的一步预测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C01-S01:one-step-moment-prediction",
+                  "url": "/chapters/07-01-状态空间与能观性/read/1/#one-step-moment-prediction"
+                },
+                {
+                  "id": "process-pulse-and-reading-error",
+                  "title": "过程变化与测量低报的对照",
+                  "question_ids": [
+                    "p07-state-readings"
+                  ],
+                  "explore": false,
+                  "key": "P07-C01-S01:process-pulse-and-reading-error",
+                  "url": "/chapters/07-01-状态空间与能观性/read/1/#process-pulse-and-reading-error"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C01-S01:references",
+                  "url": "/chapters/07-01-状态空间与能观性/read/1/#references"
+                }
+              ],
+              "url": "/chapters/07-01-状态空间与能观性/read/1/"
             },
             {
               "id": "P07-C01-S02",
               "chapter_id": "7.1",
               "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/02-传感器与可区分的状态.ipynb",
-              "title": "传感器与可区分的状态",
+              "title": "能观性、传感器与采样",
               "outcome": "由两次读数恢复两室初态，比较第一室和总量传感器，并解释弱信息与采样间隔。",
               "number": "7.1.2",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/01-状态空间与能观性/02-传感器与可区分的状态.md",
               "questions": [
                 {
                   "id": "p07-observability",
                   "slug": "p07-observability",
                   "title": "拼出能观矩阵",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-01-状态空间与能观性/read/2/#observability-matrix-and-uniqueness",
+                  "concept_title": "能观矩阵与初态唯一性",
+                  "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-observability"
                 },
                 {
                   "id": "p07-sum-sensor",
                   "slug": "p07-sum-sensor",
                   "title": "总量相同就能区分吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-01-状态空间与能观性/read/2/#total-sensor-and-unobserved-direction",
+                  "concept_title": "总量传感器与不可见方向",
+                  "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-sum-sensor"
                 },
                 {
                   "id": "p07-conditioning",
                   "slug": "p07-conditioning",
                   "title": "满秩之后还要检查什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-01-状态空间与能观性/read/2/#weak-exchange-and-noise-sensitivity",
+                  "concept_title": "弱交换与含噪恢复的敏感性",
+                  "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-conditioning"
                 },
                 {
                   "id": "p07-sampling-observation",
                   "slug": "p07-sampling-observation",
                   "title": "采样会丢失方向吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-01-状态空间与能观性/read/2/#sampling-period-and-unobserved-coordinates",
+                  "concept_title": "采样间隔与方向丢失",
+                  "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-sampling-observation"
                 }
               ],
               "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-observability",
               "notebook_url": "/notebook/?id=P07-C01-S02",
-              "url": "/notebook/?id=P07-C01-S02"
+              "reading_url": "/chapters/07-01-状态空间与能观性/read/2/",
+              "concepts": [
+                {
+                  "id": "initial-states-and-sensor-readings",
+                  "title": "初态差异与传感器读数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C01-S02:initial-states-and-sensor-readings",
+                  "url": "/chapters/07-01-状态空间与能观性/read/2/#initial-states-and-sensor-readings"
+                },
+                {
+                  "id": "observability-matrix-and-uniqueness",
+                  "title": "能观矩阵与初态唯一性",
+                  "question_ids": [
+                    "p07-observability"
+                  ],
+                  "explore": false,
+                  "key": "P07-C01-S02:observability-matrix-and-uniqueness",
+                  "url": "/chapters/07-01-状态空间与能观性/read/2/#observability-matrix-and-uniqueness"
+                },
+                {
+                  "id": "total-sensor-and-unobserved-direction",
+                  "title": "总量传感器与不可见方向",
+                  "question_ids": [
+                    "p07-sum-sensor"
+                  ],
+                  "explore": true,
+                  "key": "P07-C01-S02:total-sensor-and-unobserved-direction",
+                  "url": "/chapters/07-01-状态空间与能观性/read/2/#total-sensor-and-unobserved-direction",
+                  "explore_url": "/chapters/07-01-状态空间与能观性/explore/?concept=P07-C01-S02%3Atotal-sensor-and-unobserved-direction"
+                },
+                {
+                  "id": "weak-exchange-and-noise-sensitivity",
+                  "title": "弱交换与含噪恢复的敏感性",
+                  "question_ids": [
+                    "p07-conditioning"
+                  ],
+                  "explore": true,
+                  "key": "P07-C01-S02:weak-exchange-and-noise-sensitivity",
+                  "url": "/chapters/07-01-状态空间与能观性/read/2/#weak-exchange-and-noise-sensitivity",
+                  "explore_url": "/chapters/07-01-状态空间与能观性/explore/?concept=P07-C01-S02%3Aweak-exchange-and-noise-sensitivity"
+                },
+                {
+                  "id": "sampling-period-and-unobserved-coordinates",
+                  "title": "采样间隔与方向丢失",
+                  "question_ids": [
+                    "p07-sampling-observation"
+                  ],
+                  "explore": false,
+                  "key": "P07-C01-S02:sampling-period-and-unobserved-coordinates",
+                  "url": "/chapters/07-01-状态空间与能观性/read/2/#sampling-period-and-unobserved-coordinates"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C01-S02:references",
+                  "url": "/chapters/07-01-状态空间与能观性/read/2/#references"
+                }
+              ],
+              "url": "/chapters/07-01-状态空间与能观性/read/2/"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -10096,77 +10250,229 @@
               "id": "P07-C02-S01",
               "chapter_id": "7.2",
               "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/01-从条件概率到预测与更新.ipynb",
-              "title": "从条件概率到预测与更新",
+              "title": "贝叶斯滤波的预测与观测更新",
               "outcome": "从两个隐藏状态的一次标记更新开始，连接转移、似然、证据与逐时刻后验。",
               "number": "7.2.1",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/01-从条件概率到预测与更新.md",
               "questions": [
                 {
                   "id": "p07-bayes-sequence",
                   "slug": "p07-bayes-sequence",
                   "title": "逐次预测与更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#likelihood-evidence-and-filtering-distribution",
+                  "concept_title": "当前似然、证据与滤波分布",
+                  "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-bayes-sequence"
                 },
                 {
                   "id": "p07-evidence-normalization",
                   "slug": "p07-evidence-normalization",
                   "title": "归一化的分母是什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#two-state-marker-posterior",
+                  "concept_title": "两态标记与一次后验",
+                  "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-evidence-normalization"
                 },
                 {
                   "id": "p07-missing-not-zero",
                   "slug": "p07-missing-not-zero",
                   "title": "缺测等于观测零吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#missing-observation-and-zero-evidence",
+                  "concept_title": "缺测与零证据",
+                  "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-missing-not-zero"
                 },
                 {
                   "id": "p07-zero-evidence",
                   "slug": "p07-zero-evidence",
                   "title": "不可能观测之后",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#missing-observation-and-zero-evidence",
+                  "concept_title": "缺测与零证据",
+                  "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-zero-evidence"
                 }
               ],
               "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-bayes-sequence",
               "notebook_url": "/notebook/?id=P07-C02-S01",
-              "url": "/notebook/?id=P07-C02-S01"
+              "reading_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/",
+              "concepts": [
+                {
+                  "id": "two-state-marker-posterior",
+                  "title": "两态标记与一次后验",
+                  "question_ids": [
+                    "p07-evidence-normalization"
+                  ],
+                  "explore": false,
+                  "key": "P07-C02-S01:two-state-marker-posterior",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#two-state-marker-posterior"
+                },
+                {
+                  "id": "prediction-by-state-marginalization",
+                  "title": "预测分布与状态转移",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C02-S01:prediction-by-state-marginalization",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#prediction-by-state-marginalization"
+                },
+                {
+                  "id": "likelihood-evidence-and-filtering-distribution",
+                  "title": "当前似然、证据与滤波分布",
+                  "question_ids": [
+                    "p07-bayes-sequence"
+                  ],
+                  "explore": false,
+                  "key": "P07-C02-S01:likelihood-evidence-and-filtering-distribution",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#likelihood-evidence-and-filtering-distribution"
+                },
+                {
+                  "id": "continuous-state-prediction-integral",
+                  "title": "连续状态的预测积分",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C02-S01:continuous-state-prediction-integral",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#continuous-state-prediction-integral"
+                },
+                {
+                  "id": "missing-observation-and-zero-evidence",
+                  "title": "缺测与零证据",
+                  "question_ids": [
+                    "p07-missing-not-zero",
+                    "p07-zero-evidence"
+                  ],
+                  "explore": false,
+                  "key": "P07-C02-S01:missing-observation-and-zero-evidence",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#missing-observation-and-zero-evidence"
+                },
+                {
+                  "id": "two-state-filter-and-missing-step",
+                  "title": "四个观测时刻的递推对照",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C02-S01:two-state-filter-and-missing-step",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#two-state-filter-and-missing-step"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C02-S01:references",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/#references"
+                }
+              ],
+              "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/"
             },
             {
               "id": "P07-C02-S02",
               "chapter_id": "7.2",
               "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/02-隐状态序列与路径枚举.ipynb",
-              "title": "隐状态序列与路径枚举",
+              "title": "隐马尔可夫模型与前向递推",
               "outcome": "把同末状态的路径概率相加，用枚举比较每个观测前缀，解释前向递推节省的计算。",
               "number": "7.2.2",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/02-隐状态序列与路径枚举.md",
               "questions": [
                 {
                   "id": "p07-path-posterior",
                   "slug": "p07-path-posterior",
                   "title": "枚举路径恢复末态",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/#joint-mass-of-hidden-path",
+                  "concept_title": "隐藏路径的联合质量",
+                  "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-path-posterior"
                 },
                 {
                   "id": "p07-row-transition",
                   "slug": "p07-row-transition",
                   "title": "转移矩阵的方向",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/#hidden-markov-model-and-emissions",
+                  "concept_title": "隐马尔可夫模型与发射概率",
+                  "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-row-transition"
                 },
                 {
                   "id": "p07-path-budget",
                   "slug": "p07-path-budget",
                   "title": "为什么还需要递推",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/#forward-mass-and-recursion",
+                  "concept_title": "前向概率与历史合并",
+                  "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-path-budget"
                 },
                 {
                   "id": "p07-online-prefix",
                   "slug": "p07-online-prefix",
                   "title": "如何检查未来信息泄漏",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/#prefix-enumeration-and-filtering-results",
+                  "concept_title": "观测前缀与三态滤波结果",
+                  "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-online-prefix"
                 }
               ],
               "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-path-posterior",
               "notebook_url": "/notebook/?id=P07-C02-S02",
-              "url": "/notebook/?id=P07-C02-S02"
+              "reading_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/",
+              "concepts": [
+                {
+                  "id": "hidden-markov-model-and-emissions",
+                  "title": "隐马尔可夫模型与发射概率",
+                  "question_ids": [
+                    "p07-row-transition"
+                  ],
+                  "explore": false,
+                  "key": "P07-C02-S02:hidden-markov-model-and-emissions",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/#hidden-markov-model-and-emissions"
+                },
+                {
+                  "id": "joint-mass-of-hidden-path",
+                  "title": "隐藏路径的联合质量",
+                  "question_ids": [
+                    "p07-path-posterior"
+                  ],
+                  "explore": false,
+                  "key": "P07-C02-S02:joint-mass-of-hidden-path",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/#joint-mass-of-hidden-path"
+                },
+                {
+                  "id": "forward-mass-and-recursion",
+                  "title": "前向概率与历史合并",
+                  "question_ids": [
+                    "p07-path-budget"
+                  ],
+                  "explore": false,
+                  "key": "P07-C02-S02:forward-mass-and-recursion",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/#forward-mass-and-recursion"
+                },
+                {
+                  "id": "marker-distinguishability-and-update",
+                  "title": "标记区分度与观测更新",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P07-C02-S02:marker-distinguishability-and-update",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/#marker-distinguishability-and-update",
+                  "explore_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/explore/?concept=P07-C02-S02%3Amarker-distinguishability-and-update"
+                },
+                {
+                  "id": "prefix-enumeration-and-filtering-results",
+                  "title": "观测前缀与三态滤波结果",
+                  "question_ids": [
+                    "p07-online-prefix"
+                  ],
+                  "explore": false,
+                  "key": "P07-C02-S02:prefix-enumeration-and-filtering-results",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/#prefix-enumeration-and-filtering-results"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C02-S02:references",
+                  "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/#references"
+                }
+              ],
+              "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -10189,121 +10495,357 @@
               "id": "P07-C03-S01",
               "chapter_id": "7.3",
               "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/01-多元高斯与条件分布.ipynb",
-              "title": "多元高斯与条件分布",
+              "title": "多元高斯、协方差椭圆与条件分布",
               "outcome": "按位置解释协方差矩阵，手算两室的一次条件更新，再推导联合高斯的条件均值与协方差。",
               "number": "7.3.1",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/01-多元高斯与条件分布.md",
               "questions": [
                 {
                   "id": "p07-scalar-gaussian",
                   "slug": "p07-scalar-gaussian",
                   "title": "两个高斯信息如何合并",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/1/#two-room-conditional-update",
+                  "concept_title": "一次读数的两室更新",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-scalar-gaussian"
                 },
                 {
                   "id": "p07-covariance-geometry",
                   "slug": "p07-covariance-geometry",
                   "title": "椭圆描述的是什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/1/#mahalanobis-probability-ellipse",
+                  "concept_title": "马氏距离与联合概率椭圆",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-covariance-geometry"
                 },
                 {
                   "id": "p07-conditional-cross",
                   "slug": "p07-conditional-cross",
                   "title": "没有交叉协方差时",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/1/#gaussian-conditional-formula",
+                  "concept_title": "残差分解与高斯条件公式",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-conditional-cross"
                 },
                 {
                   "id": "p07-factorization",
                   "slug": "p07-factorization",
                   "title": "求逆还是解方程",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/1/#gaussian-conditional-formula",
+                  "concept_title": "残差分解与高斯条件公式",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-factorization"
                 }
               ],
               "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-scalar-gaussian",
               "notebook_url": "/notebook/?id=P07-C03-S01",
-              "url": "/notebook/?id=P07-C03-S01"
+              "reading_url": "/chapters/07-03-卡尔曼滤波/read/1/",
+              "concepts": [
+                {
+                  "id": "two-room-covariance",
+                  "title": "两室偏差与交叉协方差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C03-S01:two-room-covariance",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/1/#two-room-covariance"
+                },
+                {
+                  "id": "multivariate-gaussian-factor",
+                  "title": "多元高斯与 Cholesky 分解",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C03-S01:multivariate-gaussian-factor",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/1/#multivariate-gaussian-factor"
+                },
+                {
+                  "id": "mahalanobis-probability-ellipse",
+                  "title": "马氏距离与联合概率椭圆",
+                  "question_ids": [
+                    "p07-covariance-geometry"
+                  ],
+                  "explore": false,
+                  "key": "P07-C03-S01:mahalanobis-probability-ellipse",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/1/#mahalanobis-probability-ellipse"
+                },
+                {
+                  "id": "joint-state-observation",
+                  "title": "状态与读数的联合高斯",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C03-S01:joint-state-observation",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/1/#joint-state-observation"
+                },
+                {
+                  "id": "gaussian-conditional-formula",
+                  "title": "残差分解与高斯条件公式",
+                  "question_ids": [
+                    "p07-conditional-cross",
+                    "p07-factorization"
+                  ],
+                  "explore": false,
+                  "key": "P07-C03-S01:gaussian-conditional-formula",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/1/#gaussian-conditional-formula"
+                },
+                {
+                  "id": "two-room-conditional-update",
+                  "title": "一次读数的两室更新",
+                  "question_ids": [
+                    "p07-scalar-gaussian"
+                  ],
+                  "explore": true,
+                  "key": "P07-C03-S01:two-room-conditional-update",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/1/#two-room-conditional-update",
+                  "explore_url": "/chapters/07-03-卡尔曼滤波/explore/?concept=P07-C03-S01%3Atwo-room-conditional-update"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C03-S01:references",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/1/#references"
+                }
+              ],
+              "url": "/chapters/07-03-卡尔曼滤波/read/1/"
             },
             {
               "id": "P07-C03-S02",
               "chapter_id": "7.3",
               "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.ipynb",
-              "title": "线性高斯预测与观测更新",
+              "title": "卡尔曼预测、创新与观测更新",
               "outcome": "先预测再吸收当前读数，按室序计算创新与增益，说明独立噪声和缺测怎样进入协方差。",
               "number": "7.3.2",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.md",
               "questions": [
                 {
                   "id": "p07-kalman-sequence",
                   "slug": "p07-kalman-sequence",
                   "title": "线性高斯递推",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/2/#initial-reading-and-missing-data",
+                  "concept_title": "首条读数与缺测时钟",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-kalman-sequence"
                 },
                 {
                   "id": "p07-kalman-timing",
                   "slug": "p07-kalman-timing",
                   "title": "第一步之前要转移吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/2/#initial-reading-and-missing-data",
+                  "concept_title": "首条读数与缺测时钟",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-kalman-timing"
                 },
                 {
                   "id": "p07-joseph-noise",
                   "slug": "p07-joseph-noise",
                   "title": "协方差更新的两种写法",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/2/#joseph-covariance",
+                  "concept_title": "Joseph 形式与测量误差贡献",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-joseph-noise"
                 },
                 {
                   "id": "p07-gaussian-exactness",
                   "slug": "p07-gaussian-exactness",
                   "title": "什么时候是精确后验",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/2/#linear-gaussian-state-model",
+                  "concept_title": "线性高斯状态模型",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-gaussian-exactness"
                 },
                 {
                   "id": "p07-empty-observations",
                   "slug": "p07-empty-observations",
                   "title": "无读数与连续缺测",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/2/#initial-reading-and-missing-data",
+                  "concept_title": "首条读数与缺测时钟",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-empty-observations"
                 }
               ],
               "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-kalman-sequence",
               "notebook_url": "/notebook/?id=P07-C03-S02",
-              "url": "/notebook/?id=P07-C03-S02"
+              "reading_url": "/chapters/07-03-卡尔曼滤波/read/2/",
+              "concepts": [
+                {
+                  "id": "linear-gaussian-state-model",
+                  "title": "线性高斯状态模型",
+                  "question_ids": [
+                    "p07-gaussian-exactness"
+                  ],
+                  "explore": false,
+                  "key": "P07-C03-S02:linear-gaussian-state-model",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/2/#linear-gaussian-state-model"
+                },
+                {
+                  "id": "kalman-state-prediction",
+                  "title": "先传播均值与协方差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C03-S02:kalman-state-prediction",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/2/#kalman-state-prediction"
+                },
+                {
+                  "id": "kalman-innovation-update",
+                  "title": "创新、增益与条件更新",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C03-S02:kalman-innovation-update",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/2/#kalman-innovation-update"
+                },
+                {
+                  "id": "joseph-covariance",
+                  "title": "Joseph 形式与测量误差贡献",
+                  "question_ids": [
+                    "p07-joseph-noise"
+                  ],
+                  "explore": false,
+                  "key": "P07-C03-S02:joseph-covariance",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/2/#joseph-covariance"
+                },
+                {
+                  "id": "initial-reading-and-missing-data",
+                  "title": "首条读数与缺测时钟",
+                  "question_ids": [
+                    "p07-kalman-timing",
+                    "p07-empty-observations",
+                    "p07-kalman-sequence"
+                  ],
+                  "explore": false,
+                  "key": "P07-C03-S02:initial-reading-and-missing-data",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/2/#initial-reading-and-missing-data"
+                },
+                {
+                  "id": "kalman-sequence-experiment",
+                  "title": "两室滤波记录与边际区间",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P07-C03-S02:kalman-sequence-experiment",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/2/#kalman-sequence-experiment",
+                  "explore_url": "/chapters/07-03-卡尔曼滤波/explore/?concept=P07-C03-S02%3Akalman-sequence-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C03-S02:references",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/2/#references"
+                }
+              ],
+              "url": "/chapters/07-03-卡尔曼滤波/read/2/"
             },
             {
               "id": "P07-C03-S03",
               "chapter_id": "7.3",
               "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/03-创新、误差与区间覆盖.ipynb",
-              "title": "创新、误差与区间覆盖",
+              "title": "创新检验、估计误差与区间覆盖",
               "outcome": "对固定终点重复实验，分别计算误差、区间覆盖与创新，解释评价的独立重复单位。",
               "number": "7.3.3",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/03-创新、误差与区间覆盖.md",
               "questions": [
                 {
                   "id": "p07-coverage",
                   "slug": "p07-coverage",
                   "title": "误差与覆盖率分开算",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/3/#point-error-and-coverage",
+                  "concept_title": "点估计误差与区间覆盖",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-coverage"
                 },
                 {
                   "id": "p07-coverage-unit",
                   "slug": "p07-coverage-unit",
                   "title": "谁是独立重复",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/3/#independent-trajectories-coverage-se",
+                  "concept_title": "独立轨迹与覆盖标准误",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-coverage-unit"
                 },
                 {
                   "id": "p07-innovation-whiteness",
                   "slug": "p07-innovation-whiteness",
                   "title": "创新应该接近什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/3/#standardized-innovation",
+                  "concept_title": "标准化创新的理论尺度",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-innovation-whiteness"
                 },
                 {
                   "id": "p07-calibration-failure",
                   "slug": "p07-calibration-failure",
                   "title": "误差小就校准好吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-03-卡尔曼滤波/read/3/#error-coverage-diagnosis",
+                  "concept_title": "误差、区间与模型诊断",
+                  "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-calibration-failure"
                 }
               ],
               "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-coverage",
               "notebook_url": "/notebook/?id=P07-C03-S03",
-              "url": "/notebook/?id=P07-C03-S03"
+              "reading_url": "/chapters/07-03-卡尔曼滤波/read/3/",
+              "concepts": [
+                {
+                  "id": "point-error-and-coverage",
+                  "title": "点估计误差与区间覆盖",
+                  "question_ids": [
+                    "p07-coverage"
+                  ],
+                  "explore": false,
+                  "key": "P07-C03-S03:point-error-and-coverage",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/3/#point-error-and-coverage"
+                },
+                {
+                  "id": "standardized-innovation",
+                  "title": "标准化创新的理论尺度",
+                  "question_ids": [
+                    "p07-innovation-whiteness"
+                  ],
+                  "explore": false,
+                  "key": "P07-C03-S03:standardized-innovation",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/3/#standardized-innovation"
+                },
+                {
+                  "id": "independent-trajectories-coverage-se",
+                  "title": "独立轨迹与覆盖标准误",
+                  "question_ids": [
+                    "p07-coverage-unit"
+                  ],
+                  "explore": false,
+                  "key": "P07-C03-S03:independent-trajectories-coverage-se",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/3/#independent-trajectories-coverage-se"
+                },
+                {
+                  "id": "noise-assumption-experiment",
+                  "title": "噪声设定的配对比较",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C03-S03:noise-assumption-experiment",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/3/#noise-assumption-experiment"
+                },
+                {
+                  "id": "error-coverage-diagnosis",
+                  "title": "误差、区间与模型诊断",
+                  "question_ids": [
+                    "p07-calibration-failure"
+                  ],
+                  "explore": false,
+                  "key": "P07-C03-S03:error-coverage-diagnosis",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/3/#error-coverage-diagnosis"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C03-S03:references",
+                  "url": "/chapters/07-03-卡尔曼滤波/read/3/#references"
+                }
+              ],
+              "url": "/chapters/07-03-卡尔曼滤波/read/3/"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -10326,83 +10868,256 @@
               "id": "P07-C04-S01",
               "chapter_id": "7.4",
               "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/01-局部线性化与扩展滤波.ipynb",
-              "title": "局部线性化与扩展滤波",
+              "title": "扩展卡尔曼滤波与局部线性化",
               "outcome": "在预测均值处展开平方观测，用零导数例子解释局部近似怎样遗漏幅度信息。",
               "number": "7.4.1",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/01-局部线性化与扩展滤波.md",
               "questions": [
                 {
                   "id": "p07-extended-update",
                   "slug": "p07-extended-update",
                   "title": "一次平方观测的扩展更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-04-非线性高斯滤波/read/1/#ekf-observation-update",
+                  "concept_title": "观测线性化与扩展更新",
+                  "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-extended-update"
                 },
                 {
                   "id": "p07-jacobian-location",
                   "slug": "p07-jacobian-location",
                   "title": "雅可比在哪求值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-04-非线性高斯滤波/read/1/#ekf-transition-linearization",
+                  "concept_title": "状态预测的展开位置",
+                  "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-jacobian-location"
                 },
                 {
                   "id": "p07-zero-gradient",
                   "slug": "p07-zero-gradient",
                   "title": "导数为零意味着什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-04-非线性高斯滤波/read/1/#zero-gradient-square-observation",
+                  "concept_title": "零导数与被遗漏的幅度信息",
+                  "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-zero-gradient"
                 },
                 {
                   "id": "p07-linear-limit",
                   "slug": "p07-linear-limit",
                   "title": "线性退化如何检验",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-04-非线性高斯滤波/read/2/#ukf-conditional-approximation",
+                  "concept_title": "无迹滤波与条件高斯近似",
+                  "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-linear-limit"
                 }
               ],
               "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-extended-update",
               "notebook_url": "/notebook/?id=P07-C04-S01",
-              "url": "/notebook/?id=P07-C04-S01"
+              "reading_url": "/chapters/07-04-非线性高斯滤波/read/1/",
+              "concepts": [
+                {
+                  "id": "square-observation-model",
+                  "title": "平方观测与正负状态",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C04-S01:square-observation-model",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/1/#square-observation-model"
+                },
+                {
+                  "id": "ekf-observation-update",
+                  "title": "观测线性化与扩展更新",
+                  "question_ids": [
+                    "p07-extended-update"
+                  ],
+                  "explore": false,
+                  "key": "P07-C04-S01:ekf-observation-update",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/1/#ekf-observation-update"
+                },
+                {
+                  "id": "zero-gradient-square-observation",
+                  "title": "零导数与被遗漏的幅度信息",
+                  "question_ids": [
+                    "p07-zero-gradient"
+                  ],
+                  "explore": true,
+                  "key": "P07-C04-S01:zero-gradient-square-observation",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/1/#zero-gradient-square-observation",
+                  "explore_url": "/chapters/07-04-非线性高斯滤波/explore/?concept=P07-C04-S01%3Azero-gradient-square-observation"
+                },
+                {
+                  "id": "ekf-transition-linearization",
+                  "title": "状态预测的展开位置",
+                  "question_ids": [
+                    "p07-jacobian-location"
+                  ],
+                  "explore": false,
+                  "key": "P07-C04-S01:ekf-transition-linearization",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/1/#ekf-transition-linearization"
+                },
+                {
+                  "id": "saturating-recovery-model",
+                  "title": "饱和回复模型与导数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C04-S01:saturating-recovery-model",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/1/#saturating-recovery-model"
+                },
+                {
+                  "id": "ekf-sequence-and-posterior-shape",
+                  "title": "序列跟踪与单次形状对照",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C04-S01:ekf-sequence-and-posterior-shape",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/1/#ekf-sequence-and-posterior-shape"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C04-S01:references",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/1/#references"
+                }
+              ],
+              "url": "/chapters/07-04-非线性高斯滤波/read/1/"
             },
             {
               "id": "P07-C04-S02",
               "chapter_id": "7.4",
               "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/02-无迹变换与后验形状.ipynb",
-              "title": "无迹变换与后验形状",
+              "title": "无迹变换、预测矩与后验形状",
               "outcome": "用三点传播平方函数，核对两套权重与解析矩，再比较单高斯近似和双峰后验。",
               "number": "7.4.2",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/02-无迹变换与后验形状.md",
               "questions": [
                 {
                   "id": "p07-unscented-moments",
                   "slug": "p07-unscented-moments",
                   "title": "三个采样点传播平方观测",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-04-非线性高斯滤波/read/2/#unscented-square-moments",
+                  "concept_title": "平方观测的三个预测矩",
+                  "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-unscented-moments"
                 },
                 {
                   "id": "p07-sigma-weights",
                   "slug": "p07-sigma-weights",
                   "title": "均值权重与协方差权重",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-04-非线性高斯滤波/read/2/#sigma-points-and-weights",
+                  "concept_title": "三个代表点与两套权重",
+                  "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-sigma-weights"
                 },
                 {
                   "id": "p07-moment-not-posterior",
                   "slug": "p07-moment-not-posterior",
                   "title": "矩准确意味着后验准确吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-04-非线性高斯滤波/read/2/#ukf-conditional-approximation",
+                  "concept_title": "无迹滤波与条件高斯近似",
+                  "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-moment-not-posterior"
                 },
                 {
                   "id": "p07-grid-validation",
                   "slug": "p07-grid-validation",
                   "title": "网格参照也要核验",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-04-非线性高斯滤波/read/2/#grid-posterior-integration",
+                  "concept_title": "网格后验与积分尺度",
+                  "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-grid-validation"
                 },
                 {
                   "id": "p07-symmetric-posterior",
                   "slug": "p07-symmetric-posterior",
                   "title": "后验均值零是否没有更新",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-04-非线性高斯滤波/read/2/#ukf-conditional-approximation",
+                  "concept_title": "无迹滤波与条件高斯近似",
+                  "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-symmetric-posterior"
                 }
               ],
               "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-unscented-moments",
               "notebook_url": "/notebook/?id=P07-C04-S02",
-              "url": "/notebook/?id=P07-C04-S02"
+              "reading_url": "/chapters/07-04-非线性高斯滤波/read/2/",
+              "concepts": [
+                {
+                  "id": "mean-of-square",
+                  "title": "平方的均值与均值的平方",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C04-S02:mean-of-square",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/2/#mean-of-square"
+                },
+                {
+                  "id": "sigma-points-and-weights",
+                  "title": "三个代表点与两套权重",
+                  "question_ids": [
+                    "p07-sigma-weights"
+                  ],
+                  "explore": false,
+                  "key": "P07-C04-S02:sigma-points-and-weights",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/2/#sigma-points-and-weights"
+                },
+                {
+                  "id": "multidimensional-sigma-points",
+                  "title": "多维 sigma 点与协方差因子",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C04-S02:multidimensional-sigma-points",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/2/#multidimensional-sigma-points"
+                },
+                {
+                  "id": "unscented-square-moments",
+                  "title": "平方观测的三个预测矩",
+                  "question_ids": [
+                    "p07-unscented-moments"
+                  ],
+                  "explore": false,
+                  "key": "P07-C04-S02:unscented-square-moments",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/2/#unscented-square-moments"
+                },
+                {
+                  "id": "ukf-conditional-approximation",
+                  "title": "无迹滤波与条件高斯近似",
+                  "question_ids": [
+                    "p07-linear-limit",
+                    "p07-moment-not-posterior",
+                    "p07-symmetric-posterior"
+                  ],
+                  "explore": true,
+                  "key": "P07-C04-S02:ukf-conditional-approximation",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/2/#ukf-conditional-approximation",
+                  "explore_url": "/chapters/07-04-非线性高斯滤波/explore/?concept=P07-C04-S02%3Aukf-conditional-approximation"
+                },
+                {
+                  "id": "grid-posterior-integration",
+                  "title": "网格后验与积分尺度",
+                  "question_ids": [
+                    "p07-grid-validation"
+                  ],
+                  "explore": false,
+                  "key": "P07-C04-S02:grid-posterior-integration",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/2/#grid-posterior-integration"
+                },
+                {
+                  "id": "ukf-grid-experiment",
+                  "title": "序列均值与单步后验的对照",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C04-S02:ukf-grid-experiment",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/2/#ukf-grid-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C04-S02:references",
+                  "url": "/chapters/07-04-非线性高斯滤波/read/2/#references"
+                }
+              ],
+              "url": "/chapters/07-04-非线性高斯滤波/read/2/"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -10425,83 +11140,241 @@
               "id": "P07-C05-S01",
               "chapter_id": "7.5",
               "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/01-重要性采样与稳定权重.ipynb",
-              "title": "重要性采样与稳定权重",
+              "title": "重要性采样、自归一化与有效样本量",
               "outcome": "从目标与提议的比值手算权重，解释稳定归一化、支持遗漏与ESS的检查范围。",
               "number": "7.5.1",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/05-粒子滤波/01-重要性采样与稳定权重.md",
               "questions": [
                 {
                   "id": "p07-importance-weights",
                   "slug": "p07-importance-weights",
                   "title": "稳定计算重要性权重",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-05-粒子滤波/read/1/#log-weights-and-common-shifts",
+                  "concept_title": "对数权重与共同平移",
+                  "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-importance-weights"
                 },
                 {
                   "id": "p07-proposal-support",
                   "slug": "p07-proposal-support",
                   "title": "提议分布漏掉一侧",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-05-粒子滤波/read/1/#proposal-support-and-missing-modes",
+                  "concept_title": "提议支持与遗漏的峰",
+                  "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-proposal-support"
                 },
                 {
                   "id": "p07-self-normalized",
                   "slug": "p07-self-normalized",
                   "title": "自归一化为何实用",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-05-粒子滤波/read/1/#expectation-ratio-and-self-normalization",
+                  "concept_title": "期望比值与自归一化",
+                  "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-self-normalized"
                 },
                 {
                   "id": "p07-log-shift",
                   "slug": "p07-log-shift",
                   "title": "为什么减最大对数权重",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-05-粒子滤波/read/1/#log-weights-and-common-shifts",
+                  "concept_title": "对数权重与共同平移",
+                  "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-log-shift"
                 }
               ],
               "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-importance-weights",
               "notebook_url": "/notebook/?id=P07-C05-S01",
-              "url": "/notebook/?id=P07-C05-S01"
+              "reading_url": "/chapters/07-05-粒子滤波/read/1/",
+              "concepts": [
+                {
+                  "id": "target-and-proposal-distributions",
+                  "title": "目标分布与提议分布",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C05-S01:target-and-proposal-distributions",
+                  "url": "/chapters/07-05-粒子滤波/read/1/#target-and-proposal-distributions"
+                },
+                {
+                  "id": "expectation-ratio-and-self-normalization",
+                  "title": "期望比值与自归一化",
+                  "question_ids": [
+                    "p07-self-normalized"
+                  ],
+                  "explore": false,
+                  "key": "P07-C05-S01:expectation-ratio-and-self-normalization",
+                  "url": "/chapters/07-05-粒子滤波/read/1/#expectation-ratio-and-self-normalization"
+                },
+                {
+                  "id": "log-weights-and-common-shifts",
+                  "title": "对数权重与共同平移",
+                  "question_ids": [
+                    "p07-log-shift",
+                    "p07-importance-weights"
+                  ],
+                  "explore": false,
+                  "key": "P07-C05-S01:log-weights-and-common-shifts",
+                  "url": "/chapters/07-05-粒子滤波/read/1/#log-weights-and-common-shifts"
+                },
+                {
+                  "id": "effective-sample-size-and-weight-concentration",
+                  "title": "有效样本量与权重集中",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C05-S01:effective-sample-size-and-weight-concentration",
+                  "url": "/chapters/07-05-粒子滤波/read/1/#effective-sample-size-and-weight-concentration"
+                },
+                {
+                  "id": "proposal-support-and-missing-modes",
+                  "title": "提议支持与遗漏的峰",
+                  "question_ids": [
+                    "p07-proposal-support"
+                  ],
+                  "explore": true,
+                  "key": "P07-C05-S01:proposal-support-and-missing-modes",
+                  "url": "/chapters/07-05-粒子滤波/read/1/#proposal-support-and-missing-modes",
+                  "explore_url": "/chapters/07-05-粒子滤波/explore/?concept=P07-C05-S01%3Aproposal-support-and-missing-modes"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C05-S01:references",
+                  "url": "/chapters/07-05-粒子滤波/read/1/#references"
+                }
+              ],
+              "url": "/chapters/07-05-粒子滤波/read/1/"
             },
             {
               "id": "P07-C05-S02",
               "chapter_id": "7.5",
               "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/02-粒子传播、退化与重采样.ipynb",
-              "title": "粒子传播、退化与重采样",
+              "title": "粒子传播、权重退化与系统性重采样",
               "outcome": "按传播、加权与阈值重采样处理序列，比较不同祖先数和20次运行的近似波动。",
               "number": "7.5.2",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/05-粒子滤波/02-粒子传播、退化与重采样.md",
               "questions": [
                 {
                   "id": "p07-particle-resampling",
                   "slug": "p07-particle-resampling",
                   "title": "观测加权与系统性重采样",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-05-粒子滤波/read/2/#systematic-resampling-cumulative-intervals",
+                  "concept_title": "系统性重采样与累计区间",
+                  "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-particle-resampling"
                 },
                 {
                   "id": "p07-ess-threshold",
                   "slug": "p07-ess-threshold",
                   "title": "有效样本量与阈值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-05-粒子滤波/read/2/#weight-degeneracy-and-resampling-threshold",
+                  "concept_title": "权重退化与重采样阈值",
+                  "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-ess-threshold"
                 },
                 {
                   "id": "p07-ancestry-poverty",
                   "slug": "p07-ancestry-poverty",
                   "title": "权重均匀还会贫化吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-05-粒子滤波/read/2/#ancestor-count-and-sample-impoverishment",
+                  "concept_title": "祖先数与样本贫化",
+                  "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-ancestry-poverty"
                 },
                 {
                   "id": "p07-bootstrap-proposal",
                   "slug": "p07-bootstrap-proposal",
                   "title": "自助滤波中为何只乘似然",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-05-粒子滤波/read/2/#transition-proposal-and-sequential-weights",
+                  "concept_title": "转移提议与序贯权重",
+                  "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-bootstrap-proposal"
                 },
                 {
                   "id": "p07-particle-comparison",
                   "slug": "p07-particle-comparison",
                   "title": "有限预算怎样比较",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-05-粒子滤波/read/2/#particle-count-and-algorithm-repetitions",
+                  "concept_title": "同一观测下的粒子数比较",
+                  "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-particle-comparison"
                 }
               ],
               "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-particle-resampling",
               "notebook_url": "/notebook/?id=P07-C05-S02",
-              "url": "/notebook/?id=P07-C05-S02"
+              "reading_url": "/chapters/07-05-粒子滤波/read/2/",
+              "concepts": [
+                {
+                  "id": "weighted-particles-and-state-propagation",
+                  "title": "带权粒子与状态传播",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C05-S02:weighted-particles-and-state-propagation",
+                  "url": "/chapters/07-05-粒子滤波/read/2/#weighted-particles-and-state-propagation"
+                },
+                {
+                  "id": "transition-proposal-and-sequential-weights",
+                  "title": "转移提议与序贯权重",
+                  "question_ids": [
+                    "p07-bootstrap-proposal"
+                  ],
+                  "explore": false,
+                  "key": "P07-C05-S02:transition-proposal-and-sequential-weights",
+                  "url": "/chapters/07-05-粒子滤波/read/2/#transition-proposal-and-sequential-weights"
+                },
+                {
+                  "id": "weight-degeneracy-and-resampling-threshold",
+                  "title": "权重退化与重采样阈值",
+                  "question_ids": [
+                    "p07-ess-threshold"
+                  ],
+                  "explore": false,
+                  "key": "P07-C05-S02:weight-degeneracy-and-resampling-threshold",
+                  "url": "/chapters/07-05-粒子滤波/read/2/#weight-degeneracy-and-resampling-threshold"
+                },
+                {
+                  "id": "systematic-resampling-cumulative-intervals",
+                  "title": "系统性重采样与累计区间",
+                  "question_ids": [
+                    "p07-particle-resampling"
+                  ],
+                  "explore": true,
+                  "key": "P07-C05-S02:systematic-resampling-cumulative-intervals",
+                  "url": "/chapters/07-05-粒子滤波/read/2/#systematic-resampling-cumulative-intervals",
+                  "explore_url": "/chapters/07-05-粒子滤波/explore/?concept=P07-C05-S02%3Asystematic-resampling-cumulative-intervals"
+                },
+                {
+                  "id": "ancestor-count-and-sample-impoverishment",
+                  "title": "祖先数与样本贫化",
+                  "question_ids": [
+                    "p07-ancestry-poverty"
+                  ],
+                  "explore": false,
+                  "key": "P07-C05-S02:ancestor-count-and-sample-impoverishment",
+                  "url": "/chapters/07-05-粒子滤波/read/2/#ancestor-count-and-sample-impoverishment"
+                },
+                {
+                  "id": "particle-count-and-algorithm-repetitions",
+                  "title": "同一观测下的粒子数比较",
+                  "question_ids": [
+                    "p07-particle-comparison"
+                  ],
+                  "explore": false,
+                  "key": "P07-C05-S02:particle-count-and-algorithm-repetitions",
+                  "url": "/chapters/07-05-粒子滤波/read/2/#particle-count-and-algorithm-repetitions"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C05-S02:references",
+                  "url": "/chapters/07-05-粒子滤波/read/2/#references"
+                }
+              ],
+              "url": "/chapters/07-05-粒子滤波/read/2/"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -10524,77 +11397,237 @@
               "id": "P07-C06-S01",
               "chapter_id": "7.6",
               "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/01-前向后向与未来信息.ipynb",
-              "title": "前向后向与未来信息",
+              "title": "前向后向递推与固定区间平滑",
               "outcome": "按时刻汇总未来标记信息，把前向滤波与后向向量相乘，用整段路径核对平滑。",
               "number": "7.6.1",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/01-前向后向与未来信息.md",
               "questions": [
                 {
                   "id": "p07-hmm-smoothing",
                   "slug": "p07-hmm-smoothing",
                   "title": "把未来读数传回过去",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-06-平滑与缺测处理/read/1/#forward-backward-combination",
+                  "concept_title": "前后向组合与归一化",
+                  "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-hmm-smoothing"
                 },
                 {
                   "id": "p07-three-information-sets",
                   "slug": "p07-three-information-sets",
                   "title": "三种估计分别知道什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-06-平滑与缺测处理/read/1/#prediction-filtering-and-smoothing-information",
+                  "concept_title": "预测、滤波与平滑的观测范围",
+                  "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-three-information-sets"
                 },
                 {
                   "id": "p07-backward-index",
                   "slug": "p07-backward-index",
                   "title": "后向信息从哪一步开始",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-06-平滑与缺测处理/read/1/#backward-vector-and-future-likelihood",
+                  "concept_title": "后向向量与未来似然",
+                  "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-backward-index"
                 },
                 {
                   "id": "p07-offline-online",
                   "slug": "p07-offline-online",
                   "title": "平滑更好能推实时更好吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-06-平滑与缺测处理/read/1/#prediction-filtering-and-smoothing-information",
+                  "concept_title": "预测、滤波与平滑的观测范围",
+                  "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-offline-online"
                 }
               ],
               "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-hmm-smoothing",
               "notebook_url": "/notebook/?id=P07-C06-S01",
-              "url": "/notebook/?id=P07-C06-S01"
+              "reading_url": "/chapters/07-06-平滑与缺测处理/read/1/",
+              "concepts": [
+                {
+                  "id": "prediction-filtering-and-smoothing-information",
+                  "title": "预测、滤波与平滑的观测范围",
+                  "question_ids": [
+                    "p07-three-information-sets",
+                    "p07-offline-online"
+                  ],
+                  "explore": false,
+                  "key": "P07-C06-S01:prediction-filtering-and-smoothing-information",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/1/#prediction-filtering-and-smoothing-information"
+                },
+                {
+                  "id": "forward-probabilities-and-four-observations",
+                  "title": "前向概率与四项标记",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C06-S01:forward-probabilities-and-four-observations",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/1/#forward-probabilities-and-four-observations"
+                },
+                {
+                  "id": "backward-vector-and-future-likelihood",
+                  "title": "后向向量与未来似然",
+                  "question_ids": [
+                    "p07-backward-index"
+                  ],
+                  "explore": false,
+                  "key": "P07-C06-S01:backward-vector-and-future-likelihood",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/1/#backward-vector-and-future-likelihood"
+                },
+                {
+                  "id": "forward-backward-combination",
+                  "title": "前后向组合与归一化",
+                  "question_ids": [
+                    "p07-hmm-smoothing"
+                  ],
+                  "explore": false,
+                  "key": "P07-C06-S01:forward-backward-combination",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/1/#forward-backward-combination"
+                },
+                {
+                  "id": "missing-interval-and-terminal-equality",
+                  "title": "缺测区间与末端一致性",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C06-S01:missing-interval-and-terminal-equality",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/1/#missing-interval-and-terminal-equality"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C06-S01:references",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/1/#references"
+                }
+              ],
+              "url": "/chapters/07-06-平滑与缺测处理/read/1/"
             },
             {
               "id": "P07-C06-S02",
               "chapter_id": "7.6",
               "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.ipynb",
-              "title": "RTS平滑与连续缺测",
+              "title": "RTS 平滑、全方差与连续缺测",
               "outcome": "从相邻状态的条件关系推导RTS，用后续读数重建连续缺测，并与整段联合高斯比较。",
               "number": "7.6.2",
               "visualization": "web/estimation/index.html",
+              "reading": "lessons/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.md",
               "questions": [
                 {
                   "id": "p07-rts-backward",
                   "slug": "p07-rts-backward",
                   "title": "由已保存的滤波矩后向平滑",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/07-06-平滑与缺测处理/read/2/#rts-backward-recursion",
+                  "concept_title": "RTS 后向均值与协方差",
+                  "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-rts-backward"
                 },
                 {
                   "id": "p07-terminal-equality",
                   "slug": "p07-terminal-equality",
                   "title": "后向递推在哪里开始",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-06-平滑与缺测处理/read/2/#predicted-filtered-and-smoothed-moments",
+                  "concept_title": "预测量、滤波量与平滑量",
+                  "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-terminal-equality"
                 },
                 {
                   "id": "p07-covariance-order",
                   "slug": "p07-covariance-order",
                   "title": "协方差变小的前提",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-06-平滑与缺测处理/read/2/#covariance-order-and-realized-error",
+                  "concept_title": "协方差顺序与实际误差",
+                  "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-covariance-order"
                 },
                 {
                   "id": "p07-missing-gap",
                   "slug": "p07-missing-gap",
                   "title": "缺测区间里的误差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/07-06-平滑与缺测处理/read/2/#two-compartment-missing-gap",
+                  "concept_title": "两室连续缺测的历史重建",
+                  "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-missing-gap"
                 }
               ],
               "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-rts-backward",
               "notebook_url": "/notebook/?id=P07-C06-S02",
-              "url": "/notebook/?id=P07-C06-S02"
+              "reading_url": "/chapters/07-06-平滑与缺测处理/read/2/",
+              "concepts": [
+                {
+                  "id": "predicted-filtered-and-smoothed-moments",
+                  "title": "预测量、滤波量与平滑量",
+                  "question_ids": [
+                    "p07-terminal-equality"
+                  ],
+                  "explore": false,
+                  "key": "P07-C06-S02:predicted-filtered-and-smoothed-moments",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/2/#predicted-filtered-and-smoothed-moments"
+                },
+                {
+                  "id": "adjacent-state-joint-gaussian",
+                  "title": "相邻状态的联合高斯关系",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C06-S02:adjacent-state-joint-gaussian",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/2/#adjacent-state-joint-gaussian"
+                },
+                {
+                  "id": "total-variance-and-two-uncertainty-levels",
+                  "title": "全方差与两层不确定性",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C06-S02:total-variance-and-two-uncertainty-levels",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/2/#total-variance-and-two-uncertainty-levels"
+                },
+                {
+                  "id": "rts-backward-recursion",
+                  "title": "RTS 后向均值与协方差",
+                  "question_ids": [
+                    "p07-rts-backward"
+                  ],
+                  "explore": false,
+                  "key": "P07-C06-S02:rts-backward-recursion",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/2/#rts-backward-recursion"
+                },
+                {
+                  "id": "scalar-two-step-backward-calculation",
+                  "title": "标量后向修正的两步手算",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C06-S02:scalar-two-step-backward-calculation",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/2/#scalar-two-step-backward-calculation"
+                },
+                {
+                  "id": "two-compartment-missing-gap",
+                  "title": "两室连续缺测的历史重建",
+                  "question_ids": [
+                    "p07-missing-gap"
+                  ],
+                  "explore": true,
+                  "key": "P07-C06-S02:two-compartment-missing-gap",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/2/#two-compartment-missing-gap",
+                  "explore_url": "/chapters/07-06-平滑与缺测处理/explore/?concept=P07-C06-S02%3Atwo-compartment-missing-gap"
+                },
+                {
+                  "id": "covariance-order-and-realized-error",
+                  "title": "协方差顺序与实际误差",
+                  "question_ids": [
+                    "p07-covariance-order"
+                  ],
+                  "explore": false,
+                  "key": "P07-C06-S02:covariance-order-and-realized-error",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/2/#covariance-order-and-realized-error"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P07-C06-S02:references",
+                  "url": "/chapters/07-06-平滑与缺测处理/read/2/#references"
+                }
+              ],
+              "url": "/chapters/07-06-平滑与缺测处理/read/2/"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -10603,7 +11636,7 @@
       "assessment": {
         "id": "7.summary",
         "assessment": true,
-        "title": "部分观测下的状态恢复",
+        "title": "部分观测、状态后验与历史重建",
         "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/",
         "goals": "根据传感器、观测时刻和近似形状选择估计方法，计算后验并解释各项结果的条件。",
         "prerequisites": "本篇的状态与观测模型、贝叶斯递推、线性及非线性滤波、粒子方法与固定区间平滑。",
@@ -10618,7 +11651,7 @@
             "id": "P07-SUMMARY",
             "chapter_id": "7.summary",
             "path": "notebooks/07-状态估计与贝叶斯滤波/07-篇末综合/01-部分观测下的状态恢复.ipynb",
-            "title": "部分观测下的状态恢复",
+            "title": "部分观测、状态后验与历史重建",
             "outcome": "根据传感器、观测时刻和近似形状选择估计方法，计算后验并解释各项结果的条件。",
             "number": "篇末综合",
             "visualization": null,
@@ -10632,59 +11665,175 @@
                 "区分实时与整段观测结果，解释缺测重建、双峰遗漏和不可观方向"
               ]
             },
+            "reading": "lessons/07-状态估计与贝叶斯滤波/07-篇末综合/01-部分观测下的状态恢复.md",
             "questions": [
               {
                 "id": "p07-cap-state-task",
                 "slug": "p07-cap-state-task",
                 "title": "辨认估计任务",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#sensors-and-distinguishable-states",
+                "concept_title": "传感器与可区分状态",
+                "practice_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-state-task"
               },
               {
                 "id": "p07-cap-information",
                 "slug": "p07-cap-information",
                 "title": "保证在线信息边界",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#current-and-historical-estimation-times",
+                "concept_title": "当前估计与历史估计的时刻",
+                "practice_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-information"
               },
               {
                 "id": "p07-cap-hidden-update",
                 "slug": "p07-cap-hidden-update",
                 "title": "隐藏状态的精确递推",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#exact-hidden-state-probability-recursion",
+                "concept_title": "隐状态概率的精确递推",
+                "practice_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-hidden-update"
               },
               {
                 "id": "p07-cap-gaussian-filter",
                 "slug": "p07-cap-gaussian-filter",
                 "title": "部分观测二室恢复",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#linear-gaussian-update-hand-calculation",
+                "concept_title": "线性高斯观测的一次手算",
+                "practice_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-gaussian-filter"
               },
               {
                 "id": "p07-cap-approximation",
                 "slug": "p07-cap-approximation",
                 "title": "比较近似与真实后验",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#squared-observation-and-posterior-shape",
+                "concept_title": "平方观测与后验形状",
+                "practice_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-approximation"
               },
               {
                 "id": "p07-cap-particle",
                 "slug": "p07-cap-particle",
                 "title": "固定随机输入的粒子更新",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#particle-weights-and-fixed-resampling-positions",
+                "concept_title": "粒子权重与固定复制位置",
+                "practice_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-particle"
               },
               {
                 "id": "p07-cap-smoothing",
                 "slug": "p07-cap-smoothing",
                 "title": "缺测记录的后向重建",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#backward-reconstruction-of-missing-history",
+                "concept_title": "缺测历史的后向重建",
+                "practice_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-smoothing"
               },
               {
                 "id": "p07-cap-failure",
                 "slug": "p07-cap-failure",
                 "title": "传感器改变后的诊断",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#sensor-changes-and-diagnostic-order",
+                "concept_title": "传感器变化与诊断顺序",
+                "practice_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-failure"
               }
             ],
             "practice_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-state-task",
             "notebook_url": "/notebook/?id=P07-SUMMARY",
-            "url": "/notebook/?id=P07-SUMMARY"
+            "reading_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "sensors-and-distinguishable-states",
+                "title": "传感器与可区分状态",
+                "question_ids": [
+                  "p07-cap-state-task"
+                ],
+                "explore": false,
+                "key": "P07-SUMMARY:sensors-and-distinguishable-states",
+                "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#sensors-and-distinguishable-states"
+              },
+              {
+                "id": "current-and-historical-estimation-times",
+                "title": "当前估计与历史估计的时刻",
+                "question_ids": [
+                  "p07-cap-information"
+                ],
+                "explore": false,
+                "key": "P07-SUMMARY:current-and-historical-estimation-times",
+                "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#current-and-historical-estimation-times"
+              },
+              {
+                "id": "exact-hidden-state-probability-recursion",
+                "title": "隐状态概率的精确递推",
+                "question_ids": [
+                  "p07-cap-hidden-update"
+                ],
+                "explore": false,
+                "key": "P07-SUMMARY:exact-hidden-state-probability-recursion",
+                "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#exact-hidden-state-probability-recursion"
+              },
+              {
+                "id": "linear-gaussian-update-hand-calculation",
+                "title": "线性高斯观测的一次手算",
+                "question_ids": [
+                  "p07-cap-gaussian-filter"
+                ],
+                "explore": false,
+                "key": "P07-SUMMARY:linear-gaussian-update-hand-calculation",
+                "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#linear-gaussian-update-hand-calculation"
+              },
+              {
+                "id": "squared-observation-and-posterior-shape",
+                "title": "平方观测与后验形状",
+                "question_ids": [
+                  "p07-cap-approximation"
+                ],
+                "explore": false,
+                "key": "P07-SUMMARY:squared-observation-and-posterior-shape",
+                "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#squared-observation-and-posterior-shape"
+              },
+              {
+                "id": "particle-weights-and-fixed-resampling-positions",
+                "title": "粒子权重与固定复制位置",
+                "question_ids": [
+                  "p07-cap-particle"
+                ],
+                "explore": false,
+                "key": "P07-SUMMARY:particle-weights-and-fixed-resampling-positions",
+                "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#particle-weights-and-fixed-resampling-positions"
+              },
+              {
+                "id": "backward-reconstruction-of-missing-history",
+                "title": "缺测历史的后向重建",
+                "question_ids": [
+                  "p07-cap-smoothing"
+                ],
+                "explore": false,
+                "key": "P07-SUMMARY:backward-reconstruction-of-missing-history",
+                "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#backward-reconstruction-of-missing-history"
+              },
+              {
+                "id": "sensor-changes-and-diagnostic-order",
+                "title": "传感器变化与诊断顺序",
+                "question_ids": [
+                  "p07-cap-failure"
+                ],
+                "explore": false,
+                "key": "P07-SUMMARY:sensor-changes-and-diagnostic-order",
+                "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#sensor-changes-and-diagnostic-order"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P07-SUMMARY:references",
+                "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/"
           }
         ],
         "available": true,

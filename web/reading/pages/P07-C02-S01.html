@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.2.1 贝叶斯滤波的预测与观测更新 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P07-C02-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P07-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-bayes-sequence">本节练习 · 4 题</a><a class="button" href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>7.2.1 贝叶斯滤波的预测与观测更新</h1>
+<p>学完本节，你应能手算标记到来前后的状态概率，推导预测与更新两步，并说明首条观测、缺测和零证据各怎样处理。</p>
+<p><strong>先修知识</strong>：7.1 的状态与观测模型，第 5 篇的条件概率、贝叶斯公式和条件期望。</p>
+<h2 id="two-state-marker-posterior">两态标记与一次后验</h2>
+<p>传感器在活跃细胞上更常给出强标记，但静息细胞也可能产生同样的读数。第 5 篇已经用贝叶斯公式更新过固定标签的概率；现在细胞还会在两次观察之间改变状态，因而需要将状态转移也接入计算。</p>
+<p>先看时刻 0。隐藏状态记为 $z_0$，用 0 表示静息、1 表示活跃。所有概率列表按“静息、活跃”排列。观测前的分布为 $[0.6,0.4]$，看到的强标记在两种状态下的似然为 $[0.2,0.8]$。逐项相乘：</p>
+<table>
+<thead>
+<tr>
+  <th>状态</th>
+  <th style="text-align:right">观测前概率</th>
+  <th style="text-align:right">当前标记似然</th>
+  <th style="text-align:right">联合质量</th>
+  <th style="text-align:right">观测后概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>静息</td>
+  <td style="text-align:right">0.6</td>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0.12</td>
+  <td style="text-align:right">$3/11$</td>
+</tr>
+<tr>
+  <td>活跃</td>
+  <td style="text-align:right">0.4</td>
+  <td style="text-align:right">0.8</td>
+  <td style="text-align:right">0.32</td>
+  <td style="text-align:right">$8/11$</td>
+</tr>
+</tbody>
+</table>
+<p>联合质量相加得到 $0.44$，即这次标记的<strong>证据（evidence）</strong>，也称边际似然。除以 0.44 后得到后验 $[3/11,8/11]$。0.8 是活跃时产生这个标记的概率，而 $8/11$ 是已经看到标记后活跃的概率；分母合并了产生同一读数的全部状态来源。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-evidence-normalization">归一化的分母是什么</a></li></ul></nav>
+
+<h2 id="prediction-by-state-marginalization">预测分布与状态转移</h2>
+<p>时刻 0 的后验描述当时的细胞。下一次观察前，状态按照已知转移矩阵改变：</p>
+<p>$$T=\begin{bmatrix}0.8&amp;0.2\\0.1&amp;0.9\end{bmatrix}.$$</p>
+<p>行表示当前状态，列表示下一状态，二者都按静息、活跃排列。下一时刻静息，可以来自“上一时刻静息并保持”或“上一时刻活跃转为静息”。对两种来源求和：</p>
+<p>$$\begin{aligned}
+P(z_1=0\mid y_0)&amp;=\frac3{11}\times0.8+\frac8{11}\times0.1=\frac{16}{55},\\
+P(z_1=1\mid y_0)&amp;=\frac3{11}\times0.2+\frac8{11}\times0.9=\frac{39}{55}.
+\end{aligned}$$</p>
+<p>它们是读数 $y_1$ 到来前的<strong>预测分布（predictive distribution）</strong>。</p>
+<p>一般地，记</p>
+<p>$$\alpha_{t-1}(i)=P(z_{t-1}=i\mid y_{0:t-1}),\qquad
+\pi_t(j)=P(z_t=j\mid y_{0:t-1}).$$</p>
+<p>$\alpha$ 表示吸收了对应时刻读数后的分布，$\pi_t$ 在这里表示时刻 $t$ 的观测前分布。$y_{0:t-1}$ 是已有读数，不包含即将到来的 $y_t$。</p>
+<p>把前一状态求和消去，即作边缘化：</p>
+<p>$$\begin{aligned}
+\pi_t(j)
+&amp;=\sum_iP(z_t=j,z_{t-1}=i\mid y_{0:t-1})\\
+&amp;=\sum_iP(z_t=j\mid z_{t-1}=i,y_{0:t-1})\alpha_{t-1}(i)\\
+&amp;=\boxed{\sum_i\alpha_{t-1}(i)T_{ij}}.
+\end{aligned}$$</p>
+<p>最后一步使用状态的马尔可夫性质。按行向量写，就是 $\pi_t=\alpha_{t-1}T$，与第 5 篇的分布传播顺序相同。</p>
+<h2 id="likelihood-evidence-and-filtering-distribution">当前似然、证据与滤波分布</h2>
+<p>新读数 $y_t$ 到达后，记各状态对实际读数给出的似然为</p>
+<p>$$\ell_t(j)=p(y_t\mid z_t=j).$$</p>
+<p>给定当前状态后，观测与更早历史条件独立，因此贝叶斯公式化为</p>
+<p>$$\boxed{Z_t=\sum_j\ell_t(j)\pi_t(j),\qquad
+\alpha_t(j)=\frac{\ell_t(j)\pi_t(j)}{Z_t}.}$$</p>
+<p>$\ell_t(j)\pi_t(j)$ 是当前状态与当前读数在已有历史下的联合质量，$Z_t$ 将全部状态来源合并。利用截至当前的观测，递推计算当前状态后验的过程称为<strong>贝叶斯滤波（Bayesian filtering）</strong>，$\alpha_t$ 则是<strong>滤波分布（filtering distribution）</strong>。</p>
+<p>预测改变的是观测前的状态分布，更新则结合新读数重新分配同一时刻各状态的可能性。例如，上面预测为 $[16/55,39/55]$，若下一次测量给出的似然为 $[0.7,0.3]$，则</p>
+<p>$$Z_1=\frac{16}{55}\times0.7+\frac{39}{55}\times0.3=\frac{229}{550},$$</p>
+<p>$$\alpha_1=\left[\frac{112}{229},\frac{117}{229}\right].$$</p>
+<p>活跃概率从预测的 $39/55\approx0.7091$ 降到后验的 $117/229\approx0.5109$。这次读数对静息给出的似然更大，因而将一部分概率转回静息。似然按每次实际测量的条件给定，可以随时刻改变。</p>
+<p>时刻 0 的初始先验已经是该时刻观测前的分布 $\pi_0$，首条读数直接更新；从时刻 1 起，才使用上一步后验先转移、再更新。每个读数只进入其对应的这一次更新。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-bayes-sequence">逐次预测与更新</a></li></ul></nav>
+
+<h2 id="continuous-state-prediction-integral">连续状态的预测积分</h2>
+<p>两室总量偏差可以连续取值，预测时要合并连续的前态。先用标量说明：固定已有读数，用 $\xi$ 表示前一状态，$x$ 表示当前候选状态；前态的条件密度记为 $f_{t-1}(\xi)$，从 $\xi$ 转移到 $x$ 的条件密度记为 $g_t(x\mid\xi)$。前态落在一小段宽 $\Delta\xi$ 内的概率约为 $f_{t-1}(\xi)\Delta\xi$。将每段经过状态转移后的贡献加起来，再让分段变细，得到</p>
+<p>$$f_t^-(x)=\int g_t(x\mid\xi)f_{t-1}(\xi)\,d\xi.$$</p>
+<p>它对应离散式中“转移概率乘前态概率，再对前态求和”的同一操作。两室状态时，$\xi$ 有两个分量，需要分别对它们积分，简写 $d\xi=d\xi_1d\xi_2$。</p>
+<p>读数到来后仍按贝叶斯公式乘似然并归一化：</p>
+<p>$$f_t(x)=\frac{p(y_t\mid x_t=x)f_t^-(x)}{Z_t},\qquad
+Z_t=\int p(y_t\mid x_t=x)f_t^-(x)\,dx.$$</p>
+<p>离散读数下，$Z_t$ 是出现当前读数的概率；连续读数下，它是观测密度在当前值处的数值，可以大于 1。无论哪一种，它都使更新后的状态分布归一化。7.3 将在线性高斯模型中计算这些积分的结果。</p>
+<h2 id="missing-observation-and-zero-evidence">缺测与零证据</h2>
+<p>如果一个时刻没有读数，状态仍会继续转移。本节设缺测机制与隐藏状态无关，缺测本身没有提供状态信息，所以取常数似然 $\ell_t(j)=1$。此时 $Z_t=1$、$\alpha_t=\pi_t$：保留动态预测，不再因新标记改变概率。若某种状态更容易漏测，漏测也可作为一种观测，用各状态的漏测概率构造似然。</p>
+<p>收到数值为零的读数则不同。零可能是“暗标记”等真实观测，需要使用它的测量似然；它与没有取得读数所表达的信息不同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-missing-not-zero">缺测等于观测零吗</a></li></ul></nav>
+
+<p>在离散模型中，如果所有预测有正概率的状态都给当前标记零似然，$Z_t=0$。这说明当前模型未给这次读数分配概率，贝叶斯公式中的条件分布无法由该分母计算。计算题保留这一时刻的预测和零证据，返回不相容状态并停止，不生成该步后验；此前成功的后验保留。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-zero-evidence">不可能观测之后</a></li></ul></nav>
+
+<h2 id="two-state-filter-and-missing-step">四个观测时刻的递推对照</h2>
+<p>下面保持初始分布 $[0.6,0.4]$ 和上面的转移矩阵，按时刻给出实际观测的似然：</p>
+<table>
+<thead>
+<tr>
+  <th>时刻</th>
+  <th>各状态似然，按静息、活跃排列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>$[0.2,0.8]$</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>$[0.7,0.3]$</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>缺测</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>$[0.2,0.8]$</td>
+</tr>
+</tbody>
+</table>
+<p>图中每个时刻的两个点分别表示当前观测到来前后的活跃概率。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P07-C02-S01-ed9a28a3-0.png" alt="贝叶斯滤波的预测与观测更新：实验结果图" loading="lazy"></figure>
+</section>
+<p>时刻 0 从先验活跃概率 0.4 更新到 $8/11$；时刻 1 先由动态预测到约 0.7091，再由新似然更新到约 0.5109。时刻 2 的预测与后验重合，但它们与时刻 1 后验不同，因为两次观察之间仍有状态转移。时刻 3 恢复观测，新标记再次提高活跃概率。</p>
+<p>这四步把两件事分开：动态告诉我们没有新读数时怎样推进，测量关系告诉我们读数来了以后怎样改变判断。下一节将状态扩展到三个，并将递推与全部短路径的求和逐项对应。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf#page=74">Särkkä，Bayesian Filtering and Smoothing（2013），第 4.2 节</a>由条件分布推导预测积分与贝叶斯更新；本节用两态求和先建立相同的计算顺序。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/07-01-状态空间与能观性/read/2/">← 7.1.2 能观性、传感器与采样</a><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/2/">7.2.2 隐马尔可夫模型与前向递推 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

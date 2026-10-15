@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.1.1 有噪状态空间模型与均值、协方差预测 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P07-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P07-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/07-01-状态空间与能观性/practice/?question=p07-state-readings">本节练习 · 4 题</a><a class="button" href="/chapters/07-01-状态空间与能观性/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>7.1.1 有噪状态空间模型与均值、协方差预测</h1>
+<p>学完本节，你应能分清状态与参数分别是什么未知量，将两类误差放进对应方程，并手算下一状态的均值和协方差。</p>
+<p><strong>先修知识</strong>：第 3 篇的状态空间与矩阵乘法，第 5 篇的条件期望和协方差，以及第 6 篇的预测信息顺序。</p>
+<h2 id="state-estimation-and-parameter-identification">状态估计与参数辨识</h2>
+<p>第一室的读数下降，可能是物质转移到了第二室，也可能是仪器把数值报低了。真实转移会影响以后各天的分配，一次低报则只改变当天的记录。要从一串读数推断系统正在怎样变化，需要把这两种来源分开。</p>
+<p>第 6 篇主要根据数据估计动态规则中的系数。本篇先把这些规则视为已知，转而研究规则作用下的当前状态。<strong>状态估计（state estimation）</strong>是利用模型与已有观测推断未被完整测到的状态；<strong>参数辨识（parameter identification）</strong>则利用数据确定模型中的未知参数。例如，两室当前各有多少，是状态问题；每天交换多少比例，是参数问题。</p>
+<p>沿用列向量 $x_t=[x_{1,t},x_{2,t}]^{\mathsf T}$，顺序固定为第一室、第二室。下标 $t=0,1,\ldots$ 表示离散观测时刻，每步为一天。这里记录两室相对参考工作点的总量偏差，以 U 计，偏差允许正负。模型给出变化规则，状态估计还需要说明当前状态可能在哪里，以及仪器如何读取它。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-01-状态空间与能观性/practice/?question=p07-state-parameter">未知的是哪一类量</a></li></ul></nav>
+
+<h2 id="state-transition-and-measurement-noise">状态转移、过程扰动与观测误差</h2>
+<p>先不加扰动：每过一天，两室各保留自身的80%，把20%转给另一室。转移矩阵为</p>
+<p>$$F=\begin{bmatrix}0.8&amp;0.2\\0.2&amp;0.8\end{bmatrix}.$$</p>
+<p>第 $i$ 行、第 $j$ 列表示旧状态第 $j$ 项对新状态第 $i$ 项的贡献。若初态为 $[8,2]^{\mathsf T}\,\mathrm U$，下一状态是</p>
+<p>$$Fx_0=\begin{bmatrix}0.8\times8+0.2\times2\\0.2\times8+0.8\times2\end{bmatrix}
+=\begin{bmatrix}6.8\\3.2\end{bmatrix}\,\mathrm U.$$</p>
+<p>传感器只读取第一室时，观测行 $H=[1,0]$，于是无误差读数为 $Hx_0=8\,\mathrm U$。如果初始时刻低报 $0.5\,\mathrm U$，仪器显示 $7.5\,\mathrm U$，实际初态仍为 $[8,2]^{\mathsf T}\,\mathrm U$。</p>
+<p>将未知扰动与仪器误差加入对应位置，得到有噪状态空间模型</p>
+<p>$$\boxed{x_{t+1}=Fx_t+w_t,\qquad y_t=Hx_t+v_t.}$$</p>
+<p>$w_t=[w_{1,t},w_{2,t}]^{\mathsf T}$ 是从 $t$ 到 $t+1$ 进入两室状态的过程扰动，$v_t$ 是时刻 $t$ 加在当前读数上的测量误差；它们与状态均以 U 计。$F$ 为 $2\times2$，$H$ 为 $1\times2$，输出 $y_t$ 是标量。本节没有根据读数改变真实状态的反馈，下一步从 $x_t$ 推进，而不是把 $y_t$ 填回第一室。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-01-状态空间与能观性/practice/?question=p07-noise-location">两种噪声加在哪里</a></li></ul></nav>
+
+<h2 id="conditional-independence-of-state-space-model">条件独立与随机状态的充分性</h2>
+<p>在这个模型中，初态与各时刻的过程、测量噪声相互独立，噪声均值为零。每次新的扰动都独立产生，因此给定当前完整状态后，下一状态的分布由 $Fx_t+w_t$ 决定；更早的状态和读数无需再进入转移规则。</p>
+<p>用 $y_{0:t}$ 表示从时刻 0 到 $t$ 的整段读数，$x_{0:t}$ 同样表示一段状态。上述依赖结构写成</p>
+<p>$$p(x_{t+1}\mid x_{0:t},y_{0:t})=p(x_{t+1}\mid x_t).$$</p>
+<p>它沿用第 5 篇的马尔可夫性质，体现了随机状态的充分性：当前状态保留了预测下一步分布所需的历史信息。</p>
+<p>观测模型还规定</p>
+<p>$$p(y_t\mid x_{0:t},y_{0:t-1})=p(y_t\mid x_t).$$</p>
+<p>即给定当前状态，当前读数的分布只由同一时刻的测量关系决定。这称为观测的<strong>条件独立（conditional independence）</strong>。它允许相邻读数彼此相关：相邻状态本来就通过 $F$ 相连，观测也会共享这种动态联系。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-01-状态空间与能观性/practice/?question=p07-independence">条件独立的范围</a></li></ul></nav>
+
+<h2 id="conditional-state-mean-and-covariance">状态均值与协方差矩阵</h2>
+<p>当前状态看不全，可以像第 5 篇那样用分布表示不确定性。固定截至 $t$ 的全部读数，定义条件均值</p>
+<p>$$m_t=\mathbb E[x_t\mid y_{0:t}].$$</p>
+<p>这是对仍然可能的状态取条件平均，结果依旧是按两室顺序排列的列向量。两室偏差可能一起变化，也可能一增一减，因此除了各自方差，还要保留它们的共同变化。</p>
+<p>令 $\delta x_t=x_t-m_t$。两个列向量的外积 $\delta x_t\delta x_t^{\mathsf T}$ 将每对分量相乘；对它取条件平均，定义条件协方差矩阵</p>
+<p>$$\begin{aligned}
+P_t&amp;=\mathbb E[\delta x_t\delta x_t^{\mathsf T}\mid y_{0:t}]\\
+&amp;=\begin{bmatrix}
+\operatorname{Var}(x_{1,t}\mid y_{0:t})&amp;\operatorname{Cov}(x_{1,t},x_{2,t}\mid y_{0:t})\\
+\operatorname{Cov}(x_{2,t},x_{1,t}\mid y_{0:t})&amp;\operatorname{Var}(x_{2,t}\mid y_{0:t})
+\end{bmatrix}.
+\end{aligned}$$</p>
+<p>两个对角位置分别描述两室的不确定程度，非对角位置描述它们怎样共同偏离均值；各项单位均为 U²。矩阵是对称的。对任意常数向量 $a$，$a^{\mathsf T}P_ta$ 是组合量 $a^{\mathsf T}x_t$ 的条件方差，因而非负。</p>
+<p>过程扰动的协方差记为 $Q=\operatorname{Cov}(w_t)$，同样按第一室、第二室排列。当前传感器只有一个读数，测量误差方差记为 $R=\operatorname{Var}(v_t)$。$Q$ 是矩阵，$R$ 是标量，二者都描述误差的平方尺度。</p>
+<h2 id="one-step-moment-prediction">均值与协方差的一步预测</h2>
+<p>下一天的读数尚未到达时，只使用已有信息预测。由期望的线性性与新扰动的零均值，</p>
+<p>$$m_{t+1}^-=\mathbb E[Fx_t+w_t\mid y_{0:t}]=Fm_t.$$</p>
+<p>上标“−”表示尚未吸收对应时刻的新读数。预测偏差为</p>
+<p>$$x_{t+1}-m_{t+1}^-=F\delta x_t+w_t.$$</p>
+<p>展开其外积：</p>
+<p>$$\begin{aligned}
+&amp;(F\delta x_t+w_t)(F\delta x_t+w_t)^{\mathsf T}\\
+&amp;=F\delta x_t\delta x_t^{\mathsf T}F^{\mathsf T}
++F\delta x_tw_t^{\mathsf T}
++w_t\delta x_t^{\mathsf T}F^{\mathsf T}
++w_tw_t^{\mathsf T}.
+\end{aligned}$$</p>
+<p>新扰动独立于当前状态与已有读数，且均值为零，两个交叉项的条件平均都为零。因此</p>
+<p>$$\boxed{m_{t+1}^-=Fm_t,\qquad P_{t+1}^-=FP_tF^{\mathsf T}+Q.}$$</p>
+<p>例如当前条件均值为 $[8,2]^{\mathsf T}\,\mathrm U$，协方差为 $P_t=I\,\mathrm{U^2}$，本轮先取 $Q=0$，则预测均值为 $[6.8,3.2]^{\mathsf T}\,\mathrm U$，协方差为</p>
+<p>$$P_{t+1}^-=\begin{bmatrix}0.8&amp;0.2\\0.2&amp;0.8\end{bmatrix}
+\begin{bmatrix}0.8&amp;0.2\\0.2&amp;0.8\end{bmatrix}
+=\begin{bmatrix}0.68&amp;0.32\\0.32&amp;0.68\end{bmatrix}\,\mathrm{U^2}.$$</p>
+<p>第一室的新误差含有两室旧误差的加权和，第二室也含有它们，所以原先不相关的两项经过交换后产生协方差。若再加入过程扰动，就将其 $Q$ 加到这个矩阵上。测量方差 $R$ 没有进入状态预测，因为它只改变读数。</p>
+<h2 id="process-pulse-and-reading-error">过程变化与测量低报的对照</h2>
+<p>下面固定初态和转移规则，在第 7 天到第 8 天的区间加入过程增量 $[1,-1]^{\mathsf T}\,\mathrm U$，同时让第 8 天的仪器低报 $1\,\mathrm U$。其他时刻的增量与测量误差均为零。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P07-C01-S01-f267a23b-0.png" alt="有噪状态空间模型与均值、协方差预测：实验结果图" loading="lazy"></figure>
+</section>
+<p>第 8 天的第一室实际比无扰动路径高 1 U，但读数又低报 1 U，因此当日读数恰好落在无扰动曲线上。到了第 9 天，过程增量已演化为</p>
+<p>$$F\begin{bmatrix}1\\-1\end{bmatrix}
+=\begin{bmatrix}0.6\\-0.6\end{bmatrix}\,\mathrm U,$$</p>
+<p>第一室仍高出 0.6 U，而前一天的测量误差已经结束。真实扰动由状态携带到以后，一次仪器低报只改当时的读数。两室之和始终为 10 U，因为这次等量反向增量和原有交换都保持总和。</p>
+<p>按时刻保存实验结果时，初始状态放在第 0 项；第 $i$ 项过程增量用于 $i$ 到 $i+1$，第 $i$ 项测量误差则加在 $Hx_i$ 上。有 $N$ 个转移区间时，状态与读数都含起点，共有 $N+1$ 项。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-01-状态空间与能观性/practice/?question=p07-state-readings">从状态到有噪读数</a></li></ul></nav>
+
+<p>下一节先将两类噪声设为零，研究传感器取得的连续读数能否区分不同初态。这决定了恢复问题有哪些信息可以利用。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf#page=71">Särkkä，Bayesian Filtering and Smoothing（2013），第 4.1 节</a>给出概率状态空间模型的依赖结构；第 4.3 节讨论线性模型中的矩传播。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/06-从测量走向模型/综合练习/read/1/">← 篇末综合 测量表示、参数辨识与预测验证</a><a href="/chapters/07-01-状态空间与能观性/read/2/">7.1.2 能观性、传感器与采样 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

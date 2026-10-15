@@ -9,12 +9,12 @@ const fmt=x=>x===null?'缺测':Number(x.toPrecision(4)).toString();
 const svg=(tag,attrs,text)=>{const n=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;};
 let chapter,mode,p={},data,playback;
 const definitions={
- '7.1':{title:'只看总量，能分清两个室吗？',question:'两种初态为 [8,2] U 与 [2,8] U，每项依次对应第一室、第二室。合计物质量都为10 U，只读第一室和读取两室合计量，会看到什么差别？',explanation:'状态的两项是各室物质量，H的两个系数按同一室序产生标量读数。能观性考察已知模型中能否由一段无噪读数区分初态；O的第一、第二行分别对应时刻0、1，列对应两室初态。',formula:'x[n+1]=F x[n]；y[n]=H x[n]；O=[H; HF]'},
- '7.2':{title:'预测，再用新读数修正概率',question:'一个明亮标记就能确定细胞状态吗？先看标记到来前的预测，再查看同一时刻的更新，比较静息、活跃、恢复三项概率。',explanation:'隐马尔可夫模型将状态转移与标记机制分开。T[i,j]表示从状态i到j的概率；L[j]是当前标记在状态j下的似然。先按转移求预测，再乘当次似然并归一化，两个列表始终按静息、活跃、恢复排列。',formula:'p⁻[j]=Σᵢ p[i] T[i,j]；p⁺[j]=p⁻[j] L[j] / Σₖ p⁻[k] L[k]'},
- '7.3':{title:'一次观测怎样缩小状态的不确定性',question:'传感器只测第一室，第二室估计会不会也被修正？逐时刻比较读数到来前后的均值与协方差。',explanation:'卡尔曼滤波在线性高斯模型中更新条件均值与协方差。P的行列按第一室、第二室排列，对角项是各室方差，非对角项描述共同变化；K两项分别把同一个读数差转换为两室均值修正。',formula:'m⁻=F m；P⁻=F P Fᵀ+Q；K=P⁻Hᵀ/(H P⁻Hᵀ+R)；m⁺=m⁻+K(y−Hm⁻)'},
- '7.4':{title:'一个钟形近似，能装下两个可能状态吗？',question:'平方读数y接近1.4 U²，能判断状态x的正负吗？将先验均值移到零，观察两侧的后验峰，再比较两个高斯近似。',explanation:'EKF在当前预测均值处用切线近似观测，UKF把代表点经过平方函数后汇总矩。它们都保存单个高斯；即使均值相近，方差和双峰区域的概率仍可能与网格后验不同。',formula:'x ~ N(m,0.8)；y=x²+v，v ~ N(0,R)；p(x|y) ∝ p(x) p(y|x)'},
- '7.5':{title:'权重相同，不等于信息重新变多',question:'重采样后每项权重都相等，还保留了多少不同位置？先看哪些粒子获得权重，再看哪些旧位置被重复选择。',explanation:'重要性权重纠正提议位置与目标概率的差别。ESS只描述当前权重集中程度；重采样按累计权重选择旧粒子，复制后每项权重为1/N，不同祖先数量却可能更少。',formula:'wᵢ ∝ p(xᵢ) p(y|xᵢ) / q(xᵢ)；ESS=1/Σᵢwᵢ²；重采样位置=(i+offset)/N'},
- '7.6':{title:'读数缺了一段，后来能补回什么？',question:'时刻6至12缺测，当时只能怎样估计？时刻13重新取得读数后，比较历史平滑与各时刻实际可用的滤波结果。',explanation:'滤波在时刻n使用截至n的读数；本页固定区间RTS平滑使用全部记录，从末时刻向前修正历史。G[n]把下一时刻平滑均值相对原预测的差传回n，分母使用n+1预测方差。',formula:'x[n+1]=x[n]+w[n]；y[n]=x[n]+v[n]；G[n]=P[n]/P⁻[n+1]'}
+ '7.1':{title:'两室交换、观测与能观性',question:'两种初态为 [8,2] U 与 [2,8] U，每项依次对应第一室、第二室。合计总量都为10 U，只读第一室和读取两室合计量，会看到什么差别？',explanation:'状态的两项是各室总量，H的两个系数按同一室序产生标量读数。能观性考察已知模型中能否由一段无噪读数区分初态；O的第一、第二行分别对应时刻0、1，列对应两室初态。',formula:'x[n+1]=F x[n]；y[n]=H x[n]；O=[H; HF]'},
+ '7.2':{title:'隐藏状态的预测与贝叶斯更新',question:'一个明亮标记就能确定细胞状态吗？先看标记到来前的预测，再查看同一时刻的更新，比较静息、活跃、恢复三项概率。',explanation:'隐马尔可夫模型将状态转移与标记机制分开。T[i,j]表示从状态i到j的概率；L[j]是当前标记在状态j下的似然。先按转移求预测，再乘当次似然并归一化，两个列表始终按静息、活跃、恢复排列。',formula:'p⁻[j]=Σᵢ p[i] T[i,j]；p⁺[j]=p⁻[j] L[j] / Σₖ p⁻[k] L[k]'},
+ '7.3':{title:'线性高斯状态估计',question:'传感器只测第一室，第二室估计会不会也被修正？逐时刻比较读数到来前后的均值与协方差。',explanation:'卡尔曼滤波在线性高斯模型中更新条件均值与协方差。P的行列按第一室、第二室排列，对角项是各室方差，非对角项描述共同变化；K两项分别把同一个读数差转换为两室均值修正。',formula:'m⁻=F m；P⁻=F P Fᵀ+Q；K=P⁻Hᵀ/(H P⁻Hᵀ+R)；m⁺=m⁻+K(y−Hm⁻)'},
+ '7.4':{title:'非线性观测与高斯近似',question:'平方读数y接近1.4 U²，能判断状态x的正负吗？将先验均值移到零，观察两侧的后验峰，再比较两个高斯近似。',explanation:'EKF在当前预测均值处用切线近似观测，UKF把代表点经过平方函数后汇总矩。它们都保存单个高斯；即使均值相近，方差和双峰区域的概率仍可能与网格后验不同。',formula:'x ~ N(m,0.8)；y=x²+v，v ~ N(0,R)；p(x|y) ∝ p(x) p(y|x)'},
+ '7.5':{title:'重要性权重与系统性重采样',question:'重采样后每项权重都相等，还保留了多少不同位置？先看哪些粒子获得权重，再看哪些旧位置被重复选择。',explanation:'重要性权重纠正提议位置与目标概率的差别。ESS只描述当前权重集中程度；重采样按累计权重选择旧粒子，复制后每项权重为1/N，不同祖先数量却可能更少。',formula:'wᵢ ∝ p(xᵢ) p(y|xᵢ) / q(xᵢ)；ESS=1/Σᵢwᵢ²；重采样位置=(i+offset)/N'},
+ '7.6':{title:'连续缺测与固定区间平滑',question:'时刻6至12缺测，当时只能怎样估计？时刻13重新取得读数后，比较历史平滑与各时刻实际可用的滤波结果。',explanation:'滤波在时刻n使用截至n的读数；本页固定区间RTS平滑使用全部记录，从末时刻向前修正历史。G[n]把下一时刻平滑均值相对原预测的差传回n，分母使用n+1预测方差。',formula:'x[n+1]=x[n]+w[n]；y[n]=x[n]+v[n]；G[n]=P[n]/P⁻[n+1]'}
 };
 function slider(key,label,min,max,step,value){p[key]=value;const group=el('div',undefined,'slider'),lab=el('label',label),out=el('output',value),input=el('input');Object.assign(input,{id:key,type:'range',min,max,step,value});lab.htmlFor=key;out.id=key+'-value';input.addEventListener('input',()=>{p[key]=Number(input.value);out.value=input.value;guard(recompute);});group.append(lab,out,input);$('sliders').append(group);}
 function controls(){p={};$('sliders').replaceChildren();
@@ -32,7 +32,7 @@ function recompute(){
  if(mode==='7.1'){
   data=exchange(p.exchange,p.total);$('alternate').textContent=p.total?'切换为只测第一室':'切换为测量两室总量';
   $('preset-note').textContent=`当前 H=[${data.H}]；两种初态总量均为 10 U。按钮切换传感器，交换比例保持不变。`;
-  $('assumptions').textContent='两室交换同一种物质，U为物质量单位；每步各室将自身物质量的c比例转给另一室。不从系统外补入、不向系统外排出，也不发生清除，且本页省略噪声，因此合计量始终为10 U。';
+  $('assumptions').textContent='两室交换同一种物质，U为所追踪物质总量的单位；每步各室将自身总量的c比例转给另一室。不从系统外补入、不向系统外排出，也不发生清除，且本页省略噪声，因此合计量始终为10 U。';
   $('chart-heading').textContent='内部状态不同，读数可能相同';$('value-label').textContent='两步能观矩阵的秩';$('value').textContent=`${data.rank} / 2`;
   $('chart-note').textContent='左图只画两个初态对应的第一室状态；第二室始终等于 10 减第一室。右图画传感器读数。总量传感器的曲线重合，不能恢复物质如何分配；秩满也不保证有噪恢复误差小。';
   legend([['初态 [8,2]',blue,false],['初态 [2,8]',pink,true]]);table(['步 n','初态一：第一室 / U','初态二：第一室 / U','读数一 / U','读数二 / U'],data.paths[0].map((x,i)=>[i,x[0],data.paths[1][i][0],data.outputs[0][i],data.outputs[1][i]]));
@@ -64,7 +64,7 @@ function recompute(){
  if(mode==='7.5'){
   data=particleExperiment(p.noise,p.count,p.offset);const next=alternate(p.count,12,96);$('alternate').textContent=next===96?'切换为 96 个粒子':'切换为 12 个粒子';
   $('preset-note').textContent=`固定重采样起点 offset=${fmt(p.offset)}，相同条件产生相同选择。不同祖先 ${new Set(data.indices).size}/${p.count} 个。`;
-  $('assumptions').textContent='沿用平方观测，先验均值0 U、方差0.8 U²，读数1.4 U²。本页在 [−4,4] U等宽区间的中点固定粒子；均匀提议密度为常数，权重与先验密度乘似然成正比。这是确定位置的一次积分近似与重采样，动态粒子抽样见Notebook。';
+  $('assumptions').textContent='沿用平方观测，先验均值0 U、方差0.8 U²，读数1.4 U²。本页在 [−4,4] U等宽区间的中点固定粒子；均匀提议密度为常数，权重与先验密度乘似然成正比。这是确定位置的一次积分近似与重采样，动态粒子滤波见本章讲解与Notebook实验。';
   $('chart-heading').textContent='哪些位置获得权重，哪些被重复选择';$('value-label').textContent='重采样前 ESS / N';$('value').textContent=`${fmt(data.ess)} / ${p.count}`;
   $('chart-note').textContent='左图每根针为一个粒子的归一化权重；右图针高为重采样后该位置所占比例，重复祖先合并计数。两图共用纵轴。播放只逐个展示已经算好的粒子，不表示逐次重复观测。重采样后单粒子权重为 1/N，不同位置数可能减少。';
   legend([['更新后权重',blue,false],['重采样后位置占比',pink,true]]);const counts=data.indices.reduce((a,j)=>(a[j]=(a[j]||0)+1,a),{});table(['粒子序号','位置 / U','归一化权重','被复制次数'],data.particles.map((x,i)=>[i,x,data.weights[i],counts[i]||0]));

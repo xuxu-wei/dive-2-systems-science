@@ -2141,5 +2141,65 @@
     "zh": "信息矩阵",
     "en": "information matrix",
     "scope": "part06"
+  },
+  {
+    "zh": "能观矩阵",
+    "en": "observability matrix",
+    "scope": "part07"
+  },
+  {
+    "zh": "最小奇异值",
+    "en": "smallest singular value",
+    "scope": "part07"
+  },
+  {
+    "zh": "预测分布",
+    "en": "predictive distribution",
+    "scope": "part07"
+  },
+  {
+    "zh": "滤波分布",
+    "en": "filtering distribution",
+    "scope": "part07"
+  },
+  {
+    "zh": "发射概率",
+    "en": "emission probability",
+    "scope": "part07"
+  },
+  {
+    "zh": "前向概率",
+    "en": "forward probability",
+    "scope": "part07"
+  },
+  {
+    "zh": "多元高斯分布",
+    "en": "multivariate Gaussian distribution",
+    "scope": "part07"
+  },
+  {
+    "zh": "目标分布",
+    "en": "target distribution",
+    "scope": "part07"
+  },
+  {
+    "zh": "提议分布",
+    "en": "proposal distribution",
+    "scope": "part07"
+  },
+  {
+    "zh": "自归一化重要性采样",
+    "en": "self-normalized importance sampling",
+    "scope": "part07"
+  },
+  {
+    "zh": "序贯重要性采样",
+    "en": "sequential importance sampling",
+    "scope": "part07"
+  },
+  {
+    "zh": "平滑增益",
+    "en": "smoothing gain",
+    "scope": "part07"
   }
 ]

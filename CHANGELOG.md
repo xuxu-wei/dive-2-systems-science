@@ -4,9 +4,11 @@
 
 ## [未发布]
 
-网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)。
+网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)。
 
 ### 新增
+
+- 第7篇十四节网页讲授和独立实验，以63道原题连接状态模型、贝叶斯滤波、高斯与粒子近似、平滑和缺测处理。
 
 - 第6篇十六节网页讲授与独立实验，连接采样、滤波、系统表示、估计及递推辨识，原79题定位到具体概念。
 - 第 5 篇十三节网页讲授与独立实验，覆盖概率、矩、条件平均与更新、随机过程及信息，原 62 道题连接到具体讲解。
@@ -17,6 +19,8 @@
 - 从网页新标签页打开指定 JupyterLab 实验，自动使用本项目 Python 环境。
 
 ### 变更
+
+- 第7篇以定义、手算和图形完成讲授，六张探索按实际模型关联具体概念；Notebook保留可修改计算和独立核对。
 
 - 第6篇由手算、公式与图形衔接时域、频域、参数估计和模型验证；Notebook保留原计算与可修改实验。
 - 第 5 篇用概率表、手算和图形连接定义与实验；固定未知量更新与动态分布传播分别说明，Notebook 保留核心计算与参数对照。

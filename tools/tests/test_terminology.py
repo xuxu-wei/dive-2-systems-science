@@ -142,3 +142,15 @@ def test_part05_compound_annotations_keep_their_full_scientific_meaning(source):
 def test_part06_compound_annotations_do_not_split_into_shorter_terms(source):
     issues, _ = check_text(source, 6, require_first=False)
     assert issues == []
+
+
+@pytest.mark.parametrize('source', [
+    '能观矩阵（observability matrix）按时刻堆叠观测行。',
+    '多元高斯分布（multivariate Gaussian distribution）表示联合状态。',
+    '自归一化重要性采样（self-normalized importance sampling）形成加权期望。',
+    '前向概率（forward probability）合并同末态路径。',
+    '平滑增益（smoothing gain）回传相邻状态的信息。',
+])
+def test_part07_complete_annotations_keep_their_distribution_and_algorithm_meaning(source):
+    issues, _ = check_text(source, 7, require_first=False)
+    assert issues == []

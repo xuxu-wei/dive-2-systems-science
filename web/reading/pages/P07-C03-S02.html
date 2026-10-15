@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.3.2 卡尔曼预测、创新与观测更新 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P07-C03-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P07-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-kalman-sequence">本节练习 · 5 题</a><a class="button" href="/chapters/07-03-卡尔曼滤波/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>7.3.2 卡尔曼预测、创新与观测更新</h1>
+<p>学完本节，你应能由联合高斯条件公式连接预测与更新，解释创新和增益，推导Joseph协方差形式，并按真实时钟处理首条读数和缺测。</p>
+<p><strong>先修知识</strong>：7.3.1的高斯条件分布，7.1的线性状态模型，以及7.2的预测与更新顺序。</p>
+<h2 id="linear-gaussian-state-model">线性高斯状态模型</h2>
+<p>昨天对两个室的估计，可以通过交换模型预测到今天；今天的新读数又能修正这个预测。要持续做这件事，我们同时保存均值与协方差，让读数的修正量随当前不确定性变化。</p>
+<p>用离散时刻$t=0,1,\ldots$表示每次观测机会，采用</p>
+<p>$$x_t=Fx_{t-1}+w_{t-1}\quad(t\ge1),\qquad Y_t=Hx_t+v_t.$$</p>
+<p>$x_t$是两室偏差列向量，顺序始终为第一、第二室，单位U；$F$为$2\times2$状态转移矩阵。$H$为$1\times2$行向量，将状态变成一项标量读数。过程噪声$w_t$是两维，协方差$Q$为$2\times2$；测量噪声$v_t$为标量，方差$R&gt;0$。本例两类噪声都以U为单位，协方差以U²为单位。</p>
+<p>初态服从给定的高斯分布，并独立于所有过程与测量噪声。各时刻的两类噪声彼此独立，均为零均值高斯，协方差分别为$Q,R$。线性变换保持高斯，吸收线性读数后的条件分布也仍为高斯，所以均值和协方差在这里完整描述滤波分布。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-gaussian-exactness">什么时候是精确后验</a></li></ul></nav>
+
+<h2 id="kalman-state-prediction">先传播均值与协方差</h2>
+<p>设$m_{t-1},P_{t-1}$已使用截至$t-1$的读数。对状态方程取条件平均，独立零均值扰动不改变预测均值：</p>
+<p>$$\boxed{m_t^-=Fm_{t-1}.}$$</p>
+<p>负号上标表示当前读数到来以前。预测偏差为$F(x_{t-1}-m_{t-1})+w_{t-1}$，两部分独立，故</p>
+<p>$$\boxed{P_t^-=FP_{t-1}F^{\mathsf T}+Q.}$$</p>
+<p>第一项传播原有不确定性，第二项加入新过程扰动。它们分别来自状态演化的两个部分。</p>
+<p>本节数值模型为</p>
+<p>$$F=\begin{pmatrix}0.85&amp;0.1\\0.1&amp;0.8\end{pmatrix},\quad
+Q=\begin{pmatrix}0.02&amp;0\\0&amp;0.02\end{pmatrix}\,\mathrm{U^2},
+\quad H=\begin{pmatrix}1&amp;0\end{pmatrix},\quad R=0.16\,\mathrm{U^2}.$$</p>
+<p>$H$只读第一室，$F$中的非对角项让两个室的偏差相互影响。即使某室没有被直接测到，传播也可能使它与下一次读数建立相关。</p>
+<h2 id="kalman-innovation-update">创新、增益与条件更新</h2>
+<p>预测读数为$Hm_t^-$。定义<strong>创新（innovation）</strong>为实际读数减去预测读数：</p>
+<p>$$r_t=y_t-Hm_t^-.$$</p>
+<p>它回答“新读数带来了多大的预测偏差”。由观测方程，状态与读数的交叉协方差、读数的预测方差为</p>
+<p>$$C_t=P_t^-H^{\mathsf T},\qquad
+S_t=HP_t^-H^{\mathsf T}+R.$$</p>
+<p>这里$C_t$是$2\times1$，$S_t$是标量，单位均为U²。定义<strong>卡尔曼增益</strong>$K_t=C_t/S_t$，代入上一节的高斯条件公式：</p>
+<p>$$\boxed{m_t=m_t^-+K_tr_t,\qquad
+P_t=P_t^--K_tS_tK_t^{\mathsf T}.}$$</p>
+<p>将状态预测和这次条件更新随读数依次重复，就是<strong>卡尔曼滤波（Kalman filter，KF）</strong>。</p>
+<p>$K_t$的两个分量无量纲，分别将同一个创新变成两室均值的修正。读数更精确、$R$更小时，传感器测到的方向通常得到更强修正；第二室的修正还由交叉协方差决定。</p>
+<p>例如单个状态的$P^-=4$ U²、$R=1$ U²，读数比预测高2 U，就有$K=4/5$、均值上调1.6 U，方差降到0.8 U²。它正是上一节的一次条件更新，现在只需在读数之间补上状态预测。</p>
+<h2 id="joseph-covariance">Joseph 形式与测量误差贡献</h2>
+<p>协方差更新也能从更新后的估计误差直接得到。令$e^-=x-m^-$，观测创新为$He^-+v$。均值修正后，</p>
+<p>$$e^+=e^--K(He^-+v)=(I-KH)e^--Kv.$$</p>
+<p>$e^-$与本次测量噪声$v$独立，因此</p>
+<p>$$\boxed{P=(I-KH)P^-(I-KH)^{\mathsf T}+KRK^{\mathsf T}.}$$</p>
+<p>这是<strong>Joseph形式</strong>。第一项保留原有误差经修正后留下的部分，第二项是测量噪声经增益传入的部分。把$K=P^-H^{\mathsf T}/S$代入，展开后与$P^--KSK^{\mathsf T}$相同。</p>
+<p>若只写第一项，会漏掉测量本身带来的误差。Joseph形式的两项都具有协方差形式，也便于在数值计算中保持对称和非负的方差结构。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-joseph-noise">协方差更新的两种写法</a></li></ul></nav>
+
+<h2 id="initial-reading-and-missing-data">首条读数与缺测时钟</h2>
+<p>给定的$m_0^-,P_0^-$是<strong>时刻0观测前</strong>的分布。$y_0$就在这个时刻到达，直接更新该分布；从$t=1$起，才先用$F,Q$预测，再吸收同一时刻的读数。</p>
+<p>以$m_0^-=[2,0]^{\mathsf T}$ U、$P_0^-=I$ U²、$y_0=1.8$ U为例，</p>
+<p>$$S_0=1+0.16=1.16\,\mathrm{U^2},\qquad
+K_0=\begin{pmatrix}1/1.16\\0\end{pmatrix},\qquad r_0=-0.2\,\mathrm U.$$</p>
+<p>所以$m_0\approx[1.827586,0]^{\mathsf T}$ U。第二室此时与第一室无先验相关，尚不被修正；随后一次动态传播会产生非零交叉协方差，再使后续读数影响第二室。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-kalman-timing">第一步之前要转移吗</a></li></ul></nav>
+
+<p>缺测时没有新的似然因子，保留$m_t=m_t^-,P_t=P_t^-$。这个处理假设缺测安排本身不提供未知状态的信息。时间照常经过，下一时刻仍需传播；把缺测项删掉，会把两个不相邻的读数错误地当作相邻读数。</p>
+<p>计算题用<code>None</code>保留缺测时刻。空记录返回空结果；记录为<code>[None,None]</code>时，仍有时刻0的先验和时刻1的预测两项。返回列表中的第$t$项始终对应原记录的时刻$t$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-empty-observations">无读数与连续缺测</a></li><li><a href="/chapters/07-03-卡尔曼滤波/practice/?question=p07-kalman-sequence">线性高斯递推</a></li></ul></nav>
+
+<h2 id="kalman-sequence-experiment">两室滤波记录与边际区间</h2>
+<p>下面每隔一天有一次观测机会，时刻0至7的读数为$[1.8,1.5,\text{缺测},1.3,1.1,\text{缺测},0.7,0.9]$ U。使用上面的模型与初态，各室画均值和$m_i\pm1.96\sqrt{P_{ii}}$边际区间。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P07-C03-S02-75555c26-0.png" alt="卡尔曼预测、创新与观测更新：实验结果图" loading="lazy"></figure>
+</section>
+<p>第一室直接吸收读数，第二室通过动态与相关性得到信息。缺测的两天只做预测。区间变宽还是变窄，要看$F$怎样传播已有误差以及$Q$加入多少扰动，缺测本身不意味着方差必定增加。</p>
+<p>探索页使用同一$F,Q,H$和初态，处理另一段16条固定读数。逐时刻查看预测椭圆与滤波椭圆，再把$R$在0.16与0.8 U²间切换，比较同一读数得到的均值修正和不确定性。</p>
+<p class="concept-explore"><a href="/chapters/07-03-卡尔曼滤波/explore/?concept=P07-C03-S02%3Akalman-sequence-experiment">可视化与探索：两室滤波记录与边际区间 →</a></p>
+
+<p>这些区间来自给定概率模型。下一节将重新生成独立轨迹，检查计算区间覆盖真实状态的比例，同时观察点误差和创新。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf">Särkkä（2013），第4.3节</a>推导线性高斯模型的卡尔曼滤波。这里采用时刻0先验直接吸收首条读数的记录约定。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/07-03-卡尔曼滤波/read/1/">← 7.3.1 多元高斯、协方差椭圆与条件分布</a><a href="/chapters/07-03-卡尔曼滤波/read/3/">7.3.3 创新检验、估计误差与区间覆盖 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.6.1 前向后向递推与固定区间平滑 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P07-C06-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P07-C06-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/07-06-平滑与缺测处理/practice/?question=p07-hmm-smoothing">本节练习 · 4 题</a><a class="button" href="/chapters/07-06-平滑与缺测处理/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>7.6.1 前向后向递推与固定区间平滑</h1>
+<p>学完本节，你应能按观测时刻区分预测、滤波与平滑，手算一次未来信息回传，并将前向与后向结果组合为各时刻的隐藏状态概率。</p>
+<p><strong>先修知识</strong>：7.2的隐马尔可夫模型、前向滤波、条件概率和全路径求和。</p>
+<h2 id="prediction-filtering-and-smoothing-information">预测、滤波与平滑的观测范围</h2>
+<p>细胞在静息、活跃、恢复三种状态间切换，时刻1和2没有取得标记。实时估计仍可沿动态传播；等时刻3取得新的标记后，我们又能根据这条读数回看较早状态。</p>
+<p>记录共 $L$ 项，时刻从0到 $L-1$。对于同一个历史状态 $z_t$，三种分布所使用的信息为：</p>
+<table>
+<thead>
+<tr>
+  <th>估计</th>
+  <th>分布</th>
+  <th>已用观测</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>当前预测</td>
+  <td>$p(z_t\mid y_{0:t-1})$</td>
+  <td>当前读数到达之前的记录</td>
+</tr>
+<tr>
+  <td>当前滤波</td>
+  <td>$p(z_t\mid y_{0:t})$</td>
+  <td>包括当前读数的前缀</td>
+</tr>
+<tr>
+  <td>固定区间平滑</td>
+  <td>$p(z_t\mid y_{0:L-1})$</td>
+  <td>已取得的整段记录</td>
+</tr>
+</tbody>
+</table>
+<p>其中 $y_{0:t}$ 表示从0到 $t$ 的观测列表，端点都包含。<strong>固定区间平滑（fixed-interval smoothing）</strong>就是在整段数据固定后，求区间内每个状态的条件分布。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-06-平滑与缺测处理/practice/?question=p07-three-information-sets">三种估计分别知道什么</a></li></ul></nav>
+
+<p>时刻1在线使用前缀得到滤波结果；时刻3记录到齐，再计算时刻1的平滑结果。它们可以一起报告，分别对应“当时知道多少”和“后来重建历史时知道多少”。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-06-平滑与缺测处理/practice/?question=p07-offline-online">平滑更好能推实时更好吗</a></li></ul></nav>
+
+<h2 id="forward-probabilities-and-four-observations">前向概率与四项标记</h2>
+<p>沿用静息、活跃、恢复的顺序，初始概率为 $[0.6,0.3,0.1]$，转移矩阵为</p>
+<p>$$A=\begin{pmatrix}
+0.8&amp;0.15&amp;0.05\\
+0.1&amp;0.8&amp;0.1\\
+0.05&amp;0.2&amp;0.75
+\end{pmatrix}.$$</p>
+<p>第 $i$ 行、第 $j$ 列表示当前状态 $i$ 转到下一状态 $j$ 的概率。给定当前状态后，当前标记不再依赖其他时刻的状态和标记，这是7.2使用的观测关系。</p>
+<p>各时刻当前标记的似然如下：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">时刻</th>
+  <th style="text-align:right">静息下的似然</th>
+  <th style="text-align:right">活跃下的似然</th>
+  <th style="text-align:right">恢复下的似然</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0.8</td>
+  <td style="text-align:right">0.4</td>
+  <td style="text-align:right">0.1</td>
+</tr>
+<tr>
+  <td style="text-align:right">1：缺测</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td style="text-align:right">2：缺测</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">0.05</td>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0.95</td>
+</tr>
+</tbody>
+</table>
+<p>缺测空位本身不提供状态信息，因而似然取全1；动态仍跨过这些时刻。</p>
+<p>记前向滤波为 $\alpha_t(i)=P(z_t=i\mid y_{0:t})$。首条标记直接更新初始概率，未归一化结果为 $[0.48,0.12,0.01]$，除以0.61得到</p>
+<p>$$\alpha_0=\frac1{61}[48,12,1].$$</p>
+<p>以后先右乘 $A$，再逐项乘当前似然并归一化。由于时刻1和2缺测，这两次只作分布传播，得到</p>
+<p>$$\alpha_1\approx[0.650000,0.278689,0.071311],$$
+$$\alpha_2\approx[0.551434,0.334713,0.113852].$$</p>
+<h2 id="backward-vector-and-future-likelihood">后向向量与未来似然</h2>
+<p>把时刻 $t$ 之后的整段观测压缩成一个按当前状态排列的向量：</p>
+<p>$$\beta_t(i)=P(y_{t+1:L-1}\mid z_t=i).$$</p>
+<p>这称为<strong>后向信息（backward message）</strong>：如果当前处于状态 $i$，后面的记录有多大可能出现？它是未来观测在不同当前状态下的似然，不要求各项相加为1。</p>
+<p>末时刻没有更晚观测，故</p>
+<p>$$\beta_{L-1}(i)=1.$$</p>
+<p>要从 $t+1$ 回到 $t$，先考虑下一状态 $j$。这条路径贡献转移概率 $A_{ij}$、下一项似然 $\ell_{t+1}(j)$ 和此后信息 $\beta_{t+1}(j)$。对所有 $j$ 求和：</p>
+<p>$$\boxed{\beta_t(i)=\sum_jA_{ij}\ell_{t+1}(j)\beta_{t+1}(j).}$$</p>
+<p>后向量从当前时刻的下一项开始，因而用 $\ell_{t+1}$。当前读数 $\ell_t$ 已在前向滤波里，组合时也只保留一次。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-06-平滑与缺测处理/practice/?question=p07-backward-index">后向信息从哪一步开始</a></li></ul></nav>
+
+<p>对本例，$\beta_3=[1,1,1]$。回到时刻2：</p>
+<p>$$\begin{aligned}
+\beta_2(0)&amp;=0.8(0.05)+0.15(0.2)+0.05(0.95)=0.1175,\\
+\beta_2(1)&amp;=0.1(0.05)+0.8(0.2)+0.1(0.95)=0.26,\\
+\beta_2(2)&amp;=0.05(0.05)+0.2(0.2)+0.75(0.95)=0.755.
+\end{aligned}$$</p>
+<p>如果时刻2已在恢复态，更容易在下一拍得到当前这条偏向恢复的标记，所以第三项明显较大。时刻2本身虽无读数，仍通过转移关系接受了后来标记的信息。</p>
+<h2 id="forward-backward-combination">前后向组合与归一化</h2>
+<p>给定 $z_t$ 后，更晚的观测与已经吸收的过去记录通过当前状态连接。贝叶斯公式给出</p>
+<p>$$p(z_t=i\mid y_{0:L-1})
+\propto p(y_{t+1:L-1}\mid z_t=i)\,p(z_t=i\mid y_{0:t})
+=\beta_t(i)\alpha_t(i).$$</p>
+<p>记平滑概率为 $\gamma_t$，归一化后有</p>
+<p>$$\boxed{\gamma_t(i)
+=\frac{\alpha_t(i)\beta_t(i)}
+{\sum_j\alpha_t(j)\beta_t(j)}.}$$</p>
+<p>时刻2先将 $\alpha_2$ 逐项乘以 $[0.1175,0.26,0.755]$，再归一化，得到</p>
+<p>$$\gamma_2\approx[0.272496,0.365995,0.361508].$$</p>
+<p>与滤波的恢复概率0.113852相比，重建后的概率约为0.361508。这个变化由时刻3的标记经过动态关系回传，而非时刻2新增了一次测量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-06-平滑与缺测处理/practice/?question=p07-hmm-smoothing">把未来读数传回过去</a></li></ul></nav>
+
+<p>后向向量每步都可以整体除以一个正数。这样的共同缩放最终在 $\gamma_t$ 的分子、分母中相消，有助于避免长记录下很小似然连乘造成的数值问题。</p>
+<h2 id="missing-interval-and-terminal-equality">缺测区间与末端一致性</h2>
+<p>下图左侧是各时刻当时的滤波，右侧是看到整段记录以后的平滑；每种颜色始终代表同一种状态，灰色区域覆盖时刻1和2的缺测。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P07-C06-S01-c420f6ed-0.png" alt="前向后向递推与固定区间平滑：实验结果图" loading="lazy"></figure>
+</section>
+<p>左侧静息概率从时刻0的约0.787，经过两次无观测传播降到约0.551；右侧在相同时刻2，静息概率已降到约0.272，恢复概率明显提高。末时刻两图则完全一致：$\beta_3$ 全为1，前后向组合就等于原滤波。</p>
+<p>若只有一项观测，也只有这次滤波；空记录没有需要返回的时刻。若整段都缺测，末端 $\beta$ 全1，乘行随机矩阵后仍为全1，因此每个时刻平滑都等于原来的动态分布。</p>
+<p>这里回传的是同一观测模型中的信息。有限状态只需对下一状态求和；下一节将用相邻状态的联合高斯关系，计算连续状态的历史均值与协方差。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf">Särkkä：Bayesian Filtering and Smoothing（2013）</a>第8.1节推导固定区间平滑方程。本节把状态积分写成有限状态求和，并保留各项似然的时刻。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/07-05-粒子滤波/read/2/">← 7.5.2 粒子传播、权重退化与系统性重采样</a><a href="/chapters/07-06-平滑与缺测处理/read/2/">7.6.2 RTS 平滑、全方差与连续缺测 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

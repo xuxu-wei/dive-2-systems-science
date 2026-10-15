@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.6.2 RTS 平滑、全方差与连续缺测 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P07-C06-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P07-C06-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/07-06-平滑与缺测处理/practice/?question=p07-rts-backward">本节练习 · 4 题</a><a class="button" href="/chapters/07-06-平滑与缺测处理/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>7.6.2 RTS 平滑、全方差与连续缺测</h1>
+<p>学完本节，你应能由相邻联合高斯分布推导RTS后向递推，手算两次历史修正，并解释缺测区间中的均值与不确定性怎样接受未来观测。</p>
+<p><strong>先修知识</strong>：7.3的联合高斯条件分布与卡尔曼滤波，上一节的平滑信息范围，以及条件期望和协方差。</p>
+<h2 id="predicted-filtered-and-smoothed-moments">预测量、滤波量与平滑量</h2>
+<p>两室系统连续三天没有读数，仪器恢复后取得的测量能否帮助重建那三天？动态把相邻状态连接起来，所以后来的读数也包含过去状态的信息。在线性高斯模型中，可以把这种连接写成均值与协方差的后向递推。</p>
+<p>沿用</p>
+<p>$$x_{t+1}=Fx_t+w_t,\qquad y_t=Hx_t+v_t.$$</p>
+<p>高斯初态与全部过程噪声、测量噪声相互独立，噪声零均值、协方差为 $Q,R$。记录共 $L$ 项，对齐时刻 $0,\ldots,L-1$，保存：</p>
+<table>
+<thead>
+<tr>
+  <th>名称</th>
+  <th>均值与协方差</th>
+  <th>使用的观测</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>时刻 $t$ 的预测</td>
+  <td>$m_t^-,P_t^-$</td>
+  <td>$y_{0:t-1}$</td>
+</tr>
+<tr>
+  <td>时刻 $t$ 的滤波</td>
+  <td>$m_t,P_t$</td>
+  <td>$y_{0:t}$</td>
+</tr>
+<tr>
+  <td>时刻 $t$ 的平滑</td>
+  <td>$m_t^s,P_t^s$</td>
+  <td>$y_{0:L-1}$</td>
+</tr>
+</tbody>
+</table>
+<p>上标 $s$ 表示平滑。末时刻没有更多未来信息，因此</p>
+<p>$$m_{L-1}^s=m_{L-1},\qquad P_{L-1}^s=P_{L-1}.$$</p>
+<p>只有一个时刻时，平滑就是这次滤波；空记录返回空结果。后向递推从倒数第二项开始，逐项回到时刻0。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-06-平滑与缺测处理/practice/?question=p07-terminal-equality">后向递推在哪里开始</a></li></ul></nav>
+
+<h2 id="adjacent-state-joint-gaussian">相邻状态的联合高斯关系</h2>
+<p>先只固定截至时刻 $t$ 的观测。此时 $x_t$ 的均值与协方差为 $m_t,P_t$，下一状态由 $Fx_t+w_t$ 产生，所以</p>
+<p>$$m_{t+1}^-=Fm_t,\qquad P_{t+1}^-=FP_tF^{\mathsf T}+Q.$$</p>
+<p>相邻状态的交叉协方差为</p>
+<p>$$\operatorname{Cov}(x_t,x_{t+1}\mid y_{0:t})
+=\operatorname{Cov}(x_t,Fx_t+w_t\mid y_{0:t})
+=P_tF^{\mathsf T},$$</p>
+<p>过程噪声与当前状态独立，故没有额外交叉项。于是给定这些观测后的相邻联合分布，分块协方差为</p>
+<p>$$\begin{pmatrix}
+P_t&amp;P_tF^{\mathsf T}\\
+FP_t&amp;P_{t+1}^-
+\end{pmatrix}.$$</p>
+<p>本节的 $P_{t+1}^-$ 正定。把7.3的高斯条件公式用于“已知下一状态，再判断当前状态”，得到</p>
+<p>$$G_t=P_tF^{\mathsf T}(P_{t+1}^-)^{-1},$$</p>
+<p>$$E[x_t\mid x_{t+1},y_{0:t}]
+=m_t+G_t(x_{t+1}-m_{t+1}^-),$$</p>
+<p>$$\operatorname{Cov}(x_t\mid x_{t+1},y_{0:t})
+=P_t-G_tP_{t+1}^-G_t^{\mathsf T}.$$</p>
+<p>$G_t$ 称为<strong>平滑增益（smoothing gain）</strong>，将下一状态相对原预测的差转换成当前状态修正。式子使用的是 $t+1$ 的预测协方差，因为我们正在对这个下一状态作条件化。</p>
+<h2 id="total-variance-and-two-uncertainty-levels">全方差与两层不确定性</h2>
+<p>现在下一状态仍不确定，但整段观测已经给出了它的平滑分布。要把这一分布代入，既要平均各条件均值，也要保留这些均值之间的变化。</p>
+<p>一个小例子可以说明两部分。设 $Z$ 以相同概率取0、2 U，$X=Z+\epsilon$，误差 $\epsilon$ 独立且以相同概率取 $\pm1$ U。给定任一 $Z$，$X$ 的条件方差都是1 U²；两个条件均值为0、2 U，自身的方差也是1 U²。全部结果为 $-1,1,1,3$ U，平均1 U，方差为</p>
+<p>$$\frac{(-1-1)^2+(1-1)^2+(1-1)^2+(3-1)^2}{4}
+=2\,\mathrm U^2.$$</p>
+<p>总方差正好等于组内方差的平均，加上组均值之间的方差。</p>
+<p>对一般向量也可以就地推得。将已经固定的观测记为 $D$，令 $a(Z)=E[X\mid Z,D]$、$\mu=E[X\mid D]$，分解</p>
+<p>$$X-\mu=[X-a(Z)]+[a(Z)-\mu].$$</p>
+<p>给定 $Z,D$ 后，第一项条件均值为零，所以两项的交叉乘积平均为零。将外积展开再取平均，得到<strong>全协方差公式（law of total covariance）</strong>：</p>
+<p>$$\boxed{\operatorname{Cov}(X\mid D)
+=E[\operatorname{Cov}(X\mid Z,D)\mid D]
++\operatorname{Cov}(E[X\mid Z,D]\mid D).}$$</p>
+<p>标量时就是<strong>全方差公式（law of total variance）</strong>。第一项保留已知 $Z$ 后还剩的波动，第二项保留不同 $Z$ 所对应均值的变化；两个层次都要计算。</p>
+<h2 id="rts-backward-recursion">RTS 后向均值与协方差</h2>
+<p>状态转移与观测关系保证：给定 $x_{t+1}$ 和已有过去观测后，更晚读数通过 $x_{t+1}$ 传递信息。于是，上一段条件高斯的均值、协方差仍可以作为 $x_{t+1}$ 的函数使用，再对整段观测下的 $x_{t+1}$ 分布平均。</p>
+<p>条件均值的平均给出</p>
+<p>$$\boxed{m_t^s=m_t+G_t(m_{t+1}^s-m_{t+1}^-).}$$</p>
+<p>全协方差中的第一项为 $P_t-G_tP_{t+1}^-G_t^{\mathsf T}$，它与下一状态的具体值无关；第二项是条件均值随下一状态变化的协方差 $G_tP_{t+1}^sG_t^{\mathsf T}$。两项相加：</p>
+<p>$$\boxed{P_t^s=P_t+G_t(P_{t+1}^s-P_{t+1}^-)G_t^{\mathsf T}.}$$</p>
+<p>这就是 <strong>Rauch–Tung–Striebel 平滑（RTS smoothing）</strong>。修正量的两项都对应下一时刻：平滑结果减去原预测。当前时刻已经吸收的读数保存在 $m_t,P_t$ 中，无须再把它更新一次。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-06-平滑与缺测处理/practice/?question=p07-rts-backward">由已保存的滤波矩后向平滑</a></li></ul></nav>
+
+<h2 id="scalar-two-step-backward-calculation">标量后向修正的两步手算</h2>
+<p>取转移系数1，三个时刻保存的量如下：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">时刻</th>
+  <th style="text-align:right">预测均值 / U</th>
+  <th style="text-align:right">预测方差 / U²</th>
+  <th style="text-align:right">滤波均值 / U</th>
+  <th style="text-align:right">滤波方差 / U²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">1.6</td>
+  <td style="text-align:right">0.8</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1.6</td>
+  <td style="text-align:right">0.9</td>
+  <td style="text-align:right">1.6</td>
+  <td style="text-align:right">0.9</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1.6</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1.3</td>
+  <td style="text-align:right">0.5</td>
+</tr>
+</tbody>
+</table>
+<p>末时刻平滑仍是1.3 U、0.5 U²。回到时刻1，$G_1=0.9/1=0.9$，所以</p>
+<p>$$m_1^s=1.6+0.9(1.3-1.6)=1.33\,\mathrm U,$$
+$$P_1^s=0.9+0.9^2(0.5-1)=0.495\,\mathrm U^2.$$</p>
+<p>再回到时刻0，使用 $G_0=0.8/0.9=8/9$：</p>
+<p>$$m_0^s=1.6+\frac89(1.33-1.6)=1.36\,\mathrm U,$$
+$$P_0^s=0.8+\left(\frac89\right)^2(0.495-0.9)=0.48\,\mathrm U^2.$$</p>
+<p>时刻1原本只有预测，后来时刻2的读数仍经转移关系改变了它；改变后的时刻1又继续为时刻0提供信息。</p>
+<h2 id="two-compartment-missing-gap">两室连续缺测的历史重建</h2>
+<p>下面每一天记录一次两室偏差，只测第一室。模型为</p>
+<p>$$F=\begin{pmatrix}0.85&amp;0.1\\0.1&amp;0.8\end{pmatrix},\qquad
+H=[1,0],\qquad Q=0.02I\ \mathrm U^2,\qquad R=0.16\ \mathrm U^2.$$</p>
+<p>初始均值为 $[2,0]$ U，协方差为 $I$ U²；向量与矩阵行列都按第一室、第二室排列。观测为</p>
+<p>$$[1.8,1.6,\text{缺测},\text{缺测},\text{缺测},0.8,0.9,0.7]\ \mathrm U.$$</p>
+<p>缺测发生在时刻2、3、4。滤波保留这些时刻，逐日预测并加入过程协方差 $Q$；读数恢复以后，平滑再把后来信息向缺测段回传。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-06-平滑与缺测处理/practice/?question=p07-missing-gap">缺测区间里的误差</a></li></ul></nav>
+
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P07-C06-S02-a540a74a-0.png" alt="RTS 平滑、全方差与连续缺测：实验结果图" loading="lazy"></figure>
+</section>
+<p>左右两图分别对应第一室和第二室，每图比较滤波与平滑均值，阴影为各自的边际约95%高斯区间。灰色区域是连续缺测段。第一室在读数恢复后接受测量更新，第二室也通过动态耦合与交叉协方差接受影响；到末时刻，两条均值和区间都重合。</p>
+<p>探索页用更简单的一维随机游走 $x_{t+1}=x_t+w_t$、$y_t=x_t+v_t$ 展示相同后向关系，测量方差为0.16 U²。切换时刻6—12是否缺测，或改变过程方差，分别查看历史均值与条件方差怎样改变。平滑曲线在各历史位置都使用已经取得的整段记录。</p>
+<p class="concept-explore"><a href="/chapters/07-06-平滑与缺测处理/explore/?concept=P07-C06-S02%3Atwo-compartment-missing-gap">可视化与探索：两室连续缺测的历史重建 →</a></p>
+
+<h2 id="covariance-order-and-realized-error">协方差顺序与实际误差</h2>
+<p>在线性高斯模型及相同观测安排下，后来的读数提供更多条件信息。平滑协方差满足</p>
+<p>$$P_t^s\preceq P_t,$$</p>
+<p>其中符号表示对每个方向 $a$，</p>
+<p>$$a^{\mathsf T}P_t^sa\le a^{\mathsf T}P_ta.$$</p>
+<p>这是各方向线性组合的方差比较，并非将矩阵中每个非对角元素逐个比大小。后向公式中，下一时刻相对原预测减少的协方差，经 $G_t$ 传回当前，也就减少当前不确定性。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-06-平滑与缺测处理/practice/?question=p07-covariance-order">协方差变小的前提</a></li></ul></nav>
+
+<p>协方差描述给定模型下可能误差的分布，某次实际状态则是一条具体实现。要评价实际误差和区间覆盖，可在有状态真值的独立重复实验中比较；这里的图展示同一观测条件下的历史分布。实时任务在时刻 $t$ 使用滤波结果，记录到齐后重建历史则使用平滑结果。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf">Särkkä：Bayesian Filtering and Smoothing（2013）</a>第8.2节由相邻联合高斯分布推导RTS平滑；第8.1节说明后向递推中的观测时间范围。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/07-06-平滑与缺测处理/read/1/">← 7.6.1 前向后向递推与固定区间平滑</a><a href="/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/">篇末综合 部分观测、状态后验与历史重建 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

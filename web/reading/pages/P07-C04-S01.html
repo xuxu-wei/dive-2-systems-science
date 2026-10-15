@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.4.1 扩展卡尔曼滤波与局部线性化 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P07-C04-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P07-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/07-04-非线性高斯滤波/practice/?question=p07-extended-update">本节练习 · 4 题</a><a class="button" href="/chapters/07-04-非线性高斯滤波/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>7.4.1 扩展卡尔曼滤波与局部线性化</h1>
+<p>学完本节，你应能在正确的均值位置展开状态与观测函数，计算一次扩展更新，并用平方读数解释零导数会遗漏哪些信息。</p>
+<p><strong>先修知识</strong>：7.3的条件高斯更新，第3篇的导数与局部线性化，以及7.2的连续状态预测与更新。</p>
+<h2 id="square-observation-model">平方观测与正负状态</h2>
+<p>设$x$是相对基线的有符号偏差，单位U。传感器读数为</p>
+<p>$$Y=h(x)+v=x^2+v,$$</p>
+<p>读数单位变成U²，因此独立高斯测量误差的方差$R$单位是U⁴。读数接近4 U²时，正侧接近2 U与负侧接近−2 U的状态都能解释它。两种状态对传感器而言相似，对状态估计而言却相隔很远。</p>
+<p>线性观测下，先验与读数联合高斯，条件公式给出精确更新。平方函数改变了这个联合形状。一个可计算的近似是：在当前预测均值附近，用切线代替观测函数，再应用线性高斯公式。</p>
+<h2 id="ekf-observation-update">观测线性化与扩展更新</h2>
+<p>给定观测前近似$x\sim N(m^-,P^-)$，对观测函数在$m^-$处作一阶展开：</p>
+<p>$$h(x)\approx h(m^-)+H(x-m^-),\qquad H=h'(m^-).$$</p>
+<p>由此近似的预测读数为$h(m^-)$，读数方差与状态读数交叉协方差为</p>
+<p>$$S=H^2P^-+R,\qquad C=P^-H.$$</p>
+<p>再代入高斯条件关系：</p>
+<p>$$\boxed{K=C/S,\qquad
+m=m^-+K\{y-h(m^-)\},\qquad
+P=P^--C^2/S.}$$</p>
+<p>这就是<strong>扩展卡尔曼滤波（extended Kalman filter，EKF）</strong>的标量观测更新。扩展的是可处理的函数，保留下来的分布仍用一个高斯的均值与方差表示。</p>
+<p>平方观测有$H=2m^-$，因而</p>
+<p>$$C=2m^-P^-,\qquad S=4(m^-)^2P^-+R.$$</p>
+<p>$H$单位为U，$C$单位为U³，$S$单位为U⁴，增益$K$单位为U⁻¹。它把U²的读数差转换为U的状态修正，与前面线性读数下无量纲的增益不同。</p>
+<p>例如$m^-=1$ U、$P^-=0.2$ U²、$y=1.4$ U²、$R=0.15$ U⁴时，$C=0.4$ U³、$S=0.95$ U⁴，得到$K\approx0.42105$ U⁻¹、$m\approx1.16842$ U、$P\approx0.03158$ U²。这些数是在$x=1$ U附近的切线所给出的更新。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-04-非线性高斯滤波/practice/?question=p07-extended-update">一次平方观测的扩展更新</a></li></ul></nav>
+
+<h2 id="zero-gradient-square-observation">零导数与被遗漏的幅度信息</h2>
+<p>现在取$x\sim N(0,1\,\mathrm{U^2})$，读数为4 U²，$R=0.1$ U⁴。展开中心$m^-=0$使$H=0$，所以$C=0$、$K=0$，EKF保留原来的均值0和方差1 U²。</p>
+<p>原来的平方似然仍然随$x$变化。采用U作数值单位，后验密度正比于</p>
+<p>$$\exp\!\left[-\frac{x^2}{2}-\frac{(4-x^2)^2}{0.2}\right].$$</p>
+<p>它关于零对称，因此后验均值仍为零；但高密度区域已经移到正负两侧。对对数密度求导，</p>
+<p>$$\frac{d}{dx}\log p(x\mid y)
+=x\left[-1+\frac{2(4-x^2)}{0.1}\right].$$</p>
+<p>除$x=0$外，驻点位于$x=\pm\sqrt{3.95}\approx\pm1.9875$，两处形成后验峰。读数确实提供了幅度信息，一阶切线却把这种变化丢掉了。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-04-非线性高斯滤波/practice/?question=p07-zero-gradient">导数为零意味着什么</a></li></ul></nav>
+
+<p>探索页也能查看对称先验：将$m$设为0 U，保持页面的$P=0.8$ U²与当前平方读数，比较EKF曲线和网格后验。读数调节的是幅度限制，正负两侧仍共享同一个观测解释。</p>
+<p class="concept-explore"><a href="/chapters/07-04-非线性高斯滤波/explore/?concept=P07-C04-S01%3Azero-gradient-square-observation">可视化与探索：零导数与被遗漏的幅度信息 →</a></p>
+
+<h2 id="ekf-transition-linearization">状态预测的展开位置</h2>
+<p>动态也可能非线性。设</p>
+<p>$$x_{t+1}=f(x_t)+w_t,\qquad Y_t=h(x_t)+v_t,$$</p>
+<p>初态与各时刻零均值高斯噪声彼此独立，过程方差为$Q$、测量方差为$R$。已有时刻$t$的滤波均值$m_t$、方差$P_t$，用$f$在$m_t$处的切线预测下一状态：</p>
+<p>$$\boxed{m_{t+1}^-=f(m_t),\qquad
+P_{t+1}^-=f'(m_t)^2P_t+Q.}$$</p>
+<p>随后用$h'(m_{t+1}^-)$吸收$t+1$的读数。两个展开中心各自对应正在处理的分布：转移使用上一滤波均值，观测使用当前预测均值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-04-非线性高斯滤波/practice/?question=p07-jacobian-location">雅可比在哪求值</a></li></ul></nav>
+
+<p>多维时，把导数换为雅可比矩阵，同样使用$F_tP_tF_t^{\mathsf T}+Q$与$H_tP^-H_t^{\mathsf T}+R$。这一步仍是在已有均值附近传播小偏差，曲率使远离中心的状态可能产生不同响应。</p>
+<h2 id="saturating-recovery-model">饱和回复模型与导数</h2>
+<p>实验采用饱和回复的一步转移</p>
+<p>$$f(x)=x-\Delta r\frac{x}{1+|x|/s},\qquad s=1\,\mathrm U,$$</p>
+<p>其中$\Delta$为时间步长，$r$为相应时间单位下的回复速率，取$\Delta=0.25\,\mathrm T$、$r=0.6\,\mathrm{T^{-1}}$，乘积$\Delta r=0.15$无量纲。正偏差被减小，负偏差被增大；当$|x|$增大，单步回复幅度逐渐接近$\Delta r s$。</p>
+<p>对$x&gt;0$，商的导数为</p>
+<p>$$\frac{d}{dx}\frac{x}{1+x/s}
+=\frac{1+x/s-x/s}{(1+x/s)^2}
+=\frac1{(1+x/s)^2}.$$</p>
+<p>$x&lt;0$时以$1-x/s$作分母得到同样形式，零点左右导数也相同。因此</p>
+<p>$$f'(x)=1-\frac{\Delta r}{(1+|x|/s)^2}.$$</p>
+<p>取$Q=0.04$ U²、$R=0.15$ U⁴，将状态预测与平方观测更新接成序列。首条读数直接作用于时刻0先验；缺测时保留预测，下一次仍按原时钟推进。</p>
+<h2 id="ekf-sequence-and-posterior-shape">序列跟踪与单次形状对照</h2>
+<p>下图左侧从均值1.8 U、方差0.2 U²出发，按更新次数编号，处理读数$[3.5,3.0,2.8,2.1,2.0,1.7,1.9,1.1]$ U²。虚线$\sqrt y$仅标出能够解释读数的正侧位置，实际观测也允许负侧状态。右侧回到先验$N(0,1)$、读数4 U²的单次更新。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P07-C04-S01-04df4898-0.png" alt="扩展卡尔曼滤波与局部线性化：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图的非零初始均值使观测切线有非零斜率，EKF沿正侧进行局部跟踪。右图的EKF仍为原先的单峰，网格后验却集中在两个接近$\pm2$ U的位置，方差也超过3 U²。这里“均值仍为零”来自对称性，而不是读数没有改变判断。</p>
+<p>下一节将让多个代表位置经过原函数，用它们恢复均值处切线遗漏的曲率信息，再检查这种做法是否也能保留双峰形状。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf">Särkkä（2013），第5.1—5.2节</a>由Taylor展开建立扩展卡尔曼滤波。饱和回复与平方观测是本节用来比较局部近似的具体模型。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/07-03-卡尔曼滤波/read/3/">← 7.3.3 创新检验、估计误差与区间覆盖</a><a href="/chapters/07-04-非线性高斯滤波/read/2/">7.4.2 无迹变换、预测矩与后验形状 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

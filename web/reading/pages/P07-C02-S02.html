@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.2.2 隐马尔可夫模型与前向递推 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P07-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P07-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-path-posterior">本节练习 · 4 题</a><a class="button" href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>7.2.2 隐马尔可夫模型与前向递推</h1>
+<p>学完本节，你应能计算一条隐藏路径与观测的联合质量，按末态合并路径，并解释前向递推为何得到同一个滤波分布。</p>
+<p><strong>先修知识</strong>：7.2.1 的预测与更新，第 5 篇的有限状态转移与条件独立。</p>
+<h2 id="hidden-markov-model-and-emissions">隐马尔可夫模型与发射概率</h2>
+<p>细胞先后给出弱、弱、强标记。真实状态可能一直静息，也可能从静息进入活跃、再进入恢复。每条标记都提供信息，但同一条标记可能来自不同状态，因此需要同时保留多种隐藏历史。</p>
+<p><strong>HMM（hidden Markov model，隐马尔可夫模型）</strong>由隐藏的马尔可夫状态序列与相应观测构成：下一状态的条件分布由当前状态决定；给定同一时刻的状态，当前观测与其他状态和观测条件独立。它将状态自身如何变化，与仪器怎样读取状态分开规定。</p>
+<p>本节按“静息、活跃、恢复”排列三个状态，编号为 0、1、2。初始分布及转移矩阵为</p>
+<p>$$\pi_0=[0.6,0.3,0.1],\qquad
+T=\begin{bmatrix}
+0.8&amp;0.15&amp;0.05\\
+0.1&amp;0.8&amp;0.1\\
+0.05&amp;0.2&amp;0.75
+\end{bmatrix}.$$</p>
+<p>行表示前态，列表示后态，例如 $T_{01}=0.15$ 表示静息细胞下一步变为活跃的概率。矩阵每行相加为 1，初始分布也相加为 1。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-row-transition">转移矩阵的方向</a></li></ul></nav>
+
+<p>给定状态后，各种标记的发生概率称为<strong>发射概率（emission probability）</strong>。令弱标记为 0、强标记为 1，测量规则为</p>
+<table>
+<thead>
+<tr>
+  <th>隐藏状态</th>
+  <th style="text-align:right">弱标记概率</th>
+  <th style="text-align:right">强标记概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>静息</td>
+  <td style="text-align:right">0.8</td>
+  <td style="text-align:right">0.2</td>
+</tr>
+<tr>
+  <td>活跃</td>
+  <td style="text-align:right">0.4</td>
+  <td style="text-align:right">0.6</td>
+</tr>
+<tr>
+  <td>恢复</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">0.9</td>
+</tr>
+</tbody>
+</table>
+<p>每行是一种状态产生读数的完整分布。实际看到弱标记后，从弱列取出 $[0.8,0.4,0.1]$ 作为各状态的似然；强标记则取另一列。跨状态的似然向量不必相加为 1，因为每项属于不同的条件分布。</p>
+<h2 id="joint-mass-of-hidden-path">隐藏路径的联合质量</h2>
+<p>观察 $L$ 个时刻 $0,\ldots,L-1$，一条隐藏路径记为 $z_{0:L-1}$。令 $\ell_t(j)$ 为时刻 $t$ 实际标记在状态 $j$ 下的似然，由模型的依赖结构，</p>
+<p>$$\boxed{p(z_{0:L-1},y_{0:L-1})
+=\pi_0(z_0)\prod_{t=0}^{L-1}\ell_t(z_t)
+\prod_{t=1}^{L-1}T_{z_{t-1},z_t}.}$$</p>
+<p>先选初态，随后每次沿转移走到下一状态，并在相应状态下产生标记；这些条件概率依次相乘。首条标记由时刻 0 的初态产生，所以其前面没有一次额外转移。</p>
+<p>例如前两条都是弱标记，路径“静息→静息”的质量为</p>
+<p>$$0.6\times0.8\times0.8\times0.8=0.3072.$$</p>
+<p>四个因子依次是静息初态、第一条弱标记、保持静息、第二条弱标记。若路径改为“活跃→静息”，质量为</p>
+<p>$$0.3\times0.4\times0.1\times0.8=0.0096.$$</p>
+<p>我们关心当前状态时，就将具有同一末态的所有路径相加。两时刻、三个状态共有 9 条路径，其中末态静息的三条为</p>
+<table>
+<thead>
+<tr>
+  <th>隐藏路径</th>
+  <th style="text-align:right">联合质量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>静息→静息</td>
+  <td style="text-align:right">0.3072</td>
+</tr>
+<tr>
+  <td>活跃→静息</td>
+  <td style="text-align:right">0.0096</td>
+</tr>
+<tr>
+  <td>恢复→静息</td>
+  <td style="text-align:right">$0.1\times0.1\times0.05\times0.8=0.0004$</td>
+</tr>
+<tr>
+  <td>合计</td>
+  <td style="text-align:right">0.3172</td>
+</tr>
+</tbody>
+</table>
+<p>同样计算，末态活跃的质量为 0.068，末态恢复为 0.00435。全部路径质量相加得到 0.38955，归一化后的末态后验为</p>
+<p>$$[0.3172,0.068,0.00435]/0.38955.$$</p>
+<p>这个求和既保留了每种可能来源，又把已经不再关心的早期状态消去了。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-path-posterior">枚举路径恢复末态</a></li></ul></nav>
+
+<h2 id="forward-mass-and-recursion">前向概率与历史合并</h2>
+<p>逐条列出路径很快就会变得昂贵。三个状态、两个时刻有 $3^2=9$ 条路径，四个时刻有 81 条，八个时刻有 6561 条，十二个时刻有 531441 条。许多路径虽然过去不同，却已经走到相同当前状态；它们往后继续演化时，使用的是同一行转移概率。</p>
+<p>于是可以先将这些历史合并。定义<strong>前向概率（forward probability）</strong></p>
+<p>$$q_t(j)=P(z_t=j,y_{0:t}),$$</p>
+<p>即截至当前的全部标记与末态为 $j$ 的联合概率。时刻 0 为</p>
+<p>$$q_0(j)=\pi_0(j)\ell_0(j).$$</p>
+<p>下一步先将各前态质量乘转移概率，流向对应后态，再乘新标记似然：</p>
+<p>$$\boxed{q_t(j)=\ell_t(j)\sum_iq_{t-1}(i)T_{ij}.}$$</p>
+<p>这称为<strong>前向算法（forward algorithm）</strong>。它改变了求和次序：每次先合并同末态历史，再将它们共同延伸一步。</p>
+<p>在当前例子中，第一条弱标记给出</p>
+<p>$$q_0=[0.48,0.12,0.01],\qquad C_0=\sum_jq_0(j)=0.61.$$</p>
+<p>第二次弱标记前，前向概率先转移为</p>
+<p>$$q_0T=[0.3965,0.17,0.0435],$$</p>
+<p>再逐项乘 $[0.8,0.4,0.1]$，得到 $[0.3172,0.068,0.00435]$，与九条路径合并的结果完全相同。</p>
+<p>记 $C_t=\sum_jq_t(j)$，则上一节的滤波分布就是 $\alpha_t(j)=q_t(j)/C_t$。把 $q_{t-1}=C_{t-1}\alpha_{t-1}$ 代入前向公式后，公共的 $C_{t-1}$ 在归一化时消去，便得到上一节的“预测—乘似然—归一化”递推。逐步归一化也避免长记录中的联合质量持续变小。</p>
+<p>对于 $M$ 个状态，每一步只需考虑 $M^2$ 个前态与后态组合，$L$ 步的计算量约按 $LM^2$ 增长。全部路径的数量却是 $M^L$。模型的条件独立结构使我们用一个当前概率向量汇总历史。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-path-budget">为什么还需要递推</a></li></ul></nav>
+
+<h2 id="marker-distinguishability-and-update">标记区分度与观测更新</h2>
+<p>在可调标记的探索中，仍使用上述三态初始分布和转移矩阵，把两个读数称为暗标记 0、亮标记 1。各状态的亮标记概率设为</p>
+<p>$$[\varepsilon,0.5,1-\varepsilon],$$</p>
+<p>对应的暗标记概率为 $[1-\varepsilon,0.5,\varepsilon]$，顺序始终为静息、活跃、恢复。每个状态下两种读数的概率都相加为 1。</p>
+<p>默认 $\varepsilon=0.14$，固定的十二次标记为</p>
+<p>$$[0,0,1,1,1,0,1,0,0,1,1,1].$$</p>
+<p>时刻 0 的暗标记直接更新初始分布，未归一化质量为 $[0.516,0.15,0.014]$，证据为 0.68。播放时，左侧显示每次预测，右侧显示同一时刻更新后的概率，能逐步核对每次标记带来的重新分配。</p>
+<p>将 $\varepsilon$ 改为 0.5 后，同一标记对三个状态的似然都为 0.5。相乘再归一化会保持预测分布，因此左右两栏相同；状态转移仍可让下一时刻的预测发生变化。这个比较让“读数出现了”与“读数区分了状态”成为两件可以分别观察的事。</p>
+<p class="concept-explore"><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/explore/?concept=P07-C02-S02%3Amarker-distinguishability-and-update">可视化与探索：标记区分度与观测更新 →</a></p>
+
+<h2 id="prefix-enumeration-and-filtering-results">观测前缀与三态滤波结果</h2>
+<p>下面使用最初的弱、强标记概率表，依次观察“弱、弱、强、缺测、强”，共五个时刻。图中三条曲线分别为同一个细胞当前静息、活跃、恢复的后验概率，各时刻三项相加为 1。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P07-C02-S02-05a783c9-0.png" alt="隐马尔可夫模型与前向递推：实验结果图" loading="lazy"></figure>
+</section>
+<p>第一条弱标记将质量分配为 $[0.48,0.12,0.01]$，所以静息后验为 $48/61$。第二条弱标记使静息概率进一步升高；随后强标记更支持活跃与恢复，概率重新分配。第四个时刻缺测，模型只进行状态转移；最后一个强标记再次改变当前判断。</p>
+<p>要对照这条递推，可依次只枚举前一条、前两条，直到前五条标记对应的路径。第 $t$ 个前缀按末态合并后，应等于时刻 $t-1$ 的滤波分布。这样比较保持了相同的观测范围。</p>
+<p>后来的标记当然可以帮助重新判断更早状态，那属于第 7.6 章的平滑；当前滤波结果记录的是当时已有信息。改变最后两条似然后，前三个滤波分布保持原值，因为它们的计算没有读取后来标记。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-online-prefix">如何检查未来信息泄漏</a></li></ul></nav>
+
+<p>各时刻概率最大的状态提供逐时刻判断；若要找整条联合概率最大的隐藏路径，还需同时考虑相邻状态之间的转移联系。前向递推在这里回答的是当前状态的边缘概率，把所有相关历史都按概率加进了这一结果。</p>
+<p>下一章将回到连续的两室偏差，在线性高斯模型中用均值、协方差和条件分布完成同样的预测与观测更新。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf#page=71">Särkkä，Bayesian Filtering and Smoothing（2013），第 4.1—4.2 节及练习 4.2</a>给出状态空间依赖结构与滤波递推，并讨论将状态积分替换为有限状态求和。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/07-02-贝叶斯递推与隐马尔可夫模型/read/1/">← 7.2.1 贝叶斯滤波的预测与观测更新</a><a href="/chapters/07-03-卡尔曼滤波/read/1/">7.3.1 多元高斯、协方差椭圆与条件分布 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

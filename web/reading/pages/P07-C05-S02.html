@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.5.2 粒子传播、权重退化与系统性重采样 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P07-C05-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P07-C05-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/07-05-粒子滤波/practice/?question=p07-particle-resampling">本节练习 · 5 题</a><a class="button" href="/chapters/07-05-粒子滤波/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>7.5.2 粒子传播、权重退化与系统性重采样</h1>
+<p>学完本节，你应能把传播与观测加权接成时间循环，按累计权重手算重采样位置，并区分权重集中、祖先重复和算法抽样波动。</p>
+<p><strong>先修知识</strong>：上一节的重要性权重、ESS，以及7.4的饱和回复与平方观测。</p>
+<h2 id="weighted-particles-and-state-propagation">带权粒子与状态传播</h2>
+<p>一次观测后，有些粒子权重已经很小，下一时刻却仍需为它们计算动态。有限预算下，可以把更多计算安排在能解释读数的位置上。先看这些位置怎样从一个时刻走到下一个时刻。</p>
+<p>用 $x_t^{(i)},w_t^{(i)}$ 表示时刻 $t$ 的第 $i$ 个粒子及其权重。上标区分粒子，下标区分记录时刻；每个位置以U计，权重无单位且总和为1。对任意函数 $g$，当前加权样本用</p>
+<p>$$\sum_iw_t^{(i)}g(x_t^{(i)})$$</p>
+<p>近似滤波分布下的期望。取 $g(x)=x$ 得均值，取偏差平方得方差。</p>
+<p>本节沿用饱和回复动态和平方观测：</p>
+<p>$$x_t=f(x_{t-1})+w_{t-1},\qquad
+f(x)=x-\frac{0.15x}{1+|x|/(1\,\mathrm U)},\qquad
+y_t=x_t^2+v_t.$$</p>
+<p>$w\sim N(0,0.04\,\mathrm U^2)$、$v\sim N(0,0.15\,\mathrm U^4)$，即两种噪声均为零均值高斯；各次噪声相互独立并与初态独立。初始先验为均值1.8 U、方差0.2 U²的高斯分布。</p>
+<p>时刻0先从先验产生粒子并吸收首条读数。以后每个旧粒子先经过 $f$，再独立加入一个过程增量，得到当前的新位置。这样抽样的分布就是模型的状态转移分布。</p>
+<h2 id="transition-proposal-and-sequential-weights">转移提议与序贯权重</h2>
+<p>一般地，新位置可以从某个提议</p>
+<p>$$q(x_t^{(i)}\mid x_{t-1}^{(i)},y_t)$$</p>
+<p>抽取。它可以利用当前读数来安排位置。目标路径增加一步后，多出转移密度与当前似然；除以实际用于抽样的提议密度，新的未归一化权重为</p>
+<p>$$a_t^{(i)}=w_{t-1}^{(i)}
+\frac{p(y_t\mid x_t^{(i)})p(x_t^{(i)}\mid x_{t-1}^{(i)})}
+{q(x_t^{(i)}\mid x_{t-1}^{(i)},y_t)}.$$</p>
+<p>这种逐步延长状态路径、逐步修正比值的做法称为<strong>序贯重要性采样（sequential importance sampling）</strong>。</p>
+<p>若直接以状态转移分布作提议，分子与分母的转移密度相消，剩下</p>
+<p>$$a_t^{(i)}=w_{t-1}^{(i)}p(y_t\mid x_t^{(i)}).$$</p>
+<p>动态已经通过粒子的新位置体现，旧权重仍保留过去观测的影响。这种转移抽样与观测加权的粒子滤波称为<strong>自助粒子滤波（bootstrap particle filter）</strong>。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-05-粒子滤波/practice/?question=p07-bootstrap-proposal">自助滤波中为何只乘似然</a></li></ul></nav>
+
+<p>对数实现先将旧权重的对数与当前对数似然相加，再减最大值并归一化。旧权重为零或当前似然为零的位置不贡献质量；计算题以空似然标记表示零似然。若所有位置都没有质量，当前样本无法解释观测，返回对应的不可能更新结果。</p>
+<p>缺测时似然取1，因此权重不因观测改变，状态仍按动态传播到这一时刻。</p>
+<h2 id="weight-degeneracy-and-resampling-threshold">权重退化与重采样阈值</h2>
+<p>反复相乘后，权重可能集中在少数粒子，其余粒子对均值几乎没有贡献。这种现象称为<strong>权重退化（weight degeneracy）</strong>。ESS可以帮助决定何时重新安排粒子。</p>
+<p>本节规定仅在</p>
+<p>$$\operatorname{ESS}&lt;N/2$$</p>
+<p>时重采样。四个粒子的权重为 $[0.5,0.5,0,0]$，则ESS为2，恰等于 $N/2$，这一步保留原位置与权重。若误写成小于等于，就改变了给定算法。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-05-粒子滤波/practice/?question=p07-ess-threshold">有效样本量与阈值</a></li></ul></nav>
+
+<p><strong>重采样（resampling）</strong>按当前权重选择旧位置，允许一个旧位置被多次选中。输出仍有 $N$ 个粒子，但每个新权重设为 $1/N$。高权重位置会获得较多副本，低权重位置可能不再继续占用后续计算。</p>
+<h2 id="systematic-resampling-cumulative-intervals">系统性重采样与累计区间</h2>
+<p>将旧粒子按列表下标0至 $N-1$ 排列，累计权重为</p>
+<p>$$C_j=\sum_{k=0}^jw_k.$$</p>
+<p><strong>系统性重采样（systematic resampling）</strong>只选一个偏移 $u\in[0,1)$，生成等间距位置</p>
+<p>$$r_i=\frac{u+i}{N},\qquad i=0,\ldots,N-1.$$</p>
+<p>每个 $r_i$ 选择累计值严格大于它的最小旧下标 $j$。这相当于把 $[0,1)$ 划成长度为各权重的区间，再看这些等距位置落在哪段。</p>
+<p>先单独演示一组权重的重采样操作。三个等权旧粒子为 $[-1,0,1]$ U，当前似然依次为1、0.5、1。乘旧权重并归一化后得到 $[0.4,0.2,0.4]$，ESS为 $25/9$，不会触发前面的 $N/2$ 阈值。这里固定 $u=0.5$，单独计算复制位置：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">新位置序号 $i$</th>
+  <th style="text-align:right">$r_i$</th>
+  <th>所落累计区间</th>
+  <th style="text-align:right">旧下标</th>
+  <th style="text-align:right">新粒子 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">$1/6$</td>
+  <td>$[0,0.4)$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">−1</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">$1/2$</td>
+  <td>$[0.4,0.6)$</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">$5/6$</td>
+  <td>$[0.6,1)$</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1</td>
+</tr>
+</tbody>
+</table>
+<p>位置恰等于某个累计值时进入右侧区间。例如两个等权粒子、偏移0，对应位置0和0.5，选择下标0和1；累计值0.5不会将第二个位置重新留在第一段。零权重区间长度为零，也不会被选中。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-05-粒子滤波/practice/?question=p07-particle-resampling">观测加权与系统性重采样</a></li></ul></nav>
+
+<p>探索页固定一组等距旧位置，左侧展示观测加权，右侧展示每个旧位置被复制多少次。移动偏移可以改变累计区间中落入的重采样位置；把两个图并列看，就能连接权重与副本数。</p>
+<p class="concept-explore"><a href="/chapters/07-05-粒子滤波/explore/?concept=P07-C05-S02%3Asystematic-resampling-cumulative-intervals">可视化与探索：系统性重采样与累计区间 →</a></p>
+
+<h2 id="ancestor-count-and-sample-impoverishment">祖先数与样本贫化</h2>
+<p>每个新粒子来自某个旧下标，这个旧粒子称为它本次重采样的<strong>祖先（ancestor）</strong>。如果100个新粒子只来自3个旧下标，即使它们都有0.01权重、ESS等于100，位置仍只重复了原来的3种。</p>
+<p>多次复制少数祖先会减少样本多样性，称为<strong>样本贫化（sample impoverishment）</strong>。过程噪声很小时，同一祖先的后代在以后也可能保持接近；若某侧峰在复制时消失，仅靠权重均匀无法把它恢复。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-05-粒子滤波/practice/?question=p07-ancestry-poverty">权重均匀还会贫化吗</a></li></ul></nav>
+
+<p>本节在重采样之前保存加权均值、方差和ESS。重采样后的有限样本平均可能发生随机变化，复制操作主要用于下一步的计算安排。图中的祖先数只统计本次选择了多少不同旧下标；没有重采样时记为 $N$，此前更早的共同祖先仍可能存在。</p>
+<h2 id="particle-count-and-algorithm-repetitions">同一观测下的粒子数比较</h2>
+<p>固定12条平方观测，比较100与500个粒子，各运行20次。每次重新抽初始粒子、过程增量与重采样偏移，观测和模型始终相同。终点均值与同一网格滤波结果相减，得到每次算法的近似误差。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P07-C05-S02-02bc811a-1.png" alt="粒子传播、权重退化与系统性重采样：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图是100粒子的一次运行：圆点为重采样前ESS，方点为本次保留的不同祖先数，水平线为阈值50。ESS低时，副本集中到少数祖先；权重后来重新均匀，也没有增加当时已失去的位置种类。</p>
+<p>右图比较两种粒子数各20个终点差值。箱体下缘、上缘分别为25%、75%分位数，中线为中位数；箱体的纵向跨度描述这批终点差值的散布。本次500粒子的结果更集中于零附近，100粒子还出现了一次较大的负偏离。按“粒子数×12个观测时刻×20次运行”计，预算分别为24000与120000个粒子时刻；首时刻也包括一次观测更新。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/07-05-粒子滤波/practice/?question=p07-particle-comparison">有限预算怎样比较</a></li></ul></nav>
+
+<p>这些重复固定了实验读数，因此回答的是“相同后验计算会因随机粒子而变多少”。若要评价不同个体和不同噪声实现下的状态误差，需要像7.3.3那样重新生成独立状态与读数。下一章则保留同一段记录，增加未来观测，回头修正历史状态。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf">Särkkä：Bayesian Filtering and Smoothing（2013）</a>第7.3—7.4节推导序贯重要性采样、重采样和自助粒子滤波。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/07-05-粒子滤波/read/1/">← 7.5.1 重要性采样、自归一化与有效样本量</a><a href="/chapters/07-06-平滑与缺测处理/read/1/">7.6.1 前向后向递推与固定区间平滑 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>
