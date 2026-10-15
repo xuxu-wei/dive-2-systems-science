@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.1.2 PID控制、微分噪声与积分抗饱和 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C01-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-history">本节练习 · 4 题</a><a class="button" href="/chapters/10-01-开闭环与 PID/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.1.2 PID控制、微分噪声与积分抗饱和</h1>
+<p>比例项响应当前误差，积分项保存过去误差。若还希望对误差正在怎样变化作出反应，就需要微分项。测量本身的跳动和目标的突然改变，也会进入这个变化量；我们用同一段已知误差逐步计算，分清它们的作用。</p>
+<p>学完本节，应能手算离散PID与条件积分，解释差分噪声和目标跳变造成的请求变化。先修为上一节的PI时序、第2篇的差分，以及第6篇的采样与测量噪声。</p>
+<h2 id="discrete-pid">离散PID与两次误差</h2>
+<p>仍采用 $e_n=r_n-y_n$，并用已经取得的本次与上次误差计算后向差分</p>
+<p>$$D_n=\frac{e_n-e_{n-1}}h.$$</p>
+<p><strong>比例积分微分控制（proportional–integral–derivative control，PID）</strong>将三项相加，本节候选请求为</p>
+<p>$$u_{\rm trial}=k_pe_n+k_i(I_n+he_n)+k_dD_n.$$</p>
+<p>误差单位为 U，差分为 U/T，输入为 U/T，故 $k_d$ 无量纲。$k_p,k_i$ 的单位分别沿用 $1/\mathrm T$ 与 $1/\mathrm T^2$。微分项响应的是相邻误差的斜率，积分项响应的是此前累计的面积。</p>
+<p>第一次更新前，实验规定 $I_0=0$、$e_{-1}=0$。按上一节规则试算积分、请求与裁剪；若裁剪且 $e_nu_{\rm trial}&gt;0$，保留旧积分，重新计算请求与实际输入。最后保存当前误差，供下一步差分。</p>
+<h2 id="error-history-and-integral-freezing">误差历史与积分冻结</h2>
+<p>误差列表 $(2,2,-1,0)$ U 按更新顺序排列。取 $h=1$ T、$k_p=1/\mathrm T$、$k_i=0.5/\mathrm T^2$、$k_d=0$，上限2 U/T。</p>
+<p>第一步候选积分为2 U·T，请求 $2+0.5\times2=3$ U/T。正误差还会把已超上限的请求推得更大，因此冻结本次增量，重算请求为2。第二步同样冻结。第三步误差为−1，候选积分为−1，请求−1.5 U/T，未饱和，接受这笔积分。第四步误差为零，过去的积分仍保留。</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">当前误差/U</th>
+  <th style="text-align:right">最终请求/(U/T)</th>
+  <th style="text-align:right">实际输入/(U/T)</th>
+  <th style="text-align:right">新积分/(U·T)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td style="text-align:right">−1</td>
+  <td style="text-align:right">−1.5</td>
+  <td style="text-align:right">−1.5</td>
+  <td style="text-align:right">−1</td>
+</tr>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">−0.5</td>
+  <td style="text-align:right">−0.5</td>
+  <td style="text-align:right">−1</td>
+</tr>
+</tbody>
+</table>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-history">重放误差历史中的 PID</a></li></ul></nav>
+
+<p>若候选请求在正向上限之外，$k_i&gt;0$时，正误差增加积分、继续推高请求，因此冻结；负误差减小积分，有助于退出饱和，规则允许它继续更新。已有积分与新误差方向相反时，这一区别尤其明显。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-01-开闭环与 PID/practice/?question=p10-freeze-direction">何时冻结积分</a></li></ul></nav>
+
+<h2 id="derivative-noise">差分噪声与采样间隔</h2>
+<p>设真实误差不变，误差中的测量噪声却在 $+\delta$、$-\delta$ 之间交替。相邻误差的噪声差为 $\pm2\delta$，所以差分中的噪声幅度为</p>
+<p>$$|D_{\rm noise}|=\frac{2\delta}h.$$</p>
+<p>例如 $\delta=0.1$ U，$h=1$ T时幅度为0.2 U/T；改为 $h=0.1$ T，幅度变为2 U/T，放大10倍。微分请求还要乘 $k_d$，所以增大微分增益会增加这部分输入波动。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-01-开闭环与 PID/practice/?question=p10-derivative-noise">为何微分会放大高频噪声</a></li></ul></nav>
+
+<p>差分通过缩短的时间间隔估计斜率，同样大小的读数跳动因而对应更陡的斜率。实际控制常对微分信号滤波；滤波减弱高频噪声的同时，也会改变控制器的相位和响应速度。</p>
+<h2 id="derivative-kick">目标跳变与微分冲击</h2>
+<p>误差差分还可以展开为</p>
+<p>$$e_n-e_{n-1}=(r_n-r_{n-1})-(y_n-y_{n-1}).$$</p>
+<p>当目标突然跳变、测量尚未变化时，第一项会产生一个大的微分请求，称为<strong>微分冲击（derivative kick）</strong>。例如目标增加1 U、$h=0.1$ T、$k_d=0.5$，仅这次目标变化就产生 $0.5\times1/0.1=5$ U/T请求。</p>
+<p>一种常用改法是让微分作用于测量，使用 $-(y_n-y_{n-1})/h$。它去掉目标跳变进入微分的这一路径，仍然响应测量变化与测量噪声。本节实验采用前面的误差差分，因而两种来源都会进入微分项。</p>
+<h2 id="derivative-gain-experiment">微分增益与请求波动</h2>
+<p>给定真实误差趋势 $0.8e^{-t/3}$ U，并在误差中加入正负交替的0.08 U噪声，按0.1 T间隔取100点。固定 $k_p=0.6/\mathrm T$、$k_i=0.15/\mathrm T^2$ 与上限2 U/T，只将 $k_d$ 取为0、0.1和0.5。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C01-S02-9ba8554b-1.png" alt="PID控制、微分噪声与积分抗饱和：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图画请求，微分增益越大，交替噪声引起的上下跳动越明显。第一点还使用了 $e_{-1}=0$ 的启动约定，所以当前误差与零之间的差也进入首笔请求。右图画积分；当候选请求触及上限，条件积分又会影响它的累计过程。</p>
+<p>这个实验的输入是一条固定误差历史，输出是控制器的请求、实际输入与积分。要比较温度调节效果，就将实际输入接回对象，让各控制规则产生各自的下一次误差，并保持对象、初态、外部扰动、噪声、执行上限和比较时段相同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-comparison">公平比较三个控制器</a></li></ul></nav>
+
+<p>从这里可以看到，变化趋势与噪声一起进入微分。下一章用频率响应描述：同一个回路对变化快慢不同的信号，会产生多大的响应，又会落后多少。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html">Åström与Murray：《Feedback Systems》第二版</a>，第11章的PID实现、微分作用与积分饱和。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/10-01-开闭环与 PID/read/1/">← 10.1.1 比例积分控制与执行限幅</a><a href="/chapters/10-02-频域稳定性与设计/read/1/">10.2.1 闭环极点、根轨迹与阶跃响应 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

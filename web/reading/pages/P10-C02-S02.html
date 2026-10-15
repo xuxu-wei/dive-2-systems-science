@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.2.2 频率响应、稳定裕度与Nyquist判据 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-02-频域稳定性与设计/practice/?question=p10-frequency-delay">本节练习 · 4 题</a><a class="button" href="/chapters/10-02-频域稳定性与设计/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.2.2 频率响应、稳定裕度与Nyquist判据</h1>
+<p>同一份控制请求晚一些到达对象，会让回路根据更早的变化继续调节。纯延迟保持正弦信号的幅度，却增加相位滞后。我们沿用上一节的对象，从复数乘子推出幅值与相位，再把它们连接到闭环特征方程。</p>
+<p>学完本节，应能计算回路的幅相，解释交叉频率与稳定裕度，并按明确的轮廓和方向使用Nyquist计数。先修为第6篇的正弦信号与频率响应，以及10.2.1的闭环特征根。</p>
+<h2 id="complex-sinusoidal-response">复数乘子与正弦响应</h2>
+<p>复数 $z=a+jb$ 用实部 $a$、虚部 $b$ 表示，$j^2=-1$。它也可以写成</p>
+<p>$$z=|z|e^{j\phi},\qquad |z|=\sqrt{a^2+b^2},\quad
+\phi=\operatorname{atan2}(b,a).$$</p>
+<p>$|z|$ 是模长，$\phi$ 是相角。乘两个复数时，模长相乘、相角相加；取倒数时，模长取倒数、相角变号。例如</p>
+<p>$$\frac1{a+jb}=\frac{a-jb}{a^2+b^2}.$$</p>
+<p>将正弦信号写成复指数的实部 $\cos\omega t=\operatorname{Re}e^{j\omega t}$，求导就相当于乘 $j\omega$。因此线性模型的稳态正弦响应由 $G(j\omega)$ 描述：模长是输出与输入的幅度比，相角是输出相对于输入的相位变化。对本例的稳定对象，初态造成的暂态衰减后，就能观察这一同频响应。</p>
+<h2 id="delay-and-frequency-response">纯延迟与回路幅相</h2>
+<p>开环回路增益包括控制器增益、对象和纯延迟：</p>
+<p>$$L(s)=\frac{Ke^{-sd}}{(s+1)(\tau s+1)},\qquad K&gt;0,\quad\tau&gt;0,\quad d\ge0.$$</p>
+<p>时标沿用上一节。$\omega$ 的单位为 $1/\mathrm T$，$d$ 为 T，因此 $\omega d$ 无量纲。将信号延迟 $d$，有</p>
+<p>$$e^{j\omega(t-d)}=e^{j\omega t}e^{-j\omega d}.$$</p>
+<p>延迟乘子的模长为1，相位为 $-\omega d$ 弧度。两个滞后因子分别贡献模长与负相角，合起来得到</p>
+<p>$$|L(j\omega)|=\frac K{\sqrt{1+\omega^2}\sqrt{1+\tau^2\omega^2}},$$</p>
+<p>$$\phi(\omega)=-\arctan\omega-\arctan(\tau\omega)-\omega d.$$</p>
+<p>这里相位以弧度连续展开；换成度数为 $\phi_{\rm deg}=180\phi/\pi$。</p>
+<p>手算 $K=2,\tau=0.5$ T、$\omega=1/\mathrm T$、$d=0.25$ T。无延迟复响应为</p>
+<p>$$\frac2{(1+j)(1+0.5j)}=\frac2{0.5+1.5j}=0.4-1.2j.$$</p>
+<p>模长为 $\sqrt{1.6}\approx1.26491$，相角约为−71.565°。延迟另带来 $-0.25$ 弧度，即−14.324°，所以最终模长仍为1.26491，相角约为−85.889°。$\omega=0$ 时则回到幅值 $K$、相位0。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-02-频域稳定性与设计/practice/?question=p10-frequency-delay">计算回路频率响应</a></li></ul></nav>
+
+<h2 id="bode-plots-and-phase-unwrapping">Bode图与相位展开</h2>
+<p><strong>Bode图（Bode plot）</strong>将幅值与相位分别对频率作图，频率轴通常用对数刻度。幅值以分贝表示：</p>
+<p>$$M_{\rm dB}=20\log_{10}|L(j\omega)|.$$</p>
+<p>0 dB对应幅值1。相位图将弧度换成度数，并沿频率顺序连接。逐点 <code>atan2</code> 给出的主值相角限制在约−180°至180°，所以一个连续下降的相位也可能从−179°跳成+179°；将后者减360°就得到连续的−181°。</p>
+<p>相位展开保留这条连续变化的分支，而不改变相应复数。由于 $K=0$ 时复响应为零、相位无定义，本节幅相计算取 $K&gt;0$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-02-频域稳定性与设计/practice/?question=p10-phase-wrap">主值相角与连续相位</a></li></ul></nav>
+
+<h2 id="crossover-frequencies-and-margins">交叉频率、相位裕度与增益裕度</h2>
+<p><strong>增益交叉频率（gain crossover frequency）</strong> $\omega_{\rm gc}$ 满足</p>
+<p>$$|L(j\omega_{\rm gc})|=1.$$</p>
+<p>在这一位置，用展开相位定义<strong>相位裕度（phase margin）</strong>：</p>
+<p>$$PM=180^\circ+\phi_{\rm deg}(\omega_{\rm gc}).$$</p>
+<p>例如相位−150°对应30°裕度，表示在这个单位幅值交叉处，再增加30°相位滞后就到−180°。它描述的是相位变化，而不是执行器输入幅值的剩余容量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-02-频域稳定性与设计/practice/?question=p10-bode-margin">裕度能说明什么</a></li></ul></nav>
+
+<p><strong>相位交叉频率（phase crossover frequency）</strong>对应复响应位于负实轴，即相位为−180°或与它相差360°的同方向角度。在一个相关交叉 $\omega_{\rm pc}$ 处，<strong>增益裕度（gain margin）</strong>定义为</p>
+<p>$$GM=\frac1{|L(j\omega_{\rm pc})|},\qquad
+GM_{\rm dB}=20\log_{10}GM.$$</p>
+<p>例如该处幅值为0.5，整个回路增益再乘2，就会在负实轴到达−1。若有多个交叉，需要分别检查；缺少相应交叉，也要据实际曲线说明。将这些裕度用于稳定判断时，还需考虑开环极点和完整回路结构，下面的Nyquist计数将它们放在一起。</p>
+<h2 id="nyquist-contour-and-count">Nyquist轮廓与闭环零点计数</h2>
+<p>负反馈的特征方程为 $1+L(s)=0$，所以临界复响应是 $L=-1$。<strong>Nyquist判据（Nyquist criterion）</strong>沿围住右半平面的完整轮廓，计算 $1+L(s)$ 绕原点的次数，等价于计算 $L(s)$ 绕−1的次数。</p>
+<p>本节固定以下方向：从虚轴上方 $+jR$ 向下走到 $-jR$，再沿右侧半圆从下向上回到起点。右半平面内部始终位于行进方向左侧；令 $R\to\infty$，得到完整轮廓。把映射曲线逆时针绕原点的次数记为正数 $N$。</p>
+<p>记 $P$ 为轮廓内 $L(s)$ 的开环极点数，$Z$ 为 $1+L(s)$ 的零点数，均计重数。当轮廓上没有这些极点和零点，幅角原理给出</p>
+<p>$$\boxed{N=Z-P,\qquad Z=N+P.}$$</p>
+<p>它的计数来源可以从因子理解：沿正向轮廓，一个内部零点使总相角增加 $2\pi$，一个内部极点使总相角减少 $2\pi$；相加后就是 $2\pi(Z-P)$。已知开环极点数，再加上映射绕数，才得到右半平面的闭环特征根数。</p>
+<p>当前无延迟回路的两个开环极点均在左半平面，故 $P=0$；上一节的闭环多项式还独立给出 $Z=0$，相应 $N=0$。若开环本来有右半平面极点，所需绕数就会改变。改变轮廓方向或绕数的正负定义时，也必须一起改变上述符号约定。曲线若恰好经过−1，则闭环有轮廓边界上的特征根，应在该边界处单独判断。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-02-频域稳定性与设计/practice/?question=p10-nyquist-hypotheses">Nyquist 判据的边界</a></li></ul></nav>
+
+<h2 id="frequency-response-experiment">延迟幅相与有限频率图</h2>
+<p>下面固定 $K=2,\tau=0.5$ T，比较 $d=0$ 与0.4 T。左、中两图在 $0.01$ 至 $100/\mathrm T$ 范围计算原延迟模型的幅值与展开相位；右图另画无延迟回路在 $-20$ 至 $20/\mathrm T$ 的频率分支。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C02-S02-c42a485d-0.png" alt="频率响应、稳定裕度与Nyquist判据：实验结果图" loading="lazy"></figure>
+</section>
+<p>两条幅值曲线重合，相位差却随 $\omega$ 增长，因为额外相位为 $-\omega d$。右图将临界点−1与频率曲线放在同一复平面，帮助观察它们的相对位置。</p>
+<p>完整计数还要沿虚轴从正频率走向负频率，并加上闭合半圆的映射。对本例无延迟有理回路，高频时 $L(s)\to0$，大半圆的映射也收向原点；图中的有限分支是完整曲线的一部分。前一节的多项式根提供了这一次无延迟稳定性的完整核对。</p>
+<p>探索页固定第二时间常数2 T，左图计算无延迟闭环根，右图比较有、无指定延迟的展开相位。只切换延迟，观察相位而不是把左图的二次根当成延迟回路的新根；再改变增益，比较无延迟根的移动。</p>
+<p class="concept-explore"><a href="/chapters/10-02-频域稳定性与设计/explore/?concept=P10-C02-S02%3Afrequency-response-experiment">可视化与探索：延迟幅相与有限频率图 →</a></p>
+
+<h2 id="rational-delay-approximation">纯延迟与有理近似</h2>
+<p>加入延迟后，闭环特征方程为</p>
+<p>$$(s+1)(\tau s+1)+Ke^{-sd}=0.$$</p>
+<p>它已经不是上一节的二次多项式。若希望用有限维状态模型计算，可以将延迟换成一个分子、分母均为多项式的有理近似，例如</p>
+<p>$$e^{-sd}\approx\frac{1-sd/2}{1+sd/2}.$$</p>
+<p>两边在 $sd$ 接近零时都展开为 $1-sd+(sd)^2/2+O((sd)^3)$。当 $d&gt;0$ 时，这个近似引入极点 $-2/d$，它来自近似表达中的附加动态，而非对象突然多出一个真实储存部位。</p>
+<p>在正弦频率处，近似的相位为 $-2\arctan(\omega d/2)$，原延迟的展开相位为 $-\omega d$。低频时两者接近，高频时前者趋于−180°，后者继续下降。因此判断近似是否合用，应比较相关频率范围的幅值和相位，再据对应模型求闭环根或绕数。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-02-频域稳定性与设计/practice/?question=p10-delay-approximation">延迟与低阶近似</a></li></ul></nav>
+
+<p>频率响应解释同一输入怎样通过对象和反馈回路。下一章转到状态空间，研究输入接在不同位置时，究竟能改变哪些状态。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html">Åström与Murray：《Feedback Systems》第二版</a>，第10章的Nyquist判据与稳定裕度、第12章的频域设计。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/10-02-频域稳定性与设计/read/1/">← 10.2.1 闭环极点、根轨迹与阶跃响应</a><a href="/chapters/10-03-能控性与状态反馈/read/1/">10.3.1 能控性、输入位置与可达范围 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

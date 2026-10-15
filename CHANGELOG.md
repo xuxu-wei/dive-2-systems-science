@@ -4,9 +4,11 @@
 
 ## [未发布]
 
-网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)。
+网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)、[第 10 篇](docs/validation/part10-web-teaching-20261016.md)。
 
 ### 新增
+
+- 第10篇十五节网页讲授和独立实验，以64道原题连接PID、频域、状态反馈、观测器、LQR与MPC。
 
 - 第9篇十一节网页讲授和独立实验，以58道原题连接参数后验、采样、变分、隐变量学习及预测检验。
 
@@ -23,6 +25,8 @@
 - 从网页新标签页打开指定 JupyterLab 实验，自动使用本项目 Python 环境。
 
 ### 变更
+
+- 第10篇通过反馈时序、小矩阵和成本手算连接推导与图形，七张探索按实际模型关联概念；原题与成绩保持。
 
 - 第9篇用配方、概率流、条件期望和手算建立推理；五张探索关联实际模型，Notebook保留原算法，题目身份与版本保持。
 
@@ -41,6 +45,8 @@
 - README 与 ROADMAP 按当前使用方式和未来优先级整理，历史实施记录由本文件与验收文件承接。
 
 ### 修复
+
+- 补清第9篇nat的信息单位定义；根轨迹绘图加入两根相遇的精确增益，修复含空格章名的Notebook返回链接。
 
 - 第8篇条件数题区分误差趋零与有界振荡，升级为版本2并保留旧记录；见[修正核对](docs/validation/part08-conditioning-20261016.md)。
 

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.3.2 状态反馈、极点配置与可稳定性 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C03-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-03-能控性与状态反馈/practice/?question=p10-canonical-gain">本节练习 · 4 题</a><a class="button" href="/chapters/10-03-能控性与状态反馈/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.3.2 状态反馈、极点配置与可稳定性</h1>
+<p>上一节把输入接到第二状态，使双积分对象能控。现在希望位置偏差和速度都回到零。把目标极点选得更靠左，理想响应会更快衰减；同一初态下，它又会请求多大的输入？我们先算增益与请求，再加入执行上限比较。</p>
+<p>学完本节，应能由目标多项式求反馈增益，解释限幅轨迹与理想极点的关系，并区分完整能控性与较弱的可稳定性。先修为10.3.1的能控矩阵、10.2的特征根及第8篇的约束。</p>
+<h2 id="state-feedback-matrix">状态反馈与闭环矩阵</h2>
+<p>沿用参考时间 $\theta=t/T_0$ 下的模型</p>
+<p>$$\dot x=Ax+Bu,\qquad A=\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix},\quad B=\begin{pmatrix}0\\1\end{pmatrix}.$$</p>
+<p>目标为零，两个当前状态都可用。<strong>状态反馈（state feedback）</strong>直接由当前状态计算输入，这里取线性形式</p>
+<p>$$u=-Kx=-k_1x_1-k_2x_2.$$</p>
+<p>上一章的 $K$ 是标量比例增益；这里 $K=[k_1,k_2]$ 是行向量，依次乘位置与缩放后的速度。代入后，</p>
+<p>$$\dot x=(A-BK)x,\qquad A-BK=\begin{pmatrix}0&amp;1\\-k_1&amp;-k_2\end{pmatrix}.$$</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-03-能控性与状态反馈/practice/?question=p10-feedback-sign">反馈符号统一</a></li></ul></nav>
+
+<p>在当前缩放坐标中，$x_1,x_2,u$ 均以 U计，两个增益无量纲。换回物理位置 $q$、速度 $v$、加速度 $a$，由 $x_2=T_0v$、$u=T_0^2a$ 得到</p>
+<p>$$a=-\frac{k_1}{T_0^2}q-\frac{k_2}{T_0}v.$$</p>
+<p>因此物理位置增益的单位为 $1/\mathrm T^2$，速度增益为 $1/\mathrm T$；极点也要按相同参考时间换算。</p>
+<h2 id="pole-placement">特征多项式与极点配置</h2>
+<p>展开闭环特征式：</p>
+<p>$$\begin{aligned}
+\det[sI-(A-BK)]
+&amp;=\det\begin{pmatrix}s&amp;-1\\k_1&amp;s+k_2\end{pmatrix}\\
+&amp;=s^2+k_2s+k_1.
+\end{aligned}$$</p>
+<p>希望极点为 $p_1,p_2$，就把它与</p>
+<p>$$(s-p_1)(s-p_2)=s^2-(p_1+p_2)s+p_1p_2$$</p>
+<p>逐项比较，得到</p>
+<p>$$\boxed{k_1=p_1p_2,\qquad k_2=-(p_1+p_2).}$$</p>
+<p>选定闭环特征根并求出相应反馈增益，称为<strong>极点配置（pole placement）</strong>。目标−1、−2给出多项式 $s^2+3s+2$，所以返回 $K=[2,3]$；目标−10、−20则给 $K=[200,30]$。返回列表的顺序按状态排列，多项式中一次项却对应第二个增益。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-03-能控性与状态反馈/practice/?question=p10-canonical-gain">配置双积分反馈极点</a></li></ul></nav>
+
+<h2 id="fast-poles-and-actuation">快速极点与执行输入</h2>
+<p>从相同初态 $x_0=(1,0)^{\mathsf T}$ 出发，两组增益的初始请求为</p>
+<p>$$u_{{\rm req},0}=-[2,3]\begin{pmatrix}1\\0\end{pmatrix}=-2\ \mathrm U,$$</p>
+<p>$$u_{{\rm req},0}=-[200,30]\begin{pmatrix}1\\0\end{pmatrix}=-200\ \mathrm U.$$</p>
+<p>快极点使理想自然模态由 $e^{-\theta},e^{-2\theta}$ 换成 $e^{-10\theta},e^{-20\theta}$，同时将这一起点的请求放大100倍。若实际输入限制为 $|u|\le3$ U，第一份请求能够执行，第二份只能先提供−3 U。</p>
+<p>限幅模型因此为</p>
+<p>$$u=\operatorname{clip}(-Kx,-3,3),\qquad \dot x=Ax+Bu.$$</p>
+<p>进入限幅区域后，请求与实际输入不同，对象的状态方程也不再等于固定矩阵 $(A-BK)x$。先前的极点仍描述理想线性反馈，实际运动由裁剪后的输入产生。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-03-能控性与状态反馈/practice/?question=p10-fast-pole-cost">改变双积分对象的目标极点</a></li></ul></nav>
+
+<h2 id="feedback-and-saturation-experiment">理想与限幅反馈的轨迹</h2>
+<p>下图四次运行都从 $(1,0)$ 开始，以相同步长0.001计算5个参考时长。每组极点分别运行无限幅与上限为3的情况；颜色区分两组极点，实线与虚线区分是否限幅。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C03-S02-84f0a3d3-0.png" alt="状态反馈、极点配置与可稳定性：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图比较位置偏差，右图比较实际输入。快速理想反馈很快接近零；限幅后只能先施加−3，位置曲线便与理想结果分开。右图纵轴最低显示−22，快速理想输入最初的−200位于图外；这部分需求应结合前面的手算理解。</p>
+<p>改变极点同时改变响应速度和请求幅度。若状态中还有测量误差，较大增益也会将它更强地传到输入，因此评价配置时，需要把状态轨迹和实际输入一起比较。</p>
+<h2 id="stabilizability">不可控模态与可稳定性</h2>
+<p>完整能控性允许任意配置全部闭环极点。若能控矩阵秩不足，状态反馈只能改变可控部分，不可控模态的特征根保持原值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-03-能控性与状态反馈/practice/?question=p10-pole-placement-condition">秩为1时的极点配置</a></li></ul></nav>
+
+<p>如果目标只是使系统稳定，可以采用更弱的要求。若存在某个 $K$，使 $A-BK$ 的全部特征根实部为负，就称连续系统具有<strong>可稳定性（stabilizability）</strong>。对线性时不变系统，这等价于所有不可控模态本身已经稳定。</p>
+<p>例如</p>
+<p>$$A=\begin{pmatrix}1&amp;0\\0&amp;-2\end{pmatrix},\qquad B=\begin{pmatrix}1\\0\end{pmatrix}$$</p>
+<p>只有第一状态可控，第二状态的极点−2不能移动，但已经衰减。选 $K=[3,0]$ 就得到 $A-BK=\operatorname{diag}(-2,-2)$，全系统稳定。若将原来的第二极点改为+2，这个无法受输入影响的增长模态就会保留，任何状态反馈都不能使全系统稳定。</p>
+<p>这区分了“任意选择每个极点”与“使所有模态衰减”。下一章再考虑完整状态并不能直接测到的情形：先从读数建立状态估计，再用估计产生反馈输入。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html">Åström与Murray：《Feedback Systems》第二版</a>，状态反馈、极点配置与可稳定性。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/10-03-能控性与状态反馈/read/1/">← 10.3.1 能控性、输入位置与可达范围</a><a href="/chapters/10-04-状态观测器与输出反馈/read/1/">10.4.1 传感器位置与能观矩阵 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

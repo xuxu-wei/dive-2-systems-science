@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.7.2 配对场景、失败率与重采样 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C07-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C07-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-differences">本节练习 · 4 题</a><a class="button" href="/chapters/10-07-估计反馈与闭环验证/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.7.2 配对场景、失败率与重采样</h1>
+<p>学完本节，你应能按场景比较两种控制器，保留失败计数，并用场景层面的重采样解释平均误差差的不确定性。</p>
+<p><strong>先修知识</strong>：10.7.1 的闭环指标，第 5、6 篇的独立重复与重采样，第 9 篇的留出评价。</p>
+<h2 id="scenario-pairing-and-shared-difficulty">场景配对与共同难度</h2>
+<p>某个扰动场景可能让两种控制器都很容易跟踪，另一个场景却让它们都误差较大。把同一场景下的两份结果相减，可以在共同难度下观察规则之间的差异。</p>
+<p>设场景 $i$ 的跟踪均方误差分别为 $E_{Ai},E_{Bi}$，双方成功时定义</p>
+<p>$$D_i=E_{Ai}-E_{Bi}.$$</p>
+<p>$D_i&lt;0$ 表示 A 在这个场景的跟踪误差较小；$D_i&gt;0$ 则表示 B 较小。每一行同时保存两种方法的结果，行号记录的是场景，而不是某个时间点。</p>
+<h2 id="successful-pairs-and-failure-counts">成功配对与失败计数</h2>
+<p>先看四行给定结果。空值表示该方法在此场景没有完整数值指标：</p>
+<table>
+<thead>
+<tr>
+  <th>场景</th>
+  <th style="text-align:right">A 的误差</th>
+  <th style="text-align:right">B 的误差</th>
+  <th style="text-align:right">$A-B$</th>
+  <th>配对结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">$-1$</td>
+  <td>双方成功</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td>双方成功</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td style="text-align:right">空值</td>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">无法计算</td>
+  <td>A 失败</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">空值</td>
+  <td style="text-align:right">无法计算</td>
+  <td>B 失败</td>
+</tr>
+</tbody>
+</table>
+<p>前两行差值的均值为零。四个场景中有两个成功配对、两个至少一方失败；各方法自身则各失败一次，失败率各为 $1/4$。</p>
+<p>一般地，设全部尝试数为 $n$，双方成功集合为 $\mathcal S$，其中有 $m$ 个场景，计算</p>
+<p>$$\bar D=\frac1m\sum_{i\in\mathcal S}D_i.$$</p>
+<p>同时保留 $n,m,n-m$，并分别统计各方法失败次数。$\bar D$ 比较的是双方成功条件下的误差，失败率则按全部尝试数计算。没有成功配对时，平均差保持为空值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-differences">保留失败的配对比较</a></li></ul></nav>
+
+<p>例如 A 在 40 次尝试中失败 8 次，B 全部成功，剩余 32 对中 A 误差稍小。结果包含两部分：成功配对上的误差差，以及 A 的失败率 $8/40=20\%$、B 的失败率 0。成功配对筛除了哪些场景，会影响这一条件均值的解释。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-failure-selection">失败率属于结果</a></li></ul></nav>
+
+<p>本章探索提供一张按确定性公式给出的 40 行结果表。播放逐行纳入两种方法的指标，并同时更新成功差值、平均差和失败数。“严重失配”设置会改变表中结果，并让第 1、12、23、34 行的 A 指标为空。观察这些行怎样离开数值平均，同时仍留在全部尝试数中。</p>
+<p class="concept-explore"><a href="/chapters/10-07-估计反馈与闭环验证/explore/?concept=P10-C07-S02%3Asuccessful-pairs-and-failure-counts">可视化与探索：成功配对与失败计数 →</a></p>
+
+<h2 id="forty-independent-closed-loop-scenarios">四十个独立闭环场景</h2>
+<p>接着实际运行两组固定 PI 参数：A 使用 $k_p=0.6,k_i=0.08$，B 使用 $k_p=0.8,k_i=0.04$。各自从 0 U 出发，目标为 1 U，输入上限为 1，对象仍为</p>
+<p>$$x_{n+1}=0.9x_n+0.8u_n+d_n,\qquad y_n=x_n+v_n.$$</p>
+<p>独立生成 40 个场景，每个场景运行 35 步。测量噪声标准差为 $0.04\ \mathrm U$，状态扰动的均值为 $-0.04\ \mathrm U$、标准差为 $0.03\ \mathrm U$。同一场景中的两种方法使用相同噪声和扰动序列，不同场景分别生成。</p>
+<p>每条运行保留 36 个状态和 35 个实际输入，跟踪均方误差包含初态。两组参数在评价前已经固定。得到的 40 对数值可以逐行比较，本次每对都完成了运行；前面的四行例子则帮助解释出现失败时怎样保存结果。</p>
+<h2 id="paired-bootstrap-and-interval-for-the-mean-difference">成对重采样与均值差的区间</h2>
+<p>40 个场景给出 40 个配对差。为了观察这批场景造成的平均差波动，进行一次 <strong>bootstrap 重采样</strong>：从这 40 行中有放回地抽取 40 行，每次抽到一行就同时取出该场景的 A、B 结果，再计算差值均值。</p>
+<p>同一行可能被抽中多次，有些行可能没有被抽中。重复 2000 次，就得到 2000 个重采样均值。取其 2.5% 和 97.5% 分位数，形成这里的 95% bootstrap 分位区间。</p>
+<p>也可以先保存 $D_i$，每次有放回抽取 40 个差值，结果与整对抽取相同。若分别打乱两列再配对，就改变了原本同场景的关系；若把单个场景的时间点混在一起抽取，则忽略了轨迹内部的时间相关。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-bootstrap">为什么按场景配对</a></li></ul></nav>
+
+<p>下图左侧是 40 个原始配对差的分布，竖虚线为零；右侧是 2000 个重采样均值，竖线标出原始平均差。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C07-S02-2433d2ee-0.png" alt="配对场景、失败率与重采样：实验结果图" loading="lazy"></figure>
+</section>
+<p>本次平均差约为 $-0.00006\ \mathrm U^2$，分位区间约为 $[-0.00031,0.00020]\ \mathrm U^2$。原始差值描述各个场景的差别，重采样均值描述这批独立场景下平均差的抽样变化，二者的分布宽度对应不同问题。</p>
+<h2 id="sampling-uncertainty-and-task-requirements">抽样不确定性与任务要求</h2>
+<p>这次区间包含零，说明当前样本对平均差的方向仍有不确定性。要判断两种方法的差别是否足够小，还需要先给出任务可以接受的误差差异，并结合输入大小、超限和失败评价。</p>
+<p>在同一场景生成条件下增加独立重复，可以减小平均差的抽样波动。若关心更强扰动或传感器缺测，则要把这些条件纳入新的场景。原来的区间对应原来的条件范围，样本量与条件范围各自决定不同的认识。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-uncertainty-scope">有限场景能说明多远</a></li></ul></nav>
+
+<p>篇末综合将回到部分观测对象，把传感器、估计器、请求和实际输入接起来，再分别核对 LQR、MPC 与评价函数。</p>
+<h2 id="references">参考资料</h2>
+<p>第 6 篇的重采样讨论给出有放回抽取完整观察单位的做法；<a href="https://sites.engineering.ucsb.edu/~jbraw/mpc/MPC-book-2nd-edition-5th-printing.pdf">Rawlings、Mayne 与 Diehl，《Model Predictive Control》</a>讨论状态估计、模型误差和控制约束，可结合这里的场景比较继续阅读。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/10-07-估计反馈与闭环验证/read/1/">← 10.7.1 闭环评价与公平比较</a><a href="/parts/10-反馈与最优控制/综合练习/read/1/">篇末综合 部分观测下的约束控制 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

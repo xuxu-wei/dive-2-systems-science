@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.1.1 比例积分控制与执行限幅 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-saturation">本节练习 · 4 题</a><a class="button" href="/chapters/10-01-开闭环与 PID/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.1.1 比例积分控制与执行限幅</h1>
+<p>温度低于目标时，需要增加输入；接近目标后，输入又应怎样变化？一个持续散热的对象，即使温度恰好达到目标，也可能需要持续加热。我们从当前误差算起，看看比例项与积分项怎样共同提供这份输入。</p>
+<p>学完本节，应能手算一次比例积分控制的更新，区分测量、请求输入与实际执行，并用稳态收支解释持续扰动下的误差。先修为第1篇的反馈方向、第2篇的离散收支，以及第8篇的变量与约束。</p>
+<h2 id="feedback-and-control-timing">开环、反馈与控制时序</h2>
+<p>将对象相对于参考温度的偏差记为 $x_n$，目标记为 $r$。<strong>开环控制（open-loop control）</strong>预先决定输入，不依赖当前输出；<strong>闭环控制（closed-loop control）</strong>则用输出的测量参与下一次输入计算。</p>
+<p>本例读数准确，$y_n=x_n$。在时刻 $n$，先读取 $y_n$，再计算控制误差</p>
+<p>$$e_n=r-y_n.$$</p>
+<p>控制器由误差产生请求，执行器将请求限制在允许范围内，然后对象才进入下一状态：</p>
+<p>$$x_{n+1}=x_n+h(-0.4x_n+u_n+d).$$</p>
+<p>这里 $h$ 是两个时刻之间的时长，$x,r,y,e$ 的单位为 U；$u_n,d$ 是这一时段的实际输入和持续扰动，单位为 U/T，散热系数0.4的单位为 $1/\mathrm T$。下标 $n$ 对应本时段执行前的状态，$u_n$ 改变的是后面的 $x_{n+1}$。</p>
+<p>对象输入增加会使温度偏差增加。采用 $r-y$ 作为误差、正增益将误差转成输入，就有：输出偏低时增加输入，输出偏高时减小输入。这沿用了第1篇的负反馈方向。</p>
+<h2 id="proportional-control">比例控制与稳态偏差</h2>
+<p><strong>比例控制（proportional control，P）</strong>的请求为</p>
+<p>$$u_{{\rm req},n}=k_pe_n.$$</p>
+<p>误差越大，请求越大。为了将 U 的误差变成 U/T 的输入，$k_p$ 的单位必须为 $1/\mathrm T$。</p>
+<p>执行器尚未限幅时，将稳态 $x_{n+1}=x_n=x_*$ 代入对象方程：</p>
+<p>$$0=-0.4x_*+k_p(r-x_*)+d.$$</p>
+<p>合并 $x_*$ 的系数，得到</p>
+<p>$$x_*=\frac{k_pr+d}{0.4+k_p},\qquad
+r-x_*=\frac{0.4r-d}{0.4+k_p}.$$</p>
+<p>取 $k_p=0.7/\mathrm T$、$r=1$ U、$d=-0.25$ U/T，输出稳态约为</p>
+<p>$$x_*=\frac{0.7-0.25}{1.1}=0.4091\ \mathrm U.$$</p>
+<p>剩下约0.5909 U的误差，使比例项持续提供约0.4136 U/T输入，正好抵消此时的散热和扰动。若误差为零，比例请求也为零；这个对象却仍需要热量，因此单靠这项规则会停在低于目标的位置。</p>
+<h2 id="integral-action">积分控制与持续输入</h2>
+<p><strong>比例积分控制（proportional–integral control，PI）</strong>再保存一个累计误差 $I_n$。决定第 $n$ 次输入前，先试算</p>
+<p>$$I_{\rm trial}=I_n+he_n,\qquad
+u_{\rm trial}=k_pe_n+k_iI_{\rm trial}.$$</p>
+<p>积分的单位为 U·T，故积分增益 $k_i$ 的单位为 $1/\mathrm T^2$。即使当前误差已经很小，过去累计的 $I_n$ 仍可以维持输入。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-01-开闭环与 PID/practice/?question=p10-gain-units">增益有单位</a></li></ul></nav>
+
+<p>若PI闭环稳定，并达到积分持续更新、输入未饱和的稳态，那么积分前后相同，要求 $he_*=0$，所以 $x_*=r$。代回对象方程，目标处所需输入为</p>
+<p>$$u_*=0.4r-d=0.65\ \mathrm{U/T}.$$</p>
+<p>当 $k_i=0.3/\mathrm T^2$，零误差时由 $k_iI_*=u_*$ 得到 $I_*=0.65/0.3\approx2.1667$ U·T。积分保存了维持目标所需的输入，而当前误差可以归零。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-constant-load">恒定扰动下的 P 与 PI</a></li></ul></nav>
+
+<h2 id="actuator-limits-and-conditional-integration">执行限幅与条件积分</h2>
+<p>执行器输入受限于 $[-u_{\max},u_{\max}]$。用</p>
+<p>$$\operatorname{clip}(v,-u_{\max},u_{\max})
+=\max(-u_{\max},\min(u_{\max},v))$$</p>
+<p>表示裁剪，请求超过上限时实际输入停在上限。若此时仍反复累计同方向误差，积分会不断增大；等到输出终于接近目标，还需要较长时间消退这笔累计量。这称为<strong>积分饱和（integrator windup）</strong>。</p>
+<p>实验采用条件积分抑制这种累积：先计算候选积分和候选请求；若请求被裁剪且 $e_nu_{\rm trial}&gt;0$，就冻结本次积分增量，保留旧 $I_n$，重新计算请求，再裁剪得到实际输入。其余情况接受候选积分。</p>
+<p>手算一次独立的控制步骤：$e=2$ U、旧积分0、$h=1$ T、$k_p=1/\mathrm T$、$k_i=1/\mathrm T^2$，上限为2 U/T。</p>
+<table>
+<thead>
+<tr>
+  <th>计算</th>
+  <th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>候选积分 $0+1\times2$</td>
+  <td>2 U·T</td>
+</tr>
+<tr>
+  <td>候选请求 $1\times2+1\times2$</td>
+  <td>4 U/T</td>
+</tr>
+<tr>
+  <td>候选裁剪值</td>
+  <td>2 U/T</td>
+</tr>
+<tr>
+  <td>裁剪且误差与请求同号</td>
+  <td>保留旧积分0</td>
+</tr>
+<tr>
+  <td>重算后的请求与实际输入</td>
+  <td>均为2 U/T</td>
+</tr>
+</tbody>
+</table>
+<p>最后返回的是重算后的请求2、实际输入2与新积分0，三项分别有各自的含义。冻结的是这一次增量，已经保存的旧积分仍保留。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-saturation">一次 PI 更新</a></li></ul></nav>
+
+<p>若请求为8 U/T、实际只能提供5 U/T，对象收支式使用5；请求记录8，以便观察控制器想做什么，实际记录5，以便核对对象接受了什么。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-01-开闭环与 PID/practice/?question=p10-request-vs-actuation">要求与执行不能混用</a></li></ul></nav>
+
+<h2 id="proportional-and-integral-responses">P与PI的状态和输入响应</h2>
+<p>下面三条轨迹都从0 U开始，目标1 U，扰动−0.25 U/T，步长0.1 T，共250次更新，执行上限为1 U/T。开环保持零输入；P与PI都取 $k_p=0.7/\mathrm T$，PI另取 $k_i=0.3/\mathrm T^2$。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C01-S01-6d2c2d8e-0.png" alt="比例积分控制与执行限幅：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图中P接近手算的0.409 U，PI逐步靠近目标。右图显示实际输入：PI在误差减小时仍保持约0.65 U/T，持续补偿目标处的散热和负扰动。零输入的开环则下降到由环境与扰动共同决定的位置。</p>
+<p>探索页使用相同对象，运行120步，初始上限为1.5 U/T。先保持增益不变，把上限切换到0.4 U/T，比较请求与实际输入的分离。目标处需要0.65 U/T，上限0.4已低于这份收支需求；随后再提高上限，观察积分怎样帮助温度靠近目标。</p>
+<p class="concept-explore"><a href="/chapters/10-01-开闭环与 PID/explore/?concept=P10-C01-S01%3Aproportional-and-integral-responses">可视化与探索：P与PI的状态和输入响应 →</a></p>
+
+<p>下一节加入误差变化率。它让控制器响应趋势，也会将相邻读数中的噪声带进请求。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html">Åström与Murray：《Feedback Systems》第二版</a>，第11章的PID控制与积分饱和。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/09-概率建模与近似推断/综合练习/read/1/">← 篇末综合 同一观测下的后验与预测比较</a><a href="/chapters/10-01-开闭环与 PID/read/2/">10.1.2 PID控制、微分噪声与积分抗饱和 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

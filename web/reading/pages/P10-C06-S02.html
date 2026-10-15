@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.6.2 滚动时域与预测失配 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C06-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C06-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-06-带约束的 MPC/practice/?question=p10-receding-trajectory">本节练习 · 4 题</a><a class="button" href="/chapters/10-06-带约束的 MPC/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.6.2 滚动时域与预测失配</h1>
+<p>学完本节，你应能用新状态重建下一份 MPC 计划，分开记录预测、实际状态和已执行输入，并解释模型失配怎样影响约束检查。</p>
+<p><strong>先修知识</strong>：10.6.1 的有限输入 MPC，10.4 的状态观测器，第 6 篇的模型验证。</p>
+<h2 id="new-state-and-next-plan">新状态与下一份计划</h2>
+<p>名义模型 $x^+=x+u$ 从 0 U 出发，输入 1 后预测到达 1 U。实际对象若为</p>
+<p>$$x^+=0.92x+u+0.1,$$</p>
+<p>同一步却到达 1.1 U。这里状态以 U 计，最后的 0.1 是每步附加的状态变化，输入数值 1 仍对应一步增加 1 U。</p>
+<p>旧计划的第二个输入是在预测状态 1 U 上计算的。取得 1.1 U 的新状态后，滚动时域控制将它作为起点，重新比较未来计划。为观察这个过程，下面直接读出标量实际状态；状态只能部分观测时，则先由截至当前的读数建立估计。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-06-带约束的 MPC/practice/?question=p10-prediction-vs-reality">新读数到达后的滚动预测</a></li></ul></nav>
+
+<h2 id="double-time-indices-of-planned-inputs">计划输入的双时间下标</h2>
+<p>时刻 $t$ 求出的最优输入计划为</p>
+<p>$$\left(u^*_{t\mid t},u^*_{t+1\mid t},\ldots,u^*_{t+N-1\mid t}\right).$$</p>
+<p>沿用上一节，左侧下标指输入计划作用的时刻，竖线右侧指建立计划时使用信息的时刻。现在执行 $u^*_{t\mid t}$。到时刻 $t+1$，新信息形成新的起点，重新求出的首项为 $u^*_{t+1\mid t+1}$。</p>
+<p>同一个将来时刻 $t+1$ 因而可能有两份输入安排：旧计划中的第二项 $u^*_{t+1\mid t}$，以及新计划中的首项 $u^*_{t+1\mid t+1}$。重新求解允许它们随新状态信息而不同。</p>
+<p>一次完整循环按以下次序进行：</p>
+<ol>
+<li>由新读数或直接状态得到当前起点。</li>
+<li>使用名义模型求一份可行计划。</li>
+<li>执行首项输入，保存实际执行值。</li>
+<li>对象演化，取得下一时刻信息，再开始下一轮。</li>
+</ol>
+<p>预测状态是模型计算的未来值，状态估计是根据已有信息对当前未知状态的描述；第 7 篇的滤波将预测与新读数结合，正好提供这里需要的起点。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-06-带约束的 MPC/practice/?question=p10-estimate-interface">MPC 起点的状态从哪里来</a></li></ul></nav>
+
+<h2 id="nominal-and-actual-state-updates">名义更新与实际更新的差</h2>
+<p>假设同一步从已知实际状态 $x_t$ 出发，名义系数为 $a_{\mathrm{model}}$，实际对象系数为 $a_{\mathrm{real}}$。两者接收相同实际输入 $u_t$：</p>
+<p>$$x_{t+1\mid t}=a_{\mathrm{model}}x_t+bu_t,$$</p>
+<p>$$x_{t+1}=a_{\mathrm{real}}x_t+bu_t+d_t.$$</p>
+<p>相减得到</p>
+<p>$$x_{t+1}-x_{t+1\mid t}
+=(a_{\mathrm{real}}-a_{\mathrm{model}})x_t+d_t.$$</p>
+<p>本例为 $-0.08x_t+0.1$，所以偏差随起点改变。在 $x_t=0$ 时是 0.1 U；到了 $x_t=1.1\ \mathrm U$，下一步偏差变为 $-0.08\times1.1+0.1=0.012\ \mathrm U$。</p>
+<p>若起点是估计 $\hat x_t$，还要计入估计误差。仍从上述两式相减，可写成</p>
+<p>$$x_{t+1}-x_{t+1\mid t}
+=a_{\mathrm{real}}(x_t-\hat x_t)
++(a_{\mathrm{real}}-a_{\mathrm{model}})\hat x_t+d_t.$$</p>
+<p>第一项来自当前状态尚未估准，后两项来自模型系数与外部扰动。改进起点估计和改进演化模型，因而作用在不同部分。</p>
+<h2 id="closed-loop-trajectories-with-model-mismatch">名义对象与失配对象的闭环轨迹</h2>
+<p>现在把目标改为 $1\ \mathrm U$，其他计划参数取输入集合 $\{-1,0,1\}$、两步预测、权重 $q=1,\rho=0.1,q_f=2$，预测后继范围为 $[-1,2]\ \mathrm U$。两次运行都从 0 U 出发：</p>
+<ul>
+<li>名义运行的对象和求解器都使用 $x^+=x+u$。</li>
+<li>失配运行的求解器仍使用名义模型，对象按 $x^+=0.92x+u+0.1$ 演化；每次优化读入新实际状态。</li>
+</ul>
+<p>先看前两步。名义运行首步输入 1 后到达 1，此后输入 0 就能保持目标。失配运行首步到达 1.1，下一次从 1.1 重新求解；若选择 0，实际下一状态为</p>
+<p>$$0.92\times1.1+0.1=1.112\ \mathrm U.$$</p>
+<p>相同输入也会产生不同状态，因为它们推进的对象方程不同。下图左侧比较 12 步状态，右侧比较真正执行的首项输入。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C06-S02-c8dd86c5-0.png" alt="滚动时域与预测失配：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中两种运行可以在若干步选择同样的输入，失配对象却围绕另一水平变化。每次重算都更新了起点，后续预测仍采用系数 1；这条轨迹把反馈修正与模型误差的影响同时显示出来。本次实际状态都处在给定范围内，是否越界可直接对照保存的实际状态检查。</p>
+<p>在模型一致的短例子中，目标 1、执行四步会给出状态 $(0,1,1,1,1)$ 和输入 $(1,0,0,0)$。状态记录包含初态，因而比实际输入多一项。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-06-带约束的 MPC/practice/?question=p10-receding-trajectory">逐时刻重新求解</a></li></ul></nav>
+
+<h2 id="solver-status-actual-constraints-and-fallback-inputs">求解状态、实际约束与备用输入</h2>
+<p>每次求解中的状态限制作用于名义预测。例如名义模型从 0 U 施加输入 1，满足上界 1 U；若实际一步又加上 0.1 U 扰动，就会到达 1.1 U。检查预测与检查实际轨迹，因此需要分别保存对应数值。</p>
+<p>下一次优化是否存在可行计划，也由当时的新起点和允许输入决定。在本节的逐步函数中，一次求解不可行就停止执行：保留这次状态标记，实际输入列表不增加一项，状态列表也不增加未经执行的预测值。这样可以从记录恢复“尝试了几次、真正执行了几步”。</p>
+<p>若任务另外采用备用策略，需要以当前状态检查该策略的适用范围。例如某个输入满足幅值上限，仍可能因当前状态和扰动而让下一状态越界。判断备用动作时，应将它放回当前对象与状态限制中计算。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-06-带约束的 MPC/practice/?question=p10-fallback-domain">备用控制需要验证</a></li></ul></nav>
+
+<p>下一章会把同一外部场景交给不同控制规则，分别比较实际状态、实际输入与失败。滚动求解的每次计划和执行记录，正是这些评价所需的数据。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://sites.engineering.ucsb.edu/~jbraw/mpc/MPC-book-2nd-edition-5th-printing.pdf">Rawlings、Mayne 与 Diehl，《Model Predictive Control》</a>讨论滚动优化、状态估计与扰动下的约束控制。第 7 篇的预测和滤波提供当前状态信息的计算基础。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/10-06-带约束的 MPC/read/1/">← 10.6.1 模型预测控制与硬约束</a><a href="/chapters/10-07-估计反馈与闭环验证/read/1/">10.7.1 闭环评价与公平比较 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

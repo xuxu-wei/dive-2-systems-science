@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.5.1 价值函数与Bellman递推 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C05-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C05-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-one">本节练习 · 4 题</a><a class="button" href="/chapters/10-05-动态规划与 LQR/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.5.1 价值函数与Bellman递推</h1>
+<p>状态偏差为2 U，一步后希望它更接近零。输入可以减小下一状态，但输入本身也有代价。现在少用一些输入，是否会把成本留到下一时刻？我们先把这两笔成本放在一起，再寻找能逐步向前考虑的决策规则。</p>
+<p>学完本节，你应能手算一步最优输入，解释价值函数的时刻与状态，并用Bellman递推连接当前代价和未来代价。先修为第8篇的二次目标，以及10.3的线性状态反馈。</p>
+<h2 id="stage-and-terminal-cost">阶段成本、终端成本与单位</h2>
+<p>用$x$表示当前状态偏差，$u$表示当前输入，执行一步后得到</p>
+<p>$$x^+=ax+bu.$$</p>
+<p>上标$+$表示下一状态。本节选择的总成本为</p>
+<p>$$J(u)=qx^2+ru^2+q_f(x^+)^2,\qquad q,q_f\ge0,\quad r&gt;0.$$</p>
+<p>前两项为当前的<strong>阶段成本（stage cost）</strong>，分别衡量状态偏差与输入大小；最后一项为<strong>终端成本（terminal cost）</strong>，衡量一步结束时的偏差。$r$在这里表示输入权重，调节目标已经化为零。</p>
+<p>若状态单位为U，输入采用自己的输入单位，则$b$的单位是U/输入单位，$q,q_f$的单位是代价/U²，$r$的单位是代价/输入单位²。每项都化为同一种代价，才能相加比较。改变数值坐标时也要换算权重：若同一状态改写成$x_{\rm new}=100x$，保持代价不变就需$q_{\rm new}=q/10000$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-05-动态规划与 LQR/practice/?question=p10-weight-units">代价权重与单位</a></li></ul></nav>
+
+<h2 id="one-step-cost-example">当前输入与终点偏差的权衡</h2>
+<p>取$a=b=q=r=q_f=1$，状态与输入采用共同的幅度单位U，数值状态为$x=2$。比较三个输入：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">输入 $u$</th>
+  <th style="text-align:right">下一状态 $x^+=2+u$</th>
+  <th style="text-align:right">当前状态成本</th>
+  <th style="text-align:right">输入成本</th>
+  <th style="text-align:right">终端成本</th>
+  <th style="text-align:right">总成本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">8</td>
+</tr>
+<tr>
+  <td style="text-align:right">−1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">6</td>
+</tr>
+<tr>
+  <td style="text-align:right">−2</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">8</td>
+</tr>
+</tbody>
+</table>
+<p>把终点偏差全部消掉需要较大输入，留下全部偏差又要承担终端成本，两个极端在这里都比中间输入更贵。还需在所有实数输入中求最小点，才能确定表中的$-1$是否最优。</p>
+<h2 id="value-function">价值函数与动态规划</h2>
+<p>将时刻写成$t=0,\ldots,N$，在$0,\ldots,N-1$各施加一次输入。<strong>价值函数（value function）</strong>$V_t(x)$定义为：从时刻$t$、状态$x$出发，允许选择所有剩余输入时能够取得的最小剩余总成本。</p>
+<p>它把未来一整串输入的最优结果，概括成一个关于当前状态的函数。这里“价值”用成本表示，数值越小越好。终端时刻没有剩余输入，因此</p>
+<p>$$V_N(x)=q_fx^2.$$</p>
+<p>若已知下一时刻的价值$V_{t+1}$，选定当前输入$u$就确定了后继状态$ax+bu$。从这个后继继续使用最优输入，总代价为当前成本加$V_{t+1}(ax+bu)$。因此</p>
+<p>$$\boxed{V_t(x)=\min_u\{qx^2+ru^2+V_{t+1}(ax+bu)\}.}$$</p>
+<p>这称为<strong>Bellman递推（Bellman recursion）</strong>。选定首步以后，如果后面的输入还可以改进，就将其替换成成本更低的后续方案；所以最优方案的后续部分也应对应后继状态的最优价值。<strong>动态规划（dynamic programming）</strong>正是利用这种关系，从已知终端值逐步倒推当前决策。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-scope">Bellman 递推需要什么</a></li></ul></nav>
+
+<h2 id="scalar-bellman-solution">一步二次目标的求解</h2>
+<p>只剩一步时，代入$V_N(x^+)=q_f(x^+)^2$并展开：</p>
+<p>$$\begin{aligned}
+J(u)&amp;=qx^2+ru^2+q_f(ax+bu)^2\\
+&amp;=(q+a^2q_f)x^2+2abq_fxu+(r+b^2q_f)u^2.
+\end{aligned}$$</p>
+<p>当前$x$固定，待选变量是$u$。令$H=r+b^2q_f&gt;0$，对输入求导：</p>
+<p>$$\frac{dJ}{du}=2Hu+2abq_fx=0.$$</p>
+<p>唯一最小输入为</p>
+<p>$$\boxed{u^*=-Kx,\qquad K=\frac{abq_f}{r+b^2q_f}.}$$</p>
+<p>也可以按第8篇的方法配方：</p>
+<p>$$J(u)=H(u+Kx)^2+Sx^2,$$
+$$S=q+a^2q_f-\frac{(abq_f)^2}{r+b^2q_f}.$$</p>
+<p>第一项非负，恰在$u=-Kx$时为零，所以最小成本就是$V(x)=Sx^2$。求出$S$以后，对其他当前状态也可以计算最优值，不必只保存某一个$x$的答案。</p>
+<p>对开头全取1的权重，有$K=1/2$、$S=3/2$；$x=2$时最优输入为$-1$，最小成本为6。直接配方也得到$4+u^2+(2+u)^2=2(u+1)^2+6$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-one">一步二次价值</a></li><li><a href="/chapters/10-05-动态规划与 LQR/practice/?question=p10-terminal-matters">一步控制的总代价</a></li></ul></nav>
+
+<h2 id="terminal-weight-experiment">终端权重与当前决策</h2>
+<p>固定$x=2$、$a=b=q=r=1$，改变终端权重$q_f$。此时</p>
+<p>$$u^*=-\frac{2q_f}{1+q_f}.$$</p>
+<p>取$q_f=0,1,4$，得到最优输入$0,-1,-1.6$。终端偏差越贵，当前越愿意使用输入来减小它。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C05-S01-c0bbb227-0.png" alt="价值函数与Bellman递推：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图画出三个目标各自的成本曲线，圆点是解析最小点。右图把终端权重与相应最优输入连接起来。三条曲线改变了权重，比较时应分别解释各自的成本，而不是把不同目标下的最小数值当作同一评分。</p>
+<p>探索页保留同一一步模型，允许同时改变输入权重$\rho$与终端权重$q_f$，其中$\rho$对应上文的$r$。先固定一个权重，预测最小点向哪一侧移动，再查看成本曲线。播放展示一串权重下的最优决策，当前状态始终为2 U。</p>
+<p class="concept-explore"><a href="/chapters/10-05-动态规划与 LQR/explore/?concept=P10-C05-S01%3Aterminal-weight-experiment">可视化与探索：终端权重与当前决策 →</a></p>
+
+<p>一步求解后，价值仍是二次函数。下一节将这个结构推广到多个状态，再利用同样的配方反复倒推多步反馈。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://underactuated.mit.edu/dp.html">Tedrake，Underactuated Robotics：Dynamic Programming</a>介绍价值函数与最优性递推；<a href="https://underactuated.mit.edu/lqr.html">Linear Quadratic Regulators</a>连接二次价值与反馈。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/10-04-状态观测器与输出反馈/read/2/">← 10.4.2 状态观测器、误差动态与输出反馈</a><a href="/chapters/10-05-动态规划与 LQR/read/2/">10.5.2 有限时域LQR与Riccati递推 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

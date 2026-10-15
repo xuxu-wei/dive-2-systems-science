@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.6.1 模型预测控制与硬约束 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C06-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C06-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-06-带约束的 MPC/practice/?question=p10-discrete-mpc">本节练习 · 4 题</a><a class="button" href="/chapters/10-06-带约束的 MPC/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.6.1 模型预测控制与硬约束</h1>
+<p>学完本节，你应能枚举一个两步输入计划，逐步检查状态限制、计算完整成本，并解释最优计划怎样产生当前控制输入。</p>
+<p><strong>先修知识</strong>：10.5 的有限时域优化，8.4 的可行集合与硬约束，第 7 篇的状态估计。</p>
+<h2 id="finite-horizon-plans-and-mpc">有限时域计划与模型预测控制</h2>
+<p>输入有限时，眼前误差下降得最快的动作，可能让下一步没有足够余地。把未来几步一同计算，就能在选择当前输入时考虑后续状态和执行限制。</p>
+<p><strong>模型预测控制（model predictive control，MPC）</strong>在每个控制时刻，从当前状态信息出发，求解一个有限时域的预测优化问题，只执行最优计划的首个输入；下一时刻取得新信息后，再重新预测和优化。</p>
+<p>先取最小的例子：从 $x_0=0\ \mathrm U$ 出发，模型为</p>
+<p>$$x_{j+1}=x_j+u_j,\qquad u_j\in\{-1,0,1\}.$$</p>
+<p>输入数值 1 对应一步增加 $1\ \mathrm U$。向前看两步时，未知量是有顺序的二元组 $(u_0,u_1)$，共有 $3^2=9$ 个候选。例如 $(1,1)$ 给出状态 $(0,1,2)\ \mathrm U$，$(-1,-1)$ 给出 $(0,-1,-2)\ \mathrm U$。二元组的第一项安排现在的输入，第二项安排下一步的输入。</p>
+<h2 id="prediction-horizon-and-time-indices">预测时域与两个时间下标</h2>
+<p>把当前实际时刻记为 $t$，预测长度记为 $N$。用</p>
+<p>$$x_{t+j\mid t},\qquad u_{t+j\mid t}$$</p>
+<p>分别表示站在时刻 $t$ 所预测的状态和计划输入。竖线左侧是状态或输入发生的时刻，右侧是建立这份预测时使用信息的时刻；$j$ 则是在当前计划中向前走了几步。</p>
+<p>以当前估计作为起点，名义线性模型给出</p>
+<p>$$x_{t\mid t}=\hat x_t,\qquad
+x_{t+j+1\mid t}=a x_{t+j\mid t}+b u_{t+j\mid t}.$$</p>
+<p>每个输入都从有限集合 $\mathcal U$ 选取，$j=0,\ldots,N-1$。状态以 U 计，$b$ 把输入换算为一步状态变化。要求所有预测后继满足</p>
+<p>$$x_{\min}\le x_{t+j\mid t}\le x_{\max},\qquad j=1,\ldots,N.$$</p>
+<p>这里约束的是执行输入后得到的后继状态，给定起点保留为当前信息。例如起点在界外时，若第一步能够把它带回范围，仍可能存在完整可行计划。</p>
+<p>设目标为固定的 $r$，用阶段成本与终端成本评价一份计划：</p>
+<p>$$J_t=\sum_{j=0}^{N-1}\left[q(x_{t+j\mid t}-r)^2+\rho u_{t+j\mid t}^2\right]
++q_f(x_{t+N\mid t}-r)^2.$$</p>
+<p>$q,\rho,q_f$ 为非负权重，将各项平方量换算到同一成本尺度。每个阶段先评价当前状态误差和该步输入，最后另加终端状态的成本。$\rho$ 表示输入权重，与目标 $r$ 分开。</p>
+<h2 id="nine-candidates-and-complete-costs">九条候选与完整成本</h2>
+<p>回到 $a=b=1$、起点 0、两步预测，取目标 $r=2\ \mathrm U$，权重 $q=1,\rho=0.1,q_f=2$，预测后继范围为 $[-1,2]\ \mathrm U$。以下成本按固定参考单位下的数值计算。</p>
+<p>对 $(u_0,u_1)=(1,1)$，两步状态为 1 和 2。每一项依次是</p>
+<p>$$\begin{aligned}
+J&amp;=(0-2)^2+0.1\times1^2\\
+&amp;\quad +(1-2)^2+0.1\times1^2+2(2-2)^2\\
+&amp;=5.2.
+\end{aligned}$$</p>
+<p>对 $(1,0)$，终端只能到 1，成本成为 $4+0.1+1+0+2=7.1$。两个计划的第一步相同，第二步是否继续推进，会通过终端误差改变当前比较。</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">候选序号</th>
+  <th>输入 $(u_0,u_1)$</th>
+  <th>状态 $(x_0,x_1,x_2)$ / U</th>
+  <th style="text-align:right">完整成本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td>$(-1,-1)$</td>
+  <td>$(0,-1,-2)$</td>
+  <td style="text-align:right">不可行</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td>$(-1,0)$</td>
+  <td>$(0,-1,-1)$</td>
+  <td style="text-align:right">31.1</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td>$(-1,1)$</td>
+  <td>$(0,-1,0)$</td>
+  <td style="text-align:right">21.2</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td>$(0,-1)$</td>
+  <td>$(0,0,-1)$</td>
+  <td style="text-align:right">26.1</td>
+</tr>
+<tr>
+  <td style="text-align:right">4</td>
+  <td>$(0,0)$</td>
+  <td>$(0,0,0)$</td>
+  <td style="text-align:right">16</td>
+</tr>
+<tr>
+  <td style="text-align:right">5</td>
+  <td>$(0,1)$</td>
+  <td>$(0,0,1)$</td>
+  <td style="text-align:right">10.1</td>
+</tr>
+<tr>
+  <td style="text-align:right">6</td>
+  <td>$(1,-1)$</td>
+  <td>$(0,1,0)$</td>
+  <td style="text-align:right">13.2</td>
+</tr>
+<tr>
+  <td style="text-align:right">7</td>
+  <td>$(1,0)$</td>
+  <td>$(0,1,1)$</td>
+  <td style="text-align:right">7.1</td>
+</tr>
+<tr>
+  <td style="text-align:right">8</td>
+  <td>$(1,1)$</td>
+  <td>$(0,1,2)$</td>
+  <td style="text-align:right">5.2</td>
+</tr>
+</tbody>
+</table>
+<p>第一条序列在第二步越过下界，因此被整个排除。其余完整可行计划才能比较成本，最小的是 $(1,1)$。若成本并列，本例按输入序列的字典序选取：从第一处不同的输入比较大小，较小者在前。</p>
+<p>下图把九条候选按表中顺序画出。候选 0 已在表中判为不可行，图中没有它的成本柱；其余候选的蓝色柱高表示各自的完整成本。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C06-S01-acc029f4-2.png" alt="模型预测控制与硬约束：实验结果图" loading="lazy"></figure>
+</section>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-06-带约束的 MPC/practice/?question=p10-discrete-mpc">求解一个小型硬约束 MPC</a></li></ul></nav>
+
+<p>探索页使用同一单积分模型、两步输入集合和成本。先保持目标为 2 U，把上界从 2 U 降到 0.5 U，逐条找出新排除的计划，再比较剩余候选。播放逐个检查候选，右侧轨迹表示已经检查的最好计划。</p>
+<p class="concept-explore"><a href="/chapters/10-06-带约束的 MPC/explore/?concept=P10-C06-S01%3Anine-candidates-and-complete-costs">可视化与探索：九条候选与完整成本 →</a></p>
+
+<h2 id="hard-constraints-penalties-and-infeasibility">硬约束、罚项与不可行结果</h2>
+<p>硬约束把超限计划排除在允许集合外。若移除上界、改为在成本中惩罚超限，就允许在超限代价与其他成本之间权衡。8.4 的平方罚例子已经显示，有限惩罚仍可能留下越界量；罚项也不会让执行器自动把状态截回范围。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-06-带约束的 MPC/practice/?question=p10-hard-soft">硬约束与软约束</a></li></ul></nav>
+
+<p>再取起点 $x_0=3\ \mathrm U$，后继上限仍为 2 U，却只允许输入集合 $\{0,1\}$。模型的第一步为 $x_1=3+u_0\ge3$，所有计划都在第一步失败，所以当前优化问题不可行。</p>
+<p>这项结论来自完整候选的约束检查。记录中应保留本次不可行状态，并区分后来是否执行了备用输入、停止执行或改变了限制；实际采用的动作另有自己的状态后果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-06-带约束的 MPC/practice/?question=p10-infeasible-truth">MPC不可行时的求解状态</a></li></ul></nav>
+
+<h2 id="optimal-plan-and-current-action">最优计划与当前执行</h2>
+<p>在两步例子中，求解结果包含首步输入 1、最小成本 5.2 和预测轨迹 $(0,1,2)$。当前执行的是第一项输入。下一时刻若恰好到达预测状态 1，就从这里重新求解；若新读数显示到达别处，也从更新后的当前状态建立新问题。</p>
+<p>因此，有限输入枚举完成了 MPC 每次所需的预测优化，反馈则来自“执行首项—取得新信息—重新求解”的循环。下一节将让实际对象与预测模型稍有不同，观察这个循环怎样改变后续起点。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-06-带约束的 MPC/practice/?question=p10-mpc-receding">滚动时域的关键动作</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://sites.engineering.ucsb.edu/~jbraw/mpc/MPC-book-2nd-edition-5th-printing.pdf">Rawlings、Mayne 与 Diehl，《Model Predictive Control: Theory, Computation, and Design》</a>从有限时域优化建立滚动控制，并讨论状态、输入约束及离散执行器。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/10-05-动态规划与 LQR/read/2/">← 10.5.2 有限时域LQR与Riccati递推</a><a href="/chapters/10-06-带约束的 MPC/read/2/">10.6.2 滚动时域与预测失配 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

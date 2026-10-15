@@ -2221,5 +2221,20 @@
     "zh": "等尾预测区间",
     "en": "equal-tailed prediction interval",
     "scope": "part09"
+  },
+  {
+    "zh": "能控矩阵",
+    "en": "controllability matrix",
+    "scope": "part10"
+  },
+  {
+    "zh": "状态反馈",
+    "en": "state feedback",
+    "scope": "part10"
+  },
+  {
+    "zh": "输出反馈",
+    "en": "output feedback",
+    "scope": "part10"
   }
 ]

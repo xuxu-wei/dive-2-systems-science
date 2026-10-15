@@ -16,12 +16,17 @@ from build_lessons import DIRECTIVE
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Reviewed contexts: sampling-step separation, rather than hysteresis or delay.
+# Reviewed contexts: sampling-step separation, phase lag and lag elements.
 # Keep these choices local to their actual teaching units; do not infer from words.
 REVIEWED_SENSES = {
     'P09-C02-S02': {'滞后': 'lag'},
     'p09-basic-diagnostics': {'滞后': 'lag'},
     'overview:9.2': {'滞后': 'lag'},
+    'p10-second-order-poles': {'滞后': 'lag'},
+    'p10-bode-margin': {'滞后': 'lag'},
+    'P10-C02-S02': {'滞后': 'lag'},
+    'P10-C07-S01': {'滞后': 'lag'},
+    'overview:10.2': {'滞后': 'lag'},
 }
 
 

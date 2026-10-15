@@ -174,3 +174,27 @@ def test_reviewed_sampling_lag_context_does_not_require_repeated_glosses():
         assert check_terms(text, 9, unit=unit, require_first=False)[0] == []
         assert check_terms('滞后（hysteresis）', 9, unit=unit, require_first=False)[0]
     assert check_terms(text, 9, unit='unreviewed', require_first=False)[0]
+
+
+@pytest.mark.parametrize('source', [
+    '能控矩阵（controllability matrix）将输入作用方向排为列。',
+    '状态反馈（state feedback）由状态计算输入。',
+    '输出反馈（output feedback）由传感器输出形成控制。',
+])
+def test_part10_complete_control_terms_keep_their_specific_meaning(source):
+    issues, _ = check_text(source, 10, require_first=False)
+    assert issues == []
+
+
+def test_reviewed_control_lag_contexts_keep_prose_without_wrong_english():
+    from check_teaching import check_terms
+    cases = [
+        ('p10-second-order-poles', '两个滞后环节串联。'),
+        ('p10-bode-margin', '在交叉处增加相位滞后。'),
+        ('P10-C02-S02', '纯延迟增加相位滞后。'),
+        ('P10-C07-S01', '平滑估计出现滞后。'),
+        ('overview:10.2', '串联滞后环节的特征根。'),
+    ]
+    for unit, source in cases:
+        assert check_terms(source, 10, unit=unit, require_first=False)[0] == []
+        assert check_terms('滞后（hysteresis）', 10, unit=unit, require_first=False)[0]

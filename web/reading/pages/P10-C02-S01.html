@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.2.1 闭环极点、根轨迹与阶跃响应 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C02-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-02-频域稳定性与设计/practice/?question=p10-second-order-poles">本节练习 · 4 题</a><a class="button" href="/chapters/10-02-频域稳定性与设计/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.2.1 闭环极点、根轨迹与阶跃响应</h1>
+<p>前面的温度对象只有一个散热环节。现在让输入先改变中间状态，再由它改变输出，两个环节都需要时间响应。保持对象不变、只增加比例增益，输出可以更接近目标，暂态也可能出现更明显的振荡。极点将帮助我们把这两种变化分开。</p>
+<p>学完本节，应能从负反馈方程求出闭环特征根，并把实部、虚部和稳态偏差对应到时域响应。先修为第3篇的特征值、第6篇的传递函数，以及10.1的负反馈。</p>
+<h2 id="cascaded-lag-model">串联滞后环节与时标</h2>
+<p>令输入先影响 $x_1$，再由 $x_1$ 影响测量输出 $y=x_2$。两个状态与输入均采用幅度单位 U，物理时间方程为</p>
+<p>$$T_0\frac{\mathrm dx_1}{\mathrm dt}=-x_1+u,\qquad
+\tau_{\rm phys}\frac{\mathrm dx_2}{\mathrm dt}=-x_2+x_1.$$</p>
+<p>第一时间常数取 $T_0=1$ T。以下用 T表示时间的数值单位，$\tau$ 为第二时间常数以T计的数值，$s$ 以 $1/\mathrm T$ 计；相应的数值传递函数简写为</p>
+<p>$$G(s)=\frac1{(s+1)(\tau s+1)},\qquad \tau&gt;0.$$</p>
+<p>两个分母因子分别来自两个一阶环节。这里 $u$ 与 $y$ 同为 U，比例增益 $K$ 无量纲；10.1中直接加入收支率的输入单位为 U/T，二者的输入定义不同。</p>
+<h2 id="closed-loop-characteristic-equation">单位负反馈与特征方程</h2>
+<p>测量准确时，比例控制为 $u=K(r-y)$，$K\ge0$。零初态下，$y=G(s)u$，代入并整理：</p>
+<p>$$y=KG(s)(r-y),\qquad
+\frac yr=T_{\rm cl}(s)=\frac{KG(s)}{1+KG(s)}.$$</p>
+<p>因此闭环特征方程为</p>
+<p>$$1+KG(s)=0
+\quad\Longrightarrow\quad
+\boxed{\tau s^2+(\tau+1)s+(1+K)=0.}$$</p>
+<p>也可以在时域消去 $x_1$，得到数值时间下的二阶方程</p>
+<p>$$\tau\ddot y+(\tau+1)\dot y+(1+K)y=Kr.$$</p>
+<p>将自然响应试写为 $y=e^{st}$，一次求导乘 $s$、两次求导乘 $s^2$，就得到同一个特征方程。它描述初态偏移消退时的自然模态。对于 $K&gt;0$ 的当前模型，特征根也是闭环传递函数的极点；$K=0$ 时参考输入不再驱动输出，这两个内部状态的特征根仍然存在。</p>
+<h2 id="real-and-complex-poles">实根、复共轭根与衰减振荡</h2>
+<p>记判别式</p>
+<p>$$\Delta=(\tau+1)^2-4\tau(1+K).$$</p>
+<p>当 $\Delta\ge0$，两根为</p>
+<p>$$s_{1,2}=\frac{-(\tau+1)\pm\sqrt\Delta}{2\tau}.$$</p>
+<p>当 $\Delta&lt;0$，用 $j^2=-1$ 写出复共轭根</p>
+<p>$$s_{1,2}=\alpha\pm j\beta,\qquad
+\alpha=-\frac{\tau+1}{2\tau},\quad
+\beta=\frac{\sqrt{-\Delta}}{2\tau}.$$</p>
+<p>复数的实部与虚部有直接的时间含义。由</p>
+<p>$$e^{(\alpha+j\beta)t}=e^{\alpha t}\bigl(\cos\beta t+j\sin\beta t\bigr),$$</p>
+<p>一对共轭模态可以组成实响应 $e^{\alpha t}(a\cos\beta t+b\sin\beta t)$。负实部使包络衰减，非零虚部产生振荡，$\beta$ 是相应角频率。</p>
+<p>取 $\tau=2$。$K=0$ 时，特征式为 $(s+1)(2s+1)$，根为−1与−0.5。$K=2$ 时，</p>
+<p>$$2s^2+3s+3=0,\qquad \Delta=9-24=-15,$$</p>
+<p>$$s_{1,2}=-0.75\pm j\frac{\sqrt{15}}4\approx-0.75\pm0.96825j.$$</p>
+<p>两个根的实部都负，暂态振荡会衰减。计算题将完整根排序后，分别返回实部列表与虚部列表；同一位置的两个分量属于同一个根。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-02-频域稳定性与设计/practice/?question=p10-second-order-poles">求闭环极点</a></li></ul></nav>
+
+<h2 id="root-locus">根轨迹与增益变化</h2>
+<p><strong>根轨迹（root locus）</strong>记录对象固定、实数增益 $K$ 改变时闭环特征根的位置。对象的开环极点−1与 $-1/\tau$ 保持不变，移动的是闭环特征方程的根。</p>
+<p>对当前 $\tau=2$ 的例子，$\Delta=1-8K$。增益从0增加到 $1/8$，两实根相向移动，在−0.75相遇；增益继续增加，两根沿实部−0.75的直线成为共轭对，虚部的绝对值增大。</p>
+<p>因此，进入复根区域后，增加增益主要改变振荡频率，包络中的 $e^{-0.75t}$ 衰减率保持相同。根的“更远”应按实部和虚部分别解释。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-02-频域稳定性与设计/practice/?question=p10-root-locus-meaning">根轨迹画的是什么</a></li></ul></nav>
+
+<p>对于所有 $\tau&gt;0,K\ge0$，本模型的根均在左半平面：若为实根，和为负、积为正，所以两根都负；若为复根，实部为 $-(\tau+1)/(2\tau)&lt;0$。这个结论对应本节的固定线性回路。</p>
+<h2 id="step-response-and-steady-error">阶跃响应与稳态偏差</h2>
+<p>给目标一个从0到1 U的阶跃，平衡时两个状态相同，且满足 $y_*=K(1-y_*)$，于是</p>
+<p>$$y_*=\frac K{1+K},\qquad e_*=\frac1{1+K}.$$</p>
+<p>$K=0.5,2,8$ 对应输出 $1/3,2/3,8/9$ U。提高增益使稳态更接近目标，这与暂态是否振荡是两项不同信息。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C02-S01-ac51d94d-0.png" alt="闭环极点、根轨迹与阶跃响应：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图在 $K=0$ 至10之间跟踪两根；右图从相同零初态出发，以0.002 T的步长计算三种增益的阶跃响应。先看各曲线最后接近的高度，再比较越过各自稳态值的程度与振荡周期，就能将稳态误差和暂态形状对应起来。</p>
+<p>实际执行上限和测量噪声还会分别限制输入、改变读数。左半平面的极点描述当前线性自然响应的衰减；输入是否饱和、噪声被放大多少，需要结合实际输入和响应计算。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-02-频域稳定性与设计/practice/?question=p10-pole-to-time">极点与暂态</a></li></ul></nav>
+
+<p>探索页左侧仍计算这一个无延迟二阶回路的根，右侧加入可调纯延迟显示相位变化。先改变增益看根轨迹，再只改变延迟，看两张图各自改变什么；下一节将推导相位曲线。</p>
+<p class="concept-explore"><a href="/chapters/10-02-频域稳定性与设计/explore/?concept=P10-C02-S01%3Astep-response-and-steady-error">可视化与探索：阶跃响应与稳态偏差 →</a></p>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html">Åström与Murray：《Feedback Systems》第二版</a>，线性系统、传递函数与频域设计中的根轨迹。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/10-01-开闭环与 PID/read/2/">← 10.1.2 PID控制、微分噪声与积分抗饱和</a><a href="/chapters/10-02-频域稳定性与设计/read/2/">10.2.2 频率响应、稳定裕度与Nyquist判据 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

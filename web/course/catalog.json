@@ -14792,77 +14792,219 @@
               "id": "P10-C01-S01",
               "chapter_id": "10.1",
               "number": "10.1.1",
-              "title": "误差怎样驱动比例与积分控制",
+              "title": "比例积分控制与执行限幅",
               "outcome": "从温度低于目标的例子出发，区分测量、误差、请求输入和实际输入；手算一次比例积分控制的更新，并解释恒定扰动下为什么可能需要积分项。",
               "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/01-误差怎样驱动比例与积分控制.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/01-开闭环与 PID/01-误差怎样驱动比例与积分控制.md",
               "questions": [
                 {
                   "id": "p10-pi-saturation",
                   "slug": "p10-pi-saturation",
                   "title": "一次 PI 更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-01-开闭环与 PID/read/1/#actuator-limits-and-conditional-integration",
+                  "concept_title": "执行限幅与条件积分",
+                  "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-saturation"
                 },
                 {
                   "id": "p10-pi-constant-load",
                   "slug": "p10-pi-constant-load",
                   "title": "恒定扰动下的 P 与 PI",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-01-开闭环与 PID/read/1/#integral-action",
+                  "concept_title": "积分控制与持续输入",
+                  "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-constant-load"
                 },
                 {
                   "id": "p10-request-vs-actuation",
                   "slug": "p10-request-vs-actuation",
                   "title": "要求与执行不能混用",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-01-开闭环与 PID/read/1/#actuator-limits-and-conditional-integration",
+                  "concept_title": "执行限幅与条件积分",
+                  "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-request-vs-actuation"
                 },
                 {
                   "id": "p10-gain-units",
                   "slug": "p10-gain-units",
                   "title": "增益有单位",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-01-开闭环与 PID/read/1/#integral-action",
+                  "concept_title": "积分控制与持续输入",
+                  "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-gain-units"
                 }
               ],
               "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-saturation",
               "notebook_url": "/notebook/?id=P10-C01-S01",
-              "url": "/notebook/?id=P10-C01-S01"
+              "reading_url": "/chapters/10-01-开闭环与 PID/read/1/",
+              "concepts": [
+                {
+                  "id": "feedback-and-control-timing",
+                  "title": "开环、反馈与控制时序",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C01-S01:feedback-and-control-timing",
+                  "url": "/chapters/10-01-开闭环与 PID/read/1/#feedback-and-control-timing"
+                },
+                {
+                  "id": "proportional-control",
+                  "title": "比例控制与稳态偏差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C01-S01:proportional-control",
+                  "url": "/chapters/10-01-开闭环与 PID/read/1/#proportional-control"
+                },
+                {
+                  "id": "integral-action",
+                  "title": "积分控制与持续输入",
+                  "question_ids": [
+                    "p10-gain-units",
+                    "p10-pi-constant-load"
+                  ],
+                  "explore": false,
+                  "key": "P10-C01-S01:integral-action",
+                  "url": "/chapters/10-01-开闭环与 PID/read/1/#integral-action"
+                },
+                {
+                  "id": "actuator-limits-and-conditional-integration",
+                  "title": "执行限幅与条件积分",
+                  "question_ids": [
+                    "p10-pi-saturation",
+                    "p10-request-vs-actuation"
+                  ],
+                  "explore": false,
+                  "key": "P10-C01-S01:actuator-limits-and-conditional-integration",
+                  "url": "/chapters/10-01-开闭环与 PID/read/1/#actuator-limits-and-conditional-integration"
+                },
+                {
+                  "id": "proportional-and-integral-responses",
+                  "title": "P与PI的状态和输入响应",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P10-C01-S01:proportional-and-integral-responses",
+                  "url": "/chapters/10-01-开闭环与 PID/read/1/#proportional-and-integral-responses",
+                  "explore_url": "/chapters/10-01-开闭环与 PID/explore/?concept=P10-C01-S01%3Aproportional-and-integral-responses"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C01-S01:references",
+                  "url": "/chapters/10-01-开闭环与 PID/read/1/#references"
+                }
+              ],
+              "url": "/chapters/10-01-开闭环与 PID/read/1/"
             },
             {
               "id": "P10-C01-S02",
               "chapter_id": "10.1",
               "number": "10.1.2",
-              "title": "微分噪声与积分抗饱和",
+              "title": "PID控制、微分噪声与积分抗饱和",
               "outcome": "从连续两次误差的差值计算微分项，解释噪声和目标跳变如何影响请求输入；按给定条件积分规则重放一段误差历史。",
               "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/02-微分噪声与积分抗饱和.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/01-开闭环与 PID/02-微分噪声与积分抗饱和.md",
               "questions": [
                 {
                   "id": "p10-pid-history",
                   "slug": "p10-pid-history",
                   "title": "重放误差历史中的 PID",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-01-开闭环与 PID/read/2/#error-history-and-integral-freezing",
+                  "concept_title": "误差历史与积分冻结",
+                  "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-history"
                 },
                 {
                   "id": "p10-derivative-noise",
                   "slug": "p10-derivative-noise",
                   "title": "为何微分会放大高频噪声",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-01-开闭环与 PID/read/2/#derivative-noise",
+                  "concept_title": "差分噪声与采样间隔",
+                  "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-derivative-noise"
                 },
                 {
                   "id": "p10-freeze-direction",
                   "slug": "p10-freeze-direction",
                   "title": "何时冻结积分",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-01-开闭环与 PID/read/2/#error-history-and-integral-freezing",
+                  "concept_title": "误差历史与积分冻结",
+                  "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-freeze-direction"
                 },
                 {
                   "id": "p10-pid-comparison",
                   "slug": "p10-pid-comparison",
                   "title": "公平比较三个控制器",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-01-开闭环与 PID/read/2/#derivative-gain-experiment",
+                  "concept_title": "微分增益与请求波动",
+                  "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-comparison"
                 }
               ],
               "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-history",
               "notebook_url": "/notebook/?id=P10-C01-S02",
-              "url": "/notebook/?id=P10-C01-S02"
+              "reading_url": "/chapters/10-01-开闭环与 PID/read/2/",
+              "concepts": [
+                {
+                  "id": "discrete-pid",
+                  "title": "离散PID与两次误差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C01-S02:discrete-pid",
+                  "url": "/chapters/10-01-开闭环与 PID/read/2/#discrete-pid"
+                },
+                {
+                  "id": "error-history-and-integral-freezing",
+                  "title": "误差历史与积分冻结",
+                  "question_ids": [
+                    "p10-pid-history",
+                    "p10-freeze-direction"
+                  ],
+                  "explore": false,
+                  "key": "P10-C01-S02:error-history-and-integral-freezing",
+                  "url": "/chapters/10-01-开闭环与 PID/read/2/#error-history-and-integral-freezing"
+                },
+                {
+                  "id": "derivative-noise",
+                  "title": "差分噪声与采样间隔",
+                  "question_ids": [
+                    "p10-derivative-noise"
+                  ],
+                  "explore": false,
+                  "key": "P10-C01-S02:derivative-noise",
+                  "url": "/chapters/10-01-开闭环与 PID/read/2/#derivative-noise"
+                },
+                {
+                  "id": "derivative-kick",
+                  "title": "目标跳变与微分冲击",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C01-S02:derivative-kick",
+                  "url": "/chapters/10-01-开闭环与 PID/read/2/#derivative-kick"
+                },
+                {
+                  "id": "derivative-gain-experiment",
+                  "title": "微分增益与请求波动",
+                  "question_ids": [
+                    "p10-pid-comparison"
+                  ],
+                  "explore": false,
+                  "key": "P10-C01-S02:derivative-gain-experiment",
+                  "url": "/chapters/10-01-开闭环与 PID/read/2/#derivative-gain-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C01-S02:references",
+                  "url": "/chapters/10-01-开闭环与 PID/read/2/#references"
+                }
+              ],
+              "url": "/chapters/10-01-开闭环与 PID/read/2/"
             }
           ],
           "visualization": "web/control/index.html"
@@ -14885,77 +15027,239 @@
               "id": "P10-C02-S01",
               "chapter_id": "10.2",
               "number": "10.2.1",
-              "title": "极点与根轨迹的低阶例子",
+              "title": "闭环极点、根轨迹与阶跃响应",
               "outcome": "从两个串联滞后环节推导负反馈的特征方程，手算闭环特征根，并联系衰减、振荡和稳态偏差解释增益变化。",
               "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/01-极点与根轨迹的低阶例子.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/02-频域稳定性与设计/01-极点与根轨迹的低阶例子.md",
               "questions": [
                 {
                   "id": "p10-second-order-poles",
                   "slug": "p10-second-order-poles",
                   "title": "求闭环极点",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-02-频域稳定性与设计/read/1/#real-and-complex-poles",
+                  "concept_title": "实根、复共轭根与衰减振荡",
+                  "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-second-order-poles"
                 },
                 {
                   "id": "p10-pole-to-time",
                   "slug": "p10-pole-to-time",
                   "title": "极点与暂态",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-02-频域稳定性与设计/read/1/#step-response-and-steady-error",
+                  "concept_title": "阶跃响应与稳态偏差",
+                  "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-pole-to-time"
                 },
                 {
                   "id": "p10-root-locus-meaning",
                   "slug": "p10-root-locus-meaning",
                   "title": "根轨迹画的是什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-02-频域稳定性与设计/read/1/#root-locus",
+                  "concept_title": "根轨迹与增益变化",
+                  "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-root-locus-meaning"
                 },
                 {
                   "id": "p10-delay-approximation",
                   "slug": "p10-delay-approximation",
                   "title": "延迟与低阶近似",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-02-频域稳定性与设计/read/2/#rational-delay-approximation",
+                  "concept_title": "纯延迟与有理近似",
+                  "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-delay-approximation"
                 }
               ],
               "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-second-order-poles",
               "notebook_url": "/notebook/?id=P10-C02-S01",
-              "url": "/notebook/?id=P10-C02-S01"
+              "reading_url": "/chapters/10-02-频域稳定性与设计/read/1/",
+              "concepts": [
+                {
+                  "id": "cascaded-lag-model",
+                  "title": "串联滞后环节与时标",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C02-S01:cascaded-lag-model",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/1/#cascaded-lag-model"
+                },
+                {
+                  "id": "closed-loop-characteristic-equation",
+                  "title": "单位负反馈与特征方程",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C02-S01:closed-loop-characteristic-equation",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/1/#closed-loop-characteristic-equation"
+                },
+                {
+                  "id": "real-and-complex-poles",
+                  "title": "实根、复共轭根与衰减振荡",
+                  "question_ids": [
+                    "p10-second-order-poles"
+                  ],
+                  "explore": false,
+                  "key": "P10-C02-S01:real-and-complex-poles",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/1/#real-and-complex-poles"
+                },
+                {
+                  "id": "root-locus",
+                  "title": "根轨迹与增益变化",
+                  "question_ids": [
+                    "p10-root-locus-meaning"
+                  ],
+                  "explore": false,
+                  "key": "P10-C02-S01:root-locus",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/1/#root-locus"
+                },
+                {
+                  "id": "step-response-and-steady-error",
+                  "title": "阶跃响应与稳态偏差",
+                  "question_ids": [
+                    "p10-pole-to-time"
+                  ],
+                  "explore": true,
+                  "key": "P10-C02-S01:step-response-and-steady-error",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/1/#step-response-and-steady-error",
+                  "explore_url": "/chapters/10-02-频域稳定性与设计/explore/?concept=P10-C02-S01%3Astep-response-and-steady-error"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C02-S01:references",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/1/#references"
+                }
+              ],
+              "url": "/chapters/10-02-频域稳定性与设计/read/1/"
             },
             {
               "id": "P10-C02-S02",
               "chapter_id": "10.2",
               "number": "10.2.2",
-              "title": "Bode与Nyquist的读图条件",
+              "title": "频率响应、稳定裕度与Nyquist判据",
               "outcome": "计算纯延迟造成的相位变化，解释相位裕度和增益裕度的交叉条件，并说明有限频率曲线与完整 Nyquist 判据之间的关系。",
               "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/02-Bode与Nyquist的读图条件.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/02-频域稳定性与设计/02-Bode与Nyquist的读图条件.md",
               "questions": [
                 {
                   "id": "p10-frequency-delay",
                   "slug": "p10-frequency-delay",
                   "title": "计算回路频率响应",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-02-频域稳定性与设计/read/2/#delay-and-frequency-response",
+                  "concept_title": "纯延迟与回路幅相",
+                  "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-frequency-delay"
                 },
                 {
                   "id": "p10-nyquist-hypotheses",
                   "slug": "p10-nyquist-hypotheses",
                   "title": "Nyquist 判据的边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-02-频域稳定性与设计/read/2/#nyquist-contour-and-count",
+                  "concept_title": "Nyquist轮廓与闭环零点计数",
+                  "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-nyquist-hypotheses"
                 },
                 {
                   "id": "p10-bode-margin",
                   "slug": "p10-bode-margin",
                   "title": "裕度能说明什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-02-频域稳定性与设计/read/2/#crossover-frequencies-and-margins",
+                  "concept_title": "交叉频率、相位裕度与增益裕度",
+                  "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-bode-margin"
                 },
                 {
                   "id": "p10-phase-wrap",
                   "slug": "p10-phase-wrap",
                   "title": "主值相角与连续相位",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-02-频域稳定性与设计/read/2/#bode-plots-and-phase-unwrapping",
+                  "concept_title": "Bode图与相位展开",
+                  "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-phase-wrap"
                 }
               ],
               "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-frequency-delay",
               "notebook_url": "/notebook/?id=P10-C02-S02",
-              "url": "/notebook/?id=P10-C02-S02"
+              "reading_url": "/chapters/10-02-频域稳定性与设计/read/2/",
+              "concepts": [
+                {
+                  "id": "complex-sinusoidal-response",
+                  "title": "复数乘子与正弦响应",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C02-S02:complex-sinusoidal-response",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/2/#complex-sinusoidal-response"
+                },
+                {
+                  "id": "delay-and-frequency-response",
+                  "title": "纯延迟与回路幅相",
+                  "question_ids": [
+                    "p10-frequency-delay"
+                  ],
+                  "explore": false,
+                  "key": "P10-C02-S02:delay-and-frequency-response",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/2/#delay-and-frequency-response"
+                },
+                {
+                  "id": "bode-plots-and-phase-unwrapping",
+                  "title": "Bode图与相位展开",
+                  "question_ids": [
+                    "p10-phase-wrap"
+                  ],
+                  "explore": false,
+                  "key": "P10-C02-S02:bode-plots-and-phase-unwrapping",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/2/#bode-plots-and-phase-unwrapping"
+                },
+                {
+                  "id": "crossover-frequencies-and-margins",
+                  "title": "交叉频率、相位裕度与增益裕度",
+                  "question_ids": [
+                    "p10-bode-margin"
+                  ],
+                  "explore": false,
+                  "key": "P10-C02-S02:crossover-frequencies-and-margins",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/2/#crossover-frequencies-and-margins"
+                },
+                {
+                  "id": "nyquist-contour-and-count",
+                  "title": "Nyquist轮廓与闭环零点计数",
+                  "question_ids": [
+                    "p10-nyquist-hypotheses"
+                  ],
+                  "explore": false,
+                  "key": "P10-C02-S02:nyquist-contour-and-count",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/2/#nyquist-contour-and-count"
+                },
+                {
+                  "id": "frequency-response-experiment",
+                  "title": "延迟幅相与有限频率图",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P10-C02-S02:frequency-response-experiment",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/2/#frequency-response-experiment",
+                  "explore_url": "/chapters/10-02-频域稳定性与设计/explore/?concept=P10-C02-S02%3Afrequency-response-experiment"
+                },
+                {
+                  "id": "rational-delay-approximation",
+                  "title": "纯延迟与有理近似",
+                  "question_ids": [
+                    "p10-delay-approximation"
+                  ],
+                  "explore": false,
+                  "key": "P10-C02-S02:rational-delay-approximation",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/2/#rational-delay-approximation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C02-S02:references",
+                  "url": "/chapters/10-02-频域稳定性与设计/read/2/#references"
+                }
+              ],
+              "url": "/chapters/10-02-频域稳定性与设计/read/2/"
             }
           ],
           "visualization": "web/control/index.html"
@@ -14978,77 +15282,229 @@
               "id": "P10-C03-S01",
               "chapter_id": "10.3",
               "number": "10.3.1",
-              "title": "输入位置与能控矩阵",
+              "title": "能控性、输入位置与可达范围",
               "outcome": "展开二维状态方程，说明输入如何经状态之间的耦合传播；计算能控矩阵，并区分无约束能控性、数值秩和受限时间内的可达性。",
               "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/01-输入位置与能控矩阵.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/03-能控性与状态反馈/01-输入位置与能控矩阵.md",
               "questions": [
                 {
                   "id": "p10-controllability-two",
                   "slug": "p10-controllability-two",
                   "title": "二维能控矩阵",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-03-能控性与状态反馈/read/1/#controllability-matrix",
+                  "concept_title": "动态传播与能控矩阵",
+                  "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-controllability-two"
                 },
                 {
                   "id": "p10-actuator-position",
                   "slug": "p10-actuator-position",
                   "title": "同一 A、不同输入位置",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-03-能控性与状态反馈/read/1/#controllability-matrix",
+                  "concept_title": "动态传播与能控矩阵",
+                  "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-actuator-position"
                 },
                 {
                   "id": "p10-rank-tolerance",
                   "slug": "p10-rank-tolerance",
                   "title": "数值秩不是绝对标签",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-03-能控性与状态反馈/read/1/#coordinates-and-numerical-rank",
+                  "concept_title": "坐标缩放与数值秩",
+                  "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-rank-tolerance"
                 },
                 {
                   "id": "p10-controllable-not-feasible",
                   "slug": "p10-controllable-not-feasible",
                   "title": "有限时间内的受限可达性",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-03-能控性与状态反馈/read/1/#bounded-input-reachability",
+                  "concept_title": "输入限制与有限时间可达范围",
+                  "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-controllable-not-feasible"
                 }
               ],
               "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-controllability-two",
               "notebook_url": "/notebook/?id=P10-C03-S01",
-              "url": "/notebook/?id=P10-C03-S01"
+              "reading_url": "/chapters/10-03-能控性与状态反馈/read/1/",
+              "concepts": [
+                {
+                  "id": "state-model-and-actuator-location",
+                  "title": "连续状态模型与输入位置",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C03-S01:state-model-and-actuator-location",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/1/#state-model-and-actuator-location"
+                },
+                {
+                  "id": "controllability-matrix",
+                  "title": "动态传播与能控矩阵",
+                  "question_ids": [
+                    "p10-controllability-two",
+                    "p10-actuator-position"
+                  ],
+                  "explore": false,
+                  "key": "P10-C03-S01:controllability-matrix",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/1/#controllability-matrix"
+                },
+                {
+                  "id": "controllability-definition",
+                  "title": "能控性与任意状态转移",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C03-S01:controllability-definition",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/1/#controllability-definition"
+                },
+                {
+                  "id": "coordinates-and-numerical-rank",
+                  "title": "坐标缩放与数值秩",
+                  "question_ids": [
+                    "p10-rank-tolerance"
+                  ],
+                  "explore": false,
+                  "key": "P10-C03-S01:coordinates-and-numerical-rank",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/1/#coordinates-and-numerical-rank"
+                },
+                {
+                  "id": "bounded-input-reachability",
+                  "title": "输入限制与有限时间可达范围",
+                  "question_ids": [
+                    "p10-controllable-not-feasible"
+                  ],
+                  "explore": false,
+                  "key": "P10-C03-S01:bounded-input-reachability",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/1/#bounded-input-reachability"
+                },
+                {
+                  "id": "actuator-location-experiment",
+                  "title": "恒定输入与两种执行器位置",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P10-C03-S01:actuator-location-experiment",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/1/#actuator-location-experiment",
+                  "explore_url": "/chapters/10-03-能控性与状态反馈/explore/?concept=P10-C03-S01%3Aactuator-location-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C03-S01:references",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/1/#references"
+                }
+              ],
+              "url": "/chapters/10-03-能控性与状态反馈/read/1/"
             },
             {
               "id": "P10-C03-S02",
               "chapter_id": "10.3",
               "number": "10.3.2",
-              "title": "极点配置与输入代价",
+              "title": "状态反馈、极点配置与可稳定性",
               "outcome": "从目标特征多项式求出双积分对象的反馈增益；同时计算初始请求输入，解释执行限幅为什么改变理想闭环响应。",
               "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/02-极点配置与输入代价.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/03-能控性与状态反馈/02-极点配置与输入代价.md",
               "questions": [
                 {
                   "id": "p10-canonical-gain",
                   "slug": "p10-canonical-gain",
                   "title": "配置双积分反馈极点",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-03-能控性与状态反馈/read/2/#pole-placement",
+                  "concept_title": "特征多项式与极点配置",
+                  "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-canonical-gain"
                 },
                 {
                   "id": "p10-feedback-sign",
                   "slug": "p10-feedback-sign",
                   "title": "反馈符号统一",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-03-能控性与状态反馈/read/2/#state-feedback-matrix",
+                  "concept_title": "状态反馈与闭环矩阵",
+                  "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-feedback-sign"
                 },
                 {
                   "id": "p10-fast-pole-cost",
                   "slug": "p10-fast-pole-cost",
                   "title": "改变双积分对象的目标极点",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-03-能控性与状态反馈/read/2/#fast-poles-and-actuation",
+                  "concept_title": "快速极点与执行输入",
+                  "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-fast-pole-cost"
                 },
                 {
                   "id": "p10-pole-placement-condition",
                   "slug": "p10-pole-placement-condition",
                   "title": "秩为1时的极点配置",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-03-能控性与状态反馈/read/2/#stabilizability",
+                  "concept_title": "不可控模态与可稳定性",
+                  "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-pole-placement-condition"
                 }
               ],
               "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-canonical-gain",
               "notebook_url": "/notebook/?id=P10-C03-S02",
-              "url": "/notebook/?id=P10-C03-S02"
+              "reading_url": "/chapters/10-03-能控性与状态反馈/read/2/",
+              "concepts": [
+                {
+                  "id": "state-feedback-matrix",
+                  "title": "状态反馈与闭环矩阵",
+                  "question_ids": [
+                    "p10-feedback-sign"
+                  ],
+                  "explore": false,
+                  "key": "P10-C03-S02:state-feedback-matrix",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/2/#state-feedback-matrix"
+                },
+                {
+                  "id": "pole-placement",
+                  "title": "特征多项式与极点配置",
+                  "question_ids": [
+                    "p10-canonical-gain"
+                  ],
+                  "explore": false,
+                  "key": "P10-C03-S02:pole-placement",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/2/#pole-placement"
+                },
+                {
+                  "id": "fast-poles-and-actuation",
+                  "title": "快速极点与执行输入",
+                  "question_ids": [
+                    "p10-fast-pole-cost"
+                  ],
+                  "explore": false,
+                  "key": "P10-C03-S02:fast-poles-and-actuation",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/2/#fast-poles-and-actuation"
+                },
+                {
+                  "id": "feedback-and-saturation-experiment",
+                  "title": "理想与限幅反馈的轨迹",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C03-S02:feedback-and-saturation-experiment",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/2/#feedback-and-saturation-experiment"
+                },
+                {
+                  "id": "stabilizability",
+                  "title": "不可控模态与可稳定性",
+                  "question_ids": [
+                    "p10-pole-placement-condition"
+                  ],
+                  "explore": false,
+                  "key": "P10-C03-S02:stabilizability",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/2/#stabilizability"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C03-S02:references",
+                  "url": "/chapters/10-03-能控性与状态反馈/read/2/#references"
+                }
+              ],
+              "url": "/chapters/10-03-能控性与状态反馈/read/2/"
             }
           ],
           "visualization": "web/control/index.html"
@@ -15075,73 +15531,225 @@
               "outcome": "从读数和读数变化率建立二维能观矩阵，说明传感器位置为什么影响状态恢复，并区分恢复的唯一性与带噪估计的精度。",
               "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/01-传感器位置与能观矩阵.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/04-状态观测器与输出反馈/01-传感器位置与能观矩阵.md",
               "questions": [
                 {
                   "id": "p10-observability-two",
                   "slug": "p10-observability-two",
                   "title": "二维能观矩阵",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-04-状态观测器与输出反馈/read/1/#output-and-output-derivative",
+                  "concept_title": "读数、变化率与能观矩阵",
+                  "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observability-two"
                 },
                 {
                   "id": "p10-sensor-position",
                   "slug": "p10-sensor-position",
                   "title": "换一个传感器",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-04-状态观测器与输出反馈/read/1/#output-and-output-derivative",
+                  "concept_title": "读数、变化率与能观矩阵",
+                  "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-sensor-position"
                 },
                 {
                   "id": "p10-known-input",
                   "slug": "p10-known-input",
                   "title": "省略已知输入的预测误差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-04-状态观测器与输出反馈/read/1/#known-input-prediction",
+                  "concept_title": "已知实际输入与状态预测",
+                  "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-known-input"
                 },
                 {
                   "id": "p10-observability-vs-noise",
                   "slug": "p10-observability-vs-noise",
                   "title": "带噪观测下的状态恢复",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-04-状态观测器与输出反馈/read/1/#discrete-sensor-readings",
+                  "concept_title": "离散读数与数值敏感性",
+                  "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observability-vs-noise"
                 }
               ],
               "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observability-two",
               "notebook_url": "/notebook/?id=P10-C04-S01",
-              "url": "/notebook/?id=P10-C04-S01"
+              "reading_url": "/chapters/10-04-状态观测器与输出反馈/read/1/",
+              "concepts": [
+                {
+                  "id": "observability-and-initial-state",
+                  "title": "已知模型与初态恢复",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C04-S01:observability-and-initial-state",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/1/#observability-and-initial-state"
+                },
+                {
+                  "id": "output-and-output-derivative",
+                  "title": "读数、变化率与能观矩阵",
+                  "question_ids": [
+                    "p10-observability-two",
+                    "p10-sensor-position"
+                  ],
+                  "explore": false,
+                  "key": "P10-C04-S01:output-and-output-derivative",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/1/#output-and-output-derivative"
+                },
+                {
+                  "id": "sensor-initial-state-experiment",
+                  "title": "初态差异与读数轨迹",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C04-S01:sensor-initial-state-experiment",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/1/#sensor-initial-state-experiment"
+                },
+                {
+                  "id": "discrete-sensor-readings",
+                  "title": "离散读数与数值敏感性",
+                  "question_ids": [
+                    "p10-observability-vs-noise"
+                  ],
+                  "explore": true,
+                  "key": "P10-C04-S01:discrete-sensor-readings",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/1/#discrete-sensor-readings",
+                  "explore_url": "/chapters/10-04-状态观测器与输出反馈/explore/?concept=P10-C04-S01%3Adiscrete-sensor-readings"
+                },
+                {
+                  "id": "known-input-prediction",
+                  "title": "已知实际输入与状态预测",
+                  "question_ids": [
+                    "p10-known-input"
+                  ],
+                  "explore": false,
+                  "key": "P10-C04-S01:known-input-prediction",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/1/#known-input-prediction"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C04-S01:references",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/1/#references"
+                }
+              ],
+              "url": "/chapters/10-04-状态观测器与输出反馈/read/1/"
             },
             {
               "id": "P10-C04-S02",
               "chapter_id": "10.4",
               "number": "10.4.2",
-              "title": "观测误差与输出反馈",
+              "title": "状态观测器、误差动态与输出反馈",
               "outcome": "按时间顺序重放状态观测器，推导估计误差递推；用估计状态形成反馈，并说明理想线性条件下分离设计的依据。",
               "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/02-观测误差与输出反馈.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/04-状态观测器与输出反馈/02-观测误差与输出反馈.md",
               "questions": [
                 {
                   "id": "p10-observer-replay",
                   "slug": "p10-observer-replay",
                   "title": "重放一次状态估计",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-04-状态观测器与输出反馈/read/2/#observer-hand-calculation",
+                  "concept_title": "创新、预测与校正的手算",
+                  "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observer-replay"
                 },
                 {
                   "id": "p10-error-dynamics",
                   "slug": "p10-error-dynamics",
                   "title": "误差如何演化",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-04-状态观测器与输出反馈/read/2/#estimation-error-dynamics",
+                  "concept_title": "估计误差的递推",
+                  "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-error-dynamics"
                 },
                 {
                   "id": "p10-separation-assumptions",
                   "slug": "p10-separation-assumptions",
                   "title": "分离设计的适用条件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-04-状态观测器与输出反馈/read/2/#output-feedback-separation",
+                  "concept_title": "输出反馈与分离原理",
+                  "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-separation-assumptions"
                 },
                 {
                   "id": "p10-truth-for-validation",
                   "slug": "p10-truth-for-validation",
                   "title": "模拟中的状态信息协议",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-04-状态观测器与输出反馈/read/2/#observer-feedback-experiment",
+                  "concept_title": "估计反馈与完整状态参考",
+                  "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-truth-for-validation"
                 }
               ],
               "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observer-replay",
               "notebook_url": "/notebook/?id=P10-C04-S02",
-              "url": "/notebook/?id=P10-C04-S02"
+              "reading_url": "/chapters/10-04-状态观测器与输出反馈/read/2/",
+              "concepts": [
+                {
+                  "id": "observer-and-timing",
+                  "title": "状态观测器与更新顺序",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C04-S02:observer-and-timing",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/2/#observer-and-timing"
+                },
+                {
+                  "id": "observer-hand-calculation",
+                  "title": "创新、预测与校正的手算",
+                  "question_ids": [
+                    "p10-observer-replay"
+                  ],
+                  "explore": false,
+                  "key": "P10-C04-S02:observer-hand-calculation",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/2/#observer-hand-calculation"
+                },
+                {
+                  "id": "estimation-error-dynamics",
+                  "title": "估计误差的递推",
+                  "question_ids": [
+                    "p10-error-dynamics"
+                  ],
+                  "explore": false,
+                  "key": "P10-C04-S02:estimation-error-dynamics",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/2/#estimation-error-dynamics"
+                },
+                {
+                  "id": "output-feedback-separation",
+                  "title": "输出反馈与分离原理",
+                  "question_ids": [
+                    "p10-separation-assumptions"
+                  ],
+                  "explore": false,
+                  "key": "P10-C04-S02:output-feedback-separation",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/2/#output-feedback-separation"
+                },
+                {
+                  "id": "detectability",
+                  "title": "能观性与可检测性",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C04-S02:detectability",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/2/#detectability"
+                },
+                {
+                  "id": "observer-feedback-experiment",
+                  "title": "估计反馈与完整状态参考",
+                  "question_ids": [
+                    "p10-truth-for-validation"
+                  ],
+                  "explore": false,
+                  "key": "P10-C04-S02:observer-feedback-experiment",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/2/#observer-feedback-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C04-S02:references",
+                  "url": "/chapters/10-04-状态观测器与输出反馈/read/2/#references"
+                }
+              ],
+              "url": "/chapters/10-04-状态观测器与输出反馈/read/2/"
             }
           ],
           "visualization": "web/control/index.html"
@@ -15164,77 +15772,237 @@
               "id": "P10-C05-S01",
               "chapter_id": "10.5",
               "number": "10.5.1",
-              "title": "一步Bellman递推",
+              "title": "价值函数与Bellman递推",
               "outcome": "把当前输入的代价与它造成的下一状态代价相加，手算一步最优输入；从终端条件建立价值函数，解释倒推为什么保留未来影响。",
               "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/01-一步Bellman递推.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/05-动态规划与 LQR/01-一步Bellman递推.md",
               "questions": [
                 {
                   "id": "p10-bellman-one",
                   "slug": "p10-bellman-one",
                   "title": "一步二次价值",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-05-动态规划与 LQR/read/1/#scalar-bellman-solution",
+                  "concept_title": "一步二次目标的求解",
+                  "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-one"
                 },
                 {
                   "id": "p10-terminal-matters",
                   "slug": "p10-terminal-matters",
                   "title": "一步控制的总代价",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-05-动态规划与 LQR/read/1/#scalar-bellman-solution",
+                  "concept_title": "一步二次目标的求解",
+                  "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-terminal-matters"
                 },
                 {
                   "id": "p10-bellman-scope",
                   "slug": "p10-bellman-scope",
                   "title": "Bellman 递推需要什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-05-动态规划与 LQR/read/1/#value-function",
+                  "concept_title": "价值函数与动态规划",
+                  "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-scope"
                 },
                 {
                   "id": "p10-weight-units",
                   "slug": "p10-weight-units",
                   "title": "代价权重与单位",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-05-动态规划与 LQR/read/1/#stage-and-terminal-cost",
+                  "concept_title": "阶段成本、终端成本与单位",
+                  "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-weight-units"
                 }
               ],
               "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-one",
               "notebook_url": "/notebook/?id=P10-C05-S01",
-              "url": "/notebook/?id=P10-C05-S01"
+              "reading_url": "/chapters/10-05-动态规划与 LQR/read/1/",
+              "concepts": [
+                {
+                  "id": "stage-and-terminal-cost",
+                  "title": "阶段成本、终端成本与单位",
+                  "question_ids": [
+                    "p10-weight-units"
+                  ],
+                  "explore": false,
+                  "key": "P10-C05-S01:stage-and-terminal-cost",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/1/#stage-and-terminal-cost"
+                },
+                {
+                  "id": "one-step-cost-example",
+                  "title": "当前输入与终点偏差的权衡",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C05-S01:one-step-cost-example",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/1/#one-step-cost-example"
+                },
+                {
+                  "id": "value-function",
+                  "title": "价值函数与动态规划",
+                  "question_ids": [
+                    "p10-bellman-scope"
+                  ],
+                  "explore": false,
+                  "key": "P10-C05-S01:value-function",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/1/#value-function"
+                },
+                {
+                  "id": "scalar-bellman-solution",
+                  "title": "一步二次目标的求解",
+                  "question_ids": [
+                    "p10-bellman-one",
+                    "p10-terminal-matters"
+                  ],
+                  "explore": false,
+                  "key": "P10-C05-S01:scalar-bellman-solution",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/1/#scalar-bellman-solution"
+                },
+                {
+                  "id": "terminal-weight-experiment",
+                  "title": "终端权重与当前决策",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P10-C05-S01:terminal-weight-experiment",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/1/#terminal-weight-experiment",
+                  "explore_url": "/chapters/10-05-动态规划与 LQR/explore/?concept=P10-C05-S01%3Aterminal-weight-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C05-S01:references",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/1/#references"
+                }
+              ],
+              "url": "/chapters/10-05-动态规划与 LQR/read/1/"
             },
             {
               "id": "P10-C05-S02",
               "chapter_id": "10.5",
               "number": "10.5.2",
-              "title": "有限时域LQR的Riccati倒推",
+              "title": "有限时域LQR与Riccati递推",
               "outcome": "将一步 Bellman 配方推广到多状态、多时刻，推导反馈增益与价值矩阵；区分从终点倒推增益和从初态正向执行，以及有限时域与无限时域的条件。",
               "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/02-有限时域LQR的Riccati倒推.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/05-动态规划与 LQR/02-有限时域LQR的Riccati倒推.md",
               "questions": [
                 {
                   "id": "p10-finite-riccati",
                   "slug": "p10-finite-riccati",
                   "title": "有限时域 Riccati 倒推",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-05-动态规划与 LQR/read/2/#scalar-check-and-time-order",
+                  "concept_title": "标量核对与返回次序",
+                  "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-riccati"
                 },
                 {
                   "id": "p10-riccati-boundary",
                   "slug": "p10-riccati-boundary",
                   "title": "Riccati 从哪里开始",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-05-动态规划与 LQR/read/2/#riccati-completing-square",
+                  "concept_title": "矩阵配方与反馈增益",
+                  "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-riccati-boundary"
                 },
                 {
                   "id": "p10-unconstrained-vs-saturated",
                   "slug": "p10-unconstrained-vs-saturated",
                   "title": "截断 LQR 输入",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-05-动态规划与 LQR/read/2/#input-limits-and-optimality",
+                  "concept_title": "输入限幅与约束决策",
+                  "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-unconstrained-vs-saturated"
                 },
                 {
                   "id": "p10-finite-vs-infinite",
                   "slug": "p10-finite-vs-infinite",
                   "title": "时域长度改变什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-05-动态规划与 LQR/read/2/#finite-and-infinite-horizons",
+                  "concept_title": "有限时域与无限时域",
+                  "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-vs-infinite"
                 }
               ],
               "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-riccati",
               "notebook_url": "/notebook/?id=P10-C05-S02",
-              "url": "/notebook/?id=P10-C05-S02"
+              "reading_url": "/chapters/10-05-动态规划与 LQR/read/2/",
+              "concepts": [
+                {
+                  "id": "finite-horizon-lqr-problem",
+                  "title": "有限时域线性二次问题",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C05-S02:finite-horizon-lqr-problem",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/2/#finite-horizon-lqr-problem"
+                },
+                {
+                  "id": "quadratic-value-expansion",
+                  "title": "二次价值与矩阵展开",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C05-S02:quadratic-value-expansion",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/2/#quadratic-value-expansion"
+                },
+                {
+                  "id": "riccati-completing-square",
+                  "title": "矩阵配方与反馈增益",
+                  "question_ids": [
+                    "p10-riccati-boundary"
+                  ],
+                  "explore": false,
+                  "key": "P10-C05-S02:riccati-completing-square",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/2/#riccati-completing-square"
+                },
+                {
+                  "id": "scalar-check-and-time-order",
+                  "title": "标量核对与返回次序",
+                  "question_ids": [
+                    "p10-finite-riccati"
+                  ],
+                  "explore": false,
+                  "key": "P10-C05-S02:scalar-check-and-time-order",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/2/#scalar-check-and-time-order"
+                },
+                {
+                  "id": "eight-step-lqr-experiment",
+                  "title": "二维八步反馈与成本核对",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C05-S02:eight-step-lqr-experiment",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/2/#eight-step-lqr-experiment"
+                },
+                {
+                  "id": "finite-and-infinite-horizons",
+                  "title": "有限时域与无限时域",
+                  "question_ids": [
+                    "p10-finite-vs-infinite"
+                  ],
+                  "explore": false,
+                  "key": "P10-C05-S02:finite-and-infinite-horizons",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/2/#finite-and-infinite-horizons"
+                },
+                {
+                  "id": "input-limits-and-optimality",
+                  "title": "输入限幅与约束决策",
+                  "question_ids": [
+                    "p10-unconstrained-vs-saturated"
+                  ],
+                  "explore": false,
+                  "key": "P10-C05-S02:input-limits-and-optimality",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/2/#input-limits-and-optimality"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C05-S02:references",
+                  "url": "/chapters/10-05-动态规划与 LQR/read/2/#references"
+                }
+              ],
+              "url": "/chapters/10-05-动态规划与 LQR/read/2/"
             }
           ],
           "visualization": "web/control/index.html"
@@ -15257,77 +16025,221 @@
               "id": "P10-C06-S01",
               "chapter_id": "10.6",
               "number": "10.6.1",
-              "title": "预测时域与硬约束",
+              "title": "模型预测控制与硬约束",
               "outcome": "列举有限输入集合中的候选序列，逐步检查预测状态约束并计算成本；返回最优首步或不可行结果，解释预测计划与实际执行的区别。",
               "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/01-预测时域与硬约束.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/06-带约束的 MPC/01-预测时域与硬约束.md",
               "questions": [
                 {
                   "id": "p10-discrete-mpc",
                   "slug": "p10-discrete-mpc",
                   "title": "求解一个小型硬约束 MPC",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-06-带约束的 MPC/read/1/#nine-candidates-and-complete-costs",
+                  "concept_title": "九条候选与完整成本",
+                  "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-discrete-mpc"
                 },
                 {
                   "id": "p10-mpc-receding",
                   "slug": "p10-mpc-receding",
                   "title": "滚动时域的关键动作",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-06-带约束的 MPC/read/1/#optimal-plan-and-current-action",
+                  "concept_title": "最优计划与当前执行",
+                  "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-mpc-receding"
                 },
                 {
                   "id": "p10-hard-soft",
                   "slug": "p10-hard-soft",
                   "title": "硬约束与软约束",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-06-带约束的 MPC/read/1/#hard-constraints-penalties-and-infeasibility",
+                  "concept_title": "硬约束、罚项与不可行结果",
+                  "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-hard-soft"
                 },
                 {
                   "id": "p10-infeasible-truth",
                   "slug": "p10-infeasible-truth",
                   "title": "MPC不可行时的求解状态",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-06-带约束的 MPC/read/1/#hard-constraints-penalties-and-infeasibility",
+                  "concept_title": "硬约束、罚项与不可行结果",
+                  "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-infeasible-truth"
                 }
               ],
               "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-discrete-mpc",
               "notebook_url": "/notebook/?id=P10-C06-S01",
-              "url": "/notebook/?id=P10-C06-S01"
+              "reading_url": "/chapters/10-06-带约束的 MPC/read/1/",
+              "concepts": [
+                {
+                  "id": "finite-horizon-plans-and-mpc",
+                  "title": "有限时域计划与模型预测控制",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C06-S01:finite-horizon-plans-and-mpc",
+                  "url": "/chapters/10-06-带约束的 MPC/read/1/#finite-horizon-plans-and-mpc"
+                },
+                {
+                  "id": "prediction-horizon-and-time-indices",
+                  "title": "预测时域与两个时间下标",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C06-S01:prediction-horizon-and-time-indices",
+                  "url": "/chapters/10-06-带约束的 MPC/read/1/#prediction-horizon-and-time-indices"
+                },
+                {
+                  "id": "nine-candidates-and-complete-costs",
+                  "title": "九条候选与完整成本",
+                  "question_ids": [
+                    "p10-discrete-mpc"
+                  ],
+                  "explore": true,
+                  "key": "P10-C06-S01:nine-candidates-and-complete-costs",
+                  "url": "/chapters/10-06-带约束的 MPC/read/1/#nine-candidates-and-complete-costs",
+                  "explore_url": "/chapters/10-06-带约束的 MPC/explore/?concept=P10-C06-S01%3Anine-candidates-and-complete-costs"
+                },
+                {
+                  "id": "hard-constraints-penalties-and-infeasibility",
+                  "title": "硬约束、罚项与不可行结果",
+                  "question_ids": [
+                    "p10-hard-soft",
+                    "p10-infeasible-truth"
+                  ],
+                  "explore": false,
+                  "key": "P10-C06-S01:hard-constraints-penalties-and-infeasibility",
+                  "url": "/chapters/10-06-带约束的 MPC/read/1/#hard-constraints-penalties-and-infeasibility"
+                },
+                {
+                  "id": "optimal-plan-and-current-action",
+                  "title": "最优计划与当前执行",
+                  "question_ids": [
+                    "p10-mpc-receding"
+                  ],
+                  "explore": false,
+                  "key": "P10-C06-S01:optimal-plan-and-current-action",
+                  "url": "/chapters/10-06-带约束的 MPC/read/1/#optimal-plan-and-current-action"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C06-S01:references",
+                  "url": "/chapters/10-06-带约束的 MPC/read/1/#references"
+                }
+              ],
+              "url": "/chapters/10-06-带约束的 MPC/read/1/"
             },
             {
               "id": "P10-C06-S02",
               "chapter_id": "10.6",
               "number": "10.6.2",
-              "title": "滚动求解与预测失配",
+              "title": "滚动时域与预测失配",
               "outcome": "用新状态作为下一次优化的起点，区分预测与实际状态；检查名义可行性、实际超限和求解失败的记录。",
               "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/02-滚动求解与预测失配.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/06-带约束的 MPC/02-滚动求解与预测失配.md",
               "questions": [
                 {
                   "id": "p10-receding-trajectory",
                   "slug": "p10-receding-trajectory",
                   "title": "逐时刻重新求解",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-06-带约束的 MPC/read/2/#closed-loop-trajectories-with-model-mismatch",
+                  "concept_title": "名义对象与失配对象的闭环轨迹",
+                  "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-receding-trajectory"
                 },
                 {
                   "id": "p10-prediction-vs-reality",
                   "slug": "p10-prediction-vs-reality",
                   "title": "新读数到达后的滚动预测",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-06-带约束的 MPC/read/2/#new-state-and-next-plan",
+                  "concept_title": "新状态与下一份计划",
+                  "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-prediction-vs-reality"
                 },
                 {
                   "id": "p10-fallback-domain",
                   "slug": "p10-fallback-domain",
                   "title": "备用控制需要验证",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-06-带约束的 MPC/read/2/#solver-status-actual-constraints-and-fallback-inputs",
+                  "concept_title": "求解状态、实际约束与备用输入",
+                  "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-fallback-domain"
                 },
                 {
                   "id": "p10-estimate-interface",
                   "slug": "p10-estimate-interface",
                   "title": "MPC 起点的状态从哪里来",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-06-带约束的 MPC/read/2/#double-time-indices-of-planned-inputs",
+                  "concept_title": "计划输入的双时间下标",
+                  "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-estimate-interface"
                 }
               ],
               "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-receding-trajectory",
               "notebook_url": "/notebook/?id=P10-C06-S02",
-              "url": "/notebook/?id=P10-C06-S02"
+              "reading_url": "/chapters/10-06-带约束的 MPC/read/2/",
+              "concepts": [
+                {
+                  "id": "new-state-and-next-plan",
+                  "title": "新状态与下一份计划",
+                  "question_ids": [
+                    "p10-prediction-vs-reality"
+                  ],
+                  "explore": false,
+                  "key": "P10-C06-S02:new-state-and-next-plan",
+                  "url": "/chapters/10-06-带约束的 MPC/read/2/#new-state-and-next-plan"
+                },
+                {
+                  "id": "double-time-indices-of-planned-inputs",
+                  "title": "计划输入的双时间下标",
+                  "question_ids": [
+                    "p10-estimate-interface"
+                  ],
+                  "explore": false,
+                  "key": "P10-C06-S02:double-time-indices-of-planned-inputs",
+                  "url": "/chapters/10-06-带约束的 MPC/read/2/#double-time-indices-of-planned-inputs"
+                },
+                {
+                  "id": "nominal-and-actual-state-updates",
+                  "title": "名义更新与实际更新的差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C06-S02:nominal-and-actual-state-updates",
+                  "url": "/chapters/10-06-带约束的 MPC/read/2/#nominal-and-actual-state-updates"
+                },
+                {
+                  "id": "closed-loop-trajectories-with-model-mismatch",
+                  "title": "名义对象与失配对象的闭环轨迹",
+                  "question_ids": [
+                    "p10-receding-trajectory"
+                  ],
+                  "explore": false,
+                  "key": "P10-C06-S02:closed-loop-trajectories-with-model-mismatch",
+                  "url": "/chapters/10-06-带约束的 MPC/read/2/#closed-loop-trajectories-with-model-mismatch"
+                },
+                {
+                  "id": "solver-status-actual-constraints-and-fallback-inputs",
+                  "title": "求解状态、实际约束与备用输入",
+                  "question_ids": [
+                    "p10-fallback-domain"
+                  ],
+                  "explore": false,
+                  "key": "P10-C06-S02:solver-status-actual-constraints-and-fallback-inputs",
+                  "url": "/chapters/10-06-带约束的 MPC/read/2/#solver-status-actual-constraints-and-fallback-inputs"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C06-S02:references",
+                  "url": "/chapters/10-06-带约束的 MPC/read/2/#references"
+                }
+              ],
+              "url": "/chapters/10-06-带约束的 MPC/read/2/"
             }
           ],
           "visualization": "web/control/index.html"
@@ -15350,77 +16262,228 @@
               "id": "P10-C07-S01",
               "chapter_id": "10.7",
               "number": "10.7.1",
-              "title": "相同信息下的控制评价",
+              "title": "闭环评价与公平比较",
               "outcome": "为控制比较明确目标、传感器和执行上限；分开计算跟踪误差、实际输入与超限，并保留失败结果。",
               "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/01-相同信息下的控制评价.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/07-估计反馈与闭环验证/01-相同信息下的控制评价.md",
               "questions": [
                 {
                   "id": "p10-scenario-metrics",
                   "slug": "p10-scenario-metrics",
                   "title": "计算一个闭环场景的指标",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-07-估计反馈与闭环验证/read/1/#separate-tracking-input-and-violation-metrics",
+                  "concept_title": "跟踪、输入和超限的分开计算",
+                  "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-scenario-metrics"
                 },
                 {
                   "id": "p10-fair-baseline",
                   "slug": "p10-fair-baseline",
                   "title": "公平控制比较",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-07-估计反馈与闭环验证/read/1/#failures-tuning-and-independent-evaluation",
+                  "concept_title": "失败、调参与独立评价",
+                  "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-fair-baseline"
                 },
                 {
                   "id": "p10-average-not-enough",
                   "slug": "p10-average-not-enough",
                   "title": "平均误差之外",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-07-估计反馈与闭环验证/read/1/#three-responses-in-one-scenario",
+                  "concept_title": "单个场景中的三条响应",
+                  "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-average-not-enough"
                 },
                 {
                   "id": "p10-training-vs-test",
                   "slug": "p10-training-vs-test",
                   "title": "调参场景可再次作证吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-07-估计反馈与闭环验证/read/1/#failures-tuning-and-independent-evaluation",
+                  "concept_title": "失败、调参与独立评价",
+                  "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-training-vs-test"
                 }
               ],
               "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-scenario-metrics",
               "notebook_url": "/notebook/?id=P10-C07-S01",
-              "url": "/notebook/?id=P10-C07-S01"
+              "reading_url": "/chapters/10-07-估计反馈与闭环验证/read/1/",
+              "concepts": [
+                {
+                  "id": "shared-scenarios-and-different-trajectories",
+                  "title": "共同场景与不同闭环轨迹",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C07-S01:shared-scenarios-and-different-trajectories",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/1/#shared-scenarios-and-different-trajectories"
+                },
+                {
+                  "id": "readings-smoothed-estimates-and-available-information",
+                  "title": "原始读数、平滑估计与可用信息",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C07-S01:readings-smoothed-estimates-and-available-information",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/1/#readings-smoothed-estimates-and-available-information"
+                },
+                {
+                  "id": "three-specific-control-rules",
+                  "title": "三种具体控制规则",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C07-S01:three-specific-control-rules",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/1/#three-specific-control-rules"
+                },
+                {
+                  "id": "separate-tracking-input-and-violation-metrics",
+                  "title": "跟踪、输入和超限的分开计算",
+                  "question_ids": [
+                    "p10-scenario-metrics"
+                  ],
+                  "explore": false,
+                  "key": "P10-C07-S01:separate-tracking-input-and-violation-metrics",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/1/#separate-tracking-input-and-violation-metrics"
+                },
+                {
+                  "id": "three-responses-in-one-scenario",
+                  "title": "单个场景中的三条响应",
+                  "question_ids": [
+                    "p10-average-not-enough"
+                  ],
+                  "explore": false,
+                  "key": "P10-C07-S01:three-responses-in-one-scenario",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/1/#three-responses-in-one-scenario"
+                },
+                {
+                  "id": "failures-tuning-and-independent-evaluation",
+                  "title": "失败、调参与独立评价",
+                  "question_ids": [
+                    "p10-fair-baseline",
+                    "p10-training-vs-test"
+                  ],
+                  "explore": false,
+                  "key": "P10-C07-S01:failures-tuning-and-independent-evaluation",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/1/#failures-tuning-and-independent-evaluation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C07-S01:references",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/1/#references"
+                }
+              ],
+              "url": "/chapters/10-07-估计反馈与闭环验证/read/1/"
             },
             {
               "id": "P10-C07-S02",
               "chapter_id": "10.7",
               "number": "10.7.2",
-              "title": "独立场景与配对不确定性",
+              "title": "配对场景、失败率与重采样",
               "outcome": "按相同场景配对比较误差，保留双方失败的尝试数；以场景为单位重采样，解释均值差、抽样区间和测试范围。",
               "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/02-独立场景与配对不确定性.ipynb",
               "visualization": "web/control/index.html",
+              "reading": "lessons/10-反馈与最优控制/07-估计反馈与闭环验证/02-独立场景与配对不确定性.md",
               "questions": [
                 {
                   "id": "p10-paired-differences",
                   "slug": "p10-paired-differences",
                   "title": "保留失败的配对比较",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/10-07-估计反馈与闭环验证/read/2/#successful-pairs-and-failure-counts",
+                  "concept_title": "成功配对与失败计数",
+                  "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-differences"
                 },
                 {
                   "id": "p10-paired-bootstrap",
                   "slug": "p10-paired-bootstrap",
                   "title": "为什么按场景配对",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-07-估计反馈与闭环验证/read/2/#paired-bootstrap-and-interval-for-the-mean-difference",
+                  "concept_title": "成对重采样与均值差的区间",
+                  "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-bootstrap"
                 },
                 {
                   "id": "p10-failure-selection",
                   "slug": "p10-failure-selection",
                   "title": "失败率属于结果",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-07-估计反馈与闭环验证/read/2/#successful-pairs-and-failure-counts",
+                  "concept_title": "成功配对与失败计数",
+                  "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-failure-selection"
                 },
                 {
                   "id": "p10-uncertainty-scope",
                   "slug": "p10-uncertainty-scope",
                   "title": "有限场景能说明多远",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/10-07-估计反馈与闭环验证/read/2/#sampling-uncertainty-and-task-requirements",
+                  "concept_title": "抽样不确定性与任务要求",
+                  "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-uncertainty-scope"
                 }
               ],
               "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-differences",
               "notebook_url": "/notebook/?id=P10-C07-S02",
-              "url": "/notebook/?id=P10-C07-S02"
+              "reading_url": "/chapters/10-07-估计反馈与闭环验证/read/2/",
+              "concepts": [
+                {
+                  "id": "scenario-pairing-and-shared-difficulty",
+                  "title": "场景配对与共同难度",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C07-S02:scenario-pairing-and-shared-difficulty",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/2/#scenario-pairing-and-shared-difficulty"
+                },
+                {
+                  "id": "successful-pairs-and-failure-counts",
+                  "title": "成功配对与失败计数",
+                  "question_ids": [
+                    "p10-paired-differences",
+                    "p10-failure-selection"
+                  ],
+                  "explore": true,
+                  "key": "P10-C07-S02:successful-pairs-and-failure-counts",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/2/#successful-pairs-and-failure-counts",
+                  "explore_url": "/chapters/10-07-估计反馈与闭环验证/explore/?concept=P10-C07-S02%3Asuccessful-pairs-and-failure-counts"
+                },
+                {
+                  "id": "forty-independent-closed-loop-scenarios",
+                  "title": "四十个独立闭环场景",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C07-S02:forty-independent-closed-loop-scenarios",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/2/#forty-independent-closed-loop-scenarios"
+                },
+                {
+                  "id": "paired-bootstrap-and-interval-for-the-mean-difference",
+                  "title": "成对重采样与均值差的区间",
+                  "question_ids": [
+                    "p10-paired-bootstrap"
+                  ],
+                  "explore": false,
+                  "key": "P10-C07-S02:paired-bootstrap-and-interval-for-the-mean-difference",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/2/#paired-bootstrap-and-interval-for-the-mean-difference"
+                },
+                {
+                  "id": "sampling-uncertainty-and-task-requirements",
+                  "title": "抽样不确定性与任务要求",
+                  "question_ids": [
+                    "p10-uncertainty-scope"
+                  ],
+                  "explore": false,
+                  "key": "P10-C07-S02:sampling-uncertainty-and-task-requirements",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/2/#sampling-uncertainty-and-task-requirements"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P10-C07-S02:references",
+                  "url": "/chapters/10-07-估计反馈与闭环验证/read/2/#references"
+                }
+              ],
+              "url": "/chapters/10-07-估计反馈与闭环验证/read/2/"
             }
           ],
           "visualization": "web/control/index.html"
@@ -15460,59 +16523,166 @@
                 "按实际轨迹计算跟踪和输入指标，保留独立场景的失败结果"
               ]
             },
+            "reading": "lessons/10-反馈与最优控制/08-篇末综合/01-部分观测下的约束控制.md",
             "questions": [
               {
                 "id": "p10-cap-feedback",
                 "slug": "p10-cap-feedback",
                 "title": "反馈方向与稳定证据",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/10-反馈与最优控制/综合练习/read/1/#ideal-error-dynamics-and-actual-response",
+                "concept_title": "理想误差动态与实际响应",
+                "practice_url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-feedback"
               },
               {
                 "id": "p10-cap-sensors",
                 "slug": "p10-cap-sensors",
                 "title": "执行器与传感器配置",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/10-反馈与最优控制/综合练习/read/1/#two-state-plant-actuator-and-sensor",
+                "concept_title": "二维对象、执行器与传感器",
+                "practice_url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-sensors"
               },
               {
                 "id": "p10-cap-pid",
                 "slug": "p10-cap-pid",
                 "title": "限幅下的控制一步",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/10-反馈与最优控制/综合练习/read/1/#initial-estimate-request-and-saturation",
+                "concept_title": "初始估计、请求与输入限幅",
+                "practice_url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-pid"
               },
               {
                 "id": "p10-cap-observer",
                 "slug": "p10-cap-observer",
                 "title": "给定读数下的观测器",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/10-反馈与最优控制/综合练习/read/1/#current-prediction-estimate-and-feedback-timing",
+                "concept_title": "当前预测估计与反馈时序",
+                "practice_url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-observer"
               },
               {
                 "id": "p10-cap-riccati",
                 "slug": "p10-cap-riccati",
                 "title": "综合题中的有限时域LQR",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/10-反馈与最优控制/综合练习/read/1/#scalar-finite-horizon-lqr",
+                "concept_title": "标量有限时域 LQR",
+                "practice_url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-riccati"
               },
               {
                 "id": "p10-cap-mpc",
                 "slug": "p10-cap-mpc",
                 "title": "综合题中的滚动约束求解",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/10-反馈与最优控制/综合练习/read/1/#scalar-discrete-input-mpc",
+                "concept_title": "标量有限输入 MPC",
+                "practice_url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-mpc"
               },
               {
                 "id": "p10-cap-metrics",
                 "slug": "p10-cap-metrics",
                 "title": "配对场景指标和失败",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/10-反馈与最优控制/综合练习/read/1/#actual-metrics-failures-and-changing-conditions",
+                "concept_title": "实际指标、失败与条件变化",
+                "practice_url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-metrics"
               },
               {
                 "id": "p10-cap-mismatch",
                 "slug": "p10-cap-mismatch",
                 "title": "失配和缺测后的结论",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/10-反馈与最优控制/综合练习/read/1/#actual-metrics-failures-and-changing-conditions",
+                "concept_title": "实际指标、失败与条件变化",
+                "practice_url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-mismatch"
               }
             ],
             "practice_url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-feedback",
             "notebook_url": "/notebook/?id=P10-SUMMARY",
-            "url": "/notebook/?id=P10-SUMMARY"
+            "reading_url": "/parts/10-反馈与最优控制/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "two-state-plant-actuator-and-sensor",
+                "title": "二维对象、执行器与传感器",
+                "question_ids": [
+                  "p10-cap-sensors"
+                ],
+                "explore": false,
+                "key": "P10-SUMMARY:two-state-plant-actuator-and-sensor",
+                "url": "/parts/10-反馈与最优控制/综合练习/read/1/#two-state-plant-actuator-and-sensor"
+              },
+              {
+                "id": "current-prediction-estimate-and-feedback-timing",
+                "title": "当前预测估计与反馈时序",
+                "question_ids": [
+                  "p10-cap-observer"
+                ],
+                "explore": false,
+                "key": "P10-SUMMARY:current-prediction-estimate-and-feedback-timing",
+                "url": "/parts/10-反馈与最优控制/综合练习/read/1/#current-prediction-estimate-and-feedback-timing"
+              },
+              {
+                "id": "initial-estimate-request-and-saturation",
+                "title": "初始估计、请求与输入限幅",
+                "question_ids": [
+                  "p10-cap-pid"
+                ],
+                "explore": false,
+                "key": "P10-SUMMARY:initial-estimate-request-and-saturation",
+                "url": "/parts/10-反馈与最优控制/综合练习/read/1/#initial-estimate-request-and-saturation"
+              },
+              {
+                "id": "ideal-error-dynamics-and-actual-response",
+                "title": "理想误差动态与实际响应",
+                "question_ids": [
+                  "p10-cap-feedback"
+                ],
+                "explore": false,
+                "key": "P10-SUMMARY:ideal-error-dynamics-and-actual-response",
+                "url": "/parts/10-反馈与最优控制/综合练习/read/1/#ideal-error-dynamics-and-actual-response"
+              },
+              {
+                "id": "scalar-finite-horizon-lqr",
+                "title": "标量有限时域 LQR",
+                "question_ids": [
+                  "p10-cap-riccati"
+                ],
+                "explore": false,
+                "key": "P10-SUMMARY:scalar-finite-horizon-lqr",
+                "url": "/parts/10-反馈与最优控制/综合练习/read/1/#scalar-finite-horizon-lqr"
+              },
+              {
+                "id": "scalar-discrete-input-mpc",
+                "title": "标量有限输入 MPC",
+                "question_ids": [
+                  "p10-cap-mpc"
+                ],
+                "explore": false,
+                "key": "P10-SUMMARY:scalar-discrete-input-mpc",
+                "url": "/parts/10-反馈与最优控制/综合练习/read/1/#scalar-discrete-input-mpc"
+              },
+              {
+                "id": "actual-metrics-failures-and-changing-conditions",
+                "title": "实际指标、失败与条件变化",
+                "question_ids": [
+                  "p10-cap-metrics",
+                  "p10-cap-mismatch"
+                ],
+                "explore": false,
+                "key": "P10-SUMMARY:actual-metrics-failures-and-changing-conditions",
+                "url": "/parts/10-反馈与最优控制/综合练习/read/1/#actual-metrics-failures-and-changing-conditions"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P10-SUMMARY:references",
+                "url": "/parts/10-反馈与最优控制/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/10-反馈与最优控制/综合练习/read/1/"
           }
         ],
         "available": true,

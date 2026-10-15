@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.4.2 状态观测器、误差动态与输出反馈 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observer-replay">本节练习 · 4 题</a><a class="button" href="/chapters/10-04-状态观测器与输出反馈/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.4.2 状态观测器、误差动态与输出反馈</h1>
+<p>能观性说明一段读数可以提供完整状态的信息。反馈却要边观察边决定输入，因此需要随时间保存并修正一个估计：模型负责预测，读数告诉我们预测偏离了多少。这就是把状态恢复接入控制的下一步。</p>
+<p>学完本节，你应能按时刻重放观测器，推导估计误差和增广闭环，并说明理想分离设计的依据。先修为10.4.1的能观性、第7篇的创新和10.3的状态反馈。</p>
+<h2 id="observer-and-timing">状态观测器与更新顺序</h2>
+<p><strong>状态观测器（state observer）</strong>是利用已知模型、实际输入和传感器输出，随时间更新状态估计的动态系统。这里对象为</p>
+<p>$$x_{n+1}=Ax_n+Bu_n,\qquad y_n=Cx_n,$$</p>
+<p>$x_n$为两维列向量，$u_n,y_n$为标量。观测器保存$\hat x_n$，并采用</p>
+<p>$$\boxed{\hat x_{n+1}=A\hat x_n+Bu_n+L(y_n-C\hat x_n).}$$</p>
+<p>$A$为$2\times2$，$B,L$为$2\times1$，$C$为$1\times2$。括号内是第7篇的创新：读数减预测读数；$L$把一项创新分配到两个状态的校正量。预测与校正相加后，得到下一时刻的估计。</p>
+<p>在这个实现中，$\hat x_n$使用此前的读数形成。控制器先由它计算同一步输入$u_n=-K\hat x_n$，当前读数$y_n$再参与$\hat x_{n+1}$的更新。这样每个下标都对应一项明确的信息：$u_n$作用于$n$到$n+1$的转移，$y_n$读取时刻$n$的状态。</p>
+<h2 id="observer-hand-calculation">创新、预测与校正的手算</h2>
+<p>取</p>
+<p>$$A=\begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix},\quad
+B=\begin{pmatrix}0\\1\end{pmatrix},\quad C=\begin{pmatrix}1&amp;0\end{pmatrix},\quad
+L=\begin{pmatrix}0.5\\0.25\end{pmatrix}.$$</p>
+<p>沿用缩放后的状态坐标，状态、输入与读数的数值单位均为U。初始估计为$(0,0)^{\mathsf T}$ U，给定输入依次为$0,1,0$ U，读数为$2,2.5,4$ U。</p>
+<p>首步预测读数为0，创新为2 U。模型预测$A\hat x_0+Bu_0=0$，校正量为$2L=(1,0.5)^{\mathsf T}$ U，故$\hat x_1=(1,0.5)^{\mathsf T}$ U。</p>
+<p>第二步使用这个新估计，创新为$2.5-1=1.5$ U，模型预测为</p>
+<p>$$A\hat x_1+Bu_1=\begin{pmatrix}1.5\\1.5\end{pmatrix}\mathrm U.$$</p>
+<p>加上$1.5L$，得到$\hat x_2=(2.25,1.875)^{\mathsf T}$ U。第三步同样计算，创新为1.75 U，下一估计为$(5,2.3125)^{\mathsf T}$ U。两个新分量都使用同一份旧估计，才能表示同一次状态转移。</p>
+<p>计算题保存初始估计和每步新估计，创新则每次更新一项；两张列表的长度因此相差1。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observer-replay">重放一次状态估计</a></li></ul></nav>
+
+<h2 id="estimation-error-dynamics">估计误差的递推</h2>
+<p>用$\varepsilon_n=x_n-\hat x_n$表示估计误差，与此前目标减读数的控制误差分开。模型准确、读数无噪且双方使用同一个实际输入时，将对象与观测器相减：</p>
+<p>$$\begin{aligned}
+\varepsilon_{n+1}
+&amp;=Ax_n+Bu_n-A\hat x_n-Bu_n-L(Cx_n-C\hat x_n)\\
+&amp;=(A-LC)\varepsilon_n.
+\end{aligned}$$</p>
+<p>实际输入项相消，剩下的$A-LC$控制误差如何传播。若其所有特征值都在单位圆内，初始估计误差会趋于零。这给出了选择$L$的目标。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-error-dynamics">误差如何演化</a></li></ul></nav>
+
+<p>若读数含噪声$y_n=Cx_n+v_n$，相减则得到</p>
+<p>$$\varepsilon_{n+1}=(A-LC)\varepsilon_n-Lv_n.$$</p>
+<p>初始误差一面衰减，新读数噪声一面经$L$进入估计。增大校正强度既改变误差动态，也改变噪声传入的大小。</p>
+<h2 id="output-feedback-separation">输出反馈与分离原理</h2>
+<p><strong>输出反馈（output feedback）</strong>通过传感器输出形成控制输入。这里先用输出构造状态估计，再采用$u_n=-K\hat x_n$。由于$\hat x_n=x_n-\varepsilon_n$，对象变成</p>
+<p>$$x_{n+1}=(A-BK)x_n+BK\varepsilon_n.$$</p>
+<p>将真实状态与估计误差放在一起，在模型准确、无噪且输入没有被限幅的线性条件下，</p>
+<p>$$\begin{pmatrix}x_{n+1}\\\varepsilon_{n+1}\end{pmatrix}
+=\begin{pmatrix}A-BK&amp;BK\\0&amp;A-LC\end{pmatrix}
+\begin{pmatrix}x_n\\\varepsilon_n\end{pmatrix}.$$</p>
+<p>这是分块上三角矩阵，其特征多项式分解为两个对角块特征多项式的乘积。因此增广闭环的特征值恰由$A-BK$与$A-LC$两组组成。</p>
+<p>这称为此处的<strong>分离原理（separation principle）</strong>：可以分别设计状态反馈与观测器，使两组极点都位于单位圆内，再组合成稳定的理想闭环。执行器发生限幅时，对象与观测器仍应使用同一个实际输入，而整个反馈关系需要按限幅后的更新重新分析。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-separation-assumptions">分离设计的适用条件</a></li></ul></nav>
+
+<h2 id="detectability">能观性与可检测性</h2>
+<p>完整能观性允许通过$L$配置全部观测误差极点。如果只要求误差渐近消失，还可以使用较弱的条件：存在某个$L$使$A-LC$稳定时，称$(C,A)$具有<strong>可检测性（detectability）</strong>。</p>
+<p>它等价于不可观模态本身都稳定。读数无法恢复这些方向的初始差异，但它们会随系统动态自行衰减。例如一个完全未测到、每步乘0.8的独立状态，其初始估计误差也每步乘0.8；这个方向不能被任意配置，却能逐渐消失。这与10.3中可稳定性允许不可控的稳定模态相对应。</p>
+<h2 id="observer-feedback-experiment">估计反馈与完整状态参考</h2>
+<p>实验使用离散模型</p>
+<p>$$A=\begin{pmatrix}1&amp;0.1\\0&amp;0.95\end{pmatrix},\quad
+B=\begin{pmatrix}0\\0.1\end{pmatrix},\quad C=\begin{pmatrix}1&amp;0\end{pmatrix},$$</p>
+<p>并取$L=(0.7,0.4)^{\mathsf T}$、$K=(0.8,0.5)$。两个状态以同一幅度单位U表示，$K$将状态坐标变为输入。真实初态为$(2,-0.2)^{\mathsf T}$ U，估计初态为零；测量加入标准差0.025 U的高斯噪声。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C04-S02-ab6e3989-0.png" alt="状态观测器、误差动态与输出反馈：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图比较用完整状态计算$u=-Kx$的参考运行与用估计计算$u=-K\hat x$的运行。后者从错误的初始估计出发，早期输入不同；读数逐步修正估计后，反馈也随之变化。两次运行具有相同噪声分布，使用不同的具体噪声序列，这两条曲线展示的是各自一次运行。</p>
+<p>右图在运行结束后，用模拟器保存的真值计算$\|x_n-\hat x_n\|$。估计反馈运行的决策只接收实际输入、读数和估计；完整状态用于事后比较，完整状态反馈则单独作为获得额外信息的参考。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-truth-for-validation">模拟中的状态信息协议</a></li></ul></nav>
+
+<p>观测器把传感器的信息接进状态反馈。接下来进一步选择反馈增益：既希望状态偏差减小，也希望控制输入不过大，这两项怎样共同决定决策？</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.cds.caltech.edu/~murray/FBS/Output_Feedback.html">Åström与Murray，Feedback Systems：Output Feedback</a>推导观测器误差与估计反馈的分离设计。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/10-04-状态观测器与输出反馈/read/1/">← 10.4.1 传感器位置与能观矩阵</a><a href="/chapters/10-05-动态规划与 LQR/read/1/">10.5.1 价值函数与Bellman递推 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

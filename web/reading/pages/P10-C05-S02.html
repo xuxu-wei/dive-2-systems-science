@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.5.2 有限时域LQR与Riccati递推 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P10-C05-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P10-C05-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-riccati">本节练习 · 4 题</a><a class="button" href="/chapters/10-05-动态规划与 LQR/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>10.5.2 有限时域LQR与Riccati递推</h1>
+<p>一步问题中，最小化以后的价值仍然是状态的二次函数。若下一步已经有这样的价值，当前输入也能按同样方法求解。利用这个结构，可以先从终点算出每一步的反馈，再从初态依次执行。</p>
+<p>学完本节，你应能完成一次矩阵配方，推导有限时域反馈与价值递推，并用执行轨迹核对总成本。先修为上一节的Bellman递推、第8篇的矩阵二次目标，以及10.3的状态反馈。</p>
+<h2 id="finite-horizon-lqr-problem">有限时域线性二次问题</h2>
+<p>采用已知离散线性模型</p>
+<p>$$x_{t+1}=Ax_t+Bu_t,$$</p>
+<p>其中$x_t\in\mathbb R^n$、$u_t\in\mathbb R^m$，$A$为$n\times n$，$B$为$n\times m$。从时刻0开始执行$N$次输入，总成本为</p>
+<p>$$J=\sum_{t=0}^{N-1}(x_t^{\mathsf T}Qx_t+u_t^{\mathsf T}Ru_t)
++x_N^{\mathsf T}Q_fx_N.$$</p>
+<p>$Q,Q_f$为对称半正定的$n\times n$矩阵，$R$为对称正定的$m\times m$矩阵；各项权重将状态与输入化为相同的代价单位。完整状态可用于决策，输入取任意实向量，目标为将状态偏差调节到零。对这样的线性系统与二次成本求最优调节反馈，称为<strong>线性二次调节器（linear quadratic regulator，LQR）</strong>设计；这里先求有限时域问题。</p>
+<p>价值函数$V_t(x)$仍表示从时刻$t$、状态$x$开始的最小剩余成本。终端条件为</p>
+<p>$$V_N(x)=x^{\mathsf T}Q_fx.$$</p>
+<p>若$x$原本表示非零平衡点附近的状态，还需同时把状态和输入转为相对该平衡的偏差，才得到这里以零为目标的形式。</p>
+<h2 id="quadratic-value-expansion">二次价值与矩阵展开</h2>
+<p>假设下一时刻价值为$V_{t+1}(x)=x^{\mathsf T}S_{t+1}x$。从终端的$S_N=Q_f$出发，这个假设首先成立。Bellman式为</p>
+<p>$$V_t(x)=\min_u\left\{x^{\mathsf T}Qx+u^{\mathsf T}Ru
++(Ax+Bu)^{\mathsf T}S_{t+1}(Ax+Bu)\right\}.$$</p>
+<p>将未来成本的四项展开，两个交叉项互为转置且同为标量，因此可以相加：</p>
+<p>$$\begin{aligned}
+J_t(x,u)={}&amp;x^{\mathsf T}(Q+A^{\mathsf T}S_{t+1}A)x\\
+&amp;+2u^{\mathsf T}B^{\mathsf T}S_{t+1}Ax
++u^{\mathsf T}(R+B^{\mathsf T}S_{t+1}B)u.
+\end{aligned}$$</p>
+<p>记</p>
+<p>$$G_t=Q+A^{\mathsf T}S_{t+1}A,\quad
+M_t=B^{\mathsf T}S_{t+1}A,\quad H_t=R+B^{\mathsf T}S_{t+1}B.$$</p>
+<p>$G_t$为$n\times n$，$M_t$为$m\times n$，$H_t$为$m\times m$。所以$x^{\mathsf T}G_tx$、$u^{\mathsf T}M_tx$、$u^{\mathsf T}H_tu$都是标量。当前$x$固定，优化的变量仍是$u$。</p>
+<h2 id="riccati-completing-square">矩阵配方与反馈增益</h2>
+<p>由于$R$正定、$S_{t+1}$半正定，对任意非零输入方向$z$，</p>
+<p>$$z^{\mathsf T}H_tz=z^{\mathsf T}Rz+(Bz)^{\mathsf T}S_{t+1}(Bz)&gt;0.$$</p>
+<p>因此$H_t$正定，可以求解线性方程</p>
+<p>$$\boxed{H_tK_t=M_t.}$$</p>
+<p>$K_t$为$m\times n$。对$J_t$求输入梯度，得到$2H_tu+2M_tx=0$，故唯一最小输入为$u_t^*=-K_tx_t$。要看最小值的结构，直接展开</p>
+<p>$$(u+K_tx)^{\mathsf T}H_t(u+K_tx)
+=u^{\mathsf T}H_tu+2u^{\mathsf T}M_tx+x^{\mathsf T}K_t^{\mathsf T}H_tK_tx.$$</p>
+<p>把最后一项扣回去，就得到</p>
+<p>$$J_t(x,u)=(u+K_tx)^{\mathsf T}H_t(u+K_tx)+x^{\mathsf T}S_tx,$$</p>
+<p>其中</p>
+<p>$$\boxed{S_t=Q+A^{\mathsf T}S_{t+1}A-A^{\mathsf T}S_{t+1}BK_t.}$$</p>
+<p>第一个二次型非负，恰在最优输入处为零，所以$V_t(x)=x^{\mathsf T}S_tx$。最小剩余成本非负，也保证$S_t$继续半正定；下一次倒推因此仍能求解正定的$H$。</p>
+<p>从$S_N=Q_f$开始，依次计算$t=N-1,\ldots,0$的$K_t,S_t$，这就是离散<strong>Riccati递推（Riccati recursion）</strong>。实现时解$H_tK_t=M_t$，按第8篇的做法避免显式构造逆矩阵。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-05-动态规划与 LQR/practice/?question=p10-riccati-boundary">Riccati 从哪里开始</a></li></ul></nav>
+
+<h2 id="scalar-check-and-time-order">标量核对与返回次序</h2>
+<p>令$A=B=Q=R=Q_f=[1]$、$N=1$，就回到上一节：</p>
+<p>$$S_1=[1],\qquad H_0=[2],\qquad K_0=[0.5],\qquad S_0=[1.5].$$</p>
+<p>$[0.5]$在这里是一个$1\times1$增益矩阵。计算题用按行排列的嵌套列表表示每个矩阵，最外层再按时刻保存。因此增益列表含$K_0,\ldots,K_{N-1}$共$N$项，价值矩阵列表含$S_0,\ldots,S_N$共$N+1$项。</p>
+<p>求解从终点向前倒推，保存与执行按时间正序。先得到全部增益以后，从$x_0$开始，用$u_0=-K_0x_0$推进到$x_1$，再用$K_1$，直至终端。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-riccati">有限时域 Riccati 倒推</a></li></ul></nav>
+
+<h2 id="eight-step-lqr-experiment">二维八步反馈与成本核对</h2>
+<p>实验采用位置与缩放速度组成的状态，顺序为第一、第二分量，数值单位均为U：</p>
+<p>$$A=\begin{pmatrix}1&amp;0.5\\0&amp;1\end{pmatrix},\quad
+B=\begin{pmatrix}0\\0.5\end{pmatrix},\quad
+Q=\begin{pmatrix}1&amp;0\\0&amp;0.1\end{pmatrix},$$</p>
+<p>$$R=[0.5],\qquad Q_f=\begin{pmatrix}2&amp;0\\0&amp;1\end{pmatrix},\qquad N=8.$$</p>
+<p>输入也采用缩放后的幅度单位，权重使用与这些坐标配套的代价数值。可以先手算最后一步：$S_8=Q_f$，$H_7=[0.75]$、$M_7=(0,0.5)$，所以</p>
+<p>$$K_7=(0,2/3),\qquad
+S_7=\begin{pmatrix}3&amp;1\\1&amp;19/15\end{pmatrix}.$$</p>
+<p>最后一个输入只直接改变终端速度，因此$K_7$的第一项为零。前面的输入还有时间通过速度影响位置，倒推时就会得到非零的位置增益。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P10-C05-S02-663ef5c8-1.png" alt="有限时域LQR与Riccati递推：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图从$x_0=(2,0)^{\mathsf T}$ U出发，比较LQR与零输入。零输入保持原位置，反馈先改变速度，再使位置靠近零。右图按决策时刻画出两个增益分量，终点附近的变化来自剩余步骤与终端权重。</p>
+<p>将八次输入及对应状态代回原成本，阶段成本之和约为14.238982，终端成本约为0.028868，总计约14.267850。同一个值也由$x_0^{\mathsf T}S_0x_0$得到。正向相加与倒推价值相符，把反馈执行和价值函数连接起来。</p>
+<h2 id="finite-and-infinite-horizons">有限时域与无限时域</h2>
+<p>有限时域通常使用随$t$变化的$K_t$。即使$Q,R$固定，剩余步骤与终端权重也会改变当前决策。无限时域则把成本延伸到所有未来步骤，讨论的是能否得到稳定的长期反馈与有限的累计成本。</p>
+<p>这里的稳定指相应离散矩阵的特征值严格位于单位圆内。标准离散无限时域LQR的一组保证条件包括：$(A,B)$可稳定，$(Q^{1/2},A)$可检测，以及$Q\succeq0,R\succ0$。其中$Q^{1/2}$是满足$(Q^{1/2})^{\mathsf T}Q^{1/2}=Q$的半正定平方根，因而</p>
+<p>$$x^{\mathsf T}Qx=\|Q^{1/2}x\|^2.$$</p>
+<p>可检测性在这里要求：没有进入状态成本的模态本身稳定。输入能够稳定需要控制的模态，成本也能反映不稳定的状态方向，二者共同支持无限时域稳定化解。有限次倒推计算的是眼前的$N$步问题，长期结论还应按这些条件判断。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-vs-infinite">时域长度改变什么</a></li></ul></nav>
+
+<h2 id="input-limits-and-optimality">输入限幅与约束决策</h2>
+<p>若执行器只能接受一定幅度的输入，可以将LQR请求裁剪后再执行，并用实际输入更新对象。这样每步输入满足幅值上限，但状态会沿新的轨迹演化，后续最优决策也可能改变。要寻找受限问题的最小总代价，应把这些限制放进整段优化，而不只逐步裁剪原请求。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/10-05-动态规划与 LQR/practice/?question=p10-unconstrained-vs-saturated">截断 LQR 输入</a></li></ul></nav>
+
+<p>下一章将显式约束每个候选输入和预测后继，在当前状态下重新选择计划，再执行计划的第一步。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://underactuated.mit.edu/lqr.html">Tedrake，Underactuated Robotics：Linear Quadratic Regulators</a>给出二次价值与有限时域推导，其离散时间附注连接矩阵配方与反馈。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/10-05-动态规划与 LQR/read/1/">← 10.5.1 价值函数与Bellman递推</a><a href="/chapters/10-06-带约束的 MPC/read/1/">10.6.1 模型预测控制与硬约束 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>
