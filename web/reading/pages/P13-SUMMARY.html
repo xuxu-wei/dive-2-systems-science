@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>篇末综合 有限证据、级联损伤与预警判断 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P13-SUMMARY">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P13-SUMMARY" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-finite-claim">本节练习 · 8 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>篇末综合 有限证据、级联损伤与预警判断</h1>
+<p>一次干预减少了最终失效节点，却没有缩短小扰动的恢复时间；有些报警之后，也没有出现预期事件。这些记录可以同时成立，因为它们分别回答损伤范围、恢复速度和预警可靠性的问题。本篇综合将沿这些问题整理计算，再把各项结果读回它们所描述的过程。</p>
+<h2 id="order-amplitude-and-between-run-variation">群体一致程度与重复间波动</h2>
+<p>沿用13.1的二值群体：$N$个个体各取$s_i=\pm1$，有符号平均为$m=N^{-1}\sum_i s_i$，一致程度用$|m|$表示。汇总重复轨迹时，先在每条轨迹内对保留时段求幅度平均，再比较各次重复。</p>
+<p>设轨迹编号为$j=1,\ldots,R$，每条列表开头舍弃$b$项，余下有$L_j$项。计算</p>
+<p>$$a_j=\frac1{L_j}\sum_{t=b}^{b+L_j-1}|m_{j,t}|,\qquad
+\bar a=\frac1R\sum_{j=1}^R a_j,$$</p>
+<p>再用</p>
+<p>$$s_R=\sqrt{\frac1R\sum_{j=1}^R(a_j-\bar a)^2}$$</p>
+<p>描述重复结果的分散。这里标准差的平方偏差和除以$R$，与本篇一直使用的经验分布统计一致。</p>
+<p>例如给定两条列表$(0,-0.6,-0.4)$与$(0,0.6,0.4)$，舍弃开头一项后，两次幅度平均都是$(0.6+0.4)/2=0.5$，所以返回$(\bar a,s_R)=(0.5,0)$。如果先把有符号轨迹逐项平均，正负方向便会抵消，丢掉两条轨迹都具有的一致程度。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-size-summary">综合题：多次序参量摘要</a></li></ul></nav>
+
+<p>本节实验实际生成五条随机路径：固定$N=50,\beta=1.2$，每条从全体$+1$开始，独立更新50轮，保留初态共51项。舍弃开头15项后，保留下标15到50的36项。五次幅度平均的均值约为0.6222，重复间标准差约为0.0521。</p>
+<h2 id="finite-size-evidence-and-further-comparison">有限规模曲线与进一步比较</h2>
+<p>这五次结果描述当前规模、参数和观察时段的群体。若研究不同规模下曲线是否变陡，就保持更新规则、起点及参数点可比较，在每个规模保留独立重复，并检查暂态截取与观察长度怎样影响幅度分布。</p>
+<p>延长观察可以帮助辨别暂时停留和较稳定的统计表现；改变规模则检验这种表现是否随人数系统变化。把这两类变化分开，才知道较陡的曲线是持续的规模趋势，还是当前有限时段中尚未消退的暂态。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-finite-claim">有限规模的临界证据</a></li></ul></nav>
+
+<h2 id="synchronous-cascade-and-damage-sources">同步级联与损伤来源</h2>
+<p>再取四节点链$0—1—2—3$，阈值全部为1，第0轮直接损伤0。每轮只读取上一轮末的累计失效集合，逐轮新增为$\{0\},\{1\},\{2\},\{3\}$，最终失效比例为$4/4=1$。</p>
+<p>用$F_t$表示累计集合，下一轮只检查$i\notin F_t$的节点，找出失效邻居数达到其正整数阈值的节点。先收集本轮新增，再一起并入$F_t$，就保留了13.2的同步时序。</p>
+<p>返回列表$[[0],[1],[2],[3]]$记录的是各轮新增。第一项属于直接损伤，后三项属于继发失效；没有新增时结束，不再附加空终止轮。若一开始没有损伤，正阈值使所有节点都不能触发，返回保留第0轮的$[[]]$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-cascade">综合题：计算级联各轮</a></li></ul></nav>
+
+<p>失效比例回答原网络损失了多少节点。若问题改为剩余节点能否共同工作，则进一步计算可用连通分量，并接入具体的容量与需求。指标应跟随要评价的对象选择。</p>
+<h2 id="local-recovery-and-finite-perturbations">局部恢复率与有限扰动的返回</h2>
+<p>沿用恢复方程</p>
+<p>$$\dot x=-ax\left(1-\frac xB\right),\qquad a&gt;0,\quad B&gt;0.$$</p>
+<p>$x$表示相对参考平衡0的偏差，这里以U计；$B$也以U计，$a$的单位为$1/\mathrm T$。在零点附近，右端导数为$-a$，小扰动近似按$e^{-at}$恢复，时间尺度为$1/a$，幅度减半时间为$\ln2/a$。</p>
+<p>对于有限正扰动，还要看整个右端的方向。$0&lt;x&lt;B$时，$1-x/B&gt;0$，导数为负，状态向0回落；$x&gt;B$时，导数为正，状态继续向外增大。因此非负侧的吸引域是$[0,B)$。</p>
+<p>固定$a$，将$B$从1 U改为2 U，局部恢复率保持相同；大小1.5 U的正扰动却从第一个模型的吸引域外进入第二个模型的吸引域内。局部恢复速度与允许返回的扰动范围分别由不同信息决定。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-basin">恢复速度与吸引域</a></li></ul></nav>
+
+<p>本节展示另取$x_0=1.4$ U、$B=2$ U、$a=1.5/\mathrm T$，用$0.02\ \mathrm T$步长推进40步，观察到$0.8\ \mathrm T$。末值约为0.8265 U，除以参考值$B=2$ U后为0.4133，表示这个时刻剩余偏差相对$B$的大小。</p>
+<h2 id="past-window-and-lagged-correlation">过去窗口与滞后相关</h2>
+<p>现在把观察对象换成按时间排列的读数。设当前最后可用的列表位置为$t$，窗口含$w$项，统计范围就是$t-w+1$到$t$，包括当前值。把取出的窗口依次记为$y_0,\ldots,y_{w-1}$，用整窗均值计算</p>
+<p>$$\bar y=\frac1w\sum_{r=0}^{w-1}y_r,\qquad
+v=\frac1w\sum_{r=0}^{w-1}(y_r-\bar y)^2.$$</p>
+<p>滞后$\ell$项时，将$(y_0,\ldots,y_{w-\ell-1})$与$(y_\ell,\ldots,y_{w-1})$配成两段。两段各自减去自身均值，再按Pearson公式计算相关。$\ell$是列表位置差；物理采样间隔为$\Delta t$时，它对应$\ell\Delta t$的时间差。</p>
+<p>例如给定列表$(1,2,3,4,100)$，当前位置为3、窗口为4、滞后为1。当前窗口是$(1,2,3,4)$，均值2.5，方差为</p>
+<p>$$v=\frac{(-1.5)^2+(-0.5)^2+0.5^2+1.5^2}{4}=1.25.$$</p>
+<p>相关使用$(1,2,3)$与$(2,3,4)$，分别减去均值2与3，两段都变成$(-1,0,1)$，故相关为1。列表最后的100在当前时刻尚未获得，不进入这次计算。</p>
+<p>计算题按“方差、相关”的顺序返回结果。窗口不足，或$\ell$不满足$1\le\ell&lt;w$时，返回$(\texttt{None},\texttt{None})$；窗口有效但某一配对片段恒定时，方差照常计算，相关因分母为零返回$\texttt{None}$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-past-window">综合题：无未来信息的预警窗</a></li></ul></nav>
+
+<h2 id="lead-windows-detection-and-false-alerts">提前窗口、事件检出与误报</h2>
+<p>窗口指标在观测逐步到达时计算；事件发生后，再用事先规定的提前范围评价已经作出的报警。设提前长度为正整数$h$，事件时刻为$e$，报警时刻为$a$。</p>
+<p>对每个事件，若至少有一次报警满足</p>
+<p>$$e-h\le a&lt;e,$$</p>
+<p>就将该事件记为检出。有效报警区间是$[e-h,e)$：左端包含提前恰好$h$步的报警，右端排除事件当刻的报警。没有有效提前报警的事件记为漏报。</p>
+<p>对每次报警，则检查它之后的区间</p>
+<p>$$(a,a+h].$$</p>
+<p>若其中没有事件，这次报警就是误报。两种写法描述相同的提前关系，但统计对象不同：检出与漏报数事件，误报数报警。重复时刻各自合并为一次；一个事件即使有多次有效报警，也只检出一次。</p>
+<p>用给定时刻表手算：报警为$(2,4,8)$，事件为$(5,12)$，$h=2$。</p>
+<table>
+<thead>
+<tr>
+  <th>检查对象</th>
+  <th>对应区间</th>
+  <th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>事件5</td>
+  <td>提前报警$[3,5)$</td>
+  <td>含报警4，检出</td>
+</tr>
+<tr>
+  <td>事件12</td>
+  <td>提前报警$[10,12)$</td>
+  <td>无报警，漏报</td>
+</tr>
+<tr>
+  <td>报警2</td>
+  <td>随后事件$(2,4]$</td>
+  <td>无事件，误报</td>
+</tr>
+<tr>
+  <td>报警4</td>
+  <td>随后事件$(4,6]$</td>
+  <td>含事件5</td>
+</tr>
+<tr>
+  <td>报警8</td>
+  <td>随后事件$(8,10]$</td>
+  <td>无事件，误报</td>
+</tr>
+</tbody>
+</table>
+<p>因此按“检出事件数、误报报警数、漏报事件数”返回$(1,2,1)$。若换成比例，检出与漏报分别以两个事件为分母，都是$1/2$；报警中误报的比例则以三次报警为分母，为$2/3$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-alert-errors">综合题：误报和漏报</a></li></ul></nav>
+
+<h2 id="one-factor-contrasts-and-scale-rankings">单因素差与尺度排序</h2>
+<p>13.4通过共同参考比较改变来源。给定参考指标0.5，只改参数、只改观测处理、只改模型结构时，指标分别为0.6、0.4、0.9，三个有符号差就是</p>
+<p>$$(0.6-0.5,\ 0.4-0.5,\ 0.9-0.5)=(0.1,-0.1,0.4).$$</p>
+<p>三项沿用同一指标定义与单位，依次表示这三种单独改变相对参考的方向和幅度。它们是给定条件下的对照差；要研究多种改变同时发生的结果，还要计算组合条件及其相互影响。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-uncertainty">综合题：不确定性单因素对照</a></li></ul></nav>
+
+<p>尺度比较同样先明确评分含义。给定粗尺度评分$S_A=0.8,S_B=0.7$，A领先0.1；给定细尺度评分$S_A=0.4,S_B=0.6$，B领先0.2。这两张评价表发生严格排序反转，说明所选尺度改变了当前方案比较。这里以两套给定评分为比较输入，按各自尺度求差，再比较差的符号。</p>
+<h2 id="four-model-results-and-interpretation">四项模型结果与各自问题</h2>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P13-SUMMARY-7a534ffc-0.png" alt="有限证据、级联损伤与预警判断：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中四根柱子分别来自本节的不同计算：</p>
+<table>
+<thead>
+<tr>
+  <th>柱子</th>
+  <th style="text-align:right">数值约为</th>
+  <th>回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>五次尾窗幅度的平均</td>
+  <td style="text-align:right">0.6222</td>
+  <td>当前群体模型在保留时段内有多一致？</td>
+</tr>
+<tr>
+  <td>四节点链最终失效比例</td>
+  <td style="text-align:right">1</td>
+  <td>当前损伤和阈值使原节点损失多少？</td>
+</tr>
+<tr>
+  <td>恢复末值除以参考值2 U，即$x/B$</td>
+  <td style="text-align:right">0.4133</td>
+  <td>$0.8\ \mathrm T$时还剩多大的相对偏差？</td>
+</tr>
+<tr>
+  <td>粗尺度A减B的得分</td>
+  <td style="text-align:right">0.1</td>
+  <td>当前粗尺度评价中A比B高多少？</td>
+</tr>
+</tbody>
+</table>
+<p>这些值都无量纲，但数值增大的含义分别是一致程度增强、损伤增加、剩余偏差增大或A的评分优势扩大。读图时，先选定问题，再回到相应的变量、扰动、时间与比较条件。</p>
+<p>评价一项干预时，也分别保留它改变了哪些结果：失效节点减少，就报告损伤规模下降；恢复时间不变，就保留这一恢复结果；报警后没有发生事件，则计入预定窗口下的误报。这样的描述能让下一次模型修改或观测围绕尚未改善的目标展开。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-scale-limit">改变尺度后的韧性结论</a></li></ul></nav>
+
+<p>下一篇转向从数据建立动态表示。这里形成的顺序仍然适用：先确定预测对象，再选择保留的信息，最后用与问题一致的新结果检查预测。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/13-04-多尺度、粗粒化与不确定性/read/2/">← 13.4.2 单因素对照、尺度与排序反转</a><a href="/parts/14-数据驱动动力学与模型降阶/">继续：第 14 篇 数据驱动动力学与模型降阶 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

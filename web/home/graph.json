@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "7d78f9b519b86bd58159445f616cc76186e8bb8ec231c667e8054965b6c0c4d4",
+    "catalogSha256": "b505b3f75f80bd3d16884f6a1f2699921c263d8841d48be1fcfa2b974cc86a6c",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -16557,8 +16557,8 @@
       "english": null,
       "number": "13.1.1",
       "parentId": "13.1",
-      "url": "/notebook/?id=P13-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-01-相变、临界性与有限规模/read/1/",
+      "readingUrl": "/chapters/13-01-相变、临界性与有限规模/read/1/",
       "practiceUrl": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary",
       "description": "从有符号平均和一次随机更新推导条件方差，分清时间汇总与重复间波动。",
       "categories": [
@@ -16577,7 +16577,7 @@
       "total": 1,
       "lessonId": "P13-C01-S01",
       "lessonNumber": "13.1.1",
-      "lessonTitle": "序参量与有限随机重复",
+      "lessonTitle": "有符号平均、序参量与有限波动",
       "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16588,8 +16588,8 @@
       "english": null,
       "number": "13.1.1",
       "parentId": "13.1",
-      "url": "/notebook/?id=P13-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-01-相变、临界性与有限规模/read/1/",
+      "readingUrl": "/chapters/13-01-相变、临界性与有限规模/read/1/",
       "practiceUrl": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary",
       "description": "从有符号平均和一次随机更新推导条件方差，分清时间汇总与重复间波动。",
       "categories": [
@@ -16608,7 +16608,7 @@
       "total": 1,
       "lessonId": "P13-C01-S01",
       "lessonNumber": "13.1.1",
-      "lessonTitle": "序参量与有限随机重复",
+      "lessonTitle": "有符号平均、序参量与有限波动",
       "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16619,8 +16619,8 @@
       "english": null,
       "number": "13.1.1",
       "parentId": "13.1",
-      "url": "/notebook/?id=P13-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-01-相变、临界性与有限规模/read/1/",
+      "readingUrl": "/chapters/13-01-相变、临界性与有限规模/read/1/",
       "practiceUrl": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary",
       "description": "从有符号平均和一次随机更新推导条件方差，分清时间汇总与重复间波动。",
       "categories": [
@@ -16639,7 +16639,7 @@
       "total": 1,
       "lessonId": "P13-C01-S01",
       "lessonNumber": "13.1.1",
-      "lessonTitle": "序参量与有限随机重复",
+      "lessonTitle": "有符号平均、序参量与有限波动",
       "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16650,8 +16650,8 @@
       "english": null,
       "number": "13.1.2",
       "parentId": "13.1",
-      "url": "/notebook/?id=P13-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-01-相变、临界性与有限规模/read/2/",
+      "readingUrl": "/chapters/13-01-相变、临界性与有限规模/read/2/",
       "practiceUrl": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield",
       "description": "手算零点附近的映射，结合规模、初值、观察时长和重复解释参数曲线。",
       "categories": [
@@ -16670,7 +16670,7 @@
       "total": 1,
       "lessonId": "P13-C01-S02",
       "lessonNumber": "13.1.2",
-      "lessonTitle": "规模、暂态与阈值证据",
+      "lessonTitle": "平均映射、临界变化与有限规模",
       "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16681,8 +16681,8 @@
       "english": null,
       "number": "13.1.2",
       "parentId": "13.1",
-      "url": "/notebook/?id=P13-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-01-相变、临界性与有限规模/read/2/",
+      "readingUrl": "/chapters/13-01-相变、临界性与有限规模/read/2/",
       "practiceUrl": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield",
       "description": "手算零点附近的映射，结合规模、初值、观察时长和重复解释参数曲线。",
       "categories": [
@@ -16701,7 +16701,7 @@
       "total": 1,
       "lessonId": "P13-C01-S02",
       "lessonNumber": "13.1.2",
-      "lessonTitle": "规模、暂态与阈值证据",
+      "lessonTitle": "平均映射、临界变化与有限规模",
       "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16712,8 +16712,8 @@
       "english": null,
       "number": "13.1.2",
       "parentId": "13.1",
-      "url": "/notebook/?id=P13-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-01-相变、临界性与有限规模/read/2/",
+      "readingUrl": "/chapters/13-01-相变、临界性与有限规模/read/2/",
       "practiceUrl": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield",
       "description": "手算零点附近的映射，结合规模、初值、观察时长和重复解释参数曲线。",
       "categories": [
@@ -16732,7 +16732,7 @@
       "total": 1,
       "lessonId": "P13-C01-S02",
       "lessonNumber": "13.1.2",
-      "lessonTitle": "规模、暂态与阈值证据",
+      "lessonTitle": "平均映射、临界变化与有限规模",
       "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16778,8 +16778,8 @@
       "english": null,
       "number": "13.2.1",
       "parentId": "13.2",
-      "url": "/notebook/?id=P13-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/",
+      "readingUrl": "/chapters/13-02-级联失效与结构鲁棒性/read/1/",
       "practiceUrl": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds",
       "description": "沿四节点链逐轮列出新失效名单，说明直接损伤、继发失效与同步读取。",
       "categories": [
@@ -16798,7 +16798,7 @@
       "total": 1,
       "lessonId": "P13-C02-S01",
       "lessonNumber": "13.2.1",
-      "lessonTitle": "从初始损伤到级联",
+      "lessonTitle": "直接损伤、继发失效与同步级联",
       "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16809,8 +16809,8 @@
       "english": null,
       "number": "13.2.1",
       "parentId": "13.2",
-      "url": "/notebook/?id=P13-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/",
+      "readingUrl": "/chapters/13-02-级联失效与结构鲁棒性/read/1/",
       "practiceUrl": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds",
       "description": "沿四节点链逐轮列出新失效名单，说明直接损伤、继发失效与同步读取。",
       "categories": [
@@ -16829,7 +16829,7 @@
       "total": 1,
       "lessonId": "P13-C02-S01",
       "lessonNumber": "13.2.1",
-      "lessonTitle": "从初始损伤到级联",
+      "lessonTitle": "直接损伤、继发失效与同步级联",
       "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16840,8 +16840,8 @@
       "english": null,
       "number": "13.2.1",
       "parentId": "13.2",
-      "url": "/notebook/?id=P13-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/",
+      "readingUrl": "/chapters/13-02-级联失效与结构鲁棒性/read/1/",
       "practiceUrl": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds",
       "description": "沿四节点链逐轮列出新失效名单，说明直接损伤、继发失效与同步读取。",
       "categories": [
@@ -16860,7 +16860,7 @@
       "total": 1,
       "lessonId": "P13-C02-S01",
       "lessonNumber": "13.2.1",
-      "lessonTitle": "从初始损伤到级联",
+      "lessonTitle": "直接损伤、继发失效与同步级联",
       "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16871,8 +16871,8 @@
       "english": null,
       "number": "13.2.2",
       "parentId": "13.2",
-      "url": "/notebook/?id=P13-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/",
+      "readingUrl": "/chapters/13-02-级联失效与结构鲁棒性/read/2/",
       "practiceUrl": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor",
       "description": "比较链和星形的失效过程及剩余分量，分开节点保留数与连通规模。",
       "categories": [
@@ -16891,7 +16891,7 @@
       "total": 1,
       "lessonId": "P13-C02-S02",
       "lessonNumber": "13.2.2",
-      "lessonTitle": "结构、阈值与剩余功能",
+      "lessonTitle": "结构鲁棒性与最大可用连通分量",
       "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16902,8 +16902,8 @@
       "english": null,
       "number": "13.2.2",
       "parentId": "13.2",
-      "url": "/notebook/?id=P13-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/",
+      "readingUrl": "/chapters/13-02-级联失效与结构鲁棒性/read/2/",
       "practiceUrl": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor",
       "description": "比较链和星形的失效过程及剩余分量，分开节点保留数与连通规模。",
       "categories": [
@@ -16922,7 +16922,7 @@
       "total": 1,
       "lessonId": "P13-C02-S02",
       "lessonNumber": "13.2.2",
-      "lessonTitle": "结构、阈值与剩余功能",
+      "lessonTitle": "结构鲁棒性与最大可用连通分量",
       "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16933,8 +16933,8 @@
       "english": null,
       "number": "13.2.2",
       "parentId": "13.2",
-      "url": "/notebook/?id=P13-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/",
+      "readingUrl": "/chapters/13-02-级联失效与结构鲁棒性/read/2/",
       "practiceUrl": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor",
       "description": "比较链和星形的失效过程及剩余分量，分开节点保留数与连通规模。",
       "categories": [
@@ -16953,7 +16953,7 @@
       "total": 1,
       "lessonId": "P13-C02-S02",
       "lessonNumber": "13.2.2",
-      "lessonTitle": "结构、阈值与剩余功能",
+      "lessonTitle": "结构鲁棒性与最大可用连通分量",
       "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16999,8 +16999,8 @@
       "english": "local recovery rate",
       "number": "13.3.1",
       "parentId": "13.3",
-      "url": "/notebook/?id=P13-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/",
+      "readingUrl": "/chapters/13-03-扰动、恢复与早期预警/read/1/",
       "practiceUrl": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory",
       "description": "从同一扰动的变化方向区分局部恢复时间和吸引域，并检查Euler步长。",
       "categories": [
@@ -17030,8 +17030,8 @@
       "english": null,
       "number": "13.3.1",
       "parentId": "13.3",
-      "url": "/notebook/?id=P13-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/",
+      "readingUrl": "/chapters/13-03-扰动、恢复与早期预警/read/1/",
       "practiceUrl": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory",
       "description": "从同一扰动的变化方向区分局部恢复时间和吸引域，并检查Euler步长。",
       "categories": [
@@ -17061,8 +17061,8 @@
       "english": null,
       "number": "13.3.1",
       "parentId": "13.3",
-      "url": "/notebook/?id=P13-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/",
+      "readingUrl": "/chapters/13-03-扰动、恢复与早期预警/read/1/",
       "practiceUrl": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory",
       "description": "从同一扰动的变化方向区分局部恢复时间和吸引域，并检查Euler步长。",
       "categories": [
@@ -17092,8 +17092,8 @@
       "english": null,
       "number": "13.3.2",
       "parentId": "13.3",
-      "url": "/notebook/?id=P13-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/",
+      "readingUrl": "/chapters/13-03-扰动、恢复与早期预警/read/2/",
       "practiceUrl": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators",
       "description": "用慢化与噪声两组对照解释窗口方差，再计算滞后相关和报警错误。",
       "categories": [
@@ -17112,7 +17112,7 @@
       "total": 1,
       "lessonId": "P13-C03-S02",
       "lessonNumber": "13.3.2",
-      "lessonTitle": "过去窗口与预警误差",
+      "lessonTitle": "自相关、过去窗口与预警误差",
       "chapterUrl": "/chapters/13-03-扰动、恢复与早期预警/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17123,8 +17123,8 @@
       "english": null,
       "number": "13.3.2",
       "parentId": "13.3",
-      "url": "/notebook/?id=P13-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/",
+      "readingUrl": "/chapters/13-03-扰动、恢复与早期预警/read/2/",
       "practiceUrl": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators",
       "description": "用慢化与噪声两组对照解释窗口方差，再计算滞后相关和报警错误。",
       "categories": [
@@ -17143,7 +17143,7 @@
       "total": 1,
       "lessonId": "P13-C03-S02",
       "lessonNumber": "13.3.2",
-      "lessonTitle": "过去窗口与预警误差",
+      "lessonTitle": "自相关、过去窗口与预警误差",
       "chapterUrl": "/chapters/13-03-扰动、恢复与早期预警/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17154,8 +17154,8 @@
       "english": null,
       "number": "13.3.2",
       "parentId": "13.3",
-      "url": "/notebook/?id=P13-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/",
+      "readingUrl": "/chapters/13-03-扰动、恢复与早期预警/read/2/",
       "practiceUrl": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators",
       "description": "用慢化与噪声两组对照解释窗口方差，再计算滞后相关和报警错误。",
       "categories": [
@@ -17174,7 +17174,7 @@
       "total": 1,
       "lessonId": "P13-C03-S02",
       "lessonNumber": "13.3.2",
-      "lessonTitle": "过去窗口与预警误差",
+      "lessonTitle": "自相关、过去窗口与预警误差",
       "chapterUrl": "/chapters/13-03-扰动、恢复与早期预警/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17220,8 +17220,8 @@
       "english": null,
       "number": "13.4.1",
       "parentId": "13.4",
-      "url": "/notebook/?id=P13-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/",
+      "readingUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/",
       "practiceUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor",
       "description": "逐格算出同密度排列的不同未来，用配对频率补足精确的一步平均。",
       "categories": [
@@ -17240,7 +17240,7 @@
       "total": 1,
       "lessonId": "P13-C04-S01",
       "lessonNumber": "13.4.1",
-      "lessonTitle": "同一均值的不同局部结构",
+      "lessonTitle": "粗观测、局部结构与一步预测",
       "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17251,8 +17251,8 @@
       "english": null,
       "number": "13.4.1",
       "parentId": "13.4",
-      "url": "/notebook/?id=P13-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/",
+      "readingUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/",
       "practiceUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor",
       "description": "逐格算出同密度排列的不同未来，用配对频率补足精确的一步平均。",
       "categories": [
@@ -17271,7 +17271,7 @@
       "total": 1,
       "lessonId": "P13-C04-S01",
       "lessonNumber": "13.4.1",
-      "lessonTitle": "同一均值的不同局部结构",
+      "lessonTitle": "粗观测、局部结构与一步预测",
       "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17282,8 +17282,8 @@
       "english": null,
       "number": "13.4.1",
       "parentId": "13.4",
-      "url": "/notebook/?id=P13-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/",
+      "readingUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/",
       "practiceUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor",
       "description": "逐格算出同密度排列的不同未来，用配对频率补足精确的一步平均。",
       "categories": [
@@ -17302,7 +17302,7 @@
       "total": 1,
       "lessonId": "P13-C04-S01",
       "lessonNumber": "13.4.1",
-      "lessonTitle": "同一均值的不同局部结构",
+      "lessonTitle": "粗观测、局部结构与一步预测",
       "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17313,8 +17313,8 @@
       "english": null,
       "number": "13.4.2",
       "parentId": "13.4",
-      "url": "/notebook/?id=P13-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/",
+      "readingUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/",
       "practiceUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts",
       "description": "以共同参考整理三项单因素差，再说明评分排序和敏感性范围。",
       "categories": [
@@ -17333,7 +17333,7 @@
       "total": 1,
       "lessonId": "P13-C04-S02",
       "lessonNumber": "13.4.2",
-      "lessonTitle": "分解不确定性与排序反转",
+      "lessonTitle": "单因素对照、尺度与排序反转",
       "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17344,8 +17344,8 @@
       "english": null,
       "number": "13.4.2",
       "parentId": "13.4",
-      "url": "/notebook/?id=P13-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/",
+      "readingUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/",
       "practiceUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts",
       "description": "以共同参考整理三项单因素差，再说明评分排序和敏感性范围。",
       "categories": [
@@ -17364,7 +17364,7 @@
       "total": 1,
       "lessonId": "P13-C04-S02",
       "lessonNumber": "13.4.2",
-      "lessonTitle": "分解不确定性与排序反转",
+      "lessonTitle": "单因素对照、尺度与排序反转",
       "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17375,8 +17375,8 @@
       "english": "ranking reversal",
       "number": "13.4.2",
       "parentId": "13.4",
-      "url": "/notebook/?id=P13-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/",
+      "readingUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/",
       "practiceUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts",
       "description": "以共同参考整理三项单因素差，再说明评分排序和敏感性范围。",
       "categories": [
@@ -17395,7 +17395,7 @@
       "total": 1,
       "lessonId": "P13-C04-S02",
       "lessonNumber": "13.4.2",
-      "lessonTitle": "分解不确定性与排序反转",
+      "lessonTitle": "单因素对照、尺度与排序反转",
       "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },

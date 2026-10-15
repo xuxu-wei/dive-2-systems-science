@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>13.1.2 平均映射、临界变化与有限规模 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P13-C01-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P13-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield">本节练习 · 4 题</a><a class="button" href="/chapters/13-01-相变、临界性与有限规模/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>13.1.2 平均映射、临界变化与有限规模</h1>
+<p>上一节固定 $\beta$ 比较人数。现在让 $\beta$ 从0.7增加到1.3：较弱的群体方向会被下一轮抹平，还是会被放大？先分析一步条件期望的映射，再看有限个体的重复结果怎样随参数和规模改变。</p>
+<p>学完本节，应能求平均映射的零点导数，解释线性判断的适用条件，并分开阅读解析边界与有限规模扫描。先修为13.1.1的抽样与汇总、第4篇的离散映射稳定性，以及导数的商法则与链式法则。</p>
+<h2 id="conditional-expectation-and-deterministic-map">条件期望与确定性平均映射</h2>
+<p>给定上一轮的平均 $m_t$，下一轮满足</p>
+<p>$$\mathbb E[m_{t+1}\mid m_t]=F(m_t),\qquad
+F(m)=\tanh(\beta m).$$</p>
+<p>现在直接采用这个条件期望作为新值，得到确定性参照</p>
+<p>$$\boxed{m_{t+1}=F(m_t).}$$</p>
+<p>每次都代入当前数值再计算下一步。起点是 $m_0$，更新 $K$ 次就有 $K+1$ 项；$K=0$ 时仅留下起点，$\beta=0$ 时第一步及后续值都为0。</p>
+<p>这个参照迭代的对象与“跨有限轨迹逐时刻平均”不同。若旧 $m_t$ 本身随机，全期望给出</p>
+<p>$$\mathbb E[m_{t+1}]=\mathbb E[F(m_t)].$$</p>
+<p>非线性函数一般不能与平均交换。例如 $\beta=1$，若旧平均等概率为0与1，先作映射再平均得到 $[\tanh0+\tanh1]/2\approx0.3808$，而先平均再作映射得到 $\tanh0.5\approx0.4621$。上一节的有限轨迹遵循前一种条件抽样关系，确定性参照则按单个当前值推进。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield">计算平均场固定点迭代</a></li></ul></nav>
+
+<h2 id="tanh-derivative-and-zero-point-multiplier">双曲正切导数与零点乘子</h2>
+<p>从指数比值出发，用商法则求导。分子的导数是 $e^z+e^{-z}$，分母的导数是 $e^z-e^{-z}$，于是</p>
+<p>$$\begin{aligned}
+\frac{\mathrm d}{\mathrm dz}\tanh z
+&amp;=\frac{(e^z+e^{-z})^2-(e^z-e^{-z})^2}
+{(e^z+e^{-z})^2}\\
+&amp;=1-\tanh^2 z.
+\end{aligned}$$</p>
+<p>再对内部的 $z=\beta m$ 使用链式法则，得到</p>
+<p>$$F'(m)=\beta[1-\tanh^2(\beta m)],\qquad
+\boxed{F'(0)=\beta.}$$</p>
+<p>零点总有 $F(0)=0$。在它附近，微小偏差 $\delta$ 经过一步近似变为 $\beta\delta$。因 $\beta\ge0$，当 $0\le\beta&lt;1$ 时偏差缩小，零点局部渐近稳定；$\beta&gt;1$ 时小偏差被放大，零点不稳定。</p>
+<p>手算一个小正起点 $m_0=0.2$：$\beta=0.8$ 给出 $\tanh0.16\approx0.15865$，$\beta=1.2$ 给出 $\tanh0.24\approx0.23550$，分别向零点靠近和离开。若起点恰好为0，两者都会停在0；稳定性判断研究的是受到小扰动后的变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-meanfield-threshold">固定点失稳条件</a></li></ul></nav>
+
+<h2 id="nonhyperbolic-boundary-and-nonlinear-recovery">非双曲边界与非线性恢复</h2>
+<p>$\beta=1$ 时，零点线性乘子的模等于1，属于非双曲情形，线性近似无法决定偏差缩小还是放大。要判断本例，可以进一步查看双曲正切本身。</p>
+<p>对 $m&gt;0$，$0&lt;\tanh m&lt;m$；负侧由奇对称得到相同的幅度关系。因而在此参数下，非零幅度仍逐步缩小并趋向0。只是越接近0，$\tanh m$ 与 $m$ 越接近，恢复变得很慢。这一结论用到了本例的非线性函数。</p>
+<p>从 $m_0=0.1$ 迭代15步，三个参数分别得到</p>
+<p>$$\begin{array}{c|ccc}
+\beta&amp;0.8&amp;1&amp;1.2\\\hline
+m_{15}&amp;0.0035&amp;0.0953&amp;0.6114
+\end{array}$$</p>
+<p>中间一项仍在缩小，却远比 $\beta=0.8$ 慢。$\beta&gt;1$ 时还存在正、负两个非零平衡。例如 $\beta=1.2$ 的平衡约为 $\pm0.6586$，代入导数得到乘子约0.6795，小扰动会向相应平衡恢复。</p>
+<p>在探索页左图比较 $F(m)$ 与对角线，交点就是平均映射的平衡；切换0.8与1.2可观察零点斜率和非零交点。右图的两条有限轨迹各只有一次随机运行，灰色虚线是从同一起点直接迭代的确定性参照。</p>
+<p class="concept-explore"><a href="/chapters/13-01-相变、临界性与有限规模/explore/?concept=P13-C01-S02%3Anonhyperbolic-boundary-and-nonlinear-recovery">可视化与探索：非双曲边界与非线性恢复 →</a></p>
+
+<h2 id="bifurcation-phase-transition-and-criticality">分岔、相变与临界性</h2>
+<p>平均映射随 $\beta$ 改变平衡分支及其稳定性，这是第4篇所讨论的分岔。这里的解析边界来自 $F'(0)=1$，所以得到 $\beta=1$。</p>
+<p><strong>相变（phase transition）</strong>研究宏观状态随控制参数发生的质变。在统计物理的严格用法中，需要明确规模趋于无限及长期状态的取法；相变对应宏观量或响应的非解析变化，例如指标跳变，或连续指标的斜率出现不光滑变化。有限人数曲线上的变化区间，会随规模、观察时长和抽样波动而改变。</p>
+<p>连续相变的边界称为临界点；<strong>临界性（criticality）</strong>关注接近这一边界时，波动、响应及相关时间等量呈现的尺度规律。<strong>临界指数（critical exponent）</strong>是描述相应幂律关系的指数。研究它时，要先选定具体量及其尺度关系，再用多个规模与接近边界的参数范围检查该关系。</p>
+<p>本节先把问题落实为可比较的量：确定性零点的稳定性给出一个解析参照，有限群体的平均幅度与重复散布给出指定规模下的结果。让规模和观察条件继续变化，才能研究二者如何连接。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-critical-language">分岔与相变语言</a></li></ul></nav>
+
+<h2 id="three-sizes-and-five-parameter-values">三个规模与五个参数点</h2>
+<p>对每个 $N=50,200,800$，使用相同参数点</p>
+<p>$$\beta=0.7,\ 0.9,\ 1.0,\ 1.1,\ 1.3.$$</p>
+<p>每一组从全体 $+1$ 出发，独立重复10次，各更新120轮。先舍弃下标0到49，保留50到120的71项，对 $|m|$ 求时间平均，再跨重复求平均。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P13-C01-S02-7fc72d21-0.png" alt="平均映射、临界变化与有限规模：实验结果图" loading="lazy"></figure>
+</section>
+<p>横轴改变响应强度，每条线固定人数。较低 $\beta$ 下，小规模仍有更明显的平均幅度；靠近1时，不同规模的曲线逐渐分开并向较高一致程度过渡；到1.3时，三个规模的结果接近。图中虚线的1来自前面的导数推导，曲线上的标记才是实际计算的五个参数点。</p>
+<p>图没有绘出误差棒。$\beta=1$ 时，10次重复的标准差依次约为0.0696、0.0342、0.0529，同样没有随人数严格单调下降。曲线比较回答平均幅度如何随参数改变，重复标准差则保留不同运行之间的散布。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-size-comparison">怎样比较三个规模</a></li></ul></nav>
+
+<h2 id="transients-observation-time-and-size-trends">暂态、观察时长与规模趋势</h2>
+<p><strong>暂态</strong>是系统从给定初态走向后续行为的过渡过程。这里全正起点使 $|m_0|=1$；即使某个参数下零点稳定，也需要时间离开这个起点。接近非双曲边界时恢复较慢，保留时段可能仍带有初始化的影响。</p>
+<p>因此可以把下一次比较分成几个具体操作：先固定人数和参数，延长运行并比较不同截取时段；再固定观察安排，增加独立重复；最后在相同参数点加入更大的规模。每步分别检查时间汇总、重复散布或规模趋势，才能解释曲线变陡来自哪一项变化。</p>
+<p>下一章将研究另一类集体变化：给一处直接损伤以后，哪些连接和触发规则会让失效继续扩展？</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://doi.org/10.1093/acprof:oso/9780199577224.003.0001">Nishimori与Ortiz：Elements of Phase Transitions and Critical Phenomena，第1章</a>，相变与临界现象的基本概念；<a href="https://networksciencebook.com/chapter/8">Barabási：《Network Science》第8章</a>，以渗流讨论序参量、规模和临界指数。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/13-01-相变、临界性与有限规模/read/1/">← 13.1.1 有符号平均、序参量与有限波动</a><a href="/chapters/13-02-级联失效与结构鲁棒性/read/1/">13.2.1 直接损伤、继发失效与同步级联 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

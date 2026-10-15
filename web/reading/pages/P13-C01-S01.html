@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>13.1.1 有符号平均、序参量与有限波动 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P13-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P13-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary">本节练习 · 4 题</a><a class="button" href="/chapters/13-01-相变、临界性与有限规模/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>13.1.1 有符号平均、序参量与有限波动</h1>
+<p>十个个体中，九个选择同一方向，一个选择相反方向。另一组把两种方向完全调换。两组都表现出较强的一致性，但把它们的方向直接平均，结果却是零。研究群体变化前，我们先要选一个既符合问题、又能从个体状态算出的指标。</p>
+<p>学完本节，应能从个体的二值选择计算群体指标，手算一次同步抽样，并区分一步波动、时间平均和重复间标准差。先修为第12篇的同步更新、第5篇的伯努利变量与条件期望，以及第11篇的群体序参量。</p>
+<h2 id="signed-average-and-order-parameter">有符号平均与一致程度</h2>
+<p>每个个体取 $s_i\in\{-1,+1\}$，表示两个相反方向，$i=0,\ldots,N-1$。群体的<strong>有符号平均</strong>为</p>
+<p>$$m=\frac1N\sum_{i=0}^{N-1}s_i.$$</p>
+<p>若有 $N_+$ 个取 $+1$、$N_-$ 个取 $-1$，则 $m=(N_+-N_-)/N$。全部同为 $+1$ 时 $m=1$，全部同为 $-1$ 时 $m=-1$，两边人数相同则 $m=0$。它既保留多数方向，也记录偏向这个方向的程度。</p>
+<p>用微观状态计算、用来刻画宏观状态或有序程度的量称为<strong>序参量（order parameter）</strong>。11.4用相位向量的平均描述振子群体；这里用 $m$ 描述二值方向，用幅度 $|m|$ 比较不区分正负的一致程度。</p>
+<p>九正一负时 $m=(9-1)/10=0.8$；一正九负时 $m=-0.8$。两者有符号平均为0，平均幅度却为0.8。先取绝对值再平均，才能保留这两次重复共有的一致程度。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-signed-vs-absolute">为何区分有符号和绝对序参量</a></li></ul></nav>
+
+<h2 id="hyperbolic-tangent-and-directional-response">双曲正切与方向响应</h2>
+<p>我们让下一轮的选择响应旧群体方向，并用一个平滑函数表达这种响应。<strong>双曲正切函数（hyperbolic tangent）</strong>定义为</p>
+<p>$$\tanh z=\frac{e^z-e^{-z}}{e^z+e^{-z}}.$$</p>
+<p>它经过原点，满足 $\tanh(-z)=-\tanh z$，随 $z$ 增大而增大，值始终位于 $-1$ 与1之间。正输入给出正响应，负输入给出负响应；输入的绝对值很大时，响应逐渐靠近相应的端点。</p>
+<p>令无量纲参数 $\beta\ge0$ 控制响应强度，设下一轮每个个体选择 $+1$ 的概率为</p>
+<p>$$\boxed{r(m)=\frac{1+\tanh(\beta m)}2.}$$</p>
+<p>把 $(-1,1)$ 的响应平移、缩放到 $(0,1)$，就得到合法的概率。旧 $m=0$ 时，$r=1/2$；旧平均为正时，$r&gt;1/2$，为负时则 $r&lt;1/2$。$\beta=0$ 使所有旧状态都给出 $r=1/2$，此时选择不再响应旧方向。</p>
+<h2 id="one-synchronous-random-update">同步抽样的一步手算</h2>
+<p>每轮先从整行旧状态计算 $m$ 和 $r(m)$，再让所有个体条件独立地重新选择。给定独立均匀数 $v_i\in[0,1)$，取 $v_i&lt;r$ 时令新 $s_i=+1$，否则取 $-1$。下标 $i$ 对应个体位置，一轮只使用这轮的随机数；全部选择后再汇总新平均。</p>
+<p>旧状态为 $(1,-1,1,-1)$ 时，$m=0$，所以 $r=0.5$。逐项比较：</p>
+<table>
+<thead>
+<tr>
+  <th>个体编号</th>
+  <th style="text-align:right">本轮均匀数</th>
+  <th>与0.5比较</th>
+  <th style="text-align:right">新状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td style="text-align:right">0.2</td>
+  <td>小于</td>
+  <td style="text-align:right">$+1$</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">0.4</td>
+  <td>小于</td>
+  <td style="text-align:right">$+1$</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">0.6</td>
+  <td>大于</td>
+  <td style="text-align:right">$-1$</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td style="text-align:right">0.8</td>
+  <td>大于</td>
+  <td style="text-align:right">$-1$</td>
+</tr>
+</tbody>
+</table>
+<p>得到 $(1,1,-1,-1)$，新平均仍为0。若将第三个均匀数由0.6改成0.3，便得到三正一负，新平均为0.5。旧平均决定各次选择的概率，具体抽到多少正、负还随这组随机数变化。</p>
+<h2 id="conditional-mean-and-variance">一步条件均值与条件方差</h2>
+<p>用伯努利变量 $Z_i$ 表示个体是否取 $+1$，于是新状态 $s_i'=2Z_i-1$。给定旧 $m$ 后，$Z_i$ 的成功概率为 $r=r(m)$，所以</p>
+<p>$$\begin{aligned}
+\mathbb E[s_i'\mid m]&amp;=2r-1=\tanh(\beta m),\\
+\operatorname{Var}(s_i'\mid m)&amp;=4r(1-r).
+\end{aligned}$$</p>
+<p>新群体平均为 $m'=N^{-1}\sum_i s_i'$。条件独立使不同个体之间的协方差为零，因此</p>
+<p>$$\begin{aligned}
+\mathbb E[m'\mid m]
+&amp;=\frac1N\sum_i\mathbb E[s_i'\mid m]=\tanh(\beta m),\\
+\operatorname{Var}(m'\mid m)
+&amp;=\frac1{N^2}\sum_i4r(1-r)\\
+&amp;=\boxed{\frac{4r(1-r)}N=\frac{1-\tanh^2(\beta m)}N.}
+\end{aligned}$$</p>
+<p>在相同的旧 $m$ 与参数下，人数越多，下一轮平均的条件方差越小。旧 $m=0$ 时，它分别为</p>
+<p>$$N=50:\ 0.02,\qquad N=200:\ 0.005,\qquad
+N=800:\ 0.00125.$$</p>
+<p>一步标准差因此按 $1/\sqrt N$ 缩小。这个结论固定了本轮开始时的平均；沿多轮轨迹，旧 $m$ 自己还会随抽样改变。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-fluctuation">有限系统仍会波动</a></li></ul></nav>
+
+<p>探索页从全体 $+1$ 出发，显示 $N$ 与 $4N$ 各一次80步轨迹。先固定 $\beta$ 增加人数，再观察单步条件方差和两条曲线的起伏。另有一条直接迭代 $\tanh(\beta m)$ 的确定性参照，下一节将分析这条平均映射。</p>
+<p class="concept-explore"><a href="/chapters/13-01-相变、临界性与有限规模/explore/?concept=P13-C01-S01%3Aconditional-mean-and-variance">可视化与探索：一步条件均值与条件方差 →</a></p>
+
+<h2 id="time-averages-and-between-repeat-spread">时间汇总与重复间散布</h2>
+<p>一条轨迹保留的是 $m_0,m_1,\ldots$，每项对应一次更新后的平均，首项是起点。为比较一段时间内的一致程度，先对这条轨迹的保留项逐个取绝对值，再求平均。</p>
+<p>令第 $j$ 条轨迹共有 $L_j$ 项，舍弃开头 $b$ 项，得到</p>
+<p>$$a_j=\frac1{L_j-b}\sum_{t=b}^{L_j-1}|m_{j,t}|.$$</p>
+<p>这里 $b&lt;L_j$，至少留下一项。$a_j$ 是这一条轨迹的时间平均幅度。若有 $R$ 次独立重复，再计算</p>
+<p>$$\bar a=\frac1R\sum_{j=1}^{R}a_j,\qquad
+s_R=\sqrt{\frac1R\sum_{j=1}^{R}(a_j-\bar a)^2}.$$</p>
+<p>$\bar a$ 汇总这些重复的一致程度，$s_R$ 描述它们之间的散布，采用的除数为 $R$。它与某一轮的条件方差是两种统计量：前者经过整段轨迹再汇总，后者固定旧平均、只看下一步。</p>
+<p>例如两条轨迹为 $(0,0.2,-0.4)$ 与 $(0,-0.4,-0.2)$，舍弃首项后，幅度分别为 $(0.2,0.4)$ 与 $(0.4,0.2)$。两次都得到 $a_j=0.3$，故 $\bar a=0.3$、$s_R=0$。轨迹方向不同，时间平均的一致程度相同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary">汇总有限系统的序参量</a></li></ul></nav>
+
+<h2 id="three-size-repeat-experiment">三个规模的重复实验</h2>
+<p>固定 $\beta=1.2$，比较 $N=50,200,800$。每个规模从全体 $+1$ 出发，独立重复12次，每次更新120轮，得到含起点的121项。舍弃下标0到39，保留下标40到120，共81项，再按刚才的两层顺序汇总。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P13-C01-S01-4d740c70-0.png" alt="有符号平均、序参量与有限波动：实验结果图" loading="lazy"></figure>
+</section>
+<p>点的高度是12个 $a_j$ 的平均，棒长是它们按除数12得到的标准差。结果为：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">个体数 $N$</th>
+  <th style="text-align:right">重复均值 $\bar a$</th>
+  <th style="text-align:right">重复间标准差 $s_R$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">50</td>
+  <td style="text-align:right">0.6009</td>
+  <td style="text-align:right">0.0646</td>
+</tr>
+<tr>
+  <td style="text-align:right">200</td>
+  <td style="text-align:right">0.6511</td>
+  <td style="text-align:right">0.0102</td>
+</tr>
+<tr>
+  <td style="text-align:right">800</td>
+  <td style="text-align:right">0.6554</td>
+  <td style="text-align:right">0.0110</td>
+</tr>
+</tbody>
+</table>
+<p>50人的结果散布较宽，两个较大规模的结果更集中；200与800之间则没有严格单调的标准差下降。一步条件方差的 $1/N$ 关系说明一次平均怎样抵消个体抽样波动，这张图还包含多轮反馈、时间汇总和12次重复的有限抽样。</p>
+<p>起点全为 $+1$，最初已经完全一致。舍弃前段是为了减弱初始化过程对结果的影响；继续比较时，可分别延长观察时间、调整截取位置与增加重复，检查平均幅度和散布怎样改变。下一节再改变 $\beta$，把这种有限规模实验与确定性映射的局部稳定性联系起来。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-evidence">一次突变代表什么</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.complexityexplorer.org/courses/185-introduction-to-complexity/faq">SFI Complexity Explorer：Introduction to Complexity</a>，集体行为与复杂性主题的后续阅读。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/12-个体与集体现象/综合练习/read/1/">← 篇末综合 局部规则与宏观近似</a><a href="/chapters/13-01-相变、临界性与有限规模/read/2/">13.1.2 平均映射、临界变化与有限规模 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

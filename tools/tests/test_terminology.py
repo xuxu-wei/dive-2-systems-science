@@ -221,3 +221,23 @@ def test_part12_full_terms_and_boundary_variants_keep_correct_manual_glosses(sou
     issues, _ = check_text(source, 12, require_first=False)
     assert issues == []
     assert annotate_text(source, 12) == source
+
+
+@pytest.mark.parametrize('unit,source', [
+    ('p13-past-window-indicators', '先返回窗口方差，再返回滞后相关系数。'),
+    ('p13-capstone-past-window', '返回指定滞后的相关系数。'),
+    ('P13-C03-S02', '计算滞后相关时，将窗口切为两个片段。'),
+    ('P13-SUMMARY', '滞后两项对应两个采样间隔。'),
+    ('overview:13.3', '一阶自回归的平稳方差和滞后。'),
+])
+def test_part13_reviewed_time_series_lag_contexts(unit, source):
+    from check_teaching import check_terms
+    assert check_terms(source, 13, unit=unit, require_first=False)[0] == []
+    assert check_terms('滞后（hysteresis）', 13, unit=unit, require_first=False)[0]
+
+
+def test_part13_unreviewed_lag_still_requires_a_context():
+    from check_teaching import check_terms
+    issues, _ = check_terms('计算滞后的相关系数。', 13,
+                            unit='unreviewed-part13-unit', require_first=False)
+    assert issues

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>13.4.2 单因素对照、尺度与排序反转 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P13-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P13-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>13.4.2 单因素对照、尺度与排序反转</h1>
+<p>预测发生变化时，可能是参数换了，可能是观测处理换了，也可能是模型采用了另一种相互作用关系。把这些结果混成一个波动指标，会丢掉改进模型所需的信息。我们先用同一个参考条件逐项比较，再检查换一个评价尺度后，方案的优劣关系是否保持。</p>
+<p>学完本节，应能计算有符号的单因素差，区分条件对照与随机方差，并按粗、细两种评分报告排序。先修为13.4.1的信息压缩、第5篇的方差，以及第6篇的参数与模型结构。</p>
+<h2 id="parameter-observation-and-structure-contrasts">参数、观测与模型结构的对照</h2>
+<p>参数不确定性涉及给定模型中系数取值的差异；观测的不确定性涉及采样、测量及处理方式；结构不确定性涉及采用哪些变量、关系和机制。比较时先固定指标、单位与观察时长，再每次改变一个条件。</p>
+<p>下面给定四组无量纲指标值，作为本节的比较材料。参考条件共用同一组参数、观测处理与模型结构：</p>
+<table>
+<thead>
+<tr>
+  <th>条件</th>
+  <th style="text-align:right">指标值</th>
+  <th style="text-align:right">相对共同参考的差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>共同参考</td>
+  <td style="text-align:right">0.50</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>仅改参数</td>
+  <td style="text-align:right">0.60</td>
+  <td style="text-align:right">$+0.10$</td>
+</tr>
+<tr>
+  <td>仅改观测处理</td>
+  <td style="text-align:right">0.45</td>
+  <td style="text-align:right">$-0.05$</td>
+</tr>
+<tr>
+  <td>仅改模型结构</td>
+  <td style="text-align:right">0.72</td>
+  <td style="text-align:right">$+0.22$</td>
+</tr>
+</tbody>
+</table>
+<p>正负号保留了指标升降的方向。若指标越大越好，正差表示改善；若指标是越小越好的误差，解释恰好相反。</p>
+<h2 id="signed-differences-from-one-reference">同一参考下的三项有符号差</h2>
+<p>用 $\theta$ 表示参数，$o$ 表示观测处理，$\mathcal M$ 表示模型结构，指标写为 $Y(\theta,o,\mathcal M)$。下标0是参考条件，下标1是这一项的替代条件，则</p>
+<p>$$\Delta_{\mathrm{参数}}=
+Y(\theta_1,o_0,\mathcal M_0)-Y(\theta_0,o_0,\mathcal M_0),$$</p>
+<p>$$\Delta_{\mathrm{观测}}=
+Y(\theta_0,o_1,\mathcal M_0)-Y(\theta_0,o_0,\mathcal M_0),$$</p>
+<p>$$\Delta_{\mathrm{结构}}=
+Y(\theta_0,o_0,\mathcal M_1)-Y(\theta_0,o_0,\mathcal M_0).$$</p>
+<p>每一行只有一个条件改变，其余留在参考值。三项都与同一个 $Y(\theta_0,o_0,\mathcal M_0)$ 比较，因而可以逐项解释。计算题按参数、观测处理、结构的顺序返回差；原指标若有时间或总量单位，差也保留相同单位。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts">分项计算三种差异</a></li></ul></nav>
+
+<h2 id="joint-changes-and-interactions">联合改变与相互影响</h2>
+<p>单因素差回答的是“其余条件固定时，这一次替换使结果改变多少”。若同时替换两个条件，还需要计算联合结果。</p>
+<p>用 $Y(\theta,o)=\theta o$ 作一个手算例，参考为 $\theta=o=1$，所以 $Y=1$。仅将参数变为2时，$Y=2$，差为1；仅将 $o$ 变为2时，差也为1。两者一起变为2时，$Y=4$，差却为3，而非两项相加的2。因为 $o$ 已经改变，参数变化产生的作用也随之改变。</p>
+<p>方差描述随机分布的离散程度，需要规定随机条件及其分布。这里三项有符号差比较的是给定条件，它们保留方向和单位；随机误差的方差组分则需要另外建立相应的统计模型。先做单项对照，再做联合对照，能分别看到各次替换和相互影响。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-uncertainty-sources">预测变化的来源</a></li></ul></nav>
+
+<h2 id="rankings-at-coarse-and-fine-scales">粗细尺度上的方案排序</h2>
+<p>再给出方案A、B的两组评分，各尺度内均按越高越好解释：</p>
+<table>
+<thead>
+<tr>
+  <th>评价尺度</th>
+  <th style="text-align:right">A得分</th>
+  <th style="text-align:right">B得分</th>
+  <th style="text-align:right">A减B</th>
+  <th>本尺度较高者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>粗尺度</td>
+  <td style="text-align:right">0.8</td>
+  <td style="text-align:right">0.7</td>
+  <td style="text-align:right">$+0.1$</td>
+  <td>A</td>
+</tr>
+<tr>
+  <td>细尺度</td>
+  <td style="text-align:right">0.4</td>
+  <td style="text-align:right">0.6</td>
+  <td style="text-align:right">$-0.2$</td>
+  <td>B</td>
+</tr>
+</tbody>
+</table>
+<p>当同一对方案在两种评价下的严格优劣方向相反，称为<strong>排序反转（ranking reversal）</strong>。这里粗尺度偏向A，细尺度偏向B。比较各尺度内部的差，才能看清方案的相对位置；把A的粗分与B的细分交叉比较，会混入尺度本身的差异。</p>
+<p>可以用方向 $+1$ 表示A较高、$-1$ 表示B较高、0表示并列。只有两个非零方向相反才是严格反转。例如粗尺度并列、细尺度B较高，属于从并列到区分，未发生严格反转。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-ranking-reversal">两个尺度的得分比较</a></li></ul></nav>
+
+<h2 id="contrast-bars-and-scale-scores">分来源柱图与尺度评分</h2>
+<p>将前面的两张给定表分别作图：</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P13-C04-S02-302973c5-1.png" alt="单因素对照、尺度与排序反转：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图画的是相对0.50的三项差，观测一项位于零线下方，参数与结构两项位于上方。右图画两种尺度的原评分，蓝柱A与玫红柱B在粗、细尺度间交换高低。两张图分别保留改变来源与评价尺度，没有把它们合成一个总分。</p>
+<p>粗粒化可能改变被保留的信息，评价方法也可能赋予细节不同权重。解释具体排序为何反转，需要回到两个尺度的评分定义；这张表首先明确展示了排序随尺度改变的结果。因此选择方案时，应同时保留评分目标、尺度与两组数值。</p>
+<h2 id="sensitivity-and-the-checked-parameter-range">敏感性与所检查的参数范围</h2>
+<p>敏感性分析研究输入条件改变时，输出怎样响应。要从单个替代值推进到参数范围比较，可以先给定参数区间和取值点，在相同模型与指标下计算，再报告该范围内的变化。</p>
+<p>例如，若另给定检查结果：在 $\theta\in[0.9,1.1]$ 内，该输出最大变动不超过0.03，那么结果回答的是这一区间内输出变化的大小。导数描述局部的单位参数变化率，需要进一步查看相邻参数间的变化与间距；模型结构替换也是另一项条件，需要单独比较。</p>
+<p>保留参数范围与输出定义，也能使下一次比较接上当前结果：扩大区间时检查原来的变化范围，细化评价尺度时同时检查方案排序。这样，每个结论都对应一组具体可复查的条件。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-sensitivity-range">敏感性有声明范围</a></li></ul></nav>
+
+<p>篇末综合会把本篇的有限重复、级联、恢复、预警与尺度比较放在同一组任务中，练习怎样为不同问题选择相应的指标和对照。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="http://127.0.0.1:8000/chapters/12-05-%E4%BB%8E%E5%B1%80%E9%83%A8%E8%A7%84%E5%88%99%E5%88%B0%E5%AE%8F%E8%A7%82%E6%8F%8F%E8%BF%B0/read/2/">12.5.2：块平均、空间相关与宏观闭合</a>讨论尺度变化保留与丢失的信息。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/13-04-多尺度、粗粒化与不确定性/read/1/">← 13.4.1 粗观测、局部结构与一步预测</a><a href="/parts/13-临界变化与韧性/综合练习/read/1/">篇末综合 有限证据、级联损伤与预警判断 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

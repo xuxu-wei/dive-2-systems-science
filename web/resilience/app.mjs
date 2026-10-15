@@ -11,17 +11,17 @@ const svg=(tag,attributes={},label)=>{const node=document.createElementNS(ns,tag
 let chapter,mode,settings={},cache,playback;
 const definitions={
  '13.1':{
-  title:"群体变大，随机波动会怎样变化？",
+  title:"序参量、平均映射与有限规模",
   question:"每个个体取+1或−1，群体平均为m。若旧m相同，下一轮的平均一定等于它的条件期望吗？改变N后，先预测一次抽样的波动。",
   explanation:"左图画条件期望F(m)=tanh(βm)和对角线，交点对应确定性平衡。右图从全体+1出发，比较N、4N两条随机轨迹和直接迭代F的确定性参照。",
   formula:"取+1的概率r=(1+tanh(βm))/2；E[m_next|m]=tanh(βm)，Var[m_next|m]=4r(1−r)/N。",
   heading:"条件期望与有限群体轨迹",
   label:"当前N个体的一致程度 |m|",
   assumptions:"β是无量纲参数。每轮同时读取旧m，各个体条件独立地重新选择；起点全部为+1。右图各推进80次、保留起点共81个值，N与4N各使用固定随机种子的一次轨迹。",
-  note:"单条轨迹会围绕平均规律波动；确定性参照不是随机轨迹逐时刻的重复平均。β=1来自零点导数的局部判断，Notebook另用多规模、暂态截取与独立重复检查有限证据。",
+  note:"单条轨迹会围绕平均规律波动；确定性参照不是随机轨迹逐时刻的重复平均。β=1来自零点导数的局部判断，正文结合多规模、暂态截取和独立重复解释这两种结果。",
   controls:[["beta","相互作用强度 β",0.6,1.4,0.1,0.8],["size","个体数 N",40,320,40,80]]},
  '13.2':{
-  title:"一处损伤，失效会停在哪里？",
+  title:"阈值级联与剩余连通规模",
   question:"六个节点、五条边，节点0先失效。保持阈值表相同，先沿链和星形走一轮，再预测最终失效数与剩余最大连通规模。",
   explanation:"左图按轮次标记失效节点；右图分别画累计失效数和最大可用连通分量的节点数。可以固定阈值切换结构，再固定结构切换阈值。",
   formula:"仍可用节点i的已失效邻居数达到kᵢ，就在下一轮失效；同一轮始终读取上一轮末的累计失效集合。",
@@ -31,14 +31,14 @@ const definitions={
   note:"提高阈值可以保留更多节点，但最大连通分量未必严格变大。G只是功能代理：它描述可用连接规模，没有计算真实处理容量或输送能力。",
   controls:[["structure","结构：0链 / 1星",0,1,1,0],["high","阈值：0原值 / 1全为2",0,1,1,0]]},
  '13.3':{
-  title:"恢复得快与能返回，怎样分别判断？",
+  title:"局部恢复、吸引域与窗口方差",
   question:"固定局部恢复率a=1.5/T，将B从1改为2。同样的1.4扰动会向哪边走？右侧另比较：只增噪声能否也使窗口方差上升？",
   explanation:"左图在同一B下画0.2和1.4两个扰动的数值轨迹。右图是独立的一阶自回归对照，方差只用当前及以前40项；两幅图分别回答返回与指标来源问题。",
   formula:"dx/dt=−a x(1−x/B)；局部恢复时间1/a，非负状态的返回范围[0,B)。AR(1)固定稳定段的方差为σ²/(1−ρ²)。",
   heading:"扰动轨迹与过去窗口方差",
   label:"当前1.4扰动的状态 x",
   assumptions:"左图B与x同单位，Euler步长0.02 T、25次更新至0.5 T。右图240次更新保留241个样本，使用固定的同一组创新值；前120次ρ=0.7、σ=0.2，后段只改ρ为0.95或σ为0.5。新条件生成的首样本是121。",
-  note:"零点属于返回范围，B不属于；超过B后本模型没有另一有限稳定状态。右图两段都满足|ρ|<1，没有真实转变事件。方差升高还需结合相关、采样间隔与独立事件记录评价。",
+  note:"左图按完整非线性式计算有限扰动。右图比较两种稳定AR(1)设置下的方差来源；结合相同物理时差的相关与事件记录，可以进一步评价预警。",
   controls:[["boundary","吸引域边界 B",1,2,1,1],["cause","方差上升原因：0慢化 / 1噪声",0,1,1,0]]}
 };
 
@@ -77,7 +77,7 @@ function axes(chart,{xmin,xmax,ymin,ymax,xlabel,ylabel}){
  chart.append(svg('text',{x:288,y:376,'text-anchor':'middle','font-size':15,fill:gray},xlabel),svg('text',{x:66,y:25,'font-size':15,fill:gray},ylabel));
  return{x,y,xmin,xmax,ymin,ymax};
 }
-function curve(chart,points,a,color,dash){let path='',open=false;for(const[x,y]of points){if(!Number.isFinite(x+y)||x<a.xmin||x>a.xmax||y<a.ymin||y>a.ymax){open=false;continue;}path+=(open?'L':'M')+a.x(x)+','+a.y(y)+' ';open=true;}chart.append(svg('path',{d:path,fill:'none',stroke:color,'stroke-width':2.7,'stroke-linejoin':'round',...(dash?{'stroke-dasharray':'7 5'}:{})}));}
+function curve(chart,points,a,color,dash){let path='',open=false;for(const[x,y]of points){if(!Number.isFinite(x)||!Number.isFinite(y)||x<a.xmin||x>a.xmax||y<a.ymin||y>a.ymax){open=false;continue;}path+=(open?'L':'M')+a.x(x)+','+a.y(y)+' ';open=true;}chart.append(svg('path',{d:path,fill:'none',stroke:color,'stroke-width':2.7,'stroke-linejoin':'round',...(dash?{'stroke-dasharray':'7 5'}:{})}));}
 function dot(chart,point,a,color){if(point&&Number.isFinite(point[0]+point[1]))chart.append(svg('circle',{cx:a.x(point[0]),cy:a.y(point[1]),r:5,fill:color,stroke:'white','stroke-width':1.5}));}
 function table(rows){const element=el('table'),body=el('tbody');for(const[key,value]of rows){const row=el('tr');row.append(el('th',key),el('td',fmt(value)));body.append(row);}element.append(body);$('value-table').replaceChildren(element);}
 function legend(items){$('legend').replaceChildren();for(const[label,color]of items){const item=el('span'),swatch=el('i');swatch.style.background=color;item.append(swatch,document.createTextNode(label));$('legend').append(item);}}

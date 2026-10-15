@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>13.4.1 粗观测、局部结构与一步预测 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P13-C04-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P13-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>13.4.1 粗观测、局部结构与一步预测</h1>
+<p>如果一份观测只告诉我们“四格中有一半激活”，是否足够预测下一步？12.5已经指出，密度压缩了位置关系。现在把这件事看成一个观测与预测问题：哪些信息还在记录里，哪些信息需要重新测量或增加统计量？</p>
+<p>学完本节，应能用四格例说明粗观测保留的信息，由局部联合比例恢复精确的一步密度，并说明多步宏观模型还需要哪条更新关系。先修为12.5的 $p,c_2$ 与同步异或规则。</p>
+<h2 id="information-retained-by-coarse-observations">粗观测保留了哪些信息</h2>
+<p>沿用12.5的二值格子，$x_i\in\{0,1\}$，其中1表示激活。它与13.1的相反方向取值 $\pm1$ 含义不同。现在位置从0开始，$n$ 格首尾相接，激活密度仍为</p>
+<p>$$p=\frac1n\sum_i x_i.$$</p>
+<p>给定 $n=4,p=1/2$，可以确定有2格激活、2格未激活。仅留下这两个数，并没有记录哪两个位置激活。这种将多项微观记录压成少量统计量的粗粒化，保留了当前总数，却可能丢掉演化规则需要的位置关系。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-scale-identifiability">粗观测能辨认什么</a></li></ul></nav>
+
+<h2 id="equal-density-four-cell-outcomes">同密度四格的相反结果</h2>
+<p>比较 $A=(1,0,1,0)$ 与 $B=(1,1,0,0)$。它们的格数、密度、周期边界和同步异或规则相同，只有排列不同。</p>
+<p>$A$中，每个中心两侧总是同值，新值全为0。$B$中，以0号为中心，左侧3号为0、右侧1号为1；其他三个中心的两侧也各不相同，新值全为1：</p>
+<table>
+<thead>
+<tr>
+  <th>当前排列</th>
+  <th style="text-align:right">当前密度</th>
+  <th>下一步排列</th>
+  <th style="text-align:right">下一步密度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$A=(1,0,1,0)$</td>
+  <td style="text-align:right">0.5</td>
+  <td>$(0,0,0,0)$</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$B=(1,1,0,0)$</td>
+  <td style="text-align:right">0.5</td>
+  <td>$(1,1,1,1)$</td>
+  <td style="text-align:right">1</td>
+</tr>
+</tbody>
+</table>
+<p>若只把当前 $p$ 输入一个确定性的密度更新函数，它就会把这两个初态映到同一个数。当前规则却给出相反结果，说明这个预测输入还缺少局部信息。</p>
+<h2 id="joint-fraction-and-exact-next-density">两点联合比例恢复一步密度</h2>
+<p>用12.5的两点联合比例</p>
+<p>$$c_2=\frac1n\sum_i x_{i-1}x_{i+1}$$</p>
+<p>补充这份记录。每项以位置 $i$ 为中心，检查左右两格是否都为1；两个被相乘的位置相距两个格子间距。它是联合取1的比例，不是经过中心化、标准化的Pearson相关系数。</p>
+<p>按0到3为中心，$A$的四个乘积为 $(0,1,0,1)$，所以 $c_2=0.5$；$B$的四个乘积均为0，所以 $c_2=0$。沿用已推导的周期同步异或恒等式，</p>
+<p>$$\boxed{p^+=2p-2c_2,}$$</p>
+<p>分别得到 $A$的下一步密度0与 $B$的下一步密度1。加入的量恰好记录了这条更新规则读取的局部配对。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-same-average-different-structure">密度之外的统计量</a></li></ul></nav>
+
+<p>计算题返回一个列表，三项依次为 $p,c_2,p^+$：前两项描述当前排列，第三项是预测的下一步密度，三项均无量纲。对 $A$，返回的是 <code>[0.5, 0.5, 0.0]</code>，并非三个连续时刻的密度。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor">计算粗尺度与局部相关</a></li></ul></nav>
+
+<h2 id="independence-approximation-and-exact-information">独立近似与精确信息的比较</h2>
+<p>若只用 $p$，再把左右取值近似为独立，就会令 $c_2\approx p^2$，给出平均场预测 $p^+\approx2p(1-p)$。两种状态在 $p=0.5$ 时都被预测为0.5。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P13-C04-S01-52f1f061-0.png" alt="粗观测、局部结构与一步预测：实验结果图" loading="lazy"></figure>
+</section>
+<p>蓝柱是独立近似，在两组中同高；玫红柱由精确聚合式给出，交错组高度为0，成团组高度为1。误差与被删去的信息对应起来了：$A$的 $c_2$ 比 $p^2=0.25$ 大，真实下一步密度就更低；$B$的 $c_2$ 更小，真实密度就更高。</p>
+<p>给定当前 $p,c_2$，这个式子确定了 $p^+$。继续预测第二步时，还需要新的 $c_2^+$。若要用 $(p,c_2)$ 构成可反复推进的宏观模型，就要补出 $c_2$的更新关系，并检查它是否还依赖更多位置的联合取值。一步预测准确与多步宏观闭合，是需要分别完成的任务。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-pair-not-universal">相关量也有边界</a></li></ul></nav>
+
+<p>选择尺度时，可以先明确要预测什么，再保留与该预测有关的信息。下一节将把参数、观测处理和模型结构的改变分开比较，并检查评价尺度如何影响方案排序。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="http://127.0.0.1:8000/chapters/12-05-%E4%BB%8E%E5%B1%80%E9%83%A8%E8%A7%84%E5%88%99%E5%88%B0%E5%AE%8F%E8%A7%82%E6%8F%8F%E8%BF%B0/read/1/">12.5.1：激活密度与两点联合比例</a>给出异或平均式的逐步推导；<a href="https://www.complexityexplorer.org/courses/185-introduction-to-complexity/faq">SFI Complexity Explorer</a>提供局部作用与宏观描述的后续学习资源。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/13-03-扰动、恢复与早期预警/read/2/">← 13.3.2 自相关、过去窗口与预警误差</a><a href="/chapters/13-04-多尺度、粗粒化与不确定性/read/2/">13.4.2 单因素对照、尺度与排序反转 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

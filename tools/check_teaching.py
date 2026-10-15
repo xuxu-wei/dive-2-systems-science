@@ -27,6 +27,11 @@ REVIEWED_SENSES = {
     'P10-C02-S02': {'滞后': 'lag'},
     'P10-C07-S01': {'滞后': 'lag'},
     'overview:10.2': {'滞后': 'lag'},
+    'p13-past-window-indicators': {'滞后': 'lag'},
+    'p13-capstone-past-window': {'滞后': 'lag'},
+    'P13-C03-S02': {'滞后': 'lag'},
+    'P13-SUMMARY': {'滞后': 'lag'},
+    'overview:13.3': {'滞后': 'lag'},
 }
 
 

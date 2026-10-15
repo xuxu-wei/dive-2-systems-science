@@ -19349,77 +19349,239 @@
               "id": "P13-C01-S01",
               "chapter_id": "13.1",
               "number": "13.1.1",
-              "title": "序参量与有限随机重复",
+              "title": "有符号平均、序参量与有限波动",
               "outcome": "从有符号平均和一次随机更新推导条件方差，分清时间汇总与重复间波动。",
               "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/01-序参量与有限随机重复.ipynb",
               "visualization": "web/resilience/index.html",
+              "reading": "lessons/13-临界变化与韧性/01-相变、临界性与有限规模/01-序参量与有限随机重复.md",
               "questions": [
                 {
                   "id": "p13-finite-order-summary",
                   "slug": "p13-finite-order-summary",
                   "title": "汇总有限系统的序参量",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/13-01-相变、临界性与有限规模/read/1/#time-averages-and-between-repeat-spread",
+                  "concept_title": "时间汇总与重复间散布",
+                  "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary"
                 },
                 {
                   "id": "p13-signed-vs-absolute",
                   "slug": "p13-signed-vs-absolute",
                   "title": "为何区分有符号和绝对序参量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-01-相变、临界性与有限规模/read/1/#signed-average-and-order-parameter",
+                  "concept_title": "有符号平均与一致程度",
+                  "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-signed-vs-absolute"
                 },
                 {
                   "id": "p13-finite-fluctuation",
                   "slug": "p13-finite-fluctuation",
                   "title": "有限系统仍会波动",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-01-相变、临界性与有限规模/read/1/#conditional-mean-and-variance",
+                  "concept_title": "一步条件均值与条件方差",
+                  "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-fluctuation"
                 },
                 {
                   "id": "p13-finite-evidence",
                   "slug": "p13-finite-evidence",
                   "title": "一次突变代表什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-01-相变、临界性与有限规模/read/1/#three-size-repeat-experiment",
+                  "concept_title": "三个规模的重复实验",
+                  "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-evidence"
                 }
               ],
               "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary",
               "notebook_url": "/notebook/?id=P13-C01-S01",
-              "url": "/notebook/?id=P13-C01-S01"
+              "reading_url": "/chapters/13-01-相变、临界性与有限规模/read/1/",
+              "concepts": [
+                {
+                  "id": "signed-average-and-order-parameter",
+                  "title": "有符号平均与一致程度",
+                  "question_ids": [
+                    "p13-signed-vs-absolute"
+                  ],
+                  "explore": false,
+                  "key": "P13-C01-S01:signed-average-and-order-parameter",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/1/#signed-average-and-order-parameter"
+                },
+                {
+                  "id": "hyperbolic-tangent-and-directional-response",
+                  "title": "双曲正切与方向响应",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C01-S01:hyperbolic-tangent-and-directional-response",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/1/#hyperbolic-tangent-and-directional-response"
+                },
+                {
+                  "id": "one-synchronous-random-update",
+                  "title": "同步抽样的一步手算",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C01-S01:one-synchronous-random-update",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/1/#one-synchronous-random-update"
+                },
+                {
+                  "id": "conditional-mean-and-variance",
+                  "title": "一步条件均值与条件方差",
+                  "question_ids": [
+                    "p13-finite-fluctuation"
+                  ],
+                  "explore": true,
+                  "key": "P13-C01-S01:conditional-mean-and-variance",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/1/#conditional-mean-and-variance",
+                  "explore_url": "/chapters/13-01-相变、临界性与有限规模/explore/?concept=P13-C01-S01%3Aconditional-mean-and-variance"
+                },
+                {
+                  "id": "time-averages-and-between-repeat-spread",
+                  "title": "时间汇总与重复间散布",
+                  "question_ids": [
+                    "p13-finite-order-summary"
+                  ],
+                  "explore": false,
+                  "key": "P13-C01-S01:time-averages-and-between-repeat-spread",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/1/#time-averages-and-between-repeat-spread"
+                },
+                {
+                  "id": "three-size-repeat-experiment",
+                  "title": "三个规模的重复实验",
+                  "question_ids": [
+                    "p13-finite-evidence"
+                  ],
+                  "explore": false,
+                  "key": "P13-C01-S01:three-size-repeat-experiment",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/1/#three-size-repeat-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C01-S01:references",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/1/#references"
+                }
+              ],
+              "url": "/chapters/13-01-相变、临界性与有限规模/read/1/"
             },
             {
               "id": "P13-C01-S02",
               "chapter_id": "13.1",
               "number": "13.1.2",
-              "title": "规模、暂态与阈值证据",
+              "title": "平均映射、临界变化与有限规模",
               "outcome": "手算零点附近的映射，结合规模、初值、观察时长和重复解释参数曲线。",
               "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/02-规模、暂态与阈值证据.ipynb",
               "visualization": "web/resilience/index.html",
+              "reading": "lessons/13-临界变化与韧性/01-相变、临界性与有限规模/02-规模、暂态与阈值证据.md",
               "questions": [
                 {
                   "id": "p13-deterministic-meanfield",
                   "slug": "p13-deterministic-meanfield",
                   "title": "计算平均场固定点迭代",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/13-01-相变、临界性与有限规模/read/2/#conditional-expectation-and-deterministic-map",
+                  "concept_title": "条件期望与确定性平均映射",
+                  "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield"
                 },
                 {
                   "id": "p13-meanfield-threshold",
                   "slug": "p13-meanfield-threshold",
                   "title": "固定点失稳条件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-01-相变、临界性与有限规模/read/2/#tanh-derivative-and-zero-point-multiplier",
+                  "concept_title": "双曲正切导数与零点乘子",
+                  "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-meanfield-threshold"
                 },
                 {
                   "id": "p13-size-comparison",
                   "slug": "p13-size-comparison",
                   "title": "怎样比较三个规模",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-01-相变、临界性与有限规模/read/2/#three-sizes-and-five-parameter-values",
+                  "concept_title": "三个规模与五个参数点",
+                  "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-size-comparison"
                 },
                 {
                   "id": "p13-critical-language",
                   "slug": "p13-critical-language",
                   "title": "分岔与相变语言",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-01-相变、临界性与有限规模/read/2/#bifurcation-phase-transition-and-criticality",
+                  "concept_title": "分岔、相变与临界性",
+                  "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-critical-language"
                 }
               ],
               "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield",
               "notebook_url": "/notebook/?id=P13-C01-S02",
-              "url": "/notebook/?id=P13-C01-S02"
+              "reading_url": "/chapters/13-01-相变、临界性与有限规模/read/2/",
+              "concepts": [
+                {
+                  "id": "conditional-expectation-and-deterministic-map",
+                  "title": "条件期望与确定性平均映射",
+                  "question_ids": [
+                    "p13-deterministic-meanfield"
+                  ],
+                  "explore": false,
+                  "key": "P13-C01-S02:conditional-expectation-and-deterministic-map",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/2/#conditional-expectation-and-deterministic-map"
+                },
+                {
+                  "id": "tanh-derivative-and-zero-point-multiplier",
+                  "title": "双曲正切导数与零点乘子",
+                  "question_ids": [
+                    "p13-meanfield-threshold"
+                  ],
+                  "explore": false,
+                  "key": "P13-C01-S02:tanh-derivative-and-zero-point-multiplier",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/2/#tanh-derivative-and-zero-point-multiplier"
+                },
+                {
+                  "id": "nonhyperbolic-boundary-and-nonlinear-recovery",
+                  "title": "非双曲边界与非线性恢复",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P13-C01-S02:nonhyperbolic-boundary-and-nonlinear-recovery",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/2/#nonhyperbolic-boundary-and-nonlinear-recovery",
+                  "explore_url": "/chapters/13-01-相变、临界性与有限规模/explore/?concept=P13-C01-S02%3Anonhyperbolic-boundary-and-nonlinear-recovery"
+                },
+                {
+                  "id": "bifurcation-phase-transition-and-criticality",
+                  "title": "分岔、相变与临界性",
+                  "question_ids": [
+                    "p13-critical-language"
+                  ],
+                  "explore": false,
+                  "key": "P13-C01-S02:bifurcation-phase-transition-and-criticality",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/2/#bifurcation-phase-transition-and-criticality"
+                },
+                {
+                  "id": "three-sizes-and-five-parameter-values",
+                  "title": "三个规模与五个参数点",
+                  "question_ids": [
+                    "p13-size-comparison"
+                  ],
+                  "explore": false,
+                  "key": "P13-C01-S02:three-sizes-and-five-parameter-values",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/2/#three-sizes-and-five-parameter-values"
+                },
+                {
+                  "id": "transients-observation-time-and-size-trends",
+                  "title": "暂态、观察时长与规模趋势",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C01-S02:transients-observation-time-and-size-trends",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/2/#transients-observation-time-and-size-trends"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C01-S02:references",
+                  "url": "/chapters/13-01-相变、临界性与有限规模/read/2/#references"
+                }
+              ],
+              "url": "/chapters/13-01-相变、临界性与有限规模/read/2/"
             }
           ],
           "visualization": "web/resilience/index.html"
@@ -19436,84 +19598,219 @@
             "同节点数和边数的链与星",
             "单独提高阈值并比较可用分量"
           ],
-          "focus": "累计集合用于触发，返回名单只记录本轮新增；功能代理需说明分母和真实容量未被建模。",
+          "focus": "累计失效与本轮新增；可用节点总数与最大分量比例；连接规模与实际处理容量。",
           "available": true,
           "lessons": [
             {
               "id": "P13-C02-S01",
               "chapter_id": "13.2",
               "number": "13.2.1",
-              "title": "从初始损伤到级联",
+              "title": "直接损伤、继发失效与同步级联",
               "outcome": "沿四节点链逐轮列出新失效名单，说明直接损伤、继发失效与同步读取。",
               "path": "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/01-从初始损伤到级联.ipynb",
               "visualization": "web/resilience/index.html",
+              "reading": "lessons/13-临界变化与韧性/02-级联失效与结构鲁棒性/01-从初始损伤到级联.md",
               "questions": [
                 {
                   "id": "p13-cascade-rounds",
                   "slug": "p13-cascade-rounds",
                   "title": "逐轮记录级联失效",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/#stopping-and-empty-damage",
+                  "concept_title": "停止条件、空损伤与高阈值",
+                  "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds"
                 },
                 {
                   "id": "p13-direct-vs-secondary",
                   "slug": "p13-direct-vs-secondary",
                   "title": "区分直接与继发失效",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/#cumulative-and-new-failure-sets",
+                  "concept_title": "累计集合与新增集合",
+                  "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-direct-vs-secondary"
                 },
                 {
                   "id": "p13-cascade-no-seed",
                   "slug": "p13-cascade-no-seed",
                   "title": "零种子的边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/#stopping-and-empty-damage",
+                  "concept_title": "停止条件、空损伤与高阈值",
+                  "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-no-seed"
                 },
                 {
                   "id": "p13-cascade-is-not-contagion",
                   "slug": "p13-cascade-is-not-contagion",
                   "title": "阈值规则的含义",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/#failed-neighbor-thresholds",
+                  "concept_title": "邻居阈值与级联失效",
+                  "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-is-not-contagion"
                 }
               ],
               "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds",
               "notebook_url": "/notebook/?id=P13-C02-S01",
-              "url": "/notebook/?id=P13-C02-S01"
+              "reading_url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/",
+              "concepts": [
+                {
+                  "id": "failed-neighbor-thresholds",
+                  "title": "邻居阈值与级联失效",
+                  "question_ids": [
+                    "p13-cascade-is-not-contagion"
+                  ],
+                  "explore": false,
+                  "key": "P13-C02-S01:failed-neighbor-thresholds",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/#failed-neighbor-thresholds"
+                },
+                {
+                  "id": "four-node-chain-rounds",
+                  "title": "四节点链的同步轮次",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C02-S01:four-node-chain-rounds",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/#four-node-chain-rounds"
+                },
+                {
+                  "id": "cumulative-and-new-failure-sets",
+                  "title": "累计集合与新增集合",
+                  "question_ids": [
+                    "p13-direct-vs-secondary"
+                  ],
+                  "explore": false,
+                  "key": "P13-C02-S01:cumulative-and-new-failure-sets",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/#cumulative-and-new-failure-sets"
+                },
+                {
+                  "id": "stopping-and-empty-damage",
+                  "title": "停止条件、空损伤与高阈值",
+                  "question_ids": [
+                    "p13-cascade-no-seed",
+                    "p13-cascade-rounds"
+                  ],
+                  "explore": false,
+                  "key": "P13-C02-S01:stopping-and-empty-damage",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/#stopping-and-empty-damage"
+                },
+                {
+                  "id": "six-node-threshold-comparison",
+                  "title": "六节点链的阈值对照",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C02-S01:six-node-threshold-comparison",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/#six-node-threshold-comparison"
+                }
+              ],
+              "url": "/chapters/13-02-级联失效与结构鲁棒性/read/1/"
             },
             {
               "id": "P13-C02-S02",
               "chapter_id": "13.2",
               "number": "13.2.2",
-              "title": "结构、阈值与剩余功能",
+              "title": "结构鲁棒性与最大可用连通分量",
               "outcome": "比较链和星形的失效过程及剩余分量，分开节点保留数与连通规模。",
               "path": "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/02-结构、阈值与剩余功能.ipynb",
               "visualization": "web/resilience/index.html",
+              "reading": "lessons/13-临界变化与韧性/02-级联失效与结构鲁棒性/02-结构、阈值与剩余功能.md",
               "questions": [
                 {
                   "id": "p13-largest-survivor",
                   "slug": "p13-largest-survivor",
                   "title": "计算剩余网络的功能代理",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/#largest-surviving-component-fraction",
+                  "concept_title": "最大可用连通比例与功能代理",
+                  "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor"
                 },
                 {
                   "id": "p13-connected-not-functional",
                   "slug": "p13-connected-not-functional",
                   "title": "剩余网络的功能评价",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/#largest-surviving-component-fraction",
+                  "concept_title": "最大可用连通比例与功能代理",
+                  "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-connected-not-functional"
                 },
                 {
                   "id": "p13-control-one-factor",
                   "slug": "p13-control-one-factor",
                   "title": "区分结构和阈值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/#separating-edges-and-failure-thresholds",
+                  "concept_title": "改变连接与改变触发规则",
+                  "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-control-one-factor"
                 },
                 {
                   "id": "p13-threshold-monotonic",
                   "slug": "p13-threshold-monotonic",
                   "title": "提高阈值后的边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/#monotonicity-under-higher-thresholds",
+                  "concept_title": "提高阈值的单调性",
+                  "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-threshold-monotonic"
                 }
               ],
               "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor",
               "notebook_url": "/notebook/?id=P13-C02-S02",
-              "url": "/notebook/?id=P13-C02-S02"
+              "reading_url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/",
+              "concepts": [
+                {
+                  "id": "structure-damage-and-evaluation",
+                  "title": "结构、损伤与评价目标",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C02-S02:structure-damage-and-evaluation",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/#structure-damage-and-evaluation"
+                },
+                {
+                  "id": "chain-star-and-threshold-example",
+                  "title": "链、星形与阈值的逐轮手算",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C02-S02:chain-star-and-threshold-example",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/#chain-star-and-threshold-example"
+                },
+                {
+                  "id": "largest-surviving-component-fraction",
+                  "title": "最大可用连通比例与功能代理",
+                  "question_ids": [
+                    "p13-largest-survivor",
+                    "p13-connected-not-functional"
+                  ],
+                  "explore": false,
+                  "key": "P13-C02-S02:largest-surviving-component-fraction",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/#largest-surviving-component-fraction"
+                },
+                {
+                  "id": "monotonicity-under-higher-thresholds",
+                  "title": "提高阈值的单调性",
+                  "question_ids": [
+                    "p13-threshold-monotonic"
+                  ],
+                  "explore": false,
+                  "key": "P13-C02-S02:monotonicity-under-higher-thresholds",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/#monotonicity-under-higher-thresholds"
+                },
+                {
+                  "id": "separating-edges-and-failure-thresholds",
+                  "title": "改变连接与改变触发规则",
+                  "question_ids": [
+                    "p13-control-one-factor"
+                  ],
+                  "explore": false,
+                  "key": "P13-C02-S02:separating-edges-and-failure-thresholds",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/#separating-edges-and-failure-thresholds"
+                },
+                {
+                  "id": "three-condition-survival-comparison",
+                  "title": "三种条件的数量与连通规模",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P13-C02-S02:three-condition-survival-comparison",
+                  "url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/#three-condition-survival-comparison",
+                  "explore_url": "/chapters/13-02-级联失效与结构鲁棒性/explore/?concept=P13-C02-S02%3Athree-condition-survival-comparison"
+                }
+              ],
+              "url": "/chapters/13-02-级联失效与结构鲁棒性/read/2/"
             }
           ],
           "visualization": "web/resilience/index.html"
@@ -19541,73 +19838,241 @@
               "outcome": "从同一扰动的变化方向区分局部恢复时间和吸引域，并检查Euler步长。",
               "path": "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/01-局部恢复与吸引域.ipynb",
               "visualization": "web/resilience/index.html",
+              "reading": "lessons/13-临界变化与韧性/03-扰动、恢复与早期预警/01-局部恢复与吸引域.md",
               "questions": [
                 {
                   "id": "p13-recovery-trajectory",
                   "slug": "p13-recovery-trajectory",
                   "title": "计算扰动后的返回轨迹",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#explicit-updates-of-the-nonlinear-trajectory",
+                  "concept_title": "非线性轨迹的显式更新",
+                  "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory"
                 },
                 {
                   "id": "p13-local-rate-vs-basin",
                   "slug": "p13-local-rate-vs-basin",
                   "title": "改变非线性参数后的恢复",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#basin-of-attraction-on-the-nonnegative-side",
+                  "concept_title": "非负侧的吸引域",
+                  "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-local-rate-vs-basin"
                 },
                 {
                   "id": "p13-finite-perturbation",
                   "slug": "p13-finite-perturbation",
                   "title": "判断有限扰动的去向",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#basin-of-attraction-on-the-nonnegative-side",
+                  "concept_title": "非负侧的吸引域",
+                  "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-finite-perturbation"
                 },
                 {
                   "id": "p13-recovery-euler-step",
                   "slug": "p13-recovery-euler-step",
                   "title": "数值返回也需核验",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#time-step-and-numerical-alternation",
+                  "concept_title": "时间步长与数值交替",
+                  "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-euler-step"
                 }
               ],
               "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory",
               "notebook_url": "/notebook/?id=P13-C03-S01",
-              "url": "/notebook/?id=P13-C03-S01"
+              "reading_url": "/chapters/13-03-扰动、恢复与早期预警/read/1/",
+              "concepts": [
+                {
+                  "id": "direction-of-a-finite-perturbation",
+                  "title": "有限扰动的变化方向",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C03-S01:direction-of-a-finite-perturbation",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#direction-of-a-finite-perturbation"
+                },
+                {
+                  "id": "local-recovery-rate-and-characteristic-time",
+                  "title": "局部恢复率与特征时间",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C03-S01:local-recovery-rate-and-characteristic-time",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#local-recovery-rate-and-characteristic-time"
+                },
+                {
+                  "id": "basin-of-attraction-on-the-nonnegative-side",
+                  "title": "非负侧的吸引域",
+                  "question_ids": [
+                    "p13-local-rate-vs-basin",
+                    "p13-finite-perturbation"
+                  ],
+                  "explore": false,
+                  "key": "P13-C03-S01:basin-of-attraction-on-the-nonnegative-side",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#basin-of-attraction-on-the-nonnegative-side"
+                },
+                {
+                  "id": "explicit-updates-of-the-nonlinear-trajectory",
+                  "title": "非线性轨迹的显式更新",
+                  "question_ids": [
+                    "p13-recovery-trajectory"
+                  ],
+                  "explore": false,
+                  "key": "P13-C03-S01:explicit-updates-of-the-nonlinear-trajectory",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#explicit-updates-of-the-nonlinear-trajectory"
+                },
+                {
+                  "id": "trajectories-for-small-and-finite-perturbations",
+                  "title": "恢复速度与有限扰动的轨迹对照",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P13-C03-S01:trajectories-for-small-and-finite-perturbations",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#trajectories-for-small-and-finite-perturbations",
+                  "explore_url": "/chapters/13-03-扰动、恢复与早期预警/explore/?concept=P13-C03-S01%3Atrajectories-for-small-and-finite-perturbations"
+                },
+                {
+                  "id": "time-step-and-numerical-alternation",
+                  "title": "时间步长与数值交替",
+                  "question_ids": [
+                    "p13-recovery-euler-step"
+                  ],
+                  "explore": false,
+                  "key": "P13-C03-S01:time-step-and-numerical-alternation",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#time-step-and-numerical-alternation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C03-S01:references",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/#references"
+                }
+              ],
+              "url": "/chapters/13-03-扰动、恢复与早期预警/read/1/"
             },
             {
               "id": "P13-C03-S02",
               "chapter_id": "13.3",
               "number": "13.3.2",
-              "title": "过去窗口与预警误差",
+              "title": "自相关、过去窗口与预警误差",
               "outcome": "用慢化与噪声两组对照解释窗口方差，再计算滞后相关和报警错误。",
               "path": "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/02-过去窗口与预警误差.ipynb",
               "visualization": "web/resilience/index.html",
+              "reading": "lessons/13-临界变化与韧性/03-扰动、恢复与早期预警/02-过去窗口与预警误差.md",
               "questions": [
                 {
                   "id": "p13-past-window-indicators",
                   "slug": "p13-past-window-indicators",
                   "title": "只用过去窗口计算指标",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#past-window-variance-and-paired-correlation",
+                  "concept_title": "过去窗口的方差与片段相关",
+                  "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators"
                 },
                 {
                   "id": "p13-ar1-warning-condition",
                   "slug": "p13-ar1-warning-condition",
                   "title": "慢化指标的条件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#slower-recovery-versus-stronger-noise",
+                  "concept_title": "恢复变慢与噪声增大的对照",
+                  "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-ar1-warning-condition"
                 },
                 {
                   "id": "p13-noise-control",
                   "slug": "p13-noise-control",
                   "title": "改变噪声强度后的指标",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#slower-recovery-versus-stronger-noise",
+                  "concept_title": "恢复变慢与噪声增大的对照",
+                  "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-noise-control"
                 },
                 {
                   "id": "p13-lag-physical-time",
                   "slug": "p13-lag-physical-time",
                   "title": "固定物理滞后",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#theoretical-autocorrelation-and-physical-lags",
+                  "concept_title": "理论自相关与固定物理时差",
+                  "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-lag-physical-time"
                 }
               ],
               "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators",
               "notebook_url": "/notebook/?id=P13-C03-S02",
-              "url": "/notebook/?id=P13-C03-S02"
+              "reading_url": "/chapters/13-03-扰动、恢复与早期预警/read/2/",
+              "concepts": [
+                {
+                  "id": "autoregression-and-persistence-of-deviations",
+                  "title": "一阶自回归与偏差的保留",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C03-S02:autoregression-and-persistence-of-deviations",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#autoregression-and-persistence-of-deviations"
+                },
+                {
+                  "id": "stationary-variance-from-a-recursion",
+                  "title": "平稳方差的递推与求解",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C03-S02:stationary-variance-from-a-recursion",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#stationary-variance-from-a-recursion"
+                },
+                {
+                  "id": "theoretical-autocorrelation-and-physical-lags",
+                  "title": "理论自相关与固定物理时差",
+                  "question_ids": [
+                    "p13-lag-physical-time"
+                  ],
+                  "explore": false,
+                  "key": "P13-C03-S02:theoretical-autocorrelation-and-physical-lags",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#theoretical-autocorrelation-and-physical-lags"
+                },
+                {
+                  "id": "slower-recovery-versus-stronger-noise",
+                  "title": "恢复变慢与噪声增大的对照",
+                  "question_ids": [
+                    "p13-ar1-warning-condition",
+                    "p13-noise-control"
+                  ],
+                  "explore": false,
+                  "key": "P13-C03-S02:slower-recovery-versus-stronger-noise",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#slower-recovery-versus-stronger-noise"
+                },
+                {
+                  "id": "past-window-variance-and-paired-correlation",
+                  "title": "过去窗口的方差与片段相关",
+                  "question_ids": [
+                    "p13-past-window-indicators"
+                  ],
+                  "explore": false,
+                  "key": "P13-C03-S02:past-window-variance-and-paired-correlation",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#past-window-variance-and-paired-correlation"
+                },
+                {
+                  "id": "window-statistics-after-a-parameter-switch",
+                  "title": "参数切换后的窗口变化",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P13-C03-S02:window-statistics-after-a-parameter-switch",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#window-statistics-after-a-parameter-switch",
+                  "explore_url": "/chapters/13-03-扰动、恢复与早期预警/explore/?concept=P13-C03-S02%3Awindow-statistics-after-a-parameter-switch"
+                },
+                {
+                  "id": "event-detection-false-alarms-and-misses",
+                  "title": "事件检出、误报与漏报",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C03-S02:event-detection-false-alarms-and-misses",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#event-detection-false-alarms-and-misses"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C03-S02:references",
+                  "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/#references"
+                }
+              ],
+              "url": "/chapters/13-03-扰动、恢复与早期预警/read/2/"
             }
           ],
           "visualization": "web/resilience/index.html"
@@ -19624,84 +20089,227 @@
             "共同参考的参数、观测和结构三项差",
             "粗细尺度评分、并列与敏感性范围"
           ],
-          "focus": "距离两格的配对频率不是Pearson系数；精确一步密度尚未给出完整多步闭合；单因素差不是独立方差贡献。",
+          "focus": "左右联合比例、Pearson相关与独立近似；一步密度与多步闭合；单因素差与方差组分。",
           "available": true,
           "lessons": [
             {
               "id": "P13-C04-S01",
               "chapter_id": "13.4",
               "number": "13.4.1",
-              "title": "同一均值的不同局部结构",
+              "title": "粗观测、局部结构与一步预测",
               "outcome": "逐格算出同密度排列的不同未来，用配对频率补足精确的一步平均。",
               "path": "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/01-同一均值的不同局部结构.ipynb",
               "visualization": null,
+              "reading": "lessons/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/01-同一均值的不同局部结构.md",
               "questions": [
                 {
                   "id": "p13-coarse-xor",
                   "slug": "p13-coarse-xor",
                   "title": "计算粗尺度与局部相关",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/#joint-fraction-and-exact-next-density",
+                  "concept_title": "两点联合比例恢复一步密度",
+                  "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor"
                 },
                 {
                   "id": "p13-same-average-different-structure",
                   "slug": "p13-same-average-different-structure",
                   "title": "密度之外的统计量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/#joint-fraction-and-exact-next-density",
+                  "concept_title": "两点联合比例恢复一步密度",
+                  "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-same-average-different-structure"
                 },
                 {
                   "id": "p13-scale-identifiability",
                   "slug": "p13-scale-identifiability",
                   "title": "粗观测能辨认什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/#information-retained-by-coarse-observations",
+                  "concept_title": "粗观测保留了哪些信息",
+                  "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-scale-identifiability"
                 },
                 {
                   "id": "p13-pair-not-universal",
                   "slug": "p13-pair-not-universal",
                   "title": "相关量也有边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/#independence-approximation-and-exact-information",
+                  "concept_title": "独立近似与精确信息的比较",
+                  "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-pair-not-universal"
                 }
               ],
               "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor",
               "notebook_url": "/notebook/?id=P13-C04-S01",
-              "url": "/notebook/?id=P13-C04-S01"
+              "reading_url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/",
+              "concepts": [
+                {
+                  "id": "information-retained-by-coarse-observations",
+                  "title": "粗观测保留了哪些信息",
+                  "question_ids": [
+                    "p13-scale-identifiability"
+                  ],
+                  "explore": false,
+                  "key": "P13-C04-S01:information-retained-by-coarse-observations",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/#information-retained-by-coarse-observations"
+                },
+                {
+                  "id": "equal-density-four-cell-outcomes",
+                  "title": "同密度四格的相反结果",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C04-S01:equal-density-four-cell-outcomes",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/#equal-density-four-cell-outcomes"
+                },
+                {
+                  "id": "joint-fraction-and-exact-next-density",
+                  "title": "两点联合比例恢复一步密度",
+                  "question_ids": [
+                    "p13-same-average-different-structure",
+                    "p13-coarse-xor"
+                  ],
+                  "explore": false,
+                  "key": "P13-C04-S01:joint-fraction-and-exact-next-density",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/#joint-fraction-and-exact-next-density"
+                },
+                {
+                  "id": "independence-approximation-and-exact-information",
+                  "title": "独立近似与精确信息的比较",
+                  "question_ids": [
+                    "p13-pair-not-universal"
+                  ],
+                  "explore": false,
+                  "key": "P13-C04-S01:independence-approximation-and-exact-information",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/#independence-approximation-and-exact-information"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C04-S01:references",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/#references"
+                }
+              ],
+              "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/1/"
             },
             {
               "id": "P13-C04-S02",
               "chapter_id": "13.4",
               "number": "13.4.2",
-              "title": "分解不确定性与排序反转",
+              "title": "单因素对照、尺度与排序反转",
               "outcome": "以共同参考整理三项单因素差，再说明评分排序和敏感性范围。",
               "path": "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/02-分解不确定性与排序反转.ipynb",
               "visualization": null,
+              "reading": "lessons/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/02-分解不确定性与排序反转.md",
               "questions": [
                 {
                   "id": "p13-one-factor-contrasts",
                   "slug": "p13-one-factor-contrasts",
                   "title": "分项计算三种差异",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#signed-differences-from-one-reference",
+                  "concept_title": "同一参考下的三项有符号差",
+                  "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts"
                 },
                 {
                   "id": "p13-uncertainty-sources",
                   "slug": "p13-uncertainty-sources",
                   "title": "预测变化的来源",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#joint-changes-and-interactions",
+                  "concept_title": "联合改变与相互影响",
+                  "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-uncertainty-sources"
                 },
                 {
                   "id": "p13-ranking-reversal",
                   "slug": "p13-ranking-reversal",
                   "title": "两个尺度的得分比较",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#rankings-at-coarse-and-fine-scales",
+                  "concept_title": "粗细尺度上的方案排序",
+                  "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-ranking-reversal"
                 },
                 {
                   "id": "p13-sensitivity-range",
                   "slug": "p13-sensitivity-range",
                   "title": "敏感性有声明范围",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#sensitivity-and-the-checked-parameter-range",
+                  "concept_title": "敏感性与所检查的参数范围",
+                  "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-sensitivity-range"
                 }
               ],
               "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts",
               "notebook_url": "/notebook/?id=P13-C04-S02",
-              "url": "/notebook/?id=P13-C04-S02"
+              "reading_url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/",
+              "concepts": [
+                {
+                  "id": "parameter-observation-and-structure-contrasts",
+                  "title": "参数、观测与模型结构的对照",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C04-S02:parameter-observation-and-structure-contrasts",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#parameter-observation-and-structure-contrasts"
+                },
+                {
+                  "id": "signed-differences-from-one-reference",
+                  "title": "同一参考下的三项有符号差",
+                  "question_ids": [
+                    "p13-one-factor-contrasts"
+                  ],
+                  "explore": false,
+                  "key": "P13-C04-S02:signed-differences-from-one-reference",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#signed-differences-from-one-reference"
+                },
+                {
+                  "id": "joint-changes-and-interactions",
+                  "title": "联合改变与相互影响",
+                  "question_ids": [
+                    "p13-uncertainty-sources"
+                  ],
+                  "explore": false,
+                  "key": "P13-C04-S02:joint-changes-and-interactions",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#joint-changes-and-interactions"
+                },
+                {
+                  "id": "rankings-at-coarse-and-fine-scales",
+                  "title": "粗细尺度上的方案排序",
+                  "question_ids": [
+                    "p13-ranking-reversal"
+                  ],
+                  "explore": false,
+                  "key": "P13-C04-S02:rankings-at-coarse-and-fine-scales",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#rankings-at-coarse-and-fine-scales"
+                },
+                {
+                  "id": "contrast-bars-and-scale-scores",
+                  "title": "分来源柱图与尺度评分",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C04-S02:contrast-bars-and-scale-scores",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#contrast-bars-and-scale-scores"
+                },
+                {
+                  "id": "sensitivity-and-the-checked-parameter-range",
+                  "title": "敏感性与所检查的参数范围",
+                  "question_ids": [
+                    "p13-sensitivity-range"
+                  ],
+                  "explore": false,
+                  "key": "P13-C04-S02:sensitivity-and-the-checked-parameter-range",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#sensitivity-and-the-checked-parameter-range"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P13-C04-S02:references",
+                  "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/#references"
+                }
+              ],
+              "url": "/chapters/13-04-多尺度、粗粒化与不确定性/read/2/"
             }
           ],
           "visualization": null
@@ -19710,7 +20318,7 @@
       "assessment": {
         "id": "13.summary",
         "assessment": true,
-        "title": "有限证据与韧性判断",
+        "title": "有限证据、级联损伤与预警判断",
         "url": "/parts/13-临界变化与韧性/综合练习/",
         "goals": "把有限群体、网络损伤、扰动恢复和尺度比较的结果分别连回问题与模型条件。",
         "prerequisites": "13.1—13.4：同步抽样、失效阈值、恢复方程、过去窗口和单因素对照。",
@@ -19726,7 +20334,7 @@
             "id": "P13-SUMMARY",
             "chapter_id": "13.summary",
             "number": "篇末综合",
-            "title": "有限证据与韧性判断",
+            "title": "有限证据、级联损伤与预警判断",
             "outcome": "为有限波动、级联、恢复和预警分别保留指标与条件，综合解释证据。",
             "path": "notebooks/13-临界变化与韧性/05-篇末综合/01-有限证据与韧性判断.ipynb",
             "visualization": null,
@@ -19741,59 +20349,167 @@
                 "共同参考的分项差与粗细尺度排序"
               ]
             },
+            "reading": "lessons/13-临界变化与韧性/05-篇末综合/01-有限证据与韧性判断.md",
             "questions": [
               {
                 "id": "p13-capstone-finite-claim",
                 "slug": "p13-capstone-finite-claim",
                 "title": "有限规模的临界证据",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/13-临界变化与韧性/综合练习/read/1/#finite-size-evidence-and-further-comparison",
+                "concept_title": "有限规模曲线与进一步比较",
+                "practice_url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-finite-claim"
               },
               {
                 "id": "p13-capstone-basin",
                 "slug": "p13-capstone-basin",
                 "title": "恢复速度与吸引域",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/13-临界变化与韧性/综合练习/read/1/#local-recovery-and-finite-perturbations",
+                "concept_title": "局部恢复率与有限扰动的返回",
+                "practice_url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-basin"
               },
               {
                 "id": "p13-capstone-cascade",
                 "slug": "p13-capstone-cascade",
                 "title": "综合题：计算级联各轮",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/13-临界变化与韧性/综合练习/read/1/#synchronous-cascade-and-damage-sources",
+                "concept_title": "同步级联与损伤来源",
+                "practice_url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-cascade"
               },
               {
                 "id": "p13-capstone-size-summary",
                 "slug": "p13-capstone-size-summary",
                 "title": "综合题：多次序参量摘要",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/13-临界变化与韧性/综合练习/read/1/#order-amplitude-and-between-run-variation",
+                "concept_title": "群体一致程度与重复间波动",
+                "practice_url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-size-summary"
               },
               {
                 "id": "p13-capstone-past-window",
                 "slug": "p13-capstone-past-window",
                 "title": "综合题：无未来信息的预警窗",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/13-临界变化与韧性/综合练习/read/1/#past-window-and-lagged-correlation",
+                "concept_title": "过去窗口与滞后相关",
+                "practice_url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-past-window"
               },
               {
                 "id": "p13-capstone-uncertainty",
                 "slug": "p13-capstone-uncertainty",
                 "title": "综合题：不确定性单因素对照",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/13-临界变化与韧性/综合练习/read/1/#one-factor-contrasts-and-scale-rankings",
+                "concept_title": "单因素差与尺度排序",
+                "practice_url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-uncertainty"
               },
               {
                 "id": "p13-capstone-alert-errors",
                 "slug": "p13-capstone-alert-errors",
                 "title": "综合题：误报和漏报",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/13-临界变化与韧性/综合练习/read/1/#lead-windows-detection-and-false-alerts",
+                "concept_title": "提前窗口、事件检出与误报",
+                "practice_url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-alert-errors"
               },
               {
                 "id": "p13-capstone-scale-limit",
                 "slug": "p13-capstone-scale-limit",
                 "title": "改变尺度后的韧性结论",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/13-临界变化与韧性/综合练习/read/1/#four-model-results-and-interpretation",
+                "concept_title": "四项模型结果与各自问题",
+                "practice_url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-scale-limit"
               }
             ],
             "practice_url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-finite-claim",
             "notebook_url": "/notebook/?id=P13-SUMMARY",
-            "url": "/notebook/?id=P13-SUMMARY"
+            "reading_url": "/parts/13-临界变化与韧性/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "order-amplitude-and-between-run-variation",
+                "title": "群体一致程度与重复间波动",
+                "question_ids": [
+                  "p13-capstone-size-summary"
+                ],
+                "explore": false,
+                "key": "P13-SUMMARY:order-amplitude-and-between-run-variation",
+                "url": "/parts/13-临界变化与韧性/综合练习/read/1/#order-amplitude-and-between-run-variation"
+              },
+              {
+                "id": "finite-size-evidence-and-further-comparison",
+                "title": "有限规模曲线与进一步比较",
+                "question_ids": [
+                  "p13-capstone-finite-claim"
+                ],
+                "explore": false,
+                "key": "P13-SUMMARY:finite-size-evidence-and-further-comparison",
+                "url": "/parts/13-临界变化与韧性/综合练习/read/1/#finite-size-evidence-and-further-comparison"
+              },
+              {
+                "id": "synchronous-cascade-and-damage-sources",
+                "title": "同步级联与损伤来源",
+                "question_ids": [
+                  "p13-capstone-cascade"
+                ],
+                "explore": false,
+                "key": "P13-SUMMARY:synchronous-cascade-and-damage-sources",
+                "url": "/parts/13-临界变化与韧性/综合练习/read/1/#synchronous-cascade-and-damage-sources"
+              },
+              {
+                "id": "local-recovery-and-finite-perturbations",
+                "title": "局部恢复率与有限扰动的返回",
+                "question_ids": [
+                  "p13-capstone-basin"
+                ],
+                "explore": false,
+                "key": "P13-SUMMARY:local-recovery-and-finite-perturbations",
+                "url": "/parts/13-临界变化与韧性/综合练习/read/1/#local-recovery-and-finite-perturbations"
+              },
+              {
+                "id": "past-window-and-lagged-correlation",
+                "title": "过去窗口与滞后相关",
+                "question_ids": [
+                  "p13-capstone-past-window"
+                ],
+                "explore": false,
+                "key": "P13-SUMMARY:past-window-and-lagged-correlation",
+                "url": "/parts/13-临界变化与韧性/综合练习/read/1/#past-window-and-lagged-correlation"
+              },
+              {
+                "id": "lead-windows-detection-and-false-alerts",
+                "title": "提前窗口、事件检出与误报",
+                "question_ids": [
+                  "p13-capstone-alert-errors"
+                ],
+                "explore": false,
+                "key": "P13-SUMMARY:lead-windows-detection-and-false-alerts",
+                "url": "/parts/13-临界变化与韧性/综合练习/read/1/#lead-windows-detection-and-false-alerts"
+              },
+              {
+                "id": "one-factor-contrasts-and-scale-rankings",
+                "title": "单因素差与尺度排序",
+                "question_ids": [
+                  "p13-capstone-uncertainty"
+                ],
+                "explore": false,
+                "key": "P13-SUMMARY:one-factor-contrasts-and-scale-rankings",
+                "url": "/parts/13-临界变化与韧性/综合练习/read/1/#one-factor-contrasts-and-scale-rankings"
+              },
+              {
+                "id": "four-model-results-and-interpretation",
+                "title": "四项模型结果与各自问题",
+                "question_ids": [
+                  "p13-capstone-scale-limit"
+                ],
+                "explore": false,
+                "key": "P13-SUMMARY:four-model-results-and-interpretation",
+                "url": "/parts/13-临界变化与韧性/综合练习/read/1/#four-model-results-and-interpretation"
+              }
+            ],
+            "url": "/parts/13-临界变化与韧性/综合练习/read/1/"
           }
         ],
         "available": true,
