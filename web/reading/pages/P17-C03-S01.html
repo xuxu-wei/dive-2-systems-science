@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>17.3.1 导数噪声、阈值与方程结构 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P17-C03-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P17-C03-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1">本节练习 · 4 题</a><a class="button" href="/chapters/17-03-消融、失效与结论边界/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>17.3.1 导数噪声、阈值与方程结构</h1>
+<p>无噪声数据能够找回 Lorenz 方程，导数受到扰动后会怎样？更多候选项可能帮助贴近带噪数据，却也可能把本来不存在的项留在方程里。本节保持状态轨迹和候选字典不变，用相同导数目标比较两种阈值，观察拟合残差与方程结构怎样一起变化。</p>
+<p>学完本节，你应能说明噪声加在何处、两种计数阈值分别做什么，并由六行实际结果解释稀疏筛选的取舍。先修为17.2.1的最小二乘、逐次筛选与重拟合。</p>
+<h2 id="ablation-and-controlled-comparison">消融与单因素对照</h2>
+<p><strong>消融实验（ablation study）</strong>通过移除、关闭或替换方法中的一个组成部分，观察结果怎样变化。要把变化归到这个部分，比较双方应保持其他相关条件相同。</p>
+<p>这里把稀疏筛选关闭或开启：阈值为0时保留全部候选位置，阈值为0.1时筛掉小系数，再在剩余列上重拟合。同一档导数扰动下，双方共用轨迹、字典和目标矩阵。这样比较的残差与项数，才对应筛选步骤的作用。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1">消融隔离</a></li></ul></nav>
+
+<h2 id="fixed-states-and-noisy-derivative-targets">固定状态与带噪导数标签</h2>
+<p>沿用初态 $(-8,7,27)$、归一化时间区间 $[0,4]$ 和间隔0.01，得到401行 Lorenz 状态。每行展开成同样的十个候选项：</p>
+<p>$$
+[1,x,y,z,x^2,xy,xz,y^2,yz,z^2].
+$$</p>
+<p>把它们排成 $\Theta$，生成方程给出的精确导数表记为 $\dot X$。现在只向导数表加入噪声：</p>
+<p>$$
+\dot X_{\mathrm{obs}}=\dot X+\sigma_\varepsilon E,
+\qquad E_{ik}\sim\mathcal N(0,1),
+$$</p>
+<p>各元素独立，$i$ 对应状态行，$k$ 对应三个导数分量。本例状态和时间采用无量纲形式，三档噪声标准差为0、0.2、1.0。随机数序列从种子1703开始，各档分别生成一个噪声矩阵，同档两种阈值复用同一目标。</p>
+<p>状态表没有改变，所以 $\Theta$ 没有改变。若改成先扰动状态再做差分，变化会同时进入候选列和导数估计，那将是另一种观测处理实验。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice2">导数污染</a></li></ul></nav>
+
+<p>例如状态 $(2,3,4)$ 展开后为</p>
+<p>$$
+[1,2,3,4,4,6,8,9,12,16].
+$$</p>
+<p>第五至第十个位置依次对应六个二次项。保持这个顺序，才能判断筛选删去的是哪一项。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-03-消融、失效与结论边界/practice/?question=p17-support-row">候选支持项</a></li></ul></nav>
+
+<h2 id="threshold-refitting-and-two-reported-quantities">筛选、重拟合与两个报告读数</h2>
+<p>先用全部列解最小二乘，再对每条导数方程分别保留 $|\Xi_{jk}|\ge\lambda$ 的位置，只在这些列上重新拟合。重复十轮，得到系数矩阵 $\Xi$。一个目标若没有保留列，其系数列就全为零。</p>
+<p>一个较小例子是候选 $[1,x]$、三个状态 $x=0,1,2$ 与目标 $1,3,5$。相邻目标每增加2，对应斜率2；$x=0$处的目标为1，对应截距1。因此拟合为 $1+2x$，阈值0.1会保留两项，重新拟合仍得到同一组系数。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-03-消融、失效与结论边界/practice/?question=p17-noisy-refit">带噪导数重拟合</a></li></ul></nav>
+
+<p>对 Lorenz 表，我们报告两个量。第一个是训练残差</p>
+<p>$$
+E_{\mathrm{train}}
+=\sqrt{\frac1N\sum_{i=1}^N\sum_{k=1}^3
+[(\Theta\Xi)_{ik}-(\dot X_{\mathrm{obs}})_{ik}]^2},
+\qquad N=401.
+$$</p>
+<p>先将每行三个误差的平方相加，再对状态行平均并开方。例如一行误差为 $(0.1,-0.2,0.2)$，它贡献的平方和是0.09。这个定义按行数归一化，与把所有三个分量也一起平均的逐元素RMSE相差一个 $\sqrt3$ 因子。</p>
+<p>第二个量是系数计数</p>
+<p>$$
+M_{0.05}=\#\{(j,k):|\Xi_{jk}|&gt;0.05\}.
+$$</p>
+<p>报告计数界限为0.05，参与拟合的筛选阈值则为0或0.1。两个数的用途不同。生成方程共有七个非零系数：$\dot x$中两个，$\dot y$中三个，$\dot z$中两个。计数为七之后，还可以沿项名和系数继续逐项核对。</p>
+<h2 id="six-noise-and-threshold-results">三档噪声、两个阈值的实际结果</h2>
+<p>本次计算得到下表。每档只有一个噪声实现，六行来自三档目标各做两次拟合。</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">导数噪声标准差</th>
+  <th style="text-align:right">筛选阈值</th>
+  <th style="text-align:right">$M_{0.05}$</th>
+  <th style="text-align:right">$E_{\mathrm{train}}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">7</td>
+  <td style="text-align:right">$&lt;10^{-10}$</td>
+</tr>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">7</td>
+  <td style="text-align:right">$&lt;10^{-10}$</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">10</td>
+  <td style="text-align:right">0.343866</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">7</td>
+  <td style="text-align:right">0.346670</td>
+</tr>
+<tr>
+  <td style="text-align:right">1.0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">12</td>
+  <td style="text-align:right">1.681357</td>
+</tr>
+<tr>
+  <td style="text-align:right">1.0</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">7</td>
+  <td style="text-align:right">1.696063</td>
+</tr>
+</tbody>
+</table>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P17-C03-S01-b141bbd2-0.png" alt="导数噪声、阈值与方程结构：实验结果图" loading="lazy"></figure>
+</section>
+<p>图只显示计数，蓝色对应阈值0，玫红色对应0.1。无噪声时都为七项，残差都在数值舍入量级。标准差0.2时，筛选把计数从十降到七，训练残差增加约0.002804；标准差1.0时，计数从十二降到七，残差增加约0.014706。</p>
+<p>两种读数由此解释同一个取舍：额外列可以吸收部分训练扰动，筛选则以稍大的训练残差换取更少的系数。表中的残差都相对于带噪训练导数；新初态预测误差要接到另一条测试轨迹上计算，随机波动则要由新的噪声实现来观察。</p>
+<h2 id="reference-error-in-the-two-term-regression">两项回归中的参考误差</h2>
+<p>在探索中，把较大的 Lorenz 字典换成两项回归，更容易同时看到项数和函数误差。固定25个训练点 $x_i=-1+i/12$，$i=0,\ldots,24$，目标为</p>
+<p>$$
+y_i=2x_i+0.05x_i^2+\eta\sin(1.7i).
+$$</p>
+<p>$\eta$ 控制确定性扰动的幅度。每档重新筛选与拟合 $x,x^2$ 两列，再到41个参考点上计算相对于无扰动函数 $f_0(x)=2x+0.05x^2$ 的RMSE。</p>
+<p>固定阈值，先改变扰动幅度，再切到项数视图。随后固定幅度，只改变阈值。即使在无扰动时，阈值0.1也会删去系数0.05的平方项，留下非零参考误差。这样能够看清“项更少”和“更接近参考函数”各自意味着什么。</p>
+<p class="concept-explore"><a href="/chapters/17-03-消融、失效与结论边界/explore/?concept=P17-C03-S01%3Areference-error-in-the-two-term-regression">可视化与探索：两项回归中的参考误差 →</a></p>
+
+<p>下一节保持观测数据与参数，改动积分网格，继续把数值计算造成的变化与模型结构造成的变化分开。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/abs/1509.03580v1">Brunton、Proctor与Kutz：SINDy，arXiv:1509.03580v1</a>以稀疏回归连接候选函数、拟合误差和动力学结构。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/17-02-复现协议与公平基线/read/2/">← 17.2.2 连续伴随训练与同观测基线</a><a href="/chapters/17-03-消融、失效与结论边界/read/2/">17.3.2 积分网格、伴随精度与模型对照 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

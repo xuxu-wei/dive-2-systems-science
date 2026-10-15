@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>17.1.2 螺旋动力学、解析解与观测损失 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P17-C01-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P17-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1">本节练习 · 4 题</a><a class="button" href="/chapters/17-01-研究问题与证据/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>17.1.2 螺旋动力学、解析解与观测损失</h1>
+<p>上一节让许多候选项参加回归，再从中选出方程。这一节沿用第15篇的另一条思路：给变化率一个带参数的函数，通过积分生成轨迹，再根据观测调整参数。平面螺旋很适合看清这条过程，因为旋转与收缩可以分别计算，并合成一条解析参考。</p>
+<p>学完本节，应能说明四个参数怎样改变螺旋，手算给定时刻的解析状态，并从观测损失推出伴随变量在观测时刻的更新。先修为第3篇的矩阵、第15篇的参数化动力学与连续伴随，以及前一节的数据与模型表示。</p>
+<h2 id="four-parameter-vector-field">四参数向量场与状态变化</h2>
+<p>令二维状态为$\mathbf z=(x,y)^{\mathsf T}$，参数依次为$\theta=(a,\omega,c,d)^{\mathsf T}$，采用</p>
+<p>$$\frac{d\mathbf z}{dt}=f(\mathbf z,\theta)=
+\begin{bmatrix}
+-ax-\omega y+c\tanh x\\
+\omega x-ay+d\tanh y
+\end{bmatrix}.$$</p>
+<p>状态坐标是无量纲数，时间以T计，四个参数均以$1/T$计，所以每个变化率以$1/T$计。$\tanh$的输入因此也是无量纲数。</p>
+<p>$-a\mathbf z$沿指向原点的方向作用；当$a&gt;0$时，它缩小状态向量。另一部分$\omega(-y,x)^{\mathsf T}$与$\mathbf z$垂直，在$\omega&gt;0$时推动逆时针旋转。$c\tanh x$、$d\tanh y$则分别给两个坐标加入非线性修正。</p>
+<p>先令$c=d=0$。取$a=0.08/T,\omega=2/T$，在起点$(1,0)$上有</p>
+<p>$$f((1,0)^{\mathsf T},\theta)
+=(-0.08,2)^{\mathsf T}/T.$$</p>
+<p>横向变化率为负，纵向为正，运动开始时向左上方走。计算题把四个参数作为一个列表输入；先读清$a,\omega,c,d$的顺序，再按$x$、$y$返回两项变化率。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-01-研究问题与证据/practice/?question=p17-spiral-vector">缩减神经向量场</a></li></ul></nav>
+
+<h2 id="analytic-rotation-and-decay">旋转与衰减的解析解</h2>
+<p>线性情形满足</p>
+<p>$$\dot{\mathbf z}=(-aI+\omega J)\mathbf z,\qquad
+J=\begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix}.$$</p>
+<p>先把共同的衰减提出来，写成$\mathbf z(t)=e^{-at}\mathbf q(t)$。求导并代回，得到</p>
+<p>$$-ae^{-at}\mathbf q+e^{-at}\dot{\mathbf q}
+=-ae^{-at}\mathbf q+\omega e^{-at}J\mathbf q,
+\qquad \dot{\mathbf q}=\omega J\mathbf q.$$</p>
+<p>因此$\mathbf q$作匀速旋转，$\mathbf z$在旋转的同时乘上衰减因子。完整解为</p>
+<p>$$\boxed{\mathbf z(t)=e^{-at}
+\begin{bmatrix}
+\cos(\omega t)&amp;-\sin(\omega t)\\
+\sin(\omega t)&amp;\cos(\omega t)
+\end{bmatrix}\mathbf z(0).}$$</p>
+<p>以$\mathbf z(0)=(1,0)^{\mathsf T}$为例，$x=e^{-at}\cos(\omega t)$、$y=e^{-at}\sin(\omega t)$。用乘积法则和链式法则检查第一式：</p>
+<p>$$\dot x=-ae^{-at}\cos(\omega t)
+-\omega e^{-at}\sin(\omega t)=-ax-\omega y.$$</p>
+<p>第二式同理给出$\dot y=\omega x-ay$。旋转矩阵不改变长度，所以</p>
+<p>$$\|\mathbf z(t)\|=e^{-at}\|\mathbf z(0)\|.$$</p>
+<p>在$t=3T$，转过的角度为$\omega t=6$弧度，长度乘以$e^{-0.24}\approx0.7866$，故</p>
+<p>$$\mathbf z(3T)=e^{-0.24}(\cos6,\sin6)^{\mathsf T}
+\approx(0.7553,-0.2198)^{\mathsf T}.$$</p>
+<p>对其他初态，旋转矩阵同样适用。计算题按照输入的时间列表逐项代入，返回每个时刻的$[x,y]$；例如$a=\omega=0$时，任一时刻都应保留原初态。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-01-研究问题与证据/practice/?question=p17-spiral-reference">解析螺旋参考</a></li></ul></nav>
+
+<h2 id="analytic-spiral-and-numerical-trajectory">解析螺旋与数值轨迹</h2>
+<p>取$h=0.05T$，用RK4从$(1,0)$推进60步，得到0至$3T$的61个状态。解析式也在相同的61个时刻求值。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P17-C01-S02-6dc7d128-0.png" alt="螺旋动力学、解析解与观测损失：实验结果图" loading="lazy"></figure>
+</section>
+<p>蓝线连接解析状态，玫红圆点每隔五个积分步标出一个RK4状态，即相隔$0.25T$。两轴都是状态坐标：从$(1,0)$出发，轨迹逆时针旋转并向内收缩，末点落在第四象限，与刚才的手算一致。</p>
+<p>这些圆点紧贴解析曲线，说明当前步长对这条线性螺旋给出了接近的数值轨迹。有了解析参照，就能先检查积分计算，再研究调整参数带来的变化。</p>
+<h2 id="neural-ode-and-current-parameterization">Neural ODE与当前参数化模型</h2>
+<p>神经ODE将状态变化率写成神经网络$f_\theta$，再由ODE求解器生成轨迹。变化率函数的参数，通过轨迹与观测之间的差异学习。这里把这个过程缩成前面的四参数函数：线性旋转和衰减提供可解释的主干，两个$\tanh$项提供非线性修正。</p>
+<p><a href="https://arxiv.org/html/1806.07366v1#S5.SS1">Neural ODE论文v1的螺旋任务</a>还包含从观测推断潜在初态的过程。原文生成1000条带噪二维螺旋，每条100个等距点，顺、逆时针轨迹各半，再从每条轨迹中抽取30、50或100个观测。模型先用RNN编码这些观测，推断四维潜变量初态的分布；在四维空间积分后，再解码到二维读数。评价包括训练观测范围以后的预测RMSE。</p>
+<p>本篇让二维可见状态本身参与积分，初态已知。于是可以把注意力放在一条清楚的计算链上：给定$\theta$，积分得到$\mathbf z(t_j)$，形成观测损失，再反向计算损失对四个参数的导数。潜在初态的推断被已知初态替代，网络表示则被四参数函数替代；留下的是连续动力学学习与伴随计算这一部分。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1">相似曲线与论文结果</a></li></ul></nav>
+
+<h2 id="observation-loss-and-adjoint-jumps">离散观测损失与伴随跳跃</h2>
+<p>设在时刻$t_1,\ldots,t_m$测得二维向量$\mathbf y_j$。这里粗体$\mathbf y_j$表示两个坐标的完整观测，与状态的第二坐标$y$区分开来。采用平均平方损失</p>
+<p>$$L=\frac1{2m}\sum_{j=1}^m
+\|\mathbf z(t_j)-\mathbf y_j\|^2.$$</p>
+<p>某个时刻只贡献其中一项。对该项的两个状态坐标分别求导，可得</p>
+<p>$$\frac{\partial}{\partial\mathbf z(t_j)}
+\left[\frac1{2m}\|\mathbf z(t_j)-\mathbf y_j\|^2\right]
+=\frac{\mathbf z(t_j)-\mathbf y_j}{m}.$$</p>
+<p>例如有$m=2$次观测，某时刻预测比读数多$(0.1,-0.2)^{\mathsf T}$，这次观测对状态的损失梯度就是$(0.05,-0.1)^{\mathsf T}$。</p>
+<p>沿用第15篇的列向量伴随$\lambda(t)$，它把后续损失对当前状态的敏感性反向传回。反向到达$t_j$时，$\lambda(t_j^+)$已经包含更晚观测的影响；再加上当前这一项：</p>
+<p>$$\boxed{\lambda(t_j^-)=\lambda(t_j^+)
++\frac{\mathbf z(t_j)-\mathbf y_j}{m}.}$$</p>
+<p>上标$-$、$+$分别表示同一时刻的左、右侧值。若原来传回的是$(0.3,0.4)^{\mathsf T}$，加入上面的观测梯度后变为$(0.35,0.3)^{\mathsf T}$。它保留已有贡献，再累加当前贡献。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice2">观测跳跃</a></li></ul></nav>
+
+<p>最后一个观测之后没有额外损失，因此从$\lambda(t_m^+)=0$开始，先加入最后一个观测，再反向积分到前一个观测。相邻观测之间使用$\dot\lambda=-f_{\mathbf z}^{\mathsf T}\lambda$；到达观测时再次累加。观测之间的连续传播与观测时刻的离散累加，共同组成下一章的伴随计算。</p>
+<p>下一章将从固定带噪观测估计四个参数，并与同一批观测得到的线性螺旋比较。此处的解析轨迹则提供了随时可以重新计算的积分参照。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/abs/1806.07366v1">Chen等：Neural Ordinary Differential Equations，arXiv:1806.07366v1</a>，第2节介绍连续伴随，第5.1节与附录D介绍潜变量螺旋任务及训练过程。本节从可见二维状态出发，下一章展开四参数模型的梯度与训练。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/17-01-研究问题与证据/read/1/">← 17.1.1 Lorenz方程与稀疏候选字典</a><a href="/chapters/17-02-复现协议与公平基线/read/1/">17.2.1 阈值重拟合与独立轨迹测试 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

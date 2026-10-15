@@ -25370,77 +25370,222 @@
               "id": "P17-C01-S01",
               "chapter_id": "17.1",
               "number": "17.1.1",
-              "title": "锁定 Lorenz 稀疏发现的主张",
+              "title": "Lorenz方程与稀疏候选字典",
               "outcome": "从 Lorenz 初态代入三个导数，按十列二次字典展开状态，说明本次方程恢复要核对什么。",
               "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/01-锁定 Lorenz 稀疏发现的主张.ipynb",
               "visualization": "web/research-practice/index.html",
+              "reading": "lessons/17-研究复现与综合实践/01-研究问题与证据/01-锁定 Lorenz 稀疏发现的主张.md",
               "questions": [
                 {
                   "id": "p17-c1s1-choice1",
                   "slug": "p17-c1s1-choice1",
                   "title": "原论文参数与课程窗口",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-01-研究问题与证据/read/1/#original-study-and-current-computation",
+                  "concept_title": "原研究配置与当前计算",
+                  "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1"
                 },
                 {
                   "id": "p17-c1s1-choice2",
                   "slug": "p17-c1s1-choice2",
                   "title": "真值导数的范围",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-01-研究问题与证据/read/1/#exact-derivatives-and-equation-recovery",
+                  "concept_title": "精确导数与方程恢复问题",
+                  "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice2"
                 },
                 {
                   "id": "p17-lorenz-vector",
                   "slug": "p17-lorenz-vector",
                   "title": "原方程瞬时导数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-01-研究问题与证据/read/1/#lorenz-equations-and-instantaneous-rates",
+                  "concept_title": "Lorenz方程与瞬时变化率",
+                  "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-lorenz-vector"
                 },
                 {
                   "id": "p17-candidate-row",
                   "slug": "p17-candidate-row",
                   "title": "二次候选项顺序",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-01-研究问题与证据/read/1/#candidate-library-and-coefficient-positions",
+                  "concept_title": "候选字典与系数的位置",
+                  "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-candidate-row"
                 }
               ],
               "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1",
               "notebook_url": "/notebook/?id=P17-C01-S01",
-              "url": "/notebook/?id=P17-C01-S01"
+              "reading_url": "/chapters/17-01-研究问题与证据/read/1/",
+              "concepts": [
+                {
+                  "id": "lorenz-equations-and-instantaneous-rates",
+                  "title": "Lorenz方程与瞬时变化率",
+                  "question_ids": [
+                    "p17-lorenz-vector"
+                  ],
+                  "explore": false,
+                  "key": "P17-C01-S01:lorenz-equations-and-instantaneous-rates",
+                  "url": "/chapters/17-01-研究问题与证据/read/1/#lorenz-equations-and-instantaneous-rates"
+                },
+                {
+                  "id": "candidate-library-and-coefficient-positions",
+                  "title": "候选字典与系数的位置",
+                  "question_ids": [
+                    "p17-candidate-row"
+                  ],
+                  "explore": false,
+                  "key": "P17-C01-S01:candidate-library-and-coefficient-positions",
+                  "url": "/chapters/17-01-研究问题与证据/read/1/#candidate-library-and-coefficient-positions"
+                },
+                {
+                  "id": "sampling-window-and-state-coverage",
+                  "title": "采样窗口与状态覆盖",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C01-S01:sampling-window-and-state-coverage",
+                  "url": "/chapters/17-01-研究问题与证据/read/1/#sampling-window-and-state-coverage"
+                },
+                {
+                  "id": "exact-derivatives-and-equation-recovery",
+                  "title": "精确导数与方程恢复问题",
+                  "question_ids": [
+                    "p17-c1s1-choice2"
+                  ],
+                  "explore": false,
+                  "key": "P17-C01-S01:exact-derivatives-and-equation-recovery",
+                  "url": "/chapters/17-01-研究问题与证据/read/1/#exact-derivatives-and-equation-recovery"
+                },
+                {
+                  "id": "original-study-and-current-computation",
+                  "title": "原研究配置与当前计算",
+                  "question_ids": [
+                    "p17-c1s1-choice1"
+                  ],
+                  "explore": true,
+                  "key": "P17-C01-S01:original-study-and-current-computation",
+                  "url": "/chapters/17-01-研究问题与证据/read/1/#original-study-and-current-computation",
+                  "explore_url": "/chapters/17-01-研究问题与证据/explore/?concept=P17-C01-S01%3Aoriginal-study-and-current-computation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C01-S01:references",
+                  "url": "/chapters/17-01-研究问题与证据/read/1/#references"
+                }
+              ],
+              "url": "/chapters/17-01-研究问题与证据/read/1/"
             },
             {
               "id": "P17-C01-S02",
               "chapter_id": "17.1",
               "number": "17.1.2",
-              "title": "锁定 Neural ODE 任务与改编边界",
+              "title": "螺旋动力学、解析解与观测损失",
               "outcome": "用旋转与衰减建立解析螺旋，核对数值积分，并说明可见二维状态与原论文潜变量任务的区别。",
               "path": "notebooks/17-研究复现与综合实践/01-研究问题与证据/02-锁定 Neural ODE 任务与改编边界.ipynb",
               "visualization": "web/research-practice/index.html",
+              "reading": "lessons/17-研究复现与综合实践/01-研究问题与证据/02-锁定 Neural ODE 任务与改编边界.md",
               "questions": [
                 {
                   "id": "p17-c1s2-choice1",
                   "slug": "p17-c1s2-choice1",
                   "title": "相似曲线与论文结果",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-01-研究问题与证据/read/2/#neural-ode-and-current-parameterization",
+                  "concept_title": "Neural ODE与当前参数化模型",
+                  "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1"
                 },
                 {
                   "id": "p17-c1s2-choice2",
                   "slug": "p17-c1s2-choice2",
                   "title": "观测跳跃",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-01-研究问题与证据/read/2/#observation-loss-and-adjoint-jumps",
+                  "concept_title": "离散观测损失与伴随跳跃",
+                  "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice2"
                 },
                 {
                   "id": "p17-spiral-vector",
                   "slug": "p17-spiral-vector",
                   "title": "缩减神经向量场",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-01-研究问题与证据/read/2/#four-parameter-vector-field",
+                  "concept_title": "四参数向量场与状态变化",
+                  "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-spiral-vector"
                 },
                 {
                   "id": "p17-spiral-reference",
                   "slug": "p17-spiral-reference",
                   "title": "解析螺旋参考",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-01-研究问题与证据/read/2/#analytic-rotation-and-decay",
+                  "concept_title": "旋转与衰减的解析解",
+                  "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-spiral-reference"
                 }
               ],
               "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1",
               "notebook_url": "/notebook/?id=P17-C01-S02",
-              "url": "/notebook/?id=P17-C01-S02"
+              "reading_url": "/chapters/17-01-研究问题与证据/read/2/",
+              "concepts": [
+                {
+                  "id": "four-parameter-vector-field",
+                  "title": "四参数向量场与状态变化",
+                  "question_ids": [
+                    "p17-spiral-vector"
+                  ],
+                  "explore": false,
+                  "key": "P17-C01-S02:four-parameter-vector-field",
+                  "url": "/chapters/17-01-研究问题与证据/read/2/#four-parameter-vector-field"
+                },
+                {
+                  "id": "analytic-rotation-and-decay",
+                  "title": "旋转与衰减的解析解",
+                  "question_ids": [
+                    "p17-spiral-reference"
+                  ],
+                  "explore": false,
+                  "key": "P17-C01-S02:analytic-rotation-and-decay",
+                  "url": "/chapters/17-01-研究问题与证据/read/2/#analytic-rotation-and-decay"
+                },
+                {
+                  "id": "analytic-spiral-and-numerical-trajectory",
+                  "title": "解析螺旋与数值轨迹",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C01-S02:analytic-spiral-and-numerical-trajectory",
+                  "url": "/chapters/17-01-研究问题与证据/read/2/#analytic-spiral-and-numerical-trajectory"
+                },
+                {
+                  "id": "neural-ode-and-current-parameterization",
+                  "title": "Neural ODE与当前参数化模型",
+                  "question_ids": [
+                    "p17-c1s2-choice1"
+                  ],
+                  "explore": false,
+                  "key": "P17-C01-S02:neural-ode-and-current-parameterization",
+                  "url": "/chapters/17-01-研究问题与证据/read/2/#neural-ode-and-current-parameterization"
+                },
+                {
+                  "id": "observation-loss-and-adjoint-jumps",
+                  "title": "离散观测损失与伴随跳跃",
+                  "question_ids": [
+                    "p17-c1s2-choice2"
+                  ],
+                  "explore": false,
+                  "key": "P17-C01-S02:observation-loss-and-adjoint-jumps",
+                  "url": "/chapters/17-01-研究问题与证据/read/2/#observation-loss-and-adjoint-jumps"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C01-S02:references",
+                  "url": "/chapters/17-01-研究问题与证据/read/2/#references"
+                }
+              ],
+              "url": "/chapters/17-01-研究问题与证据/read/2/"
             }
           ],
           "visualization": "web/research-practice/index.html"
@@ -25464,77 +25609,252 @@
               "id": "P17-C02-S01",
               "chapter_id": "17.2",
               "number": "17.2.1",
-              "title": "阈值最小二乘与独立 Lorenz 轨迹",
+              "title": "阈值重拟合与独立轨迹测试",
               "outcome": "逐轮筛选并重拟合候选系数，核对七个非零项，再从独立初态比较短窗预测。",
               "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/01-阈值最小二乘与独立 Lorenz 轨迹.ipynb",
               "visualization": "web/research-practice/index.html",
+              "reading": "lessons/17-研究复现与综合实践/02-复现协议与公平基线/01-阈值最小二乘与独立 Lorenz 轨迹.md",
               "questions": [
                 {
                   "id": "p17-c2s1-choice1",
                   "slug": "p17-c2s1-choice1",
                   "title": "公平轨迹划分",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-02-复现协议与公平基线/read/1/#training-selection-and-final-test",
+                  "concept_title": "训练、选择与最终测试",
+                  "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1"
                 },
                 {
                   "id": "p17-c2s1-choice2",
                   "slug": "p17-c2s1-choice2",
                   "title": "阈值重拟合",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-02-复现协议与公平基线/read/1/#thresholding-and-refitting",
+                  "concept_title": "筛选与重新拟合的交替",
+                  "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice2"
                 },
                 {
                   "id": "p17-disjoint-trajectories",
                   "slug": "p17-disjoint-trajectories",
                   "title": "划分交叉审计",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-02-复现协议与公平基线/read/1/#training-selection-and-final-test",
+                  "concept_title": "训练、选择与最终测试",
+                  "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-disjoint-trajectories"
                 },
                 {
                   "id": "p17-sparse-refit",
                   "slug": "p17-sparse-refit",
                   "title": "顺序阈值重拟合",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-02-复现协议与公平基线/read/1/#thresholding-and-refitting",
+                  "concept_title": "筛选与重新拟合的交替",
+                  "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-sparse-refit"
                 }
               ],
               "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1",
               "notebook_url": "/notebook/?id=P17-C02-S01",
-              "url": "/notebook/?id=P17-C02-S01"
+              "reading_url": "/chapters/17-02-复现协议与公平基线/read/1/",
+              "concepts": [
+                {
+                  "id": "sample-rows-features-and-three-derivatives",
+                  "title": "样本行、候选列与三个导数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C02-S01:sample-rows-features-and-three-derivatives",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/1/#sample-rows-features-and-three-derivatives"
+                },
+                {
+                  "id": "full-library-least-squares",
+                  "title": "全列最小二乘与两系数手算",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C02-S01:full-library-least-squares",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/1/#full-library-least-squares"
+                },
+                {
+                  "id": "thresholding-and-refitting",
+                  "title": "筛选与重新拟合的交替",
+                  "question_ids": [
+                    "p17-c2s1-choice2",
+                    "p17-sparse-refit"
+                  ],
+                  "explore": false,
+                  "key": "P17-C02-S01:thresholding-and-refitting",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/1/#thresholding-and-refitting"
+                },
+                {
+                  "id": "training-selection-and-final-test",
+                  "title": "训练、选择与最终测试",
+                  "question_ids": [
+                    "p17-c2s1-choice1",
+                    "p17-disjoint-trajectories"
+                  ],
+                  "explore": false,
+                  "key": "P17-C02-S01:training-selection-and-final-test",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/1/#training-selection-and-final-test"
+                },
+                {
+                  "id": "coefficient-structure-and-new-initial-state",
+                  "title": "系数结构与新初态预测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C02-S01:coefficient-structure-and-new-initial-state",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/1/#coefficient-structure-and-new-initial-state"
+                },
+                {
+                  "id": "two-feature-threshold-exploration",
+                  "title": "两项回归的筛选探索",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P17-C02-S01:two-feature-threshold-exploration",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/1/#two-feature-threshold-exploration",
+                  "explore_url": "/chapters/17-02-复现协议与公平基线/explore/?concept=P17-C02-S01%3Atwo-feature-threshold-exploration"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C02-S01:references",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/1/#references"
+                }
+              ],
+              "url": "/chapters/17-02-复现协议与公平基线/read/1/"
             },
             {
               "id": "P17-C02-S02",
               "chapter_id": "17.2",
               "number": "17.2.2",
-              "title": "连续伴随与公平外推基线",
+              "title": "连续伴随训练与同观测基线",
               "outcome": "分清积分点与观测点，核对伴随梯度，并在同观测条件下比较四参数学习与线性基线。",
               "path": "notebooks/17-研究复现与综合实践/02-复现协议与公平基线/02-连续伴随与公平外推基线.ipynb",
               "visualization": "web/research-practice/index.html",
+              "reading": "lessons/17-研究复现与综合实践/02-复现协议与公平基线/02-连续伴随与公平外推基线.md",
               "questions": [
                 {
                   "id": "p17-c2s2-choice1",
                   "slug": "p17-c2s2-choice1",
                   "title": "基线信息公平",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-02-复现协议与公平基线/read/2/#eighty-updates-and-shared-data-baseline",
+                  "concept_title": "八十次更新与同观测线性基线",
+                  "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1"
                 },
                 {
                   "id": "p17-c2s2-choice2",
                   "slug": "p17-c2s2-choice2",
                   "title": "梯度核验",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-02-复现协议与公平基线/read/2/#fixed-grid-adjoint-and-finite-difference",
+                  "concept_title": "固定网格上的伴随与有限差分",
+                  "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice2"
                 },
                 {
                   "id": "p17-state-jacobian",
                   "slug": "p17-state-jacobian",
                   "title": "伴随状态 Jacobian",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-02-复现协议与公平基线/read/2/#state-jacobian-and-state-dependence",
+                  "concept_title": "状态Jacobian与状态间的传递",
+                  "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-state-jacobian"
                 },
                 {
                   "id": "p17-parameter-jacobian",
                   "slug": "p17-parameter-jacobian",
                   "title": "伴随参数 Jacobian",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-02-复现协议与公平基线/read/2/#parameter-jacobian-and-gradient-components",
+                  "concept_title": "参数Jacobian与四个梯度分量",
+                  "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-parameter-jacobian"
                 }
               ],
               "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1",
               "notebook_url": "/notebook/?id=P17-C02-S02",
-              "url": "/notebook/?id=P17-C02-S02"
+              "reading_url": "/chapters/17-02-复现协议与公平基线/read/2/",
+              "concepts": [
+                {
+                  "id": "shared-observations-and-vector-field",
+                  "title": "共同训练观测与四参数右端",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C02-S02:shared-observations-and-vector-field",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/2/#shared-observations-and-vector-field"
+                },
+                {
+                  "id": "state-jacobian-and-state-dependence",
+                  "title": "状态Jacobian与状态间的传递",
+                  "question_ids": [
+                    "p17-state-jacobian"
+                  ],
+                  "explore": false,
+                  "key": "P17-C02-S02:state-jacobian-and-state-dependence",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/2/#state-jacobian-and-state-dependence"
+                },
+                {
+                  "id": "parameter-jacobian-and-gradient-components",
+                  "title": "参数Jacobian与四个梯度分量",
+                  "question_ids": [
+                    "p17-parameter-jacobian"
+                  ],
+                  "explore": false,
+                  "key": "P17-C02-S02:parameter-jacobian-and-gradient-components",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/2/#parameter-jacobian-and-gradient-components"
+                },
+                {
+                  "id": "observation-loss-terminal-and-jumps",
+                  "title": "观测损失、终端与伴随跳跃",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C02-S02:observation-loss-terminal-and-jumps",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/2/#observation-loss-terminal-and-jumps"
+                },
+                {
+                  "id": "backward-parameter-gradient-accumulation",
+                  "title": "参数梯度的反向累计",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C02-S02:backward-parameter-gradient-accumulation",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/2/#backward-parameter-gradient-accumulation"
+                },
+                {
+                  "id": "fixed-grid-adjoint-and-finite-difference",
+                  "title": "固定网格上的伴随与有限差分",
+                  "question_ids": [
+                    "p17-c2s2-choice2"
+                  ],
+                  "explore": false,
+                  "key": "P17-C02-S02:fixed-grid-adjoint-and-finite-difference",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/2/#fixed-grid-adjoint-and-finite-difference"
+                },
+                {
+                  "id": "eighty-updates-and-shared-data-baseline",
+                  "title": "八十次更新与同观测线性基线",
+                  "question_ids": [
+                    "p17-c2s2-choice1"
+                  ],
+                  "explore": false,
+                  "key": "P17-C02-S02:eighty-updates-and-shared-data-baseline",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/2/#eighty-updates-and-shared-data-baseline"
+                },
+                {
+                  "id": "new-initial-condition-and-extrapolation",
+                  "title": "新初态与训练窗口之后的预测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C02-S02:new-initial-condition-and-extrapolation",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/2/#new-initial-condition-and-extrapolation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C02-S02:references",
+                  "url": "/chapters/17-02-复现协议与公平基线/read/2/#references"
+                }
+              ],
+              "url": "/chapters/17-02-复现协议与公平基线/read/2/"
             }
           ],
           "visualization": "web/research-practice/index.html"
@@ -25558,77 +25878,204 @@
               "id": "P17-C03-S01",
               "chapter_id": "17.3",
               "number": "17.3.1",
-              "title": "稀疏性与导数噪声的失效实验",
+              "title": "导数噪声、阈值与方程结构",
               "outcome": "在同档导数噪声下比较两种阈值，分别读取残差和项数，区分拟合改善与结构恢复。",
               "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/01-稀疏性与导数噪声的失效实验.ipynb",
               "visualization": "web/research-practice/index.html",
+              "reading": "lessons/17-研究复现与综合实践/03-消融、失效与结论边界/01-稀疏性与导数噪声的失效实验.md",
               "questions": [
                 {
                   "id": "p17-c3s1-choice1",
                   "slug": "p17-c3s1-choice1",
                   "title": "消融隔离",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-03-消融、失效与结论边界/read/1/#ablation-and-controlled-comparison",
+                  "concept_title": "消融与单因素对照",
+                  "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1"
                 },
                 {
                   "id": "p17-c3s1-choice2",
                   "slug": "p17-c3s1-choice2",
                   "title": "导数污染",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-03-消融、失效与结论边界/read/1/#fixed-states-and-noisy-derivative-targets",
+                  "concept_title": "固定状态与带噪导数标签",
+                  "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice2"
                 },
                 {
                   "id": "p17-noisy-refit",
                   "slug": "p17-noisy-refit",
                   "title": "带噪导数重拟合",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-03-消融、失效与结论边界/read/1/#threshold-refitting-and-two-reported-quantities",
+                  "concept_title": "筛选、重拟合与两个报告读数",
+                  "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-noisy-refit"
                 },
                 {
                   "id": "p17-support-row",
                   "slug": "p17-support-row",
                   "title": "候选支持项",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-03-消融、失效与结论边界/read/1/#fixed-states-and-noisy-derivative-targets",
+                  "concept_title": "固定状态与带噪导数标签",
+                  "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-support-row"
                 }
               ],
               "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1",
               "notebook_url": "/notebook/?id=P17-C03-S01",
-              "url": "/notebook/?id=P17-C03-S01"
+              "reading_url": "/chapters/17-03-消融、失效与结论边界/read/1/",
+              "concepts": [
+                {
+                  "id": "ablation-and-controlled-comparison",
+                  "title": "消融与单因素对照",
+                  "question_ids": [
+                    "p17-c3s1-choice1"
+                  ],
+                  "explore": false,
+                  "key": "P17-C03-S01:ablation-and-controlled-comparison",
+                  "url": "/chapters/17-03-消融、失效与结论边界/read/1/#ablation-and-controlled-comparison"
+                },
+                {
+                  "id": "fixed-states-and-noisy-derivative-targets",
+                  "title": "固定状态与带噪导数标签",
+                  "question_ids": [
+                    "p17-c3s1-choice2",
+                    "p17-support-row"
+                  ],
+                  "explore": false,
+                  "key": "P17-C03-S01:fixed-states-and-noisy-derivative-targets",
+                  "url": "/chapters/17-03-消融、失效与结论边界/read/1/#fixed-states-and-noisy-derivative-targets"
+                },
+                {
+                  "id": "threshold-refitting-and-two-reported-quantities",
+                  "title": "筛选、重拟合与两个报告读数",
+                  "question_ids": [
+                    "p17-noisy-refit"
+                  ],
+                  "explore": false,
+                  "key": "P17-C03-S01:threshold-refitting-and-two-reported-quantities",
+                  "url": "/chapters/17-03-消融、失效与结论边界/read/1/#threshold-refitting-and-two-reported-quantities"
+                },
+                {
+                  "id": "six-noise-and-threshold-results",
+                  "title": "三档噪声、两个阈值的实际结果",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C03-S01:six-noise-and-threshold-results",
+                  "url": "/chapters/17-03-消融、失效与结论边界/read/1/#six-noise-and-threshold-results"
+                },
+                {
+                  "id": "reference-error-in-the-two-term-regression",
+                  "title": "两项回归中的参考误差",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P17-C03-S01:reference-error-in-the-two-term-regression",
+                  "url": "/chapters/17-03-消融、失效与结论边界/read/1/#reference-error-in-the-two-term-regression",
+                  "explore_url": "/chapters/17-03-消融、失效与结论边界/explore/?concept=P17-C03-S01%3Areference-error-in-the-two-term-regression"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C03-S01:references",
+                  "url": "/chapters/17-03-消融、失效与结论边界/read/1/#references"
+                }
+              ],
+              "url": "/chapters/17-03-消融、失效与结论边界/read/1/"
             },
             {
               "id": "P17-C03-S02",
               "chapter_id": "17.3",
               "number": "17.3.2",
-              "title": "伴随精度与模型消融",
+              "title": "积分网格、伴随精度与模型对照",
               "outcome": "保持二十一个观测与候选参数固定，查看三档步长的影响，再解释固定模型的新初态反例。",
               "path": "notebooks/17-研究复现与综合实践/03-消融、失效与结论边界/02-伴随精度与模型消融.ipynb",
               "visualization": "web/research-practice/index.html",
+              "reading": "lessons/17-研究复现与综合实践/03-消融、失效与结论边界/02-伴随精度与模型消融.md",
               "questions": [
                 {
                   "id": "p17-c3s2-choice1",
                   "slug": "p17-c3s2-choice1",
                   "title": "精度与性能",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-03-消融、失效与结论边界/read/2/#loss-and-gradient-for-one-fixed-objective",
+                  "concept_title": "同一个目标上的损失与梯度",
+                  "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1"
                 },
                 {
                   "id": "p17-c3s2-choice2",
                   "slug": "p17-c3s2-choice2",
                   "title": "模型自由度",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-03-消融、失效与结论边界/read/2/#two-fixed-vector-fields-from-a-new-initial-state",
+                  "concept_title": "新初态下的两个固定向量场",
+                  "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice2"
                 },
                 {
                   "id": "p17-independent-spiral",
                   "slug": "p17-independent-spiral",
                   "title": "独立初态解析线",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-03-消融、失效与结论边界/read/2/#two-fixed-vector-fields-from-a-new-initial-state",
+                  "concept_title": "新初态下的两个固定向量场",
+                  "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-independent-spiral"
                 },
                 {
                   "id": "p17-paired-failure",
                   "slug": "p17-paired-failure",
                   "title": "保留失败的配对统计",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-03-消融、失效与结论边界/read/2/#paired-differences-standard-error-and-quality-failure",
+                  "concept_title": "配对差、标准误与质量失败",
+                  "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-paired-failure"
                 }
               ],
               "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1",
               "notebook_url": "/notebook/?id=P17-C03-S02",
-              "url": "/notebook/?id=P17-C03-S02"
+              "reading_url": "/chapters/17-03-消融、失效与结论边界/read/2/",
+              "concepts": [
+                {
+                  "id": "fixed-observations-and-integration-grids",
+                  "title": "固定观测与积分网格",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C03-S02:fixed-observations-and-integration-grids",
+                  "url": "/chapters/17-03-消融、失效与结论边界/read/2/#fixed-observations-and-integration-grids"
+                },
+                {
+                  "id": "loss-and-gradient-for-one-fixed-objective",
+                  "title": "同一个目标上的损失与梯度",
+                  "question_ids": [
+                    "p17-c3s2-choice1"
+                  ],
+                  "explore": false,
+                  "key": "P17-C03-S02:loss-and-gradient-for-one-fixed-objective",
+                  "url": "/chapters/17-03-消融、失效与结论边界/read/2/#loss-and-gradient-for-one-fixed-objective"
+                },
+                {
+                  "id": "two-fixed-vector-fields-from-a-new-initial-state",
+                  "title": "新初态下的两个固定向量场",
+                  "question_ids": [
+                    "p17-c3s2-choice2",
+                    "p17-independent-spiral"
+                  ],
+                  "explore": false,
+                  "key": "P17-C03-S02:two-fixed-vector-fields-from-a-new-initial-state",
+                  "url": "/chapters/17-03-消融、失效与结论边界/read/2/#two-fixed-vector-fields-from-a-new-initial-state"
+                },
+                {
+                  "id": "paired-differences-standard-error-and-quality-failure",
+                  "title": "配对差、标准误与质量失败",
+                  "question_ids": [
+                    "p17-paired-failure"
+                  ],
+                  "explore": false,
+                  "key": "P17-C03-S02:paired-differences-standard-error-and-quality-failure",
+                  "url": "/chapters/17-03-消融、失效与结论边界/read/2/#paired-differences-standard-error-and-quality-failure"
+                }
+              ],
+              "url": "/chapters/17-03-消融、失效与结论边界/read/2/"
             }
           ],
           "visualization": "web/research-practice/index.html"
@@ -25652,77 +26099,221 @@
               "id": "P17-C04-S01",
               "chapter_id": "17.4",
               "number": "17.4.1",
-              "title": "迁移到双室物质清除",
+              "title": "双室收支、稀疏系数与继续预测",
               "outcome": "从双室逐项收支读出一阶系数表，解释交换抵消，并核对固定条件下的继续预测。",
               "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/01-迁移到双室物质清除.ipynb",
               "visualization": "web/research-practice/index.html",
+              "reading": "lessons/17-研究复现与综合实践/04-研究方法综合比较/01-迁移到双室物质清除.md",
               "questions": [
                 {
                   "id": "p17-c4s1-choice1",
                   "slug": "p17-c4s1-choice1",
                   "title": "交换守恒",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-04-研究方法综合比较/read/1/#two-compartment-balance",
+                  "concept_title": "双室交换与清除方程",
+                  "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1"
                 },
                 {
                   "id": "p17-c4s1-choice2",
                   "slug": "p17-c4s1-choice2",
                   "title": "论文任务边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-04-研究方法综合比较/read/1/#method-transfer",
+                  "concept_title": "研究方法迁移与数据条件",
+                  "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice2"
                 },
                 {
                   "id": "p17-two-compartment",
                   "slug": "p17-two-compartment",
                   "title": "双室收支变化率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-04-研究方法综合比较/read/1/#two-compartment-balance",
+                  "concept_title": "双室交换与清除方程",
+                  "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-two-compartment"
                 },
                 {
                   "id": "p17-transfer-score",
                   "slug": "p17-transfer-score",
                   "title": "迁移的三项指标",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-04-研究方法综合比较/read/1/#three-evaluation-measures",
+                  "concept_title": "预测误差、收支残差与负量",
+                  "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-transfer-score"
                 }
               ],
               "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1",
               "notebook_url": "/notebook/?id=P17-C04-S01",
-              "url": "/notebook/?id=P17-C04-S01"
+              "reading_url": "/chapters/17-04-研究方法综合比较/read/1/",
+              "concepts": [
+                {
+                  "id": "two-compartment-balance",
+                  "title": "双室交换与清除方程",
+                  "question_ids": [
+                    "p17-c4s1-choice1",
+                    "p17-two-compartment"
+                  ],
+                  "explore": true,
+                  "key": "P17-C04-S01:two-compartment-balance",
+                  "url": "/chapters/17-04-研究方法综合比较/read/1/#two-compartment-balance",
+                  "explore_url": "/chapters/17-04-研究方法综合比较/explore/?concept=P17-C04-S01%3Atwo-compartment-balance"
+                },
+                {
+                  "id": "affine-coefficients",
+                  "title": "一阶字典与系数矩阵",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C04-S01:affine-coefficients",
+                  "url": "/chapters/17-04-研究方法综合比较/read/1/#affine-coefficients"
+                },
+                {
+                  "id": "fit-and-continuation",
+                  "title": "拟合窗口与继续预测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C04-S01:fit-and-continuation",
+                  "url": "/chapters/17-04-研究方法综合比较/read/1/#fit-and-continuation"
+                },
+                {
+                  "id": "three-evaluation-measures",
+                  "title": "预测误差、收支残差与负量",
+                  "question_ids": [
+                    "p17-transfer-score"
+                  ],
+                  "explore": false,
+                  "key": "P17-C04-S01:three-evaluation-measures",
+                  "url": "/chapters/17-04-研究方法综合比较/read/1/#three-evaluation-measures"
+                },
+                {
+                  "id": "method-transfer",
+                  "title": "研究方法迁移与数据条件",
+                  "question_ids": [
+                    "p17-c4s1-choice2"
+                  ],
+                  "explore": false,
+                  "key": "P17-C04-S01:method-transfer",
+                  "url": "/chapters/17-04-研究方法综合比较/read/1/#method-transfer"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C04-S01:references",
+                  "url": "/chapters/17-04-研究方法综合比较/read/1/#references"
+                }
+              ],
+              "url": "/chapters/17-04-研究方法综合比较/read/1/"
             },
             {
               "id": "P17-C04-S02",
               "chapter_id": "17.4",
               "number": "17.4.2",
-              "title": "共同指标、失败记录与结论边界",
+              "title": "配对误差、质量失败与数据划分",
               "outcome": "逐组计算配对差，分别报告误差、收支与失败；区分质量失败和没有有效输出的求解失败。",
               "path": "notebooks/17-研究复现与综合实践/04-研究方法综合比较/02-共同指标、失败记录与结论边界.ipynb",
               "visualization": "web/research-practice/index.html",
+              "reading": "lessons/17-研究复现与综合实践/04-研究方法综合比较/02-共同指标、失败记录与结论边界.md",
               "questions": [
                 {
                   "id": "p17-c4s2-choice1",
                   "slug": "p17-c4s2-choice1",
                   "title": "低 RMSE 与失败",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-04-研究方法综合比较/read/2/#quality-and-validity",
+                  "concept_title": "质量失败与有效输出",
+                  "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1"
                 },
                 {
                   "id": "p17-c4s2-choice2",
                   "slug": "p17-c4s2-choice2",
                   "title": "证据范围",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/17-04-研究方法综合比较/read/2/#comparison-conclusion",
+                  "concept_title": "从比较结果形成研究结论",
+                  "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice2"
                 },
                 {
                   "id": "p17-paired-conclusion",
                   "slug": "p17-paired-conclusion",
                   "title": "公平配对效果",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-04-研究方法综合比较/read/2/#standard-error",
+                  "concept_title": "差值散布与标准误",
+                  "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-paired-conclusion"
                 },
                 {
                   "id": "p17-final-split",
                   "slug": "p17-final-split",
                   "title": "最终轨迹隔离",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/17-04-研究方法综合比较/read/2/#trajectory-split",
+                  "concept_title": "训练、选择与测试的轨迹划分",
+                  "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-final-split"
                 }
               ],
               "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1",
               "notebook_url": "/notebook/?id=P17-C04-S02",
-              "url": "/notebook/?id=P17-C04-S02"
+              "reading_url": "/chapters/17-04-研究方法综合比较/read/2/",
+              "concepts": [
+                {
+                  "id": "paired-differences",
+                  "title": "配对差与平均改进",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C04-S02:paired-differences",
+                  "url": "/chapters/17-04-研究方法综合比较/read/2/#paired-differences"
+                },
+                {
+                  "id": "standard-error",
+                  "title": "差值散布与标准误",
+                  "question_ids": [
+                    "p17-paired-conclusion"
+                  ],
+                  "explore": false,
+                  "key": "P17-C04-S02:standard-error",
+                  "url": "/chapters/17-04-研究方法综合比较/read/2/#standard-error"
+                },
+                {
+                  "id": "quality-and-validity",
+                  "title": "质量失败与有效输出",
+                  "question_ids": [
+                    "p17-c4s2-choice1"
+                  ],
+                  "explore": false,
+                  "key": "P17-C04-S02:quality-and-validity",
+                  "url": "/chapters/17-04-研究方法综合比较/read/2/#quality-and-validity"
+                },
+                {
+                  "id": "trajectory-split",
+                  "title": "训练、选择与测试的轨迹划分",
+                  "question_ids": [
+                    "p17-final-split"
+                  ],
+                  "explore": false,
+                  "key": "P17-C04-S02:trajectory-split",
+                  "url": "/chapters/17-04-研究方法综合比较/read/2/#trajectory-split"
+                },
+                {
+                  "id": "comparison-conclusion",
+                  "title": "从比较结果形成研究结论",
+                  "question_ids": [
+                    "p17-c4s2-choice2"
+                  ],
+                  "explore": false,
+                  "key": "P17-C04-S02:comparison-conclusion",
+                  "url": "/chapters/17-04-研究方法综合比较/read/2/#comparison-conclusion"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P17-C04-S02:references",
+                  "url": "/chapters/17-04-研究方法综合比较/read/2/#references"
+                }
+              ],
+              "url": "/chapters/17-04-研究方法综合比较/read/2/"
             }
           ],
           "visualization": "web/research-practice/index.html"
@@ -25731,7 +26322,7 @@
       "assessment": {
         "id": "17.summary",
         "assessment": true,
-        "title": "从论文主张到有界复现证据",
+        "title": "论文任务、方法改编与配对评价",
         "url": "/parts/17-研究复现与综合实践/综合练习/",
         "goals": "从论文主张出发组织实验，用基线、消融和新条件检验方法。",
         "prerequisites": "本篇 17.1—17.4；第 14—16 篇相关方法。",
@@ -25747,7 +26338,7 @@
             "id": "P17-SUMMARY",
             "chapter_id": "17.summary",
             "number": "17.综合",
-            "title": "从论文主张到有界复现证据",
+            "title": "论文任务、方法改编与配对评价",
             "outcome": "把论文任务、课程计算与迁移证据逐项连接，完成方程、配对统计及约束评价。",
             "path": "notebooks/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.ipynb",
             "visualization": null,
@@ -25762,59 +26353,164 @@
                 "双室迁移与收支核对"
               ]
             },
+            "reading": "lessons/17-研究复现与综合实践/99-篇末综合/01-从论文主张到有界复现证据.md",
             "questions": [
               {
                 "id": "p17-capstone-claim",
                 "slug": "p17-capstone-claim",
                 "title": "主张与证据",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/17-研究复现与综合实践/综合练习/read/1/#research-claims-and-checkable-results",
+                "concept_title": "研究主张与可检查的结果",
+                "practice_url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-claim"
               },
               {
                 "id": "p17-capstone-adaptation",
                 "slug": "p17-capstone-adaptation",
                 "title": "复现与改编身份",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/17-研究复现与综合实践/综合练习/read/1/#original-tasks-reduced-experiments-and-adaptations",
+                "concept_title": "原论文任务、缩减实验与方法改编",
+                "practice_url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-adaptation"
               },
               {
                 "id": "p17-capstone-protocol",
                 "slug": "p17-capstone-protocol",
                 "title": "协议缺口",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/17-研究复现与综合实践/综合练习/read/1/#evaluation-targets-and-data-partitioning",
+                "concept_title": "目标决定训练和测试怎样划分",
+                "practice_url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-protocol"
               },
               {
                 "id": "p17-capstone-failure",
                 "slug": "p17-capstone-failure",
                 "title": "失败能否反驳主张",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/17-研究复现与综合实践/综合练习/read/1/#evaluation-targets-and-data-partitioning",
+                "concept_title": "目标决定训练和测试怎样划分",
+                "practice_url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-failure"
               },
               {
                 "id": "p17-capstone-boundary",
                 "slug": "p17-capstone-boundary",
                 "title": "复现实验的结论边界",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/17-研究复现与综合实践/综合练习/read/1/#paired-improvement-and-two-types-of-failure",
+                "concept_title": "配对改善与两类失败",
+                "practice_url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-boundary"
               },
               {
                 "id": "p17-capstone-lorenz",
                 "slug": "p17-capstone-lorenz",
                 "title": "复现关键数值步骤",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/17-研究复现与综合实践/综合练习/read/1/#research-claims-and-checkable-results",
+                "concept_title": "研究主张与可检查的结果",
+                "practice_url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-lorenz"
               },
               {
                 "id": "p17-capstone-paired",
                 "slug": "p17-capstone-paired",
                 "title": "消融的配对统计",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/17-研究复现与综合实践/综合练习/read/1/#paired-improvement-and-two-types-of-failure",
+                "concept_title": "配对改善与两类失败",
+                "practice_url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-paired"
               },
               {
                 "id": "p17-capstone-score",
                 "slug": "p17-capstone-score",
                 "title": "跨方法约束指标",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/17-研究复现与综合实践/综合练习/read/1/#prediction-errors-and-two-compartment-balance",
+                "concept_title": "预测误差与双室收支",
+                "practice_url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-score"
               }
             ],
             "practice_url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-claim",
             "notebook_url": "/notebook/?id=P17-SUMMARY",
-            "url": "/notebook/?id=P17-SUMMARY"
+            "reading_url": "/parts/17-研究复现与综合实践/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "research-claims-and-checkable-results",
+                "title": "研究主张与可检查的结果",
+                "question_ids": [
+                  "p17-capstone-lorenz",
+                  "p17-capstone-claim"
+                ],
+                "explore": false,
+                "key": "P17-SUMMARY:research-claims-and-checkable-results",
+                "url": "/parts/17-研究复现与综合实践/综合练习/read/1/#research-claims-and-checkable-results"
+              },
+              {
+                "id": "original-tasks-reduced-experiments-and-adaptations",
+                "title": "原论文任务、缩减实验与方法改编",
+                "question_ids": [
+                  "p17-capstone-adaptation"
+                ],
+                "explore": false,
+                "key": "P17-SUMMARY:original-tasks-reduced-experiments-and-adaptations",
+                "url": "/parts/17-研究复现与综合实践/综合练习/read/1/#original-tasks-reduced-experiments-and-adaptations"
+              },
+              {
+                "id": "evaluation-targets-and-data-partitioning",
+                "title": "目标决定训练和测试怎样划分",
+                "question_ids": [
+                  "p17-capstone-protocol",
+                  "p17-capstone-failure"
+                ],
+                "explore": false,
+                "key": "P17-SUMMARY:evaluation-targets-and-data-partitioning",
+                "url": "/parts/17-研究复现与综合实践/综合练习/read/1/#evaluation-targets-and-data-partitioning"
+              },
+              {
+                "id": "vector-fields-and-parameter-jacobians",
+                "title": "向量场与参数偏导的逐列核对",
+                "question_ids": [],
+                "explore": false,
+                "key": "P17-SUMMARY:vector-fields-and-parameter-jacobians",
+                "url": "/parts/17-研究复现与综合实践/综合练习/read/1/#vector-fields-and-parameter-jacobians"
+              },
+              {
+                "id": "paired-improvement-and-two-types-of-failure",
+                "title": "配对改善与两类失败",
+                "question_ids": [
+                  "p17-capstone-paired",
+                  "p17-capstone-boundary"
+                ],
+                "explore": false,
+                "key": "P17-SUMMARY:paired-improvement-and-two-types-of-failure",
+                "url": "/parts/17-研究复现与综合实践/综合练习/read/1/#paired-improvement-and-two-types-of-failure"
+              },
+              {
+                "id": "prediction-errors-and-two-compartment-balance",
+                "title": "预测误差与双室收支",
+                "question_ids": [
+                  "p17-capstone-score"
+                ],
+                "explore": false,
+                "key": "P17-SUMMARY:prediction-errors-and-two-compartment-balance",
+                "url": "/parts/17-研究复现与综合实践/综合练习/read/1/#prediction-errors-and-two-compartment-balance"
+              },
+              {
+                "id": "graphical-checks-of-three-calculations",
+                "title": "三种计算的图形核对",
+                "question_ids": [],
+                "explore": false,
+                "key": "P17-SUMMARY:graphical-checks-of-three-calculations",
+                "url": "/parts/17-研究复现与综合实践/综合练习/read/1/#graphical-checks-of-three-calculations"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P17-SUMMARY:references",
+                "url": "/parts/17-研究复现与综合实践/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/17-研究复现与综合实践/综合练习/read/1/"
           }
         ],
         "available": true,

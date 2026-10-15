@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>17.1.1 Lorenz方程与稀疏候选字典 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P17-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P17-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1">本节练习 · 4 题</a><a class="button" href="/chapters/17-01-研究问题与证据/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>17.1.1 Lorenz方程与稀疏候选字典</h1>
+<p>一条弯曲的轨迹可能由许多不同的方程产生。如果希望从记录中找回运动规律，就要把“曲线看起来相像”变成更具体的问题：变化率由哪些项组成，各项的系数是多少，换一个起点后还预测得怎样？本篇从Lorenz系统开始，把第14篇的稀疏辨识接到原始研究的一个实例上。</p>
+<p>学完本节，应能代入三条方程计算变化率，说明状态表、候选字典和系数表的行列含义，并把当前数据对应到要检验的问题。先修为4.6的Lorenz系统、14.4的稀疏动力学辨识，以及第6篇的最小二乘。</p>
+<h2 id="lorenz-equations-and-instantaneous-rates">Lorenz方程与瞬时变化率</h2>
+<p>记三维状态为$\mathbf s=(x,y,z)^{\mathsf T}$。状态和时间都采用归一化的无量纲数值，方程为</p>
+<p>$$\begin{aligned}
+\dot x&amp;=\sigma(y-x),\\
+\dot y&amp;=x(\rho-z)-y,\\
+\dot z&amp;=xy-\beta z.
+\end{aligned}$$</p>
+<p>沿用$\sigma=10,\rho=28,\beta=8/3$。点号表示对归一化时间求导；给定当前位置，方程就给出此刻的运动方向和快慢。</p>
+<p>从$\mathbf s_0=(-8,7,27)^{\mathsf T}$出发，逐项代入：</p>
+<p>$$\begin{aligned}
+\dot x_0&amp;=10[7-(-8)]=150,\\
+\dot y_0&amp;=(-8)(28-27)-7=-15,\\
+\dot z_0&amp;=(-8)\times7-\frac83\times27=-56-72=-128.
+\end{aligned}$$</p>
+<p>所以变化率按$x,y,z$的顺序是$[150,-15,-128]$。其中150表示$x$此刻增加得很快；它是导数，推进到下一时刻还需要积分。返回列表时也要保持这个坐标顺序。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-01-研究问题与证据/practice/?question=p17-lorenz-vector">原方程瞬时导数</a></li></ul></nav>
+
+<h2 id="candidate-library-and-coefficient-positions">候选字典与系数的位置</h2>
+<p>SINDy把变化率写成一组候选函数的线性组合，再寻找其中少量起作用的项。这里的“线性组合”指对系数线性：候选函数本身可以是$xy$、$xz$等非线性函数。</p>
+<p>将当前状态展开为一行二次候选项：</p>
+<p>$$\boldsymbol\theta(\mathbf s)=
+[1,x,y,z,x^2,xy,xz,y^2,yz,z^2].$$</p>
+<p>常数1允许方程含有与状态无关的项；三个一次项之后，按固定顺序放入六个二次项。起点对应</p>
+<p>$$\boldsymbol\theta(\mathbf s_0)
+=[1,-8,7,27,64,-56,-216,49,189,729].$$</p>
+<p>例如$xy=-56$，$xz=-216$，而$y^2=49$。计算题用状态$[2,3,4]$练习同一顺序，返回$[1,2,3,4,4,6,8,9,12,16]$。位置固定后，每个系数才能始终乘到同一种函数上。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-01-研究问题与证据/practice/?question=p17-candidate-row">二次候选项顺序</a></li></ul></nav>
+
+<p>把所有采样时刻的状态按行排列，记作$X$；每行展开后得到候选字典矩阵$\Theta(X)$。将三个变化率也按行排列，记作$\dot X$。系数表$\Xi$的行对应候选项、列对应三条方程，于是</p>
+<p>$$\dot X\approx\Theta(X)\Xi.$$</p>
+<p>已知Lorenz方程在这十列中的系数如下：</p>
+<table>
+<thead>
+<tr>
+  <th>候选项</th>
+  <th style="text-align:right">$\dot x$的系数</th>
+  <th style="text-align:right">$\dot y$的系数</th>
+  <th style="text-align:right">$\dot z$的系数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$1$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$x$</td>
+  <td style="text-align:right">$-10$</td>
+  <td style="text-align:right">28</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$y$</td>
+  <td style="text-align:right">10</td>
+  <td style="text-align:right">$-1$</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$z$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">$-8/3$</td>
+</tr>
+<tr>
+  <td>$x^2$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$xy$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>$xz$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">$-1$</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$y^2$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$yz$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$z^2$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p>表中有$10\times3=30$个系数位置，其中7个非零。例如第二列给出$\dot y=28x-y-xz$；在起点就是$28\times(-8)-7-(-216)=-15$。这与直接代入原方程相同，也说明交叉项的符号为什么不能随意交换。</p>
+<p>稀疏恢复要从数据估计这张表。找对非零项回答“用了哪些函数”，估准其数值回答“各项作用有多强”；两者可以分别比较。</p>
+<h2 id="sampling-window-and-state-coverage">采样窗口与状态覆盖</h2>
+<p>用RK4从上述初态推进，取间隔$h=0.01$，保留归一化时间$0$到4的状态。更新次数为$4/0.01=400$，加上起点，共有401行。因此</p>
+<p>$$X:\ 401\times3,\qquad
+\Theta(X):\ 401\times10,\qquad
+\Xi:\ 10\times3.$$</p>
+<p>下面画出这段轨迹的$x$、$z$坐标。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P17-C01-S01-34690552-0.png" alt="Lorenz方程与稀疏候选字典：实验结果图" loading="lazy"></figure>
+</section>
+<p>横轴是$x$，纵轴是$z$，蓝线随时间依次连接采样状态。这幅投影展示轨迹经过的状态区域；时间并没有放在某条坐标轴上。展开字典时，每个点都贡献一行，而不是把这张二维图当作拟合数据。</p>
+<p>数据行数多，表示记录了更多时刻；能否区分候选项，还取决于轨迹经过哪里。例如两个候选列在当前轨迹上总是接近成比例时，最小二乘就难以分别确定它们的系数。这与第6篇的参数辨识问题相同。</p>
+<h2 id="exact-derivatives-and-equation-recovery">精确导数与方程恢复问题</h2>
+<p>生成状态后，把每行$\mathbf s_n$代回已知方程，便得到同一时刻的精确变化率$\dot{\mathbf s}_n$。这里的“精确”指方程右端在给定状态上的函数值；状态轨迹仍由RK4数值积分产生。</p>
+<p>这样可以先研究候选函数和稀疏拟合本身。若拿到的是带噪状态读数，则还要估计导数：例如差分会用两个读数之差除以时间间隔，测量噪声也随之被放大。当前由方程提供导数，正好将这个环节与后面的系数筛选分开。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice2">真值导数的范围</a></li></ul></nav>
+
+<h2 id="original-study-and-current-computation">原研究配置与当前计算</h2>
+<p><a href="https://arxiv.org/abs/1509.03580v1">SINDy论文的v1版本</a>以同一个Lorenz方程和初态研究方程发现，使用更长的记录和更宽的字典。把两项规模放在一起看：</p>
+<table>
+<thead>
+<tr>
+  <th>数据或表示</th>
+  <th>原论文Lorenz例子</th>
+  <th>本篇计算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>时间区间</td>
+  <td>0至100</td>
+  <td>0至4</td>
+</tr>
+<tr>
+  <td>采样间隔</td>
+  <td>0.001</td>
+  <td>0.01</td>
+</tr>
+<tr>
+  <td>包含起点与终点的行数</td>
+  <td>100001</td>
+  <td>401</td>
+</tr>
+<tr>
+  <td>候选多项式最高次数</td>
+  <td>五次</td>
+  <td>二次</td>
+</tr>
+<tr>
+  <td>含常数的候选列数</td>
+  <td>56</td>
+  <td>10</td>
+</tr>
+</tbody>
+</table>
+<p>行数由区间和间隔算得。按总次数分别计数，常数到二次共有$1+3+6=10$列；继续加入三、四、五次项，则为$1+3+6+10+15+21=56$列。窗口增加主要让数据表变高，次数增加让字典变宽。原论文还研究了导数噪声下的恢复与较长时间的轨迹；本篇从精确导数开始，先把十列字典中的恢复过程逐步算清。</p>
+<p class="concept-explore"><a href="/chapters/17-01-研究问题与证据/explore/?concept=P17-C01-S01%3Aoriginal-study-and-current-computation">可视化与探索：原研究配置与当前计算 →</a></p>
+
+<p>在探索中分别改变窗口和最高次数，观察样本行数与候选列数。采样窗口视图使用对数纵轴，实际行数显示在读数中；切换到字典视图，则可比较二次至五次对应的列数。</p>
+<p>接下来要检验的第一个问题很具体：用这401行状态及其导数，能否找回表中7个非零项及其系数？再从另一个初态积分估计出的方程，比较短时间内的预测。下一章将实际进行这两步。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1">原论文参数与课程窗口</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/abs/1509.03580v1">Brunton、Proctor与Kutz：SINDy，arXiv:1509.03580v1</a>，第3节给出候选字典与稀疏回归，第4.2节和表4给出Lorenz实验及系数。本节的十列字典为后续阈值筛选准备数据。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/">← 16.综合 不确定模型、随机恢复与决策评价</a><a href="/chapters/17-01-研究问题与证据/read/2/">17.1.2 螺旋动力学、解析解与观测损失 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

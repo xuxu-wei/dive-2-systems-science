@@ -47,13 +47,13 @@ def test_structure_and_reproduction_boundary():
     assert all(chapter['available'] for chapter in course['parts'][16]['chapters'])
     def prose_for(number):
         entry=next(entry for entry in CATALOG if entry['number']==number)
-        cells=json.loads((ROOT/entry['path']).read_text(encoding='utf-8'))['cells']
-        return '\n'.join(''.join(cell['source']) for cell in cells[:-1] if cell['cell_type']=='markdown')
+        assert entry.get('reading'), number
+        return (ROOT/entry['reading']).read_text(encoding='utf-8')
     # Check the actual paper/course configurations, not a mandatory disclaimer.
     lorenz=prose_for('17.1.1')
-    assert all(value in lorenz for value in ('0—100', '0.001', '五次多项式', '前 4', '0.01', '二次字典'))
+    assert all(value in lorenz for value in ('1509.03580v1', '0至100', '0至4', '0.001', '0.01', '五次', '二次', '100001', '401', '56'))
     spiral=prose_for('17.1.2')
-    assert all(value in spiral for value in ('RNN 编码器', '四维潜变量', '四参数', '可见状态'))
+    assert all(value in spiral for value in ('RNN', '四维潜变量', '四参数', '可见状态'))
     assert '双室交换与清除' in prose_for('17.4.1')
 
 def test_lorenz_sindy_against_known_equations_and_independent_initial_state():

@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "5eb25aa800d269436bd6d282e0afc241ce8a712c954f9892945b7805f951c05d",
+    "catalogSha256": "eefea78a4b67583e15c5b3e7a8e22b8e7b1b4a24a1b4a01a659802602f2b2ec6",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -22513,8 +22513,8 @@
       "english": null,
       "number": "17.1.1",
       "parentId": "17.1",
-      "url": "/notebook/?id=P17-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-01-研究问题与证据/read/1/",
+      "readingUrl": "/chapters/17-01-研究问题与证据/read/1/",
       "practiceUrl": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1",
       "description": "从 Lorenz 初态代入三个导数，按十列二次字典展开状态，说明本次方程恢复要核对什么。",
       "categories": [
@@ -22533,7 +22533,7 @@
       "total": 1,
       "lessonId": "P17-C01-S01",
       "lessonNumber": "17.1.1",
-      "lessonTitle": "锁定 Lorenz 稀疏发现的主张",
+      "lessonTitle": "Lorenz方程与稀疏候选字典",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22544,8 +22544,8 @@
       "english": null,
       "number": "17.1.1",
       "parentId": "17.1",
-      "url": "/notebook/?id=P17-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-01-研究问题与证据/read/1/",
+      "readingUrl": "/chapters/17-01-研究问题与证据/read/1/",
       "practiceUrl": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1",
       "description": "从 Lorenz 初态代入三个导数，按十列二次字典展开状态，说明本次方程恢复要核对什么。",
       "categories": [
@@ -22564,7 +22564,7 @@
       "total": 1,
       "lessonId": "P17-C01-S01",
       "lessonNumber": "17.1.1",
-      "lessonTitle": "锁定 Lorenz 稀疏发现的主张",
+      "lessonTitle": "Lorenz方程与稀疏候选字典",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22575,8 +22575,8 @@
       "english": null,
       "number": "17.1.1",
       "parentId": "17.1",
-      "url": "/notebook/?id=P17-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-01-研究问题与证据/read/1/",
+      "readingUrl": "/chapters/17-01-研究问题与证据/read/1/",
       "practiceUrl": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1",
       "description": "从 Lorenz 初态代入三个导数，按十列二次字典展开状态，说明本次方程恢复要核对什么。",
       "categories": [
@@ -22595,7 +22595,7 @@
       "total": 1,
       "lessonId": "P17-C01-S01",
       "lessonNumber": "17.1.1",
-      "lessonTitle": "锁定 Lorenz 稀疏发现的主张",
+      "lessonTitle": "Lorenz方程与稀疏候选字典",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22606,8 +22606,8 @@
       "english": null,
       "number": "17.1.1",
       "parentId": "17.1",
-      "url": "/notebook/?id=P17-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-01-研究问题与证据/read/1/",
+      "readingUrl": "/chapters/17-01-研究问题与证据/read/1/",
       "practiceUrl": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1",
       "description": "从 Lorenz 初态代入三个导数，按十列二次字典展开状态，说明本次方程恢复要核对什么。",
       "categories": [
@@ -22626,7 +22626,7 @@
       "total": 1,
       "lessonId": "P17-C01-S01",
       "lessonNumber": "17.1.1",
-      "lessonTitle": "锁定 Lorenz 稀疏发现的主张",
+      "lessonTitle": "Lorenz方程与稀疏候选字典",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22637,8 +22637,8 @@
       "english": null,
       "number": "17.1.2",
       "parentId": "17.1",
-      "url": "/notebook/?id=P17-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-01-研究问题与证据/read/2/",
+      "readingUrl": "/chapters/17-01-研究问题与证据/read/2/",
       "practiceUrl": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1",
       "description": "用旋转与衰减建立解析螺旋，核对数值积分，并说明可见二维状态与原论文潜变量任务的区别。",
       "categories": [
@@ -22657,7 +22657,7 @@
       "total": 1,
       "lessonId": "P17-C01-S02",
       "lessonNumber": "17.1.2",
-      "lessonTitle": "锁定 Neural ODE 任务与改编边界",
+      "lessonTitle": "螺旋动力学、解析解与观测损失",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22668,8 +22668,8 @@
       "english": null,
       "number": "17.1.2",
       "parentId": "17.1",
-      "url": "/notebook/?id=P17-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-01-研究问题与证据/read/2/",
+      "readingUrl": "/chapters/17-01-研究问题与证据/read/2/",
       "practiceUrl": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1",
       "description": "用旋转与衰减建立解析螺旋，核对数值积分，并说明可见二维状态与原论文潜变量任务的区别。",
       "categories": [
@@ -22688,7 +22688,7 @@
       "total": 1,
       "lessonId": "P17-C01-S02",
       "lessonNumber": "17.1.2",
-      "lessonTitle": "锁定 Neural ODE 任务与改编边界",
+      "lessonTitle": "螺旋动力学、解析解与观测损失",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22699,8 +22699,8 @@
       "english": null,
       "number": "17.1.2",
       "parentId": "17.1",
-      "url": "/notebook/?id=P17-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-01-研究问题与证据/read/2/",
+      "readingUrl": "/chapters/17-01-研究问题与证据/read/2/",
       "practiceUrl": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1",
       "description": "用旋转与衰减建立解析螺旋，核对数值积分，并说明可见二维状态与原论文潜变量任务的区别。",
       "categories": [
@@ -22719,7 +22719,7 @@
       "total": 1,
       "lessonId": "P17-C01-S02",
       "lessonNumber": "17.1.2",
-      "lessonTitle": "锁定 Neural ODE 任务与改编边界",
+      "lessonTitle": "螺旋动力学、解析解与观测损失",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22730,8 +22730,8 @@
       "english": null,
       "number": "17.1.2",
       "parentId": "17.1",
-      "url": "/notebook/?id=P17-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-01-研究问题与证据/read/2/",
+      "readingUrl": "/chapters/17-01-研究问题与证据/read/2/",
       "practiceUrl": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1",
       "description": "用旋转与衰减建立解析螺旋，核对数值积分，并说明可见二维状态与原论文潜变量任务的区别。",
       "categories": [
@@ -22750,7 +22750,7 @@
       "total": 1,
       "lessonId": "P17-C01-S02",
       "lessonNumber": "17.1.2",
-      "lessonTitle": "锁定 Neural ODE 任务与改编边界",
+      "lessonTitle": "螺旋动力学、解析解与观测损失",
       "chapterUrl": "/chapters/17-01-研究问题与证据/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22798,8 +22798,8 @@
       "english": null,
       "number": "17.2.1",
       "parentId": "17.2",
-      "url": "/notebook/?id=P17-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-02-复现协议与公平基线/read/1/",
+      "readingUrl": "/chapters/17-02-复现协议与公平基线/read/1/",
       "practiceUrl": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1",
       "description": "逐轮筛选并重拟合候选系数，核对七个非零项，再从独立初态比较短窗预测。",
       "categories": [
@@ -22818,7 +22818,7 @@
       "total": 1,
       "lessonId": "P17-C02-S01",
       "lessonNumber": "17.2.1",
-      "lessonTitle": "阈值最小二乘与独立 Lorenz 轨迹",
+      "lessonTitle": "阈值重拟合与独立轨迹测试",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22829,8 +22829,8 @@
       "english": null,
       "number": "17.2.1",
       "parentId": "17.2",
-      "url": "/notebook/?id=P17-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-02-复现协议与公平基线/read/1/",
+      "readingUrl": "/chapters/17-02-复现协议与公平基线/read/1/",
       "practiceUrl": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1",
       "description": "逐轮筛选并重拟合候选系数，核对七个非零项，再从独立初态比较短窗预测。",
       "categories": [
@@ -22849,7 +22849,7 @@
       "total": 1,
       "lessonId": "P17-C02-S01",
       "lessonNumber": "17.2.1",
-      "lessonTitle": "阈值最小二乘与独立 Lorenz 轨迹",
+      "lessonTitle": "阈值重拟合与独立轨迹测试",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22860,8 +22860,8 @@
       "english": null,
       "number": "17.2.1",
       "parentId": "17.2",
-      "url": "/notebook/?id=P17-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-02-复现协议与公平基线/read/1/",
+      "readingUrl": "/chapters/17-02-复现协议与公平基线/read/1/",
       "practiceUrl": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1",
       "description": "逐轮筛选并重拟合候选系数，核对七个非零项，再从独立初态比较短窗预测。",
       "categories": [
@@ -22880,7 +22880,7 @@
       "total": 1,
       "lessonId": "P17-C02-S01",
       "lessonNumber": "17.2.1",
-      "lessonTitle": "阈值最小二乘与独立 Lorenz 轨迹",
+      "lessonTitle": "阈值重拟合与独立轨迹测试",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22891,8 +22891,8 @@
       "english": null,
       "number": "17.2.1",
       "parentId": "17.2",
-      "url": "/notebook/?id=P17-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-02-复现协议与公平基线/read/1/",
+      "readingUrl": "/chapters/17-02-复现协议与公平基线/read/1/",
       "practiceUrl": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1",
       "description": "逐轮筛选并重拟合候选系数，核对七个非零项，再从独立初态比较短窗预测。",
       "categories": [
@@ -22911,7 +22911,7 @@
       "total": 1,
       "lessonId": "P17-C02-S01",
       "lessonNumber": "17.2.1",
-      "lessonTitle": "阈值最小二乘与独立 Lorenz 轨迹",
+      "lessonTitle": "阈值重拟合与独立轨迹测试",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22922,8 +22922,8 @@
       "english": null,
       "number": "17.2.2",
       "parentId": "17.2",
-      "url": "/notebook/?id=P17-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-02-复现协议与公平基线/read/2/",
+      "readingUrl": "/chapters/17-02-复现协议与公平基线/read/2/",
       "practiceUrl": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1",
       "description": "分清积分点与观测点，核对伴随梯度，并在同观测条件下比较四参数学习与线性基线。",
       "categories": [
@@ -22942,7 +22942,7 @@
       "total": 1,
       "lessonId": "P17-C02-S02",
       "lessonNumber": "17.2.2",
-      "lessonTitle": "连续伴随与公平外推基线",
+      "lessonTitle": "连续伴随训练与同观测基线",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22953,8 +22953,8 @@
       "english": null,
       "number": "17.2.2",
       "parentId": "17.2",
-      "url": "/notebook/?id=P17-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-02-复现协议与公平基线/read/2/",
+      "readingUrl": "/chapters/17-02-复现协议与公平基线/read/2/",
       "practiceUrl": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1",
       "description": "分清积分点与观测点，核对伴随梯度，并在同观测条件下比较四参数学习与线性基线。",
       "categories": [
@@ -22973,7 +22973,7 @@
       "total": 1,
       "lessonId": "P17-C02-S02",
       "lessonNumber": "17.2.2",
-      "lessonTitle": "连续伴随与公平外推基线",
+      "lessonTitle": "连续伴随训练与同观测基线",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22984,8 +22984,8 @@
       "english": null,
       "number": "17.2.2",
       "parentId": "17.2",
-      "url": "/notebook/?id=P17-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-02-复现协议与公平基线/read/2/",
+      "readingUrl": "/chapters/17-02-复现协议与公平基线/read/2/",
       "practiceUrl": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1",
       "description": "分清积分点与观测点，核对伴随梯度，并在同观测条件下比较四参数学习与线性基线。",
       "categories": [
@@ -23004,7 +23004,7 @@
       "total": 1,
       "lessonId": "P17-C02-S02",
       "lessonNumber": "17.2.2",
-      "lessonTitle": "连续伴随与公平外推基线",
+      "lessonTitle": "连续伴随训练与同观测基线",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23015,8 +23015,8 @@
       "english": null,
       "number": "17.2.2",
       "parentId": "17.2",
-      "url": "/notebook/?id=P17-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-02-复现协议与公平基线/read/2/",
+      "readingUrl": "/chapters/17-02-复现协议与公平基线/read/2/",
       "practiceUrl": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1",
       "description": "分清积分点与观测点，核对伴随梯度，并在同观测条件下比较四参数学习与线性基线。",
       "categories": [
@@ -23035,7 +23035,7 @@
       "total": 1,
       "lessonId": "P17-C02-S02",
       "lessonNumber": "17.2.2",
-      "lessonTitle": "连续伴随与公平外推基线",
+      "lessonTitle": "连续伴随训练与同观测基线",
       "chapterUrl": "/chapters/17-02-复现协议与公平基线/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23083,8 +23083,8 @@
       "english": null,
       "number": "17.3.1",
       "parentId": "17.3",
-      "url": "/notebook/?id=P17-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-03-消融、失效与结论边界/read/1/",
+      "readingUrl": "/chapters/17-03-消融、失效与结论边界/read/1/",
       "practiceUrl": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1",
       "description": "在同档导数噪声下比较两种阈值，分别读取残差和项数，区分拟合改善与结构恢复。",
       "categories": [
@@ -23103,7 +23103,7 @@
       "total": 1,
       "lessonId": "P17-C03-S01",
       "lessonNumber": "17.3.1",
-      "lessonTitle": "稀疏性与导数噪声的失效实验",
+      "lessonTitle": "导数噪声、阈值与方程结构",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23114,8 +23114,8 @@
       "english": null,
       "number": "17.3.1",
       "parentId": "17.3",
-      "url": "/notebook/?id=P17-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-03-消融、失效与结论边界/read/1/",
+      "readingUrl": "/chapters/17-03-消融、失效与结论边界/read/1/",
       "practiceUrl": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1",
       "description": "在同档导数噪声下比较两种阈值，分别读取残差和项数，区分拟合改善与结构恢复。",
       "categories": [
@@ -23134,7 +23134,7 @@
       "total": 1,
       "lessonId": "P17-C03-S01",
       "lessonNumber": "17.3.1",
-      "lessonTitle": "稀疏性与导数噪声的失效实验",
+      "lessonTitle": "导数噪声、阈值与方程结构",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23145,8 +23145,8 @@
       "english": null,
       "number": "17.3.1",
       "parentId": "17.3",
-      "url": "/notebook/?id=P17-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-03-消融、失效与结论边界/read/1/",
+      "readingUrl": "/chapters/17-03-消融、失效与结论边界/read/1/",
       "practiceUrl": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1",
       "description": "在同档导数噪声下比较两种阈值，分别读取残差和项数，区分拟合改善与结构恢复。",
       "categories": [
@@ -23165,7 +23165,7 @@
       "total": 1,
       "lessonId": "P17-C03-S01",
       "lessonNumber": "17.3.1",
-      "lessonTitle": "稀疏性与导数噪声的失效实验",
+      "lessonTitle": "导数噪声、阈值与方程结构",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23176,8 +23176,8 @@
       "english": null,
       "number": "17.3.1",
       "parentId": "17.3",
-      "url": "/notebook/?id=P17-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-03-消融、失效与结论边界/read/1/",
+      "readingUrl": "/chapters/17-03-消融、失效与结论边界/read/1/",
       "practiceUrl": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1",
       "description": "在同档导数噪声下比较两种阈值，分别读取残差和项数，区分拟合改善与结构恢复。",
       "categories": [
@@ -23196,7 +23196,7 @@
       "total": 1,
       "lessonId": "P17-C03-S01",
       "lessonNumber": "17.3.1",
-      "lessonTitle": "稀疏性与导数噪声的失效实验",
+      "lessonTitle": "导数噪声、阈值与方程结构",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23207,8 +23207,8 @@
       "english": null,
       "number": "17.3.2",
       "parentId": "17.3",
-      "url": "/notebook/?id=P17-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-03-消融、失效与结论边界/read/2/",
+      "readingUrl": "/chapters/17-03-消融、失效与结论边界/read/2/",
       "practiceUrl": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1",
       "description": "保持二十一个观测与候选参数固定，查看三档步长的影响，再解释固定模型的新初态反例。",
       "categories": [
@@ -23227,7 +23227,7 @@
       "total": 1,
       "lessonId": "P17-C03-S02",
       "lessonNumber": "17.3.2",
-      "lessonTitle": "伴随精度与模型消融",
+      "lessonTitle": "积分网格、伴随精度与模型对照",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23238,8 +23238,8 @@
       "english": null,
       "number": "17.3.2",
       "parentId": "17.3",
-      "url": "/notebook/?id=P17-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-03-消融、失效与结论边界/read/2/",
+      "readingUrl": "/chapters/17-03-消融、失效与结论边界/read/2/",
       "practiceUrl": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1",
       "description": "保持二十一个观测与候选参数固定，查看三档步长的影响，再解释固定模型的新初态反例。",
       "categories": [
@@ -23258,7 +23258,7 @@
       "total": 1,
       "lessonId": "P17-C03-S02",
       "lessonNumber": "17.3.2",
-      "lessonTitle": "伴随精度与模型消融",
+      "lessonTitle": "积分网格、伴随精度与模型对照",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23269,8 +23269,8 @@
       "english": null,
       "number": "17.3.2",
       "parentId": "17.3",
-      "url": "/notebook/?id=P17-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-03-消融、失效与结论边界/read/2/",
+      "readingUrl": "/chapters/17-03-消融、失效与结论边界/read/2/",
       "practiceUrl": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1",
       "description": "保持二十一个观测与候选参数固定，查看三档步长的影响，再解释固定模型的新初态反例。",
       "categories": [
@@ -23289,7 +23289,7 @@
       "total": 1,
       "lessonId": "P17-C03-S02",
       "lessonNumber": "17.3.2",
-      "lessonTitle": "伴随精度与模型消融",
+      "lessonTitle": "积分网格、伴随精度与模型对照",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23300,8 +23300,8 @@
       "english": null,
       "number": "17.3.2",
       "parentId": "17.3",
-      "url": "/notebook/?id=P17-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-03-消融、失效与结论边界/read/2/",
+      "readingUrl": "/chapters/17-03-消融、失效与结论边界/read/2/",
       "practiceUrl": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1",
       "description": "保持二十一个观测与候选参数固定，查看三档步长的影响，再解释固定模型的新初态反例。",
       "categories": [
@@ -23320,7 +23320,7 @@
       "total": 1,
       "lessonId": "P17-C03-S02",
       "lessonNumber": "17.3.2",
-      "lessonTitle": "伴随精度与模型消融",
+      "lessonTitle": "积分网格、伴随精度与模型对照",
       "chapterUrl": "/chapters/17-03-消融、失效与结论边界/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23368,8 +23368,8 @@
       "english": null,
       "number": "17.4.1",
       "parentId": "17.4",
-      "url": "/notebook/?id=P17-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-04-研究方法综合比较/read/1/",
+      "readingUrl": "/chapters/17-04-研究方法综合比较/read/1/",
       "practiceUrl": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1",
       "description": "从双室逐项收支读出一阶系数表，解释交换抵消，并核对固定条件下的继续预测。",
       "categories": [
@@ -23388,7 +23388,7 @@
       "total": 1,
       "lessonId": "P17-C04-S01",
       "lessonNumber": "17.4.1",
-      "lessonTitle": "迁移到双室物质清除",
+      "lessonTitle": "双室收支、稀疏系数与继续预测",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23399,8 +23399,8 @@
       "english": null,
       "number": "17.4.1",
       "parentId": "17.4",
-      "url": "/notebook/?id=P17-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-04-研究方法综合比较/read/1/",
+      "readingUrl": "/chapters/17-04-研究方法综合比较/read/1/",
       "practiceUrl": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1",
       "description": "从双室逐项收支读出一阶系数表，解释交换抵消，并核对固定条件下的继续预测。",
       "categories": [
@@ -23419,7 +23419,7 @@
       "total": 1,
       "lessonId": "P17-C04-S01",
       "lessonNumber": "17.4.1",
-      "lessonTitle": "迁移到双室物质清除",
+      "lessonTitle": "双室收支、稀疏系数与继续预测",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23430,8 +23430,8 @@
       "english": null,
       "number": "17.4.1",
       "parentId": "17.4",
-      "url": "/notebook/?id=P17-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-04-研究方法综合比较/read/1/",
+      "readingUrl": "/chapters/17-04-研究方法综合比较/read/1/",
       "practiceUrl": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1",
       "description": "从双室逐项收支读出一阶系数表，解释交换抵消，并核对固定条件下的继续预测。",
       "categories": [
@@ -23450,7 +23450,7 @@
       "total": 1,
       "lessonId": "P17-C04-S01",
       "lessonNumber": "17.4.1",
-      "lessonTitle": "迁移到双室物质清除",
+      "lessonTitle": "双室收支、稀疏系数与继续预测",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23461,8 +23461,8 @@
       "english": null,
       "number": "17.4.1",
       "parentId": "17.4",
-      "url": "/notebook/?id=P17-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/17-04-研究方法综合比较/read/1/",
+      "readingUrl": "/chapters/17-04-研究方法综合比较/read/1/",
       "practiceUrl": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1",
       "description": "从双室逐项收支读出一阶系数表，解释交换抵消，并核对固定条件下的继续预测。",
       "categories": [
@@ -23481,7 +23481,7 @@
       "total": 1,
       "lessonId": "P17-C04-S01",
       "lessonNumber": "17.4.1",
-      "lessonTitle": "迁移到双室物质清除",
+      "lessonTitle": "双室收支、稀疏系数与继续预测",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23492,8 +23492,8 @@
       "english": null,
       "number": "17.4.2",
       "parentId": "17.4",
-      "url": "/notebook/?id=P17-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-04-研究方法综合比较/read/2/",
+      "readingUrl": "/chapters/17-04-研究方法综合比较/read/2/",
       "practiceUrl": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1",
       "description": "逐组计算配对差，分别报告误差、收支与失败；区分质量失败和没有有效输出的求解失败。",
       "categories": [
@@ -23512,7 +23512,7 @@
       "total": 1,
       "lessonId": "P17-C04-S02",
       "lessonNumber": "17.4.2",
-      "lessonTitle": "共同指标、失败记录与结论边界",
+      "lessonTitle": "配对误差、质量失败与数据划分",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23523,8 +23523,8 @@
       "english": "mass-balance residual",
       "number": "17.4.2",
       "parentId": "17.4",
-      "url": "/notebook/?id=P17-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-04-研究方法综合比较/read/2/",
+      "readingUrl": "/chapters/17-04-研究方法综合比较/read/2/",
       "practiceUrl": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1",
       "description": "逐组计算配对差，分别报告误差、收支与失败；区分质量失败和没有有效输出的求解失败。",
       "categories": [
@@ -23543,7 +23543,7 @@
       "total": 1,
       "lessonId": "P17-C04-S02",
       "lessonNumber": "17.4.2",
-      "lessonTitle": "共同指标、失败记录与结论边界",
+      "lessonTitle": "配对误差、质量失败与数据划分",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23554,8 +23554,8 @@
       "english": null,
       "number": "17.4.2",
       "parentId": "17.4",
-      "url": "/notebook/?id=P17-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-04-研究方法综合比较/read/2/",
+      "readingUrl": "/chapters/17-04-研究方法综合比较/read/2/",
       "practiceUrl": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1",
       "description": "逐组计算配对差，分别报告误差、收支与失败；区分质量失败和没有有效输出的求解失败。",
       "categories": [
@@ -23574,7 +23574,7 @@
       "total": 1,
       "lessonId": "P17-C04-S02",
       "lessonNumber": "17.4.2",
-      "lessonTitle": "共同指标、失败记录与结论边界",
+      "lessonTitle": "配对误差、质量失败与数据划分",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -23585,8 +23585,8 @@
       "english": null,
       "number": "17.4.2",
       "parentId": "17.4",
-      "url": "/notebook/?id=P17-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/17-04-研究方法综合比较/read/2/",
+      "readingUrl": "/chapters/17-04-研究方法综合比较/read/2/",
       "practiceUrl": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1",
       "description": "逐组计算配对差，分别报告误差、收支与失败；区分质量失败和没有有效输出的求解失败。",
       "categories": [
@@ -23605,7 +23605,7 @@
       "total": 1,
       "lessonId": "P17-C04-S02",
       "lessonNumber": "17.4.2",
-      "lessonTitle": "共同指标、失败记录与结论边界",
+      "lessonTitle": "配对误差、质量失败与数据划分",
       "chapterUrl": "/chapters/17-04-研究方法综合比较/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     }

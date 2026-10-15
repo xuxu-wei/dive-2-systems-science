@@ -4,9 +4,11 @@
 
 ## [未发布]
 
-网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)、[第 10 篇](docs/validation/part10-web-teaching-20261016.md)、[第 11 篇](docs/validation/part11-web-teaching-20261016.md)、[第 12 篇](docs/validation/part12-web-teaching-20261016.md)、[第 13 篇](docs/validation/part13-web-teaching-20261016.md)、[第 14 篇](docs/validation/part14-web-teaching-20261016.md)、[第 15 篇](docs/validation/part15-web-teaching-20261016.md)、[第 16 篇](docs/validation/part16-web-teaching-20261016.md)。
+网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)、[第 10 篇](docs/validation/part10-web-teaching-20261016.md)、[第 11 篇](docs/validation/part11-web-teaching-20261016.md)、[第 12 篇](docs/validation/part12-web-teaching-20261016.md)、[第 13 篇](docs/validation/part13-web-teaching-20261016.md)、[第 14 篇](docs/validation/part14-web-teaching-20261016.md)、[第 15 篇](docs/validation/part15-web-teaching-20261016.md)、[第 16 篇](docs/validation/part16-web-teaching-20261016.md)、[第17篇](docs/validation/part17-web-teaching-20261016.md)；[全书索引](docs/validation/web-migration-index-20261016.md)。
 
 ### 新增
+
+- 第17篇九节网页讲授与独立实验，连接40道原题；全书206节讲授与939道题均关联具体概念。
 
 - 第16篇十五节网页讲授与独立实验，以64道原题连接非线性反馈、鲁棒条件、在线辨识、随机恢复、局部通信和有限经验学习。
 
@@ -37,6 +39,8 @@
 - 从网页新标签页打开指定 JupyterLab 实验，自动使用本项目 Python 环境。
 
 ### 变更
+
+- 第17篇按固定原论文版本解释稀疏发现与连续伴随，区分实际训练、给定结果和方法迁移；完成全书迁移索引并更新学习入口。
 
 - 第16篇以实际输入、观测时序和逐步手算连接定义与结果；七张探索关联相应概念，题目身份、版本、接口和判定保持。
 

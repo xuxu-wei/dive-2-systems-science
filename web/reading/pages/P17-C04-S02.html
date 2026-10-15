@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>17.4.2 配对误差、质量失败与数据划分 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P17-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P17-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1">本节练习 · 4 题</a><a class="button" href="/chapters/17-04-研究方法综合比较/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>17.4.2 配对误差、质量失败与数据划分</h1>
+<p>同一组条件下，两个方法各产生一个误差。与其先把两列分别平均，我们可以逐行相减，保留“它们是在同一条件下比较的”这一信息。再结合失败记录，就能同时看到预测差异和计算可靠性。</p>
+<h2 id="paired-differences">配对差与平均改进</h2>
+<p>配对差是同一条件下基线误差与候选误差之差：</p>
+<p>$$d_i=e_{\mathrm{base},i}-e_{\mathrm{method},i}.$$</p>
+<p>误差越小越好，因此 $d_i&gt;0$ 表示候选在该条件下更好，$d_i&lt;0$ 表示更差。两列必须使用相同的参考、误差定义和条件顺序。</p>
+<p>本节给定以下五组记录，供计算和分析：</p>
+<table>
+<thead>
+<tr>
+  <th>条件</th>
+  <th style="text-align:right">基线误差 / U</th>
+  <th style="text-align:right">候选误差 / U</th>
+  <th style="text-align:right">配对差 / U</th>
+  <th>候选质量失败</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">0.30</td>
+  <td style="text-align:right">0.20</td>
+  <td style="text-align:right">0.10</td>
+  <td>否</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">0.40</td>
+  <td style="text-align:right">0.50</td>
+  <td style="text-align:right">−0.10</td>
+  <td>否</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td style="text-align:right">0.20</td>
+  <td style="text-align:right">0.15</td>
+  <td style="text-align:right">0.05</td>
+  <td>否</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td style="text-align:right">0.60</td>
+  <td style="text-align:right">0.70</td>
+  <td style="text-align:right">−0.10</td>
+  <td>是</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td style="text-align:right">0.50</td>
+  <td style="text-align:right">0.30</td>
+  <td style="text-align:right">0.20</td>
+  <td>否</td>
+</tr>
+</tbody>
+</table>
+<p>先看前两行：一次改善 $0.1$ U，另一次变差 $0.1$ U，平均为零。五行的平均改进为</p>
+<p>$$\bar d=\frac{0.1-0.1+0.05-0.1+0.2}{5}=0.03\quad\mathrm U.$$</p>
+<p>候选在这五组记录上的平均误差较低，但条件2和4的误差更高。平均值与逐行差值一起读，能保留这种差别。</p>
+<h2 id="standard-error">差值散布与标准误</h2>
+<p>配对报告还计算差值的样本标准差和均值标准误：</p>
+<p>$$s_d=\sqrt{\frac{\sum_i(d_i-\bar d)^2}{n-1}},\qquad
+\operatorname{SE}=\frac{s_d}{\sqrt n}.$$</p>
+<p>本表的平方偏差和为 $0.068$ U²，所以</p>
+<p>$$s_d^2=0.068/4=0.017\quad\mathrm{U^2},\qquad
+\operatorname{SE}=\sqrt{0.017/5}\approx0.05831\quad\mathrm U.$$</p>
+<p>标准误把差值的散布与组数联系起来。若各组是按适当方案独立抽取的重复单位，它可以用于评价均值的抽样不确定性。本表是给定条件下的固定练习记录，先用它理解计算及差值的相对大小。只给一组记录时，函数按接口返回标准误0；评估抽样波动仍需要重复单位。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-04-研究方法综合比较/practice/?question=p17-paired-conclusion">公平配对效果</a></li></ul></nav>
+
+<h2 id="quality-and-validity">质量失败与有效输出</h2>
+<p>本表的五组候选都产生了有限数值误差；第四组另被标记为质量失败。因此五组都进入配对均值，质量失败比例另外报告为 $1/5=0.2$。返回顺序为 $[\bar d,\operatorname{SE},p_{\mathrm{fail}}]$，单位依次是 U、U、1。</p>
+<p>如果某次求解没有有效输出，应另记录这种失败，配对误差在双方都有有效结果的条件上计算，并同时给出可比条件数。失败比例仍以预定的全部条件为分母。事先写清有效输出与质量检查规则，才能在比较时沿用相同标准。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P17-C04-S02-d3f4f33e-0.png" alt="配对误差、质量失败与数据划分：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中的五个横坐标按条件1—5排列。候选在三个条件中更低、两个条件中更高，第四个条件另有质量失败。Notebook中的曲线由上表生成，便于逐项核对差值与汇总结果。</p>
+<p>在总量预测中，可以把负量次数、整体收支残差和RMSE并列记录。负值截断会改变预测，应作为另一种处理后的结果单列；原预测保留后，读者才能判断改进来自模型还是后处理。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1">低 RMSE 与失败</a></li></ul></nav>
+
+<h2 id="trajectory-split">训练、选择与测试的轨迹划分</h2>
+<p>同一条轨迹的相邻时刻共享演化过程。若目标是预测新轨迹，划分单位也应采用轨迹：训练集用于估计参数，选择集用于比较字典、阈值或模型，测试集用于检查选定模型的预测。</p>
+<p>用轨迹编号记录这一安排，例如训练 $[1,2]$、选择 $[3]$、测试 $[4,5]$。三个集合没有共同编号。若测试改成 $[2,4]$，编号2就同时出现在训练与测试中，无法提供一条完全未参与拟合的测试轨迹。</p>
+<p>习题要求返回“是否互不重叠”及升序重复编号。这个检查只核对编号；编号如何对应实际实验，也应随数据表一并保存。测试后的结果若用于调整模型，再次评价更新模型时需要新的保留数据。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-04-研究方法综合比较/practice/?question=p17-final-split">最终轨迹隔离</a></li></ul></nav>
+
+<h2 id="comparison-conclusion">从比较结果形成研究结论</h2>
+<p>一份可追溯的比较可以按以下顺序写：先说明预测对象和可用观测，再列出训练、模型选择与测试条件；随后交代各方法使用的数据和计算预算，最后按条件给出误差、收支和失败记录。</p>
+<p>对本节五组记录，我们可以报告：候选平均误差比基线低 $0.03$ U，条件2和4中更差，质量失败比例为 $0.2$。这几个数分别对应表中的哪些行、使用了多少有效输出，都能由读者直接复算。要判断新的输入范围或传感器布置，再把它们列成新的测试条件。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice2">证据范围</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<ul>
+<li>本书第5篇的重复实验、第10篇的方法比较，以及17.2的数据与基线协议。</li>
+<li>Brunton、Proctor 与 Kutz，<a href="https://arxiv.org/abs/1509.03580v1">arXiv:1509.03580v1</a>；Chen 等，<a href="https://arxiv.org/abs/1806.07366v1">Neural Ordinary Differential Equations，arXiv:1806.07366v1</a>。</li>
+</ul>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/17-04-研究方法综合比较/read/1/">← 17.4.1 双室收支、稀疏系数与继续预测</a><a href="/parts/17-研究复现与综合实践/综合练习/read/1/">17.综合 论文任务、方法改编与配对评价 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -1,30 +1,30 @@
 # 实施规划
 
-课程面向基础 Python 和中学数学读者，以网页学习、Notebook 实验和网页练习组织学习过程。课程结构见[教材设计](docs/教材设计.md)，已发布变化见[CHANGELOG](CHANGELOG.md)。
+课程面向基础Python和中学数学读者，以网页学习、Notebook实验和网页练习组织学习过程。课程结构见[教材设计](docs/教材设计.md)，已发布变化见[CHANGELOG](CHANGELOG.md)。
 
-## 当前阶段 · 第16篇网页迁移（M35）
+## 当前工作 · 全书网页迁移（M20—M36）
 
-- 范围：16.1—16.7十四节及篇末综合，共15节、64道原题。
-- 交付：完整网页讲授、独立实验与概念双向定位，保留题目及成绩。
-- 重点：实际输入、鲁棒集合、在线时序、随机路径、局部通信及策略价值。
-- 验证：导数与矩阵条件、递推手算、随机矩、谱条件和配对决策记录。
-- 状态：已交付并通过维护检查，待用户统一阅读验收。
-- 回退基线：`d5d3b5c`；保护已有成果和个人记录。
-- 核对入口：[第16篇迁移记录](docs/validation/part16-web-teaching-20261016.md)。
+- 范围：导论及第1—17篇，共206节网页讲授与独立实验、939道原题。
+- 交付：概念标题、定义与直观解释、推导手算、实验图解及概念双向跳转。
+- 第17篇固定两个原论文版本，逐项对应课程实验、基线和双室方法迁移。
+- 状态：迁移已交付，待用户统一阅读验收。
+- 本轮回退基线：`dcf2430`；已有第1篇改动及个人记录保持原位。
+- 核对入口：[全书交付索引](docs/validation/web-migration-index-20261016.md)、[第17篇记录](docs/validation/part17-web-teaching-20261016.md)。
 
-## 下一阶段 · 第17篇迁移
+## 下一阶段 · 统一阅读与试学
 
-- 第17篇“研究复现与综合实践”连接课程实验与研究方法比较。
-- 沿用网页讲授与Notebook独立实验、准确配置和结果解释。
-- 第16篇完成后先报告；第17篇按明确任务启动。
+- 用户依篇序阅读讲授、操作探索与实验，集中反馈内容和学习衔接问题。
+- 按反馈修订概念解释、题目语言和交互；保护题目身份与已有成绩。
+- 读者试学、学习效果评估及外部同行评审尚待开展。
+- 新增课程内容与研究实验在范围明确后安排。
 
 ## 长期规划 · 内容与学习体验
 
-- 根据试学反馈改进阅读、实验与练习之间的衔接。
-- 复核代表性研究方法，更新课程缩减实验与原论文结果的对应说明。
-- 维护离线资源、可移动的学习入口及普通 PC 运行能力。
+- 维护离线资源、可移动的学习入口及普通PC运行能力。
+- 根据实际证据扩展研究专题，记录原论文条件、课程配置与新增评价。
+- 保持网页讲授、实验和题库单一来源及可追溯的验证记录。
 
 <a id="milestone-m2"></a> <a id="milestone-m3"></a> <a id="milestone-m4"></a> <a id="milestone-m5"></a> <a id="milestone-m6"></a> <a id="milestone-m7"></a> <a id="milestone-m8"></a> <a id="milestone-m9"></a> <a id="milestone-m10"></a> <a id="milestone-m11"></a> <a id="milestone-m12"></a> <a id="milestone-m13"></a> <a id="milestone-m14"></a> <a id="milestone-m15"></a> <a id="milestone-m16"></a> <a id="milestone-m17"></a> <a id="milestone-m18"></a> <a id="milestone-m19"></a> <a id="acceptance-m0"></a> <a id="acceptance-m1"></a> <a id="part-milestones"></a>
-## 已完成的课程建设
+## 课程建设状态
 
-M0—M19 已交付导论及 17 篇的内容体系、206 本 Notebook、939 道练习与 74 个探索视图。独立样章已清理。M20 已交付导论与第 1 篇的十二节网页讲授和 JupyterLab 实验入口，见[核对记录](docs/validation/web-teaching-20261015.md)。M21 已交付第 2 篇十一节网页与实验，见[核对记录](docs/validation/part02-web-teaching-20261016.md)。M22 已交付第 3 篇十一节网页与实验，见[核对记录](docs/validation/part03-web-teaching-20261016.md)。M23 已交付第 4 篇十七节网页与实验，见[核对记录](docs/validation/part04-web-teaching-20261016.md)。M24已交付第5篇十三节网页与实验，见[核对记录](docs/validation/part05-web-teaching-20261016.md)。M25已交付第6篇十六节网页与实验，见[核对记录](docs/validation/part06-web-teaching-20261016.md)。M26已交付第7篇十四节网页与实验，见[核对记录](docs/validation/part07-web-teaching-20261016.md)。M27已交付第8篇十一节网页与实验，见[核对记录](docs/validation/part08-web-teaching-20261016.md)。M28已交付第9篇十一节网页与实验，见[核对记录](docs/validation/part09-web-teaching-20261016.md)。M29已交付第10篇十五节网页与实验，见[核对记录](docs/validation/part10-web-teaching-20261016.md)。M30已交付第11篇九节网页与实验，见[核对记录](docs/validation/part11-web-teaching-20261016.md)。M31已交付第12篇十一节网页与实验，见[核对记录](docs/validation/part12-web-teaching-20261016.md)。M32已交付第13篇九节网页与实验，见[核对记录](docs/validation/part13-web-teaching-20261016.md)。M33已交付第14篇十一节网页、实验与Lorenz课程基准，见[核对记录](docs/validation/part14-web-teaching-20261016.md)。M34已交付第15篇十一节网页与独立实验，见[核对记录](docs/validation/part15-web-teaching-20261016.md)。M35已交付第16篇十五节网页与独立实验，见[核对记录](docs/validation/part16-web-teaching-20261016.md)。此前语言修订仍待用户统一阅读验收，交付索引见[第 2—17 篇](docs/validation/style-rewrite-index-20261006.md)。
+M0—M19已交付导论及17篇的课程体系、206本正式Notebook、939道练习与74个探索视图；独立样章已清理。M20—M36已完成全书网页讲授与独立实验迁移，逐篇记录集中于[迁移索引](docs/validation/web-migration-index-20261016.md)。此前语言修订的交付入口见[语言修订索引](docs/validation/style-rewrite-index-20261006.md)，统一阅读验收待用户进行。
