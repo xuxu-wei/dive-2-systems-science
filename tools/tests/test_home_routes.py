@@ -24,10 +24,12 @@ def home_server(tmp_path, monkeypatch):
     home.mkdir(parents=True)
     catalog = course / 'catalog.json'
     catalog.write_text('{"parts": []}', encoding='utf-8')
-    graph = {'source': {'catalogSha256': hashlib.sha256(catalog.read_bytes()).hexdigest()},
+    graph = {'source': {'catalogSha256': module.catalog_digest(json.loads(catalog.read_text(encoding='utf-8')))},
              'nodes': [], 'edges': [], 'taxonomy': []}
     (home / 'graph.json').write_text(json.dumps(graph), encoding='utf-8')
     (course / 'index.html').write_text('<!doctype html><title>全书目录</title>', encoding='utf-8')
+    (tmp_path / 'docs').mkdir()
+    (tmp_path / 'docs/术语对照.json').write_text('[]', encoding='utf-8')
     monkeypatch.setattr(module, 'ROOT', tmp_path)
     instance = ThreadingHTTPServer(('127.0.0.1', 0), module.TeachingHandler)
     instance.course = {'parts': []}
@@ -59,8 +61,8 @@ def test_matching_home_graph_is_served_without_cache(home_server):
 
 
 @pytest.mark.parametrize('problem,status', [
-    ('changed_catalog', 409), ('missing_graph', 503), ('corrupt_graph', 503),
-    ('missing_hash', 503), ('missing_catalog', 503), ('corrupt_catalog', 503),
+    ('changed_catalog', 200), ('missing_graph', 200), ('corrupt_graph', 200),
+    ('missing_hash', 200), ('missing_catalog', 503), ('corrupt_catalog', 503),
 ])
 def test_unavailable_home_graph_preserves_catalog_route(home_server, problem, status):
     server, root, graph = home_server
@@ -82,15 +84,27 @@ def test_unavailable_home_graph_preserves_catalog_route(home_server, problem, st
     code, headers, body = request(server, '/web/home/graph.json')
     assert code == status and headers.get_content_type() == 'application/json'
     payload = json.loads(body)
-    assert '全书目录' in payload['error'] and payload['catalog_url'] == '/catalog/'
-    assert 'nodes' not in payload
+    if status == 503:
+        assert '全书目录' in payload['error'] and payload['catalog_url'] == '/catalog/'
+        assert 'nodes' not in payload
+    else:
+        assert payload['nodes'] == []
+        assert payload['source']['catalogSha256'] == module.catalog_digest(json.loads(catalog_path.read_text(encoding='utf-8')))
     assert request(server, '/catalog/')[0] == 200
 
 
 def test_alternate_graph_path_and_head_cannot_bypass_snapshot_check(home_server):
     server, root, _ = home_server
     (root / 'web/course/catalog.json').write_text('{"parts": [], "revision": 3}', encoding='utf-8')
-    assert request(server, '/web/home/./graph.json')[0] == 409
+    assert request(server, '/web/home/./graph.json')[0] == 200
     code, headers, body = request(server, '/web/home/graph.json', method='HEAD')
-    assert code == 409 and headers.get_content_type() == 'application/json'
+    assert code == 200 and headers.get_content_type() == 'application/json'
     assert body == b''
+
+
+def test_git_line_ending_conversion_does_not_disable_graph(home_server):
+    server, root, expected = home_server
+    path = root / 'web/course/catalog.json'
+    value = json.loads(path.read_text(encoding='utf-8'))
+    path.write_bytes(json.dumps(value, indent=2).replace('\n','\r\n').encode('utf-8'))
+    assert json.loads(request(server, '/web/home/graph.json')[2]) == expected

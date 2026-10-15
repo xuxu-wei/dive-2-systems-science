@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.4.1 规则、参数与初值 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P01-C04-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1 id="1.4.1-%E8%A7%84%E5%88%99%E3%80%81%E5%8F%82%E6%95%B0%E4%B8%8E%E5%88%9D%E5%80%BC">1.4.1 &#35268;&#21017;&#12289;&#21442;&#25968;&#19982;&#21021;&#20540;</h1><p>这一节将比较两种清除解释，分清初值（initial condition）、参数（parameter）与模型结构（model structure），并用手算与循环检查预测。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/01-03-%E5%8F%8D%E9%A6%88%E3%80%81%E5%BB%B6%E8%BF%9F%E4%B8%8E%E5%B1%82%E7%BA%A7/read/2/">延迟怎样改变调节</a>；百分比与乘方。</p>
+<h2 id="%E4%BB%8E-10-%E5%8F%98%E4%B8%BA-9%EF%BC%8C%E8%83%BD%E7%9F%A5%E9%81%93%E6%B8%85%E9%99%A4%E4%BA%86%E5%A4%9A%E5%B0%91%E5%90%97%EF%BC%9F">&#20174; 10 &#21464;&#20026; 9&#65292;&#33021;&#30693;&#36947;&#28165;&#38500;&#20102;&#22810;&#23569;&#21527;&#65311;</h2><p>假设我们已经把仪器读数换算成所追踪物质总量（tracked amount）。起点为 10 U，经过一个固定时段后剩下 9 U，期间没有外部输入（input）。这条记录告诉我们，该时段内净减少了 1 U。不过，如果希望预测下一段，它还留下一个问题：下一段仍会减少 1 U 吗？</p>
+<p>可以提出两个候选解释。第一个说，每段固定移除 1 U，所以第一次从 10 变为 9。第二个说，每段移除段首总量的 10%，第一次移除的也是 $10\times0.1=1$ U。这两条规则都准确解释了现有记录，而且都很容易计算。</p>
+<p>再往前走一段，差别就出现了。固定量规则仍从 9 中减去 1，得到 8 U；比例规则移除的是 $9\times0.1=0.9$ U，留下 8.1 U。初次结果相同，并不意味着后续预测相同。</p>
+<p>这里的数字是为了比较规则而构造的教学例子。我们先保持段长、起点和无输入条件相同，按两条规则计算第二段末值。运行代码前，先确认比例规则中的 10% 应当乘上一段末的 9，而不是再次乘最初的 10。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">systems_science</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_style</span><span class="p">,</span> <span class="n">show_table</span>
+<span class="n">plot_style</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.sans-serif'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Microsoft YaHei'</span><span class="p">,</span> <span class="s1">'SimHei'</span><span class="p">,</span> <span class="s1">'Noto Sans CJK SC'</span><span class="p">,</span> <span class="s1">'DejaVu Sans'</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.unicode_minus'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">first_end</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">fixed_second</span> <span class="o">=</span> <span class="n">first_end</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">fraction_second</span> <span class="o">=</span> <span class="n">first_end</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mf">.1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'规则'</span><span class="p">,</span> <span class="s1">'第二段末 / U'</span><span class="p">],</span> <span class="p">[(</span><span class="s1">'固定量'</span><span class="p">,</span><span class="n">fixed_second</span><span class="p">),(</span><span class="s1">'固定比例'</span><span class="p">,</span><span class="n">fraction_second</span><span class="p">)])))</span>
+</pre></div>
+
+<div class="experiment-output"><table>
+<thead>
+<tr>
+  <th>规则</th>
+  <th>第二段末 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>固定量</td>
+  <td>8</td>
+</tr>
+<tr>
+  <td>固定比例</td>
+  <td>8.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<h2 id="%E8%A7%84%E5%88%99%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BB%8E%E7%AC%AC%E4%BA%8C%E6%AE%B5%E5%BC%80%E5%A7%8B%E5%88%86%E5%BC%80%EF%BC%9F">&#35268;&#21017;&#20026;&#20160;&#20040;&#20174;&#31532;&#20108;&#27573;&#24320;&#22987;&#20998;&#24320;&#65311;</h2><p>固定量规则始终移除相同数量；比例规则则要先读取当前剩余量，再决定这一次移除多少。从 8.1 U 开始，下一次按比例移除 $8.1\times0.1=0.81$ U，剩余 7.29 U。固定量规则从 8 U 开始再减去 1，剩余 7 U。</p>
+<table>
+<thead>
+<tr>
+  <th>已经过的段数</th>
+  <th style="text-align:right">固定量规则 / U</th>
+  <th style="text-align:right">固定比例规则 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td style="text-align:right">10</td>
+  <td style="text-align:right">10</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">9</td>
+  <td style="text-align:right">9</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">8</td>
+  <td style="text-align:right">8.1</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td style="text-align:right">7</td>
+  <td style="text-align:right">7.29</td>
+</tr>
+</tbody>
+</table>
+<p>差别来自“移除量是否依赖当前总量”这个关系。要把它与数值大小分开，我们用 $c$ 表示每个固定时段内的固定移除量，用 $r$ 表示每段移除的比例。$c$ 的量单位为 U；$r$ 是无量纲（dimensionless）的比例，10% 写作 0.1。两条规则分别是</p>
+<p>$$\text{新总量}=\text{当前总量}-c,$$</p>
+<p>$$\text{新总量}=\text{当前总量}\times(1-r).$$</p>
+<p>接下来就能区分三种改动。把起点从 10 改为 20，是改变初值，也就是从什么情况开始。把比例从 0.1 改为 0.2，是改变同一条规则里的参数。把“每次减去固定量”换成“每次按当前量取比例”，则改变了模型结构，因为决定移除量的依赖关系变了。至于把输出多显示一位小数，改变的是显示设置，并没有改动这些更新关系。</p>
+<p>这两条模型（model）都用一个总量概括系统，暂时不追踪内部转化。由于两个候选尚未经过新的观测（observation）检验，接下来的曲线首先是它们各自的预测。</p>
+<h2 id="%E9%87%8D%E5%A4%8D%E5%87%8F%E6%B3%95%E4%B8%8E%E9%87%8D%E5%A4%8D%E4%B9%98%E6%B3%95">&#37325;&#22797;&#20943;&#27861;&#19982;&#37325;&#22797;&#20056;&#27861;</h2><p>用 $A_0$ 表示起点总量，$A_n$ 表示经过 $n$ 段后的总量。固定量规则每段减去 $c$，经过三段减去 $c+c+c=3c$，经过 $n$ 段一共减去 $nc$，所以</p>
+<p>$$A_n=A_0-nc.$$</p>
+<p>比例规则每段留下当前量的 $1-r$。经过两段，剩余 $A_0(1-r)(1-r)$；经过三段，多乘一次 $1-r$。用乘方缩写重复乘法，得到</p>
+<p>$$A_n=A_0(1-r)^n\quad(n\geq1).$$</p>
+<p>当 $n=0$ 时，还没有发生清除，两条规则都直接返回 $A_0$。这样处理也包括 $r=1$：它在第一段移除全部总量，后续保持为零，而起点仍是原来的 $A_0$。若 $c=0$ 或 $r=0$，对应规则每段都不移除。</p>
+<p>下面先按更新规则写循环，再用刚推导的算式核对循环结果。<code>fixed_path</code> 和 <code>fraction_path</code> 分别从 <code>[initial]</code> 开始；每一次 <code>append</code> 都把上一次末值更新后的结果追加到列表。两条路径在循环中各用自己的当前值，不会混用对方的结果。</p>
+<p><code>compare_rules(10, 1, 0.1, 6)</code> 的四个参数依次表示起点 10 U、每段固定移除 1 U、每段按当前量移除 10%、更新六段。函数按“固定量路径、比例路径”的顺序返回两条列表，每条列表都从起点开始，后续各项依次是第一段末、第二段末等。赋值 <code>fixed_path, fraction_path = compare_rules(...)</code> 便按这个顺序分别取出它们。列表位置从 0 开始编号，因此 <code>fixed_path[3]</code> 是固定量规则第三段末的量，值为 7 U。</p>
+<p>图的横轴是已过时段数，纵轴是以 U 为单位的剩余总量。我们先比较前六段；在这个范围内，两个候选都给出非负总量。运行后可以用表中的前三段核对图上的点，再观察两条曲线怎样逐渐分开。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compare_rules</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">fraction</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
+    <span class="n">fixed_path</span><span class="p">,</span> <span class="n">fraction_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">initial</span><span class="p">],</span> <span class="p">[</span><span class="n">initial</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
+        <span class="n">fixed_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fixed_path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">fixed</span><span class="p">)</span>
+        <span class="n">fraction_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fraction_path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">fraction</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fixed_path</span><span class="p">,</span> <span class="n">fraction_path</span>
+
+<span class="n">fixed_path</span><span class="p">,</span> <span class="n">fraction_path</span> <span class="o">=</span> <span class="n">compare_rules</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fixed_path</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1e-12</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fraction_path</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="mf">7.29</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1e-12</span>
+<span class="k">for</span> <span class="n">n</span><span class="p">,(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fixed_path</span><span class="p">,</span><span class="n">fraction_path</span><span class="p">)):</span>
+    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="p">(</span><span class="mi">10</span><span class="o">-</span><span class="n">n</span><span class="p">))</span><span class="o">&lt;</span><span class="mf">1e-12</span>
+    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="mf">.9</span><span class="o">**</span><span class="n">n</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1e-12</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="n">fixed_path</span><span class="p">,</span><span class="s1">'o-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'固定量移除'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="n">fraction_path</span><span class="p">,</span><span class="s1">'s--'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'固定比例移除'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">'已过时段数'</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">'剩余总量 / U'</span><span class="p">,</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span><span class="n">title</span><span class="o">=</span><span class="s1">'同一起点下的两种清除预测'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<figure><img src="/web/reading/assets/P01-C04-S01-06806333-0.png" alt="规则、参数与初值：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中的固定量路径每段下降 1 U，相邻点的高度差相同。比例路径的下降幅度逐段减小，因为剩余越少，同样的 10% 对应的移除量也越少。两条曲线的形状把它们的依赖关系表现出来了。</p>
+<h2 id="%E6%94%B9%E8%B5%B7%E7%82%B9%E4%B8%8E%E5%BB%B6%E9%95%BF%E6%97%B6%E9%97%B4%E5%9B%9E%E7%AD%94%E4%B8%8D%E5%90%8C%E9%97%AE%E9%A2%98">&#25913;&#36215;&#28857;&#19982;&#24310;&#38271;&#26102;&#38388;&#22238;&#31572;&#19981;&#21516;&#38382;&#39064;</h2><p>现在做一次独立的计算实验（computational experiment），只把起点改为 20 U，仍使用 $c=1$、$r=0.1$ 和同样段长。固定量候选第一段预测 $20-1=19$ U，比例候选预测 $20\times0.9=18$ U。改起点后，第一段就能看到两套预测的差异。</p>
+<p>另一次计算仍从 10 U 出发，只把观察范围延长到 12 段。固定量公式在第 10 段得到零，第 11 段却得到 −1 U。对于物质总量，负值无法解释为剩余物质；这说明“每段都能移除 1 U”的假设已经用到了不满足它的条件。</p>
+<p>这时可以另订“最多移除当前已有量”的规则，并重新记账。例如只剩 0.4 U 时，最多移除 0.4 U。它会改变耗尽附近的预测，因此是一项模型修订。下面仍保留原规则计算到第 12 段，让超出适用范围的位置直接显示出来。第一次调用的结果记为 <code>a20</code>、<code>b20</code>，分别是从 20 U 出发的固定量路径和比例路径；读取索引为 1 的位置，就得到两者第一段末的预测。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="n">a20</span><span class="p">,</span><span class="n">b20</span> <span class="o">=</span> <span class="n">compare_rules</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'从 20 U 开始，第一段预测为'</span><span class="p">,</span> <span class="n">a20</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">'和'</span><span class="p">,</span> <span class="n">b20</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">'U'</span><span class="p">)</span>
+<span class="n">long_fixed</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">compare_rules</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">negative_steps</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">long_fixed</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'固定规则首次出现负值：第'</span><span class="p">,</span> <span class="n">negative_steps</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">'段'</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">negative_steps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">11</span>
+<span class="k">assert</span> <span class="n">compare_rules</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">compare_rules</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+<pre class="experiment-output">从 20 U 开始，第一段预测为 19 和 18.0 U
+固定规则首次出现负值：第 11 段
+</pre>
+</section>
+<p>输出确认：从 20 U 开始，两条候选在第一段分别预测 19 与 18 U；从 10 U 长时间外推，固定量规则首次在第 11 段产生负值。一个改动帮助我们寻找区分候选的条件，另一个改动让模型的适用范围暴露出来。</p>
+<p>循环中的断言还有两类作用。循环与重复减法、重复乘法的算式相符，说明代码按照给定规则在算；不做更新、没有清除和第一段移除全部物质的例子，则让我们检查起点和边界情况是否解释一致。这些核对都没有增加真实系统的观测，所以还不能判断哪一条清除机制更符合实际。</p>
+<p>开篇的 10→9 记录已经使我们形成两个可计算的解释。现在不缺计算能力，缺的是能让两种解释接受不同检验的证据。若只能再观察一次，应当继续等待，还是改变起点？下一节利用刚才算出的差异来安排这个选择。</p>
+
+<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class">本节练习 · 4 题</a></div></section>
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-03-反馈、延迟与层级/read/2/">← 1.3.2 延迟怎样改变调节</a><a href="/chapters/01-04-模型假设与计算实验/read/2/">1.4.2 设计可以区分解释的实验 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

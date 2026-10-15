@@ -1,3 +1,4 @@
+import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,el} from '../shared/course-shell.mjs';
 import {createPlayback} from '../shared/playback.mjs';
 import {theme} from '../shared/theme.mjs';
@@ -56,7 +57,7 @@ async function start(){({current:chapter}=await mountShell('explore'));if(chapte
  $('play').addEventListener('click',()=>playback.running?playback.pause():playback.play());$('replay').addEventListener('click',()=>{playback.seek(0);playback.play();});$('timeline').addEventListener('input',()=>playback.seek(Number($('timeline').value)));$('yaw').addEventListener('input',()=>{$('yaw-value').value=$('yaw').value+'°';draw(time);});
  $('lorenz-chart').addEventListener('click',event=>{const rect=event.currentTarget.getBoundingClientRect(),x=(event.clientX-rect.left)/rect.width*1100,y=(event.clientY-rect.top)/rect.height*890;const a=timePanels.find(a=>x>=a.x&&x<=a.x+a.w&&y>=a.y&&y<=a.y+a.h);if(a){playback.seek((x-a.x)/a.w*p.end);return;}let best=null,dist=225;for(const hit of clickTargets){const d=(x-hit[0])**2+(y-hit[1])**2;if(d<dist){dist=d;best=hit;}}if(best)playback.seek(best[2]);});
  $('download').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({parameters:p,comparison:$('comparison').value,states:rows,distances,section:hits,growth},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=el('a');link.href=url;link.download='lorenz-experiment.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
- for(const lesson of chapter.lessons){const button=el('button','在默认 IDE 打开：'+lesson.title);button.addEventListener('click',async()=>{button.disabled=true;try{const session=await(await fetch('/api/session')).json(),response=await fetch('/api/notebooks/open',{method:'POST',headers:{'Content-Type':'application/json','X-Local-Token':session.token},body:JSON.stringify({id:lesson.id})}),result=await response.json();$('open-status').textContent=result.message||result.error;}catch{$('open-status').textContent='本机连接中断，请恢复后重试。';}finally{button.disabled=false;}});$('notebooks').append(button);}
+ for(const lesson of chapter.lessons){const button=el('button','打开 JupyterLab 实验：'+lesson.title);button.addEventListener('click',()=>openNotebook(lesson.id));$('notebooks').append(button);}
  recompute();$('controls').disabled=false;document.querySelector('.exploration').hidden=false;document.body.dataset.ready='true';document.addEventListener('visibilitychange',()=>{if(document.hidden)playback.pause();});
 }
 start().catch(failed);

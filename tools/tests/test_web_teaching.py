@@ -1,0 +1,84 @@
+"""Cross-check web teaching, original experiments and local Lab routing."""
+import json
+from pathlib import Path
+import subprocess
+from urllib.parse import unquote, urlsplit
+from types import SimpleNamespace
+import pytest
+from systems_science.notebook_lab import NotebookLab
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from build_lessons import DIRECTIVE
+from course_content import course_chapters
+ROOT=Path(__file__).resolve().parents[2]
+COURSE=json.loads((ROOT/'web/course/catalog.json').read_text(encoding='utf-8'))
+LESSONS=[l for c in course_chapters(COURSE) for l in c['lessons'] if l.get('reading')]
+
+
+def test_migration_covers_intro_part_one_and_keeps_later_lessons_available():
+    assert len(LESSONS)==12
+    assert {l['chapter_id'].split('.')[0] for l in LESSONS}=={'0','1'}
+    for c in course_chapters(COURSE):
+        for l in c['lessons']:
+            assert (ROOT/l['path']).is_file()
+            assert l['notebook_url']=='/notebook/?id='+l['id']
+            assert l['url']==l.get('reading_url',l['notebook_url'])
+            assert '/practice/?question=' in l['practice_url']
+
+
+@pytest.mark.parametrize('lesson',LESSONS,ids=lambda l:l['id'])
+def test_web_source_contains_all_experiment_steps_without_starting_services(lesson):
+    nb=json.loads((ROOT/lesson['path']).read_text(encoding='utf-8'))
+    source=(ROOT/lesson['reading']).read_text(encoding='utf-8')
+    assert nb['metadata']['teaching_format']=='experiment'
+    assert all(c.get('metadata',{}).get('teaching_role')!='local_service' for c in nb['cells'])
+    code={c['id'] for c in nb['cells'] if c['cell_type']=='code'}
+    assert {m[0] for m in DIRECTIVE.findall(source)}==code
+    page=(ROOT/'web/reading/pages'/ (lesson['id']+'.html')).read_text(encoding='utf-8')
+    assert '<h1' in page and 'target="_blank"' in page
+    assert lesson['notebook_url'] in page and lesson['practice_url'] in page
+    assert 'anchor-link' not in page
+    assert all('## 练习与参考资料' not in ''.join(c['source']) for c in nb['cells'])
+
+
+def test_lab_reuses_process_and_opens_unique_workspaces_with_unicode_paths():
+    lab=NotebookLab(ROOT);lab.process=SimpleNamespace(poll=lambda:None)
+    lab.base_url='http://127.0.0.1:8899';lab.token='test-token'
+    path=ROOT/LESSONS[0]['path']
+    first,second=lab.open_url(path),lab.open_url(path)
+    assert first!=second
+    assert unquote(urlsplit(first).path).endswith(path.relative_to(ROOT/'notebooks').as_posix())
+    assert '/lab/workspaces/experiment-' in first
+    assert urlsplit(first).query=='token=test-token'
+    with pytest.raises(ValueError):lab.open_url(ROOT/'README.md')
+    with pytest.raises(ValueError):lab.open_url(ROOT/'notebooks/../README.md')
+
+
+def test_project_kernel_wins_over_environment_defaults(tmp_path, monkeypatch):
+    from jupyter_client.kernelspec import KernelSpecManager
+    from systems_science import notebook_lab as module
+    captured = {}
+    real_popen = module.subprocess.Popen
+    def launch(*args, **kwargs):
+        captured.update(kwargs)
+        return SimpleNamespace(poll=lambda: None)
+    class Ready:
+        status = 200
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+    monkeypatch.setattr(module.subprocess, 'Popen', launch)
+    monkeypatch.setattr(module, 'urlopen', lambda *a, **k: Ready())
+    lab = NotebookLab(tmp_path)
+    try:
+        lab._open('实验.ipynb')
+        monkeypatch.setattr(module.subprocess, 'Popen', real_popen)
+        for name in ['JUPYTER_PATH', 'JUPYTER_DATA_DIR', 'JUPYTER_CONFIG_DIR', 'IPYTHONDIR']:
+            monkeypatch.setenv(name, captured['env'][name])
+        monkeypatch.setenv('JUPYTER_PREFER_ENV_PATH', '1')
+        spec = KernelSpecManager().get_kernel_spec('python3')
+        assert spec.display_name == 'Python · 动手学系统科学'
+        assert spec.argv[0] == sys.executable
+        assert spec.env['PYTHONPATH'] == str(tmp_path / 'src')
+    finally:
+        lab.process = None
+        lab.close()

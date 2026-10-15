@@ -347,7 +347,7 @@ def build_graph(catalog, terms, *, catalog_sha256=None):
         for lesson in lessons:
             nodes.append({
                 'id': lesson['id'], 'kind': 'lesson', 'title': lesson['title'],
-                'parentId': 'introduction', 'url': lesson['url'], 'number': lesson['number'],
+                'parentId': 'introduction', 'url': lesson['url'], 'readingUrl': lesson.get('reading_url'), 'practiceUrl': lesson['practice_url'], 'number': lesson['number'],
                 'description': lesson['outcome'], 'categories': categories, 'children': [],
                 'questionIds': question_ids(lesson), 'available': True, 'published': 1, 'total': 1,
                 'lessonId': lesson['id'], 'lessonNumber': lesson['number'], 'lessonTitle': lesson['title'],
@@ -399,7 +399,7 @@ def build_graph(catalog, terms, *, catalog_sha256=None):
                         group.append(cid)
                         nodes.append({
                             'id': cid, 'kind': 'concept', 'title': label, 'english': term_map.get(label), 'number': lesson['number'],
-                            'parentId': chapter['id'], 'url': lesson['url'],
+                            'parentId': chapter['id'], 'url': lesson['url'], 'readingUrl': lesson.get('reading_url'), 'practiceUrl': lesson['practice_url'],
                             'description': lesson['outcome'], 'categories': categories,
                             'children': [], 'questionIds': question_ids(lesson),
                             'available': True, 'published': 1, 'total': 1,
@@ -474,12 +474,18 @@ def atomic_write_graph(graph, dest):
             temporary.unlink()
 
 
+def catalog_digest(catalog):
+    """Hash JSON values, not platform-specific whitespace."""
+    normalized = json.dumps(catalog, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+    return hashlib.sha256(normalized.encode('utf-8')).hexdigest()
+
+
 def build(root=ROOT):
     catalog_path = root / 'web/course/catalog.json'
     catalog_bytes = catalog_path.read_bytes()
     catalog = json.loads(catalog_bytes.decode('utf-8'))
     terms = json.loads((root / 'docs/术语对照.json').read_text(encoding='utf-8'))
-    graph = build_graph(catalog, terms, catalog_sha256=hashlib.sha256(catalog_bytes).hexdigest())
+    graph = build_graph(catalog, terms, catalog_sha256=catalog_digest(catalog))
     if catalog_path.read_bytes() != catalog_bytes:
         raise RuntimeError('课程目录在图谱构建期间发生变化；原图谱保持不变，请重新构建。')
     atomic_write_graph(graph, root / 'web/home/graph.json')

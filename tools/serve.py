@@ -1,10 +1,8 @@
-"""本机教材网页与默认 IDE 打开接口。"""
+"""本机教材、练习与 JupyterLab 实验入口。"""
 import argparse
-import hashlib
 import io
 import json
 import logging
-import os
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import secrets
@@ -20,45 +18,45 @@ sys.path.insert(0, str(ROOT / "tools"))
 from practice import PracticeEngine, RequestError
 from course_content import notebooks, course_chapters
 from systems_science.local_service import SERVICE_NAME, content_id, workspace_id
-from systems_science.local_desktop import (open_in_default_app, launch_context_id, context_diagnostic,
-                                          desktop_environment, NotebookOpenError, error_description)
+from systems_science.notebook_lab import NotebookLab
+from build_home_graph import build_graph, catalog_digest
+
 
 
 def home_graph_response(root):
-    """Read one consistent graph snapshot; stale generated navigation is unavailable."""
+    """Serve the current catalog's graph, independent of Git line endings."""
     try:
-        catalog_bytes = (root / 'web/course/catalog.json').read_bytes()
-        catalog = json.loads(catalog_bytes)
-        graph = json.loads((root / 'web/home/graph.json').read_bytes())
+        catalog = json.loads((root / 'web/course/catalog.json').read_text(encoding='utf-8'))
         if not isinstance(catalog, dict) or not isinstance(catalog.get('parts'), list):
             raise ValueError('Invalid course catalog')
-        if not isinstance(graph, dict) or not isinstance(graph.get('source'), dict):
-            raise ValueError('Invalid graph source')
-        expected = graph['source'].get('catalogSha256')
-        if (not isinstance(expected, str) or len(expected) != 64
-                or any(c not in '0123456789abcdef' for c in expected)
-                or any(not isinstance(graph.get(key), list) for key in ('nodes', 'edges', 'taxonomy'))):
-            raise ValueError('Invalid graph metadata')
-    except (OSError, ValueError, UnicodeError):
+        digest = catalog_digest(catalog)
+        try:
+            graph = json.loads((root / 'web/home/graph.json').read_text(encoding='utf-8'))
+            if (graph.get('source', {}).get('catalogSha256') == digest
+                    and all(isinstance(graph.get(key), list) for key in ('nodes', 'edges', 'taxonomy'))):
+                return 200, graph
+        except (OSError, ValueError, AttributeError):
+            pass
+        # Partial rebuilds must not disable the homepage. Do not mutate files.
+        terms = json.loads((root / 'docs/术语对照.json').read_text(encoding='utf-8'))
+        return 200, build_graph(catalog, terms, catalog_sha256=digest)
+    except (OSError, ValueError, TypeError, KeyError):
+        logging.exception('Unable to build homepage graph')
         return 503, {'error': '知识星图暂时不可用，请先从全书目录继续学习。', 'catalog_url': '/catalog/'}
-    if hashlib.sha256(catalog_bytes).hexdigest() != expected:
-        return 409, {'error': '课程目录已更新，知识星图需要同步。请先从全书目录继续学习。', 'catalog_url': '/catalog/'}
-    return 200, graph
 
 
 class TeachingServer(ThreadingHTTPServer):
     daemon_threads = True
 
-    def __init__(self, address, *, previews=False, opener=open_in_default_app, learning_directory=None):
+    def __init__(self, address, *, previews=False, lab=None, learning_directory=None):
         super().__init__(address, TeachingHandler)
         self.previews = previews
-        self.opener = opener
+        self.lab = lab or NotebookLab(ROOT)
         self.token = secrets.token_urlsafe(32)
         self.catalog = notebooks()
         self.course = json.loads((ROOT / 'web/course/catalog.json').read_text(encoding='utf-8'))
         self.workspace_id = workspace_id(ROOT)
         self.content_id = content_id(ROOT)
-        self.launch_context_id = launch_context_id()
         self.lifecycle_lock = threading.Lock()
         self.stopping = False
         try:
@@ -69,6 +67,7 @@ class TeachingServer(ThreadingHTTPServer):
 
     def server_close(self):
         if hasattr(self,'practice'): self.practice.close()
+        if hasattr(self,'lab'): self.lab.close()
         super().server_close()
 
 
@@ -102,10 +101,9 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             self.send_error(403)
             return
         if urlsplit(self.path).path == '/api/session':
-            self.respond_json(200, {'version': 'course-local-ide-1', 'token': self.server.token,
+            self.respond_json(200, {'version': 'course-jupyterlab-1', 'token': self.server.token,
                                     'service': SERVICE_NAME, 'workspace_id': self.server.workspace_id,
                                     'content_id': self.server.content_id,
-                                    'launch_context_id': self.server.launch_context_id,
                                     'notebooks': self.server.catalog,'practice_version':'named-parameters-2','assessment_version':'1'})
             return
         path=urlsplit(self.path).path
@@ -177,27 +175,29 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             self.respond_json(404, {'error': 'Notebook 文件不可用，请核对教材目录。'})
             return
         try:
-            application = self.server.opener(path)
-        except (OSError, subprocess.SubprocessError) as error:
+            url = self.server.lab.open_url(path)
+        except (OSError, RuntimeError, ValueError, subprocess.SubprocessError) as error:
             logging.exception('Notebook open failed: id=%s path=%s', entry['id'], path)
-            message = str(error) if isinstance(error, NotebookOpenError) else error_description(error) + '。请查看 .local/service.log。'
+            message = str(error)
             self.respond_json(503, {'error': message})
             return
-        self.respond_json(202, {'status': 'requested', 'id': entry['id'],
-                                'message': '已请求 VS Code 打开原 Notebook，请切换到 IDE 继续学习。' if application == 'vscode'
-                                else '已请求系统默认 IDE 打开，请切换到 IDE 继续学习。'})
+        self.respond_json(200, {'status': 'ready', 'id': entry['id'], 'url': url})
+
 
     def send_head(self):
         if not self.valid_host():
             self.send_error(403)
             return None
         requested = unquote(urlsplit(self.path).path).lstrip('/')
-        routes={'':'web/home/index.html','catalog/':'web/course/index.html'}
+        routes={'':'web/home/index.html','catalog/':'web/course/index.html', 'notebook/':'web/notebook/index.html', 'favicon.ico':'web/shared/logo.svg'}
         for part in self.server.course['parts']:
             routes[part['url'].lstrip('/')]='web/course/index.html'
         for chapter in course_chapters(self.server.course):
             base=chapter['url'].lstrip('/')
             routes[base]='web/course/index.html'
+            for lesson in chapter.get('lessons', []):
+                if lesson.get('reading_url'):
+                    routes[lesson['reading_url'].lstrip('/')] = 'web/reading/pages/' + lesson['id'] + '.html'
             if chapter['available']:
                 routes[base+'practice/']='web/practice/index.html'
                 if chapter.get('visualization'):
@@ -243,11 +243,6 @@ def main():
     parser.add_argument('--previews', action='store_true', help='同时提供本地 Notebook 检查预览')
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
-    # Also cover direct `python tools/serve.py`, not just the shared launcher.
-    clean_env = desktop_environment()
-    for key in set(os.environ) - set(clean_env):
-        del os.environ[key]
-    logging.info('Course desktop context: %s', context_diagnostic())
     server = TeachingServer(('127.0.0.1', args.port), previews=args.previews)
     print(f'http://127.0.0.1:{server.server_port}/', flush=True)
     try:

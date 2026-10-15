@@ -6,7 +6,8 @@
     "title": "边界、状态与观测",
     "outcome": "确定研究对象与边界，区分被测量和读数，并解释已知偏移怎样用于校正。",
     "number": "1.1.1",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.md"
   },
   {
     "id": "P01-C01-S02",
@@ -15,7 +16,8 @@
     "title": "单位、量纲与时间序列",
     "outcome": "换算同一实验的时间单位，读懂观测时刻，并用完整算例区分总量与浓度。",
     "number": "1.1.2",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.md"
   },
   {
     "id": "P01-C02-S01",
@@ -24,7 +26,8 @@
     "title": "一段时间的物质收支",
     "outcome": "从每单位时间的流入、流出逐笔算出存量，再用累计总账核对逐段计算。",
     "number": "1.2.1",
-    "visualization": "web/seeing-systems/index.html"
+    "visualization": "web/seeing-systems/index.html",
+    "reading": "lessons/01-看见系统/02-存量流量与守恒/01-一段时间的物质收支.md"
   },
   {
     "id": "P01-C02-S02",
@@ -33,7 +36,8 @@
     "title": "内部交换与整体守恒",
     "outcome": "分别为两区记账，再把两式相加，解释内部转移怎样抵消以及总量为何不说明分布。",
     "number": "1.2.2",
-    "visualization": "web/seeing-systems/index.html"
+    "visualization": "web/seeing-systems/index.html",
+    "reading": "lessons/01-看见系统/02-存量流量与守恒/02-内部交换与整体守恒.md"
   },
   {
     "id": "P01-C03-S01",
@@ -42,7 +46,8 @@
     "title": "作用方向与反馈回路",
     "outcome": "沿一次扰动判断反馈回路的方向，并检查调节怎样同时影响其他变量。",
     "number": "1.3.1",
-    "visualization": "web/seeing-systems/index.html"
+    "visualization": "web/seeing-systems/index.html",
+    "reading": "lessons/01-看见系统/03-反馈延迟与层级/01-作用方向与反馈回路.md"
   },
   {
     "id": "P01-C03-S02",
@@ -51,7 +56,8 @@
     "title": "延迟怎样改变调节",
     "outcome": "沿历史时间线手算调节，比较即时与延迟的曲线，解释过冲和转向怎样发生。",
     "number": "1.3.2",
-    "visualization": "web/seeing-systems/index.html"
+    "visualization": "web/seeing-systems/index.html",
+    "reading": "lessons/01-看见系统/03-反馈延迟与层级/02-延迟怎样改变调节.md"
   },
   {
     "id": "P01-C04-S01",
@@ -60,7 +66,8 @@
     "title": "规则、参数与初值",
     "outcome": "比较固定量与固定比例清除，区分规则、参数和初值，并检验耗尽时的适用范围。",
     "number": "1.4.1",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/01-看见系统/04-模型假设与计算实验/01-规则参数与初值.md"
   },
   {
     "id": "P01-C04-S02",
@@ -69,7 +76,8 @@
     "title": "设计可以区分解释的实验",
     "outcome": "选择能拉开候选预测的实验，结合测量精度解释新观测支持或否定了什么。",
     "number": "1.4.2",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.md"
   },
   {
     "id": "P01-SUMMARY",
@@ -88,6 +96,7 @@
         "温度调节 → 核对反馈（feedback）与旁路",
         "清除比较 → 用新观测检验预测"
       ]
-    }
+    },
+    "reading": "lessons/01-看见系统/05-篇末综合/01-系统边界与实验设计.md"
   }
 ]

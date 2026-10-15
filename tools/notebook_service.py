@@ -24,6 +24,10 @@ def initializer(path: Path) -> dict:
 def check_or_update(path: Path, *, write: bool) -> bool:
     notebook = json.loads(path.read_text(encoding="utf-8"))
     cells = notebook["cells"]
+    if notebook.get('metadata', {}).get('teaching_format') == 'experiment':
+        if any(c.get('metadata', {}).get('teaching_role') == 'local_service' for c in cells):
+            raise ValueError(f'实验 Notebook 不应启动网页服务：{path}')
+        return False
     found = [index for index, cell in enumerate(cells)
              if cell.get("metadata", {}).get("teaching_role") == "local_service"]
     expected = initializer(path)

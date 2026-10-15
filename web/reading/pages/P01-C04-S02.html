@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.4.2 设计可以区分解释的实验 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P01-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1 id="1.4.2-%E8%AE%BE%E8%AE%A1%E5%8F%AF%E4%BB%A5%E5%8C%BA%E5%88%86%E8%A7%A3%E9%87%8A%E7%9A%84%E5%AE%9E%E9%AA%8C">1.4.2 &#35774;&#35745;&#21487;&#20197;&#21306;&#20998;&#35299;&#37322;&#30340;&#23454;&#39564;</h1><p>这一节将选择能区分候选模型（model）的计算实验（computational experiment），事前保留预测，并把新观测（observation）与测量精度一起解释。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/01-04-%E6%A8%A1%E5%9E%8B%E5%81%87%E8%AE%BE%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/read/1/">规则、参数与初值</a>；绝对值与大小比较。</p>
+<h2 id="%E5%A6%82%E6%9E%9C%E5%8F%AA%E8%83%BD%E5%86%8D%E8%A7%82%E5%AF%9F%E4%B8%80%E6%AC%A1">&#22914;&#26524;&#21482;&#33021;&#20877;&#35266;&#23519;&#19968;&#27425;</h2><p>我们已经知道，从 10 U 开始，每段移除 1 U 与每段移除 10% 都预测第一段末为 9 U。再多看一次相同条件下的第一段，即使测量很精确，也仍会遇到两个候选给出相同答案的困难。</p>
+<p>一种选择是继续观察第二段。上一节算出的预测分别是 8 与 8.1 U，差距为 0.1 U。另一种选择是另做独立实验，只改变起点。从 20 U 开始，一个候选预测剩下 19 U，另一个预测剩下 18 U，差距为 1 U。这次只看第一段，就可能得到更有区分力的信息。</p>
+<p>为了比较多个选择，先把候选起点定为 10、20、30 U。两条规则的参数（parameter）仍固定为每段 1 U 和每段 10%。对每个起点，我们都在观察之前列出第一段末预测及其间距。代码把三个起点依次记成 <code>initials = [10, 20, 30]</code>。每个位置对应一次独立实验的起点，并且决定它在表中的行次。三次计算分别重新从各自的起点出发，均只计算一段；这三个数不是一次实验中先后经过的总量。下面的表格只包含预测，还没有决定真实观察会落在哪里。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">systems_science</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_style</span><span class="p">,</span> <span class="n">show_table</span>
+<span class="n">plot_style</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.sans-serif'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Microsoft YaHei'</span><span class="p">,</span> <span class="s1">'SimHei'</span><span class="p">,</span> <span class="s1">'Noto Sans CJK SC'</span><span class="p">,</span> <span class="s1">'DejaVu Sans'</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.unicode_minus'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">initials</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">]</span>
+<span class="n">fixed_ends</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">initials</span><span class="p">]</span>
+<span class="n">fraction_ends</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mf">.1</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">initials</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'起点 / U'</span><span class="p">,</span><span class="s1">'固定量预测 / U'</span><span class="p">,</span><span class="s1">'比例预测 / U'</span><span class="p">,</span><span class="s1">'预测差 / U'</span><span class="p">],</span>
+    <span class="p">[(</span><span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span><span class="n">fixed_ends</span><span class="p">,</span><span class="n">fraction_ends</span><span class="p">)])))</span>
+</pre></div>
+
+<div class="experiment-output"><table>
+<thead>
+<tr>
+  <th>起点 / U</th>
+  <th>固定量预测 / U</th>
+  <th>比例预测 / U</th>
+  <th>预测差 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>10</td>
+  <td>9</td>
+  <td>9</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td>19</td>
+  <td>18</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td>29</td>
+  <td>27</td>
+  <td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<p>表格给出的预测间距依次为 0、1、2 U。从 10 U 出发的第一段没有区分力，从 20 或 30 U 出发则产生不同预测。不过，起点改变后，实际系统的其他条件也必须能够保持可比；间距大这一项，还不足以独自决定一个实际实验是否可行。</p>
+<h2 id="%E6%8A%8A%E9%80%89%E6%8B%A9%E6%9D%A1%E4%BB%B6%E5%86%99%E6%88%90%E4%B8%80%E4%B8%AA%E8%AE%A1%E7%AE%97">&#25226;&#36873;&#25321;&#26465;&#20214;&#20889;&#25104;&#19968;&#20010;&#35745;&#31639;</h2><p>用 $A$ 表示所选初值（initial condition），$c$ 表示固定移除量，$r$ 表示移除比例。两个第一段末预测为 $A-c$ 与 $A(1-r)$。将它们相减，得到</p>
+<p>$$(A-c)-A(1-r)=A-c-A+rA=rA-c.$$</p>
+<p>我们关心的是分开了多少，而不是谁在上面，因此取绝对值：</p>
+<p>$$D=|rA-c|.$$</p>
+<p>$D$ 的单位为 U，与两个总量预测的单位相同。在 $c=1$、$r=0.1$ 时，$A=20$ 给出 $|2-1|=1$ U，$A=30$ 给出 $|3-1|=2$ U。这就是表格中最后一列的另一种计算方式。</p>
+<p>要比较这些起点，我们还保持段长、外部输入（input）、终点时刻和测量方法相同。否则，从 20 U 出发的一组若多经历了一段时间，得到更低终点就可能来自观察时长，而不能用于这两条原预测的直接比较。</p>
+<p>这次先用一条明确的选择条件：“预测间距超过 0.5 U”。它只是帮助筛选计算条件的教学门槛。函数 <code>separating_initials</code> 逐个读取起点，计算 <code>abs(fraction*a-fixed)</code>，满足条件就留下它在原列表中的索引。</p>
+<p>Python 的索引从 0 开始，因此 <code>[1, 2]</code> 指向 <code>initials</code> 中的 20 和 30。判断使用严格的 <code>&gt;</code>：间距恰好为 0.5 U 的候选不会留下。这个设计门槛与稍后判断预测是否符合读数的允许误差，是两项不同的约定。</p>
+<p>下面先核对直接相减与简化算式得到的间距相同，再画两套第一段末预测。横轴是独立实验的起点，纵轴是预测的终点；每个点对应重新从该起点出发的一次计算，两条线之间的竖直距离就是 $D$。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">separating_initials</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">fraction</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">initials</span><span class="p">)</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fraction</span><span class="o">*</span><span class="n">a</span><span class="o">-</span><span class="n">fixed</span><span class="p">)</span><span class="o">&gt;</span><span class="n">threshold</span><span class="p">]</span>
+
+<span class="n">selected</span> <span class="o">=</span> <span class="n">separating_initials</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="mf">.5</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">selected</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span><span class="n">fixed_ends</span><span class="p">,</span><span class="n">fraction_ends</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="mf">.1</span><span class="o">*</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">1e-12</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span><span class="n">fixed_ends</span><span class="p">,</span><span class="s1">'o-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'固定量规则：第一段末'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span><span class="n">fraction_ends</span><span class="p">,</span><span class="s1">'s--'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">'固定比例规则：第一段末'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">'起点总量 / U'</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">'预测终点总量 / U'</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s1">'改变起点能否区分两种规则'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<figure><img src="/web/reading/assets/P01-C04-S02-b2378120-0.png" alt="设计可以区分解释的实验：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中，两条预测在起点 10 U 处重合，随后分开。我们选择起点 20 U 来说明如何使用一次新的观测（observation），并将事前预测保留为固定量 19 U、固定比例 18 U。</p>
+<h2 id="%E6%96%B0%E8%A7%82%E5%AF%9F%E4%BC%9A%E8%AE%A9%E6%88%91%E4%BB%AC%E6%94%B9%E5%8F%98%E5%93%AA%E4%B8%80%E4%B8%AA%E5%88%A4%E6%96%AD%EF%BC%9F">&#26032;&#35266;&#23519;&#20250;&#35753;&#25105;&#20204;&#25913;&#21464;&#21738;&#19968;&#20010;&#21028;&#26029;&#65311;</h2><p>先假设核对值没有测量误差，分别考虑 19、18、17 U 三种教学设定。如果观察到 19 U，它与固定量候选相符，却与比例候选冲突。如果观察到 18 U，判断反过来：比例候选相符，固定量候选冲突。如果观察到 17 U，这两个原候选都没有给出正确预测。</p>
+<p>第三种情况很有价值。它迫使我们重新检查解释：是否还有外部输入或转化没有记录，测量关系是否变化，或者每段移除量是否需要其他形式的规则。仅仅在两套预测中挑一个更接近 17 的，并没有解释剩下的差距。</p>
+<p>下面保持事前预测不变，逐一核对这三种结果。代码使用很小的数值容差处理浮点计算；本段仍采用无测量误差的比较，实际测量的允许误差在下一步单独考虑。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'固定量'</span><span class="p">:</span><span class="mf">19.0</span><span class="p">,</span> <span class="s1">'固定比例'</span><span class="p">:</span><span class="mf">18.0</span><span class="p">}</span>
+<span class="n">rows</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">observed</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">19.0</span><span class="p">,</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">17.0</span><span class="p">]:</span>
+    <span class="n">matches</span><span class="o">=</span><span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">observed</span><span class="o">-</span><span class="n">value</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1e-12</span><span class="p">]</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">observed</span><span class="p">,</span><span class="s1">'、'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span> <span class="k">if</span> <span class="n">matches</span> <span class="k">else</span> <span class="s1">'两者均不符合'</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'人工核对值 / U'</span><span class="p">,</span><span class="s1">'在这组条件下符合的候选'</span><span class="p">],</span><span class="n">rows</span><span class="p">)))</span>
+<span class="k">assert</span> <span class="n">separating_initials</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span><span class="mi">1</span><span class="p">,</span><span class="mf">.5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+<div class="experiment-output"><table>
+<thead>
+<tr>
+  <th>人工核对值 / U</th>
+  <th>在这组条件下符合的候选</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>19</td>
+  <td>固定量</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td>固定比例</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td>两者均不符合</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<h2 id="%E5%B7%AE%E4%BA%86%E4%B8%80%E7%82%B9%EF%BC%8C%E6%98%AF%E5%90%A6%E8%BF%98%E8%83%BD%E8%AF%B4%E9%A2%84%E6%B5%8B%E7%9B%B8%E7%AC%A6%EF%BC%9F">&#24046;&#20102;&#19968;&#28857;&#65292;&#26159;&#21542;&#36824;&#33021;&#35828;&#39044;&#27979;&#30456;&#31526;&#65311;</h2><p>真实读数常常没有整数例子这么精确。构造一个可亲算的情形：起点仍为 20 U，事前规定总量测量的误差最多为 0.2 U，其他条件照旧。若读到 18.1 U，它与比例预测 18 的差是 0.1 U，在允许范围内；与固定量预测 19 的差是 0.9 U，超过允许范围。于是这次测量与比例候选相符，却与固定量候选冲突。</p>
+<p>同样的误差限下，比例预测允许读数落在 17.8—18.2 U，固定量预测允许落在 18.8—19.2 U，两段范围分开了。这解释了起点 20 为什么有用。反观从 10 U 继续看第二段，两项预测只差 0.1 U；各自允许的读数范围为 7.8—8.2 与 7.9—8.3 U，大部分重合，读到 8.05 就同时符合两者。</p>
+<p>如果测量只能保证误差不超过 0.6 U，那么 18 与 19 对应的允许范围也会重合。读数 18.5 与两套预测都相差 0.5 U，这次观察便无法在两者之间作出选择。判断不能只看预测不同，还要把这个差异与测量精度比较。这里的误差限是事先给定的确定范围，没有使用概率检验。</p>
+<h2 id="%E4%B8%A4%E4%B8%AA%E5%80%99%E9%80%89%E9%83%BD%E5%A4%B1%E8%B4%A5%E4%BB%A5%E5%90%8E">&#20004;&#20010;&#20505;&#36873;&#37117;&#22833;&#36133;&#20197;&#21518;</h2><p>假如起点 20 U 时测得 17 U，而误差限为 0.2 U，原来两套预测仍然都不符合。我们当然可以重新选择参数：固定规则改为每段移除 3 U，就能解释这次 20→17；比例规则改为 15%，也能解释它。这一步是在用新数据更新候选，而不是让原预测通过检验。</p>
+<p>不过，还要把新参数带回旧记录。从 10 U 开始，每段移除 3 U 预测剩下 7 U，每段移除 15% 预测剩下 8.5 U，两者都无法解释原来的 10→9。只拟合新的一点，会丢掉旧的一点；我们需要检查能否同时解释两组条件，必要时修改移除量与当前总量的关系。</p>
+<p>因此，应保留原来预测的检验结果，先回查已有记录，再为能解释这些记录的更新候选安排新的观察。新的检验要使用尚未用于选参数的记录：可以预留一部分已有观测，也可以另选实验条件。这样，解释当前数据与预测新数据之间的区别就能被看见。</p>
+<p>回到开篇，我们选择新观察的依据已经具体了：先找候选预测能分开的条件，再检查时间、输入和测量是否可比，最后用事先约定的精度解释结果。一次相符的观察支持该候选在这组条件下的预测；下一次选择条件时，仍可以继续寻找它与其他解释的差别。</p>
+<h2 id="%E7%94%A8%E5%90%8C%E6%A0%B7%E7%9A%84%E7%9C%BC%E5%85%89%E5%9B%9E%E7%9C%8B%E5%85%AD%E4%BA%BA%E4%BC%A0%E6%92%AD">&#29992;&#21516;&#26679;&#30340;&#30524;&#20809;&#22238;&#30475;&#20845;&#20154;&#20256;&#25773;</h2><p><a href="/introduction/read/3/">导论的传播实验</a>比较了两种连接方式。人数、联系数和传播规则保持相同，改变的是谁与谁连接。改变星形网络的起点，又是在同一结构内改变初始条件。像这里的清除实验一样，这些区别决定了比较能够回答什么问题。</p>
+<p>如果把“本轮刚收到的人等到下一轮再传播”改成“立即继续传播”，即使联系图完全相同，逐轮人数也可能变化，因为更新规则已经改变。计算前说明这些条件，预测后再核对结果，才能把曲线差异联系到具体改变。</p>
+<p>第 1 篇走到了这里，我们已经能够从读数和边界出发，记清变化，指定规则，再用有区分力的新观察检验解释。篇末将换到显微视野中的细胞，让这些方法一起工作。</p>
+
+<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design">本节练习 · 4 题</a></div></section>
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-04-模型假设与计算实验/read/1/">← 1.4.1 规则、参数与初值</a><a href="/parts/01-看见系统/综合练习/read/1/">篇末综合 系统边界与实验设计 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

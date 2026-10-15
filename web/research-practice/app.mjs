@@ -1,3 +1,4 @@
+import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,el} from '../shared/course-shell.mjs';
 import {claimView,protocolView,ablationView,transferView,nextKind} from './model.mjs?v=m18-2';
 
@@ -30,12 +31,12 @@ function draw(config){const result=config.run(state.first,state.second,state.kin
  $('toggle-case').textContent=state.kind===config.kind?config.labels[0]:config.labels[1];}
 function fail(error){$('loading-note').hidden=false;$('loading-note').classList.add('error');$('loading-note').textContent='探索未能运行：'+error.message+'。请刷新重试。';$('controls').disabled=true;}
 function guard(fn){try{fn();}catch(error){fail(error);}}
-async function openLesson(lesson,button){button.disabled=true;try{const session=await(await fetch('/api/session')).json();const response=await fetch('/api/notebooks/open',{method:'POST',headers:{'Content-Type':'application/json','X-Local-Token':session.token},body:JSON.stringify({id:lesson.id})});const result=await response.json();$('open-status').textContent=result.message||result.error||'打开请求已发送。';}catch{$('open-status').textContent='本机连接中断，请恢复后重试。';}finally{button.disabled=false;}}
+function openLesson(lesson,button){openNotebook(lesson.id);}
 async function start(){const{current:chapter}=await mountShell('explore'),config=configs[chapter?.id];if(!config)throw Error('本章没有此探索页');
  $('chapter-label').textContent=chapter.id+' '+chapter.title;$('experiment-title').textContent=config.title;$('question').textContent=config.question;$('context').textContent=config.context;$('formula').textContent=config.formula;$('assumptions').textContent=config.assumptions;$('chart-title').textContent=config.chart;$('reading-intro').textContent=config.reading;
  for(const[key,definition]of [['first',config.first],['second',config.second]]){const[label,min,max,step,initial]=definition,input=$(key+'-range');$(key+'-label').textContent=label;Object.assign(input,{min,max,step,value:initial});state[key]=initial;input.addEventListener('input',()=>guard(()=>{state[key]=Number(input.value);draw(config);}));}
  state.kind=config.kind;$('toggle-case').addEventListener('click',()=>guard(()=>{state.kind=nextKind(chapter.id,state.kind);draw(config);}));
  $('reset').addEventListener('click',()=>guard(()=>{state.first=config.first[4];state.second=config.second[4];state.kind=config.kind;$('first-range').value=String(state.first);$('second-range').value=String(state.second);draw(config);}));
- for(const lesson of chapter.lessons){const button=el('button','在默认 IDE 打开：'+lesson.title);button.type='button';button.addEventListener('click',()=>openLesson(lesson,button));$('notebooks').append(button);}
+ for(const lesson of chapter.lessons){const button=el('button','打开 JupyterLab 实验：'+lesson.title);button.type='button';button.addEventListener('click',()=>openLesson(lesson,button));$('notebooks').append(button);}
  draw(config);$('controls').disabled=false;document.querySelector('.exploration').hidden=false;$('loading-note').hidden=true;document.body.dataset.ready='true';}
 start().catch(fail);

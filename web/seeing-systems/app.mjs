@@ -1,3 +1,4 @@
+import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,el} from '../shared/course-shell.mjs';
 import {createPlayback} from '../shared/playback.mjs';
 import {theme} from '../shared/theme.mjs';
@@ -72,7 +73,7 @@ async function start(){
   $('formula').textContent=isStock?'末量 = 初量 + 持续时间 ×（流入速率 − 流出速率）':'新偏差 = 当前偏差 − gain × delay 步以前的偏差';
   $('assumptions').textContent=isStock?'假设：容器中没有所追踪物质的生成或转化，流入与流出速率恒定。第 1 段为 0—1 T，第 2 段为 1—3 T；图中累计量由恒定流率乘以经过的时间得到。':'假设：人工温度规则，初始历史恒定，忽略噪声、外部扰动和执行限幅。蓝线始终即时读取，玫红线使用所选延迟；逐步比较两条曲线的转向与偏差大小，观察延迟怎样改变修正过程。';
   $('value-label').textContent=isStock?'容器中的总量':'所选延迟的偏差';
-  $('reading-prompt').textContent=isStock?'回到 Notebook，把每段实际进入和离开的量分别记下来，再与图中的总量核对。扩大到两个相互交换的区域后，同一次转移在两本账里分别记为减少和增加，合起来会怎样？':'回到 Notebook，沿时间线手算前四步：每一步当前是多少、读取的是哪个旧值、修正后是多少？再对照曲线中的过冲和转向，解释只看终点会漏掉哪些变化。';
+  $('reading-prompt').textContent=isStock?'在本节实验中，把每段实际进入和离开的量分别记下来，再与图中的总量核对。扩大到两个相互交换的区域后，同一次转移在两本账里分别记为减少和增加，合起来会怎样？':'沿本节的时间线手算前四步：每一步当前是多少、读取的是哪个旧值、修正后是多少？再对照曲线中的过冲和转向，解释只看终点会漏掉哪些变化。';
   if(isStock){slider('initial','初始总量 / U',0,10,.5,5);slider('inflow','流入速率 / (U/T)',0,6,.5,3);slider('outflow','流出速率 / (U/T)',0,6,.5,1);}
   else{slider('initial','初始历史偏差 / °C',-3,3,.5,2);slider('gain','调节比例 gain',0,1,.05,.5);slider('delay','信息延迟 / 步',0,2,1,2);}
   recompute();
@@ -85,8 +86,8 @@ async function start(){
   $('reset').addEventListener('click',()=>setParams(isStock?{initial:5,inflow:3,outflow:1}:{initial:2,gain:.5,delay:2}));
   document.addEventListener('visibilitychange',()=>{if(document.hidden&&playback.running)playback.pause();});
   for(const lesson of current.lessons){
-    const button=el('button',`在默认 IDE 打开：${lesson.title}`);button.type='button';
-    button.addEventListener('click',async()=>{button.disabled=true;try{const session=await(await fetch('/api/session')).json();const r=await fetch('/api/notebooks/open',{method:'POST',headers:{'Content-Type':'application/json','X-Local-Token':session.token},body:JSON.stringify({id:lesson.id})});const result=await r.json();$('open-status').textContent=result.message||result.error;}catch{$('open-status').textContent='本机程序连接中断，请恢复后重试。';}finally{button.disabled=false;}});$('notebooks').append(button);
+    const button=el('button',`打开 JupyterLab 实验：${lesson.title}`);button.type='button';
+    button.addEventListener('click',()=>openNotebook(lesson.id));$('notebooks').append(button);
   }
   playback.seek(0);document.querySelectorAll('#controls, #play, #replay, #timeline').forEach(n=>n.disabled=false);
   document.querySelector('.exploration').hidden=false;$('loading-note').hidden=true;document.body.dataset.ready='true';document.title=current.title+' · 可视化与探索';

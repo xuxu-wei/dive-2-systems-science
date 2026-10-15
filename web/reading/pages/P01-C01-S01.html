@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.1.1 边界、状态与观测 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P01-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-boundary">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1 id="1.1.1-%E8%BE%B9%E7%95%8C%E3%80%81%E7%8A%B6%E6%80%81%E4%B8%8E%E8%A7%82%E6%B5%8B">1.1.1 &#36793;&#30028;&#12289;&#29366;&#24577;&#19982;&#35266;&#27979;</h1><p>学完本节，你应能根据问题选择观察范围，分清要描述的量与仪器读数，并计算已知偏移下的被测温度。</p>
+<p><strong>先修知识</strong>：基础 Python 列表、循环与函数；中学代数的移项。</p>
+<h2 id="%E8%AF%BB%E6%95%B0%E4%B8%8B%E9%99%8D%EF%BC%8C%E4%BB%80%E4%B9%88%E5%9C%A8%E4%B8%8B%E9%99%8D">&#35835;&#25968;&#19979;&#38477;&#65292;&#20160;&#20040;&#22312;&#19979;&#38477;</h2><p>跑步结束后，我们在同一个体表位置连续测了三次温度，读数一次比一次低。这是一条容易描述的记录：仪器显示的数值下降了。可是，如果把它写成“身体内部每一处都在降温”，我们已经在记录之外多走了一步。</p>
+<p>先看这一步多出了什么。仪器测的是一个位置，我们关心的却可能是另一处温度，或者整个身体的恢复过程。体表与内部的温度是不同的量；即使仪器完全准确，一处的变化也不能直接代替另一处的变化。<a href="/introduction/">导论</a>已经提醒我们关注组成与联系，现在需要把“我们究竟在研究什么”说得更具体。</p>
+<p>为此，我们先决定哪些对象属于这次研究，哪些对象作为外界处理。这条划分称为<strong>系统边界（system boundary）</strong>。它可以是实际容器的壁，也可以是一条根据研究问题画出的界线。例如，追踪血液中的某种物质时，从血液进入组织属于离开系统；如果追踪血液与组织合起来的总量，同一笔移动就发生在系统内部。物质没有因为我们改了边界而改变去向，改变的是我们要回答的问题。</p>
+<p>温度问题也一样。若要描述某个固定位置的温度，我们可以先把这个位置作为研究对象。若要解释体表与内部为何变化不同，就需要同时保留两处温度及其联系。扩大边界能容纳更多联系，也需要更多信息；合适的边界应当帮助回答眼前的问题。</p>
+<h2 id="%E6%A8%A1%E5%9E%8B%E9%9C%80%E8%A6%81%E8%AE%B0%E4%BD%8F%E5%93%AA%E4%BA%9B%E9%87%8F">&#27169;&#22411;&#38656;&#35201;&#35760;&#20303;&#21738;&#20123;&#37327;</h2><p>确定对象以后，我们还要决定如何描述它。想象一张用于继续计算的记录卡：卡上需要保留哪些数值，才能按所选规则算出下一时刻的情况？**状态（state）**是在给定模型规则与后续输入时，足以确定后续演化的当前变量。记录卡的比喻告诉我们：只保留与继续计算有关的信息。在一个十分简化的局部温度模型中，我们可能只在卡上写下当前温度 $x$；如果研究两处之间的传热，一张只写一个温度的卡就可能不够。</p>
+<p>这里的**模型（model）**是为回答问题而保留必要关系的一种表示。我们并不把身体中的每一个量都列为状态，而是先选择要保留的量，再说明省略了什么。对于给定规则的确定性模型，当前状态和今后的外界作用共同决定后续的计算结果。</p>
+<p>外界作用称为<strong>输入（input）</strong>。例如，将环境温度记为 $u$，可以让它随时间改变，并考察局部温度如何响应。规则中用来表征关系、在一次计算中按给定值使用的量，称为<strong>参数（parameter）</strong>。假如我们用传热系数 $k$ 表示某项传热作用的强弱，$k$ 就是这条规则的参数。改变环境温度与改变传热系数，会改变模型的不同部分。</p>
+<p>这些量还不能与仪器读数混在一起。实际记录到的读数是<strong>观测（observation）</strong>，记为 $y$。如果状态 $x$ 指内部温度、观测 $y$ 来自体表，那么由 $y$ 推断 $x$，还需要建立体表、内部与环境之间的关系。接下来先处理一个更小的问题：仪器与它正在测量的那个位置之间，存在已知的读数偏移。</p>
+<h2 id="%E5%85%88%E6%A0%A1%E6%AD%A3%E4%BB%AA%E5%99%A8%E7%9A%84%E5%81%8F%E7%A7%BB">&#20808;&#26657;&#27491;&#20202;&#22120;&#30340;&#20559;&#31227;</h2><p>以下三个读数 $37.4$、$37.1$、$36.9\ ^\circ\mathrm{C}$ 是人工构造的教学数值。现在用 $x$ 表示固定被测位置的温度，$y$ 表示仪器读数。假设校准已告诉我们，这台仪器的每次读数都比被测温度高 $0.3\ ^\circ\mathrm{C}$，并且本例暂不包含随机测量误差。</p>
+<p>“读数比被测温度多一个固定量”可以写成</p>
+<p>$$y=x+b,$$</p>
+<p>其中 $b$ 是偏移参数，本次取 $0.3\ ^\circ\mathrm{C}$。要找回 $x$，就在等号两边减去同一个 $b$：</p>
+<p>$$y-b=x+b-b=x,\qquad x=y-b.$$</p>
+<p>第一条记录由此得到 $37.4-0.3=37.1\ ^\circ\mathrm{C}$。第二条得到 $37.1-0.3=36.8\ ^\circ\mathrm{C}$，第三条得到 $36.9-0.3=36.6\ ^\circ\mathrm{C}$。这三次减法校正了仪器对<strong>同一个被测位置</strong>的偏移；要由该位置进一步推断另一处温度，还需要另一项关系。</p>
+<p>为了对三次记录依次做同样的减法，我们把读数按观测先后排成 Python 列表 <code>readings = [37.4, 37.1, 36.9]</code>。方括号里第一个数对应第一次读数，第二个数对应第二次，第三个数对应第三次，单位都是 °C。已知偏移单独记为 <code>offset = 0.3</code>，让它作用于每一次读数。计算得到的列表也保持同样顺序，使每个推断值都能与原读数配对。</p>
+<p>下面把手算写成列表运算。<code>value - offset</code> 处理一次读数，<code>for value in readings</code> 让同一个减法依次作用于三次记录。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">systems_science</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_style</span><span class="p">,</span> <span class="n">show_table</span>
+
+<span class="n">plot_style</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'font.sans-serif'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Microsoft YaHei'</span><span class="p">,</span> <span class="s1">'SimHei'</span><span class="p">,</span> <span class="s1">'DejaVu Sans'</span><span class="p">],</span>
+                     <span class="s1">'axes.unicode_minus'</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+<span class="n">readings</span> <span class="o">=</span> <span class="p">[</span><span class="mf">37.4</span><span class="p">,</span> <span class="mf">37.1</span><span class="p">,</span> <span class="mf">36.9</span><span class="p">]</span>  <span class="c1"># 人工温度读数，°C</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="mf">0.3</span>                   <span class="c1"># 假定由独立校准得到的偏移，°C</span>
+<span class="n">estimates</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span> <span class="o">-</span> <span class="n">offset</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">readings</span><span class="p">]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'观测顺序'</span><span class="p">,</span> <span class="s1">'仪器读数 y / °C'</span><span class="p">,</span> <span class="s1">'被测温度推断值 x / °C'</span><span class="p">],</span>
+                           <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">readings</span><span class="p">,</span> <span class="n">estimates</span><span class="p">))))</span>
+</pre></div>
+
+<div class="experiment-output"><table>
+<thead>
+<tr>
+  <th>观测顺序</th>
+  <th>仪器读数 y / °C</th>
+  <th>被测温度推断值 x / °C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>37.4</td>
+  <td>37.1</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>37.1</td>
+  <td>36.8</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>36.9</td>
+  <td>36.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<p>三个推断值都比读数低 $0.3\ ^\circ\mathrm{C}$，整组数值向下移了同样的距离。那么，第一条到第二条记录的下降幅度是否也改变了？直接算一算：读数之差为 $37.1-37.4=-0.3\ ^\circ\mathrm{C}$；推断值之差为 $36.8-37.1=-0.3\ ^\circ\mathrm{C}$。为了把这次比较写成式子，用 $y_1$、$y_2$ 表示第一次、第二次读数，用 $x_1$、$x_2$ 表示对应的被测温度。下标在这里表示观测次序。Python 列表的位置从 0 开始编号，所以第一次、第二次读数在代码中分别是 <code>readings[0]</code>、<code>readings[1]</code>。两个差相同，因为固定的偏移在相减时消去了：</p>
+<p>$$x_2-x_1=(y_2-b)-(y_1-b)=y_2-y_1.$$</p>
+<p>下图把同一结果画出来。<code>plot(横坐标, 纵坐标)</code> 将每条记录画成一个点，<code>label</code> 给这组点命名。这里没有提供实际测量时刻，所以横轴只表示第几次观测，不能据此计算每分钟的变化。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">infer_measured_temperature</span><span class="p">(</span><span class="n">readings</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">value</span> <span class="o">-</span> <span class="n">offset</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">readings</span><span class="p">]</span>
+
+<span class="n">order</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">readings</span><span class="p">,</span> <span class="s1">'o-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'仪器读数 y'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">infer_measured_temperature</span><span class="p">(</span><span class="n">readings</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="s1">'s--'</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">'被测温度 x：假定 b = 0.3 °C'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">'观测顺序'</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">'温度 / °C'</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<figure><img src="/web/reading/assets/P01-C01-S01-78846c01-0.png" alt="边界、状态与观测：实验结果图" loading="lazy"></figure>
+</section>
+<h2 id="%E5%90%8C%E4%B8%80%E7%BB%84%E8%AF%BB%E6%95%B0%EF%BC%8C%E8%83%BD%E6%9C%89%E4%B8%A4%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%90%97">&#21516;&#19968;&#32452;&#35835;&#25968;&#65292;&#33021;&#26377;&#20004;&#20010;&#35299;&#37322;&#21527;</h2><p>刚才我们能够算出三个 $x$，关键是已经知道 $b$。现在保留原来的读数，拿走独立校准的信息。仅凭 $y=37.4\ ^\circ\mathrm{C}$，是否能判断仪器偏移了多少？</p>
+<p>试着给出两组数。若 $b=0.3$，则 $x=37.1$，加回去得到 $37.1+0.3=37.4$。若 $b=0.6$，则 $x=36.8$，加回去同样得到 $36.8+0.6=37.4$。两组都满足测量关系，也都符合这条读数。</p>
+<p>这项歧义并不会因为我们记录了三次就自动消失。第一种解释给出 $[37.1,36.8,36.6]$；第二种给出 $[36.8,36.5,36.3]$。每一组加回各自的固定偏移，都能还原 $[37.4,37.1,36.9]$。下面只改变假定的偏移量，检验这一点。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">assumed_offset</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]:</span>
+    <span class="n">inferred</span> <span class="o">=</span> <span class="n">infer_measured_temperature</span><span class="p">(</span><span class="n">readings</span><span class="p">,</span> <span class="n">assumed_offset</span><span class="p">)</span>
+    <span class="n">rebuilt</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">assumed_offset</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">inferred</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-12</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">readings</span><span class="p">,</span> <span class="n">rebuilt</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'b = </span><span class="si">{</span><span class="n">assumed_offset</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> °C 时，推断值为 </span><span class="si">{</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">inferred</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="nb">abs</span><span class="p">((</span><span class="n">readings</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">readings</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">estimates</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">&lt;</span> <span class="mf">1e-12</span>
+</pre></div>
+
+<pre class="experiment-output">b = 0.3 °C 时，推断值为 [37.1, 36.8, 36.6]
+b = 0.6 °C 时，推断值为 [36.8, 36.5, 36.3]
+</pre>
+</section>
+<p>两种偏移假设都通过了“加回去能否重建读数”的检查。因此，重建成功只能说明我们按假定关系完成了计算，不能替我们选出正确的偏移量。要确定绝对温度，还需要独立校准等额外信息。在这个固定偏移模型内，读数间的差仍能确定；如果偏移本身随时间改变，这个结论也需要重新检查。</p>
+<p>现在可以回看本节的几个角色：</p>
+<table>
+<thead>
+<tr>
+  <th>角色</th>
+  <th>在固定位置测温例子中表示什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>研究对象与范围</td>
+  <td>固定的被测位置；将周围环境作为外界处理</td>
+</tr>
+<tr>
+  <td>状态 $x$</td>
+  <td>简化模型保留的该位置温度</td>
+</tr>
+<tr>
+  <td>观测 $y$</td>
+  <td>仪器实际记录的读数</td>
+</tr>
+<tr>
+  <td>输入 $u$</td>
+  <td>例如环境温度；用于描述外界对温度变化的作用</td>
+</tr>
+<tr>
+  <td>参数 $b$</td>
+  <td>测量关系中的固定偏移；本节据此校正读数</td>
+</tr>
+</tbody>
+</table>
+<p>表中的角色取决于我们正在建立的模型。同样使用 °C，并不意味着两个量相同；有了仪器校准，也不等于已经建立体表到内部的关系。这两层区别，正是开篇从“读数下降”走向“什么在下降”时需要补上的内容。</p>
+<h2 id="%E6%8A%8A%E5%A4%A7%E9%97%AE%E9%A2%98%E5%86%99%E6%88%90%E5%8F%AF%E4%BB%A5%E6%A3%80%E6%9F%A5%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98">&#25226;&#22823;&#38382;&#39064;&#20889;&#25104;&#21487;&#20197;&#26816;&#26597;&#30340;&#23567;&#38382;&#39064;</h2><p>确定对象与观测以后，我们便能改写一个含糊的问题。比如“细胞为什么总能适应”包含许多还没有指定的过程。若手头的实验是每小时拍摄同一个培养孔，共观察 4 小时，可以先问：“按同一计数规则，0—4 小时的可见细胞数是否增加？”这句话指出了对象、观察范围、可测量结果，也容许照片给出“没有增加”的答案。</p>
+<p>计数增加仍不够说明增加由哪种过程造成。要区分分裂、迁入或其他变化，还需记录对应过程。我们会在后面的收支（mass balance）问题中继续追问这一点。眼下还缺少一项最基本的信息：记录对应哪些时刻，数字采用什么单位？下一节从这里开始。</p>
+<p><a href="/chapters/01-01-%E4%BB%8E%E7%94%9F%E7%90%86%E7%8E%B0%E8%B1%A1%E6%8F%90%E5%87%BA%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98/read/2/">下一节：单位、量纲与时间序列</a></p>
+<p><a href="/chapters/01-01-%E4%BB%8E%E7%94%9F%E7%90%86%E7%8E%B0%E8%B1%A1%E6%8F%90%E5%87%BA%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98/">本章导览与各节入口</a></p>
+
+<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-boundary">本节练习 · 4 题</a></div></section>
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/introduction/read/3/">← 导论·3 从系统问题走向计算与证据</a><a href="/chapters/01-01-从生理现象提出系统问题/read/2/">1.1.2 单位、量纲与时间序列 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

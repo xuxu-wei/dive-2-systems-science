@@ -36,6 +36,7 @@ export function locateLesson(id){
     if(active){a.setAttribute('aria-current','page');let parent=a.parentElement;while(parent&&parent!==tree){if(parent.tagName==='DETAILS')parent.open=true;parent=parent.parentElement;}}
     else a.removeAttribute('aria-current');
   }
+  const reading=document.querySelector('[data-reading-tab]');const lesson=current?.lessons?.find(l=>l.id===id);if(reading&&lesson?.reading_url)reading.href=lesson.reading_url;
   const crumb=document.getElementById('current-section');if(crumb)crumb.textContent=current.lessons?.find(l=>l.id===id)?.title||'';
 }
 export async function mountShell(pageMode='overview'){
@@ -89,12 +90,13 @@ export async function mountShell(pageMode='overview'){
   if(current&&!part){
     const tabs=el('nav',undefined,'chapter-tabs');tabs.setAttribute('aria-label','本章页面切换');
     const base=current.url;
-    for(const [key,title,url] of [['overview',current.introduction?'导论导览':'本章导览',base],['explore','可视化与探索',base+'explore/'],['practice',current.introduction?'自测':'练习',base+'practice/']]){
+    for(const [key,title,url] of [['overview',current.introduction?'导论导览':'本章导览',base],['reading','正文讲解',current.lessons[0]?.reading_url],['explore','可视化与探索',base+'explore/'],['practice',current.introduction?'自测':'练习',base+'practice/']]){
+      if(key==='reading'&&!url)continue;
       if(key!=='overview'&&!current.available)continue;
       if(key==='explore'&&!current.visualization)continue;
       let destination=url;
       if(key==='practice'){try{const last=sessionStorage.getItem(questionKey());if(current.lessons.some(l=>l.questions.some(q=>q.slug===last)))destination+='?question='+last;}catch{}}
-      const a=link(title,destination,'chapter-tab');if(key===mode)a.setAttribute('aria-current','page');tabs.append(a);
+      const a=link(title,destination,'chapter-tab');if(key==='reading')a.dataset.readingTab='true';if(key===mode)a.setAttribute('aria-current','page');tabs.append(a);
     }
     const status=el('span','','progress-badge');status.id='chapter-progress';status.setAttribute('role','status');toolbar.append(tabs,status);
   }
@@ -116,6 +118,7 @@ function chapterLinks(chapter, branch){
   }
   for(const lesson of chapter.lessons||[]){
     const a=link(`${lesson.number?lesson.number+' ':''}${lesson.title}`,lesson.url,'tree-lesson');
+    if(!lesson.reading_url){a.target='_blank';a.rel='noopener';}
     a.dataset.lesson=lesson.id;a.append(badge(lesson));branch.append(a);
   }
 }

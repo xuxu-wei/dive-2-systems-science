@@ -1,3 +1,4 @@
+import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,el} from '../shared/course-shell.mjs';
 import {createPlayback} from '../shared/playback.mjs';
 import {theme} from '../shared/theme.mjs';
@@ -61,7 +62,7 @@ async function start(){({current:chapter}=await mountShell('explore'));mode=chap
  playback=createPlayback({duration:100,speed:8,update:draw,failed,changed:reason=>{$('play').textContent=reason==='playing'?'暂停':reason==='ended'?'再次播放':'播放';$('play-status').textContent=reason==='playing'?'正在播放，观察计数、曲线与读数的同步变化。':reason==='ended'?'已到终点，可重播或改变条件。':'已暂停；改变条件会回到起点。';}});
  $('play').addEventListener('click',()=>playback.running?playback.pause():playback.play());$('replay').addEventListener('click',()=>{playback.seek(0);playback.play();});$('timeline').addEventListener('input',()=>playback.seek(Number($('timeline').value)));
  $('alternate').addEventListener('click',()=>{if(mode==='5.1')set({size:alternateSize(p.size)});if(mode==='5.2')set({q:alternateNoise(p.q)});if(mode==='5.3')set({prior:alternatePrior(p.prior)});if(mode==='5.4')set(alternateChain(p.alpha,p.beta));});$('reset').addEventListener('click',()=>guard(()=>{controls();recompute();}));document.addEventListener('visibilitychange',()=>{if(document.hidden)playback.pause();});
- for(const lesson of chapter.lessons){const button=el('button','在默认 IDE 打开：'+lesson.title);button.type='button';button.addEventListener('click',async()=>{button.disabled=true;try{const session=await(await fetch('/api/session')).json(),response=await fetch('/api/notebooks/open',{method:'POST',headers:{'Content-Type':'application/json','X-Local-Token':session.token},body:JSON.stringify({id:lesson.id})}),result=await response.json();$('open-status').textContent=result.message||result.error;}catch{$('open-status').textContent='本机连接中断，请恢复后重试。';}finally{button.disabled=false;}});$('notebooks').append(button);}
+ for(const lesson of chapter.lessons){const button=el('button','打开 JupyterLab 实验：'+lesson.title);button.type='button';button.addEventListener('click',()=>openNotebook(lesson.id));$('notebooks').append(button);}
  playback.seek(0);for(const id of ['controls','play','replay','timeline'])$(id).disabled=false;document.querySelector('.exploration').hidden=false;$('loading-note').hidden=true;document.body.dataset.ready='true';document.title=chapter.title+' · 可视化与探索';
 }
 start().catch(failed);

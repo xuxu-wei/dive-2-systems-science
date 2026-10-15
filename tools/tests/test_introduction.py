@@ -1,3 +1,4 @@
+from types import SimpleNamespace
 """独立导论的教学输入、旧目录兼容、路由及成绩隔离。"""
 import ast
 from collections import deque
@@ -48,7 +49,7 @@ def test_introduction_is_separate_from_the_numbered_curriculum():
 def notebook_model():
     path=ROOT/'notebooks/00-导论/03-从系统问题走向计算与证据.ipynb'
     nb=json.loads(path.read_text('utf-8'))
-    cell=next(c for c in nb['cells'] if c.get('metadata',{}).get('teaching_role')=='model')
+    cell=next(c for c in nb['cells'] if c['cell_type']=='code' and 'def propagate(' in ''.join(c['source']))
     tree=ast.parse(''.join(cell['source']))
     function=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='propagate')
     namespace={}
@@ -127,7 +128,7 @@ def test_self_checks_preserve_existing_records_and_all_capstone_scores(tmp_path)
 @pytest.fixture
 def server(tmp_path):
     opened=[]
-    instance=TeachingServer(('127.0.0.1',0),learning_directory=tmp_path/'learning',opener=opened.append)
+    instance=TeachingServer(('127.0.0.1',0),learning_directory=tmp_path/'learning',lab=SimpleNamespace(open_url=lambda path: (opened.append(path) or 'http://127.0.0.1:8888/lab/tree/example.ipynb?token=test'), close=lambda: None))
     thread=threading.Thread(target=instance.serve_forever,kwargs={'poll_interval':.01},daemon=True)
     thread.start()
     yield instance,opened
@@ -154,7 +155,7 @@ def test_all_introduction_routes_and_notebook_open_use_existing_interfaces(serve
         assert b'<!doctype html>' in body.lower()
     for lesson in COURSE['introduction']['lessons']:
         status,_,body=fetch(instance,'/api/notebooks/open',data={'id':lesson['id']})
-        assert status==202 and json.loads(body)['id']==lesson['id']
+        assert status==200 and json.loads(body)['id']==lesson['id']
     assert opened==[(ROOT/l['path']).resolve() for l in COURSE['introduction']['lessons']]
     assert not instance.practice.records
 

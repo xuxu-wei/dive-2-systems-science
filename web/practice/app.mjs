@@ -1,3 +1,4 @@
+import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,locateLesson,applyProgress,rememberQuestion} from '../shared/course-shell.mjs';
 import {createEditor} from './editor.mjs';
 import {setupWorkspace} from '../shared/layout.mjs';
@@ -190,7 +191,7 @@ async function select(id,push=true){
   const revision=++selection;
   const q=await api(`/api/v1/exercises/${id}`);
   if(revision!==selection)return;
-  question=q;lastRecord=null;$('result').hidden=true;$('result-announcement').textContent='';$('attempt-message').textContent='';$('open-feedback').textContent='';
+  question=q;lastRecord=null;$('result').hidden=true;$('result-announcement').textContent='';$('attempt-message').textContent='';
   const url=new URL(location.href);url.searchParams.delete('exercise');url.searchParams.set('question',q.slug);if(push)history.pushState({},'',url);else history.replaceState({},'',url);
   renderQuestions();rememberQuestion(q.slug);document.title=`${q.title} · ${chapter.title}`;
   document.querySelectorAll('#code-requirements details, .hint').forEach(d=>d.open=false);
@@ -274,7 +275,7 @@ $('toggle-result').addEventListener('click',()=>{const closed=!$('result-body').
 function downloadCode(source,name){const url=URL.createObjectURL(new Blob([source],{type:'text/plain;charset=utf-8'}));const link=node('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 $('download-code').addEventListener('click',()=>downloadCode($('source').value,`${question.slug}.py`));
 $('download-previous').addEventListener('click',()=>{const source=getStored(`draft:${question.id}:${question.previous_version}`);if(typeof source==='string')downloadCode(source,`${question.slug}-previous.py`);});
-$('open-notebook').addEventListener('click',async()=>{try{$('open-feedback').textContent='正在打开…';const result=await api('/api/notebooks/open',{id:question.lesson_id});$('open-feedback').textContent=result.message;}catch(error){$('open-feedback').textContent=error.message;}});
+$('open-notebook').addEventListener('click',()=>openNotebook(question.lesson_id));
 $('reconnect').addEventListener('click',()=>void connect());
 function requestedQuestion(){const params=new URL(location.href).searchParams;return catalog.find(q=>q.slug===params.get('question')||q.id===params.get('exercise'))?.id||catalog[0].id;}
 window.addEventListener('popstate',()=>void select(requestedQuestion(),false).catch(connectionError));

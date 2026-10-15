@@ -1,3 +1,4 @@
+import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,el} from '../shared/course-shell.mjs';
 import {createPlayback} from '../shared/playback.mjs';
 import {connections,propagate} from './model.mjs';
@@ -70,11 +71,7 @@ async function main(){
   $('play').addEventListener('click',()=>playback.running?playback.pause():playback.play());
   $('reset').addEventListener('click',()=>{$('network').value='chain';$('start-node').value='0';recompute();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)playback.pause();});
-  $('open-notebook').addEventListener('click',async()=>{
-    $('open-notebook').disabled=true;
-    try{const session=await (await fetch('/api/session')).json();const result=await fetch('/api/notebooks/open',{method:'POST',headers:{'Content-Type':'application/json','X-Local-Token':session.token},body:JSON.stringify({id:'P00-C01-S03'})});const value=await result.json();$('open-status').textContent=value.message||value.error;}
-    catch{$('open-status').textContent='本机连接中断，请恢复连接后重试。';}finally{$('open-notebook').disabled=false;}
-  });
+  $('open-notebook').addEventListener('click',()=>openNotebook('P00-C01-S03'));
   $('experiment').hidden=false;$('loading-note').hidden=true;
   for(const id of ['conditions','step','play','reset'])$(id).disabled=false;
   playback.seek(0);document.body.dataset.ready='true';

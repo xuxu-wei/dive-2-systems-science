@@ -39,7 +39,7 @@ def test_same_workspace_service_is_reused_without_spawning(local_server, monkeyp
         session = json.load(response)
     assert session["workspace_id"] == local_service.workspace_id(ROOT)
     assert session["content_id"] == local_service.content_id(ROOT)
-    assert session["launch_context_id"] == local_service.launch_context_id()
+    assert session["version"] == "course-jupyterlab-1"
 
 
 def test_shutdown_requires_matching_workspace_and_waits_for_active_submission(local_server):
@@ -86,8 +86,7 @@ def test_notebook_still_runs_when_page_cannot_start(monkeypatch, capsys):
     assert "练习网页暂时不可用" in capsys.readouterr().out
 
 
-@pytest.mark.parametrize('field,value', [('launch_context_id', 'other-user-session'),
-                                       ('launch_context_id', None), ('content_id', 'old-version')])
+@pytest.mark.parametrize('field,value', [('content_id', 'old-version')])
 def test_same_workspace_stale_or_wrong_context_service_is_stopped(local_server, monkeypatch, field, value):
     server, thread = local_server
     setattr(server, field, value)
@@ -100,9 +99,9 @@ def test_same_workspace_stale_or_wrong_context_service_is_stopped(local_server, 
     assert not thread.is_alive()
 
 
-def test_wrong_context_never_interrupts_active_judging(local_server, monkeypatch):
+def test_stale_content_never_interrupts_active_judging(local_server, monkeypatch):
     server, thread = local_server
-    server.launch_context_id = 'other-session'
+    server.content_id = 'old-version'
     monkeypatch.setattr(local_service, '_start', lambda *_: pytest.fail('interrupted judging'))
     with server.practice.lock:
         server.practice.active = 'calculation-running'

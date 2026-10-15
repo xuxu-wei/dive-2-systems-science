@@ -1,0 +1,23 @@
+@import url('/web/reading/code.css');
+.reading-layout{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:clamp(24px,3vw,56px);align-items:start}
+#lesson-content{font-size:18px;line-height:1.95;max-width:86ch;width:100%;margin:0 auto;color:var(--ui-text)}
+#lesson-content h1{font-size:clamp(28px,2.4vw,38px);margin:18px 0 28px;letter-spacing:0}
+#lesson-content h2{font-size:25px;line-height:1.5;margin:48px 0 20px;padding-top:12px;border-top:1px solid var(--line);scroll-margin-top:220px}
+#lesson-content h3{font-size:20px;margin:28px 0 14px}#lesson-content p{margin-bottom:22px}
+#lesson-content table{border-collapse:collapse;width:100%;margin:24px 0;font-size:16px}
+#lesson-content th,#lesson-content td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left}
+#lesson-content th{background:var(--wash);font-weight:650}
+#lesson-content figure{margin:24px 0}#lesson-content img{display:block;max-width:100%;height:auto;margin:auto;border-radius:10px;background:white}
+#lesson-content code{font-size:.91em}#lesson-content pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.7;margin:0;padding:20px}
+.highlight{border-radius:12px;overflow:hidden;margin:24px 0;background:#272822!important;color:#f8f8f2}
+.highlight pre{background:transparent!important}.experiment-output{background:var(--wash);border-radius:10px;margin:12px 0!important}
+.figure-code{margin:20px 0;color:var(--ui-muted);font-size:15px}.figure-code>summary{padding:10px 0}
+.reading-actions{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0 30px}.reading-actions a{text-decoration:none}
+.reading-toc{position:sticky;top:215px;font-size:14px;max-height:calc(100vh - 240px);overflow-y:auto;scrollbar-width:thin;border-left:1px solid var(--line);padding-left:18px}
+.reading-toc>p{font-weight:650}.reading-toc a{display:block;color:var(--ui-muted);text-decoration:none;margin:12px 0;line-height:1.6}
+.reading-toc a:hover{color:var(--ui-primary);text-decoration:underline}
+.lesson-neighbors{display:flex;justify-content:space-between;gap:24px;border-top:1px solid var(--line);margin-top:48px;padding-top:24px;font-size:16px}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:8px 0}
+@container content (max-width: 980px){.reading-layout{grid-template-columns:minmax(0,1fr)}.reading-toc{display:none}}
+
+.reading-page .course-main{background:var(--ui-background)}

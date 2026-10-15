@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.3.2 延迟怎样改变调节 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P01-C03-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history">本节练习 · 5 题</a><a class="button" href="/chapters/01-03-反馈、延迟与层级/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1 id="1.3.2-%E5%BB%B6%E8%BF%9F%E6%80%8E%E6%A0%B7%E6%94%B9%E5%8F%98%E8%B0%83%E8%8A%82">1.3.2 &#24310;&#36831;&#24590;&#26679;&#25913;&#21464;&#35843;&#33410;</h1><p>这一节将手算延迟（delay）调节的前四步，把时间线对应到历史列表，并在相同观察时段内比较过冲（overshoot）与转向。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/01-03-%E5%8F%8D%E9%A6%88%E3%80%81%E5%BB%B6%E8%BF%9F%E4%B8%8E%E5%B1%82%E7%BA%A7/read/1/">作用方向与反馈回路</a>；列表索引、绝对值、循环。</p>
+<h2 id="%E5%88%B0%E8%BE%BE%E7%9B%AE%E6%A0%87%E4%BB%A5%E5%90%8E%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E5%9C%A8%E4%BF%AE%E6%AD%A3%EF%BC%9F">&#21040;&#36798;&#30446;&#26631;&#20197;&#21518;&#65292;&#20026;&#20160;&#20040;&#36824;&#22312;&#20462;&#27491;&#65311;</h2><p>延迟（delay）是信息产生与被用于动作之间的时间间隔；在每隔相同时间操作一次的模型里，可用落后的步数表示。就像今天作决定，却拿到了前两次的读数。</p>
+<p>上一节的冷却回路具有负反馈（negative feedback）方向：温度偏高时加强冷却，冷却使偏差减小。如果装置及时知道当前偏差，每次只修正它的一半，从 2 °C 开始，偏差会依次变为 1、0.5、0.25 °C。它越来越接近目标。</p>
+<p>现在让装置晚两步得到温度信息，修正规则仍然是“把所读取偏差的一半从当前偏差中减去”。当前偏差为 2 °C，假设前两步的偏差也都是 2 °C。这三条历史记录分别位于时刻 −2、−1、0；时刻 0 是我们开始比较调节的起点，每一步的时间长度相同。</p>
+<p>第一次更新从时刻 0 到时刻 1。装置读到时刻 −2 的 2，减去它的一半，新偏差为 $2-0.5\times2=1$。第二次更新读到时刻 −1 的 2，当前偏差虽然已是 1，装置仍减去 1，结果恰好到达目标零点。</p>
+<p>第三次更新读到时刻 0 的 2。于是当前的 0 再减去 1，变为 −1 °C。负偏差表示低于目标；原本为了消除偏高所采取的动作，已经把温度推到了目标另一侧。这样的越过称为过冲。</p>
+<p>第四次更新终于读到时刻 1 的 1，不过此时当前偏差已经是 −1。继续减去旧偏差的一半，得到 $-1-0.5\times1=-1.5$ °C。把每次读取的时刻写出来，过冲的来历就很清楚：修正对应的是过去的情况，当前情况却已经改变。</p>
+<table>
+<thead>
+<tr>
+  <th>更新区间</th>
+  <th style="text-align:right">更新前的偏差 / °C</th>
+  <th style="text-align:right">读取的历史时刻</th>
+  <th style="text-align:right">读取的偏差 / °C</th>
+  <th style="text-align:right">修正后的偏差 / °C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0 → 1</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">−2</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>1 → 2</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">−1</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>2 → 3</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">−1</td>
+</tr>
+<tr>
+  <td>3 → 4</td>
+  <td style="text-align:right">−1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">−1.5</td>
+</tr>
+</tbody>
+</table>
+<p>即时读取与两步延迟在第一次更新都得到 1，第二次就分开了：即时装置读到当前的 1，延迟装置仍读到过去的 2。下面先计算这两步，核对它们从哪里开始不同。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">systems_science</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_style</span><span class="p">,</span> <span class="n">show_table</span>
+<span class="n">plot_style</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.sans-serif'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Microsoft YaHei'</span><span class="p">,</span> <span class="s1">'SimHei'</span><span class="p">,</span> <span class="s1">'Noto Sans CJK SC'</span><span class="p">,</span> <span class="s1">'DejaVu Sans'</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.unicode_minus'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">immediate_first</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">2</span>
+<span class="n">immediate_second</span> <span class="o">=</span> <span class="n">immediate_first</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">immediate_first</span>
+<span class="n">delayed_first</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">2</span>
+<span class="n">delayed_second</span> <span class="o">=</span> <span class="n">delayed_first</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">2</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'组别'</span><span class="p">,</span> <span class="s1">'第 1 步 / °C'</span><span class="p">,</span> <span class="s1">'第 2 步 / °C'</span><span class="p">],</span>
+                           <span class="p">[(</span><span class="s1">'即时'</span><span class="p">,</span> <span class="n">immediate_first</span><span class="p">,</span> <span class="n">immediate_second</span><span class="p">),</span> <span class="p">(</span><span class="s1">'两步延迟'</span><span class="p">,</span> <span class="n">delayed_first</span><span class="p">,</span> <span class="n">delayed_second</span><span class="p">)])))</span>
+</pre></div>
+
+<div class="experiment-output"><table>
+<thead>
+<tr>
+  <th>组别</th>
+  <th>第 1 步 / °C</th>
+  <th>第 2 步 / °C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>即时</td>
+  <td>1</td>
+  <td>0.5</td>
+</tr>
+<tr>
+  <td>两步延迟</td>
+  <td>1</td>
+  <td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<h2 id="%E5%BD%93%E5%89%8D%E5%80%BC%E4%B8%8E%E8%AF%BB%E5%8F%96%E5%80%BC%E6%98%AF%E4%B8%A4%E4%B8%AA%E4%BD%8D%E7%BD%AE">&#24403;&#21069;&#20540;&#19982;&#35835;&#21462;&#20540;&#26159;&#20004;&#20010;&#20301;&#32622;</h2><p>要把时间线写成可重复的规则，我们用 $e_n$ 表示时刻 $n$ 的温度偏差，$d$ 表示信息落后的步数。若每次按读取值的比例 $g$ 修正，那么</p>
+<p>$$e_{n+1}=e_n-g e_{n-d}.$$</p>
+<p>右边的 $e_n$ 是操作前真正要更新的当前值，$e_{n-d}$ 是装置用来决定操作的读取值。$d=0$ 时两者是同一时刻；$d=2$ 时读取值落后两步。$g$ 称为增益（gain），决定同样的读取偏差引起多大的修正。它是无量纲（dimensionless）的比例，在代码中写为 <code>gain</code>；前面的“一半”就是 <code>gain=0.5</code>。</p>
+<p>这个人工模型（model）允许正、负修正：读取正值就减小当前偏差，读取负值就增大当前偏差，相当于双向调节。各步之间暂时没有其他扰动，测量也没有随机误差，装置能够执行指定的修正量。这样，我们可以把变化直接联系到信息年龄与修正强度。</p>
+<p>延迟规则还需要起点以前的信息。例如 $d=2$ 的第一次操作要读 $e_{-2}$，第二次要读 $e_{-1}$。只给 $e_0$ 无法完成这些操作。因此我们分别给出即时组的 <code>[2]</code> 与延迟组的 <code>[2, 2, 2]</code>，它们对应同一段“此前偏差恒为 2”的历史，只是所需的历史长度不同。</p>
+<h2 id="%E6%8A%8A%E5%8E%86%E5%8F%B2%E6%8E%92%E8%BF%9B%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8">&#25226;&#21382;&#21490;&#25490;&#36827;&#19968;&#20010;&#21015;&#34920;</h2><p><code>response</code> 首先用 <code>list(history)</code> 复制已知历史。随后，每次循环都从这份列表末尾读取当前值，并把新算出的值追加到末尾。列表会随时间增长，已经记录的过去值保持原样。</p>
+<p>Python 的负索引从末尾数起：<code>values[-1]</code> 是最后一项，<code>values[-2]</code> 是倒数第二项。更新前最后一项就是当前偏差，因此两步以前的偏差位于 <code>values[-3]</code>，统一写成 <code>values[-1-delay]</code>。例如最初 <code>[2, 2, 2]</code> 的最后一项对应时刻 0，倒数第三项对应时刻 −2；追加时刻 1 的值以后，倒数第三项变成时刻 −1，恰好与时间线一起向前移动。</p>
+<p><code>correction</code> 保存读取值乘增益得到的修正量，<code>values[-1]-correction</code> 给出新偏差。函数最后返回 <code>values[delay:]</code>，去掉起点以前的 $d$ 条历史，保留时刻 0 和此后的轨迹（trajectory）。所以执行 12 次更新，会返回 13 个点，而不是 12 个。</p>
+<p>另一个函数 <code>describe</code> 用于整理曲线。它先计算相邻两点的增量：增量为正表示上升，为负表示下降。下降转为上升或上升转为下降时，记一次转向。若中间有平台，就跳过近乎零的增量，让平台前后的方向继续比较；这里把绝对值不超过 $10^{-12}$ 视作零，统一处理浮点计算中的极小差异。比如 <code>[2, 1, 1, 2]</code> 的变化是下降、持平、上升，算一次转向。</p>
+<p><code>describe</code> 返回两个统计量，先是轨迹中的最大绝对偏差，单位 °C，再是转向次数，单位为次。代码中的 <code>max_abs, turns = describe(path)</code> 按这个顺序分别取出它们。</p>
+<p>下面同时画出两组从时刻 0 到 12 的完整轨迹。横轴是更新步数，纵轴是温度偏差，标为“目标温度”的水平虚线对应偏差零点。先在图中找出刚才手算的时刻 1、2、3、4，再继续追踪修正方向何时发生改变。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">response</span><span class="p">(</span><span class="n">history</span><span class="p">,</span> <span class="n">gain</span><span class="p">,</span> <span class="n">delay</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
+        <span class="n">correction</span> <span class="o">=</span> <span class="n">gain</span><span class="o">*</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">delay</span><span class="p">]</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">correction</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="n">delay</span><span class="p">:]</span>  <span class="c1"># 只返回时刻 0 以后的轨迹，包含起点</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">differences</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">:])]</span>
+    <span class="n">directions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">v</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">differences</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">1e-12</span><span class="p">]</span>
+    <span class="n">turns</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="o">!=</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">directions</span><span class="p">,</span><span class="n">directions</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">path</span><span class="p">),</span> <span class="n">turns</span>
+
+<span class="n">immediate</span> <span class="o">=</span> <span class="n">response</span><span class="p">([</span><span class="mi">2</span><span class="p">],</span> <span class="mf">.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">delayed</span> <span class="o">=</span> <span class="n">response</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="mf">.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">immediate</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">.5</span><span class="p">,</span><span class="mf">.25</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">delayed</span><span class="p">[:</span><span class="mi">9</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">.25</span><span class="p">,</span><span class="mf">.5</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">),</span> <span class="n">immediate</span><span class="p">,</span> <span class="s1">'o-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'即时读取'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">),</span> <span class="n">delayed</span><span class="p">,</span> <span class="s1">'s--'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'延迟两步'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#555555'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'目标温度'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">'更新步数'</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">'温度偏差 / °C'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'增益 0.5 下的即时与延迟调节'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<figure><img src="/web/reading/assets/P01-C03-S02-e0f5fbd8-0.png" alt="延迟怎样改变调节：实验结果图" loading="lazy"></figure>
+</section>
+<p>即时组始终在零线上方，每一步把当前偏差减半。延迟组却在时刻 3 越过零线，到时刻 4 降到 −1.5 °C。时刻 5 读取时刻 2 的零偏差，因此保持在 −1.5；随后装置开始读到过去的负值，修正方向才转为向上。曲线的转向可以逐步追溯到读取值，而不需要另设一个“反弹”机制。</p>
+<p>两组使用相同起点、相同修正比例和相同的 12 步观察窗，区别在于读取信息是否落后。因此这一次差异能够归到延迟规则上。若同时改变增益，就需要另做比较，分清哪种改变带来了什么影响。</p>
+<h2 id="%E4%BF%AE%E6%AD%A3%E5%BE%97%E8%BD%BB%E4%B8%80%E7%82%B9%EF%BC%8C%E4%BC%9A%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F">&#20462;&#27491;&#24471;&#36731;&#19968;&#28857;&#65292;&#20250;&#26377;&#20160;&#20040;&#19981;&#21516;&#65311;</h2><p>把增益从 0.5 改为 0.2，意味着同样读取到 2 °C 时，修正量从 1 减为 0.4 °C。我们分别在即时读取和两步延迟下重复这项改变，每组都保留全部 12 步。代码用 <code>[2] * (delay + 1)</code> 准备历史：零步延迟需要时刻 0 的 <code>[2]</code>，两步延迟需要时刻 −2、−1、0 的 <code>[2, 2, 2]</code>。这些数都来自“起点以前偏差恒为 2”的共同条件。</p>
+<p>表格将报告终点、最大绝对偏差和转向次数。终点只说明第 12 步的位置；最大绝对偏差包括起点，说明整个观察窗中距离零点最远是多少；转向次数说明曲线在这个时段内改变了几次升降方向。先想一想：如果几组的最大绝对偏差都由起点 2 决定，这个量还能区分它们的过冲吗？</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="n">rows</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">gain</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">.2</span><span class="p">,</span><span class="mf">.5</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">delay</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
+        <span class="n">path</span><span class="o">=</span><span class="n">response</span><span class="p">([</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">delay</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">gain</span><span class="p">,</span><span class="n">delay</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">max_abs</span><span class="p">,</span> <span class="n">turns</span><span class="o">=</span><span class="n">describe</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">gain</span><span class="p">,</span><span class="n">delay</span><span class="p">,</span><span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">max_abs</span><span class="p">,</span><span class="n">turns</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'gain'</span><span class="p">,</span> <span class="s1">'延迟 / 步'</span><span class="p">,</span> <span class="s1">'终点 / °C'</span><span class="p">,</span> <span class="s1">'最大绝对偏差 / °C'</span><span class="p">,</span> <span class="s1">'转向 / 次'</span><span class="p">],</span><span class="n">rows</span><span class="p">)))</span>
+<span class="k">assert</span> <span class="n">response</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">response</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mf">.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">describe</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+<div class="experiment-output"><table>
+<thead>
+<tr>
+  <th>gain</th>
+  <th>延迟 / 步</th>
+  <th>终点 / °C</th>
+  <th>最大绝对偏差 / °C</th>
+  <th>转向 / 次</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0.2</td>
+  <td>0</td>
+  <td>0.137439</td>
+  <td>2</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td>0.2</td>
+  <td>2</td>
+  <td>-0.048</td>
+  <td>2</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>0.5</td>
+  <td>0</td>
+  <td>0.000488281</td>
+  <td>2</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td>0.5</td>
+  <td>2</td>
+  <td>0.375</td>
+  <td>2</td>
+  <td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<p>表格里，即时组的转向次数为零，但两步延迟组即使采用 0.2 的增益，也仍然出现一次转向。减小增益改变了过程，并没有使信息变成当前信息。两步延迟、增益 0.5 的第 12 步偏差为 0.375 °C；增益 0.2 时则为 −0.048 °C。两个终点比较接近目标，却位于目标两侧，各自的路径也不同。</p>
+<p>所有组的最大绝对偏差都是 2 °C，因为这项统计包括了共同的起点。在这个例子里，它无法单独反映零线另一侧的过冲大小。应当把表格与曲线放在一起：从曲线检查是否越过目标、在哪里转向，再用终点和其他描述量整理比较。转向少、终点接近零，各自回答了过程的一部分问题。</p>
+<p>代码还核对了两种容易理解的情况。增益为零时，装置无论读到什么都不修正，轨迹保持在当前值；更新步数为零时，函数只返回时刻 0 的值。<code>[3, 2, 1]</code> 在这里按历史顺序排列，当前值是最后的 1，因此零次更新返回 <code>[1]</code>。</p>
+<p>我们现在解释了开篇的疑问：负反馈仍可能越过目标，因为当前温度与决定动作的温度属于不同时刻。这里的证据覆盖给定规则和 12 步轨迹；要判断任意长时间的行为，还需继续研究更新规律。更进一步，在实际记录中看到类似曲线，是否就能确定使用了这条规则？下一章将比较两条都能解释同一条记录的规则。</p>
+<p><a href="/chapters/01-03-%E5%8F%8D%E9%A6%88%E3%80%81%E5%BB%B6%E8%BF%9F%E4%B8%8E%E5%B1%82%E7%BA%A7/explore/">打开可视化与探索：反馈延迟与层级</a></p>
+<p><a href="/chapters/01-03-%E5%8F%8D%E9%A6%88%E3%80%81%E5%BB%B6%E8%BF%9F%E4%B8%8E%E5%B1%82%E7%BA%A7/">本章导览</a></p>
+
+<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history">本节练习 · 5 题</a><a class="button" href="/chapters/01-03-反馈、延迟与层级/explore/">可视化与探索</a></div></section>
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-03-反馈、延迟与层级/read/1/">← 1.3.1 作用方向与反馈回路</a><a href="/chapters/01-04-模型假设与计算实验/read/1/">1.4.1 规则、参数与初值 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

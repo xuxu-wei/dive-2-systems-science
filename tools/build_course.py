@@ -4,7 +4,6 @@ from pathlib import Path
 import re
 from course_content import notebooks, question_banks
 from assessment import load_assessments
-from terminology import annotate_text
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,16 +16,11 @@ def teaching_focus(content, chapter_id):
     return found.group(1).strip()
 
 
-def annotate_overview(chapter):
-    """导览是独立阅读单元；标题不加长括注，正文首次注明词表中的英文。"""
-    seen = set()
-    def annotate(text):
-        return annotate_text(text, seen=seen)
-    for key in ['goals', 'prerequisites', 'focus']:
-        assert chapter[key], f'Missing {key}: {chapter["title"]}'
-        chapter[key] = annotate(chapter[key])
-    chapter['knowledge'] = [annotate(text) for text in chapter['knowledge']]
-    assert chapter['knowledge']
+def validate_overview(chapter):
+    """Publish the edited outline verbatim; explanations belong in lessons."""
+    for key in ['goals', 'prerequisites', 'focus', 'knowledge']:
+        if not chapter.get(key):
+            raise ValueError(f'Missing {key}: {chapter["title"]}')
 
 
 def validate_design(parts, design):
@@ -89,7 +83,11 @@ def build(*, write=True):
                 assert len(entry['questions']) == len(assessments[entry['id']]['items'])
             else:
                 assert 3<=len(entry['questions'])<=5
-            entry['url']=chapter['url']+'practice/?question='+entry['questions'][0]['slug']
+            entry['practice_url']=chapter['url']+'practice/?question='+entry['questions'][0]['slug']
+            entry['notebook_url']='/notebook/?id='+entry['id']
+            if entry.get('reading'):
+                entry['reading_url']=chapter['url']+'read/'+str(entries.index(entry)+1)+'/'
+            entry['url']=entry.get('reading_url', entry['notebook_url'])
         chapter['visualization']=next((l['visualization'] for l in entries if l.get('visualization')),None)
     for part in parts:
         for chapter in part['chapters']:
@@ -99,19 +97,21 @@ def build(*, write=True):
             part['assessment']={'id':part['id']+'.summary','assessment':True,'title':assessment_lessons[0]['title'],
                 'url':part['url']+'综合练习/', **assessment_lessons[0]['overview']}
             attach(part['assessment'],assessment_lessons)
-            annotate_overview(part['assessment'])
+            validate_overview(part['assessment'])
     for part in parts:
         for chapter in part['chapters']:
-            annotate_overview(chapter)
+            validate_overview(chapter)
     result = {'parts': parts}
     if introduction:
         attach(introduction, [l for l in all_lessons if l.get('chapter_id') == introduction['id']])
-        annotate_overview(introduction)
+        validate_overview(introduction)
         result['introduction'] = introduction
     path = ROOT / 'web/course/catalog.json'
     if write:
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
+        from build_home_graph import build as build_graph_file
+        build_graph_file(ROOT)
     print(f'Course directory: {len(parts)} parts, {sum(len(p["chapters"]) for p in parts)} chapters; {sum(c["available"] for p in parts for c in p["chapters"])} available.')
     return result
 

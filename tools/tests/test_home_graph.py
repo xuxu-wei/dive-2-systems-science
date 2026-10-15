@@ -12,7 +12,7 @@ spec.loader.exec_module(module)
 CATALOG = json.loads((ROOT / 'web/course/catalog.json').read_text(encoding='utf-8'))
 TERMS = json.loads((ROOT / 'docs/术语对照.json').read_text(encoding='utf-8'))
 STORED_GRAPH = json.loads((ROOT / 'web/home/graph.json').read_text(encoding='utf-8'))
-CATALOG_SHA = hashlib.sha256((ROOT / 'web/course/catalog.json').read_bytes()).hexdigest()
+CATALOG_SHA = module.catalog_digest(CATALOG)
 GRAPH = module.build_graph(CATALOG, TERMS, catalog_sha256=CATALOG_SHA)
 
 

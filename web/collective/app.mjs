@@ -1,3 +1,4 @@
+import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,el} from '../shared/course-shell.mjs';
 import {createPlayback} from '../shared/playback.mjs';
 import {theme} from '../shared/theme.mjs';
@@ -114,7 +115,7 @@ async function start(){({current:chapter}=await mountShell('explore'));mode=chap
  $('alternate').addEventListener('click',()=>guard(()=>set(alternate(mode,settings))));
  $('reset').addEventListener('click',()=>guard(()=>{controls();recompute();}));
  document.addEventListener('visibilitychange',()=>{if(document.hidden)playback.pause('hidden');});
- for(const lesson of chapter.lessons){const button=el('button','在默认 IDE 打开：'+lesson.title);button.type='button';button.addEventListener('click',async()=>{button.disabled=true;try{const session=await(await fetch('/api/session')).json(),response=await fetch('/api/notebooks/open',{method:'POST',headers:{'Content-Type':'application/json','X-Local-Token':session.token},body:JSON.stringify({id:lesson.id})}),result=await response.json();$('open-status').textContent=result.message||result.error;}catch{$('open-status').textContent='本机连接中断，请恢复后重试。';}finally{button.disabled=false;}});$('notebooks').append(button);}
+ for(const lesson of chapter.lessons){const button=el('button','打开 JupyterLab 实验：'+lesson.title);button.type='button';button.addEventListener('click',()=>openNotebook(lesson.id));$('notebooks').append(button);}
  playback.seek(100);for(const id of ['controls','play','replay','timeline'])$(id).disabled=false;
  document.querySelector('.exploration').hidden=false;$('loading-note').hidden=true;document.body.dataset.ready='true';document.title=chapter.title+' · 可视化与探索';}
 start().catch(failed);

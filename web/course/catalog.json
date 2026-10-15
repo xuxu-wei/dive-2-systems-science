@@ -9,14 +9,14 @@
           "id": "1.1",
           "title": "从生理现象提出系统问题",
           "url": "/chapters/01-01-从生理现象提出系统问题/",
-          "goals": "把“为什么会变化”改写成含观察对象、时间范围与可测量结果的问题；说明状态（state）与观测（observation）的区别。",
-          "prerequisites": "入口；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
+          "goals": "把“为什么会变化”改写成含观察对象、时间范围与可测量结果的问题；说明状态与观测的区别。",
+          "prerequisites": "入口；数学：中学函数、图像、指数对数和量纲的最小复习。",
           "knowledge": [
             "以物质清除和体温变化比较系统边界",
-            "建立变量、单位、输入（input）、参数（parameter）与观测表",
+            "建立变量、单位、输入、参数与观测表",
             "读取短序列，绘图并解释坐标、尺度和缺失的机制信息"
           ],
-          "focus": "围绕具体问题选择系统边界（system boundary）；区分要描述的状态和仪器读数，把数值与单位一起解释。",
+          "focus": "围绕具体问题选择系统边界；区分要描述的状态和仪器读数，把数值与单位一起解释。",
           "available": true,
           "lessons": [
             {
@@ -27,6 +27,7 @@
               "outcome": "确定研究对象与边界，区分被测量和读数，并解释已知偏移怎样用于校正。",
               "number": "1.1.1",
               "visualization": null,
+              "reading": "lessons/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.md",
               "questions": [
                 {
                   "id": "p01-boundary",
@@ -53,7 +54,10 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-boundary"
+              "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-boundary",
+              "notebook_url": "/notebook/?id=P01-C01-S01",
+              "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/1/",
+              "url": "/chapters/01-01-从生理现象提出系统问题/read/1/"
             },
             {
               "id": "P01-C01-S02",
@@ -63,6 +67,7 @@
               "outcome": "换算同一实验的时间单位，读懂观测时刻，并用完整算例区分总量与浓度。",
               "number": "1.1.2",
               "visualization": null,
+              "reading": "lessons/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.md",
               "questions": [
                 {
                   "id": "p01-time-units",
@@ -89,7 +94,10 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units"
+              "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units",
+              "notebook_url": "/notebook/?id=P01-C01-S02",
+              "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/2/",
+              "url": "/chapters/01-01-从生理现象提出系统问题/read/2/"
             }
           ],
           "visualization": null
@@ -98,14 +106,14 @@
           "id": "1.2",
           "title": "存量、流量与守恒",
           "url": "/chapters/01-02-存量、流量与守恒/",
-          "goals": "从一段时间内的输入（input）输出（output）计算存量（stock）变化，区分流率（flow rate）和该段累计量。",
-          "prerequisites": "1.1；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
+          "goals": "从一段时间内的输入输出计算存量变化，区分流率和该段累计量。",
+          "prerequisites": "1.1；数学：中学函数、图像、指数对数和量纲的最小复习。",
           "knowledge": [
             "容器与箭头表示“多少”和“多快”",
             "按时间段手算收支，再用循环累计",
             "通过单位、边界与总量定位收支错误"
           ],
-          "focus": "用流率乘以时长计算累计量；先确定边界，再看内部交换怎样在整体收支（mass balance）中相消。",
+          "focus": "用流率乘以时长计算累计量；先确定边界，再看内部交换怎样在整体收支中相消。",
           "available": true,
           "lessons": [
             {
@@ -116,6 +124,7 @@
               "outcome": "从每单位时间的流入、流出逐笔算出存量，再用累计总账核对逐段计算。",
               "number": "1.2.1",
               "visualization": "web/seeing-systems/index.html",
+              "reading": "lessons/01-看见系统/02-存量流量与守恒/01-一段时间的物质收支.md",
               "questions": [
                 {
                   "id": "p01-rate-amount",
@@ -142,7 +151,10 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount"
+              "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount",
+              "notebook_url": "/notebook/?id=P01-C02-S01",
+              "reading_url": "/chapters/01-02-存量、流量与守恒/read/1/",
+              "url": "/chapters/01-02-存量、流量与守恒/read/1/"
             },
             {
               "id": "P01-C02-S02",
@@ -152,6 +164,7 @@
               "outcome": "分别为两区记账，再把两式相加，解释内部转移怎样抵消以及总量为何不说明分布。",
               "number": "1.2.2",
               "visualization": "web/seeing-systems/index.html",
+              "reading": "lessons/01-看见系统/02-存量流量与守恒/02-内部交换与整体守恒.md",
               "questions": [
                 {
                   "id": "p01-internal-transfer",
@@ -178,7 +191,10 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-internal-transfer"
+              "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-internal-transfer",
+              "notebook_url": "/notebook/?id=P01-C02-S02",
+              "reading_url": "/chapters/01-02-存量、流量与守恒/read/2/",
+              "url": "/chapters/01-02-存量、流量与守恒/read/2/"
             }
           ],
           "visualization": "web/seeing-systems/index.html"
@@ -187,8 +203,8 @@
           "id": "1.3",
           "title": "反馈、延迟与层级",
           "url": "/chapters/01-03-反馈、延迟与层级/",
-          "goals": "根据局部作用方向判断反馈（feedback）环的符号，并通过规则实验说明延迟（delay）可能改变响应。",
-          "prerequisites": "1.2；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
+          "goals": "根据局部作用方向判断反馈环的符号，并通过规则实验说明延迟可能改变响应。",
+          "prerequisites": "1.2；数学：中学函数、图像、指数对数和量纲的最小复习。",
           "knowledge": [
             "因果箭头是待检验的作用假设",
             "比较增强与抵消偏差的回路",
@@ -205,6 +221,7 @@
               "outcome": "沿一次扰动判断反馈回路的方向，并检查调节怎样同时影响其他变量。",
               "number": "1.3.1",
               "visualization": "web/seeing-systems/index.html",
+              "reading": "lessons/01-看见系统/03-反馈延迟与层级/01-作用方向与反馈回路.md",
               "questions": [
                 {
                   "id": "p01-signed-arrow",
@@ -231,7 +248,10 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-signed-arrow"
+              "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-signed-arrow",
+              "notebook_url": "/notebook/?id=P01-C03-S01",
+              "reading_url": "/chapters/01-03-反馈、延迟与层级/read/1/",
+              "url": "/chapters/01-03-反馈、延迟与层级/read/1/"
             },
             {
               "id": "P01-C03-S02",
@@ -241,6 +261,7 @@
               "outcome": "沿历史时间线手算调节，比较即时与延迟的曲线，解释过冲和转向怎样发生。",
               "number": "1.3.2",
               "visualization": "web/seeing-systems/index.html",
+              "reading": "lessons/01-看见系统/03-反馈延迟与层级/02-延迟怎样改变调节.md",
               "questions": [
                 {
                   "id": "p01-delay-history",
@@ -273,7 +294,10 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history"
+              "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history",
+              "notebook_url": "/notebook/?id=P01-C03-S02",
+              "reading_url": "/chapters/01-03-反馈、延迟与层级/read/2/",
+              "url": "/chapters/01-03-反馈、延迟与层级/read/2/"
             }
           ],
           "visualization": "web/seeing-systems/index.html"
@@ -282,14 +306,14 @@
           "id": "1.4",
           "title": "模型假设与计算实验",
           "url": "/chapters/01-04-模型假设与计算实验/",
-          "goals": "区分结构改变与参数（parameter）改变，为一个假设设置对照、观测（observation）量和可能的反例。",
-          "prerequisites": "1.3；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
+          "goals": "区分结构改变与参数改变，为一个假设设置对照、观测量和可能的反例。",
+          "prerequisites": "1.3；数学：中学函数、图像、指数对数和量纲的最小复习。",
           "knowledge": [
             "把文字机制转为给定的计算规则",
             "区分初值、参数、结构和观测设置",
             "形成“预测—对照—核验—限制”的实验记录"
           ],
-          "focus": "区分初值（initial condition）、参数和规则的改变；选择能拉开两种预测的实验，并用新观测检验预测。",
+          "focus": "区分初值、参数和规则的改变；选择能拉开两种预测的实验，并用新观测检验预测。",
           "available": true,
           "lessons": [
             {
@@ -300,6 +324,7 @@
               "outcome": "比较固定量与固定比例清除，区分规则、参数和初值，并检验耗尽时的适用范围。",
               "number": "1.4.1",
               "visualization": null,
+              "reading": "lessons/01-看见系统/04-模型假设与计算实验/01-规则参数与初值.md",
               "questions": [
                 {
                   "id": "p01-change-class",
@@ -326,7 +351,10 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class"
+              "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class",
+              "notebook_url": "/notebook/?id=P01-C04-S01",
+              "reading_url": "/chapters/01-04-模型假设与计算实验/read/1/",
+              "url": "/chapters/01-04-模型假设与计算实验/read/1/"
             },
             {
               "id": "P01-C04-S02",
@@ -336,6 +364,7 @@
               "outcome": "选择能拉开候选预测的实验，结合测量精度解释新观测支持或否定了什么。",
               "number": "1.4.2",
               "visualization": null,
+              "reading": "lessons/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.md",
               "questions": [
                 {
                   "id": "p01-distinguish-design",
@@ -362,7 +391,10 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design"
+              "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design",
+              "notebook_url": "/notebook/?id=P01-C04-S02",
+              "reading_url": "/chapters/01-04-模型假设与计算实验/read/2/",
+              "url": "/chapters/01-04-模型假设与计算实验/read/2/"
             }
           ],
           "visualization": null
@@ -379,7 +411,7 @@
         "knowledge": [
           "视野计数 → 选择边界与生成项",
           "温度调节 → 核对反馈（feedback）与旁路",
-          "清除比较 → 用新观测（observation）检验预测"
+          "清除比较 → 用新观测检验预测"
         ],
         "lessons": [
           {
@@ -400,6 +432,7 @@
                 "清除比较 → 用新观测检验预测"
               ]
             },
+            "reading": "lessons/01-看见系统/05-篇末综合/01-系统边界与实验设计.md",
             "questions": [
               {
                 "id": "p01-cap-boundary",
@@ -450,7 +483,10 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-boundary"
+            "practice_url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-boundary",
+            "notebook_url": "/notebook/?id=P01-SUMMARY",
+            "reading_url": "/parts/01-看见系统/综合练习/read/1/",
+            "url": "/parts/01-看见系统/综合练习/read/1/"
           }
         ],
         "available": true,
@@ -466,14 +502,14 @@
           "id": "2.1",
           "title": "用递推描述增长与清除",
           "url": "/chapters/02-01-用递推描述增长与清除/",
-          "goals": "从两三次手算写出递推规则，用加权输入（input）和核对结果；说明更新间隔改变时，每段进入和移除的量如何改变。",
+          "goals": "从两三次手算写出递推规则，用加权输入和核对结果；说明更新间隔改变时，每段进入和移除的量如何改变。",
           "prerequisites": "第 1 篇 1.2、1.4；单位、函数与 Python 循环。下标、有限求和与等比和在本章引入。",
           "knowledge": [
             "手算逐步变化，再引入下标",
             "展开累计输入，求更新后保持不变的总量",
-            "用速率乘实际时长计算每段收支（mass balance）"
+            "用速率乘实际时长计算每段收支"
           ],
-          "focus": "沿时间顺序对应起点、每段变化和段末结果；区分每次更新保留的比例与每单位时间的清除系数（elimination rate constant）。",
+          "focus": "沿时间顺序对应起点、每段变化和段末结果；区分每次更新保留的比例与每单位时间的清除系数。",
           "available": true,
           "lessons": [
             {
@@ -510,7 +546,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-step-factor"
+              "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-step-factor",
+              "notebook_url": "/notebook/?id=P02-C01-S01",
+              "url": "/notebook/?id=P02-C01-S01"
             },
             {
               "id": "P02-C01-S02",
@@ -546,7 +584,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-euler-balance"
+              "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-euler-balance",
+              "notebook_url": "/notebook/?id=P02-C01-S02",
+              "url": "/notebook/?id=P02-C01-S02"
             }
           ],
           "visualization": "web/time-evolution/index.html"
@@ -555,12 +595,12 @@
           "id": "2.2",
           "title": "变化率与累积：微积分入口",
           "url": "/chapters/02-02-变化率与累积：微积分入口/",
-          "goals": "手算差商（difference quotient）和矩形累积，解释导数（derivative）与积分的符号和单位，用微积分基本定理（fundamental theorem of calculus）连接二者，再逐层求指数曲线的一阶、二阶导数（second derivative）。",
-          "prerequisites": "2.1；有限求和、函数读图与单位。极限（limit）、导数、定积分（definite integral）、指数和对数在本章从必要含义开始解释。",
+          "goals": "手算差商和矩形累积，解释导数与积分的符号和单位，用微积分基本定理连接二者，再逐层求指数曲线的一阶、二阶导数。",
+          "prerequisites": "2.1；有限求和、函数读图与单位。极限、导数、定积分、指数和对数在本章从必要含义开始解释。",
           "knowledge": [
             "从平均变化到导数，手算差商并取极限",
             "从矩形累积到定积分，解释积分变量并用端点差核对",
-            "指数、自然对数（natural logarithm）与链式法则（chain rule），逐层计算一阶与二阶导数"
+            "指数、自然对数与链式法则，逐层计算一阶与二阶导数"
           ],
           "focus": "从两个时刻的总量求平均变化率，再缩短间隔；将速率乘时长得到的量累加，用同一条曲线连接变化与累积。",
           "available": true,
@@ -599,7 +639,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-slope-meaning"
+              "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-slope-meaning",
+              "notebook_url": "/notebook/?id=P02-C02-S01",
+              "url": "/notebook/?id=P02-C02-S01"
             },
             {
               "id": "P02-C02-S02",
@@ -635,7 +677,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-area-unit"
+              "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-area-unit",
+              "notebook_url": "/notebook/?id=P02-C02-S02",
+              "url": "/notebook/?id=P02-C02-S02"
             },
             {
               "id": "P02-C02-S03",
@@ -671,7 +715,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-exponent-unit"
+              "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-exponent-unit",
+              "notebook_url": "/notebook/?id=P02-C02-S03",
+              "url": "/notebook/?id=P02-C02-S03"
             }
           ],
           "visualization": null
@@ -680,10 +726,10 @@
           "id": "2.3",
           "title": "连续时间与一阶微分方程",
           "url": "/chapters/02-03-连续时间与一阶微分方程/",
-          "goals": "推导 dA/dt=u−kA 的恒定输入（input）解，检查初值（initial condition）、方程与边界；区分平衡（equilibrium）位置、特征时间（characteristic time）、偏离半衰时间与无输入时的总量半衰期（half-life）。",
-          "prerequisites": "2.2；导数（derivative）、定积分（definite integral）、指数/对数和链式法则（chain rule）。分离变量与初值问题（initial value problem）在本章引入。",
+          "goals": "推导 dA/dt=u−kA 的恒定输入解，检查初值、方程与边界；区分平衡位置、特征时间、偏离半衰时间与无输入时的总量半衰期。",
+          "prerequisites": "2.2；导数、定积分、指数/对数和链式法则。分离变量与初值问题在本章引入。",
           "knowledge": [
-            "缩短收支（mass balance）更新的间隔，建立初值问题",
+            "缩短收支更新的间隔，建立初值问题",
             "从无输入清除求解，移到恒定输入，再逐项核对解析式",
             "保持平衡总量不变，比较偏离衰减和达到指定比例的时间"
           ],
@@ -724,7 +770,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-ivp"
+              "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-ivp",
+              "notebook_url": "/notebook/?id=P02-C03-S01",
+              "url": "/notebook/?id=P02-C03-S01"
             },
             {
               "id": "P02-C03-S02",
@@ -760,7 +808,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-timescale"
+              "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-timescale",
+              "notebook_url": "/notebook/?id=P02-C03-S02",
+              "url": "/notebook/?id=P02-C03-S02"
             }
           ],
           "visualization": "web/time-evolution/index.html"
@@ -769,8 +819,8 @@
           "id": "2.4",
           "title": "数值模拟、误差与迁移",
           "url": "/chapters/02-04-数值模拟、误差与迁移/",
-          "goals": "连接逐步误差与全程误差；推导 1−kh 的偏差传播；区分渐近稳定（asymptotic stability）与非负性（nonnegativity），正确处理输入（input）跳变。",
-          "prerequisites": "2.3；递推、解析解（analytical solution）、有限求和与对数。先从指数的二阶展开与一步手算建立局部误差，再说明全局误差、观测收敛阶（observed order of convergence）和稳定性条件。",
+          "goals": "连接逐步误差与全程误差；推导 1−kh 的偏差传播；区分渐近稳定与非负性，正确处理输入跳变。",
+          "prerequisites": "2.3；递推、解析解、有限求和与对数。先从指数的二阶展开与一步手算建立局部误差，再说明全局误差、观测收敛阶和稳定性条件。",
           "knowledge": [
             "比较欧拉一步与指数展开，累计局部误差并细化网格",
             "用 1−kh 解释偏差衰减、振荡和负值",
@@ -819,7 +869,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-errors"
+              "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-errors",
+              "notebook_url": "/notebook/?id=P02-C04-S01",
+              "url": "/notebook/?id=P02-C04-S01"
             },
             {
               "id": "P02-C04-S02",
@@ -861,7 +913,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-step-properties"
+              "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-step-properties",
+              "notebook_url": "/notebook/?id=P02-C04-S02",
+              "url": "/notebook/?id=P02-C04-S02"
             },
             {
               "id": "P02-C04-S03",
@@ -903,7 +957,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-aligned-grid"
+              "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-aligned-grid",
+              "notebook_url": "/notebook/?id=P02-C04-S03",
+              "url": "/notebook/?id=P02-C04-S03"
             }
           ],
           "visualization": "web/time-evolution/index.html"
@@ -914,9 +970,9 @@
         "assessment": true,
         "title": "等总量输入的不同过程",
         "url": "/parts/02-系统随时间演化/综合练习/",
-        "goals": "保持总流入量相同，比较不同时间安排造成的峰值与终值差异，并核对累计收支（mass balance）和数值误差（numerical error）。",
+        "goals": "保持总流入量相同，比较不同时间安排造成的峰值与终值差异，并核对累计收支和数值误差。",
         "prerequisites": "本篇四章的收支更新、连续解与分段计算。",
-        "focus": "分清全程进入多少与各时刻留下多少；在相同模型（model）和起点下比较方案，结合解析参考与步长细化解释结果。",
+        "focus": "分清全程进入多少与各时刻留下多少；在相同模型和起点下比较方案，结合解析参考与步长细化解释结果。",
         "knowledge": [
           "先算各段流入量，确认全程总量相同",
           "分别接续每段解析与欧拉结果，比较峰值、终值和误差",
@@ -991,7 +1047,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-cap-rate-balance"
+            "practice_url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-cap-rate-balance",
+            "notebook_url": "/notebook/?id=P02-SUMMARY",
+            "url": "/notebook/?id=P02-SUMMARY"
           }
         ],
         "available": true,
@@ -1007,11 +1065,11 @@
           "id": "3.1",
           "title": "从多个室进入线性代数",
           "url": "/chapters/03-01-从多个室进入线性代数/",
-          "goals": "为血液与组织分别写收支，说明向量（vector）顺序与矩阵（matrix）行列；用共同变化、重新分配和重复方程理解投影（projection）与平衡。",
+          "goals": "为血液与组织分别写收支，说明向量顺序与矩阵行列；用共同变化、重新分配和重复方程理解投影与平衡。",
           "prerequisites": "2.4 的收支计算、导数与一阶微分方程；会用 Python 列表表达多项数值。",
           "knowledge": [
             "先算一次血液与组织的转移，再定义向量顺序和矩阵行列",
-            "将共同变化与室间差异分开，用内积（inner product）和配方解释投影",
+            "将共同变化与室间差异分开，用内积和配方解释投影",
             "比较重复的收支与独立约束，用消元求平衡"
           ],
           "focus": "把每笔转移同时记在转出室和接收室，解释矩阵中的正负号；用独立方程与两室总量确定平衡分配。",
@@ -1051,7 +1109,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-exchange-columns"
+              "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-exchange-columns",
+              "notebook_url": "/notebook/?id=P03-C01-S01",
+              "url": "/notebook/?id=P03-C01-S01"
             },
             {
               "id": "P03-C01-S02",
@@ -1087,7 +1147,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-projection"
+              "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-projection",
+              "notebook_url": "/notebook/?id=P03-C01-S02",
+              "url": "/notebook/?id=P03-C01-S02"
             },
             {
               "id": "P03-C01-S03",
@@ -1129,7 +1191,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-open-equilibrium"
+              "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-open-equilibrium",
+              "notebook_url": "/notebook/?id=P03-C01-S03",
+              "url": "/notebook/?id=P03-C01-S03"
             }
           ],
           "visualization": null
@@ -1138,14 +1202,14 @@
           "id": "3.2",
           "title": "线性状态空间与动态模态",
           "url": "/chapters/03-02-线性状态空间与动态模态/",
-          "goals": "分别写出状态变化与测量关系，用两室的和、差求出两种指数变化，再把复数（complex number）表示还原为二维偏差运动。",
-          "prerequisites": "3.1 的向量（vector）、矩阵乘法（matrix multiplication）与线性方程组（system of linear equations），以及第 2 篇的指数衰减。",
+          "goals": "分别写出状态变化与测量关系，用两室的和、差求出两种指数变化，再把复数表示还原为二维偏差运动。",
+          "prerequisites": "3.1 的向量、矩阵乘法与线性方程组，以及第 2 篇的指数衰减。",
           "knowledge": [
             "用同一组两室总量比较不同读数，写清 M、B、C、D 的位置和单位",
-            "从和差方程引出特征值（eigenvalue）、模态与矩阵（matrix）传播",
-            "用二维偏差解释复数衰减和旋转，特征向量（eigenvector）不足时沿原方程依次求解"
+            "从和差方程引出特征值、模态与矩阵传播",
+            "用二维偏差解释复数衰减和旋转，特征向量不足时沿原方程依次求解"
           ],
-          "focus": "解释为什么总量读数不变时两个室仍在交换；分清模态（mode）在初值中没有贡献与它在读数中被抵消。",
+          "focus": "解释为什么总量读数不变时两个室仍在交换；分清模态在初值中没有贡献与它在读数中被抵消。",
           "available": true,
           "lessons": [
             {
@@ -1182,7 +1246,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-state-output"
+              "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-state-output",
+              "notebook_url": "/notebook/?id=P03-C02-S01",
+              "url": "/notebook/?id=P03-C02-S01"
             },
             {
               "id": "P03-C02-S02",
@@ -1224,7 +1290,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-symmetric-modes"
+              "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-symmetric-modes",
+              "notebook_url": "/notebook/?id=P03-C02-S02",
+              "url": "/notebook/?id=P03-C02-S02"
             },
             {
               "id": "P03-C02-S03",
@@ -1266,7 +1334,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-damped"
+              "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-damped",
+              "notebook_url": "/notebook/?id=P03-C02-S03",
+              "url": "/notebook/?id=P03-C02-S03"
             }
           ],
           "visualization": "web/multivariable/index.html"
@@ -1275,8 +1345,8 @@
           "id": "3.3",
           "title": "耦合、相平面与平衡",
           "url": "/chapters/03-03-耦合、相平面与平衡/",
-          "goals": "在指定状态点计算变化率，把运动方向、时间曲线和相轨迹（phase trajectory）对应起来，再比较改变速度和关闭通道的结果。",
-          "prerequisites": "3.2 的状态空间（state space）、模态（mode）与时间曲线；会由矩阵（matrix）和状态计算变化率。",
+          "goals": "在指定状态点计算变化率，把运动方向、时间曲线和相轨迹对应起来，再比较改变速度和关闭通道的结果。",
+          "prerequisites": "3.2 的状态空间、模态与时间曲线；会由矩阵和状态计算变化率。",
           "knowledge": [
             "手算状态点的变化率，解释箭头方向与速率",
             "将相轨迹与时间曲线对照，改变全部变化率的共同倍率",
@@ -1319,7 +1389,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-scaled-field"
+              "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-scaled-field",
+              "notebook_url": "/notebook/?id=P03-C03-S01",
+              "url": "/notebook/?id=P03-C03-S01"
             },
             {
               "id": "P03-C03-S02",
@@ -1355,7 +1427,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-closed-state"
+              "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-closed-state",
+              "notebook_url": "/notebook/?id=P03-C03-S02",
+              "url": "/notebook/?id=P03-C03-S02"
             }
           ],
           "visualization": "web/multivariable/index.html"
@@ -1364,10 +1438,10 @@
           "id": "3.4",
           "title": "多变量变化与局部线性化",
           "url": "/chapters/03-04-多变量变化与局部线性化/",
-          "goals": "每次只改变一个室的总量，求变化率的偏导（partial derivative）并组成雅可比矩阵（Jacobian matrix）；围绕固定平衡比较小扰动与大扰动的预测。",
-          "prerequisites": "3.3 的相平面（phase plane）和平衡；复习第 2 篇的单变量导数、链式法则及本篇矩阵（matrix）运算。",
+          "goals": "每次只改变一个室的总量，求变化率的偏导并组成雅可比矩阵；围绕固定平衡比较小扰动与大扰动的预测。",
+          "prerequisites": "3.3 的相平面和平衡；复习第 2 篇的单变量导数、链式法则及本篇矩阵运算。",
           "knowledge": [
-            "从一次小扰动求偏导，用梯度（gradient）计算沿轨迹的变化",
+            "从一次小扰动求偏导，用梯度计算沿轨迹的变化",
             "逐列构造雅可比矩阵，解释一般基点与平衡处的一阶近似",
             "在同一饱和清除模型中改变扰动幅度，并分别缩短步长核对预测差异"
           ],
@@ -1414,7 +1488,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-jacobian"
+              "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-jacobian",
+              "notebook_url": "/notebook/?id=P03-C04-S01",
+              "url": "/notebook/?id=P03-C04-S01"
             },
             {
               "id": "P03-C04-S02",
@@ -1456,7 +1532,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-trajectories"
+              "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-trajectories",
+              "notebook_url": "/notebook/?id=P03-C04-S02",
+              "url": "/notebook/?id=P03-C04-S02"
             }
           ],
           "visualization": "web/multivariable/index.html"
@@ -1468,7 +1546,7 @@
         "title": "二室交换与局部近似综合实验",
         "url": "/parts/03-多变量相互作用/综合练习/",
         "goals": "从两室收支计算平衡分配，比较两种观测，再判断饱和清除的局部近似在给定实验中是否够准确。",
-        "prerequisites": "本篇四章的矩阵（matrix）计算、模态（mode）分解、相轨迹（phase trajectory）与局部近似。",
+        "prerequisites": "本篇四章的矩阵计算、模态分解、相轨迹与局部近似。",
         "focus": "先说清列表中每个位置的含义；区分总量不变与分配不变、模态未出现与读数中抵消、模型差异与步长差异。",
         "knowledge": [
           "按室 1、室 2 的顺序记账，核对总量与浓度",
@@ -1544,7 +1622,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-units"
+            "practice_url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-units",
+            "notebook_url": "/notebook/?id=P03-SUMMARY",
+            "url": "/notebook/?id=P03-SUMMARY"
           }
         ],
         "available": true,
@@ -1560,14 +1640,14 @@
           "id": "4.1",
           "title": "多稳态与吸引域",
           "url": "/chapters/04-01-多稳态与吸引域/",
-          "goals": "从状态的变化方向求出三个平衡，比较一次扰动后的长期去向；用点到圆的距离解释吸引域（basin of attraction）和集合吸引。",
+          "goals": "从状态的变化方向求出三个平衡，比较一次扰动后的长期去向；用点到圆的距离解释吸引域和集合吸引。",
           "prerequisites": "3.4；导数、解析解、平衡与局部线性化。",
           "knowledge": [
             "手算活动开关的变化方向，求平衡与解析轨迹",
             "从半步预测推导中点法，比较一次扰动、持续偏置和有限时间扫描",
             "先求点到圆的距离，再解释不变、集合稳定与吸引域"
           ],
-          "focus": "平衡时不动，邻近状态却可能远离；回到同一圆周时，两条轨迹也可能一直保留相位（phase）差。",
+          "focus": "平衡时不动，邻近状态却可能远离；回到同一圆周时，两条轨迹也可能一直保留相位差。",
           "available": true,
           "lessons": [
             {
@@ -1604,7 +1684,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-equilibria"
+              "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-equilibria",
+              "notebook_url": "/notebook/?id=P04-C01-S01",
+              "url": "/notebook/?id=P04-C01-S01"
             },
             {
               "id": "P04-C01-S02",
@@ -1646,7 +1728,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-basin-window"
+              "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-basin-window",
+              "notebook_url": "/notebook/?id=P04-C01-S02",
+              "url": "/notebook/?id=P04-C01-S02"
             },
             {
               "id": "P04-C01-S03",
@@ -1682,7 +1766,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set"
+              "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set",
+              "notebook_url": "/notebook/?id=P04-C01-S03",
+              "url": "/notebook/?id=P04-C01-S03"
             }
           ],
           "visualization": "web/nonlinear/index.html"
@@ -1691,14 +1777,14 @@
           "id": "4.2",
           "title": "自维持振荡与极限环",
           "url": "/chapters/04-02-自维持振荡与极限环/",
-          "goals": "比较撤去输入后的运动，从二维方程求半径与角度，再从等间隔记录的曲线测量周期、振幅（amplitude）和相位（phase）。",
+          "goals": "比较撤去输入后的运动，从二维方程求半径与角度，再从等间隔记录的曲线测量周期、振幅和相位。",
           "prerequisites": "4.1；第 3 篇的二维旋转、复数、范数与链式法则。",
           "knowledge": [
             "给阻尼旋转加入周期输入，求出周期特解",
             "从二维方程推导半径与角度，比较不同初始半径",
             "测量记录曲线的振幅、峰间周期和插值过零时间，再比较扰动前后的相位"
           ],
-          "focus": "说明振荡由什么维持；把恢复振幅与恢复相位分开，写清暂态（transient）截断、峰值和穿零规则。",
+          "focus": "说明振荡由什么维持；把恢复振幅与恢复相位分开，写清暂态截断、峰值和穿零规则。",
           "available": true,
           "lessons": [
             {
@@ -1741,7 +1827,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-oscillation-source"
+              "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-oscillation-source",
+              "notebook_url": "/notebook/?id=P04-C02-S01",
+              "url": "/notebook/?id=P04-C02-S01"
             },
             {
               "id": "P04-C02-S02",
@@ -1777,7 +1865,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-peak-period"
+              "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-peak-period",
+              "notebook_url": "/notebook/?id=P04-C02-S02",
+              "url": "/notebook/?id=P04-C02-S02"
             }
           ],
           "visualization": "web/nonlinear/index.html"
@@ -1787,7 +1877,7 @@
           "title": "分岔与参数变化",
           "url": "/chapters/04-03-分岔与参数变化/",
           "goals": "从平衡条件求折叠点，从径向方程求周期半径，再比较扫描结果怎样随等待时间和初始化改变。",
-          "prerequisites": "4.2；平衡条件、显式中点法（explicit midpoint method）与局部特征值。",
+          "prerequisites": "4.2；平衡条件、显式中点法与局部特征值。",
           "knowledge": [
             "联立平衡方程和零斜率，展开折叠点附近的变化率",
             "比较接续、重启和正反扫描，改变等待时间",
@@ -1836,7 +1926,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-fold-locations"
+              "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-fold-locations",
+              "notebook_url": "/notebook/?id=P04-C03-S01",
+              "url": "/notebook/?id=P04-C03-S01"
             },
             {
               "id": "P04-C03-S02",
@@ -1878,7 +1970,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-hopf-branch"
+              "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-hopf-branch",
+              "notebook_url": "/notebook/?id=P04-C03-S02",
+              "url": "/notebook/?id=P04-C03-S02"
             }
           ],
           "visualization": "web/nonlinear/index.html"
@@ -1890,7 +1984,7 @@
           "goals": "逐代计算种群比例与扰动倍率，比较周期和邻近轨迹分离，再检查有限时间增长率与算术精度。",
           "prerequisites": "4.3、2.4；离散递推、导数、自然对数与数值误差。",
           "knowledge": [
-            "从逐代手算进入不动点（fixed point）和二周期，用扰动倍率判断稳定性",
+            "从逐代手算进入不动点和二周期，用扰动倍率判断稳定性",
             "比较两条邻近轨迹，求首次超出容许误差的代次",
             "推导对数增长率，再用特殊初值与高精度运算解释有限窗口中的结果"
           ],
@@ -1931,7 +2025,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-logistic-iterate"
+              "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-logistic-iterate",
+              "notebook_url": "/notebook/?id=P04-C04-S01",
+              "url": "/notebook/?id=P04-C04-S01"
             },
             {
               "id": "P04-C04-S02",
@@ -1973,7 +2069,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-prediction-horizon"
+              "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-prediction-horizon",
+              "notebook_url": "/notebook/?id=P04-C04-S02",
+              "url": "/notebook/?id=P04-C04-S02"
             },
             {
               "id": "P04-C04-S03",
@@ -2015,7 +2113,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-finite-growth"
+              "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-finite-growth",
+              "notebook_url": "/notebook/?id=P04-C04-S03",
+              "url": "/notebook/?id=P04-C04-S03"
             }
           ],
           "visualization": "web/nonlinear/index.html"
@@ -2027,7 +2127,7 @@
           "goals": "用函数值衡量偏离平衡的程度，沿轨迹求导，再由符号和区域条件判断稳定与收敛。",
           "prerequisites": "4.4、3.4；梯度、链式法则、二维旋转与范数。",
           "knowledge": [
-            "用一个标量例子解释正定（positive definite）、沿轨迹导数和子水平集（sublevel set）",
+            "用一个标量例子解释正定、沿轨迹导数和子水平集",
             "在二维模型中用链式法则求导，给出包含于有效区域的充分条件",
             "比较纯旋转与单方向衰减，再检查零导数集合中的运动"
           ],
@@ -2074,7 +2174,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-energy"
+              "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-energy",
+              "notebook_url": "/notebook/?id=P04-C05-S01",
+              "url": "/notebook/?id=P04-C05-S01"
             },
             {
               "id": "P04-C05-S02",
@@ -2110,7 +2212,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-rotating-energy"
+              "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-rotating-energy",
+              "notebook_url": "/notebook/?id=P04-C05-S02",
+              "url": "/notebook/?id=P04-C05-S02"
             }
           ],
           "visualization": null
@@ -2120,10 +2224,10 @@
           "title": "连续时间混沌与奇异吸引子",
           "url": "/chapters/04-06-连续时间混沌与奇异吸引子/",
           "goals": "从 Lorenz 方程求平衡、对称性和有界性，让状态与小扰动共同推进，再用截面交点、增长率和步长对照解释复杂运动。",
-          "prerequisites": "4.5、2.4、3.4；吸引子（attractor）与吸引域（basin of attraction）、周期运动、离散增长率、雅可比矩阵和函数沿轨迹导数。",
+          "prerequisites": "4.5、2.4、3.4；吸引子与吸引域、周期运动、离散增长率、雅可比矩阵（Jacobian matrix）和函数沿轨迹导数。",
           "knowledge": [
             "从平面自治运动的限制进入三维 Lorenz 方程，解释变量、平衡和对称性",
-            "展开函数导数与散度（divergence），再手写 RK4 比较共同时间点",
+            "展开函数导数与散度，再手写 RK4 比较共同时间点",
             "记录从下向上穿越平面的交点，求插值时间和返回间隔",
             "推导小扰动方程，按实际时长累计伸长，再结合窗口、步长和特殊轨道解释结果"
           ],
@@ -2164,7 +2268,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous"
+              "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous",
+              "notebook_url": "/notebook/?id=P04-C06-S01",
+              "url": "/notebook/?id=P04-C06-S01"
             },
             {
               "id": "P04-C06-S02",
@@ -2206,7 +2312,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-volume-bounded"
+              "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-volume-bounded",
+              "notebook_url": "/notebook/?id=P04-C06-S02",
+              "url": "/notebook/?id=P04-C06-S02"
             },
             {
               "id": "P04-C06-S03",
@@ -2242,7 +2350,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection"
+              "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection",
+              "notebook_url": "/notebook/?id=P04-C06-S03",
+              "url": "/notebook/?id=P04-C06-S03"
             },
             {
               "id": "P04-C06-S04",
@@ -2284,7 +2394,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-tangent-growth"
+              "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-tangent-growth",
+              "notebook_url": "/notebook/?id=P04-C06-S04",
+              "url": "/notebook/?id=P04-C06-S04"
             }
           ],
           "visualization": "web/nonlinear/lorenz.html"
@@ -2301,7 +2413,7 @@
         "knowledge": [
           "从初值和扰动判断长期趋向平衡还是周期轨道",
           "按同一方向记录截面交点，分别计算每代与每单位时间的增长",
-          "结合函数导数、步长对照与特殊初值解释稳定、有界和混沌（chaos）证据"
+          "结合函数导数、步长对照与特殊初值解释稳定、有界和混沌证据"
         ],
         "lessons": [
           {
@@ -2372,7 +2484,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-equilibrium"
+            "practice_url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-equilibrium",
+            "notebook_url": "/notebook/?id=P04-SUMMARY",
+            "url": "/notebook/?id=P04-SUMMARY"
           }
         ],
         "available": true,
@@ -2388,8 +2502,8 @@
           "id": "5.1",
           "title": "从重复实验建立概率",
           "url": "/chapters/05-01-从重复实验建立概率/",
-          "goals": "从细胞标签与误差区间建立概率（probability）描述，用重复频率和密度面积解释一次结果与生成规则。",
-          "prerequisites": "第 2.2—2.4 章的求和、函数、积分面积与计算验证；第 1.4 章的假设比较。事件（event）、分布（distribution）和抽样在本章首次引入。",
+          "goals": "从细胞标签与误差区间建立概率描述，用重复频率和密度面积解释一次结果与生成规则。",
+          "prerequisites": "第 2.2—2.4 章的求和、函数、积分面积与计算验证；第 1.4 章的假设比较。事件、分布和抽样在本章首次引入。",
           "knowledge": [
             "从十个细胞的标签计数进入事件、变量和概率",
             "从误差区间面积解释密度与舍入读数",
@@ -2432,7 +2546,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-event-variable"
+              "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-event-variable",
+              "notebook_url": "/notebook/?id=P05-C01-S01",
+              "url": "/notebook/?id=P05-C01-S01"
             },
             {
               "id": "P05-C01-S02",
@@ -2468,7 +2584,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-frequencies"
+              "practice_url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-frequencies",
+              "notebook_url": "/notebook/?id=P05-C01-S02",
+              "url": "/notebook/?id=P05-C01-S02"
             }
           ],
           "visualization": "web/probability/index.html"
@@ -2477,8 +2595,8 @@
           "id": "5.2",
           "title": "期望、方差、协方差与噪声",
           "url": "/chapters/05-02-期望、方差、协方差与噪声/",
-          "goals": "从离散概率表计算期望（expectation）、方差和协方差（covariance），将共享偏移、独立误差与过程扰动分别放回方程。",
-          "prerequisites": "5.1 的概率分布与重复、第 3.1 章的向量矩阵。期望、方差、协方差与高斯分布（Gaussian distribution）在本章首次推导。",
+          "goals": "从离散概率表计算期望、方差和协方差，将共享偏移、独立误差与过程扰动分别放回方程。",
+          "prerequisites": "5.1 的概率分布与重复、第 3.1 章的向量矩阵。期望、方差、协方差与高斯分布在本章首次推导。",
           "knowledge": [
             "手算两种释放量的矩，推导独立平均方差与样本分母",
             "从配对表计算协方差，用平方关系和共享偏移解释依赖",
@@ -2521,7 +2639,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-moments"
+              "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-moments",
+              "notebook_url": "/notebook/?id=P05-C02-S01",
+              "url": "/notebook/?id=P05-C02-S01"
             },
             {
               "id": "P05-C02-S02",
@@ -2563,7 +2683,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-covariance"
+              "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-covariance",
+              "notebook_url": "/notebook/?id=P05-C02-S02",
+              "url": "/notebook/?id=P05-C02-S02"
             },
             {
               "id": "P05-C02-S03",
@@ -2605,7 +2727,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-path"
+              "practice_url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-path",
+              "notebook_url": "/notebook/?id=P05-C02-S03",
+              "url": "/notebook/?id=P05-C02-S03"
             }
           ],
           "visualization": "web/probability/index.html"
@@ -2615,11 +2739,11 @@
           "title": "条件概率与贝叶斯更新",
           "url": "/chapters/05-03-条件概率与贝叶斯更新/",
           "goals": "计算看到标记后的标签概率，手算已知测量方式下的条件平均，再推导固定偏差的高斯更新。",
-          "prerequisites": "5.2 的联合表、期望、方差与高斯密度。条件概率（conditional probability）、条件期望（conditional expectation）、贝叶斯公式与平方配方更新在本章引入。",
+          "prerequisites": "5.2 的联合表、期望、方差与高斯密度。条件概率、条件期望、贝叶斯公式与平方配方更新在本章引入。",
           "knowledge": [
-            "按两种来源计数标记，定义条件概率并归一化后验（posterior）",
+            "按两种来源计数标记，定义条件概率并归一化后验",
             "用联合表手算已知测量方式后的平均，再还原总体平均",
-            "对高斯先验（prior）与似然（likelihood）配方，求均值、方差和精度更新",
+            "对高斯先验与似然配方，求均值、方差和精度更新",
             "比较先验差异与读数、方差的成对重排"
           ],
           "focus": "说清已知的是标记还是状态；条件平均固定什么、还对什么求平均；复制读数为何不能算作独立信息。",
@@ -2659,7 +2783,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes"
+              "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes",
+              "notebook_url": "/notebook/?id=P05-C03-S01",
+              "url": "/notebook/?id=P05-C03-S01"
             },
             {
               "id": "P05-C03-S02",
@@ -2701,7 +2827,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-normal-update"
+              "practice_url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-normal-update",
+              "notebook_url": "/notebook/?id=P05-C03-S02",
+              "url": "/notebook/?id=P05-C03-S02"
             }
           ],
           "visualization": "web/probability/index.html"
@@ -2711,13 +2839,13 @@
           "title": "随机过程与马尔可夫模型",
           "url": "/chapters/05-04-随机过程与马尔可夫模型/",
           "goals": "按行列对应关系推进类别概率，用指定均匀数生成路径，再从两态递推解释不变、收敛与扩散。",
-          "prerequisites": "5.3 的条件概率、第 3.1 章的矩阵乘法；几何和与固定点。过程、马尔可夫（Markov）假设及长期分布条件在本章引入。",
+          "prerequisites": "5.3 的条件概率、第 3.1 章的矩阵乘法；几何和与固定点。过程、马尔可夫假设及长期分布条件在本章引入。",
           "knowledge": [
             "手算静息、活跃的两步分布，按当前行生成路径",
             "从必定交替与吸收例子区分不变和收敛，推导两态偏差倍率",
-            "从独立左右位移求漂移、位置方差与扩散系数（diffusion coefficient）"
+            "从独立左右位移求漂移、位置方差与扩散系数"
           ],
-          "focus": "单条标签路径与同刻群体频率有不同含义；解出不变分布（invariant distribution）后，还要看其他起点的偏差是否缩小。",
+          "focus": "单条标签路径与同刻群体频率有不同含义；解出不变分布后，还要看其他起点的偏差是否缩小。",
           "available": true,
           "lessons": [
             {
@@ -2760,7 +2888,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-propagation"
+              "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-propagation",
+              "notebook_url": "/notebook/?id=P05-C04-S01",
+              "url": "/notebook/?id=P05-C04-S01"
             },
             {
               "id": "P05-C04-S02",
@@ -2796,7 +2926,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-stationary"
+              "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-stationary",
+              "notebook_url": "/notebook/?id=P05-C04-S02",
+              "url": "/notebook/?id=P05-C04-S02"
             },
             {
               "id": "P05-C04-S03",
@@ -2832,7 +2964,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk"
+              "practice_url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk",
+              "notebook_url": "/notebook/?id=P05-C04-S03",
+              "url": "/notebook/?id=P05-C04-S03"
             }
           ],
           "visualization": "web/probability/index.html"
@@ -2842,11 +2976,11 @@
           "title": "熵、互信息与测量价值",
           "url": "/chapters/05-05-熵、互信息与测量价值/",
           "goals": "从联合表计算读数平均减少的不确定性，再用独立配对读数解释有限样本的信息偏差。",
-          "prerequisites": "5.3—5.4 的联合/条件概率与分布、5.2 的期望，以及第 2 篇的对数。信息量、熵（entropy）与互信息（mutual information）在本章引入。",
+          "prerequisites": "5.3—5.4 的联合/条件概率与分布、5.2 的期望，以及第 2 篇的对数。信息量、熵与互信息在本章引入。",
           "knowledge": [
             "比较复制、独立与翻转通道，定义信息量及其平均",
             "从条件表推导互信息，解释非负性和对数单位",
-            "用同一样本比较嵌套分箱（binning），再用不同样本量的独立重复解释偏差与波动"
+            "用同一样本比较嵌套分箱，再用不同样本量的独立重复解释偏差与波动"
           ],
           "focus": "读数自身的熵不等于关于标签的信息；合箱改变编码，有限频数也会使独立变量的估计偏正。",
           "available": true,
@@ -2891,7 +3025,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information"
+              "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information",
+              "notebook_url": "/notebook/?id=P05-C05-S01",
+              "url": "/notebook/?id=P05-C05-S01"
             },
             {
               "id": "P05-C05-S02",
@@ -2933,7 +3069,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-bin-pairs"
+              "practice_url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-bin-pairs",
+              "notebook_url": "/notebook/?id=P05-C05-S02",
+              "url": "/notebook/?id=P05-C05-S02"
             }
           ],
           "visualization": null
@@ -3021,7 +3159,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-noise"
+            "practice_url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-noise",
+            "notebook_url": "/notebook/?id=P05-SUMMARY",
+            "url": "/notebook/?id=P05-SUMMARY"
           }
         ],
         "available": true,
@@ -3037,10 +3177,10 @@
           "id": "6.1",
           "title": "观测、采样与滤波",
           "url": "/chapters/06-01-观测、采样与滤波/",
-          "goals": "从相同采样（sampling）读数解释混叠（aliasing），分别计算因果和居中平均（centered moving average），区分观测间隔、求解步长与窗口长度。",
+          "goals": "从相同采样读数解释混叠，分别计算因果和居中平均，区分观测间隔、求解步长与窗口长度。",
           "prerequisites": "5.2、2.4；数学：递推、有限求和和固定点代数、指数函数的二阶展开、数值误差、收敛阶、递推稳定性与非负性、期望、方差、协方差、联合分布、Gaussian 分布。",
           "knowledge": [
-            "手算整数时刻的两种余弦，定义频率、采样率（sampling rate）与观测间隔",
+            "手算整数时刻的两种余弦，定义频率、采样率与观测间隔",
             "区分首次采样前的模拟滤波与再次降采样前的数字滤波",
             "从启动段计算因果平均，推导方差与延迟，再比较居中平均"
           ],
@@ -3081,7 +3221,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-cosine-samples"
+              "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-cosine-samples",
+              "notebook_url": "/notebook/?id=P06-C01-S01",
+              "url": "/notebook/?id=P06-C01-S01"
             },
             {
               "id": "P06-C01-S02",
@@ -3117,7 +3259,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-causal-average"
+              "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-causal-average",
+              "notebook_url": "/notebook/?id=P06-C01-S02",
+              "url": "/notebook/?id=P06-C01-S02"
             }
           ],
           "visualization": "web/measurement/index.html"
@@ -3129,9 +3273,9 @@
           "goals": "从平移脉冲叠加得到卷积，按频率格点计算幅值与相位，再解释有限记录和滤波造成的变化。",
           "prerequisites": "6.1、3.2；承接第 3 篇的复数与旋转表示，用求和与向量建立卷积、复指数频谱和 Fourier 表示。",
           "knowledge": [
-            "手算脉冲叠加与完整卷积，比较末尾零延拓（zero extension）和循环回绕",
+            "手算脉冲叠加与完整卷积，比较末尾零延拓和循环回绕",
             "承接复数旋转，引入复指数及离散频谱的坐标、幅值和相位",
-            "比较整周期、加窗和补零记录，由有限核推导频率响应（frequency response）并核对时域结果"
+            "比较整周期、加窗和补零记录，由有限核推导频率响应并核对时域结果"
           ],
           "focus": "卷积中的每个索引对应哪次输入；频谱中的每个格点对应几圈旋转；窗长、补零与滤波分别改变什么。",
           "available": true,
@@ -3170,7 +3314,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-linear-convolution"
+              "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-linear-convolution",
+              "notebook_url": "/notebook/?id=P06-C02-S01",
+              "url": "/notebook/?id=P06-C02-S01"
             },
             {
               "id": "P06-C02-S02",
@@ -3212,7 +3358,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-one-sided-spectrum"
+              "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-one-sided-spectrum",
+              "notebook_url": "/notebook/?id=P06-C02-S02",
+              "url": "/notebook/?id=P06-C02-S02"
             },
             {
               "id": "P06-C02-S03",
@@ -3254,7 +3402,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-response"
+              "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-response",
+              "notebook_url": "/notebook/?id=P06-C02-S03",
+              "url": "/notebook/?id=P06-C02-S03"
             }
           ],
           "visualization": "web/measurement/index.html"
@@ -3263,11 +3413,11 @@
           "id": "6.3",
           "title": "LTI 系统、Laplace 与 Z 变换",
           "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
-          "goals": "在单室收支中检验线性时不变（linear time-invariant，LTI）假设，分别处理初态和输入，再连接连续变换、区间积分与离散递推。",
-          "prerequisites": "6.2；数学：微积分与复指数。Laplace/Z 变换、收敛域（region of convergence，ROC）和极点（pole）在本章首次引入。",
+          "goals": "在单室收支中检验线性时不变假设，分别处理初态和输入，再连接连续变换、区间积分与离散递推。",
+          "prerequisites": "6.2；数学：微积分与复指数。Laplace/Z 变换、收敛域和极点在本章首次引入。",
           "knowledge": [
-            "用叠加和平移检验假设，分开零输入与零状态响应（zero-state response）",
-            "承接积分因子法，以分部积分推导 Laplace 初值项、传递函数（transfer function）及收敛条件",
+            "用叠加和平移检验假设，分开零输入与零状态响应",
+            "承接积分因子法，以分部积分推导 Laplace 初值项、传递函数及收敛条件",
             "对保持不变的区间输入积分，建立精确递推和 Z 变换，再比较 Euler 近似"
           ],
           "focus": "初值项从哪里来；采样区间怎样进入精确倍率；Euler 倍率为何会改变正性与衰减。",
@@ -3313,7 +3463,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-response-components"
+              "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-response-components",
+              "notebook_url": "/notebook/?id=P06-C03-S01",
+              "url": "/notebook/?id=P06-C03-S01"
             },
             {
               "id": "P06-C03-S02",
@@ -3355,7 +3507,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampled-response"
+              "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampled-response",
+              "notebook_url": "/notebook/?id=P06-C03-S02",
+              "url": "/notebook/?id=P06-C03-S02"
             }
           ],
           "visualization": "web/measurement/index.html"
@@ -3365,13 +3519,13 @@
           "title": "最小二乘与参数估计",
           "url": "/chapters/06-04-最小二乘与参数估计/",
           "goals": "手算直线拟合与清除参数的候选损失，连接残差、相对权重和误差假设，并解释重复观测下的估计区间。",
-          "prerequisites": "5.3、3.4、6.1；数学：矩阵、偏导、概率与似然。最小二乘、估计区间及重采样（resampling）在本章首次引入。",
+          "prerequisites": "5.3、3.4、6.1；数学：矩阵、偏导、概率与似然。最小二乘、估计区间及重采样在本章首次引入。",
           "knowledge": [
             "从四个读数计算均值、斜率与残差，再推导正交条件和高斯似然",
             "在限定清除网格上比较预测与损失，说明并列最优和相对权重",
             "用已知误差方差推导斜率区间，比较固定设计重复与独立同分布观测对的重抽样"
           ],
-          "focus": "损失最小对应什么比较；权重和单位怎样解释；固定设计（fixed design）重复与成对重抽样分别改变哪些随机量。",
+          "focus": "损失最小对应什么比较；权重和单位怎样解释；固定设计重复与成对重抽样分别改变哪些随机量。",
           "available": true,
           "lessons": [
             {
@@ -3414,7 +3568,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-line-fit"
+              "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-line-fit",
+              "notebook_url": "/notebook/?id=P06-C04-S01",
+              "url": "/notebook/?id=P06-C04-S01"
             },
             {
               "id": "P06-C04-S02",
@@ -3456,7 +3612,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-clearance-grid"
+              "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-clearance-grid",
+              "notebook_url": "/notebook/?id=P06-C04-S02",
+              "url": "/notebook/?id=P06-C04-S02"
             },
             {
               "id": "P06-C04-S03",
@@ -3492,7 +3650,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-slope-interval"
+              "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-slope-interval",
+              "notebook_url": "/notebook/?id=P06-C04-S03",
+              "url": "/notebook/?id=P06-C04-S03"
             }
           ],
           "visualization": null
@@ -3502,13 +3662,13 @@
           "title": "动态辨识、实验设计与验证",
           "url": "/chapters/06-05-动态辨识、实验设计与验证/",
           "goals": "用历史与输入建立动态回归，解释条件平均，比较两种预测，并以输入变化和预留观测检验可辨识范围。",
-          "prerequisites": "6.3、6.4；复习5.3的条件期望，数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、Laplace/Z 变换、收敛域的必要直觉、极点零点、最小二乘、Gaussian 似然、残差、估计区间及重采样（resampling）入门。",
+          "prerequisites": "6.3、6.4；复习5.3的条件期望，数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、Laplace/Z 变换、收敛域的必要直觉、极点零点、最小二乘、Gaussian 似然、残差、估计区间及重采样入门。",
           "knowledge": [
             "写清上一拍状态、区间输入和下一拍观测，承接条件期望并手算两种预测",
             "从稳态参数混淆走向瞬态与变化输入，比较回归列的独立方向",
             "按未来时段或新个体划分数据，限定训练预处理，再用完整时钟处理缺测并作最终评估"
           ],
-          "focus": "已知历史后还对什么取平均；一步预测和自由运行（free-run simulation）使用哪一个起点；输入方向与数据划分怎样影响结论。",
+          "focus": "已知历史后还对什么取平均；一步预测和自由运行使用哪一个起点；输入方向与数据划分怎样影响结论。",
           "available": true,
           "lessons": [
             {
@@ -3551,7 +3711,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-predictions"
+              "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-predictions",
+              "notebook_url": "/notebook/?id=P06-C05-S01",
+              "url": "/notebook/?id=P06-C05-S01"
             },
             {
               "id": "P06-C05-S02",
@@ -3593,7 +3755,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-excitation-rank"
+              "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-excitation-rank",
+              "notebook_url": "/notebook/?id=P06-C05-S02",
+              "url": "/notebook/?id=P06-C05-S02"
             },
             {
               "id": "P06-C05-S03",
@@ -3635,7 +3799,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-time-partition"
+              "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-time-partition",
+              "notebook_url": "/notebook/?id=P06-C05-S03",
+              "url": "/notebook/?id=P06-C05-S03"
             }
           ],
           "visualization": null
@@ -3645,13 +3811,13 @@
           "title": "递推辨识与时变参数跟踪",
           "url": "/chapters/06-06-递推辨识与时变参数跟踪/",
           "goals": "从同一平方损失推导批量和递推解，解释初始信息与遗忘权重，并在新读数到来前评价漂移参数的预测。",
-          "prerequisites": "6.5；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、最小二乘、Gaussian 似然、残差、估计区间及重采样（resampling）入门、信息矩阵、矩阵秩一更新（rank-one update）与递推最小二乘（recursive least squares，RLS）。",
+          "prerequisites": "6.5；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、信息矩阵、矩阵秩一更新与递推最小二乘。",
           "knowledge": [
             "从标量累计损失手算两次更新，再以正规方程和矩阵秩一更新推导递推最小二乘",
             "对同一初始正则项核对批量解，推导固定设计下的抽样协方差",
             "展开遗忘权重与初始项衰减，比较漂移、噪声和弱激励，固定候选后按先预测后更新作在线评估"
           ],
-          "focus": "每次更新增加了什么信息；遗忘因子（forgetting factor）怎样削弱旧观测；逆信息矩阵（inverse information matrix）与估计协方差为何需要不同解释。",
+          "focus": "每次更新增加了什么信息；遗忘因子怎样削弱旧观测；逆信息矩阵与估计协方差为何需要不同解释。",
           "available": true,
           "lessons": [
             {
@@ -3694,7 +3860,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence"
+              "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence",
+              "notebook_url": "/notebook/?id=P06-C06-S01",
+              "url": "/notebook/?id=P06-C06-S01"
             },
             {
               "id": "P06-C06-S02",
@@ -3736,7 +3904,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective"
+              "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective",
+              "notebook_url": "/notebook/?id=P06-C06-S02",
+              "url": "/notebook/?id=P06-C06-S02"
             }
           ],
           "visualization": null
@@ -3824,7 +3994,9 @@
                 "type": "python"
               }
             ],
-            "url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-sampling"
+            "practice_url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-sampling",
+            "notebook_url": "/notebook/?id=P06-SUMMARY",
+            "url": "/notebook/?id=P06-SUMMARY"
           }
         ],
         "available": true,
@@ -3841,7 +4013,7 @@
           "title": "状态空间与能观性",
           "url": "/chapters/07-01-状态空间与能观性/",
           "goals": "从两室的一次转移和读数建立状态估计问题，计算能观矩阵，解释传感器与采样怎样影响状态区分。",
-          "prerequisites": "3.2、5.4、6.5；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、随机过程、有限马尔可夫链、转移矩阵与长期分布。",
+          "prerequisites": "3.2、5.4、6.5；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、随机过程、有限马尔可夫链、转移矩阵与长期分布。",
           "knowledge": [
             "手算两室转移及仪器误差，承接前篇的状态表示，加入独立过程和测量噪声",
             "先定义协方差各项，再推导均值和协方差预测",
@@ -3884,7 +4056,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-state-readings"
+              "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-state-readings",
+              "notebook_url": "/notebook/?id=P07-C01-S01",
+              "url": "/notebook/?id=P07-C01-S01"
             },
             {
               "id": "P07-C01-S02",
@@ -3920,7 +4094,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-observability"
+              "practice_url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-observability",
+              "notebook_url": "/notebook/?id=P07-C01-S02",
+              "url": "/notebook/?id=P07-C01-S02"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -3973,7 +4149,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-bayes-sequence"
+              "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-bayes-sequence",
+              "notebook_url": "/notebook/?id=P07-C02-S01",
+              "url": "/notebook/?id=P07-C02-S01"
             },
             {
               "id": "P07-C02-S02",
@@ -4009,7 +4187,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-path-posterior"
+              "practice_url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-path-posterior",
+              "notebook_url": "/notebook/?id=P07-C02-S02",
+              "url": "/notebook/?id=P07-C02-S02"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -4018,8 +4198,8 @@
           "id": "7.3",
           "title": "卡尔曼滤波",
           "url": "/chapters/07-03-卡尔曼滤波/",
-          "goals": "由两室条件更新解释协方差与增益，再把预测和观测更新接成卡尔曼滤波（Kalman filtering，KF），分别评价误差与区间覆盖。",
-          "prerequisites": "7.2、3.1；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、多元高斯条件分布、块协方差与矩阵分解。",
+          "goals": "由两室条件更新解释协方差与增益，再把预测和观测更新接成卡尔曼滤波，分别评价误差与区间覆盖。",
+          "prerequisites": "7.2、3.1；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、多元高斯条件分布、块协方差与矩阵分解。",
           "knowledge": [
             "手算协方差[4,1;1,1]的一次条件更新，建立多元高斯密度、平方距离与二维椭圆",
             "从残差分解推导条件矩，代入动态得到创新、增益和Joseph更新，保持首步与缺测时钟",
@@ -4062,7 +4242,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-scalar-gaussian"
+              "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-scalar-gaussian",
+              "notebook_url": "/notebook/?id=P07-C03-S01",
+              "url": "/notebook/?id=P07-C03-S01"
             },
             {
               "id": "P07-C03-S02",
@@ -4104,7 +4286,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-kalman-sequence"
+              "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-kalman-sequence",
+              "notebook_url": "/notebook/?id=P07-C03-S02",
+              "url": "/notebook/?id=P07-C03-S02"
             },
             {
               "id": "P07-C03-S03",
@@ -4140,7 +4324,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-coverage"
+              "practice_url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-coverage",
+              "notebook_url": "/notebook/?id=P07-C03-S03",
+              "url": "/notebook/?id=P07-C03-S03"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -4193,7 +4379,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-extended-update"
+              "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-extended-update",
+              "notebook_url": "/notebook/?id=P07-C04-S01",
+              "url": "/notebook/?id=P07-C04-S01"
             },
             {
               "id": "P07-C04-S02",
@@ -4235,7 +4423,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-unscented-moments"
+              "practice_url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-unscented-moments",
+              "notebook_url": "/notebook/?id=P07-C04-S02",
+              "url": "/notebook/?id=P07-C04-S02"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -4244,8 +4434,8 @@
           "id": "7.5",
           "title": "粒子滤波",
           "url": "/chapters/07-05-粒子滤波/",
-          "goals": "从三位置的目标与提议比值推导稳定权重，将传播、加权和重采样（resampling）接入序列，并评价固定观测下的随机近似。",
-          "prerequisites": "7.2、5.1、7.4；数学：事件、随机变量、离散/连续分布、抽样和 Monte Carlo、条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、状态空间的条件独立、概率分解与边缘化、重要性采样（importance sampling，IS）、自归一化权重、重采样与权重有效样本量。",
+          "goals": "从三位置的目标与提议比值推导稳定权重，将传播、加权和重采样接入序列，并评价固定观测下的随机近似。",
+          "prerequisites": "7.2、5.1、7.4；数学：事件、随机变量、离散/连续分布、抽样和 Monte Carlo、条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、状态空间的条件独立、概率分解与边缘化、重要性采样、自归一化权重、重采样与权重有效样本量。",
           "knowledge": [
             "手算同一提议样本的概率比与均值，连接期望比值、自归一化偏差和对数平移",
             "用双峰更新比较带权粒子与积分，解释ESS不能检查支持遗漏",
@@ -4288,7 +4478,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-05-粒子滤波/practice/?question=p07-importance-weights"
+              "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-importance-weights",
+              "notebook_url": "/notebook/?id=P07-C05-S01",
+              "url": "/notebook/?id=P07-C05-S01"
             },
             {
               "id": "P07-C05-S02",
@@ -4330,7 +4522,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-05-粒子滤波/practice/?question=p07-particle-resampling"
+              "practice_url": "/chapters/07-05-粒子滤波/practice/?question=p07-particle-resampling",
+              "notebook_url": "/notebook/?id=P07-C05-S02",
+              "url": "/notebook/?id=P07-C05-S02"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -4383,7 +4577,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-hmm-smoothing"
+              "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-hmm-smoothing",
+              "notebook_url": "/notebook/?id=P07-C06-S01",
+              "url": "/notebook/?id=P07-C06-S01"
             },
             {
               "id": "P07-C06-S02",
@@ -4419,7 +4615,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-rts-backward"
+              "practice_url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-rts-backward",
+              "notebook_url": "/notebook/?id=P07-C06-S02",
+              "url": "/notebook/?id=P07-C06-S02"
             }
           ],
           "visualization": "web/estimation/index.html"
@@ -4431,7 +4629,7 @@
         "title": "部分观测下的状态恢复",
         "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/",
         "goals": "根据传感器、观测时刻和近似形状选择估计方法，计算后验并解释各项结果的条件。",
-        "prerequisites": "本篇的状态与观测模型、贝叶斯递推（Bayesian recursion）、线性及非线性滤波、粒子方法与固定区间平滑。",
+        "prerequisites": "本篇的状态与观测模型、贝叶斯递推、线性及非线性滤波、粒子方法与固定区间平滑。",
         "focus": "先辨认状态位置与当前可用读数，再计算；用观测方向和后验形状解释估计的缺口。",
         "knowledge": [
           "比较第一室与总量读数能区分哪些两室状态，再按观测到达顺序更新",
@@ -4507,7 +4705,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-state-task"
+            "practice_url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-state-task",
+            "notebook_url": "/notebook/?id=P07-SUMMARY",
+            "url": "/notebook/?id=P07-SUMMARY"
           }
         ],
         "available": true,
@@ -4523,12 +4723,12 @@
           "id": "8.1",
           "title": "目标函数与优化几何",
           "url": "/chapters/08-01-目标函数与优化几何/",
-          "goals": "从四条物质变化记录建立拟合目标，按行推导梯度和海森矩阵（Hessian matrix），再区分局部极值与全局最小。",
-          "prerequisites": "3.4、6.4；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性（convexity）。",
+          "goals": "从四条物质变化记录建立拟合目标，按行推导梯度和海森矩阵，再区分局部极值与全局最小。",
+          "prerequisites": "3.4、6.4；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性。",
           "knowledge": [
             "手算两组候选的逐行误差，换算物理尺度，再展开二次目标",
             "保留两行链式求导桥接，合成梯度与海森矩阵，连接等高线及坐标变换",
-            "比较四次函数的三个驻点（stationary point）、鞍点与零曲率反例，再用凸性证明全局结论"
+            "比较四次函数的三个驻点、鞍点与零曲率反例，再用凸性证明全局结论"
           ],
           "focus": "数据行、系数列与偏导的对应；删常数和改权重的区别；局部曲率与全域凸性支持不同结论。",
           "available": true,
@@ -4567,7 +4767,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic"
+              "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic",
+              "notebook_url": "/notebook/?id=P08-C01-S01",
+              "url": "/notebook/?id=P08-C01-S01"
             },
             {
               "id": "P08-C01-S02",
@@ -4603,7 +4805,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-linear-minimum"
+              "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-linear-minimum",
+              "notebook_url": "/notebook/?id=P08-C01-S02",
+              "url": "/notebook/?id=P08-C01-S02"
             }
           ],
           "visualization": "web/optimization/index.html"
@@ -4613,7 +4817,7 @@
           "title": "梯度、曲率与迭代算法",
           "url": "/chapters/08-02-梯度、曲率与迭代算法/",
           "goals": "从误差倍率推导固定步长范围，从局部近似推导牛顿方向，再用Armijo回溯和当前残差解释迭代结果。",
-          "prerequisites": "8.1；数学：目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
+          "prerequisites": "8.1；数学：目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索与停止条件。",
           "knowledge": [
             "手算一维三种步长，再推导特征方向递推、条件数和缩放",
             "计算负曲率牛顿上升方向，建立保护规则与二次局部收敛条件",
@@ -4656,7 +4860,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-gradient-steps"
+              "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-gradient-steps",
+              "notebook_url": "/notebook/?id=P08-C02-S01",
+              "url": "/notebook/?id=P08-C02-S01"
             },
             {
               "id": "P08-C02-S02",
@@ -4692,7 +4898,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-direction"
+              "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-direction",
+              "notebook_url": "/notebook/?id=P08-C02-S02",
+              "url": "/notebook/?id=P08-C02-S02"
             },
             {
               "id": "P08-C02-S03",
@@ -4734,7 +4942,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-armijo"
+              "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-armijo",
+              "notebook_url": "/notebook/?id=P08-C02-S03",
+              "url": "/notebook/?id=P08-C02-S03"
             }
           ],
           "visualization": "web/optimization/index.html"
@@ -4743,14 +4953,14 @@
           "id": "8.3",
           "title": "正则化与稀疏优化",
           "url": "/chapters/08-03-正则化与稀疏优化/",
-          "goals": "由近共线候选解释系数不稳定，推导岭与软阈值（soft thresholding），再按训练、验证和最终评估选择并检查预测。",
-          "prerequisites": "8.2、6.4；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、正则化（regularization）、非光滑目标、近端更新与软阈值。",
+          "goals": "由近共线候选解释系数不稳定，推导岭与软阈值，再按训练、验证和最终评估选择并检查预测。",
+          "prerequisites": "8.2、6.4；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索与停止条件、正则化、非光滑目标、近端更新与软阈值。",
           "knowledge": [
             "比较同一设计下的受控读数扰动，推导平均损失岭方程、特征方向收缩及条件性先验解释",
-            "从标量三种情况建立软阈值，再由二次上界推导近端梯度（proximal gradient）与次梯度残差",
+            "从标量三种情况建立软阈值，再由二次上界推导近端梯度与次梯度残差",
             "手算恒定训练列的标准化，固定候选与连续分段，比较三种预测并核对原坐标表达"
           ],
-          "focus": "唯一的惩罚解不等于数据区分机制；零点次梯度（subgradient）与光滑梯度不同；尺度、截距和最终数据的作用要明确。",
+          "focus": "唯一的惩罚解不等于数据区分机制；零点次梯度与光滑梯度不同；尺度、截距和最终数据的作用要明确。",
           "available": true,
           "lessons": [
             {
@@ -4787,7 +4997,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge"
+              "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge",
+              "notebook_url": "/notebook/?id=P08-C03-S01",
+              "url": "/notebook/?id=P08-C03-S01"
             },
             {
               "id": "P08-C03-S02",
@@ -4829,7 +5041,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-threshold"
+              "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-threshold",
+              "notebook_url": "/notebook/?id=P08-C03-S02",
+              "url": "/notebook/?id=P08-C03-S02"
             },
             {
               "id": "P08-C03-S03",
@@ -4865,7 +5079,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-training-scale"
+              "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-training-scale",
+              "notebook_url": "/notebook/?id=P08-C03-S03",
+              "url": "/notebook/?id=P08-C03-S03"
             }
           ],
           "visualization": "web/optimization/index.html"
@@ -4875,7 +5091,7 @@
           "title": "约束与最优性条件",
           "url": "/chapters/08-04-约束与最优性条件/",
           "goals": "沿总量边界手算配置，以乘子及四类KKT条件核对最优，再枚举二维活跃约束并独立检查可行性。",
-          "prerequisites": "8.3；数学：目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
+          "prerequisites": "8.3；数学：目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索与停止条件、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
           "knowledge": [
             "从两路允许方向推导等式乘子，再建立不等式符号、互补及凸问题下界证明",
             "以退化约束说明乘子必要性条件，按四类残差比较最优、可行非最优和违规候选",
@@ -4918,7 +5134,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-kkt"
+              "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-kkt",
+              "notebook_url": "/notebook/?id=P08-C04-S01",
+              "url": "/notebook/?id=P08-C04-S01"
             },
             {
               "id": "P08-C04-S02",
@@ -4954,7 +5172,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-budget-qp"
+              "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-budget-qp",
+              "notebook_url": "/notebook/?id=P08-C04-S02",
+              "url": "/notebook/?id=P08-C04-S02"
             }
           ],
           "visualization": "web/optimization/index.html"
@@ -5042,7 +5262,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-geometry"
+            "practice_url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-geometry",
+            "notebook_url": "/notebook/?id=P08-SUMMARY",
+            "url": "/notebook/?id=P08-SUMMARY"
           }
         ],
         "available": true,
@@ -5059,7 +5281,7 @@
           "title": "贝叶斯建模与后验近似",
           "url": "/chapters/09-01-贝叶斯建模与后验近似/",
           "goals": "从重复读数建立固定参数后验，以配方与Gamma求导解释共轭和局部近似，再区分参数与新读数的不确定性。",
-          "prerequisites": "5.3、6.4、7.3、8.2；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性、多元高斯条件分布、块协方差与矩阵分解、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
+          "prerequisites": "5.3、6.4、7.3、8.2；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性、多元高斯条件分布、块协方差与矩阵分解、后验归一化、Laplace 局部近似与后验预测积分。",
           "knowledge": [
             "手算两次读数的精度与均值，再配方得到高斯后验和新读数方差",
             "以Gamma计数例区分均值、众数与曲率，保留边界条件",
@@ -5108,7 +5330,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update"
+              "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update",
+              "notebook_url": "/notebook/?id=P09-C01-S01",
+              "url": "/notebook/?id=P09-C01-S01"
             },
             {
               "id": "P09-C01-S02",
@@ -5150,7 +5374,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local"
+              "practice_url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local",
+              "notebook_url": "/notebook/?id=P09-C01-S02",
+              "url": "/notebook/?id=P09-C01-S02"
             }
           ],
           "visualization": "web/inference/index.html"
@@ -5160,7 +5386,7 @@
           "title": "马尔可夫链采样与诊断",
           "url": "/chapters/09-02-马尔可夫链采样与诊断/",
           "goals": "从两状态概率流推导接受规则，保存每次判断后的状态，再用多链与重复计算检查探索质量。",
-          "prerequisites": "9.1、5.4；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、随机过程、有限马尔可夫链、转移矩阵与长期分布、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、Metropolis–Hastings、详细平衡（detailed balance）、链相关与采样诊断。",
+          "prerequisites": "9.1、5.4；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、随机过程、有限马尔可夫链、转移矩阵与长期分布、后验归一化、Laplace 局部近似与后验预测积分、Metropolis–Hastings、详细平衡、链相关与采样诊断。",
           "knowledge": [
             "手算双向流，推导含反向提议的MH接受比",
             "重放固定候选，比较相同随机流下的步幅",
@@ -5209,7 +5435,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay"
+              "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay",
+              "notebook_url": "/notebook/?id=P09-C02-S01",
+              "url": "/notebook/?id=P09-C02-S01"
             },
             {
               "id": "P09-C02-S02",
@@ -5251,7 +5479,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics"
+              "practice_url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics",
+              "notebook_url": "/notebook/?id=P09-C02-S02",
+              "url": "/notebook/?id=P09-C02-S02"
             }
           ],
           "visualization": "web/inference/index.html"
@@ -5261,9 +5491,9 @@
           "title": "变分推断",
           "url": "/chapters/09-03-变分推断/",
           "goals": "从以q求期望的KL方向建立下界，推导顺序因子更新，用精确高斯与四状态枚举区分优化和近似误差。",
-          "prerequisites": "9.2、5.5、8.3；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、信息熵、条件熵、互信息与有限样本估计、目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新。",
+          "prerequisites": "9.2、5.5、8.3；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、信息熵、条件熵、互信息与有限样本估计、目标函数、梯度、海森矩阵、二次型、正定性与凸性、迭代优化、步长、回溯线搜索与停止条件、相对熵、Jensen 不等式、变分下界与均值场更新。",
           "knowledge": [
-            "由后验对数恒等式和Jensen建立证据下界（evidence lower bound，ELBO）",
+            "由后验对数恒等式和Jensen建立证据下界",
             "固定其他因子整理为KL，配方推导二维高斯更新和矩阵KL",
             "列明00、01、10、11，手算Bernoulli对数比，比较对称与两侧初值及完整联合概率"
           ],
@@ -5310,7 +5540,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate"
+              "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
+              "notebook_url": "/notebook/?id=P09-C03-S01",
+              "url": "/notebook/?id=P09-C03-S01"
             },
             {
               "id": "P09-C03-S02",
@@ -5352,7 +5584,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate"
+              "practice_url": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate",
+              "notebook_url": "/notebook/?id=P09-C03-S02",
+              "url": "/notebook/?id=P09-C03-S02"
             }
           ],
           "visualization": "web/inference/index.html"
@@ -5361,8 +5595,8 @@
           "id": "9.4",
           "title": "隐变量与参数学习",
           "url": "/chapters/09-04-隐变量与参数学习/",
-          "goals": "先对隐变量（latent variable）保留条件分布，再更新参数，分别推导混合模型与状态模型的一次EM步骤。",
-          "prerequisites": "9.3、7.6；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、多元高斯条件分布、块协方差与矩阵分解、相对熵、Jensen 不等式、变分下界与均值场更新、隐变量条件期望、责任度（responsibility）与期望最大化（expectation-maximization，EM）。",
+          "goals": "先对隐变量保留条件分布，再更新参数，分别推导混合模型与状态模型的一次EM步骤。",
+          "prerequisites": "9.3、7.6；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、多元高斯条件分布、块协方差与矩阵分解、相对熵、Jensen 不等式、变分下界与均值场更新、隐变量条件期望、责任度与期望最大化。",
           "knowledge": [
             "手算两组责任度，再求导得到软权重均值与约束权重更新",
             "用下界链式比较解释精确EM单调性，检查重合初值、零权重和标签交换",
@@ -5411,7 +5645,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update"
+              "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update",
+              "notebook_url": "/notebook/?id=P09-C04-S01",
+              "url": "/notebook/?id=P09-C04-S01"
             },
             {
               "id": "P09-C04-S02",
@@ -5453,7 +5689,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments"
+              "practice_url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments",
+              "notebook_url": "/notebook/?id=P09-C04-S02",
+              "url": "/notebook/?id=P09-C04-S02"
             }
           ],
           "visualization": "web/inference/index.html"
@@ -5463,13 +5701,13 @@
           "title": "后验预测与模型检验",
           "url": "/chapters/09-05-后验预测与模型检验/",
           "goals": "对参数后验平均完整预测，分解总方差并构造混合分位数，先固定预测再评估新读数和模型失配。",
-          "prerequisites": "9.4、6.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、相对熵、Jensen 不等式、变分下界与均值场更新。",
+          "prerequisites": "9.4、6.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、后验归一化、Laplace 局部近似与后验预测积分、相对熵、Jensen 不等式、变分下界与均值场更新。",
           "knowledge": [
             "手算两节点预测，用偏差分解推导总方差和混合CDF",
             "比较非线性后验平均与参数代入，再构建四种固定预测",
             "在相同留出条件和遗漏输入条件下评分，报告覆盖标准误、密度预算及复制检查，最后用独立共轭场景检查噪声失配"
           ],
-          "focus": "后验节点与评估读数使用不同序号；参数区间与预测区间（prediction interval）不同；固定场景、复制检查和跨场景校准分别解释。",
+          "focus": "后验节点与评估读数使用不同序号；参数区间与预测区间不同；固定场景、复制检查和跨场景校准分别解释。",
           "available": true,
           "lessons": [
             {
@@ -5512,7 +5750,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments"
+              "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments",
+              "notebook_url": "/notebook/?id=P09-C05-S01",
+              "url": "/notebook/?id=P09-C05-S01"
             },
             {
               "id": "P09-C05-S02",
@@ -5554,7 +5794,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score"
+              "practice_url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score",
+              "notebook_url": "/notebook/?id=P09-C05-S02",
+              "url": "/notebook/?id=P09-C05-S02"
             }
           ],
           "visualization": "web/inference/index.html"
@@ -5642,7 +5884,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-prior"
+            "practice_url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-prior",
+            "notebook_url": "/notebook/?id=P09-SUMMARY",
+            "url": "/notebook/?id=P09-SUMMARY"
           }
         ],
         "available": true,
@@ -5702,7 +5946,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-saturation"
+              "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-saturation",
+              "notebook_url": "/notebook/?id=P10-C01-S01",
+              "url": "/notebook/?id=P10-C01-S01"
             },
             {
               "id": "P10-C01-S02",
@@ -5738,7 +5984,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-history"
+              "practice_url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-history",
+              "notebook_url": "/notebook/?id=P10-C01-S02",
+              "url": "/notebook/?id=P10-C01-S02"
             }
           ],
           "visualization": "web/control/index.html"
@@ -5791,7 +6039,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-second-order-poles"
+              "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-second-order-poles",
+              "notebook_url": "/notebook/?id=P10-C02-S01",
+              "url": "/notebook/?id=P10-C02-S01"
             },
             {
               "id": "P10-C02-S02",
@@ -5827,7 +6077,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-frequency-delay"
+              "practice_url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-frequency-delay",
+              "notebook_url": "/notebook/?id=P10-C02-S02",
+              "url": "/notebook/?id=P10-C02-S02"
             }
           ],
           "visualization": "web/control/index.html"
@@ -5837,13 +6089,13 @@
           "title": "能控性与状态反馈",
           "url": "/chapters/10-03-能控性与状态反馈/",
           "goals": "展开状态方程，看输入经动态传播的方向，再由目标多项式求状态反馈并计算执行需求。",
-          "prerequisites": "10.2、3.2；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数。",
+          "prerequisites": "10.2、3.2；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数。",
           "knowledge": [
             "对同一A分别手算B和AB",
             "检查二维秩并用1秒受限加速度说明可达范围",
-            "比较两组目标极点、初始请求和限幅轨迹，说明可稳定性（stabilizability）的较弱条件"
+            "比较两组目标极点、初始请求和限幅轨迹，说明可稳定性的较弱条件"
           ],
-          "focus": "给定数值能控性（controllability）与结构能控性；可逆单位缩放与数值容差；无约束能控性与受限可达性。",
+          "focus": "给定数值能控性与结构能控性；可逆单位缩放与数值容差；无约束能控性与受限可达性。",
           "available": true,
           "lessons": [
             {
@@ -5880,7 +6132,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-controllability-two"
+              "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-controllability-two",
+              "notebook_url": "/notebook/?id=P10-C03-S01",
+              "url": "/notebook/?id=P10-C03-S01"
             },
             {
               "id": "P10-C03-S02",
@@ -5916,7 +6170,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-canonical-gain"
+              "practice_url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-canonical-gain",
+              "notebook_url": "/notebook/?id=P10-C03-S02",
+              "url": "/notebook/?id=P10-C03-S02"
             }
           ],
           "visualization": "web/control/index.html"
@@ -5926,7 +6182,7 @@
           "title": "状态观测器与输出反馈",
           "url": "/chapters/10-04-状态观测器与输出反馈/",
           "goals": "由读数及其变化建立能观矩阵，按当前读数生成下一估计，再连接误差递推与状态反馈。",
-          "prerequisites": "10.3、7.1；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差、估计区间及重采样入门。",
+          "prerequisites": "10.3、7.1；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差、估计区间及重采样入门。",
           "knowledge": [
             "两个不同初态比较传感器读数",
             "手算创新、预测和校正，推导同实际输入下的误差抵消",
@@ -5969,7 +6225,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observability-two"
+              "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observability-two",
+              "notebook_url": "/notebook/?id=P10-C04-S01",
+              "url": "/notebook/?id=P10-C04-S01"
             },
             {
               "id": "P10-C04-S02",
@@ -6005,7 +6263,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observer-replay"
+              "practice_url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observer-replay",
+              "notebook_url": "/notebook/?id=P10-C04-S02",
+              "url": "/notebook/?id=P10-C04-S02"
             }
           ],
           "visualization": "web/control/index.html"
@@ -6058,7 +6318,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-one"
+              "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-one",
+              "notebook_url": "/notebook/?id=P10-C05-S01",
+              "url": "/notebook/?id=P10-C05-S01"
             },
             {
               "id": "P10-C05-S02",
@@ -6094,7 +6356,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-riccati"
+              "practice_url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-riccati",
+              "notebook_url": "/notebook/?id=P10-C05-S02",
+              "url": "/notebook/?id=P10-C05-S02"
             }
           ],
           "visualization": "web/control/index.html"
@@ -6147,7 +6411,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-discrete-mpc"
+              "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-discrete-mpc",
+              "notebook_url": "/notebook/?id=P10-C06-S01",
+              "url": "/notebook/?id=P10-C06-S01"
             },
             {
               "id": "P10-C06-S02",
@@ -6183,7 +6449,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-receding-trajectory"
+              "practice_url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-receding-trajectory",
+              "notebook_url": "/notebook/?id=P10-C06-S02",
+              "url": "/notebook/?id=P10-C06-S02"
             }
           ],
           "visualization": "web/control/index.html"
@@ -6193,7 +6461,7 @@
           "title": "估计反馈与闭环验证",
           "url": "/chapters/10-07-估计反馈与闭环验证/",
           "goals": "对齐传感器、外部序列和执行能力，分别计算跟踪、实际输入和失败；在独立场景中配对估计差值。",
-          "prerequisites": "10.6、9.5、6.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
+          "prerequisites": "10.6、9.5、6.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、目标函数、梯度、海森矩阵、二次型、正定性与凸性、后验归一化、Laplace 局部近似与后验预测积分。",
           "knowledge": [
             "用短序列手算三个指标",
             "比较PI、重复使用一步Bellman增益的线性反馈与有限输入MPC",
@@ -6236,7 +6504,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-scenario-metrics"
+              "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-scenario-metrics",
+              "notebook_url": "/notebook/?id=P10-C07-S01",
+              "url": "/notebook/?id=P10-C07-S01"
             },
             {
               "id": "P10-C07-S02",
@@ -6272,7 +6542,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-differences"
+              "practice_url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-differences",
+              "notebook_url": "/notebook/?id=P10-C07-S02",
+              "url": "/notebook/?id=P10-C07-S02"
             }
           ],
           "visualization": "web/control/index.html"
@@ -6362,7 +6634,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-feedback"
+            "practice_url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-feedback",
+            "notebook_url": "/notebook/?id=P10-SUMMARY",
+            "url": "/notebook/?id=P10-SUMMARY"
           }
         ],
         "available": true,
@@ -6379,10 +6653,10 @@
           "title": "从连接结构进入网络科学",
           "url": "/chapters/11-01-从连接结构进入网络科学/",
           "goals": "从四节点边表构造连接矩阵，逐节点数度、逐对找路径，再比较规则环与重连重复。",
-          "prerequisites": "3.2、5.4；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
+          "prerequisites": "3.2、5.4；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "四节点通道展开为四行矩阵与六对距离",
-            "从邻居对计算局部聚类（local clustering）",
+            "从邻居对计算局部聚类",
             "保持节点数与边数，比较16张重连图，报告断连"
           ],
           "focus": "矩阵行列与节点编号的对应；按层寻找最短路径；保留端点与无向边存储的区别。",
@@ -6422,7 +6696,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics"
+              "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics",
+              "notebook_url": "/notebook/?id=P11-C01-S01",
+              "url": "/notebook/?id=P11-C01-S01"
             },
             {
               "id": "P11-C01-S02",
@@ -6458,7 +6734,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering"
+              "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering",
+              "notebook_url": "/notebook/?id=P11-C01-S02",
+              "url": "/notebook/?id=P11-C01-S02"
             }
           ],
           "visualization": "web/network/index.html"
@@ -6467,7 +6745,7 @@
           "id": "11.2",
           "title": "网络上的扩散与守恒",
           "url": "/chapters/11-02-网络上的扩散与守恒/",
-          "goals": "从逐边收支推导归一化图拉普拉斯（graph Laplacian），展开模态衰减、容积平衡和Euler非负条件。",
+          "goals": "从逐边收支推导归一化图拉普拉斯，展开模态衰减、容积平衡和Euler非负条件。",
           "prerequisites": "11.1、3.3；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "每条边的四项矩阵贡献与一减一加",
@@ -6511,7 +6789,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian"
+              "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian",
+              "notebook_url": "/notebook/?id=P11-C02-S01",
+              "url": "/notebook/?id=P11-C02-S01"
             },
             {
               "id": "P11-C02-S02",
@@ -6547,7 +6827,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes"
+              "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes",
+              "notebook_url": "/notebook/?id=P11-C02-S02",
+              "url": "/notebook/?id=P11-C02-S02"
             }
           ],
           "visualization": "web/network/index.html"
@@ -6561,7 +6843,7 @@
           "knowledge": [
             "三节点两步手算与至少一次成功概率",
             "八节点路径12步轨迹",
-            "两种重连条件各20×30结果，轮换起点并成对共用传播表，再比较平均混合（homogeneous mixing）参照"
+            "两种重连条件各20×30结果，轮换起点并成对共用传播表，再比较平均混合参照"
           ],
           "focus": "接收者与旧感染邻居索引；同步写回；累计人数与活跃步数；图内和图均值间描述性方差。",
           "available": true,
@@ -6600,7 +6882,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir"
+              "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir",
+              "notebook_url": "/notebook/?id=P11-C03-S01",
+              "url": "/notebook/?id=P11-C03-S01"
             },
             {
               "id": "P11-C03-S02",
@@ -6636,7 +6920,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation"
+              "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation",
+              "notebook_url": "/notebook/?id=P11-C03-S02",
+              "url": "/notebook/?id=P11-C03-S02"
             }
           ],
           "visualization": "web/network/index.html"
@@ -6689,7 +6975,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter"
+              "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter",
+              "notebook_url": "/notebook/?id=P11-C04-S01",
+              "url": "/notebook/?id=P11-C04-S01"
             },
             {
               "id": "P11-C04-S02",
@@ -6725,7 +7013,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step"
+              "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step",
+              "notebook_url": "/notebook/?id=P11-C04-S02",
+              "url": "/notebook/?id=P11-C04-S02"
             }
           ],
           "visualization": "web/network/index.html"
@@ -6815,7 +7105,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-network-contract"
+            "practice_url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-network-contract",
+            "notebook_url": "/notebook/?id=P11-SUMMARY",
+            "url": "/notebook/?id=P11-SUMMARY"
           }
         ],
         "available": true,
@@ -6836,7 +7128,7 @@
           "knowledge": [
             "0、1状态记录与四格周期手算",
             "保留整行旧值的同步实现",
-            "立即生效的异步顺序与固定边界（fixed boundary）"
+            "立即生效的异步顺序与固定边界"
           ],
           "focus": "同一句局部规则还需要说明读取时刻；用四格例解释遍历顺序与边界如何分别影响结果。",
           "available": true,
@@ -6875,7 +7167,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous"
+              "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous",
+              "notebook_url": "/notebook/?id=P12-C01-S01",
+              "url": "/notebook/?id=P12-C01-S01"
             },
             {
               "id": "P12-C01-S02",
@@ -6911,7 +7205,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory"
+              "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory",
+              "notebook_url": "/notebook/?id=P12-C01-S02",
+              "url": "/notebook/?id=P12-C01-S02"
             }
           ],
           "visualization": "web/collective/index.html"
@@ -6923,8 +7219,8 @@
           "goals": "说明收益表的行列含义，推导频率变化，再从实际邻居计算空间收益。",
           "prerequisites": "12.1、2.3；数学：概率加权平均、导数与商法则。",
           "knowledge": [
-            "相遇收益表及1/T的适合度率（fitness rate）",
-            "数量增长与两类型复制动态（replicator dynamics）",
+            "相遇收益表及1/T的适合度率",
+            "数量增长与两类型复制动态",
             "同频率的成团、交错排列和局部收益"
           ],
           "focus": "先按相遇对象加权，再按自身类型求群体平均；从两类数量增长说明频率为何由收益率差决定。",
@@ -6964,7 +7260,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator"
+              "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator",
+              "notebook_url": "/notebook/?id=P12-C02-S01",
+              "url": "/notebook/?id=P12-C02-S01"
             },
             {
               "id": "P12-C02-S02",
@@ -7000,7 +7298,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs"
+              "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs",
+              "notebook_url": "/notebook/?id=P12-C02-S02",
+              "url": "/notebook/?id=P12-C02-S02"
             }
           ],
           "visualization": "web/collective/index.html"
@@ -7053,7 +7353,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws"
+              "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws",
+              "notebook_url": "/notebook/?id=P12-C03-S01",
+              "url": "/notebook/?id=P12-C03-S01"
             },
             {
               "id": "P12-C03-S02",
@@ -7089,7 +7391,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw"
+              "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw",
+              "notebook_url": "/notebook/?id=P12-C03-S02",
+              "url": "/notebook/?id=P12-C03-S02"
             }
           ],
           "visualization": null
@@ -7143,7 +7447,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid"
+              "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid",
+              "notebook_url": "/notebook/?id=P12-C04-S01",
+              "url": "/notebook/?id=P12-C04-S01"
             },
             {
               "id": "P12-C04-S02",
@@ -7179,7 +7485,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep"
+              "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep",
+              "notebook_url": "/notebook/?id=P12-C04-S02",
+              "url": "/notebook/?id=P12-C04-S02"
             }
           ],
           "visualization": "web/collective/index.html"
@@ -7233,7 +7541,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features"
+              "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features",
+              "notebook_url": "/notebook/?id=P12-C05-S01",
+              "url": "/notebook/?id=P12-C05-S01"
             },
             {
               "id": "P12-C05-S02",
@@ -7269,7 +7579,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions"
+              "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions",
+              "notebook_url": "/notebook/?id=P12-C05-S02",
+              "url": "/notebook/?id=P12-C05-S02"
             }
           ],
           "visualization": null
@@ -7359,7 +7671,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-neighborhood"
+            "practice_url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-neighborhood",
+            "notebook_url": "/notebook/?id=P12-SUMMARY",
+            "url": "/notebook/?id=P12-SUMMARY"
           }
         ],
         "available": true,
@@ -7376,7 +7690,7 @@
           "title": "相变、临界性与有限规模",
           "url": "/chapters/13-01-相变、临界性与有限规模/",
           "goals": "由个体取值形成序参量，比较时间汇总和重复波动，并解释确定性边界与有限曲线的关系。",
-          "prerequisites": "12.5、4.3、6.4；数学：期望、方差、协方差、联合分布、Gaussian 分布、序参量、尺度关系、有限规模（finite size）比较与不确定性评估。",
+          "prerequisites": "12.5、4.3、6.4；数学：期望、方差、协方差、联合分布、Gaussian 分布、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "有符号平均与一致程度的手算",
             "双曲正切概率、条件独立更新和一步条件矩",
@@ -7419,7 +7733,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary"
+              "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary",
+              "notebook_url": "/notebook/?id=P13-C01-S01",
+              "url": "/notebook/?id=P13-C01-S01"
             },
             {
               "id": "P13-C01-S02",
@@ -7455,7 +7771,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield"
+              "practice_url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield",
+              "notebook_url": "/notebook/?id=P13-C01-S02",
+              "url": "/notebook/?id=P13-C01-S02"
             }
           ],
           "visualization": "web/resilience/index.html"
@@ -7509,7 +7827,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds"
+              "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds",
+              "notebook_url": "/notebook/?id=P13-C02-S01",
+              "url": "/notebook/?id=P13-C02-S01"
             },
             {
               "id": "P13-C02-S02",
@@ -7545,7 +7865,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor"
+              "practice_url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor",
+              "notebook_url": "/notebook/?id=P13-C02-S02",
+              "url": "/notebook/?id=P13-C02-S02"
             }
           ],
           "visualization": "web/resilience/index.html"
@@ -7562,7 +7884,7 @@
             "一阶自回归的平稳方差和滞后",
             "过去窗口中心化、物理采样时长及报警计数"
           ],
-          "focus": "有限扰动需要沿途的非线性信息；方差升高也可由噪声造成；事件检出与报警误报（false alarm）的计数对象不同。",
+          "focus": "有限扰动需要沿途的非线性信息；方差升高也可由噪声造成；事件检出与报警误报的计数对象不同。",
           "available": true,
           "lessons": [
             {
@@ -7599,7 +7921,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory"
+              "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory",
+              "notebook_url": "/notebook/?id=P13-C03-S01",
+              "url": "/notebook/?id=P13-C03-S01"
             },
             {
               "id": "P13-C03-S02",
@@ -7635,7 +7959,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators"
+              "practice_url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators",
+              "notebook_url": "/notebook/?id=P13-C03-S02",
+              "url": "/notebook/?id=P13-C03-S02"
             }
           ],
           "visualization": "web/resilience/index.html"
@@ -7689,7 +8015,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor"
+              "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor",
+              "notebook_url": "/notebook/?id=P13-C04-S01",
+              "url": "/notebook/?id=P13-C04-S01"
             },
             {
               "id": "P13-C04-S02",
@@ -7725,7 +8053,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts"
+              "practice_url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts",
+              "notebook_url": "/notebook/?id=P13-C04-S02",
+              "url": "/notebook/?id=P13-C04-S02"
             }
           ],
           "visualization": null
@@ -7815,7 +8145,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-finite-claim"
+            "practice_url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-finite-claim",
+            "notebook_url": "/notebook/?id=P13-SUMMARY",
+            "url": "/notebook/?id=P13-SUMMARY"
           }
         ],
         "available": true,
@@ -7832,7 +8164,7 @@
           "title": "低秩分解与模型降阶",
           "url": "/chapters/14-01-低秩分解与模型降阶/",
           "goals": "说明快照行列与奇异值平方和，以截断投影解释重建，再由已知方程构造低维动态。",
-          "prerequisites": "3.2、6.4、8.3；数学：向量、矩阵、内积、范数、秩、线性方程组（system of linear equations）与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆（pseudoinverse）与低秩投影。",
+          "prerequisites": "3.2、6.4、8.3；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差、估计区间及重采样入门、奇异值分解、截断、伪逆与低秩投影。",
           "knowledge": [
             "状态列、训练中心和原快照投影",
             "奇异值平方和、保留比例和尾项误差",
@@ -7876,7 +8208,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction"
+              "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction",
+              "notebook_url": "/notebook/?id=P14-C01-S01",
+              "url": "/notebook/?id=P14-C01-S01"
             },
             {
               "id": "P14-C01-S02",
@@ -7912,7 +8246,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler"
+              "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler",
+              "notebook_url": "/notebook/?id=P14-C01-S02",
+              "url": "/notebook/?id=P14-C01-S02"
             }
           ],
           "visualization": "web/lowrank/index.html"
@@ -7922,7 +8258,7 @@
           "title": "动态模态分解",
           "url": "/chapters/14-02-动态模态分解/",
           "goals": "从配对状态拟合完整传播矩阵，再把一步特征值的幅度、相角与采样间隔相连。",
-          "prerequisites": "14.1、6.5；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、奇异值分解、截断、伪逆（pseudoinverse）与低秩投影。",
+          "prerequisites": "14.1、6.5；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、奇异值分解、截断、伪逆与低秩投影。",
           "knowledge": [
             "一维乘子与二维独立列手算",
             "截断SVD伪逆及完整n×n一步矩阵",
@@ -7966,7 +8302,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit"
+              "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit",
+              "notebook_url": "/notebook/?id=P14-C02-S01",
+              "url": "/notebook/?id=P14-C02-S01"
             },
             {
               "id": "P14-C02-S02",
@@ -8002,7 +8340,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates"
+              "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates",
+              "notebook_url": "/notebook/?id=P14-C02-S02",
+              "url": "/notebook/?id=P14-C02-S02"
             }
           ],
           "visualization": "web/datadriven/index.html"
@@ -8056,7 +8396,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit"
+              "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit",
+              "notebook_url": "/notebook/?id=P14-C03-S01",
+              "url": "/notebook/?id=P14-C03-S01"
             },
             {
               "id": "P14-C03-S02",
@@ -8092,7 +8434,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll"
+              "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll",
+              "notebook_url": "/notebook/?id=P14-C03-S02",
+              "url": "/notebook/?id=P14-C03-S02"
             }
           ],
           "visualization": "web/datadriven/index.html"
@@ -8147,7 +8491,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq"
+              "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq",
+              "notebook_url": "/notebook/?id=P14-C04-S01",
+              "url": "/notebook/?id=P14-C04-S01"
             },
             {
               "id": "P14-C04-S02",
@@ -8183,7 +8529,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative"
+              "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative",
+              "notebook_url": "/notebook/?id=P14-C04-S02",
+              "url": "/notebook/?id=P14-C04-S02"
             }
           ],
           "visualization": "web/datadriven/index.html"
@@ -8238,7 +8586,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics"
+              "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics",
+              "notebook_url": "/notebook/?id=P14-C05-S01",
+              "url": "/notebook/?id=P14-C05-S01"
             },
             {
               "id": "P14-C05-S02",
@@ -8274,7 +8624,9 @@
                   "type": "choice"
                 }
               ],
-              "url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics"
+              "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics",
+              "notebook_url": "/notebook/?id=P14-C05-S02",
+              "url": "/notebook/?id=P14-C05-S02"
             }
           ],
           "visualization": "web/datadriven/index.html"
@@ -8364,7 +8716,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-projection-claim"
+            "practice_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-projection-claim",
+            "notebook_url": "/notebook/?id=P14-SUMMARY",
+            "url": "/notebook/?id=P14-SUMMARY"
           }
         ],
         "available": true,
@@ -8384,7 +8738,7 @@
           "prerequisites": "8.2的梯度与链式法则；基本Python函数和指数函数。",
           "knowledge": [
             "输入参考量、四参数与tanh响应",
-            "计算图（computational graph）的依赖和半平方损失",
+            "计算图的依赖和半平方损失",
             "链式导数、共享误差两条路径与中心差分",
             "15点训练、14点验证和范围外输入"
           ],
@@ -8425,7 +8779,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order"
+              "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order",
+              "notebook_url": "/notebook/?id=P15-C01-S01",
+              "url": "/notebook/?id=P15-C01-S01"
             },
             {
               "id": "P15-C01-S02",
@@ -8461,7 +8817,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object"
+              "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object",
+              "notebook_url": "/notebook/?id=P15-C01-S02",
+              "url": "/notebook/?id=P15-C01-S02"
             }
           ],
           "visualization": "web/differentiable/index.html"
@@ -8515,7 +8873,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input"
+              "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input",
+              "notebook_url": "/notebook/?id=P15-C02-S01",
+              "url": "/notebook/?id=P15-C02-S01"
             },
             {
               "id": "P15-C02-S02",
@@ -8551,7 +8911,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories"
+              "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories",
+              "notebook_url": "/notebook/?id=P15-C02-S02",
+              "url": "/notebook/?id=P15-C02-S02"
             }
           ],
           "visualization": "web/differentiable/index.html"
@@ -8606,7 +8968,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients"
+              "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients",
+              "notebook_url": "/notebook/?id=P15-C03-S01",
+              "url": "/notebook/?id=P15-C03-S01"
             },
             {
               "id": "P15-C03-S02",
@@ -8642,7 +9006,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump"
+              "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump",
+              "notebook_url": "/notebook/?id=P15-C03-S02",
+              "url": "/notebook/?id=P15-C03-S02"
             }
           ],
           "visualization": "web/differentiable/index.html"
@@ -8657,7 +9023,7 @@
             "tanh候选值和时间导数",
             "常量候选反例、三项原始损失与尺度",
             "余弦扩散偏差与归一化长度",
-            "方程/端点/初值求导、配点（collocation point）配对和参考网格"
+            "方程/端点/初值求导、配点配对和参考网格"
           ],
           "focus": "不同分项比较不同对象且单位不同；线性空间项可不增加方程残差，却同时改变初始分布和端点导数。",
           "available": true,
@@ -8696,7 +9062,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts"
+              "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts",
+              "notebook_url": "/notebook/?id=P15-C04-S01",
+              "url": "/notebook/?id=P15-C04-S01"
             },
             {
               "id": "P15-C04-S02",
@@ -8732,7 +9100,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed"
+              "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed",
+              "notebook_url": "/notebook/?id=P15-C04-S02",
+              "url": "/notebook/?id=P15-C04-S02"
             }
           ],
           "visualization": "web/differentiable/index.html"
@@ -8787,7 +9157,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction"
+              "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction",
+              "notebook_url": "/notebook/?id=P15-C05-S01",
+              "url": "/notebook/?id=P15-C05-S01"
             },
             {
               "id": "P15-C05-S02",
@@ -8823,7 +9195,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input"
+              "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input",
+              "notebook_url": "/notebook/?id=P15-C05-S02",
+              "url": "/notebook/?id=P15-C05-S02"
             }
           ],
           "visualization": "web/differentiable/index.html"
@@ -8913,7 +9287,9 @@
                 "type": "choice"
               }
             ],
-            "url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-gradient-object"
+            "practice_url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-gradient-object",
+            "notebook_url": "/notebook/?id=P15-SUMMARY",
+            "url": "/notebook/?id=P15-SUMMARY"
           }
         ],
         "available": true,
@@ -8974,7 +9350,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual"
+              "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual",
+              "notebook_url": "/notebook/?id=P16-C01-S01",
+              "url": "/notebook/?id=P16-C01-S01"
             },
             {
               "id": "P16-C01-S02",
@@ -9010,7 +9388,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global"
+              "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global",
+              "notebook_url": "/notebook/?id=P16-C01-S02",
+              "url": "/notebook/?id=P16-C01-S02"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -9064,7 +9444,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p"
+              "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p",
+              "notebook_url": "/notebook/?id=P16-C02-S01",
+              "url": "/notebook/?id=P16-C02-S01"
             },
             {
               "id": "P16-C02-S02",
@@ -9100,7 +9482,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure"
+              "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure",
+              "notebook_url": "/notebook/?id=P16-C02-S02",
+              "url": "/notebook/?id=P16-C02-S02"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -9155,7 +9539,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation"
+              "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation",
+              "notebook_url": "/notebook/?id=P16-C03-S01",
+              "url": "/notebook/?id=P16-C03-S01"
             },
             {
               "id": "P16-C03-S02",
@@ -9191,7 +9577,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead"
+              "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead",
+              "notebook_url": "/notebook/?id=P16-C03-S02",
+              "url": "/notebook/?id=P16-C03-S02"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -9247,7 +9635,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale"
+              "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
+              "notebook_url": "/notebook/?id=P16-C04-S01",
+              "url": "/notebook/?id=P16-C04-S01"
             },
             {
               "id": "P16-C04-S02",
@@ -9283,7 +9673,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk"
+              "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk",
+              "notebook_url": "/notebook/?id=P16-C04-S02",
+              "url": "/notebook/?id=P16-C04-S02"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -9339,7 +9731,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average"
+              "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average",
+              "notebook_url": "/notebook/?id=P16-C05-S01",
+              "url": "/notebook/?id=P16-C05-S01"
             },
             {
               "id": "P16-C05-S02",
@@ -9375,7 +9769,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula"
+              "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula",
+              "notebook_url": "/notebook/?id=P16-C05-S02",
+              "url": "/notebook/?id=P16-C05-S02"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -9385,7 +9781,7 @@
           "title": "强化学习与策略评估",
           "url": "/chapters/16-06-强化学习与策略评估/",
           "goals": "先在已知转移表上计算固定策略价值，再用固定经验更新Q，解释终止字段和有限访问范围。",
-          "prerequisites": "5.4的状态转移、10.5的Bellman递推和9.5的独立评价；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、随机过程、有限马尔可夫链、转移矩阵与长期分布、有限时域动态规划、Bellman 递推与离散 Riccati 递推、MDP、条件期望形式的 Bellman 方程、策略评估（policy evaluation）与改进。",
+          "prerequisites": "5.4的状态转移、10.5的Bellman递推和9.5的独立评价；数学：条件概率、条件期望与分组加权平均、Bayes 公式、似然、后验及标量高斯条件更新、随机过程、有限马尔可夫链、转移矩阵与长期分布、有限时域动态规划、Bellman 递推与离散 Riccati 递推、MDP、条件期望形式的 Bellman 方程、策略评估与改进。",
           "knowledge": [
             "状态/动作/下一状态三层转移表",
             "固定策略与Bellman线性方程",
@@ -9430,7 +9826,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward"
+              "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward",
+              "notebook_url": "/notebook/?id=P16-C06-S01",
+              "url": "/notebook/?id=P16-C06-S01"
             },
             {
               "id": "P16-C06-S02",
@@ -9466,7 +9864,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q"
+              "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q",
+              "notebook_url": "/notebook/?id=P16-C06-S02",
+              "url": "/notebook/?id=P16-C06-S02"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -9476,7 +9876,7 @@
           "title": "模型学习与约束决策",
           "url": "/chapters/16-07-模型学习与约束决策/",
           "goals": "用给定预测器筛选有限动作，再核对实际状态；在相同场景中分项比较预测、输入和失败。",
-          "prerequisites": "16.3的参数预测、16.6的策略评价、10.6的约束决策、14.5的结构检验及15.5的混合模型；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、有限时域动态规划、Bellman 递推与离散 Riccati 递推、神经网络、计算图、自动微分与反向传播、MDP、条件期望形式的 Bellman 方程、策略评估（policy evaluation）与改进。",
+          "prerequisites": "16.3的参数预测、16.6的策略评价、10.6的约束决策、14.5的结构检验及15.5的混合模型；数学：最小二乘、Gaussian 似然、残差、估计区间及重采样入门、有限时域动态规划、Bellman 递推与离散 Riccati 递推、神经网络、计算图、自动微分与反向传播、MDP、条件期望形式的 Bellman 方程、策略评估与改进。",
           "knowledge": [
             "已观测状态、目标和预测系数",
             "动作/预测/成本表",
@@ -9521,7 +9921,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual"
+              "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual",
+              "notebook_url": "/notebook/?id=P16-C07-S01",
+              "url": "/notebook/?id=P16-C07-S01"
             },
             {
               "id": "P16-C07-S02",
@@ -9557,7 +9959,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget"
+              "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget",
+              "notebook_url": "/notebook/?id=P16-C07-S02",
+              "url": "/notebook/?id=P16-C07-S02"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -9647,7 +10051,9 @@
                 "type": "python"
               }
             ],
-            "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-scope"
+            "practice_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-scope",
+            "notebook_url": "/notebook/?id=P16-SUMMARY",
+            "url": "/notebook/?id=P16-SUMMARY"
           }
         ],
         "available": true,
@@ -9708,7 +10114,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1"
+              "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s1-choice1",
+              "notebook_url": "/notebook/?id=P17-C01-S01",
+              "url": "/notebook/?id=P17-C01-S01"
             },
             {
               "id": "P17-C01-S02",
@@ -9744,7 +10152,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1"
+              "practice_url": "/chapters/17-01-研究问题与证据/practice/?question=p17-c1s2-choice1",
+              "notebook_url": "/notebook/?id=P17-C01-S02",
+              "url": "/notebook/?id=P17-C01-S02"
             }
           ],
           "visualization": "web/research-practice/index.html"
@@ -9798,7 +10208,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1"
+              "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s1-choice1",
+              "notebook_url": "/notebook/?id=P17-C02-S01",
+              "url": "/notebook/?id=P17-C02-S01"
             },
             {
               "id": "P17-C02-S02",
@@ -9834,7 +10246,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1"
+              "practice_url": "/chapters/17-02-复现协议与公平基线/practice/?question=p17-c2s2-choice1",
+              "notebook_url": "/notebook/?id=P17-C02-S02",
+              "url": "/notebook/?id=P17-C02-S02"
             }
           ],
           "visualization": "web/research-practice/index.html"
@@ -9888,7 +10302,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1"
+              "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s1-choice1",
+              "notebook_url": "/notebook/?id=P17-C03-S01",
+              "url": "/notebook/?id=P17-C03-S01"
             },
             {
               "id": "P17-C03-S02",
@@ -9924,7 +10340,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1"
+              "practice_url": "/chapters/17-03-消融、失效与结论边界/practice/?question=p17-c3s2-choice1",
+              "notebook_url": "/notebook/?id=P17-C03-S02",
+              "url": "/notebook/?id=P17-C03-S02"
             }
           ],
           "visualization": "web/research-practice/index.html"
@@ -9978,7 +10396,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1"
+              "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s1-choice1",
+              "notebook_url": "/notebook/?id=P17-C04-S01",
+              "url": "/notebook/?id=P17-C04-S01"
             },
             {
               "id": "P17-C04-S02",
@@ -10014,7 +10434,9 @@
                   "type": "python"
                 }
               ],
-              "url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1"
+              "practice_url": "/chapters/17-04-研究方法综合比较/practice/?question=p17-c4s2-choice1",
+              "notebook_url": "/notebook/?id=P17-C04-S02",
+              "url": "/notebook/?id=P17-C04-S02"
             }
           ],
           "visualization": "web/research-practice/index.html"
@@ -10104,7 +10526,9 @@
                 "type": "python"
               }
             ],
-            "url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-claim"
+            "practice_url": "/parts/17-研究复现与综合实践/综合练习/practice/?question=p17-capstone-claim",
+            "notebook_url": "/notebook/?id=P17-SUMMARY",
+            "url": "/notebook/?id=P17-SUMMARY"
           }
         ],
         "available": true,
@@ -10121,7 +10545,7 @@
     "knowledge": [
       "沿运动后热量去向分析组成、联系与环境，再区分描述、预测和干预任务",
       "从恢复研究中的不同困难引出学术传统，讲解后用五类问题整理方法及其配合",
-      "先预测六人消息传播，逐轮手算、实现同步更新（synchronous update）、改变起点，再由结果连接后续学习"
+      "先预测六人消息传播，逐轮手算、实现同步更新、改变起点，再由结果连接后续学习"
     ],
     "focus": "把研究对象、相互关系与研究问题连起来；理解整体研究与局部机制研究相互支持；区分给定规则的实验结果与对真实对象的解释。",
     "available": true,
@@ -10134,6 +10558,7 @@
         "outcome": "沿着运动后热量的去向，说明组成之间的联系和环境条件为什么需要一起研究。",
         "number": "导论·1",
         "visualization": null,
+        "reading": "lessons/00-导论/01-从生命现象认识系统.md",
         "questions": [
           {
             "id": "p00-recovery",
@@ -10154,7 +10579,10 @@
             "type": "choice"
           }
         ],
-        "url": "/introduction/practice/?question=p00-recovery"
+        "practice_url": "/introduction/practice/?question=p00-recovery",
+        "notebook_url": "/notebook/?id=P00-C01-S01",
+        "reading_url": "/introduction/read/1/",
+        "url": "/introduction/read/1/"
       },
       {
         "id": "P00-C01-S02",
@@ -10164,6 +10592,7 @@
         "outcome": "从恢复研究中的困难理解各类方法，说明不同学术传统怎样配合回答问题。",
         "number": "导论·2",
         "visualization": null,
+        "reading": "lessons/00-导论/02-系统科学关心什么如何发展.md",
         "questions": [
           {
             "id": "p00-traditions",
@@ -10184,7 +10613,10 @@
             "type": "choice"
           }
         ],
-        "url": "/introduction/practice/?question=p00-traditions"
+        "practice_url": "/introduction/practice/?question=p00-traditions",
+        "notebook_url": "/notebook/?id=P00-C01-S02",
+        "reading_url": "/introduction/read/2/",
+        "url": "/introduction/read/2/"
       },
       {
         "id": "P00-C01-S03",
@@ -10194,6 +10626,7 @@
         "outcome": "逐轮计算六人消息传播，解释同步更新与起点怎样影响结果，并据此限定结论。",
         "number": "导论·3",
         "visualization": "web/introduction/index.html",
+        "reading": "lessons/00-导论/03-从系统问题走向计算与证据.md",
         "questions": [
           {
             "id": "p00-rounds",
@@ -10214,7 +10647,10 @@
             "type": "choice"
           }
         ],
-        "url": "/introduction/practice/?question=p00-rounds"
+        "practice_url": "/introduction/practice/?question=p00-rounds",
+        "notebook_url": "/notebook/?id=P00-C01-S03",
+        "reading_url": "/introduction/read/3/",
+        "url": "/introduction/read/3/"
       }
     ],
     "introduction": true,

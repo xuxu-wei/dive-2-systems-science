@@ -1,4 +1,5 @@
-"""走真实 HTTP 请求核验本机打开协议，不在单元测试中启动用户 IDE。"""
+from types import SimpleNamespace
+"""走真实 HTTP 请求核验本机打开协议，单元测试使用独立的 Lab 启动替身。"""
 import importlib.util
 import json
 from pathlib import Path
@@ -18,7 +19,7 @@ spec.loader.exec_module(module)
 @pytest.fixture
 def server(tmp_path):
     opened = []
-    instance = module.TeachingServer(('127.0.0.1', 0), opener=opened.append,learning_directory=tmp_path/'learning')
+    instance = module.TeachingServer(('127.0.0.1', 0), lab=SimpleNamespace(open_url=lambda path: (opened.append(path) or 'http://127.0.0.1:8888/lab/tree/example.ipynb?token=test'), close=lambda: None),learning_directory=tmp_path/'learning')
     thread = threading.Thread(target=instance.serve_forever, daemon=True)
     thread.start()
     yield instance, opened
@@ -58,7 +59,7 @@ def test_all_delivered_buttons_target_existing_local_notebooks(server):
     assert all('chapter_id' in l for l in session['notebooks'])
     for lesson in session['notebooks']:
         code, _, body = request(server, '/api/notebooks/open', {'id': lesson['id']}, token=session['token'])
-        assert code == 202 and json.loads(body)['status'] == 'requested'
+        assert code == 200 and json.loads(body)['status'] == 'ready'
         assert server[1][-1] == (module.ROOT / lesson['path']).resolve()
         assert server[1][-1].is_file()
 
@@ -117,12 +118,12 @@ def test_design_navigation_validation_has_no_fixed_book_size():
         validate_design(parts, design.replace('示例','已改名'))
 
 
-def test_overview_preserves_english_names_but_not_chinese_only_parentheses():
-    from build_course import annotate_overview
+def test_overview_preserves_authored_parentheses():
+    from build_course import validate_overview
     chapter={'title':'导览','goals':'变分推断（Variational Inference，VI）与协方差（已知）。',
              'prerequisites':'前一章。','focus':'核验结果。','knowledge':['显式计算。']}
-    annotate_overview(chapter)
-    assert chapter['goals']=='变分推断（Variational Inference，VI）与协方差（covariance）（已知）。'
+    validate_overview(chapter)
+    assert chapter['goals']=='变分推断（Variational Inference，VI）与协方差（已知）。'
 
 
 def test_http_practice_choice_code_and_progress(server):
@@ -164,18 +165,20 @@ def test_cross_site_or_unconfirmed_requests_cannot_launch_apps(server, headers):
     assert server[1] == []
 
 
-def test_no_default_app_reports_failure_without_a_web_fallback(server):
+def test_lab_startup_failure_is_reported_to_launch_tab(server):
     def fail(path):
-        raise OSError('No file association')
-    server[0].opener = fail
+        raise OSError('JupyterLab failed to start')
+    server[0].lab.open_url = fail
     code, _, body = request(server, '/api/notebooks/open', {'id': 'P01-C01-S01'}, token=server[0].token)
-    assert code == 503 and '打开请求' in json.loads(body)['error']
+    assert code == 503 and 'JupyterLab failed to start' in json.loads(body)['error']
 
 
 def test_mjs_mime_and_no_stale_cache(server):
     code, headers, _ = request(server, '/web/time-evolution/app.mjs')
     assert code == 200
     assert headers.get_content_type() == 'text/javascript'
+    icon_status, icon_headers, _ = request(server, '/favicon.ico')
+    assert icon_status == 200 and icon_headers.get_content_type() == 'image/svg+xml'
     assert headers['Cache-Control'] == 'no-store'
     assert request(server, '/.git/config')[0] == 404
     assert request(server, '/%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE/')[0] == 404

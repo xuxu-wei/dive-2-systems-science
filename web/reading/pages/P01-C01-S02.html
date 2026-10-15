@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.1.2 单位、量纲与时间序列 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P01-C01-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1 id="1.1.2-%E5%8D%95%E4%BD%8D%E3%80%81%E9%87%8F%E7%BA%B2%E4%B8%8E%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97">1.1.2 &#21333;&#20301;&#12289;&#37327;&#32434;&#19982;&#26102;&#38388;&#24207;&#21015;</h1><p>学完本节，你应能换算时间坐标、保持时刻与总量一一对应，并用体积把总量与浓度（concentration）联系起来。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/01-01-%E4%BB%8E%E7%94%9F%E7%90%86%E7%8E%B0%E8%B1%A1%E6%8F%90%E5%87%BA%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98/read/1/">边界、状态与观测</a>；乘除法、列表与配对循环。</p>
+<h2 id="%E6%8D%A2%E6%88%90%E7%A7%92%EF%BC%8C%E8%BF%87%E7%A8%8B%E5%B0%B1%E5%8F%98%E6%85%A2%E4%BA%86%E5%90%97">&#25442;&#25104;&#31186;&#65292;&#36807;&#31243;&#23601;&#21464;&#24930;&#20102;&#21527;</h2><p>一份记录显示：实验开始时有 10 U 的物质，1 分钟后有 8 U，3 分钟后有 5 U，4 分钟后仍有 5 U。我们把这些时刻与总量逐一配对，就得到一组<strong>时间序列（time series）</strong>。本节的数字都是人工选定的教学记录。</p>
+<p>U 是本例固定使用的总量单位。更完整的名称是<strong>所追踪物质总量（tracked amount）</strong>，后文简称总量。实际研究需要说明追踪的是质量、按指定微观实体计量的物质的量，还是其他量，并选择相应单位；本例用 U，让注意力先放在量之间的关系上。</p>
+<p>现在把这份记录交给另一位同学，他习惯用秒来记时间。原来的第三条记录是“3 分钟，5 U”。因为 $1$ 分钟等于 $60$ 秒，这条记录应当改写为“$3\times60=180$ 秒，5 U”。实验中的物质没有因为换了计时单位而改变，总量数字仍为 5。</p>
+<p>把原记录按时间先后排列，时刻列写成 <code>times_min = [0, 1, 3, 4]</code>，总量列写成 <code>amounts = [10, 8, 5, 5]</code>。两个列表的同一位置对应同一次观测（observation）：例如第三个位置的 3 和 5 表示第 3 分钟有 5 U。这里有四个观测时点，相邻时点之间有三个时段。</p>
+<p>逐项换算时刻以后，得到 <code>times_s = [0, 60, 180, 240]</code>，同一位置的总量保持不变。下面的 <code>zip</code> 将同一位置上的分钟数、秒数和总量放在一行中；读一行，就是读同一次观测。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">systems_science</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_style</span><span class="p">,</span> <span class="n">show_table</span>
+
+<span class="n">plot_style</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'font.sans-serif'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Microsoft YaHei'</span><span class="p">,</span> <span class="s1">'SimHei'</span><span class="p">,</span> <span class="s1">'DejaVu Sans'</span><span class="p">],</span>
+                     <span class="s1">'axes.unicode_minus'</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+<span class="n">times_min</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">amounts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">times_s</span> <span class="o">=</span> <span class="p">[</span><span class="mi">60</span> <span class="o">*</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times_min</span><span class="p">]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'时刻 / min'</span><span class="p">,</span> <span class="s1">'同一时刻 / s'</span><span class="p">,</span> <span class="s1">'总量 / U'</span><span class="p">],</span>
+                           <span class="nb">zip</span><span class="p">(</span><span class="n">times_min</span><span class="p">,</span> <span class="n">times_s</span><span class="p">,</span> <span class="n">amounts</span><span class="p">))))</span>
+</pre></div>
+
+<div class="experiment-output"><table>
+<thead>
+<tr>
+  <th>时刻 / min</th>
+  <th>同一时刻 / s</th>
+  <th>总量 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>0</td>
+  <td>10</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>60</td>
+  <td>8</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>180</td>
+  <td>5</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>240</td>
+  <td>5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<h2 id="%E6%95%B0%E5%80%BC%E8%A6%81%E5%92%8C%E5%8D%95%E4%BD%8D%E4%B8%80%E8%B5%B7%E8%AF%BB">&#25968;&#20540;&#35201;&#21644;&#21333;&#20301;&#19968;&#36215;&#35835;</h2><p>$1$ 分钟和 $60$ 秒的数字不同，表示的持续时间相同。一个量要用“数值乘以单位”来解释。因此，换算时间单位时，变的是表示这个时刻的数字，时刻本身没有改变。</p>
+<p>若一个旧时间单位等于 $f$ 个新时间单位，换算就可以写成</p>
+<p>$$t_{\mathrm{新}}=f\,t_{\mathrm{旧}}.$$</p>
+<p>这里的 $t$ 表示在相应单位下的时刻数字。分钟转秒取 $f=60$；分钟转小时取 $f=1/60$。例如 3 分钟是 $3/60=0.05$ 小时。总量仍用 U 表示，所以这次换算不用改它。</p>
+<p>“分钟”和“秒”都是时间单位，“U”则是总量单位。**量纲（dimension）**表示一个量与所选基本量之间的幂次关系。例如以长度 L、时间 T 为基本量时，速度的量纲是 L/T。直观地说，量纲告诉我们测的是什么类别，单位规定用多大的尺度来计数；分钟与秒的量纲都是时间。相加之前，先确认量属于相同类别，再把单位换到相容尺度。我们可以把 1 分钟与 30 秒相加为 90 秒，却不能把 1 分钟与 5 U 相加。</p>
+<p>代码中也有一种容易混淆的“乘法”。Python 的 <code>[1, 3] * 2</code> 会得到 <code>[1, 3, 1, 3]</code>，表示把列表重复两次。前面采用 <code>[60 * t for t in times_min]</code>，才是依次乘每个数字。NumPy 的**数组（array）**提供了另一种写法：<code>np.array(times_min) * 60</code> 会把每个元素乘以 60。下面先核对两种逐项运算的结果，再把记录画成两张图。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">converted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">times_min</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">converted</span><span class="p">,</span> <span class="n">times_s</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">unit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="p">[</span><span class="n">times_min</span><span class="p">,</span> <span class="n">times_s</span><span class="p">],</span> <span class="p">[</span><span class="s1">'min'</span><span class="p">,</span> <span class="s1">'s'</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">amounts</span><span class="p">,</span> <span class="s1">'o-'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">f</span><span class="s1">'时刻 / </span><span class="si">{</span><span class="n">unit</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">'总量 / U'</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<figure><img src="/web/reading/assets/P01-C01-S02-a6a3f770-0.png" alt="单位、量纲与时间序列：实验结果图" loading="lazy"></figure>
+</section>
+<p>两图的圆点分别对应同一组<strong>观测（observation）</strong>。左图横轴的 3 与右图横轴的 180 都指实验开始后 3 分钟，总量也同为 5 U。右图横轴的数字更大，并不表示物质下降得更慢。</p>
+<p>要说“下降多快”，就需要把变化量除以经过的时间。第一段减少了 $10-8=2$ U，持续 1 分钟，平均下降速度是 2 U/min。换成秒，这一段持续 60 秒，平均下降速度是 $2/60\approx0.0333$ U/s。这两个数字表达的是同一速度。</p>
+<p>还应注意观测间隔并不相等：0 到 1 分钟相隔 1 分钟，1 到 3 分钟相隔 2 分钟。图按真实时刻摆放圆点，因此第二段占据的横向距离是第一段的两倍。若把它们都画成相邻的“第 1、2、3 次”，就会丢掉这项时间信息。</p>
+<p>圆点之间的直线只是连接已知记录，帮助我们看趋势。比如从 1 到 3 分钟画了一段下降线，但我们并没有在第 2 分钟测量。若把这段线当作两点之间的变化过程，就额外假定了线性变化。已有两点只能确定这段时间的平均变化，不能证明每一刻都以同样速度下降。图上的角度还会受坐标尺度影响；判断变化速度时，应回到变化量、时长和单位。</p>
+<h2 id="%E6%B5%93%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%8C%E7%89%A9%E8%B4%A8%E4%B8%80%E5%AE%9A%E5%87%8F%E5%B0%91%E4%BA%86%E5%90%97">&#27987;&#24230;&#19979;&#38477;&#65292;&#29289;&#36136;&#19968;&#23450;&#20943;&#23569;&#20102;&#21527;</h2><p>刚才纵轴画的是总量。许多实验记录的却是每升液体中有多少物质，也就是<strong>浓度（concentration）</strong>。假设一种物质在容器中混合均匀，将总量 $A$ 除以同一时刻的体积 $V$，得到浓度 $c$：</p>
+<p>$$c=\frac{A}{V}.$$</p>
+<p>6 U 放在 2 L 液体里，每升分到 $6/2=3$ U，所以浓度为 3 U/L。仍是这 6 U，如果体积变成 3 L，浓度就变为 $6/3=2$ U/L。浓度下降了，总量却没有减少。我们改变的是分布这 6 U 所用的体积。</p>
+<p>乘法可以把这个计算倒过来。浓度为 2 U/L、体积为 3 L 的容器，总量是</p>
+<p>$$A=cV=(2\ \mathrm{U/L})\times(3\ \mathrm{L})=6\ \mathrm{U}.$$</p>
+<p>单位也随着乘法相消：每升的量乘以升数，得到总量。相反，$A+c$ 把总量和每升的量直接相加，单位并不相容。单位检查能排除这样的表达式；一个表达式通过单位检查以后，仍需核对它是否表示当前实验中的关系。</p>
+<p>下面比较体积分别为 2、3、5 L 的三种情形，每一种都含有 6 U。将体积按这个顺序记为 <code>volumes = [2, 3, 5]</code>，对应的总量记为 <code>same_amounts = [6, 6, 6]</code>。同一位置上的两个数属于同一种体积条件：第一对是 6 U 和 2 L，第二对是 6 U 和 3 L，第三对是 6 U 和 5 L。因此，这里列表的位置对应比较条件，而不是观测时刻。运行前，先算出第三种情形的浓度。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="n">volumes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>       <span class="c1"># L</span>
+<span class="n">same_amounts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>  <span class="c1"># U</span>
+<span class="n">concentrations</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="o">/</span> <span class="n">v</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">same_amounts</span><span class="p">,</span> <span class="n">volumes</span><span class="p">)]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'总量 / U'</span><span class="p">,</span> <span class="s1">'体积 / L'</span><span class="p">,</span> <span class="s1">'浓度 / (U/L)'</span><span class="p">],</span>
+                           <span class="nb">zip</span><span class="p">(</span><span class="n">same_amounts</span><span class="p">,</span> <span class="n">volumes</span><span class="p">,</span> <span class="n">concentrations</span><span class="p">))))</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">concentrations</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">volumes</span><span class="p">),</span> <span class="n">same_amounts</span><span class="p">)</span>
+<span class="k">assert</span> <span class="p">[</span><span class="n">t</span> <span class="o">/</span> <span class="mi">60</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times_s</span><span class="p">]</span> <span class="o">==</span> <span class="n">times_min</span>
+</pre></div>
+
+<div class="experiment-output"><table>
+<thead>
+<tr>
+  <th>总量 / U</th>
+  <th>体积 / L</th>
+  <th>浓度 / (U/L)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>6</td>
+  <td>2</td>
+  <td>3</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td>3</td>
+  <td>2</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td>5</td>
+  <td>1.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<p>最后一行是 $6/5=1.2$ U/L。三种体积条件下的浓度不同，而每一行的浓度乘以体积，都能找回 6 U。这也解释了为什么体积必须与浓度来自同一时刻：用另一时刻的体积相乘，可能得到另一种总量。</p>
+<p>现在假设我们只看到了浓度从 3 U/L 降到 2 U/L。它至少有两种解释：总量仍为 6 U、体积由 2 L 变为 3 L；或者体积仍为 2 L、总量由 6 U 减为 4 U。两种解释都给出终点浓度 2 U/L，却对应不同的物质变化。测量体积能够帮助区分它们。只有在体积固定时，浓度变化才与总量变化成相同的比例。</p>
+<p>本节先解决了如何读记录：时间与总量逐项配对，单位变化按相应的量换算，浓度则需要与体积一起解释。这些关系构成了我们使用记录时的简化<strong>模型（model）</strong>。但开篇那条总量下降曲线仍没有说明物质去了哪里。下一节将记录从外界进入系统的物质，以及从系统流向外界的物质，用**收支（mass balance）**把起点、终点和中间发生的转移联系起来。</p>
+<p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/read/1/">下一节：一段时间的物质收支</a></p>
+<p><a href="/chapters/01-01-%E4%BB%8E%E7%94%9F%E7%90%86%E7%8E%B0%E8%B1%A1%E6%8F%90%E5%87%BA%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98/">本章导览与各节入口</a></p>
+
+<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units">本节练习 · 4 题</a></div></section>
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-01-从生理现象提出系统问题/read/1/">← 1.1.1 边界、状态与观测</a><a href="/chapters/01-02-存量、流量与守恒/read/1/">1.2.1 一段时间的物质收支 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

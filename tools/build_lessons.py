@@ -1,0 +1,91 @@
+"""Build web teaching from Markdown and the experiment's code and results."""
+import base64
+from html import escape
+import json
+from pathlib import Path
+import re
+from nbconvert.filters.markdown import markdown2html_mistune
+from pygments import highlight
+from pygments.lexers import PythonLexer
+from pygments.formatters import HtmlFormatter
+from course_content import course_chapters
+ROOT = Path(__file__).resolve().parents[1]
+DIRECTIVE = re.compile(r'<!-- experiment: ([\w-]+)( figure)? -->')
+def text(value):
+    return ''.join(value) if isinstance(value, list) else value
+
+def render_experiment(cell, lesson, assets, figure=False):
+    code = highlight(text(cell['source']), PythonLexer(), HtmlFormatter())
+    if figure:
+        code = '<details class="figure-code"><summary>查看绘图代码</summary>' + code + '</details>'
+    parts = ['<section class="experiment-example">', code]
+    for index, output in enumerate(cell.get('outputs', [])):
+        if output.get('output_type') == 'error':
+            raise ValueError(f'{lesson["id"]}: failed code output {cell["id"]}')
+        data = output.get('data', {})
+        if 'image/png' in data:
+            name = f'{lesson["id"]}-{cell["id"]}-{index}.png'
+            (assets / name).write_bytes(base64.b64decode(text(data['image/png'])))
+            parts.append(f'<figure><img src="/web/reading/assets/{name}" alt="{escape(lesson["title"])}：实验结果图" loading="lazy"></figure>')
+        elif 'text/markdown' in data:
+            parts.append('<div class="experiment-output">' + markdown2html_mistune(text(data['text/markdown'])) + '</div>')
+        elif output.get('output_type') == 'stream':
+            if output.get('name') == 'stdout':
+                parts.append('<pre class="experiment-output">' + escape(text(output['text'])) + '</pre>')
+        elif 'text/plain' in data and not figure:
+            plain = text(data['text/plain'])
+            if not plain.startswith(('<Figure ', '<Axes:', '<matplotlib.')):
+                parts.append('<pre class="experiment-output">' + escape(plain) + '</pre>')
+    parts.append('</section>')
+    return '\n'.join(parts)
+
+def build(root=ROOT):
+    course = json.loads((root / 'web/course/catalog.json').read_text(encoding='utf-8'))
+    lessons = [(c,l) for c in course_chapters(course) for l in c['lessons'] if l.get('reading')]
+    dest = root / 'web/reading/pages';dest.mkdir(parents=True,exist_ok=True)
+    assets = root / 'web/reading/assets';assets.mkdir(parents=True,exist_ok=True)
+    for index, (chapter, lesson) in enumerate(lessons):
+        nb = json.loads((root / lesson['path']).read_text(encoding='utf-8'))
+        cells = {c['id']:c for c in nb['cells'] if c['cell_type']=='code'}
+        source = (root / lesson['reading']).read_text(encoding='utf-8')
+        sections=[];cursor=0
+        for match in DIRECTIVE.finditer(source):
+            sections.append(markdown2html_mistune(source[cursor:match.start()]))
+            sections.append(render_experiment(cells[match[1]],lesson,assets, bool(match[2])))
+            cursor=match.end()
+        sections.append(markdown2html_mistune(source[cursor:]))
+        body='\n'.join(sections)
+        body=re.sub(r'<a class="anchor-link"[^>]*>(?:¶|&#182;)</a>', '', body)
+        actions=f'<a class="button primary" href="{lesson["notebook_url"]}" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="{lesson["practice_url"]}">本节练习 · {len(lesson["questions"])} 题</a>'
+        if chapter.get('visualization'):
+            actions+=f'<a class="button" href="{chapter["url"]}explore/">可视化与探索</a>'
+        adjacent=[]
+        if index>0:
+            prev=lessons[index-1][1];adjacent.append(f'<a href="{prev["reading_url"]}">← {escape(prev["number"])} {escape(prev["title"])}</a>')
+        if index+1<len(lessons):
+            nxt=lessons[index+1][1];adjacent.append(f'<a href="{nxt["reading_url"]}">{escape(nxt["number"])} {escape(nxt["title"])} →</a>')
+        else:
+            adjacent.append('<a href="/parts/02-系统随时间演化/">继续：第 2 篇 系统随时间演化 →</a>')
+        html=f"""<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{escape(lesson['number'])} {escape(lesson['title'])} · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="{lesson['id']}">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions">{actions}</div>
+<div class="reading-layout"><article id="lesson-content">{body}
+<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions">{actions}</div></section>
+<nav class="lesson-neighbors" aria-label="前后小节">{''.join(adjacent)}</nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>"""
+        (dest / (lesson['id']+'.html')).write_text(html,encoding='utf-8',newline='\n')
+    (root/'web/reading/code.css').write_text(HtmlFormatter(style='monokai').get_style_defs('.highlight'),encoding='utf-8')
+    print(f'Web lessons: {len(lessons)}; experiment code and results linked by cell ID.')
+    return lessons
+
+if __name__=='__main__':
+    from build_course import build as build_course
+    build_course()
+    build()

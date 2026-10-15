@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.2.1 一段时间的物质收支 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P01-C02-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount">本节练习 · 4 题</a><a class="button" href="/chapters/01-02-存量、流量与守恒/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1 id="1.2.1-%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E7%9A%84%E7%89%A9%E8%B4%A8%E6%94%B6%E6%94%AF">1.2.1 &#19968;&#27573;&#26102;&#38388;&#30340;&#29289;&#36136;&#25910;&#25903;</h1><p>学完本节，你应能由各段时长和流入、流出速率计算总量，用累计总账检查结果，并解释物质耗尽时为什么需要改变流出规则。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/01-01-%E4%BB%8E%E7%94%9F%E7%90%86%E7%8E%B0%E8%B1%A1%E6%8F%90%E5%87%BA%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98/read/2/">单位、量纲与时间序列</a>；乘法、循环与列表追加。</p>
+<h2 id="%E5%AE%B9%E5%99%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E5%B0%91%EF%BC%8C%E7%AE%A1%E9%81%93%E4%B8%AD%E6%AF%8F%E6%AC%A1%E9%80%9A%E8%BF%87%E5%A4%9A%E5%B0%91">&#23481;&#22120;&#37324;&#26377;&#22810;&#23569;&#65292;&#31649;&#36947;&#20013;&#27599;&#27425;&#36890;&#36807;&#22810;&#23569;</h2><p>上一节的总量记录从 10 U 降到 8 U，却没有告诉我们这 2 U 怎样减少。若同时知道这一段进入了多少、离开了多少，我们就能把总量变化与转移联系起来。这种按流入、流出核对已有量和变化量的做法，称为<strong>收支（mass balance）</strong>。</p>
+<p>先把问题缩小到一个容器。它可以作为体内某一区域的简化表示，下面用一组给定数值练习记账。起点时，容器里有 5 U 的物质。某个时刻已经拥有的量称为<strong>存量（stock）</strong>；这里的存量就是<strong>所追踪物质总量（tracked amount）</strong>，简称总量。</p>
+<p>管道里每经过 1 T 就进入 3 U，同时离开 1 U。T 是本例固定使用的时间单位。因此流入速率是 3 U/T，流出速率是 1 U/T。管道中的转移称为<strong>流量（flow）</strong>，本节将它具体表示为每单位时间通过多少的<strong>流率（flow rate）</strong>。5 U 回答“现在有多少”，3 U/T 回答“每单位时间进入多少”，它们不能直接相加。</p>
+<p>我们的**系统边界（system boundary）**包围容器。假设所追踪物质只能沿已记下的管道进入或离开，容器内没有该物质的生成或转化。每一段内，流入、流出速率保持给定值。于是，我们可以先把一段时间的转移全部记下，再计算终点存量。</p>
+<h2 id="%E4%B8%A4%E6%AE%B5%E9%80%9F%E7%8E%87%E7%9B%B8%E5%90%8C%EF%BC%8C%E8%B4%A6%E7%9B%AE%E5%8D%B4%E4%B8%8D%E5%90%8C">&#20004;&#27573;&#36895;&#29575;&#30456;&#21516;&#65292;&#36134;&#30446;&#21364;&#19981;&#21516;</h2><p>第一段从时刻 0 持续到时刻 1 T。3 U/T 的流入持续了 1 T，所以累计进入 $1\times3=3$ U；1 U/T 的流出持续了 1 T，所以累计离开 $1\times1=1$ U。由起点的 5 U 开始，终点便是</p>
+<p>$$5+3-1=7\ \mathrm{U}.$$</p>
+<p>第二段持续 2 T，从时刻 1 T 到时刻 3 T。流率保持不变，流入却持续了两倍时间：每个 T 进入 3 U，两个 T 合起来进入 $2\times3=6$ U。同理，这段累计离开 $2\times1=2$ U。</p>
+<p>第二段开始时，容器已从第一段留下了 7 U。因此这一段的账应当是</p>
+<p>$$7+6-2=11\ \mathrm{U}.$$</p>
+<p>这里的起点是 7 U。若又从最初的 5 U 算，就会漏掉第一段留下的净增加。两段的净流入速率都为 $3-1=2$ U/T，但第一段只积累了 2 U，第二段积累了 4 U。速率相同，并不意味着整段转移的量相同。</p>
+<p>为了让程序接着计算多个时段，我们把刚才给定的条件按时段先后记录：</p>
+<table>
+<thead>
+<tr>
+  <th>时段</th>
+  <th style="text-align:right">持续时间 / T</th>
+  <th style="text-align:right">流入速率 / (U/T)</th>
+  <th style="text-align:right">流出速率 / (U/T)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 段</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>第 2 段</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">1</td>
+</tr>
+</tbody>
+</table>
+<p>把每一列从上到下读出，就能得到对应的列表。<code>durations = [1, 2]</code> 表示第一段持续 1 T、第二段持续 2 T；<code>inflows = [3, 3]</code> 表示两段流入速率均为 3 U/T；<code>outflows = [1, 1]</code> 表示两段流出速率均为 1 U/T。每个列表的同一位置都对应同一个时段。</p>
+<p>下面的 <code>zip</code> 依次取出同一段的时长、流入速率和流出速率，乘法将它们换成该段累计流入与流出量，再列成表。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">systems_science</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_style</span><span class="p">,</span> <span class="n">show_table</span>
+
+<span class="n">plot_style</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'font.sans-serif'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Microsoft YaHei'</span><span class="p">,</span> <span class="s1">'SimHei'</span><span class="p">,</span> <span class="s1">'DejaVu Sans'</span><span class="p">],</span>
+                     <span class="s1">'axes.unicode_minus'</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+<span class="n">initial</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">inflows</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">outflows</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">h</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">h</span> <span class="o">*</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">inflows</span><span class="p">,</span> <span class="n">outflows</span><span class="p">))]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'区间'</span><span class="p">,</span> <span class="s1">'持续时间 / T'</span><span class="p">,</span> <span class="s1">'累计流入 / U'</span><span class="p">,</span> <span class="s1">'累计流出 / U'</span><span class="p">],</span> <span class="n">rows</span><span class="p">)))</span>
+</pre></div>
+
+<div class="experiment-output"><table>
+<thead>
+<tr>
+  <th>区间</th>
+  <th>持续时间 / T</th>
+  <th>累计流入 / U</th>
+  <th>累计流出 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>1</td>
+  <td>3</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>2</td>
+  <td>6</td>
+  <td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<h2 id="%E7%94%A8%E4%B8%80%E4%B8%AA%E5%85%AC%E5%BC%8F%E8%A1%A8%E8%BE%BE%E5%90%8C%E4%B8%80%E6%9C%AC%E8%B4%A6">&#29992;&#19968;&#20010;&#20844;&#24335;&#34920;&#36798;&#21516;&#19968;&#26412;&#36134;</h2><p>这两段用了同样的计算方法，只是时长与起点不同。将区间开始时的量写为 $A_{\mathrm{初}}$，结束时的量写为 $A_{\mathrm{末}}$，持续时间写为 $h$，恒定流入、流出速率分别写为 $u$、$v$，就得到</p>
+<p>$$A_{\mathrm{末}}=A_{\mathrm{初}}+hu-hv=A_{\mathrm{初}}+h(u-v).$$</p>
+<p>等式右边的三项各有一笔实际账：开始已有的量，整段进入的量，整段离开的量。$hu$ 和 $hv$ 的单位都是 $(\mathrm{U/T})\times\mathrm{T}=\mathrm{U}$，能够与 $A_{\mathrm{初}}$ 相加减。$u-v$ 则仍是流率，单位为 U/T，要再乘时长才能变成变化量。</p>
+<table>
+<thead>
+<tr>
+  <th>符号</th>
+  <th>表示什么</th>
+  <th>单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$A_{\mathrm{初}}$、$A_{\mathrm{末}}$</td>
+  <td>区间两端的存量</td>
+  <td>U</td>
+</tr>
+<tr>
+  <td>$u$、$v$</td>
+  <td>区间内的流入、流出速率</td>
+  <td>U/T</td>
+</tr>
+<tr>
+  <td>$h$</td>
+  <td>区间持续时间</td>
+  <td>T</td>
+</tr>
+<tr>
+  <td>$hu$、$hv$</td>
+  <td>区间累计流入、流出量</td>
+  <td>U</td>
+</tr>
+</tbody>
+</table>
+<p>在这个<strong>模型（model）<strong>中，存量 $A$ 是我们逐段保留的</strong>状态（state）</strong>，给定的流入速率 $u$ 是一项外部<strong>输入（input）</strong>。模型目前接受各段流率作为已知条件，还没有解释管道中的流动为何以这些速率发生。</p>
+<p>若段数很多，我们只需重复这笔账。下面的 <code>path</code> 从初值（initial condition）开始；<code>path[-1]</code> 取出上一段结束时的量，作为这一段的起点；<code>append</code> 把新算出的终点放到列表末尾。因此，两段计算会保存三个时刻的值，得到 <code>[5, 7, 11]</code>：第一项是起点，第二项是第一段末，第三项是第二段末。条件列表有两项，因为要计算两个时段；结果列表有三项，因为还要保留计算开始前已有的量。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">accumulate</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">durations</span><span class="p">,</span> <span class="n">inflows</span><span class="p">,</span> <span class="n">outflows</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">initial</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">inflows</span><span class="p">,</span> <span class="n">outflows</span><span class="p">):</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">v</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">path</span>
+
+<span class="n">amounts</span> <span class="o">=</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">durations</span><span class="p">,</span> <span class="n">inflows</span><span class="p">,</span> <span class="n">outflows</span><span class="p">)</span>
+<span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">amounts</span> <span class="o">==</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+
+<span class="n">total_in</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">u</span> <span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">inflows</span><span class="p">))</span>
+<span class="n">total_out</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">v</span> <span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">outflows</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">amounts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">initial</span> <span class="o">==</span> <span class="n">total_in</span> <span class="o">-</span> <span class="n">total_out</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">amounts</span><span class="p">,</span> <span class="s1">'o-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'容器中的存量 A'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">'时刻 / T'</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">'总量 / U'</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<figure><img src="/web/reading/assets/P01-C02-S01-a6f6a5eb-0.png" alt="一段时间的物质收支：实验结果图" loading="lazy"></figure>
+</section>
+<p>图上的三个点对应起点、第一段末和第二段末，横坐标分别为 0、1、3 T。第二段更长，所以横向距离也更大。我们已经规定每段流率恒定，在这些条件下，段内的存量按恒定的净流率变化，连接线与这项假设相符。</p>
+<p>还可以把两段合在一起算一张总账：共进入 $3+6=9$ U，共离开 $1+2=3$ U，所以终点应有 $5+9-3=11$ U。逐段计算给出的终点同样是 11 U。也就是说，终点减起点的 $11-5=6$ U，正好等于累计流入减累计流出的 $9-3=6$ U。代码中的第二项 <code>assert</code> 检查的就是这个关系。</p>
+<h2 id="%E4%B8%80%E4%B8%AA%E5%AE%B9%E6%98%93%E6%BC%8F%E6%8E%89%E7%9A%84%E4%B9%98%E6%B3%95">&#19968;&#20010;&#23481;&#26131;&#28431;&#25481;&#30340;&#20056;&#27861;</h2><p>如果每一段都恰好持续 1 T，$h(u-v)$ 的数字与 $u-v$ 相同。于是，一份漏掉 $h$ 的程序可能在这样的例子里给出正确数字。本例故意包含持续 2 T 的第二段，便能看出差别：错误计算是 $5+(3-1)+(3-1)=9$ U，正确计算是 $5+1(3-1)+2(3-1)=11$ U。</p>
+<p>另一个问题出现在储量不足时。容器起点只有 1 U，没有流入，却给定 2 U/T 的流出，并假定它持续整个 1 T。照公式计算，就得到 $1+1(0-2)=-1$ U。先运行下面的计算，再解释这个负数来自哪一项条件。</p>
+
+<section class="experiment-example">
+<div class="highlight"><pre><span></span><span class="n">wrong_final</span> <span class="o">=</span> <span class="n">initial</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">v</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">inflows</span><span class="p">,</span> <span class="n">outflows</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'漏掉时长得到'</span><span class="p">,</span> <span class="n">wrong_final</span><span class="p">,</span> <span class="s1">'U；按各段时长计算的终点为'</span><span class="p">,</span> <span class="n">amounts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">'U'</span><span class="p">)</span>
+
+<span class="n">failure</span> <span class="o">=</span> <span class="n">accumulate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">clipped</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">failure</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'给定规则的末总量 ='</span><span class="p">,</span> <span class="n">failure</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">'U；直接改为非负值后 ='</span><span class="p">,</span> <span class="n">clipped</span><span class="p">,</span> <span class="s1">'U'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'仍按旧流出记账时，差额 ='</span><span class="p">,</span> <span class="n">clipped</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="mi">0</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)),</span> <span class="s1">'U'</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">accumulate</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[])</span> <span class="o">==</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">failure</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+<pre class="experiment-output">漏掉时长得到 9 U；按各段时长计算的终点为 11 U
+给定规则的末总量 = -1 U；直接改为非负值后 = 0 U
+仍按旧流出记账时，差额 = 1 U
+</pre>
+</section>
+<h2 id="%E8%80%97%E5%B0%BD%E4%BB%A5%E5%90%8E%EF%BC%8C%E6%B5%81%E5%87%BA%E6%80%8E%E6%A0%B7%E7%BB%A7%E7%BB%AD">&#32791;&#23613;&#20197;&#21518;&#65292;&#27969;&#20986;&#24590;&#26679;&#32487;&#32493;</h2><p>$-1$ U 不是容器里出现了实际的负物质，而是“2 U/T 的流出能够持续整个时段”超出了现有储量允许的范围。在无流入的条件下，1 U 只能让这个流率持续</p>
+<p>$$\frac{1\ \mathrm{U}}{2\ \mathrm{U/T}}=0.5\ \mathrm{T}.$$</p>
+<p>到 0.5 T 时物质已耗尽。如果我们采用“耗尽后停止流出”的新规则，前半段实际离开 1 U，后半段没有流出，终点为 0 U。相应的账目是 $1+0-1=0$ U，每一项都可以解释。</p>
+<p>若仅把原计算的 $-1$ 改成 0，却仍声称实际流出了 2 U，账目就变成了“起点 1 U，流出 2 U，终点 0 U”，相差 1 U。代码显示的差额来自这里。改变时段末的总量时，也需要让转移记录符合新的流出规则。</p>
+<p>练习中的逐段函数要求按给定公式原样返回结果，包括负值；它的用途之一就是暴露这种条件冲突。算完以后，我们再判断这些条件能否描述实际物质过程。</p>
+<h2 id="%E7%94%B1%E8%B5%B7%E7%82%B9%E5%92%8C%E7%BB%88%E7%82%B9%E5%8F%8D%E8%BF%87%E6%9D%A5%E6%9F%A5%E8%B4%A6">&#30001;&#36215;&#28857;&#21644;&#32456;&#28857;&#21453;&#36807;&#26469;&#26597;&#36134;</h2><p>收支关系也能帮助我们推算尚未记录的转移。假设这段没有内部生成或转化，已知起点、终点、持续时间和恒定流入速率，想求整段实际流出的量 $O$，可以先写</p>
+<p>$$A_{\mathrm{末}}=A_{\mathrm{初}}+hu-O.$$</p>
+<p>两边加上 $O$，再减去 $A_{\mathrm{末}}$，得到</p>
+<p>$$O=A_{\mathrm{初}}+hu-A_{\mathrm{末}}.$$</p>
+<p>例如起点 5 U，流入 3 U/T，持续 1 T，终点测得 7 U，那么累计流出量应为 $5+1\times3-7=1$ U。这项计算得到的是整段累计量；它并没有告诉我们流出在每一个时刻怎样变化。</p>
+<p>本节让“量增加或减少”变成了一本可以复算的账。接下来再追问开篇没有解决的问题：一笔物质离开血液以后，如果进入了组织，是否也离开了我们要研究的整个系统？答案将取决于边界。</p>
+<p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/read/2/">下一节：内部交换与整体守恒</a></p>
+<p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/explore/">打开可视化与探索：存量流量与守恒</a></p>
+<p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/">本章导览</a></p>
+
+<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount">本节练习 · 4 题</a><a class="button" href="/chapters/01-02-存量、流量与守恒/explore/">可视化与探索</a></div></section>
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-01-从生理现象提出系统问题/read/2/">← 1.1.2 单位、量纲与时间序列</a><a href="/chapters/01-02-存量、流量与守恒/read/2/">1.2.2 内部交换与整体守恒 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

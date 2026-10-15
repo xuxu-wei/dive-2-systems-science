@@ -1,3 +1,4 @@
+import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,el} from '../shared/course-shell.mjs';
 import {createPlayback} from '../shared/playback.mjs';
 import {theme} from '../shared/theme.mjs';
@@ -120,7 +121,7 @@ async function start(){
   $('alternate').addEventListener('click',()=>set(mode==='local'?{delta:alternatePerturbation(params.delta)}:mode==='phase'?{b:alternateBackflow(params.b)}:$('model').value==='rotation'?{omega:params.omega===0?1:0}:params.x1===params.x2?{x1:6,x2:0}:{x1:3,x2:3}));
   $('reset').addEventListener('click',()=>{$('model').value='exchange';$('observation').value='first';controls();recompute();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden&&playback.running)playback.pause();});
-  for(const lesson of chapter.lessons){const button=el('button','在默认 IDE 打开：'+lesson.title);button.type='button';button.addEventListener('click',async()=>{button.disabled=true;try{const session=await(await fetch('/api/session')).json();const response=await fetch('/api/notebooks/open',{method:'POST',headers:{'Content-Type':'application/json','X-Local-Token':session.token},body:JSON.stringify({id:lesson.id})});const result=await response.json();$('open-status').textContent=result.message||result.error;}catch{$('open-status').textContent='本机连接中断，请恢复后重试。';}finally{button.disabled=false;}});$('notebooks').append(button);}
+  for(const lesson of chapter.lessons){const button=el('button','打开 JupyterLab 实验：'+lesson.title);button.type='button';button.addEventListener('click',()=>openNotebook(lesson.id));$('notebooks').append(button);}
   playback.seek(0);for(const id of ['controls','play','replay','timeline'])$(id).disabled=false;
   document.querySelector('.exploration').hidden=false;$('loading-note').hidden=true;document.body.dataset.ready='true';document.title=chapter.title+' · 可视化与探索';
 }

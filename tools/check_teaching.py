@@ -12,6 +12,7 @@ from question_contracts import validate_contract
 from assessment import load_assessments
 from terminology import check_text
 from notebook_service import check_or_update
+from build_lessons import DIRECTIVE
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -34,6 +35,10 @@ def main():
     course = json.loads((ROOT / 'web/course/catalog.json').read_text(encoding='utf-8'))
     chapters = {c['id']: c for c in course_chapters(course)}
     routes = {c['url'] + suffix for c in chapters.values() for suffix in ['', 'practice/', *(['explore/'] if c.get('visualization') else [])]}
+    published = {l['id']: l for c in chapters.values() for l in c['lessons']}
+    routes.update(l['reading_url'] for l in published.values() if l.get('reading_url'))
+    routes.update(p['url'] for p in course['parts'])
+    routes.update({'/', '/catalog/', '/notebook/'})
     issues, evidence, links = [], [], 0
     for lesson in catalog:
         part = int(lesson['chapter_id'].split('.')[0])
@@ -50,13 +55,37 @@ def main():
             strings = [q['statement'], *(p['description'] for p in q.get('parameters', []) + q.get('returns', [])), q.get('contract', ''), *q.get('constraints', []), *(s['explanation'] for s in q.get('samples', [])), *(o['text'] for o in q.get('options', [])), q.get('hint', '')]
             strings += list(verification[q['id']].get('explanations', {}).values())
             strings.append(verification[q['id']].get('explanation', ''))
-            missing, terms = check_terms('\n'.join(strings), part)
+            missing, terms = check_terms('\n'.join(strings), part, require_first=not lesson.get('reading'))
             issues.extend(f'{q["id"]}: {t}' for t in missing)
             evidence.append({'unit': q['id'], 'terms': terms})
         path = ROOT / lesson['path']
         check_or_update(path, write=False)
         nb = nbformat.read(path, as_version=4)
         nbformat.validate(nb)
+        if lesson.get('reading'):
+            assert nb.metadata.get('teaching_format') == 'experiment', lesson['id']
+            source = (ROOT / lesson['reading']).read_text(encoding='utf-8')
+            code_ids = {c.id for c in nb.cells if c.cell_type == 'code'}
+            assert {m[0] for m in DIRECTIVE.findall(source)} == code_ids, lesson['id']
+            page = (ROOT / 'web/reading/pages' / (lesson['id'] + '.html')).read_text(encoding='utf-8')
+            entry = published[lesson['id']]
+            assert entry['practice_url'] in page and entry['notebook_url'] in page, lesson['id']
+            assert {q['id'] for q in entry['questions']} == {q['id'] for q in bank}, lesson['id']
+            for _, destination in re.findall(r'\[([^\]]+)\]\(([^)]+)\)', source):
+                url = urlsplit(destination)
+                if not url.scheme and url.path:
+                    assert unquote(url.path) in routes, destination
+            for cell in nb.cells:
+                if cell.cell_type == 'markdown':
+                    for _, destination in re.findall(r'\[([^\]]+)\]\(([^)]+)\)', cell.source):
+                        url = urlsplit(destination)
+                        if url.hostname == '127.0.0.1':
+                            assert unquote(url.path) in routes, destination
+            missing, terms = check_terms(source, part, require_first=False)
+            issues.extend(f'{lesson["id"]}: {t}' for t in missing)
+            evidence.append({'unit': lesson['id'], 'source': lesson['reading'], 'terms': terms})
+            links += len(bank)
+            continue
         assert nb.cells[0].metadata.get('teaching_role') == 'objectives'
         goal = nb.cells[0].source.replace('核验收支', '核对收支')
         for word in ['网页', '内核', '安装', '验收', 'playground', '未实现']:
@@ -87,17 +116,17 @@ def main():
         if args.part is not None and int(chapter['id'].split('.')[0]) != args.part:
             continue
         prose = '\n'.join([chapter.get('goals', ''), chapter.get('prerequisites', ''), chapter.get('focus', ''), *chapter.get('knowledge', [])])
-        missing, terms = check_terms(prose, 99)
+        missing, terms = check_terms(prose, 99, require_first=False)
         issues.extend(f'导览 {chapter["id"]}: {t}' for t in missing)
         evidence.append({'unit': 'overview:' + chapter['id'], 'terms': terms})
     assert links == len(questions)
-    report = {'notebooks': len(catalog), 'questions': len(questions), 'question_links': links, 'first_use': evidence, 'issues': issues}
+    report = {'notebooks': len(catalog), 'questions': len(questions), 'question_routes': links, 'first_use': evidence, 'issues': issues}
     target = ROOT / '.work' / args.work / 'teaching-check.json'
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     if issues:
         raise SystemExit('\n'.join(issues))
-    print(f'Teaching check: {len(catalog)} notebooks, {len(questions)} synchronized questions and links; first-use annotations consistent.')
+    print(f'Teaching check: {len(catalog)} notebooks, {len(questions)} questions with valid practice routes; teaching sources and terminology checked.')
 
 
 if __name__ == '__main__':
