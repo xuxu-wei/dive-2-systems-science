@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.2.1 状态、输入与观测映射 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P03-C02-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P03-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-state-output">本节练习 · 4 题</a><a class="button" href="/chapters/03-02-线性状态空间与动态模态/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>3.2.1 状态、输入与观测映射</h1>
+<p>学完本节，你应能分别写出系统的变化规则与测量关系，核对矩阵形状和单位，并解释为什么同一过程在不同测量下呈现不同曲线。</p>
+<p><strong>先修知识</strong>：两室矩阵收支、<a href="/chapters/03-01-%E4%BB%8E%E5%A4%9A%E4%B8%AA%E5%AE%A4%E8%BF%9B%E5%85%A5%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/read/3/#equilibrium-and-conserved-total">平衡与守恒约束</a>；第 1 篇的状态与观测。</p>
+<h2 id="state-information-and-observation">状态信息与测量选择</h2>
+<p>把两室合起来称重，仪器始终报告 6 U。这是否足以接着计算下一时刻？先比较两种内部状态：室 1、室 2 分别为 $[6,0]$ U 与 $[2,4]$ U。只允许两室以 $a=0.2/\mathrm T$、$b=0.1/\mathrm T$ 交换时，两组的总量读数相同，但变化率不同：</p>
+<table>
+<thead>
+<tr>
+  <th>当前 $[A_1,A_2]$ / U</th>
+  <th style="text-align:right">总量读数 / U</th>
+  <th style="text-align:right">$\dot A_1$ / (U/T)</th>
+  <th style="text-align:right">$\dot A_2$ / (U/T)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$[6,0]$</td>
+  <td style="text-align:right">6</td>
+  <td style="text-align:right">$-1.2$</td>
+  <td style="text-align:right">$1.2$</td>
+</tr>
+<tr>
+  <td>$[2,4]$</td>
+  <td style="text-align:right">6</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p>当前总量不能区分这两种接下来会有不同变化的分配。把两个室的量都记录下来，则给定交换规则及后续输入，就能继续计算。这是状态充分性的具体用法：状态保留了决定模型后续演化所需的当前信息。</p>
+<p>用 $x=(A_1,A_2)^{\mathsf T}$ 表示状态，$y$ 表示仪器读数。测量若选择总量，就用 $y=A_1+A_2$；若选择室 1，就用 $y=A_1$。同一状态可以产生多种读数，改变测量选择也不会自动改变物质的交换规则。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-observation-not-state">一条测量能代表全部状态吗</a></li></ul></nav>
+
+<h2 id="linear-state-space">线性状态空间表示</h2>
+<p>允许外界以流率 $u$ 向室 1 输入，动态方程是</p>
+<p>$$\dot A_1=-aA_1+bA_2+u,\qquad
+\dot A_2=aA_1-bA_2.$$</p>
+<p>把输入分配单独写成列向量 $B$，得到</p>
+<p>$$\dot x=Mx+Bu,\qquad
+M=\begin{pmatrix}-a&amp;b\\a&amp;-b\end{pmatrix},\qquad
+B=\begin{pmatrix}1\\0\end{pmatrix}.$$</p>
+<p>$B$ 的第一项 1 表示输入全部进入室 1，第二项 0 表示不直接进入室 2。若另从室 1 以 $cA_1$ 清除，就把 $M$ 的左上角改为 $-a-c$。</p>
+<p>测量关系也能写成矩阵乘法。$C$ 的两列分别给当前 $A_1,A_2$ 乘上观测权重：</p>
+<p>$$y=Cx,\qquad
+C_{\mathrm{室1}}=\begin{pmatrix}1&amp;0\end{pmatrix},\qquad
+C_{\mathrm{总量}}=\begin{pmatrix}1&amp;1\end{pmatrix}.$$</p>
+<p>有些仪器还会直接响应当前输入。将这一部分写为 $Du$，完整表示为</p>
+<p>$$\boxed{\dot x=Mx+Bu,\qquad y=Cx+Du.}$$</p>
+<p>这叫<strong>线性状态空间表示（linear state-space representation）</strong>：第一条关系给出状态如何变化，第二条给出由当前状态和输入产生的输出。系数不随时间变化时，它是线性时不变系统（linear time-invariant system，LTI）。当前直接测两室总量的例子均取 $D=0$。</p>
+<h2 id="matrix-shapes-and-units">矩阵形状与量纲</h2>
+<p>形状由每条关系要接收和返回多少个分量决定。当前有两个状态、一个输入和一个读数；为统一矩阵乘法，把单个输入和读数也按 $1\times1$ 列向量处理：</p>
+<table>
+<thead>
+<tr>
+  <th>对象</th>
+  <th>形状：行数 $\times$ 列数</th>
+  <th>作用</th>
+  <th>当前单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$x,\dot x$</td>
+  <td>$2\times1$</td>
+  <td>两室状态与变化率</td>
+  <td>U、U/T</td>
+</tr>
+<tr>
+  <td>$M$</td>
+  <td>$2\times2$</td>
+  <td>两个状态 $\to$ 两个变化率</td>
+  <td>$1/\mathrm T$</td>
+</tr>
+<tr>
+  <td>$B$</td>
+  <td>$2\times1$</td>
+  <td>一个流入 $\to$ 两室的流率贡献</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>$C$</td>
+  <td>$1\times2$</td>
+  <td>两个状态 $\to$ 一个总量读数</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>$D$</td>
+  <td>$1\times1$</td>
+  <td>一个输入 $\to$ 一个读数</td>
+  <td>T</td>
+</tr>
+</tbody>
+</table>
+<p>这里 1 表示无量纲。$Mx$ 与 $Bu$ 都必须得到 $2\times1$ 的 U/T；$Cx$ 与 $Du$ 都必须得到 $1\times1$ 的 U。因 $u$ 是 U/T，非零 $D$ 需要 T 的单位，才能得到 U。它描述仪器的直接输入响应，不是已经累积进两室的物质。</p>
+<p>代码可能将 $B$ 的一列和 $C$ 的一行都存成 <code>[1, 0]</code>，但二者在方程中的角色不同：前者分配输入流率，后者选择状态读数。判断形状时，应沿乘法的输入与结果查看。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-dimensions">状态空间中的维数</a></li></ul></nav>
+
+<h2 id="rates-and-output-calculation">变化率与读数的逐项计算</h2>
+<p>取有室 1 清除的矩阵，以及当前状态和输入：</p>
+<p>$$M=\begin{pmatrix}-0.3&amp;0.1\\0.2&amp;-0.1\end{pmatrix}\frac1{\mathrm T},\quad
+B=\begin{pmatrix}1\\0\end{pmatrix},\quad
+x=\begin{pmatrix}4\\2\end{pmatrix}\mathrm U,\quad u=0.5\ \mathrm{U/T}.$$</p>
+<p>两个变化率分别为</p>
+<p>$$\dot A_1=(-0.3\times4+0.1\times2+0.5)\,\mathrm{U/T}=-0.5\ \mathrm{U/T},$$</p>
+<p>$$\dot A_2=(0.2\times4-0.1\times2)\,\mathrm{U/T}=0.6\ \mathrm{U/T}.$$</p>
+<p>它们的和为 0.1 U/T，也等于外部净流率 $u-cA_1=0.5-0.1\times4$ U/T。若总量读数用 $C=[1,1],D=0$，则 $y=4+2=6$ U；若仪器另有 $D=0.2$ T 的直接响应，读数增加 $(0.2\,\mathrm T)(0.5\,\mathrm{U/T})=0.1$ U，变为 6.1 U。改变这项仪器响应没有改变刚才的状态变化率。</p>
+<p>实验及练习按“两个变化率的列表、一个当前读数”的顺序返回结果。列表中的第一项始终是室 1 变化率，第二项是室 2 变化率；读数则由指定的 $C,D$ 另算。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-state-output">同一状态，不同测量</a></li></ul></nav>
+
+<h2 id="concentration-observation">浓度观测与状态单位</h2>
+<p>若仪器测室 1 的浓度，固定容积为 $V_1$，就用</p>
+<p>$$y=\frac{A_1}{V_1},\qquad C=\begin{pmatrix}1/V_1&amp;0\end{pmatrix},\qquad D=0.$$</p>
+<p>$C$ 的元素现在具有 $1/\mathrm L$ 的单位。取 $V_1=2$ L、当前 $A_1=4$ U，读数是 2 U/L。状态仍以总量保存，改变的只是从总量到浓度的读取方式。</p>
+<p>这与上一章直接改用浓度作为状态不同：在那里，演化方程中的两个分量都改成浓度，矩阵也随容积变换；这里两室仍按 U 记账，只有输出多做一次除以容积。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-output-units">写出浓度测量</a></li></ul></nav>
+
+<h2 id="one-trajectory-two-observations">同一轨迹的两种观测</h2>
+<p>回到只有内部交换的过程，取 $a=0.2/\mathrm T$、$b=0.1/\mathrm T$、初值 $[6,0]$ U。总量 $S=6$ U 守恒，将 $A_2=S-A_1$ 代入第一室方程：</p>
+<p>$$\dot A_1=bS-(a+b)A_1.$$</p>
+<p>这是第 2 篇的一阶恒定输入形式，其平衡值为 $bS/(a+b)=2$ U。于是</p>
+<p>$$\begin{aligned}
+A_1(t)&amp;=2\,\mathrm U+4\,\mathrm U\,e^{-0.3t/\mathrm T},\\
+A_2(t)&amp;=4\,\mathrm U-4\,\mathrm U\,e^{-0.3t/\mathrm T}.
+\end{aligned}$$</p>
+<p>在 $t=2$ T，两室约为 $[4.195,1.805]$ U，各自仍在变化；求和读数始终是 6 U。这个解析结果可与图形直接对照。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P03-C02-S01-ab70f2dd-0.png" alt="状态、输入与观测映射：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图记录两个状态分量，右图用同一轨迹计算两种读数。第一室测量保留了重新分配的变化，总量测量将一减一增恰好抵消。判断是否处于平衡，要检查两个变化率是否各自为零；判断读数是否变化，只需检查所选组合。两者回答不同的问题。</p>
+<p>下一节将用不同变化方向解释，为什么某种内部变化能被测量抵消。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-iv-first-order-systems/">MIT：一阶系统课程</a>讨论多变量微分方程和状态表示，可结合本节两室例子继续阅读。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/03-01-从多个室进入线性代数/read/3/">← 3.1.3 平衡方程、秩与唯一性</a><a href="/chapters/03-02-线性状态空间与动态模态/read/2/">3.2.2 特征值、模态与矩阵传播 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -6,43 +6,48 @@
     "title": "两室交换与矩阵收支",
     "outcome": "从血液与组织的逐项收支写出向量和矩阵，逐行算变化率，再用列和核对内部转移。",
     "number": "3.1.1",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/03-多变量相互作用/01-从多个室进入线性代数/01-两室交换与矩阵收支.md"
   },
   {
     "id": "P03-C01-S02",
     "chapter_id": "3.1",
     "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.ipynb",
-    "title": "内积范数与投影",
+    "title": "内积、范数与投影",
     "outcome": "把两室的变化分成共同增加与重新分配，用内积和配方解释投影，并检查单位与尺度。",
     "number": "3.1.2",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.md"
   },
   {
     "id": "P03-C01-S03",
     "chapter_id": "3.1",
     "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.ipynb",
-    "title": "平衡方程秩与唯一性",
+    "title": "平衡方程、秩与唯一性",
     "outcome": "从重复的收支方程引出秩，用消元求平衡，说明何时还需要给定两室总量之和。",
     "number": "3.1.3",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.md"
   },
   {
     "id": "P03-C02-S01",
     "chapter_id": "3.2",
     "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.ipynb",
-    "title": "状态输入与观测映射",
+    "title": "状态、输入与观测映射",
     "outcome": "把变化率和读数分别写成矩阵关系，核对各位置、形状与单位，解释总量不变时室内仍能变化。",
     "number": "3.2.1",
-    "visualization": "web/multivariable/index.html"
+    "visualization": "web/multivariable/index.html",
+    "reading": "lessons/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.md"
   },
   {
     "id": "P03-C02-S02",
     "chapter_id": "3.2",
     "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.ipynb",
-    "title": "特征值模态与矩阵传播",
+    "title": "特征值、模态与矩阵传播",
     "outcome": "用两室的和、差找出两种指数变化，区分初值中的贡献与观测中的抵消，再连接矩阵传播。",
     "number": "3.2.2",
-    "visualization": "web/multivariable/index.html"
+    "visualization": "web/multivariable/index.html",
+    "reading": "lessons/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.md"
   },
   {
     "id": "P03-C02-S03",
@@ -51,49 +56,54 @@
     "title": "复数模态与阻尼旋转",
     "outcome": "把二维偏差合写成复数，解释衰减与旋转；特征向量不足时，沿原方程依次求解。",
     "number": "3.2.3",
-    "visualization": "web/multivariable/index.html"
+    "visualization": "web/multivariable/index.html",
+    "reading": "lessons/03-多变量相互作用/02-线性状态空间与动态模态/03-复数模态与阻尼旋转.md"
   },
   {
     "id": "P03-C03-S01",
     "chapter_id": "3.3",
     "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.ipynb",
-    "title": "向量场相轨迹与时间",
+    "title": "向量场、相轨迹与时间",
     "outcome": "从一个状态点的变化率画出运动方向，比较同一路径上不同速度，辨认图中保留的时间信息。",
     "number": "3.3.1",
-    "visualization": "web/multivariable/index.html"
+    "visualization": "web/multivariable/index.html",
+    "reading": "lessons/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.md"
   },
   {
     "id": "P03-C03-S02",
     "chapter_id": "3.3",
     "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.ipynb",
-    "title": "通道改变与平衡集合",
+    "title": "交换通道与平衡集合",
     "outcome": "依次关闭回流与全部交换，结合两室总量求长期分配，再检查坐标比例怎样改变图形。",
     "number": "3.3.2",
-    "visualization": "web/multivariable/index.html"
+    "visualization": "web/multivariable/index.html",
+    "reading": "lessons/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.md"
   },
   {
     "id": "P03-C04-S01",
     "chapter_id": "3.4",
     "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.ipynb",
-    "title": "偏导梯度与局部变化",
+    "title": "偏导、梯度与雅可比矩阵",
     "outcome": "每次只改变一个总量分量，推导偏导与雅可比矩阵，区分基点变化率和偏移造成的变化。",
     "number": "3.4.1",
-    "visualization": "web/multivariable/index.html"
+    "visualization": "web/multivariable/index.html",
+    "reading": "lessons/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.md"
   },
   {
     "id": "P03-C04-S02",
     "chapter_id": "3.4",
     "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.ipynb",
-    "title": "线性化能够走多远",
+    "title": "平衡附近的线性化与误差",
     "outcome": "从同一起点比较原模型与平衡附近的近似，用扰动幅度和步长细化解释两种误差。",
     "number": "3.4.2",
-    "visualization": "web/multivariable/index.html"
+    "visualization": "web/multivariable/index.html",
+    "reading": "lessons/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.md"
   },
   {
     "id": "P03-SUMMARY",
     "chapter_id": "3.summary",
     "path": "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb",
-    "title": "二室交换与局部近似综合实验",
+    "title": "二室交换、观测与局部近似",
     "outcome": "在两室交换中连接收支、平衡和观测，再用饱和清除比较局部近似与步长造成的差异。",
     "number": "篇末综合",
     "visualization": null,
@@ -106,6 +116,7 @@
         "由初值分解和观测权重解释两种变化在读数中的贡献",
         "让原模型与局部模型从同一起点出发，再各自缩短步长"
       ]
-    }
+    },
+    "reading": "lessons/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.md"
   }
 ]

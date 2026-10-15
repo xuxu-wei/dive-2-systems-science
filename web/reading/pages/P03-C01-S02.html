@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.1.2 内积、范数与投影 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P03-C01-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P03-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/03-01-从多个室进入线性代数/practice/?question=p03-projection">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>3.1.2 内积、范数与投影</h1>
+<p>学完本节，你应能把两室偏差拆成共同变化与重新分配，计算内积、长度和投影，并说明最近近似、正交与基之间的关系。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/03-01-%E4%BB%8E%E5%A4%9A%E4%B8%AA%E5%AE%A4%E8%BF%9B%E5%85%A5%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/read/1/">两室交换与矩阵收支</a>；中学的勾股定理与配方。</p>
+<h2 id="common-and-redistributed-changes">共同变化与分配差异</h2>
+<p>两室原先的总量为 $[2,4]$ U，后来变为 $[5,5]$ U。按室 1、室 2 的顺序相减，变化为</p>
+<p>$$x=\begin{pmatrix}3\\1\end{pmatrix}\mathrm U.$$</p>
+<p>两处都增加了，但增加量不同。可以先把“每室都增加 2 U”的共同部分取出来，再看剩余的分配差异：</p>
+<p>$$\begin{pmatrix}3\\1\end{pmatrix}\mathrm U
+=\underbrace{\begin{pmatrix}2\\2\end{pmatrix}\mathrm U}_{p\text{：共同部分}}
++\underbrace{\begin{pmatrix}1\\-1\end{pmatrix}\mathrm U}_{r\text{：重新分配}}.$$</p>
+<p>$p$ 使两室合计比参考多 4 U；$r$ 的分量之和为零，只改变两室之间的分配。这里的负号表示相对共同部分少 1 U，并没有把某个室的实际总量写成负数。</p>
+<p>沿“两个分量相等”的方向，还可以选择 $[1,1]$ U 或 $[3,3]$ U 作为共同部分。为什么上面的 $[2,2]$ 更合适？要比较这些候选，我们需要用一个数表示余下偏差有多大。</p>
+<h2 id="inner-product-norm-orthogonality">内积、范数与正交</h2>
+<p>对两个二维向量 $x=(x_1,x_2)^{\mathsf T}$、$d=(d_1,d_2)^{\mathsf T}$，对应分量相乘再相加，定义它们的<strong>内积（inner product）</strong>：</p>
+<p>$$x\cdot d=x_1d_1+x_2d_2.$$</p>
+<p>取 $d=(1,1)^{\mathsf T}$ U，则 $x\cdot d=(3\times1+1\times1)\,\mathrm U^2=4$ U²。向量与自身的内积是分量平方和；开平方得到<strong>欧几里得范数（Euclidean norm）</strong>：</p>
+<p>$$\|x\|_2=\sqrt{x\cdot x}=\sqrt{x_1^2+x_2^2}.$$</p>
+<p>两个坐标均以 U 为单位、采用相同绘图比例时，这就是原点到向量端点的长度。对 $[3,1]$ U，长度为 $\sqrt{10}$ U，约 3.1623 U。下标 2 指明采用平方和再开平方的长度。两室总量之和却是 4 U；总量与几何长度是不同的量。</p>
+<p>为什么内积能描述垂直关系？设两个向量为 $v,w$。将平方展开，可得</p>
+<p>$$\|v+w\|_2^2=\|v\|_2^2+2v\cdot w+\|w\|_2^2.$$</p>
+<p>当 $v\cdot w=0$ 时，右边恰好满足勾股关系，对应两向量互相垂直，称为<strong>正交（orthogonality）</strong>。共同方向 $d=(1,1)^{\mathsf T}$ U 与分配方向 $e=(1,-1)^{\mathsf T}$ U 的内积为 $1-1=0$ U²，所以二者正交。</p>
+<p>内积也是上一节矩阵乘法的组成部分：矩阵每一行与状态对应相乘后求和，就得到这一行的结果。例如第一行为 $[-0.2,0.1]/\mathrm T$，与 $[6,0]$ U 相乘得 $-1.2$ U/T；第二行得 $+1.2$ U/T。这里乘积的单位由两组分量各自的单位决定。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-01-从多个室进入线性代数/practice/?question=p03-matrix-product">计算矩阵作用</a></li></ul></nav>
+
+<h2 id="orthogonal-projection">正交投影的计算</h2>
+<p>指定一个非零方向 $d$，所有沿此方向的候选都可写成 $p=\alpha d$。希望留下的余量 $r=x-p$ 与 $d$ 垂直，就要求</p>
+<p>$$0=(x-\alpha d)\cdot d=x\cdot d-\alpha(d\cdot d).$$</p>
+<p>因为非零向量的平方和 $d\cdot d&gt;0$，可以解出</p>
+<p>$$\boxed{\alpha=\frac{x\cdot d}{d\cdot d},\qquad
+p=\frac{x\cdot d}{d\cdot d}\,d,\qquad r=x-p.}$$</p>
+<p>$p$ 称为 $x$ 在 $d$ 所确定直线上的<strong>正交投影（orthogonal projection）</strong>。在当前单位相同的例子中，$x\cdot d=4$ U²、$d\cdot d=2$ U²，故 $\alpha=2$ 无量纲，投影为 $[2,2]$ U，余量为 $[1,-1]$ U。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P03-C01-S02-90993a3f-0.png" alt="内积、范数与投影：实验结果图" loading="lazy"></figure>
+</section>
+<p>蓝箭头给出原偏差，玫红箭头给出共同部分。灰箭头从共同部分的端点出发，到达原偏差端点，表示余量。它垂直于共同方向，两支箭头首尾相接又重建原偏差。长度平方也能核对：</p>
+<p>$$\|x\|_2^2=10\ \mathrm U^2,\qquad
+\|p\|_2^2+\|r\|_2^2=(8+2)\ \mathrm U^2.$$</p>
+<p>把方向写成 $2d$，只是沿同一条直线选了较长的代表向量。此时公式的分子扩大两倍，分母扩大四倍，系数减半；再乘 $2d$ 后，投影仍为 $p$。零向量可以被投影，但零向量本身不能指定一条方向。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-01-从多个室进入线性代数/practice/?question=p03-projection">沿指定方向分解变化</a></li></ul></nav>
+
+<h2 id="nearest-approximation">最近近似与平方误差</h2>
+<p>投影还回答了开头的“哪个共同部分更合适”。以 $x=[3,1]$ U、$d=[1,1]$ U 为例，任意候选 $\alpha d$ 的余量平方长度为</p>
+<p>$$\begin{aligned}
+\|x-\alpha d\|_2^2
+&amp;=[(3-\alpha)^2+(1-\alpha)^2]\,\mathrm U^2\\
+&amp;=(10-8\alpha+2\alpha^2)\,\mathrm U^2\\
+&amp;=[2(\alpha-2)^2+2]\,\mathrm U^2.
+\end{aligned}$$</p>
+<p>最后一个平方项在 $\alpha=2$ 时最小，余量长度为 $\sqrt2$ U。若 $\alpha=1$ 或 3，余量长度都是 2 U，所以 $[2,2]$ U 确实是这条直线上离原偏差最近的向量。</p>
+<p>对任意 $x,d$，令 $\alpha_*=(x\cdot d)/(d\cdot d)$。将同一配方写成一般形式，有</p>
+<p>$$\|x-\alpha d\|_2^2
+=(d\cdot d)(\alpha-\alpha_*)^2
++x\cdot x-\frac{(x\cdot d)^2}{d\cdot d}.$$</p>
+<p>后两项固定，第一项只在 $\alpha=\alpha_*$ 时为零。因此投影给出唯一最近点；余量可以非零，因为原向量未必就在指定直线上。以后用一组因素近似数据时，会再次遇到这种“让剩余差异尽量小”的问题。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-01-从多个室进入线性代数/practice/?question=p03-projection-meaning">投影误差为什么垂直</a></li></ul></nav>
+
+<h2 id="independence-and-basis">线性无关与基</h2>
+<p>共同方向 $d=(1,1)^{\mathsf T}$ U 与重新分配方向 $e=(1,-1)^{\mathsf T}$ U 可以一起表达任意两室偏差。若</p>
+<p>$$x=\alpha d+\beta e,$$</p>
+<p>两分量分别满足 $x_1=(\alpha+\beta)\,\mathrm U$、$x_2=(\alpha-\beta)\,\mathrm U$。相加、相减，得到</p>
+<p>$$\alpha=\frac{x_1+x_2}{2\,\mathrm U},\qquad
+\beta=\frac{x_1-x_2}{2\,\mathrm U}.$$</p>
+<p>对 $[3,1]$ U，系数为 2 和 1；对 $[2,-2]$ U，系数为 0 和 2，只有重新分配的部分。</p>
+<p>向量组<strong>线性无关（linearly independent）</strong>，是指它们的线性组合等于零时，系数只能全为零。当前若 $\alpha d+\beta e=0$，则 $\alpha+\beta=0$ 与 $\alpha-\beta=0$ 同时成立，解得 $\alpha=\beta=0$。两个方向各自提供了另一方向表达不了的变化。</p>
+<p>能表达空间中每个向量、又线性无关的一组向量称为<strong>基（basis）</strong>。当前这两个方向构成二维偏差空间的一组基；系数 $\alpha,\beta$ 唯一地说明当前偏差里共同部分和重新分配各有多少。正交让这些系数容易计算；成为基本身要求的是足够且独立的方向。</p>
+<h2 id="units-and-reference-scales">距离中的单位与参考尺度</h2>
+<p>当前两个分量单位相同，可以直接使用平方和。若要比较总量 $A$（U）与温度 $\theta$（℃）的变化，先记相对参考状态的差为 $\Delta A=A-A_0$、$\Delta\theta=\theta-\theta_0$。两种差的平方无法作为同一种量相加。选取正参考尺度 $A_{\mathrm{ref}}$、$\theta_{\mathrm{ref}}$，再比较无量纲向量</p>
+<p>$$\widetilde x=\begin{pmatrix}\Delta A/A_{\mathrm{ref}}\\\Delta\theta/\theta_{\mathrm{ref}}\end{pmatrix}.$$</p>
+<p>例如把 2 U 的总量变化与 1 ℃ 的温度变化各算作一单位变化，就选 $A_{\mathrm{ref}}=2$ U、$\theta_{\mathrm{ref}}=1$ ℃。两个比值都无量纲。改变尺度会改变距离与投影，因而尺度应对应我们希望比较的变化大小。</p>
+<p>沿用同一个分量顺序、单位和尺度，投影与余量才能回答同一个问题。下一节将转向另一种“信息是否独立”：两条平衡方程是否真的给出了两个不同条件。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-01-从多个室进入线性代数/practice/?question=p03-norm-units">比较两个状态分量</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://web.stanford.edu/~boyd/vmls/">应用线性代数导论</a>的向量、范数与线性无关部分提供更多几何解释与小型算例。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/03-01-从多个室进入线性代数/read/1/">← 3.1.1 两室交换与矩阵收支</a><a href="/chapters/03-01-从多个室进入线性代数/read/3/">3.1.3 平衡方程、秩与唯一性 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

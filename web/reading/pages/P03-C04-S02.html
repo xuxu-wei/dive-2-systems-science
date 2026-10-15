@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.4.2 平衡附近的线性化与误差 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P03-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P03-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-trajectories">本节练习 · 5 题</a><a class="button" href="/chapters/03-04-多变量变化与局部线性化/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>3.4.2 平衡附近的线性化与误差</h1>
+<p>学完本节，你应能求出饱和清除模型的平衡，围绕偏差建立局部线性方程，并结合余项、不同初始扰动与步长细化解释近似误差。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/03-04-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%8F%98%E5%8C%96%E4%B8%8E%E5%B1%80%E9%83%A8%E7%BA%BF%E6%80%A7%E5%8C%96/read/1/">偏导、梯度与雅可比矩阵</a>；特征值与动态模态、第 2.4 章的数值误差。</p>
+<h2 id="saturating-model-equilibrium">饱和清除模型的平衡</h2>
+<p>同一张雅可比矩阵可以预测平衡附近的变化，但第一室多出 $0.2$ U 与多出 3 U，清除曲线弯曲的影响会相同吗？我们继续使用上一节的两室模型，先确定共同的平衡，再让原模型和近似模型从同一状态出发。</p>
+<p>$$\begin{aligned}
+\dot A_1&amp;=u-aA_1+bA_2-\frac{vA_1}{K+A_1},\\
+\dot A_2&amp;=aA_1-bA_2.
+\end{aligned}$$</p>
+<p>参数固定为 $a=0.2/\mathrm T$、$b=0.1/\mathrm T$、$u=0.5$ U/T、$v=1$ U/T、$K=2$ U。第一室持续接受输入并饱和清除，两室总量均非负。</p>
+<p>平衡处的两条变化率同时为零。先相加，内部交换抵消，得到输入与清除相等：</p>
+<p>$$\frac{vA_1^*}{K+A_1^*}=u.
+\qquad
+vA_1^*=uK+uA_1^*.$$</p>
+<p>将含 $A_1^*$ 的项移到一侧，再用第二室的平衡方程：</p>
+<p>$$\boxed{A_1^*=\frac{uK}{v-u},\qquad
+A_2^*=\frac{a}{b}A_1^*.}$$</p>
+<p>对 $a,b,K,v&gt;0$ 与 $0\leq u&lt;v$，这是有限非负平衡。本例分别得到 2 U 与 4 U，代入后两股交换流率均为 $0.4$ U/T，输入和清除均为 $0.5$ U/T，两室收支都抵消。若输入达到或超过清除上限，有限总量下的清除流率达不到输入，就没有这样的有限非负平衡。</p>
+<h2 id="equilibrium-deviation-linearization">偏差方程与局部线性模型</h2>
+<p>记原状态为 $x=[A_1,A_2]^{\mathsf T}$，平衡为 $x^*=[2,4]^{\mathsf T}$ U，定义偏差</p>
+<p>$$\delta=x-x^*.$$</p>
+<p>偏差的每个分量表示对应室比平衡多或少多少。平衡是常数，故 $\dot\delta=\dot x$。在上一节的泰勒近似中取基点为 $x^*$，常数项 $f(x^*)$ 消失：</p>
+<p>$$\dot\delta=f(x^*+\delta)\approx J^*\delta,\qquad
+J^*=\begin{pmatrix}-0.325&amp;0.1\\0.2&amp;-0.1\end{pmatrix}/\mathrm T.$$</p>
+<p>用这个固定的一阶方程近似平衡附近的演化，称为<strong>线性化（linearization）</strong>。它保留当前平衡周围各分量的一阶相互影响，用矩阵描述原来弯曲的变化率关系。</p>
+<p>为了把两种模型画在同一坐标中，用 $z=x^*+\delta$ 表示局部模型预测的总量状态。于是</p>
+<p>$$\boxed{\dot z=J^*(z-x^*).}$$</p>
+<p>例如 $z=[2.2,4]^{\mathsf T}$ U 时，先减平衡得到 $[0.2,0]^{\mathsf T}$ U，再乘矩阵，变化率为 $[-0.065,0.04]^{\mathsf T}$ U/T。从平衡本身出发则有 $z-x^*=0$，局部模型也保持平衡。这个平移把“总量的零点”与“偏差的零点”清楚地区分开了。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-deviation-variable">用偏差推进局部模型</a></li></ul></nav>
+
+<h2 id="local-asymptotic-stability">动态模态与局部渐近稳定</h2>
+<p>前章用特征值描述线性模态的变化。对当前 $J^*$，特征方程为</p>
+<p>$$\begin{aligned}
+\det(J^*-\lambda I)&amp;=0,\\
+(\lambda+0.325/\mathrm T)(\lambda+0.1/\mathrm T)
+-0.02/\mathrm T^2&amp;=0,\\
+\lambda^2+(0.425/\mathrm T)\lambda+0.0125/\mathrm T^2&amp;=0.
+\end{aligned}$$</p>
+<p>解得</p>
+<p>$$\lambda_1\approx-0.03179/\mathrm T,\qquad
+\lambda_2\approx-0.39321/\mathrm T.$$</p>
+<p>两个特征值不同，局部偏差可以分解为两个实模态。它们的系数分别乘 $e^{\lambda_1t}$ 与 $e^{\lambda_2t}$，都趋于零；较慢模态的特征时间约为 $31.46$ T，较快模态约为 $2.54$ T。</p>
+<p>原来的非线性平衡也可由此判断。<strong>局部渐近稳定（local asymptotic stability）</strong>包含两个要求：给定一个足够小的允许偏离范围，都能选取更小的起始范围，使轨迹始终留在前者；同时，从某个邻域出发的轨迹随时间趋于平衡。直观上，小扰动既不会把系统带离附近，又会逐渐消退。</p>
+<p>对于 $\dot x=f(x)$，若 $f$ 在平衡的一个开邻域内连续可微，即各一阶偏导存在且连续，且平衡处雅可比矩阵的全部特征值实部严格为负，则该平衡局部渐近稳定。当前有理函数在 $A_1&gt;-K$ 光滑，平衡 $[2,4]$ U 位于非负区域内部，两个特征值又都为负，所以满足这一判据。</p>
+<p>判据建立的是一个邻域内的恢复结论。若某个特征值实部等于零，线性项可能遗漏决定恢复或离开的高阶作用，便需要继续分析非线性项；具体的允许扰动幅度和预测精度，则要结合当前模型进一步计算。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-stability">负特征值的结论到哪里为止</a></li></ul></nav>
+
+<h2 id="near-far-initial-rates">小扰动与大扰动的初始变化率</h2>
+<p>现在只改变第一室的初值，第二室保持 4 U。以下计算先用 U 与 T 表示各量的数值，结果的单位放在表头。</p>
+<p>从第一室增加 $0.2$ U 的状态出发，原模型的第一分量变化率为</p>
+<p>$$[0.5-0.2\times2.2+0.1\times4-2.2/4.2]\,\mathrm{U/T}
+\approx-0.0638095\,\mathrm{U/T}.$$</p>
+<p>线性化给出 $-0.325\times0.2=-0.065$ U/T。若第一室增加 3 U，同样计算得到：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">第一室增加量 / U</th>
+  <th style="text-align:right">原模型 $\dot A_1$ / (U/T)</th>
+  <th style="text-align:right">局部模型第一分量变化率 / (U/T)</th>
+  <th style="text-align:right">原值减近似 / (U/T)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">$-0.0638095$</td>
+  <td style="text-align:right">$-0.065$</td>
+  <td style="text-align:right">$0.00119048$</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">$-0.814286$</td>
+  <td style="text-align:right">$-0.975$</td>
+  <td style="text-align:right">$0.16071429$</td>
+</tr>
+</tbody>
+</table>
+<p>两种模型都预测第一室开始减少，局部模型预测减少得更快。第二室规则原本线性，此刻两模型的第二分量变化率完全相同，分别为 $0.04$ 与 $0.6$ U/T。第一分量的差来自饱和清除曲线在切线下方：切线高估清除，因而低估净变化率。</p>
+<p class="concept-explore"><a href="/chapters/03-04-多变量变化与局部线性化/explore/?concept=P03-C04-S02%3Anear-far-initial-rates">可视化与探索：小扰动与大扰动的初始变化率 →</a></p>
+
+<p>在探索中保持这组参数不变，切换第一室的近、远初始扰动。先比较起始变化方向，再看时间曲线逐渐分开多少，接着用下面的余项解释差异为何增大。</p>
+<h2 id="exact-saturating-remainder">清除曲率与精确余项</h2>
+<p>将第一室从平衡增加有单位的 $\Delta A$，第二室不变。记 $B=K+A_1^*$，直接通分可得清除速率的增量：</p>
+<p>$$\begin{aligned}
+g(A_1^*+\Delta A)-g(A_1^*)
+&amp;=v\left(\frac{A_1^*+\Delta A}{B+\Delta A}
+-\frac{A_1^*}{B}\right)\\
+&amp;=\frac{vK\Delta A}{B(B+\Delta A)}.
+\end{aligned}$$</p>
+<p>切线预测的清除增量为 $g'(A_1^*)\Delta A=vK\Delta A/B^2$。原清除增量减去预测，得到</p>
+<p>$$\frac{vK\Delta A}{B(B+\Delta A)}
+-\frac{vK\Delta A}{B^2}
+=-\frac{vK(\Delta A)^2}{B^2(B+\Delta A)}.$$</p>
+<p>清除在第一室收支中带负号，所以原<strong>净变化率</strong>减去局部变化率时，符号再次翻转：</p>
+<p>$$\boxed{R_1=\frac{vK(\Delta A)^2}
+{(K+A_1^*)^2(K+A_1^*+\Delta A)},\qquad R_2=0.}$$</p>
+<p>此式要求 $K+A_1^*+\Delta A&gt;0$；非负的第一室总量满足它。$R_1$ 的单位是 U/T，比较的是这个状态处的变化率。第二条收支完全线性，所以其余项为零。</p>
+<p>再令 $\epsilon=\Delta A/(1\,\mathrm U)$，即扰动以 U 计的无量纲数值。代入本例参数后，</p>
+<p>$$R_1=\frac{\epsilon^2}{8(4+\epsilon)}\,\mathrm{U/T}.$$</p>
+<p>当正的 $\epsilon$ 远小于 4，分母变化很少，余项主要随扰动的平方变化：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">$\Delta A$ / U</th>
+  <th style="text-align:right">$R_1$ / (U/T)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">0.00030488</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.05</td>
+  <td style="text-align:right">0.00007716</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.025</td>
+  <td style="text-align:right">0.00001941</td>
+</tr>
+</tbody>
+</table>
+<p>扰动每减半，余项约变成四分之一。对 $0.2$ U 与 3 U 的较大比较，代入完整分母便得到上一张表中的两个差值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-error-order">小扰动误差如何缩小</a></li></ul></nav>
+
+<h2 id="trajectory-error-grid-refinement">轨迹差与步长细化</h2>
+<p>起点处的变化率差随后会进入整个演化。原模型经过自己的状态，局部模型经过另一组状态，内部交换和清除又不断作用于这些差异。因此，需要将两种方程各自推进，再比较相同时刻的总量。</p>
+<p>分别用 $x_n$ 和 $z_n$ 记录时刻 $t_n=nh$ 的原模型状态与局部模型状态，欧拉更新为</p>
+<p>$$\begin{aligned}
+x_{n+1}&amp;=x_n+h f(x_n),\\
+z_{n+1}&amp;=z_n+hJ^*(z_n-x^*).
+\end{aligned}$$</p>
+<p>两室在每一步都读取这一步开始时各自模型的状态。用下式概括这段时间内最大的总量差：</p>
+<p>$$E_h=\max_{n,i}|x_{n,i}-z_{n,i}|,\qquad i=1,2.$$</p>
+<p>这里 $i$ 是室的编号，$n$ 是时间编号；$E_h$ 的单位为 U。它仍包含两种模型各自的数值误差。于是对<strong>每一种模型</strong>再把步长减半，比较同一时刻的粗、细结果：</p>
+<p>$$D_h=\max_{n,i}|y_{h,i}(t_n)-y_{h/2,i}(t_n)|.$$</p>
+<p>$y_h$ 表示所检查模型在步长 $h$ 下的轨迹。细网格每走两步才到粗网格的下一时刻，必须按时刻对齐。原模型和局部模型各得到一个 $D_h$，用来观察网格细化引起的变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-trajectories">比较原模型与平衡附近的近似</a></li><li><a href="/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-model-numerical-error">比较原模型与局部模型</a></li></ul></nav>
+
+<h2 id="near-far-trajectory-comparison">近远扰动的轨迹对照</h2>
+<p>从 $[2.2,4]$ 与 $[5,4]$ U 出发，各观察 12 T。两种模型先都用 $h=0.005$ T，再分别改用 $0.0025$ T。图中的实线为原模型，虚线为局部模型；蓝色、粉色分别表示第一室、第二室。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P03-C04-S02-cc4ad343-0.png" alt="平衡附近的线性化与误差：实验结果图" loading="lazy"></figure>
+</section>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">第一室初始增加量 / U</th>
+  <th style="text-align:right">两模型最大差 $E_h$ / U</th>
+  <th style="text-align:right">原模型细化差 / U</th>
+  <th style="text-align:right">局部模型细化差 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">约 0.000991</td>
+  <td style="text-align:right">约 0.0000289</td>
+  <td style="text-align:right">约 0.0000295</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">约 0.16482</td>
+  <td style="text-align:right">约 0.000363</td>
+  <td style="text-align:right">约 0.000442</td>
+</tr>
+</tbody>
+</table>
+<p>近扰动时曲线几乎重合，远扰动时分开更明显。两个模型的步长细化差都远小于它们之间的差，结合精确余项可知，这组比较主要显现了用固定斜率替代弯曲清除关系的影响。</p>
+<p>两幅图分别调整纵轴范围，因而表中的共同单位 U 比屏幕缝隙更适合比较误差。若任务要求 12 T 内的预测偏差低于某个给定总量，就可以继续在初始扰动之间取值，并重复步长细化，找出满足该精度要求的范围。这样，“足够靠近平衡”便与所需的预测精度联系起来。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-iv-first-order-systems/">MIT：一阶系统与线性化</a>进一步讨论线性近似和局部稳定性。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/03-04-多变量变化与局部线性化/read/1/">← 3.4.1 偏导、梯度与雅可比矩阵</a><a href="/parts/03-多变量相互作用/综合练习/read/1/">篇末综合 二室交换、观测与局部近似 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

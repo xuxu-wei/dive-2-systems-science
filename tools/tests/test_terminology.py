@@ -30,6 +30,10 @@ from terminology import annotate_text, check_text, TerminologyError
     ('系统性重采样', '系统性重采样（systematic resampling）'),
     ('海森矩阵', '海森矩阵（Hessian matrix）'),
     ('收支残差', '收支残差（mass-balance residual）'),
+    ('满秩', '满秩（full rank）'),
+    ('奇异矩阵', '奇异矩阵（singular matrix）'),
+    ('动态模态', '动态模态（dynamic mode）'),
+    ('上三角矩阵', '上三角矩阵（upper triangular matrix）'),
     ('自然指数函数', '自然指数函数（natural exponential function）'),
     ('不定积分与定积分', '不定积分（indefinite integral）与定积分（definite integral）'),
 ])

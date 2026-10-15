@@ -2072,5 +2072,25 @@
     "zh": "不定积分",
     "en": "indefinite integral",
     "scope": "part02"
+  },
+  {
+    "zh": "满秩",
+    "en": "full rank",
+    "scope": "part03"
+  },
+  {
+    "zh": "奇异矩阵",
+    "en": "singular matrix",
+    "scope": "part03"
+  },
+  {
+    "zh": "动态模态",
+    "en": "dynamic mode",
+    "scope": "part03"
+  },
+  {
+    "zh": "上三角矩阵",
+    "en": "upper triangular matrix",
+    "scope": "part03"
   }
 ]

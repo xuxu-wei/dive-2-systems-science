@@ -2426,7 +2426,7 @@
       "chapters": [
         {
           "id": "3.1",
-          "title": "从多个室进入线性代数",
+          "title": "两室收支与线性代数",
           "url": "/chapters/03-01-从多个室进入线性代数/",
           "goals": "为血液与组织分别写收支，说明向量顺序与矩阵行列；用共同变化、重新分配和重复方程理解投影与平衡。",
           "prerequisites": "2.4 的收支计算、导数与一阶微分方程；会用 Python 列表表达多项数值。",
@@ -2446,117 +2446,360 @@
               "outcome": "从血液与组织的逐项收支写出向量和矩阵，逐行算变化率，再用列和核对内部转移。",
               "number": "3.1.1",
               "visualization": null,
+              "reading": "lessons/03-多变量相互作用/01-从多个室进入线性代数/01-两室交换与矩阵收支.md",
               "questions": [
                 {
                   "id": "p03-exchange-columns",
                   "slug": "p03-exchange-columns",
                   "title": "交换发生在哪一列",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/1/#internal-exchange-and-conservation",
+                  "concept_title": "内部交换抵消与总量守恒",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-exchange-columns"
                 },
                 {
                   "id": "p03-exchange-balance",
                   "slug": "p03-exchange-balance",
                   "title": "把两室收支写成矩阵",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/1/#matrix-rows-and-columns",
+                  "concept_title": "矩阵的行列与线性作用",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-exchange-balance"
                 },
                 {
                   "id": "p03-amount-concentration",
                   "slug": "p03-amount-concentration",
                   "title": "改用浓度时遗漏了什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/1/#concentration-and-volume",
+                  "concept_title": "浓度坐标与容积换算",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-amount-concentration"
                 },
                 {
                   "id": "p03-third-room",
                   "slug": "p03-third-room",
                   "title": "增加第三室后怎样检查守恒",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/1/#internal-exchange-and-conservation",
+                  "concept_title": "内部交换抵消与总量守恒",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-third-room"
                 }
               ],
               "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-exchange-columns",
               "notebook_url": "/notebook/?id=P03-C01-S01",
-              "url": "/notebook/?id=P03-C01-S01"
+              "reading_url": "/chapters/03-01-从多个室进入线性代数/read/1/",
+              "concepts": [
+                {
+                  "id": "two-compartment-balances",
+                  "title": "两室转移与逐室收支",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C01-S01:two-compartment-balances",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/1/#two-compartment-balances"
+                },
+                {
+                  "id": "state-vector-and-components",
+                  "title": "向量、分量与同步更新",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C01-S01:state-vector-and-components",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/1/#state-vector-and-components"
+                },
+                {
+                  "id": "matrix-rows-and-columns",
+                  "title": "矩阵的行列与线性作用",
+                  "question_ids": [
+                    "p03-exchange-balance"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S01:matrix-rows-and-columns",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/1/#matrix-rows-and-columns"
+                },
+                {
+                  "id": "internal-exchange-and-conservation",
+                  "title": "内部交换抵消与总量守恒",
+                  "question_ids": [
+                    "p03-exchange-columns",
+                    "p03-third-room"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S01:internal-exchange-and-conservation",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/1/#internal-exchange-and-conservation"
+                },
+                {
+                  "id": "concentration-and-volume",
+                  "title": "浓度坐标与容积换算",
+                  "question_ids": [
+                    "p03-amount-concentration"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S01:concentration-and-volume",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/1/#concentration-and-volume"
+                },
+                {
+                  "id": "trajectories-and-total-ledger",
+                  "title": "两室轨迹与逐步总账",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C01-S01:trajectories-and-total-ledger",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/1/#trajectories-and-total-ledger"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C01-S01:references",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/1/#references"
+                }
+              ],
+              "url": "/chapters/03-01-从多个室进入线性代数/read/1/"
             },
             {
               "id": "P03-C01-S02",
               "chapter_id": "3.1",
               "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.ipynb",
-              "title": "内积范数与投影",
+              "title": "内积、范数与投影",
               "outcome": "把两室的变化分成共同增加与重新分配，用内积和配方解释投影，并检查单位与尺度。",
               "number": "3.1.2",
               "visualization": null,
+              "reading": "lessons/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.md",
               "questions": [
                 {
                   "id": "p03-projection",
                   "slug": "p03-projection",
                   "title": "沿指定方向分解变化",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/2/#orthogonal-projection",
+                  "concept_title": "正交投影的计算",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-projection"
                 },
                 {
                   "id": "p03-norm-units",
                   "slug": "p03-norm-units",
                   "title": "比较两个状态分量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/2/#units-and-reference-scales",
+                  "concept_title": "距离中的单位与参考尺度",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-norm-units"
                 },
                 {
                   "id": "p03-projection-meaning",
                   "slug": "p03-projection-meaning",
                   "title": "投影误差为什么垂直",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/2/#nearest-approximation",
+                  "concept_title": "最近近似与平方误差",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-projection-meaning"
                 },
                 {
                   "id": "p03-matrix-product",
                   "slug": "p03-matrix-product",
                   "title": "计算矩阵作用",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/2/#inner-product-norm-orthogonality",
+                  "concept_title": "内积、范数与正交",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-matrix-product"
                 }
               ],
               "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-projection",
               "notebook_url": "/notebook/?id=P03-C01-S02",
-              "url": "/notebook/?id=P03-C01-S02"
+              "reading_url": "/chapters/03-01-从多个室进入线性代数/read/2/",
+              "concepts": [
+                {
+                  "id": "common-and-redistributed-changes",
+                  "title": "共同变化与分配差异",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C01-S02:common-and-redistributed-changes",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/2/#common-and-redistributed-changes"
+                },
+                {
+                  "id": "inner-product-norm-orthogonality",
+                  "title": "内积、范数与正交",
+                  "question_ids": [
+                    "p03-matrix-product"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S02:inner-product-norm-orthogonality",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/2/#inner-product-norm-orthogonality"
+                },
+                {
+                  "id": "orthogonal-projection",
+                  "title": "正交投影的计算",
+                  "question_ids": [
+                    "p03-projection"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S02:orthogonal-projection",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/2/#orthogonal-projection"
+                },
+                {
+                  "id": "nearest-approximation",
+                  "title": "最近近似与平方误差",
+                  "question_ids": [
+                    "p03-projection-meaning"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S02:nearest-approximation",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/2/#nearest-approximation"
+                },
+                {
+                  "id": "independence-and-basis",
+                  "title": "线性无关与基",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C01-S02:independence-and-basis",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/2/#independence-and-basis"
+                },
+                {
+                  "id": "units-and-reference-scales",
+                  "title": "距离中的单位与参考尺度",
+                  "question_ids": [
+                    "p03-norm-units"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S02:units-and-reference-scales",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/2/#units-and-reference-scales"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C01-S02:references",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/2/#references"
+                }
+              ],
+              "url": "/chapters/03-01-从多个室进入线性代数/read/2/"
             },
             {
               "id": "P03-C01-S03",
               "chapter_id": "3.1",
               "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.ipynb",
-              "title": "平衡方程秩与唯一性",
+              "title": "平衡方程、秩与唯一性",
               "outcome": "从重复的收支方程引出秩，用消元求平衡，说明何时还需要给定两室总量之和。",
               "number": "3.1.3",
               "visualization": null,
+              "reading": "lessons/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.md",
               "questions": [
                 {
                   "id": "p03-open-equilibrium",
                   "slug": "p03-open-equilibrium",
                   "title": "求开放两室的平衡",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/3/#elimination-and-open-equilibrium",
+                  "concept_title": "消元与开放两室的平衡",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-open-equilibrium"
                 },
                 {
                   "id": "p03-singular-equilibrium",
                   "slug": "p03-singular-equilibrium",
                   "title": "确定两室平衡",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/3/#equilibrium-and-conserved-total",
+                  "concept_title": "交换平衡与守恒约束",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-singular-equilibrium"
                 },
                 {
                   "id": "p03-rank-meaning",
                   "slug": "p03-rank-meaning",
                   "title": "秩与解的个数",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/3/#singular-systems-and-solutions",
+                  "concept_title": "奇异矩阵与解的个数",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-rank-meaning"
                 },
                 {
                   "id": "p03-no-clearance-input",
                   "slug": "p03-no-clearance-input",
                   "title": "持续输入下的定常量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/3/#singular-systems-and-solutions",
+                  "concept_title": "奇异矩阵与解的个数",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-no-clearance-input"
                 },
                 {
                   "id": "p03-equilibrium-limit",
                   "slug": "p03-equilibrium-limit",
                   "title": "计算出平衡就算完成了吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-01-从多个室进入线性代数/read/3/#equilibrium-and-nearby-motion",
+                  "concept_title": "平衡位置与偏离后的运动",
+                  "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-equilibrium-limit"
                 }
               ],
               "practice_url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-open-equilibrium",
               "notebook_url": "/notebook/?id=P03-C01-S03",
-              "url": "/notebook/?id=P03-C01-S03"
+              "reading_url": "/chapters/03-01-从多个室进入线性代数/read/3/",
+              "concepts": [
+                {
+                  "id": "equilibrium-and-conserved-total",
+                  "title": "交换平衡与守恒约束",
+                  "question_ids": [
+                    "p03-singular-equilibrium"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S03:equilibrium-and-conserved-total",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/3/#equilibrium-and-conserved-total"
+                },
+                {
+                  "id": "elimination-and-open-equilibrium",
+                  "title": "消元与开放两室的平衡",
+                  "question_ids": [
+                    "p03-open-equilibrium"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S03:elimination-and-open-equilibrium",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/3/#elimination-and-open-equilibrium"
+                },
+                {
+                  "id": "rank-and-independent-equations",
+                  "title": "矩阵的秩与独立方程",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C01-S03:rank-and-independent-equations",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/3/#rank-and-independent-equations"
+                },
+                {
+                  "id": "determinant-and-inverse",
+                  "title": "行列式与逆矩阵",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C01-S03:determinant-and-inverse",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/3/#determinant-and-inverse"
+                },
+                {
+                  "id": "singular-systems-and-solutions",
+                  "title": "奇异矩阵与解的个数",
+                  "question_ids": [
+                    "p03-rank-meaning",
+                    "p03-no-clearance-input"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S03:singular-systems-and-solutions",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/3/#singular-systems-and-solutions"
+                },
+                {
+                  "id": "equilibrium-and-nearby-motion",
+                  "title": "平衡位置与偏离后的运动",
+                  "question_ids": [
+                    "p03-equilibrium-limit"
+                  ],
+                  "explore": false,
+                  "key": "P03-C01-S03:equilibrium-and-nearby-motion",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/3/#equilibrium-and-nearby-motion"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C01-S03:references",
+                  "url": "/chapters/03-01-从多个室进入线性代数/read/3/#references"
+                }
+              ],
+              "url": "/chapters/03-01-从多个室进入线性代数/read/3/"
             }
           ],
           "visualization": null
@@ -2579,83 +2822,249 @@
               "id": "P03-C02-S01",
               "chapter_id": "3.2",
               "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.ipynb",
-              "title": "状态输入与观测映射",
+              "title": "状态、输入与观测映射",
               "outcome": "把变化率和读数分别写成矩阵关系，核对各位置、形状与单位，解释总量不变时室内仍能变化。",
               "number": "3.2.1",
               "visualization": "web/multivariable/index.html",
+              "reading": "lessons/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.md",
               "questions": [
                 {
                   "id": "p03-state-output",
                   "slug": "p03-state-output",
                   "title": "同一状态，不同测量",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/1/#rates-and-output-calculation",
+                  "concept_title": "变化率与读数的逐项计算",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-state-output"
                 },
                 {
                   "id": "p03-observation-not-state",
                   "slug": "p03-observation-not-state",
                   "title": "一条测量能代表全部状态吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/1/#state-information-and-observation",
+                  "concept_title": "状态信息与测量选择",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-observation-not-state"
                 },
                 {
                   "id": "p03-dimensions",
                   "slug": "p03-dimensions",
                   "title": "状态空间中的维数",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/1/#matrix-shapes-and-units",
+                  "concept_title": "矩阵形状与量纲",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-dimensions"
                 },
                 {
                   "id": "p03-output-units",
                   "slug": "p03-output-units",
                   "title": "写出浓度测量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/1/#concentration-observation",
+                  "concept_title": "浓度观测与状态单位",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-output-units"
                 }
               ],
               "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-state-output",
               "notebook_url": "/notebook/?id=P03-C02-S01",
-              "url": "/notebook/?id=P03-C02-S01"
+              "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/1/",
+              "concepts": [
+                {
+                  "id": "state-information-and-observation",
+                  "title": "状态信息与测量选择",
+                  "question_ids": [
+                    "p03-observation-not-state"
+                  ],
+                  "explore": false,
+                  "key": "P03-C02-S01:state-information-and-observation",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/1/#state-information-and-observation"
+                },
+                {
+                  "id": "linear-state-space",
+                  "title": "线性状态空间表示",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C02-S01:linear-state-space",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/1/#linear-state-space"
+                },
+                {
+                  "id": "matrix-shapes-and-units",
+                  "title": "矩阵形状与量纲",
+                  "question_ids": [
+                    "p03-dimensions"
+                  ],
+                  "explore": false,
+                  "key": "P03-C02-S01:matrix-shapes-and-units",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/1/#matrix-shapes-and-units"
+                },
+                {
+                  "id": "rates-and-output-calculation",
+                  "title": "变化率与读数的逐项计算",
+                  "question_ids": [
+                    "p03-state-output"
+                  ],
+                  "explore": false,
+                  "key": "P03-C02-S01:rates-and-output-calculation",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/1/#rates-and-output-calculation"
+                },
+                {
+                  "id": "concentration-observation",
+                  "title": "浓度观测与状态单位",
+                  "question_ids": [
+                    "p03-output-units"
+                  ],
+                  "explore": false,
+                  "key": "P03-C02-S01:concentration-observation",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/1/#concentration-observation"
+                },
+                {
+                  "id": "one-trajectory-two-observations",
+                  "title": "同一轨迹的两种观测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C02-S01:one-trajectory-two-observations",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/1/#one-trajectory-two-observations"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C02-S01:references",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/1/#references"
+                }
+              ],
+              "url": "/chapters/03-02-线性状态空间与动态模态/read/1/"
             },
             {
               "id": "P03-C02-S02",
               "chapter_id": "3.2",
               "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.ipynb",
-              "title": "特征值模态与矩阵传播",
+              "title": "特征值、模态与矩阵传播",
               "outcome": "用两室的和、差找出两种指数变化，区分初值中的贡献与观测中的抵消，再连接矩阵传播。",
               "number": "3.2.2",
               "visualization": "web/multivariable/index.html",
+              "reading": "lessons/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.md",
               "questions": [
                 {
                   "id": "p03-symmetric-modes",
                   "slug": "p03-symmetric-modes",
                   "title": "分解共同衰减与室间差异",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/2/#initial-decomposition-and-reconstruction",
+                  "concept_title": "初始分解与两室轨迹重建",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-symmetric-modes"
                 },
                 {
                   "id": "p03-unexcited-mode",
                   "slug": "p03-unexcited-mode",
                   "title": "分解一个对称初值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/2/#initial-decomposition-and-reconstruction",
+                  "concept_title": "初始分解与两室轨迹重建",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-unexcited-mode"
                 },
                 {
                   "id": "p03-invisible-mode",
                   "slug": "p03-invisible-mode",
                   "title": "比较状态与总量观测",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/2/#modal-contribution-and-observation",
+                  "concept_title": "模态贡献与观测抵消",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-invisible-mode"
                 },
                 {
                   "id": "p03-matrix-exponential",
                   "slug": "p03-matrix-exponential",
                   "title": "连续传播与逐元素指数",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/2/#matrix-powers-and-exponential",
+                  "concept_title": "离散矩阵幂与连续矩阵指数",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-matrix-exponential"
                 },
                 {
                   "id": "p03-modal-time",
                   "slug": "p03-modal-time",
                   "title": "比较两个衰减模态",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/2/#eigenvectors-eigenvalues-modes",
+                  "concept_title": "特征向量、特征值与动态模态",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-modal-time"
                 }
               ],
               "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-symmetric-modes",
               "notebook_url": "/notebook/?id=P03-C02-S02",
-              "url": "/notebook/?id=P03-C02-S02"
+              "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/2/",
+              "concepts": [
+                {
+                  "id": "symmetric-exchange-sum-and-difference",
+                  "title": "对称交换中的和差方程",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C02-S02:symmetric-exchange-sum-and-difference",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/2/#symmetric-exchange-sum-and-difference"
+                },
+                {
+                  "id": "eigenvectors-eigenvalues-modes",
+                  "title": "特征向量、特征值与动态模态",
+                  "question_ids": [
+                    "p03-modal-time"
+                  ],
+                  "explore": false,
+                  "key": "P03-C02-S02:eigenvectors-eigenvalues-modes",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/2/#eigenvectors-eigenvalues-modes"
+                },
+                {
+                  "id": "initial-decomposition-and-reconstruction",
+                  "title": "初始分解与两室轨迹重建",
+                  "question_ids": [
+                    "p03-symmetric-modes",
+                    "p03-unexcited-mode"
+                  ],
+                  "explore": true,
+                  "key": "P03-C02-S02:initial-decomposition-and-reconstruction",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/2/#initial-decomposition-and-reconstruction",
+                  "explore_url": "/chapters/03-02-线性状态空间与动态模态/explore/?concept=P03-C02-S02%3Ainitial-decomposition-and-reconstruction"
+                },
+                {
+                  "id": "modal-contribution-and-observation",
+                  "title": "模态贡献与观测抵消",
+                  "question_ids": [
+                    "p03-invisible-mode"
+                  ],
+                  "explore": true,
+                  "key": "P03-C02-S02:modal-contribution-and-observation",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/2/#modal-contribution-and-observation",
+                  "explore_url": "/chapters/03-02-线性状态空间与动态模态/explore/?concept=P03-C02-S02%3Amodal-contribution-and-observation"
+                },
+                {
+                  "id": "characteristic-equation-and-diagonalization",
+                  "title": "特征方程与可对角化条件",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C02-S02:characteristic-equation-and-diagonalization",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/2/#characteristic-equation-and-diagonalization"
+                },
+                {
+                  "id": "matrix-powers-and-exponential",
+                  "title": "离散矩阵幂与连续矩阵指数",
+                  "question_ids": [
+                    "p03-matrix-exponential"
+                  ],
+                  "explore": false,
+                  "key": "P03-C02-S02:matrix-powers-and-exponential",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/2/#matrix-powers-and-exponential"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C02-S02:references",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/2/#references"
+                }
+              ],
+              "url": "/chapters/03-02-线性状态空间与动态模态/read/2/"
             },
             {
               "id": "P03-C02-S03",
@@ -2665,41 +3074,125 @@
               "outcome": "把二维偏差合写成复数，解释衰减与旋转；特征向量不足时，沿原方程依次求解。",
               "number": "3.2.3",
               "visualization": "web/multivariable/index.html",
+              "reading": "lessons/03-多变量相互作用/02-线性状态空间与动态模态/03-复数模态与阻尼旋转.md",
               "questions": [
                 {
                   "id": "p03-damped",
                   "slug": "p03-damped",
                   "title": "把复共轭模态还原成实轨迹",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/3/#damped-rotation-real-solution",
+                  "concept_title": "阻尼旋转的实数方程与解",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-damped"
                 },
                 {
                   "id": "p03-jordan",
                   "slug": "p03-jordan",
                   "title": "特征向量不够时仍可求解",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/3/#defective-matrix-and-sequential-solution",
+                  "concept_title": "特征向量不足与上三角系统",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-jordan"
                 },
                 {
                   "id": "p03-complex-meaning",
                   "slug": "p03-complex-meaning",
                   "title": "解释平面状态的复数表示",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/3/#damped-rotation-real-solution",
+                  "concept_title": "阻尼旋转的实数方程与解",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-complex-meaning"
                 },
                 {
                   "id": "p03-exchange-no-oscillation",
                   "slug": "p03-exchange-no-oscillation",
                   "title": "分析封闭双向交换",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/3/#conjugate-eigenvalues-and-exchange",
+                  "concept_title": "共轭特征值与两室交换的区别",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-exchange-no-oscillation"
                 },
                 {
                   "id": "p03-defective-limit",
                   "slug": "p03-defective-limit",
                   "title": "缺少独立特征向量时",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/3/#defective-matrix-and-sequential-solution",
+                  "concept_title": "特征向量不足与上三角系统",
+                  "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-defective-limit"
                 }
               ],
               "practice_url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-damped",
               "notebook_url": "/notebook/?id=P03-C02-S03",
-              "url": "/notebook/?id=P03-C02-S03"
+              "reading_url": "/chapters/03-02-线性状态空间与动态模态/read/3/",
+              "concepts": [
+                {
+                  "id": "deviation-coordinates-and-rotation",
+                  "title": "偏差坐标与平面旋转",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C02-S03:deviation-coordinates-and-rotation",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/3/#deviation-coordinates-and-rotation"
+                },
+                {
+                  "id": "unit-circle-and-trigonometry",
+                  "title": "单位圆、弧度与正弦余弦",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C02-S03:unit-circle-and-trigonometry",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/3/#unit-circle-and-trigonometry"
+                },
+                {
+                  "id": "complex-numbers-and-euler-formula",
+                  "title": "复数、共轭与欧拉公式",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C02-S03:complex-numbers-and-euler-formula",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/3/#complex-numbers-and-euler-formula"
+                },
+                {
+                  "id": "damped-rotation-real-solution",
+                  "title": "阻尼旋转的实数方程与解",
+                  "question_ids": [
+                    "p03-damped",
+                    "p03-complex-meaning"
+                  ],
+                  "explore": true,
+                  "key": "P03-C02-S03:damped-rotation-real-solution",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/3/#damped-rotation-real-solution",
+                  "explore_url": "/chapters/03-02-线性状态空间与动态模态/explore/?concept=P03-C02-S03%3Adamped-rotation-real-solution"
+                },
+                {
+                  "id": "conjugate-eigenvalues-and-exchange",
+                  "title": "共轭特征值与两室交换的区别",
+                  "question_ids": [
+                    "p03-exchange-no-oscillation"
+                  ],
+                  "explore": false,
+                  "key": "P03-C02-S03:conjugate-eigenvalues-and-exchange",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/3/#conjugate-eigenvalues-and-exchange"
+                },
+                {
+                  "id": "defective-matrix-and-sequential-solution",
+                  "title": "特征向量不足与上三角系统",
+                  "question_ids": [
+                    "p03-jordan",
+                    "p03-defective-limit"
+                  ],
+                  "explore": false,
+                  "key": "P03-C02-S03:defective-matrix-and-sequential-solution",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/3/#defective-matrix-and-sequential-solution"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C02-S03:references",
+                  "url": "/chapters/03-02-线性状态空间与动态模态/read/3/#references"
+                }
+              ],
+              "url": "/chapters/03-02-线性状态空间与动态模态/read/3/"
             }
           ],
           "visualization": "web/multivariable/index.html"
@@ -2722,77 +3215,229 @@
               "id": "P03-C03-S01",
               "chapter_id": "3.3",
               "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.ipynb",
-              "title": "向量场相轨迹与时间",
+              "title": "向量场、相轨迹与时间",
               "outcome": "从一个状态点的变化率画出运动方向，比较同一路径上不同速度，辨认图中保留的时间信息。",
               "number": "3.3.1",
               "visualization": "web/multivariable/index.html",
+              "reading": "lessons/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.md",
               "questions": [
                 {
                   "id": "p03-scaled-field",
                   "slug": "p03-scaled-field",
                   "title": "同一条路径可以走得更快",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-03-耦合、相平面与平衡/read/1/#positive-rate-time-scaling",
+                  "concept_title": "正倍率与时间重参数化",
+                  "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-scaled-field"
                 },
                 {
                   "id": "p03-phase-time",
                   "slug": "p03-phase-time",
                   "title": "一张相图省略了什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-03-耦合、相平面与平衡/read/1/#positive-rate-time-scaling",
+                  "concept_title": "正倍率与时间重参数化",
+                  "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-phase-time"
                 },
                 {
                   "id": "p03-normalized-arrows",
                   "slug": "p03-normalized-arrows",
                   "title": "读取归一化方向场",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-03-耦合、相平面与平衡/read/1/#direction-arrows-time-marks",
+                  "concept_title": "方向箭头与等时间标记",
+                  "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-normalized-arrows"
                 },
                 {
                   "id": "p03-equilibrium-direction",
                   "slug": "p03-equilibrium-direction",
                   "title": "读取二维变化率",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-03-耦合、相平面与平衡/read/1/#autonomous-vector-field",
+                  "concept_title": "自治系统与向量场",
+                  "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-equilibrium-direction"
                 }
               ],
               "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-scaled-field",
               "notebook_url": "/notebook/?id=P03-C03-S01",
-              "url": "/notebook/?id=P03-C03-S01"
+              "reading_url": "/chapters/03-03-耦合、相平面与平衡/read/1/",
+              "concepts": [
+                {
+                  "id": "state-phase-plane",
+                  "title": "二维状态与相平面",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C03-S01:state-phase-plane",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/1/#state-phase-plane"
+                },
+                {
+                  "id": "autonomous-vector-field",
+                  "title": "自治系统与向量场",
+                  "question_ids": [
+                    "p03-equilibrium-direction"
+                  ],
+                  "explore": false,
+                  "key": "P03-C03-S01:autonomous-vector-field",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/1/#autonomous-vector-field"
+                },
+                {
+                  "id": "trajectory-and-time",
+                  "title": "相轨迹与时间曲线",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C03-S01:trajectory-and-time",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/1/#trajectory-and-time"
+                },
+                {
+                  "id": "positive-rate-time-scaling",
+                  "title": "正倍率与时间重参数化",
+                  "question_ids": [
+                    "p03-scaled-field",
+                    "p03-phase-time"
+                  ],
+                  "explore": false,
+                  "key": "P03-C03-S01:positive-rate-time-scaling",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/1/#positive-rate-time-scaling"
+                },
+                {
+                  "id": "direction-arrows-time-marks",
+                  "title": "方向箭头与等时间标记",
+                  "question_ids": [
+                    "p03-normalized-arrows"
+                  ],
+                  "explore": true,
+                  "key": "P03-C03-S01:direction-arrows-time-marks",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/1/#direction-arrows-time-marks",
+                  "explore_url": "/chapters/03-03-耦合、相平面与平衡/explore/?concept=P03-C03-S01%3Adirection-arrows-time-marks"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C03-S01:references",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/1/#references"
+                }
+              ],
+              "url": "/chapters/03-03-耦合、相平面与平衡/read/1/"
             },
             {
               "id": "P03-C03-S02",
               "chapter_id": "3.3",
               "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.ipynb",
-              "title": "通道改变与平衡集合",
+              "title": "交换通道与平衡集合",
               "outcome": "依次关闭回流与全部交换，结合两室总量求长期分配，再检查坐标比例怎样改变图形。",
               "number": "3.3.2",
               "visualization": "web/multivariable/index.html",
+              "reading": "lessons/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.md",
               "questions": [
                 {
                   "id": "p03-closed-state",
                   "slug": "p03-closed-state",
                   "title": "关闭通道后物质流向哪里",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-03-耦合、相平面与平衡/read/2/#analytical-paths-limits",
+                  "concept_title": "解析轨迹与长期极限",
+                  "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-closed-state"
                 },
                 {
                   "id": "p03-channel-off",
                   "slug": "p03-channel-off",
                   "title": "只关闭回流通道",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-03-耦合、相平面与平衡/read/2/#one-way-disconnected-equilibria",
+                  "concept_title": "单向交换与全部断开",
+                  "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-channel-off"
                 },
                 {
                   "id": "p03-axis-scale",
                   "slug": "p03-axis-scale",
                   "title": "拉伸坐标会改变系统吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-03-耦合、相平面与平衡/read/2/#axis-scales-coordinate-change",
+                  "concept_title": "绘图比例与坐标变换",
+                  "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-axis-scale"
                 },
                 {
                   "id": "p03-all-channels-off",
                   "slug": "p03-all-channels-off",
                   "title": "关闭交换通道",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-03-耦合、相平面与平衡/read/2/#one-way-disconnected-equilibria",
+                  "concept_title": "单向交换与全部断开",
+                  "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-all-channels-off"
                 }
               ],
               "practice_url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-closed-state",
               "notebook_url": "/notebook/?id=P03-C03-S02",
-              "url": "/notebook/?id=P03-C03-S02"
+              "reading_url": "/chapters/03-03-耦合、相平面与平衡/read/2/",
+              "concepts": [
+                {
+                  "id": "two-way-initial-rate",
+                  "title": "双向交换与初始变化率",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C03-S02:two-way-initial-rate",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/2/#two-way-initial-rate"
+                },
+                {
+                  "id": "conserved-total-equilibrium",
+                  "title": "总量约束与平衡分配",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C03-S02:conserved-total-equilibrium",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/2/#conserved-total-equilibrium"
+                },
+                {
+                  "id": "one-way-disconnected-equilibria",
+                  "title": "单向交换与全部断开",
+                  "question_ids": [
+                    "p03-channel-off",
+                    "p03-all-channels-off"
+                  ],
+                  "explore": false,
+                  "key": "P03-C03-S02:one-way-disconnected-equilibria",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/2/#one-way-disconnected-equilibria"
+                },
+                {
+                  "id": "analytical-paths-limits",
+                  "title": "解析轨迹与长期极限",
+                  "question_ids": [
+                    "p03-closed-state"
+                  ],
+                  "explore": true,
+                  "key": "P03-C03-S02:analytical-paths-limits",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/2/#analytical-paths-limits",
+                  "explore_url": "/chapters/03-03-耦合、相平面与平衡/explore/?concept=P03-C03-S02%3Aanalytical-paths-limits"
+                },
+                {
+                  "id": "conservation-equilibrium-family",
+                  "title": "总量模态与分配模态",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C03-S02:conservation-equilibrium-family",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/2/#conservation-equilibrium-family"
+                },
+                {
+                  "id": "axis-scales-coordinate-change",
+                  "title": "绘图比例与坐标变换",
+                  "question_ids": [
+                    "p03-axis-scale"
+                  ],
+                  "explore": false,
+                  "key": "P03-C03-S02:axis-scales-coordinate-change",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/2/#axis-scales-coordinate-change"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C03-S02:references",
+                  "url": "/chapters/03-03-耦合、相平面与平衡/read/2/#references"
+                }
+              ],
+              "url": "/chapters/03-03-耦合、相平面与平衡/read/2/"
             }
           ],
           "visualization": "web/multivariable/index.html"
@@ -2815,89 +3460,274 @@
               "id": "P03-C04-S01",
               "chapter_id": "3.4",
               "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.ipynb",
-              "title": "偏导梯度与局部变化",
+              "title": "偏导、梯度与雅可比矩阵",
               "outcome": "每次只改变一个总量分量，推导偏导与雅可比矩阵，区分基点变化率和偏移造成的变化。",
               "number": "3.4.1",
               "visualization": "web/multivariable/index.html",
+              "reading": "lessons/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.md",
               "questions": [
                 {
                   "id": "p03-jacobian",
                   "slug": "p03-jacobian",
                   "title": "逐列检查局部变化率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/1/#central-difference-columns",
+                  "concept_title": "中心差分与逐列核对",
+                  "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-jacobian"
                 },
                 {
                   "id": "p03-chain-rate",
                   "slug": "p03-chain-rate",
                   "title": "沿轨迹计算平方距离的变化",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/1/#chain-rule-along-trajectory",
+                  "concept_title": "沿轨迹的多变量链式法则",
+                  "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-chain-rate"
                 },
                 {
                   "id": "p03-partial-meaning",
                   "slug": "p03-partial-meaning",
                   "title": "计算一个分量的偏导",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/1/#partial-derivative-slope",
+                  "concept_title": "偏导数与清除曲线的斜率",
+                  "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-partial-meaning"
                 },
                 {
                   "id": "p03-affine-approximation",
                   "slug": "p03-affine-approximation",
                   "title": "任意点附近的一阶近似",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/1/#taylor-general-basepoint",
+                  "concept_title": "一阶泰勒近似与一般基点",
+                  "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-affine-approximation"
                 },
                 {
                   "id": "p03-difference-proof",
                   "slug": "p03-difference-proof",
                   "title": "解释导数核对结果",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/1/#central-difference-columns",
+                  "concept_title": "中心差分与逐列核对",
+                  "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-difference-proof"
                 }
               ],
               "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-jacobian",
               "notebook_url": "/notebook/?id=P03-C04-S01",
-              "url": "/notebook/?id=P03-C04-S01"
+              "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/1/",
+              "concepts": [
+                {
+                  "id": "saturating-removal-balance",
+                  "title": "饱和清除与非线性收支",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C04-S01:saturating-removal-balance",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/1/#saturating-removal-balance"
+                },
+                {
+                  "id": "partial-derivative-slope",
+                  "title": "偏导数与清除曲线的斜率",
+                  "question_ids": [
+                    "p03-partial-meaning"
+                  ],
+                  "explore": false,
+                  "key": "P03-C04-S01:partial-derivative-slope",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/1/#partial-derivative-slope"
+                },
+                {
+                  "id": "gradient-small-increments",
+                  "title": "梯度与多个小增量",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C04-S01:gradient-small-increments",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/1/#gradient-small-increments"
+                },
+                {
+                  "id": "chain-rule-along-trajectory",
+                  "title": "沿轨迹的多变量链式法则",
+                  "question_ids": [
+                    "p03-chain-rate"
+                  ],
+                  "explore": false,
+                  "key": "P03-C04-S01:chain-rule-along-trajectory",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/1/#chain-rule-along-trajectory"
+                },
+                {
+                  "id": "jacobian-rows-columns",
+                  "title": "雅可比矩阵的行、列与单位",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C04-S01:jacobian-rows-columns",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/1/#jacobian-rows-columns"
+                },
+                {
+                  "id": "taylor-general-basepoint",
+                  "title": "一阶泰勒近似与一般基点",
+                  "question_ids": [
+                    "p03-affine-approximation"
+                  ],
+                  "explore": false,
+                  "key": "P03-C04-S01:taylor-general-basepoint",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/1/#taylor-general-basepoint"
+                },
+                {
+                  "id": "central-difference-columns",
+                  "title": "中心差分与逐列核对",
+                  "question_ids": [
+                    "p03-jacobian",
+                    "p03-difference-proof"
+                  ],
+                  "explore": false,
+                  "key": "P03-C04-S01:central-difference-columns",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/1/#central-difference-columns"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C04-S01:references",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/1/#references"
+                }
+              ],
+              "url": "/chapters/03-04-多变量变化与局部线性化/read/1/"
             },
             {
               "id": "P03-C04-S02",
               "chapter_id": "3.4",
               "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.ipynb",
-              "title": "线性化能够走多远",
+              "title": "平衡附近的线性化与误差",
               "outcome": "从同一起点比较原模型与平衡附近的近似，用扰动幅度和步长细化解释两种误差。",
               "number": "3.4.2",
               "visualization": "web/multivariable/index.html",
+              "reading": "lessons/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.md",
               "questions": [
                 {
                   "id": "p03-local-trajectories",
                   "slug": "p03-local-trajectories",
                   "title": "比较原模型与平衡附近的近似",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/2/#trajectory-error-grid-refinement",
+                  "concept_title": "轨迹差与步长细化",
+                  "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-trajectories"
                 },
                 {
                   "id": "p03-deviation-variable",
                   "slug": "p03-deviation-variable",
                   "title": "用偏差推进局部模型",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/2/#equilibrium-deviation-linearization",
+                  "concept_title": "偏差方程与局部线性模型",
+                  "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-deviation-variable"
                 },
                 {
                   "id": "p03-local-error-order",
                   "slug": "p03-local-error-order",
                   "title": "小扰动误差如何缩小",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/2/#exact-saturating-remainder",
+                  "concept_title": "清除曲率与精确余项",
+                  "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-error-order"
                 },
                 {
                   "id": "p03-model-numerical-error",
                   "slug": "p03-model-numerical-error",
                   "title": "比较原模型与局部模型",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/2/#trajectory-error-grid-refinement",
+                  "concept_title": "轨迹差与步长细化",
+                  "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-model-numerical-error"
                 },
                 {
                   "id": "p03-local-stability",
                   "slug": "p03-local-stability",
                   "title": "负特征值的结论到哪里为止",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/2/#local-asymptotic-stability",
+                  "concept_title": "动态模态与局部渐近稳定",
+                  "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-stability"
                 }
               ],
               "practice_url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-trajectories",
               "notebook_url": "/notebook/?id=P03-C04-S02",
-              "url": "/notebook/?id=P03-C04-S02"
+              "reading_url": "/chapters/03-04-多变量变化与局部线性化/read/2/",
+              "concepts": [
+                {
+                  "id": "saturating-model-equilibrium",
+                  "title": "饱和清除模型的平衡",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C04-S02:saturating-model-equilibrium",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/2/#saturating-model-equilibrium"
+                },
+                {
+                  "id": "equilibrium-deviation-linearization",
+                  "title": "偏差方程与局部线性模型",
+                  "question_ids": [
+                    "p03-deviation-variable"
+                  ],
+                  "explore": false,
+                  "key": "P03-C04-S02:equilibrium-deviation-linearization",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/2/#equilibrium-deviation-linearization"
+                },
+                {
+                  "id": "local-asymptotic-stability",
+                  "title": "动态模态与局部渐近稳定",
+                  "question_ids": [
+                    "p03-local-stability"
+                  ],
+                  "explore": false,
+                  "key": "P03-C04-S02:local-asymptotic-stability",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/2/#local-asymptotic-stability"
+                },
+                {
+                  "id": "near-far-initial-rates",
+                  "title": "小扰动与大扰动的初始变化率",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P03-C04-S02:near-far-initial-rates",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/2/#near-far-initial-rates",
+                  "explore_url": "/chapters/03-04-多变量变化与局部线性化/explore/?concept=P03-C04-S02%3Anear-far-initial-rates"
+                },
+                {
+                  "id": "exact-saturating-remainder",
+                  "title": "清除曲率与精确余项",
+                  "question_ids": [
+                    "p03-local-error-order"
+                  ],
+                  "explore": false,
+                  "key": "P03-C04-S02:exact-saturating-remainder",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/2/#exact-saturating-remainder"
+                },
+                {
+                  "id": "trajectory-error-grid-refinement",
+                  "title": "轨迹差与步长细化",
+                  "question_ids": [
+                    "p03-local-trajectories",
+                    "p03-model-numerical-error"
+                  ],
+                  "explore": false,
+                  "key": "P03-C04-S02:trajectory-error-grid-refinement",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/2/#trajectory-error-grid-refinement"
+                },
+                {
+                  "id": "near-far-trajectory-comparison",
+                  "title": "近远扰动的轨迹对照",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C04-S02:near-far-trajectory-comparison",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/2/#near-far-trajectory-comparison"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P03-C04-S02:references",
+                  "url": "/chapters/03-04-多变量变化与局部线性化/read/2/#references"
+                }
+              ],
+              "url": "/chapters/03-04-多变量变化与局部线性化/read/2/"
             }
           ],
           "visualization": "web/multivariable/index.html"
@@ -2906,7 +3736,7 @@
       "assessment": {
         "id": "3.summary",
         "assessment": true,
-        "title": "二室交换与局部近似综合实验",
+        "title": "二室交换、观测与局部近似",
         "url": "/parts/03-多变量相互作用/综合练习/",
         "goals": "从两室收支计算平衡分配，比较两种观测，再判断饱和清除的局部近似在给定实验中是否够准确。",
         "prerequisites": "本篇四章的矩阵计算、模态分解、相轨迹与局部近似。",
@@ -2921,7 +3751,7 @@
             "id": "P03-SUMMARY",
             "chapter_id": "3.summary",
             "path": "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb",
-            "title": "二室交换与局部近似综合实验",
+            "title": "二室交换、观测与局部近似",
             "outcome": "在两室交换中连接收支、平衡和观测，再用饱和清除比较局部近似与步长造成的差异。",
             "number": "篇末综合",
             "visualization": null,
@@ -2935,59 +3765,148 @@
                 "让原模型与局部模型从同一起点出发，再各自缩短步长"
               ]
             },
+            "reading": "lessons/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.md",
             "questions": [
               {
                 "id": "p03-cap-units",
                 "slug": "p03-cap-units",
                 "title": "换算两室计数",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/03-多变量相互作用/综合练习/read/1/#balance-equilibrium-concentration",
+                "concept_title": "两室收支、平衡与浓度观测",
+                "practice_url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-units"
               },
               {
                 "id": "p03-cap-signs",
                 "slug": "p03-cap-signs",
                 "title": "交换与外部损失的区别",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/03-多变量相互作用/综合练习/read/1/#balance-equilibrium-concentration",
+                "concept_title": "两室收支、平衡与浓度观测",
+                "practice_url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-signs"
               },
               {
                 "id": "p03-integrated-balance",
                 "slug": "p03-integrated-balance",
                 "title": "用收支、矩阵和观测互相核对",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/03-多变量相互作用/综合练习/read/1/#balance-equilibrium-concentration",
+                "concept_title": "两室收支、平衡与浓度观测",
+                "practice_url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-integrated-balance"
               },
               {
                 "id": "p03-cap-modes",
                 "slug": "p03-cap-modes",
                 "title": "初值与观测共同决定可见模态",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/03-多变量相互作用/综合练习/read/1/#symmetric-modal-contributions",
+                "concept_title": "对称交换与模态的观测贡献",
+                "practice_url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-modes"
               },
               {
                 "id": "p03-cap-phase",
                 "slug": "p03-cap-phase",
                 "title": "连接方向平衡与固定时刻",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/03-多变量相互作用/综合练习/read/1/#trajectory-clock-multiplier",
+                "concept_title": "共同倍率与轨迹的时间",
+                "practice_url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-phase"
               },
               {
                 "id": "p03-integrated-output",
                 "slug": "p03-integrated-output",
                 "title": "总量观测下看不见的运动",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/03-多变量相互作用/综合练习/read/1/#conserved-motion-observation",
+                "concept_title": "守恒轨迹与观测中的抵消",
+                "practice_url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-integrated-output"
               },
               {
                 "id": "p03-cap-local",
                 "slug": "p03-cap-local",
                 "title": "分开模型差与步长差",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/03-多变量相互作用/综合练习/read/1/#model-grid-difference-checks",
+                "concept_title": "模型差与步长差的分别检查",
+                "practice_url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-local"
               },
               {
                 "id": "p03-cap-scope",
                 "slug": "p03-cap-scope",
                 "title": "解释两组误差对照",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/03-多变量相互作用/综合练习/read/1/#model-grid-difference-checks",
+                "concept_title": "模型差与步长差的分别检查",
+                "practice_url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-scope"
               }
             ],
             "practice_url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-units",
             "notebook_url": "/notebook/?id=P03-SUMMARY",
-            "url": "/notebook/?id=P03-SUMMARY"
+            "reading_url": "/parts/03-多变量相互作用/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "balance-equilibrium-concentration",
+                "title": "两室收支、平衡与浓度观测",
+                "question_ids": [
+                  "p03-cap-signs",
+                  "p03-cap-units",
+                  "p03-integrated-balance"
+                ],
+                "explore": false,
+                "key": "P03-SUMMARY:balance-equilibrium-concentration",
+                "url": "/parts/03-多变量相互作用/综合练习/read/1/#balance-equilibrium-concentration"
+              },
+              {
+                "id": "conserved-motion-observation",
+                "title": "守恒轨迹与观测中的抵消",
+                "question_ids": [
+                  "p03-integrated-output"
+                ],
+                "explore": false,
+                "key": "P03-SUMMARY:conserved-motion-observation",
+                "url": "/parts/03-多变量相互作用/综合练习/read/1/#conserved-motion-observation"
+              },
+              {
+                "id": "trajectory-clock-multiplier",
+                "title": "共同倍率与轨迹的时间",
+                "question_ids": [
+                  "p03-cap-phase"
+                ],
+                "explore": false,
+                "key": "P03-SUMMARY:trajectory-clock-multiplier",
+                "url": "/parts/03-多变量相互作用/综合练习/read/1/#trajectory-clock-multiplier"
+              },
+              {
+                "id": "symmetric-modal-contributions",
+                "title": "对称交换与模态的观测贡献",
+                "question_ids": [
+                  "p03-cap-modes"
+                ],
+                "explore": false,
+                "key": "P03-SUMMARY:symmetric-modal-contributions",
+                "url": "/parts/03-多变量相互作用/综合练习/read/1/#symmetric-modal-contributions"
+              },
+              {
+                "id": "saturation-local-prediction",
+                "title": "饱和清除与局部预测",
+                "question_ids": [],
+                "explore": false,
+                "key": "P03-SUMMARY:saturation-local-prediction",
+                "url": "/parts/03-多变量相互作用/综合练习/read/1/#saturation-local-prediction"
+              },
+              {
+                "id": "model-grid-difference-checks",
+                "title": "模型差与步长差的分别检查",
+                "question_ids": [
+                  "p03-cap-local",
+                  "p03-cap-scope"
+                ],
+                "explore": false,
+                "key": "P03-SUMMARY:model-grid-difference-checks",
+                "url": "/parts/03-多变量相互作用/综合练习/read/1/#model-grid-difference-checks"
+              }
+            ],
+            "url": "/parts/03-多变量相互作用/综合练习/read/1/"
           }
         ],
         "available": true,

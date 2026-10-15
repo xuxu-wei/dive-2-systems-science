@@ -2,6 +2,7 @@ import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,el} from '../shared/course-shell.mjs';
 import {createPlayback} from '../shared/playback.mjs';
 import {theme} from '../shared/theme.mjs';
+import {explorationReadingReferences} from '../shared/reading-links.mjs';
 import {symmetric,rotation,closed,matvec,local,alternatePerturbation,alternateBackflow} from './model.mjs';
 const $=id=>document.getElementById(id),ns='http://www.w3.org/2000/svg',end=12;
 const blue=theme.data['1'],pink=theme.data['2'],gray=theme.data.reference;
@@ -110,16 +111,19 @@ function failed(error){$('loading-note').hidden=false;$('loading-note').classLis
 async function start(){
   ({current:chapter}=await mountShell('explore'));mode={'3.2':'modes','3.3':'phase','3.4':'local'}[chapter?.id];if(!mode)throw Error('该章没有此探索页');
   $('eyebrow').textContent=chapter.id+' 章 · 可视化与探索';
-  $('title').textContent={modes:'什么在变化，什么被看见',phase:'同一路径，不同的时钟',local:'一张局部矩阵，能够预测多远'}[mode];
+  $('title').textContent={modes:'动态模态与观测贡献',phase:'相轨迹、时间与交换通道',local:'局部线性化与扰动范围'}[mode];
   $('question').textContent={modes:'两室总量相同，分配不同，读数会怎样变化？先切换起点，再分别记录第一室的量、两室的和、两室的差，区分初值中没有某模态与读数中将它抵消的情况。也可切换到偏差旋转例，比较衰减和旋转。',phase:'物质只在两室间转移。若两条变化率都乘相同正数，到达同一分配需要的时间会怎样改变？再关闭回流通道，比较长期分配。',local:'平衡始终为室 1 有 2 U、室 2 有 4 U，参数保持一致。只把室 1 的起点总量改为 2+Δ U，室 2 仍为 4 U；扰动幅度 Δ 越大，局部近似与原模型的预测会相差多少？'}[mode];
-  $('explanation').textContent={modes:'状态按室 1、室 2 排列为 [A1,A2]。共同方向 [1,1] 使两室同向变化，差异方向 [1,−1] 表示一室增加、另一室减少；它们是分解方向，负号不表示负物质量。两个特征值分别决定这两种变化衰减多快。记录两室之和时，差异项相加为零；旋转例中的两个分量则表示相对参考值的偏差。',phase:'相轨迹连接两室总量组成的点，横坐标为 A1，纵坐标为 A2。两条变化率乘同一正数时，仍沿原路径同向运动，但速度改变。关闭回流通道会改变平衡分配。灰箭头已调成同样长，需要结合时间圆点判断运动快慢。',local:'饱和清除速率为 vA1/(K+A1)。本例 u=.5 U/T，交换系数 a=.2/T、b=.1/T，v=1 U/T、K=2 U。状态 [A1,A2] 依次对应两室总量，平衡 [2,4] U。在该平衡处计算的雅可比矩阵把小偏差 δ=x−[2,4] 映射成近似变化率；局部模型的总量状态为 [2,4]+δ。'}[mode];
+  $('explanation').textContent={modes:'状态按室 1、室 2 排列为 [A1,A2]。共同方向 [1,1] 使两室同向变化，差异方向 [1,−1] 表示一室增加、另一室减少；它们是分解方向，负号表示分解方向中的相反变化。两个特征值分别决定这两种变化衰减多快。记录两室之和时，差异项相加为零；旋转例中的两个分量则表示相对参考值的偏差。',phase:'相轨迹连接两室总量组成的点，横坐标为 A1，纵坐标为 A2。两条变化率乘同一正数时，仍沿原路径同向运动，但速度改变。关闭回流通道会改变平衡分配。灰箭头已调成同样长，需要结合时间圆点判断运动快慢。',local:'饱和清除速率为 vA1/(K+A1)。本例 u=.5 U/T，交换系数 a=.2/T、b=.1/T，v=1 U/T、K=2 U。状态 [A1,A2] 依次对应两室总量，平衡 [2,4] U。在该平衡处计算的雅可比矩阵把小偏差 δ=x−[2,4] 映射成近似变化率；局部模型的总量状态为 [2,4]+δ。'}[mode];
   $('assumptions').textContent={local:'两室容积固定、各自充分混合，起点总量非负。原模型与局部模型从同一起点出发，均以欧拉法、步长 .005 T 计算；比较过程中只改变第一室的起点扰动，其他参数固定。',phase:'两室容积与交换系数固定、各自充分混合，所追踪物质没有外部流入、流出，也没有生成或转化。状态依次记录室 1、室 2 总量；由解析解求各时刻的值，倍率同时乘两条变化率。',modes:'交换例中两室充分混合、参数固定，物质可在两室间转移，各室也可按清除系数流向外界，没有外部流入或生成、转化。旋转例是人工构造的二维偏差模型，两个分量都用 U 表示，可正可负。各时刻由解析解求值。'}[mode];
+  const selected=explorationReadingReferences(chapter,location.search).selected;
+  const initialModel=mode==='modes'&&selected?.lessonId==='P03-C02-S03'?'rotation':'exchange';
+  $('model').value=initialModel;
   $('model-select').hidden=mode!=='modes';controls();recompute();
   playback=createPlayback({duration:end,speed:1.5,update:draw,failed,changed:reason=>{$('play').textContent=reason==='playing'?'暂停':reason==='ended'?'再次播放':'播放';$('play-status').textContent=reason==='playing'?'正在播放：时间、曲线与状态点同步变化。':reason==='ended'?'已到终点，可切换示例或重播。':'已暂停；调参、切换模型或观测会回到起点。';}});
   $('play').addEventListener('click',()=>playback.running?playback.pause():playback.play());$('replay').addEventListener('click',()=>{playback.seek(0);playback.play();});$('timeline').addEventListener('input',()=>playback.seek(Number($('timeline').value)));
   $('model').addEventListener('change',()=>{controls();recompute();});$('observation').addEventListener('change',recompute);
   $('alternate').addEventListener('click',()=>set(mode==='local'?{delta:alternatePerturbation(params.delta)}:mode==='phase'?{b:alternateBackflow(params.b)}:$('model').value==='rotation'?{omega:params.omega===0?1:0}:params.x1===params.x2?{x1:6,x2:0}:{x1:3,x2:3}));
-  $('reset').addEventListener('click',()=>{$('model').value='exchange';$('observation').value='first';controls();recompute();});
+  $('reset').addEventListener('click',()=>{$('model').value=initialModel;$('observation').value='first';controls();recompute();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden&&playback.running)playback.pause();});
   for(const lesson of chapter.lessons){const button=el('button','打开 JupyterLab 实验：'+lesson.title);button.type='button';button.addEventListener('click',()=>openNotebook(lesson.id));$('notebooks').append(button);}
   playback.seek(0);for(const id of ['controls','play','replay','timeline'])$(id).disabled=false;

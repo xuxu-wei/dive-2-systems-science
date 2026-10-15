@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.2.3 复数模态与阻尼旋转 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P03-C02-S03">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P03-C02-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-damped">本节练习 · 5 题</a><a class="button" href="/chapters/03-02-线性状态空间与动态模态/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>3.2.3 复数模态与阻尼旋转</h1>
+<p>学完本节，你应能用单位圆解释旋转，用复数合记两个实数偏差，读出复特征值的衰减与旋转含义，并求解一个特征向量不足的二维系统。</p>
+<p><strong>先修知识</strong>：上一节的特征值、模态与矩阵指数；勾股定理、圆周长；第 2 篇的导数、乘积求导和积分。</p>
+<h2 id="deviation-coordinates-and-rotation">偏差坐标与平面旋转</h2>
+<p>前面两室交换的量逐渐靠近平衡。另一些调节过程会出现交替起伏：某个量高于参考值后又低于它，另一个量的峰值则稍后出现。把同一时刻的两个偏差放在平面上，可以把两条起伏曲线联系成一个旋转过程。</p>
+<p>本节构造两个偏差 $x_1,x_2$，均以 U 表示相对固定参考量的差。状态顺序为 $x=(x_1,x_2)^{\mathsf T}$。例如参考量为 5 U，偏差 $x_1=-0.2$ U 对应实际量 4.8 U。偏差的正负表示相对参考的位置；到原点的距离 $\sqrt{x_1^2+x_2^2}$ 则表示两个偏差合起来有多大。</p>
+<p>考虑从 $(2,0)^{\mathsf T}$ U 开始，沿逆时针转动又逐渐靠近原点的轨迹。要写出它的两个坐标，先从圆上的位置建立正弦、余弦与角度的联系。</p>
+<h2 id="unit-circle-and-trigonometry">单位圆、弧度与正弦余弦</h2>
+<p>以原点为圆心、半径为 1 画圆。从正横轴出发，沿逆时针转到圆上一点，用角度 $\theta$ 标记转过的位置。角度的<strong>弧度（radian）</strong>定义为所经过弧长与半径的比；它是无量纲数。转一圈经过圆周 $2\pi$，所以一圈是 $2\pi$ 弧度，半圈是 $\pi$，四分之一圈是 $\pi/2$。</p>
+<p>这个单位圆点的横坐标定义为<strong>余弦（cosine）</strong> $\cos\theta$，纵坐标定义为<strong>正弦（sine）</strong> $\sin\theta$。于是</p>
+<p>$$\cos^2\theta+\sin^2\theta=1,$$</p>
+<p>直接来自圆的半径为 1。几个位置可以先手算：</p>
+<table>
+<thead>
+<tr>
+  <th>转过的位置</th>
+  <th style="text-align:right">$\theta$</th>
+  <th style="text-align:right">$\cos\theta$</th>
+  <th style="text-align:right">$\sin\theta$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>起点</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>四分之一圈</td>
+  <td style="text-align:right">$\pi/2$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>半圈</td>
+  <td style="text-align:right">$\pi$</td>
+  <td style="text-align:right">$-1$</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>四分之三圈</td>
+  <td style="text-align:right">$3\pi/2$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">$-1$</td>
+</tr>
+<tr>
+  <td>一圈</td>
+  <td style="text-align:right">$2\pi$</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p>半径为 $R$、起点在正横轴的点，坐标就是 $(R\cos\theta,R\sin\theta)$。一般起点 $(x_{10},x_{20})$ 转过 $\theta$ 后，两个原坐标方向分别转到 $(\cos\theta,\sin\theta)$ 和 $(-\sin\theta,\cos\theta)$，因此新坐标为</p>
+<p>$$\begin{pmatrix}x_1\\x_2\end{pmatrix}
+=\begin{pmatrix}\cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta\end{pmatrix}
+\begin{pmatrix}x_{10}\\x_{20}\end{pmatrix}.$$</p>
+<p>例如 $[2,1]$ U 转过四分之一圈后，变为 $[-1,2]$ U。两坐标改变了，平方和仍为 5 U²。</p>
+<p>旋转还给出三角函数的变化率。当单位圆上的点转过很小的 $\Delta\theta$，走过的弧长就是 $\Delta\theta$，运动方向沿圆的切线；位置 $(\cos\theta,\sin\theta)$ 对应的单位切向为 $(-\sin\theta,\cos\theta)$。取变化率极限，得到</p>
+<p>$$\frac{d\cos\theta}{d\theta}=-\sin\theta,\qquad
+\frac{d\sin\theta}{d\theta}=\cos\theta.$$</p>
+<p>若角度为 $\theta=\omega t$，链式法则再带来一个 $\omega$。$\omega$ 称为角频率，单位为 $1/\mathrm T$；经过时长 $t$，转过角度 $\omega t$。</p>
+<h2 id="complex-numbers-and-euler-formula">复数、共轭与欧拉公式</h2>
+<p>两个实坐标可以合写成<strong>复数（complex number）</strong></p>
+<p>$$z=x_1+i x_2,\qquad i^2=-1.$$</p>
+<p>$i$ 称为虚数单位；$x_1$ 是实部，$x_2$ 是虚部。两者仍是原来的实数偏差。复数相加分别加实部、虚部；相乘时按普通分配律展开，并用 $i^2=-1$ 合并。例如</p>
+<p>$$i(x_1+i x_2)=-x_2+i x_1.$$</p>
+<p>乘一次 $i$，恰好把坐标转为 $(-x_2,x_1)$，也就是逆时针四分之一圈。从 $1$ 开始连续乘 $i$，依次得到 $1,i,-1,-i,1$，四次后回到起点。Python 用 <code>j</code> 书写这个虚数单位。</p>
+<p><strong>共轭（complex conjugate）</strong> $\bar z=x_1-i x_2$ 反转虚部符号；二者相乘得到 $z\bar z=x_1^2+x_2^2$。因此复数的<strong>模（modulus）</strong></p>
+<p>$$|z|=\sqrt{x_1^2+x_2^2}$$</p>
+<p>正是状态到原点的距离。表示任意旋转的单位复数为 $\cos\theta+i\sin\theta$；将它乘 $z$ 并展开，就会得到上一段的旋转矩阵公式。</p>
+<p>复数指数与这个旋转由<strong>欧拉公式（Euler's formula）</strong>联系：</p>
+<p>$$\boxed{e^{i\theta}=\cos\theta+i\sin\theta.}$$</p>
+<p>指数的幂级数可以同样用于复数。$e^{i\theta}$ 对 $\theta$ 求导为 $ie^{i\theta}$，起点为 1；右边求导得到 $-\sin\theta+i\cos\theta=i(\cos\theta+i\sin\theta)$，起点也为 1。二者描述同一个从正横轴出发的单位速率旋转。</p>
+<h2 id="damped-rotation-real-solution">阻尼旋转的实数方程与解</h2>
+<p>让旋转以角频率 $\omega$ 进行，同时让长度以速率 $\alpha$ 指数衰减。取 $\alpha\ge0$，方程可合写成</p>
+<p>$$\dot z=(-\alpha+i\omega)z.$$</p>
+<p>右边展开为</p>
+<p>$$(-\alpha+i\omega)(x_1+i x_2)
+=(-\alpha x_1-\omega x_2)+i(\omega x_1-\alpha x_2).$$</p>
+<p>所以两个实数坐标满足</p>
+<p>$$\dot x_1=-\alpha x_1-\omega x_2,\qquad
+\dot x_2=\omega x_1-\alpha x_2,\qquad
+M=\begin{pmatrix}-\alpha&amp;-\omega\\\omega&amp;-\alpha\end{pmatrix}.$$</p>
+<p>交叉项一负一正，产生旋转；两个对角项让状态一起向原点缩小。结合指数解与欧拉公式，得</p>
+<p>$$z(t)=e^{-\alpha t}(\cos\omega t+i\sin\omega t)z(0).$$</p>
+<p>令 $x_{10}=x_1(0)$、$x_{20}=x_2(0)$，分别读取实部与虚部：</p>
+<p>$$\boxed{\begin{aligned}
+x_1(t)&amp;=e^{-\alpha t}(x_{10}\cos\omega t-x_{20}\sin\omega t),\\
+x_2(t)&amp;=e^{-\alpha t}(x_{10}\sin\omega t+x_{20}\cos\omega t).
+\end{aligned}}$$</p>
+<p>$\alpha,\omega$ 的单位均为 $1/\mathrm T$，所以指数与三角函数的自变量无量纲。若初值为 $[2,0]$ U，$\alpha=0.2/\mathrm T$、$\omega=1/\mathrm T$，转过四分之一圈的时刻是 $t=\pi\mathrm T/2$。此时第一分量为零，第二分量为</p>
+<p>$$2e^{-0.2\pi/2}\ \mathrm U\approx1.461\ \mathrm U.$$</p>
+<p>到半圈时，第一分量为负、第二分量为零；偏差已经转到了参考点的另一侧，长度却比起点小。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P03-C02-S03-63f5e2da-0.png" alt="复数模态与阻尼旋转：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图的两条实数曲线交替过零，右图将相同时刻合成一点，显示逆时针向内的轨迹。右图每隔 1 T 标点，横纵坐标同尺度。把两条公式平方后相加，交叉项消去，得到</p>
+<p>$$x_1(t)^2+x_2(t)^2=e^{-2\alpha t}(x_{10}^2+x_{20}^2).$$</p>
+<p>当前半径恰为 $2e^{-0.2t/\mathrm T}$ U。某个分量可以暂时离零更远，但两者合起来的距离持续缩小。$\alpha=0$ 时只有旋转，$\omega=0$ 时只有衰减；两个参数都为零时保留初值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-damped">把复共轭模态还原成实轨迹</a></li><li><a href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-complex-meaning">解释平面状态的复数表示</a></li></ul></nav>
+
+<p class="concept-explore"><a href="/chapters/03-02-线性状态空间与动态模态/explore/?concept=P03-C02-S03%3Adamped-rotation-real-solution">可视化与探索：阻尼旋转的实数方程与解 →</a></p>
+
+<h2 id="conjugate-eigenvalues-and-exchange">共轭特征值与两室交换的区别</h2>
+<p>对阻尼旋转矩阵，特征方程为</p>
+<p>$$\det(M-\lambda I)=(\lambda+\alpha)^2+\omega^2=0,$$</p>
+<p>解为 $\lambda_+=-\alpha+i\omega$、$\lambda_-=-\alpha-i\omega$。实部 $-\alpha$ 控制长度衰减，虚部 $\pm\omega$ 记录这对旋转模态。可以直接相乘核对其特征向量：</p>
+<p>$$v_+=\begin{pmatrix}1\\-i\end{pmatrix},\qquad
+v_-=\begin{pmatrix}1\\i\end{pmatrix},\qquad Mv_\pm=\lambda_\pm v_\pm.$$</p>
+<p>两者互为共轭。实矩阵的非实特征值成共轭对：把 $Mv=\lambda v$ 取共轭时，矩阵仍是 $M$，所以 $M\bar v=\bar\lambda\bar v$。对实初值，这一对复模态共同产生前面的实数轨迹。</p>
+<p>$\omega&gt;0$ 时转一圈需要 $2\pi/\omega$；若同时有 $\alpha&gt;0$，转完一圈的长度缩短，整条状态轨迹就不会周期性返回同一点。</p>
+<p>回到只有双向交换、没有外部输入和清除的两室总量模型，其特征方程为</p>
+<p>$$\det\begin{pmatrix}-a-\lambda&amp;b\\a&amp;-b-\lambda\end{pmatrix}
+=\lambda(\lambda+a+b)=0.$$</p>
+<p>两个特征值为 0 与 $-(a+b)$，都为实数。给定总量 $S$ 且 $a+b&gt;0$ 时，第一室相对平衡的偏差满足</p>
+<p>$$A_1(t)-A_1^*=[A_1(0)-A_1^*]e^{-(a+b)t},\qquad
+A_1^*=\frac{bS}{a+b}.$$</p>
+<p>第二室偏差与它相反。若两条通道都关闭，即 $a=b=0$，两室分别保持初值。正的指数因子保持偏差符号，因此两室不会反复越过各自平衡。增大回流系数 $b$ 会改变平衡分配，却不会把这套收支变成阻尼旋转。能否出现往复变化，应由具体作用关系解释。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-exchange-no-oscillation">分析封闭双向交换</a></li></ul></nav>
+
+<h2 id="defective-matrix-and-sequential-solution">特征向量不足与上三角系统</h2>
+<p>上一节的对角化需要两个独立方向。现在考虑有符号偏差模型</p>
+<p>$$\dot x=Mx,\qquad M=\begin{pmatrix}-r&amp;q\\0&amp;-r\end{pmatrix},\qquad
+\dot x_1=-rx_1+qx_2,\quad \dot x_2=-rx_2.$$</p>
+<p>$r,q$ 的单位均为 $1/\mathrm T$。这个矩阵的主对角线下方元素为零，称为上三角矩阵（upper triangular matrix）。特征方程为 $(\lambda+r)^2=0$，两个特征值都为 $-r$；当 $q\ne0$ 时，特征向量条件给出</p>
+<p>$$(M+rI)v=\begin{pmatrix}qv_2\\0\end{pmatrix}=0,$$</p>
+<p>只能有 $v_2=0$。所有特征向量都沿第一坐标方向，因此无法用两个独立特征向量组成基。这是 <strong>Jordan 块（Jordan block）</strong>的一种缩放写法。</p>
+<p>原方程仍可以依次求解。先从第二式得到 $x_2(t)=x_{20}e^{-rt}$，再代入第一式：</p>
+<p>$$\dot x_1+rx_1=q x_{20}e^{-rt}.$$</p>
+<p>两边乘 $e^{rt}$，用乘积求导把左边合起来：</p>
+<p>$$\frac d{dt}(e^{rt}x_1)=e^{rt}(\dot x_1+rx_1)=q x_{20}.$$</p>
+<p>从 0 到 $t$ 积分，得到 $e^{rt}x_1(t)-x_{10}=qtx_{20}$，所以</p>
+<p>$$\boxed{x_1(t)=e^{-rt}(x_{10}+qtx_{20}),\qquad x_2(t)=e^{-rt}x_{20}.}$$</p>
+<p>$q t$ 无量纲。额外的 $t e^{-rt}$ 项记录了第二分量持续推动第一分量的作用；仅把相同指数写两遍会漏掉它。</p>
+<p>取 $r=q=1/\mathrm T$、初值 $[0,1]$ U，令 $\tau=t/\mathrm T$：</p>
+<p>$$x_1=\mathrm U\,\tau e^{-\tau},\qquad x_2=\mathrm U\,e^{-\tau}.$$</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">$t/\mathrm T$</th>
+  <th style="text-align:right">$x_1$/U</th>
+  <th style="text-align:right">$x_2$/U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">$e^{-1}\approx0.3679$</td>
+  <td style="text-align:right">$e^{-1}\approx0.3679$</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">$2e^{-2}\approx0.2707$</td>
+  <td style="text-align:right">$e^{-2}\approx0.1353$</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">$3e^{-3}\approx0.1494$</td>
+  <td style="text-align:right">$e^{-3}\approx0.0498$</td>
+</tr>
+</tbody>
+</table>
+<p>第一分量导数为 $(\mathrm U/\mathrm T)(1-\tau)e^{-\tau}$，在 $t=1$ T 前为正、之后为负，所以先升后降。两个负特征值给出这组解的长期衰减，却没有让每个分量都从起点开始单调下降。</p>
+<p>若 $q=0$，矩阵为 $-rI$，两个坐标方向都是特征向量，重复特征值并不妨碍对角化；若 $r=0$，第二分量保持不变，第一分量线性变化。按实际方程与独立方向判断，才能选择合适的求解方式。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-jordan">特征向量不够时仍可求解</a></li><li><a href="/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-defective-limit">缺少独立特征向量时</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-iv-first-order-systems/">MIT：一阶系统课程</a>提供复特征值、实数系统解和重复特征值的进一步解释。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/03-02-线性状态空间与动态模态/read/2/">← 3.2.2 特征值、模态与矩阵传播</a><a href="/chapters/03-03-耦合、相平面与平衡/read/1/">3.3.1 向量场、相轨迹与时间 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

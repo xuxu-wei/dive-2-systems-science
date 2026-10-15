@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>篇末综合 二室交换、观测与局部近似 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P03-SUMMARY">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P03-SUMMARY" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-units">本节练习 · 8 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>篇末综合 二室交换、观测与局部近似</h1>
+<p>学完本节，你应能从两室收支求平衡和观测，用初值与观测权重解释模态贡献，并将局部模型差异与步长差异分开检查。</p>
+<p><strong>先修知识</strong>：本篇的向量与矩阵、线性方程、动态模态、相轨迹和局部线性化；第 2 篇的连续收支与数值误差。</p>
+<h2 id="balance-equilibrium-concentration">两室收支、平衡与浓度观测</h2>
+<p>一种示踪物质在两个混合均匀的室之间转移。室 1 的总量为 $A_1$，室 2 为 $A_2$，两者都用 U。固定按室 1、室 2 的顺序，将状态写为列向量</p>
+<p>$$x=\begin{pmatrix}A_1\\A_2\end{pmatrix}.$$</p>
+<p>先让外界以速率 $u$ 向室 1 输入，并从该室以速率 $cA_1$ 清除；两条内部转移速率分别为 $aA_1$、$bA_2$。于是</p>
+<p>$$\dot x=Mx+\begin{pmatrix}u\\0\end{pmatrix},\qquad
+M=\begin{pmatrix}-a-c&amp;b\\a&amp;-b\end{pmatrix}.$$</p>
+<p>矩阵每一行对应一个室的变化率，每一列对应一个室的总量。$a,b,c$ 的单位为 $1/T$，所以 $Mx$ 与输入向量的单位都是 U/T。第一列的和为 $-c$，第二列的和为零；把两行收支相加，内部转移便相消：</p>
+<p>$$\frac{d(A_1+A_2)}{dt}=u-cA_1.$$</p>
+<p>这告诉我们，物质在两个室之间移动不会改变联合总量；与外界的输入和清除才出现在联合收支中。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-signs">交换与外部损失的区别</a></li></ul></nav>
+
+<p>取 $a=0.2/T$、$b=0.1/T$、$c=0.5/T$、$u=1\,U/T$。平衡时，联合收支与第二室收支分别给出</p>
+<p>$$cA_1^*=u,\qquad aA_1^*=bA_2^*.$$</p>
+<p>先算 $A_1^*=1/0.5=2\,U$，再算 $A_2^*=0.2\times2/0.1=4\,U$。代回第一室的收支：$1-0.2\times2+0.1\times4-0.5\times2=0\,U/T$；第二室也为零，因此两个室都保持不变。</p>
+<p>若仪器测的是浓度，还要除以所在室的容积。取 $V_1=2\,L$、$V_2=1\,L$：</p>
+<table>
+<thead>
+<tr>
+  <th>观测对象</th>
+  <th>计算</th>
+  <th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>联合总量</td>
+  <td>$A_1^*+A_2^*$</td>
+  <td>$6\,U$</td>
+</tr>
+<tr>
+  <td>室 1 浓度</td>
+  <td>$A_1^*/V_1$</td>
+  <td>$1\,U/L$</td>
+</tr>
+<tr>
+  <td>室 2 浓度</td>
+  <td>$A_2^*/V_2$</td>
+  <td>$4\,U/L$</td>
+</tr>
+</tbody>
+</table>
+<p>同一状态经过不同观测关系，得到不同单位和不同数值。这里按总量建立的交换规则仍是 $aA_1$、$bA_2$；容积用于定义浓度观测。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-units">换算两室计数</a></li><li><a href="/parts/03-多变量相互作用/综合练习/practice/?question=p03-integrated-balance">用收支、矩阵和观测互相核对</a></li></ul></nav>
+
+<h2 id="conserved-motion-observation">守恒轨迹与观测中的抵消</h2>
+<p>现在停止外部输入和清除，只保留两室内部交换，仍取 $a=0.2/T$、$b=0.1/T$，从 $[6,0]\,U$ 出发。起点变化率为</p>
+<p>$$\dot x(0)=\begin{pmatrix}-0.2\times6+0.1\times0\\0.2\times6-0.1\times0\end{pmatrix}
+=\begin{pmatrix}-1.2\\1.2\end{pmatrix}\,U/T.$$</p>
+<p>联合总量一直为 6 U，而平衡还必须满足 $0.2A_1^*=0.1A_2^*$。联立两式得到 $[2,4]\,U$。每一个时刻的精确状态为</p>
+<p>$$x(t)=\begin{pmatrix}2\\4\end{pmatrix}\,U
++(4\,U)e^{-(0.3/T)t}\begin{pmatrix}1\\-1\end{pmatrix}.$$</p>
+<p>第一项是守恒总量选定的平衡分配，第二项是尚未消退的重新分配。它的两项一正一负，表示第一室比平衡多、第二室比平衡少；实际总量仍是两项相加得到的非负 $A_1,A_2$。</p>
+<p>用两种仪器看同一状态：$y_1=[1,0]x=A_1$，$y_2=[1,1]x=A_1+A_2$。对重新分配的方向，</p>
+<p>$$[1,0]\begin{pmatrix}1\\-1\end{pmatrix}=1,\qquad
+[1,1]\begin{pmatrix}1\\-1\end{pmatrix}=0.$$</p>
+<p>所以第一种仪器能看到指数变化，第二种仪器始终显示 6 U。重新分配确实存在，只是在总量读数中抵消了。到 $20\,T$ 时，$A_1=2+4e^{-6}\approx2.0099\,U$，两个室还在靠近平衡。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/03-多变量相互作用/综合练习/practice/?question=p03-integrated-output">总量观测下看不见的运动</a></li></ul></nav>
+
+<h2 id="trajectory-clock-multiplier">共同倍率与轨迹的时间</h2>
+<p>把刚才两个变化率同时乘无量纲正数 $s$，交换便按相同路径更快或更慢地进行。若原解记为 $x_1(t)$，新解为</p>
+<p>$$x_s(t)=x_1(st).$$</p>
+<p>链式法则给出 $\dot x_s(t)=sMx_1(st)=sMx_s(t)$，说明这个时间替换确实满足新方程，起点也不变。平衡方程 $sMx^*=0$ 与 $Mx^*=0$ 相同，几何路径和运动方向保持，经过每一点的时间改变。</p>
+<p>例如 $s=2$ 时，起点变化率变为 $[-2.4,2.4]\,U/T$。新过程在 $1\,T$ 的状态，等于旧过程在 $2\,T$ 的状态：</p>
+<p>$$A_1=2+4e^{-0.6}\approx4.195247\,U,\qquad
+A_2=6-A_1\approx1.804753\,U.$$</p>
+<p>平衡仍为 $[2,4]\,U$，它是长期趋向的分配，不是这两个有限时刻已经达到的状态。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-phase">连接方向平衡与固定时刻</a></li></ul></nav>
+
+<h2 id="symmetric-modal-contributions">对称交换与模态的观测贡献</h2>
+<p>再看另一组便于手算模态的条件：两方向交换系数相同，均为 $a$，两个室也都按系数 $c$ 清除，不再向外界输入。矩阵为</p>
+<p>$$M=\begin{pmatrix}-(a+c)&amp;a\\a&amp;-(a+c)\end{pmatrix}.$$</p>
+<p>共同方向 $v_+=[1,1]^\mathsf T$ 的特征值为 $-c$，差异方向 $v_-=[1,-1]^\mathsf T$ 的特征值为 $-(2a+c)$。对任意初值 $[A_{10},A_{20}]^\mathsf T$，</p>
+<p>$$m_+=\frac{A_{10}+A_{20}}2,\qquad
+m_-=\frac{A_{10}-A_{20}}2,$$</p>
+<p>$$x(t)=m_+e^{-ct}v_++m_-e^{-(2a+c)t}v_-.$$</p>
+<p>这两个方向没有归一化，因此系数是上述半和与半差。若读数为 $y=w^\mathsf Tx$，其两项贡献分别是 $m_+e^{-ct}(w^\mathsf Tv_+)$ 和 $m_-e^{-(2a+c)t}(w^\mathsf Tv_-)$。初值系数为零和观测内积为零，都能使一项贡献消失，但原因不同。</p>
+<p>取 $a=0.2/T$、$c=0.1/T$、初值 $[6,0]\,U$，则 $m_+=m_-=3\,U$，两种模态都已激发。总量权重 $w=[1,1]^\mathsf T$ 使差异贡献为零，得到 $y(t)=6e^{-(0.1/T)t}\,U$。在 $2\,T$，两个模态在状态中的标量系数分别为 $3e^{-0.2}\approx2.456192\,U$ 与 $3e^{-1}\approx1.103638\,U$；相加、相减后得到 $[3.559831,1.352554]\,U$，而总量读数为 $4.912385\,U$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-modes">初值与观测共同决定可见模态</a></li></ul></nav>
+
+<h2 id="saturation-local-prediction">饱和清除与局部预测</h2>
+<p>最后研究第一室的饱和清除，第二室仍只交换：</p>
+<p>$$f_1=u-aA_1+bA_2-g(A_1),\qquad f_2=aA_1-bA_2,\qquad
+g(A_1)=\frac{vA_1}{K+A_1}.$$</p>
+<p>取 $a=0.2/T$、$b=0.1/T$、$u=0.5\,U/T$、$v=1\,U/T$、$K=2\,U$。平衡时先用总收支求 $g(A_1^*)=u$，再用交换关系求第二室，得到</p>
+<p>$$A_1^*=\frac{uK}{v-u}=2\,U,\qquad A_2^*=\frac abA_1^*=4\,U.$$</p>
+<p>这里 $0&lt;u&lt;v$ 且 $b&gt;0$，所以得到有限正平衡。清除斜率为 $g'(2\,U)=0.125/T$，平衡处雅可比矩阵为</p>
+<p>$$J^*=\begin{pmatrix}-0.325&amp;0.1\\0.2&amp;-0.1\end{pmatrix}/T.$$</p>
+<p>局部模型推进相对平衡的偏差 $\delta=x-x^*$，即 $\dot\delta=J^*\delta$。还原总量时用 $x^*+\delta$。例如近扰动从 $[2.2,4]\,U$ 出发，初始偏差为 $[0.2,0]\,U$；远扰动从 $[5,4]\,U$ 出发，初始偏差为 $[3,0]\,U$。</p>
+<p>清除项本身也能看出近似的来源：在平衡处的切线是</p>
+<p>$$g_{\rm lin}(A_1)=0.5\,U/T+(0.125/T)(A_1-2\,U).$$</p>
+<p>它在平衡处与原清除函数有相同值和相同斜率；离开平衡以后，原函数逐渐接近上限 $v$，切线仍按固定斜率增加。只匹配同一个平衡值，不能代替匹配平衡附近的变化关系。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P03-SUMMARY-b9240fa2-1.png" alt="二室交换、观测与局部近似：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图是前面的内部交换实验：总量读数保持 6 U，第一室仍在变化。右图比较饱和模型与局部模型在每个时刻的最大分量差，使用欧拉步长 $0.01\,T$、共同终点 $12\,T$。近扰动的全程最大差约为 $0.000992\,U$，远扰动约为 $0.16497\,U$；两次饱和实验只改变起点，模型参数相同。</p>
+<h2 id="model-grid-difference-checks">模型差与步长差的分别检查</h2>
+<p>右图给出了这一网格上的模型差，还可以进一步检查它是否主要由步长造成。令 $x_i^{(h)}$ 为原模型的数值结果、$z_i^{(h)}$ 为局部模型的结果，定义</p>
+<p>$$E_{\rm model}(h)=\max_{i,j}|x_{i,j}^{(h)}-z_{i,j}^{(h)}|.$$</p>
+<p>$i$ 遍历从起点到终点的网格，$j=1,2$ 遍历两个室。两种模型各自从同一物理起点推进，而不是把原模型的状态在每一步重新交给局部模型。</p>
+<p>再让两种模型分别用 $h/2$ 复算。在粗网格第 $i$ 个时刻，细网格对应第 $2i$ 个点，因此每个模型的步长差可写为</p>
+<p>$$D_x=\max_{i,j}|x_{i,j}^{(h)}-x_{2i,j}^{(h/2)}|,\qquad
+D_z=\max_{i,j}|z_{i,j}^{(h)}-z_{2i,j}^{(h/2)}|.$$</p>
+<p>$E_{\rm model}$ 比较两种模型，$D_x,D_z$ 则分别比较同一模型的两个数值网格。后面的计算题要求对每组起点独立求这些量，并用 $\max(D_x,D_z)$ 汇总该组步长变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-local">分开模型差与步长差</a></li></ul></nav>
+
+<p>若要求观察窗口内的模型差不超过 $0.01\,U$，本次近扰动结果满足要求，远扰动结果不满足。缩短步长能改善对各自方程的数值近似；要让局部模型更接近原模型，还要比较不同扰动范围或改变近似本身。沿着这两个对照分别检查，才能判断当前任务可采用多大范围的局部预测。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-scope">解释两组误差对照</a></li></ul></nav>
+
+<p>本篇把两室收支写成了一个状态向量，也把观测、运动方向和局部变化分开。下一篇将继续研究这些局部关系怎样组成不同的非线性动态行为。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/03-04-多变量变化与局部线性化/read/2/">← 3.4.2 平衡附近的线性化与误差</a><a href="/parts/04-非线性动态行为/">继续：第 4 篇 非线性动态行为 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.1.1 两室交换与矩阵收支 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P03-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P03-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/03-01-从多个室进入线性代数/practice/?question=p03-exchange-columns">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>3.1.1 两室交换与矩阵收支</h1>
+<p>学完本节，你应能为两个室分别写收支，说明向量的分量顺序与矩阵行列的含义，并从两室之和检查内部交换与外部清除。</p>
+<p><strong>先修知识</strong>：第 2 篇的流率、时间导数与欧拉更新；Python 列表与循环。</p>
+<h2 id="two-compartment-balances">两室转移与逐室收支</h2>
+<p>前一篇把所追踪物质放在一个混合均匀的池中。现在把血液作为室 1、组织作为室 2，分别记下两处的总量 $A_1,A_2$，单位均为 U。物质从血液进入组织时，血液里的量会下降，但组织会接收同一份物质。要区分重新分配与清除，就需要同时保留这两本账。</p>
+<p>假设每个室内混合均匀，室 1 向室 2 的转移流率为 $aA_1$，回流流率为 $bA_2$。交换系数 $a,b$ 的单位均为 $1/\mathrm T$，分别乘来源室的总量。取 $a=0.2/\mathrm T$、$b=0.1/\mathrm T$，从 $A_1=6$ U、$A_2=0$ U 开始，两个流率为</p>
+<p>$$aA_1=1.2\ \mathrm{U/T},\qquad bA_2=0.$$</p>
+<p>室 1 失去的 1.2 U/T 同时进入室 2，所以此刻两室变化率分别为 $-1.2$ U/T 与 $+1.2$ U/T。若外界还以流率 $u$ 向室 1 补入，并从室 1 以流率 $cA_1$ 清除，完整收支为</p>
+<p>$$\begin{aligned}
+\dot A_1&amp;=u-aA_1-cA_1+bA_2,\\
+\dot A_2&amp;=aA_1-bA_2.
+\end{aligned}$$</p>
+<p>上方一点表示时间导数，与前篇的 $A'$ 相同。$u$ 的单位为 U/T；$c$ 是室 1 的一阶消除速率常数，单位为 $1/\mathrm T$。交换和清除都会使室 1 减少，区别在于物质接下来去了哪里：前者被室 2 接收，后者离开这两个室。</p>
+<h2 id="state-vector-and-components">向量、分量与同步更新</h2>
+<p>把有固定顺序的一组数写在一起，就得到一个<strong>向量（vector）</strong>。在当前模型中，将室 1 放在第一位、室 2 放在第二位，定义列向量</p>
+<p>$$x=\begin{pmatrix}A_1\\A_2\end{pmatrix}.$$</p>
+<p>$A_1,A_2$ 称为它的分量。代码列表 <code>[6, 0]</code> 用同一顺序保存两室量；数学中写成 $(A_1,A_2)^{\mathsf T}$ 时，上标 $\mathsf T$ 表示<strong>转置（transpose）</strong>，把横排改为竖排。室编号与计算步是两种下标：$A_{2,n}$ 表示第 $n$ 步时室 2 的量。</p>
+<p>向量相加时相同位置相加；乘一个数时每个分量都乘这个数。例如，先取 $u=c=0$，用 $h=0.05$ T 从刚才的状态做一次欧拉更新：</p>
+<p>$$\begin{pmatrix}A_{1,1}\\A_{2,1}\end{pmatrix}
+=\begin{pmatrix}6\\0\end{pmatrix}\mathrm U
++(0.05\,\mathrm T)\begin{pmatrix}-1.2\\1.2\end{pmatrix}\frac{\mathrm U}{\mathrm T}
+=\begin{pmatrix}5.94\\0.06\end{pmatrix}\mathrm U.$$</p>
+<p>两个变化率都从同一份段首记录 $[6,0]$ 计算，再一起写入新记录。若先更新室 1，随后用它的新值计算室 2，接收的量就会与刚才扣除的量不一致。</p>
+<h2 id="matrix-rows-and-columns">矩阵的行列与线性作用</h2>
+<p>将两条收支中乘在 $A_1,A_2$ 前的系数排成<strong>矩阵（matrix）</strong>：</p>
+<p>$$M=\begin{pmatrix}-(a+c)&amp;b\\a&amp;-b\end{pmatrix},\qquad
+\dot x=Mx+\begin{pmatrix}u\\0\end{pmatrix}.$$</p>
+<p>这是一个 $2\times2$ 矩阵，前一个 2 表示行数，后一个 2 表示列数。<strong>行选择要计算哪个变化率，列选择这个贡献来自哪个当前分量</strong>：</p>
+<table>
+<thead>
+<tr>
+  <th>位置</th>
+  <th>乘的当前量</th>
+  <th>对哪个变化率作贡献</th>
+  <th>机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$M_{11}=-(a+c)$</td>
+  <td>$A_1$</td>
+  <td>$\dot A_1$</td>
+  <td>室 1 转出及清除</td>
+</tr>
+<tr>
+  <td>$M_{12}=b$</td>
+  <td>$A_2$</td>
+  <td>$\dot A_1$</td>
+  <td>室 2 回流</td>
+</tr>
+<tr>
+  <td>$M_{21}=a$</td>
+  <td>$A_1$</td>
+  <td>$\dot A_2$</td>
+  <td>室 1 转入</td>
+</tr>
+<tr>
+  <td>$M_{22}=-b$</td>
+  <td>$A_2$</td>
+  <td>$\dot A_2$</td>
+  <td>室 2 回流转出</td>
+</tr>
+</tbody>
+</table>
+<p>矩阵乘法用一整行与向量的对应分量相乘，再求和。因此</p>
+<p>$$Mx=\begin{pmatrix}-(a+c)A_1+bA_2\\aA_1-bA_2\end{pmatrix}.$$</p>
+<p>例如没有清除时，</p>
+<p>$$\begin{pmatrix}-0.2&amp;0.1\\0.2&amp;-0.1\end{pmatrix}\frac1{\mathrm T}
+\begin{pmatrix}6\\0\end{pmatrix}\mathrm U
+=\begin{pmatrix}-0.2\times6+0.1\times0\\0.2\times6-0.1\times0\end{pmatrix}\frac{\mathrm U}{\mathrm T}
+=\begin{pmatrix}-1.2\\1.2\end{pmatrix}\frac{\mathrm U}{\mathrm T}.$$</p>
+<p>一般的第 $i$ 个结果为 $\sum_{j=1}^{2}M_{ij}x_j$；$j$ 依次选择被乘的分量。矩阵元素的单位都是 $1/\mathrm T$，与 U 相乘后得到 U/T。</p>
+<p>固定矩阵的作用保持相加和数倍关系。若 $z$ 是另一份按相同顺序记录的状态，$\alpha,\beta$ 是无量纲数，则</p>
+<p>$$M(\alpha x+\beta z)=\alpha Mx+\beta Mz.$$</p>
+<p>具有这一性质的作用称为<strong>线性映射（linear map）</strong>。固定输入 $g=(u,0)^{\mathsf T}$ 加上去后，$F(x)=Mx+g$ 是<strong>仿射（affine）</strong>关系：把状态加倍会把 $Mx$ 加倍，但外界给定的输入仍是 $g$。后文把状态与输入合写为线性系统时，二者会一起作为变量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-01-从多个室进入线性代数/practice/?question=p03-exchange-balance">把两室收支写成矩阵</a></li></ul></nav>
+
+<h2 id="internal-exchange-and-conservation">内部交换抵消与总量守恒</h2>
+<p>令 $S=A_1+A_2$ 表示两个室合起来的总量。相加收支式，得到</p>
+<p>$$\dot S=(-aA_1+bA_2)+(aA_1-bA_2)+u-cA_1=u-cA_1.$$</p>
+<p>每笔内部转移都有一项负记录和一项等量的正记录，它们在总账中抵消。矩阵的每列也保存了这个信息：第一列相加为 $-c$，第二列相加为零。所以 $u=c=0$ 时，$S$ 保持初始值，即使两个分量仍在改变。</p>
+<p>增加第三个室也可以逐列记账。例如只有 $1\to2$、$2\to3$ 两条通道，流率分别为 $rA_1,rA_2$，则</p>
+<p>$$\frac d{dt}\begin{pmatrix}A_1\\A_2\\A_3\end{pmatrix}
+=\begin{pmatrix}-r&amp;0&amp;0\\r&amp;-r&amp;0\\0&amp;r&amp;0\end{pmatrix}
+\begin{pmatrix}A_1\\A_2\\A_3\end{pmatrix}.$$</p>
+<p>第一列在室 1 扣除、在室 2 接收；第二列在室 2 扣除、在室 3 接收。每列之和为零，说明三室总量保持不变。矩阵中每一笔正负配对都能回到一条具体通道。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-01-从多个室进入线性代数/practice/?question=p03-exchange-columns">交换发生在哪一列</a></li><li><a href="/chapters/03-01-从多个室进入线性代数/practice/?question=p03-third-room">增加第三室后怎样检查守恒</a></li></ul></nav>
+
+<h2 id="concentration-and-volume">浓度坐标与容积换算</h2>
+<p>总量与浓度表示不同的记录。设两个室的固定容积为 $V_1,V_2$，浓度为 $C_1=A_1/V_1$、$C_2=A_2/V_2$。把总量方程分别除以对应容积，并用 $A_i=V_iC_i$ 替换，得到</p>
+<p>$$\begin{aligned}
+\dot C_1&amp;=\frac u{V_1}-(a+c)C_1+b\frac{V_2}{V_1}C_2,\\
+\dot C_2&amp;=a\frac{V_1}{V_2}C_1-bC_2.
+\end{aligned}$$</p>
+<p>回流带来的是室 2 的总量 $bV_2C_2$；把它换算成室 1 浓度的增长率，还需要除以 $V_1$。这正是容积比出现的位置。</p>
+<p>取 $V_1=2$ L、$V_2=1$ L，$A_1=4$ U、$A_2=2$ U。两室浓度均为 2 U/L，总量为 6 U；混合后的浓度为 $6\,\mathrm U/3\,\mathrm L=2$ U/L。只把两个浓度相加，会漏掉各室容积。浓度坐标下守恒的总量是 $V_1C_1+V_2C_2$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/03-01-从多个室进入线性代数/practice/?question=p03-amount-concentration">改用浓度时遗漏了什么</a></li></ul></nav>
+
+<h2 id="trajectories-and-total-ledger">两室轨迹与逐步总账</h2>
+<p>现在用同一组 $a=0.2/\mathrm T$、$b=0.1/\mathrm T$ 和初值 $[6,0]$ U，比较两种过程。第一组只有内部交换；第二组另有 $u=0.6$ U/T 的输入及 $c=0.1/\mathrm T$ 的室 1 清除。两组都用 $h=0.05$ T 模拟 20 T。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P03-C01-S01-c17853f0-0.png" alt="两室交换与矩阵收支：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图两室一减一增，总量一直为 6 U。右图起点的外部净流率也是 $0.6-0.1\times6=0$ U/T；随后室 1 因交换而下降，清除流率变小，外界流入超过清除，总量便开始增加。起点的总变化率相同，后来的总账可以不同。</p>
+<p>矩阵欧拉更新写成</p>
+<p>$$x_{n+1}=x_n+h(Mx_n+g).$$</p>
+<p>将两行展开后，旧量前的系数为 $1-h(a+c)$ 与 $1-hb$，其余转入项非负。因此，对非负输入和初值，$h(a+c)\le1$、$hb\le1$ 可以保证每一步仍非负。和前篇一样，非负保证回答“计算会不会给出负总量”；缩小步长后的对照才回答“算得是否足够准确”。</p>
+<p>实验中可以将两室之和与 $S_0+\sum_n h(u-cA_{1,n})$ 对照。一个来自逐室记录，一个只累计外部净流入，它们应逐步相等。向量和矩阵使更多室的计算更简洁，物理上的收支仍决定每个系数应放在哪里。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://web.stanford.edu/~boyd/vmls/">应用线性代数导论</a>从向量、线性函数和矩阵运算展开；本节实验可对照逐项收支与矩阵更新。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/02-系统随时间演化/综合练习/read/1/">← 篇末综合 分段输入的峰值与过程约束</a><a href="/chapters/03-01-从多个室进入线性代数/read/2/">3.1.2 内积、范数与投影 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>
