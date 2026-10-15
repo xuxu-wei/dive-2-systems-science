@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>12.5.2 块平均、空间相关与宏观闭合 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P12-C05-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P12-C05-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>12.5.2 块平均、空间相关与宏观闭合</h1>
+<p>全局密度让交错和成团的排列都变成0.5。若每两个格子保留一个平均数，描述会更细，但保留更多数字是否就能连续预测？我们先看块平均能区分哪些排列，再检查预测下一步时需要的信息。</p>
+<p>学完本节，你应能计算固定宽度的块密度，用具体排列解释信息损失，并从空间联合比例说明平均场的一步误差。先修为12.5.1的$p^+=2p-2c_2$及第6篇的预测验证。</p>
+<h2 id="fixed-blocks-and-coarse-graining">固定宽度分块与粗粒化</h2>
+<p>设一排有$n$格，块宽为$w$，且$n$能被$w$整除。从第0格开始，每$w$个连续格子组成一个互不重叠的块。第$j$块密度定义为</p>
+<p>$$b_j=\frac1w\sum_{i=jw}^{(j+1)w-1}x_i,
+\qquad j=0,\ldots,n/w-1.$$</p>
+<p>例如$w=2$时，$(1,1,0,0)$按原位置分成$(1,1)$和$(0,0)$，得到块密度$(1,0)$。$(1,0,1,0)$则分成两个$(1,0)$，得到$(0.5,0.5)$。同为0.5的全局密度，现在有了不同的空间描述。</p>
+<p>用较大块的平均代替逐格取值，是一种<strong>粗粒化（coarse-graining）</strong>。块密度保留各区域有多少个1，将块内顺序合并掉。块宽为1时完整保留逐格状态，块宽为$n$时只剩全局密度。</p>
+<p>等宽块还保留了整体平均，因为</p>
+<p>$$\frac{1}{n/w}\sum_j b_j
+=\frac wn\sum_j\frac1w\sum_{i\text{在块}j}x_i
+=\frac1n\sum_i x_i=p.$$</p>
+<p>块从哪里开始、每块多宽，都是这个统计量的一部分。按原空间顺序计算，才保留了当前分块的含义。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-coarse-blocks">计算固定宽度的块密度</a></li></ul></nav>
+
+<h2 id="information-lost-within-blocks">相同块密度中的信息损失</h2>
+<p>再比较两种四格排列：</p>
+<table>
+<thead>
+<tr>
+  <th>当前排列</th>
+  <th>宽度2的块密度</th>
+  <th>周期同步异或后的排列</th>
+  <th style="text-align:right">下一步密度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$(1,0,1,0)$</td>
+  <td>$(0.5,0.5)$</td>
+  <td>$(0,0,0,0)$</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$(1,0,0,1)$</td>
+  <td>$(0.5,0.5)$</td>
+  <td>$(1,1,1,1)$</td>
+  <td style="text-align:right">1</td>
+</tr>
+</tbody>
+</table>
+<p>第二行的两块分别为$(1,0)$与$(0,1)$，各有一半为1，但相邻块交界处的取值顺序和第一行不同。对每格检查左右旧值，就会得到完全不同的异或结果。</p>
+<p>因此，块密度把多个细节不同的排列映射到同一组数字。单凭$(0.5,0.5)$，连下一步全局密度都无法在这两个初态上唯一确定。损失的信息与局部规则读取的位置关系有关。</p>
+<h2 id="macro-closure-and-multistep-evolution">宏观闭合与多步演化</h2>
+<p>从逐格状态求出密度、块密度或联合比例，属于统计聚合。在这套确定性更新下，<strong>宏观闭合（macroscopic closure）</strong>要求：所保留的宏观变量能仅根据自身的当前值，确定下一步所需的宏观变量，从而反复更新。</p>
+<p>若两种细观排列在保留变量上相同，下一步的保留变量却不同，就无法为它们共用一条精确的宏观更新式。上一节的两个初态说明$p$单独不够；刚才的例子说明固定两格平均也可能不够。</p>
+<p>保留$c_2$使$p^+=2p-2c_2$这一次预测精确，但连续使用它，还需要$c_2$自身的更新。一个小例可以看到这一点。对以下两种八格周期排列，当前都为$p=1/4,c_2=0$，下一步也都得到$p^+=1/2$：</p>
+<table>
+<thead>
+<tr>
+  <th>初态</th>
+  <th style="text-align:right">下一步$c_2^+$</th>
+  <th style="text-align:right">再下一步密度$p^{++}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$(1,0,0,1,0,0,0,0)$</td>
+  <td style="text-align:right">$1/4$</td>
+  <td style="text-align:right">$2(1/2)-2(1/4)=1/2$</td>
+</tr>
+<tr>
+  <td>$(1,0,0,0,1,0,0,0)$</td>
+  <td style="text-align:right">$1/2$</td>
+  <td style="text-align:right">$2(1/2)-2(1/2)=0$</td>
+</tr>
+</tbody>
+</table>
+<p>初始的$(p,c_2)$相同，下一步的$c_2$却不同。这组变量能给出精确的一步密度，但还没有组成适用于所有排列的完整多步闭合。要建立连续预测模型，需要保留更多相关信息，或为未保留的信息给出近似关系。</p>
+<h2 id="mean-field-closure-error">平均场闭合与一步误差</h2>
+<p>平均场用$c_2\approx p^2$把更新式闭合为只含$p$的方程。它对当前排列的一步误差为</p>
+<p>$$\begin{aligned}
+p_{\mathrm{MF}}^+-p^+
+&amp;=2p(1-p)-(2p-2c_2)\\
+&amp;=\boxed{2(c_2-p^2)}.
+\end{aligned}$$</p>
+<p>当$c_2&gt;p^2$时，左右同时为1的情况比独立性近似更多。异或会把这些双1变成0，所以实际密度较低，平均场高估。$c_2&lt;p^2$时，平均场则低估。</p>
+<p>例如交错四格有$p=0.5,c_2=0.5$，误差为$2(0.5-0.25)=0.5$，即预测0.5而实际为0。两格成团的排列有$c_2=0$，误差为$-0.5$，即预测0.5而实际为1。</p>
+<p>从当前$p,c_2$依次算出平均场预测$2p(1-p)$与精确一步预测$2p-2c_2$，再用逐格更新检查，就能将差异定位到被近似掉的联合比例。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions">比较平均场与相关量预测</a></li></ul></nav>
+
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-coarse-evidence">平均场预测失败后</a></li></ul></nav>
+
+<h2 id="density-and-arrangement-comparisons">不同密度与空间排列的对照</h2>
+<p>实验使用四种16格初态：将$(1,0,1,0)$、$(1,1,0,0)$、$(1,1,1,0)$、$(1,0,0,0)$各重复四次。四组采用相同的周期边界、同步异或规则和一次更新时间，只有初始排列改变。</p>
+<table>
+<thead>
+<tr>
+  <th>排列与重复的四格片段</th>
+  <th style="text-align:right">当前$p$</th>
+  <th style="text-align:right">当前$c_2$</th>
+  <th style="text-align:right">平均场预测</th>
+  <th style="text-align:right">精确一步密度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>交错：$(1,0,1,0)$</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>成团：$(1,1,0,0)$</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>三开一闭：$(1,1,1,0)$</td>
+  <td style="text-align:right">0.75</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">0.375</td>
+  <td style="text-align:right">0.5</td>
+</tr>
+<tr>
+  <td>一开三闭：$(1,0,0,0)$</td>
+  <td style="text-align:right">0.25</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0.375</td>
+  <td style="text-align:right">0.5</td>
+</tr>
+</tbody>
+</table>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P12-C05-S02-708fb82a-1.png" alt="块平均、空间相关与宏观闭合：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中独立邻居近似的柱高依次为0.5、0.5、0.375、0.375，实际下一步密度为0、1、0.5、0.5。前两组显示相同密度下结构产生的差异；后两组还说明，当前密度不同也可能通向相同的下一步密度。</p>
+<p>宽度2的块密度在前两组依次为$(0.5,0.5,\ldots)$与$(1,0,1,0,\ldots)$；后两组依次为$(1,0.5,\ldots)$与$(0.5,0,\ldots)$。它们保留了这些排列的部分差别，但块平均是否足以预测，还要像前面的四格例那样实际检查。</p>
+<h2 id="local-rules-and-required-statistics">局部规则与所需的联合统计</h2>
+<p>$p^+=2p-2c_2$的推导利用了左右异或的具体代数式。若新规则还读取中心格$x_i$，就从新的逐格表达式重新求平均，检查其中出现的是哪些位置的乘积或联合取值。新的统计量由规则需要的信息决定。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-boundary">改变局部规则后的聚合</a></li></ul></nav>
+
+<p>这也给出改进宏观模型的顺序：先找出当前平均丢失了哪种位置关系，再检查补入该关系能否解释预测差异。若用数据拟合未保留统计量的近似关系，就用未参与拟合的排列检验它，使近似能否用于新状态成为可检查的问题。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/12-05-从局部规则到宏观描述/read/1/">← 12.5.1 激活密度与两点联合比例</a><a href="/parts/12-个体与集体现象/综合练习/read/1/">篇末综合 局部规则与宏观近似 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

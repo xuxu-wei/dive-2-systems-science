@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>12.2.2 局部相遇、空间排列与收益 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P12-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P12-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs">本节练习 · 4 题</a><a class="button" href="/chapters/12-02-合作与演化博弈/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>12.2.2 局部相遇、空间排列与收益</h1>
+<p>类型0和类型1各占一半，是否足以算出两类的相遇收益？如果同类集中在一起，大多数个体遇到同类；如果两类交错排列，每位个体遇到的都是另一类。总体组成相同，局部相遇就可能不同。</p>
+<p>学完本节，应能从实际邻居计算每个个体的收益，手算成团与交错排列的类型平均，并说明频率演化还需要哪种更新规则。先修为12.2.1的收益表与加权平均，以及11.1的邻域关系。</p>
+<h2 id="type-frequency-and-local-neighbors">类型频率与局部邻居</h2>
+<p>本章的0、1改为两种个体类型的代码。用 $s_i\in\{0,1\}$ 记录位置 $i$ 的类型，$i=0,\ldots,n-1$。类型0频率是</p>
+<p>$$p=\frac{\#\{i:s_i=0\}}n,$$</p>
+<p>即数出类型0的个体再除以人数。逐项相加 $s_i$ 统计的则是类型1的数量。</p>
+<p>仍用上一节的收益矩阵</p>
+<p>$$M=\frac1T\begin{pmatrix}3&amp;0\\4&amp;1\end{pmatrix}.$$</p>
+<p>现在每位个体固定在当前位置，只与实际存在的左右邻居各相遇一次。收益表的行由自身类型 $s_i$ 选定，列由邻居类型选定。周期边界把首尾相连；两端外没有个体的固定边界，则让端点只有一位邻居。</p>
+<h2 id="four-individual-payoff-example">四个体环的逐位收益</h2>
+<p>从周期排列 $(0,0,1,1)$ 开始。0号个体为类型0，左邻3号是类型1，右邻1号是类型0；两次收益分别为 $M_{01}=0$ 与 $M_{00}=3/T$，平均为 $1.5/T$。</p>
+<p>依照同样的行列顺序逐位计算：</p>
+<table>
+<thead>
+<tr>
+  <th>位置</th>
+  <th style="text-align:right">自身类型</th>
+  <th style="text-align:right">左邻类型</th>
+  <th style="text-align:right">右邻类型</th>
+  <th>两次相遇的平均收益率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0</td>
+  <td>$(0+3)/(2T)=1.5/T$</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+  <td>$(3+0)/(2T)=1.5/T$</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+  <td>$(4+1)/(2T)=2.5/T$</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0</td>
+  <td>$(1+4)/(2T)=2.5/T$</td>
+</tr>
+</tbody>
+</table>
+<p>逐个体的收益按原位置排列为 $(1.5,1.5,2.5,2.5)/T$。改为 $(0,1,0,1)$ 后，每位类型0都只遇到类型1，收益为0；每位类型1都只遇到类型0，收益为 $4/T$。两种排列的 $p$ 都是0.5，局部收益却不同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-02-合作与演化博弈/practice/?question=p12-same-frequency-structure">频率相同的两种排列</a></li></ul></nav>
+
+<h2 id="averaging-existing-neighbor-encounters">按实际接触次数求平均</h2>
+<p>令 $\mathcal N_i$ 为个体 $i$ 的实际邻居集合，$d_i$ 为邻居数，则它的局部平均收益率为</p>
+<p>$$g_i=\frac1{d_i}\sum_{j\in\mathcal N_i}M_{s_i,s_j}.$$</p>
+<p>本节列表至少有三个位置。周期环上每位都有两位邻居；固定边界的端点只有一位，所以分母也相应为1。求和逐个列出当前邻居，保留了“本个体遇到谁”的信息。</p>
+<p>把刚才四个体的首尾连接去掉，0号只遇到1号，收益为 $3/T$；3号只遇到2号，收益为 $1/T$。两个中间位置的邻居不变，收益列表因此成为</p>
+<p>$$(3,\ 1.5,\ 2.5,\ 1)/T.$$</p>
+<p>这里的固定边界意味着域外没有相遇对象。它与上一章把域外格值设为0的约定对应不同对象：本章的类型0是真实个体，补一位类型0邻居会新增一次相遇，同时改变收益的分子和分母。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs">计算局部相遇收益</a></li></ul></nav>
+
+<h2 id="clustered-and-alternating-arrangements">相同组成的成团与交错对照</h2>
+<p>把人数增加到16，两组各有8位类型0和8位类型1，均首尾相连。成团组的0到7号是类型0，8到15号是类型1；交错组从0号起依次为0、1、0、1。</p>
+<p>成团组的8位类型0中，6位处于同类内部，收益各为 $3/T$；2位处于两类接触的边缘，收益各为 $1.5/T$。这类的平均为</p>
+<p>$$\frac{6\times3+2\times1.5}{8T}=\frac{2.625}{T}.$$</p>
+<p>类型1的6位内部个体收益各为 $1/T$，2位边缘个体各为 $2.5/T$，所以平均为</p>
+<p>$$\frac{6\times1+2\times2.5}{8T}=\frac{1.375}{T}.$$</p>
+<p>交错组每次都遇到异类，两类平均分别为0和 $4/T$。充分混合则在 $p=0.5$ 时给出 $f_0=1.5/T$、$f_1=2.5/T$。三种计算使用同一个矩阵，区别在于相遇对象的比例：一组由全群体频率给出，另外两组由实际邻居给出。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P12-C02-S02-e4da9880-1.png" alt="局部相遇、空间排列与收益：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中蓝柱表示类型0，玫红柱表示类型1。左图同类型内部与两类交界的高度不同；右图类型0的柱高为0，类型1的柱高为4。成团组类型0的平均收益高于类型1，交错组则相反。两组的全群体平均恰好同为 $2/T$，平均到整个群体后又会抹去这个类型间差异。</p>
+<p>比较相遇范围的作用时，保留收益表与初始频率；若进一步比较多轮演化，还要共用更新机制、观察轮数和重复次数。这样才知道结果变化来自接触对象，而非同时更换了增长规则或群体组成。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-02-合作与演化博弈/practice/?question=p12-matched-spatial-game">检验空间作用</a></li></ul></nav>
+
+<h2 id="from-current-payoffs-to-next-generation">从当前收益进入下一代更新</h2>
+<p>这些柱子由固定类型和固定位置计算，回答的是当前各个体与谁相遇、得到多少收益。要继续计算下一代，需要规定哪些位置更新、选谁作为繁殖或模仿对象、收益如何影响选择概率，以及新类型何时写回。不同更新规则会把同一份收益转成不同的下一代排列。</p>
+<p>充分混合的复制方程已经给定一套数量增长机制，并用全群体频率表示相遇对象。在固定邻居模型里，要继续预测，就要把局部接触与具体更新规则共同写入模型。下一章从有限群体的后代抽样开始，把相遇或选择的倾向与实际产生的类型比例连接起来。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-vs-update">收益计算之后还缺什么</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.complexityexplorer.org/courses/185-introduction-to-complexity/faq">SFI Complexity Explorer：Introduction to Complexity</a>，局部相互作用与群体行为的后续阅读。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/12-02-合作与演化博弈/read/1/">← 12.2.1 收益矩阵与复制动态</a><a href="/chapters/12-03-选择、变异与适应/read/1/">12.3.1 中性遗传漂变与有限种群 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

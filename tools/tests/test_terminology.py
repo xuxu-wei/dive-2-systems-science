@@ -207,3 +207,17 @@ def test_reviewed_control_lag_contexts_keep_prose_without_wrong_english():
 def test_part11_complete_mode_and_phase_terms_do_not_match_shorter_glosses(source):
     issues, _ = check_text(source, 11, require_first=False)
     assert issues == []
+
+
+@pytest.mark.parametrize('source', [
+    '中性遗传漂变（neutral genetic drift）由有限后代抽样产生。',
+    '吸收状态（absorbing state）到达后不能离开。',
+    '反应扩散模型（reaction–diffusion model）结合局部反应与空间交换。',
+    '空间模态（spatial mode）给出扰动沿位置的变化形状。',
+    '周期边界（periodic boundary condition）把首尾相连。',
+    '无通量边界（no-flux boundary condition）不与域外交换。',
+])
+def test_part12_full_terms_and_boundary_variants_keep_correct_manual_glosses(source):
+    issues, _ = check_text(source, 12, require_first=False)
+    assert issues == []
+    assert annotate_text(source, 12) == source

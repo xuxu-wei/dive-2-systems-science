@@ -3,19 +3,21 @@
     "id": "P12-C01-S01",
     "chapter_id": "12.1",
     "number": "12.1.1",
-    "title": "邻域规则与同步更新",
+    "title": "元胞自动机、邻域规则与同步更新",
     "outcome": "从四格手算写出同步异或规则，说明旧值读取与端点邻居。",
     "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.ipynb",
-    "visualization": "web/collective/index.html"
+    "visualization": "web/collective/index.html",
+    "reading": "lessons/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.md"
   },
   {
     "id": "P12-C01-S02",
     "chapter_id": "12.1",
     "number": "12.1.2",
-    "title": "异步顺序与边界",
+    "title": "异步更新、遍历顺序与边界",
     "outcome": "在每轮相同更新次数下，解释立即生效与遍历顺序如何改变结果。",
     "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.ipynb",
-    "visualization": "web/collective/index.html"
+    "visualization": "web/collective/index.html",
+    "reading": "lessons/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.md"
   },
   {
     "id": "P12-C02-S01",
@@ -24,70 +26,78 @@
     "title": "收益矩阵与复制动态",
     "outcome": "按相遇对象计算收益率，再从两类数量增长推导频率导数。",
     "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.ipynb",
-    "visualization": "web/collective/index.html"
+    "visualization": "web/collective/index.html",
+    "reading": "lessons/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.md"
   },
   {
     "id": "P12-C02-S02",
     "chapter_id": "12.2",
     "number": "12.2.2",
-    "title": "混合假设与空间合作",
+    "title": "局部相遇、空间排列与收益",
     "outcome": "从逐个体邻居计算收益，说明相同全局比例为何不足以描述局部接触。",
     "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.ipynb",
-    "visualization": "web/collective/index.html"
+    "visualization": "web/collective/index.html",
+    "reading": "lessons/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.md"
   },
   {
     "id": "P12-C03-S01",
     "chapter_id": "12.3",
     "number": "12.3.1",
-    "title": "中性漂变与有限种群",
+    "title": "中性遗传漂变与有限种群",
     "outcome": "从一代后代计数推导频率方差，比较群体规模与重复分布。",
     "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.ipynb",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.md"
   },
   {
     "id": "P12-C03-S02",
     "chapter_id": "12.3",
     "number": "12.3.2",
-    "title": "选择变异与机制消融",
+    "title": "选择、双向变异与后代抽样",
     "outcome": "分开选择后概率、变异后概率和有限后代频率，比较机制关闭的结果。",
     "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.ipynb",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.md"
   },
   {
     "id": "P12-C04-S01",
     "chapter_id": "12.4",
     "number": "12.4.1",
-    "title": "一维扩散与边界",
+    "title": "空间差分、扩散方程与无通量边界",
     "outcome": "从邻格交换得到扩散格式，分别检查端点、总量和非负权重。",
     "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.ipynb",
-    "visualization": "web/collective/index.html"
+    "visualization": "web/collective/index.html",
+    "reading": "lessons/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.md"
   },
   {
     "id": "P12-C04-S02",
     "chapter_id": "12.4",
     "number": "12.4.2",
-    "title": "双组分反应与模式证据",
+    "title": "双组分反应、空间模态与图灵失稳",
     "outcome": "从均匀反应平衡检查空间模态，并分别解释时间与空间细化结果。",
     "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.ipynb",
-    "visualization": "web/collective/index.html"
+    "visualization": "web/collective/index.html",
+    "reading": "lessons/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.md"
   },
   {
     "id": "P12-C05-S01",
     "chapter_id": "12.5",
     "number": "12.5.1",
-    "title": "从局部状态到密度",
+    "title": "激活密度与两点联合比例",
     "outcome": "推导下一步密度与左右联合比例的关系，检验独立性近似。",
     "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.ipynb",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.md"
   },
   {
     "id": "P12-C05-S02",
     "chapter_id": "12.5",
     "number": "12.5.2",
-    "title": "相关性与宏观闭合",
+    "title": "块平均、空间相关与宏观闭合",
     "outcome": "比较块密度的信息损失，区分统计聚合与可连续更新的宏观闭合。",
     "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.ipynb",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.md"
   },
   {
     "id": "P12-SUMMARY",
@@ -107,6 +117,7 @@
         "统计聚合的信息损失与宏观闭合"
       ],
       "focus": "解释同一比例为何不能代替局部排列；根据模型选择手算、边界、重复分布与网格检查。"
-    }
+    },
+    "reading": "lessons/12-个体与集体现象/06-篇末综合/01-局部规则与宏观近似.md"
   }
 ]

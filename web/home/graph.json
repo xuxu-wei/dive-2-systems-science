@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "9d8490dd649d68fce6984f376f1979013b6716cd06c74c9245f2db47afd88bc5",
+    "catalogSha256": "7d78f9b519b86bd58159445f616cc76186e8bb8ec231c667e8054965b6c0c4d4",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -15306,7 +15306,7 @@
       "number": "12",
       "parentId": null,
       "url": "/parts/12-个体与集体现象/",
-      "description": "多主体模型与元胞自动机 · 合作与演化博弈 · 选择、变异与适应 · 空间自组织与反应扩散 · 从局部规则到宏观描述",
+      "description": "多主体模型与元胞自动机 · 合作与演化博弈 · 选择、变异与适应 · 空间自组织与反应扩散 · 局部规则与宏观描述",
       "categories": [
         "evolution"
       ],
@@ -15417,8 +15417,8 @@
       "english": "cellular automaton",
       "number": "12.1.1",
       "parentId": "12.1",
-      "url": "/notebook/?id=P12-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/",
+      "readingUrl": "/chapters/12-01-多主体模型与元胞自动机/read/1/",
       "practiceUrl": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous",
       "description": "从四格手算写出同步异或规则，说明旧值读取与端点邻居。",
       "categories": [
@@ -15436,7 +15436,7 @@
       "total": 1,
       "lessonId": "P12-C01-S01",
       "lessonNumber": "12.1.1",
-      "lessonTitle": "邻域规则与同步更新",
+      "lessonTitle": "元胞自动机、邻域规则与同步更新",
       "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15447,8 +15447,8 @@
       "english": null,
       "number": "12.1.1",
       "parentId": "12.1",
-      "url": "/notebook/?id=P12-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/",
+      "readingUrl": "/chapters/12-01-多主体模型与元胞自动机/read/1/",
       "practiceUrl": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous",
       "description": "从四格手算写出同步异或规则，说明旧值读取与端点邻居。",
       "categories": [
@@ -15466,7 +15466,7 @@
       "total": 1,
       "lessonId": "P12-C01-S01",
       "lessonNumber": "12.1.1",
-      "lessonTitle": "邻域规则与同步更新",
+      "lessonTitle": "元胞自动机、邻域规则与同步更新",
       "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15477,8 +15477,8 @@
       "english": null,
       "number": "12.1.1",
       "parentId": "12.1",
-      "url": "/notebook/?id=P12-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/",
+      "readingUrl": "/chapters/12-01-多主体模型与元胞自动机/read/1/",
       "practiceUrl": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous",
       "description": "从四格手算写出同步异或规则，说明旧值读取与端点邻居。",
       "categories": [
@@ -15496,7 +15496,7 @@
       "total": 1,
       "lessonId": "P12-C01-S01",
       "lessonNumber": "12.1.1",
-      "lessonTitle": "邻域规则与同步更新",
+      "lessonTitle": "元胞自动机、邻域规则与同步更新",
       "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15507,8 +15507,8 @@
       "english": "asynchronous update",
       "number": "12.1.2",
       "parentId": "12.1",
-      "url": "/notebook/?id=P12-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-01-多主体模型与元胞自动机/read/2/",
+      "readingUrl": "/chapters/12-01-多主体模型与元胞自动机/read/2/",
       "practiceUrl": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory",
       "description": "在每轮相同更新次数下，解释立即生效与遍历顺序如何改变结果。",
       "categories": [
@@ -15526,7 +15526,7 @@
       "total": 1,
       "lessonId": "P12-C01-S02",
       "lessonNumber": "12.1.2",
-      "lessonTitle": "异步顺序与边界",
+      "lessonTitle": "异步更新、遍历顺序与边界",
       "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15537,8 +15537,8 @@
       "english": null,
       "number": "12.1.2",
       "parentId": "12.1",
-      "url": "/notebook/?id=P12-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-01-多主体模型与元胞自动机/read/2/",
+      "readingUrl": "/chapters/12-01-多主体模型与元胞自动机/read/2/",
       "practiceUrl": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory",
       "description": "在每轮相同更新次数下，解释立即生效与遍历顺序如何改变结果。",
       "categories": [
@@ -15556,7 +15556,7 @@
       "total": 1,
       "lessonId": "P12-C01-S02",
       "lessonNumber": "12.1.2",
-      "lessonTitle": "异步顺序与边界",
+      "lessonTitle": "异步更新、遍历顺序与边界",
       "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15567,8 +15567,8 @@
       "english": null,
       "number": "12.1.2",
       "parentId": "12.1",
-      "url": "/notebook/?id=P12-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-01-多主体模型与元胞自动机/read/2/",
+      "readingUrl": "/chapters/12-01-多主体模型与元胞自动机/read/2/",
       "practiceUrl": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory",
       "description": "在每轮相同更新次数下，解释立即生效与遍历顺序如何改变结果。",
       "categories": [
@@ -15586,7 +15586,7 @@
       "total": 1,
       "lessonId": "P12-C01-S02",
       "lessonNumber": "12.1.2",
-      "lessonTitle": "异步顺序与边界",
+      "lessonTitle": "异步更新、遍历顺序与边界",
       "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15631,8 +15631,8 @@
       "english": "payoff matrix",
       "number": "12.2.1",
       "parentId": "12.2",
-      "url": "/notebook/?id=P12-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-02-合作与演化博弈/read/1/",
+      "readingUrl": "/chapters/12-02-合作与演化博弈/read/1/",
       "practiceUrl": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator",
       "description": "按相遇对象计算收益率，再从两类数量增长推导频率导数。",
       "categories": [
@@ -15661,8 +15661,8 @@
       "english": "replicator dynamics",
       "number": "12.2.1",
       "parentId": "12.2",
-      "url": "/notebook/?id=P12-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-02-合作与演化博弈/read/1/",
+      "readingUrl": "/chapters/12-02-合作与演化博弈/read/1/",
       "practiceUrl": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator",
       "description": "按相遇对象计算收益率，再从两类数量增长推导频率导数。",
       "categories": [
@@ -15691,8 +15691,8 @@
       "english": null,
       "number": "12.2.1",
       "parentId": "12.2",
-      "url": "/notebook/?id=P12-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-02-合作与演化博弈/read/1/",
+      "readingUrl": "/chapters/12-02-合作与演化博弈/read/1/",
       "practiceUrl": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator",
       "description": "按相遇对象计算收益率，再从两类数量增长推导频率导数。",
       "categories": [
@@ -15721,8 +15721,8 @@
       "english": "homogeneous mixing",
       "number": "12.2.2",
       "parentId": "12.2",
-      "url": "/notebook/?id=P12-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-02-合作与演化博弈/read/2/",
+      "readingUrl": "/chapters/12-02-合作与演化博弈/read/2/",
       "practiceUrl": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs",
       "description": "从逐个体邻居计算收益，说明相同全局比例为何不足以描述局部接触。",
       "categories": [
@@ -15740,7 +15740,7 @@
       "total": 1,
       "lessonId": "P12-C02-S02",
       "lessonNumber": "12.2.2",
-      "lessonTitle": "混合假设与空间合作",
+      "lessonTitle": "局部相遇、空间排列与收益",
       "chapterUrl": "/chapters/12-02-合作与演化博弈/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15751,8 +15751,8 @@
       "english": null,
       "number": "12.2.2",
       "parentId": "12.2",
-      "url": "/notebook/?id=P12-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-02-合作与演化博弈/read/2/",
+      "readingUrl": "/chapters/12-02-合作与演化博弈/read/2/",
       "practiceUrl": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs",
       "description": "从逐个体邻居计算收益，说明相同全局比例为何不足以描述局部接触。",
       "categories": [
@@ -15770,7 +15770,7 @@
       "total": 1,
       "lessonId": "P12-C02-S02",
       "lessonNumber": "12.2.2",
-      "lessonTitle": "混合假设与空间合作",
+      "lessonTitle": "局部相遇、空间排列与收益",
       "chapterUrl": "/chapters/12-02-合作与演化博弈/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15781,8 +15781,8 @@
       "english": null,
       "number": "12.2.2",
       "parentId": "12.2",
-      "url": "/notebook/?id=P12-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-02-合作与演化博弈/read/2/",
+      "readingUrl": "/chapters/12-02-合作与演化博弈/read/2/",
       "practiceUrl": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs",
       "description": "从逐个体邻居计算收益，说明相同全局比例为何不足以描述局部接触。",
       "categories": [
@@ -15800,7 +15800,7 @@
       "total": 1,
       "lessonId": "P12-C02-S02",
       "lessonNumber": "12.2.2",
-      "lessonTitle": "混合假设与空间合作",
+      "lessonTitle": "局部相遇、空间排列与收益",
       "chapterUrl": "/chapters/12-02-合作与演化博弈/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15845,8 +15845,8 @@
       "english": null,
       "number": "12.3.1",
       "parentId": "12.3",
-      "url": "/notebook/?id=P12-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-03-选择、变异与适应/read/1/",
+      "readingUrl": "/chapters/12-03-选择、变异与适应/read/1/",
       "practiceUrl": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws",
       "description": "从一代后代计数推导频率方差，比较群体规模与重复分布。",
       "categories": [
@@ -15864,7 +15864,7 @@
       "total": 1,
       "lessonId": "P12-C03-S01",
       "lessonNumber": "12.3.1",
-      "lessonTitle": "中性漂变与有限种群",
+      "lessonTitle": "中性遗传漂变与有限种群",
       "chapterUrl": "/chapters/12-03-选择、变异与适应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15875,8 +15875,8 @@
       "english": null,
       "number": "12.3.1",
       "parentId": "12.3",
-      "url": "/notebook/?id=P12-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-03-选择、变异与适应/read/1/",
+      "readingUrl": "/chapters/12-03-选择、变异与适应/read/1/",
       "practiceUrl": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws",
       "description": "从一代后代计数推导频率方差，比较群体规模与重复分布。",
       "categories": [
@@ -15894,7 +15894,7 @@
       "total": 1,
       "lessonId": "P12-C03-S01",
       "lessonNumber": "12.3.1",
-      "lessonTitle": "中性漂变与有限种群",
+      "lessonTitle": "中性遗传漂变与有限种群",
       "chapterUrl": "/chapters/12-03-选择、变异与适应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15905,8 +15905,8 @@
       "english": null,
       "number": "12.3.1",
       "parentId": "12.3",
-      "url": "/notebook/?id=P12-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-03-选择、变异与适应/read/1/",
+      "readingUrl": "/chapters/12-03-选择、变异与适应/read/1/",
       "practiceUrl": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws",
       "description": "从一代后代计数推导频率方差，比较群体规模与重复分布。",
       "categories": [
@@ -15924,7 +15924,7 @@
       "total": 1,
       "lessonId": "P12-C03-S01",
       "lessonNumber": "12.3.1",
-      "lessonTitle": "中性漂变与有限种群",
+      "lessonTitle": "中性遗传漂变与有限种群",
       "chapterUrl": "/chapters/12-03-选择、变异与适应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15935,8 +15935,8 @@
       "english": null,
       "number": "12.3.2",
       "parentId": "12.3",
-      "url": "/notebook/?id=P12-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-03-选择、变异与适应/read/2/",
+      "readingUrl": "/chapters/12-03-选择、变异与适应/read/2/",
       "practiceUrl": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw",
       "description": "分开选择后概率、变异后概率和有限后代频率，比较机制关闭的结果。",
       "categories": [
@@ -15954,7 +15954,7 @@
       "total": 1,
       "lessonId": "P12-C03-S02",
       "lessonNumber": "12.3.2",
-      "lessonTitle": "选择变异与机制消融",
+      "lessonTitle": "选择、双向变异与后代抽样",
       "chapterUrl": "/chapters/12-03-选择、变异与适应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15965,8 +15965,8 @@
       "english": null,
       "number": "12.3.2",
       "parentId": "12.3",
-      "url": "/notebook/?id=P12-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-03-选择、变异与适应/read/2/",
+      "readingUrl": "/chapters/12-03-选择、变异与适应/read/2/",
       "practiceUrl": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw",
       "description": "分开选择后概率、变异后概率和有限后代频率，比较机制关闭的结果。",
       "categories": [
@@ -15984,7 +15984,7 @@
       "total": 1,
       "lessonId": "P12-C03-S02",
       "lessonNumber": "12.3.2",
-      "lessonTitle": "选择变异与机制消融",
+      "lessonTitle": "选择、双向变异与后代抽样",
       "chapterUrl": "/chapters/12-03-选择、变异与适应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15995,8 +15995,8 @@
       "english": null,
       "number": "12.3.2",
       "parentId": "12.3",
-      "url": "/notebook/?id=P12-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-03-选择、变异与适应/read/2/",
+      "readingUrl": "/chapters/12-03-选择、变异与适应/read/2/",
       "practiceUrl": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw",
       "description": "分开选择后概率、变异后概率和有限后代频率，比较机制关闭的结果。",
       "categories": [
@@ -16014,7 +16014,7 @@
       "total": 1,
       "lessonId": "P12-C03-S02",
       "lessonNumber": "12.3.2",
-      "lessonTitle": "选择变异与机制消融",
+      "lessonTitle": "选择、双向变异与后代抽样",
       "chapterUrl": "/chapters/12-03-选择、变异与适应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16059,8 +16059,8 @@
       "english": null,
       "number": "12.4.1",
       "parentId": "12.4",
-      "url": "/notebook/?id=P12-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-04-空间自组织与反应扩散/read/1/",
+      "readingUrl": "/chapters/12-04-空间自组织与反应扩散/read/1/",
       "practiceUrl": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid",
       "description": "从邻格交换得到扩散格式，分别检查端点、总量和非负权重。",
       "categories": [
@@ -16078,7 +16078,7 @@
       "total": 1,
       "lessonId": "P12-C04-S01",
       "lessonNumber": "12.4.1",
-      "lessonTitle": "一维扩散与边界",
+      "lessonTitle": "空间差分、扩散方程与无通量边界",
       "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16089,8 +16089,8 @@
       "english": "no-flux boundary",
       "number": "12.4.1",
       "parentId": "12.4",
-      "url": "/notebook/?id=P12-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-04-空间自组织与反应扩散/read/1/",
+      "readingUrl": "/chapters/12-04-空间自组织与反应扩散/read/1/",
       "practiceUrl": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid",
       "description": "从邻格交换得到扩散格式，分别检查端点、总量和非负权重。",
       "categories": [
@@ -16108,7 +16108,7 @@
       "total": 1,
       "lessonId": "P12-C04-S01",
       "lessonNumber": "12.4.1",
-      "lessonTitle": "一维扩散与边界",
+      "lessonTitle": "空间差分、扩散方程与无通量边界",
       "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16119,8 +16119,8 @@
       "english": null,
       "number": "12.4.1",
       "parentId": "12.4",
-      "url": "/notebook/?id=P12-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-04-空间自组织与反应扩散/read/1/",
+      "readingUrl": "/chapters/12-04-空间自组织与反应扩散/read/1/",
       "practiceUrl": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid",
       "description": "从邻格交换得到扩散格式，分别检查端点、总量和非负权重。",
       "categories": [
@@ -16138,7 +16138,7 @@
       "total": 1,
       "lessonId": "P12-C04-S01",
       "lessonNumber": "12.4.1",
-      "lessonTitle": "一维扩散与边界",
+      "lessonTitle": "空间差分、扩散方程与无通量边界",
       "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16149,8 +16149,8 @@
       "english": "reaction-diffusion",
       "number": "12.4.2",
       "parentId": "12.4",
-      "url": "/notebook/?id=P12-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-04-空间自组织与反应扩散/read/2/",
+      "readingUrl": "/chapters/12-04-空间自组织与反应扩散/read/2/",
       "practiceUrl": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep",
       "description": "从均匀反应平衡检查空间模态，并分别解释时间与空间细化结果。",
       "categories": [
@@ -16168,7 +16168,7 @@
       "total": 1,
       "lessonId": "P12-C04-S02",
       "lessonNumber": "12.4.2",
-      "lessonTitle": "双组分反应与模式证据",
+      "lessonTitle": "双组分反应、空间模态与图灵失稳",
       "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16179,8 +16179,8 @@
       "english": null,
       "number": "12.4.2",
       "parentId": "12.4",
-      "url": "/notebook/?id=P12-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-04-空间自组织与反应扩散/read/2/",
+      "readingUrl": "/chapters/12-04-空间自组织与反应扩散/read/2/",
       "practiceUrl": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep",
       "description": "从均匀反应平衡检查空间模态，并分别解释时间与空间细化结果。",
       "categories": [
@@ -16198,7 +16198,7 @@
       "total": 1,
       "lessonId": "P12-C04-S02",
       "lessonNumber": "12.4.2",
-      "lessonTitle": "双组分反应与模式证据",
+      "lessonTitle": "双组分反应、空间模态与图灵失稳",
       "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16209,8 +16209,8 @@
       "english": null,
       "number": "12.4.2",
       "parentId": "12.4",
-      "url": "/notebook/?id=P12-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-04-空间自组织与反应扩散/read/2/",
+      "readingUrl": "/chapters/12-04-空间自组织与反应扩散/read/2/",
       "practiceUrl": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep",
       "description": "从均匀反应平衡检查空间模态，并分别解释时间与空间细化结果。",
       "categories": [
@@ -16228,14 +16228,14 @@
       "total": 1,
       "lessonId": "P12-C04-S02",
       "lessonNumber": "12.4.2",
-      "lessonTitle": "双组分反应与模式证据",
+      "lessonTitle": "双组分反应、空间模态与图灵失稳",
       "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "12.5",
       "kind": "chapter",
-      "title": "从局部规则到宏观描述",
+      "title": "局部规则与宏观描述",
       "number": "12.5",
       "parentId": "12",
       "url": "/chapters/12-05-从局部规则到宏观描述/",
@@ -16273,8 +16273,8 @@
       "english": null,
       "number": "12.5.1",
       "parentId": "12.5",
-      "url": "/notebook/?id=P12-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-05-从局部规则到宏观描述/read/1/",
+      "readingUrl": "/chapters/12-05-从局部规则到宏观描述/read/1/",
       "practiceUrl": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features",
       "description": "推导下一步密度与左右联合比例的关系，检验独立性近似。",
       "categories": [
@@ -16292,7 +16292,7 @@
       "total": 1,
       "lessonId": "P12-C05-S01",
       "lessonNumber": "12.5.1",
-      "lessonTitle": "从局部状态到密度",
+      "lessonTitle": "激活密度与两点联合比例",
       "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16303,8 +16303,8 @@
       "english": "two-point correlation",
       "number": "12.5.1",
       "parentId": "12.5",
-      "url": "/notebook/?id=P12-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-05-从局部规则到宏观描述/read/1/",
+      "readingUrl": "/chapters/12-05-从局部规则到宏观描述/read/1/",
       "practiceUrl": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features",
       "description": "推导下一步密度与左右联合比例的关系，检验独立性近似。",
       "categories": [
@@ -16322,7 +16322,7 @@
       "total": 1,
       "lessonId": "P12-C05-S01",
       "lessonNumber": "12.5.1",
-      "lessonTitle": "从局部状态到密度",
+      "lessonTitle": "激活密度与两点联合比例",
       "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16333,8 +16333,8 @@
       "english": null,
       "number": "12.5.1",
       "parentId": "12.5",
-      "url": "/notebook/?id=P12-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/12-05-从局部规则到宏观描述/read/1/",
+      "readingUrl": "/chapters/12-05-从局部规则到宏观描述/read/1/",
       "practiceUrl": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features",
       "description": "推导下一步密度与左右联合比例的关系，检验独立性近似。",
       "categories": [
@@ -16352,7 +16352,7 @@
       "total": 1,
       "lessonId": "P12-C05-S01",
       "lessonNumber": "12.5.1",
-      "lessonTitle": "从局部状态到密度",
+      "lessonTitle": "激活密度与两点联合比例",
       "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16363,8 +16363,8 @@
       "english": null,
       "number": "12.5.2",
       "parentId": "12.5",
-      "url": "/notebook/?id=P12-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-05-从局部规则到宏观描述/read/2/",
+      "readingUrl": "/chapters/12-05-从局部规则到宏观描述/read/2/",
       "practiceUrl": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions",
       "description": "比较块密度的信息损失，区分统计聚合与可连续更新的宏观闭合。",
       "categories": [
@@ -16382,7 +16382,7 @@
       "total": 1,
       "lessonId": "P12-C05-S02",
       "lessonNumber": "12.5.2",
-      "lessonTitle": "相关性与宏观闭合",
+      "lessonTitle": "块平均、空间相关与宏观闭合",
       "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16393,8 +16393,8 @@
       "english": null,
       "number": "12.5.2",
       "parentId": "12.5",
-      "url": "/notebook/?id=P12-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-05-从局部规则到宏观描述/read/2/",
+      "readingUrl": "/chapters/12-05-从局部规则到宏观描述/read/2/",
       "practiceUrl": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions",
       "description": "比较块密度的信息损失，区分统计聚合与可连续更新的宏观闭合。",
       "categories": [
@@ -16412,7 +16412,7 @@
       "total": 1,
       "lessonId": "P12-C05-S02",
       "lessonNumber": "12.5.2",
-      "lessonTitle": "相关性与宏观闭合",
+      "lessonTitle": "块平均、空间相关与宏观闭合",
       "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -16423,8 +16423,8 @@
       "english": null,
       "number": "12.5.2",
       "parentId": "12.5",
-      "url": "/notebook/?id=P12-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/12-05-从局部规则到宏观描述/read/2/",
+      "readingUrl": "/chapters/12-05-从局部规则到宏观描述/read/2/",
       "practiceUrl": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions",
       "description": "比较块密度的信息损失，区分统计聚合与可连续更新的宏观闭合。",
       "categories": [
@@ -16442,7 +16442,7 @@
       "total": 1,
       "lessonId": "P12-C05-S02",
       "lessonNumber": "12.5.2",
-      "lessonTitle": "相关性与宏观闭合",
+      "lessonTitle": "块平均、空间相关与宏观闭合",
       "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },

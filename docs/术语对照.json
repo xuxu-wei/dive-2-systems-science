@@ -1718,7 +1718,10 @@
   {
     "zh": "周期边界",
     "en": "periodic boundary",
-    "scope": "part12"
+    "scope": "part12",
+    "accepted": [
+      "periodic boundary condition"
+    ]
   },
   {
     "zh": "固定边界",
@@ -1758,7 +1761,10 @@
   {
     "zh": "无通量边界",
     "en": "no-flux boundary",
-    "scope": "part12"
+    "scope": "part12",
+    "accepted": [
+      "no-flux boundary condition"
+    ]
   },
   {
     "zh": "图灵失稳",
@@ -2246,5 +2252,25 @@
     "zh": "相位序参量",
     "en": "phase order parameter",
     "scope": "part11"
+  },
+  {
+    "zh": "中性遗传漂变",
+    "en": "neutral genetic drift",
+    "scope": "part12"
+  },
+  {
+    "zh": "吸收状态",
+    "en": "absorbing state",
+    "scope": "part05"
+  },
+  {
+    "zh": "反应扩散模型",
+    "en": "reaction-diffusion model",
+    "scope": "part12"
+  },
+  {
+    "zh": "空间模态",
+    "en": "spatial mode",
+    "scope": "part12"
   }
 ]

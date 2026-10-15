@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>12.4.2 双组分反应、空间模态与图灵失稳 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P12-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P12-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep">本节练习 · 4 题</a><a class="button" href="/chapters/12-04-空间自组织与反应扩散/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>12.4.2 双组分反应、空间模态与图灵失稳</h1>
+<p>学完本节，你应能求双组分反应的均匀平衡，从局部线性化计算不同空间扰动的增长率，并分别解释时间步与空间间距细化后的结果。</p>
+<p><strong>先修知识</strong>：12.4.1 的空间差分与扩散，4.3 的局部稳定性，第 3、11 篇的特征值与模态。</p>
+<h2 id="local-reactions-and-spatial-exchange">局部反应与空间交换</h2>
+<p>纯扩散把相邻位置的差异摊平。现在每个位置又有两种相互反应的组分：若单个位置的反应能消除小扰动，加入扩散后是否一定更加均匀？</p>
+<p>采用 <strong>Schnakenberg 反应模型</strong>，局部两项反应函数为</p>
+<p>$$F(u,v)=a-u+u^2v,\qquad G(u,v)=b-u^2v.$$</p>
+<p>这里 $u,v,a,b$ 已除以相应参考尺度，都是无量纲数。$u^2v$ 对第一组分提供正贡献，对第二组分提供负贡献；两组分的变化彼此联系。</p>
+<p>用 $\gamma$ 将反应数值换成时间变化率，再加入各自的扩散，得到</p>
+<p>$$\boxed{\begin{aligned}
+\frac{\partial u}{\partial t}&amp;=\gamma F(u,v)+D_u\frac{\partial^2u}{\partial x^2},\\
+\frac{\partial v}{\partial t}&amp;=\gamma G(u,v)+D_v\frac{\partial^2v}{\partial x^2}.
+\end{aligned}}$$</p>
+<p>这是<strong>反应扩散模型（reaction–diffusion model）</strong>。$\gamma$ 的单位为 $1/\mathrm T$，在所选时间单位下数值为 1；$D_u,D_v$ 的单位为长度²/T。两条方程右侧的每项因此都具有 $1/\mathrm T$ 单位，与无量纲组分的时间变化率相符。</p>
+<h2 id="spatially-uniform-reaction-equilibrium">均匀反应平衡</h2>
+<p>取正参数 $a,b&gt;0$，先求单个位置的平衡，使 $F=G=0$。两式相加得到</p>
+<p>$$a+b-u^*=0,\qquad u^*=a+b.$$</p>
+<p>再由 $G=0$ 得到</p>
+<p>$$v^*=\frac b{(a+b)^2}.$$</p>
+<p>取 $a=0.1,b=0.9$，有 $u^*=1,v^*=0.9$。代回可得 $F=0.1-1+0.9=0$，$G=0.9-0.9=0$。</p>
+<p>若每格都取这两个值，相邻格差也为零。因此首尾相连或端面无通量时，均匀平衡同时使局部反应与扩散为零，一步完整更新应保持原值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-uniform-equilibrium">均匀平衡的逐项核对</a></li></ul></nav>
+
+<h2 id="reaction-jacobian-and-local-stability">反应雅可比与局部稳定性</h2>
+<p>给均匀平衡一个小扰动 $\delta u,\delta v$。先只考虑反应，对两项函数分别求偏导：</p>
+<p>$$\frac{\partial F}{\partial u}=-1+2uv,\qquad
+\frac{\partial F}{\partial v}=u^2,$$</p>
+<p>$$\frac{\partial G}{\partial u}=-2uv,\qquad
+\frac{\partial G}{\partial v}=-u^2.$$</p>
+<p>在平衡处组成反应的雅可比矩阵</p>
+<p>$$J=\gamma\begin{bmatrix}-1+2u^*v^*&amp;u^{*2}\\-2u^*v^*&amp;-u^{*2}\end{bmatrix}
+=\frac1{\mathrm T}\begin{bmatrix}0.8&amp;1\\-1.8&amp;-1\end{bmatrix}.$$</p>
+<p>局部扰动近似满足 $\frac{\mathrm d}{\mathrm dt}(\delta u,\delta v)^{\mathsf T}=J(\delta u,\delta v)^{\mathsf T}$。它的迹为 $-0.2/\mathrm T$，行列式为 $1/\mathrm T^2$，特征值为</p>
+<p>$$\lambda_{1,2}=\frac{-0.1\pm0.994987\mathrm i}{\mathrm T}.$$</p>
+<p>两根实部均为负，表示无扩散的反应会使足够小的扰动衰减。接着考察同样的小扰动在不同位置如何排列。</p>
+<h2 id="spatial-waves-and-discrete-modes">空间波形与离散模态</h2>
+<p>在首尾相连的 $n$ 格上，取一种余弦形状</p>
+<p>$$w_i=\cos\left(\frac{2\pi mi}{n}\right).$$</p>
+<p>整数 $m$ 是绕环波数编号：$m=0$ 时所有格子一起变化，非零 $m$ 让扰动沿位置起伏。对给定 $m$，将它称为一个<strong>空间模态（spatial mode）</strong>。</p>
+<p>令 $\phi=2\pi m/n$，由余弦加法可得 $w_{i-1}+w_{i+1}=2\cos\phi\,w_i$，所以</p>
+<p>$$\frac{w_{i-1}-2w_i+w_{i+1}}{\Delta x^2}
+=\frac{2(\cos\phi-1)}{\Delta x^2}w_i
+=-\underbrace{\frac{4\sin^2(\pi m/n)}{\Delta x^2}}_{q_m^2}w_i.$$</p>
+<p>$q_m^2$ 的单位为长度的负二次方，描述这个网格模态经二阶差分后被乘上的系数。同一波长的正弦形状具有相同系数。</p>
+<p>让两组分扰动共享这个空间形状，写成 $\delta u_i=\xi(t)w_i$、$\delta v_i=\zeta(t)w_i$，其中 $\xi,\zeta$ 是随时间变化的振幅。反应通过 $J$ 作用，扩散通过 $-q_m^2$ 作用，故振幅满足</p>
+<p>$$\frac{\mathrm d}{\mathrm dt}\begin{bmatrix}\xi\\\zeta\end{bmatrix}
+=A_m\begin{bmatrix}\xi\\\zeta\end{bmatrix},\qquad
+\boxed{A_m=J-q_m^2\operatorname{diag}(D_u,D_v).}$$</p>
+<p>$A_m$ 最大特征值实部为该模态的线性增长率。正值让一种小扰动增长，负值则让它衰减。</p>
+<h2 id="unequal-diffusion-and-turing-instability">不同扩散系数与图灵失稳</h2>
+<p>粗网格取 $n=64$、$\Delta x=1$ 个长度单位，令 $D_u=0.01,D_v=1$，单位均为该长度单位²/T。$m=16$ 时</p>
+<p>$$q_{16}^2=4\sin^2(\pi/4)=2,$$</p>
+<p>对应振幅矩阵为</p>
+<p>$$A_{16}=\frac1{\mathrm T}\begin{bmatrix}0.78&amp;1\\-1.8&amp;-3\end{bmatrix}.$$</p>
+<p>迹为 $-2.22/\mathrm T$，行列式为 $-0.54/\mathrm T^2$。负行列式使两个实特征值异号，具体约为 $0.2212/\mathrm T$ 和 $-2.4412/\mathrm T$，因此这个非零空间模态可以增长。</p>
+<p>均匀反应本来稳定，而加入扩散后非零空间扰动失稳，这称为<strong>图灵失稳（Turing instability）</strong>。不同组分扩散速度不同，改变了扰动之间原有的反应配合。</p>
+<p>若对照设置取 $D_u=D_v=0.01$，矩阵成为 $A_m=J-0.01q_m^2I$。它把反应特征值整体向左移动，非零模态的实部更加负。这给出同一反应与初始扰动下的明确对照。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-turing-evidence">图案与机制条件</a></li></ul></nav>
+
+<h2 id="one-discrete-update-for-two-components">双组分的一步离散更新</h2>
+<p>沿用上一节的空间差分，在同一步中同时计算</p>
+<p>$$u_i^+=u_i+h\left[\gamma F(u_i,v_i)+
+D_u\frac{u_{i-1}-2u_i+u_{i+1}}{\Delta x^2}\right],$$</p>
+<p>$$v_i^+=v_i+h\left[\gamma G(u_i,v_i)+
+D_v\frac{v_{i-1}-2v_i+v_{i+1}}{\Delta x^2}\right].$$</p>
+<p>所有反应和扩散项读取同一组旧 $u,v$。周期端点取另一端为邻居，无通量端点取端格自身作为越界旧值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep">双组分反应与扩散一步</a></li></ul></nav>
+
+<p>现在每一步既有空间交换，也有局部生成或消耗。分别检查 $D_uh/\Delta x^2,D_vh/\Delta x^2$，再检查完整更新的最低值和时间步比较，才能看到反应时间变化对离散计算的影响。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-step">加入反应项后的数值检查</a></li></ul></nav>
+
+<h2 id="finite-grid-patterns-and-two-refinements">有限网格图案与两种细化</h2>
+<p>实验在长度为 64 个长度单位的周期域上进行。粗网格 64 格、间距 1，初始 $u$ 为 1 附加标准差 0.005 的小扰动，$v$ 全为 0.9。两种扩散设置使用同一初态，以 $h=0.03$ T 更新 800 步，终时为 24 T。</p>
+<p>下图左侧比较初态、不同扩散系数组、相同扩散系数组以及空间细化对照；右侧画粗网格各模态的最大线性增长率。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P12-C04-S02-9eeccccc-0.png" alt="双组分反应、空间模态与图灵失稳：实验结果图" loading="lazy"></figure>
+</section>
+<p>相同扩散系数的蓝线回到均匀态附近；不同扩散系数的红线出现空间起伏。右图在一部分非零模态上为正，对应前面算出的线性增长机制。之后振幅变大，红线形状还受到非线性反应的影响。</p>
+<p>对数值计算分别作两项比较：</p>
+<table>
+<thead>
+<tr>
+  <th>比较</th>
+  <th>格数与间距</th>
+  <th>时间步与更新数</th>
+  <th>共同终时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>粗网格基准</td>
+  <td>64 格，间距 1</td>
+  <td>0.03 T，800 步</td>
+  <td>24 T</td>
+</tr>
+<tr>
+  <td>时间步减半</td>
+  <td>64 格，间距 1</td>
+  <td>0.015 T，1600 步</td>
+  <td>24 T</td>
+</tr>
+<tr>
+  <td>空间间距减半</td>
+  <td>128 格，间距 0.5</td>
+  <td>0.0075 T，3200 步</td>
+  <td>24 T</td>
+</tr>
+</tbody>
+</table>
+<p>时间比较保留同一空间网格，两个末态的最大差小于 0.1。空间比较保持周期域长度不变，将同一初始扰动插值到细网格；细网格每隔一格取出的同位置末态，与粗网格最大差约为 2.617，图中绿色虚线也显示明显变化。</p>
+<p>空间细化既改变二阶差分的精度，也让网格表示更短的空间变化。这次实验在粗网格上的时间推进已有较好一致性，空间图案则仍明显依赖网格。继续研究模式形状，应在同一物理长度、初始分布和终时下进一步细化；当前的图先展示离散模型的结构与它的空间分辨率影响。</p>
+<p>下一章将把逐格状态聚合成较少的宏观变量，研究留下哪些局部信息才能继续预测。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://web.mit.edu/kardar/www/teaching/IITS/lectures/lec8/TuringPhilTransB1952.pdf">Turing，The Chemical Basis of Morphogenesis（1952）</a>提出由反应与扩散共同产生模式的机制；<a href="https://people.math.wisc.edu/~angenent/519.2016s/notes/Schnakenberg.html">威斯康星大学的 Schnakenberg 模型讲义</a>给出反应模型的缩放与稳定性问题。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/12-04-空间自组织与反应扩散/read/1/">← 12.4.1 空间差分、扩散方程与无通量边界</a><a href="/chapters/12-05-从局部规则到宏观描述/read/1/">12.5.1 激活密度与两点联合比例 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

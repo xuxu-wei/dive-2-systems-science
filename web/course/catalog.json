@@ -17933,77 +17933,230 @@
               "id": "P12-C01-S01",
               "chapter_id": "12.1",
               "number": "12.1.1",
-              "title": "邻域规则与同步更新",
+              "title": "元胞自动机、邻域规则与同步更新",
               "outcome": "从四格手算写出同步异或规则，说明旧值读取与端点邻居。",
               "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.ipynb",
               "visualization": "web/collective/index.html",
+              "reading": "lessons/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.md",
               "questions": [
                 {
                   "id": "p12-ca-synchronous",
                   "slug": "p12-ca-synchronous",
                   "title": "按旧状态同步更新元胞",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#fixed-boundary-and-endpoint-values",
+                  "concept_title": "固定边界与端点读值",
+                  "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous"
                 },
                 {
                   "id": "p12-old-state-buffer",
                   "slug": "p12-old-state-buffer",
                   "title": "逐格写入的读值时刻",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#neighborhood-xor-and-synchronous-rule",
+                  "concept_title": "邻域、异或与同步更新式",
+                  "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-old-state-buffer"
                 },
                 {
                   "id": "p12-periodic-single",
                   "slug": "p12-periodic-single",
                   "title": "单脉冲的周期结果",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#periodic-boundary-and-four-cell-example",
+                  "concept_title": "周期边界与四格两轮手算",
+                  "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-periodic-single"
                 },
                 {
                   "id": "p12-rule-definition",
                   "slug": "p12-rule-definition",
                   "title": "局部规则应声明什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#complete-local-model",
+                  "concept_title": "从局部规则确定整行演化",
+                  "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-rule-definition"
                 }
               ],
               "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous",
               "notebook_url": "/notebook/?id=P12-C01-S01",
-              "url": "/notebook/?id=P12-C01-S01"
+              "reading_url": "/chapters/12-01-多主体模型与元胞自动机/read/1/",
+              "concepts": [
+                {
+                  "id": "agents-and-cellular-automata",
+                  "title": "多主体模型与元胞自动机",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C01-S01:agents-and-cellular-automata",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#agents-and-cellular-automata"
+                },
+                {
+                  "id": "neighborhood-xor-and-synchronous-rule",
+                  "title": "邻域、异或与同步更新式",
+                  "question_ids": [
+                    "p12-old-state-buffer"
+                  ],
+                  "explore": false,
+                  "key": "P12-C01-S01:neighborhood-xor-and-synchronous-rule",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#neighborhood-xor-and-synchronous-rule"
+                },
+                {
+                  "id": "periodic-boundary-and-four-cell-example",
+                  "title": "周期边界与四格两轮手算",
+                  "question_ids": [
+                    "p12-periodic-single"
+                  ],
+                  "explore": false,
+                  "key": "P12-C01-S01:periodic-boundary-and-four-cell-example",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#periodic-boundary-and-four-cell-example"
+                },
+                {
+                  "id": "fixed-boundary-and-endpoint-values",
+                  "title": "固定边界与端点读值",
+                  "question_ids": [
+                    "p12-ca-synchronous"
+                  ],
+                  "explore": false,
+                  "key": "P12-C01-S01:fixed-boundary-and-endpoint-values",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#fixed-boundary-and-endpoint-values"
+                },
+                {
+                  "id": "single-activation-space-time-diagram",
+                  "title": "单点激活的时间—位置图",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P12-C01-S01:single-activation-space-time-diagram",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#single-activation-space-time-diagram",
+                  "explore_url": "/chapters/12-01-多主体模型与元胞自动机/explore/?concept=P12-C01-S01%3Asingle-activation-space-time-diagram"
+                },
+                {
+                  "id": "complete-local-model",
+                  "title": "从局部规则确定整行演化",
+                  "question_ids": [
+                    "p12-rule-definition"
+                  ],
+                  "explore": false,
+                  "key": "P12-C01-S01:complete-local-model",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#complete-local-model"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C01-S01:references",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/#references"
+                }
+              ],
+              "url": "/chapters/12-01-多主体模型与元胞自动机/read/1/"
             },
             {
               "id": "P12-C01-S02",
               "chapter_id": "12.1",
               "number": "12.1.2",
-              "title": "异步顺序与边界",
+              "title": "异步更新、遍历顺序与边界",
               "outcome": "在每轮相同更新次数下，解释立即生效与遍历顺序如何改变结果。",
               "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.ipynb",
               "visualization": "web/collective/index.html",
+              "reading": "lessons/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.md",
               "questions": [
                 {
                   "id": "p12-ca-trajectory",
                   "slug": "p12-ca-trajectory",
                   "title": "按指定顺序演化局部状态",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-01-多主体模型与元胞自动机/read/2/#sweeps-and-update-counts",
+                  "concept_title": "更新轮次与相同的操作数量",
+                  "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory"
                 },
                 {
                   "id": "p12-async-order",
                   "slug": "p12-async-order",
                   "title": "改变遍历顺序",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-01-多主体模型与元胞自动机/read/2/#four-cell-update-orders",
+                  "concept_title": "两种顺序的四格手算",
+                  "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-async-order"
                 },
                 {
                   "id": "p12-fixed-boundary",
                   "slug": "p12-fixed-boundary",
                   "title": "固定边界的读值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-01-多主体模型与元胞自动机/read/2/#boundary-versus-update-timing",
+                  "concept_title": "边界与读取时刻的区别",
+                  "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-fixed-boundary"
                 },
                 {
                   "id": "p12-update-budget",
                   "slug": "p12-update-budget",
                   "title": "公平比较的时间单位",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-01-多主体模型与元胞自动机/read/2/#sweeps-and-update-counts",
+                  "concept_title": "更新轮次与相同的操作数量",
+                  "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-update-budget"
                 }
               ],
               "practice_url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory",
               "notebook_url": "/notebook/?id=P12-C01-S02",
-              "url": "/notebook/?id=P12-C01-S02"
+              "reading_url": "/chapters/12-01-多主体模型与元胞自动机/read/2/",
+              "concepts": [
+                {
+                  "id": "asynchronous-updates-and-current-state",
+                  "title": "异步更新与当前状态",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C01-S02:asynchronous-updates-and-current-state",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/2/#asynchronous-updates-and-current-state"
+                },
+                {
+                  "id": "four-cell-update-orders",
+                  "title": "两种顺序的四格手算",
+                  "question_ids": [
+                    "p12-async-order"
+                  ],
+                  "explore": false,
+                  "key": "P12-C01-S02:four-cell-update-orders",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/2/#four-cell-update-orders"
+                },
+                {
+                  "id": "boundary-versus-update-timing",
+                  "title": "边界与读取时刻的区别",
+                  "question_ids": [
+                    "p12-fixed-boundary"
+                  ],
+                  "explore": false,
+                  "key": "P12-C01-S02:boundary-versus-update-timing",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/2/#boundary-versus-update-timing"
+                },
+                {
+                  "id": "sweeps-and-update-counts",
+                  "title": "更新轮次与相同的操作数量",
+                  "question_ids": [
+                    "p12-update-budget",
+                    "p12-ca-trajectory"
+                  ],
+                  "explore": false,
+                  "key": "P12-C01-S02:sweeps-and-update-counts",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/2/#sweeps-and-update-counts"
+                },
+                {
+                  "id": "same-density-different-arrangements",
+                  "title": "相同激活比例与不同空间排列",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P12-C01-S02:same-density-different-arrangements",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/2/#same-density-different-arrangements",
+                  "explore_url": "/chapters/12-01-多主体模型与元胞自动机/explore/?concept=P12-C01-S02%3Asame-density-different-arrangements"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C01-S02:references",
+                  "url": "/chapters/12-01-多主体模型与元胞自动机/read/2/#references"
+                }
+              ],
+              "url": "/chapters/12-01-多主体模型与元胞自动机/read/2/"
             }
           ],
           "visualization": "web/collective/index.html"
@@ -18030,73 +18183,218 @@
               "outcome": "按相遇对象计算收益率，再从两类数量增长推导频率导数。",
               "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.ipynb",
               "visualization": "web/collective/index.html",
+              "reading": "lessons/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.md",
               "questions": [
                 {
                   "id": "p12-payoff-replicator",
                   "slug": "p12-payoff-replicator",
                   "title": "由收益计算复制动态",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-02-合作与演化博弈/read/1/#positive-growth-and-decreasing-frequency",
+                  "concept_title": "正增长与占比下降的手算",
+                  "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator"
                 },
                 {
                   "id": "p12-replicator-factor",
                   "slug": "p12-replicator-factor",
                   "title": "复制方程的代数化简",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-02-合作与演化博弈/read/1/#deriving-frequency-from-population-growth",
+                  "concept_title": "从数量增长推导频率变化",
+                  "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-replicator-factor"
                 },
                 {
                   "id": "p12-payoff-not-birth",
                   "slug": "p12-payoff-not-birth",
                   "title": "从收益定义繁殖事件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-02-合作与演化博弈/read/1/#payoff-matrix-and-fitness-rates",
+                  "concept_title": "收益矩阵与适合度率",
+                  "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-not-birth"
                 },
                 {
                   "id": "p12-equal-payoff",
                   "slug": "p12-equal-payoff",
                   "title": "内部不变点",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-02-合作与演化博弈/read/1/#payoff-difference-equilibria-and-trajectories",
+                  "concept_title": "收益差、平衡与频率轨迹",
+                  "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-equal-payoff"
                 }
               ],
               "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator",
               "notebook_url": "/notebook/?id=P12-C02-S01",
-              "url": "/notebook/?id=P12-C02-S01"
+              "reading_url": "/chapters/12-02-合作与演化博弈/read/1/",
+              "concepts": [
+                {
+                  "id": "payoff-matrix-and-fitness-rates",
+                  "title": "收益矩阵与适合度率",
+                  "question_ids": [
+                    "p12-payoff-not-birth"
+                  ],
+                  "explore": false,
+                  "key": "P12-C02-S01:payoff-matrix-and-fitness-rates",
+                  "url": "/chapters/12-02-合作与演化博弈/read/1/#payoff-matrix-and-fitness-rates"
+                },
+                {
+                  "id": "well-mixed-encounters-and-two-averages",
+                  "title": "充分混合与两次加权平均",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C02-S01:well-mixed-encounters-and-two-averages",
+                  "url": "/chapters/12-02-合作与演化博弈/read/1/#well-mixed-encounters-and-two-averages"
+                },
+                {
+                  "id": "deriving-frequency-from-population-growth",
+                  "title": "从数量增长推导频率变化",
+                  "question_ids": [
+                    "p12-replicator-factor"
+                  ],
+                  "explore": false,
+                  "key": "P12-C02-S01:deriving-frequency-from-population-growth",
+                  "url": "/chapters/12-02-合作与演化博弈/read/1/#deriving-frequency-from-population-growth"
+                },
+                {
+                  "id": "positive-growth-and-decreasing-frequency",
+                  "title": "正增长与占比下降的手算",
+                  "question_ids": [
+                    "p12-payoff-replicator"
+                  ],
+                  "explore": false,
+                  "key": "P12-C02-S01:positive-growth-and-decreasing-frequency",
+                  "url": "/chapters/12-02-合作与演化博弈/read/1/#positive-growth-and-decreasing-frequency"
+                },
+                {
+                  "id": "payoff-difference-equilibria-and-trajectories",
+                  "title": "收益差、平衡与频率轨迹",
+                  "question_ids": [
+                    "p12-equal-payoff"
+                  ],
+                  "explore": true,
+                  "key": "P12-C02-S01:payoff-difference-equilibria-and-trajectories",
+                  "url": "/chapters/12-02-合作与演化博弈/read/1/#payoff-difference-equilibria-and-trajectories",
+                  "explore_url": "/chapters/12-02-合作与演化博弈/explore/?concept=P12-C02-S01%3Apayoff-difference-equilibria-and-trajectories"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C02-S01:references",
+                  "url": "/chapters/12-02-合作与演化博弈/read/1/#references"
+                }
+              ],
+              "url": "/chapters/12-02-合作与演化博弈/read/1/"
             },
             {
               "id": "P12-C02-S02",
               "chapter_id": "12.2",
               "number": "12.2.2",
-              "title": "混合假设与空间合作",
+              "title": "局部相遇、空间排列与收益",
               "outcome": "从逐个体邻居计算收益，说明相同全局比例为何不足以描述局部接触。",
               "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.ipynb",
               "visualization": "web/collective/index.html",
+              "reading": "lessons/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.md",
               "questions": [
                 {
                   "id": "p12-spatial-payoffs",
                   "slug": "p12-spatial-payoffs",
                   "title": "计算局部相遇收益",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-02-合作与演化博弈/read/2/#averaging-existing-neighbor-encounters",
+                  "concept_title": "按实际接触次数求平均",
+                  "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs"
                 },
                 {
                   "id": "p12-same-frequency-structure",
                   "slug": "p12-same-frequency-structure",
                   "title": "频率相同的两种排列",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-02-合作与演化博弈/read/2/#four-individual-payoff-example",
+                  "concept_title": "四个体环的逐位收益",
+                  "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-same-frequency-structure"
                 },
                 {
                   "id": "p12-payoff-vs-update",
                   "slug": "p12-payoff-vs-update",
                   "title": "收益计算之后还缺什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-02-合作与演化博弈/read/2/#from-current-payoffs-to-next-generation",
+                  "concept_title": "从当前收益进入下一代更新",
+                  "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-vs-update"
                 },
                 {
                   "id": "p12-matched-spatial-game",
                   "slug": "p12-matched-spatial-game",
                   "title": "检验空间作用",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-02-合作与演化博弈/read/2/#clustered-and-alternating-arrangements",
+                  "concept_title": "相同组成的成团与交错对照",
+                  "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-matched-spatial-game"
                 }
               ],
               "practice_url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs",
               "notebook_url": "/notebook/?id=P12-C02-S02",
-              "url": "/notebook/?id=P12-C02-S02"
+              "reading_url": "/chapters/12-02-合作与演化博弈/read/2/",
+              "concepts": [
+                {
+                  "id": "type-frequency-and-local-neighbors",
+                  "title": "类型频率与局部邻居",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C02-S02:type-frequency-and-local-neighbors",
+                  "url": "/chapters/12-02-合作与演化博弈/read/2/#type-frequency-and-local-neighbors"
+                },
+                {
+                  "id": "four-individual-payoff-example",
+                  "title": "四个体环的逐位收益",
+                  "question_ids": [
+                    "p12-same-frequency-structure"
+                  ],
+                  "explore": false,
+                  "key": "P12-C02-S02:four-individual-payoff-example",
+                  "url": "/chapters/12-02-合作与演化博弈/read/2/#four-individual-payoff-example"
+                },
+                {
+                  "id": "averaging-existing-neighbor-encounters",
+                  "title": "按实际接触次数求平均",
+                  "question_ids": [
+                    "p12-spatial-payoffs"
+                  ],
+                  "explore": false,
+                  "key": "P12-C02-S02:averaging-existing-neighbor-encounters",
+                  "url": "/chapters/12-02-合作与演化博弈/read/2/#averaging-existing-neighbor-encounters"
+                },
+                {
+                  "id": "clustered-and-alternating-arrangements",
+                  "title": "相同组成的成团与交错对照",
+                  "question_ids": [
+                    "p12-matched-spatial-game"
+                  ],
+                  "explore": false,
+                  "key": "P12-C02-S02:clustered-and-alternating-arrangements",
+                  "url": "/chapters/12-02-合作与演化博弈/read/2/#clustered-and-alternating-arrangements"
+                },
+                {
+                  "id": "from-current-payoffs-to-next-generation",
+                  "title": "从当前收益进入下一代更新",
+                  "question_ids": [
+                    "p12-payoff-vs-update"
+                  ],
+                  "explore": false,
+                  "key": "P12-C02-S02:from-current-payoffs-to-next-generation",
+                  "url": "/chapters/12-02-合作与演化博弈/read/2/#from-current-payoffs-to-next-generation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C02-S02:references",
+                  "url": "/chapters/12-02-合作与演化博弈/read/2/#references"
+                }
+              ],
+              "url": "/chapters/12-02-合作与演化博弈/read/2/"
             }
           ],
           "visualization": "web/collective/index.html"
@@ -18119,77 +18417,221 @@
               "id": "P12-C03-S01",
               "chapter_id": "12.3",
               "number": "12.3.1",
-              "title": "中性漂变与有限种群",
+              "title": "中性遗传漂变与有限种群",
               "outcome": "从一代后代计数推导频率方差，比较群体规模与重复分布。",
               "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.ipynb",
               "visualization": null,
+              "reading": "lessons/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.md",
               "questions": [
                 {
                   "id": "p12-neutral-draws",
                   "slug": "p12-neutral-draws",
                   "title": "用固定抽样表更新中性种群",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-03-选择、变异与适应/read/1/#offspring-threshold-sampling",
+                  "concept_title": "后代类型的阈值抽样",
+                  "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws"
                 },
                 {
                   "id": "p12-neutral-variance",
                   "slug": "p12-neutral-variance",
                   "title": "漂变方差与规模",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-03-选择、变异与适应/read/1/#conditional-mean-and-drift-variance",
+                  "concept_title": "条件期望与一步方差",
+                  "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-variance"
                 },
                 {
                   "id": "p12-one-rise",
                   "slug": "p12-one-rise",
                   "title": "频率上升后的检验",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-03-选择、变异与适应/read/1/#independent-one-generation-experiment",
+                  "concept_title": "独立一代重复的频率分布",
+                  "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-one-rise"
                 },
                 {
                   "id": "p12-neutral-absorption",
                   "slug": "p12-neutral-absorption",
                   "title": "零变异的边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-03-选择、变异与适应/read/1/#absorbing-boundaries-and-generations",
+                  "concept_title": "吸收边界与连续世代",
+                  "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-absorption"
                 }
               ],
               "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws",
               "notebook_url": "/notebook/?id=P12-C03-S01",
-              "url": "/notebook/?id=P12-C03-S01"
+              "reading_url": "/chapters/12-03-选择、变异与适应/read/1/",
+              "concepts": [
+                {
+                  "id": "offspring-threshold-sampling",
+                  "title": "后代类型的阈值抽样",
+                  "question_ids": [
+                    "p12-neutral-draws"
+                  ],
+                  "explore": false,
+                  "key": "P12-C03-S01:offspring-threshold-sampling",
+                  "url": "/chapters/12-03-选择、变异与适应/read/1/#offspring-threshold-sampling"
+                },
+                {
+                  "id": "neutral-drift-and-offspring-count",
+                  "title": "中性遗传漂变与一代计数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C03-S01:neutral-drift-and-offspring-count",
+                  "url": "/chapters/12-03-选择、变异与适应/read/1/#neutral-drift-and-offspring-count"
+                },
+                {
+                  "id": "conditional-mean-and-drift-variance",
+                  "title": "条件期望与一步方差",
+                  "question_ids": [
+                    "p12-neutral-variance"
+                  ],
+                  "explore": false,
+                  "key": "P12-C03-S01:conditional-mean-and-drift-variance",
+                  "url": "/chapters/12-03-选择、变异与适应/read/1/#conditional-mean-and-drift-variance"
+                },
+                {
+                  "id": "population-size-and-fluctuation",
+                  "title": "群体规模与波动幅度",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C03-S01:population-size-and-fluctuation",
+                  "url": "/chapters/12-03-选择、变异与适应/read/1/#population-size-and-fluctuation"
+                },
+                {
+                  "id": "independent-one-generation-experiment",
+                  "title": "独立一代重复的频率分布",
+                  "question_ids": [
+                    "p12-one-rise"
+                  ],
+                  "explore": false,
+                  "key": "P12-C03-S01:independent-one-generation-experiment",
+                  "url": "/chapters/12-03-选择、变异与适应/read/1/#independent-one-generation-experiment"
+                },
+                {
+                  "id": "absorbing-boundaries-and-generations",
+                  "title": "吸收边界与连续世代",
+                  "question_ids": [
+                    "p12-neutral-absorption"
+                  ],
+                  "explore": false,
+                  "key": "P12-C03-S01:absorbing-boundaries-and-generations",
+                  "url": "/chapters/12-03-选择、变异与适应/read/1/#absorbing-boundaries-and-generations"
+                }
+              ],
+              "url": "/chapters/12-03-选择、变异与适应/read/1/"
             },
             {
               "id": "P12-C03-S02",
               "chapter_id": "12.3",
               "number": "12.3.2",
-              "title": "选择变异与机制消融",
+              "title": "选择、双向变异与后代抽样",
               "outcome": "分开选择后概率、变异后概率和有限后代频率，比较机制关闭的结果。",
               "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.ipynb",
               "visualization": null,
+              "reading": "lessons/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.md",
               "questions": [
                 {
                   "id": "p12-selection-mutation-draw",
                   "slug": "p12-selection-mutation-draw",
                   "title": "选择、变异再抽样",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-03-选择、变异与适应/read/2/#ordered-mechanisms-and-realized-count",
+                  "concept_title": "机制顺序与一次实际计数",
+                  "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw"
                 },
                 {
                   "id": "p12-selection-no-goal",
                   "slug": "p12-selection-no-goal",
                   "title": "选择模型的生成顺序",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-03-选择、变异与适应/read/2/#relative-reproductive-weights",
+                  "concept_title": "相对繁殖权重与选择",
+                  "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-no-goal"
                 },
                 {
                   "id": "p12-mutation-boundary",
                   "slug": "p12-mutation-boundary",
                   "title": "有变异时的零边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-03-选择、变异与适应/read/2/#mutation-at-zero-frequency",
+                  "concept_title": "变异后的零边界",
+                  "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-mutation-boundary"
                 },
                 {
                   "id": "p12-mechanism-ablation",
                   "slug": "p12-mechanism-ablation",
                   "title": "如何消融机制",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-03-选择、变异与适应/read/2/#generation-trajectories-and-ablation",
+                  "concept_title": "连续世代与逐项关闭机制",
+                  "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-mechanism-ablation"
                 }
               ],
               "practice_url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw",
               "notebook_url": "/notebook/?id=P12-C03-S02",
-              "url": "/notebook/?id=P12-C03-S02"
+              "reading_url": "/chapters/12-03-选择、变异与适应/read/2/",
+              "concepts": [
+                {
+                  "id": "relative-reproductive-weights",
+                  "title": "相对繁殖权重与选择",
+                  "question_ids": [
+                    "p12-selection-no-goal"
+                  ],
+                  "explore": false,
+                  "key": "P12-C03-S02:relative-reproductive-weights",
+                  "url": "/chapters/12-03-选择、变异与适应/read/2/#relative-reproductive-weights"
+                },
+                {
+                  "id": "bidirectional-mutation-probabilities",
+                  "title": "双向变异与类型转换概率",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C03-S02:bidirectional-mutation-probabilities",
+                  "url": "/chapters/12-03-选择、变异与适应/read/2/#bidirectional-mutation-probabilities"
+                },
+                {
+                  "id": "ordered-mechanisms-and-realized-count",
+                  "title": "机制顺序与一次实际计数",
+                  "question_ids": [
+                    "p12-selection-mutation-draw"
+                  ],
+                  "explore": false,
+                  "key": "P12-C03-S02:ordered-mechanisms-and-realized-count",
+                  "url": "/chapters/12-03-选择、变异与适应/read/2/#ordered-mechanisms-and-realized-count"
+                },
+                {
+                  "id": "mutation-at-zero-frequency",
+                  "title": "变异后的零边界",
+                  "question_ids": [
+                    "p12-mutation-boundary"
+                  ],
+                  "explore": false,
+                  "key": "P12-C03-S02:mutation-at-zero-frequency",
+                  "url": "/chapters/12-03-选择、变异与适应/read/2/#mutation-at-zero-frequency"
+                },
+                {
+                  "id": "generation-trajectories-and-ablation",
+                  "title": "连续世代与逐项关闭机制",
+                  "question_ids": [
+                    "p12-mechanism-ablation"
+                  ],
+                  "explore": false,
+                  "key": "P12-C03-S02:generation-trajectories-and-ablation",
+                  "url": "/chapters/12-03-选择、变异与适应/read/2/#generation-trajectories-and-ablation"
+                },
+                {
+                  "id": "trajectory-means-and-quantile-ranges",
+                  "title": "平均趋势与轨迹间的分散",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C03-S02:trajectory-means-and-quantile-ranges",
+                  "url": "/chapters/12-03-选择、变异与适应/read/2/#trajectory-means-and-quantile-ranges"
+                }
+              ],
+              "url": "/chapters/12-03-选择、变异与适应/read/2/"
             }
           ],
           "visualization": null
@@ -18213,84 +18655,243 @@
               "id": "P12-C04-S01",
               "chapter_id": "12.4",
               "number": "12.4.1",
-              "title": "一维扩散与边界",
+              "title": "空间差分、扩散方程与无通量边界",
               "outcome": "从邻格交换得到扩散格式，分别检查端点、总量和非负权重。",
               "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.ipynb",
               "visualization": "web/collective/index.html",
+              "reading": "lessons/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.md",
               "questions": [
                 {
                   "id": "p12-diffusion-grid",
                   "slug": "p12-diffusion-grid",
                   "title": "一维网格上的纯扩散",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-04-空间自组织与反应扩散/read/1/#periodic-and-cell-centered-no-flux-boundaries",
+                  "concept_title": "周期连接与单元中心无通量边界",
+                  "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid"
                 },
                 {
                   "id": "p12-diffusion-cfl",
                   "slug": "p12-diffusion-cfl",
                   "title": "显式步长条件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-04-空间自组织与反应扩散/read/1/#explicit-updates-and-nonnegative-weights",
+                  "concept_title": "显式更新与非负权重",
+                  "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-cfl"
                 },
                 {
                   "id": "p12-noflux-end",
                   "slug": "p12-noflux-end",
                   "title": "无通量端点",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-04-空间自组织与反应扩散/read/1/#periodic-and-cell-centered-no-flux-boundaries",
+                  "concept_title": "周期连接与单元中心无通量边界",
+                  "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-noflux-end"
                 },
                 {
                   "id": "p12-mass-not-enough",
                   "slug": "p12-mass-not-enough",
                   "title": "总和守恒就可信？",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-04-空间自组织与反应扩散/read/1/#spatial-distribution-total-amount-and-minimum",
+                  "concept_title": "空间分布、总量与最低格值",
+                  "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-mass-not-enough"
                 }
               ],
               "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid",
               "notebook_url": "/notebook/?id=P12-C04-S01",
-              "url": "/notebook/?id=P12-C04-S01"
+              "reading_url": "/chapters/12-04-空间自组织与反应扩散/read/1/",
+              "concepts": [
+                {
+                  "id": "conservative-exchange-between-neighboring-cells",
+                  "title": "相邻格子的守恒交换",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C04-S01:conservative-exchange-between-neighboring-cells",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/1/#conservative-exchange-between-neighboring-cells"
+                },
+                {
+                  "id": "spatial-slopes-and-second-differences",
+                  "title": "空间斜率与二阶差分",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C04-S01:spatial-slopes-and-second-differences",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/1/#spatial-slopes-and-second-differences"
+                },
+                {
+                  "id": "explicit-updates-and-nonnegative-weights",
+                  "title": "显式更新与非负权重",
+                  "question_ids": [
+                    "p12-diffusion-cfl"
+                  ],
+                  "explore": false,
+                  "key": "P12-C04-S01:explicit-updates-and-nonnegative-weights",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/1/#explicit-updates-and-nonnegative-weights"
+                },
+                {
+                  "id": "periodic-and-cell-centered-no-flux-boundaries",
+                  "title": "周期连接与单元中心无通量边界",
+                  "question_ids": [
+                    "p12-noflux-end",
+                    "p12-diffusion-grid"
+                  ],
+                  "explore": false,
+                  "key": "P12-C04-S01:periodic-and-cell-centered-no-flux-boundaries",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/1/#periodic-and-cell-centered-no-flux-boundaries"
+                },
+                {
+                  "id": "spatial-distribution-total-amount-and-minimum",
+                  "title": "空间分布、总量与最低格值",
+                  "question_ids": [
+                    "p12-mass-not-enough"
+                  ],
+                  "explore": true,
+                  "key": "P12-C04-S01:spatial-distribution-total-amount-and-minimum",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/1/#spatial-distribution-total-amount-and-minimum",
+                  "explore_url": "/chapters/12-04-空间自组织与反应扩散/explore/?concept=P12-C04-S01%3Aspatial-distribution-total-amount-and-minimum"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C04-S01:references",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/1/#references"
+                }
+              ],
+              "url": "/chapters/12-04-空间自组织与反应扩散/read/1/"
             },
             {
               "id": "P12-C04-S02",
               "chapter_id": "12.4",
               "number": "12.4.2",
-              "title": "双组分反应与模式证据",
+              "title": "双组分反应、空间模态与图灵失稳",
               "outcome": "从均匀反应平衡检查空间模态，并分别解释时间与空间细化结果。",
               "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.ipynb",
               "visualization": "web/collective/index.html",
+              "reading": "lessons/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.md",
               "questions": [
                 {
                   "id": "p12-reaction-diffusion-onestep",
                   "slug": "p12-reaction-diffusion-onestep",
                   "title": "双组分反应与扩散一步",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-04-空间自组织与反应扩散/read/2/#one-discrete-update-for-two-components",
+                  "concept_title": "双组分的一步离散更新",
+                  "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep"
                 },
                 {
                   "id": "p12-uniform-equilibrium",
                   "slug": "p12-uniform-equilibrium",
                   "title": "均匀平衡的逐项核对",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-04-空间自组织与反应扩散/read/2/#spatially-uniform-reaction-equilibrium",
+                  "concept_title": "均匀反应平衡",
+                  "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-uniform-equilibrium"
                 },
                 {
                   "id": "p12-turing-evidence",
                   "slug": "p12-turing-evidence",
                   "title": "图案与机制条件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-04-空间自组织与反应扩散/read/2/#unequal-diffusion-and-turing-instability",
+                  "concept_title": "不同扩散系数与图灵失稳",
+                  "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-turing-evidence"
                 },
                 {
                   "id": "p12-reaction-diffusion-step",
                   "slug": "p12-reaction-diffusion-step",
                   "title": "加入反应项后的数值检查",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-04-空间自组织与反应扩散/read/2/#one-discrete-update-for-two-components",
+                  "concept_title": "双组分的一步离散更新",
+                  "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-step"
                 }
               ],
               "practice_url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep",
               "notebook_url": "/notebook/?id=P12-C04-S02",
-              "url": "/notebook/?id=P12-C04-S02"
+              "reading_url": "/chapters/12-04-空间自组织与反应扩散/read/2/",
+              "concepts": [
+                {
+                  "id": "local-reactions-and-spatial-exchange",
+                  "title": "局部反应与空间交换",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C04-S02:local-reactions-and-spatial-exchange",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/2/#local-reactions-and-spatial-exchange"
+                },
+                {
+                  "id": "spatially-uniform-reaction-equilibrium",
+                  "title": "均匀反应平衡",
+                  "question_ids": [
+                    "p12-uniform-equilibrium"
+                  ],
+                  "explore": false,
+                  "key": "P12-C04-S02:spatially-uniform-reaction-equilibrium",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/2/#spatially-uniform-reaction-equilibrium"
+                },
+                {
+                  "id": "reaction-jacobian-and-local-stability",
+                  "title": "反应雅可比与局部稳定性",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C04-S02:reaction-jacobian-and-local-stability",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/2/#reaction-jacobian-and-local-stability"
+                },
+                {
+                  "id": "spatial-waves-and-discrete-modes",
+                  "title": "空间波形与离散模态",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C04-S02:spatial-waves-and-discrete-modes",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/2/#spatial-waves-and-discrete-modes"
+                },
+                {
+                  "id": "unequal-diffusion-and-turing-instability",
+                  "title": "不同扩散系数与图灵失稳",
+                  "question_ids": [
+                    "p12-turing-evidence"
+                  ],
+                  "explore": false,
+                  "key": "P12-C04-S02:unequal-diffusion-and-turing-instability",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/2/#unequal-diffusion-and-turing-instability"
+                },
+                {
+                  "id": "one-discrete-update-for-two-components",
+                  "title": "双组分的一步离散更新",
+                  "question_ids": [
+                    "p12-reaction-diffusion-onestep",
+                    "p12-reaction-diffusion-step"
+                  ],
+                  "explore": false,
+                  "key": "P12-C04-S02:one-discrete-update-for-two-components",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/2/#one-discrete-update-for-two-components"
+                },
+                {
+                  "id": "finite-grid-patterns-and-two-refinements",
+                  "title": "有限网格图案与两种细化",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C04-S02:finite-grid-patterns-and-two-refinements",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/2/#finite-grid-patterns-and-two-refinements"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C04-S02:references",
+                  "url": "/chapters/12-04-空间自组织与反应扩散/read/2/#references"
+                }
+              ],
+              "url": "/chapters/12-04-空间自组织与反应扩散/read/2/"
             }
           ],
           "visualization": "web/collective/index.html"
         },
         {
           "id": "12.5",
-          "title": "从局部规则到宏观描述",
+          "title": "局部规则与宏观描述",
           "url": "/chapters/12-05-从局部规则到宏观描述/",
           "goals": "由异或取平均推导一步密度关系，比较块密度的信息损失与宏观闭合条件。",
           "prerequisites": "12.1、12.2.2、5.2、6.4；数学：有限平均、二值乘积与联合比例。",
@@ -18307,77 +18908,219 @@
               "id": "P12-C05-S01",
               "chapter_id": "12.5",
               "number": "12.5.1",
-              "title": "从局部状态到密度",
+              "title": "激活密度与两点联合比例",
               "outcome": "推导下一步密度与左右联合比例的关系，检验独立性近似。",
               "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.ipynb",
               "visualization": null,
+              "reading": "lessons/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.md",
               "questions": [
                 {
                   "id": "p12-periodic-ca-features",
                   "slug": "p12-periodic-ca-features",
                   "title": "密度与隔一格两点相关",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-05-从局部规则到宏观描述/read/1/#distance-two-joint-fraction",
+                  "concept_title": "左右邻格的两点联合比例",
+                  "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features"
                 },
                 {
                   "id": "p12-same-density",
                   "slug": "p12-same-density",
                   "title": "同密度排列的一步预测",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-05-从局部规则到宏观描述/read/1/#xor-identity-and-exact-density",
+                  "concept_title": "异或恒等式与精确密度更新",
+                  "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-same-density"
                 },
                 {
                   "id": "p12-xor-density-identity",
                   "slug": "p12-xor-density-identity",
                   "title": "局部异或的聚合",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-05-从局部规则到宏观描述/read/1/#xor-identity-and-exact-density",
+                  "concept_title": "异或恒等式与精确密度更新",
+                  "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-xor-density-identity"
                 },
                 {
                   "id": "p12-measurement-scale",
                   "slug": "p12-measurement-scale",
                   "title": "宏观量先声明尺度",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-05-从局部规则到宏观描述/read/1/#binary-states-and-active-density",
+                  "concept_title": "二值状态与激活密度",
+                  "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-measurement-scale"
                 }
               ],
               "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features",
               "notebook_url": "/notebook/?id=P12-C05-S01",
-              "url": "/notebook/?id=P12-C05-S01"
+              "reading_url": "/chapters/12-05-从局部规则到宏观描述/read/1/",
+              "concepts": [
+                {
+                  "id": "binary-states-and-active-density",
+                  "title": "二值状态与激活密度",
+                  "question_ids": [
+                    "p12-measurement-scale"
+                  ],
+                  "explore": false,
+                  "key": "P12-C05-S01:binary-states-and-active-density",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/1/#binary-states-and-active-density"
+                },
+                {
+                  "id": "same-density-different-outcomes",
+                  "title": "同密度排列的不同后续",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C05-S01:same-density-different-outcomes",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/1/#same-density-different-outcomes"
+                },
+                {
+                  "id": "distance-two-joint-fraction",
+                  "title": "左右邻格的两点联合比例",
+                  "question_ids": [
+                    "p12-periodic-ca-features"
+                  ],
+                  "explore": false,
+                  "key": "P12-C05-S01:distance-two-joint-fraction",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/1/#distance-two-joint-fraction"
+                },
+                {
+                  "id": "xor-identity-and-exact-density",
+                  "title": "异或恒等式与精确密度更新",
+                  "question_ids": [
+                    "p12-xor-density-identity",
+                    "p12-same-density"
+                  ],
+                  "explore": false,
+                  "key": "P12-C05-S01:xor-identity-and-exact-density",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/1/#xor-identity-and-exact-density"
+                },
+                {
+                  "id": "independence-and-mean-field-prediction",
+                  "title": "独立性近似与平均场预测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C05-S01:independence-and-mean-field-prediction",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/1/#independence-and-mean-field-prediction"
+                },
+                {
+                  "id": "sixteen-cell-density-experiment",
+                  "title": "十六格实验与一步预测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C05-S01:sixteen-cell-density-experiment",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/1/#sixteen-cell-density-experiment"
+                }
+              ],
+              "url": "/chapters/12-05-从局部规则到宏观描述/read/1/"
             },
             {
               "id": "P12-C05-S02",
               "chapter_id": "12.5",
               "number": "12.5.2",
-              "title": "相关性与宏观闭合",
+              "title": "块平均、空间相关与宏观闭合",
               "outcome": "比较块密度的信息损失，区分统计聚合与可连续更新的宏观闭合。",
               "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.ipynb",
               "visualization": null,
+              "reading": "lessons/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.md",
               "questions": [
                 {
                   "id": "p12-closure-predictions",
                   "slug": "p12-closure-predictions",
                   "title": "比较平均场与相关量预测",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-05-从局部规则到宏观描述/read/2/#mean-field-closure-error",
+                  "concept_title": "平均场闭合与一步误差",
+                  "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions"
                 },
                 {
                   "id": "p12-coarse-blocks",
                   "slug": "p12-coarse-blocks",
                   "title": "计算固定宽度的块密度",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/12-05-从局部规则到宏观描述/read/2/#fixed-blocks-and-coarse-graining",
+                  "concept_title": "固定宽度分块与粗粒化",
+                  "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-coarse-blocks"
                 },
                 {
                   "id": "p12-closure-boundary",
                   "slug": "p12-closure-boundary",
                   "title": "改变局部规则后的聚合",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-05-从局部规则到宏观描述/read/2/#local-rules-and-required-statistics",
+                  "concept_title": "局部规则与所需的联合统计",
+                  "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-boundary"
                 },
                 {
                   "id": "p12-coarse-evidence",
                   "slug": "p12-coarse-evidence",
                   "title": "平均场预测失败后",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/12-05-从局部规则到宏观描述/read/2/#mean-field-closure-error",
+                  "concept_title": "平均场闭合与一步误差",
+                  "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-coarse-evidence"
                 }
               ],
               "practice_url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions",
               "notebook_url": "/notebook/?id=P12-C05-S02",
-              "url": "/notebook/?id=P12-C05-S02"
+              "reading_url": "/chapters/12-05-从局部规则到宏观描述/read/2/",
+              "concepts": [
+                {
+                  "id": "fixed-blocks-and-coarse-graining",
+                  "title": "固定宽度分块与粗粒化",
+                  "question_ids": [
+                    "p12-coarse-blocks"
+                  ],
+                  "explore": false,
+                  "key": "P12-C05-S02:fixed-blocks-and-coarse-graining",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/2/#fixed-blocks-and-coarse-graining"
+                },
+                {
+                  "id": "information-lost-within-blocks",
+                  "title": "相同块密度中的信息损失",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C05-S02:information-lost-within-blocks",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/2/#information-lost-within-blocks"
+                },
+                {
+                  "id": "macro-closure-and-multistep-evolution",
+                  "title": "宏观闭合与多步演化",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C05-S02:macro-closure-and-multistep-evolution",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/2/#macro-closure-and-multistep-evolution"
+                },
+                {
+                  "id": "mean-field-closure-error",
+                  "title": "平均场闭合与一步误差",
+                  "question_ids": [
+                    "p12-closure-predictions",
+                    "p12-coarse-evidence"
+                  ],
+                  "explore": false,
+                  "key": "P12-C05-S02:mean-field-closure-error",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/2/#mean-field-closure-error"
+                },
+                {
+                  "id": "density-and-arrangement-comparisons",
+                  "title": "不同密度与空间排列的对照",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P12-C05-S02:density-and-arrangement-comparisons",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/2/#density-and-arrangement-comparisons"
+                },
+                {
+                  "id": "local-rules-and-required-statistics",
+                  "title": "局部规则与所需的联合统计",
+                  "question_ids": [
+                    "p12-closure-boundary"
+                  ],
+                  "explore": false,
+                  "key": "P12-C05-S02:local-rules-and-required-statistics",
+                  "url": "/chapters/12-05-从局部规则到宏观描述/read/2/#local-rules-and-required-statistics"
+                }
+              ],
+              "url": "/chapters/12-05-从局部规则到宏观描述/read/2/"
             }
           ],
           "visualization": null
@@ -18417,59 +19160,166 @@
               ],
               "focus": "解释同一比例为何不能代替局部排列；根据模型选择手算、边界、重复分布与网格检查。"
             },
+            "reading": "lessons/12-个体与集体现象/06-篇末综合/01-局部规则与宏观近似.md",
             "questions": [
               {
                 "id": "p12-capstone-neighborhood",
                 "slug": "p12-capstone-neighborhood",
                 "title": "复现实验的记录内容",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/12-个体与集体现象/综合练习/read/1/#local-rules-and-synchronous-updates",
+                "concept_title": "局部规则与同步更新",
+                "practice_url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-neighborhood"
               },
               {
                 "id": "p12-capstone-mechanisms",
                 "slug": "p12-capstone-mechanisms",
                 "title": "选择与漂变分开",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/12-个体与集体现象/综合练习/read/1/#finite-offspring-and-random-frequencies",
+                "concept_title": "有限后代与随机频率",
+                "practice_url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-mechanisms"
               },
               {
                 "id": "p12-capstone-ca",
                 "slug": "p12-capstone-ca",
                 "title": "同步局部更新的最小实现",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/12-个体与集体现象/综合练习/read/1/#local-rules-and-synchronous-updates",
+                "concept_title": "局部规则与同步更新",
+                "practice_url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-ca"
               },
               {
                 "id": "p12-capstone-replicator",
                 "slug": "p12-capstone-replicator",
                 "title": "从收益到类型频率变化",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/12-个体与集体现象/综合练习/read/1/#encounter-payoffs-and-continuous-frequency-change",
+                "concept_title": "相遇收益与连续频率变化",
+                "practice_url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-replicator"
               },
               {
                 "id": "p12-capstone-spatial-step",
                 "slug": "p12-capstone-spatial-step",
                 "title": "反应与空间交换一起更新",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/12-个体与集体现象/综合练习/read/1/#joint-updates-of-local-reactions-and-spatial-exchange",
+                "concept_title": "局部反应与空间交换的共同更新",
+                "practice_url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-spatial-step"
               },
               {
                 "id": "p12-capstone-coarse-features",
                 "slug": "p12-capstone-coarse-features",
                 "title": "聚合局部状态并保留相关",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/12-个体与集体现象/综合练习/read/1/#density-and-neighbor-pair-fraction",
+                "concept_title": "密度与左右联合比例",
+                "practice_url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-coarse-features"
               },
               {
                 "id": "p12-capstone-pattern-proof",
                 "slug": "p12-capstone-pattern-proof",
                 "title": "更换网格后的图案证据",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/12-个体与集体现象/综合练习/read/1/#macroscopic-conclusions-and-numerical-scales",
+                "concept_title": "宏观结论与数值尺度",
+                "practice_url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-pattern-proof"
               },
               {
                 "id": "p12-capstone-new-scale",
                 "slug": "p12-capstone-new-scale",
                 "title": "新尺度下的闭合判断",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/12-个体与集体现象/综合练习/read/1/#exact-one-step-relation-and-mean-field-approximation",
+                "concept_title": "精确一步关系与平均场近似",
+                "practice_url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-new-scale"
               }
             ],
             "practice_url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-neighborhood",
             "notebook_url": "/notebook/?id=P12-SUMMARY",
-            "url": "/notebook/?id=P12-SUMMARY"
+            "reading_url": "/parts/12-个体与集体现象/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "local-rules-and-synchronous-updates",
+                "title": "局部规则与同步更新",
+                "question_ids": [
+                  "p12-capstone-neighborhood",
+                  "p12-capstone-ca"
+                ],
+                "explore": false,
+                "key": "P12-SUMMARY:local-rules-and-synchronous-updates",
+                "url": "/parts/12-个体与集体现象/综合练习/read/1/#local-rules-and-synchronous-updates"
+              },
+              {
+                "id": "density-and-neighbor-pair-fraction",
+                "title": "密度与左右联合比例",
+                "question_ids": [
+                  "p12-capstone-coarse-features"
+                ],
+                "explore": false,
+                "key": "P12-SUMMARY:density-and-neighbor-pair-fraction",
+                "url": "/parts/12-个体与集体现象/综合练习/read/1/#density-and-neighbor-pair-fraction"
+              },
+              {
+                "id": "exact-one-step-relation-and-mean-field-approximation",
+                "title": "精确一步关系与平均场近似",
+                "question_ids": [
+                  "p12-capstone-new-scale"
+                ],
+                "explore": false,
+                "key": "P12-SUMMARY:exact-one-step-relation-and-mean-field-approximation",
+                "url": "/parts/12-个体与集体现象/综合练习/read/1/#exact-one-step-relation-and-mean-field-approximation"
+              },
+              {
+                "id": "encounter-payoffs-and-continuous-frequency-change",
+                "title": "相遇收益与连续频率变化",
+                "question_ids": [
+                  "p12-capstone-replicator"
+                ],
+                "explore": false,
+                "key": "P12-SUMMARY:encounter-payoffs-and-continuous-frequency-change",
+                "url": "/parts/12-个体与集体现象/综合练习/read/1/#encounter-payoffs-and-continuous-frequency-change"
+              },
+              {
+                "id": "finite-offspring-and-random-frequencies",
+                "title": "有限后代与随机频率",
+                "question_ids": [
+                  "p12-capstone-mechanisms"
+                ],
+                "explore": false,
+                "key": "P12-SUMMARY:finite-offspring-and-random-frequencies",
+                "url": "/parts/12-个体与集体现象/综合练习/read/1/#finite-offspring-and-random-frequencies"
+              },
+              {
+                "id": "joint-updates-of-local-reactions-and-spatial-exchange",
+                "title": "局部反应与空间交换的共同更新",
+                "question_ids": [
+                  "p12-capstone-spatial-step"
+                ],
+                "explore": false,
+                "key": "P12-SUMMARY:joint-updates-of-local-reactions-and-spatial-exchange",
+                "url": "/parts/12-个体与集体现象/综合练习/read/1/#joint-updates-of-local-reactions-and-spatial-exchange"
+              },
+              {
+                "id": "macroscopic-conclusions-and-numerical-scales",
+                "title": "宏观结论与数值尺度",
+                "question_ids": [
+                  "p12-capstone-pattern-proof"
+                ],
+                "explore": false,
+                "key": "P12-SUMMARY:macroscopic-conclusions-and-numerical-scales",
+                "url": "/parts/12-个体与集体现象/综合练习/read/1/#macroscopic-conclusions-and-numerical-scales"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P12-SUMMARY:references",
+                "url": "/parts/12-个体与集体现象/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/12-个体与集体现象/综合练习/read/1/"
           }
         ],
         "available": true,

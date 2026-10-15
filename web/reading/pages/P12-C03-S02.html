@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>12.3.2 选择、双向变异与后代抽样 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P12-C03-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P12-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>12.3.2 选择、双向变异与后代抽样</h1>
+<p>上一节中，两类的繁殖机会随当前比例分配。现在让类型0拥有较大的繁殖权重，同时允许后代在两类之间变异。选择和变异先决定后代取各类型的概率，有限人数再把概率转成一次实际计数。分清这三步，就能解释平均趋势和单条轨迹为何会不同。</p>
+<p>学完本节，你应能手算选择后概率、变异后概率和实际后代频率，说明三步的顺序，并通过关闭机制比较它们的作用。先修为12.3.1的二项抽样与12.2的适合度概念。</p>
+<h2 id="relative-reproductive-weights">相对繁殖权重与选择</h2>
+<p>当前类型0的频率为$p$。令类型0的相对繁殖权重为$1+s$，类型1为1，其中$s\ge0$。权重表示一种类型获得繁殖机会的相对大小：权重为2与1，表示相同数量的两类个体对后代来源的贡献按2比1加权。</p>
+<p>这里的权重和$s$都无量纲，用于一代内的概率归一化。12.2的连续复制动态使用单位为$1/\mathrm T$的适合度率，描述数量随时间增长的速度；本节改用相对权重规定一代繁殖，分别按各自的含义计算。</p>
+<p>当前两类的加权份额是$p(1+s)$与$1-p$。除以总份额，选择后的类型0概率为</p>
+<p>$$\boxed{p_s=\frac{p(1+s)}{p(1+s)+(1-p)}
+=\frac{p(1+s)}{1+sp}.}$$</p>
+<p>例如$p=0.5$、$s=1$时，两类加权份额为1与0.5，故$p_s=1/1.5=2/3$。权重为2并不意味着概率也等于2，概率还要除以两类的总份额。</p>
+<p>将$p_s$与原比例相减：</p>
+<p>$$p_s-p=\frac{sp(1-p)}{1+sp}.$$</p>
+<p>在$0&lt;p&lt;1$且$s&gt;0$时，差值为正，选择把类型0的后代概率向上推。计算从当前类型的权重出发，再生成后代，没有预先指定最终比例。</p>
+<p><strong>适应（adaptation）</strong>在这里指可遗传的类型差异通过选择改变群体组成，使较有利于当前条件下繁殖的类型增多。这个模型用较大的繁殖权重表达这种优势；判断某一代的实际变化，还要接着计算变异和抽样。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-no-goal">选择模型的生成顺序</a></li></ul></nav>
+
+<h2 id="bidirectional-mutation-probabilities">双向变异与类型转换概率</h2>
+<p>用$\mu_{01}$表示类型0变为类型1的概率，$\mu_{10}$表示类型1变为类型0的概率，两者都在$[0,1]$内。下标先写原类型，再写新类型。</p>
+<p>选择后，后代最终成为类型0有两条路径：先来自类型0且没有变为1，或先来自类型1再变为0。因此变异后的类型0概率为</p>
+<p>$$\boxed{p_m=p_s(1-\mu_{01})+(1-p_s)\mu_{10}.}$$</p>
+<p>把它与$p_s$相减，可以看出两个方向的作用：</p>
+<p>$$p_m-p_s=(1-p_s)\mu_{10}-p_s\mu_{01}.$$</p>
+<p>右边第一项把类型1转入类型0，第二项把类型0转出。若$\mu_{01}+\mu_{10}&gt;0$，两项在$p_s=\mu_{10}/(\mu_{01}+\mu_{10})$时抵消。</p>
+<p>例如接着取$p_s=2/3$、$\mu_{01}=0.1$、$\mu_{10}=0.2$，就有</p>
+<p>$$p_m=\frac23\times0.9+\frac13\times0.2=\frac23.$$</p>
+<p>这个起点恰好使转入和转出都占$1/15$，净变化为零。改变起点以后，同样的变异概率通常会改变类型0的比例。</p>
+<h2 id="ordered-mechanisms-and-realized-count">机制顺序与一次实际计数</h2>
+<p>本模型先选择、再变异，最后独立抽取$N$位后代。给定当前$p$和这些机制参数，</p>
+<p>$$X\mid p\sim\operatorname{Binomial}(N,p_m),\qquad p'=X/N,$$</p>
+<p>因而</p>
+<p>$$\mathbb E[p'\mid p]=p_m,\qquad
+\operatorname{Var}(p'\mid p)=\frac{p_m(1-p_m)}N.$$</p>
+<p>这里的条件还固定了$s,\mu_{01},\mu_{10}$。选择与变异改变抽样概率，有限抽样再产生围绕该概率的波动。</p>
+<p>用刚才的$p_m=2/3$和抽样值$(0.1,0.5,0.8,0.9)$生成四位后代，只有前两项严格小于$2/3$，实际频率为$2/4=0.5$。依次记录的三个数是：选择后概率$2/3$、变异后概率$2/3$、后代频率$1/2$。若某项恰好等于阈值，仍按上一节的严格小于规则记为类型1。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw">选择、变异再抽样</a></li></ul></nav>
+
+<p>这三个步骤的顺序也影响结果。若在同一$p=0.5$下先变异，便先得到$0.5\times0.9+0.5\times0.2=0.55$，再选择得到$2\times0.55/(1+0.55)=22/31$。它与先选择再变异的$2/3$不同，原因是选择要对进入该步骤的当前两类份额重新归一化。</p>
+<h2 id="mutation-at-zero-frequency">变异后的零边界</h2>
+<p>当$p=0$时，选择后仍有$p_s=0$，但反向变异给出$p_m=\mu_{10}$。即使本代没有类型0，下一代也可以通过变异产生它。</p>
+<p>取$\mu_{10}=0.25$，下一代类型0的期望频率为0.25。每位后代仍以0.75的概率成为类型1，故$N$位后代中恰好没有类型0的概率为</p>
+<p>$$\Pr(X=0\mid p=0)=(0.75)^N.$$</p>
+<p>例如$N=4$时，这个概率约为0.316。反向变异使零边界能够离开；有限抽样仍可能让某一次更新停留在零。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-03-选择、变异与适应/practice/?question=p12-mutation-boundary">有变异时的零边界</a></li></ul></nav>
+
+<h2 id="generation-trajectories-and-ablation">连续世代与逐项关闭机制</h2>
+<p>为了比较机制，固定起点$p_0=0.2$与群体规模$N=200$，设立三组：</p>
+<table>
+<thead>
+<tr>
+  <th>设置</th>
+  <th style="text-align:right">选择加成$s$</th>
+  <th style="text-align:right">$\mu_{01}$</th>
+  <th style="text-align:right">$\mu_{10}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>中性抽样</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>选择</td>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>选择与双向变异</td>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0.01</td>
+  <td style="text-align:right">0.005</td>
+</tr>
+</tbody>
+</table>
+<p>将选择加成或变异概率设为零，可以关闭相应机制。这种保留其他设置、逐项关闭机制的比较称为<strong>消融实验（ablation experiment）</strong>。两者都关闭时，$p_s=p_m=p$，退回上一节的中性抽样。</p>
+<p>每组独立运行80条轨迹，每条连续演化30代。每一代都使用上一代生成的频率，所以一条轨迹有起点加30次更新，共31个记录。同一组内，各条轨迹使用独立随机输入；不同机制组在对应的轨迹、代数和后代位置复用同一抽样值，以便在相同随机输入下比较机制。概率阈值不同，同一个抽样值也可以产生不同类型。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/12-03-选择、变异与适应/practice/?question=p12-mechanism-ablation">如何消融机制</a></li></ul></nav>
+
+<h2 id="trajectory-means-and-quantile-ranges">平均趋势与轨迹间的分散</h2>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P12-C03-S02-f11e7b63-0.png" alt="选择、双向变异与后代抽样：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中每条实线是同一代80个群体的平均频率，阴影下沿和上沿分别是这些频率的10%与90%经验分位数。阴影描述群体之间的分散：大致居中的80%结果落在两条分位线之间。它对应的是不同轨迹的频率范围，不是实线均值的置信区间。</p>
+<p>中性组沿各自的历史上下波动，平均趋势靠近初始比例。选择组在$0&lt;p&lt;1$时持续提高类型0的抽样概率，平均曲线随代数上升。加入双向变异以后，转入与转出又改变了这一概率；当类型0已经很多时，$p_s\mu_{01}$的转出作用更明显。</p>
+<p>三组都保留了有限人数带来的轨迹差异。比较完整分布，能同时看到机制改变的平均趋势和群体仍会遇到的波动。下一章把个体类型换成各位置的连续数值，从邻格交换与局部反应研究空间图案。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/12-03-选择、变异与适应/read/1/">← 12.3.1 中性遗传漂变与有限种群</a><a href="/chapters/12-04-空间自组织与反应扩散/read/1/">12.4.1 空间差分、扩散方程与无通量边界 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>
