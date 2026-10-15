@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>16.2.2 候选二次函数、集合外矩阵与稳定性判断 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P16-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P16-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure">本节练习 · 4 题</a><a class="button" href="/chapters/16-02-模型不确定性与鲁棒控制/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>16.2.2 候选二次函数、集合外矩阵与稳定性判断</h1>
+<p>共同函数通过以后，结论属于已经检查的模型集合。现在有两个不同的问题：换一个距离权重没有通过，是否说明原模型不稳定？换入一个集合外矩阵，是否仍有相同保证？我们保持这些变化分开，用原矩阵和一个新的增长方向逐项判断。</p>
+<p>学完本节，应能区分候选函数的下降条件与系统稳定性，识别原凸包的范围，并用系统特征值与实际路径分析集合外模型。先修为16.2.1、第3篇的线性系统模态与第2篇的Euler法。</p>
+<h2 id="a-stable-model-can-fail-a-candidate-function">稳定模型也可能不通过某个候选函数</h2>
+<p>原$A_0$已由$P=I$得到严格下降。保持$A_0$不变，只另选一个正定候选</p>
+<p>$$P_{\rm test}=\begin{pmatrix}100&amp;0\\0&amp;1\end{pmatrix}.$$</p>
+<p>它把第一状态的平方加了很大权重。重新计算得</p>
+<p>$$S_{\rm test}=A_0^{\mathsf T}P_{\rm test}+P_{\rm test}A_0
+=\frac1T\begin{pmatrix}-80&amp;10\\10&amp;-1\end{pmatrix}.$$</p>
+<p>在非零方向$x=(1/8,1)^{\mathsf T}$，</p>
+<p>$$x^{\mathsf T}S_{\rm test}x
+=\frac{-80/64+20/8-1}{T}=\frac{0.25}{T}&gt;0.$$</p>
+<p>因此这个加权平方在该处最初增加。但模型仍是已由$P=I$证明稳定的$A_0$，两特征值也仍为$-0.4/T,-0.5/T$。改变的是候选距离对状态分配的权重。</p>
+<p>候选条件未通过时，可以换权重或独立分析系统特征值。把同一个$P$整体乘一个正数，会将导数矩阵也乘这个数，原非负方向的符号保持不变。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure">检查候选二次证书</a></li></ul></nav>
+
+<h2 id="the-original-convex-hull-and-an-outside-matrix">原凸包与集合外矩阵</h2>
+<p>原模型集合为</p>
+<p>$$A(\alpha)=\frac1T
+\begin{pmatrix}-0.4-0.4\alpha&amp;0.1\\0&amp;-0.5\end{pmatrix},
+\qquad0\le\alpha\le1.$$</p>
+<p>第一对角元素只能位于$[-0.8,-0.4]/T$。对任意给定权重，按元素组合两端矩阵即可得到这个模型；例如$\alpha=1$时结果就是$A_1$，尚未进行另一项稳定性检查。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-robust-interpolation">仿射不确定性下的矩阵</a></li></ul></nav>
+
+<p>现在考虑</p>
+<p>$$A_{\rm out}=\frac1T
+\begin{pmatrix}0.2&amp;0.1\\0&amp;-0.5\end{pmatrix}.$$</p>
+<p>它把第一方向的恢复改为增长，无法由原端点的非负权重组合得到。若仍用$P=I$，对应导数矩阵为</p>
+<p>$$S_{\rm out}=\frac1T
+\begin{pmatrix}0.4&amp;0.1\\0.1&amp;-1\end{pmatrix}.$$</p>
+<p>其最大特征值为$[-0.3+\sqrt{0.5}]/T\approx0.407107/T$，所以这个候选对新增矩阵没有严格下降。</p>
+<p>将三个矩阵按$A_0,A_1,A_{\rm out}$顺序检查，返回的最大导数特征值约为$[-0.758579,-0.983772,0.407107]/T$。保留这张列表，才能看到哪一项新增条件改变了总的布尔结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-counterexample">证书与集合外反例</a></li></ul></nav>
+
+<h2 id="system-eigenvalues-and-an-explicit-growing-direction">系统特征值与显式增长方向</h2>
+<p>要判断外部模型本身，接着看$A_{\rm out}$，而不只看候选导数矩阵。它是上三角矩阵，特征值直接为$0.2/T$和$-0.5/T$，有一个正增长模态。</p>
+<p>取$x_0=(1,0)^{\mathsf T}$。第二方程的零初值一直保持为零，第一方程就只剩</p>
+<p>$$\dot x_1=\frac{0.2}{T}x_1,
+\qquad x_1(t)=e^{0.2t/T}.$$</p>
+<p>这条显式增长解证明外部系统不稳定。它与上一段的候选函数检查提供不同依据：$S_{\rm out}$说明特定$V$不能保持下降，正特征值与增长解则判断了该模型的运动。</p>
+<p>原凸包的两个顶点及其共同推导仍保持不变。若把外部矩阵加入待保证的集合，就已经换了问题；这个增长方向表明扩大后的集合不能再具有全部模型恢复的性质。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-outside-set">集合外矩阵</a></li></ul></nav>
+
+<h2 id="three-paths-on-one-initial-state-and-grid">相同初态和时间网格的三条路径</h2>
+<p>三个模型均从$(1,0)^{\mathsf T}$出发，以$h=0.1T$作25次Euler更新，到$2.5T$。第二分量恒为零，图只画第一分量。</p>
+<p>每一步的第一状态乘子分别为</p>
+<p>$$A_0:\ 1-0.04=0.96,\qquad
+A_1:\ 1-0.08=0.92,\qquad
+A_{\rm out}:\ 1+0.02=1.02.$$</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P16-C02-S02-7e2ca499-0.png" alt="候选二次函数、集合外矩阵与稳定性判断：实验结果图" loading="lazy"></figure>
+</section>
+<p>两个顶点的第一状态逐步减小，外部矩阵则逐步增加。末值分别约为$0.96^{25}=0.360397$、$0.92^{25}=0.124364$和$1.02^{25}=1.640606$。离散乘子把曲线方向直接联系到原方程。</p>
+<p>这组Euler路径使用了同一初态与步长；连续模型的恢复或增长，则由共同函数和系统特征值分别分析。图中的一致方向帮助我们把这些条件读回具体运动。</p>
+<h2 id="model-scope-and-the-next-observation">模型范围与下一步观测</h2>
+<p>在这组比较里，原端点与外部矩阵保持同样的线性形式，只改变一个恢复系数，因此差异能对应到明确的模型范围。若执行器饱和，实际右端会像16.1那样改变，就从新的实际方程重新建立下降条件。</p>
+<p>另一个常见情形是系数未知，还会随着运行改变。下一章利用逐次到达的观测更新参数，并把“当前动作使用哪一次估计”写进时间顺序，让模型范围与新信息接到控制过程中。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://web.stanford.edu/~boyd/lmibook/">Boyd等的LMI专著</a>进一步讨论二次稳定条件；候选函数与系统模态的两种检查沿用本章及第3篇的推导。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/16-02-模型不确定性与鲁棒控制/read/1/">← 16.2.1 鲁棒稳定性、共同二次函数与顶点条件</a><a href="/chapters/16-03-递推辨识与自适应控制/read/1/">16.3.1 递推最小二乘、遗忘与持续激励 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

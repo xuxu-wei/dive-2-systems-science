@@ -34,8 +34,10 @@ test('feedback uses actual saturated input and reveals positive energy derivativ
 
 test('common certificate covers interval, exterior is a separate example',()=>{
  const inside=robustView(.5,1,'inside'),outside=robustView(.5,1,'outside');
- assert.ok(stat(inside,'两顶点最大裕度')<0);
- assert.ok(stat(outside,'当前矩阵最大裕度')>0);
+ assert.ok(stat(inside,'两顶点的最大导数特征值')<0);
+ assert.ok(stat(outside,'所选矩阵的最大导数特征值')>0);
+ assert.ok(Math.abs(stat(inside,'两顶点的最大导数特征值')-(-.9+Math.sqrt(.02)))<5.1e-5);
+ assert.ok(Math.abs(stat(outside,'所选矩阵的最大导数特征值')-(-.3+Math.sqrt(.5)))<5.1e-5);
 });
 
 test('consensus conserves sum while a delayed run may increase spread',()=>{

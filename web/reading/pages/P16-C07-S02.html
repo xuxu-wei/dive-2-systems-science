@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>16.7.2 配对评价、动作超限与求解失败 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P16-C07-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P16-C07-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget">本节练习 · 4 题</a><a class="button" href="/chapters/16-07-模型学习与约束决策/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>16.7.2 配对评价、动作超限与求解失败</h1>
+<p>两个预测器用于相同调节任务，哪一个更合适？上一节已经看到，预测、动作选择与实际状态各有自己的记录。现在把两种方法放到同一组场景中，分别计算这些记录所反映的结果。</p>
+<p>学完本节，你应能按场景配对计算误差差值，手算预测RMSE、动作平方均值和两个比例，并说明失败场景使用了什么最终记录。先修为16.7.1及第14篇的独立预测比较。</p>
+<h2 id="paired-scenarios-and-error-differences">场景配对与误差差值</h2>
+<p><strong>配对比较（paired comparison）</strong>让两种方法在相同场景上逐项对应。若第 $i$ 项表示某个共同初态和输入条件，这个含义在两份列表中保持不变。</p>
+<p>例如三个场景的绝对误差为 $[0.1,0.2,0.3]$ U与 $[0.2,0.1,0.5]$ U。按第一种减第二种，得到</p>
+<p>$$d=[-0.1,0.1,-0.2]\ \mathrm U.$$</p>
+<p>负值表示第一种方法在该场景误差更小，正值表示第二种更小。第一与第三场景有利于第一种，第二场景则相反。逐场景的差保留了这种变化；将两个列表各自排序再相减，会打乱原来的对应。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget">公平配对比较</a></li></ul></nav>
+
+<h2 id="prediction-action-and-failure-records">预测、动作与失败的完整记录</h2>
+<p>下面使用预先给定的五场景记录，练习评价计算。真实后继状态记为 $x_i$，机制方法和学习方法各有一个预测 $\hat x_i$、实际动作 $u_i$和求解失败标记 $f_i$。失败标记为1表示本次求解失败，0表示未失败。</p>
+<table>
+<thead>
+<tr>
+  <th>场景</th>
+  <th style="text-align:right">真实状态 / U</th>
+  <th style="text-align:right">机制预测 / U</th>
+  <th style="text-align:right">学习预测 / U</th>
+  <th style="text-align:right">机制动作 / U</th>
+  <th style="text-align:right">学习动作 / U</th>
+  <th style="text-align:right">机制失败</th>
+  <th style="text-align:right">学习失败</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">1.0</td>
+  <td style="text-align:right">0.9</td>
+  <td style="text-align:right">1.00</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">0.8</td>
+  <td style="text-align:right">0.9</td>
+  <td style="text-align:right">0.80</td>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0.4</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td style="text-align:right">1.2</td>
+  <td style="text-align:right">1.1</td>
+  <td style="text-align:right">1.19</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td style="text-align:right">1.1</td>
+  <td style="text-align:right">1.0</td>
+  <td style="text-align:right">1.05</td>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0.6</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td style="text-align:right">1.4</td>
+  <td style="text-align:right">1.2</td>
+  <td style="text-align:right">1.45</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p>规定动作上限为0.5 U。这组记录在求解失败后仍提供了最终预测与实际动作，因此第四行也有可以评价的误差与输入。失败标记继续保留，描述求解可靠性；实际动作则记录最终执行了什么。</p>
+<p>若需要比较两个完整控制方案，还应固定可用观测、训练与调参预算、允许动作和失败后的处理。先确定这些共同条件，再在同一组评价场景上记录结果，逐项比较。</p>
+<h2 id="four-metrics-and-their-units">四项指标及其单位</h2>
+<p>令共同场景数为 $N$，定义</p>
+<p>$$E_x=\sqrt{\frac1N\sum_{i=1}^N(x_i-\hat x_i)^2},\qquad
+C_u=\frac1N\sum_{i=1}^N u_i^2.$$</p>
+<p>$E_x$是预测均方根误差，单位U；$C_u$是动作平方均值，单位U²，反映这组任务中动作的大小。再定义</p>
+<p>$$F_u=\frac1N\sum_{i=1}^N\mathbf1(|u_i|&gt;u_{\max}),\qquad
+F_{\mathrm{fail}}=\frac1N\sum_{i=1}^N f_i.$$</p>
+<p>指示函数 $\mathbf1(\cdot)$ 在条件成立时取1，否则取0。$F_u$为动作超限比例，$F_{\mathrm{fail}}$为求解失败比例，二者无量纲。动作恰好等于上限时符合要求，故使用严格大于号。</p>
+<p>这里 $F_u$检查实际动作；上一节的实际状态上界是另一项检查。指出哪个量超过哪条限制，才能把问题定位到执行量或状态。</p>
+<p>计算题的返回列表按 $[E_x,C_u,F_u,F_{\mathrm{fail}}]$ 排列。它们分别回答预测、动作大小、动作约束和求解可靠性的问题。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-metrics">统一条件下的决策指标</a></li></ul></nav>
+
+<h2 id="hand-calculation-for-five-scenarios">五场景的逐项手算</h2>
+<p>机制预测误差的平方为 $[0.01,0.01,0.01,0.01,0.04]$ U²，总和0.08 U²，所以</p>
+<p>$$E_{x,\mathrm{mech}}=\sqrt{0.08/5}\approx0.126491\ \mathrm U.$$</p>
+<p>机制动作平方和为 $0.01+0.04+0.01+0.04+0.01=0.11$ U²，均值0.022 U²；没有动作超限或求解失败，两个比例均为0。</p>
+<p>学习方法的预测误差平方和为</p>
+<p>$$0+0+0.0001+0.0025+0.0025=0.0051\ \mathrm U^2,$$</p>
+<p>因此RMSE约0.031937 U。动作平方和为 $0.04+0.16+0.01+0.36+0.04=0.61$ U²，均值0.122 U²。第四场景的0.6 U动作超过上限，且该行求解失败，两个比例分别为 $1/5=0.2$。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P16-C07-S02-d8d15949-0.png" alt="配对评价、动作超限与求解失败：实验结果图" loading="lazy"></figure>
+</section>
+<p>图按四个指标分别比较两种方法。学习方法的预测误差较小，同时使用了更大的动作；五个场景中有一个动作超限，并保留了一次求解失败。这些是同一次比较的不同结果，各自保留单位和分母。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-07-模型学习与约束决策/practice/?question=p16-rmse-not-safety">预测更准是否更安全</a></li></ul></nav>
+
+<h2 id="failure-cases-and-statistical-denominators">失败场景与统计分母</h2>
+<p>如果删去第四行，两个比例都会从 $1/5$ 变为0，预测与动作统计也改成了剩余四个场景。变化来自评价对象被删掉，而非方法解决了这次失败。</p>
+<p>本题给出了失败后的有效最终预测与执行记录，故四指标都使用全部场景。实际评价中，要先确定失败后记录的含义：有最终输出时可以评价它的误差，同时保留失败标记；若根本没有有效预测，就需要另报可比场景数及失败率。</p>
+<p>例如题目给定两场景预测完全等于真值，动作是 $[0.1,1.5]$ U、上限1 U，失败标记为 $[0,1]$。其RMSE为0，动作平方均值为 $(0.01+2.25)/2=1.13$ U²，两个比例均为 $1/2$。数值不同，计算与记录原则相同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-07-模型学习与约束决策/practice/?question=p16-failure-rate">不要遗漏失败场景</a></li></ul></nav>
+
+<h2 id="interpreting-records-as-control-results">从记录回到控制问题</h2>
+<p>更小的预测误差说明预测在这些场景中更接近实际结果；动作平方、动作超限和求解失败则继续描述执行与选择的表现。将它们逐项放回共同场景，就能看出改进出现在哪里、还需要处理哪一部分。</p>
+<p>本篇从实际输入出发，依次建立下降条件、模型集合、估计时序、随机路径、局部通信和策略价值。篇末综合将选取其中的小例，要求把每项计算接回它的对象与条件。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://web.stanford.edu/~boyd/cvxbook/">Boyd与Vandenberghe，Convex Optimization</a>介绍目标与约束的分别表达；本节用配对记录分别评价预测误差、动作与求解结果。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/16-07-模型学习与约束决策/read/1/">← 16.7.1 预测模型、可行动作与实际约束</a><a href="/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/">16.综合 不确定模型、随机恢复与决策评价 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

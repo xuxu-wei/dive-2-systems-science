@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>16.6.1 有限决策过程与策略价值 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P16-C06-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P16-C06-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward">本节练习 · 4 题</a><a class="button" href="/chapters/16-06-强化学习与策略评估/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>16.6.1 有限决策过程与策略价值</h1>
+<p>一个调节任务每次选择动作后，会得到本次奖励，并可能继续或终止。只看眼前奖励，可能忽略下一步还会发生什么。我们先把状态转移和奖励完整给出，计算一项固定决策规则的长期结果，再在下一节研究如何从交互记录更新它。</p>
+<p>学完本节，你应能读懂有限转移表，由期望回报建立 Bellman 方程，并用线性方程与逐次更新计算同一项策略价值。先修为马尔可夫过程、条件期望与10.5的 Bellman 递推。</p>
+<h2 id="finite-markov-decision-process">有限马尔可夫决策过程</h2>
+<p><strong>马尔可夫决策过程（Markov decision process，MDP）</strong>由状态、可用动作、状态转移规律和奖励规律组成。其关键条件是：给定当前状态和动作，下一状态与本步奖励的条件分布只依赖这两项信息。在有限 MDP 中，状态集合和各状态的动作集合都是有限的。</p>
+<p>记 $S_n$ 为当前状态、$A_n$ 为本次动作，动作之后收到奖励 $R_{n+1}$ 并到达 $S_{n+1}$。我们用</p>
+<p>$$
+p(s'\mid s,a)=\Pr(S_{n+1}=s'\mid S_n=s,A_n=a)
+$$</p>
+<p>表示转移概率，用 $r(s,a)$ 表示本次奖励的条件平均。一个动作可能产生不同后继状态，概率行之和为1。奖励也可以随机；接下来的期望方程使用其条件平均。</p>
+<p>本例有两个状态。0表示继续调节，1表示任务终止。表中的转移行按“下一状态0、下一状态1”排列：</p>
+<table>
+<thead>
+<tr>
+  <th>当前状态</th>
+  <th style="text-align:right">动作</th>
+  <th>转移概率行</th>
+  <th style="text-align:right">平均即时奖励</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td style="text-align:right">0</td>
+  <td>$[0.8,0.2]$</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>0</td>
+  <td style="text-align:right">1</td>
+  <td>$[0.2,0.8]$</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">0或1</td>
+  <td>$[0,1]$</td>
+  <td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p>状态1以概率1留在自身，且此后奖励恒为零。这是用零奖励吸收态表示终止的方式。</p>
+<h2 id="policy-return-and-value">策略、折扣回报与价值</h2>
+<p>本节的确定性策略 $\pi(s)$ 为每个状态指定一个动作。例如列表 $[0,0]$ 按状态0、1排列，表示两处都取动作0。策略给定了怎样行动；实际路径还会受到转移随机性的影响。</p>
+<p>取折扣因子 $0\le\gamma&lt;1$，从第 $n$ 次决策开始的<strong>折扣回报（discounted return）</strong>为</p>
+<p>$$
+G_n=R_{n+1}+\gamma R_{n+2}+\gamma^2R_{n+3}+\cdots.
+$$</p>
+<p>本步奖励权重为1，晚一步乘一个 $\gamma$。有限模型中取有界奖励，折扣保证这个无限和有界。<strong>策略价值（policy value）</strong>是执行固定策略时的期望回报：</p>
+<p>$$
+\boxed{V^\pi(s)=\mathbb E_\pi[G_n\mid S_n=s].}
+$$</p>
+<p>概率和折扣无量纲，价值与奖励采用相同单位。到达本例终止态后，每个后续奖励都是零，因此 $V^\pi(1)=0$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward">终止后价值</a></li></ul></nav>
+
+<p>对于继续调节的状态，有些路径很早终止，有些路径获得多次奖励。价值把这些路径按概率平均；它描述的是当前策略，而寻找最优策略还需要比较不同动作选择。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-06-强化学习与策略评估/practice/?question=p16-policy-vs-learning">策略评价的对象</a></li></ul></nav>
+
+<h2 id="bellman-equation-from-conditional-averaging">从后继状态的平均得到 Bellman 方程</h2>
+<p>把回报拆成 $G_n=R_{n+1}+\gamma G_{n+1}$。从状态 $s$ 按策略选择 $\pi(s)$ 后，先取本步奖励的平均，再按后继状态的概率平均未来价值，得到</p>
+<p>$$
+V^\pi(s)=r(s,\pi(s))
++\gamma\sum_{s'}p(s'\mid s,\pi(s))V^\pi(s').
+$$</p>
+<p>这就是固定策略的 Bellman 方程。对策略 $[0,0]$、$\gamma=0.9$，两个状态的方程为</p>
+<p>$$
+\begin{aligned}
+V^\pi(0)&amp;=1+0.9[0.8V^\pi(0)+0.2V^\pi(1)],\\
+V^\pi(1)&amp;=0+0.9V^\pi(1).
+\end{aligned}
+$$</p>
+<p>第二行给出 $V^\pi(1)=0$。代入第一行，得到</p>
+<p>$$
+(1-0.72)V^\pi(0)=1,
+\qquad V^\pi(0)=\frac{25}{7}\approx3.571429.
+$$</p>
+<p>也可以逐步列举期望奖励：本次得到1，仍能继续一次的概率为0.8，因此下一次期望奖励折扣后为 $0.9\times0.8=0.72$；再晚一次贡献为 $0.72^2$。这些贡献之和是几何级数 $1+0.72+0.72^2+\cdots=25/7$。</p>
+<h2 id="policy-selected-rows-and-linear-system">策略选行与线性方程组</h2>
+<p>把每个状态在策略下选出的转移行组成 $P_\pi$，把相应奖励组成 $r_\pi$。本例为</p>
+<p>$$
+P_\pi=\begin{pmatrix}0.8&amp;0.2\\0&amp;1\end{pmatrix},
+\qquad r_\pi=\begin{pmatrix}1\\0\end{pmatrix}.
+$$</p>
+<p>全部 Bellman 方程便写成</p>
+<p>$$
+V^\pi=r_\pi+\gamma P_\pi V^\pi,
+\qquad \boxed{(I-\gamma P_\pi)V^\pi=r_\pi.}
+$$</p>
+<p>转移表的三层索引依次是当前状态、动作、下一状态。先按策略从每个状态取一行，再解方程，返回值按状态编号排列。$\gamma&lt;1$ 时该方程有唯一解：若两组解相减，差向量会满足 $e=\gamma P_\pi e$；概率加权平均的绝对值不超过最大分量绝对值，所以只有 $e=0$ 能成立。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-06-强化学习与策略评估/practice/?question=p16-policy-bellman">固定策略的折扣价值</a></li></ul></nav>
+
+<p>两种小模型可以帮助检查：如果状态0得到奖励1后立即终止，则价值为 $[1,0]$；如果它每步都留在自身并得到1，取 $\gamma=0.5$，则价值为 $[2,0]$。相同奖励配上不同转移，未来回报就不同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-06-强化学习与策略评估/practice/?question=p16-policy-compare">两状态策略评价</a></li></ul></nav>
+
+<h2 id="iterative-policy-evaluation-and-exact-value">价值迭代与方程解的距离</h2>
+<p>同一个线性方程也可用反复更新计算。用上标 $(m)$ 表示计算轮数，和任务中的时间下标分开：</p>
+<p>$$
+V^{(m+1)}=r_\pi+\gamma P_\pi V^{(m)},
+\qquad V^{(0)}=0.
+$$</p>
+<p>本例前几次为</p>
+<p>$$
+[0,0]\ \longrightarrow\ [1,0]
+\ \longrightarrow\ [1.72,0]
+\ \longrightarrow\ [2.2384,0].
+$$</p>
+<p>第 $m$ 次包含前 $m$ 项几何级数，因而第一项为 $(1-0.72^m)/0.28$。每增加一轮，又计入一层后续奖励。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P16-C06-S01-71f0cfe9-0.png" alt="有限决策过程与策略价值：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中从零向量出发更新35次，纵轴用对数显示当前向量与线性方程解的距离。近似直线下降来自本例剩余误差按 $0.72^m$ 缩小。两种计算使用同一转移、奖励、策略和折扣，因此比较的是同一个期望价值。</p>
+<p>已知模型让我们能够完整平均下一状态。下一节保留相同的回报目标，但每次只读取一条已经发生的交互，用它修正一个动作价值表项。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.incompleteideas.net/book/the-book-2nd.html">Sutton与Barto：Reinforcement Learning: An Introduction</a>第3、4章介绍有限 MDP、回报与固定策略评价。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/16-05-分布式控制与通信限制/read/2/">← 16.5.2 通信延迟、历史与稳定边界</a><a href="/chapters/16-06-强化学习与策略评估/read/2/">16.6.2 动作价值、Q 更新与策略评估 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

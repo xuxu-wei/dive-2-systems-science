@@ -62,8 +62,11 @@ def test_prose_and_formula_cells():
         notebook=json.loads((ROOT/lesson['path']).read_text(encoding='utf-8'))
         prose='\n'.join(''.join(cell['source']) for cell in notebook['cells'] if cell['cell_type']=='markdown')
         assert not any(ch in prose for ch in ('\t','\f','\r')),lesson['id']
-        assert '## 学习目标与先修知识' in prose and '## 模型假设' in prose
-        assert '## 练习' in prose
+        assert notebook['metadata']['teaching_format']=='experiment'
+        assert prose.count('[返回网页讲解](')==2
+        assert '## 核心函数' in prose and '## 修改实验' in prose
+        assert '## 练习' not in prose
+        assert (ROOT/lesson['reading']).is_file()
 
 def test_control_and_rls_against_independent_algebra():
     f=notebook_functions()

@@ -23467,77 +23467,220 @@
               "id": "P16-C01-S01",
               "chapter_id": "16.1",
               "number": "16.1.1",
-              "title": "非线性反馈与能量下降",
+              "title": "非线性状态反馈与Lyapunov下降",
               "outcome": "从偏差恢复出发推导反馈，解释Lyapunov函数的下降条件及其单位。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/01-非线性反馈与能量下降.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/01-非线性反馈设计/01-非线性反馈与能量下降.md",
               "questions": [
                 {
                   "id": "p16-lyapunov-actual",
                   "slug": "p16-lyapunov-actual",
                   "title": "哪一个输入进入能量导数",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-01-非线性反馈设计/read/1/#input-saturation-and-the-actual-rate",
+                  "concept_title": "输入饱和与实际变化率",
+                  "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual"
                 },
                 {
                   "id": "p16-cubic-condition",
                   "slug": "p16-cubic-condition",
                   "title": "三次反馈的充分条件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-01-非线性反馈设计/read/1/#lyapunov-function-and-exponential-decay-bound",
+                  "concept_title": "Lyapunov函数与指数衰减界",
+                  "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-cubic-condition"
                 },
                 {
                   "id": "p16-actual-lyapunov",
                   "slug": "p16-actual-lyapunov",
                   "title": "实际输入下的能量导数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-01-非线性反馈设计/read/1/#input-saturation-and-the-actual-rate",
+                  "concept_title": "输入饱和与实际变化率",
+                  "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-actual-lyapunov"
                 },
                 {
                   "id": "p16-feedback-path",
                   "slug": "p16-feedback-path",
                   "title": "限幅反馈的离散路径",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-01-非线性反馈设计/read/1/#euler-updates-with-the-applied-feedback",
+                  "concept_title": "实际反馈的Euler更新",
+                  "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-feedback-path"
                 }
               ],
               "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual",
               "notebook_url": "/notebook/?id=P16-C01-S01",
-              "url": "/notebook/?id=P16-C01-S01"
+              "reading_url": "/chapters/16-01-非线性反馈设计/read/1/",
+              "concepts": [
+                {
+                  "id": "deviation-model-and-nonlinear-state-feedback",
+                  "title": "偏差模型与非线性状态反馈",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C01-S01:deviation-model-and-nonlinear-state-feedback",
+                  "url": "/chapters/16-01-非线性反馈设计/read/1/#deviation-model-and-nonlinear-state-feedback"
+                },
+                {
+                  "id": "lyapunov-function-and-exponential-decay-bound",
+                  "title": "Lyapunov函数与指数衰减界",
+                  "question_ids": [
+                    "p16-cubic-condition"
+                  ],
+                  "explore": false,
+                  "key": "P16-C01-S01:lyapunov-function-and-exponential-decay-bound",
+                  "url": "/chapters/16-01-非线性反馈设计/read/1/#lyapunov-function-and-exponential-decay-bound"
+                },
+                {
+                  "id": "input-saturation-and-the-actual-rate",
+                  "title": "输入饱和与实际变化率",
+                  "question_ids": [
+                    "p16-lyapunov-actual",
+                    "p16-actual-lyapunov"
+                  ],
+                  "explore": false,
+                  "key": "P16-C01-S01:input-saturation-and-the-actual-rate",
+                  "url": "/chapters/16-01-非线性反馈设计/read/1/#input-saturation-and-the-actual-rate"
+                },
+                {
+                  "id": "current-deviation-and-descent-directions",
+                  "title": "当前偏差与下降方向图",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C01-S01:current-deviation-and-descent-directions",
+                  "url": "/chapters/16-01-非线性反馈设计/read/1/#current-deviation-and-descent-directions"
+                },
+                {
+                  "id": "euler-updates-with-the-applied-feedback",
+                  "title": "实际反馈的Euler更新",
+                  "question_ids": [
+                    "p16-feedback-path"
+                  ],
+                  "explore": false,
+                  "key": "P16-C01-S01:euler-updates-with-the-applied-feedback",
+                  "url": "/chapters/16-01-非线性反馈设计/read/1/#euler-updates-with-the-applied-feedback"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C01-S01:references",
+                  "url": "/chapters/16-01-非线性反馈设计/read/1/#references"
+                }
+              ],
+              "url": "/chapters/16-01-非线性反馈设计/read/1/"
             },
             {
               "id": "P16-C01-S02",
               "chapter_id": "16.1",
               "number": "16.1.2",
-              "title": "执行饱和、初值与适用域",
+              "title": "输入饱和、恢复区域与数值路径",
               "outcome": "把限幅后的实际输入代回模型，手算不同初值为何可能朝相反方向变化。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/01-非线性反馈设计/02-执行饱和、初值与适用域.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/01-非线性反馈设计/02-执行饱和、初值与适用域.md",
               "questions": [
                 {
                   "id": "p16-saturated-global",
                   "slug": "p16-saturated-global",
                   "title": "小扰动恢复与全局结论",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-01-非线性反馈设计/read/2/#short-paths-from-three-initial-deviations",
+                  "concept_title": "三种初值的短时间路径",
+                  "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global"
                 },
                 {
                   "id": "p16-finite-scan",
                   "slug": "p16-finite-scan",
                   "title": "有限扫描的作用",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-01-非线性反馈设计/read/2/#short-paths-from-three-initial-deviations",
+                  "concept_title": "三种初值的短时间路径",
+                  "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-finite-scan"
                 },
                 {
                   "id": "p16-saturation-boundary",
                   "slug": "p16-saturation-boundary",
                   "title": "比较扰动与执行上限",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-01-非线性反馈设计/read/2/#requested-and-applied-inputs-under-one-limit",
+                  "concept_title": "相同上限下的请求与实际输入",
+                  "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturation-boundary"
                 },
                 {
                   "id": "p16-region-path",
                   "slug": "p16-region-path",
                   "title": "有限初值的反馈实验",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-01-非线性反馈设计/read/2/#next-state-from-the-current-state",
+                  "concept_title": "从旧状态生成下一状态",
+                  "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-region-path"
                 }
               ],
               "practice_url": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global",
               "notebook_url": "/notebook/?id=P16-C01-S02",
-              "url": "/notebook/?id=P16-C01-S02"
+              "reading_url": "/chapters/16-01-非线性反馈设计/read/2/",
+              "concepts": [
+                {
+                  "id": "requested-and-applied-inputs-under-one-limit",
+                  "title": "相同上限下的请求与实际输入",
+                  "question_ids": [
+                    "p16-saturation-boundary"
+                  ],
+                  "explore": false,
+                  "key": "P16-C01-S02:requested-and-applied-inputs-under-one-limit",
+                  "url": "/chapters/16-01-非线性反馈设计/read/2/#requested-and-applied-inputs-under-one-limit"
+                },
+                {
+                  "id": "saturation-and-the-direction-of-recovery",
+                  "title": "触及上限与恢复方向",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C01-S02:saturation-and-the-direction-of-recovery",
+                  "url": "/chapters/16-01-非线性反馈设计/read/2/#saturation-and-the-direction-of-recovery"
+                },
+                {
+                  "id": "a-continuously-certified-recovery-region",
+                  "title": "一段可以连续证明的恢复区域",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C01-S02:a-continuously-certified-recovery-region",
+                  "url": "/chapters/16-01-非线性反馈设计/read/2/#a-continuously-certified-recovery-region"
+                },
+                {
+                  "id": "next-state-from-the-current-state",
+                  "title": "从旧状态生成下一状态",
+                  "question_ids": [
+                    "p16-region-path"
+                  ],
+                  "explore": false,
+                  "key": "P16-C01-S02:next-state-from-the-current-state",
+                  "url": "/chapters/16-01-非线性反馈设计/read/2/#next-state-from-the-current-state"
+                },
+                {
+                  "id": "short-paths-from-three-initial-deviations",
+                  "title": "三种初值的短时间路径",
+                  "question_ids": [
+                    "p16-saturated-global",
+                    "p16-finite-scan"
+                  ],
+                  "explore": true,
+                  "key": "P16-C01-S02:short-paths-from-three-initial-deviations",
+                  "url": "/chapters/16-01-非线性反馈设计/read/2/#short-paths-from-three-initial-deviations",
+                  "explore_url": "/chapters/16-01-非线性反馈设计/explore/?concept=P16-C01-S02%3Ashort-paths-from-three-initial-deviations"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C01-S02:references",
+                  "url": "/chapters/16-01-非线性反馈设计/read/2/#references"
+                }
+              ],
+              "url": "/chapters/16-01-非线性反馈设计/read/2/"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -23561,77 +23704,228 @@
               "id": "P16-C02-S01",
               "chapter_id": "16.2",
               "number": "16.2.1",
-              "title": "共同 Lyapunov 矩阵与顶点条件",
+              "title": "鲁棒稳定性、共同二次函数与顶点条件",
               "outcome": "用同一个正定P检查两个顶点，再解释凸组合为何继承严格下降。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/01-共同 Lyapunov 矩阵与顶点条件.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/01-共同 Lyapunov 矩阵与顶点条件.md",
               "questions": [
                 {
                   "id": "p16-common-p",
                   "slug": "p16-common-p",
                   "title": "为什么要共同矩阵",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#why-affine-structure-makes-vertex-checking-sufficient",
+                  "concept_title": "仿射结构为何使顶点检查充分",
+                  "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p"
                 },
                 {
                   "id": "p16-vertex-scope",
                   "slug": "p16-vertex-scope",
                   "title": "顶点法适用范围",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#why-affine-structure-makes-vertex-checking-sufficient",
+                  "concept_title": "仿射结构为何使顶点检查充分",
+                  "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-vertex-scope"
                 },
                 {
                   "id": "p16-common-certificate",
                   "slug": "p16-common-certificate",
                   "title": "共同二次证书的顶点检查",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#hand-calculation-at-the-two-vertices",
+                  "concept_title": "两个端点的手算",
+                  "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-certificate"
                 },
                 {
                   "id": "p16-affine-model",
                   "slug": "p16-affine-model",
                   "title": "构造区间内模型",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#normalized-deviations-and-the-model-set",
+                  "concept_title": "归一化偏差与模型集合",
+                  "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-affine-model"
                 }
               ],
               "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p",
               "notebook_url": "/notebook/?id=P16-C02-S01",
-              "url": "/notebook/?id=P16-C02-S01"
+              "reading_url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/",
+              "concepts": [
+                {
+                  "id": "normalized-deviations-and-the-model-set",
+                  "title": "归一化偏差与模型集合",
+                  "question_ids": [
+                    "p16-affine-model"
+                  ],
+                  "explore": false,
+                  "key": "P16-C02-S01:normalized-deviations-and-the-model-set",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#normalized-deviations-and-the-model-set"
+                },
+                {
+                  "id": "a-common-quadratic-lyapunov-function",
+                  "title": "共同二次Lyapunov函数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C02-S01:a-common-quadratic-lyapunov-function",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#a-common-quadratic-lyapunov-function"
+                },
+                {
+                  "id": "hand-calculation-at-the-two-vertices",
+                  "title": "两个端点的手算",
+                  "question_ids": [
+                    "p16-common-certificate"
+                  ],
+                  "explore": false,
+                  "key": "P16-C02-S01:hand-calculation-at-the-two-vertices",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#hand-calculation-at-the-two-vertices"
+                },
+                {
+                  "id": "why-affine-structure-makes-vertex-checking-sufficient",
+                  "title": "仿射结构为何使顶点检查充分",
+                  "question_ids": [
+                    "p16-common-p",
+                    "p16-vertex-scope"
+                  ],
+                  "explore": false,
+                  "key": "P16-C02-S01:why-affine-structure-makes-vertex-checking-sufficient",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#why-affine-structure-makes-vertex-checking-sufficient"
+                },
+                {
+                  "id": "common-descent-and-a-uniform-decay-bound",
+                  "title": "共同下降与统一恢复界",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C02-S01:common-descent-and-a-uniform-decay-bound",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#common-descent-and-a-uniform-decay-bound"
+                },
+                {
+                  "id": "interval-curve-and-common-matrix-exploration",
+                  "title": "区间曲线与共同矩阵探索",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P16-C02-S01:interval-curve-and-common-matrix-exploration",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#interval-curve-and-common-matrix-exploration",
+                  "explore_url": "/chapters/16-02-模型不确定性与鲁棒控制/explore/?concept=P16-C02-S01%3Ainterval-curve-and-common-matrix-exploration"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C02-S01:references",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/#references"
+                }
+              ],
+              "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/"
             },
             {
               "id": "P16-C02-S02",
               "chapter_id": "16.2",
               "number": "16.2.2",
-              "title": "集合外失效与鲁棒证据边界",
+              "title": "候选二次函数、集合外矩阵与稳定性判断",
               "outcome": "区分模型集合内的共同论证、集合外反例与候选P未通过的含义。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/02-集合外失效与鲁棒证据边界.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/02-模型不确定性与鲁棒控制/02-集合外失效与鲁棒证据边界.md",
               "questions": [
                 {
                   "id": "p16-certificate-failure",
                   "slug": "p16-certificate-failure",
                   "title": "检查候选二次证书",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/#a-stable-model-can-fail-a-candidate-function",
+                  "concept_title": "稳定模型也可能不通过某个候选函数",
+                  "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure"
                 },
                 {
                   "id": "p16-outside-set",
                   "slug": "p16-outside-set",
                   "title": "集合外矩阵",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/#system-eigenvalues-and-an-explicit-growing-direction",
+                  "concept_title": "系统特征值与显式增长方向",
+                  "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-outside-set"
                 },
                 {
                   "id": "p16-certificate-counterexample",
                   "slug": "p16-certificate-counterexample",
                   "title": "证书与集合外反例",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/#the-original-convex-hull-and-an-outside-matrix",
+                  "concept_title": "原凸包与集合外矩阵",
+                  "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-counterexample"
                 },
                 {
                   "id": "p16-robust-interpolation",
                   "slug": "p16-robust-interpolation",
                   "title": "仿射不确定性下的矩阵",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/#the-original-convex-hull-and-an-outside-matrix",
+                  "concept_title": "原凸包与集合外矩阵",
+                  "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-robust-interpolation"
                 }
               ],
               "practice_url": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure",
               "notebook_url": "/notebook/?id=P16-C02-S02",
-              "url": "/notebook/?id=P16-C02-S02"
+              "reading_url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/",
+              "concepts": [
+                {
+                  "id": "a-stable-model-can-fail-a-candidate-function",
+                  "title": "稳定模型也可能不通过某个候选函数",
+                  "question_ids": [
+                    "p16-certificate-failure"
+                  ],
+                  "explore": false,
+                  "key": "P16-C02-S02:a-stable-model-can-fail-a-candidate-function",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/#a-stable-model-can-fail-a-candidate-function"
+                },
+                {
+                  "id": "the-original-convex-hull-and-an-outside-matrix",
+                  "title": "原凸包与集合外矩阵",
+                  "question_ids": [
+                    "p16-robust-interpolation",
+                    "p16-certificate-counterexample"
+                  ],
+                  "explore": false,
+                  "key": "P16-C02-S02:the-original-convex-hull-and-an-outside-matrix",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/#the-original-convex-hull-and-an-outside-matrix"
+                },
+                {
+                  "id": "system-eigenvalues-and-an-explicit-growing-direction",
+                  "title": "系统特征值与显式增长方向",
+                  "question_ids": [
+                    "p16-outside-set"
+                  ],
+                  "explore": false,
+                  "key": "P16-C02-S02:system-eigenvalues-and-an-explicit-growing-direction",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/#system-eigenvalues-and-an-explicit-growing-direction"
+                },
+                {
+                  "id": "three-paths-on-one-initial-state-and-grid",
+                  "title": "相同初态和时间网格的三条路径",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C02-S02:three-paths-on-one-initial-state-and-grid",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/#three-paths-on-one-initial-state-and-grid"
+                },
+                {
+                  "id": "model-scope-and-the-next-observation",
+                  "title": "模型范围与下一步观测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C02-S02:model-scope-and-the-next-observation",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/#model-scope-and-the-next-observation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C02-S02:references",
+                  "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/#references"
+                }
+              ],
+              "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -23656,77 +23950,229 @@
               "id": "P16-C03-S01",
               "chapter_id": "16.3",
               "number": "16.3.1",
-              "title": "递推估计、投影与激励",
+              "title": "递推最小二乘、遗忘与持续激励",
               "outcome": "先算预测残差再更新估计，以六次非零输入和零输入比较学习信息。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/01-递推估计、投影与激励.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/01-递推估计、投影与激励.md",
               "questions": [
                 {
                   "id": "p16-zero-excitation",
                   "slug": "p16-zero-excitation",
                   "title": "零回归量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-03-递推辨识与自适应控制/read/1/#zero-regressor-and-information",
+                  "concept_title": "零回归量与参数信息",
+                  "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation"
                 },
                 {
                   "id": "p16-rls-order",
                   "slug": "p16-rls-order",
                   "title": "递推先后",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-03-递推辨识与自适应控制/read/1/#scalar-regression-and-prediction-residual",
+                  "concept_title": "标量回归与旧预测残差",
+                  "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-rls-order"
                 },
                 {
                   "id": "p16-rls-update",
                   "slug": "p16-rls-update",
                   "title": "递推估计一个系数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-03-递推辨识与自适应控制/read/1/#forgetting-and-interval-projection",
+                  "concept_title": "遗忘与区间投影",
+                  "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-rls-update"
                 },
                 {
                   "id": "p16-weak-excitation",
                   "slug": "p16-weak-excitation",
                   "title": "弱激励时的递推",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-03-递推辨识与自适应控制/read/1/#zero-regressor-and-information",
+                  "concept_title": "零回归量与参数信息",
+                  "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-weak-excitation"
                 }
               ],
               "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation",
               "notebook_url": "/notebook/?id=P16-C03-S01",
-              "url": "/notebook/?id=P16-C03-S01"
+              "reading_url": "/chapters/16-03-递推辨识与自适应控制/read/1/",
+              "concepts": [
+                {
+                  "id": "scalar-regression-and-prediction-residual",
+                  "title": "标量回归与旧预测残差",
+                  "question_ids": [
+                    "p16-rls-order"
+                  ],
+                  "explore": false,
+                  "key": "P16-C03-S01:scalar-regression-and-prediction-residual",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/1/#scalar-regression-and-prediction-residual"
+                },
+                {
+                  "id": "recursive-gain-from-squared-loss",
+                  "title": "由平方损失得到递推增益",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C03-S01:recursive-gain-from-squared-loss",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/1/#recursive-gain-from-squared-loss"
+                },
+                {
+                  "id": "forgetting-and-interval-projection",
+                  "title": "遗忘与区间投影",
+                  "question_ids": [
+                    "p16-rls-update"
+                  ],
+                  "explore": false,
+                  "key": "P16-C03-S01:forgetting-and-interval-projection",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/1/#forgetting-and-interval-projection"
+                },
+                {
+                  "id": "zero-regressor-and-information",
+                  "title": "零回归量与参数信息",
+                  "question_ids": [
+                    "p16-zero-excitation",
+                    "p16-weak-excitation"
+                  ],
+                  "explore": false,
+                  "key": "P16-C03-S01:zero-regressor-and-information",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/1/#zero-regressor-and-information"
+                },
+                {
+                  "id": "persistent-excitation-and-six-observations",
+                  "title": "持续激励与六次观测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C03-S01:persistent-excitation-and-six-observations",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/1/#persistent-excitation-and-six-observations"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C03-S01:references",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/1/#references"
+                }
+              ],
+              "url": "/chapters/16-03-递推辨识与自适应控制/read/1/"
             },
             {
               "id": "P16-C03-S02",
               "chapter_id": "16.3",
               "number": "16.3.2",
-              "title": "估计进入控制的时间顺序",
+              "title": "自适应控制与观测更新顺序",
               "outcome": "按旧估计选输入、新状态到达后更新的顺序，区分状态误差与参数误差。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/02-估计进入控制的时间顺序.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/03-递推辨识与自适应控制/02-估计进入控制的时间顺序.md",
               "questions": [
                 {
                   "id": "p16-no-lookahead",
                   "slug": "p16-no-lookahead",
                   "title": "在线控制的信息边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-03-递推辨识与自适应控制/read/2/#unknown-coefficient-and-adaptive-control",
+                  "concept_title": "未知系数与自适应控制",
+                  "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead"
                 },
                 {
                   "id": "p16-tracking-not-id",
                   "slug": "p16-tracking-not-id",
                   "title": "跟踪与参数估计",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-03-递推辨识与自适应控制/read/2/#tracking-error-and-parameter-error",
+                  "concept_title": "跟踪误差与参数误差",
+                  "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-tracking-not-id"
                 },
                 {
                   "id": "p16-adaptive-order",
                   "slug": "p16-adaptive-order",
                   "title": "在线辨识与控制先后",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-03-递推辨识与自适应控制/read/2/#control-and-identification-order",
+                  "concept_title": "一轮控制与辨识的顺序",
+                  "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-adaptive-order"
                 },
                 {
                   "id": "p16-bounded-adaptation",
                   "slug": "p16-bounded-adaptation",
                   "title": "带限幅的自适应路径",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-03-递推辨识与自适应控制/read/2/#actuator-limit-and-regression-target",
+                  "concept_title": "执行限幅与回归目标",
+                  "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-bounded-adaptation"
                 }
               ],
               "practice_url": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead",
               "notebook_url": "/notebook/?id=P16-C03-S02",
-              "url": "/notebook/?id=P16-C03-S02"
+              "reading_url": "/chapters/16-03-递推辨识与自适应控制/read/2/",
+              "concepts": [
+                {
+                  "id": "unknown-coefficient-and-adaptive-control",
+                  "title": "未知系数与自适应控制",
+                  "question_ids": [
+                    "p16-no-lookahead"
+                  ],
+                  "explore": false,
+                  "key": "P16-C03-S02:unknown-coefficient-and-adaptive-control",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/2/#unknown-coefficient-and-adaptive-control"
+                },
+                {
+                  "id": "control-and-identification-order",
+                  "title": "一轮控制与辨识的顺序",
+                  "question_ids": [
+                    "p16-adaptive-order"
+                  ],
+                  "explore": false,
+                  "key": "P16-C03-S02:control-and-identification-order",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/2/#control-and-identification-order"
+                },
+                {
+                  "id": "actuator-limit-and-regression-target",
+                  "title": "执行限幅与回归目标",
+                  "question_ids": [
+                    "p16-bounded-adaptation"
+                  ],
+                  "explore": false,
+                  "key": "P16-C03-S02:actuator-limit-and-regression-target",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/2/#actuator-limit-and-regression-target"
+                },
+                {
+                  "id": "tracking-error-and-parameter-error",
+                  "title": "跟踪误差与参数误差",
+                  "question_ids": [
+                    "p16-tracking-not-id"
+                  ],
+                  "explore": false,
+                  "key": "P16-C03-S02:tracking-error-and-parameter-error",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/2/#tracking-error-and-parameter-error"
+                },
+                {
+                  "id": "coefficient-change-and-twenty-four-updates",
+                  "title": "参数切换后的二十四次更新",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C03-S02:coefficient-change-and-twenty-four-updates",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/2/#coefficient-change-and-twenty-four-updates"
+                },
+                {
+                  "id": "forgetting-actuation-and-two-displays",
+                  "title": "遗忘、执行能力与两种曲线",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P16-C03-S02:forgetting-actuation-and-two-displays",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/2/#forgetting-actuation-and-two-displays",
+                  "explore_url": "/chapters/16-03-递推辨识与自适应控制/explore/?concept=P16-C03-S02%3Aforgetting-actuation-and-two-displays"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C03-S02:references",
+                  "url": "/chapters/16-03-递推辨识与自适应控制/read/2/#references"
+                }
+              ],
+              "url": "/chapters/16-03-递推辨识与自适应控制/read/2/"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -23752,77 +24198,228 @@
               "id": "P16-C04-S01",
               "chapter_id": "16.4",
               "number": "16.4.1",
-              "title": "布朗增量与 Euler–Maruyama",
+              "title": "布朗运动与Euler–Maruyama离散",
               "outcome": "按时间长度构造布朗增量，将细增量相加，比较同一噪声下的粗细终点。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/01-布朗增量与 Euler–Maruyama.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/04-随机动力学与控制/01-布朗增量与 Euler–Maruyama.md",
               "questions": [
                 {
                   "id": "p16-brownian-scale",
                   "slug": "p16-brownian-scale",
                   "title": "随机增量的尺度",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-04-随机动力学与控制/read/1/#brownian-motion-and-independent-increments",
+                  "concept_title": "布朗运动与独立增量",
+                  "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale"
                 },
                 {
                   "id": "p16-paired-refine",
                   "slug": "p16-paired-refine",
                   "title": "同路径粗细比较",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-04-随机动力学与控制/read/1/#coupled-brownian-increments",
+                  "concept_title": "同一驱动上的增量合并",
+                  "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-paired-refine"
                 },
                 {
                   "id": "p16-em-increments",
                   "slug": "p16-em-increments",
                   "title": "固定随机增量的 Euler–Maruyama",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-04-随机动力学与控制/read/1/#euler-maruyama-update",
+                  "concept_title": "Euler–Maruyama更新与两步手算",
+                  "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-em-increments"
                 },
                 {
                   "id": "p16-brownian-merge",
                   "slug": "p16-brownian-merge",
                   "title": "粗细网格共用同一路径",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-04-随机动力学与控制/read/1/#coupled-brownian-increments",
+                  "concept_title": "同一驱动上的增量合并",
+                  "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-merge"
                 }
               ],
               "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
               "notebook_url": "/notebook/?id=P16-C04-S01",
-              "url": "/notebook/?id=P16-C04-S01"
+              "reading_url": "/chapters/16-04-随机动力学与控制/read/1/",
+              "concepts": [
+                {
+                  "id": "brownian-motion-and-independent-increments",
+                  "title": "布朗运动与独立增量",
+                  "question_ids": [
+                    "p16-brownian-scale"
+                  ],
+                  "explore": false,
+                  "key": "P16-C04-S01:brownian-motion-and-independent-increments",
+                  "url": "/chapters/16-04-随机动力学与控制/read/1/#brownian-motion-and-independent-increments"
+                },
+                {
+                  "id": "ou-restoration-of-state-deviation",
+                  "title": "稳态偏差的OU随机恢复",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C04-S01:ou-restoration-of-state-deviation",
+                  "url": "/chapters/16-04-随机动力学与控制/read/1/#ou-restoration-of-state-deviation"
+                },
+                {
+                  "id": "euler-maruyama-update",
+                  "title": "Euler–Maruyama更新与两步手算",
+                  "question_ids": [
+                    "p16-em-increments"
+                  ],
+                  "explore": false,
+                  "key": "P16-C04-S01:euler-maruyama-update",
+                  "url": "/chapters/16-04-随机动力学与控制/read/1/#euler-maruyama-update"
+                },
+                {
+                  "id": "coupled-brownian-increments",
+                  "title": "同一驱动上的增量合并",
+                  "question_ids": [
+                    "p16-brownian-merge",
+                    "p16-paired-refine"
+                  ],
+                  "explore": false,
+                  "key": "P16-C04-S01:coupled-brownian-increments",
+                  "url": "/chapters/16-04-随机动力学与控制/read/1/#coupled-brownian-increments"
+                },
+                {
+                  "id": "paired-paths-over-two-time-units",
+                  "title": "两T窗口的配对路径",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C04-S01:paired-paths-over-two-time-units",
+                  "url": "/chapters/16-04-随机动力学与控制/read/1/#paired-paths-over-two-time-units"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C04-S01:references",
+                  "url": "/chapters/16-04-随机动力学与控制/read/1/#references"
+                }
+              ],
+              "url": "/chapters/16-04-随机动力学与控制/read/1/"
             },
             {
               "id": "P16-C04-S02",
               "chapter_id": "16.4",
               "number": "16.4.2",
-              "title": "路径误差、分布统计与风险",
+              "title": "OU解析矩、离散矩与阈值事件",
               "outcome": "分别计算连续理论、离散理论和有限重复统计，解释阈值事件频率。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/04-随机动力学与控制/02-路径误差、分布统计与风险.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/04-随机动力学与控制/02-路径误差、分布统计与风险.md",
               "questions": [
                 {
                   "id": "p16-mean-risk",
                   "slug": "p16-mean-risk",
                   "title": "平均值与越界统计",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-04-随机动力学与控制/read/2/#terminal-threshold-event",
+                  "concept_title": "终点阈值与超过频率",
+                  "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk"
                 },
                 {
                   "id": "p16-strong-weak",
                   "slug": "p16-strong-weak",
                   "title": "强误差与弱统计量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-04-随机动力学与控制/read/2/#paired-path-and-distribution-comparisons",
+                  "concept_title": "配对路径与分布统计",
+                  "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-strong-weak"
                 },
                 {
                   "id": "p16-ou-moments",
                   "slug": "p16-ou-moments",
                   "title": "OU 终点的解析矩",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-04-随机动力学与控制/read/2/#continuous-ou-moments",
+                  "concept_title": "连续OU解的均值与方差",
+                  "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-ou-moments"
                 },
                 {
                   "id": "p16-paired-ou",
                   "slug": "p16-paired-ou",
                   "title": "指定路径的随机终点",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-04-随机动力学与控制/read/2/#paired-path-and-distribution-comparisons",
+                  "concept_title": "配对路径与分布统计",
+                  "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-paired-ou"
                 }
               ],
               "practice_url": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk",
               "notebook_url": "/notebook/?id=P16-C04-S02",
-              "url": "/notebook/?id=P16-C04-S02"
+              "reading_url": "/chapters/16-04-随机动力学与控制/read/2/",
+              "concepts": [
+                {
+                  "id": "paired-path-and-distribution-comparisons",
+                  "title": "配对路径与分布统计",
+                  "question_ids": [
+                    "p16-strong-weak",
+                    "p16-paired-ou"
+                  ],
+                  "explore": false,
+                  "key": "P16-C04-S02:paired-path-and-distribution-comparisons",
+                  "url": "/chapters/16-04-随机动力学与控制/read/2/#paired-path-and-distribution-comparisons"
+                },
+                {
+                  "id": "continuous-ou-moments",
+                  "title": "连续OU解的均值与方差",
+                  "question_ids": [
+                    "p16-ou-moments"
+                  ],
+                  "explore": false,
+                  "key": "P16-C04-S02:continuous-ou-moments",
+                  "url": "/chapters/16-04-随机动力学与控制/read/2/#continuous-ou-moments"
+                },
+                {
+                  "id": "moments-of-discrete-update",
+                  "title": "固定离散规则的矩递推",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C04-S02:moments-of-discrete-update",
+                  "url": "/chapters/16-04-随机动力学与控制/read/2/#moments-of-discrete-update"
+                },
+                {
+                  "id": "sample-moments-from-four-hundred-endpoints",
+                  "title": "四百条终点的样本矩",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C04-S02:sample-moments-from-four-hundred-endpoints",
+                  "url": "/chapters/16-04-随机动力学与控制/read/2/#sample-moments-from-four-hundred-endpoints"
+                },
+                {
+                  "id": "terminal-threshold-event",
+                  "title": "终点阈值与超过频率",
+                  "question_ids": [
+                    "p16-mean-risk"
+                  ],
+                  "explore": false,
+                  "key": "P16-C04-S02:terminal-threshold-event",
+                  "url": "/chapters/16-04-随机动力学与控制/read/2/#terminal-threshold-event"
+                },
+                {
+                  "id": "continuous-discrete-and-finite-simulation",
+                  "title": "连续、离散与有限重复的探索",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P16-C04-S02:continuous-discrete-and-finite-simulation",
+                  "url": "/chapters/16-04-随机动力学与控制/read/2/#continuous-discrete-and-finite-simulation",
+                  "explore_url": "/chapters/16-04-随机动力学与控制/explore/?concept=P16-C04-S02%3Acontinuous-discrete-and-finite-simulation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C04-S02:references",
+                  "url": "/chapters/16-04-随机动力学与控制/read/2/#references"
+                }
+              ],
+              "url": "/chapters/16-04-随机动力学与控制/read/2/"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -23852,73 +24449,209 @@
               "outcome": "从邻居差手算同步更新，用总和与谱条件分别检查守恒和平均一致。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/01-局部通信与平均一致.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/01-局部通信与平均一致.md",
               "questions": [
                 {
                   "id": "p16-symmetric-average",
                   "slug": "p16-symmetric-average",
                   "title": "平均守恒的条件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-05-分布式控制与通信限制/read/1/#graph-laplacian-and-preserved-average",
+                  "concept_title": "图拉普拉斯与平均保持",
+                  "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average"
                 },
                 {
                   "id": "p16-disconnected",
                   "slug": "p16-disconnected",
                   "title": "断连网络的极限",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-05-分布式控制与通信限制/read/1/#component-averages-in-a-disconnected-graph",
+                  "concept_title": "断连图中的分量平均",
+                  "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-disconnected"
                 },
                 {
                   "id": "p16-local-consensus",
                   "slug": "p16-local-consensus",
                   "title": "一次局部一致性更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-05-分布式控制与通信限制/read/1/#one-synchronous-step-by-hand",
+                  "concept_title": "三个节点的一轮手算",
+                  "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-local-consensus"
                 },
                 {
                   "id": "p16-component-average",
                   "slug": "p16-component-average",
                   "title": "断连图的一致性路径",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-05-分布式控制与通信限制/read/1/#component-averages-in-a-disconnected-graph",
+                  "concept_title": "断连图中的分量平均",
+                  "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-component-average"
                 }
               ],
               "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average",
               "notebook_url": "/notebook/?id=P16-C05-S01",
-              "url": "/notebook/?id=P16-C05-S01"
+              "reading_url": "/chapters/16-05-分布式控制与通信限制/read/1/",
+              "concepts": [
+                {
+                  "id": "neighbor-information-and-consensus-feedback",
+                  "title": "邻居信息与一致性反馈",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C05-S01:neighbor-information-and-consensus-feedback",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/1/#neighbor-information-and-consensus-feedback"
+                },
+                {
+                  "id": "one-synchronous-step-by-hand",
+                  "title": "三个节点的一轮手算",
+                  "question_ids": [
+                    "p16-local-consensus"
+                  ],
+                  "explore": false,
+                  "key": "P16-C05-S01:one-synchronous-step-by-hand",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/1/#one-synchronous-step-by-hand"
+                },
+                {
+                  "id": "graph-laplacian-and-preserved-average",
+                  "title": "图拉普拉斯与平均保持",
+                  "question_ids": [
+                    "p16-symmetric-average"
+                  ],
+                  "explore": false,
+                  "key": "P16-C05-S01:graph-laplacian-and-preserved-average",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/1/#graph-laplacian-and-preserved-average"
+                },
+                {
+                  "id": "eigenvalues-and-contraction-of-disagreement",
+                  "title": "特征值怎样决定差异收缩",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C05-S01:eigenvalues-and-contraction-of-disagreement",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/1/#eigenvalues-and-contraction-of-disagreement"
+                },
+                {
+                  "id": "component-averages-in-a-disconnected-graph",
+                  "title": "断连图中的分量平均",
+                  "question_ids": [
+                    "p16-disconnected",
+                    "p16-component-average"
+                  ],
+                  "explore": false,
+                  "key": "P16-C05-S01:component-averages-in-a-disconnected-graph",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/1/#component-averages-in-a-disconnected-graph"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C05-S01:references",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/1/#references"
+                }
+              ],
+              "url": "/chapters/16-05-分布式控制与通信限制/read/1/"
             },
             {
               "id": "P16-C05-S02",
               "chapter_id": "16.5",
               "number": "16.5.2",
-              "title": "通信延迟、步长与稳定边界",
+              "title": "通信延迟、历史与稳定边界",
               "outcome": "沿初始历史读取过去差值，以两步手算和特征根解释延迟失效。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/02-通信延迟、步长与稳定边界.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/05-分布式控制与通信限制/02-通信延迟、步长与稳定边界.md",
               "questions": [
                 {
                   "id": "p16-delay-formula",
                   "slug": "p16-delay-formula",
                   "title": "延迟更新读取什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-05-分布式控制与通信限制/read/2/#current-state-and-delayed-differences",
+                  "concept_title": "当前状态与过去差异",
+                  "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula"
                 },
                 {
                   "id": "p16-delay-condition",
                   "slug": "p16-delay-condition",
                   "title": "无延迟谱界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-05-分布式控制与通信限制/read/2/#delayed-characteristic-equation",
+                  "concept_title": "从图模态得到延迟特征方程",
+                  "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-condition"
                 },
                 {
                   "id": "p16-delayed-update",
                   "slug": "p16-delayed-update",
                   "title": "一轮延迟邻居更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-05-分布式控制与通信限制/read/2/#history-order-and-two-delayed-steps",
+                  "concept_title": "历史行的顺序与两轮手算",
+                  "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delayed-update"
                 },
                 {
                   "id": "p16-delay-zero",
                   "slug": "p16-delay-zero",
                   "title": "零延迟的退化检查",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-05-分布式控制与通信限制/read/2/#zero-delay-and-path-records",
+                  "concept_title": "零延迟与路径记录",
+                  "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-zero"
                 }
               ],
               "practice_url": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula",
               "notebook_url": "/notebook/?id=P16-C05-S02",
-              "url": "/notebook/?id=P16-C05-S02"
+              "reading_url": "/chapters/16-05-分布式控制与通信限制/read/2/",
+              "concepts": [
+                {
+                  "id": "current-state-and-delayed-differences",
+                  "title": "当前状态与过去差异",
+                  "question_ids": [
+                    "p16-delay-formula"
+                  ],
+                  "explore": false,
+                  "key": "P16-C05-S02:current-state-and-delayed-differences",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/2/#current-state-and-delayed-differences"
+                },
+                {
+                  "id": "history-order-and-two-delayed-steps",
+                  "title": "历史行的顺序与两轮手算",
+                  "question_ids": [
+                    "p16-delayed-update"
+                  ],
+                  "explore": false,
+                  "key": "P16-C05-S02:history-order-and-two-delayed-steps",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/2/#history-order-and-two-delayed-steps"
+                },
+                {
+                  "id": "delayed-characteristic-equation",
+                  "title": "从图模态得到延迟特征方程",
+                  "question_ids": [
+                    "p16-delay-condition"
+                  ],
+                  "explore": false,
+                  "key": "P16-C05-S02:delayed-characteristic-equation",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/2/#delayed-characteristic-equation"
+                },
+                {
+                  "id": "comparing-delay-and-large-step-trajectories",
+                  "title": "延迟与过大步长的轨迹对照",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P16-C05-S02:comparing-delay-and-large-step-trajectories",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/2/#comparing-delay-and-large-step-trajectories",
+                  "explore_url": "/chapters/16-05-分布式控制与通信限制/explore/?concept=P16-C05-S02%3Acomparing-delay-and-large-step-trajectories"
+                },
+                {
+                  "id": "zero-delay-and-path-records",
+                  "title": "零延迟与路径记录",
+                  "question_ids": [
+                    "p16-delay-zero"
+                  ],
+                  "explore": false,
+                  "key": "P16-C05-S02:zero-delay-and-path-records",
+                  "url": "/chapters/16-05-分布式控制与通信限制/read/2/#zero-delay-and-path-records"
+                }
+              ],
+              "url": "/chapters/16-05-分布式控制与通信限制/read/2/"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -23943,77 +24676,227 @@
               "id": "P16-C06-S01",
               "chapter_id": "16.6",
               "number": "16.6.1",
-              "title": "有限决策过程与策略评价",
+              "title": "有限决策过程与策略价值",
               "outcome": "在已知转移模型中计算固定策略的期望折扣回报，并核对迭代。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/01-有限决策过程与策略评价.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/01-有限决策过程与策略评价.md",
               "questions": [
                 {
                   "id": "p16-terminal-reward",
                   "slug": "p16-terminal-reward",
                   "title": "终止后价值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-06-强化学习与策略评估/read/1/#policy-return-and-value",
+                  "concept_title": "策略、折扣回报与价值",
+                  "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward"
                 },
                 {
                   "id": "p16-policy-vs-learning",
                   "slug": "p16-policy-vs-learning",
                   "title": "策略评价的对象",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-06-强化学习与策略评估/read/1/#policy-return-and-value",
+                  "concept_title": "策略、折扣回报与价值",
+                  "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-policy-vs-learning"
                 },
                 {
                   "id": "p16-policy-bellman",
                   "slug": "p16-policy-bellman",
                   "title": "固定策略的折扣价值",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-06-强化学习与策略评估/read/1/#policy-selected-rows-and-linear-system",
+                  "concept_title": "策略选行与线性方程组",
+                  "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-policy-bellman"
                 },
                 {
                   "id": "p16-policy-compare",
                   "slug": "p16-policy-compare",
                   "title": "两状态策略评价",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-06-强化学习与策略评估/read/1/#policy-selected-rows-and-linear-system",
+                  "concept_title": "策略选行与线性方程组",
+                  "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-policy-compare"
                 }
               ],
               "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward",
               "notebook_url": "/notebook/?id=P16-C06-S01",
-              "url": "/notebook/?id=P16-C06-S01"
+              "reading_url": "/chapters/16-06-强化学习与策略评估/read/1/",
+              "concepts": [
+                {
+                  "id": "finite-markov-decision-process",
+                  "title": "有限马尔可夫决策过程",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C06-S01:finite-markov-decision-process",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/1/#finite-markov-decision-process"
+                },
+                {
+                  "id": "policy-return-and-value",
+                  "title": "策略、折扣回报与价值",
+                  "question_ids": [
+                    "p16-terminal-reward",
+                    "p16-policy-vs-learning"
+                  ],
+                  "explore": false,
+                  "key": "P16-C06-S01:policy-return-and-value",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/1/#policy-return-and-value"
+                },
+                {
+                  "id": "bellman-equation-from-conditional-averaging",
+                  "title": "从后继状态的平均得到 Bellman 方程",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C06-S01:bellman-equation-from-conditional-averaging",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/1/#bellman-equation-from-conditional-averaging"
+                },
+                {
+                  "id": "policy-selected-rows-and-linear-system",
+                  "title": "策略选行与线性方程组",
+                  "question_ids": [
+                    "p16-policy-bellman",
+                    "p16-policy-compare"
+                  ],
+                  "explore": false,
+                  "key": "P16-C06-S01:policy-selected-rows-and-linear-system",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/1/#policy-selected-rows-and-linear-system"
+                },
+                {
+                  "id": "iterative-policy-evaluation-and-exact-value",
+                  "title": "价值迭代与方程解的距离",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C06-S01:iterative-policy-evaluation-and-exact-value",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/1/#iterative-policy-evaluation-and-exact-value"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C06-S01:references",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/1/#references"
+                }
+              ],
+              "url": "/chapters/16-06-强化学习与策略评估/read/1/"
             },
             {
               "id": "P16-C06-S02",
               "chapter_id": "16.6",
               "number": "16.6.2",
-              "title": "固定经验的 Q 更新与独立评估",
+              "title": "动作价值、Q 更新与策略评估",
               "outcome": "逐条解释经验的五个字段，计算终止与非终止更新，辨认已访问的范围。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/02-固定经验的 Q 更新与独立评估.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/06-强化学习与策略评估/02-固定经验的 Q 更新与独立评估.md",
               "questions": [
                 {
                   "id": "p16-terminal-q",
                   "slug": "p16-terminal-q",
                   "title": "终止样本的 Q 目标",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-06-强化学习与策略评估/read/2/#terminal-and-nonterminal-update-by-hand",
+                  "concept_title": "终止与非终止的一次手算",
+                  "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q"
                 },
                 {
                   "id": "p16-finite-q-claim",
                   "slug": "p16-finite-q-claim",
                   "title": "有限经验的结论",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-06-强化学习与策略评估/read/2/#three-record-training-stream-and-visit-counts",
+                  "concept_title": "三条固定经验与访问范围",
+                  "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-finite-q-claim"
                 },
                 {
                   "id": "p16-q-one-update",
                   "slug": "p16-q-one-update",
                   "title": "终止经验的 Q 更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-06-强化学习与策略评估/read/2/#terminal-and-nonterminal-update-by-hand",
+                  "concept_title": "终止与非终止的一次手算",
+                  "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-q-one-update"
                 },
                 {
                   "id": "p16-q-sequential",
                   "slug": "p16-q-sequential",
                   "title": "经验顺序影响有限次更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-06-强化学习与策略评估/read/2/#experience-order-and-updated-table-reads",
+                  "concept_title": "经验顺序与表项读取",
+                  "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-q-sequential"
                 }
               ],
               "practice_url": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q",
               "notebook_url": "/notebook/?id=P16-C06-S02",
-              "url": "/notebook/?id=P16-C06-S02"
+              "reading_url": "/chapters/16-06-强化学习与策略评估/read/2/",
+              "concepts": [
+                {
+                  "id": "action-values-and-sample-targets",
+                  "title": "动作价值与样本目标",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C06-S02:action-values-and-sample-targets",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/2/#action-values-and-sample-targets"
+                },
+                {
+                  "id": "terminal-and-nonterminal-update-by-hand",
+                  "title": "终止与非终止的一次手算",
+                  "question_ids": [
+                    "p16-terminal-q",
+                    "p16-q-one-update"
+                  ],
+                  "explore": false,
+                  "key": "P16-C06-S02:terminal-and-nonterminal-update-by-hand",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/2/#terminal-and-nonterminal-update-by-hand"
+                },
+                {
+                  "id": "experience-order-and-updated-table-reads",
+                  "title": "经验顺序与表项读取",
+                  "question_ids": [
+                    "p16-q-sequential"
+                  ],
+                  "explore": false,
+                  "key": "P16-C06-S02:experience-order-and-updated-table-reads",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/2/#experience-order-and-updated-table-reads"
+                },
+                {
+                  "id": "three-record-training-stream-and-visit-counts",
+                  "title": "三条固定经验与访问范围",
+                  "question_ids": [
+                    "p16-finite-q-claim"
+                  ],
+                  "explore": false,
+                  "key": "P16-C06-S02:three-record-training-stream-and-visit-counts",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/2/#three-record-training-stream-and-visit-counts"
+                },
+                {
+                  "id": "greedy-action-selection-and-model-based-evaluation",
+                  "title": "从当前表选动作，再评价策略",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C06-S02:greedy-action-selection-and-model-based-evaluation",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/2/#greedy-action-selection-and-model-based-evaluation"
+                },
+                {
+                  "id": "two-record-interactive-experiment",
+                  "title": "两条经验的交互探索",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P16-C06-S02:two-record-interactive-experiment",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/2/#two-record-interactive-experiment",
+                  "explore_url": "/chapters/16-06-强化学习与策略评估/explore/?concept=P16-C06-S02%3Atwo-record-interactive-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C06-S02:references",
+                  "url": "/chapters/16-06-强化学习与策略评估/read/2/#references"
+                }
+              ],
+              "url": "/chapters/16-06-强化学习与策略评估/read/2/"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -24038,77 +24921,237 @@
               "id": "P16-C07-S01",
               "chapter_id": "16.7",
               "number": "16.7.1",
-              "title": "学得预测器进入约束决策",
+              "title": "预测模型、可行动作与实际约束",
               "outcome": "在有限动作表中逐项筛选预测可行性，再用真实模型检查实际状态。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/01-学得预测器进入约束决策.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/01-学得预测器进入约束决策.md",
               "questions": [
                 {
                   "id": "p16-pred-vs-actual",
                   "slug": "p16-pred-vs-actual",
                   "title": "预测约束与真实约束",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-07-模型学习与约束决策/read/1/#model-error-and-the-actual-state-range",
+                  "concept_title": "模型误差与实际状态范围",
+                  "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual"
                 },
                 {
                   "id": "p16-infeasible-action",
                   "slug": "p16-infeasible-action",
                   "title": "无可行候选",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-07-模型学习与约束决策/read/1/#empty-feasible-set-and-return-value",
+                  "concept_title": "空可行集合与求解返回",
+                  "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-infeasible-action"
                 },
                 {
                   "id": "p16-feasible-action",
                   "slug": "p16-feasible-action",
                   "title": "有限动作的预测可行选择",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-07-模型学习与约束决策/read/1/#predicted-cost-and-three-candidate-calculation",
+                  "concept_title": "预测成本与三动作手算",
+                  "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-feasible-action"
                 },
                 {
                   "id": "p16-prediction-feasible",
                   "slug": "p16-prediction-feasible",
                   "title": "模型误差下的预测约束",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-07-模型学习与约束决策/read/1/#model-error-and-the-actual-state-range",
+                  "concept_title": "模型误差与实际状态范围",
+                  "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-prediction-feasible"
                 }
               ],
               "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual",
               "notebook_url": "/notebook/?id=P16-C07-S01",
-              "url": "/notebook/?id=P16-C07-S01"
+              "reading_url": "/chapters/16-07-模型学习与约束决策/read/1/",
+              "concepts": [
+                {
+                  "id": "observations-predictions-and-candidate-actions",
+                  "title": "当前观测、下一状态与候选动作",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C07-S01:observations-predictions-and-candidate-actions",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/1/#observations-predictions-and-candidate-actions"
+                },
+                {
+                  "id": "predicted-cost-and-three-candidate-calculation",
+                  "title": "预测成本与三动作手算",
+                  "question_ids": [
+                    "p16-feasible-action"
+                  ],
+                  "explore": false,
+                  "key": "P16-C07-S01:predicted-cost-and-three-candidate-calculation",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/1/#predicted-cost-and-three-candidate-calculation"
+                },
+                {
+                  "id": "empty-feasible-set-and-return-value",
+                  "title": "空可行集合与求解返回",
+                  "question_ids": [
+                    "p16-infeasible-action"
+                  ],
+                  "explore": false,
+                  "key": "P16-C07-S01:empty-feasible-set-and-return-value",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/1/#empty-feasible-set-and-return-value"
+                },
+                {
+                  "id": "model-error-and-the-actual-state-range",
+                  "title": "模型误差与实际状态范围",
+                  "question_ids": [
+                    "p16-pred-vs-actual",
+                    "p16-prediction-feasible"
+                  ],
+                  "explore": false,
+                  "key": "P16-C07-S01:model-error-and-the-actual-state-range",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/1/#model-error-and-the-actual-state-range"
+                },
+                {
+                  "id": "state-scan-and-action-switches",
+                  "title": "状态扫描与动作切换",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C07-S01:state-scan-and-action-switches",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/1/#state-scan-and-action-switches"
+                },
+                {
+                  "id": "interactive-prediction-and-execution-comparison",
+                  "title": "预测与实际的交互比较",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P16-C07-S01:interactive-prediction-and-execution-comparison",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/1/#interactive-prediction-and-execution-comparison",
+                  "explore_url": "/chapters/16-07-模型学习与约束决策/explore/?concept=P16-C07-S01%3Ainteractive-prediction-and-execution-comparison"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C07-S01:references",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/1/#references"
+                }
+              ],
+              "url": "/chapters/16-07-模型学习与约束决策/read/1/"
             },
             {
               "id": "P16-C07-S02",
               "chapter_id": "16.7",
               "number": "16.7.2",
-              "title": "配对预算、失败与迁移范围",
+              "title": "配对评价、动作超限与求解失败",
               "outcome": "在相同五个场景中分别比较预测误差、输入平方、超过上限和求解失败。",
               "path": "notebooks/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/02-配对预算、失败与迁移范围.ipynb",
               "visualization": "web/advanced-control/index.html",
+              "reading": "lessons/16-自适应、鲁棒与学习控制/07-模型学习与约束决策/02-配对预算、失败与迁移范围.md",
               "questions": [
                 {
                   "id": "p16-paired-budget",
                   "slug": "p16-paired-budget",
                   "title": "公平配对比较",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-07-模型学习与约束决策/read/2/#paired-scenarios-and-error-differences",
+                  "concept_title": "场景配对与误差差值",
+                  "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget"
                 },
                 {
                   "id": "p16-rmse-not-safety",
                   "slug": "p16-rmse-not-safety",
                   "title": "预测更准是否更安全",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/16-07-模型学习与约束决策/read/2/#hand-calculation-for-five-scenarios",
+                  "concept_title": "五场景的逐项手算",
+                  "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-rmse-not-safety"
                 },
                 {
                   "id": "p16-paired-metrics",
                   "slug": "p16-paired-metrics",
                   "title": "统一条件下的决策指标",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-07-模型学习与约束决策/read/2/#four-metrics-and-their-units",
+                  "concept_title": "四项指标及其单位",
+                  "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-metrics"
                 },
                 {
                   "id": "p16-failure-rate",
                   "slug": "p16-failure-rate",
                   "title": "不要遗漏失败场景",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/16-07-模型学习与约束决策/read/2/#failure-cases-and-statistical-denominators",
+                  "concept_title": "失败场景与统计分母",
+                  "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-failure-rate"
                 }
               ],
               "practice_url": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget",
               "notebook_url": "/notebook/?id=P16-C07-S02",
-              "url": "/notebook/?id=P16-C07-S02"
+              "reading_url": "/chapters/16-07-模型学习与约束决策/read/2/",
+              "concepts": [
+                {
+                  "id": "paired-scenarios-and-error-differences",
+                  "title": "场景配对与误差差值",
+                  "question_ids": [
+                    "p16-paired-budget"
+                  ],
+                  "explore": false,
+                  "key": "P16-C07-S02:paired-scenarios-and-error-differences",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/2/#paired-scenarios-and-error-differences"
+                },
+                {
+                  "id": "prediction-action-and-failure-records",
+                  "title": "预测、动作与失败的完整记录",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C07-S02:prediction-action-and-failure-records",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/2/#prediction-action-and-failure-records"
+                },
+                {
+                  "id": "four-metrics-and-their-units",
+                  "title": "四项指标及其单位",
+                  "question_ids": [
+                    "p16-paired-metrics"
+                  ],
+                  "explore": false,
+                  "key": "P16-C07-S02:four-metrics-and-their-units",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/2/#four-metrics-and-their-units"
+                },
+                {
+                  "id": "hand-calculation-for-five-scenarios",
+                  "title": "五场景的逐项手算",
+                  "question_ids": [
+                    "p16-rmse-not-safety"
+                  ],
+                  "explore": false,
+                  "key": "P16-C07-S02:hand-calculation-for-five-scenarios",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/2/#hand-calculation-for-five-scenarios"
+                },
+                {
+                  "id": "failure-cases-and-statistical-denominators",
+                  "title": "失败场景与统计分母",
+                  "question_ids": [
+                    "p16-failure-rate"
+                  ],
+                  "explore": false,
+                  "key": "P16-C07-S02:failure-cases-and-statistical-denominators",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/2/#failure-cases-and-statistical-denominators"
+                },
+                {
+                  "id": "interpreting-records-as-control-results",
+                  "title": "从记录回到控制问题",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C07-S02:interpreting-records-as-control-results",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/2/#interpreting-records-as-control-results"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P16-C07-S02:references",
+                  "url": "/chapters/16-07-模型学习与约束决策/read/2/#references"
+                }
+              ],
+              "url": "/chapters/16-07-模型学习与约束决策/read/2/"
             }
           ],
           "visualization": "web/advanced-control/index.html"
@@ -24117,7 +25160,7 @@
       "assessment": {
         "id": "16.summary",
         "assessment": true,
-        "title": "不确定条件下的闭环证据链",
+        "title": "不确定模型、随机恢复与决策评价",
         "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/",
         "goals": "把控制请求、实际执行、模型假设和评价指标连起来，解释每项结果回答了什么问题。",
         "prerequisites": "16.1—16.7的反馈下降、共同P、递推估计、随机增量、图更新和价值计算。",
@@ -24133,7 +25176,7 @@
             "id": "P16-SUMMARY",
             "chapter_id": "16.summary",
             "number": "16.综合",
-            "title": "不确定条件下的闭环证据链",
+            "title": "不确定模型、随机恢复与决策评价",
             "outcome": "分别核对限幅反馈、共同P、随机矩和固定策略，再解释约束决策的四个指标。",
             "path": "notebooks/16-自适应、鲁棒与学习控制/99-篇末综合/01-不确定条件下的闭环证据链.ipynb",
             "visualization": null,
@@ -24148,59 +25191,155 @@
                 "同场景的预测误差、输入平方、超过上限与失败频率"
               ]
             },
+            "reading": "lessons/16-自适应、鲁棒与学习控制/99-篇末综合/01-不确定条件下的闭环证据链.md",
             "questions": [
               {
                 "id": "p16-capstone-scope",
                 "slug": "p16-capstone-scope",
                 "title": "稳定保证的适用范围",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#one-quadratic-form-for-a-model-set",
+                "concept_title": "同一矩阵覆盖一组线性模型",
+                "practice_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-scope"
               },
               {
                 "id": "p16-capstone-random",
                 "slug": "p16-capstone-random",
                 "title": "随机路径的比较",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#continuous-moments-of-random-recovery",
+                "concept_title": "随机恢复的连续矩",
+                "practice_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-random"
               },
               {
                 "id": "p16-capstone-learning",
                 "slug": "p16-capstone-learning",
                 "title": "有限训练的强化学习证据",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#fixed-policy-values-and-experience-updates",
+                "concept_title": "固定策略价值与经验更新",
+                "practice_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-learning"
               },
               {
                 "id": "p16-capstone-failure",
                 "slug": "p16-capstone-failure",
                 "title": "预测与决策结论",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#prediction-inputs-and-failures-on-common-scenarios",
+                "concept_title": "共同场景中的预测、输入与失败",
+                "practice_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-failure"
               },
               {
                 "id": "p16-capstone-certificate",
                 "slug": "p16-capstone-certificate",
                 "title": "综合：核验共同证书",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#one-quadratic-form-for-a-model-set",
+                "concept_title": "同一矩阵覆盖一组线性模型",
+                "practice_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-certificate"
               },
               {
                 "id": "p16-capstone-stochastic",
                 "slug": "p16-capstone-stochastic",
                 "title": "综合：独立核验随机终点",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#continuous-moments-of-random-recovery",
+                "concept_title": "随机恢复的连续矩",
+                "practice_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-stochastic"
               },
               {
                 "id": "p16-capstone-policy",
                 "slug": "p16-capstone-policy",
                 "title": "综合：固定策略的独立价值",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#fixed-policy-values-and-experience-updates",
+                "concept_title": "固定策略价值与经验更新",
+                "practice_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-policy"
               },
               {
                 "id": "p16-capstone-decision",
                 "slug": "p16-capstone-decision",
                 "title": "综合：配对报告四项指标",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#prediction-inputs-and-failures-on-common-scenarios",
+                "concept_title": "共同场景中的预测、输入与失败",
+                "practice_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-decision"
               }
             ],
             "practice_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/practice/?question=p16-capstone-scope",
             "notebook_url": "/notebook/?id=P16-SUMMARY",
-            "url": "/notebook/?id=P16-SUMMARY"
+            "reading_url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "saturated-input-and-actual-decrease",
+                "title": "限幅输入与实际下降方向",
+                "question_ids": [],
+                "explore": false,
+                "key": "P16-SUMMARY:saturated-input-and-actual-decrease",
+                "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#saturated-input-and-actual-decrease"
+              },
+              {
+                "id": "one-quadratic-form-for-a-model-set",
+                "title": "同一矩阵覆盖一组线性模型",
+                "question_ids": [
+                  "p16-capstone-scope",
+                  "p16-capstone-certificate"
+                ],
+                "explore": false,
+                "key": "P16-SUMMARY:one-quadratic-form-for-a-model-set",
+                "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#one-quadratic-form-for-a-model-set"
+              },
+              {
+                "id": "continuous-moments-of-random-recovery",
+                "title": "随机恢复的连续矩",
+                "question_ids": [
+                  "p16-capstone-stochastic",
+                  "p16-capstone-random"
+                ],
+                "explore": false,
+                "key": "P16-SUMMARY:continuous-moments-of-random-recovery",
+                "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#continuous-moments-of-random-recovery"
+              },
+              {
+                "id": "fixed-policy-values-and-experience-updates",
+                "title": "固定策略价值与经验更新",
+                "question_ids": [
+                  "p16-capstone-policy",
+                  "p16-capstone-learning"
+                ],
+                "explore": false,
+                "key": "P16-SUMMARY:fixed-policy-values-and-experience-updates",
+                "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#fixed-policy-values-and-experience-updates"
+              },
+              {
+                "id": "prediction-inputs-and-failures-on-common-scenarios",
+                "title": "共同场景中的预测、输入与失败",
+                "question_ids": [
+                  "p16-capstone-failure",
+                  "p16-capstone-decision"
+                ],
+                "explore": false,
+                "key": "P16-SUMMARY:prediction-inputs-and-failures-on-common-scenarios",
+                "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#prediction-inputs-and-failures-on-common-scenarios"
+              },
+              {
+                "id": "reading-the-four-calculations",
+                "title": "图中的四类计算",
+                "question_ids": [],
+                "explore": false,
+                "key": "P16-SUMMARY:reading-the-four-calculations",
+                "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#reading-the-four-calculations"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P16-SUMMARY:references",
+                "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/16-自适应、鲁棒与学习控制/综合练习/read/1/"
           }
         ],
         "available": true,

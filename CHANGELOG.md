@@ -4,9 +4,11 @@
 
 ## [未发布]
 
-网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)、[第 10 篇](docs/validation/part10-web-teaching-20261016.md)、[第 11 篇](docs/validation/part11-web-teaching-20261016.md)、[第 12 篇](docs/validation/part12-web-teaching-20261016.md)、[第 13 篇](docs/validation/part13-web-teaching-20261016.md)、[第 14 篇](docs/validation/part14-web-teaching-20261016.md)、[第 15 篇](docs/validation/part15-web-teaching-20261016.md)。
+网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)、[第 10 篇](docs/validation/part10-web-teaching-20261016.md)、[第 11 篇](docs/validation/part11-web-teaching-20261016.md)、[第 12 篇](docs/validation/part12-web-teaching-20261016.md)、[第 13 篇](docs/validation/part13-web-teaching-20261016.md)、[第 14 篇](docs/validation/part14-web-teaching-20261016.md)、[第 15 篇](docs/validation/part15-web-teaching-20261016.md)、[第 16 篇](docs/validation/part16-web-teaching-20261016.md)。
 
 ### 新增
+
+- 第16篇十五节网页讲授与独立实验，以64道原题连接非线性反馈、鲁棒条件、在线辨识、随机恢复、局部通信和有限经验学习。
 
 - 第15篇十一节网页讲授与独立实验，以48道原题连接计算图、动态学习、连续伴随、物理约束与机制修正。
 
@@ -35,6 +37,8 @@
 - 从网页新标签页打开指定 JupyterLab 实验，自动使用本项目 Python 环境。
 
 ### 变更
+
+- 第16篇以实际输入、观测时序和逐步手算连接定义与结果；七张探索关联相应概念，题目身份、版本、接口和判定保持。
 
 - 第15篇以带单位的输入、链式与递推手算连接定义和实验，五张探索关联实际概念；保留题目与成绩，分别解释程序梯度、连续导数、自由预测和参数信息。
 
@@ -65,6 +69,8 @@
 - README 与 ROADMAP 按当前使用方式和未来优先级整理，历史实施记录由本文件与验收文件承接。
 
 ### 修复
+
+- 状态与参数、四项决策指标分别按单位显示，综合结果改为数值与单位表；修正第16篇综合题两场景样例说明错用三场景结果的问题。
 
 - 连续求解的状态与灵敏度、梯度与状态重建图分别显示，补齐各自单位和实际步长刻度；物理约束探索按41个参考位置核对RMSE。
 

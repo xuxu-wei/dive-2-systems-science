@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>16.4.2 OU解析矩、离散矩与阈值事件 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P16-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P16-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk">本节练习 · 4 题</a><a class="button" href="/chapters/16-04-随机动力学与控制/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>16.4.2 OU解析矩、离散矩与阈值事件</h1>
+<p>上一节让粗细解共享一条随机驱动，比较它们的状态差。现在把实验重复很多次：每次从同一初态出发，却接受独立扰动。我们既关心这些终点的平均与分散，也关心有多少终点超过给定阈值。</p>
+<p>学完本节，你应能推导OU连续模型及Euler–Maruyama规则的均值、方差，解释有限样本的标准误，并计算指定终点事件的频率。先修为16.4.1、第5篇的期望方差和第6篇的重复统计。</p>
+<h2 id="paired-path-and-distribution-comparisons">配对路径与分布统计</h2>
+<p><strong>强误差（strong error）</strong>在同一随机驱动下比较数值解与连续解，例如用$\mathbb E[|X_h(t)-X(t)|]$汇总路径差。上一节先比较共享驱动的粗细数值解：某一条驱动下的$|X_h(t)-X_{\mathrm{fine}}(t)|$给出这次配对的状态差，细步解本身仍是数值近似。多条配对驱动可以进一步显示这类路径差的散布和平均。</p>
+<p>另一类问题比较分布经某个函数汇总后的期望。比如均值差</p>
+<p>$$\left|\mathbb E[X_h(t)]-\mathbb E[X(t)]\right|$$</p>
+<p>比较两个终点分布的平均水平，是<strong>弱误差（weak error）</strong>的一种。用两组独立重复的样本均值估计它时，结果还带有有限抽样的波动。逐路径差与均值差各自聚合不同信息。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-04-随机动力学与控制/practice/?question=p16-strong-weak">强误差与弱统计量</a></li></ul></nav>
+
+<p>保留路径也可以用最简单的情形核对：当$a=0$、$x_0=0$、$\sigma=1\,\mathrm U/\sqrt{\mathrm T}$，增量为$(0.2,-0.1)\sqrt{\mathrm T}$时，状态依次为$(0,0.2,0.1)$ U。此时没有恢复项，给定时刻的状态就是初态加累计布朗扰动；合并增量前后在共同端点完全一致。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-04-随机动力学与控制/practice/?question=p16-paired-ou">指定路径的随机终点</a></li></ul></nav>
+
+<h2 id="continuous-ou-moments">连续OU解的均值与方差</h2>
+<p>对确定初态$x_0$，方程$dX=-aX\,dt+\sigma dW$乘以确定的积分因子$e^{at}$，可得</p>
+<p>$$X_t=x_0e^{-at}+\sigma\int_0^t e^{-a(t-s)}\,dW_s.$$</p>
+<p>这个随机积分可以从加权增量和来理解：将$[0,t]$细分，把每段的$\Delta W$乘以对应权重$e^{-a(t-s)}$，再在网格变细时取极限。较早的扰动在到达$t$以前经历较长恢复，因而留下较小权重。</p>
+<p>各段增量均值为零、相互独立，所以加权和的均值为零，方差则为各段“权重平方×时间长度”的和。极限给出</p>
+<p>$$\begin{aligned}
+m(t)&amp;=\mathbb E[X_t]=x_0e^{-at},\\
+v(t)&amp;=\operatorname{Var}(X_t)=\sigma^2\int_0^t e^{-2a(t-s)}\,ds.
+\end{aligned}$$</p>
+<p>当$a&gt;0$，换元$u=t-s$后积分：</p>
+<p>$$\boxed{v(t)=\sigma^2\int_0^t e^{-2au}\,du
+=\frac{\sigma^2(1-e^{-2at})}{2a}.}$$</p>
+<p>当$a=0$，各段权重都为1，直接得到$m(t)=x_0$、$v(t)=\sigma^2t$。例如$x_0=1$ U、$\sigma=2\,\mathrm U/\sqrt{\mathrm T}$、$t=0.5$ T，均值为1 U，方差为$2^2\times0.5=2$ U²。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-04-随机动力学与控制/practice/?question=p16-ou-moments">OU 终点的解析矩</a></li></ul></nav>
+
+<p>当$a&gt;0$，时间增大使均值趋于0、方差趋于$\sigma^2/(2a)$。恢复压低了偏差的平均水平，持续扰动却使分布保留非零宽度。若施加线性反馈$u=-gX$，且$g$为$1/\mathrm T$单位，则漂移变为$-(a+g)X$；在$a+g&gt;0$时，将公式中的$a$替换为实际恢复率$a+g$，即可分析这类反馈的理论矩。</p>
+<h2 id="moments-of-discrete-update">固定离散规则的矩递推</h2>
+<p>Euler–Maruyama使用</p>
+<p>$$X_{n+1}=qX_n+\sigma\Delta W_n,\qquad q=1-ah.$$</p>
+<p>第$n$个新布朗增量与此前路径独立，均值为零、方差为$h$。因此</p>
+<p>$$m_{n+1}=qm_n,\qquad
+v_{n+1}=q^2v_n+\sigma^2h.$$</p>
+<p>确定初态意味着$m_0=x_0,v_0=0$。先手算两步：$m_1=qx_0,v_1=\sigma^2h$；第二步$m_2=q^2x_0,v_2=\sigma^2h(q^2+1)$。顺着这个规律，</p>
+<p>$$\boxed{m_N=q^Nx_0,\qquad
+v_N=\sigma^2h\sum_{j=0}^{N-1}q^{2j}.}$$</p>
+<p>和式对所有$q$都适用。若$q^2\ne1$，还可用等比求和写成$\sigma^2h(1-q^{2N})/(1-q^2)$。</p>
+<p>这些矩属于已经离散的随机规则。$q^N$与连续指数一般不同；当$|q|&lt;1$时，离散长时方差为</p>
+<p>$$v_\infty^{(h)}=\frac{\sigma^2h}{1-q^2}
+=\frac{\sigma^2}{2a-a^2h}.$$</p>
+<p>它随$h\to0$靠近连续长时方差。增加模拟次数会更准确地估计这条离散规则的矩，而缩小步长会改变规则本身，使它靠近连续模型。</p>
+<h2 id="sample-moments-from-four-hundred-endpoints">四百条终点的样本矩</h2>
+<p>本节固定$x_0=1$ U、$a=0.7/\mathrm T$、$\sigma=0.3\,\mathrm U/\sqrt{\mathrm T}$、终点2 T，以$h=0.02$ T执行100步。每条路径使用独立的布朗增量，共$R=400$条。将终点按重复编号记为$Z_1,\ldots,Z_R$，定义</p>
+<p>$$\bar Z=\frac1R\sum_{r=1}^R Z_r,\qquad
+s^2=\frac1{R-1}\sum_{r=1}^R(Z_r-\bar Z)^2.$$</p>
+<p>$s^2$是样本方差，分母$R-1$补偿用样本均值估计中心带来的影响。样本均值的标准误估计为</p>
+<p>$$\widehat{\operatorname{SE}}(\bar Z)=\frac{s}{\sqrt R}.$$</p>
+<p>它描述独立重复一批实验时，样本均值会有多大的典型波动；$s$本身描述单条终点围绕均值的分散。这两个尺度相差$\sqrt R$倍。</p>
+<p>本次固定重复得到$\bar Z\approx0.255506$ U、$s^2\approx0.059896$ U²，均值标准误约为0.012237 U。对应的三层均值和方差为：</p>
+<table>
+<thead>
+<tr>
+  <th>对象</th>
+  <th style="text-align:right">终点均值 / U</th>
+  <th style="text-align:right">终点方差 / U²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>连续OU模型</td>
+  <td style="text-align:right">0.246597</td>
+  <td style="text-align:right">0.0603765</td>
+</tr>
+<tr>
+  <td>$h=0.02$ T的离散规则</td>
+  <td style="text-align:right">0.244170</td>
+  <td style="text-align:right">0.0608792</td>
+</tr>
+<tr>
+  <td>本批400条路径</td>
+  <td style="text-align:right">0.255506</td>
+  <td style="text-align:right">0.0598960</td>
+</tr>
+</tbody>
+</table>
+<p>样本均值减连续均值，可以按中间的离散理论拆成</p>
+<p>$$\bar Z-m(2\,\mathrm T)
+=\underbrace{\bar Z-m_{100}}_{\text{有限抽样差}}
++\underbrace{m_{100}-m(2\,\mathrm T)}_{\text{均值的离散偏差}}.$$</p>
+<p>本批两项约为$+0.011336$ U和$-0.002427$ U，合计$+0.008909$ U。中间参照让我们看出：把样本与连续理论的全部差异归给步长，会把抽样差也混进去。</p>
+<h2 id="terminal-threshold-event">终点阈值与超过频率</h2>
+<p>取人为给定阈值$b=0.7$ U，逐条检查终点事件$Z_r&gt;b$，以指示函数计数：</p>
+<p>$$\widehat p=\frac1R\sum_{r=1}^R\mathbf1\{Z_r&gt;0.7\,\mathrm U\}.$$</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P16-C04-S02-72715027-0.png" alt="OU解析矩、离散矩与阈值事件：实验结果图" loading="lazy"></figure>
+</section>
+<p>直方图每根柱的高度为落在相应区间的终点条数，粉线标连续均值，绿色虚线标0.7 U阈值。本批有11个终点位于阈值右侧，故超过频率为$11/400=0.0275$。均值约0.256 U与这个频率分别描述平均水平和尾部事件。</p>
+<p>比如另一批200个终点的均值为0.98 U、阈值1 U，其中20个终点超过阈值，那么超过频率为$20/200=10\%$。这里需要的是逐条事件计数，均值与最大值都不能代替这个分母和分子。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk">平均值与越界统计</a></li></ul></nav>
+
+<p>连续OU终点是高斯分布，因为它是独立高斯增量的线性加权累积。记$\Phi$为标准正态累计分布函数，代入前面的连续矩，有</p>
+<p>$$P(X_{2\,\mathrm T}&gt;b)=1-\Phi\!\left(\frac{b-m(2\,\mathrm T)}{\sqrt{v(2\,\mathrm T)}}\right)\approx0.03250,\qquad b=0.7\,\mathrm U.$$</p>
+<p>有限模拟的0.0275是这一批离散路径的记录；改变步长影响离散终点分布，重新抽取400条路径也会改变超过次数。这里计的是终点事件，若关注途中是否曾超过阈值，就应对整条路径的最大值计数。</p>
+<h2 id="continuous-discrete-and-finite-simulation">连续、离散与有限重复的探索</h2>
+<p>探索把三层结果画在同一组时刻：蓝线为连续理论，绿线为当前离散规则的理论，粉线为有限路径统计。可以切换均值和方差，分别观察它们随时间的变化。</p>
+<p>页面默认配置为$a=0.6/\mathrm T$、$\sigma=0.4\,\mathrm U/\sqrt{\mathrm T}$、请求步长0.1 T、400条路径；本节直方图则采用表格前给出的$a=0.7/\mathrm T,\sigma=0.3\,\mathrm U/\sqrt{\mathrm T},h=0.02$ T。每组比较先对应自己的参数。探索还会把实际步长调整为$2\,\mathrm T/N$，使终点恰好对齐。</p>
+<p>方差模式的粉线计算</p>
+<p>$$v_R=\frac1R\sum_{r=1}^R(Z_r-\bar Z)^2,$$</p>
+<p>是这批路径围绕自身均值的偏差平方平均；本节样本方差用$R-1$。对同一批记录，两者满足$v_R=(R-1)s^2/R$，$R=400$时相差一个$399/400$因子。</p>
+<p>先固定恢复率、扰动幅度与步长，增加路径数，观察粉线相对绿线的波动。独立重复数增大，会减小统计估计的典型抽样波动。再固定较多路径，缩小步长，观察绿线与蓝线的距离；这个距离由两条理论矩决定，不依赖这批随机记录是否恰好接近均值。</p>
+<p class="concept-explore"><a href="/chapters/16-04-随机动力学与控制/explore/?concept=P16-C04-S02%3Acontinuous-discrete-and-finite-simulation">可视化与探索：连续、离散与有限重复的探索 →</a></p>
+
+<p>同驱动的路径比较、分布矩比较和阈值事件各回答一个具体问题。下一章将把信息限制放到网络通信中，分析总和、节点差与延迟下的动态。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://users.aalto.fi/~asolin/sde-book/sde-book.pdf">Särkkä与Solin，Applied Stochastic Differential Equations</a>，线性随机系统的解、矩和数值近似。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/16-04-随机动力学与控制/read/1/">← 16.4.1 布朗运动与Euler–Maruyama离散</a><a href="/chapters/16-05-分布式控制与通信限制/read/1/">16.5.1 局部通信与平均一致 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

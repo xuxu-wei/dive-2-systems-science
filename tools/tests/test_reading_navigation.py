@@ -68,7 +68,7 @@ def test_every_published_concept_has_a_real_heading_and_every_question_has_one_p
                 assert concept['explore_url'] in page.links
                 assert parse_qs(urlsplit(concept['explore_url']).query)['concept'] == [concept['key']]
         assert '<!-- practice:' not in (ROOT / 'web/reading/pages' / (lesson['id'] + '.html')).read_text(encoding='utf-8')
-    assert len(bound) == len(set(bound)) == len(expected) == 835
+    assert len(bound) == len(set(bound)) == len(expected) == 899
     assert set(bound) == expected
 
 

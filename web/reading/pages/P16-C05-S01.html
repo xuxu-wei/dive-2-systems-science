@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>16.5.1 局部通信与平均一致 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P16-C05-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P16-C05-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average">本节练习 · 4 题</a><a class="button" href="/chapters/16-05-分布式控制与通信限制/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>16.5.1 局部通信与平均一致</h1>
+<p>三个调节单元只能与相邻单元通信：0号与1号相连，1号与2号相连，0号和2号不能互相读取。它们的初始状态按编号排列为 $[0,2,4]$ U。没有一个节点掌握全部状态，怎样让三个数逐渐靠拢？</p>
+<p>第11篇用邻接关系描述物质交换。现在沿用相同的图，把邻居之间的状态差用来形成各节点自己的调节动作。学完本节，你应能手算一轮同步更新，说明平均为何保持，并由图的连接与特征值判断节点能否达到共同值。先修为11.2的图拉普拉斯与矩阵特征值。</p>
+<h2 id="neighbor-information-and-consensus-feedback">邻居信息与一致性反馈</h2>
+<p><strong>分布式控制（distributed control）</strong>由多个单元分别计算和执行动作，每个单元依据自身及通信获得的信息进行调节。在这里，节点 $i$ 读取自身与邻居的当前状态，将邻居高于自己的差值计为正，低于自己的差值计为负。</p>
+<p>令 $w_{ij}$ 为节点 $j$ 对节点 $i$ 的作用权重，单位为 $1/T$。没有连接时 $w_{ij}=0$。本例无向连接的两个方向权重相同，均为 $1/T$，且 $w_{ii}=0$。用 $n$ 表示更新次数、$h$ 表示每轮时间长度，规则为</p>
+<p>$$
+\boxed{x_{i,n+1}=x_{i,n}+h\sum_jw_{ij}(x_{j,n}-x_{i,n}).}
+$$</p>
+<p>状态差的单位为 U，乘权重得到 U/T 的调整率，再乘 $h$ 得到本轮状态增量。所有节点一起读取第 $n$ 轮状态，算完后才共同进入第 $n+1$ 轮，这就是同步更新。</p>
+<p>如果对任意两节点都有 $x_{i,n}-x_{j,n}\to0$，就称它们达到<strong>一致（consensus）</strong>。如果共同值还是初始状态的算术平均，则称为<strong>平均一致（average consensus）</strong>。前一个要求差异消失，后一个还指定了共同值的来源。</p>
+<h2 id="one-synchronous-step-by-hand">三个节点的一轮手算</h2>
+<p>取 $h=0.2T$，分别读取旧状态 $[0,2,4]$ U：</p>
+<table>
+<thead>
+<tr>
+  <th>节点</th>
+  <th style="text-align:right">邻居差对应的调整率 / (U/T)</th>
+  <th style="text-align:right">本轮增量 / U</th>
+  <th style="text-align:right">新状态 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td style="text-align:right">$2-0=2$</td>
+  <td style="text-align:right">$0.2\times2=0.4$</td>
+  <td style="text-align:right">0.4</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">$(0-2)+(4-2)=0$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">2</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">$2-4=-2$</td>
+  <td style="text-align:right">$-0.4$</td>
+  <td style="text-align:right">3.6</td>
+</tr>
+</tbody>
+</table>
+<p>所以整行新状态是 $[0.4,2,3.6]$ U。1号节点的两侧差异正好抵消。计算它的增量时仍使用0号的旧值0，而不是刚算出的0.4。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-05-分布式控制与通信限制/practice/?question=p16-local-consensus">一次局部一致性更新</a></li></ul></nav>
+
+<h2 id="graph-laplacian-and-preserved-average">图拉普拉斯与平均保持</h2>
+<p>把状态排成列向量 $x_n$。权重矩阵 $W$ 的第 $i$ 行、第 $j$ 列为 $w_{ij}$；$D$ 的对角元素是各行权重之和。于是</p>
+<p>$$
+L=D-W=\begin{pmatrix}
+1&amp;-1&amp;0\\-1&amp;2&amp;-1\\0&amp;-1&amp;1
+\end{pmatrix}\frac1T,
+\qquad x_{n+1}=(I-hL)x_n.
+$$</p>
+<p>令 $\mathbf1=(1,1,1)^\mathsf T$，$\mathbf1^\mathsf T x_n$ 就是节点状态的总和。对称权重使 $L$ 的列和也为零，即 $\mathbf1^\mathsf TL=0$，所以</p>
+<p>$$
+\begin{aligned}
+\mathbf1^\mathsf T x_{n+1}
+&amp;=\mathbf1^\mathsf T x_n-h\mathbf1^\mathsf TLx_n\\
+&amp;=\mathbf1^\mathsf T x_n.
+\end{aligned}
+$$</p>
+<p>本例总和一直是6 U，节点数为3，因此平均一直是2 U。也可以逐边理解：一条无向边对两端产生大小相等、方向相反的增量，相加后抵消。</p>
+<p>另一个关系 $L\mathbf1=0$ 说明已经相同的节点值会保持相同。它与列和为零分别描述“一致状态不动”和“全体增量相加为零”。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average">平均守恒的条件</a></li></ul></nav>
+
+<h2 id="eigenvalues-and-contraction-of-disagreement">特征值怎样决定差异收缩</h2>
+<p>平均不变，还需要检查偏离平均的部分会不会消失。取 $L$ 的一个特征向量 $v$，满足 $Lv=\lambda v$。如果某个差异沿着 $v$，即 $x_n=z_nv$，代入更新得到</p>
+<p>$$
+x_{n+1}=(I-hL)z_nv=(1-h\lambda)z_nv,
+\qquad z_{n+1}=(1-h\lambda)z_n.
+$$</p>
+<p>图上的一个差异方向由此变成了标量递推。要让它收缩，需要 $|1-h\lambda|&lt;1$。无向连通图只有一个零特征值，对应共同方向 $\mathbf1$；其余特征值为正。因此全部差异收缩的步长条件是</p>
+<p>$$
+\boxed{0&lt;h&lt;\frac{2}{\lambda_{\max}(L)}.}
+$$</p>
+<p>本例特征值为 $0,1/T,3/T$，所以 $0&lt;h&lt;2T/3$。取 $h=0.2T$ 时，两个非零方向的乘子分别为0.8和0.4。</p>
+<p>实际初态可以写成</p>
+<p>$$
+\begin{pmatrix}0\\2\\4\end{pmatrix}
+=2\mathbf1+\begin{pmatrix}-2\\0\\2\end{pmatrix}.
+$$</p>
+<p>右侧差异向量恰好属于 $\lambda=1/T$ 的方向，因而本次路径为</p>
+<p>$$
+x_n=\bigl[2-2(0.8)^n,\ 2,\ 2+2(0.8)^n\bigr]^\mathsf T\ \mathrm U.
+$$</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P16-C05-S01-d3518f0d-0.png" alt="局部通信与平均一致：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中1号节点一直在2 U，另外两个从两侧接近它。30轮后两端约为1.9975与2.0025 U。这个曲线形状同时来自稳定步长和初态的对称性。</p>
+<h2 id="component-averages-in-a-disconnected-graph">断连图中的分量平均</h2>
+<p>现在断开1号与2号之间的连接。0号、1号仍互相调整，2号没有邻居。每个连通分量内部都保持自己的总和：前两个节点的和为2 U，孤立节点为4 U。因此步长使各非零方向收缩时，极限为</p>
+<p>$$
+[1,1,4]\ \mathrm U.
+$$</p>
+<p>全网平均仍为2 U，但两个分量之间没有通信，共同值分别由各自初值确定。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-05-分布式控制与通信限制/practice/?question=p16-disconnected">断连网络的极限</a></li></ul></nav>
+
+<p>沿用 $h=0.2T$，前两轮完整状态为</p>
+<p>$$
+[0,2,4]\ \longrightarrow\ [0.4,1.6,4]
+\ \longrightarrow\ [0.64,1.36,4]\ \mathrm U.
+$$</p>
+<p>路径的每一行是一轮全部节点的状态，列按0、1、2号排列；记录包含初态。这样既能沿一列看某个节点，也能沿一行检查分量总和。下一节保持这张路径图，研究读到的差异晚了几轮时会发生什么。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/16-05-分布式控制与通信限制/practice/?question=p16-component-average">断连图的一致性路径</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.cds.caltech.edu/~murray/papers/2007c_ofm07-ieeeproc.html">Olfati-Saber、Fax与Murray：Consensus and Cooperation in Networked Multi-Agent Systems</a>介绍图结构、局部通信与一致性分析。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/16-04-随机动力学与控制/read/2/">← 16.4.2 OU解析矩、离散矩与阈值事件</a><a href="/chapters/16-05-分布式控制与通信限制/read/2/">16.5.2 通信延迟、历史与稳定边界 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

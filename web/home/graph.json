@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "8c6093b60c20d453de223a7556f9b3e973f8ffc0ae12bb14ecf88d5a0451145f",
+    "catalogSha256": "5eb25aa800d269436bd6d282e0afc241ce8a712c954f9892945b7805f951c05d",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -20449,8 +20449,8 @@
       "english": null,
       "number": "16.1.1",
       "parentId": "16.1",
-      "url": "/notebook/?id=P16-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-01-非线性反馈设计/read/1/",
+      "readingUrl": "/chapters/16-01-非线性反馈设计/read/1/",
       "practiceUrl": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual",
       "description": "从偏差恢复出发推导反馈，解释Lyapunov函数的下降条件及其单位。",
       "categories": [
@@ -20469,7 +20469,7 @@
       "total": 1,
       "lessonId": "P16-C01-S01",
       "lessonNumber": "16.1.1",
-      "lessonTitle": "非线性反馈与能量下降",
+      "lessonTitle": "非线性状态反馈与Lyapunov下降",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20480,8 +20480,8 @@
       "english": null,
       "number": "16.1.1",
       "parentId": "16.1",
-      "url": "/notebook/?id=P16-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-01-非线性反馈设计/read/1/",
+      "readingUrl": "/chapters/16-01-非线性反馈设计/read/1/",
       "practiceUrl": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual",
       "description": "从偏差恢复出发推导反馈，解释Lyapunov函数的下降条件及其单位。",
       "categories": [
@@ -20500,7 +20500,7 @@
       "total": 1,
       "lessonId": "P16-C01-S01",
       "lessonNumber": "16.1.1",
-      "lessonTitle": "非线性反馈与能量下降",
+      "lessonTitle": "非线性状态反馈与Lyapunov下降",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20511,8 +20511,8 @@
       "english": null,
       "number": "16.1.1",
       "parentId": "16.1",
-      "url": "/notebook/?id=P16-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-01-非线性反馈设计/read/1/",
+      "readingUrl": "/chapters/16-01-非线性反馈设计/read/1/",
       "practiceUrl": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual",
       "description": "从偏差恢复出发推导反馈，解释Lyapunov函数的下降条件及其单位。",
       "categories": [
@@ -20531,7 +20531,7 @@
       "total": 1,
       "lessonId": "P16-C01-S01",
       "lessonNumber": "16.1.1",
-      "lessonTitle": "非线性反馈与能量下降",
+      "lessonTitle": "非线性状态反馈与Lyapunov下降",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20542,8 +20542,8 @@
       "english": null,
       "number": "16.1.1",
       "parentId": "16.1",
-      "url": "/notebook/?id=P16-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-01-非线性反馈设计/read/1/",
+      "readingUrl": "/chapters/16-01-非线性反馈设计/read/1/",
       "practiceUrl": "/chapters/16-01-非线性反馈设计/practice/?question=p16-lyapunov-actual",
       "description": "从偏差恢复出发推导反馈，解释Lyapunov函数的下降条件及其单位。",
       "categories": [
@@ -20562,7 +20562,7 @@
       "total": 1,
       "lessonId": "P16-C01-S01",
       "lessonNumber": "16.1.1",
-      "lessonTitle": "非线性反馈与能量下降",
+      "lessonTitle": "非线性状态反馈与Lyapunov下降",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20573,8 +20573,8 @@
       "english": null,
       "number": "16.1.2",
       "parentId": "16.1",
-      "url": "/notebook/?id=P16-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-01-非线性反馈设计/read/2/",
+      "readingUrl": "/chapters/16-01-非线性反馈设计/read/2/",
       "practiceUrl": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global",
       "description": "把限幅后的实际输入代回模型，手算不同初值为何可能朝相反方向变化。",
       "categories": [
@@ -20593,7 +20593,7 @@
       "total": 1,
       "lessonId": "P16-C01-S02",
       "lessonNumber": "16.1.2",
-      "lessonTitle": "执行饱和、初值与适用域",
+      "lessonTitle": "输入饱和、恢复区域与数值路径",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20604,8 +20604,8 @@
       "english": null,
       "number": "16.1.2",
       "parentId": "16.1",
-      "url": "/notebook/?id=P16-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-01-非线性反馈设计/read/2/",
+      "readingUrl": "/chapters/16-01-非线性反馈设计/read/2/",
       "practiceUrl": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global",
       "description": "把限幅后的实际输入代回模型，手算不同初值为何可能朝相反方向变化。",
       "categories": [
@@ -20624,7 +20624,7 @@
       "total": 1,
       "lessonId": "P16-C01-S02",
       "lessonNumber": "16.1.2",
-      "lessonTitle": "执行饱和、初值与适用域",
+      "lessonTitle": "输入饱和、恢复区域与数值路径",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20635,8 +20635,8 @@
       "english": null,
       "number": "16.1.2",
       "parentId": "16.1",
-      "url": "/notebook/?id=P16-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-01-非线性反馈设计/read/2/",
+      "readingUrl": "/chapters/16-01-非线性反馈设计/read/2/",
       "practiceUrl": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global",
       "description": "把限幅后的实际输入代回模型，手算不同初值为何可能朝相反方向变化。",
       "categories": [
@@ -20655,7 +20655,7 @@
       "total": 1,
       "lessonId": "P16-C01-S02",
       "lessonNumber": "16.1.2",
-      "lessonTitle": "执行饱和、初值与适用域",
+      "lessonTitle": "输入饱和、恢复区域与数值路径",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20666,8 +20666,8 @@
       "english": null,
       "number": "16.1.2",
       "parentId": "16.1",
-      "url": "/notebook/?id=P16-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-01-非线性反馈设计/read/2/",
+      "readingUrl": "/chapters/16-01-非线性反馈设计/read/2/",
       "practiceUrl": "/chapters/16-01-非线性反馈设计/practice/?question=p16-saturated-global",
       "description": "把限幅后的实际输入代回模型，手算不同初值为何可能朝相反方向变化。",
       "categories": [
@@ -20686,7 +20686,7 @@
       "total": 1,
       "lessonId": "P16-C01-S02",
       "lessonNumber": "16.1.2",
-      "lessonTitle": "执行饱和、初值与适用域",
+      "lessonTitle": "输入饱和、恢复区域与数值路径",
       "chapterUrl": "/chapters/16-01-非线性反馈设计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20734,8 +20734,8 @@
       "english": null,
       "number": "16.2.1",
       "parentId": "16.2",
-      "url": "/notebook/?id=P16-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/",
+      "readingUrl": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/",
       "practiceUrl": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p",
       "description": "用同一个正定P检查两个顶点，再解释凸组合为何继承严格下降。",
       "categories": [
@@ -20754,7 +20754,7 @@
       "total": 1,
       "lessonId": "P16-C02-S01",
       "lessonNumber": "16.2.1",
-      "lessonTitle": "共同 Lyapunov 矩阵与顶点条件",
+      "lessonTitle": "鲁棒稳定性、共同二次函数与顶点条件",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20765,8 +20765,8 @@
       "english": null,
       "number": "16.2.1",
       "parentId": "16.2",
-      "url": "/notebook/?id=P16-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/",
+      "readingUrl": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/",
       "practiceUrl": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p",
       "description": "用同一个正定P检查两个顶点，再解释凸组合为何继承严格下降。",
       "categories": [
@@ -20785,7 +20785,7 @@
       "total": 1,
       "lessonId": "P16-C02-S01",
       "lessonNumber": "16.2.1",
-      "lessonTitle": "共同 Lyapunov 矩阵与顶点条件",
+      "lessonTitle": "鲁棒稳定性、共同二次函数与顶点条件",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20796,8 +20796,8 @@
       "english": null,
       "number": "16.2.1",
       "parentId": "16.2",
-      "url": "/notebook/?id=P16-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/",
+      "readingUrl": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/",
       "practiceUrl": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p",
       "description": "用同一个正定P检查两个顶点，再解释凸组合为何继承严格下降。",
       "categories": [
@@ -20816,7 +20816,7 @@
       "total": 1,
       "lessonId": "P16-C02-S01",
       "lessonNumber": "16.2.1",
-      "lessonTitle": "共同 Lyapunov 矩阵与顶点条件",
+      "lessonTitle": "鲁棒稳定性、共同二次函数与顶点条件",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20827,8 +20827,8 @@
       "english": null,
       "number": "16.2.1",
       "parentId": "16.2",
-      "url": "/notebook/?id=P16-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/",
+      "readingUrl": "/chapters/16-02-模型不确定性与鲁棒控制/read/1/",
       "practiceUrl": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-common-p",
       "description": "用同一个正定P检查两个顶点，再解释凸组合为何继承严格下降。",
       "categories": [
@@ -20847,7 +20847,7 @@
       "total": 1,
       "lessonId": "P16-C02-S01",
       "lessonNumber": "16.2.1",
-      "lessonTitle": "共同 Lyapunov 矩阵与顶点条件",
+      "lessonTitle": "鲁棒稳定性、共同二次函数与顶点条件",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20858,8 +20858,8 @@
       "english": null,
       "number": "16.2.2",
       "parentId": "16.2",
-      "url": "/notebook/?id=P16-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/",
+      "readingUrl": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/",
       "practiceUrl": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure",
       "description": "区分模型集合内的共同论证、集合外反例与候选P未通过的含义。",
       "categories": [
@@ -20878,7 +20878,7 @@
       "total": 1,
       "lessonId": "P16-C02-S02",
       "lessonNumber": "16.2.2",
-      "lessonTitle": "集合外失效与鲁棒证据边界",
+      "lessonTitle": "候选二次函数、集合外矩阵与稳定性判断",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20889,8 +20889,8 @@
       "english": null,
       "number": "16.2.2",
       "parentId": "16.2",
-      "url": "/notebook/?id=P16-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/",
+      "readingUrl": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/",
       "practiceUrl": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure",
       "description": "区分模型集合内的共同论证、集合外反例与候选P未通过的含义。",
       "categories": [
@@ -20909,7 +20909,7 @@
       "total": 1,
       "lessonId": "P16-C02-S02",
       "lessonNumber": "16.2.2",
-      "lessonTitle": "集合外失效与鲁棒证据边界",
+      "lessonTitle": "候选二次函数、集合外矩阵与稳定性判断",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20920,8 +20920,8 @@
       "english": null,
       "number": "16.2.2",
       "parentId": "16.2",
-      "url": "/notebook/?id=P16-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/",
+      "readingUrl": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/",
       "practiceUrl": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure",
       "description": "区分模型集合内的共同论证、集合外反例与候选P未通过的含义。",
       "categories": [
@@ -20940,7 +20940,7 @@
       "total": 1,
       "lessonId": "P16-C02-S02",
       "lessonNumber": "16.2.2",
-      "lessonTitle": "集合外失效与鲁棒证据边界",
+      "lessonTitle": "候选二次函数、集合外矩阵与稳定性判断",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20951,8 +20951,8 @@
       "english": null,
       "number": "16.2.2",
       "parentId": "16.2",
-      "url": "/notebook/?id=P16-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/",
+      "readingUrl": "/chapters/16-02-模型不确定性与鲁棒控制/read/2/",
       "practiceUrl": "/chapters/16-02-模型不确定性与鲁棒控制/practice/?question=p16-certificate-failure",
       "description": "区分模型集合内的共同论证、集合外反例与候选P未通过的含义。",
       "categories": [
@@ -20971,7 +20971,7 @@
       "total": 1,
       "lessonId": "P16-C02-S02",
       "lessonNumber": "16.2.2",
-      "lessonTitle": "集合外失效与鲁棒证据边界",
+      "lessonTitle": "候选二次函数、集合外矩阵与稳定性判断",
       "chapterUrl": "/chapters/16-02-模型不确定性与鲁棒控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21019,8 +21019,8 @@
       "english": "recursive least squares",
       "number": "16.3.1",
       "parentId": "16.3",
-      "url": "/notebook/?id=P16-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-03-递推辨识与自适应控制/read/1/",
+      "readingUrl": "/chapters/16-03-递推辨识与自适应控制/read/1/",
       "practiceUrl": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation",
       "description": "先算预测残差再更新估计，以六次非零输入和零输入比较学习信息。",
       "categories": [
@@ -21039,7 +21039,7 @@
       "total": 1,
       "lessonId": "P16-C03-S01",
       "lessonNumber": "16.3.1",
-      "lessonTitle": "递推估计、投影与激励",
+      "lessonTitle": "递推最小二乘、遗忘与持续激励",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21050,8 +21050,8 @@
       "english": "forgetting factor",
       "number": "16.3.1",
       "parentId": "16.3",
-      "url": "/notebook/?id=P16-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-03-递推辨识与自适应控制/read/1/",
+      "readingUrl": "/chapters/16-03-递推辨识与自适应控制/read/1/",
       "practiceUrl": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation",
       "description": "先算预测残差再更新估计，以六次非零输入和零输入比较学习信息。",
       "categories": [
@@ -21070,7 +21070,7 @@
       "total": 1,
       "lessonId": "P16-C03-S01",
       "lessonNumber": "16.3.1",
-      "lessonTitle": "递推估计、投影与激励",
+      "lessonTitle": "递推最小二乘、遗忘与持续激励",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21081,8 +21081,8 @@
       "english": "projection",
       "number": "16.3.1",
       "parentId": "16.3",
-      "url": "/notebook/?id=P16-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-03-递推辨识与自适应控制/read/1/",
+      "readingUrl": "/chapters/16-03-递推辨识与自适应控制/read/1/",
       "practiceUrl": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation",
       "description": "先算预测残差再更新估计，以六次非零输入和零输入比较学习信息。",
       "categories": [
@@ -21101,7 +21101,7 @@
       "total": 1,
       "lessonId": "P16-C03-S01",
       "lessonNumber": "16.3.1",
-      "lessonTitle": "递推估计、投影与激励",
+      "lessonTitle": "递推最小二乘、遗忘与持续激励",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21112,8 +21112,8 @@
       "english": "persistent excitation",
       "number": "16.3.1",
       "parentId": "16.3",
-      "url": "/notebook/?id=P16-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-03-递推辨识与自适应控制/read/1/",
+      "readingUrl": "/chapters/16-03-递推辨识与自适应控制/read/1/",
       "practiceUrl": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-zero-excitation",
       "description": "先算预测残差再更新估计，以六次非零输入和零输入比较学习信息。",
       "categories": [
@@ -21132,7 +21132,7 @@
       "total": 1,
       "lessonId": "P16-C03-S01",
       "lessonNumber": "16.3.1",
-      "lessonTitle": "递推估计、投影与激励",
+      "lessonTitle": "递推最小二乘、遗忘与持续激励",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21143,8 +21143,8 @@
       "english": null,
       "number": "16.3.2",
       "parentId": "16.3",
-      "url": "/notebook/?id=P16-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-03-递推辨识与自适应控制/read/2/",
+      "readingUrl": "/chapters/16-03-递推辨识与自适应控制/read/2/",
       "practiceUrl": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead",
       "description": "按旧估计选输入、新状态到达后更新的顺序，区分状态误差与参数误差。",
       "categories": [
@@ -21163,7 +21163,7 @@
       "total": 1,
       "lessonId": "P16-C03-S02",
       "lessonNumber": "16.3.2",
-      "lessonTitle": "估计进入控制的时间顺序",
+      "lessonTitle": "自适应控制与观测更新顺序",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21174,8 +21174,8 @@
       "english": null,
       "number": "16.3.2",
       "parentId": "16.3",
-      "url": "/notebook/?id=P16-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-03-递推辨识与自适应控制/read/2/",
+      "readingUrl": "/chapters/16-03-递推辨识与自适应控制/read/2/",
       "practiceUrl": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead",
       "description": "按旧估计选输入、新状态到达后更新的顺序，区分状态误差与参数误差。",
       "categories": [
@@ -21194,7 +21194,7 @@
       "total": 1,
       "lessonId": "P16-C03-S02",
       "lessonNumber": "16.3.2",
-      "lessonTitle": "估计进入控制的时间顺序",
+      "lessonTitle": "自适应控制与观测更新顺序",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21205,8 +21205,8 @@
       "english": null,
       "number": "16.3.2",
       "parentId": "16.3",
-      "url": "/notebook/?id=P16-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-03-递推辨识与自适应控制/read/2/",
+      "readingUrl": "/chapters/16-03-递推辨识与自适应控制/read/2/",
       "practiceUrl": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead",
       "description": "按旧估计选输入、新状态到达后更新的顺序，区分状态误差与参数误差。",
       "categories": [
@@ -21225,7 +21225,7 @@
       "total": 1,
       "lessonId": "P16-C03-S02",
       "lessonNumber": "16.3.2",
-      "lessonTitle": "估计进入控制的时间顺序",
+      "lessonTitle": "自适应控制与观测更新顺序",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21236,8 +21236,8 @@
       "english": null,
       "number": "16.3.2",
       "parentId": "16.3",
-      "url": "/notebook/?id=P16-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-03-递推辨识与自适应控制/read/2/",
+      "readingUrl": "/chapters/16-03-递推辨识与自适应控制/read/2/",
       "practiceUrl": "/chapters/16-03-递推辨识与自适应控制/practice/?question=p16-no-lookahead",
       "description": "按旧估计选输入、新状态到达后更新的顺序，区分状态误差与参数误差。",
       "categories": [
@@ -21256,7 +21256,7 @@
       "total": 1,
       "lessonId": "P16-C03-S02",
       "lessonNumber": "16.3.2",
-      "lessonTitle": "估计进入控制的时间顺序",
+      "lessonTitle": "自适应控制与观测更新顺序",
       "chapterUrl": "/chapters/16-03-递推辨识与自适应控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21304,8 +21304,8 @@
       "english": null,
       "number": "16.4.1",
       "parentId": "16.4",
-      "url": "/notebook/?id=P16-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-04-随机动力学与控制/read/1/",
+      "readingUrl": "/chapters/16-04-随机动力学与控制/read/1/",
       "practiceUrl": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
       "description": "按时间长度构造布朗增量，将细增量相加，比较同一噪声下的粗细终点。",
       "categories": [
@@ -21324,7 +21324,7 @@
       "total": 1,
       "lessonId": "P16-C04-S01",
       "lessonNumber": "16.4.1",
-      "lessonTitle": "布朗增量与 Euler–Maruyama",
+      "lessonTitle": "布朗运动与Euler–Maruyama离散",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21335,8 +21335,8 @@
       "english": null,
       "number": "16.4.1",
       "parentId": "16.4",
-      "url": "/notebook/?id=P16-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-04-随机动力学与控制/read/1/",
+      "readingUrl": "/chapters/16-04-随机动力学与控制/read/1/",
       "practiceUrl": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
       "description": "按时间长度构造布朗增量，将细增量相加，比较同一噪声下的粗细终点。",
       "categories": [
@@ -21355,7 +21355,7 @@
       "total": 1,
       "lessonId": "P16-C04-S01",
       "lessonNumber": "16.4.1",
-      "lessonTitle": "布朗增量与 Euler–Maruyama",
+      "lessonTitle": "布朗运动与Euler–Maruyama离散",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21366,8 +21366,8 @@
       "english": null,
       "number": "16.4.1",
       "parentId": "16.4",
-      "url": "/notebook/?id=P16-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-04-随机动力学与控制/read/1/",
+      "readingUrl": "/chapters/16-04-随机动力学与控制/read/1/",
       "practiceUrl": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
       "description": "按时间长度构造布朗增量，将细增量相加，比较同一噪声下的粗细终点。",
       "categories": [
@@ -21386,7 +21386,7 @@
       "total": 1,
       "lessonId": "P16-C04-S01",
       "lessonNumber": "16.4.1",
-      "lessonTitle": "布朗增量与 Euler–Maruyama",
+      "lessonTitle": "布朗运动与Euler–Maruyama离散",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21397,8 +21397,8 @@
       "english": null,
       "number": "16.4.1",
       "parentId": "16.4",
-      "url": "/notebook/?id=P16-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-04-随机动力学与控制/read/1/",
+      "readingUrl": "/chapters/16-04-随机动力学与控制/read/1/",
       "practiceUrl": "/chapters/16-04-随机动力学与控制/practice/?question=p16-brownian-scale",
       "description": "按时间长度构造布朗增量，将细增量相加，比较同一噪声下的粗细终点。",
       "categories": [
@@ -21417,7 +21417,7 @@
       "total": 1,
       "lessonId": "P16-C04-S01",
       "lessonNumber": "16.4.1",
-      "lessonTitle": "布朗增量与 Euler–Maruyama",
+      "lessonTitle": "布朗运动与Euler–Maruyama离散",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21428,8 +21428,8 @@
       "english": null,
       "number": "16.4.2",
       "parentId": "16.4",
-      "url": "/notebook/?id=P16-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-04-随机动力学与控制/read/2/",
+      "readingUrl": "/chapters/16-04-随机动力学与控制/read/2/",
       "practiceUrl": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk",
       "description": "分别计算连续理论、离散理论和有限重复统计，解释阈值事件频率。",
       "categories": [
@@ -21448,7 +21448,7 @@
       "total": 1,
       "lessonId": "P16-C04-S02",
       "lessonNumber": "16.4.2",
-      "lessonTitle": "路径误差、分布统计与风险",
+      "lessonTitle": "OU解析矩、离散矩与阈值事件",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21459,8 +21459,8 @@
       "english": null,
       "number": "16.4.2",
       "parentId": "16.4",
-      "url": "/notebook/?id=P16-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-04-随机动力学与控制/read/2/",
+      "readingUrl": "/chapters/16-04-随机动力学与控制/read/2/",
       "practiceUrl": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk",
       "description": "分别计算连续理论、离散理论和有限重复统计，解释阈值事件频率。",
       "categories": [
@@ -21479,7 +21479,7 @@
       "total": 1,
       "lessonId": "P16-C04-S02",
       "lessonNumber": "16.4.2",
-      "lessonTitle": "路径误差、分布统计与风险",
+      "lessonTitle": "OU解析矩、离散矩与阈值事件",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21490,8 +21490,8 @@
       "english": null,
       "number": "16.4.2",
       "parentId": "16.4",
-      "url": "/notebook/?id=P16-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-04-随机动力学与控制/read/2/",
+      "readingUrl": "/chapters/16-04-随机动力学与控制/read/2/",
       "practiceUrl": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk",
       "description": "分别计算连续理论、离散理论和有限重复统计，解释阈值事件频率。",
       "categories": [
@@ -21510,7 +21510,7 @@
       "total": 1,
       "lessonId": "P16-C04-S02",
       "lessonNumber": "16.4.2",
-      "lessonTitle": "路径误差、分布统计与风险",
+      "lessonTitle": "OU解析矩、离散矩与阈值事件",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21521,8 +21521,8 @@
       "english": null,
       "number": "16.4.2",
       "parentId": "16.4",
-      "url": "/notebook/?id=P16-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-04-随机动力学与控制/read/2/",
+      "readingUrl": "/chapters/16-04-随机动力学与控制/read/2/",
       "practiceUrl": "/chapters/16-04-随机动力学与控制/practice/?question=p16-mean-risk",
       "description": "分别计算连续理论、离散理论和有限重复统计，解释阈值事件频率。",
       "categories": [
@@ -21541,7 +21541,7 @@
       "total": 1,
       "lessonId": "P16-C04-S02",
       "lessonNumber": "16.4.2",
-      "lessonTitle": "路径误差、分布统计与风险",
+      "lessonTitle": "OU解析矩、离散矩与阈值事件",
       "chapterUrl": "/chapters/16-04-随机动力学与控制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21589,8 +21589,8 @@
       "english": null,
       "number": "16.5.1",
       "parentId": "16.5",
-      "url": "/notebook/?id=P16-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-05-分布式控制与通信限制/read/1/",
+      "readingUrl": "/chapters/16-05-分布式控制与通信限制/read/1/",
       "practiceUrl": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average",
       "description": "从邻居差手算同步更新，用总和与谱条件分别检查守恒和平均一致。",
       "categories": [
@@ -21620,8 +21620,8 @@
       "english": "graph Laplacian",
       "number": "16.5.1",
       "parentId": "16.5",
-      "url": "/notebook/?id=P16-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-05-分布式控制与通信限制/read/1/",
+      "readingUrl": "/chapters/16-05-分布式控制与通信限制/read/1/",
       "practiceUrl": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average",
       "description": "从邻居差手算同步更新，用总和与谱条件分别检查守恒和平均一致。",
       "categories": [
@@ -21651,8 +21651,8 @@
       "english": null,
       "number": "16.5.1",
       "parentId": "16.5",
-      "url": "/notebook/?id=P16-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-05-分布式控制与通信限制/read/1/",
+      "readingUrl": "/chapters/16-05-分布式控制与通信限制/read/1/",
       "practiceUrl": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average",
       "description": "从邻居差手算同步更新，用总和与谱条件分别检查守恒和平均一致。",
       "categories": [
@@ -21682,8 +21682,8 @@
       "english": "connected component",
       "number": "16.5.1",
       "parentId": "16.5",
-      "url": "/notebook/?id=P16-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-05-分布式控制与通信限制/read/1/",
+      "readingUrl": "/chapters/16-05-分布式控制与通信限制/read/1/",
       "practiceUrl": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-symmetric-average",
       "description": "从邻居差手算同步更新，用总和与谱条件分别检查守恒和平均一致。",
       "categories": [
@@ -21713,8 +21713,8 @@
       "english": null,
       "number": "16.5.2",
       "parentId": "16.5",
-      "url": "/notebook/?id=P16-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-05-分布式控制与通信限制/read/2/",
+      "readingUrl": "/chapters/16-05-分布式控制与通信限制/read/2/",
       "practiceUrl": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula",
       "description": "沿初始历史读取过去差值，以两步手算和特征根解释延迟失效。",
       "categories": [
@@ -21733,7 +21733,7 @@
       "total": 1,
       "lessonId": "P16-C05-S02",
       "lessonNumber": "16.5.2",
-      "lessonTitle": "通信延迟、步长与稳定边界",
+      "lessonTitle": "通信延迟、历史与稳定边界",
       "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21744,8 +21744,8 @@
       "english": null,
       "number": "16.5.2",
       "parentId": "16.5",
-      "url": "/notebook/?id=P16-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-05-分布式控制与通信限制/read/2/",
+      "readingUrl": "/chapters/16-05-分布式控制与通信限制/read/2/",
       "practiceUrl": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula",
       "description": "沿初始历史读取过去差值，以两步手算和特征根解释延迟失效。",
       "categories": [
@@ -21764,7 +21764,7 @@
       "total": 1,
       "lessonId": "P16-C05-S02",
       "lessonNumber": "16.5.2",
-      "lessonTitle": "通信延迟、步长与稳定边界",
+      "lessonTitle": "通信延迟、历史与稳定边界",
       "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21775,8 +21775,8 @@
       "english": null,
       "number": "16.5.2",
       "parentId": "16.5",
-      "url": "/notebook/?id=P16-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-05-分布式控制与通信限制/read/2/",
+      "readingUrl": "/chapters/16-05-分布式控制与通信限制/read/2/",
       "practiceUrl": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula",
       "description": "沿初始历史读取过去差值，以两步手算和特征根解释延迟失效。",
       "categories": [
@@ -21795,7 +21795,7 @@
       "total": 1,
       "lessonId": "P16-C05-S02",
       "lessonNumber": "16.5.2",
-      "lessonTitle": "通信延迟、步长与稳定边界",
+      "lessonTitle": "通信延迟、历史与稳定边界",
       "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21806,8 +21806,8 @@
       "english": null,
       "number": "16.5.2",
       "parentId": "16.5",
-      "url": "/notebook/?id=P16-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-05-分布式控制与通信限制/read/2/",
+      "readingUrl": "/chapters/16-05-分布式控制与通信限制/read/2/",
       "practiceUrl": "/chapters/16-05-分布式控制与通信限制/practice/?question=p16-delay-formula",
       "description": "沿初始历史读取过去差值，以两步手算和特征根解释延迟失效。",
       "categories": [
@@ -21826,7 +21826,7 @@
       "total": 1,
       "lessonId": "P16-C05-S02",
       "lessonNumber": "16.5.2",
-      "lessonTitle": "通信延迟、步长与稳定边界",
+      "lessonTitle": "通信延迟、历史与稳定边界",
       "chapterUrl": "/chapters/16-05-分布式控制与通信限制/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21874,8 +21874,8 @@
       "english": null,
       "number": "16.6.1",
       "parentId": "16.6",
-      "url": "/notebook/?id=P16-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-06-强化学习与策略评估/read/1/",
+      "readingUrl": "/chapters/16-06-强化学习与策略评估/read/1/",
       "practiceUrl": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward",
       "description": "在已知转移模型中计算固定策略的期望折扣回报，并核对迭代。",
       "categories": [
@@ -21894,7 +21894,7 @@
       "total": 1,
       "lessonId": "P16-C06-S01",
       "lessonNumber": "16.6.1",
-      "lessonTitle": "有限决策过程与策略评价",
+      "lessonTitle": "有限决策过程与策略价值",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21905,8 +21905,8 @@
       "english": null,
       "number": "16.6.1",
       "parentId": "16.6",
-      "url": "/notebook/?id=P16-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-06-强化学习与策略评估/read/1/",
+      "readingUrl": "/chapters/16-06-强化学习与策略评估/read/1/",
       "practiceUrl": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward",
       "description": "在已知转移模型中计算固定策略的期望折扣回报，并核对迭代。",
       "categories": [
@@ -21925,7 +21925,7 @@
       "total": 1,
       "lessonId": "P16-C06-S01",
       "lessonNumber": "16.6.1",
-      "lessonTitle": "有限决策过程与策略评价",
+      "lessonTitle": "有限决策过程与策略价值",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21936,8 +21936,8 @@
       "english": null,
       "number": "16.6.1",
       "parentId": "16.6",
-      "url": "/notebook/?id=P16-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-06-强化学习与策略评估/read/1/",
+      "readingUrl": "/chapters/16-06-强化学习与策略评估/read/1/",
       "practiceUrl": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward",
       "description": "在已知转移模型中计算固定策略的期望折扣回报，并核对迭代。",
       "categories": [
@@ -21956,7 +21956,7 @@
       "total": 1,
       "lessonId": "P16-C06-S01",
       "lessonNumber": "16.6.1",
-      "lessonTitle": "有限决策过程与策略评价",
+      "lessonTitle": "有限决策过程与策略价值",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21967,8 +21967,8 @@
       "english": "absorbing state",
       "number": "16.6.1",
       "parentId": "16.6",
-      "url": "/notebook/?id=P16-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-06-强化学习与策略评估/read/1/",
+      "readingUrl": "/chapters/16-06-强化学习与策略评估/read/1/",
       "practiceUrl": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-reward",
       "description": "在已知转移模型中计算固定策略的期望折扣回报，并核对迭代。",
       "categories": [
@@ -21987,7 +21987,7 @@
       "total": 1,
       "lessonId": "P16-C06-S01",
       "lessonNumber": "16.6.1",
-      "lessonTitle": "有限决策过程与策略评价",
+      "lessonTitle": "有限决策过程与策略价值",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -21998,8 +21998,8 @@
       "english": null,
       "number": "16.6.2",
       "parentId": "16.6",
-      "url": "/notebook/?id=P16-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-06-强化学习与策略评估/read/2/",
+      "readingUrl": "/chapters/16-06-强化学习与策略评估/read/2/",
       "practiceUrl": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q",
       "description": "逐条解释经验的五个字段，计算终止与非终止更新，辨认已访问的范围。",
       "categories": [
@@ -22018,7 +22018,7 @@
       "total": 1,
       "lessonId": "P16-C06-S02",
       "lessonNumber": "16.6.2",
-      "lessonTitle": "固定经验的 Q 更新与独立评估",
+      "lessonTitle": "动作价值、Q 更新与策略评估",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22029,8 +22029,8 @@
       "english": null,
       "number": "16.6.2",
       "parentId": "16.6",
-      "url": "/notebook/?id=P16-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-06-强化学习与策略评估/read/2/",
+      "readingUrl": "/chapters/16-06-强化学习与策略评估/read/2/",
       "practiceUrl": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q",
       "description": "逐条解释经验的五个字段，计算终止与非终止更新，辨认已访问的范围。",
       "categories": [
@@ -22049,7 +22049,7 @@
       "total": 1,
       "lessonId": "P16-C06-S02",
       "lessonNumber": "16.6.2",
-      "lessonTitle": "固定经验的 Q 更新与独立评估",
+      "lessonTitle": "动作价值、Q 更新与策略评估",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22060,8 +22060,8 @@
       "english": null,
       "number": "16.6.2",
       "parentId": "16.6",
-      "url": "/notebook/?id=P16-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-06-强化学习与策略评估/read/2/",
+      "readingUrl": "/chapters/16-06-强化学习与策略评估/read/2/",
       "practiceUrl": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q",
       "description": "逐条解释经验的五个字段，计算终止与非终止更新，辨认已访问的范围。",
       "categories": [
@@ -22080,7 +22080,7 @@
       "total": 1,
       "lessonId": "P16-C06-S02",
       "lessonNumber": "16.6.2",
-      "lessonTitle": "固定经验的 Q 更新与独立评估",
+      "lessonTitle": "动作价值、Q 更新与策略评估",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22091,8 +22091,8 @@
       "english": null,
       "number": "16.6.2",
       "parentId": "16.6",
-      "url": "/notebook/?id=P16-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-06-强化学习与策略评估/read/2/",
+      "readingUrl": "/chapters/16-06-强化学习与策略评估/read/2/",
       "practiceUrl": "/chapters/16-06-强化学习与策略评估/practice/?question=p16-terminal-q",
       "description": "逐条解释经验的五个字段，计算终止与非终止更新，辨认已访问的范围。",
       "categories": [
@@ -22111,7 +22111,7 @@
       "total": 1,
       "lessonId": "P16-C06-S02",
       "lessonNumber": "16.6.2",
-      "lessonTitle": "固定经验的 Q 更新与独立评估",
+      "lessonTitle": "动作价值、Q 更新与策略评估",
       "chapterUrl": "/chapters/16-06-强化学习与策略评估/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22159,8 +22159,8 @@
       "english": null,
       "number": "16.7.1",
       "parentId": "16.7",
-      "url": "/notebook/?id=P16-C07-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-07-模型学习与约束决策/read/1/",
+      "readingUrl": "/chapters/16-07-模型学习与约束决策/read/1/",
       "practiceUrl": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual",
       "description": "在有限动作表中逐项筛选预测可行性，再用真实模型检查实际状态。",
       "categories": [
@@ -22179,7 +22179,7 @@
       "total": 1,
       "lessonId": "P16-C07-S01",
       "lessonNumber": "16.7.1",
-      "lessonTitle": "学得预测器进入约束决策",
+      "lessonTitle": "预测模型、可行动作与实际约束",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22190,8 +22190,8 @@
       "english": null,
       "number": "16.7.1",
       "parentId": "16.7",
-      "url": "/notebook/?id=P16-C07-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-07-模型学习与约束决策/read/1/",
+      "readingUrl": "/chapters/16-07-模型学习与约束决策/read/1/",
       "practiceUrl": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual",
       "description": "在有限动作表中逐项筛选预测可行性，再用真实模型检查实际状态。",
       "categories": [
@@ -22210,7 +22210,7 @@
       "total": 1,
       "lessonId": "P16-C07-S01",
       "lessonNumber": "16.7.1",
-      "lessonTitle": "学得预测器进入约束决策",
+      "lessonTitle": "预测模型、可行动作与实际约束",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22221,8 +22221,8 @@
       "english": null,
       "number": "16.7.1",
       "parentId": "16.7",
-      "url": "/notebook/?id=P16-C07-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-07-模型学习与约束决策/read/1/",
+      "readingUrl": "/chapters/16-07-模型学习与约束决策/read/1/",
       "practiceUrl": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual",
       "description": "在有限动作表中逐项筛选预测可行性，再用真实模型检查实际状态。",
       "categories": [
@@ -22241,7 +22241,7 @@
       "total": 1,
       "lessonId": "P16-C07-S01",
       "lessonNumber": "16.7.1",
-      "lessonTitle": "学得预测器进入约束决策",
+      "lessonTitle": "预测模型、可行动作与实际约束",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22252,8 +22252,8 @@
       "english": null,
       "number": "16.7.1",
       "parentId": "16.7",
-      "url": "/notebook/?id=P16-C07-S01",
-      "readingUrl": null,
+      "url": "/chapters/16-07-模型学习与约束决策/read/1/",
+      "readingUrl": "/chapters/16-07-模型学习与约束决策/read/1/",
       "practiceUrl": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-pred-vs-actual",
       "description": "在有限动作表中逐项筛选预测可行性，再用真实模型检查实际状态。",
       "categories": [
@@ -22272,7 +22272,7 @@
       "total": 1,
       "lessonId": "P16-C07-S01",
       "lessonNumber": "16.7.1",
-      "lessonTitle": "学得预测器进入约束决策",
+      "lessonTitle": "预测模型、可行动作与实际约束",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22283,8 +22283,8 @@
       "english": null,
       "number": "16.7.2",
       "parentId": "16.7",
-      "url": "/notebook/?id=P16-C07-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-07-模型学习与约束决策/read/2/",
+      "readingUrl": "/chapters/16-07-模型学习与约束决策/read/2/",
       "practiceUrl": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget",
       "description": "在相同五个场景中分别比较预测误差、输入平方、超过上限和求解失败。",
       "categories": [
@@ -22303,7 +22303,7 @@
       "total": 1,
       "lessonId": "P16-C07-S02",
       "lessonNumber": "16.7.2",
-      "lessonTitle": "配对预算、失败与迁移范围",
+      "lessonTitle": "配对评价、动作超限与求解失败",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22314,8 +22314,8 @@
       "english": null,
       "number": "16.7.2",
       "parentId": "16.7",
-      "url": "/notebook/?id=P16-C07-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-07-模型学习与约束决策/read/2/",
+      "readingUrl": "/chapters/16-07-模型学习与约束决策/read/2/",
       "practiceUrl": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget",
       "description": "在相同五个场景中分别比较预测误差、输入平方、超过上限和求解失败。",
       "categories": [
@@ -22334,7 +22334,7 @@
       "total": 1,
       "lessonId": "P16-C07-S02",
       "lessonNumber": "16.7.2",
-      "lessonTitle": "配对预算、失败与迁移范围",
+      "lessonTitle": "配对评价、动作超限与求解失败",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22345,8 +22345,8 @@
       "english": null,
       "number": "16.7.2",
       "parentId": "16.7",
-      "url": "/notebook/?id=P16-C07-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-07-模型学习与约束决策/read/2/",
+      "readingUrl": "/chapters/16-07-模型学习与约束决策/read/2/",
       "practiceUrl": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget",
       "description": "在相同五个场景中分别比较预测误差、输入平方、超过上限和求解失败。",
       "categories": [
@@ -22365,7 +22365,7 @@
       "total": 1,
       "lessonId": "P16-C07-S02",
       "lessonNumber": "16.7.2",
-      "lessonTitle": "配对预算、失败与迁移范围",
+      "lessonTitle": "配对评价、动作超限与求解失败",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -22376,8 +22376,8 @@
       "english": null,
       "number": "16.7.2",
       "parentId": "16.7",
-      "url": "/notebook/?id=P16-C07-S02",
-      "readingUrl": null,
+      "url": "/chapters/16-07-模型学习与约束决策/read/2/",
+      "readingUrl": "/chapters/16-07-模型学习与约束决策/read/2/",
       "practiceUrl": "/chapters/16-07-模型学习与约束决策/practice/?question=p16-paired-budget",
       "description": "在相同五个场景中分别比较预测误差、输入平方、超过上限和求解失败。",
       "categories": [
@@ -22396,7 +22396,7 @@
       "total": 1,
       "lessonId": "P16-C07-S02",
       "lessonNumber": "16.7.2",
-      "lessonTitle": "配对预算、失败与迁移范围",
+      "lessonTitle": "配对评价、动作超限与求解失败",
       "chapterUrl": "/chapters/16-07-模型学习与约束决策/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
