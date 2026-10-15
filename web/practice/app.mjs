@@ -1,4 +1,3 @@
-import {openNotebook} from '../shared/notebook.mjs';
 import {mountShell,locateLesson,applyProgress,rememberQuestion} from '../shared/course-shell.mjs';
 import {createEditor} from './editor.mjs';
 import {setupWorkspace} from '../shared/layout.mjs';
@@ -275,7 +274,6 @@ $('toggle-result').addEventListener('click',()=>{const closed=!$('result-body').
 function downloadCode(source,name){const url=URL.createObjectURL(new Blob([source],{type:'text/plain;charset=utf-8'}));const link=node('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 $('download-code').addEventListener('click',()=>downloadCode($('source').value,`${question.slug}.py`));
 $('download-previous').addEventListener('click',()=>{const source=getStored(`draft:${question.id}:${question.previous_version}`);if(typeof source==='string')downloadCode(source,`${question.slug}-previous.py`);});
-$('open-notebook').addEventListener('click',()=>openNotebook(question.lesson_id));
 $('reconnect').addEventListener('click',()=>void connect());
 function requestedQuestion(){const params=new URL(location.href).searchParams;return catalog.find(q=>q.slug===params.get('question')||q.id===params.get('exercise'))?.id||catalog[0].id;}
 window.addEventListener('popstate',()=>void select(requestedQuestion(),false).catch(connectionError));

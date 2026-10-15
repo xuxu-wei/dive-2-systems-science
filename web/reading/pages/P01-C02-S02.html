@@ -7,263 +7,148 @@
 </head><body class="reading-page"><main id="main" data-lesson="P01-C02-S02">
 <div id="loading-note" class="notice" role="status" hidden></div>
 <div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-internal-transfer">本节练习 · 4 题</a><a class="button" href="/chapters/01-02-存量、流量与守恒/explore/">可视化与探索</a></div>
-<div class="reading-layout"><article id="lesson-content"><h1 id="1.2.2-%E5%86%85%E9%83%A8%E4%BA%A4%E6%8D%A2%E4%B8%8E%E6%95%B4%E4%BD%93%E5%AE%88%E6%81%92">1.2.2 &#20869;&#37096;&#20132;&#25442;&#19982;&#25972;&#20307;&#23432;&#24658;</h1><p>学完本节，你应能为同一笔内部转移分别记账，推导整体收支（mass balance），并解释为什么总量不变时各区仍能变化。</p>
-<p><strong>先修知识</strong>：<a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/read/1/">一段时间的物质收支</a>；带符号加减与配对列表。</p>
-<h2 id="%E7%A6%BB%E5%BC%80%E8%A1%80%E6%B6%B2%EF%BC%8C%E4%B9%9F%E7%A6%BB%E5%BC%80%E4%BA%86%E8%BA%AB%E4%BD%93%E5%90%97">&#31163;&#24320;&#34880;&#28082;&#65292;&#20063;&#31163;&#24320;&#20102;&#36523;&#20307;&#21527;</h2><p>某种物质在血液中的量下降了，我们可能会问它是否已被排出体外。不过，它也可能进入了组织。只看血液，这两件事都会减少血液中的量；把血液与组织合起来看，它们的后果就不同了。</p>
-<p>本节把血液与组织简化为两个区域，分别记为 $B$、$C$。这些字母同时表示对应区域的<strong>存量（stock）</strong>，单位为 U。两区使用同一种**所追踪物质总量（tracked amount）**单位，所以它们可以相加。以下数字是人工记账例子，暂不包含物质在内部的生成或转化，也假定进入两区整体、离开两区整体以及在两区之间转移的物质都有记录。</p>
-<p>起点时，血液区有 5 U，组织区有 2 U，合起来有 $5+2=7$ U。一段时间内，外界向血液区送入 2 U，血液区向组织区转移 3 U，组织区向外界排出 1 U。这里三个转移量都已经按这段时间累计，单位为 U；它们可以直接加减，无需再乘时长。</p>
-<p>若**系统边界（system boundary）**只包围血液区，3 U 的转移是从系统中流出。若边界同时包围血液与组织，同一笔转移完全发生在系统内部。接下来就分别记这两本账，看看相同的 3 U 应当怎样落在两个区域上。</p>
-<h2 id="%E4%B8%80%E7%AC%94%E8%BD%AC%E7%A7%BB%EF%BC%8C%E4%B8%A4%E6%9C%AC%E8%B4%A6">&#19968;&#31508;&#36716;&#31227;&#65292;&#20004;&#26412;&#36134;</h2><p>血液区从 5 U 开始。外界的**输入（input）**让它增加 2 U，向组织的转移让它减少 3 U，终点为</p>
+<div class="reading-layout"><article id="lesson-content"><h1>1.2.2 内部交换与整体守恒</h1>
+<p>学完本节，你应能为同一笔内部转移分别记账，推导整体收支，并解释为什么总量不变时各区仍能变化。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/read/1/">一段时间的物质收支</a>；带符号加减。</p>
+<h2>离开血液，也离开了身体吗</h2>
+<p>某种物质在血液中的量下降了，它可能被排出体外，也可能进入了组织。只看血液，这两件事都会减少其中的量；把血液与组织合起来看，它们的后果就不同了。</p>
+<p>我们把血液与组织简化为两个区域，用 $B$ 表示血液区的总量，用 $C$ 表示组织区的总量，单位均为 U。两区追踪同一种物质，内部没有它的生成或转化。起点时 $B=5$ U、$C=2$ U，合起来有 7 U。</p>
+<p>一段时间内，外界向血液区送入 2 U，血液区向组织区转移 3 U，组织区向外界排出 1 U。这三个数都是整段累计量，可以直接用于收支计算。</p>
+<p>若边界只包围血液区，转入组织的 3 U 就是系统的流出；若边界同时包围两区，这一笔转移就是<strong>内部交换（internal exchange）</strong>：物质从系统的一个部分进入另一个部分，始终留在系统之中。编号和记账方式可以改变，移动的仍是同一份物质。</p>
+<h2>一笔转移，两本账</h2>
+<p>血液区从 5 U 开始，外界送入 2 U，转给组织 3 U，终点为</p>
 <p>$$B_{\mathrm{末}}=5+2-3=4\ \mathrm{U}.$$</p>
-<p>组织区从 2 U 开始。刚才离开血液的 3 U 进入这里，让它增加 3 U；向外界排出 1 U，让它减少 1 U，终点为</p>
+<p>组织区从 2 U 开始，接收刚才的 3 U，再向外排出 1 U，终点为</p>
 <p>$$C_{\mathrm{末}}=2+3-1=4\ \mathrm{U}.$$</p>
-<p>这是一笔转移在两本账上的两次记录：血液账中写 $-3$，组织账中写 $+3$。虽然出现了两个数字，移动的仍是同一份 3 U 物质。现在把终点相加，得到 $4+4=8$ U，整体从起点的 7 U 增加了 1 U。</p>
-<p>我们也可以按事件来整理：外部输入让整体增加 2 U，内部转移在整体上造成 $-3+3=0$ 的变化，外部输出让整体减少 1 U。因此整体净增加 $2-1=1$ U，与刚才分别算两区的结果相同。</p>
-
-<section class="experiment-example">
-<div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">systems_science</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_style</span><span class="p">,</span> <span class="n">show_table</span>
-
-<span class="n">plot_style</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'font.sans-serif'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Microsoft YaHei'</span><span class="p">,</span> <span class="s1">'SimHei'</span><span class="p">,</span> <span class="s1">'DejaVu Sans'</span><span class="p">],</span>
-                     <span class="s1">'axes.unicode_minus'</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
-<span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span>
-<span class="n">incoming</span><span class="p">,</span> <span class="n">transferred</span><span class="p">,</span> <span class="n">outgoing</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'事件'</span><span class="p">,</span> <span class="s1">'血液区 B 的变化 / U'</span><span class="p">,</span> <span class="s1">'组织区 C 的变化 / U'</span><span class="p">,</span> <span class="s1">'整体变化 / U'</span><span class="p">],</span>
-    <span class="p">[(</span><span class="s1">'外部输入'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">'内部转移'</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">'外部输出'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])))</span>
-</pre></div>
-
-<div class="experiment-output"><table>
-<thead>
-<tr>
-  <th>事件</th>
-  <th>血液区 B 的变化 / U</th>
-  <th>组织区 C 的变化 / U</th>
-  <th>整体变化 / U</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>外部输入</td>
-  <td>2</td>
-  <td>0</td>
-  <td>2</td>
-</tr>
-<tr>
-  <td>内部转移</td>
-  <td>-3</td>
-  <td>3</td>
-  <td>0</td>
-</tr>
-<tr>
-  <td>外部输出</td>
-  <td>0</td>
-  <td>-1</td>
-  <td>-1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<h2 id="%E6%8A%8A%E4%B8%A4%E6%9C%AC%E8%B4%A6%E7%9B%B8%E5%8A%A0">&#25226;&#20004;&#26412;&#36134;&#30456;&#21152;</h2><p>将外部输入的累计量记为 $I$，内部转移的累计量记为 $X$，向外界输出的累计量记为 $O$，两区的**收支（mass balance）**便可以写成</p>
+<p>血液账中写 $-3$，组织账中写 $+3$，是同一笔物质的离开和到达。合起来算，这次内部转移造成的变化是 $-3+3=0$。真正让整体变化的是从外界进入的 2 U 和流向外界的 1 U，因而整体净增加 1 U，从 7 U 变成 8 U。</p>
+<p>把外部输入的累计量记为 $I$，内部转移的累计量记为 $X$，外部输出的累计量记为 $O$，两本账为</p>
 <p>$$B_{\mathrm{末}}=B_{\mathrm{初}}+I-X,$$</p>
 <p>$$C_{\mathrm{末}}=C_{\mathrm{初}}+X-O.$$</p>
-<p>第一式里的 $-X$ 与第二式里的 $+X$ 表示同一笔物质。把两式的左边、右边分别相加，就得到</p>
-<p>$$B_{\mathrm{末}}+C_{\mathrm{末}}
-=B_{\mathrm{初}}+C_{\mathrm{初}}+I-X+X-O.$$</p>
-<p>因为 $-X+X=0$，这张整体账可简写为</p>
-<p>$$(B+C)_{\mathrm{末}}=(B+C)_{\mathrm{初}}+I-O.$$</p>
-<p>内部转移项从整体账中消去了，但它仍然影响每个分区的量。若从 $B+C$ 中再扣一次 $X$，就会把已经进入 $C$ 的物质当作整体损失重复扣除。</p>
-<table>
-<thead>
-<tr>
-  <th>符号</th>
-  <th>本节的含义</th>
-  <th>单位</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>$B$、$C$</td>
-  <td>区间开始或结束时，两区分别拥有的量</td>
-  <td>U</td>
-</tr>
-<tr>
-  <td>$I$</td>
-  <td>从外界进入血液区的累计量</td>
-  <td>U</td>
-</tr>
-<tr>
-  <td>$X$</td>
-  <td>从血液区进入组织区的累计量</td>
-  <td>U</td>
-</tr>
-<tr>
-  <td>$O$</td>
-  <td>从组织区离开整体的累计量</td>
-  <td>U</td>
-</tr>
-</tbody>
-</table>
-<p>再接一段计算：第二段没有外部输入，血液向组织转移 1 U，组织向外界输出 2 U。由第一段留下的 $B=4$、$C=4$ 出发，第二段末分别为 $4+0-1=3$ U 和 $4+1-2=3$ U，整体为 6 U。整体账则直接给出 $8+0-2=6$ U。</p>
-<p>先把刚才两段的给定转移量放在一张表中。这些数是为本节设定的过程记录，单位都是 U：</p>
+<p>两式相加，内部转移项抵消：</p>
+<p>$$\begin{aligned}
+B_{\mathrm{末}}+C_{\mathrm{末}}
+&amp;=B_{\mathrm{初}}+C_{\mathrm{初}}+I-X+X-O\\
+&amp;=B_{\mathrm{初}}+C_{\mathrm{初}}+I-O.
+\end{aligned}$$</p>
+<p>这就是整体收支。同一笔 $X$ 已经在两区中各记一次，若再从整体扣除，就会把进入组织的物质重复记为损失。</p>
+<h2>接着上一段继续算</h2>
+<p>第二段没有外部输入，血液向组织转移 1 U，组织向外界排出 2 U。将两段的过程记录与结果放在一起：</p>
 <table>
 <thead>
 <tr>
   <th>时段</th>
-  <th style="text-align:right">从外界进入血液区</th>
-  <th style="text-align:right">从血液区转入组织区</th>
-  <th style="text-align:right">从组织区流向外界</th>
+  <th style="text-align:right">外界进入血液 / U</th>
+  <th style="text-align:right">血液转入组织 / U</th>
+  <th style="text-align:right">组织流向外界 / U</th>
+  <th style="text-align:right">段末血液总量 / U</th>
+  <th style="text-align:right">段末组织总量 / U</th>
+  <th style="text-align:right">段末整体 / U</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+  <td>起点</td>
+  <td style="text-align:right">—</td>
+  <td style="text-align:right">—</td>
+  <td style="text-align:right">—</td>
+  <td style="text-align:right">5</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">7</td>
+</tr>
 <tr>
   <td>第 1 段</td>
   <td style="text-align:right">2</td>
   <td style="text-align:right">3</td>
   <td style="text-align:right">1</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">8</td>
 </tr>
 <tr>
   <td>第 2 段</td>
   <td style="text-align:right">0</td>
   <td style="text-align:right">1</td>
   <td style="text-align:right">2</td>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">6</td>
 </tr>
 </tbody>
 </table>
-<p>按时段先后读取每一列，就得到 <code>incoming = [2, 0]</code>、<code>transferred = [3, 1]</code>、<code>outgoing = [1, 2]</code>。例如，<code>[2, 0]</code> 的第一项是第一段从外界进入的 2 U，第二项是第二段从外界进入的 0 U；<code>[1, 2]</code> 则表示第一段流向外界 1 U、第二段流向外界 2 U。方括号把同一种转移在各时段的记录按顺序放在一起，便于程序逐段取用。它们记录的都是整段累计量。</p>
-<p><code>zip</code> 每次从三个列表的同一位置取数。第一轮取出 <code>(2, 3, 1)</code>，正好是表格第一行的三笔转移；第二轮取出 <code>(0, 1, 2)</code>，对应第二行。这样，手算的一行账就变成循环的一次更新。</p>
-<p>函数返回的 <code>b</code>、<code>c</code> 分别保存血液区与组织区的量，顺序也是先血液、后组织。两条结果列表各有三项，依次对应起点、第一段末、第二段末。例如 <code>b = [5, 4, 3]</code> 记录血液区在这三个时刻的量。计算第二段时，两个区域都从各自第一段的终点继续。</p>
+<p>第二段从 $B=C=4$ U 接着算，分别得到 $4+0-1=3$ U 和 $4+1-2=3$ U。整体账则直接给出 $8+0-2=6$ U。</p>
 
 <section class="experiment-example">
-<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">two_regions</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">incoming</span><span class="p">,</span> <span class="n">transferred</span><span class="p">,</span> <span class="n">outgoing</span><span class="p">):</span>
-    <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">first</span><span class="p">],</span> <span class="p">[</span><span class="n">second</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">incoming</span><span class="p">,</span> <span class="n">transferred</span><span class="p">,</span> <span class="n">outgoing</span><span class="p">):</span>
-        <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span> <span class="o">-</span> <span class="n">o</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
-
-<span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">two_regions</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">total</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)]</span>
-<span class="k">assert</span> <span class="n">b</span> <span class="o">==</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">==</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="ow">and</span> <span class="n">total</span> <span class="o">==</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">marker</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[</span>
-    <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s1">'o'</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="s1">'血液区 B'</span><span class="p">),</span>
-    <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">'s'</span><span class="p">,</span> <span class="s1">'--'</span><span class="p">,</span> <span class="s1">'组织区 C'</span><span class="p">),</span>
-    <span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="s1">'^'</span><span class="p">,</span> <span class="s1">'-.'</span><span class="p">,</span> <span class="s1">'整体 B + C'</span><span class="p">)</span>
-<span class="p">]:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">path</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">style</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">'区间端点序号'</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">'总量 / U'</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
 <figure><img src="/web/reading/assets/P01-C02-S02-75316392-0.png" alt="内部交换与整体守恒：实验结果图" loading="lazy"></figure>
 </section>
-<p>图中血液区由 5 U 降到 4 U，再降到 3 U；组织区先由 2 U 升到 4 U，再降到 3 U。整体则先增加到 8 U，再减少到 6 U。血液区第一段的下降并不意味着整体也下降，差别来自另一分区接收了内部转移。本节只给出区间累计转移，所以连线帮助比较端点，并未指定区间内每一刻的转移速度。</p>
-<h2 id="%E6%80%BB%E9%87%8F%E7%9B%B8%E5%90%8C%EF%BC%8C%E5%88%86%E5%B8%83%E5%8F%AF%E4%BB%A5%E4%B8%8D%E5%90%8C">&#24635;&#37327;&#30456;&#21516;&#65292;&#20998;&#24067;&#21487;&#20197;&#19981;&#21516;</h2><p>为了同时报告两区在同一时刻的量，我们约定数对 $(B,C)$ 中第一个数表示血液区的量，第二个数表示组织区的量，单位均为 U。例如第一段末的 $(4,4)$ 表示两个区域各有 4 U。</p>
-<p>现在保留两区起点和表中的外部交换记录，只把第一段从血液转入组织的量从 3 U 改为 1 U；第二段仍转移 1 U。于是，内部转移列表从 <code>[3, 1]</code> 变为 <code>[1, 1]</code>。外部输入列表仍为 <code>[2, 0]</code>，外部输出列表仍为 <code>[1, 2]</code>。第一段的两本账变成</p>
+<p>图中血液区一直下降，组织区先升后降，整体则先增加后减少。血液第一段下降，是由于其中一部分物质进入组织；整体仍在增加，因为外部输入多于外部输出。这里给定的是各段累计转移，连线用于比较端点。</p>
+<h2>总量相同，分布可以不同</h2>
+<p>用数对 $(B,C)$ 同时报告两区的量，第一个数总是血液区，第二个总是组织区，单位均为 U。刚才第一段末为 $(4,4)$。</p>
+<p>现在保持两区起点、两段外部输入和外部输出不变，只把第一段转入组织的量从 3 U 改成 1 U，第二段仍转移 1 U。第一段末变为</p>
 <p>$$B_{\mathrm{末}}=5+2-1=6\ \mathrm{U},\qquad
 C_{\mathrm{末}}=2+1-1=2\ \mathrm{U}.$$</p>
-<p>这次分布是 $(6,2)$，上次是 $(4,4)$，整体却同为 8 U。第二段继续计算，得到 $(5,1)$，总量仍为 6 U。两次整体账完全一样，因为 $I$ 与 $O$ 没有改变；不同的是每区分到多少。</p>
-<p>下面既检查两次分区计算的总量是否一致，也单独按外部输入、输出计算整体总量。第二项检查没有使用内部转移 $X$，因此能帮助发现把它重复扣进整体账的错误。</p>
-
-<section class="experiment-example">
-<div class="highlight"><pre><span></span><span class="n">b2</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">two_regions</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="k">assert</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">b2</span><span class="p">,</span> <span class="n">c2</span><span class="p">)]</span> <span class="o">==</span> <span class="n">total</span>
-
-<span class="n">direct_total</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>
-<span class="k">assert</span> <span class="n">total</span> <span class="o">==</span> <span class="n">direct_total</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">(</span>
-    <span class="p">[</span><span class="s1">'区间端点'</span><span class="p">,</span> <span class="s1">'原血液区 B / U'</span><span class="p">,</span> <span class="s1">'原组织区 C / U'</span><span class="p">,</span> <span class="s1">'改动后 B / U'</span><span class="p">,</span> <span class="s1">'改动后 C / U'</span><span class="p">,</span> <span class="s1">'两次总量 / U'</span><span class="p">],</span>
-    <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">total</span><span class="p">))))</span>
-</pre></div>
-
-<div class="experiment-output"><table>
+<p>第一段的分布由 $(4,4)$ 变成 $(6,2)$，整体都为 8 U。第二段继续计算，两种情形分别得到 $(3,3)$ 和 $(5,1)$，整体都为 6 U。</p>
+<table>
 <thead>
 <tr>
-  <th>区间端点</th>
-  <th>原血液区 B / U</th>
-  <th>原组织区 C / U</th>
-  <th>改动后 B / U</th>
-  <th>改动后 C / U</th>
-  <th>两次总量 / U</th>
+  <th>内部转移的安排</th>
+  <th>第一段末 $(B,C)$ / U</th>
+  <th>第二段末 $(B,C)$ / U</th>
+  <th>两段末的整体总量 / U</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>0</td>
-  <td>5</td>
-  <td>2</td>
-  <td>5</td>
-  <td>2</td>
-  <td>7</td>
+  <td>第一段转移 3 U，第二段转移 1 U</td>
+  <td>$(4,4)$</td>
+  <td>$(3,3)$</td>
+  <td>8、6</td>
 </tr>
 <tr>
-  <td>1</td>
-  <td>4</td>
-  <td>4</td>
-  <td>6</td>
-  <td>2</td>
-  <td>8</td>
-</tr>
-<tr>
-  <td>2</td>
-  <td>3</td>
-  <td>3</td>
-  <td>5</td>
-  <td>1</td>
-  <td>6</td>
+  <td>第一段转移 1 U，第二段转移 1 U</td>
+  <td>$(6,2)$</td>
+  <td>$(5,1)$</td>
+  <td>8、6</td>
 </tr>
 </tbody>
 </table>
-</div>
-</section>
-<p>这项对照帮助我们选择模型（model）需要保留的<strong>状态（state）</strong>。若问题只问整体已有多少，$B+C$ 足以表示这项记录。若问题还问物质主要留在血液还是已进入组织，就需要同时保留 $B$ 与 $C$。只记录总量 8 U，会把 $(4,4)$ 和 $(6,2)$ 当作相同情况，而它们对分布问题给出的答案不同。</p>
-<p>在本节的**模型（model）**中，转移量是预先给定的，所以整体可以直接按外部收支计算。若后续模型让外部输出取决于组织区已有多少，内部转移还可能通过改变组织区的量，间接改变未来的输出。整体账中 $X$ 相消，并不表示内部过程对所有问题都没有作用。</p>
-<h2 id="%E6%80%BB%E9%87%8F%E4%B8%8D%E5%8F%98%EF%BC%8C%E4%B8%A4%E5%8C%BA%E8%BF%98%E4%BC%9A%E5%8F%98%E5%8C%96%E5%90%97">&#24635;&#37327;&#19981;&#21464;&#65292;&#20004;&#21306;&#36824;&#20250;&#21464;&#21270;&#21527;</h2><p>再看一个更明确的例子：把血液区与组织区合起来作为系统，所追踪的物质只在两区之间转移，既没有从系统外进入的物质，也没有流向外界的物质，即 $I=O=0$。同时继续假设这种物质在系统中没有生成或转化。起点血液区有 5 U、组织区有 0 U；先从血液转给组织 2 U，再转给组织 3 U。</p>
-<p>第一段末是 $B=5-2=3$ U、$C=0+2=2$ U；第二段末是 $B=3-3=0$ U、$C=2+3=5$ U。三个端点的总量都是 5 U，两个区域却一直在变。整体守恒意味着这项总量保持不变，并不要求每个区域都停在原来的数值上。</p>
-
-<section class="experiment-example">
-<div class="highlight"><pre><span></span><span class="n">closed_b</span><span class="p">,</span> <span class="n">closed_c</span> <span class="o">=</span> <span class="n">two_regions</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="k">assert</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">closed_b</span><span class="p">,</span> <span class="n">closed_c</span><span class="p">)]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">show_table</span><span class="p">([</span><span class="s1">'区间端点'</span><span class="p">,</span> <span class="s1">'血液区 B / U'</span><span class="p">,</span> <span class="s1">'组织区 C / U'</span><span class="p">],</span>
-                           <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">closed_b</span><span class="p">,</span> <span class="n">closed_c</span><span class="p">))))</span>
-</pre></div>
-
-<div class="experiment-output"><table>
+<p>如果未来的外部输入、输出仍是预先给定的，知道当前整体总量，就足以按整体账继续预测它。若想预测各区的量，还需要知道当前的 $B$ 和 $C$。这一点与状态的充分性相连：保留下来的信息，必须足够支持所选模型的后续预测。</p>
+<p>例如，进一步规定“下一段从组织排出的量由当前组织总量决定”，那么 $(4,4)$ 与 $(6,2)$ 的未来外部输出就可能不同。这时即使只关心整体未来，也需要保留分布信息。内部转移项在整体账中相消，与内部过程能否影响未来，是两个不同的问题。</p>
+<h2>总量不变，两区还会变化吗</h2>
+<p><strong>守恒（conservation）</strong>指某个量在系统变化中保持不变。对这里追踪的物质，若没有内部生成或转化，且外部净交换为零，整体收支便给出末量等于初量。</p>
+<p>取一个没有外部交换的例子，即 $I=O=0$。起点血液区有 5 U、组织区有 0 U，先转给组织 2 U，再转给组织 3 U：</p>
+<table>
 <thead>
 <tr>
-  <th>区间端点</th>
-  <th>血液区 B / U</th>
-  <th>组织区 C / U</th>
+  <th>时刻</th>
+  <th style="text-align:right">血液区 / U</th>
+  <th style="text-align:right">组织区 / U</th>
+  <th style="text-align:right">整体 / U</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>0</td>
-  <td>5</td>
-  <td>0</td>
+  <td>起点</td>
+  <td style="text-align:right">5</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">5</td>
 </tr>
 <tr>
-  <td>1</td>
-  <td>3</td>
-  <td>2</td>
+  <td>第一段末</td>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">5</td>
 </tr>
 <tr>
-  <td>2</td>
-  <td>0</td>
-  <td>5</td>
+  <td>第二段末</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">5</td>
+  <td style="text-align:right">5</td>
 </tr>
 </tbody>
 </table>
-</div>
-</section>
-<h2 id="%E5%85%88%E8%AF%B4%E6%98%8E%E5%9C%A8%E8%BF%BD%E8%B8%AA%E4%BB%80%E4%B9%88%EF%BC%8C%E5%86%8D%E8%B0%88%E5%AE%88%E6%81%92">&#20808;&#35828;&#26126;&#22312;&#36861;&#36394;&#20160;&#20040;&#65292;&#20877;&#35848;&#23432;&#24658;</h2><p>最后回到本节的一个条件：我们追踪的是同一种物质，而且内部没有生成或转化。如果某种分子在组织中转化成了另一种分子，第一种分子的总量就可能减少，即使两种分子都还在所研究的整体系统中。研究该分子时，应把相应的转化损失记到账上。化学反应中的总质量守恒，并不等于每一种分子的量分别不变。</p>
-<p>细胞计数也需要这样的区分。一个母细胞分裂成两个子细胞，会让细胞数量增加；若我们追踪的是细胞数，就应记录这种新增。细胞数与物质质量表示不同的量，不能沿用同一句守恒判断而不检查它追踪的对象。</p>
-<p>从本节的两本账中，我们已经知道一笔转移怎样改变分区与整体，也看到了相同总量可以包含不同分布。可是，账目仍只告诉我们“给定这些转移，结果是多少”。下一章将继续追问：流动或调节作用会不会响应当前情况？一个变化经过几项作用以后，又怎样回到它自身？这将引出反馈（feedback）。</p>
+<p>两个分区持续变化，整体始终有 5 U。守恒约束了相加后的总量，并没有要求各部分停在原处。</p>
+<p>最后还要问清追踪的是什么。若某种分子在组织中转化成另一种分子，前一种分子的量可以减少；记它的账时，要加上转化损失。化学反应中总质量守恒，也不要求每一种分子的量分别不变。类似地，一个细胞分成两个会增加细胞计数，细胞数的账就需要保留内部新增项。</p>
+<p>两本账告诉我们，给定转移后各处会有多少。下一章继续追问：流动或调节会怎样响应当前情况？一个变化经过几项作用后，又如何回到自身？这将引出反馈。</p>
 <p><a href="/chapters/01-03-%E5%8F%8D%E9%A6%88%E3%80%81%E5%BB%B6%E8%BF%9F%E4%B8%8E%E5%B1%82%E7%BA%A7/read/1/">下一节：作用方向与反馈回路</a></p>
 <p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/explore/">打开本章可视化</a></p>
 <p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/">本章导览</a></p>

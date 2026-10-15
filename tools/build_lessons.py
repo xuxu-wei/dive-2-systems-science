@@ -4,38 +4,43 @@ from html import escape
 import json
 from pathlib import Path
 import re
-from nbconvert.filters.markdown import markdown2html_mistune
+from teaching_markdown import markdown_to_html
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
 from course_content import course_chapters
 ROOT = Path(__file__).resolve().parents[1]
-DIRECTIVE = re.compile(r'<!-- experiment: ([\w-]+)( figure)? -->')
+DIRECTIVE = re.compile(r'<!-- experiment: ([\w-]+) (figure|code) -->')
 def text(value):
     return ''.join(value) if isinstance(value, list) else value
 
-def render_experiment(cell, lesson, assets, figure=False):
-    code = highlight(text(cell['source']), PythonLexer(), HtmlFormatter())
-    if figure:
-        code = '<details class="figure-code"><summary>查看绘图代码</summary>' + code + '</details>'
-    parts = ['<section class="experiment-example">', code]
+def render_experiment(cell, lesson, assets, mode="figure"):
+    parts = ['<section class="experiment-example">']
+    if mode == 'code':
+        parts.append(highlight(text(cell['source']), PythonLexer(), HtmlFormatter()))
+    figures = 0
     for index, output in enumerate(cell.get('outputs', [])):
         if output.get('output_type') == 'error':
             raise ValueError(f'{lesson["id"]}: failed code output {cell["id"]}')
         data = output.get('data', {})
+        if mode == 'figure' and 'image/png' not in data:
+            continue
         if 'image/png' in data:
+            figures += 1
             name = f'{lesson["id"]}-{cell["id"]}-{index}.png'
             (assets / name).write_bytes(base64.b64decode(text(data['image/png'])))
             parts.append(f'<figure><img src="/web/reading/assets/{name}" alt="{escape(lesson["title"])}：实验结果图" loading="lazy"></figure>')
         elif 'text/markdown' in data:
-            parts.append('<div class="experiment-output">' + markdown2html_mistune(text(data['text/markdown'])) + '</div>')
+            parts.append('<div class="experiment-output">' + markdown_to_html(text(data['text/markdown'])) + '</div>')
         elif output.get('output_type') == 'stream':
             if output.get('name') == 'stdout':
                 parts.append('<pre class="experiment-output">' + escape(text(output['text'])) + '</pre>')
-        elif 'text/plain' in data and not figure:
+        elif 'text/plain' in data and mode == 'code':
             plain = text(data['text/plain'])
             if not plain.startswith(('<Figure ', '<Axes:', '<matplotlib.')):
                 parts.append('<pre class="experiment-output">' + escape(plain) + '</pre>')
+    if mode == 'figure' and not figures:
+        raise ValueError(f'{lesson["id"]}: no figure in cell {cell["id"]}')
     parts.append('</section>')
     return '\n'.join(parts)
 
@@ -48,12 +53,14 @@ def build(root=ROOT):
         nb = json.loads((root / lesson['path']).read_text(encoding='utf-8'))
         cells = {c['id']:c for c in nb['cells'] if c['cell_type']=='code'}
         source = (root / lesson['reading']).read_text(encoding='utf-8')
+        if source.count('<!-- experiment:') != len(DIRECTIVE.findall(source)):
+            raise ValueError(f'{lesson["id"]}: choose figure or code for each experiment reference')
         sections=[];cursor=0
         for match in DIRECTIVE.finditer(source):
-            sections.append(markdown2html_mistune(source[cursor:match.start()]))
-            sections.append(render_experiment(cells[match[1]],lesson,assets, bool(match[2])))
+            sections.append(markdown_to_html(source[cursor:match.start()]))
+            sections.append(render_experiment(cells[match[1]],lesson,assets, match[2]))
             cursor=match.end()
-        sections.append(markdown2html_mistune(source[cursor:]))
+        sections.append(markdown_to_html(source[cursor:]))
         body='\n'.join(sections)
         body=re.sub(r'<a class="anchor-link"[^>]*>(?:¶|&#182;)</a>', '', body)
         actions=f'<a class="button primary" href="{lesson["notebook_url"]}" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="{lesson["practice_url"]}">本节练习 · {len(lesson["questions"])} 题</a>'

@@ -8,7 +8,8 @@ import pytest
 from systems_science.notebook_lab import NotebookLab
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from build_lessons import DIRECTIVE
+from build_lessons import DIRECTIVE, render_experiment
+from teaching_markdown import markdown_to_html
 from course_content import course_chapters
 ROOT=Path(__file__).resolve().parents[2]
 COURSE=json.loads((ROOT/'web/course/catalog.json').read_text(encoding='utf-8'))
@@ -27,17 +28,20 @@ def test_migration_covers_intro_part_one_and_keeps_later_lessons_available():
 
 
 @pytest.mark.parametrize('lesson',LESSONS,ids=lambda l:l['id'])
-def test_web_source_contains_all_experiment_steps_without_starting_services(lesson):
+def test_web_source_selects_explanatory_figures_without_copying_experiment_code(lesson):
     nb=json.loads((ROOT/lesson['path']).read_text(encoding='utf-8'))
     source=(ROOT/lesson['reading']).read_text(encoding='utf-8')
     assert nb['metadata']['teaching_format']=='experiment'
     assert all(c.get('metadata',{}).get('teaching_role')!='local_service' for c in nb['cells'])
     code={c['id'] for c in nb['cells'] if c['cell_type']=='code'}
-    assert {m[0] for m in DIRECTIVE.findall(source)}==code
+    assert {m[0] for m in DIRECTIVE.findall(source)} <= code
+    assert source.count('<!-- experiment:') == len(DIRECTIVE.findall(source))
     page=(ROOT/'web/reading/pages'/ (lesson['id']+'.html')).read_text(encoding='utf-8')
     assert '<h1' in page and 'target="_blank"' in page
     assert lesson['notebook_url'] in page and lesson['practice_url'] in page
-    assert 'anchor-link' not in page
+    assert 'anchor-link' not in page and '**' not in page
+    assert 'experiment-output' not in page and 'figure-code' not in page
+    assert 'class="highlight"' not in page
     assert all('## 练习与参考资料' not in ''.join(c['source']) for c in nb['cells'])
 
 
@@ -82,3 +86,41 @@ def test_project_kernel_wins_over_environment_defaults(tmp_path, monkeypatch):
     finally:
         lab.process = None
         lab.close()
+
+
+@pytest.mark.parametrize('source,label', [
+    ('**系统科学（systems science）**研究相互作用。', '系统科学（systems science）'),
+    ('这里的**模型（model）**是问题的表示。', '模型（model）'),
+    ('**状态（state）**包含充分信息。', '状态（state）'),
+    ('**负反馈（negative feedback）**抵消变化。', '负反馈（negative feedback）'),
+])
+def test_chinese_adjacent_bold_is_an_actual_strong_element(source, label):
+    html = markdown_to_html(source)
+    assert f'<strong>{label}</strong>' in html
+    assert '**' not in html
+
+
+def test_bold_extension_preserves_code_math_escapes_and_link_destinations():
+    source = r'`**模型（model）**是` $a**b$ \*\*原样\*\* [模型](https://example.org/**x**/是)'
+    html = markdown_to_html(source)
+    assert '<code>**模型（model）**是</code>' in html
+    assert '$a**b$' in html and '**原样**' in html
+    assert 'href="https://example.org/**x**/是"' in unquote(html)
+    assert '<strong>' not in html
+
+
+def test_figure_reference_does_not_publish_code_or_neighboring_machine_output(tmp_path):
+    import base64
+    cell = {'id': 'plot', 'source': 'internal_plot_code()', 'outputs': [
+        {'output_type': 'stream', 'name': 'stdout', 'text': 'machine-only output'},
+        {'output_type': 'display_data', 'data': {'image/png': base64.b64encode(b'image bytes').decode()}},
+    ]}
+    html = render_experiment(cell, {'id': 'example', 'title': '解释图'}, tmp_path, 'figure')
+    assert '<img ' in html and (tmp_path / 'example-plot-1.png').read_bytes() == b'image bytes'
+    assert 'internal_plot_code' not in html and 'machine-only output' not in html
+    assert '<pre' not in html and '<details' not in html
+
+
+def test_bold_does_not_spill_into_the_sentence_between_two_terms():
+    source = '**输入（input）**。环境属于输入。**参数（parameter）**决定比例。'
+    assert markdown_to_html(source) == '<p><strong>输入（input）</strong>。环境属于输入。<strong>参数（parameter）</strong>决定比例。</p>\n'

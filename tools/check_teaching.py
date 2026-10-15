@@ -66,7 +66,8 @@ def main():
             assert nb.metadata.get('teaching_format') == 'experiment', lesson['id']
             source = (ROOT / lesson['reading']).read_text(encoding='utf-8')
             code_ids = {c.id for c in nb.cells if c.cell_type == 'code'}
-            assert {m[0] for m in DIRECTIVE.findall(source)} == code_ids, lesson['id']
+            assert {m[0] for m in DIRECTIVE.findall(source)} <= code_ids, lesson['id']
+            assert source.count('<!-- experiment:') == len(DIRECTIVE.findall(source)), lesson['id']
             page = (ROOT / 'web/reading/pages' / (lesson['id'] + '.html')).read_text(encoding='utf-8')
             entry = published[lesson['id']]
             assert entry['practice_url'] in page and entry['notebook_url'] in page, lesson['id']
