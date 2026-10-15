@@ -2,6 +2,7 @@ import {summarize,questionIds} from './progress.mjs';
 import {setupSidebar} from './layout.mjs';
 import {getTheme,toggleTheme} from './appearance.mjs';
 import {polishDisclosures} from './motion.mjs';
+import {explorationReadingReferences} from './reading-links.mjs';
 export const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const link=(title,url,cls)=>{const a=el('a',title,cls);a.href=url;return a;};
 let course,current,mode,progress={},tree,section=null;
@@ -26,7 +27,9 @@ function badge(item){const b=el('span','未开始','progress-badge new');progres
 function branch(item,parent,isCurrent=false){
   const details=el('details',undefined,'tree-branch');details.open=isCurrent;
   const summary=el('summary');summary.append(el('span',item.title,'tree-title'),badge(item));details.append(summary);
-  const entry=link(item.introduction?'导论导览':item.chapters?'篇导览':'本章导览',item.url,'tree-overview');if(item.url===current?.url&&mode==='overview')entry.setAttribute('aria-current','page');details.append(entry);
+  if(item.chapters){
+    const entry=link('篇导览',item.url,'tree-overview');if(item.url===current?.url&&mode==='overview')entry.setAttribute('aria-current','page');details.append(entry);
+  }
   parent.append(details);return details;
 }
 export function locateLesson(id){
@@ -101,6 +104,21 @@ export async function mountShell(pageMode='overview'){
     const status=el('span','','progress-badge');status.id='chapter-progress';status.setAttribute('role','status');toolbar.append(tabs,status);
   }
   if(mode!=='home')main.prepend(toolbar);
+  if(mode==='explore'){
+    const {items,selected}=explorationReadingReferences(current,location.search);
+    if(items.length){
+      const related=el('nav',undefined,'exploration-reading-links');related.setAttribute('aria-label','可视化相关讲解');
+      if(selected){
+        related.append(link(`返回讲解：${selected.title} →`,selected.url));
+        locateLesson(selected.lessonId);
+        const reading=document.querySelector('[data-reading-tab]');if(reading)reading.href=selected.url;
+      }else{
+        related.append(el('span','相关讲解'));
+        const list=el('ul');for(const item of items){const li=el('li');li.append(link(item.title,item.url));list.append(li);}related.append(list);
+      }
+      toolbar.after(related);
+    }
+  }
   const skip=link('跳到正文','#main','skip-link');document.body.prepend(skip);
   await refreshProgress();
   // 只滚动目录自己的视口，避免把正文标题卷出屏幕。
@@ -112,10 +130,6 @@ export async function mountShell(pageMode='overview'){
 }
 
 function chapterLinks(chapter, branch){
-  if(chapter.visualization){
-    const a=link('可视化与探索',chapter.url+'explore/','tree-overview');
-    if(current===chapter&&mode==='explore')a.setAttribute('aria-current','page');branch.append(a);
-  }
   for(const lesson of chapter.lessons||[]){
     const a=link(`${lesson.number?lesson.number+' ':''}${lesson.title}`,lesson.url,'tree-lesson');
     if(!lesson.reading_url){a.target='_blank';a.rel='noopener';}

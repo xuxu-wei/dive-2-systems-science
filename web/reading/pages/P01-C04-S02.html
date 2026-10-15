@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>1.4.2 设计可以区分解释的实验 · 动手学系统科学</title>
+<title>1.4.2 实验设计与模型检验 · 动手学系统科学</title>
 <link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
 <link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
 <script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
 </head><body class="reading-page"><main id="main" data-lesson="P01-C04-S02">
 <div id="loading-note" class="notice" role="status" hidden></div>
 <div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design">本节练习 · 4 题</a></div>
-<div class="reading-layout"><article id="lesson-content"><h1>1.4.2 设计可以区分解释的实验</h1>
+<div class="reading-layout"><article id="lesson-content"><h1>1.4.2 实验设计与模型检验</h1>
 <p>学完本节，你应能选择有助于区分候选模型的实验条件，事前列出预测，并结合测量精度解释新观测。</p>
 <p><strong>先修知识</strong>：<a href="/chapters/01-04-%E6%A8%A1%E5%9E%8B%E5%81%87%E8%AE%BE%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/read/1/">规则、参数与初值</a>；绝对值与大小比较。</p>
-<h2>如果只能再观察一次</h2>
+<h2 id="discriminating-experiment">区分候选模型的实验条件</h2>
 <p>从 10 U 开始，每段移除 1 U 与每段移除 10% 都预测第一段末为 9 U。再看一次同样条件下的第一段，即使测量很精确，仍会得到两条候选都能解释的结果。</p>
 <p>一种选择是继续看第二段。上一节的预测分别为 8 与 8.1 U，只差 0.1 U。另一种选择是另做一次实验，从 20 U 重新开始：第一段末的预测分别为 19 与 18 U，差距变为 1 U。</p>
 <p><strong>实验设计（experimental design）</strong>是根据待回答的问题，事先选择实验条件、观测对象和测量安排。这里的问题是区分两条移除规则，所以优先寻找它们产生不同预测的条件。把每段固定移除量保持为 1 U、固定比例保持为 10%，列出三个起点的预测：</p>
@@ -45,7 +45,9 @@
 </tbody>
 </table>
 <p>每一行都是重新设置起点、只观察第一段的独立安排。起点 10 U 时两条预测重合，20 与 30 U 时可以分开。实际选择还要考虑这些起点能否实现，以及其他条件是否能够保持可比。</p>
-<h2>从预测间距选择条件</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design">设计新的清除对照</a></li></ul></nav>
+
+<h2 id="prediction-gap-controls">预测间距与对照条件</h2>
 <p>用 $A$ 表示所选起点，$c$ 表示固定移除量，$r$ 表示移除比例。两条第一段末预测是 $A-c$ 与 $A(1-r)$，相减得</p>
 <p>$$(A-c)-A(1-r)=A-c-A+rA=rA-c.$$</p>
 <p>我们关心相差多少，取其绝对值：</p>
@@ -53,11 +55,13 @@
 <p>$D$ 与两个总量预测的单位相同，都是 U。代入 $c=1$ U、$r=0.1$，起点 20 U 得 $|2-1|=1$ U，起点 30 U 得 $|3-1|=2$ U。图中两条线的竖直距离就是这个差值。</p>
 
 <section class="experiment-example">
-<figure><img src="/web/reading/assets/P01-C04-S02-b2378120-0.png" alt="设计可以区分解释的实验：实验结果图" loading="lazy"></figure>
+<figure><img src="/web/reading/assets/P01-C04-S02-b2378120-0.png" alt="实验设计与模型检验：实验结果图" loading="lazy"></figure>
 </section>
 <p>要让比较针对起点的改变，段长、外部输入、终点时刻和测量方法保持相同。如果从 20 U 开始的一组比另一组多经历一段时间，终点更低就可能由时长造成。</p>
 <p>若这次先约定只考虑预测间距超过 0.5 U 的起点，表中的 20 与 30 U 都满足条件；间距恰好等于 0.5 U 则不满足“超过”。这项门槛用于选择实验条件。接下来，还要看真正测量时能分辨多大的差别。</p>
-<h2>新观察会让我们改变哪一个判断？</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-separation">找出预测分离的初值</a></li></ul></nav>
+
+<h2 id="observation-prediction-comparison">新观测与候选预测的比较</h2>
 <p>选择起点 20 U，在观察之前保留两项预测：固定量规则为 19 U，比例规则为 18 U。先假设观测没有误差，看看不同结果会怎样检验这两项预测：</p>
 <table>
 <thead>
@@ -86,7 +90,9 @@
 </tbody>
 </table>
 <p>第三种结果同样有价值。如果观测为 17 U，两条原规则都没有解释它；此时需要回查是否漏记了输入或转化、测量关系是否改变，以及移除量是否还依赖其他因素。仅挑选两项预测中更接近 17 的一项，并没有解释剩下的差距。</p>
-<h2>差了一点，是否还能说预测相符？</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-falsification">观测与候选预测</a></li></ul></nav>
+
+<h2 id="measurement-error-discrimination">测量误差与模型区分</h2>
 <p>现在为测量事先规定误差最多为 0.2 U，起点和其他条件仍如前。若读到 18.1 U，它与比例预测 18 U 相差 0.1 U，与固定量预测 19 U 相差 0.9 U。因此，在这个误差限下，读数与比例候选相符，与固定量候选冲突。</p>
 <p>也可以把每项预测转成允许出现的读数范围：</p>
 <table>
@@ -112,16 +118,17 @@
 </table>
 <p>第一行的范围分开，所以 18.1 U 能帮助我们选择；第二行大部分重合，读到 8.05 U 时会同时符合两项预测。若误差限扩大为 0.6 U，即使从 20 U 开始，18 与 19 U 的允许范围也会重合；读数 18.5 U 与二者都相差 0.5 U，无法据此作出选择。</p>
 <p>这里用的是事先给定的误差上限。预测差异是否有用，要与仪器能分辨的差异一起考虑。</p>
-<h2>两个候选都失败以后</h2>
+<h2 id="revision-independent-validation">模型修订与独立验证</h2>
 <p>如果从 20 U 出发测得 17 U，误差限为 0.2 U，两项原预测都与读数冲突。把固定移除量改为 3 U，或把移除比例改为 15%，都能重新解释这次 20→17。但参数是利用这次观测选出的，得到的是更新后的候选，原来 19 与 18 U 的预测仍然已经失败。</p>
 <p>还要把新参数带回旧记录。从 10 U 开始，固定移除 3 U 预测剩下 7 U，移除 15% 预测剩下 8.5 U，两者都无法解释原来的 10→9。要同时解释两组记录，可能还需要修改移除量与当前总量的关系。</p>
 <p>因此，我们保留原预测与观测的比较，用已有数据修订模型，再用未参与修订的观测检查新预测。这就是<strong>独立验证（independent validation）</strong>的关键：检验所用的信息没有用于选择当前模型和参数，可以来自事先预留的记录，也可以来自后续实验。它回答的是模型能否预测新结果，而不只是能否贴合用于调整自己的数据。</p>
-<h2>用同样的眼光回看六人传播</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-prediction-record">保留可检验的预测</a></li></ul></nav>
+
+<h2 id="propagation-experiment-controls">网络传播实验的对照条件</h2>
 <p><a href="/introduction/read/3/">导论的传播实验</a>保持人数、联系数和传播规则相同，改变谁与谁连接，因此可以讨论连接方式带来的差异。在同一张星形图上换一个传播起点，则是在比较初始条件。</p>
 <p>如果把“本轮刚收到的人等下一轮再传播”改成“立即继续传播”，逐轮人数即使在同一张图上也可能改变，因为更新规则变了。先写清比较的条件，再用观测检查预测，我们才能把差异联系到具体改变。</p>
 <p>第 1 篇从读数和边界出发，学会了记清变化、指定规则，再用有区分力的观测检验解释。篇末将换到显微视野中的细胞，让这些方法一起工作。</p>
 
-<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design">本节练习 · 4 题</a></div></section>
 <nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-04-模型假设与计算实验/read/1/">← 1.4.1 规则、参数与初值</a><a href="/parts/01-看见系统/综合练习/read/1/">篇末综合 系统边界与实验设计 →</a></nav></article>
 <aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
 </main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

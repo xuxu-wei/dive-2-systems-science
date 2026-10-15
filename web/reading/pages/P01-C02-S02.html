@@ -10,12 +10,12 @@
 <div class="reading-layout"><article id="lesson-content"><h1>1.2.2 内部交换与整体守恒</h1>
 <p>学完本节，你应能为同一笔内部转移分别记账，推导整体收支，并解释为什么总量不变时各区仍能变化。</p>
 <p><strong>先修知识</strong>：<a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/read/1/">一段时间的物质收支</a>；带符号加减。</p>
-<h2>离开血液，也离开了身体吗</h2>
+<h2 id="boundary-internal-exchange">系统边界与内部交换</h2>
 <p>某种物质在血液中的量下降了，它可能被排出体外，也可能进入了组织。只看血液，这两件事都会减少其中的量；把血液与组织合起来看，它们的后果就不同了。</p>
 <p>我们把血液与组织简化为两个区域，用 $B$ 表示血液区的总量，用 $C$ 表示组织区的总量，单位均为 U。两区追踪同一种物质，内部没有它的生成或转化。起点时 $B=5$ U、$C=2$ U，合起来有 7 U。</p>
 <p>一段时间内，外界向血液区送入 2 U，血液区向组织区转移 3 U，组织区向外界排出 1 U。这三个数都是整段累计量，可以直接用于收支计算。</p>
 <p>若边界只包围血液区，转入组织的 3 U 就是系统的流出；若边界同时包围两区，这一笔转移就是<strong>内部交换（internal exchange）</strong>：物质从系统的一个部分进入另一个部分，始终留在系统之中。编号和记账方式可以改变，移动的仍是同一份物质。</p>
-<h2>一笔转移，两本账</h2>
+<h2 id="regional-total-balance">分区收支与整体收支</h2>
 <p>血液区从 5 U 开始，外界送入 2 U，转给组织 3 U，终点为</p>
 <p>$$B_{\mathrm{末}}=5+2-3=4\ \mathrm{U}.$$</p>
 <p>组织区从 2 U 开始，接收刚才的 3 U，再向外排出 1 U，终点为</p>
@@ -31,7 +31,9 @@ B_{\mathrm{末}}+C_{\mathrm{末}}
 &amp;=B_{\mathrm{初}}+C_{\mathrm{初}}+I-O.
 \end{aligned}$$</p>
 <p>这就是整体收支。同一笔 $X$ 已经在两区中各记一次，若再从整体扣除，就会把进入组织的物质重复记为损失。</p>
-<h2>接着上一段继续算</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-internal-transfer">扩大边界后什么抵消</a></li></ul></nav>
+
+<h2 id="two-region-segments">两区总量的分段计算</h2>
 <p>第二段没有外部输入，血液向组织转移 1 U，组织向外界排出 2 U。将两段的过程记录与结果放在一起：</p>
 <table>
 <thead>
@@ -81,7 +83,9 @@ B_{\mathrm{末}}+C_{\mathrm{末}}
 <figure><img src="/web/reading/assets/P01-C02-S02-75316392-0.png" alt="内部交换与整体守恒：实验结果图" loading="lazy"></figure>
 </section>
 <p>图中血液区一直下降，组织区先升后降，整体则先增加后减少。血液第一段下降，是由于其中一部分物质进入组织；整体仍在增加，因为外部输入多于外部输出。这里给定的是各段累计转移，连线用于比较端点。</p>
-<h2>总量相同，分布可以不同</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-two-rooms">两个区域，一本总账</a></li></ul></nav>
+
+<h2 id="amount-distribution-state">总量、分布与状态信息</h2>
 <p>用数对 $(B,C)$ 同时报告两区的量，第一个数总是血液区，第二个总是组织区，单位均为 U。刚才第一段末为 $(4,4)$。</p>
 <p>现在保持两区起点、两段外部输入和外部输出不变，只把第一段转入组织的量从 3 U 改成 1 U，第二段仍转移 1 U。第一段末变为</p>
 <p>$$B_{\mathrm{末}}=5+2-1=6\ \mathrm{U},\qquad
@@ -113,7 +117,7 @@ C_{\mathrm{末}}=2+1-1=2\ \mathrm{U}.$$</p>
 </table>
 <p>如果未来的外部输入、输出仍是预先给定的，知道当前整体总量，就足以按整体账继续预测它。若想预测各区的量，还需要知道当前的 $B$ 和 $C$。这一点与状态的充分性相连：保留下来的信息，必须足够支持所选模型的后续预测。</p>
 <p>例如，进一步规定“下一段从组织排出的量由当前组织总量决定”，那么 $(4,4)$ 与 $(6,2)$ 的未来外部输出就可能不同。这时即使只关心整体未来，也需要保留分布信息。内部转移项在整体账中相消，与内部过程能否影响未来，是两个不同的问题。</p>
-<h2>总量不变，两区还会变化吗</h2>
+<h2 id="conservation-local-changes">整体守恒与局部变化</h2>
 <p><strong>守恒（conservation）</strong>指某个量在系统变化中保持不变。对这里追踪的物质，若没有内部生成或转化，且外部净交换为零，整体收支便给出末量等于初量。</p>
 <p>取一个没有外部交换的例子，即 $I=O=0$。起点血液区有 5 U、组织区有 0 U，先转给组织 2 U，再转给组织 3 U：</p>
 <table>
@@ -149,11 +153,9 @@ C_{\mathrm{末}}=2+1-1=2\ \mathrm{U}.$$</p>
 <p>两个分区持续变化，整体始终有 5 U。守恒约束了相加后的总量，并没有要求各部分停在原处。</p>
 <p>最后还要问清追踪的是什么。若某种分子在组织中转化成另一种分子，前一种分子的量可以减少；记它的账时，要加上转化损失。化学反应中总质量守恒，也不要求每一种分子的量分别不变。类似地，一个细胞分成两个会增加细胞计数，细胞数的账就需要保留内部新增项。</p>
 <p>两本账告诉我们，给定转移后各处会有多少。下一章继续追问：流动或调节会怎样响应当前情况？一个变化经过几项作用后，又如何回到自身？这将引出反馈。</p>
-<p><a href="/chapters/01-03-%E5%8F%8D%E9%A6%88%E3%80%81%E5%BB%B6%E8%BF%9F%E4%B8%8E%E5%B1%82%E7%BA%A7/read/1/">下一节：作用方向与反馈回路</a></p>
-<p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/explore/">打开本章可视化</a></p>
-<p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/">本章导览</a></p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-hidden-production">怎样记录内部生成</a></li><li><a href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-conserved-total">总量不变，两个区域还能变化吗</a></li></ul></nav>
 
-<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-internal-transfer">本节练习 · 4 题</a><a class="button" href="/chapters/01-02-存量、流量与守恒/explore/">可视化与探索</a></div></section>
-<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-02-存量、流量与守恒/read/1/">← 1.2.1 一段时间的物质收支</a><a href="/chapters/01-03-反馈、延迟与层级/read/1/">1.3.1 作用方向与反馈回路 →</a></nav></article>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-02-存量、流量与守恒/read/1/">← 1.2.1 存量、流率与分段收支</a><a href="/chapters/01-03-反馈、延迟与层级/read/1/">1.3.1 作用方向与反馈回路 →</a></nav></article>
 <aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
 </main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

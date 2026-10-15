@@ -2,12 +2,12 @@
   "parts": [
     {
       "id": "1",
-      "title": "看见系统",
+      "title": "系统的描述与建模",
       "url": "/parts/01-看见系统/",
       "chapters": [
         {
           "id": "1.1",
-          "title": "从生理现象提出系统问题",
+          "title": "系统的描述与测量",
           "url": "/chapters/01-01-从生理现象提出系统问题/",
           "goals": "把“为什么会变化”改写成含观察对象、时间范围与可测量结果的问题；说明状态与观测的区别。",
           "prerequisites": "入口；数学：中学函数、图像、指数对数和量纲的最小复习。",
@@ -33,30 +33,92 @@
                   "id": "p01-boundary",
                   "slug": "p01-boundary",
                   "title": "比较两个观察范围",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/1/#system-boundary",
+                  "concept_title": "系统边界与研究对象",
+                  "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-boundary"
                 },
                 {
                   "id": "p01-state-observation",
                   "slug": "p01-state-observation",
                   "title": "从读数推断温度",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/1/#state-sufficiency",
+                  "concept_title": "模型与状态的充分性",
+                  "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-state-observation"
                 },
                 {
                   "id": "p01-calibrate",
                   "slug": "p01-calibrate",
                   "title": "去除已知的读数偏移",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/1/#measurement-offset",
+                  "concept_title": "观测模型与偏移校正",
+                  "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-calibrate"
                 },
                 {
                   "id": "p01-cell-question",
                   "slug": "p01-cell-question",
                   "title": "设计细胞计数问题",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/1/#testable-research-question",
+                  "concept_title": "可检验的研究问题",
+                  "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-cell-question"
                 }
               ],
               "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-boundary",
               "notebook_url": "/notebook/?id=P01-C01-S01",
               "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/1/",
+              "concepts": [
+                {
+                  "id": "system-boundary",
+                  "title": "系统边界与研究对象",
+                  "question_ids": [
+                    "p01-boundary"
+                  ],
+                  "explore": false,
+                  "key": "P01-C01-S01:system-boundary",
+                  "url": "/chapters/01-01-从生理现象提出系统问题/read/1/#system-boundary"
+                },
+                {
+                  "id": "state-sufficiency",
+                  "title": "模型与状态的充分性",
+                  "question_ids": [
+                    "p01-state-observation"
+                  ],
+                  "explore": false,
+                  "key": "P01-C01-S01:state-sufficiency",
+                  "url": "/chapters/01-01-从生理现象提出系统问题/read/1/#state-sufficiency"
+                },
+                {
+                  "id": "measurement-offset",
+                  "title": "观测模型与偏移校正",
+                  "question_ids": [
+                    "p01-calibrate"
+                  ],
+                  "explore": false,
+                  "key": "P01-C01-S01:measurement-offset",
+                  "url": "/chapters/01-01-从生理现象提出系统问题/read/1/#measurement-offset"
+                },
+                {
+                  "id": "unknown-offset-information",
+                  "title": "未知偏移与观测信息",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P01-C01-S01:unknown-offset-information",
+                  "url": "/chapters/01-01-从生理现象提出系统问题/read/1/#unknown-offset-information"
+                },
+                {
+                  "id": "testable-research-question",
+                  "title": "可检验的研究问题",
+                  "question_ids": [
+                    "p01-cell-question"
+                  ],
+                  "explore": false,
+                  "key": "P01-C01-S01:testable-research-question",
+                  "url": "/chapters/01-01-从生理现象提出系统问题/read/1/#testable-research-question"
+                }
+              ],
               "url": "/chapters/01-01-从生理现象提出系统问题/read/1/"
             },
             {
@@ -73,30 +135,75 @@
                   "id": "p01-time-units",
                   "slug": "p01-time-units",
                   "title": "换时间单位，不换总量",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/2/#time-series-observation-times",
+                  "concept_title": "时间序列与观测时刻",
+                  "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units"
                 },
                 {
                   "id": "p01-dimension",
                   "slug": "p01-dimension",
                   "title": "相加之前先检查单位",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/2/#amount-volume-concentration",
+                  "concept_title": "总量、体积与浓度",
+                  "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-dimension"
                 },
                 {
                   "id": "p01-curve-cause",
                   "slug": "p01-curve-cause",
                   "title": "解释三个时刻的记录",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/2/#units-dimensions-rates",
+                  "concept_title": "单位换算、量纲与变化速率",
+                  "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-curve-cause"
                 },
                 {
                   "id": "p01-concentration",
                   "slug": "p01-concentration",
                   "title": "总量与浓度要分别计算",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/2/#amount-volume-concentration",
+                  "concept_title": "总量、体积与浓度",
+                  "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-concentration"
                 }
               ],
               "practice_url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units",
               "notebook_url": "/notebook/?id=P01-C01-S02",
               "reading_url": "/chapters/01-01-从生理现象提出系统问题/read/2/",
+              "concepts": [
+                {
+                  "id": "time-series-observation-times",
+                  "title": "时间序列与观测时刻",
+                  "question_ids": [
+                    "p01-time-units"
+                  ],
+                  "explore": false,
+                  "key": "P01-C01-S02:time-series-observation-times",
+                  "url": "/chapters/01-01-从生理现象提出系统问题/read/2/#time-series-observation-times"
+                },
+                {
+                  "id": "units-dimensions-rates",
+                  "title": "单位换算、量纲与变化速率",
+                  "question_ids": [
+                    "p01-curve-cause"
+                  ],
+                  "explore": false,
+                  "key": "P01-C01-S02:units-dimensions-rates",
+                  "url": "/chapters/01-01-从生理现象提出系统问题/read/2/#units-dimensions-rates"
+                },
+                {
+                  "id": "amount-volume-concentration",
+                  "title": "总量、体积与浓度",
+                  "question_ids": [
+                    "p01-dimension",
+                    "p01-concentration"
+                  ],
+                  "explore": false,
+                  "key": "P01-C01-S02:amount-volume-concentration",
+                  "url": "/chapters/01-01-从生理现象提出系统问题/read/2/#amount-volume-concentration"
+                }
+              ],
               "url": "/chapters/01-01-从生理现象提出系统问题/read/2/"
             }
           ],
@@ -120,7 +227,7 @@
               "id": "P01-C02-S01",
               "chapter_id": "1.2",
               "path": "notebooks/01-看见系统/02-存量流量与守恒/01-一段时间的物质收支.ipynb",
-              "title": "一段时间的物质收支",
+              "title": "存量、流率与分段收支",
               "outcome": "从每单位时间的流入、流出逐笔算出存量，再用累计总账核对逐段计算。",
               "number": "1.2.1",
               "visualization": "web/seeing-systems/index.html",
@@ -130,30 +237,101 @@
                   "id": "p01-rate-amount",
                   "slug": "p01-rate-amount",
                   "title": "计算一段流入",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-02-存量、流量与守恒/read/1/#segment-balance",
+                  "concept_title": "分段收支公式",
+                  "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount"
                 },
                 {
                   "id": "p01-balance",
                   "slug": "p01-balance",
                   "title": "逐段计算物质收支",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-02-存量、流量与守恒/read/1/#segment-balance",
+                  "concept_title": "分段收支公式",
+                  "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-balance"
                 },
                 {
                   "id": "p01-negative-stock",
                   "slug": "p01-negative-stock",
                   "title": "检查一段收支",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-02-存量、流量与守恒/read/1/#depletion-outflow-rule",
+                  "concept_title": "物质耗尽与流出规则",
+                  "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-negative-stock"
                 },
                 {
                   "id": "p01-infer-outflow",
                   "slug": "p01-infer-outflow",
                   "title": "从收支反求总流出",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-02-存量、流量与守恒/read/1/#inferred-total-outflow",
+                  "concept_title": "累计流出量的反推",
+                  "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-infer-outflow"
                 }
               ],
               "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount",
               "notebook_url": "/notebook/?id=P01-C02-S01",
               "reading_url": "/chapters/01-02-存量、流量与守恒/read/1/",
+              "concepts": [
+                {
+                  "id": "stock-flow-rate",
+                  "title": "存量、流量与流率",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P01-C02-S01:stock-flow-rate",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/1/#stock-flow-rate"
+                },
+                {
+                  "id": "duration-cumulative-transfer",
+                  "title": "时长与累计转移量",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P01-C02-S01:duration-cumulative-transfer",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/1/#duration-cumulative-transfer",
+                  "explore_url": "/chapters/01-02-存量、流量与守恒/explore/?concept=P01-C02-S01%3Aduration-cumulative-transfer"
+                },
+                {
+                  "id": "segment-balance",
+                  "title": "分段收支公式",
+                  "question_ids": [
+                    "p01-rate-amount",
+                    "p01-balance"
+                  ],
+                  "explore": true,
+                  "key": "P01-C02-S01:segment-balance",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/1/#segment-balance",
+                  "explore_url": "/chapters/01-02-存量、流量与守恒/explore/?concept=P01-C02-S01%3Asegment-balance"
+                },
+                {
+                  "id": "balance-time-unit-checks",
+                  "title": "收支计算的时间与单位检查",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P01-C02-S01:balance-time-unit-checks",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/1/#balance-time-unit-checks"
+                },
+                {
+                  "id": "depletion-outflow-rule",
+                  "title": "物质耗尽与流出规则",
+                  "question_ids": [
+                    "p01-negative-stock"
+                  ],
+                  "explore": false,
+                  "key": "P01-C02-S01:depletion-outflow-rule",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/1/#depletion-outflow-rule"
+                },
+                {
+                  "id": "inferred-total-outflow",
+                  "title": "累计流出量的反推",
+                  "question_ids": [
+                    "p01-infer-outflow"
+                  ],
+                  "explore": false,
+                  "key": "P01-C02-S01:inferred-total-outflow",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/1/#inferred-total-outflow"
+                }
+              ],
               "url": "/chapters/01-02-存量、流量与守恒/read/1/"
             },
             {
@@ -170,30 +348,91 @@
                   "id": "p01-internal-transfer",
                   "slug": "p01-internal-transfer",
                   "title": "扩大边界后什么抵消",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-02-存量、流量与守恒/read/2/#regional-total-balance",
+                  "concept_title": "分区收支与整体收支",
+                  "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-internal-transfer"
                 },
                 {
                   "id": "p01-two-rooms",
                   "slug": "p01-two-rooms",
                   "title": "两个区域，一本总账",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-02-存量、流量与守恒/read/2/#two-region-segments",
+                  "concept_title": "两区总量的分段计算",
+                  "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-two-rooms"
                 },
                 {
                   "id": "p01-hidden-production",
                   "slug": "p01-hidden-production",
                   "title": "怎样记录内部生成",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-02-存量、流量与守恒/read/2/#conservation-local-changes",
+                  "concept_title": "整体守恒与局部变化",
+                  "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-hidden-production"
                 },
                 {
                   "id": "p01-conserved-total",
                   "slug": "p01-conserved-total",
                   "title": "总量不变，两个区域还能变化吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-02-存量、流量与守恒/read/2/#conservation-local-changes",
+                  "concept_title": "整体守恒与局部变化",
+                  "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-conserved-total"
                 }
               ],
               "practice_url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-internal-transfer",
               "notebook_url": "/notebook/?id=P01-C02-S02",
               "reading_url": "/chapters/01-02-存量、流量与守恒/read/2/",
+              "concepts": [
+                {
+                  "id": "boundary-internal-exchange",
+                  "title": "系统边界与内部交换",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P01-C02-S02:boundary-internal-exchange",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/2/#boundary-internal-exchange"
+                },
+                {
+                  "id": "regional-total-balance",
+                  "title": "分区收支与整体收支",
+                  "question_ids": [
+                    "p01-internal-transfer"
+                  ],
+                  "explore": false,
+                  "key": "P01-C02-S02:regional-total-balance",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/2/#regional-total-balance"
+                },
+                {
+                  "id": "two-region-segments",
+                  "title": "两区总量的分段计算",
+                  "question_ids": [
+                    "p01-two-rooms"
+                  ],
+                  "explore": false,
+                  "key": "P01-C02-S02:two-region-segments",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/2/#two-region-segments"
+                },
+                {
+                  "id": "amount-distribution-state",
+                  "title": "总量、分布与状态信息",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P01-C02-S02:amount-distribution-state",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/2/#amount-distribution-state"
+                },
+                {
+                  "id": "conservation-local-changes",
+                  "title": "整体守恒与局部变化",
+                  "question_ids": [
+                    "p01-hidden-production",
+                    "p01-conserved-total"
+                  ],
+                  "explore": false,
+                  "key": "P01-C02-S02:conservation-local-changes",
+                  "url": "/chapters/01-02-存量、流量与守恒/read/2/#conservation-local-changes"
+                }
+              ],
               "url": "/chapters/01-02-存量、流量与守恒/read/2/"
             }
           ],
@@ -201,7 +440,7 @@
         },
         {
           "id": "1.3",
-          "title": "反馈、延迟与层级",
+          "title": "反馈回路与延迟",
           "url": "/chapters/01-03-反馈、延迟与层级/",
           "goals": "根据局部作用方向判断反馈环的符号，并通过规则实验说明延迟可能改变响应。",
           "prerequisites": "1.2；数学：中学函数、图像、指数对数和量纲的最小复习。",
@@ -227,37 +466,90 @@
                   "id": "p01-signed-arrow",
                   "slug": "p01-signed-arrow",
                   "title": "解释因果图中的符号",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-03-反馈、延迟与层级/read/1/#causal-loop-signs",
+                  "concept_title": "因果回路图与反馈符号",
+                  "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-signed-arrow"
                 },
                 {
                   "id": "p01-loop-sign",
                   "slug": "p01-loop-sign",
                   "title": "沿反馈回路追踪作用方向",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-03-反馈、延迟与层级/read/1/#causal-loop-signs",
+                  "concept_title": "因果回路图与反馈符号",
+                  "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-loop-sign"
                 },
                 {
                   "id": "p01-negative-feedback",
                   "slug": "p01-negative-feedback",
                   "title": "判断温度调节环",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-03-反馈、延迟与层级/read/1/#negative-feedback",
+                  "concept_title": "反馈回路与负反馈",
+                  "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-negative-feedback"
                 },
                 {
                   "id": "p01-coupled-loops",
                   "slug": "p01-coupled-loops",
                   "title": "区分两种改善解释",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-03-反馈、延迟与层级/read/1/#temperature-water-balance",
+                  "concept_title": "温度调节与水量收支的联系",
+                  "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-coupled-loops"
                 }
               ],
               "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-signed-arrow",
               "notebook_url": "/notebook/?id=P01-C03-S01",
               "reading_url": "/chapters/01-03-反馈、延迟与层级/read/1/",
+              "concepts": [
+                {
+                  "id": "negative-feedback",
+                  "title": "反馈回路与负反馈",
+                  "question_ids": [
+                    "p01-negative-feedback"
+                  ],
+                  "explore": false,
+                  "key": "P01-C03-S01:negative-feedback",
+                  "url": "/chapters/01-03-反馈、延迟与层级/read/1/#negative-feedback"
+                },
+                {
+                  "id": "causal-loop-signs",
+                  "title": "因果回路图与反馈符号",
+                  "question_ids": [
+                    "p01-signed-arrow",
+                    "p01-loop-sign"
+                  ],
+                  "explore": false,
+                  "key": "P01-C03-S01:causal-loop-signs",
+                  "url": "/chapters/01-03-反馈、延迟与层级/read/1/#causal-loop-signs"
+                },
+                {
+                  "id": "positive-feedback",
+                  "title": "正反馈与偏差增强",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P01-C03-S01:positive-feedback",
+                  "url": "/chapters/01-03-反馈、延迟与层级/read/1/#positive-feedback"
+                },
+                {
+                  "id": "temperature-water-balance",
+                  "title": "温度调节与水量收支的联系",
+                  "question_ids": [
+                    "p01-coupled-loops"
+                  ],
+                  "explore": false,
+                  "key": "P01-C03-S01:temperature-water-balance",
+                  "url": "/chapters/01-03-反馈、延迟与层级/read/1/#temperature-water-balance"
+                }
+              ],
               "url": "/chapters/01-03-反馈、延迟与层级/read/1/"
             },
             {
               "id": "P01-C03-S02",
               "chapter_id": "1.3",
               "path": "notebooks/01-看见系统/03-反馈延迟与层级/02-延迟怎样改变调节.ipynb",
-              "title": "延迟怎样改变调节",
+              "title": "延迟、增益与调节响应",
               "outcome": "沿历史时间线手算调节，比较即时与延迟的曲线，解释过冲和转向怎样发生。",
               "number": "1.3.2",
               "visualization": "web/seeing-systems/index.html",
@@ -267,36 +559,97 @@
                   "id": "p01-delay-history",
                   "slug": "p01-delay-history",
                   "title": "第一步使用哪一个历史值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-03-反馈、延迟与层级/read/2/#delay-rule-history-state",
+                  "concept_title": "延迟调节规则与历史状态",
+                  "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history"
                 },
                 {
                   "id": "p01-delayed-response",
                   "slug": "p01-delayed-response",
                   "title": "让调节读取过去的信息",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-03-反馈、延迟与层级/read/2/#delay-rule-history-state",
+                  "concept_title": "延迟调节规则与历史状态",
+                  "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delayed-response"
                 },
                 {
                   "id": "p01-fair-delay",
                   "slug": "p01-fair-delay",
                   "title": "设置延迟对照",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-03-反馈、延迟与层级/read/2/#immediate-delayed-response",
+                  "concept_title": "即时与延迟调节的响应",
+                  "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-fair-delay"
                 },
                 {
                   "id": "p01-turn-count",
                   "slug": "p01-turn-count",
                   "title": "平台之后算一次转向",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-03-反馈、延迟与层级/read/2/#gain-delay-comparison",
+                  "concept_title": "增益与延迟的对照比较",
+                  "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-turn-count"
                 },
                 {
                   "id": "p01-finite-path",
                   "slug": "p01-finite-path",
                   "title": "解释八步温度实验",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-03-反馈、延迟与层级/read/2/#immediate-delayed-response",
+                  "concept_title": "即时与延迟调节的响应",
+                  "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-finite-path"
                 }
               ],
               "practice_url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history",
               "notebook_url": "/notebook/?id=P01-C03-S02",
               "reading_url": "/chapters/01-03-反馈、延迟与层级/read/2/",
+              "concepts": [
+                {
+                  "id": "measurement-delay-overshoot",
+                  "title": "测量延迟与过冲",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P01-C03-S02:measurement-delay-overshoot",
+                  "url": "/chapters/01-03-反馈、延迟与层级/read/2/#measurement-delay-overshoot",
+                  "explore_url": "/chapters/01-03-反馈、延迟与层级/explore/?concept=P01-C03-S02%3Ameasurement-delay-overshoot"
+                },
+                {
+                  "id": "delay-rule-history-state",
+                  "title": "延迟调节规则与历史状态",
+                  "question_ids": [
+                    "p01-delay-history",
+                    "p01-delayed-response"
+                  ],
+                  "explore": true,
+                  "key": "P01-C03-S02:delay-rule-history-state",
+                  "url": "/chapters/01-03-反馈、延迟与层级/read/2/#delay-rule-history-state",
+                  "explore_url": "/chapters/01-03-反馈、延迟与层级/explore/?concept=P01-C03-S02%3Adelay-rule-history-state"
+                },
+                {
+                  "id": "immediate-delayed-response",
+                  "title": "即时与延迟调节的响应",
+                  "question_ids": [
+                    "p01-fair-delay",
+                    "p01-finite-path"
+                  ],
+                  "explore": true,
+                  "key": "P01-C03-S02:immediate-delayed-response",
+                  "url": "/chapters/01-03-反馈、延迟与层级/read/2/#immediate-delayed-response",
+                  "explore_url": "/chapters/01-03-反馈、延迟与层级/explore/?concept=P01-C03-S02%3Aimmediate-delayed-response"
+                },
+                {
+                  "id": "gain-delay-comparison",
+                  "title": "增益与延迟的对照比较",
+                  "question_ids": [
+                    "p01-turn-count"
+                  ],
+                  "explore": true,
+                  "key": "P01-C03-S02:gain-delay-comparison",
+                  "url": "/chapters/01-03-反馈、延迟与层级/read/2/#gain-delay-comparison",
+                  "explore_url": "/chapters/01-03-反馈、延迟与层级/explore/?concept=P01-C03-S02%3Again-delay-comparison"
+                }
+              ],
               "url": "/chapters/01-03-反馈、延迟与层级/read/2/"
             }
           ],
@@ -304,7 +657,7 @@
         },
         {
           "id": "1.4",
-          "title": "模型假设与计算实验",
+          "title": "模型结构与实验设计",
           "url": "/chapters/01-04-模型假设与计算实验/",
           "goals": "区分结构改变与参数改变，为一个假设设置对照、观测量和可能的反例。",
           "prerequisites": "1.3；数学：中学函数、图像、指数对数和量纲的最小复习。",
@@ -330,37 +683,91 @@
                   "id": "p01-change-class",
                   "slug": "p01-change-class",
                   "title": "辨认模型中的改动",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-04-模型假设与计算实验/read/1/#initial-parameters-structure",
+                  "concept_title": "初值、参数与模型结构",
+                  "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class"
                 },
                 {
                   "id": "p01-compare-rules",
                   "slug": "p01-compare-rules",
                   "title": "固定量与固定比例",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-04-模型假设与计算实验/read/1/#multi-step-predictions",
+                  "concept_title": "两种清除规则的多步预测",
+                  "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-compare-rules"
                 },
                 {
                   "id": "p01-first-step",
                   "slug": "p01-first-step",
                   "title": "比较两个清除预测",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-04-模型假设与计算实验/read/1/#fixed-proportional-removal",
+                  "concept_title": "固定量与固定比例清除",
+                  "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-first-step"
                 },
                 {
                   "id": "p01-first-failure",
                   "slug": "p01-first-failure",
                   "title": "第一次越过零发生在哪段",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-04-模型假设与计算实验/read/1/#initial-duration-experiments",
+                  "concept_title": "初值与观察时长的计算实验",
+                  "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-first-failure"
                 }
               ],
               "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class",
               "notebook_url": "/notebook/?id=P01-C04-S01",
               "reading_url": "/chapters/01-04-模型假设与计算实验/read/1/",
+              "concepts": [
+                {
+                  "id": "fixed-proportional-removal",
+                  "title": "固定量与固定比例清除",
+                  "question_ids": [
+                    "p01-first-step"
+                  ],
+                  "explore": false,
+                  "key": "P01-C04-S01:fixed-proportional-removal",
+                  "url": "/chapters/01-04-模型假设与计算实验/read/1/#fixed-proportional-removal"
+                },
+                {
+                  "id": "initial-parameters-structure",
+                  "title": "初值、参数与模型结构",
+                  "question_ids": [
+                    "p01-change-class"
+                  ],
+                  "explore": false,
+                  "key": "P01-C04-S01:initial-parameters-structure",
+                  "url": "/chapters/01-04-模型假设与计算实验/read/1/#initial-parameters-structure"
+                },
+                {
+                  "id": "multi-step-predictions",
+                  "title": "两种清除规则的多步预测",
+                  "question_ids": [
+                    "p01-compare-rules"
+                  ],
+                  "explore": false,
+                  "key": "P01-C04-S01:multi-step-predictions",
+                  "url": "/chapters/01-04-模型假设与计算实验/read/1/#multi-step-predictions"
+                },
+                {
+                  "id": "initial-duration-experiments",
+                  "title": "初值与观察时长的计算实验",
+                  "question_ids": [
+                    "p01-first-failure"
+                  ],
+                  "explore": false,
+                  "key": "P01-C04-S01:initial-duration-experiments",
+                  "url": "/chapters/01-04-模型假设与计算实验/read/1/#initial-duration-experiments"
+                }
+              ],
               "url": "/chapters/01-04-模型假设与计算实验/read/1/"
             },
             {
               "id": "P01-C04-S02",
               "chapter_id": "1.4",
               "path": "notebooks/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.ipynb",
-              "title": "设计可以区分解释的实验",
+              "title": "实验设计与模型检验",
               "outcome": "选择能拉开候选预测的实验，结合测量精度解释新观测支持或否定了什么。",
               "number": "1.4.2",
               "visualization": null,
@@ -370,30 +777,100 @@
                   "id": "p01-distinguish-design",
                   "slug": "p01-distinguish-design",
                   "title": "设计新的清除对照",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-04-模型假设与计算实验/read/2/#discriminating-experiment",
+                  "concept_title": "区分候选模型的实验条件",
+                  "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design"
                 },
                 {
                   "id": "p01-separation",
                   "slug": "p01-separation",
                   "title": "找出预测分离的初值",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/01-04-模型假设与计算实验/read/2/#prediction-gap-controls",
+                  "concept_title": "预测间距与对照条件",
+                  "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-separation"
                 },
                 {
                   "id": "p01-prediction-record",
                   "slug": "p01-prediction-record",
                   "title": "保留可检验的预测",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-04-模型假设与计算实验/read/2/#revision-independent-validation",
+                  "concept_title": "模型修订与独立验证",
+                  "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-prediction-record"
                 },
                 {
                   "id": "p01-falsification",
                   "slug": "p01-falsification",
                   "title": "观测与候选预测",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/01-04-模型假设与计算实验/read/2/#observation-prediction-comparison",
+                  "concept_title": "新观测与候选预测的比较",
+                  "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-falsification"
                 }
               ],
               "practice_url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design",
               "notebook_url": "/notebook/?id=P01-C04-S02",
               "reading_url": "/chapters/01-04-模型假设与计算实验/read/2/",
+              "concepts": [
+                {
+                  "id": "discriminating-experiment",
+                  "title": "区分候选模型的实验条件",
+                  "question_ids": [
+                    "p01-distinguish-design"
+                  ],
+                  "explore": false,
+                  "key": "P01-C04-S02:discriminating-experiment",
+                  "url": "/chapters/01-04-模型假设与计算实验/read/2/#discriminating-experiment"
+                },
+                {
+                  "id": "prediction-gap-controls",
+                  "title": "预测间距与对照条件",
+                  "question_ids": [
+                    "p01-separation"
+                  ],
+                  "explore": false,
+                  "key": "P01-C04-S02:prediction-gap-controls",
+                  "url": "/chapters/01-04-模型假设与计算实验/read/2/#prediction-gap-controls"
+                },
+                {
+                  "id": "observation-prediction-comparison",
+                  "title": "新观测与候选预测的比较",
+                  "question_ids": [
+                    "p01-falsification"
+                  ],
+                  "explore": false,
+                  "key": "P01-C04-S02:observation-prediction-comparison",
+                  "url": "/chapters/01-04-模型假设与计算实验/read/2/#observation-prediction-comparison"
+                },
+                {
+                  "id": "measurement-error-discrimination",
+                  "title": "测量误差与模型区分",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P01-C04-S02:measurement-error-discrimination",
+                  "url": "/chapters/01-04-模型假设与计算实验/read/2/#measurement-error-discrimination"
+                },
+                {
+                  "id": "revision-independent-validation",
+                  "title": "模型修订与独立验证",
+                  "question_ids": [
+                    "p01-prediction-record"
+                  ],
+                  "explore": false,
+                  "key": "P01-C04-S02:revision-independent-validation",
+                  "url": "/chapters/01-04-模型假设与计算实验/read/2/#revision-independent-validation"
+                },
+                {
+                  "id": "propagation-experiment-controls",
+                  "title": "网络传播实验的对照条件",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P01-C04-S02:propagation-experiment-controls",
+                  "url": "/chapters/01-04-模型假设与计算实验/read/2/#propagation-experiment-controls"
+                }
+              ],
               "url": "/chapters/01-04-模型假设与计算实验/read/2/"
             }
           ],
@@ -438,54 +915,133 @@
                 "id": "p01-cap-boundary",
                 "slug": "p01-cap-boundary",
                 "title": "细胞计数的边界",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/01-看见系统/综合练习/read/1/#cell-count-boundary",
+                "concept_title": "细胞计数的边界与变化来源",
+                "practice_url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-boundary"
               },
               {
                 "id": "p01-cap-units",
                 "slug": "p01-cap-units",
                 "title": "计算视野末计数",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/01-看见系统/综合练习/read/1/#migration-generation-balance",
+                "concept_title": "迁入、迁出与内部新增的收支",
+                "practice_url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-units"
               },
               {
                 "id": "p01-cap-count",
                 "slug": "p01-cap-count",
                 "title": "计数中的移动与新增",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/01-看见系统/综合练习/read/1/#migration-generation-balance",
+                "concept_title": "迁入、迁出与内部新增的收支",
+                "practice_url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-count"
               },
               {
                 "id": "p01-cap-feedback",
                 "slug": "p01-cap-feedback",
                 "title": "考察温度与失水",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/01-看见系统/综合练习/read/1/#feedback-model-checks",
+                "concept_title": "反馈关系与候选模型的检验",
+                "practice_url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-feedback"
               },
               {
                 "id": "p01-cap-predictions",
                 "slug": "p01-cap-predictions",
                 "title": "在多种初值下保留两套预测",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/01-看见系统/综合练习/read/1/#feedback-model-checks",
+                "concept_title": "反馈关系与候选模型的检验",
+                "practice_url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-predictions"
               },
               {
                 "id": "p01-cap-discriminate",
                 "slug": "p01-cap-discriminate",
                 "title": "用新初值区分候选规则",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/01-看见系统/综合练习/read/1/#feedback-model-checks",
+                "concept_title": "反馈关系与候选模型的检验",
+                "practice_url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-discriminate"
               },
               {
                 "id": "p01-cap-calibrated-balance",
                 "slug": "p01-cap-calibrated-balance",
                 "title": "换测量方式后核对收支",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/01-看见系统/综合练习/read/1/#calibration-balance-residual",
+                "concept_title": "测量校准与收支残差",
+                "practice_url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-calibrated-balance"
               },
               {
                 "id": "p01-cap-limits",
                 "slug": "p01-cap-limits",
                 "title": "换观察边界后限定结论",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/01-看见系统/综合练习/read/1/#boundary-count-explanation",
+                "concept_title": "观察边界与计数变化的解释",
+                "practice_url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-limits"
               }
             ],
             "practice_url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-boundary",
             "notebook_url": "/notebook/?id=P01-SUMMARY",
             "reading_url": "/parts/01-看见系统/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "cell-count-boundary",
+                "title": "细胞计数的边界与变化来源",
+                "question_ids": [
+                  "p01-cap-boundary"
+                ],
+                "explore": false,
+                "key": "P01-SUMMARY:cell-count-boundary",
+                "url": "/parts/01-看见系统/综合练习/read/1/#cell-count-boundary"
+              },
+              {
+                "id": "migration-generation-balance",
+                "title": "迁入、迁出与内部新增的收支",
+                "question_ids": [
+                  "p01-cap-units",
+                  "p01-cap-count"
+                ],
+                "explore": false,
+                "key": "P01-SUMMARY:migration-generation-balance",
+                "url": "/parts/01-看见系统/综合练习/read/1/#migration-generation-balance"
+              },
+              {
+                "id": "feedback-model-checks",
+                "title": "反馈关系与候选模型的检验",
+                "question_ids": [
+                  "p01-cap-feedback",
+                  "p01-cap-predictions",
+                  "p01-cap-discriminate"
+                ],
+                "explore": false,
+                "key": "P01-SUMMARY:feedback-model-checks",
+                "url": "/parts/01-看见系统/综合练习/read/1/#feedback-model-checks"
+              },
+              {
+                "id": "calibration-balance-residual",
+                "title": "测量校准与收支残差",
+                "question_ids": [
+                  "p01-cap-calibrated-balance"
+                ],
+                "explore": false,
+                "key": "P01-SUMMARY:calibration-balance-residual",
+                "url": "/parts/01-看见系统/综合练习/read/1/#calibration-balance-residual"
+              },
+              {
+                "id": "boundary-count-explanation",
+                "title": "观察边界与计数变化的解释",
+                "question_ids": [
+                  "p01-cap-limits"
+                ],
+                "explore": false,
+                "key": "P01-SUMMARY:boundary-count-explanation",
+                "url": "/parts/01-看见系统/综合练习/read/1/#boundary-count-explanation"
+              }
+            ],
             "url": "/parts/01-看见系统/综合练习/read/1/"
           }
         ],
@@ -10538,7 +11094,7 @@
   ],
   "introduction": {
     "id": "0.1",
-    "title": "走进系统科学",
+    "title": "系统科学的研究对象与方法",
     "url": "/introduction/",
     "goals": "从生命现象识别相互作用与整体行为；区分演化、认识和干预问题；理解主要学术传统的联系；用简单实验核对结论并定位后续学习。",
     "prerequisites": "入口。阅读只需日常经验和中学计数；重现第三节代码使用 Python 列表、循环和函数，绘图代码随节说明。",
@@ -10554,7 +11110,7 @@
         "id": "P00-C01-S01",
         "chapter_id": "0.1",
         "path": "notebooks/00-导论/01-从生命现象认识系统.ipynb",
-        "title": "从生命现象认识系统",
+        "title": "系统、相互作用与整体行为",
         "outcome": "沿着运动后热量的去向，说明组成之间的联系和环境条件为什么需要一起研究。",
         "number": "导论·1",
         "visualization": null,
@@ -10564,31 +11120,78 @@
             "id": "p00-recovery",
             "slug": "p00-recovery",
             "title": "设计散热研究",
-            "type": "choice"
+            "type": "choice",
+            "reading_url": "/introduction/read/1/#system-components-environment",
+            "concept_title": "系统的组成、联系与环境",
+            "practice_url": "/introduction/practice/?question=p00-recovery"
           },
           {
             "id": "p00-connections",
             "slug": "p00-connections",
             "title": "比较两种连接",
-            "type": "choice"
+            "type": "choice",
+            "reading_url": "/introduction/read/3/#chain-star-propagation",
+            "concept_title": "链形与星形网络的逐轮传播",
+            "practice_url": "/introduction/practice/?question=p00-connections"
           },
           {
             "id": "p00-purpose",
             "slug": "p00-purpose",
             "title": "把问题变成任务",
-            "type": "choice"
+            "type": "choice",
+            "reading_url": "/introduction/read/1/#research-tasks",
+            "concept_title": "描述、解释、预测与干预",
+            "practice_url": "/introduction/practice/?question=p00-purpose"
           }
         ],
         "practice_url": "/introduction/practice/?question=p00-recovery",
         "notebook_url": "/notebook/?id=P00-C01-S01",
         "reading_url": "/introduction/read/1/",
+        "concepts": [
+          {
+            "id": "recovery-heat-exchange",
+            "title": "运动后恢复中的热量交换",
+            "question_ids": [],
+            "explore": false,
+            "key": "P00-C01-S01:recovery-heat-exchange",
+            "url": "/introduction/read/1/#recovery-heat-exchange"
+          },
+          {
+            "id": "system-components-environment",
+            "title": "系统的组成、联系与环境",
+            "question_ids": [
+              "p00-recovery"
+            ],
+            "explore": false,
+            "key": "P00-C01-S01:system-components-environment",
+            "url": "/introduction/read/1/#system-components-environment"
+          },
+          {
+            "id": "local-observation-model",
+            "title": "局部观测与系统模型",
+            "question_ids": [],
+            "explore": false,
+            "key": "P00-C01-S01:local-observation-model",
+            "url": "/introduction/read/1/#local-observation-model"
+          },
+          {
+            "id": "research-tasks",
+            "title": "描述、解释、预测与干预",
+            "question_ids": [
+              "p00-purpose"
+            ],
+            "explore": false,
+            "key": "P00-C01-S01:research-tasks",
+            "url": "/introduction/read/1/#research-tasks"
+          }
+        ],
         "url": "/introduction/read/1/"
       },
       {
         "id": "P00-C01-S02",
         "chapter_id": "0.1",
         "path": "notebooks/00-导论/02-系统科学关心什么如何发展.ipynb",
-        "title": "系统科学关心什么，如何发展",
+        "title": "系统科学的研究任务与发展脉络",
         "outcome": "从恢复研究中的困难理解各类方法，说明不同学术传统怎样配合回答问题。",
         "number": "导论·2",
         "visualization": null,
@@ -10598,31 +11201,87 @@
             "id": "p00-traditions",
             "slug": "p00-traditions",
             "title": "研究问题与学术传统",
-            "type": "choice"
+            "type": "choice",
+            "reading_url": "/introduction/read/2/#cross-domain-methods",
+            "concept_title": "系统方法的跨领域发展",
+            "practice_url": "/introduction/practice/?question=p00-traditions"
           },
           {
             "id": "p00-perspectives",
             "slug": "p00-perspectives",
             "title": "辨认研究步骤",
-            "type": "choice"
+            "type": "choice",
+            "reading_url": "/introduction/read/2/#systems-methods-practice",
+            "concept_title": "系统研究的方法与实践",
+            "practice_url": "/introduction/practice/?question=p00-perspectives"
           },
           {
             "id": "p00-complement",
             "slug": "p00-complement",
             "title": "数据与机制怎样配合",
-            "type": "choice"
+            "type": "choice",
+            "reading_url": "/introduction/read/2/#cross-domain-methods",
+            "concept_title": "系统方法的跨领域发展",
+            "practice_url": "/introduction/practice/?question=p00-complement"
           }
         ],
         "practice_url": "/introduction/practice/?question=p00-traditions",
         "notebook_url": "/notebook/?id=P00-C01-S02",
         "reading_url": "/introduction/read/2/",
+        "concepts": [
+          {
+            "id": "observation-model-tasks",
+            "title": "观测、模型与研究任务",
+            "question_ids": [],
+            "explore": false,
+            "key": "P00-C01-S02:observation-model-tasks",
+            "url": "/introduction/read/2/#observation-model-tasks"
+          },
+          {
+            "id": "feedback-cybernetics-information",
+            "title": "反馈调节、控制论与信息论",
+            "question_ids": [],
+            "explore": false,
+            "key": "P00-C01-S02:feedback-cybernetics-information",
+            "url": "/introduction/read/2/#feedback-cybernetics-information"
+          },
+          {
+            "id": "dynamics-prediction-range",
+            "title": "动力系统与预测范围",
+            "question_ids": [],
+            "explore": false,
+            "key": "P00-C01-S02:dynamics-prediction-range",
+            "url": "/introduction/read/2/#dynamics-prediction-range"
+          },
+          {
+            "id": "cross-domain-methods",
+            "title": "系统方法的跨领域发展",
+            "question_ids": [
+              "p00-traditions",
+              "p00-complement"
+            ],
+            "explore": false,
+            "key": "P00-C01-S02:cross-domain-methods",
+            "url": "/introduction/read/2/#cross-domain-methods"
+          },
+          {
+            "id": "systems-methods-practice",
+            "title": "系统研究的方法与实践",
+            "question_ids": [
+              "p00-perspectives"
+            ],
+            "explore": false,
+            "key": "P00-C01-S02:systems-methods-practice",
+            "url": "/introduction/read/2/#systems-methods-practice"
+          }
+        ],
         "url": "/introduction/read/2/"
       },
       {
         "id": "P00-C01-S03",
         "chapter_id": "0.1",
         "path": "notebooks/00-导论/03-从系统问题走向计算与证据.ipynb",
-        "title": "从系统问题走向计算与证据",
+        "title": "网络传播模型与计算实验",
         "outcome": "逐轮计算六人消息传播，解释同步更新与起点怎样影响结果，并据此限定结论。",
         "number": "导论·3",
         "visualization": "web/introduction/index.html",
@@ -10632,24 +11291,85 @@
             "id": "p00-rounds",
             "slug": "p00-rounds",
             "title": "独立判断前三轮",
-            "type": "choice"
+            "type": "choice",
+            "reading_url": "/introduction/read/3/#chain-star-propagation",
+            "concept_title": "链形与星形网络的逐轮传播",
+            "practice_url": "/introduction/practice/?question=p00-rounds"
           },
           {
             "id": "p00-evidence",
             "slug": "p00-evidence",
             "title": "解释传播实验",
-            "type": "choice"
+            "type": "choice",
+            "reading_url": "/introduction/read/3/#starting-node-comparison",
+            "concept_title": "传播起点的对照实验",
+            "practice_url": "/introduction/practice/?question=p00-evidence"
           },
           {
             "id": "p00-route",
             "slug": "p00-route",
             "title": "根据问题使用学习地图",
-            "type": "choice"
+            "type": "choice",
+            "reading_url": "/introduction/read/3/#research-process-learning-route",
+            "concept_title": "系统研究流程与全书学习路线",
+            "practice_url": "/introduction/practice/?question=p00-route"
           }
         ],
         "practice_url": "/introduction/practice/?question=p00-rounds",
         "notebook_url": "/notebook/?id=P00-C01-S03",
         "reading_url": "/introduction/read/3/",
+        "concepts": [
+          {
+            "id": "connections-synchronous-rule",
+            "title": "连接结构与同步传播规则",
+            "question_ids": [],
+            "explore": true,
+            "key": "P00-C01-S03:connections-synchronous-rule",
+            "url": "/introduction/read/3/#connections-synchronous-rule",
+            "explore_url": "/introduction/explore/?concept=P00-C01-S03%3Aconnections-synchronous-rule"
+          },
+          {
+            "id": "chain-star-propagation",
+            "title": "链形与星形网络的逐轮传播",
+            "question_ids": [
+              "p00-connections",
+              "p00-rounds"
+            ],
+            "explore": true,
+            "key": "P00-C01-S03:chain-star-propagation",
+            "url": "/introduction/read/3/#chain-star-propagation",
+            "explore_url": "/introduction/explore/?concept=P00-C01-S03%3Achain-star-propagation"
+          },
+          {
+            "id": "synchronous-update-checks",
+            "title": "同步更新的实现与检查",
+            "question_ids": [],
+            "explore": false,
+            "key": "P00-C01-S03:synchronous-update-checks",
+            "url": "/introduction/read/3/#synchronous-update-checks"
+          },
+          {
+            "id": "starting-node-comparison",
+            "title": "传播起点的对照实验",
+            "question_ids": [
+              "p00-evidence"
+            ],
+            "explore": true,
+            "key": "P00-C01-S03:starting-node-comparison",
+            "url": "/introduction/read/3/#starting-node-comparison",
+            "explore_url": "/introduction/explore/?concept=P00-C01-S03%3Astarting-node-comparison"
+          },
+          {
+            "id": "research-process-learning-route",
+            "title": "系统研究流程与全书学习路线",
+            "question_ids": [
+              "p00-route"
+            ],
+            "explore": false,
+            "key": "P00-C01-S03:research-process-learning-route",
+            "url": "/introduction/read/3/#research-process-learning-route"
+          }
+        ],
         "url": "/introduction/read/3/"
       }
     ],

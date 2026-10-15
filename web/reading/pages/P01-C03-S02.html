@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>1.3.2 延迟怎样改变调节 · 动手学系统科学</title>
+<title>1.3.2 延迟、增益与调节响应 · 动手学系统科学</title>
 <link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
 <link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
 <script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
 </head><body class="reading-page"><main id="main" data-lesson="P01-C03-S02">
 <div id="loading-note" class="notice" role="status" hidden></div>
 <div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history">本节练习 · 5 题</a><a class="button" href="/chapters/01-03-反馈、延迟与层级/explore/">可视化与探索</a></div>
-<div class="reading-layout"><article id="lesson-content"><h1>1.3.2 延迟怎样改变调节</h1>
+<div class="reading-layout"><article id="lesson-content"><h1>1.3.2 延迟、增益与调节响应</h1>
 <p>学完本节，你应能手算延迟调节的前四步，分清当前值与读取值，并在相同观察时段内比较越过目标和转向的过程。</p>
 <p><strong>先修知识</strong>：<a href="/chapters/01-03-%E5%8F%8D%E9%A6%88%E3%80%81%E5%BB%B6%E8%BF%9F%E4%B8%8E%E5%B1%82%E7%BA%A7/read/1/">作用方向与反馈回路</a>；比例与带符号加减。</p>
-<h2>到达目标以后，为什么还在修正？</h2>
+<h2 id="measurement-delay-overshoot">测量延迟与过冲</h2>
 <p>上一节的冷却回路具有负反馈方向：温度偏高时加强冷却，冷却使偏差减小。如果装置每次都能读取当前偏差，并修正它的一半，从 2 °C 开始，偏差就依次变为 1、0.5、0.25 °C，逐步接近目标。</p>
 <p>现在让装置晚两步得到温度信息。<strong>延迟（delay）</strong>是信息产生到用于动作之间的时间间隔；本例每步时长相同，因此用落后的步数表示。装置在时刻 0 作决定，却拿到时刻 −2 的读数，就像根据两次操作以前的情况调整现在的温度。</p>
 <p>修正规则仍是“从当前偏差中减去所读取偏差的一半”。起点偏差为 2 °C，前两步的偏差也都为 2 °C；这三条历史分别位于时刻 −2、−1、0。按这条规则逐步算：</p>
@@ -62,21 +62,31 @@
 </tr>
 </tbody>
 </table>
-<h2>当前值与读取值属于不同时刻</h2>
+<p class="concept-explore"><a href="/chapters/01-03-反馈、延迟与层级/explore/?concept=P01-C03-S02%3Ameasurement-delay-overshoot">可视化与探索：测量延迟与过冲 →</a></p>
+
+<h2 id="delay-rule-history-state">延迟调节规则与历史状态</h2>
 <p>用 $e_n$ 表示时刻 $n$ 的温度偏差，$d$ 表示落后的步数，每次按读取值的比例 $g$ 修正，便得到</p>
 <p>$$e_{n+1}=e_n-g e_{n-d}.$$</p>
 <p>右边的 $e_n$ 是正在更新的当前偏差，$e_{n-d}$ 则决定这次采取多大动作。$d=0$ 时两者属于同一时刻，$d=2$ 时读取值落后两步。$g$ 称为<strong>增益（gain）</strong>，是读取偏差与修正量之间的比例；本例中二者都用 °C 表示，所以 $g$ 无量纲。“修正一半”对应 $g=0.5$。</p>
 <p>读取正值时，减去正数让当前偏差下降；读取负值时，减去负数让当前偏差上升。这相当于可以双向调节的装置。各步间没有其他扰动，装置按给定比例执行动作，因而可以追踪延迟怎样改变整个过程。</p>
 <p>这条规则也告诉我们，起点处要保留什么信息。$d=2$ 时，第一次更新需要 $e_{-2}$，第二次需要 $e_{-1}$。只知道 $e_0$ 不够：当前偏差同为零，旧读数为 2 时下一步会变成 −1，旧读数也为零时下一步才保持零。为了继续按规则预测，需要同时保留当前偏差和过去两步的偏差。把这段历史纳入状态，才有足够的信息完成后续更新。</p>
-<h2>沿曲线追踪每次动作</h2>
+<p class="concept-explore"><a href="/chapters/01-03-反馈、延迟与层级/explore/?concept=P01-C03-S02%3Adelay-rule-history-state">可视化与探索：延迟调节规则与历史状态 →</a></p>
+
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history">第一步使用哪一个历史值</a></li><li><a href="/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delayed-response">让调节读取过去的信息</a></li></ul></nav>
+
+<h2 id="immediate-delayed-response">即时与延迟调节的响应</h2>
 <p>下面比较即时读取与两步延迟。两组在起点前的偏差都保持为 2 °C，增益同为 0.5，观察时段同为 12 步。先在图中找出刚才手算的时刻 1、2、3、4，再看下降何时变成上升。</p>
 
 <section class="experiment-example">
-<figure><img src="/web/reading/assets/P01-C03-S02-e0f5fbd8-0.png" alt="延迟怎样改变调节：实验结果图" loading="lazy"></figure>
+<figure><img src="/web/reading/assets/P01-C03-S02-e0f5fbd8-0.png" alt="延迟、增益与调节响应：实验结果图" loading="lazy"></figure>
 </section>
 <p>即时组始终位于零线上方，每步把当前偏差减半。延迟组在时刻 3 越过目标，到时刻 4 降为 −1.5 °C。时刻 5 读取时刻 2 的零偏差，因此保持 −1.5；再往后，装置终于读到过去的负值，修正方向才转为向上。曲线的转向来自读取值的改变，可以逐步从历史表中解释。</p>
 <p>两组从相同起点出发，使用相同增益和观察时段，差异来自读取信息的时刻。负反馈的作用方向没有改变，动作依据的情况却落后了。</p>
-<h2>修正得轻一点，会有什么不同？</h2>
+<p class="concept-explore"><a href="/chapters/01-03-反馈、延迟与层级/explore/?concept=P01-C03-S02%3Aimmediate-delayed-response">可视化与探索：即时与延迟调节的响应 →</a></p>
+
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-03-反馈、延迟与层级/practice/?question=p01-fair-delay">设置延迟对照</a></li><li><a href="/chapters/01-03-反馈、延迟与层级/practice/?question=p01-finite-path">解释八步温度实验</a></li></ul></nav>
+
+<h2 id="gain-delay-comparison">增益与延迟的对照比较</h2>
 <p>把增益从 0.5 改为 0.2，同样读到 2 °C 时，修正量就从 1 降为 0.4 °C。在即时读取和两步延迟下分别比较这两种增益，每组都从此前恒为 2 °C 的历史开始，计算 12 步，得到：</p>
 <table>
 <thead>
@@ -124,10 +134,11 @@
 <p>四组的最大绝对偏差恰好都由共同起点 2 °C 决定，所以这个指标区分不了它们在零线另一侧的过冲。曲线、终点和转向次数各提供了一部分信息，需要一起读。</p>
 <p>若增益为零，读取任何偏差都不会产生修正，当前偏差便保持原值。若不做更新，结果就停留在起点。这两种情形可以帮助我们回看公式中的每一项：信息决定动作，增益决定动作大小，当前值承接已经发生的变化。</p>
 <p>开篇“到达目标后仍在修正”的疑问，现在可以沿着时间线回答：温度已经变了，装置还在响应旧温度。更进一步，在实际记录中看到相似曲线，是否就能确定系统用了这条规则？下一章将从两个都能解释同一条记录的候选开始。</p>
-<p><a href="/chapters/01-03-%E5%8F%8D%E9%A6%88%E3%80%81%E5%BB%B6%E8%BF%9F%E4%B8%8E%E5%B1%82%E7%BA%A7/explore/">打开可视化与探索：反馈延迟与层级</a></p>
-<p><a href="/chapters/01-03-%E5%8F%8D%E9%A6%88%E3%80%81%E5%BB%B6%E8%BF%9F%E4%B8%8E%E5%B1%82%E7%BA%A7/">本章导览</a></p>
+<p class="concept-explore"><a href="/chapters/01-03-反馈、延迟与层级/explore/?concept=P01-C03-S02%3Again-delay-comparison">可视化与探索：增益与延迟的对照比较 →</a></p>
 
-<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history">本节练习 · 5 题</a><a class="button" href="/chapters/01-03-反馈、延迟与层级/explore/">可视化与探索</a></div></section>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-03-反馈、延迟与层级/practice/?question=p01-turn-count">平台之后算一次转向</a></li></ul></nav>
+
+
 <nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-03-反馈、延迟与层级/read/1/">← 1.3.1 作用方向与反馈回路</a><a href="/chapters/01-04-模型假设与计算实验/read/1/">1.4.1 规则、参数与初值 →</a></nav></article>
 <aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
 </main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

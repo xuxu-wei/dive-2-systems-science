@@ -86,7 +86,7 @@ async function start(){
         card.append(links);grid.append(card);
       }
       host.append(grid);
-      if(current.introduction)host.append(a('继续学习：1.1 从生理现象提出系统问题 →',course.parts[0].chapters[0].url,'next-chapter'));
+      if(current.introduction)host.append(a(`继续学习：${course.parts[0].chapters[0].id} ${course.parts[0].chapters[0].title} →`,course.parts[0].chapters[0].url,'next-chapter'));
     }
   }
   document.title=(current?.title||'全书目录')+' · 动手学系统科学';

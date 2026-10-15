@@ -3,9 +3,9 @@
 <body><main id="main">
 <p id="loading-note" class="notice" role="status">正在准备连接与传播实验…</p>
 <article id="experiment" hidden>
-  <header class="overview-heading"><p class="eyebrow">导论 · 可视化与探索</p><h1>同样的个体，不同的连接</h1><p class="lead">六个个体，五条双向联系。先预测消息前三轮到达谁，再逐轮观察。</p></header>
+  <header class="overview-heading"><p class="eyebrow">导论 · 可视化与探索</p><h1>连接结构与同步传播</h1><p class="lead">六个个体，五条双向联系。先预测消息前三轮到达谁，再逐轮观察。</p></header>
   <div class="intro-experiment-grid">
-    <section aria-labelledby="structure-title"><h2 id="structure-title">谁与谁联系</h2>
+    <section aria-labelledby="structure-title"><h2 id="structure-title">网络连接与传播起点</h2>
       <p>第 0 轮只有起点收到消息。每轮仅由<strong>上一轮已收到的人</strong>向邻居传递；收到后保持，联系不变且每次传递都成功。</p>
       <fieldset id="conditions" disabled><legend>改变一个条件</legend>
         <label for="network">查看连接方式</label><select id="network"><option value="chain">链形 A—B—C—D—E—F</option><option value="star">星形：A 联系其余五人</option></select>
@@ -15,7 +15,7 @@
       <p class="caption">实心：已收到；空心虚线：尚未收到；外圈：起点。线长是示意画法。</p>
       <p id="recipients" role="status"></p>
     </section>
-    <section aria-labelledby="counts-title"><h2 id="counts-title">逐轮到达多少人</h2>
+    <section aria-labelledby="counts-title"><h2 id="counts-title">逐轮传播人数</h2>
       <p id="round-readout" class="round-readout" role="status">第 0 轮</p>
       <p id="count-readout"></p>
       <svg id="counts-figure" viewBox="0 0 620 360" role="img" aria-labelledby="counts-svg-title counts-description"><title id="counts-svg-title">同一起点的链形与星形传播人数</title><desc id="counts-description"></desc></svg>
@@ -25,7 +25,7 @@
       <details><summary>查看完整人数表（包含起点）</summary><div id="counts-table"></div></details>
     </section>
   </div>
-  <section class="intro-reading"><h2>换一个起点，原来的解释还成立吗？</h2><p>从 A 出发时，星形的五条联系都能在第一轮传递消息。现在把起点改为 F，先在图上找出 F 的邻居，再预测第一轮会有多少人收到。两条人数曲线始终使用同一起点和同一传递规则。</p><p>如果有人收到消息后不再转发，或一条联系暂时中断，人数表又会怎样？这样的新问题需要先修改传递规则，再重新计算；当前曲线回答的是每次传递成功、联系保持不变时的过程。</p>
+  <section class="intro-reading"><h2>传播起点的对照比较</h2><p>从 A 出发时，星形的五条联系都能在第一轮传递消息。现在把起点改为 F，先在图上找出 F 的邻居，再预测第一轮会有多少人收到。两条人数曲线始终使用同一起点和同一传递规则。</p><p>如果有人收到消息后不再转发，或一条联系暂时中断，人数表又会怎样？这样的新问题需要先修改传递规则，再重新计算；当前曲线回答的是每次传递成功、联系保持不变时的过程。</p>
     <div class="intro-reading-links"><button id="open-notebook" type="button">打开导论·3 实验 ↗</button><a href="/introduction/practice/?question=p00-rounds">用自测检查理解 →</a><a href="/introduction/">返回导论导览</a></div>
   </section>
 </article></main><script src="/web/shared/boot.js"></script><script type="module" src="/web/introduction/app.mjs" data-main></script></body></html>

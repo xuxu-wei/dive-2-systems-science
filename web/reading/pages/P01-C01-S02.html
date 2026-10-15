@@ -10,7 +10,7 @@
 <div class="reading-layout"><article id="lesson-content"><h1>1.1.2 单位、量纲与时间序列</h1>
 <p>学完本节，你应能换算时间坐标、保持时刻与总量一一对应，并用体积把总量与浓度联系起来。</p>
 <p><strong>先修知识</strong>：<a href="/chapters/01-01-%E4%BB%8E%E7%94%9F%E7%90%86%E7%8E%B0%E8%B1%A1%E6%8F%90%E5%87%BA%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98/read/1/">边界、状态与观测</a>；乘除法。</p>
-<h2>换成秒，过程就变慢了吗</h2>
+<h2 id="time-series-observation-times">时间序列与观测时刻</h2>
 <p>一份记录显示：实验开始时有 10 U 的物质，1 分钟后有 8 U，3 分钟后有 5 U，4 分钟后仍有 5 U。把观测值与取得它的时刻配对，再按时间先后排列，就得到一组<strong>时间序列（time series）</strong>。保留时刻，是为了知道两次变化之间究竟经过了多久。</p>
 <p>U 是本例固定使用的总量单位。我们把追踪的量称为<strong>所追踪物质总量（tracked amount）</strong>，后文简称总量。实际记录中可以追踪某种物质的质量，也可以用 mol 记录指定实体的物质的量；选择了什么量和单位，要在记录中一并说明。本例始终用 U 表示同一种总量。</p>
 <p>现在把这份记录交给另一位同学，他习惯用秒来记时间。因为 $1$ 分钟等于 $60$ 秒，原来的“3 分钟，5 U”就应写成“180 秒，5 U”。完整记录为：</p>
@@ -46,7 +46,9 @@
 </tbody>
 </table>
 <p>每一行对应同一次观测。换单位后，总量没有变化，第三行依然说的是实验开始后 3 分钟剩下 5 U。四个观测时点之间有三个时段；这里相邻时点的间隔分别是 1、2、1 分钟。</p>
-<h2>数值要和单位一起读</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units">换时间单位，不换总量</a></li></ul></nav>
+
+<h2 id="units-dimensions-rates">单位换算、量纲与变化速率</h2>
 <p>一个量由“数值乘以单位”表示。$1$ 分钟与 $60$ 秒的数字不同，表示的持续时间相同。若一个旧时间单位等于 $f$ 个新时间单位，相应的时刻数字满足</p>
 <p>$$t_{\mathrm{新}}=f\,t_{\mathrm{旧}}.$$</p>
 <p>分钟转秒取 $f=60$；分钟转小时取 $f=1/60$。所以 3 分钟也可以写成 $3/60=0.05$ 小时。</p>
@@ -59,7 +61,9 @@
 <p>左图横轴的 3 与右图横轴的 180 指向同一时刻。右图横轴的数字更大，并不表示总量下降得更慢。判断变化快慢，需要把变化量除以经过的时间：第一段减少了 $10-8=2$ U，持续 1 分钟，平均下降速度为 2 U/min；换成秒就是 $2/60\approx0.0333$ U/s。二者表示同一速度。</p>
 <p>第二段的时长是第一段的两倍，所以图上也应占据两倍的横向距离。若只按“第 1、2、3 次观测”等距摆放圆点，这项时间信息就会丢失。</p>
 <p>圆点之间的连线帮助我们看趋势。例如 1 到 3 分钟之间的线向下，但记录中没有第 2 分钟的观测。两端只确定这段时间的平均变化；把直线理解为每一刻的过程，就又增加了“这段时间内匀速下降”的假设。</p>
-<h2>浓度下降，物质一定减少了吗</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-curve-cause">解释三个时刻的记录</a></li></ul></nav>
+
+<h2 id="amount-volume-concentration">总量、体积与浓度</h2>
 <p>有些仪器记录的是每升液体中含有多少物质，也就是<strong>浓度（concentration）</strong>。对混合均匀的液体，浓度等于同一时刻的总量 $A$ 除以体积 $V$：</p>
 <p>$$c=\frac{A}{V}.$$</p>
 <p>它把“总共有多少”改写成“每单位体积平均分到多少”。6 U 放在 2 L 液体里，每升分到 $6/2=3$ U，浓度为 3 U/L。仍是这 6 U，体积变成 3 L，浓度就变为 2 U/L。</p>
@@ -94,10 +98,9 @@
 <p>单位也随着乘法相消：每升的量乘以升数，得到总量。相反，$A+c$ 将总量与每升的量相加，单位不相容。单位检查可以排除这类表达式；通过检查后，还需要看它是否表示当前实验中的关系。</p>
 <p>现在假设只看到了浓度从 3 U/L 降到 2 U/L。它至少对应两种过程：总量仍为 6 U、体积从 2 L 增到 3 L；或者体积仍为 2 L、总量从 6 U 减到 4 U。相同的浓度变化，对应的物质变化可以不同。把同一时刻的体积也测出来，就能区分这两种解释。</p>
 <p>时间序列让我们知道变化发生在何时，单位和体积让我们知道记录的量代表什么。接下来要追问的是：开篇那条总量下降曲线中，物质究竟去了哪里？下一节将把进入、离开和已有总量放在同一本账里。</p>
-<p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/read/1/">下一节：一段时间的物质收支</a></p>
-<p><a href="/chapters/01-01-%E4%BB%8E%E7%94%9F%E7%90%86%E7%8E%B0%E8%B1%A1%E6%8F%90%E5%87%BA%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98/">本章导览与各节入口</a></p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-dimension">相加之前先检查单位</a></li><li><a href="/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-concentration">总量与浓度要分别计算</a></li></ul></nav>
 
-<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units">本节练习 · 4 题</a></div></section>
-<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-01-从生理现象提出系统问题/read/1/">← 1.1.1 边界、状态与观测</a><a href="/chapters/01-02-存量、流量与守恒/read/1/">1.2.1 一段时间的物质收支 →</a></nav></article>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-01-从生理现象提出系统问题/read/1/">← 1.1.1 边界、状态与观测</a><a href="/chapters/01-02-存量、流量与守恒/read/1/">1.2.1 存量、流率与分段收支 →</a></nav></article>
 <aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
 </main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

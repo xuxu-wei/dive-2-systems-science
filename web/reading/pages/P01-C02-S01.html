@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>1.2.1 一段时间的物质收支 · 动手学系统科学</title>
+<title>1.2.1 存量、流率与分段收支 · 动手学系统科学</title>
 <link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
 <link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
 <script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
 </head><body class="reading-page"><main id="main" data-lesson="P01-C02-S01">
 <div id="loading-note" class="notice" role="status" hidden></div>
 <div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount">本节练习 · 4 题</a><a class="button" href="/chapters/01-02-存量、流量与守恒/explore/">可视化与探索</a></div>
-<div class="reading-layout"><article id="lesson-content"><h1>1.2.1 一段时间的物质收支</h1>
+<div class="reading-layout"><article id="lesson-content"><h1>1.2.1 存量、流率与分段收支</h1>
 <p>学完本节，你应能由时长和流入、流出速率计算总量，用累计收支检查结果，并解释物质耗尽时为什么需要改变流出规则。</p>
 <p><strong>先修知识</strong>：<a href="/chapters/01-01-%E4%BB%8E%E7%94%9F%E7%90%86%E7%8E%B0%E8%B1%A1%E6%8F%90%E5%87%BA%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98/read/2/">单位、量纲与时间序列</a>；乘法与加减法。</p>
-<h2>容器里有多少，管道中每次通过多少</h2>
+<h2 id="stock-flow-rate">存量、流量与流率</h2>
 <p>上一节的总量从 10 U 降到 8 U，却没有告诉我们少掉的 2 U 怎样离开。若同时记录这一段进入了多少、离开了多少，就能把这些转移与总量变化联系起来。<strong>收支（mass balance）</strong>正是这样的数量关系：系统末量等于初量，加上期间进入和内部生成的量，再减去离开和内部消耗的量。像查账一样，每一次增减都要找到对应的过程。</p>
 <p>先看一个容器。起点时有 5 U 的物质，这个时刻系统中已有的量称为<strong>存量（stock）</strong>。管道里每经过 1 T 就进入 3 U，同时离开 1 U。T 是本例的时间单位，因而流入速率为 3 U/T，流出速率为 1 U/T。</p>
 <p>物质的转移过程称为<strong>流量（flow）</strong>；要描述它的快慢，我们使用<strong>流率（flow rate）</strong>，即单位时间通过的量。5 U 回答“现在有多少”，3 U/T 回答“每单位时间进入多少”。存量像容器中已有的水，流率像水龙头每分钟注入多少；持续多久，决定这次真正注入多少。</p>
 <p>系统边界包围容器。我们追踪的物质沿已记录的管道进入和离开，容器内没有它的生成或转化；每段内的流率恒定。在这些条件下，先算整段转移的量，就能算出终点存量。</p>
-<h2>两段速率相同，账目却不同</h2>
+<h2 id="duration-cumulative-transfer">时长与累计转移量</h2>
 <p>第一段持续 1 T。流入 3 U/T 持续 1 T，累计进入 $1\times3=3$ U；流出 1 U/T 持续 1 T，累计离开 $1\times1=1$ U。由起点的 5 U 开始，终点为</p>
 <p>$$5+3-1=7\ \mathrm{U}.$$</p>
 <p>第二段持续 2 T，流率不变。进入量变成 $2\times3=6$ U，离开量变成 $2\times1=2$ U。这段从前一段留下的 7 U 开始，终点为</p>
@@ -51,7 +51,9 @@
 </tbody>
 </table>
 <p>两段的净流入速率都为 $3-1=2$ U/T，第一段却只积累 2 U，第二段积累 4 U。流率相同，持续时间不同，累计转移的量就不同。计算第二段时也要接着上一段的终点，才能保留第一段已经发生的积累。</p>
-<h2>用一个公式表达同一本账</h2>
+<p class="concept-explore"><a href="/chapters/01-02-存量、流量与守恒/explore/?concept=P01-C02-S01%3Aduration-cumulative-transfer">可视化与探索：时长与累计转移量 →</a></p>
+
+<h2 id="segment-balance">分段收支公式</h2>
 <p>把区间初量与末量写为 $A_{\mathrm{初}}$、$A_{\mathrm{末}}$，持续时间写为 $h$，恒定流入、流出速率分别写为 $u$、$v$，刚才的计算就成为</p>
 <p>$$A_{\mathrm{末}}=A_{\mathrm{初}}+hu-hv=A_{\mathrm{初}}+h(u-v).$$</p>
 <p>$hu$ 和 $hv$ 分别是整段进入与离开的量，单位均为 $(\mathrm{U/T})\times\mathrm{T}=\mathrm{U}$，可以与已有总量相加减。$u-v$ 本身仍是流率，必须乘时长才能得到变化量。</p>
@@ -89,33 +91,37 @@
 <p>把这项更新连续用两次，便得到起点、第一段末、第二段末的三个值：5、7、11 U。图上的时刻分别为 0、1、3 T；第二段较长，因此横向距离也更大。</p>
 
 <section class="experiment-example">
-<figure><img src="/web/reading/assets/P01-C02-S01-a6f6a5eb-0.png" alt="一段时间的物质收支：实验结果图" loading="lazy"></figure>
+<figure><img src="/web/reading/assets/P01-C02-S01-a6f6a5eb-0.png" alt="存量、流率与分段收支：实验结果图" loading="lazy"></figure>
 </section>
 <p>每段流率恒定，所以存量在段内按恒定净流率变化，图中的直线也表达了这个条件。还可以把两段合起来查总账：共进入 $3+6=9$ U，共离开 $1+2=3$ U，末量应为 $5+9-3=11$ U，与逐段计算一致。终点减起点的 $11-5=6$ U，正是累计净流入的 $9-3=6$ U。</p>
-<h2>一个容易漏掉的乘法</h2>
+<p class="concept-explore"><a href="/chapters/01-02-存量、流量与守恒/explore/?concept=P01-C02-S01%3Asegment-balance">可视化与探索：分段收支公式 →</a></p>
+
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount">计算一段流入</a></li><li><a href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-balance">逐段计算物质收支</a></li></ul></nav>
+
+<h2 id="balance-time-unit-checks">收支计算的时间与单位检查</h2>
 <p>如果每段恰好持续 1 T，$h(u-v)$ 与 $u-v$ 的数值相同，漏乘时长也可能碰巧算对。本例第二段持续 2 T，差别就显现出来：</p>
 <p>$$\begin{aligned}
 \text{漏掉时长：}&amp;\quad5+(3-1)+(3-1)=9\ \mathrm{U},\\
 \text{按时长累计：}&amp;\quad5+1(3-1)+2(3-1)=11\ \mathrm{U}.
 \end{aligned}$$</p>
 <p>另一类问题出现在储量不足时。起点只有 1 U，没有流入，却要求以 2 U/T 持续流出 1 T，代入得 $1+1(0-2)=-1$ U。这个负数让我们发现：现有物质不足以支持给定流率持续整段时间。</p>
-<h2>耗尽以后，流出怎样继续</h2>
+<h2 id="depletion-outflow-rule">物质耗尽与流出规则</h2>
 <p>1 U 在没有补充时，只能支持 2 U/T 的流出持续</p>
 <p>$$\frac{1\ \mathrm{U}}{2\ \mathrm{U/T}}=0.5\ \mathrm{T}.$$</p>
 <p>到 0.5 T，物质已经耗尽。若采用“耗尽后停止流出”的规则，前半段实际离开 1 U，后半段流出为零，末量便是 $1+0-1=0$ U。</p>
 <p>如果只把原计算的 $-1$ 改成 0，账上却仍记“流出 2 U”，就成了起点 1 U、流出 2 U、终点 0 U，差出 1 U。要让数量与过程一致，改变末量时也要相应改变实际流出的记录。</p>
-<h2>由起点和终点反过来查账</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-negative-stock">检查一段收支</a></li></ul></nav>
+
+<h2 id="inferred-total-outflow">累计流出量的反推</h2>
 <p>收支还可以反过来使用。已知初量、末量、时长和恒定流入速率，想求整段实际流出量 $O$，先写</p>
 <p>$$A_{\mathrm{末}}=A_{\mathrm{初}}+hu-O.$$</p>
 <p>两边加上 $O$，再减去 $A_{\mathrm{末}}$，得到</p>
 <p>$$O=A_{\mathrm{初}}+hu-A_{\mathrm{末}}.$$</p>
 <p>例如起点 5 U，以 3 U/T 流入 1 T，终点测得 7 U，累计流出便是 $5+1\times3-7=1$ U。这算出了整段离开的量；若想进一步知道它何时离开，还需要更细的时间记录。</p>
 <p>接下来，把容器换成血液区。物质离开血液后，如果进入了组织，是否也离开了我们要研究的整个系统？这一次需要重新看看边界画在哪里。</p>
-<p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/read/2/">下一节：内部交换与整体守恒</a></p>
-<p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/explore/">打开可视化与探索：存量流量与守恒</a></p>
-<p><a href="/chapters/01-02-%E5%AD%98%E9%87%8F%E3%80%81%E6%B5%81%E9%87%8F%E4%B8%8E%E5%AE%88%E6%81%92/">本章导览</a></p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-infer-outflow">从收支反求总流出</a></li></ul></nav>
 
-<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount">本节练习 · 4 题</a><a class="button" href="/chapters/01-02-存量、流量与守恒/explore/">可视化与探索</a></div></section>
+
 <nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-01-从生理现象提出系统问题/read/2/">← 1.1.2 单位、量纲与时间序列</a><a href="/chapters/01-02-存量、流量与守恒/read/2/">1.2.2 内部交换与整体守恒 →</a></nav></article>
 <aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
 </main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -25,6 +25,7 @@ TAXONOMY = [
 # Keys use stable part titles so an added/reordered part cannot inherit a wrong lens.
 PART_LENSES = {
     '看见系统': ['method', 'cognition'],
+    '系统的描述与建模': ['method', 'cognition'],
     '系统随时间演化': ['evolution', 'method'],
     '多变量相互作用': ['evolution', 'cognition'],
     '非线性动态行为': ['evolution'],

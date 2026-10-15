@@ -1,5 +1,6 @@
 import {mountShell,locateLesson,applyProgress,rememberQuestion} from '../shared/course-shell.mjs';
 import {createEditor} from './editor.mjs';
+import {questionReadingReference} from '../shared/reading-links.mjs';
 import {setupWorkspace} from '../shared/layout.mjs';
 import {renderAssessment} from '../shared/assessment.mjs';
 const $=id=>document.getElementById(id);
@@ -109,6 +110,12 @@ function renderQuestions(){
     a.addEventListener('click',event=>{event.preventDefault();void select(item.id).catch(connectionError);});target.append(a);
   });
   $('lesson-picker').value=question.lesson_id;locateLesson(question.lesson_id);
+  const reference=questionReadingReference(chapter,question.id),related=$('related-reading');
+  related.hidden=!reference;
+  if(reference){
+    const a=related.querySelector('a');a.href=reference.url;a.textContent=`相关讲解：${reference.title} →`;
+    const reading=document.querySelector('[data-reading-tab]');if(reading)reading.href=reference.url;
+  }
   const index=catalog.findIndex(q=>q.id===question.id);$('previous-question').disabled=index===0;$('next-question').disabled=index===catalog.length-1;
 }
 async function progress(){

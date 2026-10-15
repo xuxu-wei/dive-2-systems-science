@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "e4aab8a1f7958e2b4847182922143a4b573d048d62aaff35667423134c277a5a",
+    "catalogSha256": "43782483b6ad9bf55eac0fe96036a59e6115117e389c411f90539085a3705433",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -52,7 +52,7 @@
     {
       "id": "introduction",
       "kind": "introduction",
-      "title": "走进系统科学",
+      "title": "系统科学的研究对象与方法",
       "parentId": null,
       "url": "/introduction/",
       "number": "00",
@@ -88,7 +88,7 @@
     {
       "id": "P00-C01-S01",
       "kind": "lesson",
-      "title": "从生命现象认识系统",
+      "title": "系统、相互作用与整体行为",
       "parentId": "introduction",
       "url": "/introduction/read/1/",
       "readingUrl": "/introduction/read/1/",
@@ -113,7 +113,7 @@
       "total": 1,
       "lessonId": "P00-C01-S01",
       "lessonNumber": "导论·1",
-      "lessonTitle": "从生命现象认识系统",
+      "lessonTitle": "系统、相互作用与整体行为",
       "chapterUrl": "/introduction/",
       "progressScope": "本节自测",
       "visualizationUrl": null
@@ -121,7 +121,7 @@
     {
       "id": "P00-C01-S02",
       "kind": "lesson",
-      "title": "系统科学关心什么，如何发展",
+      "title": "系统科学的研究任务与发展脉络",
       "parentId": "introduction",
       "url": "/introduction/read/2/",
       "readingUrl": "/introduction/read/2/",
@@ -146,7 +146,7 @@
       "total": 1,
       "lessonId": "P00-C01-S02",
       "lessonNumber": "导论·2",
-      "lessonTitle": "系统科学关心什么，如何发展",
+      "lessonTitle": "系统科学的研究任务与发展脉络",
       "chapterUrl": "/introduction/",
       "progressScope": "本节自测",
       "visualizationUrl": null
@@ -154,7 +154,7 @@
     {
       "id": "P00-C01-S03",
       "kind": "lesson",
-      "title": "从系统问题走向计算与证据",
+      "title": "网络传播模型与计算实验",
       "parentId": "introduction",
       "url": "/introduction/read/3/",
       "readingUrl": "/introduction/read/3/",
@@ -179,7 +179,7 @@
       "total": 1,
       "lessonId": "P00-C01-S03",
       "lessonNumber": "导论·3",
-      "lessonTitle": "从系统问题走向计算与证据",
+      "lessonTitle": "网络传播模型与计算实验",
       "chapterUrl": "/introduction/",
       "progressScope": "本节自测",
       "visualizationUrl": "/introduction/explore/"
@@ -187,11 +187,11 @@
     {
       "id": "1",
       "kind": "part",
-      "title": "看见系统",
+      "title": "系统的描述与建模",
       "number": "1",
       "parentId": null,
       "url": "/parts/01-看见系统/",
-      "description": "从生理现象提出系统问题 · 存量、流量与守恒 · 反馈、延迟与层级 · 模型假设与计算实验",
+      "description": "系统的描述与测量 · 存量、流量与守恒 · 反馈回路与延迟 · 模型结构与实验设计",
       "categories": [
         "method",
         "cognition"
@@ -257,7 +257,7 @@
     {
       "id": "1.1",
       "kind": "chapter",
-      "title": "从生理现象提出系统问题",
+      "title": "系统的描述与测量",
       "number": "1.1",
       "parentId": "1",
       "url": "/chapters/01-01-从生理现象提出系统问题/",
@@ -536,7 +536,7 @@
       "total": 1,
       "lessonId": "P01-C02-S01",
       "lessonNumber": "1.2.1",
-      "lessonTitle": "一段时间的物质收支",
+      "lessonTitle": "存量、流率与分段收支",
       "chapterUrl": "/chapters/01-02-存量、流量与守恒/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -567,7 +567,7 @@
       "total": 1,
       "lessonId": "P01-C02-S01",
       "lessonNumber": "1.2.1",
-      "lessonTitle": "一段时间的物质收支",
+      "lessonTitle": "存量、流率与分段收支",
       "chapterUrl": "/chapters/01-02-存量、流量与守恒/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -598,7 +598,7 @@
       "total": 1,
       "lessonId": "P01-C02-S01",
       "lessonNumber": "1.2.1",
-      "lessonTitle": "一段时间的物质收支",
+      "lessonTitle": "存量、流率与分段收支",
       "chapterUrl": "/chapters/01-02-存量、流量与守恒/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -667,7 +667,7 @@
     {
       "id": "1.3",
       "kind": "chapter",
-      "title": "反馈、延迟与层级",
+      "title": "反馈回路与延迟",
       "number": "1.3",
       "parentId": "1",
       "url": "/chapters/01-03-反馈、延迟与层级/",
@@ -820,7 +820,7 @@
       "total": 1,
       "lessonId": "P01-C03-S02",
       "lessonNumber": "1.3.2",
-      "lessonTitle": "延迟怎样改变调节",
+      "lessonTitle": "延迟、增益与调节响应",
       "chapterUrl": "/chapters/01-03-反馈、延迟与层级/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -852,14 +852,14 @@
       "total": 1,
       "lessonId": "P01-C03-S02",
       "lessonNumber": "1.3.2",
-      "lessonTitle": "延迟怎样改变调节",
+      "lessonTitle": "延迟、增益与调节响应",
       "chapterUrl": "/chapters/01-03-反馈、延迟与层级/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "1.4",
       "kind": "chapter",
-      "title": "模型假设与计算实验",
+      "title": "模型结构与实验设计",
       "number": "1.4",
       "parentId": "1",
       "url": "/chapters/01-04-模型假设与计算实验/",
@@ -1011,7 +1011,7 @@
       "total": 1,
       "lessonId": "P01-C04-S02",
       "lessonNumber": "1.4.2",
-      "lessonTitle": "设计可以区分解释的实验",
+      "lessonTitle": "实验设计与模型检验",
       "chapterUrl": "/chapters/01-04-模型假设与计算实验/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -1042,7 +1042,7 @@
       "total": 1,
       "lessonId": "P01-C04-S02",
       "lessonNumber": "1.4.2",
-      "lessonTitle": "设计可以区分解释的实验",
+      "lessonTitle": "实验设计与模型检验",
       "chapterUrl": "/chapters/01-04-模型假设与计算实验/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -1073,7 +1073,7 @@
       "total": 1,
       "lessonId": "P01-C04-S02",
       "lessonNumber": "1.4.2",
-      "lessonTitle": "设计可以区分解释的实验",
+      "lessonTitle": "实验设计与模型检验",
       "chapterUrl": "/chapters/01-04-模型假设与计算实验/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },

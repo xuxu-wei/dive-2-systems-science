@@ -1,5 +1,6 @@
 """Render mathematical teaching prose with Chinese-adjacent emphasis."""
 from nbconvert.filters.markdown_mistune import IPythonRenderer, MarkdownWithMath
+import re
 
 # CommonMark closes emphasis differently when punctuation touches a letter.
 # Parse complete paired strong spans so a closing marker cannot become an opener.
@@ -14,7 +15,15 @@ def _parse_cjk_strong(inline, match, state):
     return match.end()
 
 
+class TeachingRenderer(IPythonRenderer):
+    def heading(self, text, level, **attrs):
+        anchor = re.search(r'\s+\{#([a-z][a-z0-9-]*)\}$', text)
+        if anchor:
+            return f'<h{level} id="{anchor[1]}">{text[:anchor.start()]}</h{level}>\n'
+        return super().heading(text, level, **attrs)
+
+
 def markdown_to_html(source):
-    parser = MarkdownWithMath(renderer=IPythonRenderer(escape=False, exclude_anchor_links=True))
+    parser = MarkdownWithMath(renderer=TeachingRenderer(escape=False, exclude_anchor_links=True))
     parser.inline.register('cjk_strong', CJK_STRONG, _parse_cjk_strong, before='emphasis')
     return parser.render(source)

@@ -2,8 +2,9 @@
 import json
 from pathlib import Path
 import re
-from course_content import notebooks, question_banks
+from course_content import notebooks, question_banks, course_chapters
 from assessment import load_assessments
+from reading_navigation import attach_reading, bind_questions
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -44,7 +45,8 @@ def build(*, write=True):
     for path in sorted((ROOT / 'docs').glob('[0-9][0-9]-*.md')):
         source = path.read_text(encoding='utf-8')
         number = int(path.name[:2])
-        title = path.stem[3:]
+        part_heading = re.search(r'^# 第 \d+ 篇：(.+)$', source, re.M)
+        title = part_heading[1] if part_heading else path.stem[3:]
         chapters = []
         for match in re.finditer(r'^### (\d+)\.(\d+) (.+)\n([\s\S]*?)(?=^### |^## |\Z)', source, re.M):
             part, chapter, name, content = match.groups()
@@ -55,7 +57,7 @@ def build(*, write=True):
                 return re.sub(r'数\d+', lambda m: maths.get(m.group(), m.group()).strip(), text)
             order = [s.strip(' ；。') for s in re.split('[①②③④⑤⑥]', field('内容顺序')) if s.strip(' ；。')]
             chapters.append({'id': f'{part}.{chapter}', 'title': name,
-                'url': f'/chapters/{int(part):02d}-{int(chapter):02d}-{name}/',
+                'url': f'/chapters/{int(part):02d}-{int(chapter):02d}-{field("路径标识") or name}/',
                 'goals': field('教学目标'), 'prerequisites': field('直接先修'),
                 'knowledge': order, 'focus': teaching_focus(content, f'{part}.{chapter}'),
                 'available': False, 'lessons': []})
@@ -76,6 +78,7 @@ def build(*, write=True):
     def attach(chapter, entries):
         chapter['lessons'] = entries
         chapter['available'] = bool(entries)
+        chapter['visualization']=next((l['visualization'] for l in entries if l.get('visualization')),None)
         for entry in entries:
             entry['questions'] = [{'id':q['id'],'slug':q['slug'],'title':q['title'],'type':q['type']}
                                   for q in questions if q['lesson_id']==entry['id']]
@@ -87,8 +90,8 @@ def build(*, write=True):
             entry['notebook_url']='/notebook/?id='+entry['id']
             if entry.get('reading'):
                 entry['reading_url']=chapter['url']+'read/'+str(entries.index(entry)+1)+'/'
+                attach_reading(entry, chapter, (ROOT / entry['reading']).read_text(encoding='utf-8'))
             entry['url']=entry.get('reading_url', entry['notebook_url'])
-        chapter['visualization']=next((l['visualization'] for l in entries if l.get('visualization')),None)
     for part in parts:
         for chapter in part['chapters']:
             attach(chapter,[l for l in all_lessons if l.get('chapter_id')==chapter['id']])
@@ -106,6 +109,7 @@ def build(*, write=True):
         attach(introduction, [l for l in all_lessons if l.get('chapter_id') == introduction['id']])
         validate_overview(introduction)
         result['introduction'] = introduction
+    bind_questions(course_chapters(result))
     path = ROOT / 'web/course/catalog.json'
     if write:
         path.parent.mkdir(parents=True, exist_ok=True)

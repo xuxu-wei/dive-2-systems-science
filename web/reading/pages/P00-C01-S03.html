@@ -1,25 +1,27 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>导论·3 从系统问题走向计算与证据 · 动手学系统科学</title>
+<title>导论·3 网络传播模型与计算实验 · 动手学系统科学</title>
 <link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
 <link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
 <script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
 </head><body class="reading-page"><main id="main" data-lesson="P00-C01-S03">
 <div id="loading-note" class="notice" role="status" hidden></div>
 <div class="reading-actions"><a class="button primary" href="/notebook/?id=P00-C01-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/introduction/practice/?question=p00-rounds">本节练习 · 3 题</a><a class="button" href="/introduction/explore/">可视化与探索</a></div>
-<div class="reading-layout"><article id="lesson-content"><h1>导论·3 从系统问题走向计算与证据</h1>
+<div class="reading-layout"><article id="lesson-content"><h1>导论·3 网络传播模型与计算实验</h1>
 <p>读完本节，你能按规则逐轮计算消息传播，并通过改变起点检查“哪种连接传播更快”这一解释。</p>
 <p><strong>先修知识</strong>：前两节的问题视角，中学计数。</p>
-<h2>六个人，五条联系，会有相同的传播过程吗？</h2>
+<h2 id="connections-synchronous-rule">连接结构与同步传播规则</h2>
 <p>假设我们要把一条消息传给六个人，用 A—F 表示他们。第一组排成一条链：A 联系 B，B 联系 C，一直连到 F。第二组中，A 分别联系其余五个人，形成一颗星。两组都是六个人、五条联系。人数和联系数相同，消息到达各人的过程还会有什么差别？</p>
 <p>先把传递规则说清楚。每条联系都是双向的，每轮都能成功传递，联系也始终不变。收到消息的人一直保留它。第 0 轮只有 A 收到消息；每一轮，只有这一轮开始前已经收到的人才能向自己的邻居传递。本轮刚收到的人要等到下一轮才能继续传。</p>
 <p>这种<strong>同步更新（synchronous update）</strong>要求所有变化都根据同一个旧状态计算，再一起形成新状态。这里的状态就是“哪些人已经收到消息”的名单。我们拿着本轮开始前的名单，就能按图确定下一轮的名单，无需重新追查每个人过去是怎样收到消息的。</p>
 <p>这些联系和传递规则构成了一个模型。图中的线表示直接联系，线长没有另外规定传递时间。请先沿着线走一轮，预测两组累计有多少人收到消息，记得把最初的 A 算进去。</p>
 
 <section class="experiment-example">
-<figure><img src="/web/reading/assets/P00-C01-S03-3f823b91-0.png" alt="从系统问题走向计算与证据：实验结果图" loading="lazy"></figure>
+<figure><img src="/web/reading/assets/P00-C01-S03-3f823b91-0.png" alt="网络传播模型与计算实验：实验结果图" loading="lazy"></figure>
 </section>
-<h2>先用名单计算</h2>
+<p class="concept-explore"><a href="/introduction/explore/?concept=P00-C01-S03%3Aconnections-synchronous-rule">可视化与探索：连接结构与同步传播规则 →</a></p>
+
+<h2 id="chain-star-propagation">链形与星形网络的逐轮传播</h2>
 <p>链形中，A 的直接邻居只有 B。因此，第 1 轮结束时的名单是 A、B，累计两人。第 2 轮，A 和 B 都可以发送；A 发给已经收到的 B，B 则把消息发给 C，于是名单增加 C，累计三人。第 3 轮同理增加 D，累计四人。</p>
 <p>星形中，A 一开始就与其余五人直接联系，第 1 轮便把消息传给所有人。之后大家仍可以发送，但接收名单不再增加。人数相同、联系数相同，第一轮的结果却分别是两人和六人：联系怎样安排，也参与决定传播过程。</p>
 <table>
@@ -61,14 +63,18 @@
 <p>现在试着继续填写第 4、5 轮。链形里，刚收到的人要等到下一轮才能继续发送，所以消息每轮沿链向前推进一条联系；到第 5 轮，F 才收到。星形从第 1 轮起便已经覆盖全体。</p>
 
 <section class="experiment-example">
-<figure><img src="/web/reading/assets/P00-C01-S03-3fa8dc7b-0.png" alt="从系统问题走向计算与证据：实验结果图" loading="lazy"></figure>
+<figure><img src="/web/reading/assets/P00-C01-S03-3fa8dc7b-0.png" alt="网络传播模型与计算实验：实验结果图" loading="lazy"></figure>
 </section>
 <p>两条曲线在前几轮的高度不同，最后却都达到六人。因此，“第三轮谁收到得更多”和“最后谁收到得更多”会得到不同的比较结果。讨论传播快慢时，既要看累计人数，也要说明比较的是哪一轮。</p>
-<h2>怎样保证计算遵守同一套规则？</h2>
+<p class="concept-explore"><a href="/introduction/explore/?concept=P00-C01-S03%3Achain-star-propagation">可视化与探索：链形与星形网络的逐轮传播 →</a></p>
+
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/introduction/practice/?question=p00-connections">比较两种连接</a></li><li><a href="/introduction/practice/?question=p00-rounds">独立判断前三轮</a></li></ul></nav>
+
+<h2 id="synchronous-update-checks">同步更新的实现与检查</h2>
 <p>手算时，我们总是先看一轮开始前的名单，再找出这一轮能收到的人。计算机也应按相同顺序处理：先保留旧名单，用它判断谁能发送；把新收到的人记入下一份名单；所有联系都检查完，才进入下一轮。原实验中的 Python 函数正是把这三步写成循环。</p>
 <p>这一区分会影响结果。假如检查 A—B 时让 B 收到消息，紧接着检查 B—C 时又允许 B 发送，那么消息可能在一次循环里走完整条链。原来“一轮走一条联系”的传播过程，就变成了另一套规则。让所有发送判断都读取旧名单，才能保证计算与手算描述的是同一个过程。</p>
 <p>还可以用几种容易判断的情况检查计算：一次也不传，名单里应当只有起点；没有任何联系，经过多少轮都只能保留起点；调换联系的列举顺序，各轮名单也应相同，因为同步传递由本轮开始前的名单决定。这些检查把具体规则变成了可以核对的结果。</p>
-<h2>换个起点，解释还成立吗？</h2>
+<h2 id="starting-node-comparison">传播起点的对照实验</h2>
 <p>看到第一轮的结果后，我们可能会说：“星形一轮就能把消息传给所有人。”刚才的 A 在星形中恰好是中心。如果最先收到消息的是 F 呢？</p>
 <p>沿图走一轮：F 只能传给 A，所以第 1 轮的名单是 F、A，累计两人。再走一轮，A 才能把消息传给其他四人，累计六人。传递规则和连接都不变，仅更换起点，逐轮结果就变成下面这样：</p>
 <table>
@@ -106,7 +112,11 @@
 <p>这就是一次<strong>计算实验（computational experiment）</strong>：在明确的模型中，通过计算考察结果如何随条件变化。我们先比较相同起点下的两种连接，再固定连接、改变起点，每一步都能指出改变了什么。手算得到的名单则帮助我们核对计算是否遵守规则。</p>
 <p>如果现实中的消息可能丢失、接收者可能忘记，或联系会随时间改变，这些过程也需要进入模型，并用相应的观测检查。这样，模型中的规则、计算出的预测与实际记录，才会围绕同一个传播问题联系起来。</p>
 <p><a href="/introduction/explore/">连接方式与起点的逐轮探索</a>可以让你暂停在任意一轮，查看新收到消息的人。试着在链形里改变起点，先写出第一轮的接收名单，再核对结果；完整的 Python 实验还可以检查更多轮次和连接安排。</p>
-<h2>从这次小实验走向全书</h2>
+<p class="concept-explore"><a href="/introduction/explore/?concept=P00-C01-S03%3Astarting-node-comparison">可视化与探索：传播起点的对照实验 →</a></p>
+
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/introduction/practice/?question=p00-evidence">解释传播实验</a></li></ul></nav>
+
+<h2 id="research-process-learning-route">系统研究流程与全书学习路线</h2>
 <p>回看刚才的计算，我们做了几件相互连接的事：先问两种连接是否产生相同过程，再规定消息如何传递；用名单作预测，检查逐轮计算；最后更换起点，发现原来的解释还需要说明什么条件。提出问题、建立模型、计算预测和对照证据，就这样连成了一次研究。</p>
 <p>把这种做法带回生命系统，首先需要重新理解对象。在物质交换问题中，转移的是物质，局部减少可能来自移动或清除；在体温调节中，测量与动作互相影响，读数和动作还可能存在延迟；在生态恢复中，个体联系与环境变化又发生在不同时间尺度上。我们可以迁移提问和核对的方法，再为每个对象建立合适的变量、规则和证据。</p>
 <p>全书会逐步补足完成这些工作所需的工具。你可以先看这张地图，知道当前的小实验将通向哪些问题：</p>
@@ -145,8 +155,9 @@
 </tbody>
 </table>
 <p>接下来进入第 1 篇。那里从“读数下降，究竟什么下降”开始，区分研究对象、状态和测量读数，再写出可以计算的关系。导论自测帮助你回看研究问题与证据之间的联系，完成后即可继续。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/introduction/practice/?question=p00-route">根据问题使用学习地图</a></li></ul></nav>
 
-<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P00-C01-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/introduction/practice/?question=p00-rounds">本节练习 · 3 题</a><a class="button" href="/introduction/explore/">可视化与探索</a></div></section>
-<nav class="lesson-neighbors" aria-label="前后小节"><a href="/introduction/read/2/">← 导论·2 系统科学关心什么，如何发展</a><a href="/chapters/01-01-从生理现象提出系统问题/read/1/">1.1.1 边界、状态与观测 →</a></nav></article>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/introduction/read/2/">← 导论·2 系统科学的研究任务与发展脉络</a><a href="/chapters/01-01-从生理现象提出系统问题/read/1/">1.1.1 边界、状态与观测 →</a></nav></article>
 <aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
 </main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

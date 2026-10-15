@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import re
 from teaching_markdown import markdown_to_html
+from reading_navigation import decorate_reading
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
@@ -47,12 +48,13 @@ def render_experiment(cell, lesson, assets, mode="figure"):
 def build(root=ROOT):
     course = json.loads((root / 'web/course/catalog.json').read_text(encoding='utf-8'))
     lessons = [(c,l) for c in course_chapters(course) for l in c['lessons'] if l.get('reading')]
+    questions = {q['id']: q for c in course_chapters(course) for l in c['lessons'] for q in l['questions']}
     dest = root / 'web/reading/pages';dest.mkdir(parents=True,exist_ok=True)
     assets = root / 'web/reading/assets';assets.mkdir(parents=True,exist_ok=True)
     for index, (chapter, lesson) in enumerate(lessons):
         nb = json.loads((root / lesson['path']).read_text(encoding='utf-8'))
         cells = {c['id']:c for c in nb['cells'] if c['cell_type']=='code'}
-        source = (root / lesson['reading']).read_text(encoding='utf-8')
+        source = decorate_reading((root / lesson['reading']).read_text(encoding='utf-8'), lesson, questions)
         if source.count('<!-- experiment:') != len(DIRECTIVE.findall(source)):
             raise ValueError(f'{lesson["id"]}: choose figure or code for each experiment reference')
         sections=[];cursor=0
@@ -83,7 +85,6 @@ def build(root=ROOT):
 <div id="loading-note" class="notice" role="status" hidden></div>
 <div class="reading-actions">{actions}</div>
 <div class="reading-layout"><article id="lesson-content">{body}
-<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions">{actions}</div></section>
 <nav class="lesson-neighbors" aria-label="前后小节">{''.join(adjacent)}</nav></article>
 <aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
 </main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>"""

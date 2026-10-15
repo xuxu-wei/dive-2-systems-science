@@ -67,7 +67,7 @@ function failed(error){$('loading-note').hidden=false;$('loading-note').classLis
 async function start(){
   ({current}=await mountShell('explore'));isStock=current?.id==='1.2';if(!['1.2','1.3'].includes(current?.id))throw Error('本章尚无这一可视化。');limit=isStock?3:12;
   $('eyebrow').textContent=`${current.id} 章 · 可视化与探索`;
-  $('title').textContent=isStock?'相同的流率，持续多久才积累多少？':'读数晚到两步，调节会怎样？';
+  $('title').textContent=isStock?'恒定流率下的存量变化':'延迟与增益的调节响应';
   $('question').textContent=isStock?'先算到 1 T 时有多少，再算到 3 T 时有多少。两段的流率（flow rate）相同，增加的量也会相同吗？':'偏差（deviation）已经回到零，调节器却仍读到过去的正偏差。下一步会停在目标上，还是继续向下？';
   $('explanation').textContent=isStock?'存量（stock）表示容器中现在有多少物质，流率表示每单位时间进入或离开多少物质。这里用 U 作为所追踪物质总量（tracked amount）的教学单位，用 T 作为固定时间单位。流量（flow）在此指流率；恒定流率乘以经过的时间，才是这段时间实际转移的量。':'负反馈（negative feedback）按读到的偏差反向修正。gain 表示每次修正的比例，delay 表示读数落后多少步，这就是本实验的延迟（delay）。读到正偏差就减小当前值，读到负偏差就增大当前值；负偏差表示低于目标温度。';
   $('formula').textContent=isStock?'末量 = 初量 + 持续时间 ×（流入速率 − 流出速率）':'新偏差 = 当前偏差 − gain × delay 步以前的偏差';

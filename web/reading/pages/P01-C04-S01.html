@@ -10,7 +10,7 @@
 <div class="reading-layout"><article id="lesson-content"><h1>1.4.1 规则、参数与初值</h1>
 <p>学完本节，你应能比较两种清除解释，分清初值、参数与模型结构，并用重复减法和乘法推导预测。</p>
 <p><strong>先修知识</strong>：<a href="/chapters/01-03-%E5%8F%8D%E9%A6%88%E3%80%81%E5%BB%B6%E8%BF%9F%E4%B8%8E%E5%B1%82%E7%BA%A7/read/2/">延迟怎样改变调节</a>；百分比与乘方。</p>
-<h2>从 10 变为 9，能知道下一段会怎样吗？</h2>
+<h2 id="fixed-proportional-removal">固定量与固定比例清除</h2>
 <p>一种物质起点有 10 U，经过一个固定时段后剩下 9 U，期间没有外部输入。记录告诉我们，这一段净减少了 1 U。若要预测下一段，还要知道移除量怎样决定。</p>
 <p>可以提出两个解释。第一个说，每段固定移除 1 U；第二个说，每段移除段首总量的 10%。第一次按比例移除的也是 $10\times0.1=1$ U，所以二者都能解释 10→9。</p>
 <p>第二段就分开了。固定量规则从 9 中再减去 1，得到 8 U；比例规则只移除 $9\times0.1=0.9$ U，留下 8.1 U。两条规则第一次算出相同结果，接着预测时却读取了不同关系。</p>
@@ -46,7 +46,9 @@
 </tbody>
 </table>
 <p>第三段的比例计算是 $8.1\times(1-0.1)=7.29$ U，固定量计算则是 $8-1=7$ U。差别来自“移除量是否依赖当前总量”。</p>
-<h2>起点、数值和关系各自决定什么</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-first-step">比较两个清除预测</a></li></ul></nav>
+
+<h2 id="initial-parameters-structure">初值、参数与模型结构</h2>
 <p>将每段固定移除量写为 $c$，将每段移除比例写为 $r$，两条规则成为</p>
 <p>$$\text{新总量}=\text{当前总量}-c,$$</p>
 <p>$$\text{新总量}=\text{当前总量}\times(1-r).$$</p>
@@ -55,7 +57,9 @@
 <p><strong>参数（parameter）</strong>是规定模型关系的量，在本次计算中保持给定值。$c=1$ U 与 $r=0.1$ 分别是两条规则的参数。把比例从 0.1 改为 0.2，仍在使用“按当前量取比例”的关系，只是每次移除的比例变大了。</p>
 <p><strong>模型结构（model structure）</strong>包括模型采用哪些变量，以及变量之间按什么形式联系。把“每次减去固定量”换成“每次按当前量取比例”，改变的是移除量对当前总量的依赖方式，也就是结构。可以把它们看作同一张计算表的三部分：初值填第一行，结构规定怎样算下一行，参数决定这次运算使用的固定数值。</p>
 <p>多显示一位小数只改变呈现精度，不会改变这些更新关系。要比较预测来自哪种改动，就要先分清自己改了哪一部分。</p>
-<h2>重复减法与重复乘法</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class">辨认模型中的改动</a></li></ul></nav>
+
+<h2 id="multi-step-predictions">两种清除规则的多步预测</h2>
 <p>用 $A_0$ 表示起点总量，$A_n$ 表示经过 $n$ 段后的总量。固定量规则每段减去 $c$，经过三段就减去 $c+c+c=3c$，所以</p>
 <p>$$A_n=A_0-nc.$$</p>
 <p>比例规则每段留下当前量的 $1-r$。经过两段，剩余 $A_0(1-r)(1-r)$；经过三段，再乘一次 $1-r$。用乘方表示重复乘法，得到</p>
@@ -67,7 +71,9 @@
 <figure><img src="/web/reading/assets/P01-C04-S01-06806333-0.png" alt="规则、参数与初值：实验结果图" loading="lazy"></figure>
 </section>
 <p>固定量路径每段下降 1 U，相邻点的高度差相同。比例路径的下降幅度逐段减小，因为剩余越少，同样的 10% 对应的移除量也越少。曲线的形状来自每一步采用的关系。</p>
-<h2>改起点与延长时间回答不同问题</h2>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-compare-rules">固定量与固定比例</a></li></ul></nav>
+
+<h2 id="initial-duration-experiments">初值与观察时长的计算实验</h2>
 <p><strong>计算实验（computational experiment）</strong>是在指定模型中设置条件、改变某项因素并计算结果，以检查这项改变怎样影响预测。比如保留 $c=1$ U、$r=0.1$ 和段长，只把起点改成 20 U：固定量候选第一段预测 $20-1=19$ U，比例候选预测 $20\times0.9=18$ U。</p>
 <table>
 <thead>
@@ -94,8 +100,9 @@
 <p>这时可以采用“最多移除当前已有量”的规则。例如只剩 0.4 U 时就移除 0.4 U，随后保持零。它改变了耗尽附近的预测，因此是一项模型修订，而非只改显示数字。</p>
 <p>改起点让两个候选更早产生不同预测；延长时间则让耗尽条件显现。两项计算回答不同问题，但都还需要新的观测才能判断哪种关系更符合所研究的系统。</p>
 <p>现在若只能再观察一次，应继续等到下一段，还是换一个起点？下一节利用预测之间的差别来选择。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-first-failure">第一次越过零发生在哪段</a></li></ul></nav>
 
-<section class="lesson-practice"><h2>动手与自测</h2><p>运行实验，修改条件，再用本节练习检查理解。</p><div class="reading-actions"><a class="button primary" href="/notebook/?id=P01-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class">本节练习 · 4 题</a></div></section>
-<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-03-反馈、延迟与层级/read/2/">← 1.3.2 延迟怎样改变调节</a><a href="/chapters/01-04-模型假设与计算实验/read/2/">1.4.2 设计可以区分解释的实验 →</a></nav></article>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/01-03-反馈、延迟与层级/read/2/">← 1.3.2 延迟、增益与调节响应</a><a href="/chapters/01-04-模型假设与计算实验/read/2/">1.4.2 实验设计与模型检验 →</a></nav></article>
 <aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
 </main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>
