@@ -2272,5 +2272,20 @@
     "zh": "空间模态",
     "en": "spatial mode",
     "scope": "part12"
+  },
+  {
+    "zh": "Galerkin投影",
+    "en": "Galerkin projection",
+    "scope": "part14"
+  },
+  {
+    "zh": "Moore–Penrose伪逆",
+    "en": "Moore–Penrose pseudoinverse",
+    "scope": "part14"
+  },
+  {
+    "zh": "Metzler 矩阵",
+    "en": "Metzler matrix",
+    "scope": "part14"
   }
 ]

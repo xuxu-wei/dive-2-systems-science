@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>14.2.2 动态模态、采样与连续时间频率 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P14-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P14-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates">本节练习 · 4 题</a><a class="button" href="/chapters/14-02-动态模态分解/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>14.2.2 动态模态、采样与连续时间频率</h1>
+<p>拟合矩阵给出“下一步怎样变”。要解释旋转与衰减，还需要知道一步乘子怎样积累成多步运动，以及两次观测相隔多久。如果期间多转一整圈，相邻采样点仍会落在同样的位置。</p>
+<p>学完本节，应能从离散特征值计算幅度率与主值角频率，列出整圈分支，并比较小振幅拟合在新振幅上的预测。先修为14.2.1的传播矩阵、第3篇的复数模态，以及第6篇的采样与混叠。</p>
+<h2 id="eigenvectors-and-modal-amplitudes">特征向量与模态幅度</h2>
+<p>对拟合矩阵 $A$，若非零向量 $\phi$满足</p>
+<p>$$A\phi=\lambda\phi,$$</p>
+<p>则沿这个特征向量的状态项每步都乘同一个 $\lambda$。它构成一个线性<strong>动态模态</strong>：初始系数为 $b$时，第 $k$步该项为 $b\lambda^k\phi$。$\phi$给出各状态分量的组合，$\lambda$给出这一组合随时间的变化。</p>
+<p>写非零特征值为 $\lambda=\rho e^{\mathrm i\theta}$，其中 $\rho=|\lambda|&gt;0$。经过 $k$步，幅度乘 $\rho^k$，相角增加 $k\theta$。例如 $\rho=0.8$时，两步幅度为原来的 $0.8^2=0.64$。$\rho&lt;1$使这一模态缩小，$\rho&gt;1$使其增长，$\rho=1$保持其幅度。</p>
+<p>实矩阵的共轭复模态合起来可以表示实数状态的旋转。它们与SVD方向的选择依据不同：SVD找快照中的强方向，动态模态从一步传播的特征关系定义。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-02-动态模态分解/practice/?question=p14-eigen-modulus">模态幅度的每步变化</a></li></ul></nav>
+
+<h2 id="signed-amplitude-rate-and-principal-frequency">有符号幅度率与主值角频率</h2>
+<p>令采样间隔为 $\Delta t&gt;0$，物理时间为 $t=k\Delta t$。为了让连续表示在采样时刻给出相同乘子，令</p>
+<p>$$\rho^k=e^{\alpha t},\qquad
+\boxed{\alpha=\frac{\log\rho}{\Delta t}.}$$</p>
+<p>$\alpha$是有符号幅度变化率，单位 $1/T$：负值表示衰减，正值表示增长。对实部、虚部求主值相角</p>
+<p>$$\theta=\operatorname{atan2}(\operatorname{Im}\lambda,
+\operatorname{Re}\lambda),\qquad
+\omega_0=\frac\theta{\Delta t}.$$</p>
+<p>$\omega_0$是主值角频率，可用rad/T表示。$\lambda=0$时无法取对数，因此计算题给定非零特征值，依次返回 $\alpha,\omega_0$组成的列表。</p>
+<p>取 $\lambda=0.92e^{0.5\mathrm i}$、$\Delta t=0.4T$，得到</p>
+<p>$$\alpha=\frac{\log0.92}{0.4T}\approx-0.20845/T,\qquad
+\omega_0=\frac{0.5}{0.4T}=1.25\ \mathrm{rad}/T.$$</p>
+<p>再以 $\lambda=\mathrm i$核对：模为1、主值相角为 $\pi/2$，$\Delta t=0.5T$时，$\alpha=0$、$\omega_0=\pi$ rad/T。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates">从离散特征值读主值速率</a></li></ul></nav>
+
+<h2 id="full-turns-and-frequency-branches">整圈相角与频率分支</h2>
+<p>相角增加 $2\pi\ell$不改变离散复数，故与同一离散乘子相容的连续角频率为</p>
+<p>$$\boxed{\omega_\ell=\frac{\theta+2\pi\ell}{\Delta t},
+\qquad\ell\in\mathbb Z.}$$</p>
+<p>采样只记录每隔 $\Delta t$后的结果，把期间多转的整圈合在同一个相角中。主值选择 $\ell=0$；要据此确定连续频率，还要结合可用的频率范围信息。</p>
+<p>例如每步主值相角为0.5 rad、间隔为2 T，则</p>
+<p>$$\omega_\ell=(0.25+\pi\ell)\ \mathrm{rad}/T.$$</p>
+<p>每个整数都给出相同的离散转角。幅度率仍由模决定，这种整圈歧义改变的是角频率分支。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-02-动态模态分解/practice/?question=p14-angle-alias">同一个离散旋转</a></li></ul></nav>
+
+<p>探索页给定 $y(t)=e^{-0.1t/T}\cos(\omega t)$，蓝线使用已知真实 $\omega$，绿点按当前间隔采样。页面由已知 $\omega\Delta t$取主值，再用这一频率画玫红线，用来观察相同采样点之间可能有怎样不同的曲线。</p>
+<p>先固定 $\omega=4$ rad/T：$\Delta t=0.4T$时每步转角1.6 rad，主值频率仍为4；改成 $\Delta t=1T$时，主值变为 $(4-2\pi)$ rad/T，采样点仍相同。余弦还是偶函数，正负频率也会给出相同的单条实余弦波形；完整旋转状态中的方向信息需要同时记录两个分量。</p>
+<p class="concept-explore"><a href="/chapters/14-02-动态模态分解/explore/?concept=P14-C02-S02%3Afull-turns-and-frequency-branches">可视化与探索：整圈相角与频率分支 →</a></p>
+
+<h2 id="amplitude-dependent-nonlinear-updates">振幅相关的非线性更新</h2>
+<p>前面的幅度率解释属于固定矩阵。现在用每步幅度0.92、转角0.5 rad的矩阵</p>
+<p>$$A=0.92\begin{pmatrix}\cos0.5&amp;-\sin0.5\\
+\sin0.5&amp;\cos0.5\end{pmatrix},$$</p>
+<p>再加入非线性作用：</p>
+<p>$$x^+=Ax-\kappa\|x\|^2x,\qquad
+\kappa=0.015/\mathrm U^2.$$</p>
+<p>$x$的两个分量单位均为U，故附加项也为U。这是一条离散一步规则，$\kappa$按每步作用定义；对应采样间隔为0.4 T。</p>
+<p>从 $(0.45,0)^{\mathsf T}$ U开始时，附加项第一分量大小为 $0.015\times0.45^3\ \mathrm U\approx0.00137$ U；从 $(2,0)^{\mathsf T}$ U开始则为0.12 U。同一个矩阵部分之外，较大振幅受到更强的状态相关作用，每步的旋转与缩小因而都可能改变。</p>
+<h2 id="small-amplitude-training-and-large-amplitude-prediction">小振幅训练与大振幅预测</h2>
+<p>训练从 $(0.45,0)^{\mathsf T}$ U出发更新30步，使用31个状态形成的30对快照拟合秩2矩阵。再从未参与训练的 $(2,0)^{\mathsf T}$ U出发，连续预测15步，与非线性规则生成的路径比较。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P14-C02-S02-2b678f53-1.png" alt="动态模态、采样与连续时间频率：实验结果图" loading="lazy"></figure>
+</section>
+<p>横纵轴分别是第一、第二状态，点按时间顺序连接。蓝色路径由完整非线性规则产生，玫红虚线由小振幅拟合的固定DMD矩阵推进。两条路径起点相同，随后在旋转与衰减过程中分开，因为同一固定矩阵没有保留随振幅改变的附加作用。</p>
+<p>若继续比较训练振幅的作用，可以在多个未参与拟合的初始振幅上分别连续预测，保留各自误差与对应范围。下一章将采用另一种表示：把平方等观测函数加入状态描述，看看怎样在更大的函数集合中表达非线性更新。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-02-动态模态分解/practice/?question=p14-local-operator">局部拟合的边界</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/abs/1312.0041">Tu等：On Dynamic Mode Decomposition: Theory and Applications</a>；<a href="https://www.databookuw.com/page-3/page-10/">Brunton与Kutz：Data-Driven Dynamical Systems</a>，动态模态与数据驱动表示的后续材料。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/14-02-动态模态分解/read/1/">← 14.2.1 配对快照、伪逆与线性传播</a><a href="/chapters/14-03-Koopman 表示与有限字典/read/1/">14.3.1 Koopman算子、观测函数与有限闭合 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

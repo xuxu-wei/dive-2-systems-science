@@ -20540,77 +20540,230 @@
               "id": "P14-C01-S01",
               "chapter_id": "14.1",
               "number": "14.1.1",
-              "title": "从快照到截断奇异值",
+              "title": "快照矩阵、奇异值分解与低秩重建",
               "outcome": "先说明快照的行列与数据能量，再手算投影及奇异值截断误差。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/01-从快照到截断奇异值.ipynb",
               "visualization": "web/lowrank/index.html",
+              "reading": "lessons/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/01-从快照到截断奇异值.md",
               "questions": [
                 {
                   "id": "p14-svd-reconstruction",
                   "slug": "p14-svd-reconstruction",
                   "title": "截断 SVD 的投影重建",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/14-01-低秩分解与模型降阶/read/1/#orthogonal-projection-and-truncated-reconstruction",
+                  "concept_title": "正交投影与截断重建",
+                  "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction"
                 },
                 {
                   "id": "p14-energy-limit",
                   "slug": "p14-energy-limit",
                   "title": "高能量比例意味着什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-01-低秩分解与模型降阶/read/1/#squared-singular-values-and-data-energy",
+                  "concept_title": "奇异值平方占比与数据能量",
+                  "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-energy-limit"
                 },
                 {
                   "id": "p14-holdout-basis",
                   "slug": "p14-holdout-basis",
                   "title": "基应从哪些轨迹取得",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-01-低秩分解与模型降阶/read/1/#training-mean-and-centered-representation",
+                  "concept_title": "训练均值与中心化表示",
+                  "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-holdout-basis"
                 },
                 {
                   "id": "p14-sign-and-rank",
                   "slug": "p14-sign-and-rank",
                   "title": "奇异向量改号后的判定",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-01-低秩分解与模型降阶/read/1/#orthogonal-projection-and-truncated-reconstruction",
+                  "concept_title": "正交投影与截断重建",
+                  "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-sign-and-rank"
                 }
               ],
               "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction",
               "notebook_url": "/notebook/?id=P14-C01-S01",
-              "url": "/notebook/?id=P14-C01-S01"
+              "reading_url": "/chapters/14-01-低秩分解与模型降阶/read/1/",
+              "concepts": [
+                {
+                  "id": "state-snapshots-and-matrix-rank",
+                  "title": "状态快照与矩阵的秩",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C01-S01:state-snapshots-and-matrix-rank",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/1/#state-snapshots-and-matrix-rank"
+                },
+                {
+                  "id": "singular-value-decomposition-and-orthogonal-directions",
+                  "title": "奇异值分解与正交方向",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C01-S01:singular-value-decomposition-and-orthogonal-directions",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/1/#singular-value-decomposition-and-orthogonal-directions"
+                },
+                {
+                  "id": "orthogonal-projection-and-truncated-reconstruction",
+                  "title": "正交投影与截断重建",
+                  "question_ids": [
+                    "p14-svd-reconstruction",
+                    "p14-sign-and-rank"
+                  ],
+                  "explore": false,
+                  "key": "P14-C01-S01:orthogonal-projection-and-truncated-reconstruction",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/1/#orthogonal-projection-and-truncated-reconstruction"
+                },
+                {
+                  "id": "squared-singular-values-and-data-energy",
+                  "title": "奇异值平方占比与数据能量",
+                  "question_ids": [
+                    "p14-energy-limit"
+                  ],
+                  "explore": false,
+                  "key": "P14-C01-S01:squared-singular-values-and-data-energy",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/1/#squared-singular-values-and-data-energy"
+                },
+                {
+                  "id": "training-mean-and-centered-representation",
+                  "title": "训练均值与中心化表示",
+                  "question_ids": [
+                    "p14-holdout-basis"
+                  ],
+                  "explore": false,
+                  "key": "P14-C01-S01:training-mean-and-centered-representation",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/1/#training-mean-and-centered-representation"
+                },
+                {
+                  "id": "three-room-training-direction-and-new-initial-state",
+                  "title": "三室训练方向与新初值",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P14-C01-S01:three-room-training-direction-and-new-initial-state",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/1/#three-room-training-direction-and-new-initial-state",
+                  "explore_url": "/chapters/14-01-低秩分解与模型降阶/explore/?concept=P14-C01-S01%3Athree-room-training-direction-and-new-initial-state"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C01-S01:references",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/1/#references"
+                }
+              ],
+              "url": "/chapters/14-01-低秩分解与模型降阶/read/1/"
             },
             {
               "id": "P14-C01-S02",
               "chapter_id": "14.1",
               "number": "14.1.2",
-              "title": "投影动力学与新初值",
+              "title": "Galerkin投影、降阶动力学与初值误差",
               "outcome": "由两室一步投影进入三室Galerkin动态，分开初值映射与后续误差。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/02-投影动力学与新初值.ipynb",
               "visualization": "web/lowrank/index.html",
+              "reading": "lessons/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/02-投影动力学与新初值.md",
               "questions": [
                 {
                   "id": "p14-galerkin-euler",
                   "slug": "p14-galerkin-euler",
                   "title": "已知方程的降阶显式更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/14-01-低秩分解与模型降阶/read/2/#two-room-update-and-the-choice-of-basis",
+                  "concept_title": "两室一步手算与基的作用",
+                  "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler"
                 },
                 {
                   "id": "p14-initial-projection",
                   "slug": "p14-initial-projection",
                   "title": "预测误差从何时开始",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-01-低秩分解与模型降阶/read/2/#reduced-coordinates-and-model-order-reduction",
+                  "concept_title": "低维坐标与模型降阶",
+                  "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-initial-projection"
                 },
                 {
                   "id": "p14-conservation-projection",
                   "slug": "p14-conservation-projection",
                   "title": "投影后是否仍守恒",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-01-低秩分解与模型降阶/read/2/#total-conservation-and-nonnegative-components",
+                  "concept_title": "总量守恒与非负分量",
+                  "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-conservation-projection"
                 },
                 {
                   "id": "p14-time-vs-reduction",
                   "slug": "p14-time-vs-reduction",
                   "title": "区分时间误差与降阶误差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-01-低秩分解与模型降阶/read/2/#time-discretization-versus-reduction-error",
+                  "concept_title": "时间离散与降阶误差的对照",
+                  "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-time-vs-reduction"
                 }
               ],
               "practice_url": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler",
               "notebook_url": "/notebook/?id=P14-C01-S02",
-              "url": "/notebook/?id=P14-C01-S02"
+              "reading_url": "/chapters/14-01-低秩分解与模型降阶/read/2/",
+              "concepts": [
+                {
+                  "id": "reduced-coordinates-and-model-order-reduction",
+                  "title": "低维坐标与模型降阶",
+                  "question_ids": [
+                    "p14-initial-projection"
+                  ],
+                  "explore": false,
+                  "key": "P14-C01-S02:reduced-coordinates-and-model-order-reduction",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/2/#reduced-coordinates-and-model-order-reduction"
+                },
+                {
+                  "id": "galerkin-equation-from-orthogonal-residuals",
+                  "title": "从残差正交得到Galerkin方程",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C01-S02:galerkin-equation-from-orthogonal-residuals",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/2/#galerkin-equation-from-orthogonal-residuals"
+                },
+                {
+                  "id": "two-room-update-and-the-choice-of-basis",
+                  "title": "两室一步手算与基的作用",
+                  "question_ids": [
+                    "p14-galerkin-euler"
+                  ],
+                  "explore": false,
+                  "key": "P14-C01-S02:two-room-update-and-the-choice-of-basis",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/2/#two-room-update-and-the-choice-of-basis"
+                },
+                {
+                  "id": "total-conservation-and-nonnegative-components",
+                  "title": "总量守恒与非负分量",
+                  "question_ids": [
+                    "p14-conservation-projection"
+                  ],
+                  "explore": false,
+                  "key": "P14-C01-S02:total-conservation-and-nonnegative-components",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/2/#total-conservation-and-nonnegative-components"
+                },
+                {
+                  "id": "time-discretization-versus-reduction-error",
+                  "title": "时间离散与降阶误差的对照",
+                  "question_ids": [
+                    "p14-time-vs-reduction"
+                  ],
+                  "explore": true,
+                  "key": "P14-C01-S02:time-discretization-versus-reduction-error",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/2/#time-discretization-versus-reduction-error",
+                  "explore_url": "/chapters/14-01-低秩分解与模型降阶/explore/?concept=P14-C01-S02%3Atime-discretization-versus-reduction-error"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C01-S02:references",
+                  "url": "/chapters/14-01-低秩分解与模型降阶/read/2/#references"
+                }
+              ],
+              "url": "/chapters/14-01-低秩分解与模型降阶/read/2/"
             }
           ],
           "visualization": "web/lowrank/index.html"
@@ -20634,77 +20787,222 @@
               "id": "P14-C02-S01",
               "chapter_id": "14.2",
               "number": "14.2.1",
-              "title": "配对快照与线性传播",
+              "title": "配对快照、伪逆与线性传播",
               "outcome": "配对当前和下一步状态，用独立列求传播系数，再检验新初值。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/01-配对快照与线性传播.ipynb",
               "visualization": "web/datadriven/index.html",
+              "reading": "lessons/14-数据驱动动力学与模型降阶/02-动态模态分解/01-配对快照与线性传播.md",
               "questions": [
                 {
                   "id": "p14-dmd-fit",
                   "slug": "p14-dmd-fit",
                   "title": "从配对快照拟合传播矩阵",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/14-02-动态模态分解/read/1/#least-squares-and-pseudoinverse",
+                  "concept_title": "最小二乘与Moore–Penrose伪逆",
+                  "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit"
                 },
                 {
                   "id": "p14-one-step-rollout",
                   "slug": "p14-one-step-rollout",
                   "title": "一步拟合后的评估",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-02-动态模态分解/read/1/#eight-pairs-and-new-initial-state-prediction",
+                  "concept_title": "八对训练状态与新初值预测",
+                  "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-one-step-rollout"
                 },
                 {
                   "id": "p14-null-direction",
                   "slug": "p14-null-direction",
                   "title": "未激发方向的传播",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-02-动态模态分解/read/1/#unobserved-directions-and-minimum-norm-choice",
+                  "concept_title": "未见方向与最小范数选择",
+                  "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-null-direction"
                 },
                 {
                   "id": "p14-paired-columns",
                   "slug": "p14-paired-columns",
                   "title": "配对列的时间含义",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-02-动态模态分解/read/1/#paired-snapshots-and-sampling-interval",
+                  "concept_title": "配对快照与采样间隔",
+                  "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-paired-columns"
                 }
               ],
               "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit",
               "notebook_url": "/notebook/?id=P14-C02-S01",
-              "url": "/notebook/?id=P14-C02-S01"
+              "reading_url": "/chapters/14-02-动态模态分解/read/1/",
+              "concepts": [
+                {
+                  "id": "paired-snapshots-and-sampling-interval",
+                  "title": "配对快照与采样间隔",
+                  "question_ids": [
+                    "p14-paired-columns"
+                  ],
+                  "explore": false,
+                  "key": "P14-C02-S01:paired-snapshots-and-sampling-interval",
+                  "url": "/chapters/14-02-动态模态分解/read/1/#paired-snapshots-and-sampling-interval"
+                },
+                {
+                  "id": "hand-calculation-of-a-two-dimensional-map",
+                  "title": "二维传播矩阵的手算",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C02-S01:hand-calculation-of-a-two-dimensional-map",
+                  "url": "/chapters/14-02-动态模态分解/read/1/#hand-calculation-of-a-two-dimensional-map"
+                },
+                {
+                  "id": "least-squares-and-pseudoinverse",
+                  "title": "最小二乘与Moore–Penrose伪逆",
+                  "question_ids": [
+                    "p14-dmd-fit"
+                  ],
+                  "explore": false,
+                  "key": "P14-C02-S01:least-squares-and-pseudoinverse",
+                  "url": "/chapters/14-02-动态模态分解/read/1/#least-squares-and-pseudoinverse"
+                },
+                {
+                  "id": "unobserved-directions-and-minimum-norm-choice",
+                  "title": "未见方向与最小范数选择",
+                  "question_ids": [
+                    "p14-null-direction"
+                  ],
+                  "explore": false,
+                  "key": "P14-C02-S01:unobserved-directions-and-minimum-norm-choice",
+                  "url": "/chapters/14-02-动态模态分解/read/1/#unobserved-directions-and-minimum-norm-choice"
+                },
+                {
+                  "id": "eight-pairs-and-new-initial-state-prediction",
+                  "title": "八对训练状态与新初值预测",
+                  "question_ids": [
+                    "p14-one-step-rollout"
+                  ],
+                  "explore": false,
+                  "key": "P14-C02-S01:eight-pairs-and-new-initial-state-prediction",
+                  "url": "/chapters/14-02-动态模态分解/read/1/#eight-pairs-and-new-initial-state-prediction"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C02-S01:references",
+                  "url": "/chapters/14-02-动态模态分解/read/1/#references"
+                }
+              ],
+              "url": "/chapters/14-02-动态模态分解/read/1/"
             },
             {
               "id": "P14-C02-S02",
               "chapter_id": "14.2",
               "number": "14.2.2",
-              "title": "模态、采样与预测范围",
+              "title": "动态模态、采样与连续时间频率",
               "outcome": "将每步幅度和相角换成时间速率，解释整圈混叠与振幅范围。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/02-模态、采样与预测范围.ipynb",
               "visualization": "web/datadriven/index.html",
+              "reading": "lessons/14-数据驱动动力学与模型降阶/02-动态模态分解/02-模态、采样与预测范围.md",
               "questions": [
                 {
                   "id": "p14-dmd-rates",
                   "slug": "p14-dmd-rates",
                   "title": "从离散特征值读主值速率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/14-02-动态模态分解/read/2/#signed-amplitude-rate-and-principal-frequency",
+                  "concept_title": "有符号幅度率与主值角频率",
+                  "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates"
                 },
                 {
                   "id": "p14-angle-alias",
                   "slug": "p14-angle-alias",
                   "title": "同一个离散旋转",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-02-动态模态分解/read/2/#full-turns-and-frequency-branches",
+                  "concept_title": "整圈相角与频率分支",
+                  "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-angle-alias"
                 },
                 {
                   "id": "p14-eigen-modulus",
                   "slug": "p14-eigen-modulus",
                   "title": "模态幅度的每步变化",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-02-动态模态分解/read/2/#eigenvectors-and-modal-amplitudes",
+                  "concept_title": "特征向量与模态幅度",
+                  "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-eigen-modulus"
                 },
                 {
                   "id": "p14-local-operator",
                   "slug": "p14-local-operator",
                   "title": "局部拟合的边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-02-动态模态分解/read/2/#small-amplitude-training-and-large-amplitude-prediction",
+                  "concept_title": "小振幅训练与大振幅预测",
+                  "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-local-operator"
                 }
               ],
               "practice_url": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates",
               "notebook_url": "/notebook/?id=P14-C02-S02",
-              "url": "/notebook/?id=P14-C02-S02"
+              "reading_url": "/chapters/14-02-动态模态分解/read/2/",
+              "concepts": [
+                {
+                  "id": "eigenvectors-and-modal-amplitudes",
+                  "title": "特征向量与模态幅度",
+                  "question_ids": [
+                    "p14-eigen-modulus"
+                  ],
+                  "explore": false,
+                  "key": "P14-C02-S02:eigenvectors-and-modal-amplitudes",
+                  "url": "/chapters/14-02-动态模态分解/read/2/#eigenvectors-and-modal-amplitudes"
+                },
+                {
+                  "id": "signed-amplitude-rate-and-principal-frequency",
+                  "title": "有符号幅度率与主值角频率",
+                  "question_ids": [
+                    "p14-dmd-rates"
+                  ],
+                  "explore": false,
+                  "key": "P14-C02-S02:signed-amplitude-rate-and-principal-frequency",
+                  "url": "/chapters/14-02-动态模态分解/read/2/#signed-amplitude-rate-and-principal-frequency"
+                },
+                {
+                  "id": "full-turns-and-frequency-branches",
+                  "title": "整圈相角与频率分支",
+                  "question_ids": [
+                    "p14-angle-alias"
+                  ],
+                  "explore": true,
+                  "key": "P14-C02-S02:full-turns-and-frequency-branches",
+                  "url": "/chapters/14-02-动态模态分解/read/2/#full-turns-and-frequency-branches",
+                  "explore_url": "/chapters/14-02-动态模态分解/explore/?concept=P14-C02-S02%3Afull-turns-and-frequency-branches"
+                },
+                {
+                  "id": "amplitude-dependent-nonlinear-updates",
+                  "title": "振幅相关的非线性更新",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C02-S02:amplitude-dependent-nonlinear-updates",
+                  "url": "/chapters/14-02-动态模态分解/read/2/#amplitude-dependent-nonlinear-updates"
+                },
+                {
+                  "id": "small-amplitude-training-and-large-amplitude-prediction",
+                  "title": "小振幅训练与大振幅预测",
+                  "question_ids": [
+                    "p14-local-operator"
+                  ],
+                  "explore": false,
+                  "key": "P14-C02-S02:small-amplitude-training-and-large-amplitude-prediction",
+                  "url": "/chapters/14-02-动态模态分解/read/2/#small-amplitude-training-and-large-amplitude-prediction"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C02-S02:references",
+                  "url": "/chapters/14-02-动态模态分解/read/2/#references"
+                }
+              ],
+              "url": "/chapters/14-02-动态模态分解/read/2/"
             }
           ],
           "visualization": "web/datadriven/index.html"
@@ -20728,77 +21026,245 @@
               "id": "P14-C03-S01",
               "chapter_id": "14.3",
               "number": "14.3.1",
-              "title": "从非线性状态到线性观测",
+              "title": "Koopman算子、观测函数与有限闭合",
               "outcome": "按函数顺序建立特征列，逐行推导平方项的闭合及状态读出。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/01-从非线性状态到线性观测.ipynb",
               "visualization": "web/datadriven/index.html",
+              "reading": "lessons/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/01-从非线性状态到线性观测.md",
               "questions": [
                 {
                   "id": "p14-edmd-fit",
                   "slug": "p14-edmd-fit",
                   "title": "从观测特征拟合传播",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#paired-feature-regression-and-edmd",
+                  "concept_title": "配对特征回归与EDMD",
+                  "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit"
                 },
                 {
                   "id": "p14-koopman-functions",
                   "slug": "p14-koopman-functions",
                   "title": "算子作用在哪里",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#koopman-operator-and-linearity",
+                  "concept_title": "Koopman算子的定义与线性",
+                  "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-koopman-functions"
                 },
                 {
                   "id": "p14-exact-closure",
                   "slug": "p14-exact-closure",
                   "title": "三角映射为何闭合",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#dictionary-and-closed-lift",
+                  "concept_title": "函数字典与三行闭合矩阵",
+                  "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-exact-closure"
                 },
                 {
                   "id": "p14-readout",
                   "slug": "p14-readout",
                   "title": "状态读出的作用",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#lifting-and-state-readout",
+                  "concept_title": "提升状态与原状态读出",
+                  "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-readout"
                 }
               ],
               "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit",
               "notebook_url": "/notebook/?id=P14-C03-S01",
-              "url": "/notebook/?id=P14-C03-S01"
+              "reading_url": "/chapters/14-03-Koopman 表示与有限字典/read/1/",
+              "concepts": [
+                {
+                  "id": "state-updates-and-observables",
+                  "title": "状态更新与观测函数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C03-S01:state-updates-and-observables",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#state-updates-and-observables"
+                },
+                {
+                  "id": "koopman-operator-and-linearity",
+                  "title": "Koopman算子的定义与线性",
+                  "question_ids": [
+                    "p14-koopman-functions"
+                  ],
+                  "explore": false,
+                  "key": "P14-C03-S01:koopman-operator-and-linearity",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#koopman-operator-and-linearity"
+                },
+                {
+                  "id": "dictionary-and-closed-lift",
+                  "title": "函数字典与三行闭合矩阵",
+                  "question_ids": [
+                    "p14-exact-closure"
+                  ],
+                  "explore": false,
+                  "key": "P14-C03-S01:dictionary-and-closed-lift",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#dictionary-and-closed-lift"
+                },
+                {
+                  "id": "lifting-and-state-readout",
+                  "title": "提升状态与原状态读出",
+                  "question_ids": [
+                    "p14-readout"
+                  ],
+                  "explore": false,
+                  "key": "P14-C03-S01:lifting-and-state-readout",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#lifting-and-state-readout"
+                },
+                {
+                  "id": "paired-feature-regression-and-edmd",
+                  "title": "配对特征回归与EDMD",
+                  "question_ids": [
+                    "p14-edmd-fit"
+                  ],
+                  "explore": false,
+                  "key": "P14-C03-S01:paired-feature-regression-and-edmd",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#paired-feature-regression-and-edmd"
+                },
+                {
+                  "id": "held-out-trajectory-of-a-closed-dictionary",
+                  "title": "闭合字典的独立初值预测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C03-S01:held-out-trajectory-of-a-closed-dictionary",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#held-out-trajectory-of-a-closed-dictionary"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C03-S01:references",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/#references"
+                }
+              ],
+              "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/"
             },
             {
               "id": "P14-C03-S02",
               "chapter_id": "14.3",
               "number": "14.3.2",
-              "title": "字典失配与正则化",
+              "title": "有限字典投影、遗漏项与岭正则化",
               "outcome": "重新拟合短字典与完整字典，比较遗漏、正则及复合函数更新。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.ipynb",
               "visualization": "web/datadriven/index.html",
+              "reading": "lessons/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.md",
               "questions": [
                 {
                   "id": "p14-lifted-roll",
                   "slug": "p14-lifted-roll",
                   "title": "在固定字典中滚动预测",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#rolling-features-and-reading-out-states",
+                  "concept_title": "连续特征传播与状态读出",
+                  "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll"
                 },
                 {
                   "id": "p14-dictionary-mismatch",
                   "slug": "p14-dictionary-mismatch",
                   "title": "增加字典后的证据",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#held-out-errors-for-three-representations",
+                  "concept_title": "三种表示的独立状态误差",
+                  "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-dictionary-mismatch"
                 },
                 {
                   "id": "p14-ridge-bias",
                   "slug": "p14-ridge-bias",
                   "title": "正则参数的选择",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#ridge-objective-and-normal-equations",
+                  "concept_title": "岭目标与矩阵方程",
+                  "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-ridge-bias"
                 },
                 {
                   "id": "p14-feature-drift",
                   "slug": "p14-feature-drift",
                   "title": "线性滚动后的特征",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#rolling-features-and-reading-out-states",
+                  "concept_title": "连续特征传播与状态读出",
+                  "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-feature-drift"
                 }
               ],
               "practice_url": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll",
               "notebook_url": "/notebook/?id=P14-C03-S02",
-              "url": "/notebook/?id=P14-C03-S02"
+              "reading_url": "/chapters/14-03-Koopman 表示与有限字典/read/2/",
+              "concepts": [
+                {
+                  "id": "empirical-projection-onto-a-dictionary",
+                  "title": "有限样本上的函数投影",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C03-S02:empirical-projection-onto-a-dictionary",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#empirical-projection-onto-a-dictionary"
+                },
+                {
+                  "id": "omitted-quadratic-term-and-refitting",
+                  "title": "遗漏平方项后的重新拟合",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C03-S02:omitted-quadratic-term-and-refitting",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#omitted-quadratic-term-and-refitting"
+                },
+                {
+                  "id": "ridge-objective-and-normal-equations",
+                  "title": "岭目标与矩阵方程",
+                  "question_ids": [
+                    "p14-ridge-bias"
+                  ],
+                  "explore": false,
+                  "key": "P14-C03-S02:ridge-objective-and-normal-equations",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#ridge-objective-and-normal-equations"
+                },
+                {
+                  "id": "rolling-features-and-reading-out-states",
+                  "title": "连续特征传播与状态读出",
+                  "question_ids": [
+                    "p14-lifted-roll",
+                    "p14-feature-drift"
+                  ],
+                  "explore": false,
+                  "key": "P14-C03-S02:rolling-features-and-reading-out-states",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#rolling-features-and-reading-out-states"
+                },
+                {
+                  "id": "held-out-errors-for-three-representations",
+                  "title": "三种表示的独立状态误差",
+                  "question_ids": [
+                    "p14-dictionary-mismatch"
+                  ],
+                  "explore": false,
+                  "key": "P14-C03-S02:held-out-errors-for-three-representations",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#held-out-errors-for-three-representations"
+                },
+                {
+                  "id": "interactive-dictionary-refitting",
+                  "title": "删项与重拟合的交互对照",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P14-C03-S02:interactive-dictionary-refitting",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#interactive-dictionary-refitting",
+                  "explore_url": "/chapters/14-03-Koopman 表示与有限字典/explore/?concept=P14-C03-S02%3Ainteractive-dictionary-refitting"
+                },
+                {
+                  "id": "saturating-map-and-composed-observables",
+                  "title": "饱和更新与复合函数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C03-S02:saturating-map-and-composed-observables",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#saturating-map-and-composed-observables"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C03-S02:references",
+                  "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/#references"
+                }
+              ],
+              "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/"
             }
           ],
           "visualization": "web/datadriven/index.html"
@@ -20823,77 +21289,246 @@
               "id": "P14-C04-S01",
               "chapter_id": "14.4",
               "number": "14.4.1",
-              "title": "候选字典与顺序阈值回归",
+              "title": "候选方程、列归一化与顺序阈值回归",
               "outcome": "逐行建立候选表，说明列归一化、阈值筛选、重新拟合与列索引。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/01-候选字典与顺序阈值回归.ipynb",
               "visualization": "web/datadriven/index.html",
+              "reading": "lessons/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/01-候选字典与顺序阈值回归.md",
               "questions": [
                 {
                   "id": "p14-sparse-stlsq",
                   "slug": "p14-sparse-stlsq",
                   "title": "按列归一化的稀疏辨识",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/14-04-稀疏动力学辨识/read/1/#support-and-sequential-thresholded-least-squares",
+                  "concept_title": "支持集与顺序阈值最小二乘",
+                  "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq"
                 },
                 {
                   "id": "p14-column-scale",
                   "slug": "p14-column-scale",
                   "title": "为何声明列尺度",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-04-稀疏动力学辨识/read/1/#column-scaling-and-normalized-coefficients",
+                  "concept_title": "列缩放与归一化系数",
+                  "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-column-scale"
                 },
                 {
                   "id": "p14-collinear-terms",
                   "slug": "p14-collinear-terms",
                   "title": "共线候选的边界",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-04-稀疏动力学辨识/read/1/#four-thresholds-for-a-known-equation",
+                  "concept_title": "已知方程的四个阈值",
+                  "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-collinear-terms"
                 },
                 {
                   "id": "p14-candidate-mechanism",
                   "slug": "p14-candidate-mechanism",
                   "title": "候选项与机制",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-04-稀疏动力学辨识/read/1/#candidate-terms-and-mechanism-interpretation",
+                  "concept_title": "候选项、机制解释与探索",
+                  "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-candidate-mechanism"
                 }
               ],
               "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq",
               "notebook_url": "/notebook/?id=P14-C04-S01",
-              "url": "/notebook/?id=P14-C04-S01"
+              "reading_url": "/chapters/14-04-稀疏动力学辨识/read/1/",
+              "concepts": [
+                {
+                  "id": "candidate-functions-and-differential-equations",
+                  "title": "候选函数与动态方程",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C04-S01:candidate-functions-and-differential-equations",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/1/#candidate-functions-and-differential-equations"
+                },
+                {
+                  "id": "sample-rows-and-candidate-columns",
+                  "title": "样本行、候选列与系数顺序",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C04-S01:sample-rows-and-candidate-columns",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/1/#sample-rows-and-candidate-columns"
+                },
+                {
+                  "id": "column-scaling-and-normalized-coefficients",
+                  "title": "列缩放与归一化系数",
+                  "question_ids": [
+                    "p14-column-scale"
+                  ],
+                  "explore": false,
+                  "key": "P14-C04-S01:column-scaling-and-normalized-coefficients",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/1/#column-scaling-and-normalized-coefficients"
+                },
+                {
+                  "id": "support-and-sequential-thresholded-least-squares",
+                  "title": "支持集与顺序阈值最小二乘",
+                  "question_ids": [
+                    "p14-sparse-stlsq"
+                  ],
+                  "explore": false,
+                  "key": "P14-C04-S01:support-and-sequential-thresholded-least-squares",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/1/#support-and-sequential-thresholded-least-squares"
+                },
+                {
+                  "id": "four-thresholds-for-a-known-equation",
+                  "title": "已知方程的四个阈值",
+                  "question_ids": [
+                    "p14-collinear-terms"
+                  ],
+                  "explore": false,
+                  "key": "P14-C04-S01:four-thresholds-for-a-known-equation",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/1/#four-thresholds-for-a-known-equation"
+                },
+                {
+                  "id": "candidate-terms-and-mechanism-interpretation",
+                  "title": "候选项、机制解释与探索",
+                  "question_ids": [
+                    "p14-candidate-mechanism"
+                  ],
+                  "explore": true,
+                  "key": "P14-C04-S01:candidate-terms-and-mechanism-interpretation",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/1/#candidate-terms-and-mechanism-interpretation",
+                  "explore_url": "/chapters/14-04-稀疏动力学辨识/explore/?concept=P14-C04-S01%3Acandidate-terms-and-mechanism-interpretation"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C04-S01:references",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/1/#references"
+                }
+              ],
+              "url": "/chapters/14-04-稀疏动力学辨识/read/1/"
             },
             {
               "id": "P14-C04-S02",
               "chapter_id": "14.4",
               "number": "14.4.2",
-              "title": "导数噪声与独立轨迹",
+              "title": "差分噪声、独立预测与Lorenz基准",
               "outcome": "推导等距差分的噪声方差，比较重复系数与独立初值预测。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/02-导数噪声与独立轨迹.ipynb",
               "visualization": "web/datadriven/index.html",
+              "reading": "lessons/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/02-导数噪声与独立轨迹.md",
               "questions": [
                 {
                   "id": "p14-finite-derivative",
                   "slug": "p14-finite-derivative",
                   "title": "从等距采样估计变化率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/14-04-稀疏动力学辨识/read/2/#one-sided-and-central-differences",
+                  "concept_title": "等距时刻的单边与中心差分",
+                  "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative"
                 },
                 {
                   "id": "p14-noise-difference",
                   "slug": "p14-noise-difference",
                   "title": "缩短采样一定更好吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-04-稀疏动力学辨识/read/2/#observation-noise-in-differences",
+                  "concept_title": "差分中的观测噪声",
+                  "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-noise-difference"
                 },
                 {
                   "id": "p14-trajectory-split",
                   "slug": "p14-trajectory-split",
                   "title": "何为独立轨迹验证",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-04-稀疏动力学辨识/read/2/#independent-initial-condition-prediction",
+                  "concept_title": "独立起点与预测误差",
+                  "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-trajectory-split"
                 },
                 {
                   "id": "p14-chaotic-long-term",
                   "slug": "p14-chaotic-long-term",
                   "title": "混沌基准的比较",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-04-稀疏动力学辨识/read/2/#lorenz-long-window-statistics-and-geometry",
+                  "concept_title": "长窗逐点差、统计与轨迹几何",
+                  "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-chaotic-long-term"
                 }
               ],
               "practice_url": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative",
               "notebook_url": "/notebook/?id=P14-C04-S02",
-              "url": "/notebook/?id=P14-C04-S02"
+              "reading_url": "/chapters/14-04-稀疏动力学辨识/read/2/",
+              "concepts": [
+                {
+                  "id": "one-sided-and-central-differences",
+                  "title": "等距时刻的单边与中心差分",
+                  "question_ids": [
+                    "p14-finite-derivative"
+                  ],
+                  "explore": false,
+                  "key": "P14-C04-S02:one-sided-and-central-differences",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/2/#one-sided-and-central-differences"
+                },
+                {
+                  "id": "observation-noise-in-differences",
+                  "title": "差分中的观测噪声",
+                  "question_ids": [
+                    "p14-noise-difference"
+                  ],
+                  "explore": false,
+                  "key": "P14-C04-S02:observation-noise-in-differences",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/2/#observation-noise-in-differences"
+                },
+                {
+                  "id": "logistic-observations-and-repeated-coefficients",
+                  "title": "Logistic观测与重复系数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C04-S02:logistic-observations-and-repeated-coefficients",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/2/#logistic-observations-and-repeated-coefficients"
+                },
+                {
+                  "id": "independent-initial-condition-prediction",
+                  "title": "独立起点与预测误差",
+                  "question_ids": [
+                    "p14-trajectory-split"
+                  ],
+                  "explore": false,
+                  "key": "P14-C04-S02:independent-initial-condition-prediction",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/2/#independent-initial-condition-prediction"
+                },
+                {
+                  "id": "lorenz-benchmark-and-structural-recovery",
+                  "title": "Lorenz课程基准与结构恢复",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C04-S02:lorenz-benchmark-and-structural-recovery",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/2/#lorenz-benchmark-and-structural-recovery"
+                },
+                {
+                  "id": "lorenz-short-window-and-step-comparison",
+                  "title": "独立Lorenz轨迹的短窗与步长对照",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C04-S02:lorenz-short-window-and-step-comparison",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/2/#lorenz-short-window-and-step-comparison"
+                },
+                {
+                  "id": "lorenz-long-window-statistics-and-geometry",
+                  "title": "长窗逐点差、统计与轨迹几何",
+                  "question_ids": [
+                    "p14-chaotic-long-term"
+                  ],
+                  "explore": false,
+                  "key": "P14-C04-S02:lorenz-long-window-statistics-and-geometry",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/2/#lorenz-long-window-statistics-and-geometry"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C04-S02:references",
+                  "url": "/chapters/14-04-稀疏动力学辨识/read/2/#references"
+                }
+              ],
+              "url": "/chapters/14-04-稀疏动力学辨识/read/2/"
             }
           ],
           "visualization": "web/datadriven/index.html"
@@ -20918,77 +21553,237 @@
               "id": "P14-C05-S01",
               "chapter_id": "14.5",
               "number": "14.5.1",
-              "title": "守恒、正性与离散步长",
+              "title": "守恒、连续正性与离散非负性",
               "outcome": "从两室收支推导列和与转移符号，再手算Euler过大步长反例。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/01-守恒、正性与离散步长.ipynb",
               "visualization": "web/datadriven/index.html",
+              "reading": "lessons/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/01-守恒、正性与离散步长.md",
               "questions": [
                 {
                   "id": "p14-structure-metrics",
                   "slug": "p14-structure-metrics",
                   "title": "检查交换矩阵与 Euler 一步",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/14-05-噪声、外推与结构保持/read/1/#matrix-diagnostics-and-total-amount",
+                  "concept_title": "矩阵指标与逐步总量",
+                  "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics"
                 },
                 {
                   "id": "p14-column-conservation",
                   "slug": "p14-column-conservation",
                   "title": "总量守恒看哪一项",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-05-噪声、外推与结构保持/read/1/#column-sums-and-conservation-weights",
+                  "concept_title": "列和与守恒权重",
+                  "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-column-conservation"
                 },
                 {
                   "id": "p14-euler-positive",
                   "slug": "p14-euler-positive",
                   "title": "连续正性与一步正性",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-05-噪声、外推与结构保持/read/1/#nonnegative-euler-updates",
+                  "concept_title": "Euler 一步的非负条件",
+                  "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-euler-positive"
                 },
                 {
                   "id": "p14-concentration-coordinates",
                   "slug": "p14-concentration-coordinates",
                   "title": "何时不能照搬列和",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-05-噪声、外推与结构保持/read/1/#column-sums-and-conservation-weights",
+                  "concept_title": "列和与守恒权重",
+                  "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-concentration-coordinates"
                 }
               ],
               "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics",
               "notebook_url": "/notebook/?id=P14-C05-S01",
-              "url": "/notebook/?id=P14-C05-S01"
+              "reading_url": "/chapters/14-05-噪声、外推与结构保持/read/1/",
+              "concepts": [
+                {
+                  "id": "compartment-exchange-in-amount-coordinates",
+                  "title": "总量坐标中的逐室交换",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C05-S01:compartment-exchange-in-amount-coordinates",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/1/#compartment-exchange-in-amount-coordinates"
+                },
+                {
+                  "id": "column-sums-and-conservation-weights",
+                  "title": "列和与守恒权重",
+                  "question_ids": [
+                    "p14-column-conservation",
+                    "p14-concentration-coordinates"
+                  ],
+                  "explore": false,
+                  "key": "P14-C05-S01:column-sums-and-conservation-weights",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/1/#column-sums-and-conservation-weights"
+                },
+                {
+                  "id": "continuous-positivity-and-metzler-matrices",
+                  "title": "连续正性与 Metzler 矩阵",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C05-S01:continuous-positivity-and-metzler-matrices",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/1/#continuous-positivity-and-metzler-matrices"
+                },
+                {
+                  "id": "nonnegative-euler-updates",
+                  "title": "Euler 一步的非负条件",
+                  "question_ids": [
+                    "p14-euler-positive"
+                  ],
+                  "explore": false,
+                  "key": "P14-C05-S01:nonnegative-euler-updates",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/1/#nonnegative-euler-updates"
+                },
+                {
+                  "id": "matrix-diagnostics-and-total-amount",
+                  "title": "矩阵指标与逐步总量",
+                  "question_ids": [
+                    "p14-structure-metrics"
+                  ],
+                  "explore": true,
+                  "key": "P14-C05-S01:matrix-diagnostics-and-total-amount",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/1/#matrix-diagnostics-and-total-amount",
+                  "explore_url": "/chapters/14-05-噪声、外推与结构保持/explore/?concept=P14-C05-S01%3Amatrix-diagnostics-and-total-amount"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C05-S01:references",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/1/#references"
+                }
+              ],
+              "url": "/chapters/14-05-噪声、外推与结构保持/read/1/"
             },
             {
               "id": "P14-C05-S02",
               "chapter_id": "14.5",
               "number": "14.5.2",
-              "title": "同一预算下的外推比较",
+              "title": "数据覆盖、独立预测与结构误差",
               "outcome": "在共同数据和预测窗口上分别解释状态误差、总量差与负值数。",
               "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/02-同一预算下的外推比较.ipynb",
               "visualization": "web/datadriven/index.html",
+              "reading": "lessons/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/02-同一预算下的外推比较.md",
               "questions": [
                 {
                   "id": "p14-path-metrics",
                   "slug": "p14-path-metrics",
                   "title": "同一时域下报告失败",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/14-05-噪声、外推与结构保持/read/2/#elementwise-error-balance-error-and-negative-values",
+                  "concept_title": "逐元素误差、总量差与负值数",
+                  "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics"
                 },
                 {
                   "id": "p14-fair-budget",
                   "slug": "p14-fair-budget",
                   "title": "怎样比较不同模型",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-05-噪声、外推与结构保持/read/2/#data-and-prior-information-across-methods",
+                  "concept_title": "方法之间的数据与已知信息",
+                  "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-fair-budget"
                 },
                 {
                   "id": "p14-initial-error",
                   "slug": "p14-initial-error",
                   "title": "初始时刻的偏差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-05-噪声、外推与结构保持/read/2/#excited-and-unseen-state-directions",
+                  "concept_title": "已激发方向与未见方向",
+                  "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-initial-error"
                 },
                 {
                   "id": "p14-repeat-noise",
                   "slug": "p14-repeat-noise",
                   "title": "重复观测噪声实验",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/14-05-噪声、外推与结构保持/read/2/#measurement-noise-and-repeated-fitting",
+                  "concept_title": "观测噪声与重复拟合",
+                  "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-repeat-noise"
                 }
               ],
               "practice_url": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics",
               "notebook_url": "/notebook/?id=P14-C05-S02",
-              "url": "/notebook/?id=P14-C05-S02"
+              "reading_url": "/chapters/14-05-噪声、外推与结构保持/read/2/",
+              "concepts": [
+                {
+                  "id": "three-compartment-exchange-and-shared-data",
+                  "title": "三室交换与共同数据",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C05-S02:three-compartment-exchange-and-shared-data",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/2/#three-compartment-exchange-and-shared-data"
+                },
+                {
+                  "id": "excited-and-unseen-state-directions",
+                  "title": "已激发方向与未见方向",
+                  "question_ids": [
+                    "p14-initial-error"
+                  ],
+                  "explore": false,
+                  "key": "P14-C05-S02:excited-and-unseen-state-directions",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/2/#excited-and-unseen-state-directions"
+                },
+                {
+                  "id": "data-and-prior-information-across-methods",
+                  "title": "方法之间的数据与已知信息",
+                  "question_ids": [
+                    "p14-fair-budget"
+                  ],
+                  "explore": false,
+                  "key": "P14-C05-S02:data-and-prior-information-across-methods",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/2/#data-and-prior-information-across-methods"
+                },
+                {
+                  "id": "elementwise-error-balance-error-and-negative-values",
+                  "title": "逐元素误差、总量差与负值数",
+                  "question_ids": [
+                    "p14-path-metrics"
+                  ],
+                  "explore": false,
+                  "key": "P14-C05-S02:elementwise-error-balance-error-and-negative-values",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/2/#elementwise-error-balance-error-and-negative-values"
+                },
+                {
+                  "id": "five-predictions-from-a-new-initial-state",
+                  "title": "新初值上的五种预测",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C05-S02:five-predictions-from-a-new-initial-state",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/2/#five-predictions-from-a-new-initial-state"
+                },
+                {
+                  "id": "measurement-noise-and-repeated-fitting",
+                  "title": "观测噪声与重复拟合",
+                  "question_ids": [
+                    "p14-repeat-noise"
+                  ],
+                  "explore": false,
+                  "key": "P14-C05-S02:measurement-noise-and-repeated-fitting",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/2/#measurement-noise-and-repeated-fitting"
+                },
+                {
+                  "id": "single-channel-observations-and-new-inputs",
+                  "title": "单通道观测与新增输入",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C05-S02:single-channel-observations-and-new-inputs",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/2/#single-channel-observations-and-new-inputs"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P14-C05-S02:references",
+                  "url": "/chapters/14-05-噪声、外推与结构保持/read/2/#references"
+                }
+              ],
+              "url": "/chapters/14-05-噪声、外推与结构保持/read/2/"
             }
           ],
           "visualization": "web/datadriven/index.html"
@@ -21028,59 +21823,165 @@
                 "同一评估窗口的状态、总量和非负性指标"
               ]
             },
+            "reading": "lessons/14-数据驱动动力学与模型降阶/99-篇末综合/01-交换系统的降阶与动力学发现.md",
             "questions": [
               {
                 "id": "p14-capstone-projection-claim",
                 "slug": "p14-capstone-projection-claim",
                 "title": "投影误差与动态误差",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#training-directions-and-a-new-initial-state",
+                "concept_title": "训练方向与新初态",
+                "practice_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-projection-claim"
               },
               {
                 "id": "p14-capstone-lift-limit",
                 "slug": "p14-capstone-lift-limit",
                 "title": "线性提升的保证",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#paired-regression-dictionary-closure-and-training-residuals",
+                "concept_title": "配对回归、字典闭合与训练残差",
+                "practice_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-lift-limit"
               },
               {
                 "id": "p14-capstone-projection",
                 "slug": "p14-capstone-projection",
                 "title": "综合：低秩投影与重建",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#low-rank-reconstruction-and-dynamic-information",
+                "concept_title": "低秩重建与动态信息",
+                "practice_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-projection"
               },
               {
                 "id": "p14-capstone-edmd",
                 "slug": "p14-capstone-edmd",
                 "title": "综合：提升传播及训练残差",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#paired-regression-dictionary-closure-and-training-residuals",
+                "concept_title": "配对回归、字典闭合与训练残差",
+                "practice_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-edmd"
               },
               {
                 "id": "p14-capstone-sparse",
                 "slug": "p14-capstone-sparse",
                 "title": "综合：稀疏辨识与新状态导数",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#sparse-candidates-and-new-state-derivatives",
+                "concept_title": "稀疏候选与新状态导数",
+                "practice_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-sparse"
               },
               {
                 "id": "p14-capstone-structure",
                 "slug": "p14-capstone-structure",
                 "title": "综合：外推误差与结构失败",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#path-metrics-and-exchange-structure",
+                "concept_title": "路径指标与交换结构",
+                "practice_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-structure"
               },
               {
                 "id": "p14-capstone-noisy-selection",
                 "slug": "p14-capstone-noisy-selection",
                 "title": "噪声下选择方程",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#sparse-candidates-and-new-state-derivatives",
+                "concept_title": "稀疏候选与新状态导数",
+                "practice_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-noisy-selection"
               },
               {
                 "id": "p14-capstone-new-input",
                 "slug": "p14-capstone-new-input",
                 "title": "新输入后的结论边界",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#new-inputs-and-new-paired-data",
+                "concept_title": "新输入与新的配对数据",
+                "practice_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-new-input"
               }
             ],
             "practice_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-projection-claim",
             "notebook_url": "/notebook/?id=P14-SUMMARY",
-            "url": "/notebook/?id=P14-SUMMARY"
+            "reading_url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "training-directions-and-a-new-initial-state",
+                "title": "训练方向与新初态",
+                "question_ids": [
+                  "p14-capstone-projection-claim"
+                ],
+                "explore": false,
+                "key": "P14-SUMMARY:training-directions-and-a-new-initial-state",
+                "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#training-directions-and-a-new-initial-state"
+              },
+              {
+                "id": "low-rank-reconstruction-and-dynamic-information",
+                "title": "低秩重建与动态信息",
+                "question_ids": [
+                  "p14-capstone-projection"
+                ],
+                "explore": false,
+                "key": "P14-SUMMARY:low-rank-reconstruction-and-dynamic-information",
+                "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#low-rank-reconstruction-and-dynamic-information"
+              },
+              {
+                "id": "paired-regression-dictionary-closure-and-training-residuals",
+                "title": "配对回归、字典闭合与训练残差",
+                "question_ids": [
+                  "p14-capstone-edmd",
+                  "p14-capstone-lift-limit"
+                ],
+                "explore": false,
+                "key": "P14-SUMMARY:paired-regression-dictionary-closure-and-training-residuals",
+                "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#paired-regression-dictionary-closure-and-training-residuals"
+              },
+              {
+                "id": "sparse-candidates-and-new-state-derivatives",
+                "title": "稀疏候选与新状态导数",
+                "question_ids": [
+                  "p14-capstone-sparse",
+                  "p14-capstone-noisy-selection"
+                ],
+                "explore": false,
+                "key": "P14-SUMMARY:sparse-candidates-and-new-state-derivatives",
+                "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#sparse-candidates-and-new-state-derivatives"
+              },
+              {
+                "id": "the-missing-direction-in-the-first-prediction",
+                "title": "第一步预测中的缺失方向",
+                "question_ids": [],
+                "explore": false,
+                "key": "P14-SUMMARY:the-missing-direction-in-the-first-prediction",
+                "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#the-missing-direction-in-the-first-prediction"
+              },
+              {
+                "id": "path-metrics-and-exchange-structure",
+                "title": "路径指标与交换结构",
+                "question_ids": [
+                  "p14-capstone-structure"
+                ],
+                "explore": false,
+                "key": "P14-SUMMARY:path-metrics-and-exchange-structure",
+                "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#path-metrics-and-exchange-structure"
+              },
+              {
+                "id": "new-inputs-and-new-paired-data",
+                "title": "新输入与新的配对数据",
+                "question_ids": [
+                  "p14-capstone-new-input"
+                ],
+                "explore": false,
+                "key": "P14-SUMMARY:new-inputs-and-new-paired-data",
+                "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#new-inputs-and-new-paired-data"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P14-SUMMARY:references",
+                "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/"
           }
         ],
         "available": true,

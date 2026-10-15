@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>14.5.1 守恒、连续正性与离散非负性 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P14-C05-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P14-C05-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics">本节练习 · 4 题</a><a class="button" href="/chapters/14-05-噪声、外推与结构保持/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>14.5.1 守恒、连续正性与离散非负性</h1>
+<p>前面从快照和变化率拟合了动力学。若状态记录每一室所追踪物质的总量，拟合出的矩阵还需回答两个收支问题：没有生成、消除和外部交换时，合计总量是否保持？一室已经空了以后，方程是否还会让它继续减少？我们先从两室逐项计算，再检查时间步长怎样影响这些性质。</p>
+<p>学完本节，你应能从变量含义推导守恒权重，判断连续线性方程的正性，并给出显式 Euler 保持非负的步长条件。先修为物质收支、11.2的交换矩阵和14.2的一步传播。</p>
+<h2 id="compartment-exchange-in-amount-coordinates">总量坐标中的逐室交换</h2>
+<p>将两室总量写为列向量 $x=(x_1,x_2)^\mathsf T$，每项单位为 U。取</p>
+<p>$$
+\dot x=Ax,\qquad
+A=\frac1T\begin{pmatrix}-1&amp;0.2\\1&amp;-0.2\end{pmatrix}.
+$$</p>
+<p>第一列乘的是 $x_1$：第一室以 $x_1/T$ 减少，第二室以同一速率增加。第二列乘的是 $x_2$，对应反方向的 $0.2x_2/T$。逐室写开就是</p>
+<p>$$
+\dot x_1=-\frac{x_1}T+\frac{0.2x_2}T,\qquad
+\dot x_2=\frac{x_1}T-\frac{0.2x_2}T.
+$$</p>
+<p>相加以后，两次转移各自抵消，故两室合计不变。现在只将第一行第二列由 $0.2/T$ 改为 $0.3/T$。第二室仍减少 $0.2x_2/T$，第一室却增加 $0.3x_2/T$，相加多出 $0.1x_2/T$。错误发生在同一笔转移的两端。</p>
+<h2 id="column-sums-and-conservation-weights">列和与守恒权重</h2>
+<p>推广到 $n$ 室，总量为 $M=\mathbf1^\mathsf T x$，其中 $\mathbf1$ 是各项均为1的列向量。求导得到</p>
+<p>$$
+\dot M=\mathbf1^\mathsf T Ax
+=\sum_{j=1}^n\left(\sum_{i=1}^nA_{ij}\right)x_j.
+$$</p>
+<p>括号里的量是第 $j$ 列之和。要对每个初态都保持总量，就需要每列分别抵消：</p>
+<p>$$
+\boxed{\mathbf1^\mathsf T A=0.}
+$$</p>
+<p>这一条件既是充分的，也是必要的。如果某列之和不为0，只在对应那一室放入物质，就会得到非零的总量变化率。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-column-conservation">总量守恒看哪一项</a></li></ul></nav>
+
+<p>守恒权重由记录的变量决定。若改用浓度 $c_i$，固定容积为 $V_i$，总量变成 $M=\sum_i V_i c_i$。将浓度方程记为 $\dot c=A_c c$，同样求导得到</p>
+<p>$$
+\dot M=V^\mathsf T A_c c,\qquad
+\boxed{V^\mathsf T A_c=0.}
+$$</p>
+<p>例如两室容积分别为1与2个容积单位，浓度都为1时，总量数值为 $1\times1+2\times1=3$，浓度之和2并不是总量。用浓度建模时，各室的贡献需要先乘各自容积；总量坐标中的列和为零因此对应到浓度坐标的加权列和条件。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-concentration-coordinates">何时不能照搬列和</a></li></ul></nav>
+
+<h2 id="continuous-positivity-and-metzler-matrices">连续正性与 Metzler 矩阵</h2>
+<p><strong>连续正性（positivity）</strong>指从任意逐项非负的初态出发，连续解在此后的所有时刻都逐项非负。这里允许某些分量为0，重点是演化能否把非负状态带到负值。</p>
+<p>对常系数线性方程 $\dot x=Ax$，这一性质等价于</p>
+<p>$$
+\boxed{A_{ij}\ge0\quad(i\ne j).}
+$$</p>
+<p>非对角元均非负的实方阵称为 <strong>Metzler 矩阵（Metzler matrix）</strong>。看一室恰好为空时就能理解符号条件：当 $x_i=0$、其他各室非负，</p>
+<p>$$
+\dot x_i=\sum_{j\ne i}A_{ij}x_j\ge0.
+$$</p>
+<p>它可以接收其他室的转入，空室自身的流出项则为0，因而不会从零继续流向负值。常系数线性方程在这个条件下保持整个非负区域；对角元可为负，表达按当前存量流出的作用。</p>
+<p>反过来，若某个非对角元为负，只在相应来源室放入物质，就会使接收室从零开始减少。例如</p>
+<p>$$
+A_{\mathrm{neg}}=\frac1T
+\begin{pmatrix}-1&amp;-0.2\\1&amp;0.2\end{pmatrix}
+$$</p>
+<p>两列之和仍为0，但从 $[0,1]$ U 出发，第一室的初始变化率为 $-0.2$ U/T。守恒允许不同分量的正负变化相互抵消，非负性还需检查转移项的符号。原交换矩阵同时满足这两个条件。</p>
+<h2 id="nonnegative-euler-updates">Euler 一步的非负条件</h2>
+<p>用正时间步 $h$ 作显式 Euler 更新：</p>
+<p>$$
+x_{k+1}=E x_k,\qquad E=I+hA.
+$$</p>
+<p>若连续矩阵满足列和为零，则</p>
+<p>$$
+\mathbf1^\mathsf T E=\mathbf1^\mathsf T+h\mathbf1^\mathsf T A
+=\mathbf1^\mathsf T,
+$$</p>
+<p>所以 Euler 也保持总量。要让任意非负状态在一步后仍非负，还需 $E$ 的每个元素非负：每个输出都是非负系数乘非负输入再相加；若有负系数，只在对应输入位置放入物质，就会得到负输出。</p>
+<p>当 $A$ 是 Metzler 矩阵，非对角元 $hA_{ij}$ 已经非负，剩下的条件为</p>
+<p>$$
+1+hA_{ii}\ge0.
+$$</p>
+<p>对总量守恒的交换矩阵，$-A_{ii}$ 是第 $i$ 室的总流出率。若最大流出率 $r_{\max}=\max_i(-A_{ii})&gt;0$，便有</p>
+<p>$$
+\boxed{h\le\frac1{r_{\max}}.}
+$$</p>
+<p>它要求一个时间步内按当前流出率移走的量，不超过该室现有量。若所有流出率均为0，守恒与非负转移使整个交换矩阵为0，这项条件不产生有限步长上限。</p>
+<p>原两室矩阵的最大流出率为 $1/T$，所以非负步长上界是 $1T$。由 $[2,0]$ U 出发，</p>
+<p>$$
+\begin{aligned}
+h=0.2T:&amp;\quad [2,0]+0.2[-2,2]=[1.6,0.4]\ \mathrm U,\\
+h=2T:&amp;\quad [2,0]+2[-2,2]=[-2,4]\ \mathrm U.
+\end{aligned}
+$$</p>
+<p>两次总量都为2 U，后一次却把第一室移成负值。这次错误来自更新步长：原连续方程仍然守恒且保持非负。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-euler-positive">连续正性与一步正性</a></li></ul></nav>
+
+<h2 id="matrix-diagnostics-and-total-amount">矩阵指标与逐步总量</h2>
+<p>计算题将前面的条件整理为五个返回项：</p>
+<table>
+<thead>
+<tr>
+  <th>返回项</th>
+  <th>计算与含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>最大列和偏差</td>
+  <td>各列之和先取绝对值，再取最大值，单位为 $1/T$</td>
+</tr>
+<tr>
+  <td>最小非对角元</td>
+  <td>检查最小的转移系数，单位为 $1/T$；一室时约定为0</td>
+</tr>
+<tr>
+  <td>最小 Euler 对角元</td>
+  <td>$\min_i(1+hA_{ii})$，无量纲</td>
+</tr>
+<tr>
+  <td>连续交换结构</td>
+  <td>列和接近0，且非对角元非负</td>
+</tr>
+<tr>
+  <td>Euler 一步非负</td>
+  <td>直接检查完整的 $I+hA$ 是否逐项非负</td>
+</tr>
+</tbody>
+</table>
+<p>将参数按题给单位输入后，题目采用 $10^{-10}$ 的数值容差：最大列和偏差严格小于它，最小非对角元不低于 $-10^{-10}$，才通过连续交换结构检查；Euler 标志则对更新矩阵中的全部元素使用相同的非负容差。这样，连续矩阵中的小负数经大步长放大后，也会在一步检查中体现。</p>
+<p>在 $h=0.2T$ 下，原矩阵得到 $[0,0.2,0.8,\mathrm{True},\mathrm{True}]$；错误列和的矩阵得到 $[0.1,0.3,0.8,\mathrm{False},\mathrm{True}]$。第二个候选虽可保持这一步的非负，却改变了总量收支。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics">检查交换矩阵与 Euler 一步</a></li></ul></nav>
+
+<p>实验从共同初态 $[2,0]$ U 出发，使用 $0.2T$ 步长更新15次，比较原矩阵与错误列和矩阵的两室合计。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P14-C05-S01-c732f34c-1.png" alt="守恒、连续正性与离散非负性：实验结果图" loading="lazy"></figure>
+</section>
+<p>原矩阵的合计始终为2 U。错误矩阵的合计随交换增加：初始 $x_2=0$ 时两者还没有总量变化率差异，第一室转出使第二室有了存量以后，多出来的 $0.1x_2/T$ 便持续进入总量。曲线上的偏离由此回到了第二列中那笔不匹配的转移。</p>
+<p>本章探索可切换这两个矩阵，并改变 Euler 步长。先在小步长下比较总量，再固定正确矩阵把步长增大到 $1T$ 以上，观察第一室何时变负。页面横轴按更新步数 $k$ 排列，对应物理时间 $kh$；改变步长时，同样步数的终止时间也会改变。</p>
+<p class="concept-explore"><a href="/chapters/14-05-噪声、外推与结构保持/explore/?concept=P14-C05-S01%3Amatrix-diagnostics-and-total-amount">可视化与探索：矩阵指标与逐步总量 →</a></p>
+
+<p>下一节把结构检查与新初值预测放在一起。同一条预测可以总量正确、各室分配错误，也可以没有负值却预测不准；我们将用不同指标分别读出这些结果。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/abs/1203.0047">Anders Rantzer：Distributed Control of Positive Systems</a>，其中的正系统定义、Metzler 矩阵与转运网络例子提供后续阅读。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/14-04-稀疏动力学辨识/read/2/">← 14.4.2 差分噪声、独立预测与Lorenz基准</a><a href="/chapters/14-05-噪声、外推与结构保持/read/2/">14.5.2 数据覆盖、独立预测与结构误差 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

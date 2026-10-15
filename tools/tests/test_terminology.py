@@ -241,3 +241,41 @@ def test_part13_unreviewed_lag_still_requires_a_context():
     issues, _ = check_terms('计算滞后的相关系数。', 13,
                             unit='unreviewed-part13-unit', require_first=False)
     assert issues
+
+
+@pytest.mark.parametrize('term,english,short,short_english', [
+    ('Galerkin投影', 'Galerkin projection', '投影', 'projection'),
+    ('Moore–Penrose伪逆', 'Moore–Penrose pseudoinverse', '伪逆', 'pseudoinverse'),
+    ('Metzler 矩阵', 'Metzler matrix', '矩阵', 'matrix'),
+])
+def test_part14_complete_linear_algebra_terms_precede_shorter_terms(
+        term, english, short, short_english):
+    source = f'{term}与{short}'
+    expected = f'{term}（{english}）与{short}（{short_english}）'
+    assert annotate_text(source, 14) == expected
+    issues, found = check_text(expected, 14)
+    assert issues == []
+    assert set(found) == {term, short}
+
+
+@pytest.mark.parametrize('source', [
+    'Galerkin投影（Galerkin projection）',
+    'Moore–Penrose伪逆（Moore–Penrose pseudoinverse）',
+    'Metzler 矩阵（Metzler matrix）',
+])
+def test_part14_correct_full_manual_annotations_are_idempotent(source):
+    assert annotate_text(source, 14) == source
+    assert annotate_text(annotate_text(source, 14), 14) == source
+    assert check_text(source, 14, require_first=False)[0] == []
+
+
+@pytest.mark.parametrize('source', [
+    'Galerkin投影（projection）',
+    'Moore–Penrose伪逆（pseudoinverse）',
+    'Metzler 矩阵（matrix）',
+])
+def test_part14_full_terms_do_not_accept_shorter_generic_glosses(source):
+    issues, _ = check_text(source, 14, require_first=False)
+    assert any(issue.kind == 'translation' for issue in issues)
+    with pytest.raises(TerminologyError):
+        annotate_text(source, 14)

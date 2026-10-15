@@ -32,6 +32,13 @@ function branch(item,parent,isCurrent=false){
   }
   parent.append(details);return details;
 }
+function revealCurrentLesson(){
+  const active=tree.querySelector('[aria-current]'),sidebar=tree.closest('.course-sidebar');
+  if(active&&sidebar){
+    const top=active.getBoundingClientRect().top-sidebar.getBoundingClientRect().top+sidebar.scrollTop;
+    sidebar.scrollTop=Math.max(0,top-180);
+  }
+}
 export function locateLesson(id){
   section=id;
   for(const a of tree.querySelectorAll('[data-lesson]')){
@@ -39,6 +46,7 @@ export function locateLesson(id){
     if(active){a.setAttribute('aria-current','page');let parent=a.parentElement;while(parent&&parent!==tree){if(parent.tagName==='DETAILS')parent.open=true;parent=parent.parentElement;}}
     else a.removeAttribute('aria-current');
   }
+  revealCurrentLesson();
   const reading=document.querySelector('[data-reading-tab]');const lesson=current?.lessons?.find(l=>l.id===id);if(reading&&lesson?.reading_url)reading.href=lesson.reading_url;
   const crumb=document.getElementById('current-section');if(crumb)crumb.textContent=current.lessons?.find(l=>l.id===id)?.title||'';
 }
@@ -122,7 +130,7 @@ export async function mountShell(pageMode='overview'){
   const skip=link('跳到正文','#main','skip-link');document.body.prepend(skip);
   await refreshProgress();
   // 只滚动目录自己的视口，避免把正文标题卷出屏幕。
-  {const active=tree.querySelector('[aria-current]');if(active)sidebar.scrollTop=Math.max(0,active.offsetTop-180);}
+  revealCurrentLesson();
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refreshProgress();});
   window.addEventListener('focus',()=>void refreshProgress());
   setInterval(()=>{if(!document.hidden)void refreshProgress();},15000);

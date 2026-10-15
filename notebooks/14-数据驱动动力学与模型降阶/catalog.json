@@ -3,91 +3,101 @@
     "id": "P14-C01-S01",
     "chapter_id": "14.1",
     "number": "14.1.1",
-    "title": "从快照到截断奇异值",
+    "title": "快照矩阵、奇异值分解与低秩重建",
     "outcome": "先说明快照的行列与数据能量，再手算投影及奇异值截断误差。",
     "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/01-从快照到截断奇异值.ipynb",
-    "visualization": "web/lowrank/index.html"
+    "visualization": "web/lowrank/index.html",
+    "reading": "lessons/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/01-从快照到截断奇异值.md"
   },
   {
     "id": "P14-C01-S02",
     "chapter_id": "14.1",
     "number": "14.1.2",
-    "title": "投影动力学与新初值",
+    "title": "Galerkin投影、降阶动力学与初值误差",
     "outcome": "由两室一步投影进入三室Galerkin动态，分开初值映射与后续误差。",
     "path": "notebooks/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/02-投影动力学与新初值.ipynb",
-    "visualization": "web/lowrank/index.html"
+    "visualization": "web/lowrank/index.html",
+    "reading": "lessons/14-数据驱动动力学与模型降阶/01-低秩分解与模型降阶/02-投影动力学与新初值.md"
   },
   {
     "id": "P14-C02-S01",
     "chapter_id": "14.2",
     "number": "14.2.1",
-    "title": "配对快照与线性传播",
+    "title": "配对快照、伪逆与线性传播",
     "outcome": "配对当前和下一步状态，用独立列求传播系数，再检验新初值。",
     "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/01-配对快照与线性传播.ipynb",
-    "visualization": "web/datadriven/index.html"
+    "visualization": "web/datadriven/index.html",
+    "reading": "lessons/14-数据驱动动力学与模型降阶/02-动态模态分解/01-配对快照与线性传播.md"
   },
   {
     "id": "P14-C02-S02",
     "chapter_id": "14.2",
     "number": "14.2.2",
-    "title": "模态、采样与预测范围",
+    "title": "动态模态、采样与连续时间频率",
     "outcome": "将每步幅度和相角换成时间速率，解释整圈混叠与振幅范围。",
     "path": "notebooks/14-数据驱动动力学与模型降阶/02-动态模态分解/02-模态、采样与预测范围.ipynb",
-    "visualization": "web/datadriven/index.html"
+    "visualization": "web/datadriven/index.html",
+    "reading": "lessons/14-数据驱动动力学与模型降阶/02-动态模态分解/02-模态、采样与预测范围.md"
   },
   {
     "id": "P14-C03-S01",
     "chapter_id": "14.3",
     "number": "14.3.1",
-    "title": "从非线性状态到线性观测",
+    "title": "Koopman算子、观测函数与有限闭合",
     "outcome": "按函数顺序建立特征列，逐行推导平方项的闭合及状态读出。",
     "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/01-从非线性状态到线性观测.ipynb",
-    "visualization": "web/datadriven/index.html"
+    "visualization": "web/datadriven/index.html",
+    "reading": "lessons/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/01-从非线性状态到线性观测.md"
   },
   {
     "id": "P14-C03-S02",
     "chapter_id": "14.3",
     "number": "14.3.2",
-    "title": "字典失配与正则化",
+    "title": "有限字典投影、遗漏项与岭正则化",
     "outcome": "重新拟合短字典与完整字典，比较遗漏、正则及复合函数更新。",
     "path": "notebooks/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.ipynb",
-    "visualization": "web/datadriven/index.html"
+    "visualization": "web/datadriven/index.html",
+    "reading": "lessons/14-数据驱动动力学与模型降阶/03-Koopman 表示与有限字典/02-字典失配与正则化.md"
   },
   {
     "id": "P14-C04-S01",
     "chapter_id": "14.4",
     "number": "14.4.1",
-    "title": "候选字典与顺序阈值回归",
+    "title": "候选方程、列归一化与顺序阈值回归",
     "outcome": "逐行建立候选表，说明列归一化、阈值筛选、重新拟合与列索引。",
     "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/01-候选字典与顺序阈值回归.ipynb",
-    "visualization": "web/datadriven/index.html"
+    "visualization": "web/datadriven/index.html",
+    "reading": "lessons/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/01-候选字典与顺序阈值回归.md"
   },
   {
     "id": "P14-C04-S02",
     "chapter_id": "14.4",
     "number": "14.4.2",
-    "title": "导数噪声与独立轨迹",
+    "title": "差分噪声、独立预测与Lorenz基准",
     "outcome": "推导等距差分的噪声方差，比较重复系数与独立初值预测。",
     "path": "notebooks/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/02-导数噪声与独立轨迹.ipynb",
-    "visualization": "web/datadriven/index.html"
+    "visualization": "web/datadriven/index.html",
+    "reading": "lessons/14-数据驱动动力学与模型降阶/04-稀疏动力学辨识/02-导数噪声与独立轨迹.md"
   },
   {
     "id": "P14-C05-S01",
     "chapter_id": "14.5",
     "number": "14.5.1",
-    "title": "守恒、正性与离散步长",
+    "title": "守恒、连续正性与离散非负性",
     "outcome": "从两室收支推导列和与转移符号，再手算Euler过大步长反例。",
     "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/01-守恒、正性与离散步长.ipynb",
-    "visualization": "web/datadriven/index.html"
+    "visualization": "web/datadriven/index.html",
+    "reading": "lessons/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/01-守恒、正性与离散步长.md"
   },
   {
     "id": "P14-C05-S02",
     "chapter_id": "14.5",
     "number": "14.5.2",
-    "title": "同一预算下的外推比较",
+    "title": "数据覆盖、独立预测与结构误差",
     "outcome": "在共同数据和预测窗口上分别解释状态误差、总量差与负值数。",
     "path": "notebooks/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/02-同一预算下的外推比较.ipynb",
-    "visualization": "web/datadriven/index.html"
+    "visualization": "web/datadriven/index.html",
+    "reading": "lessons/14-数据驱动动力学与模型降阶/05-噪声、外推与结构保持/02-同一预算下的外推比较.md"
   },
   {
     "id": "P14-SUMMARY",
@@ -107,6 +117,7 @@
         "样本行、候选列、归一化系数与导数误差",
         "同一评估窗口的状态、总量和非负性指标"
       ]
-    }
+    },
+    "reading": "lessons/14-数据驱动动力学与模型降阶/99-篇末综合/01-交换系统的降阶与动力学发现.md"
   }
 ]

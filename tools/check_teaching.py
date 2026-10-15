@@ -1,8 +1,8 @@
 """检查正式教材的正文边界、题面同步、术语和链接；不替代人工审读。"""
 import argparse
+from html.parser import HTMLParser
 import json
 from pathlib import Path
-import re
 from urllib.parse import parse_qs, unquote, urlsplit
 
 import nbformat
@@ -13,6 +13,7 @@ from assessment import load_assessments
 from terminology import check_text
 from notebook_service import check_or_update
 from build_lessons import DIRECTIVE
+from teaching_markdown import markdown_to_html
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -38,6 +39,36 @@ REVIEWED_SENSES = {
 def check_terms(text, part, *, unit=None, **options):
     issues, terms = check_text(text, part, senses=REVIEWED_SENSES.get(unit), **options)
     return [issue.message for issue in issues], terms
+
+
+class _AnchorLinks(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.destinations = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'a':
+            destination = dict(attrs).get('href')
+            if destination is not None:
+                self.destinations.append(destination)
+
+
+def html_links(html):
+    parser = _AnchorLinks()
+    parser.feed(html)
+    parser.close()
+    return parser.destinations
+
+
+def markdown_links(source):
+    return html_links(markdown_to_html(source))
+
+
+def check_page_routes(html, routes):
+    for destination in html_links(html):
+        url = urlsplit(destination)
+        if (not url.scheme and not url.netloc and url.path) or url.hostname == '127.0.0.1':
+            assert unquote(url.path) in routes, destination
 
 
 def main():
@@ -90,13 +121,10 @@ def main():
             entry = published[lesson['id']]
             assert entry['practice_url'] in page and entry['notebook_url'] in page, lesson['id']
             assert {q['id'] for q in entry['questions']} == {q['id'] for q in bank}, lesson['id']
-            for _, destination in re.findall(r'\[([^\]]+)\]\(([^)]+)\)', source):
-                url = urlsplit(destination)
-                if not url.scheme and url.path:
-                    assert unquote(url.path) in routes, destination
+            check_page_routes(page, routes)
             for cell in nb.cells:
                 if cell.cell_type == 'markdown':
-                    for _, destination in re.findall(r'\[([^\]]+)\]\(([^)]+)\)', cell.source):
+                    for destination in markdown_links(cell.source):
                         url = urlsplit(destination)
                         if url.hostname == '127.0.0.1':
                             assert unquote(url.path) in routes, destination
@@ -116,7 +144,7 @@ def main():
         for cell in nb.cells:
             if cell.cell_type != 'markdown':
                 continue
-            for label, destination in re.findall(r'\[([^\]]+)\]\(([^)]+)\)', cell.source):
+            for destination in markdown_links(cell.source):
                 url = urlsplit(destination)
                 if not url.scheme and url.path:
                     assert not url.path.endswith('.html'), destination

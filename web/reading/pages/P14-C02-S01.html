@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>14.2.1 配对快照、伪逆与线性传播 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P14-C02-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P14-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit">本节练习 · 4 题</a><a class="button" href="/chapters/14-02-动态模态分解/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>14.2.1 配对快照、伪逆与线性传播</h1>
+<p>上一节知道交换方程，才能计算保留方向上的变化率。如果手中只有相邻时刻的状态记录，能否从数据学出一步传播矩阵？先把每个当前状态与它的下一步配好，再看这些状态是否覆盖足以确定矩阵的方向。</p>
+<p>学完本节，应能组织配对矩阵，用截断伪逆求一步传播，并从独立初值检查连续预测。先修为14.1的SVD与投影、第6篇的动态辨识和最小二乘。</p>
+<h2 id="paired-snapshots-and-sampling-interval">配对快照与采样间隔</h2>
+<p>一维记录为 $2,1.6,1.28,1.024$ U时，三对相邻值的后项除以前项均为0.8。因此 $x_{k+1}=0.8x_k$解释了这条记录。多变量的一个输出可能同时依赖多个输入，就需要把一个乘子扩展为矩阵。</p>
+<p>令 $x_k$为时刻 $k\Delta t$的状态列，$\Delta t&gt;0$固定。对 $m$次连续更新，组织</p>
+<p>$$X=[x_0,\ldots,x_{m-1}],\qquad
+Y=[x_1,\ldots,x_m].$$</p>
+<p>两表都为 $n\times m$，同列表示同一次更新的当前与后继状态，各行始终记录同一变量。本节各状态单位均为U，直接对原快照回归。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-02-动态模态分解/practice/?question=p14-paired-columns">配对列的时间含义</a></li></ul></nav>
+
+<h2 id="hand-calculation-of-a-two-dimensional-map">二维传播矩阵的手算</h2>
+<p>一个已知系统按</p>
+<p>$$A_{\rm true}=\begin{pmatrix}0.9&amp;0.1\\0&amp;0.8\end{pmatrix}$$</p>
+<p>更新。由 $(2,1)^{\mathsf T}$ U出发，前两步为</p>
+<p>$$\begin{pmatrix}2\\1\end{pmatrix}
+\longrightarrow\begin{pmatrix}1.9\\0.8\end{pmatrix}
+\longrightarrow\begin{pmatrix}1.79\\0.64\end{pmatrix}\quad(\mathrm U).$$</p>
+<p>暂把拟合矩阵写成 $\left(\begin{smallmatrix}a&amp;b\\c&amp;d\end{smallmatrix}\right)$。第一输出行满足</p>
+<p>$$2a+b=1.9,\qquad1.9a+0.8b=1.79.$$</p>
+<p>由第一式 $b=1.9-2a$，代入第二式得 $0.3a=0.27$，所以 $a=0.9,b=0.1$。第二行同理满足 $2c+d=0.8$、$1.9c+0.8d=0.64$，得到 $c=0,d=0.8$。</p>
+<p>两个当前状态 $(2,1)^{\mathsf T}$与 $(1.9,0.8)^{\mathsf T}$独立，因而分别约束了二维作用。若只反复观测同一条方向，则还会有矩阵作用没有被这些列检验到。</p>
+<h2 id="least-squares-and-pseudoinverse">最小二乘与Moore–Penrose伪逆</h2>
+<p>对一般数据，用 $AX$逐列预测后继状态，最小化</p>
+<p>$$\min_A\|Y-AX\|_F^2.$$</p>
+<p>这相当于让每个输出变量分别对当前状态作最小二乘。若解不唯一，再选择矩阵元素平方和最小的解，可写为 $A=YX^+$。</p>
+<p><strong>Moore–Penrose伪逆（Moore–Penrose pseudoinverse）</strong>通过SVD将非零作用倍率反过来。对 $X=U\Sigma V^{\mathsf T}$，定义</p>
+<p>$$X^+=\sum_{\sigma_j&gt;0}\frac1{\sigma_j}v_ju_j^{\mathsf T}.$$</p>
+<p>原矩阵为 $n\times m$，伪逆为 $m\times n$。非零奇异方向乘倒数，零方向取零；所以方阵不可逆或矩阵非方形时仍能计算。$X$单位为U，$X^+$单位为 $1/\mathrm U$，拟合的 $YX^+$因而无量纲。</p>
+<p>只保留前 $r$个方向时，得到</p>
+<p>$$\boxed{A_r=YV_r\Sigma_r^+U_r^{\mathsf T}.}$$</p>
+<p>题目按最大奇异值设置相对阈值：只有 $\sigma_j&gt;10^{-12}\sigma_1$才取倒数，其余取零；$r=0$返回 $n\times n$零矩阵。结果仍是原状态坐标中的 $n\times n$一步传播，秩至多为 $r$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit">从配对快照拟合传播矩阵</a></li></ul></nav>
+
+<p>从这类数据传播矩阵及其特征结构描述动态的方法称为<strong>动态模态分解（dynamic mode decomposition，DMD）</strong>。这里先求传播矩阵，下一节再从它的特征值与特征向量解释模态；SVD方向则负责选择拟合时保留的数据子空间。</p>
+<h2 id="unobserved-directions-and-minimum-norm-choice">未见方向与最小范数选择</h2>
+<p>设当前快照只沿第一坐标，给定</p>
+<p>$$X=\begin{pmatrix}1&amp;0\\0&amp;0\end{pmatrix}\mathrm U,\qquad
+Y=\begin{pmatrix}0.5&amp;0\\0&amp;0\end{pmatrix}\mathrm U.$$</p>
+<p>数据只说明第一坐标方向更新后成为它的0.5倍。任何</p>
+<p>$$A=\begin{pmatrix}0.5&amp;b\\0&amp;d\end{pmatrix}$$</p>
+<p>都能使 $AX=Y$，第二列的 $b,d$尚未受这些输入约束。伪逆选择 $b=d=0$，给出最小范数解；这是选定一个矩阵的规则，而不是测到了第二方向的响应。即使把指定秩增加到2，第二奇异值仍为零，也没有可求逆的新信息。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-02-动态模态分解/practice/?question=p14-null-direction">未激发方向的传播</a></li></ul></nav>
+
+<h2 id="eight-pairs-and-new-initial-state-prediction">八对训练状态与新初值预测</h2>
+<p>用前面的已知二维矩阵从 $(2,1)^{\mathsf T}$ U生成8次更新，得到9个状态，组成8对 $X,Y$。分别用秩2和秩1拟合，再从未参与训练的 $(0,3)^{\mathsf T}$ U连续预测12步。</p>
+<p>连续预测每次把上一次预测作为新输入：$\hat x_{k+1}=A_r\hat x_k$。这里在原状态坐标中直接保留完整起点 $\hat x_0=x_0$，与上一章先投影初始化的Galerkin路径不同。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P14-C02-S01-686c0849-0.png" alt="配对快照、伪逆与线性传播：实验结果图" loading="lazy"></figure>
+</section>
+<p>两条误差在第0步都为零。秩2拟合恢复了生成矩阵，后续新初值误差也处于浮点误差量级；秩1主动舍去了数据中已有的一条方向，第一次传播后就出现误差。</p>
+<p>例如真实第一步为 $(0.3,2.4)^{\mathsf T}$ U，秩1预测约为 $(0.8577,0.2510)^{\mathsf T}$ U。它在训练8对上的一步残差约0.3707 U，而新初值的连续误差还受到这份初态的方向与后续重复传播影响。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-02-动态模态分解/practice/?question=p14-one-step-rollout">一步拟合后的评估</a></li></ul></nav>
+
+<p>拟合只需要这些配对数据；已知生成矩阵在实验中提供独立对照。下一节将解释传播矩阵中哪些特征值表示缩小、增长或旋转，以及采样间隔怎样影响连续时间解释。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/abs/1312.0041">Tu等：On Dynamic Mode Decomposition: Theory and Applications</a>，从配对数据与近似传播算子的特征分解讨论DMD。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/14-01-低秩分解与模型降阶/read/2/">← 14.1.2 Galerkin投影、降阶动力学与初值误差</a><a href="/chapters/14-02-动态模态分解/read/2/">14.2.2 动态模态、采样与连续时间频率 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

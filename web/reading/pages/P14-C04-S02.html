@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>14.4.2 差分噪声、独立预测与Lorenz基准 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P14-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P14-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative">本节练习 · 4 题</a><a class="button" href="/chapters/14-04-稀疏动力学辨识/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>14.4.2 差分噪声、独立预测与Lorenz基准</h1>
+<p>状态读数通常可以记录，变化率却需要估计。两次读数相减再除以时间间隔，会怎样改变噪声？我们先推导等距差分中的误差，再跟踪它如何进入方程系数和独立轨迹，最后用Lorenz系统分别比较结构恢复、短时预测与较长时间的几何和统计。</p>
+<p>学完本节，你应能手算端点与内部差分，推导导数噪声的方差，并根据不同验证对象解释辨识结果。先修为14.4.1、第2篇的差分与展开、第6篇的观测噪声及4.6的Lorenz系统。</p>
+<h2 id="one-sided-and-central-differences">等距时刻的单边与中心差分</h2>
+<p>设严格递增的等距时刻为$t_i=t_0+ih$，$h&gt;0$，至少有两次观测$y_i$，单位为U。内部点由左右两侧记录估计变化率：</p>
+<p>$$\widehat{\dot x}_i=\frac{y_{i+1}-y_{i-1}}{2h}.$$</p>
+<p>首尾分别使用$(y_1-y_0)/h$和$(y_{n-1}-y_{n-2})/h$。例如时刻$(0,1,2)$ T、观测$(0,2,4)$ U，三个位置的估计都为2 U/T。</p>
+<p>对光滑的无噪函数，在$t_i$两侧展开：</p>
+<p>$$x(t_i\pm h)=x(t_i)\pm h\dot x(t_i)
++\frac{h^2}{2}\ddot x(t_i)\pm\frac{h^3}{6}x^{(3)}(t_i)+\cdots.$$</p>
+<p>相减除以$2h$，偶次项相消，得到内部估计为$\dot x(t_i)+O(h^2)$；端点的两点公式通常保留$O(h)$项。比如$x=t^2$的数值例，$(0,1,4)$在内部给出$(4-0)/2=2$，正好等于$t=1$的导数；端点估计1与3分别偏离真实导数0与4。</p>
+<p>等距条件使内部两侧的跨度同为$h$。当时刻不等距时，要按两侧间隔重新推导权重；本节计算题固定上述等距契约。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative">从等距采样估计变化率</a></li></ul></nav>
+
+<h2 id="observation-noise-in-differences">差分中的观测噪声</h2>
+<p>设$y_i=x_i+\varepsilon_i$，各观测噪声独立、均值为零、方差为$\sigma^2$。内部估计中的随机项是</p>
+<p>$$\frac{\varepsilon_{i+1}-\varepsilon_{i-1}}{2h}.$$</p>
+<p>两项独立使方差相加，因此</p>
+<p>$$\operatorname{Var}\!\left(\frac{\varepsilon_{i+1}-\varepsilon_{i-1}}{2h}\right)
+=\frac{\sigma^2+\sigma^2}{(2h)^2}
+=\boxed{\frac{\sigma^2}{2h^2}}.$$</p>
+<p>端点单边差分的噪声方差则是$2\sigma^2/h^2$。当$\sigma$保持相同，$h$减半会使这两类方差都变为原来的4倍。缩小间隔减少了光滑函数的截断误差，却增大了独立读数噪声除以间隔后的波动，两个来源需要一起比较。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-04-稀疏动力学辨识/practice/?question=p14-noise-difference">缩短采样一定更好吗</a></li></ul></nav>
+
+<p>含噪状态还会生成候选表$(1,y_i,y_i^2)$。因此同一批观测误差既影响回归目标，也影响候选列，系数变化不仅由导数噪声决定，还与候选列的关系、状态范围和阈值有关。</p>
+<h2 id="logistic-observations-and-repeated-coefficients">Logistic观测与重复系数</h2>
+<p>训练状态由$\dot x=1.2x-0.4x^2$生成，单位沿用上一节。从0.25 U出发，在0—3 T取31个状态，间隔0.1 T；每次观测加入标准差0.02 U的独立正态噪声。用含噪状态构造候选表，以差分导数为目标，预先固定阈值0.03 U/T和最多8次重新拟合。</p>
+<p>直接提供真实导数时，拟合恢复$(0,1.2,-0.4)$。固定种子14的含噪记录给出约$(0,1.137,-0.358)$。再独立生成20批观测，各自完成相同辨识，得到下列逐项范围：</p>
+<table>
+<thead>
+<tr>
+  <th>原尺度系数</th>
+  <th style="text-align:right">20次最小值</th>
+  <th style="text-align:right">20次最大值</th>
+  <th>单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>常数项</td>
+  <td style="text-align:right">$-0.268$</td>
+  <td style="text-align:right">0.211</td>
+  <td>U/T</td>
+</tr>
+<tr>
+  <td>$x$项</td>
+  <td style="text-align:right">0.757</td>
+  <td style="text-align:right">1.696</td>
+  <td>$1/\mathrm T$</td>
+</tr>
+<tr>
+  <td>$x^2$项</td>
+  <td style="text-align:right">$-0.593$</td>
+  <td style="text-align:right">$-0.215$</td>
+  <td>$1/(\mathrm U\,\mathrm T)$</td>
+</tr>
+</tbody>
+</table>
+<p>每行取这20个结果的最小与最大值，描述这批重复中的系数散布。随着观测误差改变，一些重复还会保留非零常数项；筛选结果和数值大小都可能变化。</p>
+<h2 id="independent-initial-condition-prediction">独立起点与预测误差</h2>
+<p>固定种子14已经拟合的系数，从新初值0.8 U作预测：以0.01 T步长更新100步，覆盖0—1 T，共101个状态。每一步代入</p>
+<p>$$x_{k+1}=x_k+h(\xi_0+\xi_1x_k+\xi_2x_k^2).$$</p>
+<p>这次预测使用的初值没有参与拟合，预测期间也保持系数不变。参照路径由已知Logistic解析解生成。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P14-C04-S02-3ee85200-0.png" alt="差分噪声、独立预测与Lorenz基准：实验结果图" loading="lazy"></figure>
+</section>
+<p>两条曲线从相同起点开始逐渐分开，末时刻绝对差约为0.01576 U。它同时包含系数偏差和Euler更新误差；独立路径把回归结果转成了实际状态预测的检查。</p>
+<p>若还要选择阈值，就先在验证轨迹上比较各候选，再留出另一条未参与选择的完整轨迹作最终测试。把同一轨迹的相邻点随机分组，仍共享近似的状态范围与演化历史，回答不了改变初始条件后的整条预测问题。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-04-稀疏动力学辨识/practice/?question=p14-trajectory-split">何为独立轨迹验证</a></li></ul></nav>
+
+<h2 id="lorenz-benchmark-and-structural-recovery">Lorenz课程基准与结构恢复</h2>
+<p>沿用4.6的无量纲Lorenz状态与时间$\tau$，固定</p>
+<p>$$\begin{aligned}
+\frac{dx}{d\tau}&amp;=-10x+10y,\\
+\frac{dy}{d\tau}&amp;=28x-y-xz,\\
+\frac{dz}{d\tau}&amp;=xy-\frac83z.
+\end{aligned}$$</p>
+<p>这里用已知右端生成干净导数，集中检查候选表与稀疏回归。训练取四组初态$(1,1,1),(-5,4,20),(10,-8,15),(2,3,30)$，每组用RK4以0.01步长推进300步，保留起点后共1204个状态。</p>
+<p>候选列固定为</p>
+<p>$$(1,x,y,z,xy,xz,yz,x^2,y^2,z^2).$$</p>
+<p>各候选列归一化后，阈值固定为0.01，最多重新拟合8次；这里状态、时间及输入数值均无量纲。分别拟合三个导数，系数表的三行对应$x,y,z$方程。恢复的非零项为：第一行$x,y$系数$-10,10$；第二行$x,y,xz$系数$28,-1,-1$；第三行$z,xy$系数$-8/3,1$，其余列为零。最大系数绝对误差约$1.31\times10^{-14}$。</p>
+<p>这一结果回答“选中的项与已知右端是否对应”。下面固定这些系数，以独立初值检验状态预测；先前Logistic的含噪求导实验，则单独说明实际观测误差进入辨识的困难。</p>
+<h2 id="lorenz-short-window-and-step-comparison">独立Lorenz轨迹的短窗与步长对照</h2>
+<p>选择未参与训练的初值$(-8,7,27)$，用相同RK4分别推进已知右端与辨识右端。短窗预先定为$0\le\tau\le2$，步长0.01时含201个状态。对三个坐标逐元素计算RMSE：</p>
+<p>$$\operatorname{RMSE}=\sqrt{\frac1{3L}\sum_{k=0}^{L-1}
+\|\widehat v_k-v_k\|_2^2},\qquad v_k=(x_k,y_k,z_k)^{\mathsf T}.$$</p>
+<p>相同步长下，两种方程的短窗RMSE约为$6.05\times10^{-13}$。再将已知方程的步长减半为0.005，并抽取相同时间点，粗细路径的短窗RMSE约为$3.78\times10^{-4}$。短时内，辨识右端已非常接近已知右端；步长细化产生的路径差则比两种右端之间的路径差大得多。</p>
+<p>阈值和拟合系数在这些预测前已经固定。已知方程用于核对恢复的表达式与预测表现，评估路径不用于重新选择阈值。</p>
+<h2 id="lorenz-long-window-statistics-and-geometry">长窗逐点差、统计与轨迹几何</h2>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P14-C04-S02-p14-lorenz-benchmark-0.png" alt="差分噪声、独立预测与Lorenz基准：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图画短窗中的$x$，两条线几乎重合。中图分别画同一步长下两种右端的状态距离，以及已知方程粗细步长的状态距离；纵轴用对数刻度。很小的系数、运算舍入或积分差异会沿混沌轨迹放大，所以长时逐点差明显增大。</p>
+<p>右图投影到$x,z$平面，使用预先固定的$10\le\tau\le40$窗口。按0.01的共同时间点取样，共3001个状态；两种右端的轨迹都呈双叶形状。它检查的是这段运动的几何组织，与同一时刻能否逐点重合不同。</p>
+<p>在相同窗口中，对每个坐标计算时间均值、标准差，并另统计$x&gt;0$的样本比例。下面列出$x$坐标的结果：</p>
+<table>
+<thead>
+<tr>
+  <th>方程与RK4步长</th>
+  <th style="text-align:right">$x$的时间均值</th>
+  <th style="text-align:right">$x$的时间标准差</th>
+  <th style="text-align:right">$x&gt;0$比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>已知方程，0.01</td>
+  <td style="text-align:right">$-1.719$</td>
+  <td style="text-align:right">7.745</td>
+  <td style="text-align:right">0.3789</td>
+</tr>
+<tr>
+  <td>辨识方程，0.01</td>
+  <td style="text-align:right">$-1.316$</td>
+  <td style="text-align:right">7.823</td>
+  <td style="text-align:right">0.4072</td>
+</tr>
+<tr>
+  <td>已知方程，0.005</td>
+  <td style="text-align:right">2.685</td>
+  <td style="text-align:right">7.491</td>
+  <td style="text-align:right">0.6721</td>
+</tr>
+<tr>
+  <td>辨识方程，0.005</td>
+  <td style="text-align:right">2.698</td>
+  <td style="text-align:right">7.478</td>
+  <td style="text-align:right">0.6721</td>
+</tr>
+</tbody>
+</table>
+<p>细步长轨迹也先抽取共同时间点，再按同一窗口计算。$x&gt;0$比例的分母都是3001，表示该段轨迹有多少记录停留在正侧分支；标准差的平方偏差和也除以窗口项数。</p>
+<p>同一已知方程仅减半步长，正侧比例就由约0.379变为0.672，均值也随之改变。这说明本次有限长窗的统计仍受具体分支停留历史影响，尚未表现出步长稳定性。双叶投影相近、短时预测接近和长窗统计稳定是三个不同判断，本次前两项与后者给出了不同的证据。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-04-稀疏动力学辨识/practice/?question=p14-chaotic-long-term">混沌基准的比较</a></li></ul></nav>
+
+<p>从系数回到动态时，先核对右端项，再看独立短窗与数值步长，最后按预定长窗比较统计和几何。下一章将再加入总量、非负性和新输入的检查，研究拟合模型是否保留所需结构。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/abs/1509.03580">Brunton、Proctor与Kutz的SINDy论文</a>，包含稀疏回归与Lorenz示例。原论文条件和课程实验的对应在<a href="/parts/17-%E7%A0%94%E7%A9%B6%E5%A4%8D%E7%8E%B0%E4%B8%8E%E7%BB%BC%E5%90%88%E5%AE%9E%E8%B7%B5/">第17篇研究复现</a>集中展开。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/14-04-稀疏动力学辨识/read/1/">← 14.4.1 候选方程、列归一化与顺序阈值回归</a><a href="/chapters/14-05-噪声、外推与结构保持/read/1/">14.5.1 守恒、连续正性与离散非负性 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

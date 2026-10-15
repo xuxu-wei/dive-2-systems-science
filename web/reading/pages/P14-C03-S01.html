@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>14.3.1 Koopman算子、观测函数与有限闭合 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P14-C03-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P14-C03-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit">本节练习 · 4 题</a><a class="button" href="/chapters/14-03-Koopman 表示与有限字典/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>14.3.1 Koopman算子、观测函数与有限闭合</h1>
+<p>上一章用矩阵直接推进状态。如果下一步的$y$含有$x^2$，只将$x,y$线性组合就不够。一个办法是连$x^2$也一起记录，但随后还要回答：下一步的平方值怎样由当前记录得到？从这件事出发，我们将状态的演化转成观测函数的演化。</p>
+<p>学完本节，你应能解释Koopman算子的作用对象，逐行推导三角映射的有限闭合矩阵，并从配对特征拟合矩阵、读出新初值的轨迹。先修为14.2的配对快照、伪逆与离散传播，以及第8篇的最小二乘和岭正则化。</p>
+<h2 id="state-updates-and-observables">状态更新与观测函数</h2>
+<p>令状态$s=(x,y)^{\mathsf T}$按固定规则$s^+=F(s)$更新，上标$+$表示下一步。<strong>观测函数（observable function）</strong>是从状态计算一个数值的函数，例如</p>
+<p>$$g_1(s)=x,\qquad g_2(s)=y,\qquad g_3(s)=x^2.$$</p>
+<p>它可以是直接记录的坐标，也可以是由状态算出的平方、总和或其他量。同一个状态可以同时计算多个观测函数。</p>
+<p>取三角映射</p>
+<p>$$x^+=ax,\qquad y^+=by+cx^2,$$</p>
+<p>其中$a=0.8,b=0.7,c=0.4/\mathrm U$。$x,y$以U计，$a,b$无量纲，$c$将$x^2$的$\mathrm U^2$换成U，使两项能相加。</p>
+<p>从$(x,y)=(0.5,0.2)$ U出发，下一步为$(0.4,0.24)$ U，平方值由0.25变为$0.16\ \mathrm U^2$。从$(1.5,0.2)$ U出发，下一步为$(1.2,1.04)$ U，平方值由2.25变为$1.44\ \mathrm U^2$。两次平方都乘了$0.64=a^2$，提示它可能也有自己的线性更新关系。</p>
+<h2 id="koopman-operator-and-linearity">Koopman算子的定义与线性</h2>
+<p>一般而言，算子是将函数映成函数的映射。对状态更新$F$，<strong>Koopman算子（Koopman operator）</strong>将观测函数$g$映为“先更新状态，再计算$g$”的新函数：</p>
+<p>$$\boxed{(\mathcal K g)(s)=g(F(s)).}$$</p>
+<p>例如$(\mathcal K g_2)(x,y)=by+cx^2$，而$(\mathcal K g_3)(x,y)=(ax)^2$。固定当前状态后，右边给出该观测下一步的数值；把它对所有可能状态都写出来，就得到新的观测函数。</p>
+<p>对可作线性组合的函数$g,h$和常数$\alpha,\beta$，</p>
+<p>$$\begin{aligned}
+[\mathcal K(\alpha g+\beta h)](s)
+&amp;=(\alpha g+\beta h)(F(s))\\
+&amp;=\alpha g(F(s))+\beta h(F(s))\\
+&amp;=[\alpha\mathcal K g+\beta\mathcal K h](s).
+\end{aligned}$$</p>
+<p>所以$\mathcal K$对函数线性。这里线性的含义是“函数的线性组合可以先组合再传播，也可以先传播再组合”；状态规则$F$本身仍可包含平方项。一般观测函数有无限多种，选择有限几个函数后，还要检查它们能否完整表示彼此的更新。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-koopman-functions">算子作用在哪里</a></li></ul></nav>
+
+<h2 id="dictionary-and-closed-lift">函数字典与三行闭合矩阵</h2>
+<p>把按固定顺序选出的观测函数称为<strong>字典（dictionary）</strong>。在每个状态上计算本例的三个函数，得到提升特征列</p>
+<p>$$z=g(s)=\begin{pmatrix}x\\y\\x^2\end{pmatrix}.$$</p>
+<p>逐个计算它们下一步的值：</p>
+<p>$$g_1(F(s))=ax,\qquad g_2(F(s))=by+cx^2,\qquad
+ g_3(F(s))=(ax)^2=a^2x^2.$$</p>
+<p>每个结果都由原来三个函数的固定线性组合给出，因而这组字典对当前更新规则<strong>闭合</strong>。它们张成的函数空间在Koopman作用后仍保留在自身之内。按三个结果的系数依次排成行，得到</p>
+<p>$$\boxed{z^+=Kz,\qquad
+K=\begin{pmatrix}a&amp;0&amp;0\\0&amp;b&amp;c\\0&amp;0&amp;a^2\end{pmatrix}.}$$</p>
+<p>$K$左乘的是提升特征列；它的每一行记录相应观测函数复合$F$后，怎样展开成原字典。第三行必须使用$a^2$，因为新记录是新状态的平方$(ax)^2$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-exact-closure">三角映射为何闭合</a></li></ul></nav>
+
+<p>从正确的$z=(x,y,x^2)^{\mathsf T}$开始，第一项乘$a$、第三项乘$a^2$，每一步便都保持$z_3=z_1^2$。第二项因此始终能取得正确的平方贡献。</p>
+<h2 id="lifting-and-state-readout">提升状态与原状态读出</h2>
+<p>提升增加了计算所用的记录，输出时仍可取回原状态。定义读出矩阵</p>
+<p>$$C=\begin{pmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\end{pmatrix},\qquad
+Cz=(x,y)^{\mathsf T}.$$</p>
+<p>$z_1,z_2$以U计，$z_3$以$\mathrm U^2$计；矩阵系数的单位由所连接的分量决定，例如$K_{23}=c$的单位为$1/\mathrm U$。在固定单位的数值坐标中计算，传播和读出便是普通矩阵乘法。</p>
+<p>例如从$(0.5,0.2)$ U提升为数值列$(0.5,0.2,0.25)^{\mathsf T}$，传播后得到$(0.4,0.24,0.16)^{\mathsf T}$，读出前两项。继续预测时，保留整列作为下一次乘法的输入，平方记录也随同更新。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-readout">状态读出的作用</a></li></ul></nav>
+
+<h2 id="paired-feature-regression-and-edmd">配对特征回归与EDMD</h2>
+<p>若不知道$K$，就从一批一步状态配对中拟合。将各当前状态的字典值排成列，组成$Z\in\mathbb R^{d\times M}$，下一步的字典值组成$W$。$d$是函数数，$M$是配对数，同一列对应同一次更新。</p>
+<p>在约定单位的数值坐标上，求解</p>
+<p>$$\min_K\|W-KZ\|_F^2.$$</p>
+<p>Frobenius范数的平方累加全部配对和全部目标特征的误差。以有限字典近似函数传播的这种数据回归，称为<strong>扩展动态模态分解（extended dynamic mode decomposition，EDMD）</strong>。无正则时可取最小范数解</p>
+<p>$$K=WZ^+.$$</p>
+<p>它沿用上一章的伪逆计算，只是数据列换成了观测函数值。题目按相对奇异值阈值$10^{-12}$构造伪逆；若$Z=I$，当前列恰为坐标方向，便直接得到$K=W$。</p>
+<p>加入非负岭参数$\lambda$时，目标增加$\lambda\|K\|_F^2$。正参数对应方程</p>
+<p>$$K(ZZ^{\mathsf T}+\lambda I)=WZ^{\mathsf T},$$</p>
+<p>由线性求解得到矩阵；下一节将展开这个方程与字典失配的关系。这里各特征按固定数值尺度拟合，改变尺度也会改变误差和惩罚的相对权重。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit">从观测特征拟合传播</a></li></ul></nav>
+
+<h2 id="held-out-trajectory-of-a-closed-dictionary">闭合字典的独立初值预测</h2>
+<p>实验取$x=-1,-0.4,0.4,1$ U，各配$y=-0.2,0.3$ U，形成8个一步配对。它们分别代入同一状态规则，构成3行8列的$Z,W$，无正则拟合得到的三行系数与手推的$K$一致。</p>
+<p>再从没有参加拟合的$(1.3,-0.1)$ U出发，连续推进8步，含起点共9个状态。真实规则直接更新$x,y$；提升预测则反复更新三个特征再读出。图中展示两种方法的第二状态$y$。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P14-C03-S01-252efbbd-0.png" alt="Koopman算子、观测函数与有限闭合：实验结果图" loading="lazy"></figure>
+</section>
+<p>两条轨迹重合，是因为本例不仅拟合了训练点，还逐项证明了$x,y,x^2$能完整推进。训练范围外的$x=1.3$也遵守同一代数恒等式。这种精确性来自所选规则与函数的关系；下一节减少一个函数，看看回归怎样分配无法表示的那部分作用。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/abs/1408.4408">Williams、Kevrekidis与Rowley：A Data-Driven Approximation of the Koopman Operator</a>，第2节介绍观测函数、Koopman作用及EDMD。这里采用特征列左乘的约定，矩阵的行对应各观测函数的更新系数。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/14-02-动态模态分解/read/2/">← 14.2.2 动态模态、采样与连续时间频率</a><a href="/chapters/14-03-Koopman 表示与有限字典/read/2/">14.3.2 有限字典投影、遗漏项与岭正则化 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>14.综合 交换系统的降阶与动力学发现 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P14-SUMMARY">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P14-SUMMARY" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-projection-claim">本节练习 · 8 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>14.综合 交换系统的降阶与动力学发现</h1>
+<p>一条训练路径既能被低秩基准确重建，也能被一个矩阵准确推进。换成另一种初始分配后，模型却可能遗漏新的动态方向。我们用三室交换把这一差别算到第一步，再整理低秩、字典、稀疏辨识与结构检查分别回答的问题。</p>
+<p>学完本节，你应能根据数据表的含义选择计算方法，分开解释重建、训练残差与独立预测，并结合总量和非负性判断预测结果。先修为14.1—14.5。</p>
+<h2 id="training-directions-and-a-new-initial-state">训练方向与新初态</h2>
+<p>沿用三室总量状态 $x$，各项单位 U，连续方程为</p>
+<p>$$
+\dot x=-Lx,\qquad
+L=\frac1T\begin{pmatrix}1&amp;-1&amp;0\\-1&amp;2&amp;-1\\0&amp;-1&amp;1\end{pmatrix}.
+$$</p>
+<p>相邻两室对称交换，总量为 $x_1+x_2+x_3$。令 $h=0.05T$、$E=I-hL$。训练从 $[2,1,0]$ U 出发，更新40次到 $2T$。新初态为 $[3,0,0]$ U，独立预测20次到 $1T$。</p>
+<p>以 U 为数值单位，将三个方向写为</p>
+<p>$$
+e=(1,1,1)^\mathsf T,\qquad
+s=(1,0,-1)^\mathsf T,\qquad
+f=(1,-2,1)^\mathsf T.
+$$</p>
+<p>它们分别满足 $Ee=e$、$Es=0.95s$、$Ef=0.85f$。训练初态等于 $e+s$，因此所有训练快照都在 $e,s$ 张成的平面内，中心化以后只剩 $s$ 这一条变化方向。新初态则为 $e+1.5s+0.5f$，增加了没有在训练中出现的快方向。</p>
+<p>中心化秩1重建将新初态变为 $e+1.5s=[2.5,1,-0.5]^\mathsf T$ U。先算这一投影与真实初态的差，才能分清模型开始传播以前已经遗漏了什么。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-projection-claim">投影误差与动态误差</a></li></ul></nav>
+
+<h2 id="low-rank-reconstruction-and-dynamic-information">低秩重建与动态信息</h2>
+<p>原快照矩阵每列是一个状态，SVD 给出左奇异方向。综合计算题直接对给定原快照作分解，不减均值；保留前 $r$ 个方向，构造</p>
+<p>$$
+P=U_rU_r^\mathsf T,\qquad X_r=PX.
+$$</p>
+<p>整体重建残差为 $\|X-X_r\|_F$，即所有单元格平方误差求和再开平方。$r=0$ 时投影和重建都为0；基向量整体变号时，$P$ 和重建不变。</p>
+<p>例如 $X=\operatorname{diag}(3,1)$ U，只保留第一方向，便有</p>
+<p>$$
+P=\begin{pmatrix}1&amp;0\\0&amp;0\end{pmatrix},\quad
+X_1=\begin{pmatrix}3&amp;0\\0&amp;0\end{pmatrix}\ \mathrm U,
+\quad \|X-X_1\|_F=1\ \mathrm U.
+$$</p>
+<p>这个计算检查快照的表示误差。即使原路径重建完整，也仍需从方程或动态配对中得到新方向的传播信息。三室例子的中心化重建使用训练均值与基；综合题的原快照投影则按输入要求直接计算，先明确这两种数据处理再代入公式。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-projection">综合：低秩投影与重建</a></li></ul></nav>
+
+<h2 id="paired-regression-dictionary-closure-and-training-residuals">配对回归、字典闭合与训练残差</h2>
+<p>将40对相邻状态排成3行40列的 $X,Y$，同列间隔固定为 $0.05T$。DMD 拟合一步矩阵 $\widehat E$，使 $Y\approx\widehat E X$；本次保留两个奇异方向。</p>
+<p>如果先将状态代入给定字典，记当前特征表为 $Z$、下一步表为 $W$，则回归对象变成 $W\approx KZ$。无正则时 $K=WZ^+$；有岭参数 $\lambda&gt;0$ 时，按题定特征尺度使用</p>
+<p>$$
+K=WZ^\mathsf T(ZZ^\mathsf T+\lambda I)^{-1}.
+$$</p>
+<p>训练残差 $\|W-KZ\|_F$ 检查的是这些特征配对。比如 $Z=I$、$W=\operatorname{diag}(0.8,0.6)$，无正则回归就得到同一个对角矩阵，残差为0。继续预测时，要把模型生成的新特征再输入下一步，并通过读出得到状态。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-edmd">综合：提升传播及训练残差</a></li></ul></nav>
+
+<p>14.3的三角映射使用 $[x,y,x^2]$ 时恰好闭合，是因为每项函数经原更新后，都能写成这些函数的固定线性组合。换一个动态规则，就将新规则逐项代入字典，检查是否仍满足这个关系。字典的项数与一次训练残差，都需要联系具体函数怎样更新来解释。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-lift-limit">线性提升的保证</a></li></ul></nav>
+
+<h2 id="sparse-candidates-and-new-state-derivatives">稀疏候选与新状态导数</h2>
+<p>稀疏辨识改为拟合变化率。候选表 $\Theta$ 每行一个训练状态、每列一个候选函数，目标导数 $d$ 按同行对应，求 $d\approx\Theta\xi$。与前面的状态列配对相比，这里样本沿行排列。</p>
+<p>先按每列二范数归一化，再进行最小二乘与阈值筛选；只在保留列上重新拟合，直到支持集不变或达到题给迭代上限。阈值的等号归入保留项，最后将系数换回原列尺度。新状态的特征向量 $\theta_{\mathrm{new}}$ 按相同列顺序计算，其导数预测为</p>
+<p>$$
+\widehat d_{\mathrm{new}}=\theta_{\mathrm{new}}\xi.
+$$</p>
+<p>例如两列对应 $[1,x]$，最终系数为 $[0,2/T]$，在 $x=3$ U 时得到 $6$ U/T。新特征用于最终预测，未参与训练系数或筛选支持集。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-sparse">综合：稀疏辨识与新状态导数</a></li></ul></nav>
+
+<p>含噪导数下，多个阈值可能产生接近的训练残差。可以先用训练轨迹拟合候选，再用验证轨迹选阈值，最后在另一组未参与选择的测试轨迹中评价预测。按轨迹保留独立数据，能让导数噪声与方程选择的影响进入对应的比较。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-noisy-selection">噪声下选择方程</a></li></ul></nav>
+
+<h2 id="the-missing-direction-in-the-first-prediction">第一步预测中的缺失方向</h2>
+<p>主实验从同一40对快照拟合秩2 DMD。训练一步残差约为 $3.8\times10^{-15}$ U，说明这条训练路径上的配对几乎被准确推进。</p>
+<p>但伪逆对训练快照未约束的正交方向取零作用，因此本例拟合矩阵在 $f$ 方向上给出 $\widehat E f=0$。新初态中有 $0.5f$，真实第一步为</p>
+<p>$$
+Ex_0=e+1.5(0.95)s+0.5(0.85)f
+=[2.85,0.15,0]^\mathsf T\ \mathrm U.
+$$</p>
+<p>DMD 则给出</p>
+<p>$$
+\widehat E x_0=e+1.5(0.95)s
+=[2.425,1,-0.425]^\mathsf T\ \mathrm U.
+$$</p>
+<p>两个分配的总量仍为3 U，状态误差范数却为</p>
+<p>$$
+\sqrt{(-0.425)^2+0.85^2+(-0.425)^2}
+=0.425\sqrt6\approx1.041\ \mathrm U.
+$$</p>
+<p>这个误差来自第一步对快方向的不同处理。之后真值中的快分量按0.85逐步衰减，所以误差又逐步减小。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P14-SUMMARY-f56943f9-1.png" alt="交换系统的降阶与动力学发现：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中只展示这条 DMD 独立预测的状态误差。第0步两条路径都保存真实初态，误差为0；第一步误差升高，随后下降。它把接近零的训练残差与新初值的实际传播放在了同一个可手算的例子中。</p>
+<h2 id="path-metrics-and-exchange-structure">路径指标与交换结构</h2>
+<p>在共同的21个时刻、3个状态分量上，逐元素 RMSE 约为0.2488 U，最大总量差约为 $1.6\times10^{-14}$ U，预测中共有7个低于 $-10^{-10}$ 的元素。这里数的是分量与时刻组成的单元格：同一室连续七次为负，会计作七个。</p>
+<p>路径计算题使用全部给定时刻，分别计算</p>
+<p>$$
+\mathrm{RMSE}=\sqrt{\frac1{Nn}\sum_{k,i}(\hat x_{ki}-x_{ki})^2},
+$$</p>
+<p>$$
+\Delta M_{\max}=\max_k\left|\sum_iw_i(\hat x_{ki}-x_{ki})\right|,
+$$</p>
+<p>再统计负元素数。权重跟随变量定义；本例的总量状态取 $w_i=1$。三项保留各自信息：室间误差可以相互抵消，使总量差接近0。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-structure">综合：外推误差与结构失败</a></li></ul></nav>
+
+<p>真实连续矩阵 $A=-L$ 的列和为0、非对角元非负；在 $h=0.05T$ 下，Euler 矩阵各元素非负，最小对角元为 $1-0.05\times2=0.9$。这些结构条件解释了真实路径的守恒与非负。对拟合路径，逐时总量和实际负值又分别检查它在此次预测中做到了什么。</p>
+<h2 id="new-inputs-and-new-paired-data">新输入与新的配对数据</h2>
+<p>14.5.2在第11次更新开始向第一室逐步加量。原训练来自无输入交换，拟合矩阵没有表示这项作用。若研究输入怎样改变状态，可以将更新写成</p>
+<p>$$
+x_{k+1}=E x_k+B_u u_k,
+$$</p>
+<p>先规定 $u_k$ 的量纲与记录时刻，再依据每步新增量或流量积分定义 $B_u$。让包含输入变化的配对数据参与学习，并用未参与拟合的输入过程检查预测，才把新增机制与独立评价接在一起。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/14-数据驱动动力学与模型降阶/综合练习/practice/?question=p14-capstone-new-input">新输入后的结论边界</a></li></ul></nav>
+
+<p>本篇几种方法所需的证据由此连起来了：快照支持重建，配对状态支持传播，候选函数与导数支持方程回归，新初值和输入检查未见条件；收支与非负条件则将这些结果重新联系到记录的物理量。下一篇将用可微分模型，把参数、机制和数据拟合放进同一计算过程。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://databookuw.com/">Brunton 与 Kutz：Data-Driven Science and Engineering</a>提供低秩、动力学辨识与降阶的整体视角；<a href="https://www.rt.isy.liu.se/en/books/sysid/">Ljung：System Identification</a>进一步讨论数据覆盖、输入设计与验证。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/14-05-噪声、外推与结构保持/read/2/">← 14.5.2 数据覆盖、独立预测与结构误差</a><a href="/parts/15-可微分建模与机制融合/">继续：第 15 篇 可微分建模与机制融合 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

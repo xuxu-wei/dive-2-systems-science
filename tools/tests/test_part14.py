@@ -146,6 +146,40 @@ sparse:sparseFit(.01,0), closed:structureView('closed',.2,3).series[0].points}))
         assert amount == pytest.approx(2)
 
 
+def test_lorenz_frozen_field_predicts_an_independent_initial_state():
+    f = notebook_functions()
+    starts = ([1, 1, 1], [-5, 4, 20], [10, -8, 15], [2, 3, 30])
+    training = np.vstack([f['lorenz_rk4'](initial, .01, 300) for initial in starts])
+    library = np.asarray([f['lorenz_features'](state) for state in training])
+    rates = np.asarray([f['lorenz_rhs'](state) for state in training])
+    fitted = np.asarray([f['sparse_stlsq'](library, rates[:, i], .01, 8)[0]
+                         for i in range(3)])
+    expected = np.zeros((3, 10))
+    expected[0, [1, 2]] = [-10, 10]
+    expected[1, [1, 2, 5]] = [28, -1, -1]
+    expected[2, [3, 4]] = [-8/3, 1]
+    np.testing.assert_allclose(fitted, expected, atol=1e-10)
+    f['lorenz_coefficients'] = fitted
+    held_out = [-8., 7., 27.]
+    assert held_out not in starts
+    x, y, z = held_out
+    np.testing.assert_allclose(f['identified_lorenz_rhs'](held_out),
+                               [10*(y-x), x*(28-z)-y, x*y-8*z/3], atol=1e-10)
+    reference = f['rk4_with_rhs'](f['lorenz_rhs'], held_out, .01, 200)
+    identified = f['rk4_with_rhs'](f['identified_lorenz_rhs'], held_out, .01, 200)
+    assert np.sqrt(np.mean((identified-reference)**2)) < 1e-9
+    # The reusable integrator is also checked against an unrelated exact solution.
+    decay = lambda state: -np.asarray(state)
+    coarse = f['rk4_with_rhs'](decay, [1.], .1, 10)
+    fine = f['rk4_with_rhs'](decay, [1.], .05, 20)
+    ratio = abs(coarse[-1, 0]-math.exp(-1))/abs(fine[-1, 0]-math.exp(-1))
+    assert 15 < ratio < 18
+    stats = f['window_statistics']([[999., 999.], [-1., 2.], [1., 4.]], 1)
+    np.testing.assert_allclose(stats['mean'], [0., 3.])
+    np.testing.assert_allclose(stats['std'], [1., 1.])
+    assert stats['positive_x_fraction'] == .5
+
+
 def test_euler_counterexample_rejects_old_continuous_tolerance_shortcut(tmp_path):
     question = next(q for q in QUESTIONS if q['id'] == 'p14-structure-metrics')
     correct = SOLUTIONS[question['id']]

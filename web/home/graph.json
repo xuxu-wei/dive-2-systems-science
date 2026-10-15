@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "b505b3f75f80bd3d16884f6a1f2699921c263d8841d48be1fcfa2b974cc86a6c",
+    "catalogSha256": "e48933d5d58453ae7d1db9b9aced54816ba6bca6c07307819367b2dd144de064",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -17521,8 +17521,8 @@
       "english": null,
       "number": "14.1.1",
       "parentId": "14.1",
-      "url": "/notebook/?id=P14-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-01-低秩分解与模型降阶/read/1/",
+      "readingUrl": "/chapters/14-01-低秩分解与模型降阶/read/1/",
       "practiceUrl": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction",
       "description": "先说明快照的行列与数据能量，再手算投影及奇异值截断误差。",
       "categories": [
@@ -17541,7 +17541,7 @@
       "total": 1,
       "lessonId": "P14-C01-S01",
       "lessonNumber": "14.1.1",
-      "lessonTitle": "从快照到截断奇异值",
+      "lessonTitle": "快照矩阵、奇异值分解与低秩重建",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17552,8 +17552,8 @@
       "english": null,
       "number": "14.1.1",
       "parentId": "14.1",
-      "url": "/notebook/?id=P14-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-01-低秩分解与模型降阶/read/1/",
+      "readingUrl": "/chapters/14-01-低秩分解与模型降阶/read/1/",
       "practiceUrl": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction",
       "description": "先说明快照的行列与数据能量，再手算投影及奇异值截断误差。",
       "categories": [
@@ -17572,7 +17572,7 @@
       "total": 1,
       "lessonId": "P14-C01-S01",
       "lessonNumber": "14.1.1",
-      "lessonTitle": "从快照到截断奇异值",
+      "lessonTitle": "快照矩阵、奇异值分解与低秩重建",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17583,8 +17583,8 @@
       "english": null,
       "number": "14.1.1",
       "parentId": "14.1",
-      "url": "/notebook/?id=P14-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-01-低秩分解与模型降阶/read/1/",
+      "readingUrl": "/chapters/14-01-低秩分解与模型降阶/read/1/",
       "practiceUrl": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction",
       "description": "先说明快照的行列与数据能量，再手算投影及奇异值截断误差。",
       "categories": [
@@ -17603,7 +17603,7 @@
       "total": 1,
       "lessonId": "P14-C01-S01",
       "lessonNumber": "14.1.1",
-      "lessonTitle": "从快照到截断奇异值",
+      "lessonTitle": "快照矩阵、奇异值分解与低秩重建",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17614,8 +17614,8 @@
       "english": null,
       "number": "14.1.1",
       "parentId": "14.1",
-      "url": "/notebook/?id=P14-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-01-低秩分解与模型降阶/read/1/",
+      "readingUrl": "/chapters/14-01-低秩分解与模型降阶/read/1/",
       "practiceUrl": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-svd-reconstruction",
       "description": "先说明快照的行列与数据能量，再手算投影及奇异值截断误差。",
       "categories": [
@@ -17634,7 +17634,7 @@
       "total": 1,
       "lessonId": "P14-C01-S01",
       "lessonNumber": "14.1.1",
-      "lessonTitle": "从快照到截断奇异值",
+      "lessonTitle": "快照矩阵、奇异值分解与低秩重建",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17645,8 +17645,8 @@
       "english": null,
       "number": "14.1.2",
       "parentId": "14.1",
-      "url": "/notebook/?id=P14-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-01-低秩分解与模型降阶/read/2/",
+      "readingUrl": "/chapters/14-01-低秩分解与模型降阶/read/2/",
       "practiceUrl": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler",
       "description": "由两室一步投影进入三室Galerkin动态，分开初值映射与后续误差。",
       "categories": [
@@ -17665,7 +17665,7 @@
       "total": 1,
       "lessonId": "P14-C01-S02",
       "lessonNumber": "14.1.2",
-      "lessonTitle": "投影动力学与新初值",
+      "lessonTitle": "Galerkin投影、降阶动力学与初值误差",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17676,8 +17676,8 @@
       "english": null,
       "number": "14.1.2",
       "parentId": "14.1",
-      "url": "/notebook/?id=P14-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-01-低秩分解与模型降阶/read/2/",
+      "readingUrl": "/chapters/14-01-低秩分解与模型降阶/read/2/",
       "practiceUrl": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler",
       "description": "由两室一步投影进入三室Galerkin动态，分开初值映射与后续误差。",
       "categories": [
@@ -17696,7 +17696,7 @@
       "total": 1,
       "lessonId": "P14-C01-S02",
       "lessonNumber": "14.1.2",
-      "lessonTitle": "投影动力学与新初值",
+      "lessonTitle": "Galerkin投影、降阶动力学与初值误差",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17707,8 +17707,8 @@
       "english": null,
       "number": "14.1.2",
       "parentId": "14.1",
-      "url": "/notebook/?id=P14-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-01-低秩分解与模型降阶/read/2/",
+      "readingUrl": "/chapters/14-01-低秩分解与模型降阶/read/2/",
       "practiceUrl": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler",
       "description": "由两室一步投影进入三室Galerkin动态，分开初值映射与后续误差。",
       "categories": [
@@ -17727,7 +17727,7 @@
       "total": 1,
       "lessonId": "P14-C01-S02",
       "lessonNumber": "14.1.2",
-      "lessonTitle": "投影动力学与新初值",
+      "lessonTitle": "Galerkin投影、降阶动力学与初值误差",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17738,8 +17738,8 @@
       "english": null,
       "number": "14.1.2",
       "parentId": "14.1",
-      "url": "/notebook/?id=P14-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-01-低秩分解与模型降阶/read/2/",
+      "readingUrl": "/chapters/14-01-低秩分解与模型降阶/read/2/",
       "practiceUrl": "/chapters/14-01-低秩分解与模型降阶/practice/?question=p14-galerkin-euler",
       "description": "由两室一步投影进入三室Galerkin动态，分开初值映射与后续误差。",
       "categories": [
@@ -17758,7 +17758,7 @@
       "total": 1,
       "lessonId": "P14-C01-S02",
       "lessonNumber": "14.1.2",
-      "lessonTitle": "投影动力学与新初值",
+      "lessonTitle": "Galerkin投影、降阶动力学与初值误差",
       "chapterUrl": "/chapters/14-01-低秩分解与模型降阶/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17806,8 +17806,8 @@
       "english": null,
       "number": "14.2.1",
       "parentId": "14.2",
-      "url": "/notebook/?id=P14-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-02-动态模态分解/read/1/",
+      "readingUrl": "/chapters/14-02-动态模态分解/read/1/",
       "practiceUrl": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit",
       "description": "配对当前和下一步状态，用独立列求传播系数，再检验新初值。",
       "categories": [
@@ -17826,7 +17826,7 @@
       "total": 1,
       "lessonId": "P14-C02-S01",
       "lessonNumber": "14.2.1",
-      "lessonTitle": "配对快照与线性传播",
+      "lessonTitle": "配对快照、伪逆与线性传播",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17837,8 +17837,8 @@
       "english": null,
       "number": "14.2.1",
       "parentId": "14.2",
-      "url": "/notebook/?id=P14-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-02-动态模态分解/read/1/",
+      "readingUrl": "/chapters/14-02-动态模态分解/read/1/",
       "practiceUrl": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit",
       "description": "配对当前和下一步状态，用独立列求传播系数，再检验新初值。",
       "categories": [
@@ -17857,7 +17857,7 @@
       "total": 1,
       "lessonId": "P14-C02-S01",
       "lessonNumber": "14.2.1",
-      "lessonTitle": "配对快照与线性传播",
+      "lessonTitle": "配对快照、伪逆与线性传播",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17868,8 +17868,8 @@
       "english": null,
       "number": "14.2.1",
       "parentId": "14.2",
-      "url": "/notebook/?id=P14-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-02-动态模态分解/read/1/",
+      "readingUrl": "/chapters/14-02-动态模态分解/read/1/",
       "practiceUrl": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit",
       "description": "配对当前和下一步状态，用独立列求传播系数，再检验新初值。",
       "categories": [
@@ -17888,7 +17888,7 @@
       "total": 1,
       "lessonId": "P14-C02-S01",
       "lessonNumber": "14.2.1",
-      "lessonTitle": "配对快照与线性传播",
+      "lessonTitle": "配对快照、伪逆与线性传播",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17899,8 +17899,8 @@
       "english": null,
       "number": "14.2.1",
       "parentId": "14.2",
-      "url": "/notebook/?id=P14-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-02-动态模态分解/read/1/",
+      "readingUrl": "/chapters/14-02-动态模态分解/read/1/",
       "practiceUrl": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-fit",
       "description": "配对当前和下一步状态，用独立列求传播系数，再检验新初值。",
       "categories": [
@@ -17919,7 +17919,7 @@
       "total": 1,
       "lessonId": "P14-C02-S01",
       "lessonNumber": "14.2.1",
-      "lessonTitle": "配对快照与线性传播",
+      "lessonTitle": "配对快照、伪逆与线性传播",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17930,8 +17930,8 @@
       "english": "dynamic mode",
       "number": "14.2.2",
       "parentId": "14.2",
-      "url": "/notebook/?id=P14-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-02-动态模态分解/read/2/",
+      "readingUrl": "/chapters/14-02-动态模态分解/read/2/",
       "practiceUrl": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates",
       "description": "将每步幅度和相角换成时间速率，解释整圈混叠与振幅范围。",
       "categories": [
@@ -17950,7 +17950,7 @@
       "total": 1,
       "lessonId": "P14-C02-S02",
       "lessonNumber": "14.2.2",
-      "lessonTitle": "模态、采样与预测范围",
+      "lessonTitle": "动态模态、采样与连续时间频率",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17961,8 +17961,8 @@
       "english": null,
       "number": "14.2.2",
       "parentId": "14.2",
-      "url": "/notebook/?id=P14-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-02-动态模态分解/read/2/",
+      "readingUrl": "/chapters/14-02-动态模态分解/read/2/",
       "practiceUrl": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates",
       "description": "将每步幅度和相角换成时间速率，解释整圈混叠与振幅范围。",
       "categories": [
@@ -17981,7 +17981,7 @@
       "total": 1,
       "lessonId": "P14-C02-S02",
       "lessonNumber": "14.2.2",
-      "lessonTitle": "模态、采样与预测范围",
+      "lessonTitle": "动态模态、采样与连续时间频率",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -17992,8 +17992,8 @@
       "english": null,
       "number": "14.2.2",
       "parentId": "14.2",
-      "url": "/notebook/?id=P14-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-02-动态模态分解/read/2/",
+      "readingUrl": "/chapters/14-02-动态模态分解/read/2/",
       "practiceUrl": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates",
       "description": "将每步幅度和相角换成时间速率，解释整圈混叠与振幅范围。",
       "categories": [
@@ -18012,7 +18012,7 @@
       "total": 1,
       "lessonId": "P14-C02-S02",
       "lessonNumber": "14.2.2",
-      "lessonTitle": "模态、采样与预测范围",
+      "lessonTitle": "动态模态、采样与连续时间频率",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18023,8 +18023,8 @@
       "english": null,
       "number": "14.2.2",
       "parentId": "14.2",
-      "url": "/notebook/?id=P14-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-02-动态模态分解/read/2/",
+      "readingUrl": "/chapters/14-02-动态模态分解/read/2/",
       "practiceUrl": "/chapters/14-02-动态模态分解/practice/?question=p14-dmd-rates",
       "description": "将每步幅度和相角换成时间速率，解释整圈混叠与振幅范围。",
       "categories": [
@@ -18043,7 +18043,7 @@
       "total": 1,
       "lessonId": "P14-C02-S02",
       "lessonNumber": "14.2.2",
-      "lessonTitle": "模态、采样与预测范围",
+      "lessonTitle": "动态模态、采样与连续时间频率",
       "chapterUrl": "/chapters/14-02-动态模态分解/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18090,8 +18090,8 @@
       "english": null,
       "number": "14.3.1",
       "parentId": "14.3",
-      "url": "/notebook/?id=P14-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/",
+      "readingUrl": "/chapters/14-03-Koopman 表示与有限字典/read/1/",
       "practiceUrl": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit",
       "description": "按函数顺序建立特征列，逐行推导平方项的闭合及状态读出。",
       "categories": [
@@ -18110,7 +18110,7 @@
       "total": 1,
       "lessonId": "P14-C03-S01",
       "lessonNumber": "14.3.1",
-      "lessonTitle": "从非线性状态到线性观测",
+      "lessonTitle": "Koopman算子、观测函数与有限闭合",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18121,8 +18121,8 @@
       "english": null,
       "number": "14.3.1",
       "parentId": "14.3",
-      "url": "/notebook/?id=P14-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/",
+      "readingUrl": "/chapters/14-03-Koopman 表示与有限字典/read/1/",
       "practiceUrl": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit",
       "description": "按函数顺序建立特征列，逐行推导平方项的闭合及状态读出。",
       "categories": [
@@ -18141,7 +18141,7 @@
       "total": 1,
       "lessonId": "P14-C03-S01",
       "lessonNumber": "14.3.1",
-      "lessonTitle": "从非线性状态到线性观测",
+      "lessonTitle": "Koopman算子、观测函数与有限闭合",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18152,8 +18152,8 @@
       "english": null,
       "number": "14.3.1",
       "parentId": "14.3",
-      "url": "/notebook/?id=P14-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/",
+      "readingUrl": "/chapters/14-03-Koopman 表示与有限字典/read/1/",
       "practiceUrl": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit",
       "description": "按函数顺序建立特征列，逐行推导平方项的闭合及状态读出。",
       "categories": [
@@ -18172,7 +18172,7 @@
       "total": 1,
       "lessonId": "P14-C03-S01",
       "lessonNumber": "14.3.1",
-      "lessonTitle": "从非线性状态到线性观测",
+      "lessonTitle": "Koopman算子、观测函数与有限闭合",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18183,8 +18183,8 @@
       "english": null,
       "number": "14.3.1",
       "parentId": "14.3",
-      "url": "/notebook/?id=P14-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-03-Koopman 表示与有限字典/read/1/",
+      "readingUrl": "/chapters/14-03-Koopman 表示与有限字典/read/1/",
       "practiceUrl": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-edmd-fit",
       "description": "按函数顺序建立特征列，逐行推导平方项的闭合及状态读出。",
       "categories": [
@@ -18203,7 +18203,7 @@
       "total": 1,
       "lessonId": "P14-C03-S01",
       "lessonNumber": "14.3.1",
-      "lessonTitle": "从非线性状态到线性观测",
+      "lessonTitle": "Koopman算子、观测函数与有限闭合",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18214,8 +18214,8 @@
       "english": null,
       "number": "14.3.2",
       "parentId": "14.3",
-      "url": "/notebook/?id=P14-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/",
+      "readingUrl": "/chapters/14-03-Koopman 表示与有限字典/read/2/",
       "practiceUrl": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll",
       "description": "重新拟合短字典与完整字典，比较遗漏、正则及复合函数更新。",
       "categories": [
@@ -18234,7 +18234,7 @@
       "total": 1,
       "lessonId": "P14-C03-S02",
       "lessonNumber": "14.3.2",
-      "lessonTitle": "字典失配与正则化",
+      "lessonTitle": "有限字典投影、遗漏项与岭正则化",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18245,8 +18245,8 @@
       "english": null,
       "number": "14.3.2",
       "parentId": "14.3",
-      "url": "/notebook/?id=P14-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/",
+      "readingUrl": "/chapters/14-03-Koopman 表示与有限字典/read/2/",
       "practiceUrl": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll",
       "description": "重新拟合短字典与完整字典，比较遗漏、正则及复合函数更新。",
       "categories": [
@@ -18265,7 +18265,7 @@
       "total": 1,
       "lessonId": "P14-C03-S02",
       "lessonNumber": "14.3.2",
-      "lessonTitle": "字典失配与正则化",
+      "lessonTitle": "有限字典投影、遗漏项与岭正则化",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18276,8 +18276,8 @@
       "english": null,
       "number": "14.3.2",
       "parentId": "14.3",
-      "url": "/notebook/?id=P14-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-03-Koopman 表示与有限字典/read/2/",
+      "readingUrl": "/chapters/14-03-Koopman 表示与有限字典/read/2/",
       "practiceUrl": "/chapters/14-03-Koopman 表示与有限字典/practice/?question=p14-lifted-roll",
       "description": "重新拟合短字典与完整字典，比较遗漏、正则及复合函数更新。",
       "categories": [
@@ -18296,7 +18296,7 @@
       "total": 1,
       "lessonId": "P14-C03-S02",
       "lessonNumber": "14.3.2",
-      "lessonTitle": "字典失配与正则化",
+      "lessonTitle": "有限字典投影、遗漏项与岭正则化",
       "chapterUrl": "/chapters/14-03-Koopman 表示与有限字典/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18343,8 +18343,8 @@
       "english": null,
       "number": "14.4.1",
       "parentId": "14.4",
-      "url": "/notebook/?id=P14-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-04-稀疏动力学辨识/read/1/",
+      "readingUrl": "/chapters/14-04-稀疏动力学辨识/read/1/",
       "practiceUrl": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq",
       "description": "逐行建立候选表，说明列归一化、阈值筛选、重新拟合与列索引。",
       "categories": [
@@ -18363,7 +18363,7 @@
       "total": 1,
       "lessonId": "P14-C04-S01",
       "lessonNumber": "14.4.1",
-      "lessonTitle": "候选字典与顺序阈值回归",
+      "lessonTitle": "候选方程、列归一化与顺序阈值回归",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18374,8 +18374,8 @@
       "english": null,
       "number": "14.4.1",
       "parentId": "14.4",
-      "url": "/notebook/?id=P14-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-04-稀疏动力学辨识/read/1/",
+      "readingUrl": "/chapters/14-04-稀疏动力学辨识/read/1/",
       "practiceUrl": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq",
       "description": "逐行建立候选表，说明列归一化、阈值筛选、重新拟合与列索引。",
       "categories": [
@@ -18394,7 +18394,7 @@
       "total": 1,
       "lessonId": "P14-C04-S01",
       "lessonNumber": "14.4.1",
-      "lessonTitle": "候选字典与顺序阈值回归",
+      "lessonTitle": "候选方程、列归一化与顺序阈值回归",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18405,8 +18405,8 @@
       "english": null,
       "number": "14.4.1",
       "parentId": "14.4",
-      "url": "/notebook/?id=P14-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-04-稀疏动力学辨识/read/1/",
+      "readingUrl": "/chapters/14-04-稀疏动力学辨识/read/1/",
       "practiceUrl": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq",
       "description": "逐行建立候选表，说明列归一化、阈值筛选、重新拟合与列索引。",
       "categories": [
@@ -18425,7 +18425,7 @@
       "total": 1,
       "lessonId": "P14-C04-S01",
       "lessonNumber": "14.4.1",
-      "lessonTitle": "候选字典与顺序阈值回归",
+      "lessonTitle": "候选方程、列归一化与顺序阈值回归",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18436,8 +18436,8 @@
       "english": null,
       "number": "14.4.1",
       "parentId": "14.4",
-      "url": "/notebook/?id=P14-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-04-稀疏动力学辨识/read/1/",
+      "readingUrl": "/chapters/14-04-稀疏动力学辨识/read/1/",
       "practiceUrl": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-sparse-stlsq",
       "description": "逐行建立候选表，说明列归一化、阈值筛选、重新拟合与列索引。",
       "categories": [
@@ -18456,7 +18456,7 @@
       "total": 1,
       "lessonId": "P14-C04-S01",
       "lessonNumber": "14.4.1",
-      "lessonTitle": "候选字典与顺序阈值回归",
+      "lessonTitle": "候选方程、列归一化与顺序阈值回归",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18467,8 +18467,8 @@
       "english": null,
       "number": "14.4.2",
       "parentId": "14.4",
-      "url": "/notebook/?id=P14-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-04-稀疏动力学辨识/read/2/",
+      "readingUrl": "/chapters/14-04-稀疏动力学辨识/read/2/",
       "practiceUrl": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative",
       "description": "推导等距差分的噪声方差，比较重复系数与独立初值预测。",
       "categories": [
@@ -18487,7 +18487,7 @@
       "total": 1,
       "lessonId": "P14-C04-S02",
       "lessonNumber": "14.4.2",
-      "lessonTitle": "导数噪声与独立轨迹",
+      "lessonTitle": "差分噪声、独立预测与Lorenz基准",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18498,8 +18498,8 @@
       "english": null,
       "number": "14.4.2",
       "parentId": "14.4",
-      "url": "/notebook/?id=P14-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-04-稀疏动力学辨识/read/2/",
+      "readingUrl": "/chapters/14-04-稀疏动力学辨识/read/2/",
       "practiceUrl": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative",
       "description": "推导等距差分的噪声方差，比较重复系数与独立初值预测。",
       "categories": [
@@ -18518,7 +18518,7 @@
       "total": 1,
       "lessonId": "P14-C04-S02",
       "lessonNumber": "14.4.2",
-      "lessonTitle": "导数噪声与独立轨迹",
+      "lessonTitle": "差分噪声、独立预测与Lorenz基准",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18529,8 +18529,8 @@
       "english": null,
       "number": "14.4.2",
       "parentId": "14.4",
-      "url": "/notebook/?id=P14-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-04-稀疏动力学辨识/read/2/",
+      "readingUrl": "/chapters/14-04-稀疏动力学辨识/read/2/",
       "practiceUrl": "/chapters/14-04-稀疏动力学辨识/practice/?question=p14-finite-derivative",
       "description": "推导等距差分的噪声方差，比较重复系数与独立初值预测。",
       "categories": [
@@ -18549,7 +18549,7 @@
       "total": 1,
       "lessonId": "P14-C04-S02",
       "lessonNumber": "14.4.2",
-      "lessonTitle": "导数噪声与独立轨迹",
+      "lessonTitle": "差分噪声、独立预测与Lorenz基准",
       "chapterUrl": "/chapters/14-04-稀疏动力学辨识/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18596,8 +18596,8 @@
       "english": null,
       "number": "14.5.1",
       "parentId": "14.5",
-      "url": "/notebook/?id=P14-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-05-噪声、外推与结构保持/read/1/",
+      "readingUrl": "/chapters/14-05-噪声、外推与结构保持/read/1/",
       "practiceUrl": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics",
       "description": "从两室收支推导列和与转移符号，再手算Euler过大步长反例。",
       "categories": [
@@ -18616,7 +18616,7 @@
       "total": 1,
       "lessonId": "P14-C05-S01",
       "lessonNumber": "14.5.1",
-      "lessonTitle": "守恒、正性与离散步长",
+      "lessonTitle": "守恒、连续正性与离散非负性",
       "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18627,8 +18627,8 @@
       "english": null,
       "number": "14.5.1",
       "parentId": "14.5",
-      "url": "/notebook/?id=P14-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-05-噪声、外推与结构保持/read/1/",
+      "readingUrl": "/chapters/14-05-噪声、外推与结构保持/read/1/",
       "practiceUrl": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics",
       "description": "从两室收支推导列和与转移符号，再手算Euler过大步长反例。",
       "categories": [
@@ -18647,7 +18647,7 @@
       "total": 1,
       "lessonId": "P14-C05-S01",
       "lessonNumber": "14.5.1",
-      "lessonTitle": "守恒、正性与离散步长",
+      "lessonTitle": "守恒、连续正性与离散非负性",
       "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18658,8 +18658,8 @@
       "english": null,
       "number": "14.5.1",
       "parentId": "14.5",
-      "url": "/notebook/?id=P14-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/14-05-噪声、外推与结构保持/read/1/",
+      "readingUrl": "/chapters/14-05-噪声、外推与结构保持/read/1/",
       "practiceUrl": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-structure-metrics",
       "description": "从两室收支推导列和与转移符号，再手算Euler过大步长反例。",
       "categories": [
@@ -18678,7 +18678,7 @@
       "total": 1,
       "lessonId": "P14-C05-S01",
       "lessonNumber": "14.5.1",
-      "lessonTitle": "守恒、正性与离散步长",
+      "lessonTitle": "守恒、连续正性与离散非负性",
       "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18689,8 +18689,8 @@
       "english": null,
       "number": "14.5.2",
       "parentId": "14.5",
-      "url": "/notebook/?id=P14-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-05-噪声、外推与结构保持/read/2/",
+      "readingUrl": "/chapters/14-05-噪声、外推与结构保持/read/2/",
       "practiceUrl": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics",
       "description": "在共同数据和预测窗口上分别解释状态误差、总量差与负值数。",
       "categories": [
@@ -18709,7 +18709,7 @@
       "total": 1,
       "lessonId": "P14-C05-S02",
       "lessonNumber": "14.5.2",
-      "lessonTitle": "同一预算下的外推比较",
+      "lessonTitle": "数据覆盖、独立预测与结构误差",
       "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18720,8 +18720,8 @@
       "english": null,
       "number": "14.5.2",
       "parentId": "14.5",
-      "url": "/notebook/?id=P14-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-05-噪声、外推与结构保持/read/2/",
+      "readingUrl": "/chapters/14-05-噪声、外推与结构保持/read/2/",
       "practiceUrl": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics",
       "description": "在共同数据和预测窗口上分别解释状态误差、总量差与负值数。",
       "categories": [
@@ -18740,7 +18740,7 @@
       "total": 1,
       "lessonId": "P14-C05-S02",
       "lessonNumber": "14.5.2",
-      "lessonTitle": "同一预算下的外推比较",
+      "lessonTitle": "数据覆盖、独立预测与结构误差",
       "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18751,8 +18751,8 @@
       "english": null,
       "number": "14.5.2",
       "parentId": "14.5",
-      "url": "/notebook/?id=P14-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-05-噪声、外推与结构保持/read/2/",
+      "readingUrl": "/chapters/14-05-噪声、外推与结构保持/read/2/",
       "practiceUrl": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics",
       "description": "在共同数据和预测窗口上分别解释状态误差、总量差与负值数。",
       "categories": [
@@ -18771,7 +18771,7 @@
       "total": 1,
       "lessonId": "P14-C05-S02",
       "lessonNumber": "14.5.2",
-      "lessonTitle": "同一预算下的外推比较",
+      "lessonTitle": "数据覆盖、独立预测与结构误差",
       "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18782,8 +18782,8 @@
       "english": null,
       "number": "14.5.2",
       "parentId": "14.5",
-      "url": "/notebook/?id=P14-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/14-05-噪声、外推与结构保持/read/2/",
+      "readingUrl": "/chapters/14-05-噪声、外推与结构保持/read/2/",
       "practiceUrl": "/chapters/14-05-噪声、外推与结构保持/practice/?question=p14-path-metrics",
       "description": "在共同数据和预测窗口上分别解释状态误差、总量差与负值数。",
       "categories": [
@@ -18802,7 +18802,7 @@
       "total": 1,
       "lessonId": "P14-C05-S02",
       "lessonNumber": "14.5.2",
-      "lessonTitle": "同一预算下的外推比较",
+      "lessonTitle": "数据覆盖、独立预测与结构误差",
       "chapterUrl": "/chapters/14-05-噪声、外推与结构保持/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
