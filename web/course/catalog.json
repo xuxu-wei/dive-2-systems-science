@@ -3936,121 +3936,334 @@
               "id": "P04-C01-S01",
               "chapter_id": "4.1",
               "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/01-从三个平衡进入多稳态.ipynb",
-              "title": "从三个平衡进入多稳态",
-              "outcome": "先看一次变化把状态推向哪里，再求三个平衡与解析轨迹，解释停在平衡和抵抗扰动的区别。",
+              "title": "非线性平衡与多稳态",
+              "outcome": "用流向与解析轨迹比较三个平衡及其邻近初值。",
               "number": "4.1.1",
               "visualization": "web/nonlinear/index.html",
+              "reading": "lessons/04-非线性动态行为/01-多稳态与吸引域/01-从三个平衡进入多稳态.md",
               "questions": [
                 {
                   "id": "p04-switch-equilibria",
                   "slug": "p04-switch-equilibria",
                   "title": "三个不动点具有相同性质吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/1/#bistability-and-basins",
+                  "concept_title": "局部稳定、双稳态与吸引域",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-equilibria"
                 },
                 {
                   "id": "p04-switch-exact",
                   "slug": "p04-switch-exact",
                   "title": "按解析式预测开关状态",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/1/#exact-switch-trajectory",
+                  "concept_title": "变量替换与开关的解析轨迹",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-exact"
                 },
                 {
                   "id": "p04-zero-slope",
                   "slug": "p04-zero-slope",
                   "title": "比较两个三次方程",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/1/#zero-slope-and-autonomous-flow",
+                  "concept_title": "零导数与一维自治运动",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-zero-slope"
                 },
                 {
                   "id": "p04-line-no-cycle",
                   "slug": "p04-line-no-cycle",
                   "title": "判断一维自治流",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/1/#zero-slope-and-autonomous-flow",
+                  "concept_title": "零导数与一维自治运动",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-line-no-cycle"
                 }
               ],
               "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-equilibria",
               "notebook_url": "/notebook/?id=P04-C01-S01",
-              "url": "/notebook/?id=P04-C01-S01"
+              "reading_url": "/chapters/04-01-多稳态与吸引域/read/1/",
+              "concepts": [
+                {
+                  "id": "activity-deviation-and-switch",
+                  "title": "活动偏差与非线性开关",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C01-S01:activity-deviation-and-switch",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/1/#activity-deviation-and-switch"
+                },
+                {
+                  "id": "phase-line-directions",
+                  "title": "变化率符号与相线",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C01-S01:phase-line-directions",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/1/#phase-line-directions"
+                },
+                {
+                  "id": "bistability-and-basins",
+                  "title": "局部稳定、双稳态与吸引域",
+                  "question_ids": [
+                    "p04-switch-equilibria"
+                  ],
+                  "explore": false,
+                  "key": "P04-C01-S01:bistability-and-basins",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/1/#bistability-and-basins"
+                },
+                {
+                  "id": "exact-switch-trajectory",
+                  "title": "变量替换与开关的解析轨迹",
+                  "question_ids": [
+                    "p04-switch-exact"
+                  ],
+                  "explore": false,
+                  "key": "P04-C01-S01:exact-switch-trajectory",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/1/#exact-switch-trajectory"
+                },
+                {
+                  "id": "switch-curves-and-initials",
+                  "title": "平衡图与不同起点的时间曲线",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P04-C01-S01:switch-curves-and-initials",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/1/#switch-curves-and-initials",
+                  "explore_url": "/chapters/04-01-多稳态与吸引域/explore/?concept=P04-C01-S01%3Aswitch-curves-and-initials"
+                },
+                {
+                  "id": "zero-slope-and-autonomous-flow",
+                  "title": "零导数与一维自治运动",
+                  "question_ids": [
+                    "p04-zero-slope",
+                    "p04-line-no-cycle"
+                  ],
+                  "explore": false,
+                  "key": "P04-C01-S01:zero-slope-and-autonomous-flow",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/1/#zero-slope-and-autonomous-flow"
+                }
+              ],
+              "url": "/chapters/04-01-多稳态与吸引域/read/1/"
             },
             {
               "id": "P04-C01-S02",
               "chapter_id": "4.1",
               "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/02-吸引域扰动与有限时间扫描.ipynb",
-              "title": "吸引域扰动与有限时间扫描",
-              "outcome": "把一次推离与持续偏置分开，用半步预测推导中点法，再比较初值扫描的终值与解析解。",
+              "title": "扰动、吸引域与有限时间扫描",
+              "outcome": "比较一次扰动、持续偏置和不同观察时间下的去向。",
               "number": "4.1.2",
               "visualization": "web/nonlinear/index.html",
+              "reading": "lessons/04-非线性动态行为/01-多稳态与吸引域/02-吸引域扰动与有限时间扫描.md",
               "questions": [
                 {
                   "id": "p04-basin-window",
                   "slug": "p04-basin-window",
                   "title": "扫描初值但保留未决状态",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/2/#finite-window-and-thresholds",
+                  "concept_title": "观察时间、阈值与扫描标签",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-basin-window"
                 },
                 {
                   "id": "p04-midpoint-step",
                   "slug": "p04-midpoint-step",
                   "title": "用半步预测计算整步更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/2/#explicit-midpoint-step",
+                  "concept_title": "半步预测与显式中点法",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-midpoint-step"
                 },
                 {
                   "id": "p04-kick-basin",
                   "slug": "p04-kick-basin",
                   "title": "施加一次状态扰动",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/2/#instantaneous-kick-and-basin",
+                  "concept_title": "瞬时扰动与吸引域分界",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-kick-basin"
                 },
                 {
                   "id": "p04-finite-grid",
                   "slug": "p04-finite-grid",
                   "title": "解释两个初值的结果",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/2/#initial-scan-and-bias-comparison",
+                  "concept_title": "初值扫描与持续偏置的对照图",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-finite-grid"
                 },
                 {
                   "id": "p04-bias-shift",
                   "slug": "p04-bias-shift",
                   "title": "偏置改变的是规则还是起点",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/2/#constant-bias-and-rule",
+                  "concept_title": "持续偏置与变化规则",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-bias-shift"
                 }
               ],
               "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-basin-window",
               "notebook_url": "/notebook/?id=P04-C01-S02",
-              "url": "/notebook/?id=P04-C01-S02"
+              "reading_url": "/chapters/04-01-多稳态与吸引域/read/2/",
+              "concepts": [
+                {
+                  "id": "instantaneous-kick-and-basin",
+                  "title": "瞬时扰动与吸引域分界",
+                  "question_ids": [
+                    "p04-kick-basin"
+                  ],
+                  "explore": false,
+                  "key": "P04-C01-S02:instantaneous-kick-and-basin",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/2/#instantaneous-kick-and-basin"
+                },
+                {
+                  "id": "constant-bias-and-rule",
+                  "title": "持续偏置与变化规则",
+                  "question_ids": [
+                    "p04-bias-shift"
+                  ],
+                  "explore": true,
+                  "key": "P04-C01-S02:constant-bias-and-rule",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/2/#constant-bias-and-rule",
+                  "explore_url": "/chapters/04-01-多稳态与吸引域/explore/?concept=P04-C01-S02%3Aconstant-bias-and-rule"
+                },
+                {
+                  "id": "explicit-midpoint-step",
+                  "title": "半步预测与显式中点法",
+                  "question_ids": [
+                    "p04-midpoint-step"
+                  ],
+                  "explore": false,
+                  "key": "P04-C01-S02:explicit-midpoint-step",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/2/#explicit-midpoint-step"
+                },
+                {
+                  "id": "midpoint-second-order-term",
+                  "title": "中点更新的二阶项",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C01-S02:midpoint-second-order-term",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/2/#midpoint-second-order-term"
+                },
+                {
+                  "id": "finite-window-and-thresholds",
+                  "title": "观察时间、阈值与扫描标签",
+                  "question_ids": [
+                    "p04-basin-window"
+                  ],
+                  "explore": false,
+                  "key": "P04-C01-S02:finite-window-and-thresholds",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/2/#finite-window-and-thresholds"
+                },
+                {
+                  "id": "initial-scan-and-bias-comparison",
+                  "title": "初值扫描与持续偏置的对照图",
+                  "question_ids": [
+                    "p04-finite-grid"
+                  ],
+                  "explore": false,
+                  "key": "P04-C01-S02:initial-scan-and-bias-comparison",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/2/#initial-scan-and-bias-comparison"
+                }
+              ],
+              "url": "/chapters/04-01-多稳态与吸引域/read/2/"
             },
             {
               "id": "P04-C01-S03",
               "chapter_id": "4.1",
               "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/03-从吸引状态到吸引集合.ipynb",
-              "title": "从吸引状态到吸引集合",
-              "outcome": "从一个点到一个圆的距离理解集合吸引，区分沿圆运动、趋近圆周和两条轨迹彼此靠拢。",
+              "title": "吸引子、不变性与集合稳定",
+              "outcome": "计算状态到平衡点集合和圆周的距离，比较集合吸引与相位差。",
               "number": "4.1.3",
               "visualization": null,
+              "reading": "lessons/04-非线性动态行为/01-多稳态与吸引域/03-从吸引状态到吸引集合.md",
               "questions": [
                 {
                   "id": "p04-attractor-set",
                   "slug": "p04-attractor-set",
                   "title": "吸引的是点还是集合",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/3/#attractor-definition-and-basin",
+                  "concept_title": "吸引子的定义与吸引域",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set"
                 },
                 {
                   "id": "p04-center-counterexample",
                   "slug": "p04-center-counterexample",
                   "title": "比较相邻圆轨迹",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/3/#set-stability-and-attraction",
+                  "concept_title": "集合稳定与邻域吸引",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-center-counterexample"
                 },
                 {
                   "id": "p04-distance-circle",
                   "slug": "p04-distance-circle",
                   "title": "计算点到圆和点的距离",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/3/#distance-to-a-set",
+                  "concept_title": "点到集合的距离",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-distance-circle"
                 },
                 {
                   "id": "p04-distance-equilibria",
                   "slug": "p04-distance-equilibria",
                   "title": "计算到有限平衡集合的距离",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-01-多稳态与吸引域/read/3/#distance-to-a-set",
+                  "concept_title": "点到集合的距离",
+                  "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-distance-equilibria"
                 }
               ],
               "practice_url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set",
               "notebook_url": "/notebook/?id=P04-C01-S03",
-              "url": "/notebook/?id=P04-C01-S03"
+              "reading_url": "/chapters/04-01-多稳态与吸引域/read/3/",
+              "concepts": [
+                {
+                  "id": "distance-to-a-set",
+                  "title": "点到集合的距离",
+                  "question_ids": [
+                    "p04-distance-circle",
+                    "p04-distance-equilibria"
+                  ],
+                  "explore": false,
+                  "key": "P04-C01-S03:distance-to-a-set",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/3/#distance-to-a-set"
+                },
+                {
+                  "id": "forward-and-full-invariance",
+                  "title": "正向不变与不变集",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C01-S03:forward-and-full-invariance",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/3/#forward-and-full-invariance"
+                },
+                {
+                  "id": "set-stability-and-attraction",
+                  "title": "集合稳定与邻域吸引",
+                  "question_ids": [
+                    "p04-center-counterexample"
+                  ],
+                  "explore": false,
+                  "key": "P04-C01-S03:set-stability-and-attraction",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/3/#set-stability-and-attraction"
+                },
+                {
+                  "id": "attractor-definition-and-basin",
+                  "title": "吸引子的定义与吸引域",
+                  "question_ids": [
+                    "p04-attractor-set"
+                  ],
+                  "explore": false,
+                  "key": "P04-C01-S03:attractor-definition-and-basin",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/3/#attractor-definition-and-basin"
+                },
+                {
+                  "id": "radial-recovery-and-phase-gap",
+                  "title": "径向解析解与保留的相位差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C01-S03:radial-recovery-and-phase-gap",
+                  "url": "/chapters/04-01-多稳态与吸引域/read/3/#radial-recovery-and-phase-gap"
+                }
+              ],
+              "url": "/chapters/04-01-多稳态与吸引域/read/3/"
             }
           ],
           "visualization": "web/nonlinear/index.html"
@@ -4073,83 +4286,235 @@
               "id": "P04-C02-S01",
               "chapter_id": "4.2",
               "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/01-阻尼受迫与自维持振荡.ipynb",
-              "title": "阻尼受迫与自维持振荡",
-              "outcome": "比较撤去输入前后的振荡，从二维方程求半径与角度，说明自维持节律怎样恢复振幅。",
+              "title": "阻尼、受迫与自维持振荡",
+              "outcome": "对照三种振荡来源，比较半径与两个实数分量。",
               "number": "4.2.1",
               "visualization": "web/nonlinear/index.html",
+              "reading": "lessons/04-非线性动态行为/02-自维持振荡与极限环/01-阻尼受迫与自维持振荡.md",
               "questions": [
                 {
                   "id": "p04-oscillation-source",
                   "slug": "p04-oscillation-source",
                   "title": "调查周期曲线的来源",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-02-自维持振荡与极限环/read/1/#three-oscillation-mechanisms",
+                  "concept_title": "三种机制的时间曲线与相轨迹",
+                  "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-oscillation-source"
                 },
                 {
                   "id": "p04-radial-solution",
                   "slug": "p04-radial-solution",
                   "title": "从半径与角度恢复二维轨迹",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-02-自维持振荡与极限环/read/1/#radial-exact-solution",
+                  "concept_title": "半径解析解与二维轨迹重建",
+                  "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-radial-solution"
                 },
                 {
                   "id": "p04-forcing-removed",
                   "slug": "p04-forcing-removed",
                   "title": "撤去周期驱动",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-02-自维持振荡与极限环/read/1/#periodic-forcing",
+                  "concept_title": "周期输入与受迫振荡",
+                  "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-forcing-removed"
                 },
                 {
                   "id": "p04-origin-exception",
                   "slug": "p04-origin-exception",
                   "title": "考察径向振子的原点",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-02-自维持振荡与极限环/read/1/#limit-cycle-and-self-sustained-motion",
+                  "concept_title": "极限环与自维持振荡",
+                  "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-origin-exception"
                 },
                 {
                   "id": "p04-radial-stability",
                   "slug": "p04-radial-stability",
                   "title": "分析径向与角向运动",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-02-自维持振荡与极限环/read/1/#limit-cycle-and-self-sustained-motion",
+                  "concept_title": "极限环与自维持振荡",
+                  "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-radial-stability"
                 }
               ],
               "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-oscillation-source",
               "notebook_url": "/notebook/?id=P04-C02-S01",
-              "url": "/notebook/?id=P04-C02-S01"
+              "reading_url": "/chapters/04-02-自维持振荡与极限环/read/1/",
+              "concepts": [
+                {
+                  "id": "damped-rotation",
+                  "title": "阻尼旋转的振幅衰减",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P04-C02-S01:damped-rotation",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/1/#damped-rotation",
+                  "explore_url": "/chapters/04-02-自维持振荡与极限环/explore/?concept=P04-C02-S01%3Adamped-rotation"
+                },
+                {
+                  "id": "periodic-forcing",
+                  "title": "周期输入与受迫振荡",
+                  "question_ids": [
+                    "p04-forcing-removed"
+                  ],
+                  "explore": true,
+                  "key": "P04-C02-S01:periodic-forcing",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/1/#periodic-forcing",
+                  "explore_url": "/chapters/04-02-自维持振荡与极限环/explore/?concept=P04-C02-S01%3Aperiodic-forcing"
+                },
+                {
+                  "id": "radial-limit-cycle",
+                  "title": "径向恢复与角度变化",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C02-S01:radial-limit-cycle",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/1/#radial-limit-cycle"
+                },
+                {
+                  "id": "limit-cycle-and-self-sustained-motion",
+                  "title": "极限环与自维持振荡",
+                  "question_ids": [
+                    "p04-origin-exception",
+                    "p04-radial-stability"
+                  ],
+                  "explore": true,
+                  "key": "P04-C02-S01:limit-cycle-and-self-sustained-motion",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/1/#limit-cycle-and-self-sustained-motion",
+                  "explore_url": "/chapters/04-02-自维持振荡与极限环/explore/?concept=P04-C02-S01%3Alimit-cycle-and-self-sustained-motion"
+                },
+                {
+                  "id": "radial-exact-solution",
+                  "title": "半径解析解与二维轨迹重建",
+                  "question_ids": [
+                    "p04-radial-solution"
+                  ],
+                  "explore": false,
+                  "key": "P04-C02-S01:radial-exact-solution",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/1/#radial-exact-solution"
+                },
+                {
+                  "id": "three-oscillation-mechanisms",
+                  "title": "三种机制的时间曲线与相轨迹",
+                  "question_ids": [
+                    "p04-oscillation-source"
+                  ],
+                  "explore": false,
+                  "key": "P04-C02-S01:three-oscillation-mechanisms",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/1/#three-oscillation-mechanisms"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C02-S01:references",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/1/#references"
+                }
+              ],
+              "url": "/chapters/04-02-自维持振荡与极限环/read/1/"
             },
             {
               "id": "P04-C02-S02",
               "chapter_id": "4.2",
               "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/02-周期振幅与相位的测量.ipynb",
-              "title": "周期振幅与相位的测量",
-              "outcome": "从一段采样曲线量振幅与周期，写清暂态、严格峰和过零规则，再比较扰动后的相位。",
+              "title": "周期、振幅与相位的测量",
+              "outcome": "从采样曲线提取严格峰值、向上穿零事件与周期。",
               "number": "4.2.2",
               "visualization": "web/nonlinear/index.html",
+              "reading": "lessons/04-非线性动态行为/02-自维持振荡与极限环/02-周期振幅与相位的测量.md",
               "questions": [
                 {
                   "id": "p04-peak-period",
                   "slug": "p04-peak-period",
                   "title": "在明确峰值规则下测量周期",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-02-自维持振荡与极限环/read/2/#strict-peaks-and-period",
+                  "concept_title": "严格峰值与峰间周期",
+                  "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-peak-period"
                 },
                 {
                   "id": "p04-crossing-period",
                   "slug": "p04-crossing-period",
                   "title": "用向上过零估计周期",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-02-自维持振荡与极限环/read/2/#upward-crossing-interpolation",
+                  "concept_title": "向上过零与事件插值",
+                  "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-crossing-period"
                 },
                 {
                   "id": "p04-phase-after-kick",
                   "slug": "p04-phase-after-kick",
                   "title": "回到圆环等于回到原来的时钟吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-02-自维持振荡与极限环/read/2/#phase-shift-after-recovery",
+                  "concept_title": "振幅恢复与相位偏移",
+                  "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-phase-after-kick"
                 },
                 {
                   "id": "p04-measurement-window",
                   "slug": "p04-measurement-window",
                   "title": "估计长期振荡周期",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-02-自维持振荡与极限环/read/2/#sampling-and-transient-comparison",
+                  "concept_title": "采样间隔与暂态窗口",
+                  "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-measurement-window"
                 }
               ],
               "practice_url": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-peak-period",
               "notebook_url": "/notebook/?id=P04-C02-S02",
-              "url": "/notebook/?id=P04-C02-S02"
+              "reading_url": "/chapters/04-02-自维持振荡与极限环/read/2/",
+              "concepts": [
+                {
+                  "id": "period-amplitude-and-window",
+                  "title": "周期、半峰峰值与观测窗口",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C02-S02:period-amplitude-and-window",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/2/#period-amplitude-and-window"
+                },
+                {
+                  "id": "strict-peaks-and-period",
+                  "title": "严格峰值与峰间周期",
+                  "question_ids": [
+                    "p04-peak-period"
+                  ],
+                  "explore": false,
+                  "key": "P04-C02-S02:strict-peaks-and-period",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/2/#strict-peaks-and-period"
+                },
+                {
+                  "id": "upward-crossing-interpolation",
+                  "title": "向上过零与事件插值",
+                  "question_ids": [
+                    "p04-crossing-period"
+                  ],
+                  "explore": false,
+                  "key": "P04-C02-S02:upward-crossing-interpolation",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/2/#upward-crossing-interpolation"
+                },
+                {
+                  "id": "sampling-and-transient-comparison",
+                  "title": "采样间隔与暂态窗口",
+                  "question_ids": [
+                    "p04-measurement-window"
+                  ],
+                  "explore": false,
+                  "key": "P04-C02-S02:sampling-and-transient-comparison",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/2/#sampling-and-transient-comparison"
+                },
+                {
+                  "id": "phase-shift-after-recovery",
+                  "title": "振幅恢复与相位偏移",
+                  "question_ids": [
+                    "p04-phase-after-kick"
+                  ],
+                  "explore": true,
+                  "key": "P04-C02-S02:phase-shift-after-recovery",
+                  "url": "/chapters/04-02-自维持振荡与极限环/read/2/#phase-shift-after-recovery",
+                  "explore_url": "/chapters/04-02-自维持振荡与极限环/explore/?concept=P04-C02-S02%3Aphase-shift-after-recovery"
+                }
+              ],
+              "url": "/chapters/04-02-自维持振荡与极限环/read/2/"
             }
           ],
           "visualization": "web/nonlinear/index.html"
@@ -4172,89 +4537,243 @@
               "id": "P04-C03-S01",
               "chapter_id": "4.3",
               "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.ipynb",
-              "title": "平衡分支折叠与滞回",
-              "outcome": "联立平衡方程与零斜率求折叠点，再用正反扫描解释等待时间和初值接续怎样影响跳变。",
+              "title": "平衡分支、折叠与滞回",
+              "outcome": "比较解析平衡分支与正反接续扫描。",
               "number": "4.3.1",
               "visualization": "web/nonlinear/index.html",
+              "reading": "lessons/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.md",
               "questions": [
                 {
                   "id": "p04-fold-locations",
                   "slug": "p04-fold-locations",
                   "title": "同时求平衡与零斜率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-03-分岔与参数变化/read/1/#fold-saddle-node",
+                  "concept_title": "折叠条件与鞍结分岔",
+                  "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-fold-locations"
                 },
                 {
                   "id": "p04-bias-continuation",
                   "slug": "p04-bias-continuation",
                   "title": "区分重启扫描与接续扫描",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-03-分岔与参数变化/read/1/#hysteresis-path",
+                  "concept_title": "滞回与参数改变的路径",
+                  "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-bias-continuation"
                 },
                 {
                   "id": "p04-branch-stability",
                   "slug": "p04-branch-stability",
                   "title": "分支图应该标记什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-03-分岔与参数变化/read/1/#equilibrium-branches",
+                  "concept_title": "平衡分支与局部稳定性",
+                  "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-branch-stability"
                 },
                 {
                   "id": "p04-scan-protocol",
                   "slug": "p04-scan-protocol",
                   "title": "解释正反参数扫描",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-03-分岔与参数变化/read/1/#scan-waiting-resolution",
+                  "concept_title": "有限等待时间与跳变区间",
+                  "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-scan-protocol"
                 },
                 {
                   "id": "p04-threshold-resolution",
                   "slug": "p04-threshold-resolution",
                   "title": "报告参数扫描的转变",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-03-分岔与参数变化/read/1/#scan-waiting-resolution",
+                  "concept_title": "有限等待时间与跳变区间",
+                  "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-threshold-resolution"
                 }
               ],
               "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-fold-locations",
               "notebook_url": "/notebook/?id=P04-C03-S01",
-              "url": "/notebook/?id=P04-C03-S01"
+              "reading_url": "/chapters/04-03-分岔与参数变化/read/1/",
+              "concepts": [
+                {
+                  "id": "equilibrium-branches",
+                  "title": "平衡分支与局部稳定性",
+                  "question_ids": [
+                    "p04-branch-stability"
+                  ],
+                  "explore": false,
+                  "key": "P04-C03-S01:equilibrium-branches",
+                  "url": "/chapters/04-03-分岔与参数变化/read/1/#equilibrium-branches"
+                },
+                {
+                  "id": "fold-saddle-node",
+                  "title": "折叠条件与鞍结分岔",
+                  "question_ids": [
+                    "p04-fold-locations"
+                  ],
+                  "explore": false,
+                  "key": "P04-C03-S01:fold-saddle-node",
+                  "url": "/chapters/04-03-分岔与参数变化/read/1/#fold-saddle-node"
+                },
+                {
+                  "id": "fold-local-expansion",
+                  "title": "折叠附近的泰勒展开",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C03-S01:fold-local-expansion",
+                  "url": "/chapters/04-03-分岔与参数变化/read/1/#fold-local-expansion"
+                },
+                {
+                  "id": "hysteresis-path",
+                  "title": "滞回与参数改变的路径",
+                  "question_ids": [
+                    "p04-bias-continuation"
+                  ],
+                  "explore": true,
+                  "key": "P04-C03-S01:hysteresis-path",
+                  "url": "/chapters/04-03-分岔与参数变化/read/1/#hysteresis-path",
+                  "explore_url": "/chapters/04-03-分岔与参数变化/explore/?concept=P04-C03-S01%3Ahysteresis-path"
+                },
+                {
+                  "id": "scan-waiting-resolution",
+                  "title": "有限等待时间与跳变区间",
+                  "question_ids": [
+                    "p04-scan-protocol",
+                    "p04-threshold-resolution"
+                  ],
+                  "explore": false,
+                  "key": "P04-C03-S01:scan-waiting-resolution",
+                  "url": "/chapters/04-03-分岔与参数变化/read/1/#scan-waiting-resolution"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C03-S01:references",
+                  "url": "/chapters/04-03-分岔与参数变化/read/1/#references"
+                }
+              ],
+              "url": "/chapters/04-03-分岔与参数变化/read/1/"
             },
             {
               "id": "P04-C03-S02",
               "chapter_id": "4.3",
               "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/02-从平衡到周期的Hopf转变.ipynb",
-              "title": "从平衡到周期的Hopf转变",
-              "outcome": "把原点附近的衰减与旋转连接到径向方程，解释周期半径怎样从零长出及临界点的慢衰减。",
+              "title": "Hopf 分岔与周期分支",
+              "outcome": "比较增长参数、初始半径与角频率对长期运动的影响。",
               "number": "4.3.2",
               "visualization": "web/nonlinear/index.html",
+              "reading": "lessons/04-非线性动态行为/03-分岔与参数变化/02-从平衡到周期的Hopf转变.md",
               "questions": [
                 {
                   "id": "p04-hopf-branch",
                   "slug": "p04-hopf-branch",
                   "title": "给出长期半径与周期",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-03-分岔与参数变化/read/2/#hopf-equilibrium-cycle",
+                  "concept_title": "原点失稳与稳定周期半径",
+                  "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-hopf-branch"
                 },
                 {
                   "id": "p04-critical-slow",
                   "slug": "p04-critical-slow",
                   "title": "临界参数下的半径变化",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-03-分岔与参数变化/read/2/#critical-algebraic-decay",
+                  "concept_title": "临界参数与代数衰减",
+                  "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-critical-slow"
                 },
                 {
                   "id": "p04-zero-frequency",
                   "slug": "p04-zero-frequency",
                   "title": "角速度为零时",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-03-分岔与参数变化/read/2/#zero-frequency-equilibria",
+                  "concept_title": "角速度与周期运动的区别",
+                  "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-zero-frequency"
                 },
                 {
                   "id": "p04-amplitude-axis",
                   "slug": "p04-amplitude-axis",
                   "title": "选择参数扫描的摘要",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-03-分岔与参数变化/read/2/#finite-radius-branch",
+                  "concept_title": "有限观察半径与长期分支",
+                  "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-amplitude-axis"
                 },
                 {
                   "id": "p04-hopf-evidence",
                   "slug": "p04-hopf-evidence",
                   "title": "从径向方程判断转变",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-03-分岔与参数变化/read/2/#hopf-equilibrium-cycle",
+                  "concept_title": "原点失稳与稳定周期半径",
+                  "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-hopf-evidence"
                 }
               ],
               "practice_url": "/chapters/04-03-分岔与参数变化/practice/?question=p04-hopf-branch",
               "notebook_url": "/notebook/?id=P04-C03-S02",
-              "url": "/notebook/?id=P04-C03-S02"
+              "reading_url": "/chapters/04-03-分岔与参数变化/read/2/",
+              "concepts": [
+                {
+                  "id": "hopf-radial-model",
+                  "title": "线性增长与非线性振幅限制",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C03-S02:hopf-radial-model",
+                  "url": "/chapters/04-03-分岔与参数变化/read/2/#hopf-radial-model"
+                },
+                {
+                  "id": "hopf-equilibrium-cycle",
+                  "title": "原点失稳与稳定周期半径",
+                  "question_ids": [
+                    "p04-hopf-branch",
+                    "p04-hopf-evidence"
+                  ],
+                  "explore": true,
+                  "key": "P04-C03-S02:hopf-equilibrium-cycle",
+                  "url": "/chapters/04-03-分岔与参数变化/read/2/#hopf-equilibrium-cycle",
+                  "explore_url": "/chapters/04-03-分岔与参数变化/explore/?concept=P04-C03-S02%3Ahopf-equilibrium-cycle"
+                },
+                {
+                  "id": "critical-algebraic-decay",
+                  "title": "临界参数与代数衰减",
+                  "question_ids": [
+                    "p04-critical-slow"
+                  ],
+                  "explore": false,
+                  "key": "P04-C03-S02:critical-algebraic-decay",
+                  "url": "/chapters/04-03-分岔与参数变化/read/2/#critical-algebraic-decay"
+                },
+                {
+                  "id": "zero-frequency-equilibria",
+                  "title": "角速度与周期运动的区别",
+                  "question_ids": [
+                    "p04-zero-frequency"
+                  ],
+                  "explore": false,
+                  "key": "P04-C03-S02:zero-frequency-equilibria",
+                  "url": "/chapters/04-03-分岔与参数变化/read/2/#zero-frequency-equilibria"
+                },
+                {
+                  "id": "finite-radius-branch",
+                  "title": "有限观察半径与长期分支",
+                  "question_ids": [
+                    "p04-amplitude-axis"
+                  ],
+                  "explore": false,
+                  "key": "P04-C03-S02:finite-radius-branch",
+                  "url": "/chapters/04-03-分岔与参数变化/read/2/#finite-radius-branch"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C03-S02:references",
+                  "url": "/chapters/04-03-分岔与参数变化/read/2/#references"
+                }
+              ],
+              "url": "/chapters/04-03-分岔与参数变化/read/2/"
             }
           ],
           "visualization": "web/nonlinear/index.html"
@@ -4278,133 +4797,359 @@
               "chapter_id": "4.4",
               "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/01-离散映射的不动点与周期.ipynb",
               "title": "离散映射的不动点与周期",
-              "outcome": "逐代手算种群比例，求不动点与二周期，再用扰动倍率判断它们是否吸引邻近轨迹。",
+              "outcome": "逐代计算 logistic 映射并核对不动点和二周期。",
               "number": "4.4.1",
               "visualization": "web/nonlinear/index.html",
+              "reading": "lessons/04-非线性动态行为/04-混沌与可预测范围/01-离散映射的不动点与周期.md",
               "questions": [
                 {
                   "id": "p04-logistic-iterate",
                   "slug": "p04-logistic-iterate",
                   "title": "按代次更新一个比例",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/1/#logistic-generation-update",
+                  "concept_title": "Logistic 映射与逐代更新",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-logistic-iterate"
                 },
                 {
                   "id": "p04-interval-invariance",
                   "slug": "p04-interval-invariance",
                   "title": "为什么选择 0≤r≤4",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/1/#logistic-invariant-interval",
+                  "concept_title": "不变区间与状态范围",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-interval-invariance"
                 },
                 {
                   "id": "p04-map-stability",
                   "slug": "p04-map-stability",
                   "title": "判断非零不动点",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/1/#fixed-points-multipliers",
+                  "concept_title": "不动点与局部扰动倍率",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-map-stability"
                 },
                 {
                   "id": "p04-periodic-not-chaotic",
                   "slug": "p04-periodic-not-chaotic",
                   "title": "辨认交替序列",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/1/#period-two-multiplier",
+                  "concept_title": "二周期与两步乘子",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-periodic-not-chaotic"
                 }
               ],
               "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-logistic-iterate",
               "notebook_url": "/notebook/?id=P04-C04-S01",
-              "url": "/notebook/?id=P04-C04-S01"
+              "reading_url": "/chapters/04-04-混沌与可预测范围/read/1/",
+              "concepts": [
+                {
+                  "id": "logistic-generation-update",
+                  "title": "Logistic 映射与逐代更新",
+                  "question_ids": [
+                    "p04-logistic-iterate"
+                  ],
+                  "explore": true,
+                  "key": "P04-C04-S01:logistic-generation-update",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/1/#logistic-generation-update",
+                  "explore_url": "/chapters/04-04-混沌与可预测范围/explore/?concept=P04-C04-S01%3Alogistic-generation-update"
+                },
+                {
+                  "id": "logistic-invariant-interval",
+                  "title": "不变区间与状态范围",
+                  "question_ids": [
+                    "p04-interval-invariance"
+                  ],
+                  "explore": false,
+                  "key": "P04-C04-S01:logistic-invariant-interval",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/1/#logistic-invariant-interval"
+                },
+                {
+                  "id": "fixed-points-multipliers",
+                  "title": "不动点与局部扰动倍率",
+                  "question_ids": [
+                    "p04-map-stability"
+                  ],
+                  "explore": false,
+                  "key": "P04-C04-S01:fixed-points-multipliers",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/1/#fixed-points-multipliers"
+                },
+                {
+                  "id": "period-two-multiplier",
+                  "title": "二周期与两步乘子",
+                  "question_ids": [
+                    "p04-periodic-not-chaotic"
+                  ],
+                  "explore": false,
+                  "key": "P04-C04-S01:period-two-multiplier",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/1/#period-two-multiplier"
+                },
+                {
+                  "id": "cobweb-update-record",
+                  "title": "蛛网图与更新记录",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C04-S01:cobweb-update-record",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/1/#cobweb-update-record"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C04-S01:references",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/1/#references"
+                }
+              ],
+              "url": "/chapters/04-04-混沌与可预测范围/read/1/"
             },
             {
               "id": "P04-C04-S02",
               "chapter_id": "4.4",
               "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/02-邻近轨迹与预测期限.ipynb",
               "title": "邻近轨迹与预测期限",
-              "outcome": "按代记录两条邻近轨迹的距离，找到首次超过容许误差的位置，再解释合并与饱和。",
+              "outcome": "按给定容许误差找出两条轨迹首次超出阈值的代次。",
               "number": "4.4.2",
               "visualization": "web/nonlinear/index.html",
+              "reading": "lessons/04-非线性动态行为/04-混沌与可预测范围/02-邻近轨迹与预测期限.md",
               "questions": [
                 {
                   "id": "p04-prediction-horizon",
                   "slug": "p04-prediction-horizon",
                   "title": "何时第一次超过误差容许值",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/2/#first-threshold-crossing",
+                  "concept_title": "误差阈值与首次超出代次",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-prediction-horizon"
                 },
                 {
                   "id": "p04-strict-threshold",
                   "slug": "p04-strict-threshold",
                   "title": "阈值相等算越界吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/2/#first-threshold-crossing",
+                  "concept_title": "误差阈值与首次超出代次",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-strict-threshold"
                 },
                 {
                   "id": "p04-bounded-separation",
                   "slug": "p04-bounded-separation",
                   "title": "解释轨迹距离的饱和",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/2/#local-growth-saturation",
+                  "concept_title": "局部增长与距离饱和",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-bounded-separation"
                 },
                 {
                   "id": "p04-precision-merge",
                   "slug": "p04-precision-merge",
                   "title": "比较两个浮点初值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/2/#trajectory-merging",
+                  "concept_title": "对称初值与有限精度合并",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-precision-merge"
                 },
                 {
                   "id": "p04-map-not-step",
                   "slug": "p04-map-not-step",
                   "title": "检查代次映射的精度",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/2/#map-arithmetic-precision",
+                  "concept_title": "代次模型与算术精度",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-map-not-step"
                 }
               ],
               "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-prediction-horizon",
               "notebook_url": "/notebook/?id=P04-C04-S02",
-              "url": "/notebook/?id=P04-C04-S02"
+              "reading_url": "/chapters/04-04-混沌与可预测范围/read/2/",
+              "concepts": [
+                {
+                  "id": "neighbor-one-step-distance",
+                  "title": "邻近初值与一步距离",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C04-S02:neighbor-one-step-distance",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/2/#neighbor-one-step-distance"
+                },
+                {
+                  "id": "first-threshold-crossing",
+                  "title": "误差阈值与首次超出代次",
+                  "question_ids": [
+                    "p04-prediction-horizon",
+                    "p04-strict-threshold"
+                  ],
+                  "explore": true,
+                  "key": "P04-C04-S02:first-threshold-crossing",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/2/#first-threshold-crossing",
+                  "explore_url": "/chapters/04-04-混沌与可预测范围/explore/?concept=P04-C04-S02%3Afirst-threshold-crossing"
+                },
+                {
+                  "id": "local-growth-saturation",
+                  "title": "局部增长与距离饱和",
+                  "question_ids": [
+                    "p04-bounded-separation"
+                  ],
+                  "explore": false,
+                  "key": "P04-C04-S02:local-growth-saturation",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/2/#local-growth-saturation"
+                },
+                {
+                  "id": "trajectory-merging",
+                  "title": "对称初值与有限精度合并",
+                  "question_ids": [
+                    "p04-precision-merge"
+                  ],
+                  "explore": false,
+                  "key": "P04-C04-S02:trajectory-merging",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/2/#trajectory-merging"
+                },
+                {
+                  "id": "map-arithmetic-precision",
+                  "title": "代次模型与算术精度",
+                  "question_ids": [
+                    "p04-map-not-step"
+                  ],
+                  "explore": false,
+                  "key": "P04-C04-S02:map-arithmetic-precision",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/2/#map-arithmetic-precision"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C04-S02:references",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/2/#references"
+                }
+              ],
+              "url": "/chapters/04-04-混沌与可预测范围/read/2/"
             },
             {
               "id": "P04-C04-S03",
               "chapter_id": "4.4",
               "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/03-有限时间增长率与算术精度.ipynb",
               "title": "有限时间增长率与算术精度",
-              "outcome": "把逐代倍率的乘积写成对数和，比较浮点与高精度轨迹，说明增长率取决于初值和观察窗口。",
+              "outcome": "对照导数乘积、平均对数增长与不同算术精度。",
               "number": "4.4.3",
               "visualization": "web/nonlinear/index.html",
+              "reading": "lessons/04-非线性动态行为/04-混沌与可预测范围/03-有限时间增长率与算术精度.md",
               "questions": [
                 {
                   "id": "p04-finite-growth",
                   "slug": "p04-finite-growth",
                   "title": "计算指定窗口的切向增长率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/3/#growth-observation-window",
+                  "concept_title": "暂态、记录窗口与增长率",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-finite-growth"
                 },
                 {
                   "id": "p04-finite-positive",
                   "slug": "p04-finite-positive",
                   "title": "解释短窗口增长率",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/3/#logarithmic-multiplier-growth",
+                  "concept_title": "乘子积与平均对数增长率",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-finite-positive"
                 },
                 {
                   "id": "p04-log-zero",
                   "slug": "p04-log-zero",
                   "title": "遇到零局部导数",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/3/#zero-derivative-special-orbits",
+                  "concept_title": "零导数与特殊轨道",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-log-zero"
                 },
                 {
                   "id": "p04-exact-special-orbit",
                   "slug": "p04-exact-special-orbit",
                   "title": "解释一个特殊初值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/3/#zero-derivative-special-orbits",
+                  "concept_title": "零导数与特殊轨道",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-exact-special-orbit"
                 },
                 {
                   "id": "p04-digits-vs-certainty",
                   "slug": "p04-digits-vs-certainty",
                   "title": "比较两个运算精度",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-04-混沌与可预测范围/read/3/#float-decimal-comparison",
+                  "concept_title": "二进制浮点与十进制高精度对照",
+                  "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-digits-vs-certainty"
                 }
               ],
               "practice_url": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-finite-growth",
               "notebook_url": "/notebook/?id=P04-C04-S03",
-              "url": "/notebook/?id=P04-C04-S03"
+              "reading_url": "/chapters/04-04-混沌与可预测范围/read/3/",
+              "concepts": [
+                {
+                  "id": "logarithmic-multiplier-growth",
+                  "title": "乘子积与平均对数增长率",
+                  "question_ids": [
+                    "p04-finite-positive"
+                  ],
+                  "explore": false,
+                  "key": "P04-C04-S03:logarithmic-multiplier-growth",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/3/#logarithmic-multiplier-growth"
+                },
+                {
+                  "id": "growth-observation-window",
+                  "title": "暂态、记录窗口与增长率",
+                  "question_ids": [
+                    "p04-finite-growth"
+                  ],
+                  "explore": false,
+                  "key": "P04-C04-S03:growth-observation-window",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/3/#growth-observation-window"
+                },
+                {
+                  "id": "zero-derivative-special-orbits",
+                  "title": "零导数与特殊轨道",
+                  "question_ids": [
+                    "p04-log-zero",
+                    "p04-exact-special-orbit"
+                  ],
+                  "explore": false,
+                  "key": "P04-C04-S03:zero-derivative-special-orbits",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/3/#zero-derivative-special-orbits"
+                },
+                {
+                  "id": "float-decimal-comparison",
+                  "title": "二进制浮点与十进制高精度对照",
+                  "question_ids": [
+                    "p04-digits-vs-certainty"
+                  ],
+                  "explore": false,
+                  "key": "P04-C04-S03:float-decimal-comparison",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/3/#float-decimal-comparison"
+                },
+                {
+                  "id": "bounded-motion-local-sensitivity",
+                  "title": "有界运动与局部敏感性",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C04-S03:bounded-motion-local-sensitivity",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/3/#bounded-motion-local-sensitivity"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C04-S03:references",
+                  "url": "/chapters/04-04-混沌与可预测范围/read/3/#references"
+                }
+              ],
+              "url": "/chapters/04-04-混沌与可预测范围/read/3/"
             }
           ],
           "visualization": "web/nonlinear/index.html"
         },
         {
           "id": "4.5",
-          "title": "用 Lyapunov 函数分析稳定性",
+          "title": "Lyapunov 函数与稳定性",
           "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
           "goals": "用函数值衡量偏离平衡的程度，沿轨迹求导，再由符号和区域条件判断稳定与收敛。",
           "prerequisites": "4.4、3.4；梯度、链式法则、二维旋转与范数。",
@@ -4420,83 +5165,232 @@
               "id": "P04-C05-S01",
               "chapter_id": "4.5",
               "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/01-候选函数与局部稳定性证明.ipynb",
-              "title": "候选函数与局部稳定性证明",
-              "outcome": "用一个始终为正的函数衡量偏离平衡的程度，计算沿轨迹的导数，再确定稳定性结论的区域。",
+              "title": "Lyapunov 函数与局部稳定性",
+              "outcome": "沿轨迹计算候选函数的导数，检查局部下降区域。",
               "number": "4.5.1",
               "visualization": null,
+              "reading": "lessons/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/01-候选函数与局部稳定性证明.md",
               "questions": [
                 {
                   "id": "p04-local-energy",
                   "slug": "p04-local-energy",
                   "title": "逐点计算候选函数与导数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#nonlinear-local-decay",
+                  "concept_title": "非线性增长与有效区域",
+                  "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-energy"
                 },
                 {
                   "id": "p04-positive-definite",
                   "slug": "p04-positive-definite",
                   "title": "正定要求检查哪几项",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#lyapunov-candidate-definition",
+                  "concept_title": "稳定性与能量式指标",
+                  "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-positive-definite"
                 },
                 {
                   "id": "p04-local-domain",
                   "slug": "p04-local-domain",
                   "title": "为什么只在一个区域内作结论",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#sublevel-invariance",
+                  "concept_title": "子水平集与持续成立的下降条件",
+                  "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-domain"
                 },
                 {
                   "id": "p04-global-decay",
                   "slug": "p04-global-decay",
                   "title": "论证全空间的回归",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#scalar-derivative-proof",
+                  "concept_title": "沿轨迹导数与标量恢复",
+                  "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-global-decay"
                 },
                 {
                   "id": "p04-function-vs-exponent",
                   "slug": "p04-function-vs-exponent",
                   "title": "区分两种李雅普诺夫工具",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#multivariable-lyapunov-criterion",
+                  "concept_title": "多变量判据与两种 Lyapunov 工具",
+                  "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-function-vs-exponent"
                 }
               ],
               "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-energy",
               "notebook_url": "/notebook/?id=P04-C05-S01",
-              "url": "/notebook/?id=P04-C05-S01"
+              "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/",
+              "concepts": [
+                {
+                  "id": "lyapunov-candidate-definition",
+                  "title": "稳定性与能量式指标",
+                  "question_ids": [
+                    "p04-positive-definite"
+                  ],
+                  "explore": false,
+                  "key": "P04-C05-S01:lyapunov-candidate-definition",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#lyapunov-candidate-definition"
+                },
+                {
+                  "id": "scalar-derivative-proof",
+                  "title": "沿轨迹导数与标量恢复",
+                  "question_ids": [
+                    "p04-global-decay"
+                  ],
+                  "explore": false,
+                  "key": "P04-C05-S01:scalar-derivative-proof",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#scalar-derivative-proof"
+                },
+                {
+                  "id": "nonlinear-local-decay",
+                  "title": "非线性增长与有效区域",
+                  "question_ids": [
+                    "p04-local-energy"
+                  ],
+                  "explore": false,
+                  "key": "P04-C05-S01:nonlinear-local-decay",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#nonlinear-local-decay"
+                },
+                {
+                  "id": "sublevel-invariance",
+                  "title": "子水平集与持续成立的下降条件",
+                  "question_ids": [
+                    "p04-local-domain"
+                  ],
+                  "explore": false,
+                  "key": "P04-C05-S01:sublevel-invariance",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#sublevel-invariance"
+                },
+                {
+                  "id": "multivariable-lyapunov-criterion",
+                  "title": "多变量判据与两种 Lyapunov 工具",
+                  "question_ids": [
+                    "p04-function-vs-exponent"
+                  ],
+                  "explore": false,
+                  "key": "P04-C05-S01:multivariable-lyapunov-criterion",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#multivariable-lyapunov-criterion"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C05-S01:references",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/#references"
+                }
+              ],
+              "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/"
             },
             {
               "id": "P04-C05-S02",
               "chapter_id": "4.5",
               "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/02-非严格衰减与不能省略的条件.ipynb",
-              "title": "非严格衰减与不能省略的条件",
-              "outcome": "比较纯旋转和单方向衰减，观察函数不增加时状态能否收敛，再检查零导数集合中的运动。",
+              "title": "非严格衰减与零导数集合",
+              "outcome": "比较纯旋转、单方向衰减和两方向衰减中的候选函数。",
               "number": "4.5.2",
               "visualization": null,
+              "reading": "lessons/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/02-非严格衰减与不能省略的条件.md",
               "questions": [
                 {
                   "id": "p04-rotating-energy",
                   "slug": "p04-rotating-energy",
                   "title": "旋转项是否改变总平方长度",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/#quadratic-rotation-cancellation",
+                  "concept_title": "二维平方函数与旋转项抵消",
+                  "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-rotating-energy"
                 },
                 {
                   "id": "p04-semidefinite-counterexample",
                   "slug": "p04-semidefinite-counterexample",
                   "title": "纯旋转中的标量变化",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/#rotation-stability-no-attraction",
+                  "concept_title": "纯旋转与稳定但不收敛",
+                  "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-semidefinite-counterexample"
                 },
                 {
                   "id": "p04-missed-invariant-set",
                   "slug": "p04-missed-invariant-set",
                   "title": "只对部分方向衰减会怎样",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/#partial-decay-zero-set",
+                  "concept_title": "单方向恢复与零导数集合",
+                  "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-missed-invariant-set"
                 },
                 {
                   "id": "p04-sampled-proof",
                   "slug": "p04-sampled-proof",
                   "title": "由采样检查一个区域",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/#regional-decay-bound",
+                  "concept_title": "非线性阻尼与圆盘内的充分条件",
+                  "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-sampled-proof"
                 }
               ],
               "practice_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-rotating-energy",
               "notebook_url": "/notebook/?id=P04-C05-S02",
-              "url": "/notebook/?id=P04-C05-S02"
+              "reading_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/",
+              "concepts": [
+                {
+                  "id": "quadratic-rotation-cancellation",
+                  "title": "二维平方函数与旋转项抵消",
+                  "question_ids": [
+                    "p04-rotating-energy"
+                  ],
+                  "explore": false,
+                  "key": "P04-C05-S02:quadratic-rotation-cancellation",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/#quadratic-rotation-cancellation"
+                },
+                {
+                  "id": "rotation-stability-no-attraction",
+                  "title": "纯旋转与稳定但不收敛",
+                  "question_ids": [
+                    "p04-semidefinite-counterexample"
+                  ],
+                  "explore": false,
+                  "key": "P04-C05-S02:rotation-stability-no-attraction",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/#rotation-stability-no-attraction"
+                },
+                {
+                  "id": "partial-decay-zero-set",
+                  "title": "单方向恢复与零导数集合",
+                  "question_ids": [
+                    "p04-missed-invariant-set"
+                  ],
+                  "explore": false,
+                  "key": "P04-C05-S02:partial-decay-zero-set",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/#partial-decay-zero-set"
+                },
+                {
+                  "id": "regional-decay-bound",
+                  "title": "非线性阻尼与圆盘内的充分条件",
+                  "question_ids": [
+                    "p04-sampled-proof"
+                  ],
+                  "explore": false,
+                  "key": "P04-C05-S02:regional-decay-bound",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/#regional-decay-bound"
+                },
+                {
+                  "id": "lasalle-invariance-extension",
+                  "title": "不变性原理与零导数集合中的运动",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C05-S02:lasalle-invariance-extension",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/#lasalle-invariance-extension"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C05-S02:references",
+                  "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/#references"
+                }
+              ],
+              "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/"
             }
           ],
           "visualization": null
@@ -4520,165 +5414,480 @@
               "id": "P04-C06-S01",
               "chapter_id": "4.6",
               "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/01-从平面流到Lorenz系统.ipynb",
-              "title": "从平面流到Lorenz系统",
-              "outcome": "从平面运动的限制进入三维 Lorenz 方程，解释变量、对称性、平衡和局部扰动的变化。",
+              "title": "Lorenz 方程、平衡与局部稳定性",
+              "outcome": "核对 Lorenz 方程的平衡、对称关系及局部特征值。",
               "number": "4.6.1",
               "visualization": "web/nonlinear/lorenz.html",
+              "reading": "lessons/04-非线性动态行为/06-连续时间混沌与奇异吸引子/01-从平面流到Lorenz系统.md",
               "questions": [
                 {
                   "id": "p04-plane-autonomous",
                   "slug": "p04-plane-autonomous",
                   "title": "应用平面极限集定理",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/#planar-autonomous-limit-sets",
+                  "concept_title": "平面自治流与长期极限集",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous"
                 },
                 {
                   "id": "p04-lorenz-equilibria",
                   "slug": "p04-lorenz-equilibria",
                   "title": "求洛伦兹平衡",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/#lorenz-equilibria-and-symmetry",
+                  "concept_title": "平衡分支与对称性",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-lorenz-equilibria"
                 },
                 {
                   "id": "p04-lorenz-field",
                   "slug": "p04-lorenz-field",
                   "title": "从方程计算向量场与雅可比矩阵",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/#lorenz-jacobian-and-perturbations",
+                  "concept_title": "雅可比矩阵与小扰动",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-lorenz-field"
                 },
                 {
                   "id": "p04-lorenz-local-scope",
                   "slug": "p04-lorenz-local-scope",
                   "title": "检查原点的稳定性",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/#lorenz-jacobian-and-perturbations",
+                  "concept_title": "雅可比矩阵与小扰动",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-lorenz-local-scope"
                 }
               ],
               "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous",
               "notebook_url": "/notebook/?id=P04-C06-S01",
-              "url": "/notebook/?id=P04-C06-S01"
+              "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/",
+              "concepts": [
+                {
+                  "id": "planar-autonomous-limit-sets",
+                  "title": "平面自治流与长期极限集",
+                  "question_ids": [
+                    "p04-plane-autonomous"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S01:planar-autonomous-limit-sets",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/#planar-autonomous-limit-sets"
+                },
+                {
+                  "id": "convection-modes-and-scaled-variables",
+                  "title": "热对流的三变量模型",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C06-S01:convection-modes-and-scaled-variables",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/#convection-modes-and-scaled-variables"
+                },
+                {
+                  "id": "lorenz-equilibria-and-symmetry",
+                  "title": "平衡分支与对称性",
+                  "question_ids": [
+                    "p04-lorenz-equilibria"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S01:lorenz-equilibria-and-symmetry",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/#lorenz-equilibria-and-symmetry"
+                },
+                {
+                  "id": "lorenz-jacobian-and-perturbations",
+                  "title": "雅可比矩阵与小扰动",
+                  "question_ids": [
+                    "p04-lorenz-field",
+                    "p04-lorenz-local-scope"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S01:lorenz-jacobian-and-perturbations",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/#lorenz-jacobian-and-perturbations"
+                },
+                {
+                  "id": "lorenz-parameter-trajectories",
+                  "title": "参数与轨迹的对照",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P04-C06-S01:lorenz-parameter-trajectories",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/#lorenz-parameter-trajectories",
+                  "explore_url": "/chapters/04-06-连续时间混沌与奇异吸引子/explore/?concept=P04-C06-S01%3Alorenz-parameter-trajectories"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C06-S01:references",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/#references"
+                }
+              ],
+              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/"
             },
             {
               "id": "P04-C06-S02",
               "chapter_id": "4.6",
               "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/02-有界耗散与可信积分.ipynb",
-              "title": "有界耗散与可信积分",
-              "outcome": "展开一个函数的导数证明轨迹有界，再手写 RK4，用共同时间点的差异检查短时计算。",
+              "title": "有界性、体积收缩与 RK4 积分",
+              "outcome": "计算有界性函数的导数，并用短窗对齐比较积分结果。",
               "number": "4.6.2",
               "visualization": "web/nonlinear/lorenz.html",
+              "reading": "lessons/04-非线性动态行为/06-连续时间混沌与奇异吸引子/02-有界耗散与可信积分.md",
               "questions": [
                 {
                   "id": "p04-volume-bounded",
                   "slug": "p04-volume-bounded",
                   "title": "比较面积与单条轨迹",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#divergence-volume-and-directional-stretching",
+                  "concept_title": "散度、体积收缩与方向伸长",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-volume-bounded"
                 },
                 {
                   "id": "p04-lorenz-bound",
                   "slug": "p04-lorenz-bound",
                   "title": "用两条路径核对函数导数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#absorbing-region-and-integrating-factor",
+                  "concept_title": "吸收区域与积分因子",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-lorenz-bound"
                 },
                 {
                   "id": "p04-rk4-linear-step",
                   "slug": "p04-rk4-linear-step",
                   "title": "手写四阶段的一步更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#rk4-four-stage-update",
+                  "concept_title": "四阶段 RK4 更新",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-rk4-linear-step"
                 },
                 {
                   "id": "p04-aligned-error",
                   "slug": "p04-aligned-error",
                   "title": "只比较相同时刻的结果",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#aligned-time-grids-and-short-window-error",
+                  "concept_title": "共同时间网格与短窗误差",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-aligned-error"
                 },
                 {
                   "id": "p04-short-window-check",
                   "slug": "p04-short-window-check",
                   "title": "比较短窗与长窗的数值结果",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#initial-condition-and-step-comparisons",
+                  "concept_title": "初值差、积分差与长期比较",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-short-window-check"
                 }
               ],
               "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-volume-bounded",
               "notebook_url": "/notebook/?id=P04-C06-S02",
-              "url": "/notebook/?id=P04-C06-S02"
+              "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/",
+              "concepts": [
+                {
+                  "id": "lorenz-bounding-function",
+                  "title": "加权平方和与轨迹范围",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C06-S02:lorenz-bounding-function",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#lorenz-bounding-function"
+                },
+                {
+                  "id": "absorbing-region-and-integrating-factor",
+                  "title": "吸收区域与积分因子",
+                  "question_ids": [
+                    "p04-lorenz-bound"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S02:absorbing-region-and-integrating-factor",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#absorbing-region-and-integrating-factor"
+                },
+                {
+                  "id": "divergence-volume-and-directional-stretching",
+                  "title": "散度、体积收缩与方向伸长",
+                  "question_ids": [
+                    "p04-volume-bounded"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S02:divergence-volume-and-directional-stretching",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#divergence-volume-and-directional-stretching"
+                },
+                {
+                  "id": "rk4-four-stage-update",
+                  "title": "四阶段 RK4 更新",
+                  "question_ids": [
+                    "p04-rk4-linear-step"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S02:rk4-four-stage-update",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#rk4-four-stage-update"
+                },
+                {
+                  "id": "aligned-time-grids-and-short-window-error",
+                  "title": "共同时间网格与短窗误差",
+                  "question_ids": [
+                    "p04-aligned-error"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S02:aligned-time-grids-and-short-window-error",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#aligned-time-grids-and-short-window-error"
+                },
+                {
+                  "id": "initial-condition-and-step-comparisons",
+                  "title": "初值差、积分差与长期比较",
+                  "question_ids": [
+                    "p04-short-window-check"
+                  ],
+                  "explore": true,
+                  "key": "P04-C06-S02:initial-condition-and-step-comparisons",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#initial-condition-and-step-comparisons",
+                  "explore_url": "/chapters/04-06-连续时间混沌与奇异吸引子/explore/?concept=P04-C06-S02%3Ainitial-condition-and-step-comparisons"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C06-S02:references",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/#references"
+                }
+              ],
+              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/"
             },
             {
               "id": "P04-C06-S03",
               "chapter_id": "4.6",
               "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/03-截面与返回中的长期结构.ipynb",
-              "title": "截面与返回中的长期结构",
-              "outcome": "记录轨迹从下向上穿过平面的时刻，用同一插值比例求时间和坐标，再比较相邻交点。",
+              "title": "庞加莱截面与首次返回",
+              "outcome": "从轨迹中提取向上穿越平面的时间与完整交点。",
               "number": "4.6.3",
               "visualization": "web/nonlinear/lorenz.html",
+              "reading": "lessons/04-非线性动态行为/06-连续时间混沌与奇异吸引子/03-截面与返回中的长期结构.md",
               "questions": [
                 {
                   "id": "p04-section-projection",
                   "slug": "p04-section-projection",
                   "title": "返回映射保留哪些坐标",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/#complete-section-and-coordinate-projection",
+                  "concept_title": "完整截面与单坐标投影",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection"
                 },
                 {
                   "id": "p04-directed-section",
                   "slug": "p04-directed-section",
                   "title": "提取同向截面交点",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/#directed-crossing-and-linear-interpolation",
+                  "concept_title": "定向事件与线性插值",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-directed-section"
                 },
                 {
                   "id": "p04-return-intervals",
                   "slug": "p04-return-intervals",
                   "title": "从交点时间估计返回间隔",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/#return-intervals-and-window-mean",
+                  "concept_title": "返回间隔与窗口平均",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-return-intervals"
                 },
                 {
                   "id": "p04-section-limits",
                   "slug": "p04-section-limits",
                   "title": "解释未检测到穿越",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/#missed-crossings-and-transversality",
+                  "concept_title": "漏检、相切与采样间隔",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-limits"
                 }
               ],
               "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection",
               "notebook_url": "/notebook/?id=P04-C06-S03",
-              "url": "/notebook/?id=P04-C06-S03"
+              "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/",
+              "concepts": [
+                {
+                  "id": "transverse-section-and-first-return",
+                  "title": "横截面与首次返回映射",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C06-S03:transverse-section-and-first-return",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/#transverse-section-and-first-return"
+                },
+                {
+                  "id": "directed-crossing-and-linear-interpolation",
+                  "title": "定向事件与线性插值",
+                  "question_ids": [
+                    "p04-directed-section"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S03:directed-crossing-and-linear-interpolation",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/#directed-crossing-and-linear-interpolation"
+                },
+                {
+                  "id": "return-intervals-and-window-mean",
+                  "title": "返回间隔与窗口平均",
+                  "question_ids": [
+                    "p04-return-intervals"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S03:return-intervals-and-window-mean",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/#return-intervals-and-window-mean"
+                },
+                {
+                  "id": "complete-section-and-coordinate-projection",
+                  "title": "完整截面与单坐标投影",
+                  "question_ids": [
+                    "p04-section-projection"
+                  ],
+                  "explore": true,
+                  "key": "P04-C06-S03:complete-section-and-coordinate-projection",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/#complete-section-and-coordinate-projection",
+                  "explore_url": "/chapters/04-06-连续时间混沌与奇异吸引子/explore/?concept=P04-C06-S03%3Acomplete-section-and-coordinate-projection"
+                },
+                {
+                  "id": "missed-crossings-and-transversality",
+                  "title": "漏检、相切与采样间隔",
+                  "question_ids": [
+                    "p04-section-limits"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S03:missed-crossings-and-transversality",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/#missed-crossings-and-transversality"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C06-S03:references",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/#references"
+                }
+              ],
+              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/"
             },
             {
               "id": "P04-C06-S04",
               "chapter_id": "4.6",
               "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/04-切向增长奇异几何与预测边界.ipynb",
-              "title": "切向增长奇异几何与预测边界",
-              "outcome": "让状态与小扰动一起推进，按实际时长汇总伸长，结合截面与误差对照解释复杂运动。",
+              "title": "切向扰动增长与奇异吸引子",
+              "outcome": "联合推进状态和微扰方向，按实际时间计算有限窗口增长。",
               "number": "4.6.4",
               "visualization": "web/nonlinear/lorenz.html",
+              "reading": "lessons/04-非线性动态行为/06-连续时间混沌与奇异吸引子/04-切向增长奇异几何与预测边界.md",
               "questions": [
                 {
                   "id": "p04-tangent-growth",
                   "slug": "p04-tangent-growth",
                   "title": "按实际时间汇总切向增长",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#renormalized-growth-per-actual-time",
+                  "concept_title": "分段归一化与实际时间增长率",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-tangent-growth"
                 },
                 {
                   "id": "p04-linear-tangent",
                   "slug": "p04-linear-tangent",
                   "title": "用解析线性系统检查切向解",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#directions-warmup-and-linear-reference",
+                  "concept_title": "方向、预热与线性参照",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-linear-tangent"
                 },
                 {
                   "id": "p04-growth-units",
                   "slug": "p04-growth-units",
                   "title": "归一化间隔与增长率",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#renormalized-growth-per-actual-time",
+                  "concept_title": "分段归一化与实际时间增长率",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-growth-units"
                 },
                 {
                   "id": "p04-quasiperiodic-counterexample",
                   "slug": "p04-quasiperiodic-counterexample",
                   "title": "非周期是否足够说明混沌",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#quasiperiodicity-and-strange-geometry",
+                  "concept_title": "准周期与奇异吸引子的几何",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-quasiperiodic-counterexample"
                 },
                 {
                   "id": "p04-strange-evidence",
                   "slug": "p04-strange-evidence",
                   "title": "解释数值混沌证据",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#quasiperiodicity-and-strange-geometry",
+                  "concept_title": "准周期与奇异吸引子的几何",
+                  "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-strange-evidence"
                 }
               ],
               "practice_url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-tangent-growth",
               "notebook_url": "/notebook/?id=P04-C06-S04",
-              "url": "/notebook/?id=P04-C06-S04"
+              "reading_url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/",
+              "concepts": [
+                {
+                  "id": "variational-equation-and-tangent-perturbation",
+                  "title": "连续变分方程与切向扰动",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C06-S04:variational-equation-and-tangent-perturbation",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#variational-equation-and-tangent-perturbation"
+                },
+                {
+                  "id": "coupled-state-tangent-rk4",
+                  "title": "状态与方向的联合 RK4",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C06-S04:coupled-state-tangent-rk4",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#coupled-state-tangent-rk4"
+                },
+                {
+                  "id": "renormalized-growth-per-actual-time",
+                  "title": "分段归一化与实际时间增长率",
+                  "question_ids": [
+                    "p04-tangent-growth",
+                    "p04-growth-units"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S04:renormalized-growth-per-actual-time",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#renormalized-growth-per-actual-time"
+                },
+                {
+                  "id": "directions-warmup-and-linear-reference",
+                  "title": "方向、预热与线性参照",
+                  "question_ids": [
+                    "p04-linear-tangent"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S04:directions-warmup-and-linear-reference",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#directions-warmup-and-linear-reference"
+                },
+                {
+                  "id": "finite-separation-and-tangent-growth",
+                  "title": "有限距离与持续切向增长",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P04-C06-S04:finite-separation-and-tangent-growth",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#finite-separation-and-tangent-growth",
+                  "explore_url": "/chapters/04-06-连续时间混沌与奇异吸引子/explore/?concept=P04-C06-S04%3Afinite-separation-and-tangent-growth"
+                },
+                {
+                  "id": "quasiperiodicity-and-strange-geometry",
+                  "title": "准周期与奇异吸引子的几何",
+                  "question_ids": [
+                    "p04-quasiperiodic-counterexample",
+                    "p04-strange-evidence"
+                  ],
+                  "explore": false,
+                  "key": "P04-C06-S04:quasiperiodicity-and-strange-geometry",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#quasiperiodicity-and-strange-geometry"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P04-C06-S04:references",
+                  "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/#references"
+                }
+              ],
+              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/"
             }
           ],
           "visualization": "web/nonlinear/lorenz.html"
@@ -4687,7 +5896,7 @@
       "assessment": {
         "id": "4.summary",
         "assessment": true,
-        "title": "非线性行为与证据边界",
+        "title": "非线性行为、返回与稳定性",
         "url": "/parts/04-非线性动态行为/综合练习/",
         "goals": "用四个模型连接平衡、周期、返回和增长率，逐项说明每项计算支持怎样的动态判断。",
         "prerequisites": "本篇六章的平衡分析、周期测量、离散映射、函数导数与连续积分。",
@@ -4702,8 +5911,8 @@
             "id": "P04-SUMMARY",
             "chapter_id": "4.summary",
             "path": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb",
-            "title": "非线性行为与证据边界",
-            "outcome": "用四个模型连接平衡、周期、返回和增长率，逐项说明每项计算支持怎样的动态判断。",
+            "title": "非线性行为、返回与稳定性",
+            "outcome": "连接多稳态、周期测量、离散预测与区域稳定性，并回顾 Lorenz 的返回和有界性。",
             "number": "篇末综合",
             "visualization": null,
             "overview": {
@@ -4716,59 +5925,158 @@
                 "结合函数导数、步长对照与特殊初值解释稳定、有界和混沌证据"
               ]
             },
+            "reading": "lessons/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.md",
             "questions": [
               {
                 "id": "p04-cap-equilibrium",
                 "slug": "p04-cap-equilibrium",
                 "title": "比较三种长期行为",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/04-非线性动态行为/综合练习/read/1/#equilibrium-periodic-attraction",
+                "concept_title": "平衡吸引与周期轨道",
+                "practice_url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-equilibrium"
               },
               {
                 "id": "p04-cap-source",
                 "slug": "p04-cap-source",
                 "title": "振荡来源与参数转变",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/04-非线性动态行为/综合练习/read/1/#oscillation-source-parameter-branches",
+                "concept_title": "振荡来源与参数分支",
+                "practice_url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-source"
               },
               {
                 "id": "p04-cap-basins",
                 "slug": "p04-cap-basins",
                 "title": "复算多初值扫描的有限结果",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/04-非线性动态行为/综合练习/read/1/#basin-scan-finite-labels",
+                "concept_title": "多初值扫描与有限终值",
+                "practice_url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-basins"
               },
               {
                 "id": "p04-cap-period",
                 "slug": "p04-cap-period",
                 "title": "从定向截面计算返回",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/04-非线性动态行为/综合练习/read/1/#directed-section-return-times",
+                "concept_title": "定向截面与返回时间",
+                "practice_url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-period"
               },
               {
                 "id": "p04-cap-precision",
                 "slug": "p04-cap-precision",
                 "title": "离散与连续的扰动增长",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/04-非线性动态行为/综合练习/read/1/#discrete-continuous-growth",
+                "concept_title": "离散与连续的对数增长",
+                "practice_url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-precision"
               },
               {
                 "id": "p04-cap-irregular",
                 "slug": "p04-cap-irregular",
                 "title": "报告非规则轨迹计算",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/04-非线性动态行为/综合练习/read/1/#bounded-contraction-sensitive-evidence",
+                "concept_title": "有界、收缩与敏感性的共同解释",
+                "practice_url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-irregular"
               },
               {
                 "id": "p04-cap-region",
                 "slug": "p04-cap-region",
                 "title": "有界性与函数导数的双重核对",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/04-非线性动态行为/综合练习/read/1/#lorenz-boundedness-derivative",
+                "concept_title": "Lorenz 有界性与沿轨迹导数",
+                "practice_url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-region"
               },
               {
                 "id": "p04-cap-scope",
                 "slug": "p04-cap-scope",
                 "title": "综合三类动力学证据",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/04-非线性动态行为/综合练习/read/1/#bounded-contraction-sensitive-evidence",
+                "concept_title": "有界、收缩与敏感性的共同解释",
+                "practice_url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-scope"
               }
             ],
             "practice_url": "/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-equilibrium",
             "notebook_url": "/notebook/?id=P04-SUMMARY",
-            "url": "/notebook/?id=P04-SUMMARY"
+            "reading_url": "/parts/04-非线性动态行为/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "equilibrium-periodic-attraction",
+                "title": "平衡吸引与周期轨道",
+                "question_ids": [
+                  "p04-cap-equilibrium"
+                ],
+                "explore": false,
+                "key": "P04-SUMMARY:equilibrium-periodic-attraction",
+                "url": "/parts/04-非线性动态行为/综合练习/read/1/#equilibrium-periodic-attraction"
+              },
+              {
+                "id": "oscillation-source-parameter-branches",
+                "title": "振荡来源与参数分支",
+                "question_ids": [
+                  "p04-cap-source"
+                ],
+                "explore": false,
+                "key": "P04-SUMMARY:oscillation-source-parameter-branches",
+                "url": "/parts/04-非线性动态行为/综合练习/read/1/#oscillation-source-parameter-branches"
+              },
+              {
+                "id": "basin-scan-finite-labels",
+                "title": "多初值扫描与有限终值",
+                "question_ids": [
+                  "p04-cap-basins"
+                ],
+                "explore": false,
+                "key": "P04-SUMMARY:basin-scan-finite-labels",
+                "url": "/parts/04-非线性动态行为/综合练习/read/1/#basin-scan-finite-labels"
+              },
+              {
+                "id": "directed-section-return-times",
+                "title": "定向截面与返回时间",
+                "question_ids": [
+                  "p04-cap-period"
+                ],
+                "explore": false,
+                "key": "P04-SUMMARY:directed-section-return-times",
+                "url": "/parts/04-非线性动态行为/综合练习/read/1/#directed-section-return-times"
+              },
+              {
+                "id": "discrete-continuous-growth",
+                "title": "离散与连续的对数增长",
+                "question_ids": [
+                  "p04-cap-precision"
+                ],
+                "explore": false,
+                "key": "P04-SUMMARY:discrete-continuous-growth",
+                "url": "/parts/04-非线性动态行为/综合练习/read/1/#discrete-continuous-growth"
+              },
+              {
+                "id": "lorenz-boundedness-derivative",
+                "title": "Lorenz 有界性与沿轨迹导数",
+                "question_ids": [
+                  "p04-cap-region"
+                ],
+                "explore": false,
+                "key": "P04-SUMMARY:lorenz-boundedness-derivative",
+                "url": "/parts/04-非线性动态行为/综合练习/read/1/#lorenz-boundedness-derivative"
+              },
+              {
+                "id": "bounded-contraction-sensitive-evidence",
+                "title": "有界、收缩与敏感性的共同解释",
+                "question_ids": [
+                  "p04-cap-scope",
+                  "p04-cap-irregular"
+                ],
+                "explore": false,
+                "key": "P04-SUMMARY:bounded-contraction-sensitive-evidence",
+                "url": "/parts/04-非线性动态行为/综合练习/read/1/#bounded-contraction-sensitive-evidence"
+              }
+            ],
+            "url": "/parts/04-非线性动态行为/综合练习/read/1/"
           }
         ],
         "available": true,

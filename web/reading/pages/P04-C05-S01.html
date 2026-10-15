@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.5.1 Lyapunov 函数与局部稳定性 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-C05-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-C05-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-energy">本节练习 · 5 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>4.5.1 Lyapunov 函数与局部稳定性</h1>
+<p>学完本节，你应能构造一个衡量偏离平衡的函数，计算它沿轨迹的变化，并选取可持续使用下降条件的初值区域。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/04-04-%E6%B7%B7%E6%B2%8C%E4%B8%8E%E5%8F%AF%E9%A2%84%E6%B5%8B%E8%8C%83%E5%9B%B4/read/3/">有限时间增长率与算术精度</a>；梯度与链式法则，稳定性、吸引域和局部分析。</p>
+<h2 id="lyapunov-candidate-definition">稳定性与能量式指标</h2>
+<p>模拟几条轨迹可以观察去向。若希望同时分析平衡附近的一整片初值，可以寻找一个随偏离程度增大的量：只要它沿运动不增加，状态就留在受限制的范围内。</p>
+<p>先回到平衡的稳定性。原点<strong>稳定</strong>，指任给允许距离 $\varepsilon&gt;0$，都能找到初始距离 $\delta&gt;0$，使</p>
+<p>$$\|x(0)\|&lt;\delta\quad\Longrightarrow\quad
+\|x(\tau)\|&lt;\varepsilon\quad\text{对所有 }\tau\ge0.$$</p>
+<p>它说明小偏离始终保持小。<strong>渐近稳定</strong>还要求足够邻近的初值满足 $x(\tau)\to0$，也就是在留在附近的同时逐渐恢复。</p>
+<p>用于检查这些性质的、定义在状态上的标量函数称为 <strong>Lyapunov 候选函数（Lyapunov function candidate）</strong>。先试最简单的</p>
+<p>$$V(x)=\frac{x^2}{2}.$$</p>
+<p>偏差的正负不影响 $V$，偏差绝对值越大，$V$ 越大。因此可以把它理解为一个“能量式指标”。这里的平方量由我们构造，未必是真实物理能量，也不必以焦耳计量。以下状态和时间都采用无量纲尺度。</p>
+<p>相对原点的<strong>正定性（positive definiteness）</strong>要求</p>
+<p>$$V(0)=0,\qquad V(x)&gt;0\quad(x\ne0).$$</p>
+<p>这使零指标对应原点，非零偏差对应正指标。“候选”表示先选一个有用的量，再检查它沿实际方程怎样变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-positive-definite">正定要求检查哪几项</a></li></ul></nav>
+
+<h2 id="scalar-derivative-proof">沿轨迹导数与标量恢复</h2>
+<p>对方程 $x'=-x$，链式法则给出</p>
+<p>$$\dot V=\frac{dV}{dx}x'=x(-x)=-x^2=-2V.$$</p>
+<p>这里 $\dot V$ 表示沿轨迹对时间求导。每个非零状态都使 $V$ 严格下降，原点处导数为零。将最后一式看作关于 $V$ 的方程，得到</p>
+<p>$$V(\tau)=V(0)e^{-2\tau},\qquad
+|x(\tau)|=|x(0)|e^{-\tau}.$$</p>
+<p>这已给出完整的两步论证：因为 $|x(\tau)|\le|x(0)|$，取 $\delta=\varepsilon$ 就得到稳定性；因为 $e^{-\tau}\to0$，所有初值都趋向原点。因此原点在整个实数轴上渐近稳定。</p>
+<p>更一般地，$V(x)\to\infty$ 随 $|x|\to\infty$ 成立时，称 $V$ <strong>径向无界（radially unbounded）</strong>。这保证有限的指标值将状态限制在有界区域。当前平方函数具备这一性质，而 $x'=-x$ 的解对所有未来时间都存在，因而刚才的下降论证可以覆盖任意初值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-global-decay">论证全空间的回归</a></li></ul></nav>
+
+<h2 id="nonlinear-local-decay">非线性增长与有效区域</h2>
+<p>现在在恢复项后加上三次增长：</p>
+<p>$$x'=-x+x^3.$$</p>
+<p>仍取 $V=x^2/2$，逐项计算</p>
+<p>$$\dot V=x(-x+x^3)=-x^2+x^4=-x^2(1-x^2).$$</p>
+<p>因式分解立即给出符号：</p>
+<p>| 状态 | $\dot V$ | 指标的变化 |
+|---|---:|---|
+| $x=0$ 或 $x=\pm1$ | 0 | 当时不变 |
+| $0&lt;|x|&lt;1$ | 负 | 下降 |
+| $|x|&gt;1$ | 正 | 上升 |</p>
+<p>例如 $x=0.5$ 时，$V=0.125$、$\dot V=-0.1875$；$x=1.2$ 时，$V=0.72$、$\dot V=0.6336$。同一个正定函数在不同区域有相反的变化，稳定性结论要与下降区域配合。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-energy">逐点计算候选函数与导数</a></li></ul></nav>
+
+<h2 id="sublevel-invariance">子水平集与持续成立的下降条件</h2>
+<p>把函数不超过某个值的状态收集起来，得到<strong>子水平集（sublevel set）</strong>：</p>
+<p>$$\Omega_c=\{x:V(x)\le c\}.$$</p>
+<p>对于当前平方函数，它就是闭区间</p>
+<p>$$\Omega_c=[-\sqrt{2c},\sqrt{2c}].$$</p>
+<p>选 $0&lt;c&lt;1/2$，整个区间位于 $(-1,1)$。如果从其中出发，$V$ 沿运动只能下降，轨迹就不能越过 $V=c$ 的边界，进入更大的函数值。这使 $\Omega_c$ 向前不变：之后的状态始终留在这个区间内，也就始终可以使用刚才的下降关系。</p>
+<p>还可以直接证明收敛。在 $V\le c$ 内，由 $x^2=2V$ 得</p>
+<p>$$\dot V=-2V(1-2V)\le-2(1-2c)V.$$</p>
+<p>令 $k_c=2(1-2c)&gt;0$，将不等式乘积分因子 $e^{k_c\tau}$：</p>
+<p>$$\frac{d}{d\tau}\left(e^{k_c\tau}V(\tau)\right)\le0,
+\qquad V(\tau)\le V(0)e^{-k_c\tau}\longrightarrow0.$$</p>
+<p>区间内的向量场光滑，状态又被限制在闭有界区间中，解可以持续推进。因此，从任意 $|x_0|&lt;1$ 出发，都能选一个包含它的 $c&lt;1/2$，并得到趋向原点的结论。</p>
+<p>在 $x=\pm1$，轨迹停在另两个平衡；外侧相线指向远离原点的方向。所以原点的吸引域恰为 $(-1,1)$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-domain">为什么只在一个区域内作结论</a></li></ul></nav>
+
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-C05-S01-6720f3a9-0.png" alt="Lyapunov 函数与局部稳定性：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图选择 $c=0.32$，对应区间 $[-0.8,0.8]$，完全落在有效区域内。右图把线性恢复与三次增长模型的 $\dot V$ 放在一起：前者在全部非零点下降，后者到 $\pm1$ 后改变符号。若改选 $c=0.6$，区间便越过这两个边界，不能沿用刚才的区域下降不等式。</p>
+<h2 id="multivariable-lyapunov-criterion">多变量判据与两种 Lyapunov 工具</h2>
+<p>多变量方程 $\boldsymbol x'=f(\boldsymbol x)$ 也采用同一思路。对可微标量函数 $V$，沿轨迹的链式法则为</p>
+<p>$$\dot V=\nabla V(\boldsymbol x)^{\mathsf T}f(\boldsymbol x).$$</p>
+<p>在原点附近的开区域内，设原点是平衡，$f$ 的一阶偏导连续，$V$ 连续可微且相对原点正定。若所有点满足 $\dot V\le0$，则原点稳定；若每个非零点都满足 $\dot V&lt;0$，则原点局部渐近稳定。应用时可选取闭有界、完全位于有效区域内的子水平集，把后续运动留在条件成立的地方。</p>
+<p>满足相应符号条件的候选量就成为这一系统的 <strong>Lyapunov 函数（Lyapunov function）</strong>。它检查状态区域中的函数值及其变化；前章的 <strong>Lyapunov 指数（Lyapunov exponent）</strong>则沿一条轨迹累加微小扰动的对数伸长。函数方法可以证明一个区域内的稳定性，指数描述沿轨迹的敏感性，两者使用的对象与计算方式不同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-function-vs-exponent">区分两种李雅普诺夫工具</a></li></ul></nav>
+
+<p>下一节把平方函数放到二维系统中，查看“函数不增加”和“状态最终回到原点”之间还可能有哪些运动。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://underactuated.csail.mit.edu/lyapunov.html">MIT：Lyapunov 分析</a>介绍正定函数、沿轨迹导数和局部、全局稳定性的条件。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/04-04-混沌与可预测范围/read/3/">← 4.4.3 有限时间增长率与算术精度</a><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/">4.5.2 非严格衰减与零导数集合 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

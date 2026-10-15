@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.6.3 庞加莱截面与首次返回 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-C06-S03">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-C06-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection">本节练习 · 4 题</a><a class="button" href="/chapters/04-06-连续时间混沌与奇异吸引子/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>4.6.3 庞加莱截面与首次返回</h1>
+<p>学完本节，你应能定义有方向的截面事件，从相邻样本插值交点和时间，并区分完整的返回状态与单坐标投影。</p>
+<p><strong>先修知识</strong>：周期与相位、线性插值、Lorenz 方程和共同时间网格。</p>
+<h2 id="transverse-section-and-first-return">横截面与首次返回映射</h2>
+<p>连续轨迹绕了很多圈以后，逐段比较整条曲线并不方便。我们可以选一张固定的面，每当轨迹从同一方向穿过它，就拍下一张状态“快照”。原来的连续运动便变成一列事件：第一个交点、第二个交点、第三个交点……</p>
+<p><strong>庞加莱截面（Poincaré section）</strong>是在某个穿越点附近与向量场横截的、比状态空间少一维的面。“横截”表示运动方向不沿着面滑行，而是具有穿过面的分量。例如三维状态的截面取为</p>
+<p>$$\Sigma=\{(x,y,z):z=c\},$$</p>
+<p>在穿越点处需有 $\dot z\ne0$；若要求从下向上，则取 $\dot z&gt;0$ 的穿越。截面上的一个点已固定了 $z=c$，其余仍需 $x,y$ 两个坐标。</p>
+<p>用 $\Phi_\tau(p)$ 记从状态 $p$ 演化时间 $\tau$ 后到达的位置。对截面上的一个交点 $p$，若之后确有下一次同向返回，记最早的正返回时间为 $T(p)$，则</p>
+<p>$$P(p)=\Phi_{T(p)}(p)$$</p>
+<p>称为<strong>首次返回映射（first-return map）</strong>。它将“这一圈穿过哪里”变成“下一圈穿过哪里”。返回映射定义在能够这样返回的截面点上；相切、离开后不再回来等情形，需要分别检查。</p>
+<p>先用一条已知周期的曲线校准直觉：</p>
+<p>$$(x(\tau),y(\tau),z(\tau))=(\cos\tau,0,\sin\tau).$$</p>
+<p>取 $z=0$，只记录向上穿越。因为 $\dot z=\cos\tau$，在 $\tau=2k\pi$ 时它从下方穿过，状态均为 $(1,0,0)$；在 $\tau=(2k+1)\pi$ 时则向下穿过，状态为 $(-1,0,0)$。保留一个方向后，同一状态每隔 $2\pi$ 返回一次。这里每周期恰有一个所选事件，所以返回间隔等于周期；换成每周期穿过多次的截面，间隔就会不同。</p>
+<h2 id="directed-crossing-and-linear-interpolation">定向事件与线性插值</h2>
+<p>数值轨迹只保存离散时刻的状态。设相邻时刻为 $\tau_i&lt;\tau_{i+1}$，相应状态为 $v_i=[x_i,y_i,z_i]$、$v_{i+1}$。本节使用的向上事件规则是</p>
+<p>$$\boxed{z_i&lt;c\le z_{i+1}.}$$</p>
+<p>通过这个条件后，把两端之间的轨迹近似为直线，用从下端到截面的比例</p>
+<p>$$\alpha=\frac{c-z_i}{z_{i+1}-z_i}$$</p>
+<p>同时插值时间和全部坐标：</p>
+<p>$$\boxed{\begin{aligned}
+\tau_*&amp;=\tau_i+\alpha(\tau_{i+1}-\tau_i),\\
+v_*&amp;=v_i+\alpha(v_{i+1}-v_i).
+\end{aligned}}$$</p>
+<p>例如时刻 0 的状态为 $[0,0,-1]$，时刻 1 的状态为 $[2,4,1]$，截面高度 $c=0$。先算 $\alpha=(0+1)/(1+1)=1/2$，再得到</p>
+<p>$$\tau_*=0.5,\qquad v_*=[1,2,0].$$</p>
+<p>三项状态与时间都用了同一个比例，因此它们描述的是同一个交点。只把 $z$ 改成 0、却仍保留一端的 $x,y$ 和时刻，就会拼成并不存在于该直线段上的事件。</p>
+<p>若下一次穿越发生在时刻 2 的 $[4,8,-1]$ 与时刻 3 的 $[6,12,1]$ 之间，同样得到 $\tau_*=2.5$、$v_*=[5,10,0]$。两次返回间隔为 $2.5-0.5=2$。</p>
+<p>规则在下端使用严格小于、上端包含等号。若某一步恰好从下方到达 $z=c$，它在该步被记录；下一步从等号出发，便不会再次记录同一个样本点。若要去掉初始过渡过程，就在插值后检查 $\tau_*\ge\tau_{\mathrm{burn}}$，而非只检查左右端点的时刻。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-directed-section">提取同向截面交点</a></li></ul></nav>
+
+<h2 id="return-intervals-and-window-mean">返回间隔与窗口平均</h2>
+<p>将保留下来的交点按时序记为 $p_0,p_1,\ldots,p_{m-1}$，相应时间为 $s_0,s_1,\ldots,s_{m-1}$。相邻间隔为</p>
+<p>$$\Delta s_n=s_{n+1}-s_n,\qquad n=0,\ldots,m-2.$$</p>
+<p>$m$ 个交点只有 $m-1$ 个相邻间隔。至少有两个交点时，平均返回间隔为</p>
+<p>$$\overline{\Delta s}=\frac1{m-1}\sum_{n=0}^{m-2}(s_{n+1}-s_n)
+=\frac{s_{m-1}-s_0}{m-1}.$$</p>
+<p>例如交点时刻为 $[1,3,6]$，间隔为 $[2,3]$，平均值为 $2.5$。它概括这两次返回；各间隔还在变化时，平均值不表示轨迹具有周期 $2.5$。没有交点或只有一个交点时，间隔列表为空，均值也没有定义，计算题用 <code>None</code> 表示。</p>
+<p>在圆轨道中，解析间隔始终是 $2\pi$，所以它同时提供事件方向和定位精度的检查。将采样间隔减小后，插值交点应更接近解析穿越，返回间隔也更接近 $2\pi$。随后再把相同的事件处理用到 Lorenz 轨迹上。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-return-intervals">从交点时间估计返回间隔</a></li></ul></nav>
+
+<h2 id="complete-section-and-coordinate-projection">完整截面与单坐标投影</h2>
+<p>对 $\rho=28$ 的 Lorenz 系统，取平面 $z=\rho-1=27$，只保留向上穿越，并舍去 $\tau&lt;10$ 的交点。下图从 $[1,1,1]$ 出发，以 $h=0.01$ 积分到 $\tau=60$。</p>
+<p>左图在 $x$–$z$ 投影上标出截面高度；中图将每一个交点的 $(x_n,y_n)$ 完整保留；右图则将同一序列进一步压缩成 $(x_n,x_{n+1})$。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-C06-S03-511caeec-1.png" alt="庞加莱截面与首次返回：实验结果图" loading="lazy"></figure>
+</section>
+<p>中图的每个点都是截面上的一个状态。若两个交点的 $x$ 相同、$y$ 不同，它们仍是不同状态，后续返回也可能不同。右图省去了 $y_n$，所以同一个横坐标 $x_n$ 可能对应多个纵坐标 $x_{n+1}$。这类返回散点图有助于观察结构，但只有当所保留坐标足以决定下一次读数时，才构成该单坐标上的函数。</p>
+<p>这一点与第 1 篇的状态和观测相呼应：三维系统在截面上可用两个坐标表示；只读其中一个坐标，通常还缺少决定未来所需的信息。折叠回来的图形显示状态再次接近了同一区域，局部伸展则可使邻近交点在下一次返回时分开。下一节用沿轨迹的小扰动进一步量化这种分离。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection">返回映射保留哪些坐标</a></li></ul></nav>
+
+<p class="concept-explore"><a href="/chapters/04-06-连续时间混沌与奇异吸引子/explore/?concept=P04-C06-S03%3Acomplete-section-and-coordinate-projection">可视化与探索：完整截面与单坐标投影 →</a></p>
+
+<p>在探索页将时间条移过暂态结束位置，观察截面点怎样逐个出现。点击一个交点，查看它对应的三维轨迹位置与时刻；再读表中的返回间隔，比较完整状态与单个坐标各保留了什么。</p>
+<h2 id="missed-crossings-and-transversality">漏检、相切与采样间隔</h2>
+<p>线性插值只能利用已经保存的样本。如果一段时间里先上穿、再下穿，两端都可能满足 $z&lt;c$，这一步的端点条件便完全看不到中间事件。增加显示的小数位不会补回缺失的时刻；需要缩短采样间隔，或使用在积分过程中定位事件的方法。</p>
+<p>另一方面，轨迹触到 $z=c$ 后又退回同侧，可能只是相切。在真正横截的点附近，$\dot z$ 不为零，穿越方向在足够小的邻域内明确。对 Lorenz 系统，可直接用 $\dot z=xy-\beta z$ 检查；当它非常接近零时，应更仔细地观察附近轨迹和采样分辨率。</p>
+<p>本节的事件提取器对给定样本严格执行 $z_i&lt;c\le z_{i+1}$。研究连续轨迹的返回结构时，再用更细的积分和事件检查判断这些样本事件是否准确代表了穿越。周期圆轨道提供容易核对的起点；Lorenz 长窗比较则还会受到轨迹敏感性和暂态截断的影响。比较 $h=0.01$、$h=0.005$，再将暂态结束从 10 改到 20，可以分别查看计算分辨率和观察窗口对返回记录的影响。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-limits">解释未检测到穿越</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.mat.univie.ac.at/~gerald/ftp/book-ode/ode.pdf">Teschl：§6.4 与 §12.2</a>进一步介绍横截面、周期轨道与返回映射。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/04-06-连续时间混沌与奇异吸引子/read/2/">← 4.6.2 有界性、体积收缩与 RK4 积分</a><a href="/chapters/04-06-连续时间混沌与奇异吸引子/read/4/">4.6.4 切向扰动增长与奇异吸引子 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

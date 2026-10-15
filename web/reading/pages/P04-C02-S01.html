@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.2.1 阻尼、受迫与自维持振荡 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-C02-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/04-02-自维持振荡与极限环/practice/?question=p04-oscillation-source">本节练习 · 5 题</a><a class="button" href="/chapters/04-02-自维持振荡与极限环/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>4.2.1 阻尼、受迫与自维持振荡</h1>
+<p>学完本节，你应能从输入和半径变化区分三种振荡来源，推导径向振子的半径与角度方程，并解释稳定极限环的振幅恢复。</p>
+<p><strong>先修知识</strong>：第 3 篇的复数、二维旋转和链式法则；4.1.3 的集合吸引与相位差。</p>
+<h2 id="damped-rotation">阻尼旋转的振幅衰减</h2>
+<p>一次刺激后的起伏逐渐减弱，持续周期刺激下的起伏保持，而系统自身的节律也可以长期存在。时间曲线都呈波浪状，区别要到变化规则中寻找。</p>
+<p>用同一尺度归一化两个活动偏差 $x,y$，沿用无量纲时间 $\tau$。先从第 3 篇的阻尼旋转出发：</p>
+<p>$$x'=-\alpha x-\omega y,\qquad y'=\omega x-\alpha y,\qquad\alpha&gt;0.$$</p>
+<p>用 $z=x+iy$ 合写，得到 $z'=(-\alpha+i\omega)z$。于是</p>
+<p>$$z(\tau)=z_0e^{-\alpha\tau}e^{i\omega\tau}.$$</p>
+<p>旋转因子改变角度，$e^{-\alpha\tau}$ 缩小长度。半径 $R=\sqrt{x^2+y^2}$ 因而按 $R_0e^{-\alpha\tau}$ 衰减。取 $\alpha=0.3,\omega=1$，一个自由旋转周期 $2\pi$ 后，半径只剩初始值的 $e^{-0.6\pi}\approx0.152$。这里的<strong>阻尼振荡（damped oscillation）</strong>是朝稳定平衡恢复时的旋转暂态。</p>
+<p>在探索页选择“仅有阻尼”，播放并观察时间曲线的包络和相轨迹的半径。</p>
+<p class="concept-explore"><a href="/chapters/04-02-自维持振荡与极限环/explore/?concept=P04-C02-S01%3Adamped-rotation">可视化与探索：阻尼旋转的振幅衰减 →</a></p>
+
+<h2 id="periodic-forcing">周期输入与受迫振荡</h2>
+<p>给两个坐标加入同幅、相差四分之一周期的输入：</p>
+<p>$$\begin{aligned}
+x'&amp;=-\alpha x-\omega y+F\cos(\Omega\tau),\\
+y'&amp;=\omega x-\alpha y+F\sin(\Omega\tau).
+\end{aligned}$$</p>
+<p>$F$ 是输入幅度，$\Omega$ 是驱动角频率；$\omega$ 仍控制撤去输入后的自由旋转。复数形式为</p>
+<p>$$z'=(-\alpha+i\omega)z+Fe^{i\Omega\tau}.$$</p>
+<p>要找由输入维持的周期解，尝试 $z_p=Ce^{i\Omega\tau}$。代入并约去共同的指数，</p>
+<p>$$i\Omega C=(-\alpha+i\omega)C+F,\qquad
+C=\frac F{\alpha+i(\Omega-\omega)}.$$</p>
+<p>$C$ 是固定的复数，包含幅度与相位偏移。加上衰减的自由解并满足初值，得到</p>
+<p>$$z(\tau)=(z_0-C)e^{(-\alpha+i\omega)\tau}+Ce^{i\Omega\tau}.$$</p>
+<p>第一项是<strong>暂态（transient）</strong>，随时间消失；第二项与输入同频，长期半径为</p>
+<p>$$|C|=\frac F{\sqrt{\alpha^2+(\Omega-\omega)^2}}.$$</p>
+<p>取 $\alpha=0.3,\omega=1,F=0.35,\Omega=1.3$，得到 $|C|\approx0.825$，长期周期为 $2\pi/1.3\approx4.833$。这类由周期输入维持的运动称为<strong>受迫振荡（forced oscillation）</strong>。</p>
+<p>在时刻 $\tau_0$ 关闭输入，状态仍从当时的 $z(\tau_0)$ 连续演化，此后满足</p>
+<p>$$z(\tau)=z(\tau_0)e^{(-\alpha+i\omega)(\tau-\tau_0)}.$$</p>
+<p>衰减率恢复为 $\alpha$，旋转角频率恢复为 $\omega$。探索页的“切换到无周期输入”按钮从相同初值重算无输入轨迹；上式则描述一条轨迹在中途关断输入后的接续运动。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-02-自维持振荡与极限环/practice/?question=p04-forcing-removed">撤去周期驱动</a></li></ul></nav>
+<p class="concept-explore"><a href="/chapters/04-02-自维持振荡与极限环/explore/?concept=P04-C02-S01%3Aperiodic-forcing">可视化与探索：周期输入与受迫振荡 →</a></p>
+
+<h2 id="radial-limit-cycle">径向恢复与角度变化</h2>
+<p>要让振荡在没有周期输入时也保持，可以使小幅运动增长，大幅运动受到抑制。考虑</p>
+<p>$$\begin{aligned}
+x'&amp;=(\mu-x^2-y^2)x-\omega y,\\
+y'&amp;=\omega x+(\mu-x^2-y^2)y.
+\end{aligned}$$</p>
+<p>$\mu$ 控制小幅增长，$-(x^2+y^2)$ 使增长随幅度增大而减弱。$x,y$ 是归一化的有符号偏差；本例 $\mu,\omega$ 和时间也均无量纲。</p>
+<p>写 $x=R\cos\theta,y=R\sin\theta$。由 $R^2=x^2+y^2$ 求导，在 $R&gt;0$ 处有</p>
+<p>$$R'=\frac{xx'+yy'}R
+=\frac{(\mu-R^2)(x^2+y^2)-\omega xy+\omega xy}{R}
+=\mu R-R^3.$$</p>
+<p>旋转项在半径变化中抵消。角度可以用两个坐标的变化求得。先对 $x=R\cos\theta,y=R\sin\theta$ 求导，再相乘相减：</p>
+<p>$$\begin{aligned}
+x'&amp;=R'\cos\theta-R\theta'\sin\theta,\\
+y'&amp;=R'\sin\theta+R\theta'\cos\theta,\\
+xy'-yx'&amp;=R^2\theta'.
+\end{aligned}$$</p>
+<p>代入原方程时，径向项相消，留下 $xy'-yx'=\omega(x^2+y^2)$，所以</p>
+<p>$$\boxed{R'=R(\mu-R^2),\qquad\theta'=\omega.}$$</p>
+<p>取 $\mu=0.5$，在 $R=0.5$ 处 $R'=0.5(0.5-0.25)=0.125&gt;0$，在 $R=1$ 处 $R'=1(0.5-1)=-0.5&lt;0$。半径从两侧趋向 $R_*=\sqrt{0.5}$；若 $\omega=1$，到达这个半径后仍持续旋转。</p>
+<h2 id="limit-cycle-and-self-sustained-motion">极限环与自维持振荡</h2>
+<p>对于自治系统，<strong>周期轨道</strong>是一条非静止轨迹经过某个正时间后重复的闭合轨道。它若是孤立的，即足够近的周围没有另一条周期轨道，就称为<strong>极限环（limit cycle）</strong>。附近轨迹到它的距离趋零、且保持集合稳定时，它是稳定的吸引极限环。</p>
+<p>本例在 $\mu&gt;0,\omega&gt;0$ 时，$R=\sqrt\mu$ 是唯一正的恒定半径；其余正半径都向它靠近。因此该圆是稳定极限环，周期为</p>
+<p>$$P=\frac{2\pi}{\omega}.$$</p>
+<p>方程没有周期输入，偏小振幅会增长、偏大振幅会缩小，系统内部机制维持了有限振幅，这称为<strong>自维持振荡（self-sustained oscillation）</strong>。它把上一节的稳定吸引圆变成一个有明确变化规则的模型。</p>
+<p>精确原点需要直接代入笛卡尔方程：$x=y=0$ 时两个变化率都为零。$\mu&gt;0$ 时，非零小半径满足 $R'&gt;0$，会离开原点；所以原点是静止但不稳定的平衡。$\omega=0$ 时则不再旋转，$R=\sqrt\mu$ 上每个位置都是平衡，而不是一条周期运动。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-02-自维持振荡与极限环/practice/?question=p04-origin-exception">考察径向振子的原点</a></li><li><a href="/chapters/04-02-自维持振荡与极限环/practice/?question=p04-radial-stability">分析径向与角向运动</a></li></ul></nav>
+
+<p>无阻尼线性旋转是另一个对照：每个半径都对应一条周期圆，邻近轨道不向某个指定圆恢复，因此其中任一圆都不孤立。极限环的关键是孤立的周期运动及其附近动力学，而不只是画出闭曲线。</p>
+<p>在探索页选择“自维持振子”，保持 $\mu=0.5,\omega=1$，分别从圆内外开始，观察半径恢复；再改变 $\mu$，比较长期半径。</p>
+<p class="concept-explore"><a href="/chapters/04-02-自维持振荡与极限环/explore/?concept=P04-C02-S01%3Alimit-cycle-and-self-sustained-motion">可视化与探索：极限环与自维持振荡 →</a></p>
+
+<h2 id="radial-exact-solution">半径解析解与二维轨迹重建</h2>
+<p>令 $s=R^2$，有</p>
+<p>$$s'=2\mu s-2s^2.$$</p>
+<p>对非零半径令 $w=1/s$，得到 $w'=-2\mu w+2$。当 $\mu\ne0$，</p>
+<p>$$w(\tau)=\frac1\mu+\left(\frac1{s_0}-\frac1\mu\right)e^{-2\mu\tau},$$</p>
+<p>取倒数并同乘 $s_0e^{2\mu\tau}$，得到</p>
+<p>$$s(\tau)=\frac{s_0e^{2\mu\tau}}{1+(s_0/\mu)(e^{2\mu\tau}-1)}.$$</p>
+<p>当 $\mu=0$，$w'=2$，所以 $s(\tau)=s_0/(1+2s_0\tau)$。精确原点始终为零。这样，增长参数为正、零、负时的轨迹都可以按各自解析式计算。</p>
+<p>初始向量先旋转 $\omega\tau$，再把长度从 $\sqrt{s_0}$ 缩放到 $\sqrt{s(\tau)}$：</p>
+<p>$$\begin{pmatrix}x(\tau)\\y(\tau)\end{pmatrix}
+=\sqrt{\frac{s(\tau)}{s_0}}
+\begin{pmatrix}\cos\omega\tau&amp;-\sin\omega\tau\\\sin\omega\tau&amp;\cos\omega\tau\end{pmatrix}
+\begin{pmatrix}x_0\\y_0\end{pmatrix}.$$</p>
+<p>例如 $\mu=0.25,\omega=1$，从 $[0.5,0]$ 出发已经在极限环上。半径保持 0.5，在 $\tau=\pi/2$ 到达 $[0,0.5]$，在 $\tau=\pi$ 到达 $[-0.5,0]$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-02-自维持振荡与极限环/practice/?question=p04-radial-solution">从半径与角度恢复二维轨迹</a></li></ul></nav>
+
+<h2 id="three-oscillation-mechanisms">三种机制的时间曲线与相轨迹</h2>
+<p>左图让三种模型都从 $[x_0,y_0]=[1,0]$ 出发，按同一时间尺度比较 $x$。右图对自维持模型取三个不同起点，以灰色圆标出 $R=\sqrt{0.5}$。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-C02-S01-aec55587-0.png" alt="阻尼、受迫与自维持振荡：实验结果图" loading="lazy"></figure>
+</section>
+<p>阻尼曲线振幅趋零，受迫曲线的长期周期由驱动给出，自维持曲线趋近内部机制决定的半径。右图中，圆内的轨迹向外展开，圆外轨迹向内收缩，但三个初始角度不会因此对齐。针对观测到的节律，撤去周期驱动并比较不同初值的恢复，能帮助区分这些机制；下一节将振幅、周期和相位分别变成可以从记录中计算的量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-02-自维持振荡与极限环/practice/?question=p04-oscillation-source">调查周期曲线的来源</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p>MIT 的<a href="https://ocw.mit.edu/courses/12-006j-nonlinear-dynamics-chaos-fall-2022/resources/mit12_006jf22_lec8-9/">受迫振子与极限环讲义</a>提供了这两类周期运动的进一步例子；本节用可解析的径向模型连接输入、振幅与集合吸引。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/04-01-多稳态与吸引域/read/3/">← 4.1.3 吸引子、不变性与集合稳定</a><a href="/chapters/04-02-自维持振荡与极限环/read/2/">4.2.2 周期、振幅与相位的测量 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "3b043896156b2e2cde82b60e742f6479dc0cc879342c5a9383f06b27d8618dfe",
+    "catalogSha256": "f2daae4858518459fdfe7035d59f653d8b6a457dda6b9b1b46357e00ae41c9a6",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -3349,7 +3349,7 @@
       "number": "4",
       "parentId": null,
       "url": "/parts/04-非线性动态行为/",
-      "description": "多稳态与吸引域 · 自维持振荡与极限环 · 分岔与参数变化 · 混沌与可预测范围 · 用 Lyapunov 函数分析稳定性 · 连续时间混沌与奇异吸引子",
+      "description": "多稳态与吸引域 · 自维持振荡与极限环 · 分岔与参数变化 · 混沌与可预测范围 · Lyapunov 函数与稳定性 · 连续时间混沌与奇异吸引子",
       "categories": [
         "evolution"
       ],
@@ -3503,10 +3503,10 @@
       "english": null,
       "number": "4.1.1",
       "parentId": "4.1",
-      "url": "/notebook/?id=P04-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-01-多稳态与吸引域/read/1/",
+      "readingUrl": "/chapters/04-01-多稳态与吸引域/read/1/",
       "practiceUrl": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-equilibria",
-      "description": "先看一次变化把状态推向哪里，再求三个平衡与解析轨迹，解释停在平衡和抵抗扰动的区别。",
+      "description": "用流向与解析轨迹比较三个平衡及其邻近初值。",
       "categories": [
         "evolution"
       ],
@@ -3522,7 +3522,7 @@
       "total": 1,
       "lessonId": "P04-C01-S01",
       "lessonNumber": "4.1.1",
-      "lessonTitle": "从三个平衡进入多稳态",
+      "lessonTitle": "非线性平衡与多稳态",
       "chapterUrl": "/chapters/04-01-多稳态与吸引域/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3533,10 +3533,10 @@
       "english": null,
       "number": "4.1.1",
       "parentId": "4.1",
-      "url": "/notebook/?id=P04-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-01-多稳态与吸引域/read/1/",
+      "readingUrl": "/chapters/04-01-多稳态与吸引域/read/1/",
       "practiceUrl": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-equilibria",
-      "description": "先看一次变化把状态推向哪里，再求三个平衡与解析轨迹，解释停在平衡和抵抗扰动的区别。",
+      "description": "用流向与解析轨迹比较三个平衡及其邻近初值。",
       "categories": [
         "evolution"
       ],
@@ -3552,7 +3552,7 @@
       "total": 1,
       "lessonId": "P04-C01-S01",
       "lessonNumber": "4.1.1",
-      "lessonTitle": "从三个平衡进入多稳态",
+      "lessonTitle": "非线性平衡与多稳态",
       "chapterUrl": "/chapters/04-01-多稳态与吸引域/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3563,10 +3563,10 @@
       "english": "multistability",
       "number": "4.1.1",
       "parentId": "4.1",
-      "url": "/notebook/?id=P04-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-01-多稳态与吸引域/read/1/",
+      "readingUrl": "/chapters/04-01-多稳态与吸引域/read/1/",
       "practiceUrl": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-equilibria",
-      "description": "先看一次变化把状态推向哪里，再求三个平衡与解析轨迹，解释停在平衡和抵抗扰动的区别。",
+      "description": "用流向与解析轨迹比较三个平衡及其邻近初值。",
       "categories": [
         "evolution"
       ],
@@ -3582,7 +3582,7 @@
       "total": 1,
       "lessonId": "P04-C01-S01",
       "lessonNumber": "4.1.1",
-      "lessonTitle": "从三个平衡进入多稳态",
+      "lessonTitle": "非线性平衡与多稳态",
       "chapterUrl": "/chapters/04-01-多稳态与吸引域/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3593,10 +3593,10 @@
       "english": "basin of attraction",
       "number": "4.1.2",
       "parentId": "4.1",
-      "url": "/notebook/?id=P04-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-01-多稳态与吸引域/read/2/",
+      "readingUrl": "/chapters/04-01-多稳态与吸引域/read/2/",
       "practiceUrl": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-basin-window",
-      "description": "把一次推离与持续偏置分开，用半步预测推导中点法，再比较初值扫描的终值与解析解。",
+      "description": "比较一次扰动、持续偏置和不同观察时间下的去向。",
       "categories": [
         "evolution"
       ],
@@ -3613,7 +3613,7 @@
       "total": 1,
       "lessonId": "P04-C01-S02",
       "lessonNumber": "4.1.2",
-      "lessonTitle": "吸引域扰动与有限时间扫描",
+      "lessonTitle": "扰动、吸引域与有限时间扫描",
       "chapterUrl": "/chapters/04-01-多稳态与吸引域/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3624,10 +3624,10 @@
       "english": null,
       "number": "4.1.2",
       "parentId": "4.1",
-      "url": "/notebook/?id=P04-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-01-多稳态与吸引域/read/2/",
+      "readingUrl": "/chapters/04-01-多稳态与吸引域/read/2/",
       "practiceUrl": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-basin-window",
-      "description": "把一次推离与持续偏置分开，用半步预测推导中点法，再比较初值扫描的终值与解析解。",
+      "description": "比较一次扰动、持续偏置和不同观察时间下的去向。",
       "categories": [
         "evolution"
       ],
@@ -3644,7 +3644,7 @@
       "total": 1,
       "lessonId": "P04-C01-S02",
       "lessonNumber": "4.1.2",
-      "lessonTitle": "吸引域扰动与有限时间扫描",
+      "lessonTitle": "扰动、吸引域与有限时间扫描",
       "chapterUrl": "/chapters/04-01-多稳态与吸引域/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3655,10 +3655,10 @@
       "english": null,
       "number": "4.1.2",
       "parentId": "4.1",
-      "url": "/notebook/?id=P04-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-01-多稳态与吸引域/read/2/",
+      "readingUrl": "/chapters/04-01-多稳态与吸引域/read/2/",
       "practiceUrl": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-basin-window",
-      "description": "把一次推离与持续偏置分开，用半步预测推导中点法，再比较初值扫描的终值与解析解。",
+      "description": "比较一次扰动、持续偏置和不同观察时间下的去向。",
       "categories": [
         "evolution"
       ],
@@ -3675,7 +3675,7 @@
       "total": 1,
       "lessonId": "P04-C01-S02",
       "lessonNumber": "4.1.2",
-      "lessonTitle": "吸引域扰动与有限时间扫描",
+      "lessonTitle": "扰动、吸引域与有限时间扫描",
       "chapterUrl": "/chapters/04-01-多稳态与吸引域/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3686,10 +3686,10 @@
       "english": null,
       "number": "4.1.3",
       "parentId": "4.1",
-      "url": "/notebook/?id=P04-C01-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-01-多稳态与吸引域/read/3/",
+      "readingUrl": "/chapters/04-01-多稳态与吸引域/read/3/",
       "practiceUrl": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set",
-      "description": "从一个点到一个圆的距离理解集合吸引，区分沿圆运动、趋近圆周和两条轨迹彼此靠拢。",
+      "description": "计算状态到平衡点集合和圆周的距离，比较集合吸引与相位差。",
       "categories": [
         "evolution"
       ],
@@ -3705,7 +3705,7 @@
       "total": 1,
       "lessonId": "P04-C01-S03",
       "lessonNumber": "4.1.3",
-      "lessonTitle": "从吸引状态到吸引集合",
+      "lessonTitle": "吸引子、不变性与集合稳定",
       "chapterUrl": "/chapters/04-01-多稳态与吸引域/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3716,10 +3716,10 @@
       "english": null,
       "number": "4.1.3",
       "parentId": "4.1",
-      "url": "/notebook/?id=P04-C01-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-01-多稳态与吸引域/read/3/",
+      "readingUrl": "/chapters/04-01-多稳态与吸引域/read/3/",
       "practiceUrl": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set",
-      "description": "从一个点到一个圆的距离理解集合吸引，区分沿圆运动、趋近圆周和两条轨迹彼此靠拢。",
+      "description": "计算状态到平衡点集合和圆周的距离，比较集合吸引与相位差。",
       "categories": [
         "evolution"
       ],
@@ -3735,7 +3735,7 @@
       "total": 1,
       "lessonId": "P04-C01-S03",
       "lessonNumber": "4.1.3",
-      "lessonTitle": "从吸引状态到吸引集合",
+      "lessonTitle": "吸引子、不变性与集合稳定",
       "chapterUrl": "/chapters/04-01-多稳态与吸引域/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3746,10 +3746,10 @@
       "english": "attractor",
       "number": "4.1.3",
       "parentId": "4.1",
-      "url": "/notebook/?id=P04-C01-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-01-多稳态与吸引域/read/3/",
+      "readingUrl": "/chapters/04-01-多稳态与吸引域/read/3/",
       "practiceUrl": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set",
-      "description": "从一个点到一个圆的距离理解集合吸引，区分沿圆运动、趋近圆周和两条轨迹彼此靠拢。",
+      "description": "计算状态到平衡点集合和圆周的距离，比较集合吸引与相位差。",
       "categories": [
         "evolution"
       ],
@@ -3765,7 +3765,7 @@
       "total": 1,
       "lessonId": "P04-C01-S03",
       "lessonNumber": "4.1.3",
-      "lessonTitle": "从吸引状态到吸引集合",
+      "lessonTitle": "吸引子、不变性与集合稳定",
       "chapterUrl": "/chapters/04-01-多稳态与吸引域/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3776,10 +3776,10 @@
       "english": null,
       "number": "4.1.3",
       "parentId": "4.1",
-      "url": "/notebook/?id=P04-C01-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-01-多稳态与吸引域/read/3/",
+      "readingUrl": "/chapters/04-01-多稳态与吸引域/read/3/",
       "practiceUrl": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set",
-      "description": "从一个点到一个圆的距离理解集合吸引，区分沿圆运动、趋近圆周和两条轨迹彼此靠拢。",
+      "description": "计算状态到平衡点集合和圆周的距离，比较集合吸引与相位差。",
       "categories": [
         "evolution"
       ],
@@ -3795,7 +3795,7 @@
       "total": 1,
       "lessonId": "P04-C01-S03",
       "lessonNumber": "4.1.3",
-      "lessonTitle": "从吸引状态到吸引集合",
+      "lessonTitle": "吸引子、不变性与集合稳定",
       "chapterUrl": "/chapters/04-01-多稳态与吸引域/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3841,10 +3841,10 @@
       "english": "damped oscillation",
       "number": "4.2.1",
       "parentId": "4.2",
-      "url": "/notebook/?id=P04-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-02-自维持振荡与极限环/read/1/",
+      "readingUrl": "/chapters/04-02-自维持振荡与极限环/read/1/",
       "practiceUrl": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-oscillation-source",
-      "description": "比较撤去输入前后的振荡，从二维方程求半径与角度，说明自维持节律怎样恢复振幅。",
+      "description": "对照三种振荡来源，比较半径与两个实数分量。",
       "categories": [
         "evolution"
       ],
@@ -3861,7 +3861,7 @@
       "total": 1,
       "lessonId": "P04-C02-S01",
       "lessonNumber": "4.2.1",
-      "lessonTitle": "阻尼受迫与自维持振荡",
+      "lessonTitle": "阻尼、受迫与自维持振荡",
       "chapterUrl": "/chapters/04-02-自维持振荡与极限环/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3872,10 +3872,10 @@
       "english": "forced oscillation",
       "number": "4.2.1",
       "parentId": "4.2",
-      "url": "/notebook/?id=P04-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-02-自维持振荡与极限环/read/1/",
+      "readingUrl": "/chapters/04-02-自维持振荡与极限环/read/1/",
       "practiceUrl": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-oscillation-source",
-      "description": "比较撤去输入前后的振荡，从二维方程求半径与角度，说明自维持节律怎样恢复振幅。",
+      "description": "对照三种振荡来源，比较半径与两个实数分量。",
       "categories": [
         "evolution"
       ],
@@ -3892,7 +3892,7 @@
       "total": 1,
       "lessonId": "P04-C02-S01",
       "lessonNumber": "4.2.1",
-      "lessonTitle": "阻尼受迫与自维持振荡",
+      "lessonTitle": "阻尼、受迫与自维持振荡",
       "chapterUrl": "/chapters/04-02-自维持振荡与极限环/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3903,10 +3903,10 @@
       "english": "self-sustained oscillation",
       "number": "4.2.1",
       "parentId": "4.2",
-      "url": "/notebook/?id=P04-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-02-自维持振荡与极限环/read/1/",
+      "readingUrl": "/chapters/04-02-自维持振荡与极限环/read/1/",
       "practiceUrl": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-oscillation-source",
-      "description": "比较撤去输入前后的振荡，从二维方程求半径与角度，说明自维持节律怎样恢复振幅。",
+      "description": "对照三种振荡来源，比较半径与两个实数分量。",
       "categories": [
         "evolution"
       ],
@@ -3923,7 +3923,7 @@
       "total": 1,
       "lessonId": "P04-C02-S01",
       "lessonNumber": "4.2.1",
-      "lessonTitle": "阻尼受迫与自维持振荡",
+      "lessonTitle": "阻尼、受迫与自维持振荡",
       "chapterUrl": "/chapters/04-02-自维持振荡与极限环/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3934,10 +3934,10 @@
       "english": null,
       "number": "4.2.2",
       "parentId": "4.2",
-      "url": "/notebook/?id=P04-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-02-自维持振荡与极限环/read/2/",
+      "readingUrl": "/chapters/04-02-自维持振荡与极限环/read/2/",
       "practiceUrl": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-peak-period",
-      "description": "从一段采样曲线量振幅与周期，写清暂态、严格峰和过零规则，再比较扰动后的相位。",
+      "description": "从采样曲线提取严格峰值、向上穿零事件与周期。",
       "categories": [
         "evolution"
       ],
@@ -3953,7 +3953,7 @@
       "total": 1,
       "lessonId": "P04-C02-S02",
       "lessonNumber": "4.2.2",
-      "lessonTitle": "周期振幅与相位的测量",
+      "lessonTitle": "周期、振幅与相位的测量",
       "chapterUrl": "/chapters/04-02-自维持振荡与极限环/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3964,10 +3964,10 @@
       "english": "amplitude",
       "number": "4.2.2",
       "parentId": "4.2",
-      "url": "/notebook/?id=P04-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-02-自维持振荡与极限环/read/2/",
+      "readingUrl": "/chapters/04-02-自维持振荡与极限环/read/2/",
       "practiceUrl": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-peak-period",
-      "description": "从一段采样曲线量振幅与周期，写清暂态、严格峰和过零规则，再比较扰动后的相位。",
+      "description": "从采样曲线提取严格峰值、向上穿零事件与周期。",
       "categories": [
         "evolution"
       ],
@@ -3983,7 +3983,7 @@
       "total": 1,
       "lessonId": "P04-C02-S02",
       "lessonNumber": "4.2.2",
-      "lessonTitle": "周期振幅与相位的测量",
+      "lessonTitle": "周期、振幅与相位的测量",
       "chapterUrl": "/chapters/04-02-自维持振荡与极限环/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3994,10 +3994,10 @@
       "english": "phase",
       "number": "4.2.2",
       "parentId": "4.2",
-      "url": "/notebook/?id=P04-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-02-自维持振荡与极限环/read/2/",
+      "readingUrl": "/chapters/04-02-自维持振荡与极限环/read/2/",
       "practiceUrl": "/chapters/04-02-自维持振荡与极限环/practice/?question=p04-peak-period",
-      "description": "从一段采样曲线量振幅与周期，写清暂态、严格峰和过零规则，再比较扰动后的相位。",
+      "description": "从采样曲线提取严格峰值、向上穿零事件与周期。",
       "categories": [
         "evolution"
       ],
@@ -4013,7 +4013,7 @@
       "total": 1,
       "lessonId": "P04-C02-S02",
       "lessonNumber": "4.2.2",
-      "lessonTitle": "周期振幅与相位的测量",
+      "lessonTitle": "周期、振幅与相位的测量",
       "chapterUrl": "/chapters/04-02-自维持振荡与极限环/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4060,10 +4060,10 @@
       "english": null,
       "number": "4.3.1",
       "parentId": "4.3",
-      "url": "/notebook/?id=P04-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-03-分岔与参数变化/read/1/",
+      "readingUrl": "/chapters/04-03-分岔与参数变化/read/1/",
       "practiceUrl": "/chapters/04-03-分岔与参数变化/practice/?question=p04-fold-locations",
-      "description": "联立平衡方程与零斜率求折叠点，再用正反扫描解释等待时间和初值接续怎样影响跳变。",
+      "description": "比较解析平衡分支与正反接续扫描。",
       "categories": [
         "evolution"
       ],
@@ -4080,7 +4080,7 @@
       "total": 1,
       "lessonId": "P04-C03-S01",
       "lessonNumber": "4.3.1",
-      "lessonTitle": "平衡分支折叠与滞回",
+      "lessonTitle": "平衡分支、折叠与滞回",
       "chapterUrl": "/chapters/04-03-分岔与参数变化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4091,10 +4091,10 @@
       "english": null,
       "number": "4.3.1",
       "parentId": "4.3",
-      "url": "/notebook/?id=P04-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-03-分岔与参数变化/read/1/",
+      "readingUrl": "/chapters/04-03-分岔与参数变化/read/1/",
       "practiceUrl": "/chapters/04-03-分岔与参数变化/practice/?question=p04-fold-locations",
-      "description": "联立平衡方程与零斜率求折叠点，再用正反扫描解释等待时间和初值接续怎样影响跳变。",
+      "description": "比较解析平衡分支与正反接续扫描。",
       "categories": [
         "evolution"
       ],
@@ -4111,7 +4111,7 @@
       "total": 1,
       "lessonId": "P04-C03-S01",
       "lessonNumber": "4.3.1",
-      "lessonTitle": "平衡分支折叠与滞回",
+      "lessonTitle": "平衡分支、折叠与滞回",
       "chapterUrl": "/chapters/04-03-分岔与参数变化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4122,10 +4122,10 @@
       "english": "hysteresis",
       "number": "4.3.1",
       "parentId": "4.3",
-      "url": "/notebook/?id=P04-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-03-分岔与参数变化/read/1/",
+      "readingUrl": "/chapters/04-03-分岔与参数变化/read/1/",
       "practiceUrl": "/chapters/04-03-分岔与参数变化/practice/?question=p04-fold-locations",
-      "description": "联立平衡方程与零斜率求折叠点，再用正反扫描解释等待时间和初值接续怎样影响跳变。",
+      "description": "比较解析平衡分支与正反接续扫描。",
       "categories": [
         "evolution"
       ],
@@ -4142,7 +4142,7 @@
       "total": 1,
       "lessonId": "P04-C03-S01",
       "lessonNumber": "4.3.1",
-      "lessonTitle": "平衡分支折叠与滞回",
+      "lessonTitle": "平衡分支、折叠与滞回",
       "chapterUrl": "/chapters/04-03-分岔与参数变化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4153,10 +4153,10 @@
       "english": "Hopf bifurcation",
       "number": "4.3.2",
       "parentId": "4.3",
-      "url": "/notebook/?id=P04-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-03-分岔与参数变化/read/2/",
+      "readingUrl": "/chapters/04-03-分岔与参数变化/read/2/",
       "practiceUrl": "/chapters/04-03-分岔与参数变化/practice/?question=p04-hopf-branch",
-      "description": "把原点附近的衰减与旋转连接到径向方程，解释周期半径怎样从零长出及临界点的慢衰减。",
+      "description": "比较增长参数、初始半径与角频率对长期运动的影响。",
       "categories": [
         "evolution"
       ],
@@ -4173,7 +4173,7 @@
       "total": 1,
       "lessonId": "P04-C03-S02",
       "lessonNumber": "4.3.2",
-      "lessonTitle": "从平衡到周期的Hopf转变",
+      "lessonTitle": "Hopf 分岔与周期分支",
       "chapterUrl": "/chapters/04-03-分岔与参数变化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4184,10 +4184,10 @@
       "english": null,
       "number": "4.3.2",
       "parentId": "4.3",
-      "url": "/notebook/?id=P04-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-03-分岔与参数变化/read/2/",
+      "readingUrl": "/chapters/04-03-分岔与参数变化/read/2/",
       "practiceUrl": "/chapters/04-03-分岔与参数变化/practice/?question=p04-hopf-branch",
-      "description": "把原点附近的衰减与旋转连接到径向方程，解释周期半径怎样从零长出及临界点的慢衰减。",
+      "description": "比较增长参数、初始半径与角频率对长期运动的影响。",
       "categories": [
         "evolution"
       ],
@@ -4204,7 +4204,7 @@
       "total": 1,
       "lessonId": "P04-C03-S02",
       "lessonNumber": "4.3.2",
-      "lessonTitle": "从平衡到周期的Hopf转变",
+      "lessonTitle": "Hopf 分岔与周期分支",
       "chapterUrl": "/chapters/04-03-分岔与参数变化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4215,10 +4215,10 @@
       "english": null,
       "number": "4.3.2",
       "parentId": "4.3",
-      "url": "/notebook/?id=P04-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-03-分岔与参数变化/read/2/",
+      "readingUrl": "/chapters/04-03-分岔与参数变化/read/2/",
       "practiceUrl": "/chapters/04-03-分岔与参数变化/practice/?question=p04-hopf-branch",
-      "description": "把原点附近的衰减与旋转连接到径向方程，解释周期半径怎样从零长出及临界点的慢衰减。",
+      "description": "比较增长参数、初始半径与角频率对长期运动的影响。",
       "categories": [
         "evolution"
       ],
@@ -4235,7 +4235,7 @@
       "total": 1,
       "lessonId": "P04-C03-S02",
       "lessonNumber": "4.3.2",
-      "lessonTitle": "从平衡到周期的Hopf转变",
+      "lessonTitle": "Hopf 分岔与周期分支",
       "chapterUrl": "/chapters/04-03-分岔与参数变化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4289,10 +4289,10 @@
       "english": null,
       "number": "4.4.1",
       "parentId": "4.4",
-      "url": "/notebook/?id=P04-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-04-混沌与可预测范围/read/1/",
+      "readingUrl": "/chapters/04-04-混沌与可预测范围/read/1/",
       "practiceUrl": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-logistic-iterate",
-      "description": "逐代手算种群比例，求不动点与二周期，再用扰动倍率判断它们是否吸引邻近轨迹。",
+      "description": "逐代计算 logistic 映射并核对不动点和二周期。",
       "categories": [
         "evolution"
       ],
@@ -4319,10 +4319,10 @@
       "english": "fixed point",
       "number": "4.4.1",
       "parentId": "4.4",
-      "url": "/notebook/?id=P04-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-04-混沌与可预测范围/read/1/",
+      "readingUrl": "/chapters/04-04-混沌与可预测范围/read/1/",
       "practiceUrl": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-logistic-iterate",
-      "description": "逐代手算种群比例，求不动点与二周期，再用扰动倍率判断它们是否吸引邻近轨迹。",
+      "description": "逐代计算 logistic 映射并核对不动点和二周期。",
       "categories": [
         "evolution"
       ],
@@ -4349,10 +4349,10 @@
       "english": null,
       "number": "4.4.1",
       "parentId": "4.4",
-      "url": "/notebook/?id=P04-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-04-混沌与可预测范围/read/1/",
+      "readingUrl": "/chapters/04-04-混沌与可预测范围/read/1/",
       "practiceUrl": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-logistic-iterate",
-      "description": "逐代手算种群比例，求不动点与二周期，再用扰动倍率判断它们是否吸引邻近轨迹。",
+      "description": "逐代计算 logistic 映射并核对不动点和二周期。",
       "categories": [
         "evolution"
       ],
@@ -4379,10 +4379,10 @@
       "english": null,
       "number": "4.4.2",
       "parentId": "4.4",
-      "url": "/notebook/?id=P04-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-04-混沌与可预测范围/read/2/",
+      "readingUrl": "/chapters/04-04-混沌与可预测范围/read/2/",
       "practiceUrl": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-prediction-horizon",
-      "description": "按代记录两条邻近轨迹的距离，找到首次超过容许误差的位置，再解释合并与饱和。",
+      "description": "按给定容许误差找出两条轨迹首次超出阈值的代次。",
       "categories": [
         "evolution"
       ],
@@ -4410,10 +4410,10 @@
       "english": "sensitivity to initial conditions",
       "number": "4.4.2",
       "parentId": "4.4",
-      "url": "/notebook/?id=P04-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-04-混沌与可预测范围/read/2/",
+      "readingUrl": "/chapters/04-04-混沌与可预测范围/read/2/",
       "practiceUrl": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-prediction-horizon",
-      "description": "按代记录两条邻近轨迹的距离，找到首次超过容许误差的位置，再解释合并与饱和。",
+      "description": "按给定容许误差找出两条轨迹首次超出阈值的代次。",
       "categories": [
         "evolution"
       ],
@@ -4441,10 +4441,10 @@
       "english": null,
       "number": "4.4.2",
       "parentId": "4.4",
-      "url": "/notebook/?id=P04-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-04-混沌与可预测范围/read/2/",
+      "readingUrl": "/chapters/04-04-混沌与可预测范围/read/2/",
       "practiceUrl": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-prediction-horizon",
-      "description": "按代记录两条邻近轨迹的距离，找到首次超过容许误差的位置，再解释合并与饱和。",
+      "description": "按给定容许误差找出两条轨迹首次超出阈值的代次。",
       "categories": [
         "evolution"
       ],
@@ -4472,10 +4472,10 @@
       "english": null,
       "number": "4.4.3",
       "parentId": "4.4",
-      "url": "/notebook/?id=P04-C04-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-04-混沌与可预测范围/read/3/",
+      "readingUrl": "/chapters/04-04-混沌与可预测范围/read/3/",
       "practiceUrl": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-finite-growth",
-      "description": "把逐代倍率的乘积写成对数和，比较浮点与高精度轨迹，说明增长率取决于初值和观察窗口。",
+      "description": "对照导数乘积、平均对数增长与不同算术精度。",
       "categories": [
         "evolution"
       ],
@@ -4503,10 +4503,10 @@
       "english": null,
       "number": "4.4.3",
       "parentId": "4.4",
-      "url": "/notebook/?id=P04-C04-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-04-混沌与可预测范围/read/3/",
+      "readingUrl": "/chapters/04-04-混沌与可预测范围/read/3/",
       "practiceUrl": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-finite-growth",
-      "description": "把逐代倍率的乘积写成对数和，比较浮点与高精度轨迹，说明增长率取决于初值和观察窗口。",
+      "description": "对照导数乘积、平均对数增长与不同算术精度。",
       "categories": [
         "evolution"
       ],
@@ -4534,10 +4534,10 @@
       "english": null,
       "number": "4.4.3",
       "parentId": "4.4",
-      "url": "/notebook/?id=P04-C04-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-04-混沌与可预测范围/read/3/",
+      "readingUrl": "/chapters/04-04-混沌与可预测范围/read/3/",
       "practiceUrl": "/chapters/04-04-混沌与可预测范围/practice/?question=p04-finite-growth",
-      "description": "把逐代倍率的乘积写成对数和，比较浮点与高精度轨迹，说明增长率取决于初值和观察窗口。",
+      "description": "对照导数乘积、平均对数增长与不同算术精度。",
       "categories": [
         "evolution"
       ],
@@ -4561,7 +4561,7 @@
     {
       "id": "4.5",
       "kind": "chapter",
-      "title": "用 Lyapunov 函数分析稳定性",
+      "title": "Lyapunov 函数与稳定性",
       "number": "4.5",
       "parentId": "4",
       "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
@@ -4600,10 +4600,10 @@
       "english": null,
       "number": "4.5.1",
       "parentId": "4.5",
-      "url": "/notebook/?id=P04-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/",
+      "readingUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/",
       "practiceUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-energy",
-      "description": "用一个始终为正的函数衡量偏离平衡的程度，计算沿轨迹的导数，再确定稳定性结论的区域。",
+      "description": "沿轨迹计算候选函数的导数，检查局部下降区域。",
       "categories": [
         "evolution"
       ],
@@ -4620,7 +4620,7 @@
       "total": 1,
       "lessonId": "P04-C05-S01",
       "lessonNumber": "4.5.1",
-      "lessonTitle": "候选函数与局部稳定性证明",
+      "lessonTitle": "Lyapunov 函数与局部稳定性",
       "chapterUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4631,10 +4631,10 @@
       "english": null,
       "number": "4.5.1",
       "parentId": "4.5",
-      "url": "/notebook/?id=P04-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/",
+      "readingUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/",
       "practiceUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-energy",
-      "description": "用一个始终为正的函数衡量偏离平衡的程度，计算沿轨迹的导数，再确定稳定性结论的区域。",
+      "description": "沿轨迹计算候选函数的导数，检查局部下降区域。",
       "categories": [
         "evolution"
       ],
@@ -4651,7 +4651,7 @@
       "total": 1,
       "lessonId": "P04-C05-S01",
       "lessonNumber": "4.5.1",
-      "lessonTitle": "候选函数与局部稳定性证明",
+      "lessonTitle": "Lyapunov 函数与局部稳定性",
       "chapterUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4662,10 +4662,10 @@
       "english": null,
       "number": "4.5.1",
       "parentId": "4.5",
-      "url": "/notebook/?id=P04-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/",
+      "readingUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/",
       "practiceUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-local-energy",
-      "description": "用一个始终为正的函数衡量偏离平衡的程度，计算沿轨迹的导数，再确定稳定性结论的区域。",
+      "description": "沿轨迹计算候选函数的导数，检查局部下降区域。",
       "categories": [
         "evolution"
       ],
@@ -4682,7 +4682,7 @@
       "total": 1,
       "lessonId": "P04-C05-S01",
       "lessonNumber": "4.5.1",
-      "lessonTitle": "候选函数与局部稳定性证明",
+      "lessonTitle": "Lyapunov 函数与局部稳定性",
       "chapterUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4693,10 +4693,10 @@
       "english": null,
       "number": "4.5.2",
       "parentId": "4.5",
-      "url": "/notebook/?id=P04-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/",
+      "readingUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/",
       "practiceUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-rotating-energy",
-      "description": "比较纯旋转和单方向衰减，观察函数不增加时状态能否收敛，再检查零导数集合中的运动。",
+      "description": "比较纯旋转、单方向衰减和两方向衰减中的候选函数。",
       "categories": [
         "evolution"
       ],
@@ -4712,7 +4712,7 @@
       "total": 1,
       "lessonId": "P04-C05-S02",
       "lessonNumber": "4.5.2",
-      "lessonTitle": "非严格衰减与不能省略的条件",
+      "lessonTitle": "非严格衰减与零导数集合",
       "chapterUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4723,10 +4723,10 @@
       "english": null,
       "number": "4.5.2",
       "parentId": "4.5",
-      "url": "/notebook/?id=P04-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/",
+      "readingUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/",
       "practiceUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-rotating-energy",
-      "description": "比较纯旋转和单方向衰减，观察函数不增加时状态能否收敛，再检查零导数集合中的运动。",
+      "description": "比较纯旋转、单方向衰减和两方向衰减中的候选函数。",
       "categories": [
         "evolution"
       ],
@@ -4742,7 +4742,7 @@
       "total": 1,
       "lessonId": "P04-C05-S02",
       "lessonNumber": "4.5.2",
-      "lessonTitle": "非严格衰减与不能省略的条件",
+      "lessonTitle": "非严格衰减与零导数集合",
       "chapterUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4753,10 +4753,10 @@
       "english": null,
       "number": "4.5.2",
       "parentId": "4.5",
-      "url": "/notebook/?id=P04-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/",
+      "readingUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/",
       "practiceUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-rotating-energy",
-      "description": "比较纯旋转和单方向衰减，观察函数不增加时状态能否收敛，再检查零导数集合中的运动。",
+      "description": "比较纯旋转、单方向衰减和两方向衰减中的候选函数。",
       "categories": [
         "evolution"
       ],
@@ -4772,7 +4772,7 @@
       "total": 1,
       "lessonId": "P04-C05-S02",
       "lessonNumber": "4.5.2",
-      "lessonTitle": "非严格衰减与不能省略的条件",
+      "lessonTitle": "非严格衰减与零导数集合",
       "chapterUrl": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4837,10 +4837,10 @@
       "english": null,
       "number": "4.6.1",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous",
-      "description": "从平面运动的限制进入三维 Lorenz 方程，解释变量、对称性、平衡和局部扰动的变化。",
+      "description": "核对 Lorenz 方程的平衡、对称关系及局部特征值。",
       "categories": [
         "evolution"
       ],
@@ -4856,7 +4856,7 @@
       "total": 1,
       "lessonId": "P04-C06-S01",
       "lessonNumber": "4.6.1",
-      "lessonTitle": "从平面流到Lorenz系统",
+      "lessonTitle": "Lorenz 方程、平衡与局部稳定性",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4867,10 +4867,10 @@
       "english": null,
       "number": "4.6.1",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous",
-      "description": "从平面运动的限制进入三维 Lorenz 方程，解释变量、对称性、平衡和局部扰动的变化。",
+      "description": "核对 Lorenz 方程的平衡、对称关系及局部特征值。",
       "categories": [
         "evolution"
       ],
@@ -4886,7 +4886,7 @@
       "total": 1,
       "lessonId": "P04-C06-S01",
       "lessonNumber": "4.6.1",
-      "lessonTitle": "从平面流到Lorenz系统",
+      "lessonTitle": "Lorenz 方程、平衡与局部稳定性",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4897,10 +4897,10 @@
       "english": "Jacobian matrix",
       "number": "4.6.1",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous",
-      "description": "从平面运动的限制进入三维 Lorenz 方程，解释变量、对称性、平衡和局部扰动的变化。",
+      "description": "核对 Lorenz 方程的平衡、对称关系及局部特征值。",
       "categories": [
         "evolution"
       ],
@@ -4916,7 +4916,7 @@
       "total": 1,
       "lessonId": "P04-C06-S01",
       "lessonNumber": "4.6.1",
-      "lessonTitle": "从平面流到Lorenz系统",
+      "lessonTitle": "Lorenz 方程、平衡与局部稳定性",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4927,10 +4927,10 @@
       "english": null,
       "number": "4.6.1",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/1/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous",
-      "description": "从平面运动的限制进入三维 Lorenz 方程，解释变量、对称性、平衡和局部扰动的变化。",
+      "description": "核对 Lorenz 方程的平衡、对称关系及局部特征值。",
       "categories": [
         "evolution"
       ],
@@ -4946,7 +4946,7 @@
       "total": 1,
       "lessonId": "P04-C06-S01",
       "lessonNumber": "4.6.1",
-      "lessonTitle": "从平面流到Lorenz系统",
+      "lessonTitle": "Lorenz 方程、平衡与局部稳定性",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4957,10 +4957,10 @@
       "english": null,
       "number": "4.6.2",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-volume-bounded",
-      "description": "展开一个函数的导数证明轨迹有界，再手写 RK4，用共同时间点的差异检查短时计算。",
+      "description": "计算有界性函数的导数，并用短窗对齐比较积分结果。",
       "categories": [
         "evolution"
       ],
@@ -4977,7 +4977,7 @@
       "total": 1,
       "lessonId": "P04-C06-S02",
       "lessonNumber": "4.6.2",
-      "lessonTitle": "有界耗散与可信积分",
+      "lessonTitle": "有界性、体积收缩与 RK4 积分",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -4988,10 +4988,10 @@
       "english": null,
       "number": "4.6.2",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-volume-bounded",
-      "description": "展开一个函数的导数证明轨迹有界，再手写 RK4，用共同时间点的差异检查短时计算。",
+      "description": "计算有界性函数的导数，并用短窗对齐比较积分结果。",
       "categories": [
         "evolution"
       ],
@@ -5008,7 +5008,7 @@
       "total": 1,
       "lessonId": "P04-C06-S02",
       "lessonNumber": "4.6.2",
-      "lessonTitle": "有界耗散与可信积分",
+      "lessonTitle": "有界性、体积收缩与 RK4 积分",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5019,10 +5019,10 @@
       "english": null,
       "number": "4.6.2",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-volume-bounded",
-      "description": "展开一个函数的导数证明轨迹有界，再手写 RK4，用共同时间点的差异检查短时计算。",
+      "description": "计算有界性函数的导数，并用短窗对齐比较积分结果。",
       "categories": [
         "evolution"
       ],
@@ -5039,7 +5039,7 @@
       "total": 1,
       "lessonId": "P04-C06-S02",
       "lessonNumber": "4.6.2",
-      "lessonTitle": "有界耗散与可信积分",
+      "lessonTitle": "有界性、体积收缩与 RK4 积分",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5050,10 +5050,10 @@
       "english": null,
       "number": "4.6.2",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/2/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-volume-bounded",
-      "description": "展开一个函数的导数证明轨迹有界，再手写 RK4，用共同时间点的差异检查短时计算。",
+      "description": "计算有界性函数的导数，并用短窗对齐比较积分结果。",
       "categories": [
         "evolution"
       ],
@@ -5070,7 +5070,7 @@
       "total": 1,
       "lessonId": "P04-C06-S02",
       "lessonNumber": "4.6.2",
-      "lessonTitle": "有界耗散与可信积分",
+      "lessonTitle": "有界性、体积收缩与 RK4 积分",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5081,10 +5081,10 @@
       "english": null,
       "number": "4.6.3",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection",
-      "description": "记录轨迹从下向上穿过平面的时刻，用同一插值比例求时间和坐标，再比较相邻交点。",
+      "description": "从轨迹中提取向上穿越平面的时间与完整交点。",
       "categories": [
         "evolution"
       ],
@@ -5100,7 +5100,7 @@
       "total": 1,
       "lessonId": "P04-C06-S03",
       "lessonNumber": "4.6.3",
-      "lessonTitle": "截面与返回中的长期结构",
+      "lessonTitle": "庞加莱截面与首次返回",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5111,10 +5111,10 @@
       "english": null,
       "number": "4.6.3",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection",
-      "description": "记录轨迹从下向上穿过平面的时刻，用同一插值比例求时间和坐标，再比较相邻交点。",
+      "description": "从轨迹中提取向上穿越平面的时间与完整交点。",
       "categories": [
         "evolution"
       ],
@@ -5130,7 +5130,7 @@
       "total": 1,
       "lessonId": "P04-C06-S03",
       "lessonNumber": "4.6.3",
-      "lessonTitle": "截面与返回中的长期结构",
+      "lessonTitle": "庞加莱截面与首次返回",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5141,10 +5141,10 @@
       "english": null,
       "number": "4.6.3",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection",
-      "description": "记录轨迹从下向上穿过平面的时刻，用同一插值比例求时间和坐标，再比较相邻交点。",
+      "description": "从轨迹中提取向上穿越平面的时间与完整交点。",
       "categories": [
         "evolution"
       ],
@@ -5160,7 +5160,7 @@
       "total": 1,
       "lessonId": "P04-C06-S03",
       "lessonNumber": "4.6.3",
-      "lessonTitle": "截面与返回中的长期结构",
+      "lessonTitle": "庞加莱截面与首次返回",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5171,10 +5171,10 @@
       "english": null,
       "number": "4.6.3",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S03",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/3/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection",
-      "description": "记录轨迹从下向上穿过平面的时刻，用同一插值比例求时间和坐标，再比较相邻交点。",
+      "description": "从轨迹中提取向上穿越平面的时间与完整交点。",
       "categories": [
         "evolution"
       ],
@@ -5190,7 +5190,7 @@
       "total": 1,
       "lessonId": "P04-C06-S03",
       "lessonNumber": "4.6.3",
-      "lessonTitle": "截面与返回中的长期结构",
+      "lessonTitle": "庞加莱截面与首次返回",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5201,10 +5201,10 @@
       "english": null,
       "number": "4.6.4",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S04",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-tangent-growth",
-      "description": "让状态与小扰动一起推进，按实际时长汇总伸长，结合截面与误差对照解释复杂运动。",
+      "description": "联合推进状态和微扰方向，按实际时间计算有限窗口增长。",
       "categories": [
         "evolution"
       ],
@@ -5221,7 +5221,7 @@
       "total": 1,
       "lessonId": "P04-C06-S04",
       "lessonNumber": "4.6.4",
-      "lessonTitle": "切向增长奇异几何与预测边界",
+      "lessonTitle": "切向扰动增长与奇异吸引子",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5232,10 +5232,10 @@
       "english": null,
       "number": "4.6.4",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S04",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-tangent-growth",
-      "description": "让状态与小扰动一起推进，按实际时长汇总伸长，结合截面与误差对照解释复杂运动。",
+      "description": "联合推进状态和微扰方向，按实际时间计算有限窗口增长。",
       "categories": [
         "evolution"
       ],
@@ -5252,7 +5252,7 @@
       "total": 1,
       "lessonId": "P04-C06-S04",
       "lessonNumber": "4.6.4",
-      "lessonTitle": "切向增长奇异几何与预测边界",
+      "lessonTitle": "切向扰动增长与奇异吸引子",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5263,10 +5263,10 @@
       "english": "strange attractor",
       "number": "4.6.4",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S04",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-tangent-growth",
-      "description": "让状态与小扰动一起推进，按实际时长汇总伸长，结合截面与误差对照解释复杂运动。",
+      "description": "联合推进状态和微扰方向，按实际时间计算有限窗口增长。",
       "categories": [
         "evolution"
       ],
@@ -5283,7 +5283,7 @@
       "total": 1,
       "lessonId": "P04-C06-S04",
       "lessonNumber": "4.6.4",
-      "lessonTitle": "切向增长奇异几何与预测边界",
+      "lessonTitle": "切向扰动增长与奇异吸引子",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -5294,10 +5294,10 @@
       "english": null,
       "number": "4.6.4",
       "parentId": "4.6",
-      "url": "/notebook/?id=P04-C06-S04",
-      "readingUrl": null,
+      "url": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/",
+      "readingUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/read/4/",
       "practiceUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-tangent-growth",
-      "description": "让状态与小扰动一起推进，按实际时长汇总伸长，结合截面与误差对照解释复杂运动。",
+      "description": "联合推进状态和微扰方向，按实际时间计算有限窗口增长。",
       "categories": [
         "evolution"
       ],
@@ -5314,7 +5314,7 @@
       "total": 1,
       "lessonId": "P04-C06-S04",
       "lessonNumber": "4.6.4",
-      "lessonTitle": "切向增长奇异几何与预测边界",
+      "lessonTitle": "切向扰动增长与奇异吸引子",
       "chapterUrl": "/chapters/04-06-连续时间混沌与奇异吸引子/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },

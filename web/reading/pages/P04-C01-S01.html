@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.1.1 非线性平衡与多稳态 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-equilibria">本节练习 · 4 题</a><a class="button" href="/chapters/04-01-多稳态与吸引域/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>4.1.1 非线性平衡与多稳态</h1>
+<p>学完本节，你应能从变化率的符号画出一维流向，求出三个平衡并判断小扰动后的去向，再用解析式解释初值为何会留下长期影响。</p>
+<p><strong>先修知识</strong>：第 3 篇的平衡、局部线性化和链式法则；第 2 篇的指数衰减与一阶线性方程。</p>
+<h2 id="activity-deviation-and-switch">活动偏差与非线性开关</h2>
+<p>同一种细胞活动可能在短暂刺激后维持高水平，也可能回到低水平。刺激已经结束，外部条件相同，为什么还会留下两种结果？一种可能是：后续变化规则相同，但刺激将活动送到了不同的起点，而这些起点走向不同的稳定状态。</p>
+<p>用 $A$ 记录活动，选取参考水平 $A_{\rm ref}$ 和正的比较尺度 $A_{\rm scale}$，定义</p>
+<p>$$x=\frac{A-A_{\rm ref}}{A_{\rm scale}}.$$</p>
+<p>$x$ 是无量纲偏差；$x=-1$ 表示活动比参考水平低一个比较尺度，$x=1$ 表示高一个比较尺度。把实际时间除以反应时间尺度 $t_0&gt;0$，记为 $\tau=t/t_0$。以下采用一个平滑的活动开关模型：</p>
+<p>$$\frac{dx}{d\tau}=f(x)=x-x^3.$$</p>
+<p>本节的撇号均表示对 $\tau$ 求导。偏差很小时，$x$ 项使它继续增大：小的正偏差继续增加，小的负偏差继续降低。幅度较大后，$-x^3$ 的作用超过线性项，把活动拉回较适中的范围。这种“小幅放大、大幅抑制”的竞争，使高低两种稳定活动成为可能。</p>
+<h2 id="phase-line-directions">变化率符号与相线</h2>
+<p>先不积分，直接把几个状态代入 $f(x)$：</p>
+<table>
+<thead>
+<tr>
+  <th>当前状态 $x$</th>
+  <th>变化率 $x-x^3$</th>
+  <th>运动方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$-1.5$</td>
+  <td>$1.875$</td>
+  <td>增加，向右</td>
+</tr>
+<tr>
+  <td>$-0.5$</td>
+  <td>$-0.375$</td>
+  <td>减小，向左</td>
+</tr>
+<tr>
+  <td>$0.5$</td>
+  <td>$0.375$</td>
+  <td>增加，向右</td>
+</tr>
+<tr>
+  <td>$1.5$</td>
+  <td>$-1.875$</td>
+  <td>减小，向左</td>
+</tr>
+</tbody>
+</table>
+<p>平衡满足 $f(x_*)=0$。将右侧分解为 $x(1-x)(1+x)$，得到三个平衡 $x_*=-1,0,1$。在相邻零点之间，连续函数 $f$ 不会变号，因此只需在每个区间取一个点，就能确定整段方向：</p>
+<p>$$\begin{array}{c|cccc}
+\text{区间}&amp;(-\infty,-1)&amp;(-1,0)&amp;(0,1)&amp;(1,\infty)\\\hline
+\text{方向}&amp;\rightarrow&amp;\leftarrow&amp;\rightarrow&amp;\leftarrow
+\end{array}$$</p>
+<p>把这些箭头标在状态轴上，就是<strong>相线（phase line）</strong>。$-1$ 两侧的箭头指向 $-1$，$1$ 两侧的箭头指向 $1$，而 $0$ 两侧的箭头都背离 $0$。同一个方程已经给出了两种恢复位置。</p>
+<h2 id="bistability-and-basins">局部稳定、双稳态与吸引域</h2>
+<p>第 3 篇用小扰动 $\delta=x-x_*$ 的变化判断平衡附近的运动。这里</p>
+<p>$$f'(x)=1-3x^2,\qquad \delta'\approx f'(x_*)\delta.$$</p>
+<p>代入 $x_*=\pm1$ 得 $\delta'\approx-2\delta$，小扰动按 $e^{-2\tau}$ 衰减；代入 $x_*=0$ 得 $\delta'\approx\delta$，小扰动起初按 $e^\tau$ 放大。前两处是局部渐近稳定平衡，零点不稳定，这与相线一致。</p>
+<p>当同一组固定参数允许两个渐近稳定平衡时，我们称其具有<strong>双稳态（bistability）</strong>；有多个稳定长期状态的情形称为<strong>多稳态（multistability）</strong>。平衡的个数与稳定状态的个数不同：本例有三个平衡，却只有两个稳定平衡。</p>
+<p>长期趋近某个平衡的全部初值，组成它的<strong>吸引域（basin of attraction）</strong>。本例中，负初值趋近 $-1$，正初值趋近 $1$，所以两个吸引域分别为 $(-\infty,0)$ 与 $(0,\infty)$，它们包含各自的平衡。精确从零出发得到静止解 $x(\tau)=0$；任意小的非零偏差都会离开零点。稳定性比较的是一组邻近初值的运动，而不是平衡解本身是否静止。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-equilibria">三个不动点具有相同性质吗</a></li></ul></nav>
+
+<h2 id="exact-switch-trajectory">变量替换与开关的解析轨迹</h2>
+<p>相线给出方向，解析解还能告诉我们何时走到哪里。对非零轨迹令 $s=x^2$。用链式法则，</p>
+<p>$$s'=2xx'=2x(x-x^3)=2s-2s^2=2s(1-s).$$</p>
+<p>平方使正负两侧共用一条幅度方程。再令 $w=1/s$，将非线性方程改写为</p>
+<p>$$w'=-\frac{s'}{s^2}=-\frac{2s-2s^2}{s^2}=-2w+2.$$</p>
+<p>这是平衡为 1、恢复系数为 2 的一阶线性方程。由第 2 篇的解法，</p>
+<p>$$w(\tau)=1+(w_0-1)e^{-2\tau},\qquad w_0=\frac1{x_0^2}.$$</p>
+<p>取倒数恢复 $s$，再恢复 $x$ 的初始符号，得到</p>
+<p>$$x(\tau)=\frac{x_0}{\sqrt{x_0^2+(1-x_0^2)e^{-2\tau}}}\quad(x_0\ne0).$$</p>
+<p>例如 $x_0=0.5$ 时，</p>
+<p>$$x(1)=\frac{0.5}{\sqrt{0.25+0.75e^{-2}}}\approx0.84335.$$</p>
+<p>$x_0=-0.5$ 在同一时刻得到相反数。对 $\tau\ge0$，根号内可以写为 $x_0^2(1-e^{-2\tau})+e^{-2\tau}&gt;0$；轨迹的正负号因而始终保留。时间越长，指数项越小，正初值趋近 1，负初值趋近 $-1$。$x_0=0$ 则直接使用零解。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-switch-exact">按解析式预测开关状态</a></li></ul></nav>
+
+<h2 id="switch-curves-and-initials">平衡图与不同起点的时间曲线</h2>
+<p>下图左侧将 $f(x)$ 的零点与变化率画在一起，右侧从 $-1.4,-0.1,0.1,1.4$ 出发，用解析式计算到 $\tau=8$ 的轨迹。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-C01-S01-f634764c-0.png" alt="非线性平衡与多稳态：实验结果图" loading="lazy"></figure>
+</section>
+<p>负侧两条轨迹分别从 $-1$ 的两边靠近它；正侧也如此。接近零的轨迹在早期变化很小，随后才明显离开零。这段等待来自局部增长 $x'\approx x$：若 $x_0$ 很小，需要经过一段时间，$x_0e^\tau$ 才达到图上清楚可见的大小。</p>
+<p>在探索页保持偏置 $b=0$，将初值从 $0.2$ 换为 $-0.2$，同时观察时间曲线和变化率曲线。再把初值移近零点，比较去向与离开零点所需的时间。</p>
+<p class="concept-explore"><a href="/chapters/04-01-多稳态与吸引域/explore/?concept=P04-C01-S01%3Aswitch-curves-and-initials">可视化与探索：平衡图与不同起点的时间曲线 →</a></p>
+
+<h2 id="zero-slope-and-autonomous-flow">零导数与一维自治运动</h2>
+<p>上面的局部导数在三个平衡处都非零。如果导数为零，需要回到原方程。例如 $x'=-x^3$ 与 $x'=x^3$ 在原点都有 $f'(0)=0$，但前者在原点两侧都向内，后者都向外。前者的原点渐近稳定，后者不稳定；它们的一阶线性近似恰好都省掉了决定方向的三次项。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-zero-slope">比较两个三次方程</a></li></ul></nav>
+
+<p>方程右侧不显含时间时，称为<strong>自治方程（autonomous equation）</strong>。对本节这样的光滑一维自治方程，解唯一，相邻平衡之间的流向固定，非平衡解始终朝同一方向走。它不能先到达一个平衡，再自行穿过去掉头，因为到达该点后的静止解已经是唯一的后续运动。因此，一维状态轴上没有非恒定的周期轨道。要描述持续节律，下一章将保留两个共同演化的状态分量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-line-no-cycle">判断一维自治流</a></li></ul></nav>
+
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/03-多变量相互作用/综合练习/read/1/">← 篇末综合 二室交换、观测与局部近似</a><a href="/chapters/04-01-多稳态与吸引域/read/2/">4.1.2 扰动、吸引域与有限时间扫描 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

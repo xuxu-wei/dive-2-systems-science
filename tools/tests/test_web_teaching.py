@@ -16,9 +16,9 @@ COURSE=json.loads((ROOT/'web/course/catalog.json').read_text(encoding='utf-8'))
 LESSONS=[l for c in course_chapters(COURSE) for l in c['lessons'] if l.get('reading')]
 
 
-def test_migration_covers_intro_first_three_parts_and_keeps_later_lessons_available():
-    assert len(LESSONS)==34
-    assert {l['chapter_id'].split('.')[0] for l in LESSONS}=={'0','1','2','3'}
+def test_migration_covers_intro_first_four_parts_and_keeps_later_lessons_available():
+    assert len(LESSONS)==51
+    assert {l['chapter_id'].split('.')[0] for l in LESSONS}=={'0','1','2','3','4'}
     for c in course_chapters(COURSE):
         for l in c['lessons']:
             assert (ROOT/l['path']).is_file()
@@ -41,7 +41,10 @@ def test_web_source_selects_explanatory_figures_without_copying_experiment_code(
     assert lesson['notebook_url'] in page and lesson['practice_url'] in page
     assert 'anchor-link' not in page and '**' not in page
     assert 'experiment-output' not in page and 'figure-code' not in page
-    assert 'class="highlight"' not in page
+    if lesson['id'] == 'P04-C04-S03':
+        assert 'Decimal' in source and source.count('```python') == 1
+    else:
+        assert 'class="highlight"' not in page
     assert all('## 练习与参考资料' not in ''.join(c['source']) for c in nb['cells'])
 
 

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.6.1 Lorenz 方程、平衡与局部稳定性 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-C06-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-C06-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous">本节练习 · 4 题</a><a class="button" href="/chapters/04-06-连续时间混沌与奇异吸引子/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>4.6.1 Lorenz 方程、平衡与局部稳定性</h1>
+<p>学完本节，你应能解释 Lorenz 模型中三个状态与参数的含义，逐步求出平衡和雅可比矩阵，并用特征值判断平衡附近的运动。</p>
+<p><strong>先修知识</strong>：吸引子与吸引域、二维振子、雅可比矩阵和局部线性化。</p>
+<h2 id="planar-autonomous-limit-sets">平面自治流与长期极限集</h2>
+<p>一维开关中的状态最终走向某个平衡，二维振子则可以持续绕行。如果连续运动一直留在有限范围内，除了平衡和周期运动，还能出现什么长期去向？回答这个问题，需要同时考虑方程的维数与时间是否显式进入规则。</p>
+<p>设平面上的方程为 $\dot x=f(x,y)$、$\dot y=g(x,y)$。<strong>自治</strong>表示同一状态总给出同一变化率：右侧没有另一个随时间变化的驱动。光滑性使同一初值的轨迹唯一，因此两条不同轨迹不能在平面上交叉后再各走各的路。这个几何限制与有界性结合，会大幅约束长期运动。</p>
+<p>为了准确描述“长期去向”，用 $v(\tau)$ 记状态。它的<strong>$\omega$ 极限集（omega-limit set）</strong>，由存在一列 $\tau_n\to\infty$、使 $v(\tau_n)$ 趋近的所有点组成。对于恢复到平衡的轨迹，它是一个点；对于不断趋近某条周期轨道的轨迹，它是那一整条闭轨道。它收集的是在任意晚的时刻仍可接近的状态。</p>
+<p>庞加莱–本迪克松定理（Poincaré–Bendixson theorem）的一个常用版本是：在平面的开区域中，向量场连续可微；一条向前轨迹始终留在该区域内的某个紧集，并且其 $\omega$ 极限集不含平衡点，那么这个极限集是一条周期轨道。这里紧集沿用 4.1 的“闭且有界”含义，并要求整块紧集处于方程的定义区域内。</p>
+<p>这些条件各有作用。平面给出轨迹不能绕过彼此的几何限制；自治保证一个状态只有一个方向；紧集使长期去向不会逃向无限远；排除平衡点后，留下的是周期轨道。定理适用时，极限集可以是一条周期轨道，而非某种不断铺开的复杂点集。</p>
+<p>二维受迫振子 $\dot v=f(v,\cos\Omega\tau)$ 的同一状态可以在不同时刻受到不同驱动。把驱动相位 $\theta$ 加入状态，并写成 $\dot\theta=\Omega$，才得到自治描述；此时状态已有三个分量。离散映射也不属于这里的平面连续流。比较动态行为时，需先明确我们研究的是哪一种演化规则。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous">应用平面极限集定理</a></li></ul></nav>
+
+<h2 id="convection-modes-and-scaled-variables">热对流的三变量模型</h2>
+<p>考虑一层从下方加热、上方冷却的流体。温差较小时，热主要通过传导向上传递；温差增大后，流体可以形成上升与下降相连的对流运动。速度场与温度场原本随空间和时间变化。Lorenz 将这些场用少数固定的空间形状近似，再让形状的幅度随时间变化，得到三个耦合的常微分方程。<a href="https://journals.ametsoc.org/doi/abs/10.1175/1520-0469%281963%29020%3C0130%3Adnf%3E2.0.CO%3B2">Lorenz 原论文</a></p>
+<p>本节使用以下已经缩放的变量：</p>
+<table>
+<thead>
+<tr>
+  <th>符号</th>
+  <th>表示什么</th>
+  <th>正负或大小怎样理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$x$</td>
+  <td>对流速度的一个空间模态幅度</td>
+  <td>正负对应相反的循环方向，绝对值反映循环强弱</td>
+</tr>
+<tr>
+  <td>$y$</td>
+  <td>温度场中与上升、下降流之间温差有关的模态幅度</td>
+  <td>它与循环方向共同影响热的输运</td>
+</tr>
+<tr>
+  <td>$z$</td>
+  <td>温度场偏离线性竖直分布的另一个模态幅度</td>
+  <td>它记录对流怎样改变原来的温度分布</td>
+</tr>
+<tr>
+  <td>$\tau$</td>
+  <td>实际时间除以选定热扩散时间尺度后的数值</td>
+  <td>$\tau=1$ 表示经过一个所选时间尺度</td>
+</tr>
+</tbody>
+</table>
+<p>三个状态都是缩放后的无量纲幅度。温度模态为负，表示相应空间形状的系数反号；它与“负温度”或“负物质总量”是不同的变量含义。此前用偏差描述生理活动时也允许负数，但这里的坐标来自对流速度和温度场。</p>
+<p><strong>洛伦兹系统（Lorenz system）</strong>为</p>
+<p>$$\boxed{\begin{aligned}
+\dot x&amp;=\sigma(y-x),\\
+\dot y&amp;=\rho x-y-xz,\\
+\dot z&amp;=xy-\beta z.
+\end{aligned}}$$</p>
+<p>点号表示对无量纲时间 $\tau$ 求导。参数也已无量纲化，且都取正值。$\sigma$ 是普朗特数，即动量扩散与热扩散快慢的比值；$\rho$ 是加热强度所对应的瑞利数相对临界值的比值；$\beta$ 与所选对流空间形状的几何比例有关，在第三式中决定该温度模态的线性衰减快慢。<a href="https://docs.dart.ucar.edu/en/v11.7.1/guide/lorenz-63-model.html">UCAR 的 Lorenz 模型说明</a></p>
+<p>逐式看，第一式使 $x$ 随 $y-x$ 调整；第二式中加热相关作用 $\rho x$ 与衰减 $-y$、耦合 $-xz$ 竞争；第三式中 $xy$ 改变温度分布，$-\beta z$ 使这个模态衰减。我们将固定 $\sigma=10$、$\beta=8/3$，比较 $\rho=0.5,10,28$，让平衡分析与计算轨迹相互对应。</p>
+<h2 id="lorenz-equilibria-and-symmetry">平衡分支与对称性</h2>
+<p>平衡要求三个变化率同时为零。由 $\sigma&gt;0$，第一式给出 $y=x$。代入第二式，得到</p>
+<p>$$0=x(\rho-1-z).$$</p>
+<p>这个乘积为零，有两种情形。若 $x=0$，则 $y=0$，第三式又给出 $z=0$。因此原点 $O=(0,0,0)$ 始终是平衡。若 $x\ne0$，则 $z=\rho-1$，第三式成为</p>
+<p>$$x^2=\beta(\rho-1).$$</p>
+<p>于是当 $\rho&gt;1$ 时，还存在</p>
+<p>$$\boxed{C_\pm=\left(\pm\sqrt{\beta(\rho-1)},\ \pm\sqrt{\beta(\rho-1)},\ \rho-1\right).}$$</p>
+<p>每个点的 $x,y$ 取同一个符号。$\rho=1$ 时这两个式子合到原点，$\rho&lt;1$ 时右侧为负，因而没有这样的非零实平衡。</p>
+<p>例如取 $\rho=10$、$\beta=8/3$，有 $\beta(\rho-1)=24$，两个非零平衡为 $(\sqrt{24},\sqrt{24},9)$ 与 $(-\sqrt{24},-\sqrt{24},9)$。在正侧点，第二式为 $10\sqrt{24}-\sqrt{24}-9\sqrt{24}=0$，第三式为 $24-(8/3)\times9=0$，可以直接核对收支抵消。</p>
+<p>两个平衡成对出现，是方程对称性的结果。把状态变成 $S(x,y,z)=(-x,-y,z)$，前两项变化率也反号，第三项不变，即 $f(Sv)=Sf(v)$。因此一条轨迹若从 $(x_0,y_0,z_0)$ 出发，另一条从 $(-x_0,-y_0,z_0)$ 出发，二者在每个时刻都具有这组对称关系。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-lorenz-equilibria">求洛伦兹平衡</a></li></ul></nav>
+
+<h2 id="lorenz-jacobian-and-perturbations">雅可比矩阵与小扰动</h2>
+<p>有了平衡的位置，还要判断附近状态会靠近它还是离开。沿用第 3 篇的局部线性化，按 $[x,y,z]$ 的坐标顺序逐项求偏导：</p>
+<p>$$\begin{array}{c|ccc}
+ &amp; \partial/\partial x &amp; \partial/\partial y &amp; \partial/\partial z\\\hline
+\sigma(y-x)&amp;-\sigma&amp;\sigma&amp;0\\
+\rho x-y-xz&amp;\rho-z&amp;-1&amp;-x\\
+xy-\beta z&amp;y&amp;x&amp;-\beta
+\end{array}$$</p>
+<p>因此</p>
+<p>$$\boxed{J(x,y,z)=\begin{pmatrix}
+-\sigma&amp;\sigma&amp;0\\
+\rho-z&amp;-1&amp;-x\\
+y&amp;x&amp;-\beta
+\end{pmatrix}.}$$</p>
+<p>例如状态为 $[1,2,3]$，取 $\sigma=10,\rho=28,\beta=2$，三项变化率依次为 $10,23,-4$。此处矩阵第二行是 $[25,-1,-1]$：只增加 $x$ 时，第二项变化率一阶增加约 $25\delta x$；只增加 $z$ 时，则一阶减少约 $\delta z$。矩阵中的每一个数都对应一个明确的坐标变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-lorenz-field">从方程计算向量场与雅可比矩阵</a></li></ul></nav>
+
+<p>在原点，$z$ 方向的特征值为 $-\beta$；另外两个特征值来自左上角二维块：</p>
+<p>$$\begin{aligned}
+0&amp;=\det\begin{pmatrix}-\sigma-\lambda&amp;\sigma\\\rho&amp;-1-\lambda\end{pmatrix}\\
+&amp;=(\sigma+\lambda)(1+\lambda)-\sigma\rho\\
+&amp;=\lambda^2+(\sigma+1)\lambda+\sigma(1-\rho).
+\end{aligned}$$</p>
+<p>$0&lt;\rho&lt;1$ 时，判别式 $(\sigma-1)^2+4\sigma\rho&gt;0$，两根为实数；它们的和为 $-(\sigma+1)&lt;0$、积为 $\sigma(1-\rho)&gt;0$，所以都为负。连同第三个特征值 $-\beta&lt;0$，可知原点局部渐近稳定。$\rho&gt;1$ 时两根的积为负，一正一负，原点出现一个使小扰动增长的方向。$\rho=1$ 时出现零特征值，需要用非线性项继续判断。</p>
+<p>对非零平衡，记 $s=x^*=y^*$，因而 $s^2=\beta(\rho-1)$、$z^*=\rho-1$。将它们代入 $J$，按第一行展开 $\det(\lambda I-J)$：</p>
+<p>$$(\lambda+\sigma)[(\lambda+1)(\lambda+\beta)+s^2]
++\sigma[-(\lambda+\beta)+s^2].$$</p>
+<p>展开括号，再以 $\beta(\rho-1)$ 替换 $s^2$，得到</p>
+<p>$$\lambda^3+(\sigma+\beta+1)\lambda^2
++\beta(\sigma+\rho)\lambda+2\sigma\beta(\rho-1)=0.$$</p>
+<p>下面将本节参数代入，并计算这个多项式的根：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">$\rho$</th>
+  <th>所考察平衡</th>
+  <th>特征值的近似值</th>
+  <th>邻近小扰动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0.5</td>
+  <td>原点</td>
+  <td>$-10.52494,-0.47506,-2.66667$</td>
+  <td>所有线性模态衰减</td>
+</tr>
+<tr>
+  <td style="text-align:right">10</td>
+  <td>任一非零平衡</td>
+  <td>$-12.47567,-0.59550\pm6.17416i$</td>
+  <td>振荡的两个模态也衰减</td>
+</tr>
+<tr>
+  <td style="text-align:right">28</td>
+  <td>任一非零平衡</td>
+  <td>$-13.85458,0.09396\pm10.19451i$</td>
+  <td>存在振荡增长的方向</td>
+</tr>
+</tbody>
+</table>
+<p>这些平衡处向量场光滑，表中严格负的实部给出局部渐近稳定，正实部给出不稳定。它们回答的是邻近平衡的扰动怎样变化。精确落在任何平衡上时，变化率仍然为零。例如 $\rho=28$ 的原点不稳定，但从精确原点出发始终静止；考察稳定性必须让初值偏离一点。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-lorenz-local-scope">检查原点的稳定性</a></li></ul></nav>
+
+<h2 id="lorenz-parameter-trajectories">参数与轨迹的对照</h2>
+<p>三幅图均从 $[1,1,1]$ 出发，观察到 $\tau=40$，使用步长 $h=0.01$。第一幅靠近原点；第二幅靠近一个非零平衡，后段的振动逐渐消退；第三幅则持续在两侧绕行。各图的坐标范围分别调整，比较状态幅度时应读坐标刻度。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-C06-S01-0d8afbec-1.png" alt="Lorenz 方程、平衡与局部稳定性：实验结果图" loading="lazy"></figure>
+</section>
+<p>$\rho=0.5$ 与 $\rho=10$ 的恢复，和表中的负实部对应。$\rho=28$ 时两个非零平衡都不能吸引它们周围所有的小扰动，轨迹还会去往哪里？接下来先证明它不会无限逃远，再将绕行记录为返回事件，并计算沿轨迹的扰动增长。</p>
+<p class="concept-explore"><a href="/chapters/04-06-连续时间混沌与奇异吸引子/explore/?concept=P04-C06-S01%3Alorenz-parameter-trajectories">可视化与探索：参数与轨迹的对照 →</a></p>
+
+<p>在探索页切换三组 $\rho$，再将普通初值切换到精确原点。前一个操作改变方程，后一个操作保留方程、只改变起点；分别观察它们怎样影响时间曲线与三维轨迹。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.mat.univie.ac.at/~gerald/ftp/book-ode/ode.pdf">Teschl：§7.3，Lemma 7.13</a>给出本节所用的平面极限集定理；<a href="https://journals.ametsoc.org/doi/abs/10.1175/1520-0469%281963%29020%3C0130%3Adnf%3E2.0.CO%3B2">Lorenz（1963）</a>给出对流简化模型及其原始数值研究。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/read/2/">← 4.5.2 非严格衰减与零导数集合</a><a href="/chapters/04-06-连续时间混沌与奇异吸引子/read/2/">4.6.2 有界性、体积收缩与 RK4 积分 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

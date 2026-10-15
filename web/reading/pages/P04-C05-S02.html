@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.5.2 非严格衰减与零导数集合 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-C05-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-C05-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-rotating-energy">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>4.5.2 非严格衰减与零导数集合</h1>
+<p>学完本节，你应能在二维方程中计算平方距离的变化，区分稳定与收敛，并从零导数集合中的运动和区域上界检查结论。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/04-05-%E7%94%A8%20Lyapunov%20%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90%E7%A8%B3%E5%AE%9A%E6%80%A7/read/1/">Lyapunov 函数与局部稳定性</a>；二维旋转、内积、范数和链式法则。</p>
+<h2 id="quadratic-rotation-cancellation">二维平方函数与旋转项抵消</h2>
+<p>两个方向的偏差未必以相同方式恢复。先让 $x,y$ 表示同尺度的无量纲偏差，用</p>
+<p>$$V(x,y)=\frac{x^2+y^2}{2}$$</p>
+<p>衡量离原点的平方距离。它在原点为零，在其他状态为正，因而是相对原点的正定函数。梯度为 $(x,y)^{\mathsf T}$，沿轨迹导数为</p>
+<p>$$\dot V=xx'+yy'.$$</p>
+<p>对阻尼旋转</p>
+<p>$$x'=-\alpha x-\omega y,\qquad
+y'=\omega x-\alpha y,$$</p>
+<p>代入并逐项整理：</p>
+<p>$$\begin{aligned}
+\dot V
+&amp;=x(-\alpha x-\omega y)+y(\omega x-\alpha y)\\
+&amp;=-\alpha x^2-\omega xy+\omega xy-\alpha y^2\\
+&amp;=-\alpha(x^2+y^2)=-2\alpha V.
+\end{aligned}$$</p>
+<p>旋转项将两个方向的变化相互抵消，阻尼项才使平方长度减小。若 $\alpha&gt;0$，每个非零点严格下降，$V(\tau)=V(0)e^{-2\alpha\tau}$，原点全局渐近稳定。例如在 $(1,2)$、$\alpha=0.3$ 处，$V=2.5$、$\dot V=-1.5$，与角速度 $\omega$ 无关。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-rotating-energy">旋转项是否改变总平方长度</a></li></ul></nav>
+
+<h2 id="rotation-stability-no-attraction">纯旋转与稳定但不收敛</h2>
+<p>令 $\alpha=0,\omega=1$，得到纯旋转</p>
+<p>$$x'=-y,\qquad y'=x.$$</p>
+<p>此时 $\dot V=0$，半径保持不变。以 $(1,0)$ 为初值，解是</p>
+<p>$$x(\tau)=\cos\tau,\qquad y(\tau)=\sin\tau.$$</p>
+<p>状态一直沿单位圆运动。换成很小半径的初值，半径以后仍然很小，所以原点稳定；非零初值的半径始终不变，又说明它们不会回到原点。</p>
+<p>因此，函数不增加可以限制轨迹离开的范围，严格收敛还要看留下的运动。$\dot V=0$ 并不等于 $x'=y'=0$；前者只说当前运动与函数梯度垂直。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-semidefinite-counterexample">纯旋转中的标量变化</a></li></ul></nav>
+
+<h2 id="partial-decay-zero-set">单方向恢复与零导数集合</h2>
+<p>再看</p>
+<p>$$x'=-x,\qquad y'=0.$$</p>
+<p>沿同一个平方函数求导，得到 $\dot V=-x^2\le0$。从 $(1,2)$ 出发，</p>
+<p>$$x(\tau)=e^{-\tau},\qquad y(\tau)=2,$$</p>
+<p>状态趋向 $(0,2)$。第一个分量恢复，第二个分量一直保留原偏差。</p>
+<p>找出<strong>零导数集合</strong></p>
+<p>$$E=\{(x,y):\dot V(x,y)=0\}=\{(0,y):y\in\mathbb R\}.$$</p>
+<p>在这条直线上，原方程给出 $x'=y'=0$，所以每一个点都是平衡。状态可以在这些非零点停住，函数下降到某个正值后也就不再变化。要判断是否回到原点，必须结合原方程查看零导数集合里能保留哪些运动。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-missed-invariant-set">只对部分方向衰减会怎样</a></li></ul></nav>
+
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-C05-S02-3a141191-0.png" alt="非严格衰减与零导数集合：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图蓝线从 $(1,0)$ 沿圆旋转，玫红虚线从 $(1,1)$ 向 $(0,1)$ 靠近。两个不同初值在图中分别标出，两条运动的 $V$ 都不增加，却都没有趋向原点。</p>
+<h2 id="regional-decay-bound">非线性阻尼与圆盘内的充分条件</h2>
+<p>让三次项在大幅度时抵消线性恢复：</p>
+<p>$$\begin{aligned}
+x'&amp;=-ax+(x^2+y^2)x,\\
+y'&amp;=-by+(x^2+y^2)y,\qquad a,b&gt;0.
+\end{aligned}$$</p>
+<p>令 $s=x^2+y^2$，沿平方函数求导：</p>
+<p>$$\begin{aligned}
+\dot V
+&amp;=x(-ax+sx)+y(-by+sy)\\
+&amp;=-ax^2-by^2+s(x^2+y^2)\\
+&amp;=-ax^2-by^2+s^2.
+\end{aligned}$$</p>
+<p>令 $m=\min(a,b)&gt;0$。因为 $ax^2+by^2\ge m(x^2+y^2)=ms$，得到对所有状态成立的上界</p>
+<p>$$\dot V\le-ms+s^2=s(s-m).$$</p>
+<p>上界为负时，原导数也一定为负。在半径为 $R$ 的开圆盘中，$0&lt;s&lt;R^2$，若</p>
+<p>$$\boxed{R^2\le\min(a,b),}$$</p>
+<p>每个非零点都满足 $s&lt;m$，因此 $\dot V&lt;0$。等号允许，因为开圆盘不包含 $s=R^2$ 的边界。</p>
+<p>例如 $a=0.5,b=1$，可取 $R=\sqrt{0.5}$。右图画出的正是上界 $s(s-0.5)$ 随半径的变化，它在这个开圆盘内严格为负。再选 $0&lt;c&lt;R^2/2$ 的子水平集 $V\le c$，便将轨迹留在有效区域内，得到局部渐近稳定。</p>
+<p>对于更大的圆盘，这个最弱阻尼上界可能不能完成证明；某些点的实际导数仍可能为负。逐点计算与整个区域的充分条件因此是两种结果。例如 $a=0.2,b=1,R=1$ 不满足圆盘条件，但在 $(0.1,0)$ 处仍有 $\dot V=-0.0019&lt;0$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/practice/?question=p04-sampled-proof">由采样检查一个区域</a></li></ul></nav>
+
+<h2 id="lasalle-invariance-extension">不变性原理与零导数集合中的运动</h2>
+<p><strong>拓展阅读。</strong> 有时 $\dot V$ 在若干非零点为零，状态却仍会最终回到原点。关键是运动能否永远留在这些点组成的集合中。</p>
+<p><strong>LaSalle 不变性原理（LaSalle invariance principle）</strong>将这一做法推广到集合：设自治方程的向量场在一个闭有界、向前不变集 $K$ 附近连续可微，$V$ 连续可微，且 $K$ 内 $\dot V\le0$。则从 $K$ 出发的轨迹，到集合 $E=\{x\in K:\dot V(x)=0\}$ 内最大不变子集的距离趋零。“最大不变子集”收集了能够始终在 $E$ 内运动的完整轨道；这一步需要把状态代回原方程。</p>
+<p>以 $x'=-x-y,\ y'=x$ 为例，同一个平方函数给出 $\dot V=-x^2$。零导数仍要求 $x=0$，但在该直线上 $x'=-y$：只要 $y\ne0$，轨迹立即离开直线。唯一能一直留下的轨道是原点。取任意平方函数的闭圆盘子水平集，它闭有界且向前不变，原理因而给出原点吸引该圆盘内的轨迹。</p>
+<p>相比之下，纯旋转的圆轨道能一直留在零导数集合，单方向恢复中的非零平衡也能一直留下。这些例子让“不增加”之后的分析变得具体：继续追问剩余状态还会怎样运动。</p>
+<p>下一章仍会构造沿轨迹变化的标量函数，但先用它约束三维轨迹的活动范围，再研究有界运动内部的伸长与返回。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://underactuated.csail.mit.edu/lyapunov.html">MIT：Lyapunov 分析与 LaSalle 不变性原理</a>说明非严格下降条件与零导数集合中的长期运动。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/04-05-用 Lyapunov 函数分析稳定性/read/1/">← 4.5.1 Lyapunov 函数与局部稳定性</a><a href="/chapters/04-06-连续时间混沌与奇异吸引子/read/1/">4.6.1 Lorenz 方程、平衡与局部稳定性 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.1.3 吸引子、不变性与集合稳定 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-C01-S03">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-C01-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set">本节练习 · 4 题</a><a class="button" href="/chapters/04-01-多稳态与吸引域/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>4.1.3 吸引子、不变性与集合稳定</h1>
+<p>学完本节，你应能计算点到平衡集合和圆周的距离，说明不变、集合稳定和吸引分别要求什么，并用这些条件辨认一个点或一条圆周是否为吸引子。</p>
+<p><strong>先修知识</strong>：本章的平衡与吸引域；第 3 篇的二维状态、范数和旋转。</p>
+<h2 id="distance-to-a-set">点到集合的距离</h2>
+<p>活动恢复可以是回到一个平衡，也可以是回到一种持续节律。后一种情形里，状态会一直沿周期轨道运动；我们需要衡量的是它离整条轨道有多远。</p>
+<p>设二维状态 $\boldsymbol{x}=(x,y)^{\mathsf T}$，半径 $r=\|\boldsymbol{x}\|=\sqrt{x^2+y^2}$。点 $(0.6,0.8)$ 到原点的距离为 1，但它已经在单位圆上，到单位圆的距离为零。点 $(2,0)$ 到圆周最近的位置是 $(1,0)$，距离为 1。沿同一径向找最近圆周点，可得对半径为 $a&gt;0$ 的圆周 $C_a$，</p>
+<p>$$d(\boldsymbol{x},\{0\})=r,\qquad d(\boldsymbol{x},C_a)=|r-a|.$$</p>
+<p>原点到 $C_a$ 的距离也是 $a$，只是最近点可以是圆周上的任意位置。到整个圆周的距离与到某个指定圆周点的距离，回答的是不同问题。</p>
+<p>一般地，<strong>点到集合的距离</strong>取它与集合中各点距离的下确界：</p>
+<p>$$d(\boldsymbol{x},A)=\inf_{\boldsymbol{a}\in A}\|\boldsymbol{x}-\boldsymbol{a}\|.$$</p>
+<p>$\inf$ 表示所有这些距离的最大下界；对本节的有限点集和圆周，最近点确实存在，可以直接理解为最小距离。一维例子 $A=\{-1,1\}$ 中，</p>
+<p>$$d(0.5,A)=\min(|0.5+1|,|0.5-1|)=0.5.$$</p>
+<p>它量出状态离最近的候选位置有多远。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-distance-circle">计算点到圆和点的距离</a></li><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-distance-equilibria">计算到有限平衡集合的距离</a></li></ul></nav>
+
+<h2 id="forward-and-full-invariance">正向不变与不变集</h2>
+<p>先看纯旋转 $x'=-y,y'=x$。因为</p>
+<p>$$(x^2+y^2)'=2xx'+2yy'=2x(-y)+2yx=0,$$</p>
+<p>半径始终保持初值。用 $\Phi_\tau(\boldsymbol{x}_0)$ 表示从 $\boldsymbol{x}_0$ 演化 $\tau$ 后的位置。一个集合 $A$ 若满足：从其中任一点出发，以后始终留在其中，就称为<strong>正向不变集（positively invariant set）</strong>，写为</p>
+<p>$$\Phi_\tau(A)\subseteq A\qquad(\tau\ge0).$$</p>
+<p>其中 $\Phi_\tau(A)$ 表示集合内所有初值经过同一段时间后得到的位置。<strong>不变集（invariant set）</strong>进一步要求集合被完整映回自身：</p>
+<p>$$\Phi_\tau(A)=A\qquad(\tau\ge0).$$</p>
+<p>这相当于集合内的完整轨迹向前和向后都留在集合中。单位圆在纯旋转下不变：转过一个角度后，圆上的点重新覆盖整个圆；圆上的每个当前位置也都能沿圆找到过去的位置。</p>
+<p>包含关系与等式可以用恢复模型区分。若半径按 $r'=r(1-r^2)$ 改变，圆盘 $r\le2$ 是正向不变的，因为边界处 $r'=2(1-4)=-6$ 指向内部。但经过一段正时间后，最外层半径已经缩小，像集覆盖不到原圆盘边缘，所以该圆盘不满足上述不变等式。</p>
+<h2 id="set-stability-and-attraction">集合稳定与邻域吸引</h2>
+<p>不变性描述集合内部的运动，恢复还需要考察附近的初值。对单位圆，纯旋转从半径 1.1 出发始终保持半径 1.1，到圆周的距离始终为 0.1。附近轨迹可以始终靠近圆，却没有进一步趋近它。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-center-counterexample">比较相邻圆轨迹</a></li></ul></nav>
+
+<p>把这两种要求分开：</p>
+<ul>
+<li><strong>集合稳定</strong>：任给容许距离 $\varepsilon&gt;0$，都能选出一个初始距离 $\delta&gt;0$，使 $d(\boldsymbol{x}_0,A)&lt;\delta$ 的轨迹在以后每个时刻都满足 $d(\Phi_\tau(\boldsymbol{x}_0),A)&lt;\varepsilon$。也就是起初足够近，以后一直近。</li>
+<li><strong>吸引邻域</strong>：存在包含 $A$ 的一个开邻域 $U$，对其中每个初值，都有 $d(\Phi_\tau(\boldsymbol{x}_0),A)\to0$。也就是附近初值最终越来越靠近集合。开邻域可以直观理解为围绕 $A$ 留出了一圈有宽度、且不含外边界的区域。</li>
+</ul>
+<p>稳定控制整个过程，吸引描述长期距离。纯旋转的单位圆具有集合稳定性：初始距离是多少，以后仍是多少；但它不吸引任何围绕自身的开邻域。</p>
+<p>现在让半径恢复，同时继续旋转：</p>
+<p>$$r'=r(1-r^2),\qquad\theta'=1.$$</p>
+<p>$\theta$ 是从正 $x$ 轴量起的角度。$0&lt;r&lt;1$ 时半径增长，$r&gt;1$ 时半径下降，$r=1$ 时沿圆持续运动。对靠近圆的初值，$|r-1|$ 单调减小，因此初始距离小于 $\delta=\varepsilon/2$ 时，后续距离也小于 $\varepsilon$；取更小的 $\delta\le1/2$ 可同时避开原点。这给出了集合稳定性。径向运动还将所有正半径送向 1，所以下面的圆环就是一个被吸引的开邻域：</p>
+<p>$$U=\{(x,y):0.8&lt;\sqrt{x^2+y^2}&lt;1.2\}.$$</p>
+<h2 id="attractor-definition-and-basin">吸引子的定义与吸引域</h2>
+<p>为了把稳定平衡和稳定周期轨道放到同一语言下，本篇将<strong>吸引子（attractor）</strong>定义为：一个非空、紧、不变的集合，它作为集合稳定，并吸引某个开邻域。</p>
+<p>在本书使用的有限维状态空间里，<strong>紧集（compact set）</strong>等价于闭且有界的集合：它包含自己的边界和极限点，也不会无限延伸。单个点和整个圆周都满足这一条件。与前面的稳定和吸引条件合起来，定义要求一个有完整形状的长期集合、集合内部保持的运动，以及附近轨迹的恢复。本篇采用这一约定，不另加最小性条件。</p>
+<p>对恢复模型，单位圆 $C_1$ 非空、闭且有界；圆上的轨迹持续旋转并完整覆盖圆；上面的径向流向给出集合稳定与邻域吸引。因此它是吸引子。上一节的 $\{-1\}$、$\{1\}$ 也各自满足定义。相比之下，开关的不稳定平衡 $\{0\}$ 虽然紧且不变，邻近初值却离开它；纯旋转的单位圆虽然紧、不变且稳定，邻近圆周却不向它靠拢。</p>
+<p>吸引子的<strong>吸引域</strong>是所有长期趋近它的初值：</p>
+<p>$$\mathcal B(A)=\{\boldsymbol{x}_0:d(\Phi_\tau(\boldsymbol{x}_0),A)\to0\text{，当 }\tau\to\infty\}.$$</p>
+<p>恢复模型中 $r_0&gt;0$ 都趋向单位圆，所以 $\mathcal B(C_1)=\mathbb R^2\setminus\{0\}$；精确原点保持静止，到圆距离为 1。圆周本身属于吸引域，因为它到自身的距离始终为零。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set">吸引的是点还是集合</a></li></ul></nav>
+
+<h2 id="radial-recovery-and-phase-gap">径向解析解与保留的相位差</h2>
+<p>上述半径恢复还能直接计算。令 $s=r^2$，有 $s'=2s(1-s)$，与 4.1.1 的幅度方程相同，因此</p>
+<p>$$r(\tau)=\left[1+(r_0^{-2}-1)e^{-2\tau}\right]^{-1/2},\qquad
+\theta(\tau)=\theta_0+\tau\quad(r_0&gt;0).$$</p>
+<p>用 $x=r\cos\theta,y=r\sin\theta$ 重建两个坐标。下图一条轨迹从 $r_0=0.3,\theta_0=0$ 出发，另一条从 $r_0=1.7,\theta_0=\pi/2$ 出发。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-C01-S03-d7d6e652-1.png" alt="吸引子、不变性与集合稳定：实验结果图" loading="lazy"></figure>
+</section>
+<p>两条半径都恢复到 1，到单位圆的距离都趋近零；而角度差始终是 $\pi/2$。当半径恢复后，同一时刻两点的距离趋于圆上弦长</p>
+<p>$$2\left|\sin\frac{\Delta\theta}{2}\right|=2\sin\frac\pi4=\sqrt2.$$</p>
+<p>圆上的角度描述一轮运动走到了哪里，也就是本例的相位。<strong>集合吸引使轨迹回到同一种周期运动，相位差则记录它们在周期中的相对位置。</strong> 下一节从两个坐标的变化方程推导半径恢复，进一步解释这种周期运动由什么维持。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/04-01-多稳态与吸引域/read/2/">← 4.1.2 扰动、吸引域与有限时间扫描</a><a href="/chapters/04-02-自维持振荡与极限环/read/1/">4.2.1 阻尼、受迫与自维持振荡 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

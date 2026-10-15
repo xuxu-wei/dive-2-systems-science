@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.1.2 扰动、吸引域与有限时间扫描 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-C01-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-basin-window">本节练习 · 5 题</a><a class="button" href="/chapters/04-01-多稳态与吸引域/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>4.1.2 扰动、吸引域与有限时间扫描</h1>
+<p>学完本节，你应能区分一次状态扰动与持续偏置，从半步预测推导显式中点法，并解释初值扫描中的阈值标签与观察时间。</p>
+<p><strong>先修知识</strong>：上一节开关的相线、吸引域和解析解；第 2 篇的欧拉法与误差阶；第 3 篇的泰勒展开。</p>
+<h2 id="instantaneous-kick-and-basin">瞬时扰动与吸引域分界</h2>
+<p>从低活动平衡 $x=-1$ 出发，一次短刺激将状态增加 $\Delta$，随后仍按 $x'=x-x^3$ 演化。刺激过后，新的初值是 $-1+\Delta$，而变化规则保持原样。上一节的相线给出三种结果：</p>
+<table>
+<thead>
+<tr>
+  <th>扰动 $\Delta$</th>
+  <th>刺激后的状态</th>
+  <th>随后的运动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$0.8$</td>
+  <td>$-0.2$</td>
+  <td>回到 $-1$</td>
+</tr>
+<tr>
+  <td>$1.0$</td>
+  <td>$0$</td>
+  <td>精确停在零平衡</td>
+</tr>
+<tr>
+  <td>$1.2$</td>
+  <td>$0.2$</td>
+  <td>趋近 $1$</td>
+</tr>
+</tbody>
+</table>
+<p>两个稳定平衡的吸引域分界是 $x=0$。一次扰动是否切换长期状态，取决于它把状态放到了分界哪一侧；在本例中，从 $-1$ 送到正侧需要 $\Delta&gt;1$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-kick-basin">施加一次状态扰动</a></li></ul></nav>
+
+<h2 id="constant-bias-and-rule">持续偏置与变化规则</h2>
+<p>若刺激持续存在，就需要在每个时刻的变化率中保留它。用常数 $b$ 表示持续偏置，写成</p>
+<p>$$x'=f_b(x)=x-x^3+b.$$</p>
+<p>这里 $x$、缩放时间 $\tau$ 和偏置 $b$ 均无量纲，撇号仍表示对 $\tau$ 求导。$b=0.1$ 会将每个状态处的变化率增加 $0.1$。例如原来的零平衡现在满足 $x'=0.1$，开始向右运动；原来的 $\pm1$ 也有相同的非零变化率。新的平衡需解 $x-x^3+b=0$。</p>
+<p>这与把初值增加 $0.1$ 的实验有不同的时间作用：初值扰动只发生一次，之后仍用 $f_0$；持续偏置每一步都进入 $f_b$。探索时先固定 $b=0$ 改变初值，再固定初值 $-0.1$ 将 $b$ 从 0 改为 0.2，便能分别看到两种改变。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-bias-shift">偏置改变的是规则还是起点</a></li></ul></nav>
+<p class="concept-explore"><a href="/chapters/04-01-多稳态与吸引域/explore/?concept=P04-C01-S02%3Aconstant-bias-and-rule">可视化与探索：持续偏置与变化规则 →</a></p>
+
+<h2 id="explicit-midpoint-step">半步预测与显式中点法</h2>
+<p>带偏置的方程通常需要数值积分。欧拉法用步首变化率 $f_b(x_n)$ 推进整步；若斜率在一步内变化，可以先估计半步处的位置，再用那里的斜率推进：</p>
+<p>$$\begin{aligned}
+k_1&amp;=f_b(x_n),\\
+m&amp;=x_n+\frac h2k_1,\\
+k_2&amp;=f_b(m),\\
+x_{n+1}&amp;=x_n+hk_2.
+\end{aligned}$$</p>
+<p>这就是<strong>显式中点法（explicit midpoint method）</strong>。$m$ 是为了求第二个斜率而构造的半步预测，整步增量仍加在原来的 $x_n$ 上。</p>
+<p>取 $x_n=0.5$、$b=0$、$h=0.05$，逐项算得</p>
+<p>$$k_1=0.5-0.5^3=0.375,\qquad m=0.5+0.025\times0.375=0.509375,$$</p>
+<p>$$k_2=0.509375-0.509375^3=0.3772110900878906,$$</p>
+<p>$$x_{n+1}=0.5+0.05\times k_2=0.5188605545043945.$$</p>
+<p>欧拉法在同一步得到 $0.51875$。中点法给出稍大的增量，因为在这个区间内，半步位置的变化率比步首稍大。再取 $x_n=0,b=0.4,h=0.05$，有 $k_1=0.4$、$m=0.01$，整步为 $0.05(0.01-0.01^3+0.4)=0.02049995$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-midpoint-step">用半步预测计算整步更新</a></li></ul></nav>
+
+<h2 id="midpoint-second-order-term">中点更新的二阶项</h2>
+<p>第 3 篇的泰勒展开可以解释这次半步预测补回了什么。沿自治方程 $x'=f_b(x)$，链式法则给出</p>
+<p>$$x''=f_b'(x)x'=f_b'(x)f_b(x).$$</p>
+<p>于是从精确的步首值出发，真实的一步为</p>
+<p>$$x(\tau+h)=x+hf_b(x)+\frac{h^2}{2}f_b'(x)f_b(x)+O(h^3).$$</p>
+<p>中点法第二次求斜率时，</p>
+<p>$$f_b\!\left(x+\frac h2f_b(x)\right)
+=f_b(x)+\frac h2f_b'(x)f_b(x)+O(h^2).$$</p>
+<p>将它乘以 $h$ 再加到 $x$，前两阶增量便与真实展开一致，因此单步差为 $O(h^3)$。在固定的有限时间段上，若解与这些导数保持有界、步长足够小，累计误差为 $O(h^2)$。实验将 $h$ 依次减为 $h/2,h/4$，与无偏置解析解比较；进入二阶误差占主导的范围后，误差约每次减到四分之一。</p>
+<h2 id="finite-window-and-thresholds">观察时间、阈值与扫描标签</h2>
+<p>现在取一组初值，固定 $b=0$，分别演化到 $\tau=4$ 和 12。我们关心观察结束时是否已经明显靠近正侧或负侧，选阈值 $q=0.9$：</p>
+<p>$$\operatorname{label}(x)=\begin{cases}
+-1,&amp;x&lt;-q,\\
+1,&amp;x&gt;q,\\
+0,&amp;-q\le x\le q.
+\end{cases}$$</p>
+<p>例如正初值 $x_0=0.002$ 的解析状态在 $\tau=4$ 时约为 $0.10855$，在 $\tau=12$ 时约为 $0.999995$：前一个终值标签为 0，后一个为 1。标签 0 的含义是“本次终值还在两个阈值之间”。其中既可能有始终为零的轨迹，也可能有正在缓慢离开零点的非零轨迹。终值恰好等于阈值时也属于 0，因为分类使用严格不等式。</p>
+<p>在零点附近，$x'\approx x$ 给出 $|x|\approx |x_0|e^\tau$。增长到固定大小 $c$ 所需时间近似为</p>
+<p>$$\tau_c\approx\log\frac c{|x_0|}.$$</p>
+<p>初值缩小十倍，需要多等约 $\log10\approx2.303$。例如从 $0.002$ 增长到约 $0.1$，局部近似给出 $\log50\approx3.912$；较长的等待来自小起点，而不是新增了一个稳定状态。</p>
+<p>计算题将终值按初值列表的顺序存放，并返回第二个同样顺序的标签列表。例如第一份列表第 2 项是第二条轨迹的终值，第二份列表第 2 项就是它的分类；零步更新时，终值等于各初值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-basin-window">扫描初值但保留未决状态</a></li></ul></nav>
+
+<h2 id="initial-scan-and-bias-comparison">初值扫描与持续偏置的对照图</h2>
+<p>左图对同一组初值比较两个观察时刻，右图固定初值 $-0.1$，比较 $b=0$ 与 $b=0.2$。两图都用 $h=0.01$ 的中点更新。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-C01-S02-046ea4ef-2.png" alt="扰动、吸引域与有限时间扫描：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图接近零的非零初值在短窗口中尚未达到阈值，延长时间后才接近两侧。右图的分离则来自持续偏置改变了运动方向。前者可以用延长等待时间检查，后者需要重新查看 $f_b(x)$ 的零点和正负号。</p>
+<p>若扫描只取 $-0.01$ 与 $0.01$，两条轨迹分别走向两侧，就得到了分界两边的样本。要把分界精确定位在零点，可以接着利用本例的解析相线：负侧全部向 $-1$，正侧全部向 $1$，零点自身静止。扫描分辨率与方程分析在这里各自提供了不同的信息。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-01-多稳态与吸引域/practice/?question=p04-finite-grid">解释两个初值的结果</a></li></ul></nav>
+
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/04-01-多稳态与吸引域/read/1/">← 4.1.1 非线性平衡与多稳态</a><a href="/chapters/04-01-多稳态与吸引域/read/3/">4.1.3 吸引子、不变性与集合稳定 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

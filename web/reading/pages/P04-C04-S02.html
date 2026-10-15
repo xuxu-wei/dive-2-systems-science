@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.4.2 邻近轨迹与预测期限 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-prediction-horizon">本节练习 · 5 题</a><a class="button" href="/chapters/04-04-混沌与可预测范围/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>4.4.2 邻近轨迹与预测期限</h1>
+<p>学完本节，你应能计算两条轨迹的逐代距离，找出首次超过误差容许值的代次，并解释局部放大、距离饱和与轨迹合并。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/04-04-%E6%B7%B7%E6%B2%8C%E4%B8%8E%E5%8F%AF%E9%A2%84%E6%B5%8B%E8%8C%83%E5%9B%B4/read/1/">离散映射的不动点与周期</a>；指数、自然对数与局部线性近似。</p>
+<h2 id="neighbor-one-step-distance">邻近初值与一步距离</h2>
+<p>同一条确定性规则也会遇到初始测量不准的问题。设两个可能的初值为 $x_0=0.2$、$y_0=0.200001$，两者都用 $F(x)=rx(1-x)$ 更新。在第 $n$ 代，绝对距离为</p>
+<p>$$d_n=|x_n-y_n|.$$</p>
+<p>先把一步差值算清楚：</p>
+<p>$$\begin{aligned}
+F(y)-F(x)
+&amp;=r[y-y^2-x+x^2]\\
+&amp;=r(y-x)[1-(x+y)].
+\end{aligned}$$</p>
+<p>取 $r=3.9$，初始距离是 $10^{-6}$，第一步距离为</p>
+<p>$$d_1=3.9\times10^{-6}\times(1-0.2-0.200001)
+=2.3399961\times10^{-6}.$$</p>
+<p>在 $x_0$ 处，局部乘子为 $F'(x_0)=3.9(1-0.4)=2.34$。把它乘初始距离，得到一阶近似 $2.34\times10^{-6}$，与精确差值很接近。</p>
+<p>往后每一步的状态都会变化，所乘的局部倍率也会变化。因此，一次放大不能代表所有后续代次；要继续记录整段距离。</p>
+<h2 id="first-threshold-crossing">误差阈值与首次超出代次</h2>
+<p>取误差容许值 $\varepsilon=0.05$，将本次比较的<strong>预测期限（prediction horizon）</strong>定义为首次满足</p>
+<p>$$d_n&gt;\varepsilon$$</p>
+<p>的代次。下标从 0 开始，初始误差本身也参加检查。例如距离列表 $[0.01,0.05,0.1,0.08]$ 中，下标 1 恰好等于阈值，首次严格超过发生在下标 2。</p>
+<p>如果观察了 $N$ 次更新，就有 $d_0,\ldots,d_N$ 共 $N+1$ 项。若其中没有超过阈值的项，计算题返回 <code>None</code>，表示本次窗口没有找到首次超出。改变初值误差、容许距离或观察长度，都会改变这一结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-prediction-horizon">何时第一次超过误差容许值</a></li><li><a href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-strict-threshold">阈值相等算越界吗</a></li></ul></nav>
+
+<p class="concept-explore"><a href="/chapters/04-04-混沌与可预测范围/explore/?concept=P04-C04-S02%3Afirst-threshold-crossing">可视化与探索：误差阈值与首次超出代次 →</a></p>
+
+<h2 id="local-growth-saturation">局部增长与距离饱和</h2>
+<p>两条轨迹足够接近时，局部线性近似给出</p>
+<p>$$\delta_{n+1}\approx F'(x_n)\delta_n,\qquad\delta_n=y_n-x_n.$$</p>
+<p>若一段内的平均对数增长率近似为常数 $\lambda&gt;0$，可以估计</p>
+<p>$$d_n\approx d_0e^{\lambda n}.$$</p>
+<p>令估计距离达到 $\varepsilon$，对两侧取自然对数，得到</p>
+<p>$$n\approx\frac{\log(\varepsilon/d_0)}\lambda.$$</p>
+<p>它帮助解释数量关系：初值误差减小，会增加可用代次；容许误差放宽，也会使期限延后。实际首次超出仍要查距离序列，因为各代倍率不恒定，较大的两轨迹距离也会使局部线性近似失准。</p>
+<p>两条轨迹都留在 $[0,1]$ 中，因而始终有 $d_n\le1$。早期的指数式增长不可能无限延续，距离达到整个区间的尺度后会饱和，也可能重新减小。这与早期小误差曾被放大可以同时发生。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-bounded-separation">解释轨迹距离的饱和</a></li></ul></nav>
+
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-C04-S02-55a75a3d-0.png" alt="邻近轨迹与预测期限：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图把 $r=3.9$ 的两条轨迹画在一起，早期难以分辨，后期逐渐分开。右图用对数纵轴显示微小距离，并与 $r=3.2$ 对照；横线是 $0.05$ 阈值，竖线标出 $r=3.9$ 这次记录中的首次超出代次。后段距离的上下波动来自两条有界轨迹继续运动。</p>
+<h2 id="trajectory-merging">对称初值与有限精度合并</h2>
+<p>不同初值也可能更新成同一个值。若 $y_0=1-x_0$，一步差值恒等式中的 $1-x_0-y_0=0$，于是 $F(x_0)=F(y_0)$。例如 $r=4$ 时，$0.25$ 与 $0.75$ 都先更新为 $0.75$，之后完全重合。这是映射的非一一对应性带来的合并。</p>
+<p>另一种合并发生在存储初值时。两个十分接近的十进制数可能转换为同一个 Python <code>float</code>；之后按相同规则计算，就相当于重复计算同一条轨迹。要比较初值敏感性，先确认机器里保存的两个数确实不同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-precision-merge">比较两个浮点初值</a></li></ul></nav>
+
+<h2 id="map-arithmetic-precision">代次模型与算术精度</h2>
+<p>这里每次更新代表完整一代。将一次更新改成两次参数 $r/2$ 的更新，会改变代际规则；它与连续方程积分时减半步长不是同一操作。</p>
+<p>检查这条映射的计算误差，可以保持参数、数学初值与代次数不变，改用更高的算术精度。这样比较的是同一规则在不同舍入精度下得到的结果。下一节先推导整段乘子的对数平均，再用这种对照理解舍入误差如何被放大。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-map-not-step">检查代次映射的精度</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/8-09-classical-mechanics-iii-fall-2014/a3b977a17091d225ee1870d100c7a308_MIT8_09F14_Chapter_7.pdf">MIT：混沌与非线性动力学讲义</a>讨论邻近初值、轨迹分离与预测。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/04-04-混沌与可预测范围/read/1/">← 4.4.1 离散映射的不动点与周期</a><a href="/chapters/04-04-混沌与可预测范围/read/3/">4.4.3 有限时间增长率与算术精度 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

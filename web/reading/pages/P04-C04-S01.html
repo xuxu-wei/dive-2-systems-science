@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.4.1 离散映射的不动点与周期 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-C04-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-logistic-iterate">本节练习 · 4 题</a><a class="button" href="/chapters/04-04-混沌与可预测范围/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>4.4.1 离散映射的不动点与周期</h1>
+<p>学完本节，你应能逐代计算一个比例，求出不动点与二周期，并用一次或两次更新的扰动倍率判断局部吸引。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/04-03-%E5%88%86%E5%B2%94%E4%B8%8E%E5%8F%82%E6%95%B0%E5%8F%98%E5%8C%96/read/2/">Hopf 分岔与周期分支</a>；离散递推、导数、局部扰动与周期。</p>
+<h2 id="logistic-generation-update">Logistic 映射与逐代更新</h2>
+<p>按代记录一个种群时，可以把一代内的繁殖与竞争合成一次更新。取归一化比例 $x_n$，令</p>
+<p>$$x_{n+1}=F(x_n),\qquad F(x)=rx(1-x).$$</p>
+<p>这称为 <strong>logistic 映射（logistic map）</strong>。$n=0,1,2,\ldots$ 是代次，$x_n$ 是第 $n$ 代的比例，$r$ 是每代的无量纲参数。一次应用 $F$ 就得到下一代；本节研究给定的代际规则。</p>
+<p>先取 $r=2,x_0=0.25$，手算前两步：</p>
+<p>$$\begin{aligned}
+x_1&amp;=2\times0.25\times(1-0.25)=0.375,\\
+x_2&amp;=2\times0.375\times(1-0.375)=0.46875.
+\end{aligned}$$</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">代次 $n$</th>
+  <th style="text-align:right">比例 $x_n$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0.25</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.375</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">0.46875</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">0.498046875</td>
+</tr>
+<tr>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">0.49999237060546875</td>
+</tr>
+</tbody>
+</table>
+<p>这些值逐渐靠近 $0.5$。代码中的每次循环对应表里的一行更新，保存初值后执行 $N$ 次更新，共得到 $N+1$ 个数。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-logistic-iterate">按代次更新一个比例</a></li></ul></nav>
+
+<p class="concept-explore"><a href="/chapters/04-04-混沌与可预测范围/explore/?concept=P04-C04-S01%3Alogistic-generation-update">可视化与探索：Logistic 映射与逐代更新 →</a></p>
+
+<h2 id="logistic-invariant-interval">不变区间与状态范围</h2>
+<p>比例应保持在 $[0,1]$。利用配方</p>
+<p>$$x(1-x)=\frac14-\left(x-\frac12\right)^2,$$</p>
+<p>可知 $x\in[0,1]$ 时，$0\le x(1-x)\le1/4$。因此，若</p>
+<p>$$0\le r\le4,$$</p>
+<p>就有 $0\le F(x)\le r/4\le1$。从区间中出发，每次更新后仍在区间中，称 $[0,1]$ 为这个映射的<strong>向前不变区间</strong>。</p>
+<p>这个条件控制状态范围，却允许不同的长期运动。若把参数改为 $r=5$，例如 $x=0.5$ 就会更新为 $1.25$，越出比例范围。以下实验都取 $0\le r\le4$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-interval-invariance">为什么选择 0≤r≤4</a></li></ul></nav>
+
+<h2 id="fixed-points-multipliers">不动点与局部扰动倍率</h2>
+<p><strong>不动点（fixed point）</strong>是更新后保持原值的状态，满足 $F(x_*)=x_*$。代入当前映射：</p>
+<p>$$rx_*(1-x_*)-x_*=x_*[r(1-x_*)-1]=0.$$</p>
+<p>所以零点始终存在；$r\ne0$ 时还有 $x_*=1-1/r$，当 $r&gt;1$ 时它位于 $(0,1)$ 内。</p>
+<p>在不动点附近写 $x_n=x_*+\delta_n$。对函数作一阶展开，</p>
+<p>$$\delta_{n+1}=F(x_*+\delta_n)-F(x_*)
+\approx F'(x_*)\delta_n.$$</p>
+<p>$F'(x_*)$ 是一次更新对小偏差的<strong>乘子（multiplier）</strong>。绝对值小于 1 时，小偏差逐代缩小；乘子为负还会使偏差换边。由</p>
+<p>$$F'(x)=r(1-2x)$$</p>
+<p>得到：</p>
+<p>| 不动点 | 乘子 | 严格满足 $|F'(x_*)|&lt;1$ 的范围 |
+|---|---:|---:|
+| $0$ | $r$ | $0\le r&lt;1$ |
+| $1-1/r$，$r&gt;1$ | $2-r$ | $1&lt;r&lt;3$ |</p>
+<p>例如 $r=2.8$ 时，非零不动点为 $9/14\approx0.642857$，乘子为 $-0.8$。相邻两代的偏差一正一负，大小约缩为原来的八成，因而可以交替着收敛。$r=3.2$ 时乘子为 $-1.2$，同样的换边反而伴随偏差增长。</p>
+<p>在 $r=1$ 或 $r=3$，乘子绝对值等于 1，一阶项没有给出严格收缩或膨胀，需要继续分析非线性项。这样的临界情形与前章线性实部为零时回到径向方程的做法相呼应。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-map-stability">判断非零不动点</a></li></ul></nav>
+
+<h2 id="period-two-multiplier">二周期与两步乘子</h2>
+<p>不动点失稳后，轨迹可能在两个不同值之间重复：</p>
+<p>$$F(p)=q,\qquad F(q)=p,\qquad p\ne q.$$</p>
+<p>这叫<strong>二周期（period-two cycle）</strong>。经过两次更新才回到原位置，因而需要求 $F(F(x))=x$，再排除已经求过的不动点。</p>
+<p>把复合函数展开、因式分解，得到</p>
+<p>$$F(F(x))-x=[F(x)-x]\,[r^2x^2-r(r+1)x+(r+1)].$$</p>
+<p>第一因子给出不动点。第二因子是一个二次方程，它的判别式为</p>
+<p>$$r^2(r+1)^2-4r^2(r+1)=r^2(r+1)(r-3).$$</p>
+<p>所以 $r&gt;3$ 时得到两个不同的二周期点：</p>
+<p>$$\boxed{p,q=\frac{r+1\mp\sqrt{(r-3)(r+1)}}{2r}.}$$</p>
+<p>取 $r=3.2$，约有</p>
+<p>$$p=0.5130445,\qquad q=0.7994555.$$</p>
+<p>将 $p$ 代入一次更新得到 $q$，再更新得到 $p$。两次更新的小偏差倍率由链式法则给出</p>
+<p>$$(F\circ F)'(p)=F'(q)F'(p).$$</p>
+<p>本例两个因子约为 $-0.08348$ 与 $-1.91652$，乘积为 $0.16$。其中一步虽会放大偏差，经过完整两步后仍收缩，因此二周期局部吸引。判断一个周期要看完整一圈的乘子。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/04-04-混沌与可预测范围/practice/?question=p04-periodic-not-chaotic">辨认交替序列</a></li></ul></nav>
+
+<h2 id="cobweb-update-record">蛛网图与更新记录</h2>
+<p>把更新画在坐标平面：从对角线上的 $(x_n,x_n)$ 出发，竖直到函数曲线 $(x_n,F(x_n))$；再水平回到对角线，落在 $(x_{n+1},x_{n+1})$。重复这两段线，就得到<strong>蛛网图（cobweb diagram）</strong>。竖线读取下一代，横线把这个值搬到横轴，准备再次更新。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-C04-S01-01ca0dcb-0.png" alt="离散映射的不动点与周期：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图只显示第 50—100 代：$r=2.8$ 接近一个值，$r=3.2$ 在两个值附近交替，$r=3.9$ 的这段记录更不规则。右图固定 $r=3.2$，从 $x_0=0.2$ 画出前 14 次更新，折线逐渐靠近二周期的两个位置。</p>
+<p>离散更新可以从不动点一侧跳到另一侧；这与一维连续自治运动沿相线逐点前进的方式不同。下一节从同一参数下的两个邻近初值出发，量化逐代预测何时超出容许误差。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/8-09-classical-mechanics-iii-fall-2014/a3b977a17091d225ee1870d100c7a308_MIT8_09F14_Chapter_7.pdf">MIT：混沌与非线性动力学讲义</a>讨论离散映射、不动点和周期倍化。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/04-03-分岔与参数变化/read/2/">← 4.3.2 Hopf 分岔与周期分支</a><a href="/chapters/04-04-混沌与可预测范围/read/2/">4.4.2 邻近轨迹与预测期限 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

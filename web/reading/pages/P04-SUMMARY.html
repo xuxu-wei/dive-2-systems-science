@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>篇末综合 非线性行为、返回与稳定性 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P04-SUMMARY">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P04-SUMMARY" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-equilibrium">本节练习 · 8 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>篇末综合 非线性行为、返回与稳定性</h1>
+<p>学完本节，你应能根据长期去向、同向返回、扰动增长和函数导数，选择合适的计算，并把结果接回模型的运动规律。</p>
+<p><strong>先修知识</strong>：本篇六章；点到集合的距离、插值事件、沿轨迹导数及离散与连续的增长率。</p>
+<h2 id="equilibrium-periodic-attraction">平衡吸引与周期轨道</h2>
+<p>一个活动量会停在高、低两种水平，一组节律会保持振幅，一段记录又可能长时间不重复。要理解它们，先把“最后去了哪里”和“沿什么方式运动”分开。</p>
+<p>对于无量纲开关 $x'=x-x^3$，平衡为 $-1,0,1$。当 $0&lt;x&lt;1$，变化率为正；当 $x&gt;1$，变化率为负，所以两侧都会靠近 1。负半轴对应地趋近 $-1$，精确的零初值则一直为零。两个稳定平衡各有自己的吸引域。</p>
+<p>再看 $R'=R(1-R^2)$、$\theta'=1$。从任何非零半径出发，状态到单位圆的距离 $|R-1|$ 趋于零；圆上的运动仍在继续。与它对照，纯旋转 $x'=-y,y'=x$ 保持初始半径：从半径 1.1 开始，就一直留在半径 1.1 的圆上，到单位圆的距离保持 0.1。</p>
+<p>因此，两幅看起来都绕圆的图，可能有不同的横向运动。稳定极限环吸引邻近轨迹靠近这条轨道，纯旋转的一条圆轨道则有其他圆轨道紧邻着它。前者恢复半径后，也仍可保留相位差。用本篇的吸引子定义检查时，要同时查看集合的不变性、稳定性和邻域吸引。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-equilibrium">比较三种长期行为</a></li></ul></nav>
+
+<h2 id="oscillation-source-parameter-branches">振荡来源与参数分支</h2>
+<p>本篇的三个平面模型分别用来比较衰减、周期输入和自身的幅度恢复。它们的状态都是缩放后的偏差，时间为无量纲时间 $\tau$；振幅和角度的含义与第 3 篇一致。</p>
+<p>阻尼旋转中的半径按 $e^{-\alpha\tau}$ 下降。加入周期输入后，周期特解可以在暂态消退后留下持续起伏。撤去输入，原来的阻尼重新使运动缩小。自维持振子则由</p>
+<p>$$R'=\mu R-R^3,\qquad \theta'=\omega$$</p>
+<p>恢复幅度。若 $\mu&gt;0,\omega\ne0$，非零初值的半径趋近 $\sqrt\mu$，周期为 $2\pi/|\omega|$。取 $\mu=0.5,\omega=1$，得到长期半径约 0.7071、周期约 6.2832。若把 $\omega$ 设为零，半径仍可恢复，但状态不会绕圆。</p>
+<p>参数改变还会改变长期解的分支。开关的平衡满足 $b=x^3-x$，其折叠偏置为 $\pm2/(3\sqrt3)$；径向振子则在 $\mu$ 经过零时改变原点稳定性并出现周期分支。前者比较平衡位置，后者比较周期半径。画参数图时，先确认纵轴是哪一种量，再解释扫描中的跳变与等待时间。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-source">振荡来源与参数转变</a></li></ul></nav>
+
+<h2 id="basin-scan-finite-labels">多初值扫描与有限终值</h2>
+<p>从 $x_0=-0.02,0,0.02$ 出发，分别观察开关到 $\tau=12$。无偏置时解析解为</p>
+<p>$$x(\tau)=\frac{x_0}{\sqrt{x_0^2+(1-x_0^2)e^{-2\tau}}}.$$</p>
+<p>它保留初值的正负号；零初值始终为零。数值实验用显式中点法：</p>
+<p>$$m=x_n+\frac h2(x_n-x_n^3),\qquad
+x_{n+1}=x_n+h(m-m^3).$$</p>
+<p>取 $h=0.01$、1200 步，得到两个接近 $\pm1$ 的终值和一个零终值。若分类阈值为 $q=0.9$，低于 $-q$ 记为 $-1$，高于 $q$ 记为 $1$，其余记为 0。这里的标签0将“仍在中间范围”的有限结果收在一起：精确零轨道与尚未靠近两侧的小初值，都可能得到这个标签。</p>
+<p>例如不执行任何一步、初值恰为 $\pm0.8$、阈值为0.8时，两者标签都为0，因为比较采用严格不等式。将观察时间延长会改变一些终值标签，而解析流向已经确定的正、负吸引域不会随等待时间改变。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-basins">复算多初值扫描的有限结果</a></li></ul></nav>
+
+<p>下面的实验图把三种记录放在一起：左图是这组初值的终值；中图是自维持振子在暂态之后的向上穿零；右图是同一 logistic 初值对用 float 和40位 Decimal 运算得到的距离。三张图的横轴分别为初值、连续时间与代次。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P04-SUMMARY-c040db1c-0.png" alt="非线性行为、返回与稳定性：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图用初值比较去向，中图用同向事件测周期，右图按容许距离找预测期限。每种读图都对应一个具体的计算规则。</p>
+<h2 id="directed-section-return-times">定向截面与返回时间</h2>
+<p>从连续轨迹测量周期，需要选定一致的事件方向。二维振子的实验记录 $x_i\le0&lt;x_{i+1}$ 的向上过零，再以线性插值估计事件时刻。同向事件的一次间隔接近一周；若把向上和向下穿越混在一起，间隔就会变成半周或其他不对应周期的值。</p>
+<p>Lorenz 轨迹在三维空间中运动，本题改为记录从下向上穿越平面 $z=c$ 的事件。每个状态按 $[x,y,z]$ 排列，采样时刻严格递增。对于</p>
+<p>$$z_i&lt;c\le z_{i+1},$$</p>
+<p>定义同一个插值比例</p>
+<p>$$\alpha=\frac{c-z_i}{z_{i+1}-z_i},\qquad
+t_*=t_i+\alpha(t_{i+1}-t_i),\qquad
+q_*=q_i+\alpha(q_{i+1}-q_i),$$</p>
+<p>其中 $q_i=[x_i,y_i,z_i]$，因此三个坐标与时间都属于同一个交点。用四条给定记录手算：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">时刻</th>
+  <th>状态 $[x,y,z]$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td>$[0,0,-1]$</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td>$[2,4,1]$</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td>$[4,8,-1]$</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td>$[6,12,1]$</td>
+</tr>
+</tbody>
+</table>
+<p>取 $c=0$，两个向上交点都是所在时段的中点，得到 $[t,x,y,z]=[0.5,1,2,0]$ 和 $[2.5,5,10,0]$，相邻返回间隔为2。筛选暂态时比较的是插值后的交点时间；只有一个保留交点时，还没有可以相减的一对时间。</p>
+<p>端点从下方恰好到达平面会记一次；下一段从等号出发不会重复记。真实轨迹的事件可能发生在两次采样之间，步长细化可以检查交点位置与漏检情况。保留 $x,y$ 两个自由坐标，才能看到完整截面中的分布；只画其中一个坐标，是进一步的投影。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-period">从定向截面计算返回</a></li></ul></nav>
+
+<h2 id="discrete-continuous-growth">离散与连续的对数增长</h2>
+<p>离散映射的微扰每代乘一个局部导数，连续切向计算则记录每段时间的伸长。两者都可以用对数把乘积变成求和，但分母要对应各自的时间记录。</p>
+<p>对于 $N$ 个映射导数 $d_n$，平均每代的增长为</p>
+<p>$$\lambda_N=\frac1N\sum_{n=0}^{N-1}\ln|d_n|.$$</p>
+<p>例如两代导数为2与 $-0.5$，净倍率绝对值为1，对数和为0，平均增长为0/代。负导数改变扰动方向，绝对值控制幅度。若其中一个导数为零，一阶乘积为零，对数和为负无穷；本题用 <code>None</code> 返回这一情形。</p>
+<p>连续计算令每段起始微扰范数为 $\varepsilon$，段末范数为 $\|\delta_i^-\|$，伸长因子为 $s_i=\|\delta_i^-\|/\varepsilon$。方向缩回同一范数后进入下一段，累计</p>
+<p>$$\gamma=\frac{\sum_i\ln s_i}{\sum_i\Delta\tau_i}.$$</p>
+<p>例如伸长因子为2、0.5、4，实际时长为1、1、2，总倍率为4，总时长为4，得到 $\ln4/4\approx0.346574$ 每单位 $\tau$。末段即使比前面的段短，也按它实际经历的时间进入分母。</p>
+<p>先固定轨迹、初始方向、预热和窗口，再比较步长与归一化间隔，可以追踪这个方向增长计算的变化。离散结果按代次，连续结果按时间；它们各自解释相应模型中的局部扰动。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-precision">离散与连续的扰动增长</a></li></ul></nav>
+
+<h2 id="lorenz-boundedness-derivative">Lorenz 有界性与沿轨迹导数</h2>
+<p>Lorenz 的 $x,y,z$ 是热对流模型的三个无量纲模态，仍按</p>
+<p>$$x'=\sigma(y-x),\qquad y'=\rho x-y-xz,\qquad z'=xy-\beta z$$</p>
+<p>演化，$\sigma,\rho,\beta&gt;0$。取</p>
+<p>$$W=\rho x^2+\sigma y^2+\sigma(z-2\rho)^2.$$</p>
+<p>它将离 $[0,0,2\rho]$ 的加权平方距离写成一个数。沿轨迹求导时，可以分别求梯度后与向量场作内积：</p>
+<p>$$\nabla W=[2\rho x,2\sigma y,2\sigma(z-2\rho)]^{\mathsf T}.$$</p>
+<p>也可以展开消掉交叉项，再配方，得到同一个导数：</p>
+<p>$$W'=-2\sigma[\rho x^2+y^2+\beta(z-\rho)^2-\beta\rho^2].$$</p>
+<p>由前节的平方不等式，取</p>
+<p>$$c=\min(2\sigma,2,\beta),\qquad C=4\sigma\beta\rho^2,$$</p>
+<p>有 $W'\le-cW+C$，从而</p>
+<p>$$W(\tau)\le W(0)e^{-c\tau}+\frac Cc(1-e^{-c\tau}).$$</p>
+<p>当 $W$ 大于 $C/c$ 时，导数上界为负，轨迹会向更小的子水平集运动。任取 $K&gt;C/c$，足够久后轨迹进入 $W\le K$ 并留在其中；这个椭球限制了轨迹可以去多远。</p>
+<p>以 $\sigma=10,\rho=2,\beta=1$ 和原点为例，$W=160$，向量场为零，两种导数计算都得到0；$c=1,C=160$，上界也为0。分别计算两个导数表达式，能检查链式法则与配方是否给出同一结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-region">有界性与函数导数的双重核对</a></li></ul></nav>
+
+<h2 id="bounded-contraction-sensitive-evidence">有界、收缩与敏感性的共同解释</h2>
+<p>有界性控制运动范围，散度控制小体积的变化，切向增长控制某个方向的微扰。它们可以同时呈现不同的趋势。在线性例子 $u'=u,v'=-3v$ 中，一个方向伸长 $e^\tau$，另一个缩短 $e^{-3\tau}$，二者围成的面积却按 $e^{-2\tau}$ 缩小。这说明总体压缩与单方向伸长可以共存。</p>
+<p>对 Lorenz 模型，前面的 $W$ 不等式约束范围，负散度 $-(\sigma+1+\beta)$ 描述体积收缩，有限窗口的切向增长率则描述本次轨迹和方向。判断一个给定平衡的稳定性，仍要看该平衡附近的动力学；有界轨迹也可能趋于平衡、周期运动或有更复杂的长期结构。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-scope">综合三类动力学证据</a></li></ul></nav>
+
+<p>一次计算的报告可以按实际观察顺序组织：先说明参数和初值，检查短窗轨迹随步长细化的变化，再列出暂态之后的定向交点、返回间隔和方向增长随窗口的变化。精确平衡初值是一条不同的对照轨道，能帮助解释普通初值的运动与模型中其他不变对象如何共存。</p>
+<p>若长窗的数值随窗口改变，就把这些窗口与结果并列给出。周期振子的解析返回、准周期例子的非指数分离以及 Lorenz 的数值运动形成对照，让“图形不重复”逐步变成关于轨道、吸引与敏感性的具体问题。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/04-非线性动态行为/综合练习/practice/?question=p04-cap-irregular">报告非规则轨迹计算</a></li></ul></nav>
+
+<p>本篇从一维开关走到三维对流方程，使用的规律都是确定的。下一篇加入个体差异和随机扰动，继续研究观测中变化的来源。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/04-06-连续时间混沌与奇异吸引子/read/4/">← 4.6.4 切向扰动增长与奇异吸引子</a><a href="/parts/05-随机性与信息/">继续：第 5 篇 随机性与信息 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>
