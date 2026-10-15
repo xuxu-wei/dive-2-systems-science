@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.1.2 流率、时长与离散收支 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P02-C01-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P02-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/02-01-用递推描述增长与清除/practice/?question=p02-euler-balance">本节练习 · 4 题</a><a class="button" href="/chapters/02-01-用递推描述增长与清除/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>2.1.2 流率、时长与离散收支</h1>
+<p>学完本节，你应能把流率与实际时长换算成每段转移量，写出逐步收支，并用累计收支和总量符号解释计算结果。</p>
+<p><strong>先修知识</strong>：上一节的递推、固定点与有限求和；第 1 篇的流率及单位。</p>
+<h2 id="elimination-rate-duration">一阶清除与时段收支</h2>
+<p>继续追踪一个混合均匀的物质池。物质以 $u=1\,U/T$ 的恒定速率流入，清除流率则与当前总量成正比。用 $A$ 表示池内所追踪物质的总量，将清除流率写成 $kA$。其中 $k$ 称为<strong>一阶消除速率常数（first-order elimination rate constant）</strong>：它是决定清除快慢的系数，乘以当前总量便得到当前的清除流率。后文也简称消除系数。</p>
+<p>取 $k=0.5/T$。若池中有 $2\,U$，清除流率就是 $(0.5/T)\times2\,U=1\,U/T$；若池中有 $4\,U$，则为 $2\,U/T$。这里的 $0.5/T$ 带有时间的倒数单位，不能直接当作每次更新移走 50%。更新持续多久，还没有写进去。</p>
+<p>先约定一种逐段计算方法：每个时段开始时，按当时的总量计算清除流率，并将这个流率保持到段末。设段首有 $4\,U$，持续 $h=0.5\,T$，则</p>
+<p>$$\begin{aligned}
+\text{本段流入量}&amp;=(1\,U/T)(0.5\,T)=0.5\,U,\\
+\text{本段清除量}&amp;=(0.5/T)(4\,U)(0.5\,T)=1\,U,\\
+\text{段末总量}&amp;=4+0.5-1=3.5\,U.
+\end{aligned}$$</p>
+<p>两笔转移量都来自“流率乘实际时长”。若清除流率在整个时段内保持为 $kA$，那么相对于段首总量，清除的比例就是 $kh$：本例为 $0.5\times0.5=0.25$，即 25%。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-01-用递推描述增长与清除/practice/?question=p02-rate-unit">把速率转成每步比例</a></li></ul></nav>
+
+<h2 id="start-rate-update">段首流率更新与固定点</h2>
+<p>令 $t_n$ 为第 $n$ 条记录的时刻，$A_n$ 为该时刻的总量，$h=t_{n+1}-t_n$ 为一个时段的长度。按照刚才的段首流率约定，</p>
+<p>$$\begin{aligned}
+A_{n+1}&amp;=A_n+\underbrace{hu}_{\text{本段流入}}-\underbrace{hkA_n}_{\text{本段清除}}\\
+&amp;=(1-kh)A_n+hu.
+\end{aligned}$$</p>
+<p>$hu$ 和 $hkA_n$ 的单位都是 U，$kh$ 没有单位。与上一节的 $A_{n+1}=qA_n+b$ 对照，每步的倍数变为 $q=1-kh$，每步补入量变为 $b=hu$。缩短时段时，两者都要随之改变。</p>
+<p>从空池出发，取 $h=1\,T$、$u=1\,U/T$、$k=0.5/T$，前三步可列为：</p>
+<table>
+<thead>
+<tr>
+  <th>时段</th>
+  <th style="text-align:right">段首总量 / U</th>
+  <th style="text-align:right">流入量 / U</th>
+  <th style="text-align:right">清除量 / U</th>
+  <th style="text-align:right">段末总量 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$0$—$1\,T$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>$1$—$2\,T$</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">1.5</td>
+</tr>
+<tr>
+  <td>$2$—$3\,T$</td>
+  <td style="text-align:right">1.5</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.75</td>
+  <td style="text-align:right">1.75</td>
+</tr>
+</tbody>
+</table>
+<p>每行的段末成为下一行的段首。清除量逐渐增加，因为同一个消除系数作用于越来越多的物质。</p>
+<p>池中若已有 $2\,U$，流入和清除流率便同为 $1\,U/T$，无论取上述哪个时长，净变化都是零。一般地，固定点满足 $h(u-kA^*)=0$，对 $h&gt;0$、$k&gt;0$，得到</p>
+<p>$$A^*=\frac{u}{k}.$$</p>
+<p>它由流入和清除的平衡决定。若 $k=0$，则每段增加 $hu$；只有同时 $u=0$ 才能保持原值。</p>
+<p class="concept-explore"><a href="/chapters/02-01-用递推描述增长与清除/explore/?concept=P02-C01-S02%3Astart-rate-update">可视化与探索：段首流率更新与固定点 →</a></p>
+
+<h2 id="residual-cumulative-balance">逐段残差与累计收支</h2>
+<p>为了检查每一行是否按同一笔收支计算，可以定义<strong>收支残差（mass-balance residual）</strong>：</p>
+<p>$$r_n=A_{n+1}-A_n-hu+hkA_n.$$</p>
+<p>它把实际算出的净变化减去流入减清除。以上表第三行为例，$r_2=1.75-1.5-1+0.75=0\,U$。残差为零，说明这一行的总量与两笔转移量相互一致；计算机中的浮点运算可能留下很小的舍入差。</p>
+<p>将三行合并，总流入为 $3\,U$，总清除为 $0+0.5+0.75=1.25\,U$，所以末量为 $0+3-1.25=1.75\,U$。用有限求和写 $N$ 段的同一件事：</p>
+<p>$$A_N-A_0=\sum_{n=0}^{N-1}hu-\sum_{n=0}^{N-1}hkA_n.$$</p>
+<p>左侧是末量减初值，右侧是累计流入减累计清除。$N$ 段变化对应 $N+1$ 条总量记录，其中包括尚未更新的起点。因此，记录总量的列表比记录逐段残差的列表多一个元素。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-01-用递推描述增长与清除/practice/?question=p02-euler-balance">把每段流入和清除记到账上</a></li></ul></nav>
+
+<h2 id="variable-duration-input">不等时长与分段输入</h2>
+<p>流入速率和时段长度都可以逐段改变。用 $u_n$ 表示第 $n$ 段流入速率，$h_n=t_{n+1}-t_n$ 表示该段实际时长，则</p>
+<p>$$A_{n+1}=A_n+h_n(u_n-kA_n),\qquad
+\text{累计流入}=\sum_{n=0}^{N-1}h_nu_n.$$</p>
+<p>例如，从 $1\,U$ 开始，第一段以 $2\,U/T$ 流入，持续 $0.5\,T$；第二段停止流入，持续 $1\,T$；两段均取 $k=0.5/T$。逐段计算如下：</p>
+<table>
+<thead>
+<tr>
+  <th>时段</th>
+  <th style="text-align:right">段首总量 / U</th>
+  <th style="text-align:right">流入速率 / (U/T)</th>
+  <th style="text-align:right">时长 / T</th>
+  <th style="text-align:right">流入量 / U</th>
+  <th style="text-align:right">清除量 / U</th>
+  <th style="text-align:right">段末总量 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第一段</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.25</td>
+  <td style="text-align:right">1.75</td>
+</tr>
+<tr>
+  <td>第二段</td>
+  <td style="text-align:right">1.75</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0.875</td>
+  <td style="text-align:right">0.875</td>
+</tr>
+</tbody>
+</table>
+<p>如果用两个列表输入条件，速率列表 $[2,0]$ 和时长列表 $[0.5,1]$ 要按位置配对：第一对属于第一段，第二对属于第二段。算出的总量列表为 $[1,1.75,0.875]$，依次对应起点、第一段末和第二段末。累计流入是 $1\,U$，净变化却是 $-0.125\,U$，两者相差这段时间清除的 $1.125\,U$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-01-用递推描述增长与清除/practice/?question=p02-varying-steps">不等时长也要逐段记账</a></li></ul></nav>
+
+<h2 id="interval-length-approximation">时段长度与近似的含义</h2>
+<p>段首流率法多久重新计算一次清除？答案由 $h$ 决定。从空池出发，以 $u=1\,U/T$、$k=0.5/T$ 计算到 $1\,T$：</p>
+<ul>
+<li>用一个长为 $1\,T$ 的时段：整段使用空池时的零清除流率，末量为 $1\,U$。</li>
+<li>用两个长为 $0.5\,T$ 的时段：第一段末为 $0.5\,U$；第二段清除 $(0.5/T)(0.5\,U)(0.5\,T)=0.125\,U$，末量为 $0.5+0.5-0.125=0.875\,U$。</li>
+</ul>
+<p>两次计算使用相同的初值、流入和消除系数，差别来自中途有没有按新总量重算清除流率。下图将这种比较延长到 $4\,T$。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P02-C01-S02-edff1a4c-0.png" alt="流率、时长与离散收支：实验结果图" loading="lazy"></figure>
+</section>
+<p>三种时段长度的曲线都以 $2\,U$ 为固定点，却在相同时间给出不同的总量。若模型规定流率只能在段首调整，这些就是不同调整周期下的过程；若物质在每一刻都按当前总量清除，段首流率法便是在近似这个连续过程。时段越长，一次选定的清除流率被保持得越久。</p>
+<p>这个区别还会影响总量是否合理。从 $10\,U$ 出发，停止流入，取 $k=0.75/T$、$h=2\,T$，段首清除流率为 $7.5\,U/T$。将它保持两 T，会算出清除 $15\,U$，末量为 $-5\,U$。收支残差仍为 $-5-10+15=0\,U$，但这笔计算要求池子拿出比已有物质更多的量。残差检查的是账目是否一致；总量的非负性还要单独检查。</p>
+<p>若只把末量改成零而仍保留清除 $15\,U$，残差便成为 $0-10+15=5\,U$，收支也不再一致。后面我们将用连续模型和更短时段作对照，解释怎样识别并改进这类近似。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-01-用递推描述增长与清除/practice/?question=p02-balance-limit">检查离散收支</a></li></ul></nav>
+
+<p>下一章先补上一个工具：把“一段时间平均变化多少”缩短到“这个时刻变化多快”，由此为连续收支建立数学语言。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/02-01-用递推描述增长与清除/read/1/">← 2.1.1 递推关系、累积与固定点</a><a href="/chapters/02-02-变化率与累积：微积分入口/read/1/">2.2.1 平均变化率、极限与导数 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

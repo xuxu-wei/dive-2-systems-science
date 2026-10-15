@@ -29,6 +29,9 @@ from terminology import annotate_text, check_text, TerminologyError
     ('证据/边际似然', '证据/边际似然（evidence or marginal likelihood）'),
     ('系统性重采样', '系统性重采样（systematic resampling）'),
     ('海森矩阵', '海森矩阵（Hessian matrix）'),
+    ('收支残差', '收支残差（mass-balance residual）'),
+    ('自然指数函数', '自然指数函数（natural exponential function）'),
+    ('不定积分与定积分', '不定积分（indefinite integral）与定积分（definite integral）'),
 ])
 def test_independent_phrase_cases(source, expected):
     assert annotate_text(source) == expected
@@ -44,6 +47,9 @@ def test_independent_phrase_cases(source, expected):
     ('数组（vector）', 'translation'),
     ('条件期望（expectation）', 'translation'),
     ('二阶导数（derivative）', 'translation'),
+    ('不定积分（definite integral）', 'translation'),
+    ('自然指数函数（logarithm）', 'translation'),
+    ('收支残差（loss）', 'translation'),
     ('参数（parameter）（parameter）', 'duplicate'),
     ('数组（array（array））', 'nested'),
     ('数组(array (array))', 'nested'),
@@ -106,11 +112,7 @@ def test_inequalities_are_not_html_tags_and_links_stay_literal():
     assert annotate_text(link+'数组</a>') == link+'数组（array）</a>'
 
 
-def test_overview_generator_uses_the_same_conservative_rule():
-    from build_course import annotate_overview
-    chapter = dict(goals='重复数和系数组合', prerequisites='Python 数组', focus='重采样次数', knowledge=['复数模态'])
-    annotate_overview(chapter)
-    assert chapter['goals'] == '重复数和系数组合'
-    assert chapter['prerequisites'] == 'Python 数组（array）'
-    assert chapter['focus'] == '重采样（resampling）次数'
-    assert chapter['knowledge'] == ['复数（complex number）模态（mode）']
+def test_overview_preserves_reviewed_text_without_automatic_annotations():
+    from build_course import teaching_focus
+    source = '- **教学重难点**：重复数、系数组合与自然指数函数按当前语境解释。'
+    assert teaching_focus(source, '2.2') == '重复数、系数组合与自然指数函数按当前语境解释。'

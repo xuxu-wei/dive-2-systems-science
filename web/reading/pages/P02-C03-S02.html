@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.3.2 平衡与恢复时间尺度 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P02-C03-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P02-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-timescale">本节练习 · 4 题</a><a class="button" href="/chapters/02-03-连续时间与一阶微分方程/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>2.3.2 平衡与恢复时间尺度</h1>
+<p>学完本节，你应能分开比较平衡位置与靠近速度，解释特征时间、偏离平衡的半衰时间，并求从零达到指定平衡比例的时刻。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/02-03-%E8%BF%9E%E7%BB%AD%E6%97%B6%E9%97%B4%E4%B8%8E%E4%B8%80%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/read/1/">一阶微分方程与初值问题</a>；指数、自然对数与链式法则。</p>
+<h2 id="equilibrium-and-approach-speed">平衡位置与靠近速度</h2>
+<p>两个充分混合的物质池都从零开始。第一组以 $u=1$ U/T 流入，消除系数为 $k=0.5/\mathrm{T}$；第二组的两个速率系数同时加倍，取 $u=2$ U/T、$k=1/\mathrm{T}$。它们满足同一个形式的方程 $A'=u-kA$，平衡量也相同：</p>
+<p>$$A^*=\frac uk=2\ \mathrm U.$$</p>
+<p>但两条曲线起步的快慢已经不同。因为起点没有物质可清除，初始变化率分别为 1 U/T 和 2 U/T。利用从零出发的解 $A(t)=A^*(1-e^{-kt})$，得到：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">时刻 / T</th>
+  <th style="text-align:right">第一组总量 / U</th>
+  <th style="text-align:right">第二组总量 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.7869</td>
+  <td style="text-align:right">1.2642</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1.2642</td>
+  <td style="text-align:right">1.7293</td>
+</tr>
+<tr>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">1.7293</td>
+  <td style="text-align:right">1.9634</td>
+</tr>
+</tbody>
+</table>
+<p>$u/k$ 决定靠近哪个总量，却没有决定需要多久。第二组在同一时刻更接近平衡，因为流入和清除的作用都更快。要把“更快”说成一个可比较的数，可以先研究距平衡还剩多少比例。</p>
+<h2 id="deviation-time-constant">偏离比例与特征时间</h2>
+<p>上一节的解给出</p>
+<p>$$A(t)-A^*=(A_0-A^*)e^{-kt}.$$</p>
+<p>从平衡下方出发，偏离为负；从上方出发，偏离为正。取绝对值，再除以非零的初始偏离幅度，得到</p>
+<p>$$\frac{|A(t)-A^*|}{|A_0-A^*|}=e^{-kt},\qquad A_0\ne A^*.$$</p>
+<p>这个比值表示“现在还差的量，占起初差距的多少”。例如起初差 4 U，现在差 1 U，剩余比例就是 $1/4$。$u$ 和初始偏离的大小从这一比例中消去了，靠近速度由 $k$ 控制。</p>
+<p>对于这样的指数恢复过程，<strong>特征时间（characteristic time）</strong>定义为偏离幅度缩到初始幅度的 $e^{-1}$ 所需的时间。令 $kt=1$，得</p>
+<p>$$\boxed{\tau=\frac1k.}$$</p>
+<p>希腊字母 $\tau$ 表示这一时长，单位为 T。经过一个 $\tau$，原来的差距还剩约 $36.8\%$；经过两个 $\tau$，还剩 $e^{-2}\approx13.5\%$。同一个倒数 $1/k$，把“每单位时间消除得多快”变成了“变化大约需要多长时间”。</p>
+<table>
+<thead>
+<tr>
+  <th>经过时长</th>
+  <th style="text-align:right">偏离的剩余比例</th>
+  <th style="text-align:right">从零出发时已达到的平衡比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$\tau$</td>
+  <td style="text-align:right">$e^{-1}\approx36.8\%$</td>
+  <td style="text-align:right">约 $63.2\%$</td>
+</tr>
+<tr>
+  <td>$2\tau$</td>
+  <td style="text-align:right">$e^{-2}\approx13.5\%$</td>
+  <td style="text-align:right">约 $86.5\%$</td>
+</tr>
+<tr>
+  <td>$3\tau$</td>
+  <td style="text-align:right">$e^{-3}\approx5.0\%$</td>
+  <td style="text-align:right">约 $95.0\%$</td>
+</tr>
+</tbody>
+</table>
+<p>第一组 $k=0.5/\mathrm{T}$，所以 $\tau=2$ T；第二组 $k=1/\mathrm{T}$，所以 $\tau=1$ T。将 $u$、$k$ 同时加倍会保持 $A^*$ 不变，并将每一个相同偏离比例对应的时长减半。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-timescale">同时改变两个速率</a></li><li><a href="/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-time-constant">经过一个特征时间</a></li></ul></nav>
+
+<p class="concept-explore"><a href="/chapters/02-03-连续时间与一阶微分方程/explore/?concept=P02-C03-S02%3Adeviation-time-constant">可视化与探索：偏离比例与特征时间 →</a></p>
+
+<h2 id="deviation-half-time">偏离半衰时间与无输入半衰期</h2>
+<p>若关心的是距平衡的差何时减半，就令</p>
+<p>$$e^{-kt}=\frac12.$$</p>
+<p>两边取自然对数，再移项：</p>
+<p>$$-kt=\ln\frac12=-\ln2,\qquad
+\boxed{t_{1/2,\mathrm{dev}}=\frac{\ln2}{k}.}$$</p>
+<p>这称为偏离平衡的<strong>半衰时间（deviation half-time）</strong>；下标 $\mathrm{dev}$ 对应偏离，$1/2$ 表示目标剩余比例。它约为 $0.693\tau$。对第一组，需要 $2\ln2\approx1.386$ T。</p>
+<p>在本例的这个时刻，总量从零<strong>增加</strong>到 1 U，距 2 U 平衡的差由 2 U 减为 1 U。减半的是差距，总量本身在上升。换成从 4 U 出发，经过相同时长后总量为 3 U，距平衡的差也由 2 U 减为 1 U。</p>
+<p>当没有流入时，$u=0$、$A^*=0$，总量本身就是对平衡的偏离。这时 $A_0&gt;0$ 的物质总量经过 $\ln2/k$ 减半，才是通常所说的<strong>半衰期（half-life）</strong>。若起点就在平衡，偏离始终是零；轨迹是水平线，没有一段非零差距减半的过程。</p>
+<h2 id="fraction-arrival-time">指定比例的首次到达时间</h2>
+<p>现在问一个操作目标：从零开始，多久能达到平衡量的 $90\%$？取 $u&gt;0$、$k&gt;0$，用无量纲数 $f$ 表示目标比例，$t_f$ 表示首次达到该比例的时刻。将 $A(t_f)=fA^*$ 代入从零出发的解，得到</p>
+<p>$$\begin{aligned}
+A^*(1-e^{-kt_f})&amp;=fA^*,\\
+e^{-kt_f}&amp;=1-f,\\
+-kt_f&amp;=\ln(1-f),\\
+\boxed{t_f=-\frac{\ln(1-f)}k},&amp;\qquad0\le f&lt;1.
+\end{aligned}$$</p>
+<p>这里 $A^*&gt;0$，所以可以约去它。曲线的导数 $A'=ue^{-kt}$ 为正，因而一直增加；求得的时刻就是第一次到达目标的时刻。</p>
+<p>对 $f=0.9$，$1-f=0.1$，所以 $t_{0.9}=\ln10/k$。第一组需约 $4.605$ T，第二组需约 $2.303$ T。二者达到的总量都是 $0.9\times2=1.8$ U。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P02-C03-S02-64ce6051-0.png" alt="平衡与恢复时间尺度：实验结果图" loading="lazy"></figure>
+</section>
+<p>同一高度上的两个标记落在不同的时刻，与表格中的快慢一致。$f=0$ 对应起点；$f$ 越接近 1，所需时间越长。精确达到 $f=1$ 要求 $e^{-kt}=0$，有限时刻做不到。例如达到 $99\%$ 所需的时间为 $\ln100/k$，是达到 $90\%$ 所需时间的两倍。</p>
+<p>计算很小的 $f$ 时，实验用 <code>math.log1p(-f)</code> 求 $\ln(1-f)$，以保留这个接近零的对数值。返回的时刻按目标比例列表的原顺序排列；每个目标分别求解，不是把上一目标的时刻继续累加。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-arrival">到达指定平衡比例要多久</a></li></ul></nav>
+
+<h2 id="timescale-solution-check">时间尺度与解的核对</h2>
+<p>三个常用时长可以放到同一组条件下比较：当 $k=0.5/\mathrm{T}$ 时，偏离半衰时间约为 1.386 T，特征时间为 2 T，从零达到平衡 $90\%$ 需约 4.605 T。它们回答的是三个不同的“达到多少”问题。</p>
+<p>可以把求出的时刻放回曲线检查。例如从零到达 $90\%$ 时，</p>
+<p>$$\frac{A(t_{0.9})}{A^*}
+=1-e^{-k(\ln10/k)}
+=1-e^{-\ln10}
+=1-0.1=0.9.$$</p>
+<p>这个代入检查核对了到达比例；检查整个候选解还需要同时看初值与变化率。函数 $B(t)=A^*+(A_0-A^*)e^{kt}$ 也能经过正确起点，但求导后偏离满足 $x'=kx$，会越走越远，与原方程要求的 $x'=-kx$ 相反。由此能看出，起点正确和变化方向正确各自在检查什么。</p>
+<p>若 $k=0$ 且 $u&gt;0$，总量持续线性增加，没有有限的平衡总量。这时计算达到某个指定总量所需时间，应使用 $A=A_0+ut$，而不是平衡比例公式。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-solution-check">核验候选解</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-i-first-order-differential-equations/">MIT：一阶微分方程</a>讨论指数解与平衡；<a href="https://docs.python.org/3/library/math.html#math.log1p">Python：math.log1p</a>说明接近零时对数值的计算。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/02-03-连续时间与一阶微分方程/read/1/">← 2.3.1 一阶微分方程与初值问题</a><a href="/chapters/02-04-数值模拟、误差与迁移/read/1/">2.4.1 欧拉误差与网格收敛 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

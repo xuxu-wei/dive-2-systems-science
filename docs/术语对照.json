@@ -2057,5 +2057,20 @@
     "zh": "二阶导数",
     "en": "second derivative",
     "scope": "part02"
+  },
+  {
+    "zh": "收支残差",
+    "en": "mass-balance residual",
+    "scope": "part02"
+  },
+  {
+    "zh": "自然指数函数",
+    "en": "natural exponential function",
+    "scope": "part02"
+  },
+  {
+    "zh": "不定积分",
+    "en": "indefinite integral",
+    "scope": "part02"
   }
 ]

@@ -74,7 +74,10 @@ def build(root=ROOT):
         if index+1<len(lessons):
             nxt=lessons[index+1][1];adjacent.append(f'<a href="{nxt["reading_url"]}">{escape(nxt["number"])} {escape(nxt["title"])} →</a>')
         else:
-            adjacent.append('<a href="/parts/02-系统随时间演化/">继续：第 2 篇 系统随时间演化 →</a>')
+            part_number = int(lesson['chapter_id'].split('.')[0])
+            following = next((p for p in course['parts'] if int(p['id']) > part_number), None)
+            if following:
+                adjacent.append(f'<a href="{following["url"]}">继续：第 {following["id"]} 篇 {escape(following["title"])} →</a>')
         html=f"""<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{escape(lesson['number'])} {escape(lesson['title'])} · 动手学系统科学</title>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.2.3 指数、自然对数与链式法则 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P02-C02-S03">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P02-C02-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-exponent-unit">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>2.2.3 指数、自然对数与链式法则</h1>
+<p>学完本节，你应能解释指数与对数的互逆关系，逐层求指数曲线的一阶和二阶导数，并根据初值确定原函数中的常数。</p>
+<p><strong>先修知识</strong>：幂运算；本章的极限、导数、原函数与定积分。</p>
+<h2 id="natural-exponential-growth">比例累积与自然指数</h2>
+<p>在逐步清除中，每次都按当前量计算损失；增长也可以按同样方式累积。先用无量纲数值做一个实验：从 1 开始，把固定的一段时间分成 $n$ 段，每段都增加当时数值的 $1/n$，最终得到</p>
+<p>$$\left(1+\frac1n\right)^n.$$</p>
+<p>分一段时，结果为 $1\times2=2$。分两段时，先从 1 增到 1.5，再增加 $1.5$ 的一半，得到 2.25。后一次增长同时作用于原来已有的部分和前一次新增的部分。</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">段数 $n$</th>
+  <th style="text-align:right">每段增长比例</th>
+  <th style="text-align:right">最终数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">2</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">2.25</td>
+</tr>
+<tr>
+  <td style="text-align:right">10</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">约 2.5937</td>
+</tr>
+<tr>
+  <td style="text-align:right">100</td>
+  <td style="text-align:right">0.01</td>
+  <td style="text-align:right">约 2.7048</td>
+</tr>
+<tr>
+  <td style="text-align:right">1000</td>
+  <td style="text-align:right">0.001</td>
+  <td style="text-align:right">约 2.7169</td>
+</tr>
+</tbody>
+</table>
+<p>这些结果趋近 $2.71828\ldots$，其极限定义了自然常数</p>
+<p>$$e=\lim_{n\to\infty}\left(1+\frac1n\right)^n.$$</p>
+<p>以 $e$ 为底、将实数 $x$ 作为指数，得到<strong>自然指数函数（natural exponential function）</strong> $e^x$，也记作 $\exp(x)$。它满足熟悉的指数规则 $e^{x+y}=e^xe^y$ 和 $e^0=1$，对任何实数 $x$ 都为正。</p>
+<p>将这个函数用于总量，可以构造一条衰减曲线</p>
+<p>$$A(t)=A_0e^{-kt},\qquad A_0\geq0,\quad k\geq0.$$</p>
+<p>指数里的 $-kt$ 必须是无量纲数：$t$ 用 T，$k$ 就用 $1/T$。$e^{-kt}$ 表示还剩起点的多少比例，乘以初始总量 $A_0$ 才得到 U 单位的总量。比如 $k=0.5/T$、$t=2\,T$ 时，指数为 $-1$，剩余比例为 $e^{-1}\approx0.3679$。</p>
+<p>时间单位换算也要保持这个乘积不变。例如 $k=0.5/\mathrm{min}$ 等于 $(0.5/60)/\mathrm{s}$；两分钟与 120 秒代入后都给出 $kt=1$。改变单位只改变数值表达，不改变剩余比例。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-exponent-unit">指数里的单位</a></li></ul></nav>
+
+<h2 id="exponential-derivative-chain-rule">指数导数与复合函数</h2>
+<p>指数函数适合表示比例变化，关键在于它的导数。利用 $e^{x+h}=e^xe^h$，差商可以化为</p>
+<p>$$\frac{e^{x+h}-e^x}{h}=e^x\frac{e^h-1}{h}.$$</p>
+<p>自然指数的基本极限为 $\lim_{h\to0}(e^h-1)/h=1$，因此</p>
+<p>$$\frac{d(e^x)}{dx}=e^x.$$</p>
+<p>求导后仍保留自身，意味着局部变化率随当前函数值成比例改变。接下来要注意：我们关心的是随时间的变化，而指数中的 $x$ 又可能由时间决定。</p>
+<p>设 $g(t)$ 是内层函数，$F(x)$ 是外层函数，它们组成<strong>复合函数（composite function）</strong> $F(g(t))$。例如 $e^{-kt}$ 的内层是 $g(t)=-kt$，外层是 $F(x)=e^x$。时间先改变内层数值，内层变化再改变外层结果；两个变化速度需要相乘。在两层都可导时，这条关系是<strong>链式法则（chain rule）</strong>：</p>
+<p>$$\frac{dF(g(t))}{dt}=F'(g(t))g'(t).$$</p>
+<p>先用平方函数手算一次。以无量纲变量 $\tau$ 写 $Y=(1+2\tau)^2$，内层 $g=1+2\tau$ 的导数是 2，外层 $F(g)=g^2$ 的导数是 $2g$，所以</p>
+<p>$$\frac{dY}{d\tau}=2(1+2\tau)\times2=4+8\tau.$$</p>
+<p>也可以先展开 $Y=1+4\tau+4\tau^2$，再逐项求导得到同样的 $4+8\tau$。这个核对说明，链式法则中的内层因子记录了“里面的量变化得有多快”。</p>
+<p>对指数衰减，内层导数为 $-k$，外层导数仍为指数本身，因此</p>
+<p>$$\frac{d(e^{-kt})}{dt}=e^{-kt}(-k)=-ke^{-kt},$$</p>
+<p>进而</p>
+<p>$$A'(t)=-kA_0e^{-kt}=-kA(t).$$</p>
+<p>当前总量越多，负的变化率绝对值越大。这正是清除流率与当前总量成比例的关系：总量的减少速度为 $kA$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-chain-factor">遗漏了哪个因子</a></li></ul></nav>
+
+<h2 id="first-second-derivative">一阶与二阶导数的手算</h2>
+<p>取 $A_0=8\,U$、$k=0.5/T$，曲线为</p>
+<p>$$A(t)=8\,U\,e^{-t/(2T)}.$$</p>
+<p>初始总量是常数，内层 $-t/(2T)$ 的导数是 $-1/(2T)$，所以</p>
+<p>$$A'(t)=8\,U\,e^{-t/(2T)}\left(-\frac1{2T}\right)
+=-4\,U/T\,e^{-t/(2T)}.$$</p>
+<p>在 $t=0$，总量是 $8\,U$，导数为 $-4\,U/T$。这表示起点附近正在减少，局部减少速度为每 T 四 U。到 $t=2\,T$，先算指数为 $-1$，再计算</p>
+<p>$$A(2\,T)=\frac8e\,U\approx2.94\,U,\qquad
+A'(2\,T)=-\frac4e\,U/T\approx-1.47\,U/T.$$</p>
+<p>减少速度的绝对值已经降低。若要继续问“变化率本身如何变化”，就再求一次导数，称为<strong>二阶导数（second derivative）</strong>，记作 $A''$ 或 $d^2A/dt^2$。沿用同一条链式法则：</p>
+<p>$$A''(t)=(-4\,U/T)e^{-t/(2T)}\left(-\frac1{2T}\right)
+=2\,U/T^2\,e^{-t/(2T)}.$$</p>
+<p>$A'&lt;0$ 表示总量下降，$A''&gt;0$ 表示这个负的变化率正在增大、逐渐向零靠近，因此曲线越往后越平。二阶导数的正号描述变化率的变化，并不把下降曲线变成上升曲线。</p>
+<p>下面分别画出剩余比例 $f(t)=e^{-0.5t/T}$ 和它的导数。第一张图纵轴没有单位，第二张图纵轴为 $1/T$；两者都乘以 $8\,U$，才分别成为刚才的总量与总量变化率。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P02-C02-S03-4377e511-0.png" alt="指数、自然对数与链式法则：实验结果图" loading="lazy"></figure>
+</section>
+<p>在 $t=0$ 两个读数为 1 和 $-0.5/T$，在 $2\,T$ 为 $e^{-1}$ 和 $-0.5e^{-1}/T$。同一时刻，导数始终是剩余比例的 $-0.5/T$ 倍。若 $k=0$，剩余比例恒为 1，导数恒为零。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-chain-rule">给衰减曲线和变化率配对</a></li></ul></nav>
+
+<h2 id="natural-logarithm">自然对数与指数反解</h2>
+<p>现在反过来问：已知剩余比例，怎样找时间？例如 $e^{-kt}=r$，要从已经知道的 $r$ 找回指数 $-kt$。</p>
+<p><strong>自然对数（natural logarithm）</strong>是自然指数的反函数，记作 $\ln$：对 $y&gt;0$，$\ln y$ 是满足 $e^x=y$ 的那个实数 $x$。因此</p>
+<p>$$\ln(e^x)=x,\qquad e^{\ln y}=y\quad(y&gt;0).$$</p>
+<p>例如 $\ln1=0$、$\ln e=1$、$\ln(e^{-1})=-1$。指数只取正值，所以自然对数的输入也必须为正。它把指数的乘法关系变为加法：$\ln(ab)=\ln a+\ln b$，其中 $a,b&gt;0$。</p>
+<p>对剩余比例 $0&lt;r\leq1$ 两边取对数，就有</p>
+<p>$$-kt=\ln r,\qquad t=-\frac{\ln r}{k}\quad(k&gt;0).$$</p>
+<p>例如从原总量减到一半，$r=1/2$，故 $t=\ln2/k$。取 $k=0.5/T$，得到约 $1.386\,T$。对数接收的是无量纲比值 $A(t)/A_0$，不是带 U 单位的总量本身；若把总量从 U 改用另一单位表示，这个比值保持不变。</p>
+<p>自然对数还可以连接回求导。对无量纲正数 $x$，在 $e^{\ln x}=x$ 两边使用链式法则：</p>
+<p>$$e^{\ln x}\frac{d\ln x}{dx}=1.$$</p>
+<p>因为 $e^{\ln x}=x$，得到 $(\ln x)'=1/x$。在不穿过零的区间，$\ln|x|$ 的导数同样是 $1/x$；若将这个规则用于有单位的量 $A$，可以先除以固定参考量 $A_{\mathrm{ref}}&gt;0$，写成 $\ln(|A|/A_{\mathrm{ref}})$。</p>
+<h2 id="antiderivative-initial-value">原函数常数与初值</h2>
+<p>常数的导数为零，因此同一个导数可以对应多条曲线。例如，采用相应单位的数值表示时，$t^2+1$ 和 $t^2+4$ 的导数都是 $2t$，但两条曲线始终相差 3。初值告诉我们该选其中哪一条。</p>
+<p>满足 $F'(t)=f(t)$ 的全部原函数写成</p>
+<p>$$\int f(t)\,dt=F(t)+C,$$</p>
+<p>称为<strong>不定积分（indefinite integral）</strong>。这里没有起止时刻，表示的是一组函数，$C$ 为任意常数，与 $F$ 的单位相同。它和前一节的定积分作用不同：定积分求指定区间内的累计变化，不定积分寻找导数等于给定函数的曲线。</p>
+<p>以 $A'(t)=2ct$ 为例，原函数为 $A(t)=ct^2+C$。若再给定 $A(0)=3\,U$，代入零时刻便有 $C=3\,U$，从而</p>
+<p>$$A(t)=ct^2+3\,U.$$</p>
+<p>同样，在 $A\ne0$ 的区间，$1/A$ 的原函数可用 $\ln(|A|/A_{\mathrm{ref}})$ 表示；两个时刻相减时，参考量会在对数之差中消去。指数、对数、积分和初值将在下一章合起来，用于求出持续流入与按当前总量清除时的完整变化曲线。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-integration-constant">相同导数为何还有不同曲线</a></li></ul></nav>
+
+<h2 id="further-reading">延伸阅读</h2>
+<p><a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/1.-differentiation/part-a-definition-and-basic-rules/session-11-chain-rule/">MIT：链式法则</a>；<a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/1.-differentiation/part-b-implicit-differentiation-and-inverse-functions/session-17-the-exponential-function-its-derivative-and-its-inverse/">自然指数与反函数</a>。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/02-02-变化率与累积：微积分入口/read/2/">← 2.2.2 矩形和、定积分与累积</a><a href="/chapters/02-03-连续时间与一阶微分方程/read/1/">2.3.1 一阶微分方程与初值问题 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

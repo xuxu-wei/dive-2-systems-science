@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.2.2 矩形和、定积分与累积 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P02-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P02-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-area-unit">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>2.2.2 矩形和、定积分与累积</h1>
+<p>学完本节，你应能手算矩形累积量，说明定积分的符号与单位，用原函数计算累积变化，并把初始总量与后来增加的量分开。</p>
+<p><strong>先修知识</strong>：有限求和；上一节的极限、导数及基本求导规则。</p>
+<h2 id="rectangles-variable-inflow">变化流率与矩形累积</h2>
+<p>让物质以逐渐增大的速率流入一个池，期间没有流出。沿用总量单位 U 与时间单位 T，设</p>
+<p>$$u(t)=2ct,\qquad c=1\,U/T^2.$$</p>
+<p>在 $t=0$ 流入速率为零，在 $t=1\,T$ 则达到 $2\,U/T$。我们要算这一个 T 中累计进入的量。若一直用起点的零流率，会得到零；若一直用终点的 $2\,U/T$，则得到 $2\,U$。前者漏掉后来的流入，后者把结束时才达到的流率提前用到了整段。</p>
+<p>可以把时间分成短段，每段选择一个代表流率，乘该段时长，再把各段的量相加。以每段起点的流率作代表，称为<strong>左端矩形法（left Riemann sum）</strong>。将 $0$—$1\,T$ 分成四段，计算为：</p>
+<table>
+<thead>
+<tr>
+  <th>时段 / T</th>
+  <th style="text-align:right">左端流入速率 / (U/T)</th>
+  <th style="text-align:right">时长 / T</th>
+  <th style="text-align:right">近似流入量 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0—0.25</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0.25</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>0.25—0.5</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">0.25</td>
+  <td style="text-align:right">0.125</td>
+</tr>
+<tr>
+  <td>0.5—0.75</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.25</td>
+  <td style="text-align:right">0.25</td>
+</tr>
+<tr>
+  <td>0.75—1</td>
+  <td style="text-align:right">1.5</td>
+  <td style="text-align:right">0.25</td>
+  <td style="text-align:right">0.375</td>
+</tr>
+</tbody>
+</table>
+<p>合起来得到 $L_4=0.75\,U$。这里的下标 4 表示分成四段。在流率—时间图上，每一笔“流率乘时长”是一个矩形的面积。当前流率逐段增加，矩形顶部低于真实曲线，因此累计结果偏小。</p>
+<p>若只分一段，左端和为 $0\,U$；分两段为 $0.5\,U$；分八段则为 $0.875\,U$。漏掉的部分随短段变细而减少。我们接着用有限和把这个过程写完整。</p>
+<h2 id="definite-integral-limit">定积分与极限累积</h2>
+<p>在任意区间 $[a,b]$ 上等分 $n$ 段，每段时长 $h=(b-a)/n$，第 $i+1$ 段左端位于 $a+ih$，其中 $i=0,1,\ldots,n-1$。左端和是</p>
+<p>$$L_n=\sum_{i=0}^{n-1}u(a+ih)h.$$</p>
+<p>每一项的单位都是 $(U/T)\times T=U$。对 $0$—$1\,T$ 的当前例子，采用 T、U 对应的数值单位，代入 $h=1/n$，有</p>
+<p>$$L_n=\frac{2}{n^2}\sum_{i=0}^{n-1}i.$$</p>
+<p>求和中的数为 $0,1,\ldots,n-1$。把它们与倒序的 $n-1,n-2,\ldots,0$ 相加，每对都得到 $n-1$，共有 $n$ 对，因此原来的和是 $n(n-1)/2$。于是矩形和的数值为</p>
+<p>$$L_n=\frac{2}{n^2}\frac{n(n-1)}2=1-\frac1n.$$</p>
+<p>所以累计近似量为 $(1-1/n)\,U$。段数不断增加、段宽趋零时，漏掉的 $(1/n)\,U$ 趋零，累计量趋近 $1\,U$。图上的曲线与时间轴围出一个三角形，它的面积也为 $\tfrac12\times1\,T\times2\,U/T=1\,U$。</p>
+<p>对于区间上的连续流率，矩形和在段宽趋零时的极限定义了<strong>定积分（definite integral）</strong>：</p>
+<p>$$\int_a^b u(t)\,dt
+=\lim_{n\to\infty}\sum_{i=0}^{n-1}u(a+ih)h,
+\qquad h=\frac{b-a}{n}.$$</p>
+<p>这里“连续”指在某时刻附近取值时，函数值趋近该时刻的值，曲线上没有突然跳变。$\int$ 表示累积，$a,b$ 指定起止时刻，$dt$ 指明沿时间进行累积。定义保留了我们最初的做法：每段流率乘时长，再将所有小段相加，只是用极限把固定段宽造成的遗漏消去了。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-left-area">用左端矩形累积变化</a></li></ul></nav>
+
+<h2 id="accumulation-fundamental-theorem">累积函数与微积分基本定理</h2>
+<p>现在让终点随时间向前移动，定义</p>
+<p>$$B(t)=\int_0^t u(s)\,ds.$$</p>
+<p>$B(t)$ 是从起点到时刻 $t$ 的累计流入量。积分中的 $s$ 遍历这一段中的各个时刻，$t$ 是累计到的终点。积分变量换成另一个字母不会改变所累积的过程。</p>
+<p>从 $t$ 再经过一小段 $\Delta t$，$B$ 增加的正是这段时间新流入的量。若 $u$ 在 $t$ 处连续，短段内的流率接近 $u(t)$，所以</p>
+<p>$$B(t+\Delta t)-B(t)\approx u(t)\Delta t.$$</p>
+<p>两边除以 $\Delta t$ 并取极限，便有</p>
+<p>$$B'(t)=u(t).$$</p>
+<p>这就是<strong>微积分基本定理（fundamental theorem of calculus）</strong>的一部分：连续流率的累计量，对时间求导后回到原流率。直观地说，累计曲线在此刻增加多快，由此刻流进来多快决定。</p>
+<p>它也给出计算积分的办法。若找到 $F$ 使得 $F'(t)=u(t)$，就称 $F$ 为 $u$ 的<strong>原函数（antiderivative）</strong>。$F$ 与累计函数有相同导数，在区间内只差一个常数；取两端之差时，这个常数消去。因此，对连续 $u$，</p>
+<p>$$\int_a^b u(t)\,dt=F(b)-F(a).$$</p>
+<p>当前流率 $u(t)=2ct$ 的原函数可取 $F(t)=ct^2$，因为上一节已经算出它的导数是 $2ct$。于是</p>
+<p>$$\begin{aligned}
+\int_0^{1\,T}u(s)\,ds&amp;=c(1\,T)^2-c\,0^2=1\,U,\\
+\int_{0.5\,T}^{1\,T}u(s)\,ds&amp;=c(1\,T)^2-c(0.5\,T)^2=0.75\,U.
+\end{aligned}$$</p>
+<p>后一半时间的流率更高，所以其流入量 $0.75\,U$ 多于前一半的 $0.25\,U$。积分把曲线上的速率变化转成了可直接比较的总量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-ftc">从累计量求变化率</a></li></ul></nav>
+
+<h2 id="initial-amount-net-change">初值、净变化与系统总量</h2>
+<p>累计流入 $B(0)=0$，因为起点之前尚未累计任何本次实验的流入。池子却可以从已有 $3\,U$ 开始。因此，在没有流出时，</p>
+<p>$$A(t)=3\,U+B(t).$$</p>
+<p>到 $1\,T$，累计流入 $1\,U$，池内共有 $4\,U$；到 $0.5\,T$，累计流入 $0.25\,U$，池内共有 $3.25\,U$。初值确定曲线的起点，积分确定随后增加的量。</p>
+<p>下面左图显示四个矩形及其漏掉的三角形，右图同时显示累计流入和池内总量。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P02-C02-S02-3aa91d2e-0.png" alt="矩形和、定积分与累积：实验结果图" loading="lazy"></figure>
+</section>
+<p>右图两条曲线在每个时刻都相差 $3\,U$，但导数相同，都是 $u(t)$。从一条曲线恢复变化率时，固定的竖向平移会消失；从变化率恢复绝对总量时，就必须给出起点。</p>
+<p>若还有流出速率 $v(t)$，则要累计净流率：</p>
+<p>$$A(t)=A(0)+\int_0^t[u(s)-v(s)]\,ds.$$</p>
+<p>当某时段流出多于流入，积分会对总量给出负的贡献。积分的单位仍是 U，它在这里表示带正负号的净变化。输入积分、净变化和末量，是三项通过收支联系起来的量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-area-unit">流率曲线下面的面积</a></li></ul></nav>
+
+<h2 id="flow-jump-continuous-stock">有限流率跳变与连续存量</h2>
+<p>假设第一 T 以 $2\,U/T$ 流入，随后一 T 停止流入，没有流出。累计流入在 $0$—$1\,T$ 从零线性增到 $2\,U$，随后保持 $2\,U$。关闭流入改变了以后的增加速度，却没有拿走此前已经进入的物质。</p>
+<p>在 $t=1\,T$ 左侧，累计曲线斜率为 $2\,U/T$；右侧斜率为零，两侧的曲线却接在同一个 $2\,U$ 上。这样的分段连续流率，可以分别积分各个连续时段，再把累计量接起来。因为流率保持有限，越来越短的时间内转移量也趋零，所以累计量没有跳跃。</p>
+<p>这和某一瞬间一次加入有限物质不同。例如一次直接补入 $1\,U$，会使总量在补入前后相差 $1\,U$，需要单独记录这笔瞬时转移。流率的阶跃改变斜率，有限总量的瞬时注入改变曲线高度，二者在图上有不同含义。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-jump-area">输入跳变时存量是否跳变</a></li></ul></nav>
+
+<p>下一节将用指数函数描述按当前量成比例变化的曲线，并用导数检验它的变化规律。</p>
+<h2 id="further-reading">延伸阅读</h2>
+<p><a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/unit-3-the-definite-integral-and-its-applications/part-a-definition-of-the-definite-integral-and-first-fundamental-theorem/">MIT：定积分与微积分基本定理</a>。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/02-02-变化率与累积：微积分入口/read/1/">← 2.2.1 平均变化率、极限与导数</a><a href="/chapters/02-02-变化率与累积：微积分入口/read/3/">2.2.3 指数、自然对数与链式法则 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

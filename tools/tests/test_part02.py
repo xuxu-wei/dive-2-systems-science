@@ -184,5 +184,13 @@ def test_lesson_question_coverage_and_plain_objectives():
         book=json.loads((ROOT/lesson['path']).read_text(encoding='utf-8'))
         text=''.join(book['cells'][0]['source'])
         assert not any(x in text.replace('核验收支','核对收支') for x in ['安装','内核','网页安排','验收','样章','playground'])
-        assert all(q['slug'] in ''.join(book['cells'][-1]['source']) for q in qs)
+        if lesson.get('reading'):
+            course=json.loads((ROOT/'web/course/catalog.json').read_text(encoding='utf-8'))
+            from course_content import course_chapters
+            entry=next(l for c in course_chapters(course) for l in c['lessons'] if l['id']==lesson['id'])
+            assert book['metadata'].get('teaching_format')=='experiment'
+            assert all(q.get('reading_url') and q.get('concept_title') for q in entry['questions'])
+            assert '## 练习与参考资料' not in ''.join(book['cells'][-1]['source'])
+        else:
+            assert all(q['slug'] in ''.join(book['cells'][-1]['source']) for q in qs)
         assert 'samples/' not in json.dumps(book,ensure_ascii=False)

@@ -24,7 +24,7 @@ function recompute(){
     series=[{...euler(initial,u,k,h),label:`段首规则 h=${h} T`,color:theme.data['1'],dots:true},
       {...euler(initial,u,k,h/2),label:`相同速率 h=${h/2} T`,color:theme.data['2'],dash:true,dots:true}];
     $('alternate').textContent=`切换到${h>.5?'较细':'较粗'}间隔 ${alternateInterval(h)} T`;
-    $('preset-note').textContent='切换只改变更新间隔；观察区间、流入与清除系数不变。每段使用实际时长。';
+    $('preset-note').textContent='切换只改变更新间隔；观察区间、流入与消除系数不变。每段使用实际时长。';
   }else if(mode==='continuous'){
     series=[analytical(u,k,'当前输入与清除'),{...analytical(2*u,2*k,'输入与清除同时加倍',theme.data['2']),dash:true}];
     $('alternate').textContent=k>.5?'切回 u=1、k=0.5 示例':'切换到 u=2、k=1 示例';
@@ -75,13 +75,13 @@ function failed(error){$('loading-note').hidden=false;$('loading-note').classLis
 async function start(){
   ({current}=await mountShell('explore'));mode={'2.1':'discrete','2.3':'continuous','2.4':'numerical'}[current?.id];if(!mode)throw Error('该章没有此探索页');
   $('eyebrow').textContent=`${current.id} 章 · 可视化与探索`;
-  $('title').textContent={discrete:'逐次更新会得到怎样的总量变化',continuous:'相同的平衡，可以有不同的速度',numerical:'同一个清除过程为何算出了负总量'}[mode];
-  $('question').textContent={discrete:'保持起点、流入速率 u、清除系数 k 和观察终点不变，把每次更新的间隔减半，终点总量会怎样改变？先预测，再播放比较。',continuous:'把恒定流入速率 u 和清除系数 k 同时加倍，从同一起点出发，总量会靠近什么值，又需要多长时间？',numerical:'没有流入时，连续模型的物质总量逐渐减少并保持非负。为什么欧拉更新可能算出负值？先切换两种步长，再比较同一时刻的结果。'}[mode];
+  $('title').textContent={discrete:'时间步长与收支递推',continuous:'平衡总量与时间尺度',numerical:'欧拉步长、误差与非负性'}[mode];
+  $('question').textContent={discrete:'保持起点、流入速率 u、消除系数 k 和观察终点不变，把每次更新的间隔减半，终点总量会怎样改变？先预测，再播放比较。',continuous:'把恒定流入速率 u 和消除系数 k 同时加倍，从同一起点出发，总量会靠近什么值，又需要多长时间？',numerical:'没有流入时，连续模型的物质总量逐渐减少并保持非负。为什么欧拉更新可能算出负值？先切换两种步长，再比较同一时刻的结果。'}[mode];
   $('explanation').textContent={discrete:'每段先用段首总量 A 计算清除速率 kA，再将流入速率与清除速率各乘实际时长，得到本段进入和移除的量。两条曲线分别用 h 和 h/2 更新；较短间隔会更早根据新的总量重新计算清除速率。',continuous:'实线采用当前的 u、k，虚线将二者同时加倍。当 k>0 时，两者的平衡总量 u/k 相同，虚线的偏离衰减得更快，特征时间 1/k 减半。若起点已等于平衡值，两条曲线都保持不变；k=0 时则比较线性积累。',numerical:'欧拉更新每步把偏差乘 1−kh。偏差能否趋于零、物质总量能否保持非负，要分别判断。先观察 h=2 T 时从 10 U 更新到 −5 U 的一步，再减小 h，与连续解逐点比较误差。'}[mode];
   $('formula').textContent=mode==='continuous'?'A(t) = A0 exp(−kt) + (u/k)(1−exp(−kt))；k=0 时 A=A0+ut':'下一段总量 = 当前量 + 实际时长 × (u − k × 当前量)';
   $('assumptions').textContent='这里把所追踪物质看作均匀分布在一个池中，流入速率恒定，清除速率为 kA，没有内部生成或瞬时注入。A0 的单位为 U，u 为 U/T，k 为 1/T。';
-  $('reading-prompt').textContent=mode==='numerical'?'在 Notebook 中推导步长条件，计算整段过程的最大误差，再让网格停在流入速率改变的时刻。':'在 Notebook 中展开收支与解析解的推导，并用手算核对曲线上的数值。';
-  const values=defaults[mode];slider('initial','初始总量 A0 / U',0,20,.5,values.initial);slider('u','流入速率 u / (U/T)',0,4,.25,values.u);slider('k','清除系数 k / (1/T)',0,1,.05,values.k);
+  $('reading-prompt').textContent=mode==='numerical'?'返回相关讲解，逐项判断误差、稳定性与非负性；在实验中改变步长，并核对整段过程的最大误差。':'返回相关讲解，对照手算与曲线；在实验中修改输入、消除系数和时间设置，复算同一问题。';
+  const values=defaults[mode];slider('initial','初始总量 A0 / U',0,20,.5,values.initial);slider('u','流入速率 u / (U/T)',0,4,.25,values.u);slider('k','消除系数 k / (1/T)',0,1,.05,values.k);
   if(mode!=='continuous')slider('h','名义步长 h / T',.25,3,.25,values.h);
   recompute();playback=createPlayback({duration:end,speed:2,update:draw,failed,changed:reason=>{$('play').textContent=reason==='playing'?'暂停':reason==='ended'?'再次播放':'播放';$('play-status').textContent=reason==='playing'?'正在播放：观察时间、数值与曲线。':reason==='ended'?'已到终点，可往返切换示例或重播。':'已暂停；拖动时间查看结果，改变条件会回到起点。';}});
   $('play').addEventListener('click',()=>playback.running?playback.pause():playback.play());$('replay').addEventListener('click',()=>{playback.seek(0);playback.play();});$('timeline').addEventListener('input',()=>playback.seek(Number($('timeline').value)));

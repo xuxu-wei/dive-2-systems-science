@@ -3,97 +3,107 @@
     "id": "P02-C01-S01",
     "chapter_id": "2.1",
     "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/01-从逐步变化到递推规则.ipynb",
-    "title": "从逐步变化到递推规则",
+    "title": "递推关系、累积与固定点",
     "outcome": "从几次手算写出递推规则，说明下标与更新次数，求出固定点并核对累计变化。",
     "number": "2.1.1",
-    "visualization": "web/time-evolution/index.html"
+    "visualization": "web/time-evolution/index.html",
+    "reading": "lessons/02-系统随时间演化/01-用递推描述增长与清除/01-从逐步变化到递推规则.md"
   },
   {
     "id": "P02-C01-S02",
     "chapter_id": "2.1",
     "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.ipynb",
-    "title": "让时间进入收支更新",
+    "title": "流率、时长与离散收支",
     "outcome": "用速率乘实际时长计算收支，分清每步比例与清除系数，解释总量列表和累计流入。",
     "number": "2.1.2",
-    "visualization": "web/time-evolution/index.html"
+    "visualization": "web/time-evolution/index.html",
+    "reading": "lessons/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.md"
   },
   {
     "id": "P02-C02-S01",
     "chapter_id": "2.2",
     "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/01-从平均变化到导数.ipynb",
-    "title": "从平均变化到导数",
+    "title": "平均变化率、极限与导数",
     "outcome": "从区间平均变化率推到导数，用代数、切线和浮点计算解释三者的联系与差别。",
     "number": "2.2.1",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/02-系统随时间演化/02-变化率与累积微积分入口/01-从平均变化到导数.md"
   },
   {
     "id": "P02-C02-S02",
     "chapter_id": "2.2",
     "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/02-从矩形累积到定积分.ipynb",
-    "title": "从矩形累积到定积分",
+    "title": "矩形和、定积分与累积",
     "outcome": "用短段流入量的和认识定积分，再从累计净变化和初值恢复总量。",
     "number": "2.2.2",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/02-系统随时间演化/02-变化率与累积微积分入口/02-从矩形累积到定积分.md"
   },
   {
     "id": "P02-C02-S03",
     "chapter_id": "2.2",
     "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/03-指数对数与链式法则.ipynb",
-    "title": "指数对数与链式法则",
+    "title": "指数、自然对数与链式法则",
     "outcome": "用比例变化认识指数函数，逐层求衰减曲线的导数，再用自然对数反求指数。",
     "number": "2.2.3",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/02-系统随时间演化/02-变化率与累积微积分入口/03-指数对数与链式法则.md"
   },
   {
     "id": "P02-C03-S01",
     "chapter_id": "2.3",
     "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/01-从收支率到一阶初值问题.ipynb",
-    "title": "从收支率到一阶初值问题",
+    "title": "一阶微分方程与初值问题",
     "outcome": "由持续收支建立一阶初值问题，求出恒定输入解并核对方程、初值和零清除情形。",
     "number": "2.3.1",
-    "visualization": "web/time-evolution/index.html"
+    "visualization": "web/time-evolution/index.html",
+    "reading": "lessons/02-系统随时间演化/03-连续时间与一阶微分方程/01-从收支率到一阶初值问题.md"
   },
   {
     "id": "P02-C03-S02",
     "chapter_id": "2.3",
     "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/02-平衡位置与靠近速度.ipynb",
-    "title": "平衡位置与靠近速度",
+    "title": "平衡与恢复时间尺度",
     "outcome": "保持平衡总量不变，比较偏离的衰减速度；从零起点求达到目标比例的时间。",
     "number": "2.3.2",
-    "visualization": "web/time-evolution/index.html"
+    "visualization": "web/time-evolution/index.html",
+    "reading": "lessons/02-系统随时间演化/03-连续时间与一阶微分方程/02-平衡位置与靠近速度.md"
   },
   {
     "id": "P02-C04-S01",
     "chapter_id": "2.4",
     "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb",
-    "title": "误差与网格细化",
+    "title": "欧拉误差与网格收敛",
     "outcome": "从一步近似解释全程误差，在同一初值问题上缩短步长并计算误差缩小的比例。",
     "number": "2.4.1",
-    "visualization": "web/time-evolution/index.html"
+    "visualization": "web/time-evolution/index.html",
+    "reading": "lessons/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.md"
   },
   {
     "id": "P02-C04-S02",
     "chapter_id": "2.4",
     "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.ipynb",
-    "title": "稳定性与非负性不是一回事",
+    "title": "数值稳定性与非负性",
     "outcome": "用每步偏差乘数判断衰减与振荡，另行检查总量非负条件和实际误差。",
     "number": "2.4.2",
-    "visualization": "web/time-evolution/index.html"
+    "visualization": "web/time-evolution/index.html",
+    "reading": "lessons/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.md"
   },
   {
     "id": "P02-C04-S03",
     "chapter_id": "2.4",
     "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.ipynb",
-    "title": "在输入跳变处分段计算",
+    "title": "输入跳变与分段模拟",
     "outcome": "让计算停在流入速率改变的时刻，用实际时长分别接续欧拉结果与解析参考。",
     "number": "2.4.3",
-    "visualization": "web/time-evolution/index.html"
+    "visualization": "web/time-evolution/index.html",
+    "reading": "lessons/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.md"
   },
   {
     "id": "P02-SUMMARY",
     "chapter_id": "2.summary",
     "path": "notebooks/02-系统随时间演化/05-篇末综合/01-等总量输入的不同过程.ipynb",
-    "title": "等总量输入的不同过程",
+    "title": "分段输入的峰值与过程约束",
     "outcome": "比较等总量输入的时间安排，核对累计收支、峰值、终值和误差，再筛选符合上限的方案。",
     "number": "篇末综合",
     "visualization": null,
@@ -106,6 +116,7 @@
         "分别接续每段解析与欧拉结果，比较峰值、终值和误差",
         "加入速率与总量上限，重新筛选并解释方案"
       ]
-    }
+    },
+    "reading": "lessons/02-系统随时间演化/05-篇末综合/01-等总量输入的不同过程.md"
   }
 ]

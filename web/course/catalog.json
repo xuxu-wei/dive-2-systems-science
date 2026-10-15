@@ -1056,7 +1056,7 @@
       "chapters": [
         {
           "id": "2.1",
-          "title": "用递推描述增长与清除",
+          "title": "递推模型与时间步长",
           "url": "/chapters/02-01-用递推描述增长与清除/",
           "goals": "从两三次手算写出递推规则，用加权输入和核对结果；说明更新间隔改变时，每段进入和移除的量如何改变。",
           "prerequisites": "第 1 篇 1.2、1.4；单位、函数与 Python 循环。下标、有限求和与等比和在本章引入。",
@@ -1072,84 +1072,212 @@
               "id": "P02-C01-S01",
               "chapter_id": "2.1",
               "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/01-从逐步变化到递推规则.ipynb",
-              "title": "从逐步变化到递推规则",
+              "title": "递推关系、累积与固定点",
               "outcome": "从几次手算写出递推规则，说明下标与更新次数，求出固定点并核对累计变化。",
               "number": "2.1.1",
               "visualization": "web/time-evolution/index.html",
+              "reading": "lessons/02-系统随时间演化/01-用递推描述增长与清除/01-从逐步变化到递推规则.md",
               "questions": [
                 {
                   "id": "p02-step-factor",
                   "slug": "p02-step-factor",
                   "title": "改变记录间隔",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-01-用递推描述增长与清除/read/1/#per-step-factor",
+                  "concept_title": "每步倍数与增长衰减",
+                  "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-step-factor"
                 },
                 {
                   "id": "p02-growth",
                   "slug": "p02-growth",
                   "title": "逐步计算保留或增长",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-01-用递推描述增长与清除/read/1/#per-step-factor",
+                  "concept_title": "每步倍数与增长衰减",
+                  "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-growth"
                 },
                 {
                   "id": "p02-sum-index",
                   "slug": "p02-sum-index",
                   "title": "累计量为什么包含 n 项",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-01-用递推描述增长与清除/read/1/#finite-sum-balance",
+                  "concept_title": "有限求和与累计变化",
+                  "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-sum-index"
                 },
                 {
                   "id": "p02-fixed-point",
                   "slug": "p02-fixed-point",
                   "title": "不变状态与起点",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-01-用递推描述增长与清除/read/1/#fixed-point-deviation",
+                  "concept_title": "固定点与偏离量",
+                  "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-fixed-point"
                 }
               ],
               "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-step-factor",
               "notebook_url": "/notebook/?id=P02-C01-S01",
-              "url": "/notebook/?id=P02-C01-S01"
+              "reading_url": "/chapters/02-01-用递推描述增长与清除/read/1/",
+              "concepts": [
+                {
+                  "id": "recurrence-time-index",
+                  "title": "递推关系与时间下标",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C01-S01:recurrence-time-index",
+                  "url": "/chapters/02-01-用递推描述增长与清除/read/1/#recurrence-time-index"
+                },
+                {
+                  "id": "per-step-factor",
+                  "title": "每步倍数与增长衰减",
+                  "question_ids": [
+                    "p02-growth",
+                    "p02-step-factor"
+                  ],
+                  "explore": false,
+                  "key": "P02-C01-S01:per-step-factor",
+                  "url": "/chapters/02-01-用递推描述增长与清除/read/1/#per-step-factor"
+                },
+                {
+                  "id": "finite-sum-balance",
+                  "title": "有限求和与累计变化",
+                  "question_ids": [
+                    "p02-sum-index"
+                  ],
+                  "explore": false,
+                  "key": "P02-C01-S01:finite-sum-balance",
+                  "url": "/chapters/02-01-用递推描述增长与清除/read/1/#finite-sum-balance"
+                },
+                {
+                  "id": "constant-input-geometric-sum",
+                  "title": "恒定补入与等比和",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C01-S01:constant-input-geometric-sum",
+                  "url": "/chapters/02-01-用递推描述增长与清除/read/1/#constant-input-geometric-sum"
+                },
+                {
+                  "id": "fixed-point-deviation",
+                  "title": "固定点与偏离量",
+                  "question_ids": [
+                    "p02-fixed-point"
+                  ],
+                  "explore": false,
+                  "key": "P02-C01-S01:fixed-point-deviation",
+                  "url": "/chapters/02-01-用递推描述增长与清除/read/1/#fixed-point-deviation"
+                }
+              ],
+              "url": "/chapters/02-01-用递推描述增长与清除/read/1/"
             },
             {
               "id": "P02-C01-S02",
               "chapter_id": "2.1",
               "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.ipynb",
-              "title": "让时间进入收支更新",
+              "title": "流率、时长与离散收支",
               "outcome": "用速率乘实际时长计算收支，分清每步比例与清除系数，解释总量列表和累计流入。",
               "number": "2.1.2",
               "visualization": "web/time-evolution/index.html",
+              "reading": "lessons/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.md",
               "questions": [
                 {
                   "id": "p02-euler-balance",
                   "slug": "p02-euler-balance",
                   "title": "把每段流入和清除记到账上",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-01-用递推描述增长与清除/read/2/#residual-cumulative-balance",
+                  "concept_title": "逐段残差与累计收支",
+                  "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-euler-balance"
                 },
                 {
                   "id": "p02-rate-unit",
                   "slug": "p02-rate-unit",
                   "title": "把速率转成每步比例",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-01-用递推描述增长与清除/read/2/#elimination-rate-duration",
+                  "concept_title": "一阶清除与时段收支",
+                  "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-rate-unit"
                 },
                 {
                   "id": "p02-varying-steps",
                   "slug": "p02-varying-steps",
                   "title": "不等时长也要逐段记账",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-01-用递推描述增长与清除/read/2/#variable-duration-input",
+                  "concept_title": "不等时长与分段输入",
+                  "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-varying-steps"
                 },
                 {
                   "id": "p02-balance-limit",
                   "slug": "p02-balance-limit",
                   "title": "检查离散收支",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-01-用递推描述增长与清除/read/2/#interval-length-approximation",
+                  "concept_title": "时段长度与近似的含义",
+                  "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-balance-limit"
                 }
               ],
               "practice_url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-euler-balance",
               "notebook_url": "/notebook/?id=P02-C01-S02",
-              "url": "/notebook/?id=P02-C01-S02"
+              "reading_url": "/chapters/02-01-用递推描述增长与清除/read/2/",
+              "concepts": [
+                {
+                  "id": "elimination-rate-duration",
+                  "title": "一阶清除与时段收支",
+                  "question_ids": [
+                    "p02-rate-unit"
+                  ],
+                  "explore": false,
+                  "key": "P02-C01-S02:elimination-rate-duration",
+                  "url": "/chapters/02-01-用递推描述增长与清除/read/2/#elimination-rate-duration"
+                },
+                {
+                  "id": "start-rate-update",
+                  "title": "段首流率更新与固定点",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P02-C01-S02:start-rate-update",
+                  "url": "/chapters/02-01-用递推描述增长与清除/read/2/#start-rate-update",
+                  "explore_url": "/chapters/02-01-用递推描述增长与清除/explore/?concept=P02-C01-S02%3Astart-rate-update"
+                },
+                {
+                  "id": "residual-cumulative-balance",
+                  "title": "逐段残差与累计收支",
+                  "question_ids": [
+                    "p02-euler-balance"
+                  ],
+                  "explore": false,
+                  "key": "P02-C01-S02:residual-cumulative-balance",
+                  "url": "/chapters/02-01-用递推描述增长与清除/read/2/#residual-cumulative-balance"
+                },
+                {
+                  "id": "variable-duration-input",
+                  "title": "不等时长与分段输入",
+                  "question_ids": [
+                    "p02-varying-steps"
+                  ],
+                  "explore": false,
+                  "key": "P02-C01-S02:variable-duration-input",
+                  "url": "/chapters/02-01-用递推描述增长与清除/read/2/#variable-duration-input"
+                },
+                {
+                  "id": "interval-length-approximation",
+                  "title": "时段长度与近似的含义",
+                  "question_ids": [
+                    "p02-balance-limit"
+                  ],
+                  "explore": false,
+                  "key": "P02-C01-S02:interval-length-approximation",
+                  "url": "/chapters/02-01-用递推描述增长与清除/read/2/#interval-length-approximation"
+                }
+              ],
+              "url": "/chapters/02-01-用递推描述增长与清除/read/2/"
             }
           ],
           "visualization": "web/time-evolution/index.html"
         },
         {
           "id": "2.2",
-          "title": "变化率与累积：微积分入口",
+          "title": "变化率、导数与积分",
           "url": "/chapters/02-02-变化率与累积：微积分入口/",
           "goals": "手算差商和矩形累积，解释导数与积分的符号和单位，用微积分基本定理连接二者，再逐层求指数曲线的一阶、二阶导数。",
           "prerequisites": "2.1；有限求和、函数读图与单位。极限、导数、定积分、指数和对数在本章从必要含义开始解释。",
@@ -1165,122 +1293,337 @@
               "id": "P02-C02-S01",
               "chapter_id": "2.2",
               "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/01-从平均变化到导数.ipynb",
-              "title": "从平均变化到导数",
+              "title": "平均变化率、极限与导数",
               "outcome": "从区间平均变化率推到导数，用代数、切线和浮点计算解释三者的联系与差别。",
               "number": "2.2.1",
               "visualization": null,
+              "reading": "lessons/02-系统随时间演化/02-变化率与累积微积分入口/01-从平均变化到导数.md",
               "questions": [
                 {
                   "id": "p02-slope-meaning",
                   "slug": "p02-slope-meaning",
                   "title": "平均变化与局部变化",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/1/#average-rate-difference-quotient",
+                  "concept_title": "平均变化率与差商",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-slope-meaning"
                 },
                 {
                   "id": "p02-difference",
                   "slug": "p02-difference",
                   "title": "用差商接近局部斜率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/1/#average-rate-difference-quotient",
+                  "concept_title": "平均变化率与差商",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-difference"
                 },
                 {
                   "id": "p02-limit-not-zero",
                   "slug": "p02-limit-not-zero",
                   "title": "理解差商的极限",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/1/#limit-derivative-definition",
+                  "concept_title": "极限与导数定义",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-limit-not-zero"
                 },
                 {
                   "id": "p02-difference-noise",
                   "slug": "p02-difference-noise",
                   "title": "解释差分误差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/1/#finite-difference-roundoff",
+                  "concept_title": "差分近似与浮点误差",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-difference-noise"
                 }
               ],
               "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-slope-meaning",
               "notebook_url": "/notebook/?id=P02-C02-S01",
-              "url": "/notebook/?id=P02-C02-S01"
+              "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/1/",
+              "concepts": [
+                {
+                  "id": "average-rate-difference-quotient",
+                  "title": "平均变化率与差商",
+                  "question_ids": [
+                    "p02-slope-meaning",
+                    "p02-difference"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S01:average-rate-difference-quotient",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/1/#average-rate-difference-quotient"
+                },
+                {
+                  "id": "limit-derivative-definition",
+                  "title": "极限与导数定义",
+                  "question_ids": [
+                    "p02-limit-not-zero"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S01:limit-derivative-definition",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/1/#limit-derivative-definition"
+                },
+                {
+                  "id": "tangent-local-approximation",
+                  "title": "切线与局部线性近似",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C02-S01:tangent-local-approximation",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/1/#tangent-local-approximation"
+                },
+                {
+                  "id": "basic-derivative-rules",
+                  "title": "基本求导规则",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C02-S01:basic-derivative-rules",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/1/#basic-derivative-rules"
+                },
+                {
+                  "id": "finite-difference-roundoff",
+                  "title": "差分近似与浮点误差",
+                  "question_ids": [
+                    "p02-difference-noise"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S01:finite-difference-roundoff",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/1/#finite-difference-roundoff"
+                },
+                {
+                  "id": "further-reading",
+                  "title": "延伸阅读",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C02-S01:further-reading",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/1/#further-reading"
+                }
+              ],
+              "url": "/chapters/02-02-变化率与累积：微积分入口/read/1/"
             },
             {
               "id": "P02-C02-S02",
               "chapter_id": "2.2",
               "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/02-从矩形累积到定积分.ipynb",
-              "title": "从矩形累积到定积分",
+              "title": "矩形和、定积分与累积",
               "outcome": "用短段流入量的和认识定积分，再从累计净变化和初值恢复总量。",
               "number": "2.2.2",
               "visualization": null,
+              "reading": "lessons/02-系统随时间演化/02-变化率与累积微积分入口/02-从矩形累积到定积分.md",
               "questions": [
                 {
                   "id": "p02-area-unit",
                   "slug": "p02-area-unit",
                   "title": "流率曲线下面的面积",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/2/#initial-amount-net-change",
+                  "concept_title": "初值、净变化与系统总量",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-area-unit"
                 },
                 {
                   "id": "p02-left-area",
                   "slug": "p02-left-area",
                   "title": "用左端矩形累积变化",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/2/#definite-integral-limit",
+                  "concept_title": "定积分与极限累积",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-left-area"
                 },
                 {
                   "id": "p02-ftc",
                   "slug": "p02-ftc",
                   "title": "从累计量求变化率",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/2/#accumulation-fundamental-theorem",
+                  "concept_title": "累积函数与微积分基本定理",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-ftc"
                 },
                 {
                   "id": "p02-jump-area",
                   "slug": "p02-jump-area",
                   "title": "输入跳变时存量是否跳变",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/2/#flow-jump-continuous-stock",
+                  "concept_title": "有限流率跳变与连续存量",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-jump-area"
                 }
               ],
               "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-area-unit",
               "notebook_url": "/notebook/?id=P02-C02-S02",
-              "url": "/notebook/?id=P02-C02-S02"
+              "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/2/",
+              "concepts": [
+                {
+                  "id": "rectangles-variable-inflow",
+                  "title": "变化流率与矩形累积",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C02-S02:rectangles-variable-inflow",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/2/#rectangles-variable-inflow"
+                },
+                {
+                  "id": "definite-integral-limit",
+                  "title": "定积分与极限累积",
+                  "question_ids": [
+                    "p02-left-area"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S02:definite-integral-limit",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/2/#definite-integral-limit"
+                },
+                {
+                  "id": "accumulation-fundamental-theorem",
+                  "title": "累积函数与微积分基本定理",
+                  "question_ids": [
+                    "p02-ftc"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S02:accumulation-fundamental-theorem",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/2/#accumulation-fundamental-theorem"
+                },
+                {
+                  "id": "initial-amount-net-change",
+                  "title": "初值、净变化与系统总量",
+                  "question_ids": [
+                    "p02-area-unit"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S02:initial-amount-net-change",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/2/#initial-amount-net-change"
+                },
+                {
+                  "id": "flow-jump-continuous-stock",
+                  "title": "有限流率跳变与连续存量",
+                  "question_ids": [
+                    "p02-jump-area"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S02:flow-jump-continuous-stock",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/2/#flow-jump-continuous-stock"
+                },
+                {
+                  "id": "further-reading",
+                  "title": "延伸阅读",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C02-S02:further-reading",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/2/#further-reading"
+                }
+              ],
+              "url": "/chapters/02-02-变化率与累积：微积分入口/read/2/"
             },
             {
               "id": "P02-C02-S03",
               "chapter_id": "2.2",
               "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/03-指数对数与链式法则.ipynb",
-              "title": "指数对数与链式法则",
+              "title": "指数、自然对数与链式法则",
               "outcome": "用比例变化认识指数函数，逐层求衰减曲线的导数，再用自然对数反求指数。",
               "number": "2.2.3",
               "visualization": null,
+              "reading": "lessons/02-系统随时间演化/02-变化率与累积微积分入口/03-指数对数与链式法则.md",
               "questions": [
                 {
                   "id": "p02-exponent-unit",
                   "slug": "p02-exponent-unit",
                   "title": "指数里的单位",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/3/#natural-exponential-growth",
+                  "concept_title": "比例累积与自然指数",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-exponent-unit"
                 },
                 {
                   "id": "p02-chain-rule",
                   "slug": "p02-chain-rule",
                   "title": "给衰减曲线和变化率配对",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/3/#first-second-derivative",
+                  "concept_title": "一阶与二阶导数的手算",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-chain-rule"
                 },
                 {
                   "id": "p02-chain-factor",
                   "slug": "p02-chain-factor",
                   "title": "遗漏了哪个因子",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/3/#exponential-derivative-chain-rule",
+                  "concept_title": "指数导数与复合函数",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-chain-factor"
                 },
                 {
                   "id": "p02-integration-constant",
                   "slug": "p02-integration-constant",
                   "title": "相同导数为何还有不同曲线",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/3/#antiderivative-initial-value",
+                  "concept_title": "原函数常数与初值",
+                  "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-integration-constant"
                 }
               ],
               "practice_url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-exponent-unit",
               "notebook_url": "/notebook/?id=P02-C02-S03",
-              "url": "/notebook/?id=P02-C02-S03"
+              "reading_url": "/chapters/02-02-变化率与累积：微积分入口/read/3/",
+              "concepts": [
+                {
+                  "id": "natural-exponential-growth",
+                  "title": "比例累积与自然指数",
+                  "question_ids": [
+                    "p02-exponent-unit"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S03:natural-exponential-growth",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/3/#natural-exponential-growth"
+                },
+                {
+                  "id": "exponential-derivative-chain-rule",
+                  "title": "指数导数与复合函数",
+                  "question_ids": [
+                    "p02-chain-factor"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S03:exponential-derivative-chain-rule",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/3/#exponential-derivative-chain-rule"
+                },
+                {
+                  "id": "first-second-derivative",
+                  "title": "一阶与二阶导数的手算",
+                  "question_ids": [
+                    "p02-chain-rule"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S03:first-second-derivative",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/3/#first-second-derivative"
+                },
+                {
+                  "id": "natural-logarithm",
+                  "title": "自然对数与指数反解",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C02-S03:natural-logarithm",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/3/#natural-logarithm"
+                },
+                {
+                  "id": "antiderivative-initial-value",
+                  "title": "原函数常数与初值",
+                  "question_ids": [
+                    "p02-integration-constant"
+                  ],
+                  "explore": false,
+                  "key": "P02-C02-S03:antiderivative-initial-value",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/3/#antiderivative-initial-value"
+                },
+                {
+                  "id": "further-reading",
+                  "title": "延伸阅读",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C02-S03:further-reading",
+                  "url": "/chapters/02-02-变化率与累积：微积分入口/read/3/#further-reading"
+                }
+              ],
+              "url": "/chapters/02-02-变化率与累积：微积分入口/read/3/"
             }
           ],
           "visualization": null
         },
         {
           "id": "2.3",
-          "title": "连续时间与一阶微分方程",
+          "title": "一阶微分方程与平衡",
           "url": "/chapters/02-03-连续时间与一阶微分方程/",
           "goals": "推导 dA/dt=u−kA 的恒定输入解，检查初值、方程与边界；区分平衡位置、特征时间、偏离半衰时间与无输入时的总量半衰期。",
           "prerequisites": "2.2；导数、定积分、指数/对数和链式法则。分离变量与初值问题在本章引入。",
@@ -1296,84 +1639,236 @@
               "id": "P02-C03-S01",
               "chapter_id": "2.3",
               "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/01-从收支率到一阶初值问题.ipynb",
-              "title": "从收支率到一阶初值问题",
+              "title": "一阶微分方程与初值问题",
               "outcome": "由持续收支建立一阶初值问题，求出恒定输入解并核对方程、初值和零清除情形。",
               "number": "2.3.1",
               "visualization": "web/time-evolution/index.html",
+              "reading": "lessons/02-系统随时间演化/03-连续时间与一阶微分方程/01-从收支率到一阶初值问题.md",
               "questions": [
                 {
                   "id": "p02-ivp",
                   "slug": "p02-ivp",
                   "title": "确定一条演化曲线",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#ordinary-differential-initial-value",
+                  "concept_title": "常微分方程与初值问题",
+                  "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-ivp"
                 },
                 {
                   "id": "p02-exact",
                   "slug": "p02-exact",
                   "title": "恒定输入的连续解",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#zero-small-elimination-rate",
+                  "concept_title": "零消除系数与小数值计算",
+                  "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-exact"
                 },
                 {
                   "id": "p02-shift-equilibrium",
                   "slug": "p02-shift-equilibrium",
                   "title": "减去平衡为什么有用",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#equilibrium-shift-solution",
+                  "concept_title": "平衡偏移与恒定输入解",
+                  "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-shift-equilibrium"
                 },
                 {
                   "id": "p02-zero-clearance",
                   "slug": "p02-zero-clearance",
                   "title": "清除系数为零时",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#zero-small-elimination-rate",
+                  "concept_title": "零消除系数与小数值计算",
+                  "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-zero-clearance"
                 }
               ],
               "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-ivp",
               "notebook_url": "/notebook/?id=P02-C03-S01",
-              "url": "/notebook/?id=P02-C03-S01"
+              "reading_url": "/chapters/02-03-连续时间与一阶微分方程/read/1/",
+              "concepts": [
+                {
+                  "id": "continuous-balance-rate",
+                  "title": "短时收支与连续变化率",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C03-S01:continuous-balance-rate",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#continuous-balance-rate"
+                },
+                {
+                  "id": "ordinary-differential-initial-value",
+                  "title": "常微分方程与初值问题",
+                  "question_ids": [
+                    "p02-ivp"
+                  ],
+                  "explore": false,
+                  "key": "P02-C03-S01:ordinary-differential-initial-value",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#ordinary-differential-initial-value"
+                },
+                {
+                  "id": "separable-exponential-decay",
+                  "title": "分离变量与指数衰减",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C03-S01:separable-exponential-decay",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#separable-exponential-decay"
+                },
+                {
+                  "id": "equilibrium-shift-solution",
+                  "title": "平衡偏移与恒定输入解",
+                  "question_ids": [
+                    "p02-shift-equilibrium"
+                  ],
+                  "explore": false,
+                  "key": "P02-C03-S01:equilibrium-shift-solution",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#equilibrium-shift-solution"
+                },
+                {
+                  "id": "analytical-solution-check",
+                  "title": "解析解的逐项检验",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P02-C03-S01:analytical-solution-check",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#analytical-solution-check",
+                  "explore_url": "/chapters/02-03-连续时间与一阶微分方程/explore/?concept=P02-C03-S01%3Aanalytical-solution-check"
+                },
+                {
+                  "id": "zero-small-elimination-rate",
+                  "title": "零消除系数与小数值计算",
+                  "question_ids": [
+                    "p02-zero-clearance",
+                    "p02-exact"
+                  ],
+                  "explore": false,
+                  "key": "P02-C03-S01:zero-small-elimination-rate",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#zero-small-elimination-rate"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C03-S01:references",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/1/#references"
+                }
+              ],
+              "url": "/chapters/02-03-连续时间与一阶微分方程/read/1/"
             },
             {
               "id": "P02-C03-S02",
               "chapter_id": "2.3",
               "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/02-平衡位置与靠近速度.ipynb",
-              "title": "平衡位置与靠近速度",
+              "title": "平衡与恢复时间尺度",
               "outcome": "保持平衡总量不变，比较偏离的衰减速度；从零起点求达到目标比例的时间。",
               "number": "2.3.2",
               "visualization": "web/time-evolution/index.html",
+              "reading": "lessons/02-系统随时间演化/03-连续时间与一阶微分方程/02-平衡位置与靠近速度.md",
               "questions": [
                 {
                   "id": "p02-timescale",
                   "slug": "p02-timescale",
                   "title": "同时改变两个速率",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-03-连续时间与一阶微分方程/read/2/#deviation-time-constant",
+                  "concept_title": "偏离比例与特征时间",
+                  "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-timescale"
                 },
                 {
                   "id": "p02-arrival",
                   "slug": "p02-arrival",
                   "title": "到达指定平衡比例要多久",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-03-连续时间与一阶微分方程/read/2/#fraction-arrival-time",
+                  "concept_title": "指定比例的首次到达时间",
+                  "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-arrival"
                 },
                 {
                   "id": "p02-time-constant",
                   "slug": "p02-time-constant",
                   "title": "经过一个特征时间",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-03-连续时间与一阶微分方程/read/2/#deviation-time-constant",
+                  "concept_title": "偏离比例与特征时间",
+                  "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-time-constant"
                 },
                 {
                   "id": "p02-solution-check",
                   "slug": "p02-solution-check",
                   "title": "核验候选解",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-03-连续时间与一阶微分方程/read/2/#timescale-solution-check",
+                  "concept_title": "时间尺度与解的核对",
+                  "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-solution-check"
                 }
               ],
               "practice_url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-timescale",
               "notebook_url": "/notebook/?id=P02-C03-S02",
-              "url": "/notebook/?id=P02-C03-S02"
+              "reading_url": "/chapters/02-03-连续时间与一阶微分方程/read/2/",
+              "concepts": [
+                {
+                  "id": "equilibrium-and-approach-speed",
+                  "title": "平衡位置与靠近速度",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C03-S02:equilibrium-and-approach-speed",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/2/#equilibrium-and-approach-speed"
+                },
+                {
+                  "id": "deviation-time-constant",
+                  "title": "偏离比例与特征时间",
+                  "question_ids": [
+                    "p02-timescale",
+                    "p02-time-constant"
+                  ],
+                  "explore": true,
+                  "key": "P02-C03-S02:deviation-time-constant",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/2/#deviation-time-constant",
+                  "explore_url": "/chapters/02-03-连续时间与一阶微分方程/explore/?concept=P02-C03-S02%3Adeviation-time-constant"
+                },
+                {
+                  "id": "deviation-half-time",
+                  "title": "偏离半衰时间与无输入半衰期",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C03-S02:deviation-half-time",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/2/#deviation-half-time"
+                },
+                {
+                  "id": "fraction-arrival-time",
+                  "title": "指定比例的首次到达时间",
+                  "question_ids": [
+                    "p02-arrival"
+                  ],
+                  "explore": false,
+                  "key": "P02-C03-S02:fraction-arrival-time",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/2/#fraction-arrival-time"
+                },
+                {
+                  "id": "timescale-solution-check",
+                  "title": "时间尺度与解的核对",
+                  "question_ids": [
+                    "p02-solution-check"
+                  ],
+                  "explore": false,
+                  "key": "P02-C03-S02:timescale-solution-check",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/2/#timescale-solution-check"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C03-S02:references",
+                  "url": "/chapters/02-03-连续时间与一阶微分方程/read/2/#references"
+                }
+              ],
+              "url": "/chapters/02-03-连续时间与一阶微分方程/read/2/"
             }
           ],
           "visualization": "web/time-evolution/index.html"
         },
         {
           "id": "2.4",
-          "title": "数值模拟、误差与迁移",
+          "title": "数值误差、稳定性与分段模拟",
           "url": "/chapters/02-04-数值模拟、误差与迁移/",
           "goals": "连接逐步误差与全程误差；推导 1−kh 的偏差传播；区分渐近稳定与非负性，正确处理输入跳变。",
           "prerequisites": "2.3；递推、解析解、有限求和与对数。先从指数的二阶展开与一步手算建立局部误差，再说明全局误差、观测收敛阶和稳定性条件。",
@@ -1389,133 +1884,364 @@
               "id": "P02-C04-S01",
               "chapter_id": "2.4",
               "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb",
-              "title": "误差与网格细化",
+              "title": "欧拉误差与网格收敛",
               "outcome": "从一步近似解释全程误差，在同一初值问题上缩短步长并计算误差缩小的比例。",
               "number": "2.4.1",
               "visualization": "web/time-evolution/index.html",
+              "reading": "lessons/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.md",
               "questions": [
                 {
                   "id": "p02-errors",
                   "slug": "p02-errors",
                   "title": "把误差变成一张可比较的表",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#reference-grid-error",
+                  "concept_title": "解析参考与同刻误差",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-errors"
                 },
                 {
                   "id": "p02-orders",
                   "slug": "p02-orders",
                   "title": "从误差缩小比例估计阶数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#observed-convergence-order",
+                  "concept_title": "网格细化与观测收敛阶",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-orders"
                 },
                 {
                   "id": "p02-truncation",
                   "slug": "p02-truncation",
                   "title": "一步误差与全程误差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#global-first-order-error",
+                  "concept_title": "误差传播与全程一阶收敛",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-truncation"
                 },
                 {
                   "id": "p02-fair-refinement",
                   "slug": "p02-fair-refinement",
                   "title": "比较两个时间网格",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#reference-grid-error",
+                  "concept_title": "解析参考与同刻误差",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-fair-refinement"
                 },
                 {
                   "id": "p02-zero-error",
                   "slug": "p02-zero-error",
                   "title": "解释零误差实验",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#observed-convergence-order",
+                  "concept_title": "网格细化与观测收敛阶",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-zero-error"
                 }
               ],
               "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-errors",
               "notebook_url": "/notebook/?id=P02-C04-S01",
-              "url": "/notebook/?id=P02-C04-S01"
+              "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/1/",
+              "concepts": [
+                {
+                  "id": "reference-grid-error",
+                  "title": "解析参考与同刻误差",
+                  "question_ids": [
+                    "p02-errors",
+                    "p02-fair-refinement"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S01:reference-grid-error",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#reference-grid-error"
+                },
+                {
+                  "id": "second-order-expansion",
+                  "title": "二阶展开与曲线弯曲",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C04-S01:second-order-expansion",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#second-order-expansion"
+                },
+                {
+                  "id": "local-step-error",
+                  "title": "恒定输入模型的一步误差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C04-S01:local-step-error",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#local-step-error"
+                },
+                {
+                  "id": "global-first-order-error",
+                  "title": "误差传播与全程一阶收敛",
+                  "question_ids": [
+                    "p02-truncation"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S01:global-first-order-error",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#global-first-order-error"
+                },
+                {
+                  "id": "observed-convergence-order",
+                  "title": "网格细化与观测收敛阶",
+                  "question_ids": [
+                    "p02-orders",
+                    "p02-zero-error"
+                  ],
+                  "explore": true,
+                  "key": "P02-C04-S01:observed-convergence-order",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#observed-convergence-order",
+                  "explore_url": "/chapters/02-04-数值模拟、误差与迁移/explore/?concept=P02-C04-S01%3Aobserved-convergence-order"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C04-S01:references",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/1/#references"
+                }
+              ],
+              "url": "/chapters/02-04-数值模拟、误差与迁移/read/1/"
             },
             {
               "id": "P02-C04-S02",
               "chapter_id": "2.4",
               "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.ipynb",
-              "title": "稳定性与非负性不是一回事",
+              "title": "数值稳定性与非负性",
               "outcome": "用每步偏差乘数判断衰减与振荡，另行检查总量非负条件和实际误差。",
               "number": "2.4.2",
               "visualization": "web/time-evolution/index.html",
+              "reading": "lessons/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.md",
               "questions": [
                 {
                   "id": "p02-step-properties",
                   "slug": "p02-step-properties",
                   "title": "分别检查稳定与非负条件",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#nonnegative-step-condition",
+                  "concept_title": "非负性的步长条件",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-step-properties"
                 },
                 {
                   "id": "p02-first-decay",
                   "slug": "p02-first-decay",
                   "title": "负值出现在第一步",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#large-step-negative-amount",
+                  "concept_title": "过大步长与负总量",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-first-decay"
                 },
                 {
                   "id": "p02-stable-not-positive",
                   "slug": "p02-stable-not-positive",
                   "title": "解释放大因子",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#amplification-asymptotic-stability",
+                  "concept_title": "偏差传播与数值渐近稳定",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-stable-not-positive"
                 },
                 {
                   "id": "p02-stability-boundary",
                   "slug": "p02-stability-boundary",
                   "title": "计算边界参数的轨迹",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#step-boundaries-comparison",
+                  "concept_title": "边界步长与三种判断",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-stability-boundary"
                 },
                 {
                   "id": "p02-do-not-clip",
                   "slug": "p02-do-not-clip",
                   "title": "调查负值来源",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#negative-value-diagnosis",
+                  "concept_title": "负值的定位与步长调整",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-do-not-clip"
                 }
               ],
               "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-step-properties",
               "notebook_url": "/notebook/?id=P02-C04-S02",
-              "url": "/notebook/?id=P02-C04-S02"
+              "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/2/",
+              "concepts": [
+                {
+                  "id": "large-step-negative-amount",
+                  "title": "过大步长与负总量",
+                  "question_ids": [
+                    "p02-first-decay"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S02:large-step-negative-amount",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#large-step-negative-amount"
+                },
+                {
+                  "id": "amplification-asymptotic-stability",
+                  "title": "偏差传播与数值渐近稳定",
+                  "question_ids": [
+                    "p02-stable-not-positive"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S02:amplification-asymptotic-stability",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#amplification-asymptotic-stability"
+                },
+                {
+                  "id": "nonnegative-step-condition",
+                  "title": "非负性的步长条件",
+                  "question_ids": [
+                    "p02-step-properties"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S02:nonnegative-step-condition",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#nonnegative-step-condition"
+                },
+                {
+                  "id": "step-boundaries-comparison",
+                  "title": "边界步长与三种判断",
+                  "question_ids": [
+                    "p02-stability-boundary"
+                  ],
+                  "explore": true,
+                  "key": "P02-C04-S02:step-boundaries-comparison",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#step-boundaries-comparison",
+                  "explore_url": "/chapters/02-04-数值模拟、误差与迁移/explore/?concept=P02-C04-S02%3Astep-boundaries-comparison"
+                },
+                {
+                  "id": "negative-value-diagnosis",
+                  "title": "负值的定位与步长调整",
+                  "question_ids": [
+                    "p02-do-not-clip"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S02:negative-value-diagnosis",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#negative-value-diagnosis"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C04-S02:references",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/2/#references"
+                }
+              ],
+              "url": "/chapters/02-04-数值模拟、误差与迁移/read/2/"
             },
             {
               "id": "P02-C04-S03",
               "chapter_id": "2.4",
               "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.ipynb",
-              "title": "在输入跳变处分段计算",
+              "title": "输入跳变与分段模拟",
               "outcome": "让计算停在流入速率改变的时刻，用实际时长分别接续欧拉结果与解析参考。",
               "number": "2.4.3",
               "visualization": "web/time-evolution/index.html",
+              "reading": "lessons/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.md",
               "questions": [
                 {
                   "id": "p02-aligned-grid",
                   "slug": "p02-aligned-grid",
                   "title": "让网格停在输入跳变点",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#aligned-grid-actual-step",
+                  "concept_title": "分段时刻、时间网格与实际步长",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-aligned-grid"
                 },
                 {
                   "id": "p02-piecewise",
                   "slug": "p02-piecewise",
                   "title": "同时保留数值轨迹与分段参考",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#piecewise-reference-trajectory",
+                  "concept_title": "分段解析参考与数值轨迹",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-piecewise"
                 },
                 {
                   "id": "p02-jump-side",
                   "slug": "p02-jump-side",
                   "title": "跳变点前后用哪个输入",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#input-jump-cumulative-amount",
+                  "concept_title": "输入跳变与累计流入",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-jump-side"
                 },
                 {
                   "id": "p02-continuity",
                   "slug": "p02-continuity",
                   "title": "传播什么到下一段",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#state-continuity-rate-jump",
+                  "concept_title": "总量连续与变化率跳变",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-continuity"
                 },
                 {
                   "id": "p02-tolerance",
                   "slug": "p02-tolerance",
                   "title": "区分实现误差与近似误差",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#zero-clearance-and-error-checks",
+                  "concept_title": "零清除核算与两类误差",
+                  "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-tolerance"
                 }
               ],
               "practice_url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-aligned-grid",
               "notebook_url": "/notebook/?id=P02-C04-S03",
-              "url": "/notebook/?id=P02-C04-S03"
+              "reading_url": "/chapters/02-04-数值模拟、误差与迁移/read/3/",
+              "concepts": [
+                {
+                  "id": "input-jump-cumulative-amount",
+                  "title": "输入跳变与累计流入",
+                  "question_ids": [
+                    "p02-jump-side"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S03:input-jump-cumulative-amount",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#input-jump-cumulative-amount"
+                },
+                {
+                  "id": "aligned-grid-actual-step",
+                  "title": "分段时刻、时间网格与实际步长",
+                  "question_ids": [
+                    "p02-aligned-grid"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S03:aligned-grid-actual-step",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#aligned-grid-actual-step"
+                },
+                {
+                  "id": "state-continuity-rate-jump",
+                  "title": "总量连续与变化率跳变",
+                  "question_ids": [
+                    "p02-continuity"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S03:state-continuity-rate-jump",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#state-continuity-rate-jump"
+                },
+                {
+                  "id": "piecewise-reference-trajectory",
+                  "title": "分段解析参考与数值轨迹",
+                  "question_ids": [
+                    "p02-piecewise"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S03:piecewise-reference-trajectory",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#piecewise-reference-trajectory"
+                },
+                {
+                  "id": "zero-clearance-and-error-checks",
+                  "title": "零清除核算与两类误差",
+                  "question_ids": [
+                    "p02-tolerance"
+                  ],
+                  "explore": false,
+                  "key": "P02-C04-S03:zero-clearance-and-error-checks",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#zero-clearance-and-error-checks"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P02-C04-S03:references",
+                  "url": "/chapters/02-04-数值模拟、误差与迁移/read/3/#references"
+                }
+              ],
+              "url": "/chapters/02-04-数值模拟、误差与迁移/read/3/"
             }
           ],
           "visualization": "web/time-evolution/index.html"
@@ -1524,7 +2250,7 @@
       "assessment": {
         "id": "2.summary",
         "assessment": true,
-        "title": "等总量输入的不同过程",
+        "title": "分段输入的峰值与过程约束",
         "url": "/parts/02-系统随时间演化/综合练习/",
         "goals": "保持总流入量相同，比较不同时间安排造成的峰值与终值差异，并核对累计收支和数值误差。",
         "prerequisites": "本篇四章的收支更新、连续解与分段计算。",
@@ -1539,7 +2265,7 @@
             "id": "P02-SUMMARY",
             "chapter_id": "2.summary",
             "path": "notebooks/02-系统随时间演化/05-篇末综合/01-等总量输入的不同过程.ipynb",
-            "title": "等总量输入的不同过程",
+            "title": "分段输入的峰值与过程约束",
             "outcome": "比较等总量输入的时间安排，核对累计收支、峰值、终值和误差，再筛选符合上限的方案。",
             "number": "篇末综合",
             "visualization": null,
@@ -1553,59 +2279,140 @@
                 "加入速率与总量上限，重新筛选并解释方案"
               ]
             },
+            "reading": "lessons/02-系统随时间演化/05-篇末综合/01-等总量输入的不同过程.md",
             "questions": [
               {
                 "id": "p02-cap-rate-balance",
                 "slug": "p02-cap-rate-balance",
                 "title": "先把速率写进更新式",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/02-系统随时间演化/综合练习/read/1/#piecewise-exact-final",
+                "concept_title": "分段解析传播与终点总量",
+                "practice_url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-cap-rate-balance"
               },
               {
                 "id": "p02-equal-area-not-path",
                 "slug": "p02-equal-area-not-path",
                 "title": "等总量为何不等轨迹",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/02-系统随时间演化/综合练习/read/1/#piecewise-exact-final",
+                "concept_title": "分段解析传播与终点总量",
+                "practice_url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-equal-area-not-path"
               },
               {
                 "id": "p02-input-totals",
                 "slug": "p02-input-totals",
                 "title": "先确认比较方案的总量相同",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/02-系统随时间演化/综合练习/read/1/#input-schedules-total",
+                "concept_title": "输入速率、时段与累计输入",
+                "practice_url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-input-totals"
               },
               {
                 "id": "p02-cap-integrated-balance",
                 "slug": "p02-cap-integrated-balance",
                 "title": "用累计量核对连续收支",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/02-系统随时间演化/综合练习/read/1/#integrated-removal-balance",
+                "concept_title": "累计清除与连续收支",
+                "practice_url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-cap-integrated-balance"
               },
               {
                 "id": "p02-input-metrics",
                 "slug": "p02-input-metrics",
                 "title": "解释方案差异前先核验误差",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/02-系统随时间演化/综合练习/read/1/#reference-refinement-checks",
+                "concept_title": "分段参考、步长细化与结果核对",
+                "practice_url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-input-metrics"
               },
               {
                 "id": "p02-migration-evidence",
                 "slug": "p02-migration-evidence",
                 "title": "核验分段输入计算",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/02-系统随时间演化/综合练习/read/1/#reference-refinement-checks",
+                "concept_title": "分段参考、步长细化与结果核对",
+                "practice_url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-migration-evidence"
               },
               {
                 "id": "p02-cap-feasible-plans",
                 "slug": "p02-cap-feasible-plans",
                 "title": "迁移到带过程上限的方案筛选",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/02-系统随时间演化/综合练习/read/1/#peak-process-constraints",
+                "concept_title": "全程峰值与方案约束",
+                "practice_url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-cap-feasible-plans"
               },
               {
                 "id": "p02-model-scope",
                 "slug": "p02-model-scope",
                 "title": "改变约束后重新解释方案",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/02-系统随时间演化/综合练习/read/1/#peak-process-constraints",
+                "concept_title": "全程峰值与方案约束",
+                "practice_url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-model-scope"
               }
             ],
             "practice_url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-cap-rate-balance",
             "notebook_url": "/notebook/?id=P02-SUMMARY",
-            "url": "/notebook/?id=P02-SUMMARY"
+            "reading_url": "/parts/02-系统随时间演化/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "input-schedules-total",
+                "title": "输入速率、时段与累计输入",
+                "question_ids": [
+                  "p02-input-totals"
+                ],
+                "explore": false,
+                "key": "P02-SUMMARY:input-schedules-total",
+                "url": "/parts/02-系统随时间演化/综合练习/read/1/#input-schedules-total"
+              },
+              {
+                "id": "piecewise-exact-final",
+                "title": "分段解析传播与终点总量",
+                "question_ids": [
+                  "p02-cap-rate-balance",
+                  "p02-equal-area-not-path"
+                ],
+                "explore": false,
+                "key": "P02-SUMMARY:piecewise-exact-final",
+                "url": "/parts/02-系统随时间演化/综合练习/read/1/#piecewise-exact-final"
+              },
+              {
+                "id": "integrated-removal-balance",
+                "title": "累计清除与连续收支",
+                "question_ids": [
+                  "p02-cap-integrated-balance"
+                ],
+                "explore": false,
+                "key": "P02-SUMMARY:integrated-removal-balance",
+                "url": "/parts/02-系统随时间演化/综合练习/read/1/#integrated-removal-balance"
+              },
+              {
+                "id": "peak-process-constraints",
+                "title": "全程峰值与方案约束",
+                "question_ids": [
+                  "p02-cap-feasible-plans",
+                  "p02-model-scope"
+                ],
+                "explore": false,
+                "key": "P02-SUMMARY:peak-process-constraints",
+                "url": "/parts/02-系统随时间演化/综合练习/read/1/#peak-process-constraints"
+              },
+              {
+                "id": "reference-refinement-checks",
+                "title": "分段参考、步长细化与结果核对",
+                "question_ids": [
+                  "p02-input-metrics",
+                  "p02-migration-evidence"
+                ],
+                "explore": false,
+                "key": "P02-SUMMARY:reference-refinement-checks",
+                "url": "/parts/02-系统随时间演化/综合练习/read/1/#reference-refinement-checks"
+              }
+            ],
+            "url": "/parts/02-系统随时间演化/综合练习/read/1/"
           }
         ],
         "available": true,

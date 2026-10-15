@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.4.2 数值稳定性与非负性 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P02-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P02-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-step-properties">本节练习 · 5 题</a><a class="button" href="/chapters/02-04-数值模拟、误差与迁移/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>2.4.2 数值稳定性与非负性</h1>
+<p>学完本节，你应能用偏差放大因子判断欧拉更新是否靠近平衡，推导总量的非负条件，并将这两项性质与计算精度分别比较。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/02-04-%E6%95%B0%E5%80%BC%E6%A8%A1%E6%8B%9F%E3%80%81%E8%AF%AF%E5%B7%AE%E4%B8%8E%E8%BF%81%E7%A7%BB/read/1/">欧拉误差与网格收敛</a>；等比递推、绝对值和平衡偏移。</p>
+<h2 id="large-step-negative-amount">过大步长与负总量</h2>
+<p>起点有 10 U 物质，此后没有流入，消除系数为 $0.75/\mathrm T$。连续解是 $A(t)=10\,\mathrm U\,e^{-(0.75/\mathrm T)t}$：总量逐渐减少，每个有限时刻都为正。</p>
+<p>如果欧拉法每步走 2 T，第一步按起点计算的清除速率为 $0.75\times10=7.5$ U/T，把这个速率保持 2 T，就移除了 15 U。于是</p>
+<p>$$A_1=10-2\times7.5=-5\ \mathrm U.$$</p>
+<p>一步移除的量超过了原有总量。原因就在近似中：真实的清除速率随总量减少而降低，欧拉一步却始终使用起点的大速率。继续按同一公式计算，得到</p>
+<table>
+<thead>
+<tr>
+  <th>更新次数</th>
+  <th style="text-align:right">0</th>
+  <th style="text-align:right">1</th>
+  <th style="text-align:right">2</th>
+  <th style="text-align:right">3</th>
+  <th style="text-align:right">4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>欧拉总量 / U</td>
+  <td style="text-align:right">10</td>
+  <td style="text-align:right">-5</td>
+  <td style="text-align:right">2.5</td>
+  <td style="text-align:right">-1.25</td>
+  <td style="text-align:right">0.625</td>
+</tr>
+</tbody>
+</table>
+<p>幅度越来越小，总量却反复变成负数。“靠近零”和“能表示非负总量”在这条数列上给出了不同判断。要解释这件事，先看每一步怎样改变对平衡的偏差。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-first-decay">负值出现在第一步</a></li></ul></nav>
+
+<h2 id="amplification-asymptotic-stability">偏差传播与数值渐近稳定</h2>
+<p>对恒定输入模型，欧拉更新整理为</p>
+<p>$$A_{n+1}=(1-kh)A_n+hu.$$</p>
+<p>当 $k&gt;0$，平衡为 $A^*=u/k$。令 $e_n=A_n-A^*$，表示第 $n$ 步偏离平衡的量。这里 $e_n&lt;0$ 表示总量低于平衡，仍可能有 $A_n\ge0$；只有 $A_n&lt;0$ 才表示负总量。</p>
+<p>代入 $A_n=e_n+A^*$，利用 $u=kA^*$，得到</p>
+<p>$$\begin{aligned}
+A_{n+1}&amp;=(1-kh)e_n+(1-kh)A^*+hu\\
+&amp;=(1-kh)e_n+A^*,\\
+e_{n+1}&amp;=(1-kh)e_n.
+\end{aligned}$$</p>
+<p>把无量纲数 $q=1-kh$ 称为<strong>放大因子（amplification factor）</strong>：它表示每步之后偏差变为原来的几倍。连续更新给出 $e_n=q^ne_0$。</p>
+<p>本节讨论的<strong>数值渐近稳定性（numerical asymptotic stability）</strong>，是指数值更新的平衡附近偏差在不断更新后趋于零。当前递推是线性的，只要</p>
+<p>$$|q|&lt;1,$$</p>
+<p>任意初始偏差的幅度都会逐步缩小到零，而且起初很小的偏差不会在途中增大。将 $q=1-kh$ 代入：</p>
+<p>$$-1&lt;1-kh&lt;1\quad\Longleftrightarrow\quad
+\boxed{0&lt;kh&lt;2.}$$</p>
+<p>$q$ 的符号决定靠近方式：$0&lt;q&lt;1$ 时始终留在平衡同一侧；$q=0$ 时一步到达；$-1&lt;q&lt;0$ 时交替出现在平衡两侧。开头 $kh=1.5$，所以 $q=-0.5$，正是交替衰减。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-stable-not-positive">解释放大因子</a></li></ul></nav>
+
+<h2 id="nonnegative-step-condition">非负性的步长条件</h2>
+<p><strong>非负性保持（nonnegativity preservation）</strong>是指：从任意非负总量出发，使用非负流入后，计算得到的总量仍然非负。它直接检查 $A_n$ 的符号，而不是 $e_n$ 的幅度。</p>
+<p>重新看更新式</p>
+<p>$$A_{n+1}=(1-kh)A_n+hu.$$</p>
+<p>取 $k\ge0$、$h&gt;0$。若 $0\le kh\le1$，两个系数 $1-kh$ 与 $h$ 都非负。对任何 $A_n\ge0$、$u\ge0$，右边必定非负。</p>
+<p>反过来，只要 $kh&gt;1$，选取 $u=0$、$A_n&gt;0$，就会得到负的下一步。因此，对所有非负起点和非负流入都保持非负的充要条件是</p>
+<p>$$\boxed{0\le kh\le1.}$$</p>
+<p>有输入时，正项 $hu$ 可能抵消负的 $(1-kh)A_n$，让某一条轨迹碰巧没有负值。“这个例子没出现负数”与“所有非负起点都得到保证”由此区分开来。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-step-properties">分别检查稳定与非负条件</a></li></ul></nav>
+
+<h2 id="step-boundaries-comparison">边界步长与三种判断</h2>
+<p>把两个条件并排整理，可以看出 $kh=0,1,2$ 各自的位置：</p>
+<table>
+<thead>
+<tr>
+  <th>$kh$</th>
+  <th>$q=1-kh$</th>
+  <th>偏差传播</th>
+  <th>对所有非负起点和输入保持非负</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>1</td>
+  <td>起点差异保持不变</td>
+  <td>是</td>
+</tr>
+<tr>
+  <td>$0&lt;kh&lt;1$</td>
+  <td>$0&lt;q&lt;1$</td>
+  <td>同侧衰减</td>
+  <td>是</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>0</td>
+  <td>一步到达平衡</td>
+  <td>是</td>
+</tr>
+<tr>
+  <td>$1&lt;kh&lt;2$</td>
+  <td>$-1&lt;q&lt;0$</td>
+  <td>交替衰减</td>
+  <td>否</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>-1</td>
+  <td>交替、幅度不变</td>
+  <td>否</td>
+</tr>
+<tr>
+  <td>$kh&gt;2$</td>
+  <td>$q&lt;-1$</td>
+  <td>非零偏差交替放大</td>
+  <td>否</td>
+</tr>
+</tbody>
+</table>
+<p>在 $kh=2$ 的无输入例子中，10 U 会变成 $-10,10,-10,\ldots$ U。幅度不增长，却也不趋于零，所以不具有渐近稳定性。$kh&gt;2$ 时，任何非零初始偏差都会放大；恰好在平衡上的轨迹则保持不变。</p>
+<p>$kh=0$ 对当前 $h&gt;0$ 意味着 $k=0$。若 $u=0$，每个总量都是固定值；若 $u&gt;0$，总量线性增加，没有有限平衡。两条从不同起点出发的轨迹间距始终不变，所以这里也没有偏差衰减。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-stability-boundary">计算边界参数的轨迹</a></li></ul></nav>
+
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P02-C04-S02-416ebd2a-0.png" alt="数值稳定性与非负性：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中固定 $A_0=10$ U、$u=0$、$k=0.75/\mathrm T$：$h=1$ T 对应 $q=0.25$，保持正值并衰减；$h=2$ T 对应 $q=-0.5$，交替衰减；$h=3$ T 对应 $q=-1.25$，交替放大。第二条曲线准确显示了“渐近稳定但不保持非负”的区间。</p>
+<p>精度还要另算。例如 $h=1$ T 时第一步为 2.5 U，虽然稳定且非负，连续解在同一时刻却为 $10e^{-0.75}\approx4.724$ U，仍差约 2.224 U。稳定性判断误差会不会不断放大，非负性判断总量符号，精度则衡量与连续解相差多少。</p>
+<p class="concept-explore"><a href="/chapters/02-04-数值模拟、误差与迁移/explore/?concept=P02-C04-S02%3Astep-boundaries-comparison">可视化与探索：边界步长与三种判断 →</a></p>
+
+<h2 id="negative-value-diagnosis">负值的定位与步长调整</h2>
+<p>出现负值后，先找到第一步变负的位置，核对当时总量、实际时长与清除量。开头的差异可以一行定位：2 T 内按起点速率移除 15 U，超过了起点的 10 U。减小步长后，清除速率会更早随新总量重新计算。</p>
+<p>如果把 $-5$ U 改成零，却仍在收支中记“移除了 15 U”，初量、末量与清除量就对不上了；如果连清除量也一起改，计算的已是另一条更新规则。保留原结果，换用更小步长，再与解析解比较，可以同时看清负值的来源和精度是否改善。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-do-not-clip">调查负值来源</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html">SciPy：solve_ivp</a>介绍常用常微分方程数值求解方法。不同方法的稳定范围不同，本节的因子 $1-kh$ 来自明确给出的显式欧拉更新。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/02-04-数值模拟、误差与迁移/read/1/">← 2.4.1 欧拉误差与网格收敛</a><a href="/chapters/02-04-数值模拟、误差与迁移/read/3/">2.4.3 输入跳变与分段模拟 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

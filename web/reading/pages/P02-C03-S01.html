@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.3.1 一阶微分方程与初值问题 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P02-C03-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P02-C03-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-ivp">本节练习 · 4 题</a><a class="button" href="/chapters/02-03-连续时间与一阶微分方程/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>2.3.1 一阶微分方程与初值问题</h1>
+<p>学完本节，你应能从短时收支写出一阶微分方程，利用偏离平衡求得恒定输入解，并逐项检查初值、变化率和零清除情形。</p>
+<p><strong>先修知识</strong>：<a href="/chapters/02-02-%E5%8F%98%E5%8C%96%E7%8E%87%E4%B8%8E%E7%B4%AF%E7%A7%AF%EF%BC%9A%E5%BE%AE%E7%A7%AF%E5%88%86%E5%85%A5%E5%8F%A3/read/3/">指数、对数与链式法则</a>；导数、定积分与分段收支。</p>
+<h2 id="continuous-balance-rate">短时收支与连续变化率</h2>
+<p>物质不断进入一个充分混合的池，也不断被清除。我们用总量 $A(t)$ 描述时刻 $t$ 的状态，单位为 U；恒定流入速率 $u$ 的单位为 U/T，一阶消除速率常数 $k$ 的单位为 $1/\mathrm{T}$。当前清除速率为 $kA(t)$：总量越多，每单位时间移除的量越多。</p>
+<p>第 2.1 章按每段起点的总量计算整段清除，更新为</p>
+<p>$$A_{n+1}=A_n+h(u-kA_n).$$</p>
+<p>先取 $A_0=0$ U、$u=1$ U/T、$k=0.5/\mathrm{T}$，每步走 $h=1$ T。第一步清除速率按零计算，得到 $A_1=1$ U；第二步清除速率按 $0.5$ U/T 计算，得到 $A_2=1.5$ U。</p>
+<p>可是第一段内物质一边进入，清除也已一边开始。把整段清除都算成零，就多留下了一些物质。减小步长可以更早更新清除速率：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">步长 / T</th>
+  <th style="text-align:right">走到 2 T 所需步数</th>
+  <th style="text-align:right">算得的总量 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1.500000</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">1.367188</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">20</td>
+  <td style="text-align:right">1.283028</td>
+</tr>
+</tbody>
+</table>
+<p>三个终点逐渐靠近，但它们对应的都是按段首速率更新的近似。要描述物质在每一个时刻怎样变化，可以将收支写成积分关系：</p>
+<p>$$A(t+h)-A(t)=\int_t^{t+h}[u-kA(s)]\,ds.$$</p>
+<p>右边把这一小段的净流入累积起来，$s$ 是积分中经过的时刻。两边除以 $h$，左边成为平均变化率。当 $h$ 趋于零，且净流率连续时，这个平均变化率趋于当时的瞬时变化率，于是得到</p>
+<p>$$\frac{dA}{dt}=u-kA.$$</p>
+<p>等式两边都是 U/T。这里的清除速率随 $A(t)$ 连续变化；前面的段首更新则把它在每一小段中暂时保持不变。</p>
+<h2 id="ordinary-differential-initial-value">常微分方程与初值问题</h2>
+<p><strong>常微分方程（ordinary differential equation，ODE）</strong>是未知函数与它对单个自变量的导数之间的关系。本例未知的是整条函数 $A(t)$，自变量只有时间；最高出现一阶导数，所以是<strong>一阶常微分方程</strong>。</p>
+<p>方程 $A'=u-kA$ 告诉我们：给定当前总量，曲线此刻的斜率是多少。它还没有指定曲线从哪一个总量开始。把起点一并给出，便得到<strong>初值问题（initial value problem）</strong>：</p>
+<p>$$\boxed{\frac{dA}{dt}=u-kA,\qquad A(0)=A_0.}$$</p>
+<p>$A_0$ 是时刻零的总量。求解这一问题，就是找到一条在各时刻满足方程、并经过点 $(0,A_0)$ 的曲线。初值像轨迹的出发位置，微分方程则给出沿途该怎样继续前进。</p>
+<p>例如同取 $u=1$ U/T、$k=0.5/\mathrm{T}$：从 0 U 出发时斜率为 $1$ U/T，从 4 U 出发时斜率为 $-1$ U/T。规则相同，起点不同，曲线也不同。对这个线性方程，给出一个时刻的总量即可唯一确定相应的演化曲线；绘图间隔决定画在哪里，不能代替初值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-ivp">确定一条演化曲线</a></li></ul></nav>
+
+<h2 id="separable-exponential-decay">分离变量与指数衰减</h2>
+<p>先求没有流入的过程。此时 $u=0$，方程为 $A'=-kA$。取 $A_0&gt;0$，在 $A&gt;0$ 的区间上两边除以 $A$：</p>
+<p>$$\frac{1}{A}\frac{dA}{dt}=-k.$$</p>
+<p>链式法则让左边有了熟悉的形式：它正是 $\ln(A/A_0)$ 对时间的导数。对数中的 $A/A_0$ 是无量纲比例。于是从 0 积分到 $t$：</p>
+<p>$$\begin{aligned}
+\int_0^t\frac{d}{ds}\ln\frac{A(s)}{A_0}\,ds
+&amp;=\int_0^t(-k)\,ds,\\
+\ln\frac{A(t)}{A_0}-\ln1&amp;=-kt.
+\end{aligned}$$</p>
+<p>将与 $A$ 有关的变化整理在一侧、与时间有关的变化整理在另一侧，再积分，这种求解方法叫<strong>分离变量（separation of variables）</strong>。常见的简写 $dA/A=-k\,dt$，表达的也是刚才的链式法则与积分过程。</p>
+<p>两边取指数，就得到</p>
+<p>$$A(t)=A_0e^{-kt}.$$</p>
+<p>例如 $k=0.5/\mathrm{T}$，经过 2 T 后，$kt=1$，剩余总量为 $A_0e^{-1}$。每经过相同的时长，剩余比例相同，而移除的绝对量会随着总量变小。若初量本来是零，直接代入原方程可知 $A(t)=0$；这个情形通过原方程求解，不需要对零取对数。</p>
+<h2 id="equilibrium-shift-solution">平衡偏移与恒定输入解</h2>
+<p>恢复恒定流入，并取 $k&gt;0$。总量保持不变时，导数等于零，因此</p>
+<p>$$u-kA^*=0,\qquad A^*=\frac uk.$$</p>
+<p>$A^*$ 是<strong>平衡总量（equilibrium amount）</strong>：若总量从这个值出发，就会始终停留在此值。平衡时物质仍在进入和离开，二者的速率恰好相等。其单位为 $(\mathrm{U/T})/(1/\mathrm{T})=\mathrm{U}$。</p>
+<p>现在把注意力从总量转向距平衡还差多少。令</p>
+<p>$$x(t)=A(t)-A^*.$$</p>
+<p>$A^*$ 是常数，所以 $x'=A'$。将 $A=x+A^*$ 代入微分方程：</p>
+<p>$$\begin{aligned}
+x'&amp;=u-k(x+A^*)\\
+&amp;=(u-kA^*)-kx\\
+&amp;=-kx.
+\end{aligned}$$</p>
+<p>恒定流入与平衡时的清除抵消了，偏离量又满足指数衰减方程。$x$ 可以为正，也可以为负；当 $x(0)\ne0$ 时，分离变量得到 $\ln|x(t)/x(0)|=-kt$。偏离幅度乘上 $e^{-kt}$，符号与起点相同，因此 $x(t)=x(0)e^{-kt}$。起点就在平衡时则有 $x(t)=0$。合并这些情形，得到</p>
+<p>$$\boxed{A(t)=A^*+(A_0-A^*)e^{-kt}.}$$</p>
+<p>这条用已知函数明确写出的解称为<strong>解析解（analytical solution）</strong>。另一种等价写法是</p>
+<p>$$A(t)=A_0e^{-kt}+\frac uk(1-e^{-kt}).$$</p>
+<p>第一项是初始物质经过清除后留下的量；第二项是这段时间持续流入、同时受到清除后留下的量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-shift-equilibrium">减去平衡为什么有用</a></li></ul></nav>
+
+<h2 id="analytical-solution-check">解析解的逐项检验</h2>
+<p>一条候选曲线要同时经过正确起点，并遵循正确的变化率。先令 $t=0$，由 $e^0=1$ 得到</p>
+<p>$$A(0)=A^*+(A_0-A^*)=A_0.$$</p>
+<p>再对曲线求导。由于 $A^*$ 为常数，链式法则给出</p>
+<p>$$A'(t)=-k(A_0-A^*)e^{-kt}=(u-kA_0)e^{-kt}.$$</p>
+<p>将曲线代入方程右边，也得到</p>
+<p>$$\begin{aligned}
+u-kA(t)&amp;=u-k[A^*+(A_0-A^*)e^{-kt}]\\
+&amp;=(u-kA^*)-k(A_0-A^*)e^{-kt}\\
+&amp;=(u-kA_0)e^{-kt}.
+\end{aligned}$$</p>
+<p>两边相等，所以候选曲线满足方程与初值。回到开头的 $A_0=0$ U、$u=1$ U/T、$k=0.5/\mathrm{T}$，平衡为 2 U，连续解在 2 T 的总量是</p>
+<p>$$A(2\,\mathrm T)=2(1-e^{-1})\,\mathrm U\approx1.264241\,\mathrm U.$$</p>
+<p>它比三个段首近似都小，成为判断这些近似有多大误差的参考。同一个方程还可以从平衡下方、平衡处和上方出发：</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P02-C03-S01-8d54795b-0.png" alt="一阶微分方程与初值问题：实验结果图" loading="lazy"></figure>
+</section>
+<p>从 0 U 出发时流入大于清除，总量上升；从 4 U 出发时清除大于流入，总量下降。两条曲线都靠近 2 U。恰好从 2 U 出发时总量不变。由于指数因子始终为正，偏离的符号保持不变，曲线在靠近平衡时不会越过它。</p>
+<p class="concept-explore"><a href="/chapters/02-03-连续时间与一阶微分方程/explore/?concept=P02-C03-S01%3Aanalytical-solution-check">可视化与探索：解析解的逐项检验 →</a></p>
+
+<h2 id="zero-small-elimination-rate">零消除系数与小数值计算</h2>
+<p>当 $k=0$，直接回到方程 $A'=u$。净流率恒定，累积得</p>
+<p>$$\boxed{A(t)=A_0+ut.}$$</p>
+<p>例如 $A_0=3$ U、$u=2$ U/T，经过 2 T 后为 $3+2\times2=7$ U。含 $u/k$ 的表达式不能直接代入 $k=0$；这个分支应从原方程求得。</p>
+<p>正的 $k$ 很小时，指数解应与直线解接近。将 $z=-kt$ 记为无量纲数，输入项可以重写为</p>
+<p>$$\frac uk(1-e^{-kt})=ut\,\frac{e^z-1}{z}.$$</p>
+<p>上一章的指数导数告诉我们 $(e^z-1)/z\to1$，所以整条解趋于 $A_0+ut$。计算机上，先计算两个很接近的数再作差，会丢失小差值的有效数字。Python 的 <code>math.expm1(z)</code> 直接计算 $e^z-1$；实验使用这个函数求上述比值，在 $z=0$ 时使用极限值 1，也避免先构造很大的 $u/k$。例如 $A_0=2$ U、$u=1$ U/T、$k=10^{-14}/\mathrm{T}$，1 T 后的结果应很接近 3 U。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-zero-clearance">清除系数为零时</a></li><li><a href="/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-exact">恒定输入的连续解</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-i-first-order-differential-equations/">MIT：一阶微分方程</a>介绍分离变量与一阶线性方程；<a href="https://docs.python.org/3/library/math.html#math.expm1">Python：math.expm1</a>说明接近零时如何计算指数小差值。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/02-02-变化率与累积：微积分入口/read/3/">← 2.2.3 指数、自然对数与链式法则</a><a href="/chapters/02-03-连续时间与一阶微分方程/read/2/">2.3.2 平衡与恢复时间尺度 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>
