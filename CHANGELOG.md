@@ -4,9 +4,11 @@
 
 ## [未发布]
 
-网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)、[第 10 篇](docs/validation/part10-web-teaching-20261016.md)、[第 11 篇](docs/validation/part11-web-teaching-20261016.md)、[第 12 篇](docs/validation/part12-web-teaching-20261016.md)、[第 13 篇](docs/validation/part13-web-teaching-20261016.md)、[第 14 篇](docs/validation/part14-web-teaching-20261016.md)。
+网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)、[第 10 篇](docs/validation/part10-web-teaching-20261016.md)、[第 11 篇](docs/validation/part11-web-teaching-20261016.md)、[第 12 篇](docs/validation/part12-web-teaching-20261016.md)、[第 13 篇](docs/validation/part13-web-teaching-20261016.md)、[第 14 篇](docs/validation/part14-web-teaching-20261016.md)、[第 15 篇](docs/validation/part15-web-teaching-20261016.md)。
 
 ### 新增
+
+- 第15篇十一节网页讲授与独立实验，以48道原题连接计算图、动态学习、连续伴随、物理约束与机制修正。
 
 - 第14篇十一节网页讲授与独立实验，以48道原题连接低秩表示、动态传播、观测函数字典、稀疏辨识及结构检查；增加固定Lorenz独立预测与步长对照。
 
@@ -34,6 +36,8 @@
 
 ### 变更
 
+- 第15篇以带单位的输入、链式与递推手算连接定义和实验，五张探索关联实际概念；保留题目与成绩，分别解释程序梯度、连续导数、自由预测和参数信息。
+
 - 第14篇用投影、矩阵与差分手算衔接定义和图形，五张探索连接六处概念；保留原55个核心代码单元、题目及成绩，有限字典图按实际二维状态误差解释。
 
 - 第13篇以条件矩、同步集合、恢复方向和窗口手算连接推导与实验；三张探索关联五处具体概念，原题与成绩保持。
@@ -57,10 +61,12 @@
 - 第 2 篇按网页阅读重写，Notebook 保留核心代码和参数对照；新增手算与定义桥接，分别解释时间尺度、稳定性、非负性与精度，保留题目身份及原学习记录。
 - 导论与第 1 篇的篇章、正文分节改用概念或内容标题；侧栏精简为课节，概念与习题、探索提供精确的双向定位；见[导航核对](docs/validation/concept-navigation-20261015.md)。
 - 导论及第 1 篇按网页阅读重组：补清概念定义，以手算、表格和图替代整段实验代码；见[修订核对](docs/validation/web-reading-revision-20261015.md)。
-- 网页成为主要教学窗口，已迁移 Notebook 专用于动手实验；第 15—17 篇保留原教学内容。
+- 网页成为主要教学窗口，已迁移 Notebook 专用于动手实验；第 16—17 篇保留原教学内容。
 - README 与 ROADMAP 按当前使用方式和未来优先级整理，历史实施记录由本文件与验收文件承接。
 
 ### 修复
+
+- 连续求解的状态与灵敏度、梯度与状态重建图分别显示，补齐各自单位和实际步长刻度；物理约束探索按41个参考位置核对RMSE。
 
 - 正文打开后，侧栏滚动到当前课节并保持正文首屏；补齐Galerkin、Moore–Penrose和Metzler的完整词条识别。
 

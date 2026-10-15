@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>15.1.1 神经元、计算图与响应损失 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P15-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P15-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order">本节练习 · 4 题</a><a class="button" href="/chapters/15-01-神经网络与自动微分/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>15.1.1 神经元、计算图与响应损失</h1>
+<p>上一篇先选定状态、平方项等函数，再估计它们的系数。现在换一种表示：让一个函数的过渡位置、陡峭程度和输出幅度都能随参数改变。我们从一次响应预测入手，把输入怎样进入函数、观测怎样形成损失逐项算清。</p>
+<p>学完本节，应能计算单神经元的响应与损失，说明四个参数的作用，并沿计算图求出它们的偏导数。先修为第8篇的链式法则与梯度，以及指数函数。</p>
+<h2 id="physical-input-and-dimensionless-value">物理输入与无量纲数值</h2>
+<p>实际测量量记为$x_{\rm phys}$，单位为U。取参考量$x_{\rm ref}=1\,\mathrm U$，网络接收</p>
+<p>$$x=\frac{x_{\rm phys}}{x_{\rm ref}}.$$</p>
+<p>实际量为$2\,\mathrm U$时，送入的是无量纲数值2。参考量相当于一把尺子：先说明尺子多长，读数才有确定含义。后面公式中的$x$都指这个比值。</p>
+<p>要预测的响应率以U/T计。例如，一个状态取值可以对应某种变化速率；本节先用函数表示这项对应关系。输入是当前给定量，输出是这个输入处的响应；把响应放入状态方程以后，才会由初态逐步得到时间轨迹。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-01-神经网络与自动微分/practice/?question=p15-static-not-ode">网络表示的对象</a></li></ul></nav>
+
+<h2 id="single-neuron-and-activation-function">单神经元与激活函数</h2>
+<p><strong>前馈神经网络（feedforward neural network）</strong>将带参数的加权、平移与非线性变换按层组合成函数，计算从输入依次流向输出。本例只使用一个非线性单元，再接一个线性输出：</p>
+<p>$$\boxed{z=wx+b,\qquad a=\tanh z,\qquad\hat y=va+c.}$$</p>
+<p>这里的<strong>神经元（neuron）</strong>先形成加权输入$z$，再经<strong>激活函数（activation function）</strong>得到$a$。激活函数是作用在加权输入上的非线性函数；它使组合后的响应可以弯曲，而不只是输入的一条直线。</p>
+<p>沿用第13篇的双曲正切，</p>
+<p>$$\tanh z=\frac{e^z-e^{-z}}{e^z+e^{-z}}.$$</p>
+<p>它随$z$平滑增加，$z=0$时为0，向两端逐渐接近$-1$和1。$x,w,b,z,a$无量纲；$v,c$以U/T计，所以$va+c$也以U/T计，可以与观测$y$比较。</p>
+<p>例如$w=1.2,b=-0.2,v=0.8\,\mathrm U/T,c=0.1\,\mathrm U/T$。输入$x=0$时，$z=-0.2$，因此</p>
+<p>$$\hat y=[0.8\tanh(-0.2)+0.1]\,\mathrm U/T
+\approx-0.05790\,\mathrm U/T.$$</p>
+<p>输入为零时，加权输入还含偏置$b$，输出因而未必等于$c$。计算题也可在$x=b=0$时核对：此时激活为零，响应就等于输出偏置。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-01-神经网络与自动微分/practice/?question=p15-network-value">计算一神经元响应</a></li></ul></nav>
+
+<h2 id="computational-graph-and-forward-dependencies">计算图与前向依赖</h2>
+<p><strong>计算图（computational graph）</strong>用节点表示变量或运算，用有向连线表示一个结果使用了哪些上游值。<strong>前向传播（forward propagation）</strong>就是沿这些依赖，从已知输入与参数算到预测和损失。</p>
+<p>本例的主链为</p>
+<p>$$x\ \longrightarrow\ z\ \longrightarrow\ a\ \longrightarrow\ \hat y,
+\qquad z=wx+b,\quad\hat y=va+c.$$</p>
+<p>$z$还读取$w,b$，$\hat y$还读取$v,c$。因此要先算$z$再算$a$，先有$a$才能得到$\hat y$。这个顺序由公式之间的依赖确定。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order">计算图的前向顺序</a></li></ul></nav>
+
+<h2 id="parameters-and-response-shape">参数怎样改变函数形状</h2>
+<p>先固定$b=0,v=1\,\mathrm U/T,c=0$，只比较$w=0.5$和2。此时</p>
+<p>$$\hat y=v\tanh(wx).$$</p>
+<p>两条曲线都过原点。由$(\tanh z)'=1-\tanh^2z$，在$x=0$处有$d\hat y/dx=vw$；因此较大正权重的过渡更陡，也更快接近两端的饱和值。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P15-C01-S01-17a63aa6-0.png" alt="神经元、计算图与响应损失：实验结果图" loading="lazy"></figure>
+</section>
+<p>蓝线的$w=0.5$在整个显示区间变化较缓，玫红线的$w=2$在原点附近快速变化、两端更平。其余参数也能从公式读出作用：$b$改变输入进入过渡区的位置，$v$缩放并可翻转输出，$c$将整条响应上下平移。$w\ne0$时，过渡中心满足$wx+b=0$，即$x=-b/w$。</p>
+<h2 id="half-squared-loss-and-parameter-derivatives">半平方损失与四个参数导数</h2>
+<p>给定观测$y$，令误差$e=\hat y-y$。单次预测采用<strong>半平方损失</strong></p>
+<p>$$L=\frac12(\hat y-y)^2=\frac12e^2.$$</p>
+<p>它以$(\mathrm U/T)^2$计。系数$1/2$使$\partial L/\partial\hat y=e$，从损失开始求导时就先得到预测误差。</p>
+<p>继续沿计算图向前一层求导，</p>
+<p>$$\frac{\partial L}{\partial a}=ev,\qquad
+\frac{\partial L}{\partial z}=ev(1-a^2).$$</p>
+<p>$z=wx+b$对$w,b$的导数分别为$x,1$；输出层对$v,c$的导数分别为$a,1$。四项因而为</p>
+<p>$$\boxed{\begin{aligned}
+\partial_wL&amp;=ev(1-a^2)x,&amp;\partial_bL&amp;=ev(1-a^2),\\
+\partial_vL&amp;=ea,&amp;\partial_cL&amp;=e.
+\end{aligned}}$$</p>
+<p>求每项偏导时，输入、目标和其余参数固定。对$w,b$的导数单位为$(\mathrm U/T)^2$，对$v,c$的导数为U/T；返回列表按$w,b,v,c$排序，每项以对应参数的参考单位取数值。</p>
+<p>用一个能手算的点：$x=2,w=0.5,b=-1,v=3\,\mathrm U/T,c=0,y=1\,\mathrm U/T$。前向依次得到</p>
+<p>$$z=0,\quad a=0,\quad\hat y=0,\quad e=-1\,\mathrm U/T,
+\quad L=0.5\,(\mathrm U/T)^2.$$</p>
+<p>反向先有$\partial_zL=-3\,(\mathrm U/T)^2$，再乘输入2得到$\partial_wL=-6\,(\mathrm U/T)^2$。四项导数的数值为$[-6,-3,0,-1]$。激活值$a=0$使$\partial_vL=0$，但tanh在零点的斜率为1，所以另外三项仍可非零。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-01-神经网络与自动微分/practice/?question=p15-network-loss-gradient">输出、损失与四个梯度</a></li></ul></nav>
+
+<p>实验还在另一点$x=1,y=0.5\,\mathrm U/T$，使用$w=1.2,b=-0.2,v=0.8\,\mathrm U/T,c=0.1\,\mathrm U/T$。这时预测约为$0.709275\,\mathrm U/T$，损失约为$0.021898\,(\mathrm U/T)^2$。误差为正，某个参数应怎样调整，还要乘上它影响预测的局部变化率。下一节将把这些乘法组织为反向累加，并用差分和训练实验检查。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://zh.d2l.ai/chapter_multilayer-perceptrons/backprop.html">《动手学深度学习》：前向传播、反向传播和计算图</a>，提供更大网络中各层依赖与求导的后续例子。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/14-数据驱动动力学与模型降阶/综合练习/read/1/">← 14.综合 交换系统的降阶与动力学发现</a><a href="/chapters/15-01-神经网络与自动微分/read/2/">15.1.2 反向传播、自动微分与梯度核对 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

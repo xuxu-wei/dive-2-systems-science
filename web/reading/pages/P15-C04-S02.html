@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>15.4.2 扩散候选、初值与无通量边界 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P15-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P15-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed">本节练习 · 4 题</a><a class="button" href="/chapters/15-04-物理约束学习/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>15.4.2 扩散候选、初值与无通量边界</h1>
+<p>一段封闭区域内，初始浓度有高有低，扩散使差异逐渐减弱。描述这个过程，需要同时给出区域内部的扩散方程、起始浓度分布和两端的无通量条件。我们用一个可以逐项求导的候选，看看三种要求分别约束什么。</p>
+<p>学完本节，你应能求出候选的时间导数、二阶空间导数和端点一阶导数，用同一例子分别解释方程、初值、边界及参考解误差。先修为12.4的一维扩散与15.4.1的分项损失。</p>
+<h2 id="normalized-position-and-concentration-deviation">归一化位置与浓度偏差</h2>
+<p>设物理位置为$\xi\in[0,L]$，除以区域长度得到$x=\xi/L\in[0,1]$。以下$x$是无量纲位置。若物理扩散系数为$D_{\mathrm{phys}}$，单位为长度平方/T，那么归一化后的方程为</p>
+<p>$$\partial_t\phi=D\partial_{xx}\phi,\qquad
+D=\frac{D_{\mathrm{phys}}}{L^2}.$$</p>
+<p>因此这里$D$的单位为$1/\mathrm T$。$\phi$表示相对均匀背景的浓度偏差，单位为U/V；负偏差表示低于背景。背景加上偏差，才得到绝对浓度。</p>
+<p>取$C_0=1$ U/V、$D=0.2/\mathrm T$，指定初始偏差为$C_0\cos(\pi x)$。两端无通量对应</p>
+<p>$$\partial_x\phi(0,t)=\partial_x\phi(1,t)=0.$$</p>
+<p>它要求端点浓度梯度为零：扩散通量与物理浓度梯度成比例，归一化位置只引入固定的$1/L$因子，零梯度仍对应零通量。</p>
+<p>这组初边值问题的参考解为</p>
+<p>$$\phi_{\mathrm{ref}}(x,t)=C_0e^{-D\pi^2t}\cos(\pi x).$$</p>
+<p>余弦给出空间起伏，指数给出起伏幅度随时间减弱。例如$t=0.5$ T、$x=0.3$时，偏差约为0.219072 U/V。</p>
+<h2 id="trial-profile-and-linear-term">候选剖面与线性空间项</h2>
+<p>把候选写为</p>
+<p>$$\phi(x,t)=C_0e^{-rt}\cos(\pi x)+sx.$$</p>
+<p>$r$的单位为$1/\mathrm T$，改变余弦模式的衰减快慢；$s$的单位为U/V，给剖面增加一条随位置升高的直线。改变$r$会影响后续时刻，改变$s$则在每个时刻留下同一条空间线性项。</p>
+<p>在$t=0$、$s=0$，位置$(0,0.5,1)$的偏差依次为$(1,0,-1)$ U/V。在$t=0$保持同样三个位置，将$s$改为0.2 U/V，数值变成$(1,0.1,-0.8)$ U/V：线性项在左端不变，向右逐渐增大。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-04-物理约束学习/practice/?question=p15-diffusion-profile">扩散候选的空间取值</a></li></ul></nav>
+
+<h2 id="diffusion-equation-residual">方程残差为何不含线性项</h2>
+<p>先逐项求时间导数。$sx$不随时间变，所以</p>
+<p>$$\partial_t\phi=-rC_0e^{-rt}\cos(\pi x).$$</p>
+<p>再求空间导数。余弦求一次得到正弦，求两次回到余弦并带上$-\pi^2$；$sx$的一阶导数为$s$，二阶导数为零。因此</p>
+<p>$$\partial_{xx}\phi=-\pi^2C_0e^{-rt}\cos(\pi x).$$</p>
+<p>代入方程残差，得到</p>
+<p>$$\boxed{R(x,t)=\partial_t\phi-D\partial_{xx}\phi
+=(D\pi^2-r)C_0e^{-rt}\cos(\pi x).}$$</p>
+<p>$sx$在两个导数中都消失。只要$r=D\pi^2$，无论$s$取何值，整个区域内的方程残差都为零。这个候选族包含许多满足相同扩散方程、却具有不同初值和端点梯度的函数。</p>
+<h2 id="initial-and-boundary-residuals">初值残差与端点导数</h2>
+<p>在起点$t=0$，候选与指定分布之差为</p>
+<p>$$r_0(x)=\phi(x,0)-C_0\cos(\pi x)=sx.$$</p>
+<p>空间一阶导数则为</p>
+<p>$$\partial_x\phi=-\pi C_0e^{-rt}\sin(\pi x)+s.$$</p>
+<p>在$x=0,1$，正弦都为零，所以两个端点的导数均为$s$。相对于要求的零导数，边界残差就是$s$，其平方平均为</p>
+<p>$$L_b=\frac{s^2+s^2}{2}=s^2.$$</p>
+<p>取$s=0.3$ U/V时，$L_b=0.09\,(\mathrm U/\mathrm V)^2$；在$r=D\pi^2$时，方程项仍为零。同时，初始剖面在位置$x$多出$0.3x$ U/V，在右端多出0.3 U/V。增加线性项同时改变了初始分布和端点条件。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed">内点残差零时</a></li></ul></nav>
+
+<p>三个要求至此各有对象：方程检查时间与二阶空间导数的关系，初值检查$t=0$的函数值，边界检查两个端点的一阶空间导数。即使把端点放进方程配点，所计算的仍是$R$，端点梯度还要另求。</p>
+<h2 id="paired-collocation-points-and-loss-map">配对时空点与分项热图</h2>
+<p>实验选择21个时空配点，逐项配对为</p>
+<p>$$(x_i,t_i)=\left(\frac{i}{20},\frac{i}{20}\,\mathrm T\right),
+\qquad i=0,\ldots,20.$$</p>
+<p>它们从$(0,0\,\mathrm T)$排到$(1,1\,\mathrm T)$，是21对位置与时刻。每个位置读取对应的一个时刻，不是将21个位置与21个时刻交叉成441个点。计算</p>
+<p>$$L_f=\frac1{21}\sum_{i=0}^{20}R(x_i,t_i)^2,\qquad L_b=s^2.$$</p>
+<p>返回两项列表时，第一项为方程残差均方，单位为$(\mathrm U/\mathrm V/\mathrm T)^2$；第二项为边界导数平方平均，单位为$(\mathrm U/\mathrm V)^2$。初值残差由前面的$sx$另行解释。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-04-物理约束学习/practice/?question=p15-diffusion-residual">方程与无通量边界残差</a></li></ul></nav>
+
+<p>固定$D=0.2/\mathrm T$，实验比较5个衰减率和4个线性项：横轴序号0、1、2、3依次代表$s=0,0.1,0.2,0.3$ U/V；纵轴序号0至4依次代表$r=D\pi^2-0.4,D\pi^2-0.2,D\pi^2,D\pi^2+0.2,D\pi^2+0.4$，单位为$1/\mathrm T$。</p>
+<p>热图采用浓度尺度$C_0=1$ U/V和时间尺度$\tau_0=1$ T，以相同权重相加：</p>
+<p>$$J_{f,b}=\frac{L_f}{(C_0/\tau_0)^2}+\frac{L_b}{C_0^2}.$$</p>
+<p>各参考尺度的数值为1，显示数值与两项原始数值之和相同，含义则是缩放后的无量纲目标。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P15-C04-S02-3733353e-0.png" alt="扩散候选、初值与无通量边界：实验结果图" loading="lazy"></figure>
+</section>
+<p>正确衰减率所在的中间一行，方程项为零，向右增大$s$会让边界项从0增至0.09。保持$s=0$、向上或向下偏离正确衰减率，增加的是方程项。谷底位于中间行的最左格，对应同时满足这两种检查的$r=D\pi^2,s=0$。</p>
+<h2 id="four-checks-and-reference-grid">四种检查与参考网格</h2>
+<p>探索页固定$t=0.5$ T，使用$x_i=i/40$、$i=0,\ldots,40$这41个位置绘制候选与参考剖面，并分别显示方程残差均方、端点导数平方平均、初值均方根偏差和参考剖面RMSE。</p>
+<p>其中初值项先在$t=0$读取$sx_i$，再算</p>
+<p>$$E_0=\sqrt{\frac1{41}\sum_{i=0}^{40}(sx_i)^2}.$$</p>
+<p>参考误差则在$t=0.5$ T比较两条剖面：</p>
+<p>$$E_{\mathrm{ref}}=\sqrt{\frac1{41}\sum_{i=0}^{40}
+[\phi(x_i,0.5\,\mathrm T)-\phi_{\mathrm{ref}}(x_i,0.5\,\mathrm T)]^2}.$$</p>
+<p>若$r=D\pi^2$，两条剖面之差始终为$sx$，于是这两个RMSE相同；$s=0.3$ U/V时都约为0.174284 U/V。边界项显示0.09，含义是导数平方的平均，与这两个RMSE采用不同的计算方式。</p>
+<p>先把$r$调到1.97/$\mathrm T$附近，接近$D\pi^2\approx1.97392/\mathrm T$，再增大$s$。方程残差保持很小，候选与参考的差却向右增大，初值和边界指标也随之改变。随后保持$s=0$，只改变$r$，可以看到衰减快慢造成的另一种差异。</p>
+<p class="concept-explore"><a href="/chapters/15-04-物理约束学习/explore/?concept=P15-C04-S02%3Afour-checks-and-reference-grid">可视化与探索：四种检查与参考网格 →</a></p>
+
+<p>这些曲线来自给定参数的候选函数，页面没有训练步骤。41个位置同时用于方程与参考检查，称为参考网格；它让我们观察同一候选在相同位置的不同性质。</p>
+<p>若进一步训练PINN，除训练配点外，还可另取时空位置检查方程，检查完整初始剖面和边界，并在有参考解时比较函数值误差。取点范围很窄时，低残差首先反映的是那一带的关系；扩展检查位置，才能看见遗漏区域的表现。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-04-物理约束学习/practice/?question=p15-collocation-limit">有限配点的结论</a></li></ul></nav>
+
+<p>下一章将回到状态方程，在已知收支项中加入可学习修正，并研究预测吻合能提供怎样的参数信息。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/abs/1711.10561">Raissi、Perdikaris与Karniadakis的物理信息学习论文</a>，介绍通过候选解的导数构造方程及初边值约束。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/15-04-物理约束学习/read/1/">← 15.4.1 候选解与数据、方程、初值损失</a><a href="/chapters/15-05-混合模型与可辨识性/read/1/">15.5.1 已知收支与可学习变化率修正 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

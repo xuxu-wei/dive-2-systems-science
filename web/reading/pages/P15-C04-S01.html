@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>15.4.1 候选解与数据、方程、初值损失 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P15-C04-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P15-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts">本节练习 · 4 题</a><a class="button" href="/chapters/15-04-物理约束学习/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>15.4.1 候选解与数据、方程、初值损失</h1>
+<p>上一章给定右端，由初值开始推进状态。这一章换一个计算顺序：直接用可微函数表示整条候选曲线，读取它在任意时刻的值与导数，再检查这些值是否接近观测、这些导数是否符合方程、起点是否符合初值。三个问题对应三个可分别计算的误差。</p>
+<p>学完本节，你应能手算一个tanh候选的时间导数，解释三项损失各自比较什么，并在明确参考尺度后组成共同目标。先修为15.1的链式法则、15.3的连续右端与平方损失。</p>
+<h2 id="differentiable-trial-solution">可微候选解与时间导数</h2>
+<p>考虑一阶消除初值问题</p>
+<p>$$\dot x=-kx,\qquad k=0.7/\mathrm T,\qquad x(0)=x_0=1\,\mathrm U.$$</p>
+<p>选择函数族</p>
+<p>$$\phi(t;\theta)=c+v\tanh(wt+b),\qquad \theta=(c,v,w,b).$$</p>
+<p>$\phi$称为候选解：先选定参数就得到一条完整曲线，再检查它与问题的关系。这里$c,v$的单位为U，$w$为$1/\mathrm T$，$b$无量纲，因此$wt+b$可以送入tanh。与15.1相比，网络输出的对象变为总量，输出系数的单位也随之确定。</p>
+<p>沿$ t\to wt+b\to\tanh(wt+b)\to\phi$逐层求导，</p>
+<p>$$\phi'(t)=v\left[1-\tanh^2(wt+b)\right]w.$$</p>
+<p>例如$c=0.8$ U、$v=0.5$ U、$w=-1/\mathrm T$、$b=0$，在$t=0.5$ T有激活输入$-0.5$，所以</p>
+<p>$$\phi(0.5\,\mathrm T)\approx0.568941\,\mathrm U,
+\qquad \phi'(0.5\,\mathrm T)\approx-0.393224\,\mathrm U/\mathrm T.$$</p>
+<p>函数值告诉我们此刻有多少总量，导数告诉我们候选曲线此刻怎样变化。计算两者之后，才能分别与观测和给定方程比较。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-04-物理约束学习/practice/?question=p15-trial-derivative">光滑候选值与导数</a></li></ul></nav>
+
+<h2 id="data-and-equation-residuals">数据残差与方程残差</h2>
+<p>设时刻$t_i$的观测为$y_i$。<strong>数据残差</strong>为</p>
+<p>$$r_{d,i}=\phi(t_i)-y_i.$$</p>
+<p>它检查候选在这些时刻的取值。若已知方程要求$\phi'=-k\phi$，则定义<strong>方程残差</strong></p>
+<p>$$r_f(t)=\phi'(t)+k\phi(t).$$</p>
+<p>方程残差比较候选导数与给定右端，两者都是U/T。$r_f=0$意味着该点的变化率关系满足；数据残差为零则意味着候选值与该点的读数相同。</p>
+<p>一个常量曲线就能区分这两件事。取$\phi(t)=1$ U、$k=0.5/\mathrm T$，观测也都为1 U。数据残差为零，但$\phi'=0$，方程却要求$-0.5$ U/T，于是</p>
+<p>$$r_f=0+0.5=0.5\,\mathrm U/\mathrm T.$$</p>
+<p>候选每次都读出正确数值，并没有让它自动获得所需的变化率。还可以检查指定起点：若$x_0=1$ U，常量候选的初值残差同样为零。这给出了“取值相符、起点相符、方程不相符”的具体例子。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts">方程约束的三类证据</a></li></ul></nav>
+
+<h2 id="collocation-and-loss-parts">配点、初值与三项损失</h2>
+<p>检查方程的时空位置称为<strong>配点（collocation point）</strong>；对当前常微分方程，它就是一个检查时刻$\tau_j$。配点用于读取候选导数与方程残差，观测时刻则还有一个实测或给定目标值$y_i$，两组时刻可以分别选择。</p>
+<p>对$N_d$条观测和$N_f$个方程配点，定义</p>
+<p>$$\begin{aligned}
+L_d&amp;=\frac1{N_d}\sum_{i=1}^{N_d}[\phi(t_i)-y_i]^2,
+&amp;&amp;\text{数据均方误差},\\
+L_f&amp;=\frac1{N_f}\sum_{j=1}^{N_f}[\phi'(\tau_j)+k\phi(\tau_j)]^2,
+&amp;&amp;\text{方程残差均方},\\
+L_0&amp;=[\phi(0)-x_0]^2,
+&amp;&amp;\text{初值平方误差}.
+\end{aligned}$$</p>
+<p>前两项各除以自己的点数，初值项只检查指定起点。给出三项时，列表顺序为“数据、方程、初值”。在上面的常量例中，返回数值为$(0,0.25,0)$，单位依次为U²、U²/T²、U²。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-04-物理约束学习/practice/?question=p15-ode-loss-parts">数据、方程与初值损失</a></li></ul></nav>
+
+<p>若用可微神经网络表示$\phi$，并以这些残差组成训练目标来调整网络参数，就得到<strong>物理信息神经网络（physics-informed neural network，PINN）</strong>的基本方法。它把已知方程作为学习约束；自动微分可以从同一个网络计算时间、空间及参数导数。本节保留单tanh候选，使每一项的来源都能手算。</p>
+<h2 id="reference-scales-and-weights">参考尺度与损失权重</h2>
+<p>原始分项保留了不同单位：$L_d,L_0$为U²，$L_f$为U²/T²。先选定总量参考尺度$U_0&gt;0$和时间参考尺度$\tau_0&gt;0$，对应的变化率尺度就是$U_0/\tau_0$。各残差除以自己的尺度，再平方，便能组成无量纲目标</p>
+<p>$$\boxed{J(\theta)=
+\alpha_d\frac{L_d}{U_0^2}
++\alpha_f\frac{L_f}{(U_0/\tau_0)^2}
++\alpha_0\frac{L_0}{U_0^2}.}$$</p>
+<p>$\alpha_d,\alpha_f,\alpha_0$是非负无量纲权重。参考尺度回答“多大的偏差算一个比较单位”，权重回答“在这些比较单位下，怎样分配相对重视程度”。两步作用不同。</p>
+<p>例如$U_0=2$ U、$\tau_0=4$ T，数据项为0.16 U²，方程项为0.01 U²/T²，则</p>
+<p>$$\frac{0.16}{2^2}=0.04,\qquad
+\frac{0.01}{(2/4)^2}=0.04.$$</p>
+<p>原始数值一个是另一个的16倍，缩放后却相同。数据误差若为原参考尺度的20%，变化率残差也为自身尺度的20%，两者平方后都为0.04。根据原始数值大小判断哪项更重要，会漏掉这些单位和尺度。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-04-物理约束学习/practice/?question=p15-loss-unit">损失相加之前</a></li></ul></nav>
+
+<h2 id="fixed-candidate-experiment">固定候选的三项检查</h2>
+<p>现在把候选参数改为$c=0.5$ U、$v=0.5$ U、$w=-1/\mathrm T$、$b=0$，保持$k=0.7/\mathrm T$、指定初值1 U。实验在0—2 T取9个等距时刻，由解析曲线$x(t)=1\,\mathrm U\cdot e^{-kt}$给出观测；本次方程配点也使用这9个时刻。</p>
+<p>先看起点：$\phi(0)=0.5$ U，比指定初值低0.5 U，所以$L_0=0.25$ U²。在每个时刻读取$\phi,\phi'$后，另得到</p>
+<p>$$L_d\approx0.143671\,\mathrm U^2,\qquad
+L_f\approx0.018294\,\mathrm U^2/\mathrm T^2.$$</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P15-C04-S01-bf11b4fc-0.png" alt="候选解与数据、方程、初值损失：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中蓝线为解析曲线，绿色点为9条观测，粉线为给定参数的候选。两条曲线从起点就分开，候选随后降得更低。绘图用同一区间的101个时刻展示形状，损失仍由前述9个点和起点计算。</p>
+<p>这次实验逐项评价预先给定的候选，没有进行参数优化。若接着训练，就让优化器根据缩放后的共同目标更新$c,v,w,b$，同时记录各项怎样变化；这样才能知道一次总目标下降主要改善了取值、变化率还是起点。</p>
+<h2 id="from-time-curves-to-boundary-problems">从时间曲线到初边值问题</h2>
+<p>配点选择决定了我们在哪里检查方程。若只在很窄的时间区间取点，就需要在其他时刻继续检查候选的变化率；初值则始终在$t=0$另行比较。不同检查围绕同一条候选，却提供不同信息。</p>
+<p>下一节把函数扩展为$\phi(x,t)$。除了时间导数，还会出现空间导数与端点条件。一个随位置线性变化的项，将展示方程残差为何可能完全看不见初值和边界的变化。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://arxiv.org/abs/1711.10561">Raissi、Perdikaris与Karniadakis的物理信息学习论文</a>，介绍以神经网络表示候选解并通过微分方程残差构造损失的方法。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/15-03-神经微分方程/read/2/">← 15.3.2 观测损失、连续伴随与离散反传</a><a href="/chapters/15-04-物理约束学习/read/2/">15.4.2 扩散候选、初值与无通量边界 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

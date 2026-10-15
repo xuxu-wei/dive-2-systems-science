@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>15.3.2 观测损失、连续伴随与离散反传 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P15-C03-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P15-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump">本节练习 · 4 题</a><a class="button" href="/chapters/15-03-神经微分方程/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>15.3.2 观测损失、连续伴随与离散反传</h1>
+<p>在两个时刻测量总量，会有两个预测残差。上一节可以分别计算状态灵敏度，再把两次损失对参数的贡献相加。另一条路线先从最后一次观测出发，把损失对状态的影响向更早时刻传递。后续损失汇集在同一个反向变量中，便构成伴随方法。</p>
+<p>学完本节，你应能手算观测时刻的伴随跳跃和两步离散梯度，说明反向传递导数与反向重建状态的区别，并根据实际前向目标核对梯度。先修为15.3.1、乘积求导与定积分，以及15.1.2的反向累加。</p>
+<h2 id="multiple-observation-loss">多时刻观测的损失与梯度</h2>
+<p>仍取$\dot x=-kx$，固定$x_0=2$ U、$k=0.7/\mathrm T$。两条观测依次为$(t_1,y_1)=(1\,\mathrm T,0.9\,\mathrm U)$、$(t_2,y_2)=(2\,\mathrm T,0.45\,\mathrm U)$。每个数对先写时刻，再写该时刻的总量读数。</p>
+<p>记$x_j=x(t_j)$、$r_j=x_j-y_j$，损失为各次半平方误差之和：</p>
+<p>$$J(k)=\sum_{j=1}^m\ell_j(x_j),\qquad
+\ell_j(x_j)=\frac12r_j^2.$$</p>
+<p>观测时刻、读数与初态都固定。每项对参数求导，再相加，得到</p>
+<p>$$\frac{dJ}{dk}=\sum_jr_js(t_j)
+=\sum_jr_j(-t_jx_j).$$</p>
+<p>本例中$x_1\approx0.993171$ U、$x_2\approx0.493194$ U，两次残差约为0.093171 U、0.043194 U。相应梯度贡献为$-0.092534$和$-0.042606$ U²·T，总梯度约$-0.135140$ U²·T；总损失约为0.005273 U²。</p>
+<p>若取另一组便于手算的$k=0$，观测为$(0\,\mathrm T,2\,\mathrm U)$、$(1\,\mathrm T,1\,\mathrm U)$，两次预测都为2 U。第一项残差为零，第二项残差为1 U，故损失为0.5 U²，梯度为$1\times(-1\times2)=-2$ U²·T。即使预测状态相同，不同观测时刻对参数也有不同的敏感程度。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-03-神经微分方程/practice/?question=p15-continuous-gradient">固定观测时刻的连续损失梯度</a></li></ul></nav>
+
+<h2 id="adjoint-and-observation-jumps">伴随变量与观测跳跃</h2>
+<p><strong>伴随变量（adjoint variable）</strong>$\lambda(t)$表示：在时刻$t$给状态一个微小变化，它会使从此时起的观测总损失改变多少。标量情形下，变化量近似为$\lambda(t)\Delta x(t)$。因此$\lambda$是损失对状态的导数，单位为U；它不是损失对参数$k$的导数。</p>
+<p>观测之间没有新的损失项，只需把较晚状态的影响向前面的状态传回。对平滑右端$\dot x=f(x,k)$，连续伴随满足</p>
+<p>$$\dot\lambda=-f_x\lambda.$$</p>
+<p>这个方程的导数仍按正向时间$t$定义，计算却从末端向较早时刻进行。清除模型中$f_x=-k$，所以$\dot\lambda=k\lambda$；从$t_j$回到更早的$t$时，一次观测的残差传播成$r_je^{-k(t_j-t)}$。</p>
+<p>最后观测之后已经没有损失，取$\lambda(t_m^+)=0$。经过一次观测时，需要把该次损失对状态的导数加入：</p>
+<p>$$\boxed{\lambda(t_j^-)=\lambda(t_j^+)+r_j.}$$</p>
+<p>$t_j^-$和$t_j^+$分别表示观测时刻之前和之后。状态在这个时刻连续，发生跳跃的是我们反向累计的损失导数。因为$\partial\ell_j/\partial x_j=r_j$，加入的是残差本身；这里的目标是观测点上的求和，跳跃不再乘时间步长。</p>
+<p>在本例中，先由$\lambda(2\,\mathrm T^+)=0$加入第二次残差，再向前传播到1 T。刚到1 T的较晚一侧时，已有第二次观测的贡献$r_2e^{-k(1\,\mathrm T)}$；跨过1 T，再加$r_1$。早于1 T的伴随于是同时带着两次观测的影响。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump">观测时刻的伴随跳跃</a></li></ul></nav>
+
+<h2 id="adjoint-parameter-gradient">由乘积求导得到参数梯度</h2>
+<p>为什么伴随方程中要选负号$-f_x$？把它与上一节的$\dot s=f_xs+f_k$放在一起，对乘积求导：</p>
+<p>$$\frac{d(\lambda s)}{dt}
+=(-f_x\lambda)s+\lambda(f_xs+f_k)
+=\lambda f_k.$$</p>
+<p>两条状态传播项抵消后，只剩参数进入右端的贡献。观测之间积分，观测点再接上跳跃。跨过$t_j$时，乘积向早时刻增加$r_js(t_j)$；把所有分段相加，使用$s(0)=0$和$\lambda(t_m^+)=0$，便有</p>
+<p>$$\boxed{\frac{dJ}{dk}
+=\int_0^{t_m}\lambda(t)f_k(t)\,dt
+=-\int_0^{t_m}\lambda(t)x(t)\,dt.}$$</p>
+<p>可以逐观测检查符号。第$j$条观测在$0&lt;t&lt;t_j$的贡献为$\lambda_j(t)=r_je^{-k(t_j-t)}$，于是</p>
+<p>$$\lambda_j(t)x(t)=r_jx_0e^{-kt_j}=r_jx_j.$$</p>
+<p>这一乘积与$t$无关，积分给出$-t_jr_jx_j$，恰好回到前向灵敏度的结果。实验中的分段中点积分因此能达到接近浮点精度的一致；一般非线性右端的被积函数会变化，需要随积分精度一起检查。</p>
+<p>多状态情形也沿用同一逻辑。把$x\in\mathbb R^d$、参数$\theta\in\mathbb R^p$和$\lambda\in\mathbb R^d$都写成列，沿用上一节的Jacobian矩阵，则</p>
+<p>$$\dot\lambda=-F_x^{\mathsf T}\lambda,\qquad
+\lambda(t_j^-)=\lambda(t_j^+)+\nabla_x\ell_j.$$</p>
+<p>转置让每个后续状态分量的损失贡献传回它依赖的早期分量。例如第二个方程依赖$x_1$，就有一项$(\partial f_2/\partial x_1)\lambda_2$进入$\lambda_1$的传播。与$d\times p$的$S$相乘，乘积法则变为</p>
+<p>$$\frac{d(\lambda^{\mathsf T}S)}{dt}=\lambda^{\mathsf T}F_\theta,
+\qquad \nabla_\theta J=\int_0^{t_m}F_\theta^{\mathsf T}\lambda\,dt.$$</p>
+<p>最后一个积分返回$p$个参数的梯度。这里初态固定、观测损失通过状态依赖参数；若另有参数惩罚，就在这个结果上加入惩罚的参数导数。</p>
+<h2 id="discrete-euler-adjoint">Euler目标的离散伴随</h2>
+<p>对Euler程序，先保存$x_0,\ldots,x_N$。观测下标$n$对应时刻$nh$；记有观测处的残差为$r_n$，没有观测则令$r_n=0$。离散目标为</p>
+<p>$$J_h=\frac12\sum_{n\text{有观测}}r_n^2.$$</p>
+<p>设$\lambda_n=\partial J_h/\partial x_n$，从最后一个网格点反传。当前状态先贡献自身观测损失，随后还通过$x_{n+1}=(1-kh)x_n$影响未来损失，因而</p>
+<p>$$\lambda_N=r_N,\qquad
+\lambda_n=r_n+(1-kh)\lambda_{n+1}.$$</p>
+<p>每步更新对参数的偏导是$-hx_n$，各步贡献汇总为</p>
+<p>$$\boxed{\frac{dJ_h}{dk}=-h\sum_{n=0}^{N-1}x_n\lambda_{n+1}.}$$</p>
+<p>以$x_0=2$、$k=0.5$、$h=0.2$的数值例，在下标1、2观测1.8、1.5。前向状态为$(2,1.8,1.62)$，故$r_1=0$、$r_2=0.12$。反向计算</p>
+<p>$$\lambda_2=0.12,\qquad \lambda_1=0+0.9\times0.12=0.108,$$</p>
+<p>再累加两个时间步的参数贡献：</p>
+<p>$$\frac{dJ_h}{dk}=-0.2[2(0.108)+1.8(0.12)]=-0.0864.$$</p>
+<p>它也等于上一节算出的末态灵敏度$-0.72$乘残差0.12。网格下标0若有观测，会影响损失值及$\lambda_0$；由于初态不依赖$k$，这次观测对$k$没有额外贡献。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-03-神经微分方程/practice/?question=p15-discrete-adjoint">带观测跳跃的离散梯度</a></li></ul></nav>
+
+<h2 id="negative-step-and-state-reconstruction">负步长更新与状态重建</h2>
+<p>连续伴随需要沿前向路径读取$x(t)$。一种取得早期状态的办法是保存它们，另一种思路是从末态倒着积分状态方程。后者的数值误差值得单独检查。</p>
+<p>Euler前进一步乘$1-kh$，改用负时间步$-h$则乘$1+kh$。两步合起来是</p>
+<p>$$(1+kh)(1-kh)x=(1-k^2h^2)x.$$</p>
+<p>若$kh=0.1$，前进再回退得到$0.99x$。要撤销已经执行的一次Euler更新，代数逆运算应当是除以$1-kh$。负步长Euler与这个逆运算是两个不同的计算。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-03-神经微分方程/practice/?question=p15-reverse-state">反向状态重建</a></li></ul></nav>
+
+<p>实验仍固定$k=0.7/\mathrm T$、终点2 T、两次观测，将$h$依次设为0.2、0.1、0.05、0.025 T。每轮一方面比较离散梯度与连续梯度，另一方面将Euler末态用同样步数回退，检查重建初态与2 U的差。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P15-C03-S02-278a2689-0.png" alt="观测损失、连续伴随与离散反传：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图的蓝线比较两个前向目标的参数导数，纵轴单位为U²·T；右图的粉线比较重建初态与原初态，纵轴单位为U。沿两幅图各自的刻度减小步长，梯度差和重建状态差都在下降。计算离散梯度的实验保存了前向Euler状态，连续伴随实验读取解析状态，右图则单独检查负步长回退得到的状态路径。</p>
+<h2 id="learnable-correction-in-vector-field">连续右端中的可学习修正</h2>
+<p>将右端改为</p>
+<p>$$\dot x=-kx-\theta\tanh\!\left(\frac{x}{x_{\mathrm{ref}}}\right),
+\qquad k=0.7/\mathrm T,\quad x_{\mathrm{ref}}=1\,\mathrm U.$$</p>
+<p>$\theta$的单位为U/T，控制一个平滑tanh项的幅度。输入先除以参考总量，tanh输出无量纲，再乘$\theta$成为变化率修正。这是把一个小型可微函数放入连续右端的例子。</p>
+<p>实验从1.5 U出发，以$\theta=0.15$ U/T、Euler步长0.01 T生成200步参照路径，在下标50、100、150读取三次观测，分别对应0.5、1、1.5 T。从0到0.3 U/T取61个候选幅度，对每个幅度重新推进路径，选择三次观测均方误差最小者，得到$\theta=0.15$ U/T。这里实际使用的是一个参数的网格搜索。</p>
+<p>固定选出的幅度，再从新初态2 U预测同样200步。零修正与学习修正使用同一网格，并各自与参照路径比较；包含起点的201个状态上，RMSE约为0.083550 U与0 U。参照与候选采用同一函数形式和离散网格，观测也没有噪声，选中生成幅度便能重现这条离散路径。</p>
+<p>这次计算把“参数进入连续变化率”落实成了预测实验。前面的灵敏度与伴随提供参数梯度，网格搜索则逐个比较候选；在第17篇中，还会使用这里建立的连续伴随来更新多个右端参数。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://papers.nips.cc/paper_files/paper/2018/file/69386f6bb1dfed68692a24c8686939b9-Paper.pdf">Chen等，Neural Ordinary Differential Equations</a>，参见观测时刻的伴随调整与参数梯度推导。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/15-03-神经微分方程/read/1/">← 15.3.1 连续右端、求解器与前向灵敏度</a><a href="/chapters/15-04-物理约束学习/read/1/">15.4.1 候选解与数据、方程、初值损失 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "e48933d5d58453ae7d1db9b9aced54816ba6bca6c07307819367b2dd144de064",
+    "catalogSha256": "8c6093b60c20d453de223a7556f9b3e973f8ffc0ae12bb14ecf88d5a0451145f",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -18928,8 +18928,8 @@
       "english": "computational graph",
       "number": "15.1.1",
       "parentId": "15.1",
-      "url": "/notebook/?id=P15-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-01-神经网络与自动微分/read/1/",
+      "readingUrl": "/chapters/15-01-神经网络与自动微分/read/1/",
       "practiceUrl": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order",
       "description": "按输入、加权、激活、预测与损失的顺序，解释四个参数和响应单位。",
       "categories": [
@@ -18948,7 +18948,7 @@
       "total": 1,
       "lessonId": "P15-C01-S01",
       "lessonNumber": "15.1.1",
-      "lessonTitle": "从计算图到小型神经网络",
+      "lessonTitle": "神经元、计算图与响应损失",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18959,8 +18959,8 @@
       "english": null,
       "number": "15.1.1",
       "parentId": "15.1",
-      "url": "/notebook/?id=P15-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-01-神经网络与自动微分/read/1/",
+      "readingUrl": "/chapters/15-01-神经网络与自动微分/read/1/",
       "practiceUrl": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order",
       "description": "按输入、加权、激活、预测与损失的顺序，解释四个参数和响应单位。",
       "categories": [
@@ -18979,7 +18979,7 @@
       "total": 1,
       "lessonId": "P15-C01-S01",
       "lessonNumber": "15.1.1",
-      "lessonTitle": "从计算图到小型神经网络",
+      "lessonTitle": "神经元、计算图与响应损失",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -18990,8 +18990,8 @@
       "english": null,
       "number": "15.1.1",
       "parentId": "15.1",
-      "url": "/notebook/?id=P15-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-01-神经网络与自动微分/read/1/",
+      "readingUrl": "/chapters/15-01-神经网络与自动微分/read/1/",
       "practiceUrl": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order",
       "description": "按输入、加权、激活、预测与损失的顺序，解释四个参数和响应单位。",
       "categories": [
@@ -19010,7 +19010,7 @@
       "total": 1,
       "lessonId": "P15-C01-S01",
       "lessonNumber": "15.1.1",
-      "lessonTitle": "从计算图到小型神经网络",
+      "lessonTitle": "神经元、计算图与响应损失",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19021,8 +19021,8 @@
       "english": null,
       "number": "15.1.1",
       "parentId": "15.1",
-      "url": "/notebook/?id=P15-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-01-神经网络与自动微分/read/1/",
+      "readingUrl": "/chapters/15-01-神经网络与自动微分/read/1/",
       "practiceUrl": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order",
       "description": "按输入、加权、激活、预测与损失的顺序，解释四个参数和响应单位。",
       "categories": [
@@ -19041,7 +19041,7 @@
       "total": 1,
       "lessonId": "P15-C01-S01",
       "lessonNumber": "15.1.1",
-      "lessonTitle": "从计算图到小型神经网络",
+      "lessonTitle": "神经元、计算图与响应损失",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19052,8 +19052,8 @@
       "english": "chain rule",
       "number": "15.1.2",
       "parentId": "15.1",
-      "url": "/notebook/?id=P15-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-01-神经网络与自动微分/read/2/",
+      "readingUrl": "/chapters/15-01-神经网络与自动微分/read/2/",
       "practiceUrl": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object",
       "description": "逐项反传四个参数导数，以共享误差和差分扫描连接实现与训练。",
       "categories": [
@@ -19072,7 +19072,7 @@
       "total": 1,
       "lessonId": "P15-C01-S02",
       "lessonNumber": "15.1.2",
-      "lessonTitle": "反向传播与梯度核验",
+      "lessonTitle": "反向传播、自动微分与梯度核对",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19083,8 +19083,8 @@
       "english": null,
       "number": "15.1.2",
       "parentId": "15.1",
-      "url": "/notebook/?id=P15-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-01-神经网络与自动微分/read/2/",
+      "readingUrl": "/chapters/15-01-神经网络与自动微分/read/2/",
       "practiceUrl": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object",
       "description": "逐项反传四个参数导数，以共享误差和差分扫描连接实现与训练。",
       "categories": [
@@ -19103,7 +19103,7 @@
       "total": 1,
       "lessonId": "P15-C01-S02",
       "lessonNumber": "15.1.2",
-      "lessonTitle": "反向传播与梯度核验",
+      "lessonTitle": "反向传播、自动微分与梯度核对",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19114,8 +19114,8 @@
       "english": null,
       "number": "15.1.2",
       "parentId": "15.1",
-      "url": "/notebook/?id=P15-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-01-神经网络与自动微分/read/2/",
+      "readingUrl": "/chapters/15-01-神经网络与自动微分/read/2/",
       "practiceUrl": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object",
       "description": "逐项反传四个参数导数，以共享误差和差分扫描连接实现与训练。",
       "categories": [
@@ -19134,7 +19134,7 @@
       "total": 1,
       "lessonId": "P15-C01-S02",
       "lessonNumber": "15.1.2",
-      "lessonTitle": "反向传播与梯度核验",
+      "lessonTitle": "反向传播、自动微分与梯度核对",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19145,8 +19145,8 @@
       "english": null,
       "number": "15.1.2",
       "parentId": "15.1",
-      "url": "/notebook/?id=P15-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-01-神经网络与自动微分/read/2/",
+      "readingUrl": "/chapters/15-01-神经网络与自动微分/read/2/",
       "practiceUrl": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object",
       "description": "逐项反传四个参数导数，以共享误差和差分扫描连接实现与训练。",
       "categories": [
@@ -19165,7 +19165,7 @@
       "total": 1,
       "lessonId": "P15-C01-S02",
       "lessonNumber": "15.1.2",
-      "lessonTitle": "反向传播与梯度核验",
+      "lessonTitle": "反向传播、自动微分与梯度核对",
       "chapterUrl": "/chapters/15-01-神经网络与自动微分/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19213,8 +19213,8 @@
       "english": null,
       "number": "15.2.1",
       "parentId": "15.2",
-      "url": "/notebook/?id=P15-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-02-离散动力学学习/read/1/",
+      "readingUrl": "/chapters/15-02-离散动力学学习/read/1/",
       "practiceUrl": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input",
       "description": "配对当前状态、输入与下一状态，拟合三系数并比较真实状态输入与自由递推。",
       "categories": [
@@ -19233,7 +19233,7 @@
       "total": 1,
       "lessonId": "P15-C02-S01",
       "lessonNumber": "15.2.1",
-      "lessonTitle": "固定采样间隔的一步映射",
+      "lessonTitle": "状态配对、一步映射与系数学习",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19244,8 +19244,8 @@
       "english": "one-step-ahead prediction",
       "number": "15.2.1",
       "parentId": "15.2",
-      "url": "/notebook/?id=P15-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-02-离散动力学学习/read/1/",
+      "readingUrl": "/chapters/15-02-离散动力学学习/read/1/",
       "practiceUrl": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input",
       "description": "配对当前状态、输入与下一状态，拟合三系数并比较真实状态输入与自由递推。",
       "categories": [
@@ -19264,7 +19264,7 @@
       "total": 1,
       "lessonId": "P15-C02-S01",
       "lessonNumber": "15.2.1",
-      "lessonTitle": "固定采样间隔的一步映射",
+      "lessonTitle": "状态配对、一步映射与系数学习",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19275,8 +19275,8 @@
       "english": null,
       "number": "15.2.1",
       "parentId": "15.2",
-      "url": "/notebook/?id=P15-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-02-离散动力学学习/read/1/",
+      "readingUrl": "/chapters/15-02-离散动力学学习/read/1/",
       "practiceUrl": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input",
       "description": "配对当前状态、输入与下一状态，拟合三系数并比较真实状态输入与自由递推。",
       "categories": [
@@ -19295,7 +19295,7 @@
       "total": 1,
       "lessonId": "P15-C02-S01",
       "lessonNumber": "15.2.1",
-      "lessonTitle": "固定采样间隔的一步映射",
+      "lessonTitle": "状态配对、一步映射与系数学习",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19306,8 +19306,8 @@
       "english": null,
       "number": "15.2.1",
       "parentId": "15.2",
-      "url": "/notebook/?id=P15-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-02-离散动力学学习/read/1/",
+      "readingUrl": "/chapters/15-02-离散动力学学习/read/1/",
       "practiceUrl": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input",
       "description": "配对当前状态、输入与下一状态，拟合三系数并比较真实状态输入与自由递推。",
       "categories": [
@@ -19326,7 +19326,7 @@
       "total": 1,
       "lessonId": "P15-C02-S01",
       "lessonNumber": "15.2.1",
-      "lessonTitle": "固定采样间隔的一步映射",
+      "lessonTitle": "状态配对、一步映射与系数学习",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19337,8 +19337,8 @@
       "english": null,
       "number": "15.2.2",
       "parentId": "15.2",
-      "url": "/notebook/?id=P15-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-02-离散动力学学习/read/2/",
+      "readingUrl": "/chapters/15-02-离散动力学学习/read/2/",
       "practiceUrl": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories",
       "description": "展开误差传播，比较两种训练目标选参和新初值下的实际结果。",
       "categories": [
@@ -19357,7 +19357,7 @@
       "total": 1,
       "lessonId": "P15-C02-S02",
       "lessonNumber": "15.2.2",
-      "lessonTitle": "自由滚动、数据划分与外推",
+      "lessonTitle": "自由滚动、误差传播与轨迹留出",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19368,8 +19368,8 @@
       "english": null,
       "number": "15.2.2",
       "parentId": "15.2",
-      "url": "/notebook/?id=P15-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-02-离散动力学学习/read/2/",
+      "readingUrl": "/chapters/15-02-离散动力学学习/read/2/",
       "practiceUrl": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories",
       "description": "展开误差传播，比较两种训练目标选参和新初值下的实际结果。",
       "categories": [
@@ -19388,7 +19388,7 @@
       "total": 1,
       "lessonId": "P15-C02-S02",
       "lessonNumber": "15.2.2",
-      "lessonTitle": "自由滚动、数据划分与外推",
+      "lessonTitle": "自由滚动、误差传播与轨迹留出",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19399,8 +19399,8 @@
       "english": null,
       "number": "15.2.2",
       "parentId": "15.2",
-      "url": "/notebook/?id=P15-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-02-离散动力学学习/read/2/",
+      "readingUrl": "/chapters/15-02-离散动力学学习/read/2/",
       "practiceUrl": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories",
       "description": "展开误差传播，比较两种训练目标选参和新初值下的实际结果。",
       "categories": [
@@ -19419,7 +19419,7 @@
       "total": 1,
       "lessonId": "P15-C02-S02",
       "lessonNumber": "15.2.2",
-      "lessonTitle": "自由滚动、数据划分与外推",
+      "lessonTitle": "自由滚动、误差传播与轨迹留出",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19430,8 +19430,8 @@
       "english": null,
       "number": "15.2.2",
       "parentId": "15.2",
-      "url": "/notebook/?id=P15-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-02-离散动力学学习/read/2/",
+      "readingUrl": "/chapters/15-02-离散动力学学习/read/2/",
       "practiceUrl": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories",
       "description": "展开误差传播，比较两种训练目标选参和新初值下的实际结果。",
       "categories": [
@@ -19450,7 +19450,7 @@
       "total": 1,
       "lessonId": "P15-C02-S02",
       "lessonNumber": "15.2.2",
-      "lessonTitle": "自由滚动、数据划分与外推",
+      "lessonTitle": "自由滚动、误差传播与轨迹留出",
       "chapterUrl": "/chapters/15-02-离散动力学学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19498,8 +19498,8 @@
       "english": null,
       "number": "15.3.1",
       "parentId": "15.3",
-      "url": "/notebook/?id=P15-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-03-神经微分方程/read/1/",
+      "readingUrl": "/chapters/15-03-神经微分方程/read/1/",
       "practiceUrl": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients",
       "description": "分别推导连续灵敏度与Euler递推，在共同终点检查状态和导数的细化。",
       "categories": [
@@ -19529,8 +19529,8 @@
       "english": "analytical solution",
       "number": "15.3.1",
       "parentId": "15.3",
-      "url": "/notebook/?id=P15-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-03-神经微分方程/read/1/",
+      "readingUrl": "/chapters/15-03-神经微分方程/read/1/",
       "practiceUrl": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients",
       "description": "分别推导连续灵敏度与Euler递推，在共同终点检查状态和导数的细化。",
       "categories": [
@@ -19560,8 +19560,8 @@
       "english": "forward sensitivity",
       "number": "15.3.1",
       "parentId": "15.3",
-      "url": "/notebook/?id=P15-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-03-神经微分方程/read/1/",
+      "readingUrl": "/chapters/15-03-神经微分方程/read/1/",
       "practiceUrl": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients",
       "description": "分别推导连续灵敏度与Euler递推，在共同终点检查状态和导数的细化。",
       "categories": [
@@ -19591,8 +19591,8 @@
       "english": null,
       "number": "15.3.1",
       "parentId": "15.3",
-      "url": "/notebook/?id=P15-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-03-神经微分方程/read/1/",
+      "readingUrl": "/chapters/15-03-神经微分方程/read/1/",
       "practiceUrl": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients",
       "description": "分别推导连续灵敏度与Euler递推，在共同终点检查状态和导数的细化。",
       "categories": [
@@ -19622,8 +19622,8 @@
       "english": null,
       "number": "15.3.2",
       "parentId": "15.3",
-      "url": "/notebook/?id=P15-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-03-神经微分方程/read/2/",
+      "readingUrl": "/chapters/15-03-神经微分方程/read/2/",
       "practiceUrl": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump",
       "description": "逐观测解释伴随跳跃，核对离散反向累加，并分开状态回退误差。",
       "categories": [
@@ -19642,7 +19642,7 @@
       "total": 1,
       "lessonId": "P15-C03-S02",
       "lessonNumber": "15.3.2",
-      "lessonTitle": "伴随跳跃与反向重建的边界",
+      "lessonTitle": "观测损失、连续伴随与离散反传",
       "chapterUrl": "/chapters/15-03-神经微分方程/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19653,8 +19653,8 @@
       "english": null,
       "number": "15.3.2",
       "parentId": "15.3",
-      "url": "/notebook/?id=P15-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-03-神经微分方程/read/2/",
+      "readingUrl": "/chapters/15-03-神经微分方程/read/2/",
       "practiceUrl": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump",
       "description": "逐观测解释伴随跳跃，核对离散反向累加，并分开状态回退误差。",
       "categories": [
@@ -19673,7 +19673,7 @@
       "total": 1,
       "lessonId": "P15-C03-S02",
       "lessonNumber": "15.3.2",
-      "lessonTitle": "伴随跳跃与反向重建的边界",
+      "lessonTitle": "观测损失、连续伴随与离散反传",
       "chapterUrl": "/chapters/15-03-神经微分方程/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19684,8 +19684,8 @@
       "english": null,
       "number": "15.3.2",
       "parentId": "15.3",
-      "url": "/notebook/?id=P15-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-03-神经微分方程/read/2/",
+      "readingUrl": "/chapters/15-03-神经微分方程/read/2/",
       "practiceUrl": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump",
       "description": "逐观测解释伴随跳跃，核对离散反向累加，并分开状态回退误差。",
       "categories": [
@@ -19704,7 +19704,7 @@
       "total": 1,
       "lessonId": "P15-C03-S02",
       "lessonNumber": "15.3.2",
-      "lessonTitle": "伴随跳跃与反向重建的边界",
+      "lessonTitle": "观测损失、连续伴随与离散反传",
       "chapterUrl": "/chapters/15-03-神经微分方程/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19715,8 +19715,8 @@
       "english": null,
       "number": "15.3.2",
       "parentId": "15.3",
-      "url": "/notebook/?id=P15-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-03-神经微分方程/read/2/",
+      "readingUrl": "/chapters/15-03-神经微分方程/read/2/",
       "practiceUrl": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump",
       "description": "逐观测解释伴随跳跃，核对离散反向累加，并分开状态回退误差。",
       "categories": [
@@ -19735,7 +19735,7 @@
       "total": 1,
       "lessonId": "P15-C03-S02",
       "lessonNumber": "15.3.2",
-      "lessonTitle": "伴随跳跃与反向重建的边界",
+      "lessonTitle": "观测损失、连续伴随与离散反传",
       "chapterUrl": "/chapters/15-03-神经微分方程/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19783,8 +19783,8 @@
       "english": null,
       "number": "15.4.1",
       "parentId": "15.4",
-      "url": "/notebook/?id=P15-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-04-物理约束学习/read/1/",
+      "readingUrl": "/chapters/15-04-物理约束学习/read/1/",
       "practiceUrl": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts",
       "description": "从候选取值和导数分别构成数据、方程、初值损失，说明尺度。",
       "categories": [
@@ -19803,7 +19803,7 @@
       "total": 1,
       "lessonId": "P15-C04-S01",
       "lessonNumber": "15.4.1",
-      "lessonTitle": "数据、方程与初值的分项损失",
+      "lessonTitle": "候选解与数据、方程、初值损失",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19814,8 +19814,8 @@
       "english": null,
       "number": "15.4.1",
       "parentId": "15.4",
-      "url": "/notebook/?id=P15-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-04-物理约束学习/read/1/",
+      "readingUrl": "/chapters/15-04-物理约束学习/read/1/",
       "practiceUrl": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts",
       "description": "从候选取值和导数分别构成数据、方程、初值损失，说明尺度。",
       "categories": [
@@ -19834,7 +19834,7 @@
       "total": 1,
       "lessonId": "P15-C04-S01",
       "lessonNumber": "15.4.1",
-      "lessonTitle": "数据、方程与初值的分项损失",
+      "lessonTitle": "候选解与数据、方程、初值损失",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19845,8 +19845,8 @@
       "english": null,
       "number": "15.4.1",
       "parentId": "15.4",
-      "url": "/notebook/?id=P15-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-04-物理约束学习/read/1/",
+      "readingUrl": "/chapters/15-04-物理约束学习/read/1/",
       "practiceUrl": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts",
       "description": "从候选取值和导数分别构成数据、方程、初值损失，说明尺度。",
       "categories": [
@@ -19865,7 +19865,7 @@
       "total": 1,
       "lessonId": "P15-C04-S01",
       "lessonNumber": "15.4.1",
-      "lessonTitle": "数据、方程与初值的分项损失",
+      "lessonTitle": "候选解与数据、方程、初值损失",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19876,8 +19876,8 @@
       "english": null,
       "number": "15.4.1",
       "parentId": "15.4",
-      "url": "/notebook/?id=P15-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-04-物理约束学习/read/1/",
+      "readingUrl": "/chapters/15-04-物理约束学习/read/1/",
       "practiceUrl": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts",
       "description": "从候选取值和导数分别构成数据、方程、初值损失，说明尺度。",
       "categories": [
@@ -19896,7 +19896,7 @@
       "total": 1,
       "lessonId": "P15-C04-S01",
       "lessonNumber": "15.4.1",
-      "lessonTitle": "数据、方程与初值的分项损失",
+      "lessonTitle": "候选解与数据、方程、初值损失",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19907,8 +19907,8 @@
       "english": null,
       "number": "15.4.2",
       "parentId": "15.4",
-      "url": "/notebook/?id=P15-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-04-物理约束学习/read/2/",
+      "readingUrl": "/chapters/15-04-物理约束学习/read/2/",
       "practiceUrl": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed",
       "description": "逐项求导解释线性空间项怎样同时改变初值和无通量条件。",
       "categories": [
@@ -19927,7 +19927,7 @@
       "total": 1,
       "lessonId": "P15-C04-S02",
       "lessonNumber": "15.4.2",
-      "lessonTitle": "扩散残差与无通量边界",
+      "lessonTitle": "扩散候选、初值与无通量边界",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19938,8 +19938,8 @@
       "english": "no-flux boundary",
       "number": "15.4.2",
       "parentId": "15.4",
-      "url": "/notebook/?id=P15-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-04-物理约束学习/read/2/",
+      "readingUrl": "/chapters/15-04-物理约束学习/read/2/",
       "practiceUrl": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed",
       "description": "逐项求导解释线性空间项怎样同时改变初值和无通量条件。",
       "categories": [
@@ -19958,7 +19958,7 @@
       "total": 1,
       "lessonId": "P15-C04-S02",
       "lessonNumber": "15.4.2",
-      "lessonTitle": "扩散残差与无通量边界",
+      "lessonTitle": "扩散候选、初值与无通量边界",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -19969,8 +19969,8 @@
       "english": null,
       "number": "15.4.2",
       "parentId": "15.4",
-      "url": "/notebook/?id=P15-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-04-物理约束学习/read/2/",
+      "readingUrl": "/chapters/15-04-物理约束学习/read/2/",
       "practiceUrl": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed",
       "description": "逐项求导解释线性空间项怎样同时改变初值和无通量条件。",
       "categories": [
@@ -19989,7 +19989,7 @@
       "total": 1,
       "lessonId": "P15-C04-S02",
       "lessonNumber": "15.4.2",
-      "lessonTitle": "扩散残差与无通量边界",
+      "lessonTitle": "扩散候选、初值与无通量边界",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20000,8 +20000,8 @@
       "english": null,
       "number": "15.4.2",
       "parentId": "15.4",
-      "url": "/notebook/?id=P15-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-04-物理约束学习/read/2/",
+      "readingUrl": "/chapters/15-04-物理约束学习/read/2/",
       "practiceUrl": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed",
       "description": "逐项求导解释线性空间项怎样同时改变初值和无通量条件。",
       "categories": [
@@ -20020,7 +20020,7 @@
       "total": 1,
       "lessonId": "P15-C04-S02",
       "lessonNumber": "15.4.2",
-      "lessonTitle": "扩散残差与无通量边界",
+      "lessonTitle": "扩散候选、初值与无通量边界",
       "chapterUrl": "/chapters/15-04-物理约束学习/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20068,8 +20068,8 @@
       "english": null,
       "number": "15.5.1",
       "parentId": "15.5",
-      "url": "/notebook/?id=P15-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-05-混合模型与可辨识性/read/1/",
+      "readingUrl": "/chapters/15-05-混合模型与可辨识性/read/1/",
       "practiceUrl": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction",
       "description": "固定机制参数学习一个修正幅度，在同网格的新输入下比较预测。",
       "categories": [
@@ -20088,7 +20088,7 @@
       "total": 1,
       "lessonId": "P15-C05-S01",
       "lessonNumber": "15.5.1",
-      "lessonTitle": "已知收支加可学习修正",
+      "lessonTitle": "已知收支与可学习变化率修正",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20099,8 +20099,8 @@
       "english": null,
       "number": "15.5.1",
       "parentId": "15.5",
-      "url": "/notebook/?id=P15-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-05-混合模型与可辨识性/read/1/",
+      "readingUrl": "/chapters/15-05-混合模型与可辨识性/read/1/",
       "practiceUrl": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction",
       "description": "固定机制参数学习一个修正幅度，在同网格的新输入下比较预测。",
       "categories": [
@@ -20119,7 +20119,7 @@
       "total": 1,
       "lessonId": "P15-C05-S01",
       "lessonNumber": "15.5.1",
-      "lessonTitle": "已知收支加可学习修正",
+      "lessonTitle": "已知收支与可学习变化率修正",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20130,8 +20130,8 @@
       "english": null,
       "number": "15.5.1",
       "parentId": "15.5",
-      "url": "/notebook/?id=P15-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-05-混合模型与可辨识性/read/1/",
+      "readingUrl": "/chapters/15-05-混合模型与可辨识性/read/1/",
       "practiceUrl": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction",
       "description": "固定机制参数学习一个修正幅度，在同网格的新输入下比较预测。",
       "categories": [
@@ -20150,7 +20150,7 @@
       "total": 1,
       "lessonId": "P15-C05-S01",
       "lessonNumber": "15.5.1",
-      "lessonTitle": "已知收支加可学习修正",
+      "lessonTitle": "已知收支与可学习变化率修正",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20161,8 +20161,8 @@
       "english": null,
       "number": "15.5.1",
       "parentId": "15.5",
-      "url": "/notebook/?id=P15-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/15-05-混合模型与可辨识性/read/1/",
+      "readingUrl": "/chapters/15-05-混合模型与可辨识性/read/1/",
       "practiceUrl": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction",
       "description": "固定机制参数学习一个修正幅度，在同网格的新输入下比较预测。",
       "categories": [
@@ -20181,7 +20181,7 @@
       "total": 1,
       "lessonId": "P15-C05-S01",
       "lessonNumber": "15.5.1",
-      "lessonTitle": "已知收支加可学习修正",
+      "lessonTitle": "已知收支与可学习变化率修正",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20192,8 +20192,8 @@
       "english": null,
       "number": "15.5.2",
       "parentId": "15.5",
-      "url": "/notebook/?id=P15-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-05-混合模型与可辨识性/read/2/",
+      "readingUrl": "/chapters/15-05-混合模型与可辨识性/read/2/",
       "practiceUrl": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input",
       "description": "以相同净系数说明参数混淆，再用独立通量和候选方差解释信息。",
       "categories": [
@@ -20212,7 +20212,7 @@
       "total": 1,
       "lessonId": "P15-C05-S02",
       "lessonNumber": "15.5.2",
-      "lessonTitle": "参数混淆、观测与预测不确定性",
+      "lessonTitle": "同形参数混淆、独立通量与候选预测矩",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20223,8 +20223,8 @@
       "english": null,
       "number": "15.5.2",
       "parentId": "15.5",
-      "url": "/notebook/?id=P15-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-05-混合模型与可辨识性/read/2/",
+      "readingUrl": "/chapters/15-05-混合模型与可辨识性/read/2/",
       "practiceUrl": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input",
       "description": "以相同净系数说明参数混淆，再用独立通量和候选方差解释信息。",
       "categories": [
@@ -20243,7 +20243,7 @@
       "total": 1,
       "lessonId": "P15-C05-S02",
       "lessonNumber": "15.5.2",
-      "lessonTitle": "参数混淆、观测与预测不确定性",
+      "lessonTitle": "同形参数混淆、独立通量与候选预测矩",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20254,8 +20254,8 @@
       "english": null,
       "number": "15.5.2",
       "parentId": "15.5",
-      "url": "/notebook/?id=P15-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-05-混合模型与可辨识性/read/2/",
+      "readingUrl": "/chapters/15-05-混合模型与可辨识性/read/2/",
       "practiceUrl": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input",
       "description": "以相同净系数说明参数混淆，再用独立通量和候选方差解释信息。",
       "categories": [
@@ -20274,7 +20274,7 @@
       "total": 1,
       "lessonId": "P15-C05-S02",
       "lessonNumber": "15.5.2",
-      "lessonTitle": "参数混淆、观测与预测不确定性",
+      "lessonTitle": "同形参数混淆、独立通量与候选预测矩",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -20285,8 +20285,8 @@
       "english": null,
       "number": "15.5.2",
       "parentId": "15.5",
-      "url": "/notebook/?id=P15-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/15-05-混合模型与可辨识性/read/2/",
+      "readingUrl": "/chapters/15-05-混合模型与可辨识性/read/2/",
       "practiceUrl": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input",
       "description": "以相同净系数说明参数混淆，再用独立通量和候选方差解释信息。",
       "categories": [
@@ -20305,7 +20305,7 @@
       "total": 1,
       "lessonId": "P15-C05-S02",
       "lessonNumber": "15.5.2",
-      "lessonTitle": "参数混淆、观测与预测不确定性",
+      "lessonTitle": "同形参数混淆、独立通量与候选预测矩",
       "chapterUrl": "/chapters/15-05-混合模型与可辨识性/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },

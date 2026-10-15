@@ -17,7 +17,7 @@ export function graphView(exponent,x){
           {label:'当前步长',color:pink,points:[[exponent,Math.log10(Math.max(absolute,1e-16))]],dots:true}],
   stats:[['手推的损失对 w 导数',round(analytic,6)],['差分的损失对 w 导数',round(numeric,6)],['绝对差',absolute.toExponential(2)]],
   condition:'实际输入 '+round(x)+' U 除以参考量 1 U 后，网络收到无量纲数值 x='+round(x)+'；中心差分步长 10^'+round(exponent,1)+'；其余权重与目标固定。',
-  finding:'先看步长缩小时差分误差是否下降，再看极小步长处的舍入影响。这个比较核对当前损失对 w 的局部导数，预测与机制仍需另外的证据。'
+  finding:'先看步长缩小时差分误差是否下降，再看极小步长处的舍入影响。两种结果都对应当前损失对 w 的局部导数。'
  };
 }
 

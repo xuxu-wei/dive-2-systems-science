@@ -2287,5 +2287,15 @@
     "zh": "Metzler 矩阵",
     "en": "Metzler matrix",
     "scope": "part14"
+  },
+  {
+    "zh": "前馈神经网络",
+    "en": "feedforward neural network",
+    "scope": "part15"
+  },
+  {
+    "zh": "混合模型",
+    "en": "hybrid model",
+    "scope": "part15"
   }
 ]

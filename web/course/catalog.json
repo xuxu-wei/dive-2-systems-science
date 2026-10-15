@@ -22012,77 +22012,230 @@
               "id": "P15-C01-S01",
               "chapter_id": "15.1",
               "number": "15.1.1",
-              "title": "从计算图到小型神经网络",
+              "title": "神经元、计算图与响应损失",
               "outcome": "按输入、加权、激活、预测与损失的顺序，解释四个参数和响应单位。",
               "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.ipynb",
               "visualization": "web/differentiable/index.html",
+              "reading": "lessons/15-可微分建模与机制融合/01-神经网络与自动微分/01-从计算图到小型神经网络.md",
               "questions": [
                 {
                   "id": "p15-graph-order",
                   "slug": "p15-graph-order",
                   "title": "计算图的前向顺序",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-01-神经网络与自动微分/read/1/#computational-graph-and-forward-dependencies",
+                  "concept_title": "计算图与前向依赖",
+                  "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order"
                 },
                 {
                   "id": "p15-static-not-ode",
                   "slug": "p15-static-not-ode",
                   "title": "网络表示的对象",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-01-神经网络与自动微分/read/1/#physical-input-and-dimensionless-value",
+                  "concept_title": "物理输入与无量纲数值",
+                  "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-static-not-ode"
                 },
                 {
                   "id": "p15-network-value",
                   "slug": "p15-network-value",
                   "title": "计算一神经元响应",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-01-神经网络与自动微分/read/1/#single-neuron-and-activation-function",
+                  "concept_title": "单神经元与激活函数",
+                  "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-network-value"
                 },
                 {
                   "id": "p15-network-loss-gradient",
                   "slug": "p15-network-loss-gradient",
                   "title": "输出、损失与四个梯度",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-01-神经网络与自动微分/read/1/#half-squared-loss-and-parameter-derivatives",
+                  "concept_title": "半平方损失与四个参数导数",
+                  "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-network-loss-gradient"
                 }
               ],
               "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-graph-order",
               "notebook_url": "/notebook/?id=P15-C01-S01",
-              "url": "/notebook/?id=P15-C01-S01"
+              "reading_url": "/chapters/15-01-神经网络与自动微分/read/1/",
+              "concepts": [
+                {
+                  "id": "physical-input-and-dimensionless-value",
+                  "title": "物理输入与无量纲数值",
+                  "question_ids": [
+                    "p15-static-not-ode"
+                  ],
+                  "explore": false,
+                  "key": "P15-C01-S01:physical-input-and-dimensionless-value",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/1/#physical-input-and-dimensionless-value"
+                },
+                {
+                  "id": "single-neuron-and-activation-function",
+                  "title": "单神经元与激活函数",
+                  "question_ids": [
+                    "p15-network-value"
+                  ],
+                  "explore": false,
+                  "key": "P15-C01-S01:single-neuron-and-activation-function",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/1/#single-neuron-and-activation-function"
+                },
+                {
+                  "id": "computational-graph-and-forward-dependencies",
+                  "title": "计算图与前向依赖",
+                  "question_ids": [
+                    "p15-graph-order"
+                  ],
+                  "explore": false,
+                  "key": "P15-C01-S01:computational-graph-and-forward-dependencies",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/1/#computational-graph-and-forward-dependencies"
+                },
+                {
+                  "id": "parameters-and-response-shape",
+                  "title": "参数怎样改变函数形状",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C01-S01:parameters-and-response-shape",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/1/#parameters-and-response-shape"
+                },
+                {
+                  "id": "half-squared-loss-and-parameter-derivatives",
+                  "title": "半平方损失与四个参数导数",
+                  "question_ids": [
+                    "p15-network-loss-gradient"
+                  ],
+                  "explore": false,
+                  "key": "P15-C01-S01:half-squared-loss-and-parameter-derivatives",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/1/#half-squared-loss-and-parameter-derivatives"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C01-S01:references",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/1/#references"
+                }
+              ],
+              "url": "/chapters/15-01-神经网络与自动微分/read/1/"
             },
             {
               "id": "P15-C01-S02",
               "chapter_id": "15.1",
               "number": "15.1.2",
-              "title": "反向传播与梯度核验",
+              "title": "反向传播、自动微分与梯度核对",
               "outcome": "逐项反传四个参数导数，以共享误差和差分扫描连接实现与训练。",
               "path": "notebooks/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.ipynb",
               "visualization": "web/differentiable/index.html",
+              "reading": "lessons/15-可微分建模与机制融合/01-神经网络与自动微分/02-反向传播与梯度核验.md",
               "questions": [
                 {
                   "id": "p15-gradient-object",
                   "slug": "p15-gradient-object",
                   "title": "自动微分究竟对什么求导",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-01-神经网络与自动微分/read/2/#automatic-differentiation-and-the-computed-program",
+                  "concept_title": "自动微分与程序导数",
+                  "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object"
                 },
                 {
                   "id": "p15-nonsmooth",
                   "slug": "p15-nonsmooth",
                   "title": "非光滑点的差分",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-01-神经网络与自动微分/read/2/#relu-kink-and-one-sided-derivatives",
+                  "concept_title": "ReLU折点与左右导数",
+                  "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-nonsmooth"
                 },
                 {
                   "id": "p15-reverse-graph",
                   "slug": "p15-reverse-graph",
                   "title": "反向计算图梯度",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-01-神经网络与自动微分/read/2/#adding-contributions-at-shared-nodes",
+                  "concept_title": "共享节点的导数相加",
+                  "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-reverse-graph"
                 },
                 {
                   "id": "p15-difference-check",
                   "slug": "p15-difference-check",
                   "title": "中心差分核验",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-01-神经网络与自动微分/read/2/#central-differences-truncation-and-roundoff",
+                  "concept_title": "中心差分、截断与舍入",
+                  "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-difference-check"
                 }
               ],
               "practice_url": "/chapters/15-01-神经网络与自动微分/practice/?question=p15-gradient-object",
               "notebook_url": "/notebook/?id=P15-C01-S02",
-              "url": "/notebook/?id=P15-C01-S02"
+              "reading_url": "/chapters/15-01-神经网络与自动微分/read/2/",
+              "concepts": [
+                {
+                  "id": "chain-rule-and-backpropagation",
+                  "title": "链式法则与反向传播",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C01-S02:chain-rule-and-backpropagation",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/2/#chain-rule-and-backpropagation"
+                },
+                {
+                  "id": "adding-contributions-at-shared-nodes",
+                  "title": "共享节点的导数相加",
+                  "question_ids": [
+                    "p15-reverse-graph"
+                  ],
+                  "explore": false,
+                  "key": "P15-C01-S02:adding-contributions-at-shared-nodes",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/2/#adding-contributions-at-shared-nodes"
+                },
+                {
+                  "id": "automatic-differentiation-and-the-computed-program",
+                  "title": "自动微分与程序导数",
+                  "question_ids": [
+                    "p15-gradient-object"
+                  ],
+                  "explore": false,
+                  "key": "P15-C01-S02:automatic-differentiation-and-the-computed-program",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/2/#automatic-differentiation-and-the-computed-program"
+                },
+                {
+                  "id": "central-differences-truncation-and-roundoff",
+                  "title": "中心差分、截断与舍入",
+                  "question_ids": [
+                    "p15-difference-check"
+                  ],
+                  "explore": false,
+                  "key": "P15-C01-S02:central-differences-truncation-and-roundoff",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/2/#central-differences-truncation-and-roundoff"
+                },
+                {
+                  "id": "relu-kink-and-one-sided-derivatives",
+                  "title": "ReLU折点与左右导数",
+                  "question_ids": [
+                    "p15-nonsmooth"
+                  ],
+                  "explore": false,
+                  "key": "P15-C01-S02:relu-kink-and-one-sided-derivatives",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/2/#relu-kink-and-one-sided-derivatives"
+                },
+                {
+                  "id": "gradient-scan-and-response-training",
+                  "title": "差分扫描与响应函数训练",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P15-C01-S02:gradient-scan-and-response-training",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/2/#gradient-scan-and-response-training",
+                  "explore_url": "/chapters/15-01-神经网络与自动微分/explore/?concept=P15-C01-S02%3Agradient-scan-and-response-training"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C01-S02:references",
+                  "url": "/chapters/15-01-神经网络与自动微分/read/2/#references"
+                }
+              ],
+              "url": "/chapters/15-01-神经网络与自动微分/read/2/"
             }
           ],
           "visualization": "web/differentiable/index.html"
@@ -22106,77 +22259,237 @@
               "id": "P15-C02-S01",
               "chapter_id": "15.2",
               "number": "15.2.1",
-              "title": "固定采样间隔的一步映射",
+              "title": "状态配对、一步映射与系数学习",
               "outcome": "配对当前状态、输入与下一状态，拟合三系数并比较真实状态输入与自由递推。",
               "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.ipynb",
               "visualization": "web/differentiable/index.html",
+              "reading": "lessons/15-可微分建模与机制融合/02-离散动力学学习/01-固定采样间隔的一步映射.md",
               "questions": [
                 {
                   "id": "p15-one-step-input",
                   "slug": "p15-one-step-input",
                   "title": "多步预测的输入协议",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-02-离散动力学学习/read/1/#true-current-states-and-free-recursion",
+                  "concept_title": "真实当前状态与自由递推",
+                  "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input"
                 },
                 {
                   "id": "p15-sampling-object",
                   "slug": "p15-sampling-object",
                   "title": "采样间隔变化后的模型",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-02-离散动力学学习/read/1/#sampling-interval-and-map-meaning",
+                  "concept_title": "采样间隔决定映射含义",
+                  "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-sampling-object"
                 },
                 {
                   "id": "p15-fixed-map",
                   "slug": "p15-fixed-map",
                   "title": "固定间隔的一步状态",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-02-离散动力学学习/read/1/#next-state-map-and-nonlinear-correction",
+                  "concept_title": "下一状态与非线性修正",
+                  "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-fixed-map"
                 },
                 {
                   "id": "p15-teacher-forced",
                   "slug": "p15-teacher-forced",
                   "title": "真实旧状态的一步预测",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-02-离散动力学学习/read/1/#true-current-states-and-free-recursion",
+                  "concept_title": "真实当前状态与自由递推",
+                  "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-teacher-forced"
                 }
               ],
               "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-one-step-input",
               "notebook_url": "/notebook/?id=P15-C02-S01",
-              "url": "/notebook/?id=P15-C02-S01"
+              "reading_url": "/chapters/15-02-离散动力学学习/read/1/",
+              "concepts": [
+                {
+                  "id": "sampling-times-and-per-step-input-amounts",
+                  "title": "采样时刻与每步输入量",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C02-S01:sampling-times-and-per-step-input-amounts",
+                  "url": "/chapters/15-02-离散动力学学习/read/1/#sampling-times-and-per-step-input-amounts"
+                },
+                {
+                  "id": "next-state-map-and-nonlinear-correction",
+                  "title": "下一状态与非线性修正",
+                  "question_ids": [
+                    "p15-fixed-map"
+                  ],
+                  "explore": false,
+                  "key": "P15-C02-S01:next-state-map-and-nonlinear-correction",
+                  "url": "/chapters/15-02-离散动力学学习/read/1/#next-state-map-and-nonlinear-correction"
+                },
+                {
+                  "id": "true-current-states-and-free-recursion",
+                  "title": "真实当前状态与自由递推",
+                  "question_ids": [
+                    "p15-teacher-forced",
+                    "p15-one-step-input"
+                  ],
+                  "explore": false,
+                  "key": "P15-C02-S01:true-current-states-and-free-recursion",
+                  "url": "/chapters/15-02-离散动力学学习/read/1/#true-current-states-and-free-recursion"
+                },
+                {
+                  "id": "two-prediction-protocols-for-the-same-map",
+                  "title": "相同候选的两条预测曲线",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C02-S01:two-prediction-protocols-for-the-same-map",
+                  "url": "/chapters/15-02-离散动力学学习/read/1/#two-prediction-protocols-for-the-same-map"
+                },
+                {
+                  "id": "three-features-and-least-squares-training",
+                  "title": "三列特征与最小二乘训练",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C02-S01:three-features-and-least-squares-training",
+                  "url": "/chapters/15-02-离散动力学学习/read/1/#three-features-and-least-squares-training"
+                },
+                {
+                  "id": "sampling-interval-and-map-meaning",
+                  "title": "采样间隔决定映射含义",
+                  "question_ids": [
+                    "p15-sampling-object"
+                  ],
+                  "explore": false,
+                  "key": "P15-C02-S01:sampling-interval-and-map-meaning",
+                  "url": "/chapters/15-02-离散动力学学习/read/1/#sampling-interval-and-map-meaning"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C02-S01:references",
+                  "url": "/chapters/15-02-离散动力学学习/read/1/#references"
+                }
+              ],
+              "url": "/chapters/15-02-离散动力学学习/read/1/"
             },
             {
               "id": "P15-C02-S02",
               "chapter_id": "15.2",
               "number": "15.2.2",
-              "title": "自由滚动、数据划分与外推",
+              "title": "自由滚动、误差传播与轨迹留出",
               "outcome": "展开误差传播，比较两种训练目标选参和新初值下的实际结果。",
               "path": "notebooks/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.ipynb",
               "visualization": "web/differentiable/index.html",
+              "reading": "lessons/15-可微分建模与机制融合/02-离散动力学学习/02-自由滚动、数据划分与外推.md",
               "questions": [
                 {
                   "id": "p15-split-trajectories",
                   "slug": "p15-split-trajectories",
                   "title": "独立评估的划分",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-02-离散动力学学习/read/2/#whole-trajectories-and-parameter-selection",
+                  "concept_title": "完整轨迹与参数选择",
+                  "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories"
                 },
                 {
                   "id": "p15-rollout-leak",
                   "slug": "p15-rollout-leak",
                   "title": "逐步真值校正后的任务",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-02-离散动力学学习/read/2/#how-map-error-enters-later-inputs",
+                  "concept_title": "映射偏差怎样进入后续输入",
+                  "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-rollout-leak"
                 },
                 {
                   "id": "p15-free-rollout",
                   "slug": "p15-free-rollout",
                   "title": "自由运行的状态路径",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-02-离散动力学学习/read/2/#free-path-including-the-initial-state",
+                  "concept_title": "含初态的自由路径",
+                  "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-free-rollout"
                 },
                 {
                   "id": "p15-rollout-error",
                   "slug": "p15-rollout-error",
                   "title": "多步误差与终点误差",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-02-离散动力学学习/read/2/#one-step-error-and-future-path-error",
+                  "concept_title": "一步误差与后续步误差",
+                  "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-rollout-error"
                 }
               ],
               "practice_url": "/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories",
               "notebook_url": "/notebook/?id=P15-C02-S02",
-              "url": "/notebook/?id=P15-C02-S02"
+              "reading_url": "/chapters/15-02-离散动力学学习/read/2/",
+              "concepts": [
+                {
+                  "id": "free-path-including-the-initial-state",
+                  "title": "含初态的自由路径",
+                  "question_ids": [
+                    "p15-free-rollout"
+                  ],
+                  "explore": false,
+                  "key": "P15-C02-S02:free-path-including-the-initial-state",
+                  "url": "/chapters/15-02-离散动力学学习/read/2/#free-path-including-the-initial-state"
+                },
+                {
+                  "id": "one-step-error-and-future-path-error",
+                  "title": "一步误差与后续步误差",
+                  "question_ids": [
+                    "p15-rollout-error"
+                  ],
+                  "explore": false,
+                  "key": "P15-C02-S02:one-step-error-and-future-path-error",
+                  "url": "/chapters/15-02-离散动力学学习/read/2/#one-step-error-and-future-path-error"
+                },
+                {
+                  "id": "how-map-error-enters-later-inputs",
+                  "title": "映射偏差怎样进入后续输入",
+                  "question_ids": [
+                    "p15-rollout-leak"
+                  ],
+                  "explore": false,
+                  "key": "P15-C02-S02:how-map-error-enters-later-inputs",
+                  "url": "/chapters/15-02-离散动力学学习/read/2/#how-map-error-enters-later-inputs"
+                },
+                {
+                  "id": "two-predictions-from-a-held-out-initial-state",
+                  "title": "留出初值上的两种预测",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P15-C02-S02:two-predictions-from-a-held-out-initial-state",
+                  "url": "/chapters/15-02-离散动力学学习/read/2/#two-predictions-from-a-held-out-initial-state",
+                  "explore_url": "/chapters/15-02-离散动力学学习/explore/?concept=P15-C02-S02%3Atwo-predictions-from-a-held-out-initial-state"
+                },
+                {
+                  "id": "whole-trajectories-and-parameter-selection",
+                  "title": "完整轨迹与参数选择",
+                  "question_ids": [
+                    "p15-split-trajectories"
+                  ],
+                  "explore": false,
+                  "key": "P15-C02-S02:whole-trajectories-and-parameter-selection",
+                  "url": "/chapters/15-02-离散动力学学习/read/2/#whole-trajectories-and-parameter-selection"
+                },
+                {
+                  "id": "choosing-parameters-by-one-step-and-rollout-losses",
+                  "title": "一步目标与滚动目标的选参",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C02-S02:choosing-parameters-by-one-step-and-rollout-losses",
+                  "url": "/chapters/15-02-离散动力学学习/read/2/#choosing-parameters-by-one-step-and-rollout-losses"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C02-S02:references",
+                  "url": "/chapters/15-02-离散动力学学习/read/2/#references"
+                }
+              ],
+              "url": "/chapters/15-02-离散动力学学习/read/2/"
             }
           ],
           "visualization": "web/differentiable/index.html"
@@ -22205,73 +22518,233 @@
               "outcome": "分别推导连续灵敏度与Euler递推，在共同终点检查状态和导数的细化。",
               "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.ipynb",
               "visualization": "web/differentiable/index.html",
+              "reading": "lessons/15-可微分建模与机制融合/03-神经微分方程/01-连续右端、求解器与前向灵敏度.md",
               "questions": [
                 {
                   "id": "p15-two-gradients",
                   "slug": "p15-two-gradients",
                   "title": "连续与离散梯度",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-03-神经微分方程/read/1/#state-sensitivity-and-loss-gradient",
+                  "concept_title": "从状态导数到损失梯度",
+                  "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients"
                 },
                 {
                   "id": "p15-sensitivity-initial",
                   "slug": "p15-sensitivity-initial",
                   "title": "固定初态的灵敏度",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-03-神经微分方程/read/1/#parameter-sensitivity",
+                  "concept_title": "固定时刻的参数灵敏度",
+                  "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-sensitivity-initial"
                 },
                 {
                   "id": "p15-exact-decay",
                   "slug": "p15-exact-decay",
                   "title": "连续清除的解析状态",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-03-神经微分方程/read/1/#parameter-sensitivity",
+                  "concept_title": "固定时刻的参数灵敏度",
+                  "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-exact-decay"
                 },
                 {
                   "id": "p15-euler-sensitivity",
                   "slug": "p15-euler-sensitivity",
                   "title": "Euler 状态与参数灵敏度",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-03-神经微分方程/read/1/#derivative-of-euler-program",
+                  "concept_title": "Euler程序的参数导数",
+                  "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-euler-sensitivity"
                 }
               ],
               "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients",
               "notebook_url": "/notebook/?id=P15-C03-S01",
-              "url": "/notebook/?id=P15-C03-S01"
+              "reading_url": "/chapters/15-03-神经微分方程/read/1/",
+              "concepts": [
+                {
+                  "id": "continuous-vector-field",
+                  "title": "连续右端与神经微分方程",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C03-S01:continuous-vector-field",
+                  "url": "/chapters/15-03-神经微分方程/read/1/#continuous-vector-field"
+                },
+                {
+                  "id": "parameter-sensitivity",
+                  "title": "固定时刻的参数灵敏度",
+                  "question_ids": [
+                    "p15-exact-decay",
+                    "p15-sensitivity-initial"
+                  ],
+                  "explore": false,
+                  "key": "P15-C03-S01:parameter-sensitivity",
+                  "url": "/chapters/15-03-神经微分方程/read/1/#parameter-sensitivity"
+                },
+                {
+                  "id": "forward-sensitivity-equation",
+                  "title": "前向灵敏度方程",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C03-S01:forward-sensitivity-equation",
+                  "url": "/chapters/15-03-神经微分方程/read/1/#forward-sensitivity-equation"
+                },
+                {
+                  "id": "derivative-of-euler-program",
+                  "title": "Euler程序的参数导数",
+                  "question_ids": [
+                    "p15-euler-sensitivity"
+                  ],
+                  "explore": false,
+                  "key": "P15-C03-S01:derivative-of-euler-program",
+                  "url": "/chapters/15-03-神经微分方程/read/1/#derivative-of-euler-program"
+                },
+                {
+                  "id": "state-sensitivity-and-loss-gradient",
+                  "title": "从状态导数到损失梯度",
+                  "question_ids": [
+                    "p15-two-gradients"
+                  ],
+                  "explore": false,
+                  "key": "P15-C03-S01:state-sensitivity-and-loss-gradient",
+                  "url": "/chapters/15-03-神经微分方程/read/1/#state-sensitivity-and-loss-gradient"
+                },
+                {
+                  "id": "fixed-endpoint-refinement",
+                  "title": "固定终点的步长细化",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P15-C03-S01:fixed-endpoint-refinement",
+                  "url": "/chapters/15-03-神经微分方程/read/1/#fixed-endpoint-refinement",
+                  "explore_url": "/chapters/15-03-神经微分方程/explore/?concept=P15-C03-S01%3Afixed-endpoint-refinement"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C03-S01:references",
+                  "url": "/chapters/15-03-神经微分方程/read/1/#references"
+                }
+              ],
+              "url": "/chapters/15-03-神经微分方程/read/1/"
             },
             {
               "id": "P15-C03-S02",
               "chapter_id": "15.3",
               "number": "15.3.2",
-              "title": "伴随跳跃与反向重建的边界",
+              "title": "观测损失、连续伴随与离散反传",
               "outcome": "逐观测解释伴随跳跃，核对离散反向累加，并分开状态回退误差。",
               "path": "notebooks/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.ipynb",
               "visualization": "web/differentiable/index.html",
+              "reading": "lessons/15-可微分建模与机制融合/03-神经微分方程/02-伴随跳跃与反向重建的边界.md",
               "questions": [
                 {
                   "id": "p15-adjoint-jump",
                   "slug": "p15-adjoint-jump",
                   "title": "观测时刻的伴随跳跃",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-03-神经微分方程/read/2/#adjoint-and-observation-jumps",
+                  "concept_title": "伴随变量与观测跳跃",
+                  "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump"
                 },
                 {
                   "id": "p15-reverse-state",
                   "slug": "p15-reverse-state",
                   "title": "反向状态重建",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-03-神经微分方程/read/2/#negative-step-and-state-reconstruction",
+                  "concept_title": "负步长更新与状态重建",
+                  "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-reverse-state"
                 },
                 {
                   "id": "p15-continuous-gradient",
                   "slug": "p15-continuous-gradient",
                   "title": "固定观测时刻的连续损失梯度",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-03-神经微分方程/read/2/#multiple-observation-loss",
+                  "concept_title": "多时刻观测的损失与梯度",
+                  "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-continuous-gradient"
                 },
                 {
                   "id": "p15-discrete-adjoint",
                   "slug": "p15-discrete-adjoint",
                   "title": "带观测跳跃的离散梯度",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-03-神经微分方程/read/2/#discrete-euler-adjoint",
+                  "concept_title": "Euler目标的离散伴随",
+                  "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-discrete-adjoint"
                 }
               ],
               "practice_url": "/chapters/15-03-神经微分方程/practice/?question=p15-adjoint-jump",
               "notebook_url": "/notebook/?id=P15-C03-S02",
-              "url": "/notebook/?id=P15-C03-S02"
+              "reading_url": "/chapters/15-03-神经微分方程/read/2/",
+              "concepts": [
+                {
+                  "id": "multiple-observation-loss",
+                  "title": "多时刻观测的损失与梯度",
+                  "question_ids": [
+                    "p15-continuous-gradient"
+                  ],
+                  "explore": false,
+                  "key": "P15-C03-S02:multiple-observation-loss",
+                  "url": "/chapters/15-03-神经微分方程/read/2/#multiple-observation-loss"
+                },
+                {
+                  "id": "adjoint-and-observation-jumps",
+                  "title": "伴随变量与观测跳跃",
+                  "question_ids": [
+                    "p15-adjoint-jump"
+                  ],
+                  "explore": false,
+                  "key": "P15-C03-S02:adjoint-and-observation-jumps",
+                  "url": "/chapters/15-03-神经微分方程/read/2/#adjoint-and-observation-jumps"
+                },
+                {
+                  "id": "adjoint-parameter-gradient",
+                  "title": "由乘积求导得到参数梯度",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C03-S02:adjoint-parameter-gradient",
+                  "url": "/chapters/15-03-神经微分方程/read/2/#adjoint-parameter-gradient"
+                },
+                {
+                  "id": "discrete-euler-adjoint",
+                  "title": "Euler目标的离散伴随",
+                  "question_ids": [
+                    "p15-discrete-adjoint"
+                  ],
+                  "explore": false,
+                  "key": "P15-C03-S02:discrete-euler-adjoint",
+                  "url": "/chapters/15-03-神经微分方程/read/2/#discrete-euler-adjoint"
+                },
+                {
+                  "id": "negative-step-and-state-reconstruction",
+                  "title": "负步长更新与状态重建",
+                  "question_ids": [
+                    "p15-reverse-state"
+                  ],
+                  "explore": false,
+                  "key": "P15-C03-S02:negative-step-and-state-reconstruction",
+                  "url": "/chapters/15-03-神经微分方程/read/2/#negative-step-and-state-reconstruction"
+                },
+                {
+                  "id": "learnable-correction-in-vector-field",
+                  "title": "连续右端中的可学习修正",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C03-S02:learnable-correction-in-vector-field",
+                  "url": "/chapters/15-03-神经微分方程/read/2/#learnable-correction-in-vector-field"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C03-S02:references",
+                  "url": "/chapters/15-03-神经微分方程/read/2/#references"
+                }
+              ],
+              "url": "/chapters/15-03-神经微分方程/read/2/"
             }
           ],
           "visualization": "web/differentiable/index.html"
@@ -22295,77 +22768,238 @@
               "id": "P15-C04-S01",
               "chapter_id": "15.4",
               "number": "15.4.1",
-              "title": "数据、方程与初值的分项损失",
+              "title": "候选解与数据、方程、初值损失",
               "outcome": "从候选取值和导数分别构成数据、方程、初值损失，说明尺度。",
               "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.ipynb",
               "visualization": "web/differentiable/index.html",
+              "reading": "lessons/15-可微分建模与机制融合/04-物理约束学习/01-数据、方程与初值的分项损失.md",
               "questions": [
                 {
                   "id": "p15-pinn-parts",
                   "slug": "p15-pinn-parts",
                   "title": "方程约束的三类证据",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-04-物理约束学习/read/1/#data-and-equation-residuals",
+                  "concept_title": "数据残差与方程残差",
+                  "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts"
                 },
                 {
                   "id": "p15-loss-unit",
                   "slug": "p15-loss-unit",
                   "title": "损失相加之前",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-04-物理约束学习/read/1/#reference-scales-and-weights",
+                  "concept_title": "参考尺度与损失权重",
+                  "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-loss-unit"
                 },
                 {
                   "id": "p15-trial-derivative",
                   "slug": "p15-trial-derivative",
                   "title": "光滑候选值与导数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-04-物理约束学习/read/1/#differentiable-trial-solution",
+                  "concept_title": "可微候选解与时间导数",
+                  "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-trial-derivative"
                 },
                 {
                   "id": "p15-ode-loss-parts",
                   "slug": "p15-ode-loss-parts",
                   "title": "数据、方程与初值损失",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-04-物理约束学习/read/1/#collocation-and-loss-parts",
+                  "concept_title": "配点、初值与三项损失",
+                  "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-ode-loss-parts"
                 }
               ],
               "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-pinn-parts",
               "notebook_url": "/notebook/?id=P15-C04-S01",
-              "url": "/notebook/?id=P15-C04-S01"
+              "reading_url": "/chapters/15-04-物理约束学习/read/1/",
+              "concepts": [
+                {
+                  "id": "differentiable-trial-solution",
+                  "title": "可微候选解与时间导数",
+                  "question_ids": [
+                    "p15-trial-derivative"
+                  ],
+                  "explore": false,
+                  "key": "P15-C04-S01:differentiable-trial-solution",
+                  "url": "/chapters/15-04-物理约束学习/read/1/#differentiable-trial-solution"
+                },
+                {
+                  "id": "data-and-equation-residuals",
+                  "title": "数据残差与方程残差",
+                  "question_ids": [
+                    "p15-pinn-parts"
+                  ],
+                  "explore": false,
+                  "key": "P15-C04-S01:data-and-equation-residuals",
+                  "url": "/chapters/15-04-物理约束学习/read/1/#data-and-equation-residuals"
+                },
+                {
+                  "id": "collocation-and-loss-parts",
+                  "title": "配点、初值与三项损失",
+                  "question_ids": [
+                    "p15-ode-loss-parts"
+                  ],
+                  "explore": false,
+                  "key": "P15-C04-S01:collocation-and-loss-parts",
+                  "url": "/chapters/15-04-物理约束学习/read/1/#collocation-and-loss-parts"
+                },
+                {
+                  "id": "reference-scales-and-weights",
+                  "title": "参考尺度与损失权重",
+                  "question_ids": [
+                    "p15-loss-unit"
+                  ],
+                  "explore": false,
+                  "key": "P15-C04-S01:reference-scales-and-weights",
+                  "url": "/chapters/15-04-物理约束学习/read/1/#reference-scales-and-weights"
+                },
+                {
+                  "id": "fixed-candidate-experiment",
+                  "title": "固定候选的三项检查",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C04-S01:fixed-candidate-experiment",
+                  "url": "/chapters/15-04-物理约束学习/read/1/#fixed-candidate-experiment"
+                },
+                {
+                  "id": "from-time-curves-to-boundary-problems",
+                  "title": "从时间曲线到初边值问题",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C04-S01:from-time-curves-to-boundary-problems",
+                  "url": "/chapters/15-04-物理约束学习/read/1/#from-time-curves-to-boundary-problems"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C04-S01:references",
+                  "url": "/chapters/15-04-物理约束学习/read/1/#references"
+                }
+              ],
+              "url": "/chapters/15-04-物理约束学习/read/1/"
             },
             {
               "id": "P15-C04-S02",
               "chapter_id": "15.4",
               "number": "15.4.2",
-              "title": "扩散残差与无通量边界",
+              "title": "扩散候选、初值与无通量边界",
               "outcome": "逐项求导解释线性空间项怎样同时改变初值和无通量条件。",
               "path": "notebooks/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.ipynb",
               "visualization": "web/differentiable/index.html",
+              "reading": "lessons/15-可微分建模与机制融合/04-物理约束学习/02-扩散残差与无通量边界.md",
               "questions": [
                 {
                   "id": "p15-boundary-needed",
                   "slug": "p15-boundary-needed",
                   "title": "内点残差零时",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-04-物理约束学习/read/2/#initial-and-boundary-residuals",
+                  "concept_title": "初值残差与端点导数",
+                  "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed"
                 },
                 {
                   "id": "p15-collocation-limit",
                   "slug": "p15-collocation-limit",
                   "title": "有限配点的结论",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-04-物理约束学习/read/2/#four-checks-and-reference-grid",
+                  "concept_title": "四种检查与参考网格",
+                  "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-collocation-limit"
                 },
                 {
                   "id": "p15-diffusion-profile",
                   "slug": "p15-diffusion-profile",
                   "title": "扩散候选的空间取值",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-04-物理约束学习/read/2/#trial-profile-and-linear-term",
+                  "concept_title": "候选剖面与线性空间项",
+                  "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-diffusion-profile"
                 },
                 {
                   "id": "p15-diffusion-residual",
                   "slug": "p15-diffusion-residual",
                   "title": "方程与无通量边界残差",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-04-物理约束学习/read/2/#paired-collocation-points-and-loss-map",
+                  "concept_title": "配对时空点与分项热图",
+                  "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-diffusion-residual"
                 }
               ],
               "practice_url": "/chapters/15-04-物理约束学习/practice/?question=p15-boundary-needed",
               "notebook_url": "/notebook/?id=P15-C04-S02",
-              "url": "/notebook/?id=P15-C04-S02"
+              "reading_url": "/chapters/15-04-物理约束学习/read/2/",
+              "concepts": [
+                {
+                  "id": "normalized-position-and-concentration-deviation",
+                  "title": "归一化位置与浓度偏差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C04-S02:normalized-position-and-concentration-deviation",
+                  "url": "/chapters/15-04-物理约束学习/read/2/#normalized-position-and-concentration-deviation"
+                },
+                {
+                  "id": "trial-profile-and-linear-term",
+                  "title": "候选剖面与线性空间项",
+                  "question_ids": [
+                    "p15-diffusion-profile"
+                  ],
+                  "explore": false,
+                  "key": "P15-C04-S02:trial-profile-and-linear-term",
+                  "url": "/chapters/15-04-物理约束学习/read/2/#trial-profile-and-linear-term"
+                },
+                {
+                  "id": "diffusion-equation-residual",
+                  "title": "方程残差为何不含线性项",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C04-S02:diffusion-equation-residual",
+                  "url": "/chapters/15-04-物理约束学习/read/2/#diffusion-equation-residual"
+                },
+                {
+                  "id": "initial-and-boundary-residuals",
+                  "title": "初值残差与端点导数",
+                  "question_ids": [
+                    "p15-boundary-needed"
+                  ],
+                  "explore": false,
+                  "key": "P15-C04-S02:initial-and-boundary-residuals",
+                  "url": "/chapters/15-04-物理约束学习/read/2/#initial-and-boundary-residuals"
+                },
+                {
+                  "id": "paired-collocation-points-and-loss-map",
+                  "title": "配对时空点与分项热图",
+                  "question_ids": [
+                    "p15-diffusion-residual"
+                  ],
+                  "explore": false,
+                  "key": "P15-C04-S02:paired-collocation-points-and-loss-map",
+                  "url": "/chapters/15-04-物理约束学习/read/2/#paired-collocation-points-and-loss-map"
+                },
+                {
+                  "id": "four-checks-and-reference-grid",
+                  "title": "四种检查与参考网格",
+                  "question_ids": [
+                    "p15-collocation-limit"
+                  ],
+                  "explore": true,
+                  "key": "P15-C04-S02:four-checks-and-reference-grid",
+                  "url": "/chapters/15-04-物理约束学习/read/2/#four-checks-and-reference-grid",
+                  "explore_url": "/chapters/15-04-物理约束学习/explore/?concept=P15-C04-S02%3Afour-checks-and-reference-grid"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C04-S02:references",
+                  "url": "/chapters/15-04-物理约束学习/read/2/#references"
+                }
+              ],
+              "url": "/chapters/15-04-物理约束学习/read/2/"
             }
           ],
           "visualization": "web/differentiable/index.html"
@@ -22390,77 +23024,230 @@
               "id": "P15-C05-S01",
               "chapter_id": "15.5",
               "number": "15.5.1",
-              "title": "已知收支加可学习修正",
+              "title": "已知收支与可学习变化率修正",
               "outcome": "固定机制参数学习一个修正幅度，在同网格的新输入下比较预测。",
               "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.ipynb",
               "visualization": "web/differentiable/index.html",
+              "reading": "lessons/15-可微分建模与机制融合/05-混合模型与可辨识性/01-已知收支加可学习修正.md",
               "questions": [
                 {
                   "id": "p15-zero-correction",
                   "slug": "p15-zero-correction",
                   "title": "零修正的极限",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-05-混合模型与可辨识性/read/1/#mechanistic-dynamics-and-an-additional-net-source",
+                  "concept_title": "机制右端与附加净源汇",
+                  "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction"
                 },
                 {
                   "id": "p15-mechanism-claim",
                   "slug": "p15-mechanism-claim",
                   "title": "拟合与机制",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-05-混合模型与可辨识性/read/1/#mechanistic-and-hybrid-predictions-under-a-new-input",
+                  "concept_title": "新输入下的机制与混合预测",
+                  "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-mechanism-claim"
                 },
                 {
                   "id": "p15-hybrid-right-side",
                   "slug": "p15-hybrid-right-side",
                   "title": "机制与修正的总变化率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-05-混合模型与可辨识性/read/1/#hand-calculation-of-the-two-rates",
+                  "concept_title": "两项变化率的手算",
+                  "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-hybrid-right-side"
                 },
                 {
                   "id": "p15-hybrid-steps",
                   "slug": "p15-hybrid-steps",
                   "title": "混合模型的固定步长轨迹",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-05-混合模型与可辨识性/read/1/#input-rates-and-euler-state-updates",
+                  "concept_title": "输入率与 Euler 状态更新",
+                  "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-hybrid-steps"
                 }
               ],
               "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-zero-correction",
               "notebook_url": "/notebook/?id=P15-C05-S01",
-              "url": "/notebook/?id=P15-C05-S01"
+              "reading_url": "/chapters/15-05-混合模型与可辨识性/read/1/",
+              "concepts": [
+                {
+                  "id": "mechanistic-dynamics-and-an-additional-net-source",
+                  "title": "机制右端与附加净源汇",
+                  "question_ids": [
+                    "p15-zero-correction"
+                  ],
+                  "explore": false,
+                  "key": "P15-C05-S01:mechanistic-dynamics-and-an-additional-net-source",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/1/#mechanistic-dynamics-and-an-additional-net-source"
+                },
+                {
+                  "id": "hand-calculation-of-the-two-rates",
+                  "title": "两项变化率的手算",
+                  "question_ids": [
+                    "p15-hybrid-right-side"
+                  ],
+                  "explore": false,
+                  "key": "P15-C05-S01:hand-calculation-of-the-two-rates",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/1/#hand-calculation-of-the-two-rates"
+                },
+                {
+                  "id": "input-rates-and-euler-state-updates",
+                  "title": "输入率与 Euler 状态更新",
+                  "question_ids": [
+                    "p15-hybrid-steps"
+                  ],
+                  "explore": false,
+                  "key": "P15-C05-S01:input-rates-and-euler-state-updates",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/1/#input-rates-and-euler-state-updates"
+                },
+                {
+                  "id": "learning-one-amplitude-with-fixed-mechanistic-parameters",
+                  "title": "固定机制参数的幅度学习",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C05-S01:learning-one-amplitude-with-fixed-mechanistic-parameters",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/1/#learning-one-amplitude-with-fixed-mechanistic-parameters"
+                },
+                {
+                  "id": "mechanistic-and-hybrid-predictions-under-a-new-input",
+                  "title": "新输入下的机制与混合预测",
+                  "question_ids": [
+                    "p15-mechanism-claim"
+                  ],
+                  "explore": false,
+                  "key": "P15-C05-S01:mechanistic-and-hybrid-predictions-under-a-new-input",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/1/#mechanistic-and-hybrid-predictions-under-a-new-input"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C05-S01:references",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/1/#references"
+                }
+              ],
+              "url": "/chapters/15-05-混合模型与可辨识性/read/1/"
             },
             {
               "id": "P15-C05-S02",
               "chapter_id": "15.5",
               "number": "15.5.2",
-              "title": "参数混淆、观测与预测不确定性",
+              "title": "同形参数混淆、独立通量与候选预测矩",
               "outcome": "以相同净系数说明参数混淆，再用独立通量和候选方差解释信息。",
               "path": "notebooks/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.ipynb",
               "visualization": "web/differentiable/index.html",
+              "reading": "lessons/15-可微分建模与机制融合/05-混合模型与可辨识性/02-参数混淆、观测与预测不确定性.md",
               "questions": [
                 {
                   "id": "p15-confounding-input",
                   "slug": "p15-confounding-input",
                   "title": "新输入能否破除同形混淆",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-05-混合模型与可辨识性/read/2/#equivalent-parameters-and-structural-unidentifiability",
+                  "concept_title": "等价参数与结构不可辨识",
+                  "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input"
                 },
                 {
                   "id": "p15-candidate-variance",
                   "slug": "p15-candidate-variance",
                   "title": "候选预测方差的范围",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/15-05-混合模型与可辨识性/read/2/#coincident-predictions-and-different-parameters",
+                  "concept_title": "预测重合与参数差异",
+                  "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-candidate-variance"
                 },
                 {
                   "id": "p15-indistinguishable-rate",
                   "slug": "p15-indistinguishable-rate",
                   "title": "同形修正的变化率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-05-混合模型与可辨识性/read/2/#linear-correction-and-the-net-elimination-coefficient",
+                  "concept_title": "线性修正与净消除系数",
+                  "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-indistinguishable-rate"
                 },
                 {
                   "id": "p15-candidate-moments",
                   "slug": "p15-candidate-moments",
                   "title": "预设候选的预测矩",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/15-05-混合模型与可辨识性/read/2/#weighted-prediction-moments-of-prescribed-candidates",
+                  "concept_title": "预设候选的加权预测矩",
+                  "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-candidate-moments"
                 }
               ],
               "practice_url": "/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input",
               "notebook_url": "/notebook/?id=P15-C05-S02",
-              "url": "/notebook/?id=P15-C05-S02"
+              "reading_url": "/chapters/15-05-混合模型与可辨识性/read/2/",
+              "concepts": [
+                {
+                  "id": "linear-correction-and-the-net-elimination-coefficient",
+                  "title": "线性修正与净消除系数",
+                  "question_ids": [
+                    "p15-indistinguishable-rate"
+                  ],
+                  "explore": false,
+                  "key": "P15-C05-S02:linear-correction-and-the-net-elimination-coefficient",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/2/#linear-correction-and-the-net-elimination-coefficient"
+                },
+                {
+                  "id": "equivalent-parameters-and-structural-unidentifiability",
+                  "title": "等价参数与结构不可辨识",
+                  "question_ids": [
+                    "p15-confounding-input"
+                  ],
+                  "explore": false,
+                  "key": "P15-C05-S02:equivalent-parameters-and-structural-unidentifiability",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/2/#equivalent-parameters-and-structural-unidentifiability"
+                },
+                {
+                  "id": "information-from-an-independent-mechanistic-flux",
+                  "title": "独立机制通量提供的信息",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C05-S02:information-from-an-independent-mechanistic-flux",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/2/#information-from-an-independent-mechanistic-flux"
+                },
+                {
+                  "id": "coincident-trajectories-after-an-input-switch",
+                  "title": "切换输入后的重合轨迹",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P15-C05-S02:coincident-trajectories-after-an-input-switch",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/2/#coincident-trajectories-after-an-input-switch",
+                  "explore_url": "/chapters/15-05-混合模型与可辨识性/explore/?concept=P15-C05-S02%3Acoincident-trajectories-after-an-input-switch"
+                },
+                {
+                  "id": "weighted-prediction-moments-of-prescribed-candidates",
+                  "title": "预设候选的加权预测矩",
+                  "question_ids": [
+                    "p15-candidate-moments"
+                  ],
+                  "explore": false,
+                  "key": "P15-C05-S02:weighted-prediction-moments-of-prescribed-candidates",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/2/#weighted-prediction-moments-of-prescribed-candidates"
+                },
+                {
+                  "id": "coincident-predictions-and-different-parameters",
+                  "title": "预测重合与参数差异",
+                  "question_ids": [
+                    "p15-candidate-variance"
+                  ],
+                  "explore": false,
+                  "key": "P15-C05-S02:coincident-predictions-and-different-parameters",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/2/#coincident-predictions-and-different-parameters"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P15-C05-S02:references",
+                  "url": "/chapters/15-05-混合模型与可辨识性/read/2/#references"
+                }
+              ],
+              "url": "/chapters/15-05-混合模型与可辨识性/read/2/"
             }
           ],
           "visualization": "web/differentiable/index.html"
@@ -22500,59 +23287,156 @@
                 "新输入下的自由预测、参数差值与独立通量"
               ]
             },
+            "reading": "lessons/15-可微分建模与机制融合/99-篇末综合/01-机制与学习模型的独立比较.md",
             "questions": [
               {
                 "id": "p15-capstone-gradient-object",
                 "slug": "p15-capstone-gradient-object",
                 "title": "综合：先声明梯度对象",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#continuous-sensitivity-and-euler-program-derivatives",
+                "concept_title": "连续灵敏度与 Euler 程序导数",
+                "practice_url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-gradient-object"
               },
               {
                 "id": "p15-capstone-identifiability",
                 "slug": "p15-capstone-identifiability",
                 "title": "综合：机制参数是否可辨",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#parameter-equivalence-and-additional-observations",
+                "concept_title": "参数等价关系与额外观测",
+                "practice_url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-identifiability"
               },
               {
                 "id": "p15-capstone-small-gradient",
                 "slug": "p15-capstone-small-gradient",
                 "title": "综合：网络预测与梯度",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#network-predictions-and-loss-gradients",
+                "concept_title": "网络预测与损失的参数导数",
+                "practice_url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-small-gradient"
               },
               {
                 "id": "p15-capstone-forward-gradient",
                 "slug": "p15-capstone-forward-gradient",
                 "title": "综合：连续方程的离散梯度",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#continuous-sensitivity-and-euler-program-derivatives",
+                "concept_title": "连续灵敏度与 Euler 程序导数",
+                "practice_url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-forward-gradient"
               },
               {
                 "id": "p15-capstone-scaled-loss",
                 "slug": "p15-capstone-scaled-loss",
                 "title": "综合：已声明尺度的方程损失",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#squared-losses-and-residual-reference-scales",
+                "concept_title": "平方损失与残差参考尺度",
+                "practice_url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-scaled-loss"
               },
               {
                 "id": "p15-capstone-independent-error",
                 "slug": "p15-capstone-independent-error",
                 "title": "综合：相同留出轨迹下的误差",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#free-predictions-and-errors-under-a-new-input",
+                "concept_title": "新输入下的自由预测与误差",
+                "practice_url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-independent-error"
               },
               {
                 "id": "p15-capstone-grid-transfer",
                 "slug": "p15-capstone-grid-transfer",
                 "title": "综合：改变求解步长",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#continuous-sensitivity-and-euler-program-derivatives",
+                "concept_title": "连续灵敏度与 Euler 程序导数",
+                "practice_url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-grid-transfer"
               },
               {
                 "id": "p15-capstone-hybrid-ablation",
                 "slug": "p15-capstone-hybrid-ablation",
                 "title": "综合：混合修正的证据",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#parameter-equivalence-and-additional-observations",
+                "concept_title": "参数等价关系与额外观测",
+                "practice_url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-hybrid-ablation"
               }
             ],
             "practice_url": "/parts/15-可微分建模与机制融合/综合练习/practice/?question=p15-capstone-gradient-object",
             "notebook_url": "/notebook/?id=P15-SUMMARY",
-            "url": "/notebook/?id=P15-SUMMARY"
+            "reading_url": "/parts/15-可微分建模与机制融合/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "network-predictions-and-loss-gradients",
+                "title": "网络预测与损失的参数导数",
+                "question_ids": [
+                  "p15-capstone-small-gradient"
+                ],
+                "explore": false,
+                "key": "P15-SUMMARY:network-predictions-and-loss-gradients",
+                "url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#network-predictions-and-loss-gradients"
+              },
+              {
+                "id": "continuous-sensitivity-and-euler-program-derivatives",
+                "title": "连续灵敏度与 Euler 程序导数",
+                "question_ids": [
+                  "p15-capstone-forward-gradient",
+                  "p15-capstone-gradient-object",
+                  "p15-capstone-grid-transfer"
+                ],
+                "explore": false,
+                "key": "P15-SUMMARY:continuous-sensitivity-and-euler-program-derivatives",
+                "url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#continuous-sensitivity-and-euler-program-derivatives"
+              },
+              {
+                "id": "squared-losses-and-residual-reference-scales",
+                "title": "平方损失与残差参考尺度",
+                "question_ids": [
+                  "p15-capstone-scaled-loss"
+                ],
+                "explore": false,
+                "key": "P15-SUMMARY:squared-losses-and-residual-reference-scales",
+                "url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#squared-losses-and-residual-reference-scales"
+              },
+              {
+                "id": "mechanistic-and-smooth-correction-terms-in-one-balance",
+                "title": "同一收支中的机制与平滑修正",
+                "question_ids": [],
+                "explore": false,
+                "key": "P15-SUMMARY:mechanistic-and-smooth-correction-terms-in-one-balance",
+                "url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#mechanistic-and-smooth-correction-terms-in-one-balance"
+              },
+              {
+                "id": "free-predictions-and-errors-under-a-new-input",
+                "title": "新输入下的自由预测与误差",
+                "question_ids": [
+                  "p15-capstone-independent-error"
+                ],
+                "explore": false,
+                "key": "P15-SUMMARY:free-predictions-and-errors-under-a-new-input",
+                "url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#free-predictions-and-errors-under-a-new-input"
+              },
+              {
+                "id": "parameter-equivalence-and-additional-observations",
+                "title": "参数等价关系与额外观测",
+                "question_ids": [
+                  "p15-capstone-identifiability",
+                  "p15-capstone-hybrid-ablation"
+                ],
+                "explore": false,
+                "key": "P15-SUMMARY:parameter-equivalence-and-additional-observations",
+                "url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#parameter-equivalence-and-additional-observations"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P15-SUMMARY:references",
+                "url": "/parts/15-可微分建模与机制融合/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/15-可微分建模与机制融合/综合练习/read/1/"
           }
         ],
         "available": true,

@@ -23,7 +23,8 @@ test('zero PDE residual does not imply correct initial and boundary conditions',
  assert.ok(result.stats[0][1]<1e-9);
  assert.ok(Math.abs(result.stats[1][1]-.09)<1e-12);
  assert.ok(result.stats[2][1]>.1);
- assert.equal(result.stats[3][0],'参考网格 RMSE');
+ assert.equal(result.stats[3][0],'参考剖面均方根误差 / (U/V)');
+ assert.ok(Math.abs(result.stats[3][1]-.3*Math.sqrt(.3375))<1e-6);
 });
 test('same effective clearance has same state but a different flux',()=>{
  const state=hybridView(.6,.3,'state');

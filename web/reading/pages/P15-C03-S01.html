@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>15.3.1 连续右端、求解器与前向灵敏度 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P15-C03-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P15-C03-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients">本节练习 · 4 题</a><a class="button" href="/chapters/15-03-神经微分方程/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>15.3.1 连续右端、求解器与前向灵敏度</h1>
+<p>上一章的模型接收当前状态和本步输入，给出固定间隔之后的状态。如果两次观测相隔0.3 T，下两次却相隔0.8 T，我们希望沿用同一条变化规律，而不是为每个间隔重新定义一个映射。连续方程提供了这种表示：先给出此刻的变化率，再把它积累到需要预测的时刻。</p>
+<p>学完本节，你应能说明连续右端与下一状态的区别，手算状态及参数灵敏度的两步更新，并比较连续解与Euler程序的参数导数。先修为15.2的离散映射、2.4的Euler方法和15.1的链式法则。</p>
+<h2 id="continuous-vector-field">连续右端与神经微分方程</h2>
+<p>连续状态模型写成</p>
+<p>$$\dot x(t)=f\bigl(x(t),t,\theta\bigr),\qquad x(0)=x_0.$$</p>
+<p>右端$f$给出状态$x$在当前状态、时刻和参数$\theta$下的变化率。若$x$为总量，单位为U，$f$的单位就是U/T。它与上一章的下一状态映射不同：$f$的输出需要经过时间积分，才成为某个时刻的状态。</p>
+<p>例如一阶消除模型为</p>
+<p>$$f(x,k)=-kx,\qquad [k]=1/\mathrm T.$$</p>
+<p>在$x=2$ U、$k=0.7/\mathrm T$时，当前变化率为$-1.4$ U/T。以$h=0.2$ T作一次Euler更新，得到$x_1=2-0.2\times1.4=1.72$ U；这里$-1.4$是变化率，1.72才是下一状态。</p>
+<p><strong>神经常微分方程（neural ordinary differential equation，Neural ODE）</strong>用神经网络表示右端$f$，将网络参数作为$\theta$，再由微分方程求解器生成状态。一个网络可以输出某个时刻的变化率，也可以像15.2那样输出下一状态；输出量的含义决定了后面应当进行的计算。本章先用可解析的$f=-kx$建立求导方法，再把平滑的可学习项放进右端。</p>
+<h2 id="parameter-sensitivity">固定时刻的参数灵敏度</h2>
+<p>固定初态$x_0$和预测时刻$t$，一阶消除方程的连续解为</p>
+<p>$$x(t;k)=x_0e^{-kt}.$$</p>
+<p>把$k$稍微改变$\Delta k$后，同一时刻的状态变化近似为</p>
+<p>$$x(t;k+\Delta k)-x(t;k)\approx s(t)\Delta k,\qquad
+s(t)=\frac{\partial x(t;k)}{\partial k}.$$</p>
+<p>$s(t)$称为状态对参数$k$的<strong>灵敏度（sensitivity）</strong>。它把“清除快一点会剩下多少”变成一个可计算的局部关系。对解析解求导，</p>
+<p>$$s(t)=x_0e^{-kt}(-t)=-t\,x(t).$$</p>
+<p>当$t&gt;0,x_0&gt;0$时，这个导数为负：增大消除系数会减小剩余总量。$s$的单位为U·T，与$\Delta k$的$1/\mathrm T$相乘后，才得到U单位的状态变化。初态固定意味着$s(0)=\partial x_0/\partial k=0$。</p>
+<p>例如$x_0=2$ U、$k=0.7/\mathrm T$、$t=2$ T，连续状态约为0.493194 U，灵敏度约为$-0.986388$ U·T。若$k$增加$0.01/\mathrm T$，一阶近似预计终点总量减少约0.009864 U。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-03-神经微分方程/practice/?question=p15-exact-decay">连续清除的解析状态</a></li></ul></nav>
+
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-03-神经微分方程/practice/?question=p15-sensitivity-initial">固定初态的灵敏度</a></li></ul></nav>
+
+<h2 id="forward-sensitivity-equation">前向灵敏度方程</h2>
+<p>对于没有解析解的右端，仍可把状态与灵敏度一起向前求解。对$\dot x=f(x,k)$关于$k$求导，链式法则给出</p>
+<p>$$\frac{d}{dt}\frac{\partial x}{\partial k}
+=\frac{\partial f}{\partial x}\frac{\partial x}{\partial k}
++\frac{\partial f}{\partial k}.$$</p>
+<p>右端第一项经过状态$x$传递参数影响，第二项来自$f$对参数的显式依赖。记$f_x=\partial f/\partial x$、$f_k=\partial f/\partial k$，便得到</p>
+<p>$$\dot s=f_xs+f_k,\qquad s(0)=0.$$</p>
+<p>对$f=-kx$，有$f_x=-k$、$f_k=-x$，因此</p>
+<p>$$\boxed{\dot x=-kx,\qquad \dot s=-ks-x.}$$</p>
+<p>两条方程共享同一条状态路径。从初态向前推进状态，同时计算每个时刻对参数的导数，就是<strong>前向灵敏度（forward sensitivity）</strong>方法。</p>
+<p>状态和参数有多个分量时，逐分量的链式法则可以用矩阵写在一起。设$x\in\mathbb R^d$、$\theta\in\mathbb R^p$都按列排列，定义</p>
+<p>$$S_{ij}=\frac{\partial x_i}{\partial\theta_j},\qquad
+(F_x)_{i\ell}=\frac{\partial f_i}{\partial x_\ell},\qquad
+(F_\theta)_{ij}=\frac{\partial f_i}{\partial\theta_j}.$$</p>
+<p>$S$是$d\times p$的灵敏度矩阵：每列记录一个参数影响全部状态的方式。两个Jacobian矩阵$F_x,F_\theta$分别为$d\times d$和$d\times p$，于是</p>
+<p>$$\dot S=F_xS+F_\theta,\qquad S(0)=0.$$</p>
+<p>例如两个状态、一个参数时，第一行就是$\dot S_{11}=(\partial f_1/\partial x_1)S_{11}+(\partial f_1/\partial x_2)S_{21}+\partial f_1/\partial\theta_1$。矩阵乘法只是把这些状态之间的传递逐项相加。这里使用平滑右端，初态独立于参数；若初态也待估计，其初始导数应一同进入$S(0)$。</p>
+<h2 id="derivative-of-euler-program">Euler程序的参数导数</h2>
+<p>现在对实际执行的Euler更新求导：</p>
+<p>$$x_{n+1}=(1-kh)x_n,\qquad t_n=nh.$$</p>
+<p>固定$h$和步数，乘积求导得到</p>
+<p>$$s_{n+1}=(-h)x_n+(1-kh)s_n.$$</p>
+<p>第一项来自乘子本身，第二项来自旧状态已经带有的参数依赖。每一步的$x_{n+1},s_{n+1}$都使用同一对旧值$x_n,s_n$。</p>
+<p>取$x_0=2$ U、$k=0.5/\mathrm T$、$h=0.2$ T，乘子为0.9。两步为</p>
+<p>$$\begin{aligned}
+x_1&amp;=0.9\times2=1.8, &amp;s_1&amp;=0.9\times0-0.2\times2=-0.4,\\
+x_2&amp;=0.9\times1.8=1.62, &amp;s_2&amp;=0.9(-0.4)-0.2(1.8)=-0.72.
+\end{aligned}$$</p>
+<p>状态列表为$(2,1.8,1.62)$ U，对应灵敏度列表为$(0,-0.4,-0.72)$ U·T；两张列表都保留初值，第$n$项对应同一时刻$nh$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-03-神经微分方程/practice/?question=p15-euler-sensitivity">Euler 状态与参数灵敏度</a></li></ul></nav>
+
+<p>也可以从离散闭式独立求导：</p>
+<p>$$x_N=x_0(1-kh)^N,\qquad
+s_N=-x_0Nh(1-kh)^{N-1}.$$</p>
+<p>它与连续导数$-t x_0e^{-kt}$分别对应Euler乘积与连续指数。在有限步长下，两者通常有差别。</p>
+<h2 id="state-sensitivity-and-loss-gradient">从状态导数到损失梯度</h2>
+<p>若在固定终点观测到$y$，连续模型的半平方损失为</p>
+<p>$$J(k)=\frac12[x(t;k)-y]^2,\qquad
+\frac{dJ}{dk}=[x(t;k)-y]s(t).$$</p>
+<p>这条链先问“预测偏离读数多少”，再乘“参数会怎样改变预测”。若预测来自Euler程序，前向目标则为$J_h=\tfrac12(x_N-y)^2$，相应导数为$(x_N-y)s_N$。</p>
+<p>对每次Euler运算自动微分，会沿实际计算图得到$dJ_h/dk$。用有限差分核对它时，也应正负扰动参数并重新运行同一Euler目标。这样比较的是同一个函数的两种求导方法；再与连续解析导数比较，才看得出时间离散的影响。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-03-神经微分方程/practice/?question=p15-two-gradients">连续与离散梯度</a></li></ul></nav>
+
+<h2 id="fixed-endpoint-refinement">固定终点的步长细化</h2>
+<p>实验固定$x_0=2$ U、$k=0.7/\mathrm T$和终点2 T，依次采用0.4、0.2、0.1、0.05、0.025 T五个步长。每个步长都恰好到达终点。以$h=0.2$ T为例，Euler终点为$2\times0.86^{10}\approx0.442603$ U，比连续终点少约0.050591 U。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P15-C03-S01-5ca5291a-0.png" alt="连续右端、求解器与前向灵敏度：实验结果图" loading="lazy"></figure>
+</section>
+<p>两幅图的横轴都是实际步长，对数坐标中向左表示网格变细。左图的蓝线比较终点状态，纵轴单位为U；右图的粉线比较终点参数灵敏度，纵轴单位为U·T。步长从0.4减到0.025 T时，状态误差由约0.1062 U降至0.006075 U，灵敏度误差由约0.08857 U·T降至0.005202 U·T。沿各自纵轴观察下降趋势，可以看到它们分别逼近自己的连续参照。</p>
+<p>在探索中先固定$k$，切换“状态”与“状态对$k$的导数”，再减小请求步长。页面会把实际步长调整为$2\,\mathrm T/N$，保证每组曲线比较同一终点；可以从曲线和显示的实际步长一起观察细化过程。</p>
+<p class="concept-explore"><a href="/chapters/15-03-神经微分方程/explore/?concept=P15-C03-S01%3Afixed-endpoint-refinement">可视化与探索：固定终点的步长细化 →</a></p>
+
+<p>前向灵敏度让每个参数的影响随状态一起向前传播。下一节从多次观测的总损失出发，反过来追踪后续损失对较早状态的影响。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://papers.nips.cc/paper_files/paper/2018/file/69386f6bb1dfed68692a24c8686939b9-Paper.pdf">Chen等，Neural Ordinary Differential Equations</a>，连续右端与可微求解的原始研究。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/15-02-离散动力学学习/read/2/">← 15.2.2 自由滚动、误差传播与轨迹留出</a><a href="/chapters/15-03-神经微分方程/read/2/">15.3.2 观测损失、连续伴随与离散反传 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>15.2.2 自由滚动、误差传播与轨迹留出 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P15-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P15-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories">本节练习 · 4 题</a><a class="button" href="/chapters/15-02-离散动力学学习/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>15.2.2 自由滚动、误差传播与轨迹留出</h1>
+<p>同一个候选每步只偏一点，从初值连续预测后却可能明显偏离。每步重新输入真实状态，会把前一步的偏差清掉；自由滚动则要带着这个偏差继续计算。我们先把差别写成误差递推，再看改变训练目标以后，参数与新轨迹预测如何变化。</p>
+<p>学完本节，应能计算后续步和终点误差，解释误差传播，按完整轨迹划分数据，并比较一步与滚动训练目标。先修为15.2.1及第14篇的独立预测。</p>
+<h2 id="free-path-including-the-initial-state">含初态的自由路径</h2>
+<p>沿用$1T$采样间隔和$1\,\mathrm U$状态参考量。本节的生成规则改为</p>
+<p>$$F(x,u)=0.88x+0.2u+(0.04\,\mathrm U)
+\tanh\!\left(\frac{x}{1\,\mathrm U}\right).$$</p>
+<p>从$1\,\mathrm U$出发，每步输入$0.3\,\mathrm U$，第一步为</p>
+<p>$$x_1=[0.88+0.06+0.04\tanh1]\,\mathrm U
+\approx0.970464\,\mathrm U.$$</p>
+<p>再把这个新状态放回同一式，得到$x_2\approx0.943964\,\mathrm U$。连续8次更新的末值约为$0.832659\,\mathrm U$，含初态共9项。</p>
+<p>计算题按相同递推返回完整列表。比如$q=0,a=0.5$且给出两个零输入项时，从1 U出发得到$[1,0.5,0.25]$ U；零输入仍对应一次状态更新。输入列表为空时，保留给定初态这一项。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-02-离散动力学学习/practice/?question=p15-free-rollout">自由运行的状态路径</a></li></ul></nav>
+
+<h2 id="one-step-error-and-future-path-error">一步误差与后续步误差</h2>
+<p>对$N$次更新，一步均方误差为</p>
+<p>$$E_1=\frac1N\sum_{n=0}^{N-1}
+[\hat F(x_n,u_n)-x_{n+1}]^2.$$</p>
+<p>各次都读取真实$x_n$。自由预测$H$步时则先从共同初态生成$\hat x_n$，再计算</p>
+<p>$$E_H=\frac1H\sum_{n=1}^{H}(\hat x_n-x_n)^2,
+\qquad e_{\rm end}=|\hat x_H-x_H|.$$</p>
+<p>两者比较的时刻都从第1次更新开始；初态是共同给定值，不计入预测误差平均。$E_H$单位为U²，终点差以U计。</p>
+<p>手算两步例子：真实路径$[1,0.8,0.6]$ U，预测$[1,0.9,0.4]$ U。后两步误差为$0.1,-0.2$ U，因此</p>
+<p>$$E_H=\frac{0.1^2+(-0.2)^2}{2}\,\mathrm U^2
+=0.025\,\mathrm U^2,\qquad e_{\rm end}=0.2\,\mathrm U.$$</p>
+<p>第一项汇总整个预测窗口，第二项只读最后一对状态；返回时依次组成$[E_H,e_{\rm end}]$列表。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-02-离散动力学学习/practice/?question=p15-rollout-error">多步误差与终点误差</a></li></ul></nav>
+
+<h2 id="how-map-error-enters-later-inputs">映射偏差怎样进入后续输入</h2>
+<p>记自由误差$\delta_n=\hat x_n-x_n$。在下一步差值中加减同一项$\hat F(x_n,u_n)$：</p>
+<p>$$\begin{aligned}
+\delta_{n+1}
+={}&amp;\hat F(\hat x_n,u_n)-\hat F(x_n,u_n)\\
+&amp;+\hat F(x_n,u_n)-F(x_n,u_n).
+\end{aligned}$$</p>
+<p>第二行是在相同真实状态处，候选与生成映射的差，一步预测能看到它。第一行是已有状态偏差被再次送入候选函数后造成的影响，自由滚动还需要承担这一部分。</p>
+<p>例如候选只将$a=0.88$改为0.85。在正状态$x_n$处，第二行等于$-0.03x_n$，产生偏低的预测。已有偏差还会经过候选的状态依赖继续传入；小偏差附近，这一作用可由导数</p>
+<p>$$\partial_x\hat F=0.85+0.04\left[1-\tanh^2\!\left(\frac{x}{1\,\mathrm U}\right)\right]$$</p>
+<p>近似描述，它在0.85与0.89之间。即使旧偏差被逐步缩小，每步新产生的映射偏差仍会继续叠入。若每次将当前状态替换成真实值，就将第一行重置为零，得到的是连续多次的一步预测。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-02-离散动力学学习/practice/?question=p15-rollout-leak">逐步真值校正后的任务</a></li></ul></nav>
+
+<h2 id="two-predictions-from-a-held-out-initial-state">留出初值上的两种预测</h2>
+<p>训练初态取$0.2\,\mathrm U$，留出初态取$1.4\,\mathrm U$，各输入$0.3\,\mathrm U$连续18步。候选固定$a=0.85,b=0.2,q=0.04\,\mathrm U$，先比较它的训练一步误差，再比较留出轨迹上的两种预测。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P15-C02-S02-00c33767-0.png" alt="自由滚动、误差传播与轨迹留出：实验结果图" loading="lazy"></figure>
+</section>
+<p>蓝线是留出真实路径。绿色点每次读取蓝线当前值后预测一步，玫红虚线则始终使用自己的上一状态。两者从相同的1.4 U开始，后续提供给候选的当前状态不同。</p>
+<table>
+<thead>
+<tr>
+  <th>计算对象</th>
+  <th style="text-align:right">均方误差 / U²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>训练轨迹的一步预测</td>
+  <td style="text-align:right">0.000194</td>
+</tr>
+<tr>
+  <td>留出轨迹的一步预测</td>
+  <td style="text-align:right">0.000980</td>
+</tr>
+<tr>
+  <td>留出轨迹的自由滚动</td>
+  <td style="text-align:right">0.028982</td>
+</tr>
+</tbody>
+</table>
+<p>留出一步误差比训练一步误差大，说明这份初态对应的状态范围影响了当前候选；同一留出路径上的自由误差又更大，将误差传播的作用显示出来。</p>
+<p>探索页采用相同生成规则与1.4 U初态，可改变候选$a$和预测步数。先固定$a=0.85$切换两种状态输入方式，再增加步数；图旁两项误差都排除共同初态。把$a$调回0.88时，候选恢复生成规则，两种使用方式也会重新吻合。</p>
+<p class="concept-explore"><a href="/chapters/15-02-离散动力学学习/explore/?concept=P15-C02-S02%3Atwo-predictions-from-a-held-out-initial-state">可视化与探索：留出初值上的两种预测 →</a></p>
+
+<h2 id="whole-trajectories-and-parameter-selection">完整轨迹与参数选择</h2>
+<p>要检查模型从新初值生成整条路径的能力，就将另一初值的完整轨迹留作评估。相邻点共享演化历史，把同一条路径随机拆点，更接近检查已见路径附近的预测；它与更换初值后的连续预测回答不同问题。</p>
+<p>参数由训练轨迹拟合；如果还要选择函数族、训练目标或其他设置，就用验证轨迹比较。最终测试轨迹在选择完成后才使用。这样，新轨迹上的结果才能对应到已经固定的模型。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-02-离散动力学学习/practice/?question=p15-split-trajectories">独立评估的划分</a></li></ul></nav>
+
+<h2 id="choosing-parameters-by-one-step-and-rollout-losses">一步目标与滚动目标的选参</h2>
+<p>最后去掉候选的tanh项，固定$b=0.2,q=0$，只选择$a$。生成规则仍含$0.04\,\mathrm U$的tanh修正，所以候选需要用一个线性保留系数近似它在不同状态处的作用。</p>
+<p>在0.82—0.96的281个等距候选中，一组最小化训练一步$E_1$，另一组最小化训练自由路径$E_H$，两组都只使用0.2 U起点的18步训练轨迹。得到</p>
+<p>$$a_{\rm one}=0.917,\qquad a_{\rm roll}=0.9175.$$</p>
+<p>一步目标分别比较真实当前状态处的输出；滚动目标还把参数改变后产生的整条预测路径计入损失。因此同一个函数族、同一份数据，也可能选出不同系数。</p>
+<p>固定选出的系数，再从1.4 U自由预测，留出均方误差分别约为$0.003215$与$0.003650\,\mathrm U^2$。本次按一步目标选出的参数更好。被省去的tanh作用随状态而变，一个固定$a$在训练范围内怎样补偿，与新初值下怎样补偿并不相同；最终排序需要在新轨迹上计算。</p>
+<p>下一章将从下一状态映射转向连续变化率。采样间隔决定数据相隔多长时间，数值求解步长则决定怎样近似这段连续演化，两个时间尺度将分别进入状态和参数导数的计算。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.databookuw.com/">Brunton与Kutz：Data-Driven Science and Engineering</a>提供状态回归和动态预测的进一步材料；训练、验证与新条件比较沿用第6篇、第14篇的实验组织。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/15-02-离散动力学学习/read/1/">← 15.2.1 状态配对、一步映射与系数学习</a><a href="/chapters/15-03-神经微分方程/read/1/">15.3.1 连续右端、求解器与前向灵敏度 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

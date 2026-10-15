@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>15.5.2 同形参数混淆、独立通量与候选预测矩 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P15-C05-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P15-C05-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input">本节练习 · 4 题</a><a class="button" href="/chapters/15-05-混合模型与可辨识性/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>15.5.2 同形参数混淆、独立通量与候选预测矩</h1>
+<p>上一节固定机制消除常数，只学习一个双曲正切幅度。现在让消除常数也未知，并把修正改为与消除项相同的线性形状。若两项都乘当前总量，观测能否告诉我们它们分别有多大？先比较两组参数，再用另一类测量寻找区分信息。</p>
+<p>学完本节，你应能用参数等价关系解释总量为何分不开两个系数，说明独立通量的作用，并计算预设候选的加权预测均值与方差。先修为15.5.1的混合右端、第6篇的参数可辨识性，以及第9篇的参数与预测不确定性。</p>
+<h2 id="linear-correction-and-the-net-elimination-coefficient">线性修正与净消除系数</h2>
+<p>将模型改为</p>
+<p>$$
+\dot x=u-kx+\theta x=u-\kappa x,\qquad
+\kappa=k-\theta.
+$$</p>
+<p>$x$ 仍是 U单位的总量，$u$ 为 U/T单位的输入率。这里 $k$ 与 $\theta$ 都采用 $1/T$，因为两者都要乘总量；上一节的双曲正切幅度则直接表示变化率，采用 U/T。净消除系数 $\kappa$ 把两项对总量的合成作用写成一个系数。</p>
+<p>比较两组参数，按消除常数 $k$、线性修正系数 $\theta$ 排列：</p>
+<table>
+<thead>
+<tr>
+  <th>参数组</th>
+  <th style="text-align:right">$k$ / $(1/T)$</th>
+  <th style="text-align:right">$\theta$ / $(1/T)$</th>
+  <th style="text-align:right">$\kappa$ / $(1/T)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>A</td>
+  <td style="text-align:right">0.4</td>
+  <td style="text-align:right">0.1</td>
+  <td style="text-align:right">0.3</td>
+</tr>
+<tr>
+  <td>B</td>
+  <td style="text-align:right">0.6</td>
+  <td style="text-align:right">0.3</td>
+  <td style="text-align:right">0.3</td>
+</tr>
+</tbody>
+</table>
+<p>在 $x=1$ U、$u=0.2$ U/T处，两组的变化率都为</p>
+<p>$$
+u-\kappa x=0.2-0.3\times1=-0.1\ \mathrm U/T.
+$$</p>
+<p>分开看内部项，A的机制消除为0.4 U/T、修正为0.1 U/T；B则分别为0.6与0.3 U/T。较大的消除被较大的正修正抵消，留下同样的总变化率。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-05-混合模型与可辨识性/practice/?question=p15-indistinguishable-rate">同形修正的变化率</a></li></ul></nav>
+
+<h2 id="equivalent-parameters-and-structural-unidentifiability">等价参数与结构不可辨识</h2>
+<p>如果只观测总量、已知输入率，方程使用的参数信息始终是 $k-\theta$。同时给两个系数加上同一个允许的增量 $\delta$，就有</p>
+<p>$$
+(k+\delta)-(\theta+\delta)=k-\theta.
+$$</p>
+<p>因此，这些参数组具有相同右端。相同初态与输入下，它们生成相同的总量路径，即使输入随时间变化也是如此。</p>
+<p>结构可辨识性考察的是：在给定方程、已知输入和观测关系下，理想观测能否区分参数。这里一整组不同的 $k,\theta$ 都对应同一输出，两个参数无法从总量中分别确定，称为结构不可辨识。参数空间中可移动的是共同增量 $\delta$；总量能约束的则是差值 $\kappa$。</p>
+<p>增加总量采样可以改善对净作用的估计，改变输入也能产生不同的总量变化，但这个模型的每个右端仍只读取差值。要分开两个系数，就需要让它们以不同方式进入新增的可观测量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-05-混合模型与可辨识性/practice/?question=p15-confounding-input">新输入能否破除同形混淆</a></li></ul></nav>
+
+<h2 id="information-from-an-independent-mechanistic-flux">独立机制通量提供的信息</h2>
+<p>假设另有一种测量能记录机制消除通量</p>
+<p>$$
+q_{\mathrm{out}}=kx.
+$$</p>
+<p>它的单位为 U/T，测量对象是机制通道本身。在 $x\ne0$ 处，由同时测得的总量与通量可以得到</p>
+<p>$$
+k=\frac{q_{\mathrm{out}}}{x},\qquad
+\theta=k-\kappa.
+$$</p>
+<p>初态为1 U时，A给出 $q_{\mathrm{out}}=0.4$ U/T，B给出0.6 U/T。这项读数不同，恰好将原来总量相同的两个候选分开。若改为从总量变化率推回净流出，得到的仍是 $\kappa x$；新增信息来自测量的对象改变，而非对同一读数重新计算。</p>
+<h2 id="coincident-trajectories-after-an-input-switch">切换输入后的重合轨迹</h2>
+<p>实验从 $x_0=1$ U开始，取 $h=0.1T$。前15次更新的输入率为0.2 U/T，随后15次为0.8 U/T：总共30次更新，连同起点保存31个状态，到 $3T$。</p>
+<p>两组参数均满足 $\kappa=0.3/T$，所以 Euler 更新都为</p>
+<p>$$
+x_{n+1}=0.97x_n+h u_n.
+$$</p>
+<p>第一步为 $0.97\times1+0.1\times0.2=0.99$ U。输入从 $x_{15}$ 推进到 $x_{16}$ 时开始改变，对应 $1.5T$ 后的第一步。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P15-C05-S02-c865b14e-0.png" alt="同形参数混淆、独立通量与候选预测矩：实验结果图" loading="lazy"></figure>
+</section>
+<p>图中两条总量线在切换前后都重合。前段状态向较低水平下降，新输入提高后转而上升；两组参数的方程相同，因此一起改变方向。计算出的轨迹最大差约为 $2.2\times10^{-16}$ U，两者终点均约为1.533833 U。</p>
+<p>探索页也使用这个线性修正，但采用 $0.05T$ 的80次更新，输入在 $2T$ 由0.2变成0.8 U/T。可保持 $k-\theta=0.3/T$，沿相同差值选择不同参数，先比较重合的总量，再切换到机制通量。改变测量对象以后，两组不同的 $k$ 就在曲线中显现出来。</p>
+<p class="concept-explore"><a href="/chapters/15-05-混合模型与可辨识性/explore/?concept=P15-C05-S02%3Acoincident-trajectories-after-an-input-switch">可视化与探索：切换输入后的重合轨迹 →</a></p>
+
+<h2 id="weighted-prediction-moments-of-prescribed-candidates">预设候选的加权预测矩</h2>
+<p>现在只比较同一时刻的候选预测。用 $z_i$ 表示第 $i$ 个候选给出的总量，$w_i\ge0$ 是事先指定的相对权重，且至少一个为正。下标 $i$ 排列候选，不表示连续时间。</p>
+<p>先归一化权重</p>
+<p>$$
+p_i=\frac{w_i}{\sum_jw_j},\qquad\sum_i p_i=1,
+$$</p>
+<p>再求预测的加权均值与方差：</p>
+<p>$$
+\bar z=\sum_i p_i z_i,\qquad
+V=\sum_i p_i(z_i-\bar z)^2.
+$$</p>
+<p>均值表示加权后的中心，方差表示这些候选预测离这个中心的散布。它们是这组候选的预测矩，单位分别为 U与U²。权重在这里预先给定；第9篇后验预测所用的权重，则要由观测和概率模型推断，两种来源需要分别保留。</p>
+<p>例如两个候选预测为1、3 U，相对权重为1、3，归一化后是 $1/4,3/4$。均值为</p>
+<p>$$
+\bar z=\frac14\times1+\frac34\times3=2.5\ \mathrm U,
+$$</p>
+<p>方差为</p>
+<p>$$
+V=\frac14(1-2.5)^2+\frac34(3-2.5)^2
+=0.75\ \mathrm U^2.
+$$</p>
+<p>计算题的 <code>states</code> 与 <code>weights</code> 按候选一一对应，返回列表依次为均值、方差；方差直接按归一化权重求平均。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-05-混合模型与可辨识性/practice/?question=p15-candidate-moments">预设候选的预测矩</a></li></ul></nav>
+
+<h2 id="coincident-predictions-and-different-parameters">预测重合与参数差异</h2>
+<p>将实验中两个终点赋予相同权重，预测均值约为1.533833 U，候选预测方差为0。两组参数虽然不同，在这个终点却给出了同一总量；事实上，前面的代数关系保证了它们在相同输入下整条总量路径重合。</p>
+<p>因此，预测散布需要联系候选集合和所预测的量来读。总量上的零散布可以与不同的机制消除通量同时出现。若将预测对象换成同一非零总量下的 $kx$，候选便可能分开。这将“总量能预测得多一致”与“内部参数能确定到什么程度”放在了各自对应的观测上。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/15-05-混合模型与可辨识性/practice/?question=p15-candidate-variance">候选预测方差的范围</a></li></ul></nav>
+
+<p>篇末将把计算图导数、数值求解、损失尺度和新输入预测放在一起，练习怎样由这些不同结果形成完整判断。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5085250/">Villaverde 等：Structural Identifiability of Dynamic Systems Biology Models</a>讨论模型方程、输出测量和参数可辨识性的关系。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/15-05-混合模型与可辨识性/read/1/">← 15.5.1 已知收支与可学习变化率修正</a><a href="/parts/15-可微分建模与机制融合/综合练习/read/1/">15.综合 机制与学习模型的独立比较 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

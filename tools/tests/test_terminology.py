@@ -279,3 +279,38 @@ def test_part14_full_terms_do_not_accept_shorter_generic_glosses(source):
     assert any(issue.kind == 'translation' for issue in issues)
     with pytest.raises(TerminologyError):
         annotate_text(source, 14)
+
+
+@pytest.mark.parametrize('term,english,short,short_english', [
+    ('前馈神经网络', 'feedforward neural network', '神经网络', 'neural network'),
+    ('混合模型', 'hybrid model', '模型', 'model'),
+])
+def test_part15_complete_network_and_hybrid_terms_precede_shorter_terms(
+        term, english, short, short_english):
+    source = f'{term}与{short}'
+    expected = f'{term}（{english}）与{short}（{short_english}）'
+    assert annotate_text(source, 15) == expected
+    issues, found = check_text(expected, 15)
+    assert issues == []
+    assert set(found) == {term, short}
+
+
+@pytest.mark.parametrize('source', [
+    '前馈神经网络（feedforward neural network）',
+    '混合模型（hybrid model）',
+])
+def test_part15_correct_full_network_and_hybrid_glosses_are_idempotent(source):
+    assert annotate_text(source, 15) == source
+    assert annotate_text(annotate_text(source, 15), 15) == source
+    assert check_text(source, 15, require_first=False)[0] == []
+
+
+@pytest.mark.parametrize('source', [
+    '前馈神经网络（neural network）',
+    '混合模型（model）',
+])
+def test_part15_full_network_and_hybrid_terms_reject_generic_glosses(source):
+    issues, _ = check_text(source, 15, require_first=False)
+    assert any(issue.kind == 'translation' for issue in issues)
+    with pytest.raises(TerminologyError):
+        annotate_text(source, 15)
