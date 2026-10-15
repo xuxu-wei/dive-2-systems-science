@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.2.2 牛顿方向与非凸曲率 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P08-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P08-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-direction">本节练习 · 4 题</a><a class="button" href="/chapters/08-02-梯度、曲率与迭代算法/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>8.2.2 牛顿方向与非凸曲率</h1>
+<p>狭长谷底要求我们对平缓方向走远一点，对陡峭方向走近一点。牛顿方法用当前位置的二阶近似计算移动量，使梯度与曲率共同参与更新。先推导这个方向，再看看曲率为负时会发生什么。</p>
+<p>学完本节，应能推导牛顿方程，检查方向是否下降，并解释局部二次收敛的条件。先修为8.1的二阶展开、线性方程求解与8.2.1的梯度下降。</p>
+<h2 id="newton-equation">局部二次模型与牛顿方程</h2>
+<p>固定当前点 $x$，记 $g=\nabla f(x)$、$H=H(x)$。把移动量 $p$ 当作待选变量，二阶近似为</p>
+<p>$$m(p)=f(x)+g^Tp+\frac12p^THp.$$</p>
+<p>当 $H$ 正定，这个关于 $p$ 的二次函数有唯一最小点。对 $p$ 求导并置零，得到<strong>牛顿方程</strong></p>
+<p>$$g+Hp=0,\qquad Hp=-g.$$</p>
+<p>它的解称为<strong>牛顿方向（Newton direction）</strong>。在海森矩阵的第 $j$ 个特征方向上，移动分量为 $p_j=-g_j/\lambda_j$：相同梯度分量在平缓方向产生较大移动，在陡峭方向产生较小移动。</p>
+<p>只要 $g\ne0$，正定性还给出</p>
+<p>$$g^Tp=-p^THp&lt;0,$$</p>
+<p>所以它是下降方向。实际求解用线性方程 $Hp=-g$，无需先形成矩阵的逆。</p>
+<p>对正定二次目标，$g=Hx-b$，牛顿方程意味着 $H(x+p)=b$。二次近似就是原函数，全步一次到达唯一最小点；一般非线性函数还含余项，需要检查实际走多远。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-taylor">牛顿步从哪里来</a></li></ul></nav>
+
+<h2 id="negative-curvature">负曲率与方向保护</h2>
+<p>沿用 $f(x)=x^4/4-x^2/2$。在 $x=0.2$，逐项计算</p>
+<p>$$g=x^3-x=-0.192,\qquad h=f''(x)=3x^2-1=-0.88.$$</p>
+<p>原牛顿方向为 $p=-g/h\approx-0.21818$，于是</p>
+<p>$$gp\approx0.04189&gt;0.$$</p>
+<p>沿这个方向走足够小的正步，目标会升高。原因在局部二次模型：$h&lt;0$ 时模型向下弯曲，解 $hp=-g$ 找到的是它的最大点。方程有解和模型取得最小值，是两件不同的事。</p>
+<p>因此标量实验采用以下保护规则：</p>
+<table>
+<thead>
+<tr>
+  <th>当前导数</th>
+  <th>所选方向</th>
+  <th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$g=0$</td>
+  <td>$p=0$</td>
+  <td>已满足驻点条件</td>
+</tr>
+<tr>
+  <td>$g\ne0,\ h&gt;0$</td>
+  <td>$p=-g/h$</td>
+  <td>使用牛顿方向</td>
+</tr>
+<tr>
+  <td>$g\ne0,\ h\le0$</td>
+  <td>$p=-g$</td>
+  <td>改用负梯度</td>
+</tr>
+</tbody>
+</table>
+<p>在 $x=0.2$，保护方向成为 $0.192$，方向导数为 $-0.192^2&lt;0$。缩短步长会改变移动长度，却不会改变固定方向的 $gp$；方向向上时，先换方向。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-negative-curvature">负曲率处的方向选择</a></li><li><a href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-direction">检查牛顿方向是否下降</a></li></ul></nav>
+
+<p>多维问题也可通过调整海森矩阵得到正定的二次模型，或限制局部模型的搜索范围。当前实验先用标量例子把“选择方向”和“决定步长”分开观察。</p>
+<h2 id="local-quadratic-convergence">牛顿方法的局部二次收敛</h2>
+<p>在最小点 $x^*$ 附近，若海森矩阵正定，并满足局部 Lipschitz 条件</p>
+<p>$$\|H(x)-H(y)\|\le M\|x-y\|,$$</p>
+<p>也就是曲率的变化可由两点距离乘常数 $M$ 控制，那么从足够近的点出发，精确牛顿全步满足</p>
+<p>$$\|x_{k+1}-x^*\|\le C\|x_k-x^*\|^2.$$</p>
+<p>这称为<strong>局部二次收敛（local quadratic convergence）</strong>。误差已经小时，下一次按误差平方的量级缩小。</p>
+<p>对当前四次函数，可以直接看出这个平方。以右侧最小点 $x^*=1$ 为例，牛顿更新整理为</p>
+<p>$$x^+=\frac{2x^3}{3x^2-1},\qquad x^+-1=\frac{(x-1)^2(2x+1)}{3x^2-1}.$$</p>
+<p>当 $x$ 接近1，右侧系数接近 $3/2$，而误差包含 $(x-1)^2$。从 $x=1.3$ 出发，误差由0.3变成约0.07961，再约0.00802，体现出越接近谷底越快的趋势。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P08-C02-S02-96a78f9c-1.png" alt="牛顿方向与非凸曲率：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图从0.2与1.3各画出保护方向的0.3倍移动量：前者回退到负梯度，后者使用牛顿方向。右图从1.3反复取牛顿全步，显示到1的误差；图尾接近机器精度时，曲线采用显示下限。</p>
+<h2 id="stationary-point-check">驻点检查与曲率判断</h2>
+<p>四次函数在原点满足 $g=0$，保护规则会返回零方向。但此处 $f''(0)=-1$，原点是局部最大点。梯度检查准确识别了驻点；曲率进一步说明它是哪一种驻点。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-stationary-stop">停在零处应如何报告</a></li></ul></nav>
+
+<p>在梯度非零时，保护方向为我们提供局部下降的起点。下一节保持方向固定，从较大的步长开始试算，逐次缩短到目标实际下降足够多为止。</p>
+<h2 id="references">延伸阅读</h2>
+<p><a href="https://web.stanford.edu/~boyd/cvxbook/">Boyd 与 Vandenberghe：《Convex Optimization》</a>，第9章的牛顿方法与局部收敛分析。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/08-02-梯度、曲率与迭代算法/read/1/">← 8.2.1 梯度下降、步长与条件数</a><a href="/chapters/08-02-梯度、曲率与迭代算法/read/3/">8.2.3 Armijo回溯与停止条件 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

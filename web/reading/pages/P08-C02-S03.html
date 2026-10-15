@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.2.3 Armijo回溯与停止条件 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P08-C02-S03">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P08-C02-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-armijo">本节练习 · 5 题</a><a class="button" href="/chapters/08-02-梯度、曲率与迭代算法/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>8.2.3 Armijo回溯与停止条件</h1>
+<p>已经选好下降方向以后，还需要确定移动长度。全步可能跨过谷底，因此我们先试算新目标，再决定接受它，或沿原方向缩短步长。Armijo回溯把“下降多少才值得接受”写成一个明确的不等式。</p>
+<p>学完本节，应能跟算回溯的接受过程，并区分接受一步、梯度达标和次数用完。先修为前两节的下降方向、曲率与梯度停止条件。</p>
+<h2 id="armijo-condition">Armijo充分下降条件</h2>
+<p>固定当前点 $x$、梯度 $g$ 和方向 $p$，假定 $g^Tp&lt;0$。取 $0&lt;c&lt;1$，<strong>Armijo充分下降条件（Armijo condition）</strong>为</p>
+<p>$$f(x+tp)\le f(x)+ctg^Tp,\qquad t&gt;0.$$</p>
+<p>一阶近似预测下降量为 $-tg^Tp$，条件要求实际下降至少达到其中的 $c$ 倍。例如 $c=0.1$，就是至少实现一阶预测下降的10%。</p>
+<p>从 $t_0&gt;0$ 开始试算；若不满足条件，就将步长乘 $0&lt;\beta&lt;1$，依次尝试 $t_0,t_0\beta,t_0\beta^2,\ldots$，接受其中第一个合格值。这就是<strong>回溯线搜索（backtracking line search）</strong>。</p>
+<h2 id="armijo-example">全步拒绝与半步等号接受</h2>
+<p>取 $H=\operatorname{diag}(2,4)$、$b=0$，目标为 $f(x)=x_1^2+2x_2^2$。从 $x=(1,1)^T$ 出发，</p>
+<p>$$f(x)=3,\qquad g=(2,4)^T,\qquad p=-g=(-2,-4)^T,\qquad g^Tp=-20.$$</p>
+<p>令 $c=0.1$，Armijo右端为 $3-2t$。从全步1开始，每次减半：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">步长 $t$</th>
+  <th>新点 $x+tp$</th>
+  <th style="text-align:right">新目标 $f(x+tp)$</th>
+  <th style="text-align:right">上界 $3-2t$</th>
+  <th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">1</td>
+  <td>$(-1,-3)$</td>
+  <td style="text-align:right">19</td>
+  <td style="text-align:right">1</td>
+  <td>拒绝</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.5</td>
+  <td>$(0,-1)$</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">2</td>
+  <td>接受</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.25</td>
+  <td>$(0.5,0)$</td>
+  <td style="text-align:right">0.25</td>
+  <td style="text-align:right">2.5</td>
+  <td>也满足条件</td>
+</tr>
+</tbody>
+</table>
+<p>第一次试算不合格，第二次恰好满足等号，因而首次接受 $t=0.5$。表中的0.25用于比较；实际回溯在接受半步后就结束。</p>
+<p>这个例子还可以算出完整接受范围。二次目标沿方向的展开为</p>
+<p>$$f(x+tp)-f(x)=tg^Tp+\frac{t^2}2p^THp.$$</p>
+<p>代入Armijo条件，除以 $t&gt;0$ 并整理：</p>
+<p>$$t\le\frac{-2(1-c)g^Tp}{p^THp}.$$</p>
+<p>本例 $p^THp=2\times4+4\times16=72$，所以 $0&lt;t\le36/72=0.5$。解析范围与逐次试算给出同一接受值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-armijo">返回真正被接受的步长</a></li></ul></nav>
+
+<h2 id="small-step-guarantee">连续可微性与小步接受</h2>
+<p>对一般目标，为什么持续缩短步长会有用？在当前点附近连续可微时，</p>
+<p>$$f(x+tp)=f(x)+tg^Tp+o(t).$$</p>
+<p>其中 $o(t)/t\to0$。为了满足Armijo，只需要</p>
+<p>$$\frac{o(t)}t\le(c-1)g^Tp.$$</p>
+<p>右端为正，因为 $c-1&lt;0$、$g^Tp&lt;0$；左端趋于零。因此充分小的正步就会满足条件。</p>
+<p>若允许不断尝试，$t_0\beta^j$ 最终会缩到这样的范围。实际程序给定有限尝试次数，可能在到达它以前用完预算。方向不下降时，则先回到上一节更换方向。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-search-guarantee">什么时候小步会被接受</a></li></ul></nav>
+
+<h2 id="trial-and-update-budgets">回溯尝试次数与更新次数</h2>
+<p>一次回溯中的每个候选步长算一次尝试。开头的例子若允许0次，连全步都不计算；若允许1次，只算被拒绝的全步；允许2次就能试到并接受半步。</p>
+<p>计算题依次返回新点、接受步长和本次回溯结果：接受后给出新点与步长；方向导数非负时报告 <code>not_descent</code>；尝试用完仍未接受时报告 <code>line_search_failed</code>，保留给定当前点，步长为 <code>None</code>。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-trial-budget">零次尝试是什么</a></li></ul></nav>
+
+<p>外层更新次数统计已经接受的移动。它与回溯尝试次数不同：一次更新可能先试几个长度，才完成一次移动。每次外层循环先检查当前梯度，再决定继续更新还是报告次数用完；所以已经达标的起点即使预算为零，也能被正确识别。</p>
+<h2 id="acceptance-and-stopping">接受一步与达到停止条件</h2>
+<p>接受只说明本次目标下降达到规定比例。它并没有检查新点是否接近驻点，所以下一次外层循环仍需检查梯度残差。</p>
+<p>对正定二次目标，可以结合最小特征值 $\mu$，使用 $\|x-x^*\|\le\|g\|/\mu$ 解释梯度阈值。对非凸目标，梯度小表示一阶驻点条件接近满足，再结合曲率判断驻点类型。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-line-search-status">一步更新后的状态报告</a></li></ul></nav>
+
+<p>将保护方向和回溯结合，用于 $f(x)=x^4/4-x^2/2$，从0.2、2.8与0分别开始，得到下图。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P08-C02-S03-c0965d82-1.png" alt="Armijo回溯与停止条件：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图显示各次接受更新后的坐标，右图显示对应目标。两个非零起点在保护方向与回溯下靠近右侧谷底；零起点立即满足梯度检查，留在局部最大点。读图时将三个问题分开：本次方向是否下降、这一步是否被接受、当前点是否满足停止条件。</p>
+<h2 id="objective-offset">目标平移与停止标准</h2>
+<p>平方损失可以减去不随变量变化的常数。若将目标改为 $\widetilde f=f-10^6$，梯度、牛顿方向和Armijo比较都保持不变，迭代轨迹也相同。</p>
+<p>但“目标小于零”会因这次平移而立刻满足，目标绝对值阈值的含义也变了。相同坐标下的梯度阈值，以及正定二次问题中到解析最小点的距离阈值，则保持原义。停止依据要对应所关心的精度，而不是由目标零点的位置决定。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-objective-offset">小目标值可信吗</a></li></ul></nav>
+
+<p>到这里，我们已经把目标、方向、步长和停止条件连成一套求解过程。下一章回到拟合：当多个系数组合都能贴近读数时，怎样在目标中表达对稳定系数或稀疏系数的偏好？</p>
+<h2 id="references">延伸阅读</h2>
+<p><a href="https://web.stanford.edu/~boyd/cvxbook/">Boyd 与 Vandenberghe：《Convex Optimization》</a>，第9章的线搜索、下降方法与停止条件。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/08-02-梯度、曲率与迭代算法/read/2/">← 8.2.2 牛顿方向与非凸曲率</a><a href="/chapters/08-03-正则化与稀疏优化/read/1/">8.3.1 岭回归与系数收缩 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

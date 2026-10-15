@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.1.1 目标函数、梯度与海森矩阵 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P08-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P08-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic">本节练习 · 4 题</a><a class="button" href="/chapters/08-01-目标函数与优化几何/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>8.1.1 目标函数、梯度与海森矩阵</h1>
+<p>第6篇用观测拟合模型，现在进一步研究系数怎样一步步求出来。设输入流率为 $u$，所追踪物质总量为 $A$，总量变化率为 $r$，我们用</p>
+<p>$$r=\theta_1u-\theta_2A$$</p>
+<p>预测变化率。调整两个系数时，有的预测会更接近读数，有的会更远。需要先把整组预测的好坏写成一个数，才有依据选择调整方向。</p>
+<p>学完本节，应能写出拟合目标，逐行求导，并解释梯度、海森矩阵和坐标缩放。先修为第3篇的矩阵与偏导、第6篇的线性拟合。</p>
+<h2 id="variables-and-scales">优化变量与参考尺度</h2>
+<p><strong>优化变量</strong>是求解时允许调整的量；观测和已经选定的参考尺度在这次求解中保持不变。本例调整 $\theta_1,\theta_2$。若 $u$ 的单位为 U/min，$A$ 为 U，$r$ 为 U/min，则 $\theta_1$ 无量纲，$\theta_2$ 的单位为 $1/\mathrm{min}$。</p>
+<p>取参考总量 $U_0$ 和参考时长 $T_0$，把每次观测换算成无量纲数。原式成为</p>
+<p>$$\frac{rT_0}{U_0}=\theta_1\frac{uT_0}{U_0}-(\theta_2T_0)\frac{A}{U_0}.$$</p>
+<p>因此用 $x=(x_1,x_2)^T=(\theta_1,\theta_2T_0)^T$ 表示优化变量。设计矩阵 $X$ 的每行对应一次观测，两列依次是 $uT_0/U_0$ 与 $-A/U_0$；向量 $y$ 按相同顺序存放 $rT_0/U_0$。下面所有系数和读数均使用这套无量纲坐标。</p>
+<h2 id="squared-loss">平方损失与二次目标</h2>
+<p>四条观测如下。负号已经放在 $X$ 的第二列，预测时将两列分别乘 $x_1,x_2$ 后相加。</p>
+<table>
+<thead>
+<tr>
+  <th>观测</th>
+  <th style="text-align:right">输入项</th>
+  <th style="text-align:right">总量负值项</th>
+  <th style="text-align:right">变化率读数 $y_i$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">−0.2</td>
+  <td style="text-align:right">0.9</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">−1</td>
+  <td style="text-align:right">0.05</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td style="text-align:right">1.5</td>
+  <td style="text-align:right">−0.6</td>
+  <td style="text-align:right">1.2</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td style="text-align:right">0.8</td>
+  <td style="text-align:right">−1.2</td>
+  <td style="text-align:right">0.15</td>
+</tr>
+</tbody>
+</table>
+<p>试取 $x=(1,0.5)^T$，第一条预测为 $1-0.2\times0.5=0.9$，误差为零；第二条预测为 $0.5-1\times0.5=0$，误差为 $-0.05$。按“预测减读数”计算，四个误差依次为 $0,-0.05,0,0.05$。</p>
+<p><strong>目标函数（objective function）</strong>把每组候选变量映射成一个用于比较的实数。这里选择半平均平方误差：</p>
+<p>$$e_i=a_i^Tx-y_i,\qquad J(x)=\frac1{2n}\sum_{i=1}^n e_i^2=\frac1{2n}\|Xx-y\|^2,$$</p>
+<p>其中 $a_i^T$ 是 $X$ 的第 $i$ 行，$n=4$。平方使正负误差都增加损失，前面的 $1/2$ 让求导更方便。三组候选得到：</p>
+<table>
+<thead>
+<tr>
+  <th>系数 $(x_1,x_2)$</th>
+  <th style="text-align:right">$J(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$(0,0)$</td>
+  <td style="text-align:right">0.284375</td>
+</tr>
+<tr>
+  <td>$(1,0.5)$</td>
+  <td style="text-align:right">0.000625</td>
+</tr>
+<tr>
+  <td>$(2,1)$</td>
+  <td style="text-align:right">0.289375</td>
+</tr>
+</tbody>
+</table>
+<p>把平方展开，就能将数据和待求变量分开：</p>
+<p>$$\begin{aligned}
+J(x)&amp;=\frac1{2n}(x^TX^TXx-2y^TXx+y^Ty)\\
+&amp;=\frac12x^THx-b^Tx+c,\\
+H&amp;=\frac{X^TX}{n},\qquad b=\frac{X^Ty}{n},\qquad c=\frac{y^Ty}{2n}.
+\end{aligned}$$</p>
+<p>$H,b,c$ 都由四条数据决定。删去常数 $c$，候选之间的目标差保持不变，因而最小点相同。后面记 $f(x)=J(x)-c$；$f$ 可以为负，而 $J$ 仍是非负的平方损失。</p>
+<p>误差的尺度同样会影响比较。若一组误差以 U 计量，另一组以 U/min 计量，可分别除以同单位的参考误差，再相加平方。只除以观测条数仍会保留原来的单位。把整个目标乘同一正常数保留最小点；改变两组误差的相对权重，则改变了哪一种误差更值得减小。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-01-目标函数与优化几何/practice/?question=p08-loss-units">相加之前先比较单位</a></li></ul></nav>
+
+<h2 id="gradient">梯度与逐行求导</h2>
+<p><strong>梯度（gradient）</strong>是各坐标偏导按变量顺序组成的向量。第 $j$ 个分量表示只改变 $x_j$ 时，目标对这一变化的一阶响应。先对一条误差求导：</p>
+<p>$$e_i=\sum_kX_{ik}x_k-y_i,\qquad \frac{\partial e_i}{\partial x_j}=X_{ij}.$$</p>
+<p>再把平方的求导接上去：</p>
+<p>$$\frac{\partial(e_i^2/2)}{\partial x_j}=\underbrace{e_i}_{\text{平方项的导数}}\underbrace{X_{ij}}_{\text{误差的导数}}.$$</p>
+<p>例如在 $x=(1,1)^T$，第一条预测为 $0.8$，误差为 $-0.1$；这条半平方误差对两个坐标的偏导分别为 $-0.1\times1=-0.1$ 和 $-0.1\times(-0.2)=0.02$。第二条误差为 $-0.55$，对应贡献为 $-0.275$ 和 $0.55$。将四条贡献相加，再除以4，就得到整个目标的偏导：</p>
+<p>$$\nabla J(x)=\frac{X^T(Xx-y)}n=Hx-b.$$</p>
+<p>沿方向 $p$ 移动小步 $t&gt;0$，一阶展开给出</p>
+<p>$$f(x+tp)-f(x)=t\nabla f(x)^Tp+O(t^2).$$</p>
+<p>因此 $\nabla f(x)^Tp&lt;0$ 的方向称为<strong>下降方向</strong>：足够小的正步会降低目标。当梯度 $g\ne0$，取 $p=-g$ 就有 $g^Tp=-\|g\|^2&lt;0$。方向确定了目标开始怎样变化，实际走多远还需要选步长。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-01-目标函数与优化几何/practice/?question=p08-gradient-direction">梯度指向哪里</a></li></ul></nav>
+
+<h2 id="hessian">海森矩阵与目标曲率</h2>
+<p>再对梯度的第 $j$ 个分量求偏导：</p>
+<p>$$\frac{\partial^2J}{\partial x_k\partial x_j}=\frac1n\sum_iX_{ij}X_{ik}=H_{jk}.$$</p>
+<p>这些二阶偏导组成<strong>海森矩阵（Hessian matrix）</strong>。它描述梯度怎样随位置改变；沿移动量 $p$ 的二阶变化由 $p^THp$ 表示。本例中 $H$ 是固定的对称矩阵，目标是一张曲率不随位置改变的二次曲面。</p>
+<p>对一般二次式 $x^TMx/2$，交换下标后会同时出现 $M_{jk}$ 与 $M_{kj}$，所以梯度为 $(M+M^T)x/2$。本例 $H=X^TX/n$ 对称，才可以写成 $Hx$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic">计算目标与导数</a></li></ul></nav>
+
+<h2 id="contours">等高线与下降方向</h2>
+<p>下图使用同一组四条观测。横、纵坐标分别为 $x_1,x_2$，一条等高线连接损失相同的系数组合。星号约为 $(0.99673,0.50058)$，其损失略低于前面的候选 $(1,0.5)$。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P08-C01-S01-984c8b2d-0.png" alt="目标函数、梯度与海森矩阵：实验结果图" loading="lazy"></figure>
+</section>
+<p>箭头从 $(0.1,1.5)$ 沿负梯度画出，指向较低的等高线。它的显示长度是固定倍率；沿这个方向继续走，仍可能穿过谷底。8.2将把方向与步长组合成迭代方法。</p>
+<p>可视化把目标换成更易观察的 $f=(x_1^2+qx_2^2)/2$。改变第二方向曲率 $q$，比较梯度箭头和等高线怎样变化；两者都由同一目标产生。</p>
+<p class="concept-explore"><a href="/chapters/08-01-目标函数与优化几何/explore/?concept=P08-C01-S01%3Acontours">可视化与探索：等高线与下降方向 →</a></p>
+
+<h2 id="coordinate-scaling">坐标缩放与目标不变性</h2>
+<p>同一组系数可以采用不同数值坐标。令 $x=Dz$，其中 $D=\operatorname{diag}(2,0.1)$，例如 $x=(1,0.5)^T$ 对应 $z=(0.5,5)^T$。代回原式：</p>
+<p>$$f(Dz)=\frac12z^T(D^THD)z-(D^Tb)^Tz.$$</p>
+<p>因此新矩阵和线性项必须一起变为 $D^THD$、$D^Tb$。若有 $x_1\le2$ 的限制，也要变为 $z_1\le1$。这样同一物理候选才保留相同目标和允许范围。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-01-目标函数与优化几何/practice/?question=p08-change-coordinates">单位改变还是问题改变</a></li></ul></nav>
+
+<p>现在我们既能比较候选，也能算出目标的坡度与曲率。下一节用这些量判断：梯度为零的位置究竟是谷底、山顶，还是不同方向得出不同结论的鞍点。</p>
+<h2 id="references">延伸阅读</h2>
+<p><a href="https://web.stanford.edu/~boyd/cvxbook/">Boyd 与 Vandenberghe：《Convex Optimization》</a>，第3章的二次函数、第4章的问题表达。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/07-状态估计与贝叶斯滤波/综合练习/read/1/">← 篇末综合 部分观测、状态后验与历史重建</a><a href="/chapters/08-01-目标函数与优化几何/read/2/">8.1.2 驻点、曲率与凸性 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

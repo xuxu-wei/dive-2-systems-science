@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.4.1 拉格朗日乘子与 KKT 条件 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P08-C04-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P08-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/08-04-约束与最优性条件/practice/?question=p08-kkt">本节练习 · 4 题</a><a class="button" href="/chapters/08-04-约束与最优性条件/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>8.4.1 拉格朗日乘子与 KKT 条件</h1>
+<p>学完本节，你应能沿一条约束边界求最小点，用乘子解释该点的梯度，并区分 KKT 条件的必要性与充分性。</p>
+<p><strong>先修知识</strong>：8.1 的凸函数与二次目标，8.2 的梯度和线性方程。</p>
+<h2 id="minimum-on-a-constraint-boundary">约束边界上的最小点</h2>
+<p>两路输入都希望接近流率 2，但总输入最多只能达到 2。怎样分配，才能尽量接近这两个目标？两路流率已经除以同一个参考流率，得到无量纲坐标 $x_1,x_2$；总量上限 $B=2$ 也按这一尺度表示。</p>
+<p>用平方偏差衡量偏离目标的程度，并让第二路的偏差权重更大：</p>
+<p>$$f(x)=(x_1-2)^2+2(x_2-2)^2-12
+=x_1^2+2x_2^2-4x_1-8x_2.$$</p>
+<p>常数 $-12$ 改变了目标值的零点，保留了最小点。允许的配置满足</p>
+<p>$$x_1\ge0,\qquad x_2\ge0,\qquad x_1+x_2\le2.$$</p>
+<p>无约束最小点是 $(2,2)$，需要总量 4。先沿总量边界 $x_2=2-x_1$ 计算：</p>
+<p>$$f(x_1,2-x_1)=3x_1^2-4x_1-8,$$</p>
+<p>$$\frac{\mathrm d}{\mathrm dx_1}f(x_1,2-x_1)=6x_1-4.$$</p>
+<p>令导数为零，得到 $x_1^*=2/3$、$x_2^*=4/3$。然而原目标的梯度为</p>
+<p>$$\nabla f(x)=\begin{bmatrix}2x_1-4\\4x_2-8\end{bmatrix},\qquad
+\nabla f(x^*)=\begin{bmatrix}-8/3\\-8/3\end{bmatrix}.$$</p>
+<p>负梯度指向同时增加两路输入的方向，沿这个方向移动会超过总量上限。在允许的移动方向中，目标已经不能继续降低。下面将这个几何关系写成方程，并证明这个点确实比所有可行配置都好。</p>
+<h2 id="equality-constraints-and-lagrange-multipliers">等式约束与拉格朗日乘子</h2>
+<p>若要求总量恰好等于 $B$，允许的小移动 $d$ 满足 $d_1+d_2=0$。例如 $d=(1,-1)^{\mathsf T}$ 表示第一路增加一点、第二路减少同样多，反方向也允许。在边界线内部的最小点，这两个方向的一阶变化都应为零：</p>
+<p>$$\nabla f(x^*)^{\mathsf T}d=0.$$</p>
+<p>所以梯度垂直于边界，只能沿法向 $a=(1,1)^{\mathsf T}$。引入一个数 $\nu$，就能写成</p>
+<p>$$\nabla f(x^*)+\nu a=0.$$</p>
+<p>$\nu$ 称为<strong>拉格朗日乘子（Lagrange multiplier）</strong>。它的作用是让约束法向与目标梯度相平衡。将目标与等式放在一起，定义<strong>拉格朗日函数（Lagrangian）</strong></p>
+<p>$$\mathcal L(x,\nu)=f(x)+\nu(a^{\mathsf T}x-B).$$</p>
+<p>对于 $f(x)=x^{\mathsf T}Hx/2-b^{\mathsf T}x$，同时满足梯度平衡和原等式，得到</p>
+<p>$$Hx-b+\nu a=0,\qquad a^{\mathsf T}x=B.$$</p>
+<p>把未知点和乘子一起求解：</p>
+<p>$$\begin{bmatrix}H&amp;a\\a^{\mathsf T}&amp;0\end{bmatrix}
+\begin{bmatrix}x\\\nu\end{bmatrix}
+=\begin{bmatrix}b\\B\end{bmatrix}.$$</p>
+<p>本例 $H=\operatorname{diag}(2,4)$、$b=(4,8)^{\mathsf T}$。代入 $x^*$，乘子 $\nu=8/3$ 恰好抵消两个梯度分量。等式允许沿边界双向移动，乘子因而没有非负要求；换一个目标或等式方向，它可以为负。</p>
+<h2 id="inequality-constraints-and-kkt-conditions">不等式约束与四项 KKT 条件</h2>
+<p>总量上限允许有余量，所以还需要处理不等式。统一写成 $g_i(x)\le0$，等式写成 $h_j(x)=0$，相应拉格朗日函数为</p>
+<p>$$\mathcal L(x,\lambda,\nu)=f(x)+\sum_i\lambda_i g_i(x)+\sum_j\nu_jh_j(x).$$</p>
+<p>采用这个符号约定，要求 $\lambda_i\ge0$。于是对任何可行点 $x$，都有 $\mathcal L(x,\lambda,\nu)\le f(x)$：不等式的附加项非正，等式的附加项为零。这个关系将帮助我们为目标建立下界。</p>
+<p><strong>Karush–Kuhn–Tucker 条件</strong>简称 <strong>KKT 条件</strong>。它们同时约束候选点及其乘子：</p>
+<table>
+<thead>
+<tr>
+  <th>条件</th>
+  <th>数学表达</th>
+  <th>在检查什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>原始可行性</td>
+  <td>$g_i(x^*)\le0$，$h_j(x^*)=0$</td>
+  <td>配置是否满足全部限制</td>
+</tr>
+<tr>
+  <td>对偶可行性</td>
+  <td>$\lambda_i\ge0$</td>
+  <td>不等式乘子的符号是否正确</td>
+</tr>
+<tr>
+  <td>驻点条件</td>
+  <td>$\nabla_x\mathcal L(x^*,\lambda,\nu)=0$</td>
+  <td>目标梯度与约束法向是否平衡</td>
+</tr>
+<tr>
+  <td>互补松弛（complementary slackness）</td>
+  <td>$\lambda_i g_i(x^*)=0$</td>
+  <td>有严格余量的限制是否具有零乘子</td>
+</tr>
+</tbody>
+</table>
+<p>在候选点上取等号的约束称为<strong>活跃约束（active constraint）</strong>。若一条约束有严格余量 $g_i(x^*)&lt;0$，互补条件要求其乘子为零；若它取等号，乘子既可以为正，也可以为零。</p>
+<p>本例按“总量、第一路非负、第二路非负”的顺序写成</p>
+<p>$$g(x)=\begin{bmatrix}x_1+x_2-2\\-x_1\\-x_2\end{bmatrix},\qquad
+\lambda=\begin{bmatrix}8/3\\0\\0\end{bmatrix}.$$</p>
+<p>在 $x^*=(2/3,4/3)^{\mathsf T}$，总量约束取等号，两路非负约束都有余量。乘子非负，所有互补乘积为零，而</p>
+<p>$$\begin{bmatrix}-8/3\\-8/3\end{bmatrix}
++\frac83\begin{bmatrix}1\\1\end{bmatrix}=0.$$</p>
+<p>四项条件在这个点全部成立。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-04-约束与最优性条件/practice/?question=p08-multiplier-sign">乘子的符号从哪来</a></li></ul></nav>
+
+<h2 id="global-optimality-in-convex-problems">凸问题中的全局最优性</h2>
+<p>为什么这些条件能证明本例最优？设目标 $f$ 与不等式函数 $g_i$ 都凸且可微，等式 $h_j$ 为仿射函数。固定一组非负 $\lambda$ 后，$\mathcal L$ 关于 $x$ 仍是凸函数。驻点条件因而使 $x^*$ 成为 $\mathcal L$ 的全局最小点。</p>
+<p>再取任意可行配置 $z$。利用互补条件、驻点的最小性以及乘子的符号，依次得到</p>
+<p>$$\underbrace{f(x^*)=\mathcal L(x^*,\lambda,\nu)}_{\text{可行性与互补}}
+\ \le\ \underbrace{\mathcal L(z,\lambda,\nu)}_{\text{驻点最小化凸函数}}
+\ \le\ \underbrace{f(z)}_{\text{可行点上的附加项非正}}.$$</p>
+<p>因此，满足全部 KKT 条件的 $x^*$ 就是原问题的全局最小点。这里用到的是凸性带来的充分性。</p>
+<p>乘子还可以给出一个可计算的下界。对 $Ax\le c$，定义</p>
+<p>$$q(\lambda)=\inf_x\left(f(x)+\lambda^{\mathsf T}(Ax-c)\right),\qquad \lambda\ge0.$$</p>
+<p>这称为<strong>对偶函数（dual function）</strong>；$q(\lambda)$ 不超过任何可行点的目标。对于正定 $H$，括号内的最小点满足 $Hx=b-A^{\mathsf T}\lambda$，代回得</p>
+<p>$$q(\lambda)=-\frac12(b-A^{\mathsf T}\lambda)^{\mathsf T}H^{-1}(b-A^{\mathsf T}\lambda)-c^{\mathsf T}\lambda.$$</p>
+<p>本例手算乘子给出 $q=-28/3$，而 $f(x^*)=-28/3$。候选已经达到下界，所以任何可行配置都无法给出更低的目标。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-04-约束与最优性条件/practice/?question=p08-necessity-sufficiency">条件何时必要或充分</a></li></ul></nav>
+
+<h2 id="constraint-qualifications-and-degeneracy">约束资格条件与退化约束</h2>
+<p>“满足 KKT 能证明最优”与“最优点一定具有 KKT 乘子”是两个方向。后一个方向还依赖约束在最优点附近的性质，保证乘子存在的要求称为<strong>约束资格条件（constraint qualification）</strong>。</p>
+<p>对在全空间有限且可微的凸目标与凸不等式、仿射等式，一项常用要求是：存在满足等式、并使全部不等式严格成立的点。这是 <strong>Slater 条件</strong>。在最优值能取得时，它保证可找到满足 KKT 的乘子。本例取 $(0.5,0.5)$，非负约束和总量约束都留有严格余量，便满足这项条件。</p>
+<p>看一个退化例子：</p>
+<p>$$\min_x f(x)=x,\qquad x^2\le0.$$</p>
+<p>唯一可行点是 $x=0$，它当然也是全局最小点。但约束导数 $2x$ 在这里等于零，KKT 驻点方程成为</p>
+<p>$$1+\lambda\times0=0.$$</p>
+<p>没有乘子能满足这个方程。问题来自约束在零点没有提供可平衡目标梯度的法向，同时也不存在使 $x^2&lt;0$ 的点。这个例子说明，判断 KKT 是否为必要条件时，要一并检查乘子存在的条件；上面的凸充分性证明则从已给定的 KKT 点出发。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-04-约束与最优性条件/practice/?question=p08-constraint-qualification">退化约束为什么重要</a></li></ul></nav>
+
+<h2 id="four-residuals-and-candidate-comparison">四类残差与候选比较</h2>
+<p>数值候选通常带有舍入误差。对于 $Ax\le c$，先计算</p>
+<p>$$r=Ax-c,\qquad s=Hx-b+A^{\mathsf T}\lambda.$$</p>
+<p>再把每项条件偏离多少汇总成四个非负数：</p>
+<p>$$\begin{aligned}
+R_{\mathrm p}&amp;=\max(0,\max_i r_i),&amp;
+R_{\mathrm d}&amp;=\max(0,\max_i(-\lambda_i)),\\
+R_{\mathrm s}&amp;=\max_j|s_j|,&amp;
+R_{\mathrm c}&amp;=\max_i|\lambda_ir_i|.
+\end{aligned}$$</p>
+<p>它们依次检查约束违反量、负乘子、梯度不平衡和互补乘积。在这里全部量已无量纲化，可以按同一个给定精度检查；改变坐标尺度后，也需要相应理解残差的大小。</p>
+<table>
+<thead>
+<tr>
+  <th>候选与乘子</th>
+  <th style="text-align:right">目标</th>
+  <th style="text-align:right">$R_{\mathrm p}$</th>
+  <th style="text-align:right">$R_{\mathrm d}$</th>
+  <th style="text-align:right">$R_{\mathrm s}$</th>
+  <th style="text-align:right">$R_{\mathrm c}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$(2/3,4/3)$，$(8/3,0,0)$</td>
+  <td style="text-align:right">$-28/3$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$(1,1)$，$(0,0,0)$</td>
+  <td style="text-align:right">$-9$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$(2,2)$，$(0,0,0)$</td>
+  <td style="text-align:right">$-12$</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p>第二行满足限制，但梯度没有平衡；第三行的目标更低，却超出总量上限。四个数分别指出了它们与最优性条件的差距。</p>
+<p>下图沿 $x_1+x_2=2$ 画出目标。曲线最低点对应手算的 $x_1=2/3$，而不是两路平均分配的 $x_1=1$。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P08-C04-S01-2a91b96f-1.png" alt="拉格朗日乘子与 KKT 条件：实验结果图" loading="lazy"></figure>
+</section>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-04-约束与最优性条件/practice/?question=p08-kkt">核对四类最优性残差</a></li></ul></nav>
+
+<p>下一节将把两路的上下界也加进来。在求乘子之前，我们先判断允许的配置集合是否非空，再寻找实际取等号的限制。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://web.stanford.edu/~boyd/cvxbook/">Boyd 与 Vandenberghe，《Convex Optimization》第 5 章</a>给出拉格朗日对偶、Slater 条件与 KKT 的必要性和凸充分性。这里的两路配置将这些条件化成了可以手算的线性方程。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/08-03-正则化与稀疏优化/read/3/">← 8.3.3 训练尺度、惩罚选择与预测评估</a><a href="/chapters/08-04-约束与最优性条件/read/2/">8.4.2 可行集合与活跃集方法 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

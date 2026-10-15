@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.4.2 可行集合与活跃集方法 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P08-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P08-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/08-04-约束与最优性条件/practice/?question=p08-budget-qp">本节练习 · 4 题</a><a class="button" href="/chapters/08-04-约束与最优性条件/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>8.4.2 可行集合与活跃集方法</h1>
+<p>学完本节，你应能判断两路输入限制是否相容，枚举活跃约束求最优配置，并用边界上的一维计算核对结果。</p>
+<p><strong>先修知识</strong>：8.4.1 的拉格朗日乘子、KKT 条件与四类残差。</p>
+<h2 id="bounds-budget-and-feasible-set">上下界、预算与可行集合</h2>
+<p>两路输入各至少为 0.5，总量上限却只有 0.8。即使目标函数很容易计算，这组要求也无法同时满足：两路最低需求之和已经是 1。</p>
+<p>同时满足全部约束的点组成<strong>可行集合（feasible set）</strong>；其中的点称为可行点。沿用两路输入的共同参考流率，变量与限制都已经无量纲化。把允许范围写为</p>
+<p>$$\ell_j\le x_j\le u_j\quad(j=1,2),\qquad x_1+x_2\le B.$$</p>
+<p>其中 $\ell=(\ell_1,\ell_2)^{\mathsf T}$、$u=(u_1,u_2)^{\mathsf T}$ 分别是下界和上界，分量按第一路、第二路排列。可行集合非空，当且仅当</p>
+<p>$$\boxed{\ell_j\le u_j\quad(j=1,2),\qquad \ell_1+\ell_2\le B.}$$</p>
+<p>先看必要性：任何可行点都不能低于各路下界，所以总量至少为 $\ell_1+\ell_2$；同一路的下界也不能高于上界。再看充分性：这两项成立时，直接选择 $x=\ell$ 就满足全部限制。</p>
+<p>取 $\ell=(0.5,0.5)^{\mathsf T}$、$u=(3,3)^{\mathsf T}$，便得到：</p>
+<table>
+<thead>
+<tr>
+  <th>总量上限 $B$</th>
+  <th style="text-align:right">下界点的总量</th>
+  <th>可行集合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0.8</td>
+  <td style="text-align:right">1</td>
+  <td>空集</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td style="text-align:right">1</td>
+  <td>包含下界点及其他配置</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td style="text-align:right">1</td>
+  <td>包含下界点及更大的允许区域</td>
+</tr>
+</tbody>
+</table>
+<p>一个候选违反限制，只说明这个候选不在集合内。上面的下界判据则检查了所有可能配置，因而可以判断整个集合是否为空。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-04-约束与最优性条件/practice/?question=p08-feasible-or-failed">一次候选失败能证明什么</a></li></ul></nav>
+
+<h2 id="active-constraints-and-candidate-equations">活跃约束与候选方程</h2>
+<p>在非空可行集合上，最小化正定二次目标</p>
+<p>$$f(x)=\frac12x^{\mathsf T}Hx-b^{\mathsf T}x.$$</p>
+<p>有限上下界使集合有界，包含等号的线性限制使它闭合。连续目标因此能在其中取得最小值；正定 $H$ 又使目标严格凸，所以最小点唯一。</p>
+<p>最小点可能在内部、某条边上，或几条边的交点上。<strong>活跃集（active set）</strong>就是在给定点取等号的约束集合。把五条约束按“第一路下界、第二路下界、第一路上界、第二路上界、总量”的顺序写成</p>
+<p>$$Ax\le c,\qquad
+A=\begin{bmatrix}-1&amp;0\\0&amp;-1\\1&amp;0\\0&amp;1\\1&amp;1\end{bmatrix},\qquad
+c=\begin{bmatrix}-\ell_1\\-\ell_2\\u_1\\u_2\\B\end{bmatrix}.$$</p>
+<p>乘子列表也与这五行一一对应。假设某几行在最优点取等号，用 $I$ 记录这些行的位置，$A_I,c_I$ 表示取出同样位置的行及右端。将它们与驻点条件联立：</p>
+<p>$$\begin{bmatrix}H&amp;A_I^{\mathsf T}\\A_I&amp;0\end{bmatrix}
+\begin{bmatrix}x\\\lambda_I\end{bmatrix}
+=\begin{bmatrix}b\\c_I\end{bmatrix}.$$</p>
+<p>上半部分平衡梯度，下半部分要求选中的限制取等号。其余乘子先设为零。解出后检查全部五条限制、乘子非负和四类残差，就能判断这一组猜测是否给出最优点。</p>
+<p>在二维例子中，可以依次尝试：</p>
+<ol>
+<li>没有活跃行，求无约束点 $Hx=b$。</li>
+<li>选一条活跃行，求边界线上的候选。</li>
+<li>选两条线性独立的活跃行，求交点处的候选。</li>
+</ol>
+<p>退化交点可能同时有三条甚至更多约束取等号，但平衡梯度的非负法向组合在二维中至多需要两条独立法向。枚举时保留这些独立组合，最后仍核对全部五条限制。例如上下界恰好相等时，两条相反的法向不能同时作为独立行，却可以分别参加不同组合。</p>
+<p>某组方程奇异时，继续检查其他组合。若前面的下界判据已经证明可行，求解中的失败应从数值计算和候选检查中寻找原因。</p>
+<h2 id="one-dimensional-boundary-minimization">边界线段上的一维最小化</h2>
+<p>也可以把每条边化成一维问题，独立核对活跃集的结果。设一条可行边写成</p>
+<p>$$x=a+td,\qquad t_{\min}\le t\le t_{\max},$$</p>
+<p>其中 $a$ 是边上的参考点，$d\ne0$ 沿该边。代入二次目标，对 $t$ 求导：</p>
+<p>$$\frac{\mathrm d}{\mathrm dt}f(a+td)=d^{\mathsf T}(Ha-b)+t\,d^{\mathsf T}Hd.$$</p>
+<p>由于 $H$ 正定，$d^{\mathsf T}Hd&gt;0$，所以边界直线上的最小点为</p>
+<p>$$t^*=\frac{d^{\mathsf T}(b-Ha)}{d^{\mathsf T}Hd}.$$</p>
+<p>若 $t^*$ 落在线段外，就取最近的端点。最后比较各条边的最小值，以及可行的内部驻点。</p>
+<p>继续取</p>
+<p>$$H=\begin{bmatrix}2&amp;0\\0&amp;4\end{bmatrix},\qquad b=\begin{bmatrix}4\\8\end{bmatrix},\qquad B=2.$$</p>
+<p>总量边界可以写成 $a=(0,2)^{\mathsf T}$、$d=(1,-1)^{\mathsf T}$。两路至少为 0.5，故 $0.5\le t\le1.5$。先算 $Ha=(0,8)^{\mathsf T}$，所以 $b-Ha=(4,0)^{\mathsf T}$，再得到</p>
+<p>$$d^{\mathsf T}(b-Ha)=4,\qquad d^{\mathsf T}Hd=6.$$</p>
+<p>于是</p>
+<p>$$t^*=\frac46=\frac23,\qquad x^*=\begin{bmatrix}2/3\\4/3\end{bmatrix}.$$</p>
+<p>这个点位于允许线段内，与上一节的乘子解一致。</p>
+<p>逐坐标截断无约束点则无法完成这个任务。无约束点 $(2,2)$ 本来就在两路各自的范围 $[0.5,3]$ 内，却违反总量上限；当 $H$ 含非对角项时，改变一路还会改变另一路对目标的贡献。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-04-约束与最优性条件/practice/?question=p08-clip-coupling">截断为什么不够</a></li></ul></nav>
+
+<h2 id="budget-changes-and-active-set-switches">预算变化与活跃集切换</h2>
+<p>保持目标与两路范围不变，只改变 $B$，最优输入会分段变化。</p>
+<ul>
+<li>$B&lt;1$ 时，下界已经与总量上限冲突。</li>
+<li>$B=1$ 时，唯一可行点为 $(0.5,0.5)$。</li>
+<li>$1&lt;B&lt;1.75$ 时，第一路保持下界 0.5，增加的预算分配给第二路。</li>
+<li>$1.75\le B&lt;4$ 时，两路都离开下界，总量约束仍取等号。</li>
+<li>$B\ge4$ 时，无约束最小点 $(2,2)$ 可行，进一步放宽预算不再改变配置。</li>
+</ul>
+<p>中间一段可由总量边界的导数求出：代入 $x_2=B-x_1$，令导数为零，有</p>
+<p>$$6x_1+4-4B=0,\qquad x_1=\frac{2B-2}{3},\quad x_2=\frac{B+2}{3}.$$</p>
+<p>$x_1=0.5$ 对应 $B=1.75$，两个分段在这里接上。</p>
+<p>下图左侧画出最优输入，阴影标出不可行预算；右侧画出各预算下的最小目标。允许集合扩大时，原来的配置仍然可选，所以最小目标随 $B$ 增加而不升高。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P08-C04-S02-d221a67c-0.png" alt="可行集合与活跃集方法：实验结果图" loading="lazy"></figure>
+</section>
+<p>探索页使用相同的目标、下界 0.5 和上界 3。先取 $B=2$，核对最优点 $(2/3,4/3)$；再把预算改为 0.8，观察可行区域消失。最后将预算提高到 4 以上，看看最优点为什么停止移动。播放展示的是预算变化，每个预算对应一个新的配置问题。</p>
+<p class="concept-explore"><a href="/chapters/08-04-约束与最优性条件/explore/?concept=P08-C04-S02%3Abudget-changes-and-active-set-switches">可视化与探索：预算变化与活跃集切换 →</a></p>
+
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-04-约束与最优性条件/practice/?question=p08-budget-qp">求解带上下界和预算的二次目标</a></li></ul></nav>
+
+<h2 id="hard-constraints-and-quadratic-penalties">硬约束与平方惩罚</h2>
+<p><strong>硬约束（hard constraint）</strong>把越界配置排除在可行集合之外。将越界量放进目标作为惩罚，则允许用一部分越界换取其他目标的改善。</p>
+<p>看一维例子：希望 $x$ 接近 2，又要求 $x\le1$。硬约束问题</p>
+<p>$$\min_{x\le1}\frac12(x-2)^2$$</p>
+<p>的最小点为 1。若移除限制，改为最小化</p>
+<p>$$\frac12(x-2)^2+\frac\rho2\max(x-1,0)^2,\qquad \rho&gt;0,$$</p>
+<p>在 $x&gt;1$ 处求导，得到</p>
+<p>$$(x-2)+\rho(x-1)=0,\qquad
+x=\frac{2+\rho}{1+\rho}=1+\frac1{1+\rho}.$$</p>
+<p>任意有限的 $\rho$ 都留下正的越界量。例如 $\rho=1,10,100$ 时，越界量依次为 $1/2,1/11,1/101$。惩罚增强使越界缩小，求解次数增加则帮助算法接近这个带惩罚目标的最小点；两种操作改变的对象不同。</p>
+<p>如果总输入上限代表必须满足的要求，最终配置就要检查实际的 $x_1+x_2-B$。若选择允许超额并收费，则应把超额量和收费规则一起解释。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-04-约束与最优性条件/practice/?question=p08-soft-hard">放宽约束和多跑几步</a></li></ul></nav>
+
+<p>篇末综合将把拟合系数与配置输入放在一起比较：它们都可以使用优化计算，但未知量、目标与结果检查各不相同。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://web.stanford.edu/~boyd/cvxbook/">Boyd 与 Vandenberghe，《Convex Optimization》第 4、5 章</a>讨论凸约束问题及最优性条件。这里的二维枚举和一维边界计算提供了两种可以相互核对的求解方式。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/08-04-约束与最优性条件/read/1/">← 8.4.1 拉格朗日乘子与 KKT 条件</a><a href="/parts/08-优化方法与计算/综合练习/read/1/">篇末综合 拟合、稀疏与约束优化 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

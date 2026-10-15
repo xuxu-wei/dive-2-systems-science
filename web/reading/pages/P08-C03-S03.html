@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.3.3 训练尺度、惩罚选择与预测评估 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P08-C03-S03">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P08-C03-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/08-03-正则化与稀疏优化/practice/?question=p08-training-scale">本节练习 · 4 题</a><a class="button" href="/chapters/08-03-正则化与稀疏优化/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>8.3.3 训练尺度、惩罚选择与预测评估</h1>
+<p>学完本节，你应能手算训练标准化，将标准化系数换回原坐标，并按训练、验证、最终评估的顺序比较预测。</p>
+<p><strong>先修知识</strong>：第6篇的拟合与留出检验，8.3.1—8.3.2的岭回归与L1拟合。</p>
+<h2 id="training-validation-evaluation">训练、验证与最终评估</h2>
+<p>岭回归与L1拟合都提供了一串由$\lambda$决定的模型。惩罚太强会压低有用系数，太弱又可能保留对读数扰动敏感的分配。我们关心的是后续预测，因此需要用训练以外的读数比较惩罚强度。</p>
+<p>将数据分成三段，可以让每一段回答一个不同的问题。<strong>训练集（training set）</strong>用于求尺度、截距和系数；<strong>验证集（validation set）</strong>用于比较候选$\lambda$；<strong>测试集（test set）</strong>用于在选择完成后评价最终预测，下文称为最终评估段。验证段帮助我们作出选择，最终段则检验这个选择面对后续读数的表现。</p>
+<p>本节有90条按观测序号$t=0,\ldots,89$排列的记录。两个候选变量与读数由</p>
+<p>$$u_t=\sin(0.19t)+0.4\cos(0.07t),\qquad
+v_t=u_t+0.09\sin(0.71t),$$
+$$y_t=0.3+1.4u_t+0.13\cos(1.7t)$$</p>
+<p>生成，均采用无量纲数值。每行设计按$u,v$排列，响应为同一行的$y$。我们固定前45行训练、接着20行验证、最后25行最终评估。训练中两列相关系数约为0.9968，它们高度相似，正适合观察不同惩罚怎样分配系数。</p>
+<p>连续分段保留了观测顺序。后段输入可能落在训练中少见的范围，这种变化也是后续预测需要面对的问题。</p>
+<h2 id="training-only-scaling">训练均值与列标准化</h2>
+<p>上一节已看到，惩罚的含义依赖系数的坐标。同一个变量若整体放大100倍，对应系数就能缩小100倍而保持预测相同，平方或绝对值惩罚却随之改变。<strong>标准化（standardization）</strong>通过减去均值、除以尺度，让各列在选定坐标中比较。</p>
+<p>对训练中的$n_{\rm tr}$行，第$j$列的均值和标准差为</p>
+<p>$$m_j=\frac1{n_{\rm tr}}\sum_{i\in\mathrm{tr}}x_{ij},\qquad
+s_j=\sqrt{\frac1{n_{\rm tr}}\sum_{i\in\mathrm{tr}}(x_{ij}-m_j)^2}.$$</p>
+<p>这里标准差用训练行数作分母。得到$m_j,s_j$以后，任意一行都按同一变换</p>
+<p>$$z_j=\frac{x_j-m_j}{s_j}$$</p>
+<p>进入模型，验证和最终行也使用这些训练量。这样，模型面对未来时所用的坐标已经由训练固定。</p>
+<p>例如训练两行是$(1,5)$和$(3,5)$。两列均值为$(2,5)$，标准差为$(1,0)$。第二列恒定，不能除以零，本节约定将其使用的尺度改为1。后续行$(5,7)$于是变成</p>
+<p>$$\left(\frac{5-2}{1},\frac{7-5}{1}\right)=(3,2).$$</p>
+<p>恒定训练列在训练中没有提供变化来估计其斜率；保留后续的偏移，能让我们清楚看到新输入发生了什么，而不是将它一律抹为零。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-03-正则化与稀疏优化/practice/?question=p08-training-scale">固定训练尺度后变换新数据</a></li><li><a href="/chapters/08-03-正则化与稀疏优化/practice/?question=p08-constant-column">训练中恒定的变量</a></li></ul></nav>
+
+<h2 id="original-coordinate-coefficients">截距与原坐标系数</h2>
+<p>将训练响应减去其均值$\bar y_{\rm tr}$，在标准化设计$Z$上拟合斜率$\beta$，预测写为</p>
+<p>$$\hat y=\bar y_{\rm tr}+\sum_j\beta_j\frac{x_j-m_j}{s_j}.$$</p>
+<p>训练列中心化后均值为零，平方损失下，不受惩罚的截距就是$\bar y_{\rm tr}$。展开上式：</p>
+<p>$$\hat y=\left(\bar y_{\rm tr}-\sum_j\frac{\beta_jm_j}{s_j}\right)
++\sum_j\frac{\beta_j}{s_j}x_j.$$</p>
+<p>因此原坐标的斜率与截距为</p>
+<p>$$\boxed{a_j=\beta_j/s_j,\qquad
+ a_0=\bar y_{\rm tr}-\sum_jm_ja_j.}$$</p>
+<p>例如$m=(2,5)$、$s=(1,1)$、$\bar y_{\rm tr}=3$、$\beta=(0.5,0)$，有$a=(0.5,0)$、$a_0=2$。在$x=(5,7)$处，标准化表达得到$3+0.5\times3=4.5$，原坐标表达得到$2+0.5\times5=4.5$。这是同一个预测的两种写法。</p>
+<p>同一换算也说明尺度怎样进入惩罚。L1项成为</p>
+<p>$$\lambda\sum_j|\beta_j|=\lambda\sum_js_j|a_j|,$$</p>
+<p>岭项则成为$\lambda\sum_js_j^2a_j^2/2$。固定尺度是模型选择的一部分；比较两组系数前，要先确认它们使用同一坐标。</p>
+<h2 id="validation-penalty-selection">验证误差与惩罚选择</h2>
+<p>本次候选惩罚提前固定为$0.001,0.01,0.1,1$。每个候选都只用训练段拟合，然后在验证段计算均方误差：</p>
+<p>$$\operatorname{MSE}_{\rm val}(\lambda)=
+\frac1{n_{\rm val}}\sum_{i\in\mathrm{val}}(y_i-\hat y_i(\lambda))^2.$$</p>
+<p>$n_{\rm val}=20$，求和只取这20行。选择验证误差最小的$\lambda$，误差相同则取较小者。岭回归解线性方程；L1方法对每个候选从零系数开始，以训练损失的$\eta=1/L$做4000次近端更新，并检查近端映射残差。</p>
+<p>比较对象还包括无惩罚最小二乘。三种方法使用相同的训练均值、尺度与不受惩罚的截距，所以它们的预测差异来自系数估计方法。选定后，再在最后25行计算最终MSE。</p>
+<p>若看过最终误差后又修改变量、惩罚或更新次数，这段数据就参与了下一次选择。可以保留当前结果作为探索记录，再用新的留出数据评价更新模型；这样每一个预测成绩的来历都是清楚的。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-03-正则化与稀疏优化/practice/?question=p08-split-protocol">哪一组数据选择λ</a></li></ul></nav>
+
+<h2 id="coefficients-and-predictions">相关变量下的系数与预测</h2>
+<p>下图左侧比较最终段的读数与三种预测，右侧比较两个候选项的标准化系数。本次验证选择中，岭回归与L1都取$\lambda=0.001$。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P08-C03-S03-fdec3168-0.png" alt="训练尺度、惩罚选择与预测评估：实验结果图" loading="lazy"></figure>
+</section>
+<p>两列几乎一起变化时，一个系数增加、另一个减少，合成预测仍可能相近。因此，右侧的系数分配可以差得明显，左侧的预测却靠得很近。预测误差评价模型在这些输入上的表现；要分别解释两个系数，还需要观察能让两列作用分开的输入变化。</p>
+<p>在Notebook中，可以改变训练段长度或候选列的相似程度，重新比较验证选择和最终预测。解释结果时，先说使用了哪些行求尺度、哪些行选惩罚，再将原坐标与标准化坐标的预测逐行对照。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-03-正则化与稀疏优化/practice/?question=p08-prediction-and-truth">相关字典下的预测与系数</a></li></ul></nav>
+
+<p>到这里，系数可以在整个实数范围内取值。下一章把问题换成两路输入的配置：每路有最低需求和最大容量，总输入又受上限约束。我们将从允许取哪些值开始，再求其中代价最小的配置。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf">Boyd与Vandenberghe，Convex Optimization，第6.3节</a>介绍正则化拟合；<a href="https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf">Parikh与Boyd，Proximal Algorithms，第4.2节</a>介绍近端梯度。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/08-03-正则化与稀疏优化/read/2/">← 8.3.2 软阈值、次梯度与近端梯度</a><a href="/chapters/08-04-约束与最优性条件/read/1/">8.4.1 拉格朗日乘子与 KKT 条件 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

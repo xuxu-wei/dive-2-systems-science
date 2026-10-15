@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "1bcd8b9d428741f514ba6d4afff41ec9e165f9d1e0ad3a367f626a160ec8631e",
+    "catalogSha256": "03e428acb88b2be44da68518f516e213933d4bdeac1adee0646ac9d571637d37",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -10442,8 +10442,8 @@
       "english": null,
       "number": "8.1.1",
       "parentId": "8.1",
-      "url": "/notebook/?id=P08-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-01-目标函数与优化几何/read/1/",
+      "readingUrl": "/chapters/08-01-目标函数与优化几何/read/1/",
       "practiceUrl": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic",
       "description": "先比较四行预测误差，再按行求偏导，推导二次目标与海森矩阵，核对单位和坐标换算。",
       "categories": [
@@ -10462,7 +10462,7 @@
       "total": 1,
       "lessonId": "P08-C01-S01",
       "lessonNumber": "8.1.1",
-      "lessonTitle": "从拟合误差到二次目标",
+      "lessonTitle": "目标函数、梯度与海森矩阵",
       "chapterUrl": "/chapters/08-01-目标函数与优化几何/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10473,8 +10473,8 @@
       "english": null,
       "number": "8.1.1",
       "parentId": "8.1",
-      "url": "/notebook/?id=P08-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-01-目标函数与优化几何/read/1/",
+      "readingUrl": "/chapters/08-01-目标函数与优化几何/read/1/",
       "practiceUrl": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic",
       "description": "先比较四行预测误差，再按行求偏导，推导二次目标与海森矩阵，核对单位和坐标换算。",
       "categories": [
@@ -10493,7 +10493,7 @@
       "total": 1,
       "lessonId": "P08-C01-S01",
       "lessonNumber": "8.1.1",
-      "lessonTitle": "从拟合误差到二次目标",
+      "lessonTitle": "目标函数、梯度与海森矩阵",
       "chapterUrl": "/chapters/08-01-目标函数与优化几何/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10504,8 +10504,8 @@
       "english": null,
       "number": "8.1.1",
       "parentId": "8.1",
-      "url": "/notebook/?id=P08-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-01-目标函数与优化几何/read/1/",
+      "readingUrl": "/chapters/08-01-目标函数与优化几何/read/1/",
       "practiceUrl": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic",
       "description": "先比较四行预测误差，再按行求偏导，推导二次目标与海森矩阵，核对单位和坐标换算。",
       "categories": [
@@ -10524,7 +10524,7 @@
       "total": 1,
       "lessonId": "P08-C01-S01",
       "lessonNumber": "8.1.1",
-      "lessonTitle": "从拟合误差到二次目标",
+      "lessonTitle": "目标函数、梯度与海森矩阵",
       "chapterUrl": "/chapters/08-01-目标函数与优化几何/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10535,8 +10535,8 @@
       "english": null,
       "number": "8.1.2",
       "parentId": "8.1",
-      "url": "/notebook/?id=P08-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-01-目标函数与优化几何/read/2/",
+      "readingUrl": "/chapters/08-01-目标函数与优化几何/read/2/",
       "practiceUrl": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-linear-minimum",
       "description": "比较四次函数的三个驻点与鞍点，用局部曲率和全域凸性分别判断最小点。",
       "categories": [
@@ -10555,7 +10555,7 @@
       "total": 1,
       "lessonId": "P08-C01-S02",
       "lessonNumber": "8.1.2",
-      "lessonTitle": "曲率凸性与局部极值",
+      "lessonTitle": "驻点、曲率与凸性",
       "chapterUrl": "/chapters/08-01-目标函数与优化几何/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10566,8 +10566,8 @@
       "english": "convexity",
       "number": "8.1.2",
       "parentId": "8.1",
-      "url": "/notebook/?id=P08-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-01-目标函数与优化几何/read/2/",
+      "readingUrl": "/chapters/08-01-目标函数与优化几何/read/2/",
       "practiceUrl": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-linear-minimum",
       "description": "比较四次函数的三个驻点与鞍点，用局部曲率和全域凸性分别判断最小点。",
       "categories": [
@@ -10586,7 +10586,7 @@
       "total": 1,
       "lessonId": "P08-C01-S02",
       "lessonNumber": "8.1.2",
-      "lessonTitle": "曲率凸性与局部极值",
+      "lessonTitle": "驻点、曲率与凸性",
       "chapterUrl": "/chapters/08-01-目标函数与优化几何/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10597,8 +10597,8 @@
       "english": null,
       "number": "8.1.2",
       "parentId": "8.1",
-      "url": "/notebook/?id=P08-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-01-目标函数与优化几何/read/2/",
+      "readingUrl": "/chapters/08-01-目标函数与优化几何/read/2/",
       "practiceUrl": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-linear-minimum",
       "description": "比较四次函数的三个驻点与鞍点，用局部曲率和全域凸性分别判断最小点。",
       "categories": [
@@ -10617,7 +10617,7 @@
       "total": 1,
       "lessonId": "P08-C01-S02",
       "lessonNumber": "8.1.2",
-      "lessonTitle": "曲率凸性与局部极值",
+      "lessonTitle": "驻点、曲率与凸性",
       "chapterUrl": "/chapters/08-01-目标函数与优化几何/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10671,8 +10671,8 @@
       "english": null,
       "number": "8.2.1",
       "parentId": "8.2",
-      "url": "/notebook/?id=P08-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/",
+      "readingUrl": "/chapters/08-02-梯度、曲率与迭代算法/read/1/",
       "practiceUrl": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-gradient-steps",
       "description": "手算三个误差倍率，再推导固定步长范围，解释曲率差异、缩放与梯度阈值。",
       "categories": [
@@ -10691,7 +10691,7 @@
       "total": 1,
       "lessonId": "P08-C02-S01",
       "lessonNumber": "8.2.1",
-      "lessonTitle": "梯度下降的步长与条件数",
+      "lessonTitle": "梯度下降、步长与条件数",
       "chapterUrl": "/chapters/08-02-梯度、曲率与迭代算法/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10702,8 +10702,8 @@
       "english": "condition number",
       "number": "8.2.1",
       "parentId": "8.2",
-      "url": "/notebook/?id=P08-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/",
+      "readingUrl": "/chapters/08-02-梯度、曲率与迭代算法/read/1/",
       "practiceUrl": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-gradient-steps",
       "description": "手算三个误差倍率，再推导固定步长范围，解释曲率差异、缩放与梯度阈值。",
       "categories": [
@@ -10722,7 +10722,7 @@
       "total": 1,
       "lessonId": "P08-C02-S01",
       "lessonNumber": "8.2.1",
-      "lessonTitle": "梯度下降的步长与条件数",
+      "lessonTitle": "梯度下降、步长与条件数",
       "chapterUrl": "/chapters/08-02-梯度、曲率与迭代算法/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10733,8 +10733,8 @@
       "english": null,
       "number": "8.2.1",
       "parentId": "8.2",
-      "url": "/notebook/?id=P08-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/",
+      "readingUrl": "/chapters/08-02-梯度、曲率与迭代算法/read/1/",
       "practiceUrl": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-gradient-steps",
       "description": "手算三个误差倍率，再推导固定步长范围，解释曲率差异、缩放与梯度阈值。",
       "categories": [
@@ -10753,7 +10753,7 @@
       "total": 1,
       "lessonId": "P08-C02-S01",
       "lessonNumber": "8.2.1",
-      "lessonTitle": "梯度下降的步长与条件数",
+      "lessonTitle": "梯度下降、步长与条件数",
       "chapterUrl": "/chapters/08-02-梯度、曲率与迭代算法/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10764,8 +10764,8 @@
       "english": null,
       "number": "8.2.2",
       "parentId": "8.2",
-      "url": "/notebook/?id=P08-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/",
+      "readingUrl": "/chapters/08-02-梯度、曲率与迭代算法/read/2/",
       "practiceUrl": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-direction",
       "description": "从局部二次近似推导牛顿方向，计算负曲率的上升反例，说明保护规则与局部收敛。",
       "categories": [
@@ -10795,8 +10795,8 @@
       "english": null,
       "number": "8.2.2",
       "parentId": "8.2",
-      "url": "/notebook/?id=P08-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/",
+      "readingUrl": "/chapters/08-02-梯度、曲率与迭代算法/read/2/",
       "practiceUrl": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-direction",
       "description": "从局部二次近似推导牛顿方向，计算负曲率的上升反例，说明保护规则与局部收敛。",
       "categories": [
@@ -10826,8 +10826,8 @@
       "english": null,
       "number": "8.2.2",
       "parentId": "8.2",
-      "url": "/notebook/?id=P08-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/",
+      "readingUrl": "/chapters/08-02-梯度、曲率与迭代算法/read/2/",
       "practiceUrl": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-direction",
       "description": "从局部二次近似推导牛顿方向，计算负曲率的上升反例，说明保护规则与局部收敛。",
       "categories": [
@@ -10857,8 +10857,8 @@
       "english": null,
       "number": "8.2.3",
       "parentId": "8.2",
-      "url": "/notebook/?id=P08-C02-S03",
-      "readingUrl": null,
+      "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/",
+      "readingUrl": "/chapters/08-02-梯度、曲率与迭代算法/read/3/",
       "practiceUrl": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-armijo",
       "description": "跟算全步与半步的Armijo检验，保留等号接受，区分接受步、驻点与次数用完。",
       "categories": [
@@ -10878,7 +10878,7 @@
       "total": 1,
       "lessonId": "P08-C02-S03",
       "lessonNumber": "8.2.3",
-      "lessonTitle": "回溯与可信的停止条件",
+      "lessonTitle": "Armijo回溯与停止条件",
       "chapterUrl": "/chapters/08-02-梯度、曲率与迭代算法/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10889,8 +10889,8 @@
       "english": "backtracking line search",
       "number": "8.2.3",
       "parentId": "8.2",
-      "url": "/notebook/?id=P08-C02-S03",
-      "readingUrl": null,
+      "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/",
+      "readingUrl": "/chapters/08-02-梯度、曲率与迭代算法/read/3/",
       "practiceUrl": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-armijo",
       "description": "跟算全步与半步的Armijo检验，保留等号接受，区分接受步、驻点与次数用完。",
       "categories": [
@@ -10910,7 +10910,7 @@
       "total": 1,
       "lessonId": "P08-C02-S03",
       "lessonNumber": "8.2.3",
-      "lessonTitle": "回溯与可信的停止条件",
+      "lessonTitle": "Armijo回溯与停止条件",
       "chapterUrl": "/chapters/08-02-梯度、曲率与迭代算法/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10921,8 +10921,8 @@
       "english": null,
       "number": "8.2.3",
       "parentId": "8.2",
-      "url": "/notebook/?id=P08-C02-S03",
-      "readingUrl": null,
+      "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/",
+      "readingUrl": "/chapters/08-02-梯度、曲率与迭代算法/read/3/",
       "practiceUrl": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-armijo",
       "description": "跟算全步与半步的Armijo检验，保留等号接受，区分接受步、驻点与次数用完。",
       "categories": [
@@ -10942,7 +10942,7 @@
       "total": 1,
       "lessonId": "P08-C02-S03",
       "lessonNumber": "8.2.3",
-      "lessonTitle": "回溯与可信的停止条件",
+      "lessonTitle": "Armijo回溯与停止条件",
       "chapterUrl": "/chapters/08-02-梯度、曲率与迭代算法/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -10996,8 +10996,8 @@
       "english": "ridge regression",
       "number": "8.3.1",
       "parentId": "8.3",
-      "url": "/notebook/?id=P08-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-03-正则化与稀疏优化/read/1/",
+      "readingUrl": "/chapters/08-03-正则化与稀疏优化/read/1/",
       "practiceUrl": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge",
       "description": "比较近共线列对读数扰动的响应，推导岭方程与特征方向收缩，区分唯一解和机制识别。",
       "categories": [
@@ -11016,7 +11016,7 @@
       "total": 1,
       "lessonId": "P08-C03-S01",
       "lessonNumber": "8.3.1",
-      "lessonTitle": "岭回归与参数收缩",
+      "lessonTitle": "岭回归与系数收缩",
       "chapterUrl": "/chapters/08-03-正则化与稀疏优化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11027,8 +11027,8 @@
       "english": null,
       "number": "8.3.1",
       "parentId": "8.3",
-      "url": "/notebook/?id=P08-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-03-正则化与稀疏优化/read/1/",
+      "readingUrl": "/chapters/08-03-正则化与稀疏优化/read/1/",
       "practiceUrl": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge",
       "description": "比较近共线列对读数扰动的响应，推导岭方程与特征方向收缩，区分唯一解和机制识别。",
       "categories": [
@@ -11047,7 +11047,7 @@
       "total": 1,
       "lessonId": "P08-C03-S01",
       "lessonNumber": "8.3.1",
-      "lessonTitle": "岭回归与参数收缩",
+      "lessonTitle": "岭回归与系数收缩",
       "chapterUrl": "/chapters/08-03-正则化与稀疏优化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11058,8 +11058,8 @@
       "english": null,
       "number": "8.3.1",
       "parentId": "8.3",
-      "url": "/notebook/?id=P08-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-03-正则化与稀疏优化/read/1/",
+      "readingUrl": "/chapters/08-03-正则化与稀疏优化/read/1/",
       "practiceUrl": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge",
       "description": "比较近共线列对读数扰动的响应，推导岭方程与特征方向收缩，区分唯一解和机制识别。",
       "categories": [
@@ -11078,7 +11078,7 @@
       "total": 1,
       "lessonId": "P08-C03-S01",
       "lessonNumber": "8.3.1",
-      "lessonTitle": "岭回归与参数收缩",
+      "lessonTitle": "岭回归与系数收缩",
       "chapterUrl": "/chapters/08-03-正则化与稀疏优化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11089,8 +11089,8 @@
       "english": "subgradient",
       "number": "8.3.2",
       "parentId": "8.3",
-      "url": "/notebook/?id=P08-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-03-正则化与稀疏优化/read/2/",
+      "readingUrl": "/chapters/08-03-正则化与稀疏优化/read/2/",
       "practiceUrl": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-threshold",
       "description": "分三种情况解绝对值惩罚，推导梯度步加软阈值，检查完整目标与次梯度条件。",
       "categories": [
@@ -11110,7 +11110,7 @@
       "total": 1,
       "lessonId": "P08-C03-S02",
       "lessonNumber": "8.3.2",
-      "lessonTitle": "软阈值与近端梯度",
+      "lessonTitle": "软阈值、次梯度与近端梯度",
       "chapterUrl": "/chapters/08-03-正则化与稀疏优化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11121,8 +11121,8 @@
       "english": "soft thresholding",
       "number": "8.3.2",
       "parentId": "8.3",
-      "url": "/notebook/?id=P08-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-03-正则化与稀疏优化/read/2/",
+      "readingUrl": "/chapters/08-03-正则化与稀疏优化/read/2/",
       "practiceUrl": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-threshold",
       "description": "分三种情况解绝对值惩罚，推导梯度步加软阈值，检查完整目标与次梯度条件。",
       "categories": [
@@ -11142,7 +11142,7 @@
       "total": 1,
       "lessonId": "P08-C03-S02",
       "lessonNumber": "8.3.2",
-      "lessonTitle": "软阈值与近端梯度",
+      "lessonTitle": "软阈值、次梯度与近端梯度",
       "chapterUrl": "/chapters/08-03-正则化与稀疏优化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11153,8 +11153,8 @@
       "english": "proximal gradient",
       "number": "8.3.2",
       "parentId": "8.3",
-      "url": "/notebook/?id=P08-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-03-正则化与稀疏优化/read/2/",
+      "readingUrl": "/chapters/08-03-正则化与稀疏优化/read/2/",
       "practiceUrl": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-threshold",
       "description": "分三种情况解绝对值惩罚，推导梯度步加软阈值，检查完整目标与次梯度条件。",
       "categories": [
@@ -11174,7 +11174,7 @@
       "total": 1,
       "lessonId": "P08-C03-S02",
       "lessonNumber": "8.3.2",
-      "lessonTitle": "软阈值与近端梯度",
+      "lessonTitle": "软阈值、次梯度与近端梯度",
       "chapterUrl": "/chapters/08-03-正则化与稀疏优化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11185,8 +11185,8 @@
       "english": null,
       "number": "8.3.3",
       "parentId": "8.3",
-      "url": "/notebook/?id=P08-C03-S03",
-      "readingUrl": null,
+      "url": "/chapters/08-03-正则化与稀疏优化/read/3/",
+      "readingUrl": "/chapters/08-03-正则化与稀疏优化/read/3/",
       "practiceUrl": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-training-scale",
       "description": "手算训练标准化，再按验证段选择惩罚、最终段评价预测，换算原坐标系数。",
       "categories": [
@@ -11205,7 +11205,7 @@
       "total": 1,
       "lessonId": "P08-C03-S03",
       "lessonNumber": "8.3.3",
-      "lessonTitle": "缩放选参与独立预测",
+      "lessonTitle": "训练尺度、惩罚选择与预测评估",
       "chapterUrl": "/chapters/08-03-正则化与稀疏优化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11216,8 +11216,8 @@
       "english": null,
       "number": "8.3.3",
       "parentId": "8.3",
-      "url": "/notebook/?id=P08-C03-S03",
-      "readingUrl": null,
+      "url": "/chapters/08-03-正则化与稀疏优化/read/3/",
+      "readingUrl": "/chapters/08-03-正则化与稀疏优化/read/3/",
       "practiceUrl": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-training-scale",
       "description": "手算训练标准化，再按验证段选择惩罚、最终段评价预测，换算原坐标系数。",
       "categories": [
@@ -11236,7 +11236,7 @@
       "total": 1,
       "lessonId": "P08-C03-S03",
       "lessonNumber": "8.3.3",
-      "lessonTitle": "缩放选参与独立预测",
+      "lessonTitle": "训练尺度、惩罚选择与预测评估",
       "chapterUrl": "/chapters/08-03-正则化与稀疏优化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11247,8 +11247,8 @@
       "english": null,
       "number": "8.3.3",
       "parentId": "8.3",
-      "url": "/notebook/?id=P08-C03-S03",
-      "readingUrl": null,
+      "url": "/chapters/08-03-正则化与稀疏优化/read/3/",
+      "readingUrl": "/chapters/08-03-正则化与稀疏优化/read/3/",
       "practiceUrl": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-training-scale",
       "description": "手算训练标准化，再按验证段选择惩罚、最终段评价预测，换算原坐标系数。",
       "categories": [
@@ -11267,7 +11267,7 @@
       "total": 1,
       "lessonId": "P08-C03-S03",
       "lessonNumber": "8.3.3",
-      "lessonTitle": "缩放选参与独立预测",
+      "lessonTitle": "训练尺度、惩罚选择与预测评估",
       "chapterUrl": "/chapters/08-03-正则化与稀疏优化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11313,8 +11313,8 @@
       "english": "Lagrange multiplier",
       "number": "8.4.1",
       "parentId": "8.4",
-      "url": "/notebook/?id=P08-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-04-约束与最优性条件/read/1/",
+      "readingUrl": "/chapters/08-04-约束与最优性条件/read/1/",
       "practiceUrl": "/chapters/08-04-约束与最优性条件/practice/?question=p08-kkt",
       "description": "沿总量边界手算两路配置，以乘子、四类KKT条件与对偶下界证明本例最优。",
       "categories": [
@@ -11333,7 +11333,7 @@
       "total": 1,
       "lessonId": "P08-C04-S01",
       "lessonNumber": "8.4.1",
-      "lessonTitle": "约束乘子与最优性条件",
+      "lessonTitle": "拉格朗日乘子与 KKT 条件",
       "chapterUrl": "/chapters/08-04-约束与最优性条件/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11344,8 +11344,8 @@
       "english": null,
       "number": "8.4.1",
       "parentId": "8.4",
-      "url": "/notebook/?id=P08-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-04-约束与最优性条件/read/1/",
+      "readingUrl": "/chapters/08-04-约束与最优性条件/read/1/",
       "practiceUrl": "/chapters/08-04-约束与最优性条件/practice/?question=p08-kkt",
       "description": "沿总量边界手算两路配置，以乘子、四类KKT条件与对偶下界证明本例最优。",
       "categories": [
@@ -11364,7 +11364,7 @@
       "total": 1,
       "lessonId": "P08-C04-S01",
       "lessonNumber": "8.4.1",
-      "lessonTitle": "约束乘子与最优性条件",
+      "lessonTitle": "拉格朗日乘子与 KKT 条件",
       "chapterUrl": "/chapters/08-04-约束与最优性条件/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11375,8 +11375,8 @@
       "english": "complementary slackness",
       "number": "8.4.1",
       "parentId": "8.4",
-      "url": "/notebook/?id=P08-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/08-04-约束与最优性条件/read/1/",
+      "readingUrl": "/chapters/08-04-约束与最优性条件/read/1/",
       "practiceUrl": "/chapters/08-04-约束与最优性条件/practice/?question=p08-kkt",
       "description": "沿总量边界手算两路配置，以乘子、四类KKT条件与对偶下界证明本例最优。",
       "categories": [
@@ -11395,7 +11395,7 @@
       "total": 1,
       "lessonId": "P08-C04-S01",
       "lessonNumber": "8.4.1",
-      "lessonTitle": "约束乘子与最优性条件",
+      "lessonTitle": "拉格朗日乘子与 KKT 条件",
       "chapterUrl": "/chapters/08-04-约束与最优性条件/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11406,8 +11406,8 @@
       "english": "active set",
       "number": "8.4.2",
       "parentId": "8.4",
-      "url": "/notebook/?id=P08-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-04-约束与最优性条件/read/2/",
+      "readingUrl": "/chapters/08-04-约束与最优性条件/read/2/",
       "practiceUrl": "/chapters/08-04-约束与最优性条件/practice/?question=p08-budget-qp",
       "description": "先用最低需求判断可行性，再枚举活跃约束，比较几何边界解与平方惩罚反例。",
       "categories": [
@@ -11426,7 +11426,7 @@
       "total": 1,
       "lessonId": "P08-C04-S02",
       "lessonNumber": "8.4.2",
-      "lessonTitle": "活跃集与可行性核验",
+      "lessonTitle": "可行集合与活跃集方法",
       "chapterUrl": "/chapters/08-04-约束与最优性条件/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11437,8 +11437,8 @@
       "english": null,
       "number": "8.4.2",
       "parentId": "8.4",
-      "url": "/notebook/?id=P08-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-04-约束与最优性条件/read/2/",
+      "readingUrl": "/chapters/08-04-约束与最优性条件/read/2/",
       "practiceUrl": "/chapters/08-04-约束与最优性条件/practice/?question=p08-budget-qp",
       "description": "先用最低需求判断可行性，再枚举活跃约束，比较几何边界解与平方惩罚反例。",
       "categories": [
@@ -11457,7 +11457,7 @@
       "total": 1,
       "lessonId": "P08-C04-S02",
       "lessonNumber": "8.4.2",
-      "lessonTitle": "活跃集与可行性核验",
+      "lessonTitle": "可行集合与活跃集方法",
       "chapterUrl": "/chapters/08-04-约束与最优性条件/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -11468,8 +11468,8 @@
       "english": null,
       "number": "8.4.2",
       "parentId": "8.4",
-      "url": "/notebook/?id=P08-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/08-04-约束与最优性条件/read/2/",
+      "readingUrl": "/chapters/08-04-约束与最优性条件/read/2/",
       "practiceUrl": "/chapters/08-04-约束与最优性条件/practice/?question=p08-budget-qp",
       "description": "先用最低需求判断可行性，再枚举活跃约束，比较几何边界解与平方惩罚反例。",
       "categories": [
@@ -11488,7 +11488,7 @@
       "total": 1,
       "lessonId": "P08-C04-S02",
       "lessonNumber": "8.4.2",
-      "lessonTitle": "活跃集与可行性核验",
+      "lessonTitle": "可行集合与活跃集方法",
       "chapterUrl": "/chapters/08-04-约束与最优性条件/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },

@@ -4,9 +4,11 @@
 
 ## [未发布]
 
-网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)。
+网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)。
 
 ### 新增
+
+- 第8篇十一节网页讲授和独立实验，以50道原题连接目标几何、迭代方法、正则化与约束优化。
 
 - 第7篇十四节网页讲授和独立实验，以63道原题连接状态模型、贝叶斯滤波、高斯与粒子近似、平滑和缺测处理。
 
@@ -19,6 +21,8 @@
 - 从网页新标签页打开指定 JupyterLab 实验，自动使用本项目 Python 环境。
 
 ### 变更
+
+- 第8篇补齐逐行求导、步长倍率、软阈值与KKT手算；四张探索按真实模型关联具体概念，Notebook保留原算法。
 
 - 第7篇以定义、手算和图形完成讲授，六张探索按实际模型关联具体概念；Notebook保留可修改计算和独立核对。
 

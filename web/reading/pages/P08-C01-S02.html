@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.1.2 驻点、曲率与凸性 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P08-C01-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P08-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/08-01-目标函数与优化几何/practice/?question=p08-linear-minimum">本节练习 · 4 题</a><a class="button" href="/chapters/08-01-目标函数与优化几何/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>8.1.2 驻点、曲率与凸性</h1>
+<p>上一节的平方损失给出一个二次目标，解 $Hx=b$ 可以找到梯度为零的位置。换一个函数，这样的位置还会是最小点吗？考虑</p>
+<p>$$f(x)=\frac{x^4}4-\frac{x^2}2.$$</p>
+<p>它在 $-1,0,1$ 的导数都为零，却在图上形成两个谷底和一个山顶。要解释差别，需要同时说明比较的范围和附近的曲率。</p>
+<p>学完本节，应能区分驻点、局部极值与全局最小点，并说明凸性怎样支持全局结论。先修为上一节的梯度与海森矩阵，以及第3篇的特征方向。</p>
+<h2 id="minima-and-stationary-points">局部最小点、全局最小点与驻点</h2>
+<p>在允许集合中，若存在 $x^*$ 的一个邻域，使其中每个允许点 $x$ 都满足 $f(x^*)\le f(x)$，则 $x^*$ 是<strong>局部最小点（local minimum）</strong>。若这个比较对整个允许集合都成立，它就是<strong>全局最小点（global minimum）</strong>。若除 $x^*$ 本身外不等号都严格成立，则称为严格最小点。局部比较附近，全局比较全部。</p>
+<p>对可微函数，梯度为零的位置称为<strong>驻点（stationary point）</strong>。内部最小点必须是驻点：若某个偏导不为零，沿该坐标朝相反方向移动一小步，就还能降低目标。</p>
+<p>对开头的函数，逐项求导得到</p>
+<p>$$f'(x)=x^3-x=x(x-1)(x+1),\qquad f''(x)=3x^2-1.$$</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">$x$</th>
+  <th style="text-align:right">$f(x)$</th>
+  <th style="text-align:right">$f'(x)$</th>
+  <th style="text-align:right">$f''(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">−1</td>
+  <td style="text-align:right">−1/4</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">2</td>
+</tr>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">−1</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">−1/4</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">2</td>
+</tr>
+</tbody>
+</table>
+<p>在零附近，$-x^2/2$ 使目标低于 $f(0)=0$，所以原点是严格局部最大点。再配方：</p>
+<p>$$f(x)=\frac{(x^2-1)^2}4-\frac14\ge-\frac14.$$</p>
+<p>等号恰在 $x=\pm1$ 成立，因而它们都是全局最小点。原点附近像山顶，函数在远处仍会超过它。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-01-目标函数与优化几何/practice/?question=p08-stationary-counterexample">三个驻点的分类</a></li></ul></nav>
+
+<h2 id="curvature-and-saddles">二阶展开与鞍点</h2>
+<p>设目标在当前点附近二阶连续可微，移动量记为 $p$，则</p>
+<p>$$f(x+p)=f(x)+g^Tp+\frac12p^TH(x)p+o(\|p\|^2).$$</p>
+<p>这里 $g=\nabla f(x)$，最后一项除以 $\|p\|^2$ 后趋于零。在驻点处，一阶项消失；若 $H$ 正定，每个非零方向的二次项都向上弯曲，给出严格局部最小点。若 $H$ 同时具有正、负特征值，有的方向上升，有的方向下降，这个驻点称为<strong>鞍点（saddle point）</strong>。</p>
+<p>例如 $f(x_1,x_2)=(x_1^2-x_2^2)/2$，原点的梯度为零。沿第一轴走到 $(\epsilon,0)$，目标为 $\epsilon^2/2&gt;0$；沿第二轴走到 $(0,\epsilon)$，目标为 $-\epsilon^2/2&lt;0$。原点既不是局部最小点，也不是局部最大点。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P08-C01-S02-589759d4-0.png" alt="驻点、曲率与凸性：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图把四次函数的三个驻点放在一起；右图的正、负等高线展示鞍点的两个方向。可视化使用 $H=\operatorname{diag}(1,q)$，将 $q$ 从正数切到负数，观察第二方向怎样从谷底变成下坡。</p>
+<p class="concept-explore"><a href="/chapters/08-01-目标函数与优化几何/explore/?concept=P08-C01-S02%3Acurvature-and-saddles">可视化与探索：二阶展开与鞍点 →</a></p>
+
+<h2 id="zero-curvature">零曲率与高阶变化</h2>
+<p>半正定海森矩阵允许零特征值。在这样的方向上，二次项为零，需要继续查看高阶变化。</p>
+<p>比较 $f_1(x)=x^4$ 与 $f_2(x)=-x^4$。两者在原点的一阶、二阶导数都为零；但对每个 $x\ne0$，一个函数值为正，另一个为负，原点分别是严格最小点和严格最大点。同样的零曲率可以对应相反结论。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-01-目标函数与优化几何/practice/?question=p08-hessian-zero">四次函数在原点的性质</a></li></ul></nav>
+
+<h2 id="convexity">凸函数与全局最优性</h2>
+<p>一个集合若包含任意两点之间的整条线段，就称为<strong>凸集（convex set）</strong>。例如区间、平面上的圆盘，以及整个实数空间都是凸集。</p>
+<p>定义在凸集上的函数，若对任意两点 $x,y$ 及 $0\le t\le1$ 都满足</p>
+<p>$$f((1-t)x+ty)\le(1-t)f(x)+tf(y),$$</p>
+<p>就称为<strong>凸函数（convex function）</strong>。直观地看，连接函数图像上两点的线段，处处在函数图像上方或与之重合。若 $x\ne y$、$0&lt;t&lt;1$ 时始终严格小于，则函数严格凸。</p>
+<p>在开放凸域上，二阶连续可微函数凸，当且仅当每一点的海森矩阵都半正定。这里检查的是整个域：某一个点的曲率只能说明该点附近的二阶形状。</p>
+<p>凸性为什么能支持全局结论？将上面的不等式整理为</p>
+<p>$$f(y)-f(x)\ge\frac{f(x+t(y-x))-f(x)}t.$$</p>
+<p>令 $t$ 从正侧趋于零，右端成为 $\nabla f(x)^T(y-x)$。因此</p>
+<p>$$f(y)\ge f(x)+\nabla f(x)^T(y-x).$$</p>
+<p>若 $x$ 是驻点，就得到对任意 $y$ 都成立的 $f(y)\ge f(x)$。所以可微凸函数的驻点是全局最小点。</p>
+<p>严格凸函数至多有一个最小点：若有两个不同最小点，它们中间的函数值按严格凸性还会更低。至于能否取得最小值，需看具体函数；例如 $e^x$ 在实数轴上严格凸，向负无穷走时越来越接近0，却始终取不到0。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-01-目标函数与优化几何/practice/?question=p08-convex-domain">凸性结论的范围</a></li></ul></nav>
+
+<h2 id="quadratic-minimum">正定二次目标的唯一最小点</h2>
+<p>回到 $f(x)=x^THx/2-b^Tx$。当 $H$ 对称正定，方程 $Hx^*=b$ 有唯一解。令 $x=x^*+e$，逐项展开：</p>
+<p>$$\begin{aligned}
+f(x^*+e)-f(x^*)&amp;=e^T(Hx^*-b)+\frac12e^THe\\
+&amp;=\frac12e^THe.
+\end{aligned}$$</p>
+<p>对 $e\ne0$，最后一项严格为正，说明这个解就是唯一全局最小点。例如</p>
+<p>$$H=\begin{pmatrix}2&amp;1\\1&amp;3\end{pmatrix},\qquad b=\begin{pmatrix}1\\2\end{pmatrix}$$</p>
+<p>对应两条方程 $2x_1+x_2=1$、$x_1+3x_2=2$，解得 $x^*=(0.2,0.6)^T$。取 $x=(0,0)^T$，目标比最小值高 $0.7$；代入 $e=(-0.2,-0.6)^T$，$e^THe/2$ 也得到 $0.7$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-01-目标函数与优化几何/practice/?question=p08-linear-minimum">求严格凸二次目标的最小点</a></li></ul></nav>
+
+<p>现在我们能区分驻点、局部极值和全局最小点。对于维数较大的问题，逐步移动往往比一次求出所有候选更方便；下一节研究怎样沿负梯度走向谷底。</p>
+<h2 id="references">延伸阅读</h2>
+<p><a href="https://web.stanford.edu/~boyd/cvxbook/">Boyd 与 Vandenberghe：《Convex Optimization》</a>，第2—4章的凸集、凸函数和最优性。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/08-01-目标函数与优化几何/read/1/">← 8.1.1 目标函数、梯度与海森矩阵</a><a href="/chapters/08-02-梯度、曲率与迭代算法/read/1/">8.2.1 梯度下降、步长与条件数 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

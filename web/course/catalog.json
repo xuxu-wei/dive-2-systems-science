@@ -11863,77 +11863,231 @@
               "id": "P08-C01-S01",
               "chapter_id": "8.1",
               "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
-              "title": "从拟合误差到二次目标",
+              "title": "目标函数、梯度与海森矩阵",
               "outcome": "先比较四行预测误差，再按行求偏导，推导二次目标与海森矩阵，核对单位和坐标换算。",
               "number": "8.1.1",
               "visualization": "web/optimization/index.html",
+              "reading": "lessons/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.md",
               "questions": [
                 {
                   "id": "p08-quadratic",
                   "slug": "p08-quadratic",
                   "title": "计算目标与导数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-01-目标函数与优化几何/read/1/#hessian",
+                  "concept_title": "海森矩阵与目标曲率",
+                  "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic"
                 },
                 {
                   "id": "p08-loss-units",
                   "slug": "p08-loss-units",
                   "title": "相加之前先比较单位",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-01-目标函数与优化几何/read/1/#squared-loss",
+                  "concept_title": "平方损失与二次目标",
+                  "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-loss-units"
                 },
                 {
                   "id": "p08-gradient-direction",
                   "slug": "p08-gradient-direction",
                   "title": "梯度指向哪里",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-01-目标函数与优化几何/read/1/#gradient",
+                  "concept_title": "梯度与逐行求导",
+                  "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-gradient-direction"
                 },
                 {
                   "id": "p08-change-coordinates",
                   "slug": "p08-change-coordinates",
                   "title": "单位改变还是问题改变",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-01-目标函数与优化几何/read/1/#coordinate-scaling",
+                  "concept_title": "坐标缩放与目标不变性",
+                  "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-change-coordinates"
                 }
               ],
               "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic",
               "notebook_url": "/notebook/?id=P08-C01-S01",
-              "url": "/notebook/?id=P08-C01-S01"
+              "reading_url": "/chapters/08-01-目标函数与优化几何/read/1/",
+              "concepts": [
+                {
+                  "id": "variables-and-scales",
+                  "title": "优化变量与参考尺度",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C01-S01:variables-and-scales",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/1/#variables-and-scales"
+                },
+                {
+                  "id": "squared-loss",
+                  "title": "平方损失与二次目标",
+                  "question_ids": [
+                    "p08-loss-units"
+                  ],
+                  "explore": false,
+                  "key": "P08-C01-S01:squared-loss",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/1/#squared-loss"
+                },
+                {
+                  "id": "gradient",
+                  "title": "梯度与逐行求导",
+                  "question_ids": [
+                    "p08-gradient-direction"
+                  ],
+                  "explore": false,
+                  "key": "P08-C01-S01:gradient",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/1/#gradient"
+                },
+                {
+                  "id": "hessian",
+                  "title": "海森矩阵与目标曲率",
+                  "question_ids": [
+                    "p08-quadratic"
+                  ],
+                  "explore": false,
+                  "key": "P08-C01-S01:hessian",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/1/#hessian"
+                },
+                {
+                  "id": "contours",
+                  "title": "等高线与下降方向",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P08-C01-S01:contours",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/1/#contours",
+                  "explore_url": "/chapters/08-01-目标函数与优化几何/explore/?concept=P08-C01-S01%3Acontours"
+                },
+                {
+                  "id": "coordinate-scaling",
+                  "title": "坐标缩放与目标不变性",
+                  "question_ids": [
+                    "p08-change-coordinates"
+                  ],
+                  "explore": false,
+                  "key": "P08-C01-S01:coordinate-scaling",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/1/#coordinate-scaling"
+                },
+                {
+                  "id": "references",
+                  "title": "延伸阅读",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C01-S01:references",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/1/#references"
+                }
+              ],
+              "url": "/chapters/08-01-目标函数与优化几何/read/1/"
             },
             {
               "id": "P08-C01-S02",
               "chapter_id": "8.1",
               "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.ipynb",
-              "title": "曲率凸性与局部极值",
+              "title": "驻点、曲率与凸性",
               "outcome": "比较四次函数的三个驻点与鞍点，用局部曲率和全域凸性分别判断最小点。",
               "number": "8.1.2",
               "visualization": "web/optimization/index.html",
+              "reading": "lessons/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.md",
               "questions": [
                 {
                   "id": "p08-linear-minimum",
                   "slug": "p08-linear-minimum",
                   "title": "求严格凸二次目标的最小点",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-01-目标函数与优化几何/read/2/#quadratic-minimum",
+                  "concept_title": "正定二次目标的唯一最小点",
+                  "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-linear-minimum"
                 },
                 {
                   "id": "p08-stationary-counterexample",
                   "slug": "p08-stationary-counterexample",
                   "title": "三个驻点的分类",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-01-目标函数与优化几何/read/2/#minima-and-stationary-points",
+                  "concept_title": "局部最小点、全局最小点与驻点",
+                  "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-stationary-counterexample"
                 },
                 {
                   "id": "p08-hessian-zero",
                   "slug": "p08-hessian-zero",
                   "title": "四次函数在原点的性质",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-01-目标函数与优化几何/read/2/#zero-curvature",
+                  "concept_title": "零曲率与高阶变化",
+                  "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-hessian-zero"
                 },
                 {
                   "id": "p08-convex-domain",
                   "slug": "p08-convex-domain",
                   "title": "凸性结论的范围",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-01-目标函数与优化几何/read/2/#convexity",
+                  "concept_title": "凸函数与全局最优性",
+                  "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-convex-domain"
                 }
               ],
               "practice_url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-linear-minimum",
               "notebook_url": "/notebook/?id=P08-C01-S02",
-              "url": "/notebook/?id=P08-C01-S02"
+              "reading_url": "/chapters/08-01-目标函数与优化几何/read/2/",
+              "concepts": [
+                {
+                  "id": "minima-and-stationary-points",
+                  "title": "局部最小点、全局最小点与驻点",
+                  "question_ids": [
+                    "p08-stationary-counterexample"
+                  ],
+                  "explore": false,
+                  "key": "P08-C01-S02:minima-and-stationary-points",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/2/#minima-and-stationary-points"
+                },
+                {
+                  "id": "curvature-and-saddles",
+                  "title": "二阶展开与鞍点",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P08-C01-S02:curvature-and-saddles",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/2/#curvature-and-saddles",
+                  "explore_url": "/chapters/08-01-目标函数与优化几何/explore/?concept=P08-C01-S02%3Acurvature-and-saddles"
+                },
+                {
+                  "id": "zero-curvature",
+                  "title": "零曲率与高阶变化",
+                  "question_ids": [
+                    "p08-hessian-zero"
+                  ],
+                  "explore": false,
+                  "key": "P08-C01-S02:zero-curvature",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/2/#zero-curvature"
+                },
+                {
+                  "id": "convexity",
+                  "title": "凸函数与全局最优性",
+                  "question_ids": [
+                    "p08-convex-domain"
+                  ],
+                  "explore": false,
+                  "key": "P08-C01-S02:convexity",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/2/#convexity"
+                },
+                {
+                  "id": "quadratic-minimum",
+                  "title": "正定二次目标的唯一最小点",
+                  "question_ids": [
+                    "p08-linear-minimum"
+                  ],
+                  "explore": false,
+                  "key": "P08-C01-S02:quadratic-minimum",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/2/#quadratic-minimum"
+                },
+                {
+                  "id": "references",
+                  "title": "延伸阅读",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C01-S02:references",
+                  "url": "/chapters/08-01-目标函数与优化几何/read/2/#references"
+                }
+              ],
+              "url": "/chapters/08-01-目标函数与优化几何/read/2/"
             }
           ],
           "visualization": "web/optimization/index.html"
@@ -11956,39 +12110,111 @@
               "id": "P08-C02-S01",
               "chapter_id": "8.2",
               "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.ipynb",
-              "title": "梯度下降的步长与条件数",
+              "title": "梯度下降、步长与条件数",
               "outcome": "手算三个误差倍率，再推导固定步长范围，解释曲率差异、缩放与梯度阈值。",
               "number": "8.2.1",
               "visualization": "web/optimization/index.html",
+              "reading": "lessons/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.md",
               "questions": [
                 {
                   "id": "p08-gradient-steps",
                   "slug": "p08-gradient-steps",
                   "title": "实现有预算的梯度下降",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/#gradient-stopping",
+                  "concept_title": "梯度残差与停止条件",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-gradient-steps"
                 },
                 {
                   "id": "p08-step-limit",
                   "slug": "p08-step-limit",
                   "title": "固定步长的收敛范围",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/#step-size-bound",
+                  "concept_title": "正定二次目标的步长范围",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-step-limit"
                 },
                 {
                   "id": "p08-conditioning",
                   "slug": "p08-conditioning",
                   "title": "两种慢的原因",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/#conditioning",
+                  "concept_title": "条件数与方向之间的差异",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-conditioning"
                 },
                 {
                   "id": "p08-small-gradient",
                   "slug": "p08-small-gradient",
                   "title": "小梯度能说明多近",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/#gradient-stopping",
+                  "concept_title": "梯度残差与停止条件",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-small-gradient"
                 }
               ],
               "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-gradient-steps",
               "notebook_url": "/notebook/?id=P08-C02-S01",
-              "url": "/notebook/?id=P08-C02-S01"
+              "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/",
+              "concepts": [
+                {
+                  "id": "gradient-descent",
+                  "title": "梯度下降与误差倍率",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C02-S01:gradient-descent",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/#gradient-descent"
+                },
+                {
+                  "id": "step-size-bound",
+                  "title": "正定二次目标的步长范围",
+                  "question_ids": [
+                    "p08-step-limit"
+                  ],
+                  "explore": true,
+                  "key": "P08-C02-S01:step-size-bound",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/#step-size-bound",
+                  "explore_url": "/chapters/08-02-梯度、曲率与迭代算法/explore/?concept=P08-C02-S01%3Astep-size-bound"
+                },
+                {
+                  "id": "conditioning",
+                  "title": "条件数与方向之间的差异",
+                  "question_ids": [
+                    "p08-conditioning"
+                  ],
+                  "explore": false,
+                  "key": "P08-C02-S01:conditioning",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/#conditioning"
+                },
+                {
+                  "id": "scaled-coordinates",
+                  "title": "坐标缩放与迭代路径",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C02-S01:scaled-coordinates",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/#scaled-coordinates"
+                },
+                {
+                  "id": "gradient-stopping",
+                  "title": "梯度残差与停止条件",
+                  "question_ids": [
+                    "p08-small-gradient",
+                    "p08-gradient-steps"
+                  ],
+                  "explore": false,
+                  "key": "P08-C02-S01:gradient-stopping",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/#gradient-stopping"
+                },
+                {
+                  "id": "references",
+                  "title": "延伸阅读",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C02-S01:references",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/#references"
+                }
+              ],
+              "url": "/chapters/08-02-梯度、曲率与迭代算法/read/1/"
             },
             {
               "id": "P08-C02-S02",
@@ -11998,79 +12224,227 @@
               "outcome": "从局部二次近似推导牛顿方向，计算负曲率的上升反例，说明保护规则与局部收敛。",
               "number": "8.2.2",
               "visualization": "web/optimization/index.html",
+              "reading": "lessons/08-优化方法与计算/02-梯度、曲率与迭代算法/02-牛顿方向与非凸曲率.md",
               "questions": [
                 {
                   "id": "p08-newton-direction",
                   "slug": "p08-newton-direction",
                   "title": "检查牛顿方向是否下降",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/#negative-curvature",
+                  "concept_title": "负曲率与方向保护",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-direction"
                 },
                 {
                   "id": "p08-newton-taylor",
                   "slug": "p08-newton-taylor",
                   "title": "牛顿步从哪里来",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/#newton-equation",
+                  "concept_title": "局部二次模型与牛顿方程",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-taylor"
                 },
                 {
                   "id": "p08-negative-curvature",
                   "slug": "p08-negative-curvature",
                   "title": "负曲率处的方向选择",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/#negative-curvature",
+                  "concept_title": "负曲率与方向保护",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-negative-curvature"
                 },
                 {
                   "id": "p08-stationary-stop",
                   "slug": "p08-stationary-stop",
                   "title": "停在零处应如何报告",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/#stationary-point-check",
+                  "concept_title": "驻点检查与曲率判断",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-stationary-stop"
                 }
               ],
               "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-direction",
               "notebook_url": "/notebook/?id=P08-C02-S02",
-              "url": "/notebook/?id=P08-C02-S02"
+              "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/",
+              "concepts": [
+                {
+                  "id": "newton-equation",
+                  "title": "局部二次模型与牛顿方程",
+                  "question_ids": [
+                    "p08-newton-taylor"
+                  ],
+                  "explore": false,
+                  "key": "P08-C02-S02:newton-equation",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/#newton-equation"
+                },
+                {
+                  "id": "negative-curvature",
+                  "title": "负曲率与方向保护",
+                  "question_ids": [
+                    "p08-negative-curvature",
+                    "p08-newton-direction"
+                  ],
+                  "explore": false,
+                  "key": "P08-C02-S02:negative-curvature",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/#negative-curvature"
+                },
+                {
+                  "id": "local-quadratic-convergence",
+                  "title": "牛顿方法的局部二次收敛",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C02-S02:local-quadratic-convergence",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/#local-quadratic-convergence"
+                },
+                {
+                  "id": "stationary-point-check",
+                  "title": "驻点检查与曲率判断",
+                  "question_ids": [
+                    "p08-stationary-stop"
+                  ],
+                  "explore": false,
+                  "key": "P08-C02-S02:stationary-point-check",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/#stationary-point-check"
+                },
+                {
+                  "id": "references",
+                  "title": "延伸阅读",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C02-S02:references",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/#references"
+                }
+              ],
+              "url": "/chapters/08-02-梯度、曲率与迭代算法/read/2/"
             },
             {
               "id": "P08-C02-S03",
               "chapter_id": "8.2",
               "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.ipynb",
-              "title": "回溯与可信的停止条件",
+              "title": "Armijo回溯与停止条件",
               "outcome": "跟算全步与半步的Armijo检验，保留等号接受，区分接受步、驻点与次数用完。",
               "number": "8.2.3",
               "visualization": "web/optimization/index.html",
+              "reading": "lessons/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.md",
               "questions": [
                 {
                   "id": "p08-armijo",
                   "slug": "p08-armijo",
                   "title": "返回真正被接受的步长",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#armijo-example",
+                  "concept_title": "全步拒绝与半步等号接受",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-armijo"
                 },
                 {
                   "id": "p08-trial-budget",
                   "slug": "p08-trial-budget",
                   "title": "零次尝试是什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#trial-and-update-budgets",
+                  "concept_title": "回溯尝试次数与更新次数",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-trial-budget"
                 },
                 {
                   "id": "p08-line-search-status",
                   "slug": "p08-line-search-status",
                   "title": "一步更新后的状态报告",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#acceptance-and-stopping",
+                  "concept_title": "接受一步与达到停止条件",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-line-search-status"
                 },
                 {
                   "id": "p08-objective-offset",
                   "slug": "p08-objective-offset",
                   "title": "小目标值可信吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#objective-offset",
+                  "concept_title": "目标平移与停止标准",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-objective-offset"
                 },
                 {
                   "id": "p08-search-guarantee",
                   "slug": "p08-search-guarantee",
                   "title": "什么时候小步会被接受",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#small-step-guarantee",
+                  "concept_title": "连续可微性与小步接受",
+                  "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-search-guarantee"
                 }
               ],
               "practice_url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-armijo",
               "notebook_url": "/notebook/?id=P08-C02-S03",
-              "url": "/notebook/?id=P08-C02-S03"
+              "reading_url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/",
+              "concepts": [
+                {
+                  "id": "armijo-condition",
+                  "title": "Armijo充分下降条件",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C02-S03:armijo-condition",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#armijo-condition"
+                },
+                {
+                  "id": "armijo-example",
+                  "title": "全步拒绝与半步等号接受",
+                  "question_ids": [
+                    "p08-armijo"
+                  ],
+                  "explore": false,
+                  "key": "P08-C02-S03:armijo-example",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#armijo-example"
+                },
+                {
+                  "id": "small-step-guarantee",
+                  "title": "连续可微性与小步接受",
+                  "question_ids": [
+                    "p08-search-guarantee"
+                  ],
+                  "explore": false,
+                  "key": "P08-C02-S03:small-step-guarantee",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#small-step-guarantee"
+                },
+                {
+                  "id": "trial-and-update-budgets",
+                  "title": "回溯尝试次数与更新次数",
+                  "question_ids": [
+                    "p08-trial-budget"
+                  ],
+                  "explore": false,
+                  "key": "P08-C02-S03:trial-and-update-budgets",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#trial-and-update-budgets"
+                },
+                {
+                  "id": "acceptance-and-stopping",
+                  "title": "接受一步与达到停止条件",
+                  "question_ids": [
+                    "p08-line-search-status"
+                  ],
+                  "explore": false,
+                  "key": "P08-C02-S03:acceptance-and-stopping",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#acceptance-and-stopping"
+                },
+                {
+                  "id": "objective-offset",
+                  "title": "目标平移与停止标准",
+                  "question_ids": [
+                    "p08-objective-offset"
+                  ],
+                  "explore": false,
+                  "key": "P08-C02-S03:objective-offset",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#objective-offset"
+                },
+                {
+                  "id": "references",
+                  "title": "延伸阅读",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C02-S03:references",
+                  "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/#references"
+                }
+              ],
+              "url": "/chapters/08-02-梯度、曲率与迭代算法/read/3/"
             }
           ],
           "visualization": "web/optimization/index.html"
@@ -12093,121 +12467,348 @@
               "id": "P08-C03-S01",
               "chapter_id": "8.3",
               "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.ipynb",
-              "title": "岭回归与参数收缩",
+              "title": "岭回归与系数收缩",
               "outcome": "比较近共线列对读数扰动的响应，推导岭方程与特征方向收缩，区分唯一解和机制识别。",
               "number": "8.3.1",
               "visualization": "web/optimization/index.html",
+              "reading": "lessons/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.md",
               "questions": [
                 {
                   "id": "p08-ridge",
                   "slug": "p08-ridge",
                   "title": "计算岭回归解",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/1/#ridge-equations",
+                  "concept_title": "岭回归目标与线性方程",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge"
                 },
                 {
                   "id": "p08-ridge-normalization",
                   "slug": "p08-ridge-normalization",
                   "title": "多出一个n意味着什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/1/#ridge-equations",
+                  "concept_title": "岭回归目标与线性方程",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge-normalization"
                 },
                 {
                   "id": "p08-rank-and-ridge",
                   "slug": "p08-rank-and-ridge",
                   "title": "唯一解意味着识别了机制吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/1/#ridge-eigendirections",
+                  "concept_title": "特征方向上的收缩",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-rank-and-ridge"
                 },
                 {
                   "id": "p08-penalty-intercept",
                   "slug": "p08-penalty-intercept",
                   "title": "截距是否一起惩罚",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/1/#ridge-intercept",
+                  "concept_title": "中心化与不受惩罚的截距",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-penalty-intercept"
                 }
               ],
               "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge",
               "notebook_url": "/notebook/?id=P08-C03-S01",
-              "url": "/notebook/?id=P08-C03-S01"
+              "reading_url": "/chapters/08-03-正则化与稀疏优化/read/1/",
+              "concepts": [
+                {
+                  "id": "correlated-columns",
+                  "title": "相关设计列与系数不稳定",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C03-S01:correlated-columns",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/1/#correlated-columns"
+                },
+                {
+                  "id": "ridge-equations",
+                  "title": "岭回归目标与线性方程",
+                  "question_ids": [
+                    "p08-ridge",
+                    "p08-ridge-normalization"
+                  ],
+                  "explore": false,
+                  "key": "P08-C03-S01:ridge-equations",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/1/#ridge-equations"
+                },
+                {
+                  "id": "ridge-eigendirections",
+                  "title": "特征方向上的收缩",
+                  "question_ids": [
+                    "p08-rank-and-ridge"
+                  ],
+                  "explore": false,
+                  "key": "P08-C03-S01:ridge-eigendirections",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/1/#ridge-eigendirections"
+                },
+                {
+                  "id": "ridge-gaussian-prior",
+                  "title": "平方惩罚与高斯先验",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C03-S01:ridge-gaussian-prior",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/1/#ridge-gaussian-prior"
+                },
+                {
+                  "id": "ridge-intercept",
+                  "title": "中心化与不受惩罚的截距",
+                  "question_ids": [
+                    "p08-penalty-intercept"
+                  ],
+                  "explore": false,
+                  "key": "P08-C03-S01:ridge-intercept",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/1/#ridge-intercept"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C03-S01:references",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/1/#references"
+                }
+              ],
+              "url": "/chapters/08-03-正则化与稀疏优化/read/1/"
             },
             {
               "id": "P08-C03-S02",
               "chapter_id": "8.3",
               "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.ipynb",
-              "title": "软阈值与近端梯度",
+              "title": "软阈值、次梯度与近端梯度",
               "outcome": "分三种情况解绝对值惩罚，推导梯度步加软阈值，检查完整目标与次梯度条件。",
               "number": "8.3.2",
               "visualization": "web/optimization/index.html",
+              "reading": "lessons/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.md",
               "questions": [
                 {
                   "id": "p08-threshold",
                   "slug": "p08-threshold",
                   "title": "实现逐坐标软阈值",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/2/#scalar-soft-threshold",
+                  "concept_title": "标量目标与软阈值",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-threshold"
                 },
                 {
                   "id": "p08-proximal",
                   "slug": "p08-proximal",
                   "title": "计算一次近端更新",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/2/#proximal-gradient-update",
+                  "concept_title": "二次上界与近端梯度",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-proximal"
                 },
                 {
                   "id": "p08-subgradient-zero",
                   "slug": "p08-subgradient-zero",
                   "title": "零处的斜率如何表达",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/2/#subgradient-optimality",
+                  "concept_title": "次梯度与零点最优条件",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-subgradient-zero"
                 },
                 {
                   "id": "p08-proximal-step-size",
                   "slug": "p08-proximal-step-size",
                   "title": "近端步长和归一化",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/2/#proximal-gradient-update",
+                  "concept_title": "二次上界与近端梯度",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-proximal-step-size"
                 },
                 {
                   "id": "p08-sparse-evidence",
                   "slug": "p08-sparse-evidence",
                   "title": "相关变量的稀疏选择",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/2/#orthogonal-penalty-path",
+                  "concept_title": "正交设计下的惩罚路径",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-sparse-evidence"
                 }
               ],
               "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-threshold",
               "notebook_url": "/notebook/?id=P08-C03-S02",
-              "url": "/notebook/?id=P08-C03-S02"
+              "reading_url": "/chapters/08-03-正则化与稀疏优化/read/2/",
+              "concepts": [
+                {
+                  "id": "l1-penalty",
+                  "title": "绝对值惩罚与稀疏系数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C03-S02:l1-penalty",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/2/#l1-penalty"
+                },
+                {
+                  "id": "scalar-soft-threshold",
+                  "title": "标量目标与软阈值",
+                  "question_ids": [
+                    "p08-threshold"
+                  ],
+                  "explore": false,
+                  "key": "P08-C03-S02:scalar-soft-threshold",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/2/#scalar-soft-threshold"
+                },
+                {
+                  "id": "subgradient-optimality",
+                  "title": "次梯度与零点最优条件",
+                  "question_ids": [
+                    "p08-subgradient-zero"
+                  ],
+                  "explore": false,
+                  "key": "P08-C03-S02:subgradient-optimality",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/2/#subgradient-optimality"
+                },
+                {
+                  "id": "proximal-gradient-update",
+                  "title": "二次上界与近端梯度",
+                  "question_ids": [
+                    "p08-proximal-step-size",
+                    "p08-proximal"
+                  ],
+                  "explore": false,
+                  "key": "P08-C03-S02:proximal-gradient-update",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/2/#proximal-gradient-update"
+                },
+                {
+                  "id": "sparse-stopping-residual",
+                  "title": "稀疏最优性与停止残差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C03-S02:sparse-stopping-residual",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/2/#sparse-stopping-residual"
+                },
+                {
+                  "id": "orthogonal-penalty-path",
+                  "title": "正交设计下的惩罚路径",
+                  "question_ids": [
+                    "p08-sparse-evidence"
+                  ],
+                  "explore": true,
+                  "key": "P08-C03-S02:orthogonal-penalty-path",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/2/#orthogonal-penalty-path",
+                  "explore_url": "/chapters/08-03-正则化与稀疏优化/explore/?concept=P08-C03-S02%3Aorthogonal-penalty-path"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C03-S02:references",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/2/#references"
+                }
+              ],
+              "url": "/chapters/08-03-正则化与稀疏优化/read/2/"
             },
             {
               "id": "P08-C03-S03",
               "chapter_id": "8.3",
               "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.ipynb",
-              "title": "缩放选参与独立预测",
+              "title": "训练尺度、惩罚选择与预测评估",
               "outcome": "手算训练标准化，再按验证段选择惩罚、最终段评价预测，换算原坐标系数。",
               "number": "8.3.3",
               "visualization": "web/optimization/index.html",
+              "reading": "lessons/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.md",
               "questions": [
                 {
                   "id": "p08-training-scale",
                   "slug": "p08-training-scale",
                   "title": "固定训练尺度后变换新数据",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/3/#training-only-scaling",
+                  "concept_title": "训练均值与列标准化",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-training-scale"
                 },
                 {
                   "id": "p08-split-protocol",
                   "slug": "p08-split-protocol",
                   "title": "哪一组数据选择λ",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/3/#validation-penalty-selection",
+                  "concept_title": "验证误差与惩罚选择",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-split-protocol"
                 },
                 {
                   "id": "p08-constant-column",
                   "slug": "p08-constant-column",
                   "title": "训练中恒定的变量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/3/#training-only-scaling",
+                  "concept_title": "训练均值与列标准化",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-constant-column"
                 },
                 {
                   "id": "p08-prediction-and-truth",
                   "slug": "p08-prediction-and-truth",
                   "title": "相关字典下的预测与系数",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-03-正则化与稀疏优化/read/3/#coefficients-and-predictions",
+                  "concept_title": "相关变量下的系数与预测",
+                  "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-prediction-and-truth"
                 }
               ],
               "practice_url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-training-scale",
               "notebook_url": "/notebook/?id=P08-C03-S03",
-              "url": "/notebook/?id=P08-C03-S03"
+              "reading_url": "/chapters/08-03-正则化与稀疏优化/read/3/",
+              "concepts": [
+                {
+                  "id": "training-validation-evaluation",
+                  "title": "训练、验证与最终评估",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C03-S03:training-validation-evaluation",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/3/#training-validation-evaluation"
+                },
+                {
+                  "id": "training-only-scaling",
+                  "title": "训练均值与列标准化",
+                  "question_ids": [
+                    "p08-training-scale",
+                    "p08-constant-column"
+                  ],
+                  "explore": false,
+                  "key": "P08-C03-S03:training-only-scaling",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/3/#training-only-scaling"
+                },
+                {
+                  "id": "original-coordinate-coefficients",
+                  "title": "截距与原坐标系数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C03-S03:original-coordinate-coefficients",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/3/#original-coordinate-coefficients"
+                },
+                {
+                  "id": "validation-penalty-selection",
+                  "title": "验证误差与惩罚选择",
+                  "question_ids": [
+                    "p08-split-protocol"
+                  ],
+                  "explore": false,
+                  "key": "P08-C03-S03:validation-penalty-selection",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/3/#validation-penalty-selection"
+                },
+                {
+                  "id": "coefficients-and-predictions",
+                  "title": "相关变量下的系数与预测",
+                  "question_ids": [
+                    "p08-prediction-and-truth"
+                  ],
+                  "explore": false,
+                  "key": "P08-C03-S03:coefficients-and-predictions",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/3/#coefficients-and-predictions"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C03-S03:references",
+                  "url": "/chapters/08-03-正则化与稀疏优化/read/3/#references"
+                }
+              ],
+              "url": "/chapters/08-03-正则化与稀疏优化/read/3/"
             }
           ],
           "visualization": "web/optimization/index.html"
@@ -12230,77 +12831,230 @@
               "id": "P08-C04-S01",
               "chapter_id": "8.4",
               "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.ipynb",
-              "title": "约束乘子与最优性条件",
+              "title": "拉格朗日乘子与 KKT 条件",
               "outcome": "沿总量边界手算两路配置，以乘子、四类KKT条件与对偶下界证明本例最优。",
               "number": "8.4.1",
               "visualization": "web/optimization/index.html",
+              "reading": "lessons/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.md",
               "questions": [
                 {
                   "id": "p08-kkt",
                   "slug": "p08-kkt",
                   "title": "核对四类最优性残差",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-04-约束与最优性条件/read/1/#four-residuals-and-candidate-comparison",
+                  "concept_title": "四类残差与候选比较",
+                  "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-kkt"
                 },
                 {
                   "id": "p08-necessity-sufficiency",
                   "slug": "p08-necessity-sufficiency",
                   "title": "条件何时必要或充分",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-04-约束与最优性条件/read/1/#global-optimality-in-convex-problems",
+                  "concept_title": "凸问题中的全局最优性",
+                  "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-necessity-sufficiency"
                 },
                 {
                   "id": "p08-constraint-qualification",
                   "slug": "p08-constraint-qualification",
                   "title": "退化约束为什么重要",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-04-约束与最优性条件/read/1/#constraint-qualifications-and-degeneracy",
+                  "concept_title": "约束资格条件与退化约束",
+                  "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-constraint-qualification"
                 },
                 {
                   "id": "p08-multiplier-sign",
                   "slug": "p08-multiplier-sign",
                   "title": "乘子的符号从哪来",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-04-约束与最优性条件/read/1/#inequality-constraints-and-kkt-conditions",
+                  "concept_title": "不等式约束与四项 KKT 条件",
+                  "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-multiplier-sign"
                 }
               ],
               "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-kkt",
               "notebook_url": "/notebook/?id=P08-C04-S01",
-              "url": "/notebook/?id=P08-C04-S01"
+              "reading_url": "/chapters/08-04-约束与最优性条件/read/1/",
+              "concepts": [
+                {
+                  "id": "minimum-on-a-constraint-boundary",
+                  "title": "约束边界上的最小点",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C04-S01:minimum-on-a-constraint-boundary",
+                  "url": "/chapters/08-04-约束与最优性条件/read/1/#minimum-on-a-constraint-boundary"
+                },
+                {
+                  "id": "equality-constraints-and-lagrange-multipliers",
+                  "title": "等式约束与拉格朗日乘子",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C04-S01:equality-constraints-and-lagrange-multipliers",
+                  "url": "/chapters/08-04-约束与最优性条件/read/1/#equality-constraints-and-lagrange-multipliers"
+                },
+                {
+                  "id": "inequality-constraints-and-kkt-conditions",
+                  "title": "不等式约束与四项 KKT 条件",
+                  "question_ids": [
+                    "p08-multiplier-sign"
+                  ],
+                  "explore": false,
+                  "key": "P08-C04-S01:inequality-constraints-and-kkt-conditions",
+                  "url": "/chapters/08-04-约束与最优性条件/read/1/#inequality-constraints-and-kkt-conditions"
+                },
+                {
+                  "id": "global-optimality-in-convex-problems",
+                  "title": "凸问题中的全局最优性",
+                  "question_ids": [
+                    "p08-necessity-sufficiency"
+                  ],
+                  "explore": false,
+                  "key": "P08-C04-S01:global-optimality-in-convex-problems",
+                  "url": "/chapters/08-04-约束与最优性条件/read/1/#global-optimality-in-convex-problems"
+                },
+                {
+                  "id": "constraint-qualifications-and-degeneracy",
+                  "title": "约束资格条件与退化约束",
+                  "question_ids": [
+                    "p08-constraint-qualification"
+                  ],
+                  "explore": false,
+                  "key": "P08-C04-S01:constraint-qualifications-and-degeneracy",
+                  "url": "/chapters/08-04-约束与最优性条件/read/1/#constraint-qualifications-and-degeneracy"
+                },
+                {
+                  "id": "four-residuals-and-candidate-comparison",
+                  "title": "四类残差与候选比较",
+                  "question_ids": [
+                    "p08-kkt"
+                  ],
+                  "explore": false,
+                  "key": "P08-C04-S01:four-residuals-and-candidate-comparison",
+                  "url": "/chapters/08-04-约束与最优性条件/read/1/#four-residuals-and-candidate-comparison"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C04-S01:references",
+                  "url": "/chapters/08-04-约束与最优性条件/read/1/#references"
+                }
+              ],
+              "url": "/chapters/08-04-约束与最优性条件/read/1/"
             },
             {
               "id": "P08-C04-S02",
               "chapter_id": "8.4",
               "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.ipynb",
-              "title": "活跃集与可行性核验",
+              "title": "可行集合与活跃集方法",
               "outcome": "先用最低需求判断可行性，再枚举活跃约束，比较几何边界解与平方惩罚反例。",
               "number": "8.4.2",
               "visualization": "web/optimization/index.html",
+              "reading": "lessons/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.md",
               "questions": [
                 {
                   "id": "p08-budget-qp",
                   "slug": "p08-budget-qp",
                   "title": "求解带上下界和预算的二次目标",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/08-04-约束与最优性条件/read/2/#budget-changes-and-active-set-switches",
+                  "concept_title": "预算变化与活跃集切换",
+                  "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-budget-qp"
                 },
                 {
                   "id": "p08-feasible-or-failed",
                   "slug": "p08-feasible-or-failed",
                   "title": "一次候选失败能证明什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-04-约束与最优性条件/read/2/#bounds-budget-and-feasible-set",
+                  "concept_title": "上下界、预算与可行集合",
+                  "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-feasible-or-failed"
                 },
                 {
                   "id": "p08-clip-coupling",
                   "slug": "p08-clip-coupling",
                   "title": "截断为什么不够",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-04-约束与最优性条件/read/2/#one-dimensional-boundary-minimization",
+                  "concept_title": "边界线段上的一维最小化",
+                  "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-clip-coupling"
                 },
                 {
                   "id": "p08-soft-hard",
                   "slug": "p08-soft-hard",
                   "title": "放宽约束和多跑几步",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/08-04-约束与最优性条件/read/2/#hard-constraints-and-quadratic-penalties",
+                  "concept_title": "硬约束与平方惩罚",
+                  "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-soft-hard"
                 }
               ],
               "practice_url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-budget-qp",
               "notebook_url": "/notebook/?id=P08-C04-S02",
-              "url": "/notebook/?id=P08-C04-S02"
+              "reading_url": "/chapters/08-04-约束与最优性条件/read/2/",
+              "concepts": [
+                {
+                  "id": "bounds-budget-and-feasible-set",
+                  "title": "上下界、预算与可行集合",
+                  "question_ids": [
+                    "p08-feasible-or-failed"
+                  ],
+                  "explore": false,
+                  "key": "P08-C04-S02:bounds-budget-and-feasible-set",
+                  "url": "/chapters/08-04-约束与最优性条件/read/2/#bounds-budget-and-feasible-set"
+                },
+                {
+                  "id": "active-constraints-and-candidate-equations",
+                  "title": "活跃约束与候选方程",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C04-S02:active-constraints-and-candidate-equations",
+                  "url": "/chapters/08-04-约束与最优性条件/read/2/#active-constraints-and-candidate-equations"
+                },
+                {
+                  "id": "one-dimensional-boundary-minimization",
+                  "title": "边界线段上的一维最小化",
+                  "question_ids": [
+                    "p08-clip-coupling"
+                  ],
+                  "explore": false,
+                  "key": "P08-C04-S02:one-dimensional-boundary-minimization",
+                  "url": "/chapters/08-04-约束与最优性条件/read/2/#one-dimensional-boundary-minimization"
+                },
+                {
+                  "id": "budget-changes-and-active-set-switches",
+                  "title": "预算变化与活跃集切换",
+                  "question_ids": [
+                    "p08-budget-qp"
+                  ],
+                  "explore": true,
+                  "key": "P08-C04-S02:budget-changes-and-active-set-switches",
+                  "url": "/chapters/08-04-约束与最优性条件/read/2/#budget-changes-and-active-set-switches",
+                  "explore_url": "/chapters/08-04-约束与最优性条件/explore/?concept=P08-C04-S02%3Abudget-changes-and-active-set-switches"
+                },
+                {
+                  "id": "hard-constraints-and-quadratic-penalties",
+                  "title": "硬约束与平方惩罚",
+                  "question_ids": [
+                    "p08-soft-hard"
+                  ],
+                  "explore": false,
+                  "key": "P08-C04-S02:hard-constraints-and-quadratic-penalties",
+                  "url": "/chapters/08-04-约束与最优性条件/read/2/#hard-constraints-and-quadratic-penalties"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P08-C04-S02:references",
+                  "url": "/chapters/08-04-约束与最优性条件/read/2/#references"
+                }
+              ],
+              "url": "/chapters/08-04-约束与最优性条件/read/2/"
             }
           ],
           "visualization": "web/optimization/index.html"
@@ -12338,59 +13092,155 @@
                 "按返回顺序解释结果，检查零次预算、阈值等号、最低需求冲突与停止原因"
               ]
             },
+            "reading": "lessons/08-优化方法与计算/05-篇末综合/01-拟合稀疏与约束优化.md",
             "questions": [
               {
                 "id": "p08-cap-geometry",
                 "slug": "p08-cap-geometry",
                 "title": "目标尺度与凸性",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/08-优化方法与计算/综合练习/read/1/#squared-loss-constant-and-curvature",
+                "concept_title": "平方损失、目标常数与曲率",
+                "practice_url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-geometry"
               },
               {
                 "id": "p08-cap-regularization",
                 "slug": "p08-cap-regularization",
                 "title": "正则化能保证什么",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/08-优化方法与计算/综合练习/read/1/#sparse-fitting-and-subgradient-checks",
+                "concept_title": "稀疏拟合与次梯度检查",
+                "practice_url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-regularization"
               },
               {
                 "id": "p08-cap-derivatives",
                 "slug": "p08-cap-derivatives",
                 "title": "梯度与曲率核验",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/08-优化方法与计算/综合练习/read/1/#squared-loss-constant-and-curvature",
+                "concept_title": "平方损失、目标常数与曲率",
+                "practice_url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-derivatives"
               },
               {
                 "id": "p08-cap-descent",
                 "slug": "p08-cap-descent",
                 "title": "带回溯的一步下降",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/08-优化方法与计算/综合练习/read/1/#armijo-acceptance-and-stopping-reasons",
+                "concept_title": "回溯接受条件与停止原因",
+                "practice_url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-descent"
               },
               {
                 "id": "p08-cap-sparse",
                 "slug": "p08-cap-sparse",
                 "title": "固定预算的近端稀疏拟合",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/08-优化方法与计算/综合练习/read/1/#sparse-fitting-and-subgradient-checks",
+                "concept_title": "稀疏拟合与次梯度检查",
+                "practice_url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-sparse"
               },
               {
                 "id": "p08-cap-constrained",
                 "slug": "p08-cap-constrained",
                 "title": "约束配置及最优性证据",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/08-优化方法与计算/综合练习/read/1/#constrained-allocation-and-optimality-residuals",
+                "concept_title": "约束配置与最优性残差",
+                "practice_url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-constrained"
               },
               {
                 "id": "p08-cap-conditioning",
                 "slug": "p08-cap-conditioning",
                 "title": "病态问题的收敛判断",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/08-优化方法与计算/综合练习/read/1/#armijo-acceptance-and-stopping-reasons",
+                "concept_title": "回溯接受条件与停止原因",
+                "practice_url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-conditioning"
               },
               {
                 "id": "p08-cap-infeasible",
                 "slug": "p08-cap-infeasible",
                 "title": "不可行与边界迁移",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/08-优化方法与计算/综合练习/read/1/#constrained-allocation-and-optimality-residuals",
+                "concept_title": "约束配置与最优性残差",
+                "practice_url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-infeasible"
               }
             ],
             "practice_url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-geometry",
             "notebook_url": "/notebook/?id=P08-SUMMARY",
-            "url": "/notebook/?id=P08-SUMMARY"
+            "reading_url": "/parts/08-优化方法与计算/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "fitted-coefficients-and-allocated-inputs",
+                "title": "拟合系数与配置输入",
+                "question_ids": [],
+                "explore": false,
+                "key": "P08-SUMMARY:fitted-coefficients-and-allocated-inputs",
+                "url": "/parts/08-优化方法与计算/综合练习/read/1/#fitted-coefficients-and-allocated-inputs"
+              },
+              {
+                "id": "squared-loss-constant-and-curvature",
+                "title": "平方损失、目标常数与曲率",
+                "question_ids": [
+                  "p08-cap-geometry",
+                  "p08-cap-derivatives"
+                ],
+                "explore": false,
+                "key": "P08-SUMMARY:squared-loss-constant-and-curvature",
+                "url": "/parts/08-优化方法与计算/综合练习/read/1/#squared-loss-constant-and-curvature"
+              },
+              {
+                "id": "armijo-acceptance-and-stopping-reasons",
+                "title": "回溯接受条件与停止原因",
+                "question_ids": [
+                  "p08-cap-descent",
+                  "p08-cap-conditioning"
+                ],
+                "explore": false,
+                "key": "P08-SUMMARY:armijo-acceptance-and-stopping-reasons",
+                "url": "/parts/08-优化方法与计算/综合练习/read/1/#armijo-acceptance-and-stopping-reasons"
+              },
+              {
+                "id": "sparse-fitting-and-subgradient-checks",
+                "title": "稀疏拟合与次梯度检查",
+                "question_ids": [
+                  "p08-cap-sparse",
+                  "p08-cap-regularization"
+                ],
+                "explore": false,
+                "key": "P08-SUMMARY:sparse-fitting-and-subgradient-checks",
+                "url": "/parts/08-优化方法与计算/综合练习/read/1/#sparse-fitting-and-subgradient-checks"
+              },
+              {
+                "id": "constrained-allocation-and-optimality-residuals",
+                "title": "约束配置与最优性残差",
+                "question_ids": [
+                  "p08-cap-constrained",
+                  "p08-cap-infeasible"
+                ],
+                "explore": false,
+                "key": "P08-SUMMARY:constrained-allocation-and-optimality-residuals",
+                "url": "/parts/08-优化方法与计算/综合练习/read/1/#constrained-allocation-and-optimality-residuals"
+              },
+              {
+                "id": "interpreting-the-computational-results",
+                "title": "实验结果的连贯解释",
+                "question_ids": [],
+                "explore": false,
+                "key": "P08-SUMMARY:interpreting-the-computational-results",
+                "url": "/parts/08-优化方法与计算/综合练习/read/1/#interpreting-the-computational-results"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P08-SUMMARY:references",
+                "url": "/parts/08-优化方法与计算/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/08-优化方法与计算/综合练习/read/1/"
           }
         ],
         "available": true,

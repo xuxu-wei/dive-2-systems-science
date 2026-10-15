@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.3.1 岭回归与系数收缩 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P08-C03-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P08-C03-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge">本节练习 · 4 题</a><a class="button" href="/chapters/08-03-正则化与稀疏优化/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>8.3.1 岭回归与系数收缩</h1>
+<p>学完本节，你应能推导岭回归的线性方程，手算一个收缩结果，并用设计矩阵的特征方向解释系数为什么变得稳定。</p>
+<p><strong>先修知识</strong>：第6篇的最小二乘，8.1的二次目标，以及8.2的曲率与条件数。</p>
+<h2 id="correlated-columns">相关设计列与系数不稳定</h2>
+<p>假设两个候选变量随时间几乎一起升降，我们想用它们的加权和预测物质变化的读数。把第一个系数加大一点、第二个系数减小一点，预测可能几乎不变。这样，许多系数组合都能解释当前数据，少量读数扰动就可能让拟合在这些组合之间移动很远。</p>
+<p>先看两列完全相同的情形。预测只依赖系数之和；若和为1.5，$(1.5,0)$和$(0.75,0.75)$的预测完全相同。怎样在这些拟合中作出选择？一种办法是在误差之外，再比较系数的大小。将这种额外偏好写进目标，称为<strong>正则化（regularization）</strong>。</p>
+<p>本节采用$n$行、$p$列的固定设计矩阵$X$，每行是一条观测，每列对应一个系数；读数列向量为$y$，系数列向量为$\beta$。设计与读数已按参考量化为无量纲数，预测为$X\beta$，先把截距固定为零。</p>
+<h2 id="ridge-equations">岭回归目标与线性方程</h2>
+<p><strong>岭回归（ridge regression）</strong>在平均半平方损失上加入系数平方和：</p>
+<p>$$J_\lambda(\beta)=\frac{1}{2n}\|X\beta-y\|^2+\frac\lambda2\|\beta\|^2,
+\qquad \|\beta\|^2=\sum_{j=1}^p\beta_j^2,\quad \lambda\ge0.$$</p>
+<p>$\lambda$决定我们愿意牺牲多少拟合来减小系数。对开头系数之和固定为$s$的例子，令$\beta_1=a,\beta_2=s-a$，则</p>
+<p>$$\beta_1^2+\beta_2^2=2(a-s/2)^2+s^2/2.$$</p>
+<p>平方和在$a=s/2$时最小，所以岭惩罚会在两个完全相同的列之间平均分配系数。这个选择来自加入的偏好。</p>
+<p>由8.1的平方损失求导，惩罚项对$\beta_j$的导数为$\lambda\beta_j$。把各坐标合在一起，</p>
+<p>$$\nabla J_\lambda(\beta)=\frac{X^{\mathsf T}X}{n}\beta-\frac{X^{\mathsf T}y}{n}+\lambda\beta.$$</p>
+<p>令梯度为零，得到</p>
+<p>$$\boxed{\left(\frac{X^{\mathsf T}X}{n}+\lambda I\right)\hat\beta_\lambda
+=\frac{X^{\mathsf T}y}{n}.}$$</p>
+<p>$X^{\mathsf T}X/n$半正定，$\lambda&gt;0$使它的每个特征值增加$\lambda$，因而目标严格凸，最小点唯一。$\lambda=0$回到最小二乘；此时若列不满秩，就有多个系数组合取得相同最小损失。</p>
+<p>例如$X=I$有两行、$y=(2,-2)^{\mathsf T}$，那么</p>
+<p>$$X^{\mathsf T}X/n=0.5I,\qquad X^{\mathsf T}y/n=(1,-1)^{\mathsf T}.$$</p>
+<p>取$\lambda=0.5$，左边矩阵变为$I$，解为$(1,-1)^{\mathsf T}$。无惩罚解是$(2,-2)^{\mathsf T}$，这次两个系数都缩小了一半。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge">计算岭回归解</a></li></ul></nav>
+
+<p>平均损失中的$n$也会影响惩罚的数值。将整个$J_\lambda$乘以$n$，最小点不变，目标却变成</p>
+<p>$$\frac12\|X\beta-y\|^2+\frac{n\lambda}{2}\|\beta\|^2.$$</p>
+<p>因此，比较两个软件的惩罚参数前，要先看它们使用平方和还是平均平方损失。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge-normalization">多出一个n意味着什么</a></li></ul></nav>
+
+<h2 id="ridge-eigendirections">特征方向上的收缩</h2>
+<p>8.2中，曲率小的方向对梯度下降的速度有影响。拟合时，这些方向还会放大读数扰动。设</p>
+<p>$$X^{\mathsf T}X/n=V\operatorname{diag}(d_1,\ldots,d_p)V^{\mathsf T},
+\qquad b=X^{\mathsf T}y/n,$$</p>
+<p>$V$的列$v_j$是单位正交特征向量，$d_j\ge0$是对应曲率。将岭方程左乘$v_j^{\mathsf T}$，得到</p>
+<p>$$(d_j+\lambda)v_j^{\mathsf T}\hat\beta_\lambda=v_j^{\mathsf T}b.$$</p>
+<p>当$d_j&gt;0$时，与无惩罚解相比，该方向上的系数乘上</p>
+<p>$$\boxed{\frac{d_j}{d_j+\lambda}.}$$</p>
+<p>$d_j$越小，收缩越强。例如曲率分别是0.01和1，取$\lambda=0.1$，两个倍率约为0.091和0.909。前一个方向原本最容易放大读数扰动，现在被压低得更多。若$d_j=0$，就有$Xv_j=0$，从而$v_j^{\mathsf T}b=0$；正惩罚将这个数据无法确定的方向设为零。</p>
+<p>这里的收缩针对特征方向。一个原始坐标可能混合多个这样的方向，所以它的系数绝对值未必随$\lambda$单调减小。</p>
+<p>下面的实验用24条读数比较两列近乎重复的设计。给原读数加入一项幅度0.01的固定余弦扰动，再沿相同的$\lambda$序列重新拟合。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P08-C03-S01-1514582d-0.png" alt="岭回归与系数收缩：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图实线与虚线分别对应原读数和扰动读数，颜色区分两个系数；横轴是惩罚强度。右图将两组系数之差汇成一个距离。弱惩罚时，两个系数的分配对这项扰动很敏感；增加惩罚后，两组系数逐渐靠近。对于完全相同的两列，唯一的系数分配由惩罚决定，数据仍然只确定它们的合成作用。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-03-正则化与稀疏优化/practice/?question=p08-rank-and-ridge">唯一解意味着识别了机制吗</a></li></ul></nav>
+
+<h2 id="ridge-gaussian-prior">平方惩罚与高斯先验</h2>
+<p>第5—7篇让我们用概率分布表达估计的不确定性。岭惩罚也能接到这种解释上。设读数误差在各行之间独立，服从方差为已知$\sigma^2&gt;0$的零均值高斯分布；系数先验为$N(0,\tau^2I)$，$\tau^2&gt;0$，并独立于误差。忽略与$\beta$无关的常数，负对数后验为</p>
+<p>$$\frac{\|X\beta-y\|^2}{2\sigma^2}+\frac{\|\beta\|^2}{2\tau^2}.$$</p>
+<p>乘上正常数$\sigma^2/n$，就得到岭目标，并有</p>
+<p>$$\lambda=\frac{\sigma^2}{n\tau^2}.$$</p>
+<p>在这些假设下，岭解是最大后验点。较小的先验方差意味着我们更倾向于小系数，也就对应较强的惩罚。后验分布还描述系数的不确定性，而岭解只取其中的峰值位置。</p>
+<h2 id="ridge-intercept">中心化与不受惩罚的截距</h2>
+<p>若读数具有非零基准水平，可把预测写成$a_0+x^{\mathsf T}\beta$，将截距$a_0$与斜率$\beta$分开。对设计列和响应分别减去训练均值，记为$X_c,y_c$，只对斜率求解</p>
+<p>$$\frac{1}{2n}\|X_c\beta-y_c\|^2+\frac\lambda2\|\beta\|^2.$$</p>
+<p>预测时再加回响应的训练均值。这样，基准水平由截距保存，惩罚控制变量变化对应的斜率；若把截距也放进平方惩罚，基准水平也会被向零拉动。8.3.3将把这一步与列标准化合在一起，并写回原坐标。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/08-03-正则化与稀疏优化/practice/?question=p08-penalty-intercept">截距是否一起惩罚</a></li></ul></nav>
+
+<p>平方惩罚让许多系数平滑地缩小。下一节把平方换成绝对值，看看目标在零点的折角为什么会让一些系数精确归零。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf">Boyd与Vandenberghe，Convex Optimization，第6.3节</a>介绍正则化拟合及其解释。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/08-02-梯度、曲率与迭代算法/read/3/">← 8.2.3 Armijo回溯与停止条件</a><a href="/chapters/08-03-正则化与稀疏优化/read/2/">8.3.2 软阈值、次梯度与近端梯度 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

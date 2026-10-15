@@ -3,28 +3,31 @@
     "id": "P08-C01-S01",
     "chapter_id": "8.1",
     "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
-    "title": "从拟合误差到二次目标",
+    "title": "目标函数、梯度与海森矩阵",
     "outcome": "先比较四行预测误差，再按行求偏导，推导二次目标与海森矩阵，核对单位和坐标换算。",
     "number": "8.1.1",
-    "visualization": "web/optimization/index.html"
+    "visualization": "web/optimization/index.html",
+    "reading": "lessons/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.md"
   },
   {
     "id": "P08-C01-S02",
     "chapter_id": "8.1",
     "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.ipynb",
-    "title": "曲率凸性与局部极值",
+    "title": "驻点、曲率与凸性",
     "outcome": "比较四次函数的三个驻点与鞍点，用局部曲率和全域凸性分别判断最小点。",
     "number": "8.1.2",
-    "visualization": "web/optimization/index.html"
+    "visualization": "web/optimization/index.html",
+    "reading": "lessons/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.md"
   },
   {
     "id": "P08-C02-S01",
     "chapter_id": "8.2",
     "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.ipynb",
-    "title": "梯度下降的步长与条件数",
+    "title": "梯度下降、步长与条件数",
     "outcome": "手算三个误差倍率，再推导固定步长范围，解释曲率差异、缩放与梯度阈值。",
     "number": "8.2.1",
-    "visualization": "web/optimization/index.html"
+    "visualization": "web/optimization/index.html",
+    "reading": "lessons/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.md"
   },
   {
     "id": "P08-C02-S02",
@@ -33,61 +36,68 @@
     "title": "牛顿方向与非凸曲率",
     "outcome": "从局部二次近似推导牛顿方向，计算负曲率的上升反例，说明保护规则与局部收敛。",
     "number": "8.2.2",
-    "visualization": "web/optimization/index.html"
+    "visualization": "web/optimization/index.html",
+    "reading": "lessons/08-优化方法与计算/02-梯度、曲率与迭代算法/02-牛顿方向与非凸曲率.md"
   },
   {
     "id": "P08-C02-S03",
     "chapter_id": "8.2",
     "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.ipynb",
-    "title": "回溯与可信的停止条件",
+    "title": "Armijo回溯与停止条件",
     "outcome": "跟算全步与半步的Armijo检验，保留等号接受，区分接受步、驻点与次数用完。",
     "number": "8.2.3",
-    "visualization": "web/optimization/index.html"
+    "visualization": "web/optimization/index.html",
+    "reading": "lessons/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.md"
   },
   {
     "id": "P08-C03-S01",
     "chapter_id": "8.3",
     "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.ipynb",
-    "title": "岭回归与参数收缩",
+    "title": "岭回归与系数收缩",
     "outcome": "比较近共线列对读数扰动的响应，推导岭方程与特征方向收缩，区分唯一解和机制识别。",
     "number": "8.3.1",
-    "visualization": "web/optimization/index.html"
+    "visualization": "web/optimization/index.html",
+    "reading": "lessons/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.md"
   },
   {
     "id": "P08-C03-S02",
     "chapter_id": "8.3",
     "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.ipynb",
-    "title": "软阈值与近端梯度",
+    "title": "软阈值、次梯度与近端梯度",
     "outcome": "分三种情况解绝对值惩罚，推导梯度步加软阈值，检查完整目标与次梯度条件。",
     "number": "8.3.2",
-    "visualization": "web/optimization/index.html"
+    "visualization": "web/optimization/index.html",
+    "reading": "lessons/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.md"
   },
   {
     "id": "P08-C03-S03",
     "chapter_id": "8.3",
     "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.ipynb",
-    "title": "缩放选参与独立预测",
+    "title": "训练尺度、惩罚选择与预测评估",
     "outcome": "手算训练标准化，再按验证段选择惩罚、最终段评价预测，换算原坐标系数。",
     "number": "8.3.3",
-    "visualization": "web/optimization/index.html"
+    "visualization": "web/optimization/index.html",
+    "reading": "lessons/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.md"
   },
   {
     "id": "P08-C04-S01",
     "chapter_id": "8.4",
     "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.ipynb",
-    "title": "约束乘子与最优性条件",
+    "title": "拉格朗日乘子与 KKT 条件",
     "outcome": "沿总量边界手算两路配置，以乘子、四类KKT条件与对偶下界证明本例最优。",
     "number": "8.4.1",
-    "visualization": "web/optimization/index.html"
+    "visualization": "web/optimization/index.html",
+    "reading": "lessons/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.md"
   },
   {
     "id": "P08-C04-S02",
     "chapter_id": "8.4",
     "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.ipynb",
-    "title": "活跃集与可行性核验",
+    "title": "可行集合与活跃集方法",
     "outcome": "先用最低需求判断可行性，再枚举活跃约束，比较几何边界解与平方惩罚反例。",
     "number": "8.4.2",
-    "visualization": "web/optimization/index.html"
+    "visualization": "web/optimization/index.html",
+    "reading": "lessons/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.md"
   },
   {
     "id": "P08-SUMMARY",
@@ -106,6 +116,7 @@
         "用各题独立输入计算导数、有限回溯、近端历史与两路受限配置",
         "按返回顺序解释结果，检查零次预算、阈值等号、最低需求冲突与停止原因"
       ]
-    }
+    },
+    "reading": "lessons/08-优化方法与计算/05-篇末综合/01-拟合稀疏与约束优化.md"
   }
 ]
