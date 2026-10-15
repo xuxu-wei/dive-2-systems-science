@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11.4.1 相位向量、序参量与网络耦合 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P11-C04-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P11-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter">本节练习 · 4 题</a><a class="button" href="/chapters/11-04-耦合振子与同步/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>11.4.1 相位向量、序参量与网络耦合</h1>
+<p>学完本节，你应能用单位圆向量计算相位集中程度，解释反相分组的全局抵消，并从相位差理解节点之间的耦合。</p>
+<p><strong>先修知识</strong>：第 4 篇的振荡与相位，11.1 的邻接矩阵，以及复数的单位圆表示。</p>
+<h2 id="cycle-position-and-unit-phase-vector">周期位置与单位相位向量</h2>
+<p>四个细胞节律的相位为 $(0,0,\pi,\pi)$ rad。前两个处在相同周期位置，后两个也一致，但两组相差半个周期。怎样用一个量描述它们整体上有多一致？</p>
+<p>沿用第 4 篇，相位 $\theta$ 记录一个周期中的位置，转过一周为 $2\pi$ rad。三角函数采用弧度数值，将相位映到单位圆：</p>
+<p>$$v(\theta)=(\cos\theta,\sin\theta).$$</p>
+<p>$\theta=0$ 时向量朝右，$\pi/2$ 时朝上，$\pi$ 时朝左。$\theta$ 与 $\theta+2\pi$ 虽然记录的累计圈数不同，在单位圆上却表示同一位置。</p>
+<p>这些单位向量也可写成复数</p>
+<p>$$e^{\mathrm i\theta}=\cos\theta+\mathrm i\sin\theta,\qquad \mathrm i^2=-1.$$</p>
+<p>实部、虚部分别对应横纵坐标，复数的模就是向量长度。直接平均角度会受所选圈数影响，例如 0 与 $2\pi$ 同相，角度算术平均却为 $\pi$；平均单位向量能保留周期位置的关系。</p>
+<h2 id="phase-order-parameter-and-global-cancellation">相位序参量与全局抵消</h2>
+<p>对 $n$ 个振子，定义平均相位向量</p>
+<p>$$z=\frac1n\sum_{j=0}^{n-1}e^{\mathrm i\theta_j}
+=\frac1n\sum_j\cos\theta_j+\mathrm i\frac1n\sum_j\sin\theta_j.$$</p>
+<p>它的长度</p>
+<p>$$\boxed{R=|z|}$$</p>
+<p>称为<strong>相位序参量（phase order parameter）</strong>。$j$ 遍历振子，每个单位向量长为 1，因此平均后的长度满足 $0\le R\le1$。全部向量同向时 $R=1$；方向越分散，向量间的抵消可以使它变小。$R$ 是无量纲数。</p>
+<p>先手算两个相位 $0,\pi/2$：平均向量为 $(1/2,1/2)$，所以 $R=\sqrt{1/2}\approx0.7071$。全部相位为 0 时，平均仍为 $(1,0)$，得到 $R=1$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter">计算全局相位序参量</a></li></ul></nav>
+
+<p>开头的四个相位则给出</p>
+<p>$$\frac14\left[(1,0)+(1,0)+(-1,0)+(-1,0)\right]=(0,0),$$</p>
+<p>所以全局 $R=0$。分别计算前两个或后两个时，每组的序参量都是 1。全局向量抵消与组内同相能够同时发生，$R$ 要结合它平均了哪些振子来解释。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-04-耦合振子与同步/practice/?question=p11-antiphase-clusters">两组相位的序参量</a></li></ul></nav>
+
+<h2 id="common-phase-shift-and-rotation-invariance">共同相位平移与旋转不变性</h2>
+<p>如果每个相位共同增加 $\phi$，平均向量变为</p>
+<p>$$z^+=\frac1n\sum_je^{\mathrm i(\theta_j+\phi)}
+=e^{\mathrm i\phi}z.$$</p>
+<p>乘子 $e^{\mathrm i\phi}$ 的模为 1，只将所有箭头一起旋转，故 $R^+=R$。因此指标与哪一个方向被选作零相位无关，描述的是各相位之间的集中程度。</p>
+<p>例如一组相位的 $R=0.6$，共同增加半圈或四分之一圈之后，长度仍为 0.6。平均方向改变，向量之间的夹角保持原样。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-shift-invariance">共同平移全部相位</a></li></ul></nav>
+
+<h2 id="natural-frequencies-and-sinusoidal-coupling">固有角频率与正弦耦合</h2>
+<p>现在让相位随时间变化。未耦合振子的相位以固有角频率 $\omega_i$ 前进，即 $\dot\theta_i=\omega_i$。相位单位为 rad，角频率为 rad/T。</p>
+<p>把邻接矩阵记为 $A$、节点度记为 $d_i=\sum_jA_{ij}$，采用按度归一化的网络相位模型：</p>
+<p>$$\boxed{\dot\theta_i=\omega_i+
+\frac K{\max(1,d_i)}\sum_jA_{ij}\sin(\theta_j-\theta_i).}$$</p>
+<p>$K\ge0$ 的单位为 rad/T。正弦项根据相邻振子的相位差改变当前速度：当邻居领先的角度在 0 与 $\pi$ 之间时，正弦为正，推动本节点加快；邻居落后同样角度时则让它减慢。</p>
+<p>对非孤立节点，除以 $d_i$ 让邻居贡献以平均值进入。孤立节点没有邻居，求和为零，便只按自身角频率前进；分母写成 $\max(1,d_i)$ 同时保留这个规则。</p>
+<p>模型保存的是各振子的相位。一步 Euler 更新从同一份旧相位计算所有正弦差，再同时写出下一行相位；这样每条边两端计算的都是同一时刻的关系。</p>
+<h2 id="antiphase-initial-state-and-evolving-order">反相初态的演化与指标解释</h2>
+<p>下图左侧画开头 $(0,0,\pi,\pi)$ rad 的单位圆位置，两对点各自重合。随后把四个振子连成环，按节点顺序赋予固有频率 $(1,1.05,0.95,1.1)$ rad/T，耦合尺度为 $1.2$ rad/T，步长 $0.02$ T，更新 600 次。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P11-C04-S01-42aa229f-1.png" alt="相位向量、序参量与网络耦合：实验结果图" loading="lazy"></figure>
+</section>
+<p>右侧随 12 T 的相位轨迹计算 $R$。初态接近零的指标来自两组抵消，后续不同固有速度与耦合逐渐改变相位关系，平均向量的长度也随之变化。这次 12 T 内的 $R$ 仍很低，原来两组的抵消在观察期内依然明显。每个时刻都用相同的向量平均定义计算。</p>
+<p>相位集中与共同转动速度是两个问题。例如两个未耦合振子从相位 0 出发，角频率分别为 1、2 rad/T，初始 $R=1$，相位差却以 1 rad/T 增加。下一节将用完整相位位移计算平均速度，再与同一时刻的 $R$ 比较。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-vs-frequency">相位靠近与频率锁定</a></li></ul></nav>
+
+<p>本章探索把振子增加到 12 个，左侧连续显示 $R$，右侧显示过去一段时间的平均频率极差。先观察同一个时刻的两个读数，判断它们各自使用了哪些相位信息，再改变耦合。</p>
+<p class="concept-explore"><a href="/chapters/11-04-耦合振子与同步/explore/?concept=P11-C04-S01%3Aantiphase-initial-state-and-evolving-order">可视化与探索：反相初态的演化与指标解释 →</a></p>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.ub.edu/smallbiosystemslab/wp-content/uploads/2015/12/ACEBONPERRITSPI.RMP05.pdf">Acebrón 等，The Kuramoto model</a>以相位方程和复序参量讨论耦合振子的同步。这里按节点度平均邻居作用，具体结构由当前边表给出。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/11-03-接触结构与传播/read/2/">← 11.3.2 网络重复、传播重复与分层比较</a><a href="/chapters/11-04-耦合振子与同步/read/2/">11.4.2 频率锁定、相位锁定与结构比较 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

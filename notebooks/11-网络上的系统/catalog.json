@@ -3,73 +3,81 @@
     "id": "P11-C01-S01",
     "chapter_id": "11.1",
     "number": "11.1.1",
-    "title": "从边表到结构统计",
+    "title": "图、邻接矩阵与最短路径",
     "outcome": "从四个细胞的通道写出连接矩阵，逐节点计边、逐对寻找最短路径，并辨认断开后的节点组。",
     "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/01-从边表到结构统计.ipynb",
-    "visualization": "web/network/index.html"
+    "visualization": "web/network/index.html",
+    "reading": "lessons/11-网络上的系统/01-从连接结构进入网络科学/01-从边表到结构统计.md"
   },
   {
     "id": "P11-C01-S02",
     "chapter_id": "11.1",
     "number": "11.1.2",
-    "title": "规则网络与重连基线",
+    "title": "规则网络、随机重连与小世界",
     "outcome": "保持节点与边数，跟算规则环的邻居连接比例，再比较多张重连网络的聚类、路径和断连情况。",
     "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/02-规则网络与重连基线.ipynb",
-    "visualization": "web/network/index.html"
+    "visualization": "web/network/index.html",
+    "reading": "lessons/11-网络上的系统/01-从连接结构进入网络科学/02-规则网络与重连基线.md"
   },
   {
     "id": "P11-C02-S01",
     "chapter_id": "11.2",
     "number": "11.2.1",
-    "title": "每条边的交换与守恒",
+    "title": "逐边交换、图拉普拉斯与守恒",
     "outcome": "逐边计算两端相反的交换贡献，将三室收支写成图拉普拉斯，并检查每次更新的总量。",
     "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/01-每条边的交换与守恒.ipynb",
-    "visualization": "web/network/index.html"
+    "visualization": "web/network/index.html",
+    "reading": "lessons/11-网络上的系统/02-网络上的扩散与守恒/01-每条边的交换与守恒.md"
   },
   {
     "id": "P11-C02-S02",
     "chapter_id": "11.2",
     "number": "11.2.2",
-    "title": "连通性、模态与容积",
+    "title": "连通分量、扩散模态与容积",
     "outcome": "由断开的节点组解释零模态，再按浓度差推导不同容积的平衡与Euler非负步长条件。",
     "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/02-连通性、模态与容积.ipynb",
-    "visualization": "web/network/index.html"
+    "visualization": "web/network/index.html",
+    "reading": "lessons/11-网络上的系统/02-网络上的扩散与守恒/02-连通性、模态与容积.md"
   },
   {
     "id": "P11-C03-S01",
     "chapter_id": "11.3",
     "number": "11.3.1",
-    "title": "固定随机数的同步传播",
+    "title": "SIR状态与同步传播",
     "outcome": "按旧状态与定向比较表跟算两步感染和恢复，解释同步更新、累计人数与活跃步数。",
     "path": "notebooks/11-网络上的系统/03-接触结构与传播/01-固定随机数的同步传播.ipynb",
-    "visualization": "web/network/index.html"
+    "visualization": "web/network/index.html",
+    "reading": "lessons/11-网络上的系统/03-接触结构与传播/01-固定随机数的同步传播.md"
   },
   {
     "id": "P11-C03-S02",
     "chapter_id": "11.3",
     "number": "11.3.2",
-    "title": "网络随机与传播随机",
+    "title": "网络重复、传播重复与分层比较",
     "outcome": "将结果按网络与传播重复排成表，手算图内与图均值间方差，并按共同起点和抽样比较结构。",
     "path": "notebooks/11-网络上的系统/03-接触结构与传播/02-网络随机与传播随机.ipynb",
-    "visualization": "web/network/index.html"
+    "visualization": "web/network/index.html",
+    "reading": "lessons/11-网络上的系统/03-接触结构与传播/02-网络随机与传播随机.md"
   },
   {
     "id": "P11-C04-S01",
     "chapter_id": "11.4",
     "number": "11.4.1",
-    "title": "从单体相位到群体指标",
+    "title": "相位向量、序参量与网络耦合",
     "outcome": "从单位圆箭头的平均计算全局相位指标，解释反相分群，并将相位差接入网络耦合。",
     "path": "notebooks/11-网络上的系统/04-耦合振子与同步/01-从单体相位到群体指标.ipynb",
-    "visualization": "web/network/index.html"
+    "visualization": "web/network/index.html",
+    "reading": "lessons/11-网络上的系统/04-耦合振子与同步/01-从单体相位到群体指标.md"
   },
   {
     "id": "P11-C04-S02",
     "chapter_id": "11.4",
     "number": "11.4.2",
-    "title": "结构、耦合与频率锁定",
+    "title": "频率锁定、相位锁定与结构比较",
     "outcome": "在两种结构中共用频率分配与初相，分别计算末窗相位集中和尾窗平均频率差。",
     "path": "notebooks/11-网络上的系统/04-耦合振子与同步/02-结构、耦合与频率锁定.ipynb",
-    "visualization": "web/network/index.html"
+    "visualization": "web/network/index.html",
+    "reading": "lessons/11-网络上的系统/04-耦合振子与同步/02-结构、耦合与频率锁定.md"
   },
   {
     "id": "P11-SUMMARY",
@@ -89,6 +97,7 @@
         "固定随机表、累计人数与分层方差",
         "相位向量平均与尾窗频率"
       ]
-    }
+    },
+    "reading": "lessons/11-网络上的系统/05-篇末综合/01-网络结构传播与同步.md"
   }
 ]

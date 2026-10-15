@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11.2.1 逐边交换、图拉普拉斯与守恒 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P11-C02-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P11-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian">本节练习 · 4 题</a><a class="button" href="/chapters/11-02-网络上的扩散与守恒/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>11.2.1 逐边交换、图拉普拉斯与守恒</h1>
+<p>网络的边先说明哪些室相连，现在让它们传递物质。一端流出的总量，应当由另一端接收。把每条通道的一减一加累积起来，就能从局部收支建立整个网络的动态方程。</p>
+<p>学完本节，你应能手算边的交换贡献，构造图拉普拉斯，并分别检查常值不动与总量守恒。先修为11.1的边与连通分量、第3篇的多室交换和第2篇的变化率。</p>
+<h2 id="equal-volume-edge-flow">等容积节点与净交换流率</h2>
+<p>设第$i$室存有总量$m_i$ U，各室容积都为$V_0=1$ V。浓度为$m_i/V_0$，在这套单位下，它与总量具有相同数值。</p>
+<p>对无向边$\{i,j\}$，采用相同的非负交换系数$k_{ij}=k_{ji}$，单位为$1/\mathrm T$。定义从$i$流向$j$的净总量流率</p>
+<p>$$f_{ij}=k_{ij}(m_i-m_j).$$</p>
+<p>单位为U/T。$f_{ij}&gt;0$表示净流向$j$，负值表示净流向$i$。这条边让两个节点的变化率分别增加</p>
+<p>$$\dot m_i=-f_{ij},\qquad\dot m_j=+f_{ij}.$$</p>
+<p>例如两端总量为4 U与1 U、系数为$0.5/\mathrm T$，流率为1.5 U/T。按两个节点的顺序，变化率为$(-1.5,1.5)$ U/T。发送端减少多少，接收端就增加多少。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-edge-conservation">一条边的收支</a></li></ul></nav>
+
+<h2 id="graph-laplacian-from-balances">逐节点收支与图拉普拉斯</h2>
+<p>固定一个节点$i$，将它参与的全部交换相加：</p>
+<p>$$\dot m_i=-\sum_{j\ne i}k_{ij}(m_i-m_j)
+=-\left(\sum_{j\ne i}k_{ij}\right)m_i+\sum_{j\ne i}k_{ij}m_j.$$</p>
+<p>没有连接时令$k_{ij}=0$。用矩阵$W=(k_{ij})$保存边系数，令$d_i=\sum_jk_{ij}$，再构造对角矩阵$D=\operatorname{diag}(d_i)$。这里$d_i$是交换系数的加权和，带有$1/\mathrm T$单位，而不是上一章单纯的邻居个数。</p>
+<p>定义<strong>图拉普拉斯（graph Laplacian）</strong></p>
+<p>$$\boxed{L_k=D-W,\qquad\dot m=-L_km.}$$</p>
+<p>它的对角项汇总本室向邻室交换的系数，非对角项为相应边系数的负数。乘上总量向量后，正好还原每个节点的收支。</p>
+<p>每条边只贡献四个矩阵位置：给$(i,i)$与$(j,j)$加$k_{ij}$，给$(i,j)$与$(j,i)$减$k_{ij}$。例如边$0—1$的系数为$2/\mathrm T$、边$1—2$为$1/\mathrm T$，得到</p>
+<p>$$L_k=\begin{pmatrix}
+2&amp;-2&amp;0\\-2&amp;3&amp;-1\\0&amp;-1&amp;1
+\end{pmatrix}\frac1{\mathrm T}.$$</p>
+<p>中间室的对角项为$2+1=3$。从$m=(3,0,0)^{\mathsf T}$ U出发，</p>
+<p>$$-L_km=(-6,6,0)^{\mathsf T}\ \mathrm{U/T}.$$</p>
+<p>用$h=0.05$ T作一次Euler更新，得到$(2.7,0.3,0)^{\mathsf T}$ U，总和仍为3 U。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian">由交换边构造拉普拉斯</a></li></ul></nav>
+
+<h2 id="constant-states-and-mass-conservation">常值方向与总量守恒</h2>
+<p>记$\mathbf1$为全由1组成的列向量。$L_k$每行和为零，所以$L_k\mathbf1=0$：所有室的总量相同时，每条边两端的差都为零，系统不再交换。</p>
+<p>对称性又使各列和为零，故</p>
+<p>$$\frac{d}{dt}\sum_i m_i=-\mathbf1^{\mathsf T}L_km=0.$$</p>
+<p>这也可以逐边核对：每条边在总变化率中出现$-f_{ij}+f_{ij}=0$。网络没有外部输入或输出时，内部交换只改变分配。</p>
+<p>行和与列和在这里因对称而同时为零，分别表达了两件事。看一组非对称更新：</p>
+<p>$$\dot x_1=-x_1+x_2,\qquad\dot x_2=2x_1-2x_2,$$</p>
+<p>时间系数按$1/\mathrm T$取数值。两个状态相等时，变化率都为零；但相加得到$\dot x_1+\dot x_2=x_1-x_2$，一般并不守恒。对有向连接，应按实际转运规则重新写一减一加，再检查对应的矩阵关系。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-directed-warning">行和与总和</a></li></ul></nav>
+
+<h2 id="three-compartment-diffusion">三室交换的时间轨迹</h2>
+<p>正式实验将刚才的两个系数都减半：边$0—1$为$1/\mathrm T$、边$1—2$为$0.5/\mathrm T$。初态仍为$(3,0,0)$ U，各容积均为1 V，步长0.05 T，共160次更新，观察至8 T。</p>
+<p>第一步流过左边通道的总量为$0.05\times1\times(3-0)=0.15$ U；右边两室此时都为零，所以这一步没有净交换。更新后为$(2.85,0.15,0)$ U，中间室随后才开始向右室转移。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P11-C02-S01-c25caa19-1.png" alt="逐边交换、图拉普拉斯与守恒：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图显示三室的分配逐渐靠近每室1 U，右图保存了每一步的总量和。三条曲线还在变化时，总和已经始终为3 U；保持总量与达到平衡是不同的过程。</p>
+<p>这个实现每步都从同一份旧总量计算全部流率。若沿一条边更新后就立即用新值计算下一条边，会改变同一时刻各通道所依据的状态。</p>
+<h2 id="component-wise-equilibrium">连通分量与各自平衡</h2>
+<p>若两个节点之间没有任何交换路径，它们之间就不能重新分配物质。每个连通分量单独保存自己的总量，孤立节点则始终保留原值。</p>
+<p>例如只连通节点0、1，节点2孤立，初态按编号为$(2,6,10)$ U。前两个节点通过同一条正系数通道交换，最终各为4 U；第三个节点保持10 U。因此平衡为$(4,4,10)$ U，而不是全图平均。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-zero-mode">孤立节点的零模态</a></li></ul></nav>
+
+<p>下一节将把“分量内常值不动、差值逐渐减小”写成特征方向上的衰减，再处理容积不同的室。此时决定交换的是浓度差，平衡总量也会随容积改变。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://networkx.org/documentation/stable/reference/generated/networkx.linalg.laplacianmatrix.laplacian_matrix.html">NetworkX的图拉普拉斯文档</a>给出$L=D-W$的矩阵定义；这里的逐边构造对应各室的物质收支。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/11-01-从连接结构进入网络科学/read/2/">← 11.1.2 规则网络、随机重连与小世界</a><a href="/chapters/11-02-网络上的扩散与守恒/read/2/">11.2.2 连通分量、扩散模态与容积 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11.1.1 图、邻接矩阵与最短路径 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P11-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P11-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics">本节练习 · 4 题</a><a class="button" href="/chapters/11-01-从连接结构进入网络科学/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>11.1.1 图、邻接矩阵与最短路径</h1>
+<p>四个细胞之间有三条交换通道：0号连1号，1号连2号，2号连3号。0号与3号没有直接通道，却可以经过中间两个细胞到达。我们先把“谁与谁相连”记录下来，再回答哪些节点能够互达、最少需要经过几条通道。</p>
+<p>学完本节，应能从边表构造连接矩阵，手算度、连通分量与平均最短路径。先修为第3篇的矩阵与多变量模型，以及Python列表和循环。</p>
+<h2 id="nodes-edges-and-simple-graphs">节点、边与无向简单图</h2>
+<p><strong>图（graph）</strong>用节点集合与边集合表示连接结构，记为 $G=(\mathcal V,E)$。本例每个细胞是一个<strong>节点（node）</strong>，一条直接通道是一条<strong>边（edge）</strong>。四个节点按0、1、2、3编号，边表写为</p>
+<p>$$(0,1),\quad(1,2),\quad(2,3).$$</p>
+<p>每个数对给出两个端点。连接没有方向，$(0,1)$ 与 $(1,0)$ 表示同一条边，所以只记录一次；节点不与自己相连，同一对节点也没有重复边。这就是<strong>无向简单图</strong>。图形 $0—1—2—3$ 与这份边表表达同一关系。</p>
+<p>节点画在纸上的位置用于展示连接。除非另有空间坐标数据，图上连线长短并不表示通道长度或传播距离。</p>
+<h2 id="adjacency-and-degree">邻接矩阵与节点度</h2>
+<p>按0、1、2、3同时排列行与列，用1表示直接相连、0表示没有直接连接，得到<strong>邻接矩阵（adjacency matrix）</strong></p>
+<p>$$A=\begin{pmatrix}
+0&amp;1&amp;0&amp;0\\
+1&amp;0&amp;1&amp;0\\
+0&amp;1&amp;0&amp;1\\
+0&amp;0&amp;1&amp;0
+\end{pmatrix}.$$</p>
+<p>这里 $A$ 记录连接，$A_{ij}$ 指第 $i$ 行、第 $j$ 列。第一行表示0号只有邻居1号；第二行表示1号有邻居0号和2号。无向边使矩阵对称，$A_{ij}=A_{ji}$；没有自环使对角线均为零。</p>
+<p>节点直接相连的边数称为它的<strong>度（degree）</strong>，等于对应行的和：</p>
+<p>$$d_i=\sum_{j=0}^{n-1}A_{ij}.$$</p>
+<p>求和固定节点 $i$，让 $j$ 遍历可能的邻居。本例的度按编号排列为 $(1,2,2,1)$。每条无向边在两个端点各贡献1，所以</p>
+<p>$$\boxed{\sum_{i=0}^{n-1}d_i=2|E|.}$$</p>
+<p>三条边给出的度和为6，平均度为 $6/4=1.5$。这是从边数与从矩阵行和两种方式得到的同一个计数。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-degree-sum">度数总和检查</a></li></ul></nav>
+
+<h2 id="paths-and-connected-components">路径与连通分量</h2>
+<p><strong>路径（path）</strong>是一串由边逐次连接、且节点不重复的节点序列，长度为经过的边数；允许重复经过节点的序列称为游走（walk）。若每对节点之间都有路径，图称为连通；若一组节点内部都能互达，且已包含所有还能到达的节点，这个不能再扩大的节点组称为<strong>连通分量（connected component）</strong>。</p>
+<p>原路径四个节点互相可达，只有一个分量。删去中间边1—2，就得到 $\{0,1\}$ 与 $\{2,3\}$ 两个分量。两组之间再也找不到路径，虽然每个节点仍各有一个邻居。</p>
+<p>连接数量与可达性回答不同问题：度查看一个节点的直接邻居，分量查看沿所有可能路径最终能够到达哪些节点。</p>
+<h2 id="shortest-paths-and-bfs">最短路径与按层搜索</h2>
+<p><strong>最短路径长度（shortest path length）</strong>是两个节点之间最少需要经过的边数。可以从起点逐层找出它：起点所在层距离为0，尚未访问的邻居为第1层，这些邻居新发现的邻居为第2层，继续向外推进。</p>
+<p>从0号出发，各层依次为 $\{0\},\{1\},\{2\},\{3\}$；从1号出发则为 $\{1\},\{0,2\},\{3\}$。这称为<strong>广度优先搜索（breadth-first search，BFS）</strong>。进入下一层前已经检查完所有更近的层，所以节点第一次被发现时，其最短距离就已确定。</p>
+<p>四个节点共有 $4\times3/2=6$ 对不同节点。用 $i&lt;j$ 让每对只出现一次：</p>
+<table>
+<thead>
+<tr>
+  <th>节点对</th>
+  <th style="text-align:right">$(0,1)$</th>
+  <th style="text-align:right">$(0,2)$</th>
+  <th style="text-align:right">$(0,3)$</th>
+  <th style="text-align:right">$(1,2)$</th>
+  <th style="text-align:right">$(1,3)$</th>
+  <th style="text-align:right">$(2,3)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>最短距离/边</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1</td>
+</tr>
+</tbody>
+</table>
+<p>距离和为10，平均为 $10/6=5/3$。一般连通图在 $n&gt;1$ 时，全图平均路径为</p>
+<p>$$\ell=\frac{\sum_{0\le i&lt;j&lt;n}\operatorname{dist}(i,j)}{n(n-1)/2}.$$</p>
+<p>若图断连，有的节点对没有有限路径，当前题目把全图平均值记为 <code>None</code>；单节点图没有不同节点对，也返回 <code>None</code>。返回分量列表时，节点在各组内部按编号排列，各组再按最小节点编号排列。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics">计算小图的结构统计</a></li></ul></nav>
+
+<h2 id="adding-and-removing-edges">加边、断边与结构统计</h2>
+<p>给原路径加入3—0，四个节点形成环，度都变为2。六对距离依次成为 $1,2,1,1,2,1$，平均为 $8/6=4/3$。只有部分距离改变，却足以降低全图平均值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-hand-drawn-path">闭合四节点路径后</a></li></ul></nav>
+
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P11-C01-S01-fc830f9d-1.png" alt="图、邻接矩阵与最短路径：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图比较原路径、环与断边图的逐节点度，右图比较分量数。断边图的四个度同样相等，却有两个分量。把度、分量和距离一起看，才能说明一处连接变化给全图带来了什么影响。</p>
+<p>探索页固定12个节点、24条边，通过重连改变连接位置。改变重连概率后，对照图形与度；播放逐条揭示当前图的边，统计值始终使用这张图的完整边表。</p>
+<p class="concept-explore"><a href="/chapters/11-01-从连接结构进入网络科学/explore/?concept=P11-C01-S01%3Aadding-and-removing-edges">可视化与探索：加边、断边与结构统计 →</a></p>
+
+<h2 id="edge-direction-weights-and-dynamics">有向边、权重与动态规则</h2>
+<p>若关系只允许由 $i$ 到 $j$，用有向边记录这个方向；沿路径行进时也必须遵守方向。若连接还带有数值，则得到加权图，数值含义由模型指定。</p>
+<p>例如权重可以记录接触次数，也可以记录交换强度。接触传播需要进一步给出感染概率及对应时长，物质交换需要给出总量或浓度差怎样决定流率。两种权重的单位和作用因此不同。若权重表示距离，路径长度可以改为沿途距离之和；若权重表示接触次数，数值较大却不意味着两个节点更远。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-edge-semantics">边与计算规则</a></li></ul></nav>
+
+<p>下一节保持节点数和边数，替换部分连接，研究局部三角形与全图路径怎样一起变化。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://networksciencebook.com/chapter/2">Barabási：《Network Science》第2章</a>，图、度与路径；<a href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.average_shortest_path_length.html">NetworkX：平均最短路径</a>，结构统计的实现参考。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/10-反馈与最优控制/综合练习/read/1/">← 篇末综合 部分观测下的约束控制</a><a href="/chapters/11-01-从连接结构进入网络科学/read/2/">11.1.2 规则网络、随机重连与小世界 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

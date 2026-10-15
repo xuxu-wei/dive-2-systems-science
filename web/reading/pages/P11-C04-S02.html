@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11.4.2 频率锁定、相位锁定与结构比较 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P11-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P11-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step">本节练习 · 4 题</a><a class="button" href="/chapters/11-04-耦合振子与同步/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>11.4.2 频率锁定、相位锁定与结构比较</h1>
+<p>学完本节，你应能从未取模相位计算平均角频率，区分相位集中与锁定，并在共同频率分配和初相下比较网络结构。</p>
+<p><strong>先修知识</strong>：11.4.1 的相位序参量与耦合方程，11.1 的规则环和重连，2.4 的步长比较。</p>
+<h2 id="one-coupling-step-and-degree-normalization">一步耦合与按度归一化</h2>
+<p>取两个相连振子，相位为 $(0,\pi/2)$ rad，固有频率都为零，$K=1$ rad/T。两个节点的度都是 1。</p>
+<p>第一个看到领先 $\pi/2$ 的邻居，变化率为 $\sin(\pi/2)=1$ rad/T；第二个看到落后 $\pi/2$ 的邻居，变化率为 $-1$ rad/T。用 $h=0.1$ T 同时推进，得到</p>
+<p>$$(0,\pi/2)\longrightarrow(0.1,\pi/2-0.1)\ \mathrm{rad}.$$</p>
+<p>一步后的相位差减少了 0.2 rad。两个新分量都根据旧相位计算，保持相互作用的时刻一致。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step">一步网络相位耦合</a></li></ul></nav>
+
+<p>上一节采用 $K/d_i$ 乘邻居正弦和。若每个邻居的正弦贡献都是 0.5，有两个邻居的节点得到 $(K/2)(2\times0.5)=0.5K$，有四个邻居的节点也得到 $0.5K$。这一归一化固定的是邻居的平均作用尺度；增加邻居不会让相同贡献被重复放大成更大的总耦合。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-04-耦合振子与同步/practice/?question=p11-degree-normalization">耦合预算的定义</a></li></ul></nav>
+
+<h2 id="phase-concentration-phase-locking-and-frequency-locking">相位集中、相位锁定与频率锁定</h2>
+<p>$R(t)$ 平均同一时刻的单位相位向量，描述相位集中程度。<strong>一比一相位锁定（phase locking）</strong>则指振子以同一个角频率转动、相位差保持固定的运动状态，可写成</p>
+<p>$$\theta_i(t)=\Omega t+\phi_i,$$</p>
+<p>其中各 $\phi_i$ 为固定相位偏移。同相是偏移相同的情形；固定相差半周的两个振子同样可以共同转动，却使全局向量抵消。</p>
+<p><strong>频率锁定（frequency locking）</strong>关注长期平均转动速度：若平均角频率存在且相同，即</p>
+<p>$$\Omega_i=\lim_{T_w\to\infty}
+\frac{\theta_i(t_0+T_w)-\theta_i(t_0)}{T_w}=\Omega,$$</p>
+<p>各振子在长期内转过的平均角度相同。固定相位差会带来相同平均频率；只看平均速度相同，还要进一步查看相位差怎样随时间变化。当前 $R$、相位差轨迹与平均角频率分别提供这些信息。</p>
+<h2 id="unwrapped-displacement-and-tail-window-frequency">未取模位移与尾窗平均频率</h2>
+<p>有限轨迹用一个时间窗估计平均角频率。设窗口起点为 $t_a$，终点为 $t_b$，节点 $i$ 的估计为</p>
+<p>$$\widehat\omega_i=\frac{\theta_i(t_b)-\theta_i(t_a)}{t_b-t_a}.$$</p>
+<p>再计算各节点的极差</p>
+<p>$$\boxed{\Delta\omega=\max_i\widehat\omega_i-\min_i\widehat\omega_i.}$$</p>
+<p>单位为 rad/T。极差小表示这段窗口里的平均转动速度接近。若窗口中含有暂态或相位滑移，更换窗口可能得到不同结果，因此把它与相位随时间的记录一起观察。</p>
+<p>这里必须保留未取模相位。例如一个振子从 0 转到 $2\pi$ rad，真实位移为一周；若把起末都取模到 $[0,2\pi)$，两个数都变成零，就丢失了这一周。</p>
+<p>轨迹保存初态及每次更新后的相位。最后 $M$ 次更新的位移，用末行减去向前数 $M$ 次更新的那一行，时间长度是 $Mh$。需要 $M+1$ 个端点状态，才能覆盖这 $M$ 段时间。</p>
+<h2 id="shared-frequency-set-and-paired-initial-phases">共同频率集合与配对初相</h2>
+<p>现在比较 12 节点、24 边的两种固定结构：度为 4 的规则环，以及从它以重连概率 0.35 生成的一张图。每个节点仍按自己的度归一化耦合。</p>
+<p>固有频率集合在 0.7 至 1.3 rad/T 间均匀取 12 项。把同一集合重新排列，得到 4 种频率到节点的分配；每种分配再配 4 组初相，总共 16 个组合。</p>
+<p>比较一对结构时，相同编号节点使用相同固有频率和相同初相。这样改变连接关系时，没有顺便把较快振子移到别的位置。再换一组分配，就能观察结构差异是否依赖频率原来放在哪里。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-04-耦合振子与同步/practice/?question=p11-same-frequencies">比较结构时共用频率</a></li></ul></nav>
+
+<h2 id="coupling-scan-and-two-result-metrics">耦合扫描与两种结果指标</h2>
+<p>两种结构均扫描 $K=0,0.6,1.2,2$ rad/T。每种结构和每个 $K$ 都运行上述 16 组组合，步长为 0.04 T，350 次更新，总时长为 14 T。</p>
+<p>左侧指标平均最后 100 次更新后的 $R$。这些取值位于 10.04 T 至 14 T；右侧频率极差则使用从 10 T 到 14 T 的完整 100 步位移，窗口时长为 4 T。每个图上点是 16 个组合结果的均值，误差棒画成均值上下一个标准差，表示组合间的散布。误差棒端点可能超出指标范围，实际每次的 $R$ 仍在 $[0,1]$ 内，频率极差仍非负。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P11-C04-S02-106e5825-0.png" alt="频率锁定、相位锁定与结构比较：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图的增加表示相位向量更集中，右图的下降表示尾窗平均速度更接近。两张图有时随耦合共同变化，也可能呈现不同细节；沿各自纵轴读数，才能解释这个组合中发生了什么。</p>
+<p>误差棒展示所选频率分配与初相之间的散布。两张结构在这一扫描中固定，因此图中的散布来自 16 个组合，而不是另抽了 16 张图。结构重复、频率分配重复和初相重复各自改变不同条件。</p>
+<h2 id="observation-window-time-step-and-interactive-comparison">观察窗口、步长与网页对照</h2>
+<p>$K=0$ 时，方程退化为 $\theta_i(t)=\theta_i(0)+\omega_i t$，窗口平均频率应恰好恢复各自固有频率。这提供了位移计算的解析核对。</p>
+<p>数值步长则影响相位推进。实验固定一组规则环、频率分配与初相，在相同 14 T 终点比较步长 0.04 和 0.02 T，末时刻 $R$ 都约为 0.9716。若关心某个突出的终点变化，还可以延长运行、检查末段相位和频率是否继续变化，将暂态影响与步长影响分开。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-04-耦合振子与同步/practice/?question=p11-finite-scan-threshold">终点变化的检查</a></li></ul></nav>
+
+<p>探索页也比较 12 振子、24 边的规则环与重连图，使用另一组固定的频率分配和初相，重连概率为 0.45。步长为 0.035 T，共 360 步，观察到 12.6 T；右图在每个时刻用过去 60 步、即 2.1 T 的窗口计算频率极差，前 60 步尚无完整窗口。</p>
+<p>先保持耦合和初相不变切换结构，比较左侧 $R$ 与右侧频率极差；再改变耦合，看两种指标随时间怎样形成。网页一组配对轨迹便于跟踪变化，前面的 16 组合扫描则把分配与初相差异展开来比较。</p>
+<p class="concept-explore"><a href="/chapters/11-04-耦合振子与同步/explore/?concept=P11-C04-S02%3Aobservation-window-time-step-and-interactive-comparison">可视化与探索：观察窗口、步长与网页对照 →</a></p>
+
+<p>篇末综合将把节律与交换、传播放回同一张小网络，检查相同边表在不同动态中分别表示什么。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.ub.edu/smallbiosystemslab/wp-content/uploads/2015/12/ACEBONPERRITSPI.RMP05.pdf">Acebrón 等，The Kuramoto model</a>讨论序参量和锁定振子；这里使用未取模轨迹，分别计算瞬时相位集中和有限窗口平均角频率。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/11-04-耦合振子与同步/read/1/">← 11.4.1 相位向量、序参量与网络耦合</a><a href="/parts/11-网络上的系统/综合练习/read/1/">篇末综合 网络结构、传播与同步 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

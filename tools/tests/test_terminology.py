@@ -198,3 +198,12 @@ def test_reviewed_control_lag_contexts_keep_prose_without_wrong_english():
     for unit, source in cases:
         assert check_terms(source, 10, unit=unit, require_first=False)[0] == []
         assert check_terms('滞后（hysteresis）', 10, unit=unit, require_first=False)[0]
+
+
+@pytest.mark.parametrize('source', [
+    '零模态（zero mode）在纯交换下保持不变。',
+    '相位序参量（phase order parameter）是单位相位向量平均的模长。',
+])
+def test_part11_complete_mode_and_phase_terms_do_not_match_shorter_glosses(source):
+    issues, _ = check_text(source, 11, require_first=False)
+    assert issues == []

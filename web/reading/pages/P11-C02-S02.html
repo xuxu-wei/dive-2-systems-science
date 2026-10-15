@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11.2.2 连通分量、扩散模态与容积 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P11-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P11-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes">本节练习 · 4 题</a><a class="button" href="/chapters/11-02-网络上的扩散与守恒/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>11.2.2 连通分量、扩散模态与容积</h1>
+<p>断开两个室组之间的通道，每组就保留自己的物质；接通以后，物质可以跨组重新分配。连接决定哪些室共享平衡，边系数决定它们接近平衡的速度。若室的容积不同，最终相同的则是浓度，而非总量。</p>
+<p>学完本节，你应能从特征方向解释扩散衰减，计算分量平衡与容积分配，并推导Euler保持非负的步长条件。先修为上一节的图拉普拉斯、第3篇的特征向量与总量—浓度关系，以及第2篇的Euler方法。</p>
+<h2 id="spectral-diffusion-solution">特征方向与矩阵指数</h2>
+<p>先研究等容积的$\dot m=-L_km$。第3篇将线性动态分解为不同模态；这里$L_k$是实对称矩阵，可以取一组正交单位特征向量$q_r$，组成矩阵$Q$：</p>
+<p>$$L_k=Q\Lambda Q^{\mathsf T},\qquad Q^{\mathsf T}Q=I,\qquad
+\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n).$$</p>
+<p>把总量改写为模态坐标$a=Q^{\mathsf T}m$，就得到</p>
+<p>$$\dot a_r=-\lambda_ra_r,\qquad a_r(t)=e^{-\lambda_rt}a_r(0).$$</p>
+<p>特征向量给出各室共同变化的形状，特征值决定该形状的幅度变化速度。按模态推进后，再还原到节点：</p>
+<p>$$\boxed{m(t)=Q\operatorname{diag}(e^{-\lambda_rt})Q^{\mathsf T}m(0).}$$</p>
+<p>它也写成$m(t)=e^{-L_kt}m(0)$。这里的<strong>矩阵指数（matrix exponential）</strong>由与标量指数相同的级数定义：$e^M=I+M+M^2/2!+\cdots$。对已经对角化的$L_k$，它恰好对每个特征值施加指数，再变换回来；$\lambda_r$的单位为$1/\mathrm T$，所以指数$\lambda_rt$无量纲。</p>
+<h2 id="zero-modes-and-components">零模态与连通分量</h2>
+<p>为什么这些模态会衰减或保持不动？由每条边的四项贡献，对任意实向量$z$都有</p>
+<p>$$z^{\mathsf T}L_kz=\sum_{\{i,j\}\in E}k_{ij}(z_i-z_j)^2\ge0,$$</p>
+<p>每条无向边只计一次。因此$L_k$半正定，所有$\lambda_r\ge0$。正特征值给出衰减，零特征值对应幅度不变的<strong>零模态（zero mode）</strong>。</p>
+<p>上式为零，要求每条正系数边两端的$z_i,z_j$相等。沿通道传下去，每个连通分量内部便只能取同一个常数，不同分量却可各取一个常数。因此零特征值的个数等于正交换通道所形成的连通分量数。系数为零的通道没有交换作用，不将两个分量接在一起；孤立节点自己保留一个零模态。</p>
+<p>取初态$(4,0,2,0)$ U，仅有两条边：$0—1$的系数为$1/\mathrm T$，$2—3$为$0.5/\mathrm T$。第一组可分为$(4,0)=(2,2)+(2,-2)$，共同部分不动，差值部分按$e^{-2t/\mathrm T}$衰减；第二组按$e^{-t/\mathrm T}$衰减。因此</p>
+<p>$$m(t)=\begin{pmatrix}
+2+2e^{-2t/\mathrm T}\\2-2e^{-2t/\mathrm T}\\
+1+e^{-t/\mathrm T}\\1-e^{-t/\mathrm T}
+\end{pmatrix}\mathrm U.$$</p>
+<p>四个特征值按从小到大排列为$(0,0,1,2)/\mathrm T$，称为该矩阵的谱。每组的指数项相消，分别留下4 U与2 U的总量。</p>
+<h2 id="slowest-diffusion-mode">最慢模态与扩散时间尺度</h2>
+<p>至少含两个节点的连通图只有一个零特征值。将特征值按$0=\lambda_1&lt;\lambda_2\le\cdots$排列，最小正特征值$\lambda_2$决定最慢可衰减模态：</p>
+<p>$$a_2(t)=e^{-\lambda_2t}a_2(0).$$</p>
+<p>幅度减为原来的$1/e$，需要$t=1/\lambda_2$。例如两张图的最小正特征值分别为$0.2/\mathrm T$与$0.5/\mathrm T$，对应5 T与2 T。这个时间尺度由连接和系数共同决定；具体初态若没有该方向的分量，轨迹中就不会出现这一慢项。</p>
+<p>对断连图，多个零模态各自保留分量总量；最小正特征值描述其中最慢的可衰减差值，仍不会让不同分量趋向全图平均。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-spectral-gap">最慢模态的时间尺度</a></li></ul></nav>
+
+<h2 id="unequal-volume-concentration-flow">不同容积的浓度驱动交换</h2>
+<p>现在令各室容积为$V_i&gt;0$，浓度为$c_i=m_i/V_i$，单位U/V。采用物理交换系数$g_{ij}=g_{ji}\ge0$，单位V/T，定义净总量流率</p>
+<p>$$f_{ij}=g_{ij}(c_i-c_j).$$</p>
+<p>它仍以U/T计，一端减少的总量由另一端获得。用$g$构造与上一节相同形式的$L_g$，方程为</p>
+<p>$$\boxed{\dot m=-L_gc=-L_g(m/V),}$$</p>
+<p>$m/V$表示逐室相除。若所有容积都等于$V_0$，就有$k_{ij}=g_{ij}/V_0$、$L_k=L_g/V_0$，回到之前的总量差模型。$k$的单位是$1/\mathrm T$，$g$的单位是V/T，二者通过共同容积换算。</p>
+<p>平衡时，每条正通道两端浓度相等，同一连通分量共享浓度$c^*$。设该组节点集合为$C$，用总量守恒确定</p>
+<p>$$\boxed{c^*=\frac{\sum_{j\in C}m_j(0)}{\sum_{j\in C}V_j},
+\qquad m_i^*=V_ic^*.}$$</p>
+<p>两室容积为1 V、3 V，总量为4 U，就有$c^*=1$ U/V，平衡总量为$(1,3)$ U。若总量为8 U，共同浓度变成2 U/V，两个平衡总量相应为$(2,6)$ U。大室在相同浓度下可以容纳更多物质。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-volume-equilibrium">不同容积时的平衡</a></li></ul></nav>
+
+<h2 id="euler-conservation-and-positivity">Euler守恒与非负步长</h2>
+<p>显式Euler每次从同一份旧总量计算浓度，再推进</p>
+<p>$$m^+=m-hL_g(m/V).$$</p>
+<p>由于$\mathbf1^{\mathsf T}L_g=0$，对任意步长都有$\sum_i m_i^+=\sum_i m_i$。但是，步长过大仍可能在节点间转移过多，令某一室出现负总量。</p>
+<p>把第$i$个分量展开，记$d_i=\sum_jg_{ij}$：</p>
+<p>$$\boxed{m_i^+=\left(1-\frac{hd_i}{V_i}\right)m_i
++h\sum_jg_{ij}\frac{m_j}{V_j}.}$$</p>
+<p>后一项是邻室进入的非负贡献。要让每个旧总量的系数都非负，对$d_i&gt;0$的室要求$h\le V_i/d_i$，因此</p>
+<p>$$0&lt;h\le\min_{i:\,d_i&gt;0}\frac{V_i}{d_i}.$$</p>
+<p>孤立节点$d_i=0$时，其总量保持原值，不限制步长。若全图没有交换边，更新就是$m^+=m$；上式中的最小值可按$+\infty$处理，交换模型不施加步长上限。</p>
+<p>取等单位容积两室，系数$1/\mathrm T$，从$(2,0)$ U出发，若$h=1.5$ T，一步转移3 U，得到$(-1,3)$ U。总和正确，节点值却已经为负。检查守恒、非负与时间离散误差，分别回答总量是否对上、分配是否合理、轨迹是否足够接近连续解。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-euler-too-large">一步更新的两项检查</a></li></ul></nav>
+
+<p>计算题保留初态及每次更新后的总量。样例从$(2,0)$ U以0.25 T推进，前两步为$(1.5,0.5)$和$(1.25,0.75)$ U；输入保证上述非负条件。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes">按容积交换物质总量</a></li></ul></nav>
+
+<h2 id="components-and-volumes-experiment">断连谱解与容积分配实验</h2>
+<p>左图使用前面两组断连网络，连续曲线为精确模态解，散点为步长0.05 T的Euler结果，观察至5 T。右图使用两室、物理系数1 V/T、容积$(1,3)$ V与初态$(4,0)$ U，仍以0.05 T推进，观察至10 T。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P11-C02-S02-0567cd63-0.png" alt="连通分量、扩散模态与容积：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图两组分别接近每室2 U和每室1 U；0号室的散点与精确曲线可用来检查当前步长误差。右图首步净转移$0.05\times1\times(4/1-0/3)=0.2$ U，得到$(3.8,0.2)$ U，随后趋向总量$(1,3)$ U。两幅图分别显示连接分组与容积大小怎样进入平衡。</p>
+<h2 id="bridge-and-component-mass">断桥、全图总量与组内总量</h2>
+<p>探索页的四室均为1 V，初态为$(4,0,2,0)$ U。边$0—1$系数为1 V/T，$2—3$为0.5 V/T；打开桥$1—2$时，再加入0.5 V/T。</p>
+<p>关闭桥，两组分别保留4 U与2 U。打开桥，四室成为同一分量，长期每室趋向1.5 U，原先两组的总量都趋向3 U。右图继续按$0—1$与$2—3$相加，因而可以直接看到跨组交换，同时检查全图总量6 U保持不变。</p>
+<p class="concept-explore"><a href="/chapters/11-02-网络上的扩散与守恒/explore/?concept=P11-C02-S02%3Abridge-and-component-mass">可视化与探索：断桥、全图总量与组内总量 →</a></p>
+
+<p>桥连接时，最大加权系数和为1.5 V/T，非负步长条件为$h\le2/3$ T；断开时为$h\le1$ T。网页固定执行80步，改变$h$也改变总观察时长，比较轨迹时要同时看实际时刻。下一章将让边表示个体接触，状态由连续总量换成易感、感染和恢复三种类别。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://networkx.org/documentation/stable/reference/generated/networkx.linalg.laplacianmatrix.laplacian_matrix.html">NetworkX图拉普拉斯文档</a>给出矩阵定义；<a href="https://people.inf.ethz.ch/arbenz/ewp/Lnotes/lsevp2012.pdf">Arbenz等的特征值问题讲义，第1.8.1节</a>讨论对称拉普拉斯及连通分量的零特征值。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/11-02-网络上的扩散与守恒/read/1/">← 11.2.1 逐边交换、图拉普拉斯与守恒</a><a href="/chapters/11-03-接触结构与传播/read/1/">11.3.1 SIR状态与同步传播 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

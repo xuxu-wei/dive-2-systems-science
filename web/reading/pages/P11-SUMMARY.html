@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>篇末综合 网络结构、传播与同步 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P11-SUMMARY">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P11-SUMMARY" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/parts/11-网络上的系统/综合练习/practice/?question=p11-network-contract">本节练习 · 8 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>篇末综合 网络结构、传播与同步</h1>
+<p>同一个四节点环可以表示四室交换、四人接触或四个振子的耦合。把连接接到具体方程，节点状态、边的作用与结果指标才随之确定。</p>
+<p><strong>先修知识</strong>：11.1—11.4 的结构统计、守恒交换、同步 SIR 与相位耦合。</p>
+<h2 id="four-node-ring-and-structural-statistics">四节点环与结构统计</h2>
+<p>节点按 0、1、2、3 编号，边为 $0—1—2—3—0$。每条边无向、无自环且不重复，邻接矩阵为</p>
+<p>$$A=\begin{bmatrix}
+0&amp;1&amp;0&amp;1\\1&amp;0&amp;1&amp;0\\0&amp;1&amp;0&amp;1\\1&amp;0&amp;1&amp;0
+\end{bmatrix}.$$</p>
+<p>每行有两个 1，所以四个节点的度都是 2，度和为 8，等于 4 条边的两倍。全图连通，六对不同节点的最短距离依次为</p>
+<p>$$d_{01},d_{02},d_{03},d_{12},d_{13},d_{23}=1,2,1,1,2,1,$$</p>
+<p>平均最短路径为 $8/6=4/3$。若图断开，部分节点之间没有有限路径，完整图的这个平均就按题意返回空值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/11-网络上的系统/综合练习/practice/?question=p11-capstone-graph">统计综合图</a></li></ul></nav>
+
+<p>同一边表记录谁与谁相邻。交换系数、感染概率和相位耦合强度则来自不同模型，分别决定沿这些边发生什么。</p>
+<table>
+<thead>
+<tr>
+  <th>模型</th>
+  <th>节点状态</th>
+  <th>边上关系</th>
+  <th>结果示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>结构统计</td>
+  <td>节点身份与连接</td>
+  <td>是否相邻</td>
+  <td>度、分量、最短路径</td>
+</tr>
+<tr>
+  <td>物质交换</td>
+  <td>各室总量 $m_i$，单位 U</td>
+  <td>浓度差产生净流率</td>
+  <td>总量守恒、分配变化</td>
+</tr>
+<tr>
+  <td>接触传播</td>
+  <td>易感 S、感染 I、恢复 R</td>
+  <td>每步感染事件的机会</td>
+  <td>曾感染人数、活动步数</td>
+</tr>
+<tr>
+  <td>相位耦合</td>
+  <td>相位 $\theta_i$，单位 rad</td>
+  <td>相位差改变转动速度</td>
+  <td>相位序参量、频率极差</td>
+</tr>
+</tbody>
+</table>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/11-网络上的系统/综合练习/practice/?question=p11-network-contract">连接规律的转换</a></li></ul></nav>
+
+<h2 id="amount-exchange-and-conservative-operator">总量交换与守恒算子</h2>
+<p>物理交换系数 $g_{ij}$ 的单位为容积/T。各室容积为 $V_i$，浓度为 $m_i/V_i$，沿边从 $i$ 到 $j$ 的净流率为</p>
+<p>$$g_{ij}\left(\frac{m_i}{V_i}-\frac{m_j}{V_j}\right).$$</p>
+<p>将所有边贡献相加，得到</p>
+<p>$$\dot m=-L_g(m/V).$$</p>
+<p>$m/V$ 按室逐项相除。一条边从一端流出的量恰好进入另一端，所以各室变化率相加为零。没有交换边的室在 $L_g$ 中保留零行、零列，自己的总量保持不变。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/11-网络上的系统/综合练习/practice/?question=p11-capstone-laplacian">守恒算子与孤点</a></li></ul></nav>
+
+<p>综合交换轨迹取各室容积都为 $1\ \mathrm V$，各边 $g_{ij}=1\ \mathrm V/\mathrm T$。归一化系数 $k_{ij}=g_{ij}/(1\ \mathrm V)=1/\mathrm T$，总量方程变为 $\dot m=-L_km$，其中</p>
+<p>$$L_k=\frac1{\mathrm T}\begin{bmatrix}
+2&amp;-1&amp;0&amp;-1\\-1&amp;2&amp;-1&amp;0\\0&amp;-1&amp;2&amp;-1\\-1&amp;0&amp;-1&amp;2
+\end{bmatrix}.$$</p>
+<p>从 $m(0)=(4,0,0,0)^{\mathsf T}\ \mathrm U$ 出发，初始变化率为 $(-8,4,0,4)^{\mathsf T}\ \mathrm U/\mathrm T$。用 $h=0.05\ \mathrm T$ 做一步 Euler 更新：</p>
+<p>$$m(h)=\begin{bmatrix}4\\0\\0\\0\end{bmatrix}
++0.05\begin{bmatrix}-8\\4\\0\\4\end{bmatrix}
+=\begin{bmatrix}3.6\\0.2\\0\\0.2\end{bmatrix}\mathrm U.$$</p>
+<p>总量仍为 4 U。物质先进入直接相邻的 1、3 室，之后继续沿环交换，最终各室接近 1 U。</p>
+<h2 id="laplacian-spectrum-and-diffusion-scales">拉普拉斯谱与扩散尺度</h2>
+<p>对称拉普拉斯可用一组正交特征向量展开。记</p>
+<p>$$L_k=Q\operatorname{diag}(\lambda_1,\ldots,\lambda_n)Q^{\mathsf T},$$</p>
+<p>则精确解为</p>
+<p>$$m(t)=Q\operatorname{diag}(e^{-\lambda_1t},\ldots,e^{-\lambda_nt})Q^{\mathsf T}m(0).$$</p>
+<p>零特征值对应保持不变的方向，正特征值对应随时间衰减的方向。四节点环的完整升序谱为</p>
+<p>$$0,2,2,4\quad(1/\mathrm T).$$</p>
+<p>唯一零值对应全图共同的守恒总量；最小正值 $2/\mathrm T$ 给出最慢衰减模态的时间尺度 $\mathrm T/2$。</p>
+<p>断开后，每个连通分量都保存自己的总量，零特征值的个数因此增加。若仍有交换边，最小正特征值描述所有有交换分量中最慢的可衰减模态，分量之间的差异则可能一直保留。无边图的谱全为零，各节点总量都不变。</p>
+<p>计算题返回的是给定时刻的状态和完整谱。可以由完整谱再读出分量数和最小正值，解释连接变化怎样影响不同方向的演化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/11-网络上的系统/综合练习/practice/?question=p11-capstone-gap">改变连接后的扩散尺度</a></li></ul></nav>
+
+<h2 id="old-state-transmission-and-observation-period-statistics">旧状态传播与观察期统计</h2>
+<p>将同一环解释为接触网络，起点 0 为感染者，1、2、3 为易感者。一次同步更新中，1 和 3 有旧感染邻居，2 没有。即使 1 在本步新感染，它也要到后续步骤才以感染者身份参与传播。</p>
+<p>每条感染接触使用给定表中的均匀数，与每步感染概率 $\beta$ 比较；旧感染者另将恢复抽样值与 $\gamma$ 比较。全部事件读完旧状态后，同时写回新状态。一个本步将恢复的旧感染者仍参与这一轮感染判断。</p>
+<p>如果两个旧感染邻居的独立接触各以概率 0.2 成功，至少一次成功的概率为</p>
+<p>$$1-(1-0.2)^2=0.36.$$</p>
+<p>这是一次更新中的事件概率。交换模型的 $1/\mathrm T$ 系数则乘总量差给出流率，两者通过各自规则影响状态。</p>
+<p>传播轨迹包含初态和每步新状态。观察期内曾处于 I 或 R 的节点数衡量累计规模；更新前仍有感染者的步数，则计算这段记录实际包含多少个活跃更新。观察期终点若还有感染者，延长观察还可能改变累计结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/11-网络上的系统/综合练习/practice/?question=p11-capstone-spread">同一随机输入下传播</a></li></ul></nav>
+
+<h2 id="phase-states-global-vector-and-frequency">相位状态、全局向量与频率</h2>
+<p>把环上的状态再换成相位，初态为 $(0,1,2,3)$ rad。将四个单位向量按中间角度 1.5 rad 配对，有</p>
+<p>$$z=e^{1.5\mathrm i}\frac{\cos1.5+\cos0.5}{2},\qquad
+R=\frac{\cos1.5+\cos0.5}{2}\approx0.4742.$$</p>
+<p>平均长度描述这一时刻的集中程度。随后用固有频率 $(1,1.1,0.9,1)$ rad/T、耦合尺度 0.8 rad/T 推进，边上的正弦相位差改变各节点转动速度，耦合仍按节点度平均。</p>
+<p>若要计算尾窗频率，从未取模相位末行减去窗口起点，再除以窗口时长。最后 $M$ 步、步长 $h$，对应每个节点的</p>
+<p>$$\widehat\omega_i=\frac{\theta_i(t_{\mathrm{end}})-\theta_i(t_{\mathrm{end}}-Mh)}{Mh}.$$</p>
+<p>返回各平均频率及最大值减最小值，才能把速度接近程度与 $R$ 的相位集中对应起来。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/11-网络上的系统/综合练习/practice/?question=p11-capstone-phase">判断尾窗频率锁定</a></li></ul></nav>
+
+<h2 id="four-results-on-the-same-ring">同一四节点环上的四幅结果</h2>
+<p>下图将前面的计算放在一起：结构图列四个节点的度；交换图从 4 U 集中在 0 室开始，以 0.05 T 步长运行 4 T；传播图按一份给定感染、恢复随机表更新 8 步；相位图以 0.02 T 步长运行 4 T。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P11-SUMMARY-bbcd7e52-2.png" alt="网络结构、传播与同步：实验结果图" loading="lazy"></figure>
+</section>
+<p>左上四根柱都是 2。右上的 0 室从 4 U 下降，1、3 室对称增加且曲线重合，2 室稍后增加，所有曲线趋近 1 U、总和始终为 4 U。</p>
+<p>左下蓝、红、绿三条线分别是 S、I、R 人数：本次到第 2 步易感者已为零，第 6 步感染者清零，四人都进入恢复状态。右下 $R$ 从约 0.4742 增加到接近 1，显示这组初相、频率与耦合下的相位集中过程。</p>
+<p>四幅图采用相同连接，纵轴却来自不同状态和规则。读出结构统计后，再将总量、人数和相位指标分别接回对应方程，就能解释每条曲线中的变化。</p>
+<h2 id="paired-comparisons-and-structural-conclusions">配对比较与结构结论</h2>
+<p>比较传播结构时，可以保持节点数、边数和每边概率，轮换同一组初始感染节点，并在每个起点重复传播。这样连接差异就不会和起点选择混在同一次对照中；网络生成与传播抽样再分别安排重复。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/11-网络上的系统/综合练习/practice/?question=p11-propagation-budget">传播结构比较的预算</a></li></ul></nav>
+
+<p>比较节律结构，则在一对运行中保持逐节点频率与初相一致，再换分配重复。时间步减半检查数值推进，延长窗口检查暂态，$R$ 与未取模频率计算各自对应结果含义。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/11-网络上的系统/综合练习/practice/?question=p11-network-claim-limit">有限网络的结构结论</a></li></ul></nav>
+
+<p>网络把局部关系连接成整体演化。下一篇继续研究每个个体怎样根据局部状态更新，以及这些相互作用怎样产生空间和集体现象。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://www.ub.edu/smallbiosystemslab/wp-content/uploads/2015/12/ACEBONPERRITSPI.RMP05.pdf">Acebrón 等，The Kuramoto model</a>讨论耦合相位与序参量；本篇前面各章分别推导了结构统计、交换拉普拉斯及同步传播的具体计算。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/11-04-耦合振子与同步/read/2/">← 11.4.2 频率锁定、相位锁定与结构比较</a><a href="/parts/12-个体与集体现象/">继续：第 12 篇 个体与集体现象 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

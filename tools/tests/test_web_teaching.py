@@ -17,9 +17,9 @@ COURSE=json.loads((ROOT/'web/course/catalog.json').read_text(encoding='utf-8'))
 LESSONS=[l for c in course_chapters(COURSE) for l in c['lessons'] if l.get('reading')]
 
 
-def test_migration_covers_intro_first_ten_parts_and_keeps_later_lessons_available():
-    assert len(LESSONS)==131
-    assert {l['chapter_id'].split('.')[0] for l in LESSONS}=={'0','1','2','3','4','5','6','7','8','9','10'}
+def test_migration_covers_intro_first_eleven_parts_and_keeps_later_lessons_available():
+    assert len(LESSONS)==140
+    assert {l['chapter_id'].split('.')[0] for l in LESSONS}=={'0','1','2','3','4','5','6','7','8','9','10','11'}
     for c in course_chapters(COURSE):
         for l in c['lessons']:
             assert (ROOT/l['path']).is_file()
@@ -47,7 +47,7 @@ def test_web_source_selects_explanatory_figures_without_copying_experiment_code(
     else:
         assert 'class="highlight"' not in page
     assert all('## 练习与参考资料' not in ''.join(c['source']) for c in nb['cells'])
-    if lesson['id'].startswith('P10'):
+    if lesson['id'].startswith(('P10', 'P11')):
         prose = '\n'.join(''.join(c['source']) for c in nb['cells'] if c['cell_type'] == 'markdown')
         returns = re.findall(r'\[返回网页讲解\]\(([^)]+)\)', prose)
         assert len(returns) == 2

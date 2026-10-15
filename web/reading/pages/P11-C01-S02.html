@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11.1.2 规则网络、随机重连与小世界 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P11-C01-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P11-C01-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering">本节练习 · 4 题</a><a class="button" href="/chapters/11-01-从连接结构进入网络科学/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>11.1.2 规则网络、随机重连与小世界</h1>
+<p>上一节加一条边，使四节点路径变成环。现在保持边数不变，将一条原连接换成另一条：两个原本相隔许多步的区域可能得到较短路线，原来邻居之间的三角形也可能被拆开。我们用路径和聚类分别量化这两种变化。</p>
+<p>学完本节，应能手算局部聚类，说明重连规则，比较重复网络的路径、度分布与连接密集的节点组。先修为上一节的度与最短路径，以及第5篇的随机重复。</p>
+<h2 id="local-clustering">局部聚类与邻居三角形</h2>
+<p>节点 $i$ 有 $d_i$ 个邻居，邻居之间最多有 $d_i(d_i-1)/2$ 对。把其中实际相连的对数记为 $e_i$，定义<strong>局部聚类系数（local clustering coefficient）</strong></p>
+<p>$$C_i=\frac{e_i}{d_i(d_i-1)/2},\qquad d_i\ge2.$$</p>
+<p>它回答“我的邻居中，有多大比例彼此也相连”。分子数的是邻居之间的边，不是节点 $i$ 自己连出的边。度小于2时没有邻居对，本节约定 $C_i=0$；平均局部聚类为</p>
+<p>$$\bar C=\frac1n\sum_i C_i,$$</p>
+<p>每个节点占相同权重。三角形每个节点的两个邻居也相连，$C_i=1$；三节点路径没有这样的三角形，各节点局部系数都是0。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering">计算平均局部聚类</a></li></ul></nav>
+
+<h2 id="regular-ring">规则环的度与聚类</h2>
+<p>将30个节点沿环排列，每个节点连接左右各两个邻居，度为4。度和为 $30\times4$，每条边被两端各数一次，所以边数为60。</p>
+<p>以0号为例，邻居是28、29、1、2号。四位邻居共有6对，其中28—29、29—1、1—2相连，故</p>
+<p>$$C_0=\frac36=0.5.$$</p>
+<p>29—1也相连，是因为沿环跨过0号仍只隔两个位置。每个节点都有同样的环上关系，所以 $\bar C=0.5$。这张规则网络的局部邻居联系较多，而较远节点之间通常需要经过许多边。</p>
+<h2 id="rewiring-rule">随机重连与保留端点</h2>
+<p><strong>随机网络（random graph）</strong>由概率规则给不同图分配可能性，重复生成得到这套规则下的不同网络。这里从规则环出发，用概率 $p$ 尝试逐边重连。</p>
+<p>先沿环的统一方向记录原边</p>
+<p>$$(i,(i+d)\bmod n),\qquad d=1,\ldots,k/2,$$</p>
+<p>其中偶数 $k$ 是初始度，取模使走过末端的位置回到环开头。每条原边以概率 $p$ 重连：保留记录的出发端 $i$，另一端从非自身且当前未相连的节点中等概率选择；没有候选时保留原边。</p>
+<p>例如 $n=30,k=4$ 时，记录 $(29,0)$ 的保留端是29。保存无向边时可以将它排序为 $(0,29)$，但排序不改变哪个端点被保留。沿环记录作用方向，排序仅识别同一条无向边；较小编号不因此获得额外的保留机会。</p>
+<p>每次成功替换是一条边换一条边，所以节点数和边数保持不变。保留端原来的这份连接还在，另一个端点却可失去或获得连接，因此每个节点的度和每张图的聚类、路径都可能变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-rewire-repeats">重连实验的随机性</a></li></ul></nav>
+
+<h2 id="rewiring-repeats-and-small-world">重连重复与小世界比较</h2>
+<p>将路径较短、局部聚类仍较高的组合称为<strong>小世界（small-world）</strong>结构时，需要同时说明比较的网络：常见做法是看它是否具有接近同规模随机参考网络的短路径，同时仍保有高于该参考的局部聚类。</p>
+<p>本次固定 $n=30,k=4$，在 $p=0,0.1,0.4,1$ 下各生成16张图，每张均为60条边。一个重连概率对应一组网络，而非一张固定网络。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P11-C01-S02-1d2129e6-2.png" alt="规则网络、随机重连与小世界：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图一个点是一张网络的平均聚类，右图一个点是相应的全图平均路径。本次四组平均聚类约为0.500、0.371、0.181、0.143；同一概率下的散布来自生成的连接不同。部分新连接缩短远处的路线，同时替换了原邻域的边，所以路径与聚类会有不同变化。</p>
+<p>本次每组16张都连通。若一次生成的图断开，就将其平均路径记为 <code>None</code>，另报断连次数，便能与仍有有限路径值的图一起解释这组结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-matched-edge-budget">重连结构的比较</a></li></ul></nav>
+
+<p>$p=1$ 也仍遵循前面的保留端点规则。另一种随机基线是从所有可能节点对中等概率抽取固定数目的边；它与这套重连模型对图分配的概率不同。比较“规则”与“随机”时，具体生成方式决定了参考对象。</p>
+<p>探索页固定12节点、24边，改变 $p$ 查看一张网络。左图的圆周位置仅用于展示，右图按节点编号画度；播放揭示的是同一张图，16张网络的散布则由本节的重复实验给出。</p>
+<p class="concept-explore"><a href="/chapters/11-01-从连接结构进入网络科学/explore/?concept=P11-C01-S02%3Arewiring-repeats-and-small-world">可视化与探索：重连重复与小世界比较 →</a></p>
+
+<h2 id="degree-distribution">度分布与候选分布比较</h2>
+<p><strong>度分布（degree distribution）</strong>记录各种度出现的比例：</p>
+<p>$$P_D(k)=\frac{\#\{i:d_i=k\}}n.$$</p>
+<p>四节点路径的度为 $(1,2,2,1)$，所以 $P_D(1)=P_D(2)=1/2$；四节点环则全部为2。重连保持平均度 $2|E|/n$，却可以改变度分布。</p>
+<p>若某段度分布满足 $P_D(k)\propto k^{-\alpha}$，取对数后得到斜率 $-\alpha$ 的直线，这就是幂律候选的一种形状。有限小图中，许多度值只出现一两次，其他候选分布也可能在一小段范围呈现近似直线。应将幂律与其他候选一起拟合到度数据，用同一标准比较，并检查小样本给比较带来的波动。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-power-law-evidence">判断度分布的形状</a></li></ul></nav>
+
+<h2 id="communities">社区与组内连接</h2>
+<p><strong>社区（community）</strong>用来描述按给定标准识别的、组内连接相对密集的节点组。这里看最直观的稠密组结构：在固定划分后，比较组内可能节点对与组间可能节点对各自的连接比例。</p>
+<p>例如两组三角形分别含节点 $\{0,1,2\}$ 和 $\{3,4,5\}$，组间只有一条桥。每组3个可能内部节点对全部相连，组内连接比例为1；两组共有 $3\times3=9$ 个跨组节点对，连接比例为 $1/9$。这使两个密集组清楚地出现在边表中，即使整张图只有一个连通分量。</p>
+<p>连通分量要求组间完全没有路径；社区则可由少量边联系起来。聚类按每个节点的邻居计算，社区按指定节点组比较，两者也应分别解释。下一章将在这些连接上加入逐边交换，研究总量怎样沿网络移动。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://networksciencebook.com/chapter/3">Barabási：《Network Science》第3章</a>，随机网络、小世界与聚类；<a href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.cluster.average_clustering.html">NetworkX：平均局部聚类</a>，节点系数的平均方式。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/11-01-从连接结构进入网络科学/read/1/">← 11.1.1 图、邻接矩阵与最短路径</a><a href="/chapters/11-02-网络上的扩散与守恒/read/1/">11.2.1 逐边交换、图拉普拉斯与守恒 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

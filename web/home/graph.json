@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "fbc57527c388723feb51bd0df156a6a998bacad0cffd93da8f55dee927d46d1f",
+    "catalogSha256": "9d8490dd649d68fce6984f376f1979013b6716cd06c74c9245f2db47afd88bc5",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -14353,7 +14353,7 @@
       "number": "11",
       "parentId": null,
       "url": "/parts/11-网络上的系统/",
-      "description": "从连接结构进入网络科学 · 网络上的扩散与守恒 · 接触结构与传播 · 耦合振子与同步",
+      "description": "图结构与随机网络 · 网络上的扩散与守恒 · 接触结构与传播 · 耦合振子与同步",
       "categories": [
         "evolution",
         "regulation"
@@ -14418,7 +14418,7 @@
     {
       "id": "11.1",
       "kind": "chapter",
-      "title": "从连接结构进入网络科学",
+      "title": "图结构与随机网络",
       "number": "11.1",
       "parentId": "11",
       "url": "/chapters/11-01-从连接结构进入网络科学/",
@@ -14457,8 +14457,8 @@
       "english": null,
       "number": "11.1.1",
       "parentId": "11.1",
-      "url": "/notebook/?id=P11-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-01-从连接结构进入网络科学/read/1/",
+      "readingUrl": "/chapters/11-01-从连接结构进入网络科学/read/1/",
       "practiceUrl": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics",
       "description": "从四个细胞的通道写出连接矩阵，逐节点计边、逐对寻找最短路径，并辨认断开后的节点组。",
       "categories": [
@@ -14477,7 +14477,7 @@
       "total": 1,
       "lessonId": "P11-C01-S01",
       "lessonNumber": "11.1.1",
-      "lessonTitle": "从边表到结构统计",
+      "lessonTitle": "图、邻接矩阵与最短路径",
       "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14488,8 +14488,8 @@
       "english": "connected component",
       "number": "11.1.1",
       "parentId": "11.1",
-      "url": "/notebook/?id=P11-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-01-从连接结构进入网络科学/read/1/",
+      "readingUrl": "/chapters/11-01-从连接结构进入网络科学/read/1/",
       "practiceUrl": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics",
       "description": "从四个细胞的通道写出连接矩阵，逐节点计边、逐对寻找最短路径，并辨认断开后的节点组。",
       "categories": [
@@ -14508,7 +14508,7 @@
       "total": 1,
       "lessonId": "P11-C01-S01",
       "lessonNumber": "11.1.1",
-      "lessonTitle": "从边表到结构统计",
+      "lessonTitle": "图、邻接矩阵与最短路径",
       "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14519,8 +14519,8 @@
       "english": null,
       "number": "11.1.1",
       "parentId": "11.1",
-      "url": "/notebook/?id=P11-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-01-从连接结构进入网络科学/read/1/",
+      "readingUrl": "/chapters/11-01-从连接结构进入网络科学/read/1/",
       "practiceUrl": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics",
       "description": "从四个细胞的通道写出连接矩阵，逐节点计边、逐对寻找最短路径，并辨认断开后的节点组。",
       "categories": [
@@ -14539,7 +14539,7 @@
       "total": 1,
       "lessonId": "P11-C01-S01",
       "lessonNumber": "11.1.1",
-      "lessonTitle": "从边表到结构统计",
+      "lessonTitle": "图、邻接矩阵与最短路径",
       "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14550,8 +14550,8 @@
       "english": null,
       "number": "11.1.2",
       "parentId": "11.1",
-      "url": "/notebook/?id=P11-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-01-从连接结构进入网络科学/read/2/",
+      "readingUrl": "/chapters/11-01-从连接结构进入网络科学/read/2/",
       "practiceUrl": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering",
       "description": "保持节点与边数，跟算规则环的邻居连接比例，再比较多张重连网络的聚类、路径和断连情况。",
       "categories": [
@@ -14570,7 +14570,7 @@
       "total": 1,
       "lessonId": "P11-C01-S02",
       "lessonNumber": "11.1.2",
-      "lessonTitle": "规则网络与重连基线",
+      "lessonTitle": "规则网络、随机重连与小世界",
       "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14581,8 +14581,8 @@
       "english": null,
       "number": "11.1.2",
       "parentId": "11.1",
-      "url": "/notebook/?id=P11-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-01-从连接结构进入网络科学/read/2/",
+      "readingUrl": "/chapters/11-01-从连接结构进入网络科学/read/2/",
       "practiceUrl": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering",
       "description": "保持节点与边数，跟算规则环的邻居连接比例，再比较多张重连网络的聚类、路径和断连情况。",
       "categories": [
@@ -14601,7 +14601,7 @@
       "total": 1,
       "lessonId": "P11-C01-S02",
       "lessonNumber": "11.1.2",
-      "lessonTitle": "规则网络与重连基线",
+      "lessonTitle": "规则网络、随机重连与小世界",
       "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14612,8 +14612,8 @@
       "english": null,
       "number": "11.1.2",
       "parentId": "11.1",
-      "url": "/notebook/?id=P11-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-01-从连接结构进入网络科学/read/2/",
+      "readingUrl": "/chapters/11-01-从连接结构进入网络科学/read/2/",
       "practiceUrl": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering",
       "description": "保持节点与边数，跟算规则环的邻居连接比例，再比较多张重连网络的聚类、路径和断连情况。",
       "categories": [
@@ -14632,7 +14632,7 @@
       "total": 1,
       "lessonId": "P11-C01-S02",
       "lessonNumber": "11.1.2",
-      "lessonTitle": "规则网络与重连基线",
+      "lessonTitle": "规则网络、随机重连与小世界",
       "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14678,8 +14678,8 @@
       "english": null,
       "number": "11.2.1",
       "parentId": "11.2",
-      "url": "/notebook/?id=P11-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-02-网络上的扩散与守恒/read/1/",
+      "readingUrl": "/chapters/11-02-网络上的扩散与守恒/read/1/",
       "practiceUrl": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian",
       "description": "逐边计算两端相反的交换贡献，将三室收支写成图拉普拉斯，并检查每次更新的总量。",
       "categories": [
@@ -14698,7 +14698,7 @@
       "total": 1,
       "lessonId": "P11-C02-S01",
       "lessonNumber": "11.2.1",
-      "lessonTitle": "每条边的交换与守恒",
+      "lessonTitle": "逐边交换、图拉普拉斯与守恒",
       "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14709,8 +14709,8 @@
       "english": "graph Laplacian",
       "number": "11.2.1",
       "parentId": "11.2",
-      "url": "/notebook/?id=P11-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-02-网络上的扩散与守恒/read/1/",
+      "readingUrl": "/chapters/11-02-网络上的扩散与守恒/read/1/",
       "practiceUrl": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian",
       "description": "逐边计算两端相反的交换贡献，将三室收支写成图拉普拉斯，并检查每次更新的总量。",
       "categories": [
@@ -14729,7 +14729,7 @@
       "total": 1,
       "lessonId": "P11-C02-S01",
       "lessonNumber": "11.2.1",
-      "lessonTitle": "每条边的交换与守恒",
+      "lessonTitle": "逐边交换、图拉普拉斯与守恒",
       "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14740,8 +14740,8 @@
       "english": null,
       "number": "11.2.1",
       "parentId": "11.2",
-      "url": "/notebook/?id=P11-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-02-网络上的扩散与守恒/read/1/",
+      "readingUrl": "/chapters/11-02-网络上的扩散与守恒/read/1/",
       "practiceUrl": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian",
       "description": "逐边计算两端相反的交换贡献，将三室收支写成图拉普拉斯，并检查每次更新的总量。",
       "categories": [
@@ -14760,7 +14760,7 @@
       "total": 1,
       "lessonId": "P11-C02-S01",
       "lessonNumber": "11.2.1",
-      "lessonTitle": "每条边的交换与守恒",
+      "lessonTitle": "逐边交换、图拉普拉斯与守恒",
       "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14768,11 +14768,11 @@
       "id": "11.2.2:concept:1",
       "kind": "concept",
       "title": "零模态",
-      "english": null,
+      "english": "zero mode",
       "number": "11.2.2",
       "parentId": "11.2",
-      "url": "/notebook/?id=P11-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-02-网络上的扩散与守恒/read/2/",
+      "readingUrl": "/chapters/11-02-网络上的扩散与守恒/read/2/",
       "practiceUrl": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes",
       "description": "由断开的节点组解释零模态，再按浓度差推导不同容积的平衡与Euler非负步长条件。",
       "categories": [
@@ -14791,7 +14791,7 @@
       "total": 1,
       "lessonId": "P11-C02-S02",
       "lessonNumber": "11.2.2",
-      "lessonTitle": "连通性、模态与容积",
+      "lessonTitle": "连通分量、扩散模态与容积",
       "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14802,8 +14802,8 @@
       "english": null,
       "number": "11.2.2",
       "parentId": "11.2",
-      "url": "/notebook/?id=P11-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-02-网络上的扩散与守恒/read/2/",
+      "readingUrl": "/chapters/11-02-网络上的扩散与守恒/read/2/",
       "practiceUrl": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes",
       "description": "由断开的节点组解释零模态，再按浓度差推导不同容积的平衡与Euler非负步长条件。",
       "categories": [
@@ -14822,7 +14822,7 @@
       "total": 1,
       "lessonId": "P11-C02-S02",
       "lessonNumber": "11.2.2",
-      "lessonTitle": "连通性、模态与容积",
+      "lessonTitle": "连通分量、扩散模态与容积",
       "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14833,8 +14833,8 @@
       "english": null,
       "number": "11.2.2",
       "parentId": "11.2",
-      "url": "/notebook/?id=P11-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-02-网络上的扩散与守恒/read/2/",
+      "readingUrl": "/chapters/11-02-网络上的扩散与守恒/read/2/",
       "practiceUrl": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes",
       "description": "由断开的节点组解释零模态，再按浓度差推导不同容积的平衡与Euler非负步长条件。",
       "categories": [
@@ -14853,7 +14853,7 @@
       "total": 1,
       "lessonId": "P11-C02-S02",
       "lessonNumber": "11.2.2",
-      "lessonTitle": "连通性、模态与容积",
+      "lessonTitle": "连通分量、扩散模态与容积",
       "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14899,8 +14899,8 @@
       "english": null,
       "number": "11.3.1",
       "parentId": "11.3",
-      "url": "/notebook/?id=P11-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-03-接触结构与传播/read/1/",
+      "readingUrl": "/chapters/11-03-接触结构与传播/read/1/",
       "practiceUrl": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir",
       "description": "按旧状态与定向比较表跟算两步感染和恢复，解释同步更新、累计人数与活跃步数。",
       "categories": [
@@ -14919,7 +14919,7 @@
       "total": 1,
       "lessonId": "P11-C03-S01",
       "lessonNumber": "11.3.1",
-      "lessonTitle": "固定随机数的同步传播",
+      "lessonTitle": "SIR状态与同步传播",
       "chapterUrl": "/chapters/11-03-接触结构与传播/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14930,8 +14930,8 @@
       "english": null,
       "number": "11.3.1",
       "parentId": "11.3",
-      "url": "/notebook/?id=P11-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-03-接触结构与传播/read/1/",
+      "readingUrl": "/chapters/11-03-接触结构与传播/read/1/",
       "practiceUrl": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir",
       "description": "按旧状态与定向比较表跟算两步感染和恢复，解释同步更新、累计人数与活跃步数。",
       "categories": [
@@ -14950,7 +14950,7 @@
       "total": 1,
       "lessonId": "P11-C03-S01",
       "lessonNumber": "11.3.1",
-      "lessonTitle": "固定随机数的同步传播",
+      "lessonTitle": "SIR状态与同步传播",
       "chapterUrl": "/chapters/11-03-接触结构与传播/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14961,8 +14961,8 @@
       "english": null,
       "number": "11.3.1",
       "parentId": "11.3",
-      "url": "/notebook/?id=P11-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-03-接触结构与传播/read/1/",
+      "readingUrl": "/chapters/11-03-接触结构与传播/read/1/",
       "practiceUrl": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir",
       "description": "按旧状态与定向比较表跟算两步感染和恢复，解释同步更新、累计人数与活跃步数。",
       "categories": [
@@ -14981,7 +14981,7 @@
       "total": 1,
       "lessonId": "P11-C03-S01",
       "lessonNumber": "11.3.1",
-      "lessonTitle": "固定随机数的同步传播",
+      "lessonTitle": "SIR状态与同步传播",
       "chapterUrl": "/chapters/11-03-接触结构与传播/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -14992,8 +14992,8 @@
       "english": null,
       "number": "11.3.2",
       "parentId": "11.3",
-      "url": "/notebook/?id=P11-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-03-接触结构与传播/read/2/",
+      "readingUrl": "/chapters/11-03-接触结构与传播/read/2/",
       "practiceUrl": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation",
       "description": "将结果按网络与传播重复排成表，手算图内与图均值间方差，并按共同起点和抽样比较结构。",
       "categories": [
@@ -15012,7 +15012,7 @@
       "total": 1,
       "lessonId": "P11-C03-S02",
       "lessonNumber": "11.3.2",
-      "lessonTitle": "网络随机与传播随机",
+      "lessonTitle": "网络重复、传播重复与分层比较",
       "chapterUrl": "/chapters/11-03-接触结构与传播/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15023,8 +15023,8 @@
       "english": null,
       "number": "11.3.2",
       "parentId": "11.3",
-      "url": "/notebook/?id=P11-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-03-接触结构与传播/read/2/",
+      "readingUrl": "/chapters/11-03-接触结构与传播/read/2/",
       "practiceUrl": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation",
       "description": "将结果按网络与传播重复排成表，手算图内与图均值间方差，并按共同起点和抽样比较结构。",
       "categories": [
@@ -15043,7 +15043,7 @@
       "total": 1,
       "lessonId": "P11-C03-S02",
       "lessonNumber": "11.3.2",
-      "lessonTitle": "网络随机与传播随机",
+      "lessonTitle": "网络重复、传播重复与分层比较",
       "chapterUrl": "/chapters/11-03-接触结构与传播/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15054,8 +15054,8 @@
       "english": null,
       "number": "11.3.2",
       "parentId": "11.3",
-      "url": "/notebook/?id=P11-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-03-接触结构与传播/read/2/",
+      "readingUrl": "/chapters/11-03-接触结构与传播/read/2/",
       "practiceUrl": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation",
       "description": "将结果按网络与传播重复排成表，手算图内与图均值间方差，并按共同起点和抽样比较结构。",
       "categories": [
@@ -15074,7 +15074,7 @@
       "total": 1,
       "lessonId": "P11-C03-S02",
       "lessonNumber": "11.3.2",
-      "lessonTitle": "网络随机与传播随机",
+      "lessonTitle": "网络重复、传播重复与分层比较",
       "chapterUrl": "/chapters/11-03-接触结构与传播/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15120,8 +15120,8 @@
       "english": null,
       "number": "11.4.1",
       "parentId": "11.4",
-      "url": "/notebook/?id=P11-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-04-耦合振子与同步/read/1/",
+      "readingUrl": "/chapters/11-04-耦合振子与同步/read/1/",
       "practiceUrl": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter",
       "description": "从单位圆箭头的平均计算全局相位指标，解释反相分群，并将相位差接入网络耦合。",
       "categories": [
@@ -15140,7 +15140,7 @@
       "total": 1,
       "lessonId": "P11-C04-S01",
       "lessonNumber": "11.4.1",
-      "lessonTitle": "从单体相位到群体指标",
+      "lessonTitle": "相位向量、序参量与网络耦合",
       "chapterUrl": "/chapters/11-04-耦合振子与同步/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15151,8 +15151,8 @@
       "english": "order parameter",
       "number": "11.4.1",
       "parentId": "11.4",
-      "url": "/notebook/?id=P11-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-04-耦合振子与同步/read/1/",
+      "readingUrl": "/chapters/11-04-耦合振子与同步/read/1/",
       "practiceUrl": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter",
       "description": "从单位圆箭头的平均计算全局相位指标，解释反相分群，并将相位差接入网络耦合。",
       "categories": [
@@ -15171,7 +15171,7 @@
       "total": 1,
       "lessonId": "P11-C04-S01",
       "lessonNumber": "11.4.1",
-      "lessonTitle": "从单体相位到群体指标",
+      "lessonTitle": "相位向量、序参量与网络耦合",
       "chapterUrl": "/chapters/11-04-耦合振子与同步/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15182,8 +15182,8 @@
       "english": null,
       "number": "11.4.1",
       "parentId": "11.4",
-      "url": "/notebook/?id=P11-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/11-04-耦合振子与同步/read/1/",
+      "readingUrl": "/chapters/11-04-耦合振子与同步/read/1/",
       "practiceUrl": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter",
       "description": "从单位圆箭头的平均计算全局相位指标，解释反相分群，并将相位差接入网络耦合。",
       "categories": [
@@ -15202,7 +15202,7 @@
       "total": 1,
       "lessonId": "P11-C04-S01",
       "lessonNumber": "11.4.1",
-      "lessonTitle": "从单体相位到群体指标",
+      "lessonTitle": "相位向量、序参量与网络耦合",
       "chapterUrl": "/chapters/11-04-耦合振子与同步/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15213,8 +15213,8 @@
       "english": null,
       "number": "11.4.2",
       "parentId": "11.4",
-      "url": "/notebook/?id=P11-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-04-耦合振子与同步/read/2/",
+      "readingUrl": "/chapters/11-04-耦合振子与同步/read/2/",
       "practiceUrl": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step",
       "description": "在两种结构中共用频率分配与初相，分别计算末窗相位集中和尾窗平均频率差。",
       "categories": [
@@ -15233,7 +15233,7 @@
       "total": 1,
       "lessonId": "P11-C04-S02",
       "lessonNumber": "11.4.2",
-      "lessonTitle": "结构、耦合与频率锁定",
+      "lessonTitle": "频率锁定、相位锁定与结构比较",
       "chapterUrl": "/chapters/11-04-耦合振子与同步/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15244,8 +15244,8 @@
       "english": "frequency locking",
       "number": "11.4.2",
       "parentId": "11.4",
-      "url": "/notebook/?id=P11-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-04-耦合振子与同步/read/2/",
+      "readingUrl": "/chapters/11-04-耦合振子与同步/read/2/",
       "practiceUrl": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step",
       "description": "在两种结构中共用频率分配与初相，分别计算末窗相位集中和尾窗平均频率差。",
       "categories": [
@@ -15264,7 +15264,7 @@
       "total": 1,
       "lessonId": "P11-C04-S02",
       "lessonNumber": "11.4.2",
-      "lessonTitle": "结构、耦合与频率锁定",
+      "lessonTitle": "频率锁定、相位锁定与结构比较",
       "chapterUrl": "/chapters/11-04-耦合振子与同步/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -15275,8 +15275,8 @@
       "english": null,
       "number": "11.4.2",
       "parentId": "11.4",
-      "url": "/notebook/?id=P11-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/11-04-耦合振子与同步/read/2/",
+      "readingUrl": "/chapters/11-04-耦合振子与同步/read/2/",
       "practiceUrl": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step",
       "description": "在两种结构中共用频率分配与初相，分别计算末窗相位集中和尾窗平均频率差。",
       "categories": [
@@ -15295,7 +15295,7 @@
       "total": 1,
       "lessonId": "P11-C04-S02",
       "lessonNumber": "11.4.2",
-      "lessonTitle": "结构、耦合与频率锁定",
+      "lessonTitle": "频率锁定、相位锁定与结构比较",
       "chapterUrl": "/chapters/11-04-耦合振子与同步/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },

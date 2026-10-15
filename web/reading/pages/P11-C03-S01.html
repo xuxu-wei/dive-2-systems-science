@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11.3.1 SIR状态与同步传播 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P11-C03-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P11-C03-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir">本节练习 · 4 题</a><a class="button" href="/chapters/11-03-接触结构与传播/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>11.3.1 SIR状态与同步传播</h1>
+<p>0号感染，1号与2号易感，接触路径是 $0—1—2$。如果0号本步感染了1号，1号什么时候才能继续感染2号？必须把接触规则与更新时刻说清楚，才能从同一张接触图得到一条确定的模拟轨迹。</p>
+<p>学完本节，应能按旧状态和给定随机数跟算传播，解释每边感染概率，并区分当前感染人数与累计规模。先修为11.1的接触边、第5篇的条件概率与随机状态转移。</p>
+<h2 id="sir-states-and-transitions">SIR状态与一步转移</h2>
+<p>本节每个节点表示一个个体，状态为以下三种之一：</p>
+<table>
+<thead>
+<tr>
+  <th>名称</th>
+  <th>符号</th>
+  <th style="text-align:right">数值编码</th>
+  <th>后续变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>易感（susceptible）</td>
+  <td>S</td>
+  <td style="text-align:right">0</td>
+  <td>接触感染后成为I</td>
+</tr>
+<tr>
+  <td>感染（infectious）</td>
+  <td>I</td>
+  <td style="text-align:right">1</td>
+  <td>恢复后成为R</td>
+</tr>
+<tr>
+  <td>恢复（recovered）</td>
+  <td>R</td>
+  <td style="text-align:right">2</td>
+  <td>此后保持R</td>
+</tr>
+</tbody>
+</table>
+<p>这构成离散时间的<strong>SIR模型</strong>。列表按节点编号排列，$t=0,1,\ldots$ 记录更新次数。每个固定时长的模型时间步中，来自旧感染邻居的一次接触以概率 $\beta$ 成功，每位旧感染者以概率 $\gamma$ 恢复。两者都是每步概率，无单位；图中一步对应一次完整的状态更新。</p>
+<p>本步所有事件读取同一份旧状态，判定结束后同时写回新状态，称为<strong>同步更新（synchronous update）</strong>。因此新感染者从下一步开始传播或恢复；一个旧感染者即使本步恢复，仍按旧I状态参与本步感染判定。接触边在整次运行中固定。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-order">链上的一步传播</a></li></ul></nav>
+
+<h2 id="directed-random-tables">定向随机表与接触判定</h2>
+<p>用预先生成的独立均匀数决定一次具体运行是否触发事件：</p>
+<ul>
+<li><code>infection_draws[t][i][j]</code> 对应第 $t$ 步、接收者 $i$、旧感染邻居 $j$，值小于 $\beta$ 时该次接触成功。</li>
+<li><code>recovery_draws[t][i]</code> 对应第 $t$ 步旧感染者 $i$，值小于 $\gamma$ 时恢复。</li>
+</ul>
+<p>接触图虽然无向，$j$ 感染 $i$ 与 $i$ 感染 $j$ 的比较值仍占不同表位置。只有旧S读取感染判定，旧I读取恢复判定；等于阈值时不触发。把表索引与个体对应起来，改变遍历节点的顺序也不会使新感染者提前参与同一步。</p>
+<h2 id="two-step-sir-example">三节点两步传播的手算</h2>
+<p>取 $\beta=\gamma=0.5$，初态按0、1、2排列为 $(I,S,S)$。</p>
+<p>第一步，1号检查旧感染邻居0号，对应感染比较值0.2，小于0.5，因此成为I；0号恢复值为0.8，仍保持I。2号邻居1号的旧状态是S，所以本步保持S。新状态为 $(I,I,S)$。</p>
+<p>第二步，2号检查旧感染邻居1号，比较值0.1，成为I；旧0号恢复值0.2，成为R；旧1号恢复值0.8，仍为I。于是</p>
+<p>$$(1,0,0)\longrightarrow(1,1,0)\longrightarrow(2,1,1).$$</p>
+<p>路径首行是初态，后面每行是一次同步写回的结果。若把第一步0号恢复值也改为0.2，它仍能按旧I状态让1号感染，只是自己同时恢复，新状态会成为 $(R,I,S)$。这使传播与恢复使用旧状态的含义更清楚。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir">用固定随机数重放传播</a></li></ul></nav>
+
+<h2 id="per-edge-infection-probability">多个感染邻居与至少一次成功</h2>
+<p>旧易感节点 $i$ 的感染邻居集合记为 $\mathcal I_i$，其中共有 $m$ 人。每条接触独立以概率 $\beta$ 成功，只有全部失败才保持S，因此</p>
+<p>$$\Pr(S\to I\mid\mathcal I_i)
+=1-\prod_{j\in\mathcal I_i}(1-\beta)
+=1-(1-\beta)^m.$$</p>
+<p>没有感染邻居时，空乘积为1，感染概率为零。若 $\beta=0.2$，一位感染邻居给出0.2，两位给出 $1-0.8^2=0.36$。把两次成功机会直接加成0.4，会重复计算两条边都成功的情况；它们仍只造成一位新感染者。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-03-接触结构与传播/practice/?question=p11-per-edge-budget">每边概率与总接触预算</a></li></ul></nav>
+
+<p>相同每边概率使感染邻居较多的人获得更多感染机会。若要改为每个人总共固定接触若干次，就需要重新指定这些接触怎样分配，得到另一种接触规则。</p>
+<h2 id="counts-and-outbreak-summary">当前人数、累计规模与活跃步数</h2>
+<p>每时刻将三种状态分别计数，得到 $S_t,I_t,R_t$，总和始终为节点数。I或R都表示已经感染过，所以累计曾感染人数为</p>
+<p>$$C_t=I_t+R_t.$$</p>
+<p>这个数计入初态，并且不下降；感染者恢复时，I减少、R增加，累计规模不变。</p>
+<p>给定 $s$ 次更新，轨迹包含第0到第 $s$ 行。计算题的活跃步数只检查前 $s$ 行：每行若还有I，就对应一次在感染尚活跃时执行的更新。末行若仍有I，传播可能继续，观察期活跃步数也随观察长度而定。</p>
+<p>小规模结束的运行同样进入重复统计。例如四次累计规模为1、1、4、10，全部平均为 $(1+1+4+10)/4=4$。前两次没有新增感染，本身就是这套随机规则的一种结果。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/11-03-接触结构与传播/practice/?question=p11-extinction-vs-mean">四次传播的平均结果</a></li></ul></nav>
+
+<h2 id="path-sir-experiment">八节点路径与固定传播轨迹</h2>
+<p>下面固定八节点路径 $0—1—\cdots—7$，0号初始感染，其他人易感。感染概率0.48、恢复概率0.18，预生成12步感染表与恢复表，再重放同一组事件。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P11-C03-S01-f70ccfc7-1.png" alt="SIR状态与同步传播：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图S、I、R相加始终为8；感染人数的升降由新感染与恢复共同决定。右图累计曾感染人数只在出现新感染时增加，本次12步共达到5人，更新前有I的活跃步数为12。两张图分别保留了当前传播活动与截至此时的总影响。</p>
+<p>探索页换用12人、24边的规则环或重连图，固定0号起点和同一传播表，观察14步。先逐步解释哪些旧邻居让下一步人数改变，再切换连接，查看同一组比较值如何在另一张图上被使用。下一节将进一步轮换起点、重复生成网络与传播，比较结果的散布。</p>
+<p class="concept-explore"><a href="/chapters/11-03-接触结构与传播/explore/?concept=P11-C03-S01%3Apath-sir-experiment">可视化与探索：八节点路径与固定传播轨迹 →</a></p>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://networksciencebook.com/chapter/10">Barabási：《Network Science》第10章</a>，网络上的传播与SIR模型。这里的同步规则将每步接触与恢复具体落实为可逐项重放的事件。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/11-02-网络上的扩散与守恒/read/2/">← 11.2.2 连通分量、扩散模态与容积</a><a href="/chapters/11-03-接触结构与传播/read/2/">11.3.2 网络重复、传播重复与分层比较 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

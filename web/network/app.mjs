@@ -11,7 +11,7 @@ const node=(tag,attrs={},value)=>{const item=document.createElementNS(ns,tag);fo
 let chapter,mode,settings={},playback;
 const definitions={
  "11.1": {
-  "title": "换一条连接，哪些路线会变短？",
+  "title": "规则环、重连与结构统计",
   "question": "节点数和边数相同，把规则环的一些边接到其他节点后，先判断哪些距离可能缩短、哪些邻居三角形可能消失。",
   "explanation": "左图逐条显示当前网络的边，右图按编号画各节点度。度、聚类与平均路径始终从完整边表计算，所以播放是在揭示同一张图；改变重连概率才重新生成连接。",
   "formula": "度 dᵢ=ΣⱼAᵢⱼ；Σᵢdᵢ=2|E|；全图平均路径仅在连通时定义。",
@@ -31,7 +31,7 @@ const definitions={
   ]
  },
  "11.2": {
-  "title": "两组之间断开后，物质怎样分配？",
+  "title": "连通分量与守恒扩散",
   "question": "关闭1—2的交换通道后，分别预测全图、0—1组和2—3组的总量，再连接通道观察变化。",
   "explanation": "左图按室0到3画总量，右图把0—1与2—3两组分别相加。桥关闭时每组独立守恒；桥打开后物质能跨组交换，全图总量仍保持6 U。",
   "formula": "m⁺=m−hL(m/V)；Vᵢ=1；无外源时 Σᵢmᵢ 恒定。",
@@ -59,7 +59,7 @@ const definitions={
   ]
  },
  "11.3": {
-  "title": "同一份传播表，在两张图上会怎样？",
+  "title": "接触结构与同步传播",
   "question": "保持12人、24边、起点0号及同一传播抽样，换连接后先预测第一步哪些人可能感染，再逐步对照S、I、R人数。",
   "explanation": "本步感染与恢复均读取旧状态，判定完成后一起写回。新感染者下一步才传播，本步恢复的旧感染者仍可传播。左图画三个状态人数，右图将I与R相加，表示截至当前步的曾感染人数。",
   "formula": "旧S任一旧I邻居的比较值<β时变I；旧I恢复值<0.22时变R；同时写回。",
@@ -87,7 +87,7 @@ const definitions={
   ]
  },
  "11.4": {
-  "title": "相位集中与平均速度怎样一起读？",
+  "title": "相位集中与平均频率",
   "question": "增强耦合前，先区分两个指标：当前R看相位箭头是否集中，过去60步的频率极差看转动速度是否接近。",
   "explanation": "左图每一时刻把单位相位向量求平均再取长度，得到R；右图用同一节点的未取模相位位移除以尾窗时长，再取各节点频率的最大差。整体同相与相同平均频率分别由两种计算回答。",
   "formula": "R=|n⁻¹Σⱼexp(iθⱼ)|；ω̂ᵢ=[θᵢ(t)−θᵢ(t−60h)]/(60h)。",
@@ -119,7 +119,7 @@ function controls(){settings={};$('sliders').replaceChildren();for(const[key,lab
 function set(values){Object.assign(settings,values);for(const[key,value]of Object.entries(values)){$('parameter-'+key).value=value;$('parameter-value-'+key).textContent=fmt(value);}recompute();}
 function recompute(){const labels={'11.1':settings.rewire>.1?'恢复规则环':'切换为重连图','11.2':settings.bridge?'断开跨组桥':'连接跨组桥','11.3':settings.rewired?'恢复规则接触图':'切换为重连接触图','11.4':settings.rewired?'恢复规则耦合图':'切换为重连耦合图'};$('alternate').textContent=labels[mode];playback?.pause();playback?playback.seek(100):draw(100);}
 function axes(chart,{xmin,xmax,ymin,ymax,xlabel,ylabel}){const x=v=>66+444*(v-xmin)/(xmax-xmin),y=v=>310-264*(v-ymin)/(ymax-ymin);for(let j=0;j<=4;j++){const value=ymin+(ymax-ymin)*j/4;chart.append(node('line',{x1:66,y1:y(value),x2:510,y2:y(value),stroke:gray,opacity:.15}),node('text',{x:57,y:y(value)+5,'text-anchor':'end','font-size':13,fill:gray},fmt(value)));}for(let j=0;j<=4;j++){const value=xmin+(xmax-xmin)*j/4;chart.append(node('text',{x:x(value),y:337,'text-anchor':'middle','font-size':13,fill:gray},fmt(value)));}chart.append(node('text',{x:288,y:376,'text-anchor':'middle','font-size':15,fill:gray},xlabel),node('text',{x:66,y:25,'font-size':15,fill:gray},ylabel));return{x,y,xmin,xmax,ymin,ymax};}
-function curve(chart,points,a,color,width=2.6){let path='',open=false;for(const[x,y]of points){if(!Number.isFinite(x+y)||x<a.xmin||x>a.xmax||y<a.ymin||y>a.ymax){open=false;continue;}path+=`${open?'L':'M'}${a.x(x)},${a.y(y)} `;open=true;}chart.append(node('path',{d:path,fill:'none',stroke:color,'stroke-width':width,'stroke-linejoin':'round'}));}
+function curve(chart,points,a,color,width=2.6){let path='',open=false;for(const[x,y]of points){if(!Number.isFinite(x)||!Number.isFinite(y)||x<a.xmin||x>a.xmax||y<a.ymin||y>a.ymax){open=false;continue;}path+=`${open?'L':'M'}${a.x(x)},${a.y(y)} `;open=true;}chart.append(node('path',{d:path,fill:'none',stroke:color,'stroke-width':width,'stroke-linejoin':'round'}));}
 function dot(chart,point,a,color){if(!point||!Number.isFinite(point[0]+point[1]))return;chart.append(node('circle',{cx:a.x(point[0]),cy:a.y(point[1]),r:5,fill:color,stroke:'white','stroke-width':1.5}));}
 function table(rows){const tab=el('table'),body=el('tbody');for(const[key,value]of rows){const row=el('tr');row.append(el('th',key),el('td',Array.isArray(value)?value.map(fmt).join('，'):fmt(value)));body.append(row);}tab.append(body);$('value-table').replaceChildren(tab);}
 function legend(items){$('legend').replaceChildren();for(const[label,color]of items){const item=el('span'),swatch=el('i');swatch.style.background=color;item.append(swatch,document.createTextNode(label));$('legend').append(item);}}

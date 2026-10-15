@@ -1,4 +1,4 @@
-// Deterministic browser explanations; full derivations and repeated experiments live in notebooks.
+// Deterministic browser models; repeated experiments live in notebooks.
 const key=(a,b)=>[Math.min(a,b),Math.max(a,b)].join(':');
 const random=seed=>{let state=seed>>>0;return()=>((state=(1664525*state+1013904223)>>>0)/4294967296);};
 export function ringRewire(n,k,probability,seed=17){

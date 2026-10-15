@@ -16696,7 +16696,7 @@
       "chapters": [
         {
           "id": "11.1",
-          "title": "从连接结构进入网络科学",
+          "title": "图结构与随机网络",
           "url": "/chapters/11-01-从连接结构进入网络科学/",
           "goals": "从四节点边表构造连接矩阵，逐节点数度、逐对找路径，再比较规则环与重连重复。",
           "prerequisites": "3.2、5.4；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
@@ -16712,77 +16712,239 @@
               "id": "P11-C01-S01",
               "chapter_id": "11.1",
               "number": "11.1.1",
-              "title": "从边表到结构统计",
+              "title": "图、邻接矩阵与最短路径",
               "outcome": "从四个细胞的通道写出连接矩阵，逐节点计边、逐对寻找最短路径，并辨认断开后的节点组。",
               "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/01-从边表到结构统计.ipynb",
               "visualization": "web/network/index.html",
+              "reading": "lessons/11-网络上的系统/01-从连接结构进入网络科学/01-从边表到结构统计.md",
               "questions": [
                 {
                   "id": "p11-small-graph-statistics",
                   "slug": "p11-small-graph-statistics",
                   "title": "计算小图的结构统计",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/11-01-从连接结构进入网络科学/read/1/#shortest-paths-and-bfs",
+                  "concept_title": "最短路径与按层搜索",
+                  "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics"
                 },
                 {
                   "id": "p11-edge-semantics",
                   "slug": "p11-edge-semantics",
                   "title": "边与计算规则",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-01-从连接结构进入网络科学/read/1/#edge-direction-weights-and-dynamics",
+                  "concept_title": "有向边、权重与动态规则",
+                  "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-edge-semantics"
                 },
                 {
                   "id": "p11-hand-drawn-path",
                   "slug": "p11-hand-drawn-path",
                   "title": "闭合四节点路径后",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-01-从连接结构进入网络科学/read/1/#adding-and-removing-edges",
+                  "concept_title": "加边、断边与结构统计",
+                  "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-hand-drawn-path"
                 },
                 {
                   "id": "p11-degree-sum",
                   "slug": "p11-degree-sum",
                   "title": "度数总和检查",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-01-从连接结构进入网络科学/read/1/#adjacency-and-degree",
+                  "concept_title": "邻接矩阵与节点度",
+                  "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-degree-sum"
                 }
               ],
               "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics",
               "notebook_url": "/notebook/?id=P11-C01-S01",
-              "url": "/notebook/?id=P11-C01-S01"
+              "reading_url": "/chapters/11-01-从连接结构进入网络科学/read/1/",
+              "concepts": [
+                {
+                  "id": "nodes-edges-and-simple-graphs",
+                  "title": "节点、边与无向简单图",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C01-S01:nodes-edges-and-simple-graphs",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/1/#nodes-edges-and-simple-graphs"
+                },
+                {
+                  "id": "adjacency-and-degree",
+                  "title": "邻接矩阵与节点度",
+                  "question_ids": [
+                    "p11-degree-sum"
+                  ],
+                  "explore": false,
+                  "key": "P11-C01-S01:adjacency-and-degree",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/1/#adjacency-and-degree"
+                },
+                {
+                  "id": "paths-and-connected-components",
+                  "title": "路径与连通分量",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C01-S01:paths-and-connected-components",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/1/#paths-and-connected-components"
+                },
+                {
+                  "id": "shortest-paths-and-bfs",
+                  "title": "最短路径与按层搜索",
+                  "question_ids": [
+                    "p11-small-graph-statistics"
+                  ],
+                  "explore": false,
+                  "key": "P11-C01-S01:shortest-paths-and-bfs",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/1/#shortest-paths-and-bfs"
+                },
+                {
+                  "id": "adding-and-removing-edges",
+                  "title": "加边、断边与结构统计",
+                  "question_ids": [
+                    "p11-hand-drawn-path"
+                  ],
+                  "explore": true,
+                  "key": "P11-C01-S01:adding-and-removing-edges",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/1/#adding-and-removing-edges",
+                  "explore_url": "/chapters/11-01-从连接结构进入网络科学/explore/?concept=P11-C01-S01%3Aadding-and-removing-edges"
+                },
+                {
+                  "id": "edge-direction-weights-and-dynamics",
+                  "title": "有向边、权重与动态规则",
+                  "question_ids": [
+                    "p11-edge-semantics"
+                  ],
+                  "explore": false,
+                  "key": "P11-C01-S01:edge-direction-weights-and-dynamics",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/1/#edge-direction-weights-and-dynamics"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C01-S01:references",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/1/#references"
+                }
+              ],
+              "url": "/chapters/11-01-从连接结构进入网络科学/read/1/"
             },
             {
               "id": "P11-C01-S02",
               "chapter_id": "11.1",
               "number": "11.1.2",
-              "title": "规则网络与重连基线",
+              "title": "规则网络、随机重连与小世界",
               "outcome": "保持节点与边数，跟算规则环的邻居连接比例，再比较多张重连网络的聚类、路径和断连情况。",
               "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/02-规则网络与重连基线.ipynb",
               "visualization": "web/network/index.html",
+              "reading": "lessons/11-网络上的系统/01-从连接结构进入网络科学/02-规则网络与重连基线.md",
               "questions": [
                 {
                   "id": "p11-mean-local-clustering",
                   "slug": "p11-mean-local-clustering",
                   "title": "计算平均局部聚类",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/11-01-从连接结构进入网络科学/read/2/#local-clustering",
+                  "concept_title": "局部聚类与邻居三角形",
+                  "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering"
                 },
                 {
                   "id": "p11-matched-edge-budget",
                   "slug": "p11-matched-edge-budget",
                   "title": "重连结构的比较",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-01-从连接结构进入网络科学/read/2/#rewiring-repeats-and-small-world",
+                  "concept_title": "重连重复与小世界比较",
+                  "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-matched-edge-budget"
                 },
                 {
                   "id": "p11-power-law-evidence",
                   "slug": "p11-power-law-evidence",
                   "title": "判断度分布的形状",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-01-从连接结构进入网络科学/read/2/#degree-distribution",
+                  "concept_title": "度分布与候选分布比较",
+                  "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-power-law-evidence"
                 },
                 {
                   "id": "p11-rewire-repeats",
                   "slug": "p11-rewire-repeats",
                   "title": "重连实验的随机性",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-01-从连接结构进入网络科学/read/2/#rewiring-rule",
+                  "concept_title": "随机重连与保留端点",
+                  "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-rewire-repeats"
                 }
               ],
               "practice_url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering",
               "notebook_url": "/notebook/?id=P11-C01-S02",
-              "url": "/notebook/?id=P11-C01-S02"
+              "reading_url": "/chapters/11-01-从连接结构进入网络科学/read/2/",
+              "concepts": [
+                {
+                  "id": "local-clustering",
+                  "title": "局部聚类与邻居三角形",
+                  "question_ids": [
+                    "p11-mean-local-clustering"
+                  ],
+                  "explore": false,
+                  "key": "P11-C01-S02:local-clustering",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/2/#local-clustering"
+                },
+                {
+                  "id": "regular-ring",
+                  "title": "规则环的度与聚类",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C01-S02:regular-ring",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/2/#regular-ring"
+                },
+                {
+                  "id": "rewiring-rule",
+                  "title": "随机重连与保留端点",
+                  "question_ids": [
+                    "p11-rewire-repeats"
+                  ],
+                  "explore": false,
+                  "key": "P11-C01-S02:rewiring-rule",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/2/#rewiring-rule"
+                },
+                {
+                  "id": "rewiring-repeats-and-small-world",
+                  "title": "重连重复与小世界比较",
+                  "question_ids": [
+                    "p11-matched-edge-budget"
+                  ],
+                  "explore": true,
+                  "key": "P11-C01-S02:rewiring-repeats-and-small-world",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/2/#rewiring-repeats-and-small-world",
+                  "explore_url": "/chapters/11-01-从连接结构进入网络科学/explore/?concept=P11-C01-S02%3Arewiring-repeats-and-small-world"
+                },
+                {
+                  "id": "degree-distribution",
+                  "title": "度分布与候选分布比较",
+                  "question_ids": [
+                    "p11-power-law-evidence"
+                  ],
+                  "explore": false,
+                  "key": "P11-C01-S02:degree-distribution",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/2/#degree-distribution"
+                },
+                {
+                  "id": "communities",
+                  "title": "社区与组内连接",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C01-S02:communities",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/2/#communities"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C01-S02:references",
+                  "url": "/chapters/11-01-从连接结构进入网络科学/read/2/#references"
+                }
+              ],
+              "url": "/chapters/11-01-从连接结构进入网络科学/read/2/"
             }
           ],
           "visualization": "web/network/index.html"
@@ -16805,77 +16967,237 @@
               "id": "P11-C02-S01",
               "chapter_id": "11.2",
               "number": "11.2.1",
-              "title": "每条边的交换与守恒",
+              "title": "逐边交换、图拉普拉斯与守恒",
               "outcome": "逐边计算两端相反的交换贡献，将三室收支写成图拉普拉斯，并检查每次更新的总量。",
               "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/01-每条边的交换与守恒.ipynb",
               "visualization": "web/network/index.html",
+              "reading": "lessons/11-网络上的系统/02-网络上的扩散与守恒/01-每条边的交换与守恒.md",
               "questions": [
                 {
                   "id": "p11-exchange-laplacian",
                   "slug": "p11-exchange-laplacian",
                   "title": "由交换边构造拉普拉斯",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/11-02-网络上的扩散与守恒/read/1/#graph-laplacian-from-balances",
+                  "concept_title": "逐节点收支与图拉普拉斯",
+                  "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian"
                 },
                 {
                   "id": "p11-edge-conservation",
                   "slug": "p11-edge-conservation",
                   "title": "一条边的收支",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-02-网络上的扩散与守恒/read/1/#equal-volume-edge-flow",
+                  "concept_title": "等容积节点与净交换流率",
+                  "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-edge-conservation"
                 },
                 {
                   "id": "p11-directed-warning",
                   "slug": "p11-directed-warning",
                   "title": "行和与总和",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-02-网络上的扩散与守恒/read/1/#constant-states-and-mass-conservation",
+                  "concept_title": "常值方向与总量守恒",
+                  "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-directed-warning"
                 },
                 {
                   "id": "p11-zero-mode",
                   "slug": "p11-zero-mode",
                   "title": "孤立节点的零模态",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-02-网络上的扩散与守恒/read/1/#component-wise-equilibrium",
+                  "concept_title": "连通分量与各自平衡",
+                  "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-zero-mode"
                 }
               ],
               "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian",
               "notebook_url": "/notebook/?id=P11-C02-S01",
-              "url": "/notebook/?id=P11-C02-S01"
+              "reading_url": "/chapters/11-02-网络上的扩散与守恒/read/1/",
+              "concepts": [
+                {
+                  "id": "equal-volume-edge-flow",
+                  "title": "等容积节点与净交换流率",
+                  "question_ids": [
+                    "p11-edge-conservation"
+                  ],
+                  "explore": false,
+                  "key": "P11-C02-S01:equal-volume-edge-flow",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/1/#equal-volume-edge-flow"
+                },
+                {
+                  "id": "graph-laplacian-from-balances",
+                  "title": "逐节点收支与图拉普拉斯",
+                  "question_ids": [
+                    "p11-exchange-laplacian"
+                  ],
+                  "explore": false,
+                  "key": "P11-C02-S01:graph-laplacian-from-balances",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/1/#graph-laplacian-from-balances"
+                },
+                {
+                  "id": "constant-states-and-mass-conservation",
+                  "title": "常值方向与总量守恒",
+                  "question_ids": [
+                    "p11-directed-warning"
+                  ],
+                  "explore": false,
+                  "key": "P11-C02-S01:constant-states-and-mass-conservation",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/1/#constant-states-and-mass-conservation"
+                },
+                {
+                  "id": "three-compartment-diffusion",
+                  "title": "三室交换的时间轨迹",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C02-S01:three-compartment-diffusion",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/1/#three-compartment-diffusion"
+                },
+                {
+                  "id": "component-wise-equilibrium",
+                  "title": "连通分量与各自平衡",
+                  "question_ids": [
+                    "p11-zero-mode"
+                  ],
+                  "explore": false,
+                  "key": "P11-C02-S01:component-wise-equilibrium",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/1/#component-wise-equilibrium"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C02-S01:references",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/1/#references"
+                }
+              ],
+              "url": "/chapters/11-02-网络上的扩散与守恒/read/1/"
             },
             {
               "id": "P11-C02-S02",
               "chapter_id": "11.2",
               "number": "11.2.2",
-              "title": "连通性、模态与容积",
+              "title": "连通分量、扩散模态与容积",
               "outcome": "由断开的节点组解释零模态，再按浓度差推导不同容积的平衡与Euler非负步长条件。",
               "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/02-连通性、模态与容积.ipynb",
               "visualization": "web/network/index.html",
+              "reading": "lessons/11-网络上的系统/02-网络上的扩散与守恒/02-连通性、模态与容积.md",
               "questions": [
                 {
                   "id": "p11-amounts-with-volumes",
                   "slug": "p11-amounts-with-volumes",
                   "title": "按容积交换物质总量",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/11-02-网络上的扩散与守恒/read/2/#euler-conservation-and-positivity",
+                  "concept_title": "Euler守恒与非负步长",
+                  "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes"
                 },
                 {
                   "id": "p11-volume-equilibrium",
                   "slug": "p11-volume-equilibrium",
                   "title": "不同容积时的平衡",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-02-网络上的扩散与守恒/read/2/#unequal-volume-concentration-flow",
+                  "concept_title": "不同容积的浓度驱动交换",
+                  "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-volume-equilibrium"
                 },
                 {
                   "id": "p11-euler-too-large",
                   "slug": "p11-euler-too-large",
                   "title": "一步更新的两项检查",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-02-网络上的扩散与守恒/read/2/#euler-conservation-and-positivity",
+                  "concept_title": "Euler守恒与非负步长",
+                  "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-euler-too-large"
                 },
                 {
                   "id": "p11-spectral-gap",
                   "slug": "p11-spectral-gap",
                   "title": "最慢模态的时间尺度",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-02-网络上的扩散与守恒/read/2/#slowest-diffusion-mode",
+                  "concept_title": "最慢模态与扩散时间尺度",
+                  "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-spectral-gap"
                 }
               ],
               "practice_url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes",
               "notebook_url": "/notebook/?id=P11-C02-S02",
-              "url": "/notebook/?id=P11-C02-S02"
+              "reading_url": "/chapters/11-02-网络上的扩散与守恒/read/2/",
+              "concepts": [
+                {
+                  "id": "spectral-diffusion-solution",
+                  "title": "特征方向与矩阵指数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C02-S02:spectral-diffusion-solution",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/2/#spectral-diffusion-solution"
+                },
+                {
+                  "id": "zero-modes-and-components",
+                  "title": "零模态与连通分量",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C02-S02:zero-modes-and-components",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/2/#zero-modes-and-components"
+                },
+                {
+                  "id": "slowest-diffusion-mode",
+                  "title": "最慢模态与扩散时间尺度",
+                  "question_ids": [
+                    "p11-spectral-gap"
+                  ],
+                  "explore": false,
+                  "key": "P11-C02-S02:slowest-diffusion-mode",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/2/#slowest-diffusion-mode"
+                },
+                {
+                  "id": "unequal-volume-concentration-flow",
+                  "title": "不同容积的浓度驱动交换",
+                  "question_ids": [
+                    "p11-volume-equilibrium"
+                  ],
+                  "explore": false,
+                  "key": "P11-C02-S02:unequal-volume-concentration-flow",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/2/#unequal-volume-concentration-flow"
+                },
+                {
+                  "id": "euler-conservation-and-positivity",
+                  "title": "Euler守恒与非负步长",
+                  "question_ids": [
+                    "p11-euler-too-large",
+                    "p11-amounts-with-volumes"
+                  ],
+                  "explore": false,
+                  "key": "P11-C02-S02:euler-conservation-and-positivity",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/2/#euler-conservation-and-positivity"
+                },
+                {
+                  "id": "components-and-volumes-experiment",
+                  "title": "断连谱解与容积分配实验",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C02-S02:components-and-volumes-experiment",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/2/#components-and-volumes-experiment"
+                },
+                {
+                  "id": "bridge-and-component-mass",
+                  "title": "断桥、全图总量与组内总量",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P11-C02-S02:bridge-and-component-mass",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/2/#bridge-and-component-mass",
+                  "explore_url": "/chapters/11-02-网络上的扩散与守恒/explore/?concept=P11-C02-S02%3Abridge-and-component-mass"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C02-S02:references",
+                  "url": "/chapters/11-02-网络上的扩散与守恒/read/2/#references"
+                }
+              ],
+              "url": "/chapters/11-02-网络上的扩散与守恒/read/2/"
             }
           ],
           "visualization": "web/network/index.html"
@@ -16898,77 +17220,247 @@
               "id": "P11-C03-S01",
               "chapter_id": "11.3",
               "number": "11.3.1",
-              "title": "固定随机数的同步传播",
+              "title": "SIR状态与同步传播",
               "outcome": "按旧状态与定向比较表跟算两步感染和恢复，解释同步更新、累计人数与活跃步数。",
               "path": "notebooks/11-网络上的系统/03-接触结构与传播/01-固定随机数的同步传播.ipynb",
               "visualization": "web/network/index.html",
+              "reading": "lessons/11-网络上的系统/03-接触结构与传播/01-固定随机数的同步传播.md",
               "questions": [
                 {
                   "id": "p11-synchronous-sir",
                   "slug": "p11-synchronous-sir",
                   "title": "用固定随机数重放传播",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/11-03-接触结构与传播/read/1/#two-step-sir-example",
+                  "concept_title": "三节点两步传播的手算",
+                  "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir"
                 },
                 {
                   "id": "p11-synchronous-order",
                   "slug": "p11-synchronous-order",
                   "title": "链上的一步传播",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-03-接触结构与传播/read/1/#sir-states-and-transitions",
+                  "concept_title": "SIR状态与一步转移",
+                  "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-order"
                 },
                 {
                   "id": "p11-per-edge-budget",
                   "slug": "p11-per-edge-budget",
                   "title": "每边概率与总接触预算",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-03-接触结构与传播/read/1/#per-edge-infection-probability",
+                  "concept_title": "多个感染邻居与至少一次成功",
+                  "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-per-edge-budget"
                 },
                 {
                   "id": "p11-extinction-vs-mean",
                   "slug": "p11-extinction-vs-mean",
                   "title": "四次传播的平均结果",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-03-接触结构与传播/read/1/#counts-and-outbreak-summary",
+                  "concept_title": "当前人数、累计规模与活跃步数",
+                  "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-extinction-vs-mean"
                 }
               ],
               "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir",
               "notebook_url": "/notebook/?id=P11-C03-S01",
-              "url": "/notebook/?id=P11-C03-S01"
+              "reading_url": "/chapters/11-03-接触结构与传播/read/1/",
+              "concepts": [
+                {
+                  "id": "sir-states-and-transitions",
+                  "title": "SIR状态与一步转移",
+                  "question_ids": [
+                    "p11-synchronous-order"
+                  ],
+                  "explore": false,
+                  "key": "P11-C03-S01:sir-states-and-transitions",
+                  "url": "/chapters/11-03-接触结构与传播/read/1/#sir-states-and-transitions"
+                },
+                {
+                  "id": "directed-random-tables",
+                  "title": "定向随机表与接触判定",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C03-S01:directed-random-tables",
+                  "url": "/chapters/11-03-接触结构与传播/read/1/#directed-random-tables"
+                },
+                {
+                  "id": "two-step-sir-example",
+                  "title": "三节点两步传播的手算",
+                  "question_ids": [
+                    "p11-synchronous-sir"
+                  ],
+                  "explore": false,
+                  "key": "P11-C03-S01:two-step-sir-example",
+                  "url": "/chapters/11-03-接触结构与传播/read/1/#two-step-sir-example"
+                },
+                {
+                  "id": "per-edge-infection-probability",
+                  "title": "多个感染邻居与至少一次成功",
+                  "question_ids": [
+                    "p11-per-edge-budget"
+                  ],
+                  "explore": false,
+                  "key": "P11-C03-S01:per-edge-infection-probability",
+                  "url": "/chapters/11-03-接触结构与传播/read/1/#per-edge-infection-probability"
+                },
+                {
+                  "id": "counts-and-outbreak-summary",
+                  "title": "当前人数、累计规模与活跃步数",
+                  "question_ids": [
+                    "p11-extinction-vs-mean"
+                  ],
+                  "explore": false,
+                  "key": "P11-C03-S01:counts-and-outbreak-summary",
+                  "url": "/chapters/11-03-接触结构与传播/read/1/#counts-and-outbreak-summary"
+                },
+                {
+                  "id": "path-sir-experiment",
+                  "title": "八节点路径与固定传播轨迹",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P11-C03-S01:path-sir-experiment",
+                  "url": "/chapters/11-03-接触结构与传播/read/1/#path-sir-experiment",
+                  "explore_url": "/chapters/11-03-接触结构与传播/explore/?concept=P11-C03-S01%3Apath-sir-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C03-S01:references",
+                  "url": "/chapters/11-03-接触结构与传播/read/1/#references"
+                }
+              ],
+              "url": "/chapters/11-03-接触结构与传播/read/1/"
             },
             {
               "id": "P11-C03-S02",
               "chapter_id": "11.3",
               "number": "11.3.2",
-              "title": "网络随机与传播随机",
+              "title": "网络重复、传播重复与分层比较",
               "outcome": "将结果按网络与传播重复排成表，手算图内与图均值间方差，并按共同起点和抽样比较结构。",
               "path": "notebooks/11-网络上的系统/03-接触结构与传播/02-网络随机与传播随机.ipynb",
               "visualization": "web/network/index.html",
+              "reading": "lessons/11-网络上的系统/03-接触结构与传播/02-网络随机与传播随机.md",
               "questions": [
                 {
                   "id": "p11-nested-outbreak-variation",
                   "slug": "p11-nested-outbreak-variation",
                   "title": "分开网络与传播重复",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/11-03-接触结构与传播/read/2/#within-and-between-description",
+                  "concept_title": "图内与图均值间的描述性方差",
+                  "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation"
                 },
                 {
                   "id": "p11-one-graph-many-draws",
                   "slug": "p11-one-graph-many-draws",
                   "title": "固定网络上的重复实验",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-03-接触结构与传播/read/2/#network-and-dynamic-randomness",
+                  "concept_title": "网络随机性与传播随机性",
+                  "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-one-graph-many-draws"
                 },
                 {
                   "id": "p11-paired-intervention",
                   "slug": "p11-paired-intervention",
                   "title": "定向干预的比较",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-03-接触结构与传播/read/2/#paired-edge-removal",
+                  "concept_title": "删边策略与相同实验条件",
+                  "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-paired-intervention"
                 },
                 {
                   "id": "p11-uncertainty-boundary",
                   "slug": "p11-uncertainty-boundary",
                   "title": "两层重复的统计",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-03-接触结构与传播/read/2/#finite-repeats-and-variation-sources",
+                  "concept_title": "有限重复与方差来源",
+                  "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-uncertainty-boundary"
                 }
               ],
               "practice_url": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation",
               "notebook_url": "/notebook/?id=P11-C03-S02",
-              "url": "/notebook/?id=P11-C03-S02"
+              "reading_url": "/chapters/11-03-接触结构与传播/read/2/",
+              "concepts": [
+                {
+                  "id": "network-and-dynamic-randomness",
+                  "title": "网络随机性与传播随机性",
+                  "question_ids": [
+                    "p11-one-graph-many-draws"
+                  ],
+                  "explore": false,
+                  "key": "P11-C03-S02:network-and-dynamic-randomness",
+                  "url": "/chapters/11-03-接触结构与传播/read/2/#network-and-dynamic-randomness"
+                },
+                {
+                  "id": "within-and-between-description",
+                  "title": "图内与图均值间的描述性方差",
+                  "question_ids": [
+                    "p11-nested-outbreak-variation"
+                  ],
+                  "explore": false,
+                  "key": "P11-C03-S02:within-and-between-description",
+                  "url": "/chapters/11-03-接触结构与传播/read/2/#within-and-between-description"
+                },
+                {
+                  "id": "finite-repeats-and-variation-sources",
+                  "title": "有限重复与方差来源",
+                  "question_ids": [
+                    "p11-uncertainty-boundary"
+                  ],
+                  "explore": false,
+                  "key": "P11-C03-S02:finite-repeats-and-variation-sources",
+                  "url": "/chapters/11-03-接触结构与传播/read/2/#finite-repeats-and-variation-sources"
+                },
+                {
+                  "id": "paired-rewiring-comparison",
+                  "title": "两种重连条件与配对设计",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C03-S02:paired-rewiring-comparison",
+                  "url": "/chapters/11-03-接触结构与传播/read/2/#paired-rewiring-comparison"
+                },
+                {
+                  "id": "nested-sir-experiment",
+                  "title": "20张图各30次传播的结果",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P11-C03-S02:nested-sir-experiment",
+                  "url": "/chapters/11-03-接触结构与传播/read/2/#nested-sir-experiment",
+                  "explore_url": "/chapters/11-03-接触结构与传播/explore/?concept=P11-C03-S02%3Anested-sir-experiment"
+                },
+                {
+                  "id": "homogeneous-mixing",
+                  "title": "平均混合与重新抽取的接触",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C03-S02:homogeneous-mixing",
+                  "url": "/chapters/11-03-接触结构与传播/read/2/#homogeneous-mixing"
+                },
+                {
+                  "id": "paired-edge-removal",
+                  "title": "删边策略与相同实验条件",
+                  "question_ids": [
+                    "p11-paired-intervention"
+                  ],
+                  "explore": false,
+                  "key": "P11-C03-S02:paired-edge-removal",
+                  "url": "/chapters/11-03-接触结构与传播/read/2/#paired-edge-removal"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C03-S02:references",
+                  "url": "/chapters/11-03-接触结构与传播/read/2/#references"
+                }
+              ],
+              "url": "/chapters/11-03-接触结构与传播/read/2/"
             }
           ],
           "visualization": "web/network/index.html"
@@ -16991,77 +17483,229 @@
               "id": "P11-C04-S01",
               "chapter_id": "11.4",
               "number": "11.4.1",
-              "title": "从单体相位到群体指标",
+              "title": "相位向量、序参量与网络耦合",
               "outcome": "从单位圆箭头的平均计算全局相位指标，解释反相分群，并将相位差接入网络耦合。",
               "path": "notebooks/11-网络上的系统/04-耦合振子与同步/01-从单体相位到群体指标.ipynb",
               "visualization": "web/network/index.html",
+              "reading": "lessons/11-网络上的系统/04-耦合振子与同步/01-从单体相位到群体指标.md",
               "questions": [
                 {
                   "id": "p11-phase-order-parameter",
                   "slug": "p11-phase-order-parameter",
                   "title": "计算全局相位序参量",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/11-04-耦合振子与同步/read/1/#phase-order-parameter-and-global-cancellation",
+                  "concept_title": "相位序参量与全局抵消",
+                  "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter"
                 },
                 {
                   "id": "p11-phase-shift-invariance",
                   "slug": "p11-phase-shift-invariance",
                   "title": "共同平移全部相位",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-04-耦合振子与同步/read/1/#common-phase-shift-and-rotation-invariance",
+                  "concept_title": "共同相位平移与旋转不变性",
+                  "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-shift-invariance"
                 },
                 {
                   "id": "p11-antiphase-clusters",
                   "slug": "p11-antiphase-clusters",
                   "title": "两组相位的序参量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-04-耦合振子与同步/read/1/#phase-order-parameter-and-global-cancellation",
+                  "concept_title": "相位序参量与全局抵消",
+                  "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-antiphase-clusters"
                 },
                 {
                   "id": "p11-phase-vs-frequency",
                   "slug": "p11-phase-vs-frequency",
                   "title": "相位靠近与频率锁定",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-04-耦合振子与同步/read/1/#antiphase-initial-state-and-evolving-order",
+                  "concept_title": "反相初态的演化与指标解释",
+                  "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-vs-frequency"
                 }
               ],
               "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter",
               "notebook_url": "/notebook/?id=P11-C04-S01",
-              "url": "/notebook/?id=P11-C04-S01"
+              "reading_url": "/chapters/11-04-耦合振子与同步/read/1/",
+              "concepts": [
+                {
+                  "id": "cycle-position-and-unit-phase-vector",
+                  "title": "周期位置与单位相位向量",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C04-S01:cycle-position-and-unit-phase-vector",
+                  "url": "/chapters/11-04-耦合振子与同步/read/1/#cycle-position-and-unit-phase-vector"
+                },
+                {
+                  "id": "phase-order-parameter-and-global-cancellation",
+                  "title": "相位序参量与全局抵消",
+                  "question_ids": [
+                    "p11-phase-order-parameter",
+                    "p11-antiphase-clusters"
+                  ],
+                  "explore": false,
+                  "key": "P11-C04-S01:phase-order-parameter-and-global-cancellation",
+                  "url": "/chapters/11-04-耦合振子与同步/read/1/#phase-order-parameter-and-global-cancellation"
+                },
+                {
+                  "id": "common-phase-shift-and-rotation-invariance",
+                  "title": "共同相位平移与旋转不变性",
+                  "question_ids": [
+                    "p11-phase-shift-invariance"
+                  ],
+                  "explore": false,
+                  "key": "P11-C04-S01:common-phase-shift-and-rotation-invariance",
+                  "url": "/chapters/11-04-耦合振子与同步/read/1/#common-phase-shift-and-rotation-invariance"
+                },
+                {
+                  "id": "natural-frequencies-and-sinusoidal-coupling",
+                  "title": "固有角频率与正弦耦合",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C04-S01:natural-frequencies-and-sinusoidal-coupling",
+                  "url": "/chapters/11-04-耦合振子与同步/read/1/#natural-frequencies-and-sinusoidal-coupling"
+                },
+                {
+                  "id": "antiphase-initial-state-and-evolving-order",
+                  "title": "反相初态的演化与指标解释",
+                  "question_ids": [
+                    "p11-phase-vs-frequency"
+                  ],
+                  "explore": true,
+                  "key": "P11-C04-S01:antiphase-initial-state-and-evolving-order",
+                  "url": "/chapters/11-04-耦合振子与同步/read/1/#antiphase-initial-state-and-evolving-order",
+                  "explore_url": "/chapters/11-04-耦合振子与同步/explore/?concept=P11-C04-S01%3Aantiphase-initial-state-and-evolving-order"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C04-S01:references",
+                  "url": "/chapters/11-04-耦合振子与同步/read/1/#references"
+                }
+              ],
+              "url": "/chapters/11-04-耦合振子与同步/read/1/"
             },
             {
               "id": "P11-C04-S02",
               "chapter_id": "11.4",
               "number": "11.4.2",
-              "title": "结构、耦合与频率锁定",
+              "title": "频率锁定、相位锁定与结构比较",
               "outcome": "在两种结构中共用频率分配与初相，分别计算末窗相位集中和尾窗平均频率差。",
               "path": "notebooks/11-网络上的系统/04-耦合振子与同步/02-结构、耦合与频率锁定.ipynb",
               "visualization": "web/network/index.html",
+              "reading": "lessons/11-网络上的系统/04-耦合振子与同步/02-结构、耦合与频率锁定.md",
               "questions": [
                 {
                   "id": "p11-one-phase-network-step",
                   "slug": "p11-one-phase-network-step",
                   "title": "一步网络相位耦合",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/11-04-耦合振子与同步/read/2/#one-coupling-step-and-degree-normalization",
+                  "concept_title": "一步耦合与按度归一化",
+                  "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step"
                 },
                 {
                   "id": "p11-degree-normalization",
                   "slug": "p11-degree-normalization",
                   "title": "耦合预算的定义",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-04-耦合振子与同步/read/2/#one-coupling-step-and-degree-normalization",
+                  "concept_title": "一步耦合与按度归一化",
+                  "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-degree-normalization"
                 },
                 {
                   "id": "p11-finite-scan-threshold",
                   "slug": "p11-finite-scan-threshold",
                   "title": "终点变化的检查",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-04-耦合振子与同步/read/2/#observation-window-time-step-and-interactive-comparison",
+                  "concept_title": "观察窗口、步长与网页对照",
+                  "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-finite-scan-threshold"
                 },
                 {
                   "id": "p11-same-frequencies",
                   "slug": "p11-same-frequencies",
                   "title": "比较结构时共用频率",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/11-04-耦合振子与同步/read/2/#shared-frequency-set-and-paired-initial-phases",
+                  "concept_title": "共同频率集合与配对初相",
+                  "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-same-frequencies"
                 }
               ],
               "practice_url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step",
               "notebook_url": "/notebook/?id=P11-C04-S02",
-              "url": "/notebook/?id=P11-C04-S02"
+              "reading_url": "/chapters/11-04-耦合振子与同步/read/2/",
+              "concepts": [
+                {
+                  "id": "one-coupling-step-and-degree-normalization",
+                  "title": "一步耦合与按度归一化",
+                  "question_ids": [
+                    "p11-one-phase-network-step",
+                    "p11-degree-normalization"
+                  ],
+                  "explore": false,
+                  "key": "P11-C04-S02:one-coupling-step-and-degree-normalization",
+                  "url": "/chapters/11-04-耦合振子与同步/read/2/#one-coupling-step-and-degree-normalization"
+                },
+                {
+                  "id": "phase-concentration-phase-locking-and-frequency-locking",
+                  "title": "相位集中、相位锁定与频率锁定",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C04-S02:phase-concentration-phase-locking-and-frequency-locking",
+                  "url": "/chapters/11-04-耦合振子与同步/read/2/#phase-concentration-phase-locking-and-frequency-locking"
+                },
+                {
+                  "id": "unwrapped-displacement-and-tail-window-frequency",
+                  "title": "未取模位移与尾窗平均频率",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C04-S02:unwrapped-displacement-and-tail-window-frequency",
+                  "url": "/chapters/11-04-耦合振子与同步/read/2/#unwrapped-displacement-and-tail-window-frequency"
+                },
+                {
+                  "id": "shared-frequency-set-and-paired-initial-phases",
+                  "title": "共同频率集合与配对初相",
+                  "question_ids": [
+                    "p11-same-frequencies"
+                  ],
+                  "explore": false,
+                  "key": "P11-C04-S02:shared-frequency-set-and-paired-initial-phases",
+                  "url": "/chapters/11-04-耦合振子与同步/read/2/#shared-frequency-set-and-paired-initial-phases"
+                },
+                {
+                  "id": "coupling-scan-and-two-result-metrics",
+                  "title": "耦合扫描与两种结果指标",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C04-S02:coupling-scan-and-two-result-metrics",
+                  "url": "/chapters/11-04-耦合振子与同步/read/2/#coupling-scan-and-two-result-metrics"
+                },
+                {
+                  "id": "observation-window-time-step-and-interactive-comparison",
+                  "title": "观察窗口、步长与网页对照",
+                  "question_ids": [
+                    "p11-finite-scan-threshold"
+                  ],
+                  "explore": true,
+                  "key": "P11-C04-S02:observation-window-time-step-and-interactive-comparison",
+                  "url": "/chapters/11-04-耦合振子与同步/read/2/#observation-window-time-step-and-interactive-comparison",
+                  "explore_url": "/chapters/11-04-耦合振子与同步/explore/?concept=P11-C04-S02%3Aobservation-window-time-step-and-interactive-comparison"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P11-C04-S02:references",
+                  "url": "/chapters/11-04-耦合振子与同步/read/2/#references"
+                }
+              ],
+              "url": "/chapters/11-04-耦合振子与同步/read/2/"
             }
           ],
           "visualization": "web/network/index.html"
@@ -17101,59 +17745,165 @@
                 "相位向量平均与尾窗频率"
               ]
             },
+            "reading": "lessons/11-网络上的系统/05-篇末综合/01-网络结构传播与同步.md",
             "questions": [
               {
                 "id": "p11-network-contract",
                 "slug": "p11-network-contract",
                 "title": "连接规律的转换",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/11-网络上的系统/综合练习/read/1/#four-node-ring-and-structural-statistics",
+                "concept_title": "四节点环与结构统计",
+                "practice_url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-network-contract"
               },
               {
                 "id": "p11-propagation-budget",
                 "slug": "p11-propagation-budget",
                 "title": "传播结构比较的预算",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/11-网络上的系统/综合练习/read/1/#paired-comparisons-and-structural-conclusions",
+                "concept_title": "配对比较与结构结论",
+                "practice_url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-propagation-budget"
               },
               {
                 "id": "p11-capstone-graph",
                 "slug": "p11-capstone-graph",
                 "title": "统计综合图",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/11-网络上的系统/综合练习/read/1/#four-node-ring-and-structural-statistics",
+                "concept_title": "四节点环与结构统计",
+                "practice_url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-capstone-graph"
               },
               {
                 "id": "p11-capstone-laplacian",
                 "slug": "p11-capstone-laplacian",
                 "title": "守恒算子与孤点",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/11-网络上的系统/综合练习/read/1/#amount-exchange-and-conservative-operator",
+                "concept_title": "总量交换与守恒算子",
+                "practice_url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-capstone-laplacian"
               },
               {
                 "id": "p11-capstone-spread",
                 "slug": "p11-capstone-spread",
                 "title": "同一随机输入下传播",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/11-网络上的系统/综合练习/read/1/#old-state-transmission-and-observation-period-statistics",
+                "concept_title": "旧状态传播与观察期统计",
+                "practice_url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-capstone-spread"
               },
               {
                 "id": "p11-capstone-phase",
                 "slug": "p11-capstone-phase",
                 "title": "判断尾窗频率锁定",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/11-网络上的系统/综合练习/read/1/#phase-states-global-vector-and-frequency",
+                "concept_title": "相位状态、全局向量与频率",
+                "practice_url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-capstone-phase"
               },
               {
                 "id": "p11-capstone-gap",
                 "slug": "p11-capstone-gap",
                 "title": "改变连接后的扩散尺度",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/11-网络上的系统/综合练习/read/1/#laplacian-spectrum-and-diffusion-scales",
+                "concept_title": "拉普拉斯谱与扩散尺度",
+                "practice_url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-capstone-gap"
               },
               {
                 "id": "p11-network-claim-limit",
                 "slug": "p11-network-claim-limit",
                 "title": "有限网络的结构结论",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/11-网络上的系统/综合练习/read/1/#paired-comparisons-and-structural-conclusions",
+                "concept_title": "配对比较与结构结论",
+                "practice_url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-network-claim-limit"
               }
             ],
             "practice_url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-network-contract",
             "notebook_url": "/notebook/?id=P11-SUMMARY",
-            "url": "/notebook/?id=P11-SUMMARY"
+            "reading_url": "/parts/11-网络上的系统/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "four-node-ring-and-structural-statistics",
+                "title": "四节点环与结构统计",
+                "question_ids": [
+                  "p11-capstone-graph",
+                  "p11-network-contract"
+                ],
+                "explore": false,
+                "key": "P11-SUMMARY:four-node-ring-and-structural-statistics",
+                "url": "/parts/11-网络上的系统/综合练习/read/1/#four-node-ring-and-structural-statistics"
+              },
+              {
+                "id": "amount-exchange-and-conservative-operator",
+                "title": "总量交换与守恒算子",
+                "question_ids": [
+                  "p11-capstone-laplacian"
+                ],
+                "explore": false,
+                "key": "P11-SUMMARY:amount-exchange-and-conservative-operator",
+                "url": "/parts/11-网络上的系统/综合练习/read/1/#amount-exchange-and-conservative-operator"
+              },
+              {
+                "id": "laplacian-spectrum-and-diffusion-scales",
+                "title": "拉普拉斯谱与扩散尺度",
+                "question_ids": [
+                  "p11-capstone-gap"
+                ],
+                "explore": false,
+                "key": "P11-SUMMARY:laplacian-spectrum-and-diffusion-scales",
+                "url": "/parts/11-网络上的系统/综合练习/read/1/#laplacian-spectrum-and-diffusion-scales"
+              },
+              {
+                "id": "old-state-transmission-and-observation-period-statistics",
+                "title": "旧状态传播与观察期统计",
+                "question_ids": [
+                  "p11-capstone-spread"
+                ],
+                "explore": false,
+                "key": "P11-SUMMARY:old-state-transmission-and-observation-period-statistics",
+                "url": "/parts/11-网络上的系统/综合练习/read/1/#old-state-transmission-and-observation-period-statistics"
+              },
+              {
+                "id": "phase-states-global-vector-and-frequency",
+                "title": "相位状态、全局向量与频率",
+                "question_ids": [
+                  "p11-capstone-phase"
+                ],
+                "explore": false,
+                "key": "P11-SUMMARY:phase-states-global-vector-and-frequency",
+                "url": "/parts/11-网络上的系统/综合练习/read/1/#phase-states-global-vector-and-frequency"
+              },
+              {
+                "id": "four-results-on-the-same-ring",
+                "title": "同一四节点环上的四幅结果",
+                "question_ids": [],
+                "explore": false,
+                "key": "P11-SUMMARY:four-results-on-the-same-ring",
+                "url": "/parts/11-网络上的系统/综合练习/read/1/#four-results-on-the-same-ring"
+              },
+              {
+                "id": "paired-comparisons-and-structural-conclusions",
+                "title": "配对比较与结构结论",
+                "question_ids": [
+                  "p11-propagation-budget",
+                  "p11-network-claim-limit"
+                ],
+                "explore": false,
+                "key": "P11-SUMMARY:paired-comparisons-and-structural-conclusions",
+                "url": "/parts/11-网络上的系统/综合练习/read/1/#paired-comparisons-and-structural-conclusions"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P11-SUMMARY:references",
+                "url": "/parts/11-网络上的系统/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/11-网络上的系统/综合练习/read/1/"
           }
         ],
         "available": true,

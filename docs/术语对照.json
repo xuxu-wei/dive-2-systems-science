@@ -2236,5 +2236,15 @@
     "zh": "输出反馈",
     "en": "output feedback",
     "scope": "part10"
+  },
+  {
+    "zh": "零模态",
+    "en": "zero mode",
+    "scope": "part11"
+  },
+  {
+    "zh": "相位序参量",
+    "en": "phase order parameter",
+    "scope": "part11"
   }
 ]

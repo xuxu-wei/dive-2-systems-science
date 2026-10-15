@@ -4,9 +4,11 @@
 
 ## [未发布]
 
-网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)、[第 10 篇](docs/validation/part10-web-teaching-20261016.md)。
+网页迁移记录：[导论与第 1 篇](docs/validation/web-teaching-20261015.md)、[第 2 篇](docs/validation/part02-web-teaching-20261016.md)、[第 3 篇](docs/validation/part03-web-teaching-20261016.md)、[第 4 篇](docs/validation/part04-web-teaching-20261016.md)、[第 5 篇](docs/validation/part05-web-teaching-20261016.md)、[第 6 篇](docs/validation/part06-web-teaching-20261016.md)、[第 7 篇](docs/validation/part07-web-teaching-20261016.md)、[第 8 篇](docs/validation/part08-web-teaching-20261016.md)、[第 9 篇](docs/validation/part09-web-teaching-20261016.md)、[第 10 篇](docs/validation/part10-web-teaching-20261016.md)、[第 11 篇](docs/validation/part11-web-teaching-20261016.md)。
 
 ### 新增
+
+- 第11篇九节网页讲授和独立实验，以40道原题连接图结构、守恒扩散、同步传播与群体节律。
 
 - 第10篇十五节网页讲授和独立实验，以64道原题连接PID、频域、状态反馈、观测器、LQR与MPC。
 
@@ -26,6 +28,8 @@
 
 ### 变更
 
+- 第11篇从逐边收支、事件表和相位向量衔接矩阵、重复统计与锁定指标；四张探索连接具体概念，原题与成绩保持。
+
 - 第10篇通过反馈时序、小矩阵和成本手算连接推导与图形，七张探索按实际模型关联概念；原题与成绩保持。
 
 - 第9篇用配方、概率流、条件期望和手算建立推理；五张探索关联实际模型，Notebook保留原算法，题目身份与版本保持。
@@ -41,10 +45,12 @@
 - 第 2 篇按网页阅读重写，Notebook 保留核心代码和参数对照；新增手算与定义桥接，分别解释时间尺度、稳定性、非负性与精度，保留题目身份及原学习记录。
 - 导论与第 1 篇的篇章、正文分节改用概念或内容标题；侧栏精简为课节，概念与习题、探索提供精确的双向定位；见[导航核对](docs/validation/concept-navigation-20261015.md)。
 - 导论及第 1 篇按网页阅读重组：补清概念定义，以手算、表格和图替代整段实验代码；见[修订核对](docs/validation/web-reading-revision-20261015.md)。
-- 网页成为主要教学窗口，已迁移 Notebook 专用于动手实验；第 7—17 篇保留原教学内容。
+- 网页成为主要教学窗口，已迁移 Notebook 专用于动手实验；第 12—17 篇保留原教学内容。
 - README 与 ROADMAP 按当前使用方式和未来优先级整理，历史实施记录由本文件与验收文件承接。
 
 ### 修复
+
+- 网络同步演示在尾窗形成前保留空段，避免将未定义的频率指标画成零；守恒实验图直接显示3 U总量。
 
 - 补清第9篇nat的信息单位定义；根轨迹绘图加入两根相遇的精确增益，修复含空格章名的Notebook返回链接。
 
