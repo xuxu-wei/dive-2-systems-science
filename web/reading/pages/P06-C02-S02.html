@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.2.2 离散傅里叶变换与单边频谱 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C02-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C02-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-one-sided-spectrum">本节练习 · 5 题</a><a class="button" href="/chapters/06-02-卷积、频谱与频率响应/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.2.2 离散傅里叶变换与单边频谱</h1>
+<p>学完本节，你应能用复旋转计算有限记录的频率成分，手算一个短序列的系数，并正确解释频率格、单边幅值和相位。</p>
+<p><strong>先修知识</strong>：第 3 篇的复数与旋转，均匀采样，以及有限序列求和。</p>
+<h2 id="complex-rotations-and-components">复旋转与频率成分</h2>
+<p>一段浓度偏差可能同时有慢节律和快节律。随时间起伏的曲线保留了它们的总和，但怎样分别读出各个频率的振幅和相位？可以让记录与不同速度的旋转相比较，看哪些旋转能与它同向累积。</p>
+<p>沿用复数表示 $z=a+ib$，以及 Euler 恒等式</p>
+<p>$$e^{i\theta}=\cos\theta+i\sin\theta.$$</p>
+<p>复指数的模长为 1，转角为 $\theta$；复数相乘使角度相加。乘以 $e^{-i\theta}$ 就向相反方向旋转。一个余弦可拆成两种方向的旋转：</p>
+<p>$$\cos\theta=\frac{e^{i\theta}+e^{-i\theta}}2.$$</p>
+<p>正、反两项各占一半，共同使虚部抵消。这个分解既解释了下面的复数求和，也将解释为什么实记录的单边幅值通常需要乘 2。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-complex-rotation">复指数怎样表示相位</a></li></ul></nav>
+
+<h2 id="dft-definition-and-frequency-grid">DFT 与频率格</h2>
+<p>记录包含 $N$ 个实值样本 $x[0],\ldots,x[N-1]$，单位为 U，采样率为 $f_s$ Hz。首个样本时刻定义为零，相邻间隔为 $1/f_s$ s。</p>
+<p>选择候选旋转 $e^{i2\pi kn/N}$。它每步转 $2\pi k/N$，经过 $N$ 个采样间隔恰好转 $k$ 圈。把每个读数乘以反向旋转，再相加，定义 <strong>DFT（discrete Fourier transform，离散傅里叶变换）</strong>：</p>
+<p>$$\boxed{X[k]=\sum_{n=0}^{N-1}x[n]e^{-i2\pi kn/N},\qquad k=0,\ldots,N-1.}$$</p>
+<p>$X[k]$ 是复数，保留对应候选的大小与角度。各个 $k$ 组成有限记录的离散频谱。</p>
+<p>候选每个采样间隔转 $k/N$ 圈，所以其频率为</p>
+<p>$$f_k=\frac{k}{N}f_s,\qquad \Delta f=\frac{f_s}{N}.$$</p>
+<p>例如 $f_s=16$ Hz、$N=64$，相邻频点相差 0.25 Hz，第 4 点为 1 Hz，第 10 点为 2.5 Hz。频点间隔由采样率和实际记录长度共同决定。</p>
+<p>DFT 将这 $N$ 个数按周期延拓：序号 $N$ 回到序号 0，周期为 $N/f_s$。实际首尾两个样本的时间跨度则是 $(N-1)/f_s$。64 点、16 Hz 的例子中，两者分别是 4 s 和 3.9375 s。</p>
+<p>当 $k&gt;N/2$，旋转每步可以减去一整圈而保持相同样本，频率也可以写成 $(k-N)f_s/N$。因此频率格的后半段对应反方向的负频率。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-frequency-units">频点间隔由什么决定</a></li></ul></nav>
+
+<h2 id="dft-hand-calculation-and-orthogonality">反向旋转的手算与正交性</h2>
+<p>取 $f_s=4$ Hz、$N=4$，记录为 $[1,0,-1,0]\,\mathrm U$。它正是振幅为 1 U 的 1 Hz 余弦在四个采样时刻的值。计算 $k=1$：</p>
+<table>
+<thead>
+<tr>
+  <th>$n$</th>
+  <th>$x[n]$/U</th>
+  <th>反向旋转 $e^{-i2\pi n/4}$</th>
+  <th>乘积 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>1</td>
+  <td>1</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>0</td>
+  <td>$-i$</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>$-1$</td>
+  <td>$-1$</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>0</td>
+  <td>$i$</td>
+  <td>0</td>
+</tr>
+</tbody>
+</table>
+<p>两个非零贡献都转向实轴正方向，和为 $X[1]=2\,\mathrm U$。同样可得 $X[3]=2\,\mathrm U$，而 $X[0]=X[2]=0$。</p>
+<p>这种相加或抵消来自候选旋转的<strong>正交性（orthogonality）</strong>。将第 $\ell$ 个旋转反向，再与第 $k$ 个相乘，角度之差产生</p>
+<p>$$\sum_{n=0}^{N-1}e^{i2\pi(k-\ell)n/N}.$$</p>
+<p>若 $k=\ell$，每项为 1，和为 $N$；若二者在 $0,\ldots,N-1$ 中不同，令 $r=e^{i2\pi(k-\ell)/N}$，则 $r^N=1$ 且 $r\ne1$，由几何和</p>
+<p>$$1+r+\cdots+r^{N-1}=\frac{1-r^N}{1-r}=0.$$</p>
+<p>因此同频旋转相互停住，其余整频点的贡献在一整段内抵消。这也给出逆变换：</p>
+<p>$$\boxed{x[n]=\frac1N\sum_{k=0}^{N-1}X[k]e^{i2\pi kn/N}.}$$</p>
+<p>把 $X[k]$ 的定义代回去，得到 $\sum_mx[m]$ 乘以各自的旋转和；仅 $m=n$ 的和为 $N$，其余为零，再除以 $N$ 就留下原来的 $x[n]$。本节采用正变换不除以 $N$、逆变换除以 $N$ 的归一化。<strong>FFT（fast Fourier transform，快速傅里叶变换）</strong>是更快地计算同一个 DFT 的算法。</p>
+<h2 id="one-sided-amplitude-and-endpoints">单边幅值与奇偶长度</h2>
+<p>对实值记录，正负频率系数成共轭对：</p>
+<p>$$X[N-k]=\overline{X[k]},\qquad k=1,\ldots,N-1.$$</p>
+<p>上横线表示共轭。为了不重复显示同一个实余弦，<strong>单边频谱（one-sided spectrum）</strong>只保留 $k=0,\ldots,\lfloor N/2\rfloor$。其中 $\lfloor N/2\rfloor$ 表示不大于 $N/2$ 的最大整数。</p>
+<p>一个落在普通正频点上的 $A\cos(2\pi kn/N+\phi)$，可写成</p>
+<p>$$\frac A2e^{i\phi}e^{i2\pi kn/N}+\frac A2e^{-i\phi}e^{-i2\pi kn/N}.$$</p>
+<p>每个旋转各保存振幅的一半，正频点系数为 $(NA/2)e^{i\phi}$。所以单边幅值应为 $2|X[k]|/N$，相位为 $\arg X[k]$。</p>
+<p>有两个位置不能按普通配对处理：直流点 $k=0$，以及偶数 $N$ 时的奈奎斯特点 $k=N/2$。它们的负频率仍是自己。归一化规则整理为</p>
+<p>$$A_k=\begin{cases}
+|X[k]|/N,&amp;k=0,\\
+|X[k]|/N,&amp;N\text{ 为偶数且 }k=N/2,\\
+2|X[k]|/N,&amp;\text{其余单边频点}.
+\end{cases}$$</p>
+<p>对四点手算，$A_1=2\times2/4=1\,\mathrm U$，恢复了原振幅。奇数 $N$ 的最后一个单边点仍有不同的负频率搭档，因此仍需乘 2。例如 $N=5$ 时，最后保留 $k=2$，其搭档为 $k=3$。</p>
+<p>对偶数长度的交替序列 $[1,-1,1,-1,\ldots]\,\mathrm U$，奈奎斯特系数为 $N\,\mathrm U$，单边幅值为 1 U。若再乘 2，就会把这条序列的振幅报成两倍。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-nyquist-amplitude">交替序列的单边频谱</a></li></ul></nav>
+
+<h2 id="phase-origin-and-zero-amplitude">相位原点与零幅标记</h2>
+<p>$\arg X[k]$ 是复数系数的相角，用反正切的两参数形式 $\operatorname{atan2}(\operatorname{Im}X[k],\operatorname{Re}X[k])$ 计算，可同时判断象限。相位在本节记为 $(-\pi,\pi]$ 内的值，$-\pi$ 与 $\pi$ 表示同一方向，统一记为 $\pi$。</p>
+<p>普通正频点上的相位以首个样本为时间原点。若将记录的起点移到原来的另一时刻，同一条余弦在新起点的角度会变化，相位记录也随之变化。直流系数 $X[0]/N$ 是带符号的均值：正均值的相角为零，负均值的相角为 $\pi$，而单边幅值取其绝对值。</p>
+<p>奈奎斯特端点还有采样本身的限制：</p>
+<p>$$A\cos(\pi n+\phi)=A\cos\phi\,(-1)^n.$$</p>
+<p>样本只保留 $A\cos\phi$，无法从它分别恢复任意连续正弦的振幅与初相位。</p>
+<p>幅值恰为零时，复向量没有方向，相位没有定义。数值求和又可能留下极小的舍入误差，所以本节实验与练习按以 U 计的数值设置阈值</p>
+<p>$$\frac{|X[k]|}{N}\le10^{-12}\max\!\left(1,\max_n|x[n]|\right).$$</p>
+<p>满足此式时，返回幅值零、相位零；这个相位零用来标记没有可报告方向的频点。其他相位采用上述主值，距离 $-\pi$ 不超过 $10^{-12}$ 时统一到 $\pi$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-phase-zero">零幅频点的相位表示什么</a></li></ul></nav>
+
+<h2 id="two-frequency-record-and-spectrum">双频记录的幅值与相位</h2>
+<p>现在以 16 Hz 记录 64 点，构造</p>
+<p>$$x(t)=0.4+1.2\cos(2\pi\cdot1\,t+0.6)
++0.5\cos(2\pi\cdot2.5\,t-0.9),$$</p>
+<p>式中的数值按秒、U、rad 计。记录由均值 0.4 U、1 Hz 振幅 1.2 U、2.5 Hz 振幅 0.5 U 三项组成。它们分别落在频点 $k=0,4,10$。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C02-S02-c3f4f6ce-0.png" alt="离散傅里叶变换与单边频谱：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图保留三项叠加后的时间曲线，中图将它们分离为对应的三个幅值，右图只在非零幅值的位置显示相位。直流幅值为 0.4 U，后两项分别为 1.2、0.5 U；相位分别为 0、0.6、−0.9 rad。将这些余弦重新相加，就能恢复原来的 64 个样本。</p>
+<p>计算单边谱时，先求复系数，再标频率、除以原记录长度、处理单边配对，最后记录相位。每个频点的三个数——频率、幅值、相位——必须始终保持相同顺序。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-one-sided-spectrum">给有限记录标上正确频率</a></li></ul></nav>
+
+<p>这里的两个节律都恰好落在频率格上。若一个频率落在格点之间，有限记录会让它在许多格点上留下贡献。下一节将由几何和分析这一变化，再解释滤波器如何改变各个频率。</p>
+<h2 id="references">参考资料</h2>
+<ul>
+<li><a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec17/">MIT 6.003 第 17 讲：离散时间频率表示</a>：复指数旋转与频率周期性。</li>
+<li><a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec18/">MIT 6.003 第 18 讲：离散时间 Fourier 表示</a>：离散周期表示与频率系数。</li>
+</ul>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-02-卷积、频谱与频率响应/read/1/">← 6.2.1 脉冲响应与线性卷积</a><a href="/chapters/06-02-卷积、频谱与频率响应/read/3/">6.2.3 有限记录、窗函数与频率响应 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

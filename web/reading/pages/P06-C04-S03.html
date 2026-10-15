@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.4.3 估计标准误、置信区间与成对自助法 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C04-S03">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C04-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-slope-interval">本节练习 · 4 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.4.3 估计标准误、置信区间与成对自助法</h1>
+<p>学完本节，你应能从读数误差推导斜率标准误，解释置信区间的重复覆盖，并分清固定设计重新测量与成对自助重抽样各改变了什么。</p>
+<p><strong>先修知识</strong>：6.4.1的直线最小二乘；第5篇的独立性、方差、协方差和高斯分布。</p>
+<h2 id="estimator-and-fixed-design">参数估计与重复测量</h2>
+<p>今天和明天用同样的标准浓度校准，同一个传感器的斜率估计可能不同。原因不必是传感器变了：只要重新产生测量误差，拟合线就会移动。要给斜率配上区间，先明确是哪一种实验在重复。</p>
+<p>固定准确浓度$x_1,\ldots,x_n$，模型为</p>
+<p>$$Y_i=\beta_0+\beta_1x_i+\varepsilon_i,\qquad
+\varepsilon_i\ \text{独立服从}\ N(0,\sigma^2).$$</p>
+<p>输入位置与真实参数保持不变，重新测得的是$Y_i$。计算读数前，$\hat\beta_1$是由随机读数组成的<strong>估计量</strong>；拿到一组数据后，它的数值是这一次的<strong>估计值</strong>。以下先把误差标准差视为已知的$\sigma=0.4\,\mathrm U$，输入单位仍为C。</p>
+<h2 id="slope-standard-error">斜率方差与标准误</h2>
+<p>令$d_i=x_i-\bar x$，$S_{xx}=\sum_i d_i^2&gt;0$。上一节的斜率式可以写成$\hat\beta_1=\sum_i d_iY_i/S_{xx}$，因为$\sum_i d_i=0$。代入测量模型，</p>
+<p>$$\begin{aligned}
+\hat\beta_1
+&amp;=\frac{\beta_0\sum_i d_i+\beta_1\sum_i d_ix_i+\sum_i d_i\varepsilon_i}{S_{xx}}\\
+&amp;=\beta_1+\frac{\sum_i d_i\varepsilon_i}{S_{xx}}.
+\end{aligned}$$</p>
+<p>这里$\sum_i d_ix_i=S_{xx}$。误差零均值使$E[\hat\beta_1]=\beta_1$，独立同方差又给出</p>
+<p>$$\operatorname{Var}(\hat\beta_1)
+=\frac{\sum_i d_i^2\sigma^2}{S_{xx}^2}
+=\frac{\sigma^2}{S_{xx}}.$$</p>
+<p><strong>标准误（standard error，SE）</strong>是估计量抽样分布的标准差。斜率标准误为</p>
+<p>$$\boxed{\mathrm{SE}(\hat\beta_1)=\frac\sigma{\sqrt{S_{xx}}},}$$</p>
+<p>单位U/C。对$[0,1,2,3,4]$ C，平均浓度为2 C，$S_{xx}=4+1+0+1+4=10$ C²，所以标准误为$0.4/\sqrt{10}\approx0.1265$ U/C。将所有浓度到中心的距离扩大两倍，$S_{xx}$变为四倍，标准误减半。这个结论使用同一条直线及相同误差尺度；拓宽设计时也要保证这些条件继续成立。</p>
+<h2 id="confidence-interval-coverage">置信区间与重复覆盖</h2>
+<p>独立高斯误差的线性组合仍为高斯，因此</p>
+<p>$$Z=\frac{\hat\beta_1-\beta_1}{\sigma/\sqrt{S_{xx}}}\sim N(0,1).$$</p>
+<p>标准正态在$[-1.96,1.96]$内的概率约为0.95。将</p>
+<p>$$-1.96\le\frac{\hat\beta_1-\beta_1}{\mathrm{SE}}\le1.96$$</p>
+<p>对未知的固定参数$\beta_1$整理，得到</p>
+<p>$$\boxed{\left[\hat\beta_1-1.96\frac\sigma{\sqrt{S_{xx}}},
+\hat\beta_1+1.96\frac\sigma{\sqrt{S_{xx}}}\right].}$$</p>
+<p>这个构造称为约95%的<strong>置信区间（confidence interval）</strong>。重复获得新读数并构造区间，约95%的区间包含固定真斜率。变动的是读数和区间，95%描述这条构造规则的覆盖概率；拿到一次具体区间后，它要么包含该参数，要么不包含。第5篇的可信区间则先为未知参数给出概率分布，再描述给定数据后的后验范围。</p>
+<p>例如上面的五浓度设计若拟合斜率为2.10 U/C，半宽约为$1.96\times0.1265=0.2479$ U/C，区间约为$[1.8521,2.3479]$ U/C。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-slope-interval">已知测量噪声下的斜率区间</a></li><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-interval-meaning">95%覆盖率指谁变化</a></li></ul></nav>
+
+<h2 id="mean-and-new-reading-interval">平均响应区间与下一读数区间</h2>
+<p>斜率有波动，拟合线在指定浓度$x_*$处的预测也有波动。平均读数估计为</p>
+<p>$$\hat\mu_* =\bar Y+\hat\beta_1(x_*-\bar x).$$</p>
+<p>因为$\sum_i d_i=0$，</p>
+<p>$$\operatorname{Cov}(\bar Y,\hat\beta_1)
+=\frac{\sigma^2\sum_i d_i}{nS_{xx}}=0.$$</p>
+<p>将两个部分的方差相加，得到</p>
+<p>$$\operatorname{Var}(\hat\mu_*)=
+\sigma^2\left[\frac1n+\frac{(x_*-\bar x)^2}{S_{xx}}\right].$$</p>
+<p>因此，平均响应的置信区间围绕$\hat\mu_*$，用这个方差的平方根乘1.96作为半宽。越远离已有浓度的中心，斜率不确定性造成的影响越大。</p>
+<p>下一次独立读数还包含一份新误差：$Y_* =\mu_*+\varepsilon_*$。估计误差与这次测量误差独立，所以</p>
+<p>$$\operatorname{Var}(Y_*-\hat\mu_*)=
+\sigma^2\left[1+\frac1n+\frac{(x_*-\bar x)^2}{S_{xx}}\right].$$</p>
+<p>对应的<strong>预测区间（prediction interval）</strong>也围绕$\hat\mu_*$，却因额外的1而更宽。例如五点设计的中心浓度处，平均响应标准误为$0.4/\sqrt5\approx0.1789$ U，下一读数预测误差的标准差为$0.4\sqrt{1+1/5}\approx0.4382$ U。增加校准点能减小参数估计造成的部分，新测量本身的噪声仍会保留。</p>
+<h2 id="unknown-variance-t-interval">未知误差方差与 t 区间</h2>
+<p>实际仪器的$\sigma$可能也要从数据估计。含截距与斜率的满秩拟合占用两个方向，残差被两条正交条件约束，剩余$n-2$个独立方向。$n&gt;2$时，</p>
+<p>$$s^2=\frac{\mathrm{SSE}}{n-2}$$</p>
+<p>是误差方差的无偏估计。分母$n-2$称为残差的<strong>自由度（degrees of freedom）</strong>。一般满列秩模型有$p$个系数时，自由度为$n-p$。</p>
+<p>用$s$代替$\sigma$，分母也开始随机变化。在$s&gt;0$的高斯固定设计下，</p>
+<p>$$T=\frac{\hat\beta_1-\beta_1}{s/\sqrt{S_{xx}}}$$</p>
+<p>服从自由度$\nu=n-2$的<strong>Student t分布</strong>。它可由一个标准正态变量除以另一个独立量$\sqrt{V/\nu}$构成，其中$V$是$\nu$个独立标准正态变量的平方和；后者来自残差方向上的误差。相比分母固定的标准正态，较小自由度的t分布有更厚的尾部。</p>
+<p>因此，未知方差的约95%区间使用$t_{\nu,0.975}$，即t分布左侧概率为0.975的分位数：</p>
+<p>$$\hat\beta_1\pm t_{n-2,0.975}\frac{s}{\sqrt{S_{xx}}}.$$</p>
+<p>这里增加的半宽反映估计误差尺度带来的额外波动；直接把$s$放进1.96公式，通常得不到精确的小样本覆盖。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-unknown-variance">未知方差时为什么需要额外条件</a></li></ul></nav>
+
+<h2 id="pairs-bootstrap">成对自助法与经验分布</h2>
+<p>另一个问题是：如果手头只有一批独立同分布个体的成对记录，怎样用它们近似估计波动？例如40个独立个体各有浓度和读数$(x_i,y_i)$，浓度也来自随机抽样。这是<strong>随机设计</strong>。</p>
+<p><strong>成对自助法（pairs bootstrap）</strong>给现有每一对记录相同概率$1/n$，把这张经验分布当作未知总体的近似。每轮有放回抽$n$行，重新拟合；同一行可以被选中多次，也可能一次未被选中。例如抽到行号$[2,2,0,3]$，第2行的浓度与读数一起出现两次，配对关系保持不变。</p>
+<p>重复$B$轮，取成功拟合斜率的2.5%和97.5%经验分位，组成<strong>百分位自助区间（percentile bootstrap interval）</strong>，作为近似95%区间。近似精度取决于原样本是否能代表总体、估计问题与样本量；增加$B$主要稳定这个经验分位的计算。</p>
+<p>若某轮抽到的浓度全相同，$S_{xx}=0$，斜率无法拟合。代码另记这种失败次数，分位数只由成功拟合者计算；失败频繁时，成功样本的分布已经舍去了大量退化抽样，需要一并考察。</p>
+<p>固定浓度的实验重复，应保留浓度位置并按误差模型重新生成读数，或采用相应的残差重抽样。成对重抽则同时改变输入与读数的抽样频数。对相关时间记录，逐行打散还会破坏原来的时间依赖，重抽单位需要保留相应的相关结构。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-bootstrap-unit">应该重采样什么单位</a></li></ul></nav>
+
+<h2 id="coverage-and-bootstrap-experiment">固定设计覆盖与自助斜率的对照</h2>
+<p>下图左侧采用0到4 C的9个固定浓度，真实直线为$1+2x$，已知误差标准差0.4 U。每轮重新产生9份独立测量误差，做200轮；图中显示前30轮区间，颜色区分是否覆盖真斜率2 U/C。</p>
+<p>右侧另抽40个独立个体，浓度均匀分布于0到4 C，使用同一直线与误差尺度生成读数。随后固定这份40行样本，进行300次成对自助重抽，画成功拟合的斜率分布及其百分位。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C04-S03-81830c94-0.png" alt="估计标准误、置信区间与成对自助法：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图每个区间来自一次新的测量实验；右图的300个斜率则都重新组合了同一份40行记录。左侧200轮覆盖频率本身也会波动，若理论覆盖为0.95，其标准误约为</p>
+<p>$$\sqrt{\frac{0.95(1-0.95)}{200}}\approx0.0154.$$</p>
+<p>因此，有限实验不必得到恰好0.95。右侧的分位展示这份经验分布下的估计变化。先说清重新抽取的是新测量误差，还是现有整行记录，再解释区间，才能把两个图中的“重复”与各自的问题对应起来。</p>
+<p>下一章让历史读数进入预测。输入也将来自随时间演化的记录，误差与回归量之间的关系会变得更加重要。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/6-435-system-identification-spring-2005/resources/lec5_6_435/">MIT 6.435 最小二乘讲义</a>讨论估计误差与回归设计的关系。本节以已知高斯误差的固定设计覆盖实验和随机设计成对重抽实验，分别说明两种重复过程。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-04-最小二乘与参数估计/read/2/">← 6.4.2 指数清除曲线、加权损失与网格估计</a><a href="/chapters/06-05-动态辨识、实验设计与验证/read/1/">6.5.1 ARX 回归、一步预测与自由运行 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

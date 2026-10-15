@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.4.2 指数清除曲线、加权损失与网格估计 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C04-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C04-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-clearance-grid">本节练习 · 5 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.4.2 指数清除曲线、加权损失与网格估计</h1>
+<p>学完本节，你应能在给定候选集合中拟合一阶消除速率常数，按测量精度设置相对权重，并解释取对数和差分怎样改变误差。</p>
+<p><strong>先修知识</strong>：6.4.1的残差、最小二乘与高斯似然；第2篇的指数衰减，以及第5篇的方差。</p>
+<h2 id="clearance-model-and-observations">指数曲线与带误差读数</h2>
+<p>一次投放后停止输入，已知初始总量为10 U。随后的六个读数为10.1、6.7、5.0、3.0、2.5、1.1 U，测量时刻依次为0、1、2、3、4、5 T。它们大致沿指数曲线下降，却没有恰好落在同一条曲线上。我们希望从整组读数估计清除的快慢。</p>
+<p>采用</p>
+<p>$$A(t)=A_0e^{-kt},\qquad y_i=A_0e^{-kt_i}+\varepsilon_i.$$</p>
+<p>$k\ge0$是一阶消除速率常数，单位$\mathrm{T^{-1}}$；$A_0=10\,\mathrm U$由独立条件给定。假设读数误差相互独立且均值为零。$t=0$的10.1 U本身含误差，因此模型仍从给定的10 U出发。</p>
+<p>对每个候选$k$，定义预测与残差</p>
+<p>$$\hat y_i(k)=A_0e^{-kt_i},\qquad r_i(k)=y_i-\hat y_i(k).$$</p>
+<p>例如$k=0.4\,\mathrm{T^{-1}}$在$t=1$ T预测$10e^{-0.4}\approx6.7032$ U，残差约为$-0.0032$ U；在$t=2$ T预测约4.4933 U，残差约0.5067 U。一个时刻非常接近，仍需把其余读数一起纳入比较。</p>
+<h2 id="finite-grid-estimation">有限候选集合与网格最优</h2>
+<p>先让各点等权，逐项平方相加。比较三个候选，得到</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">候选$k$/T⁻¹</th>
+  <th style="text-align:right">六点平方残差和/U²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0.2</td>
+  <td style="text-align:right">约21.9371</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.4</td>
+  <td style="text-align:right">约0.5625</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.6</td>
+  <td style="text-align:right">约10.1451</td>
+</tr>
+</tbody>
+</table>
+<p>在这三个候选中，0.4的损失最低。对事先给定的有限候选集合$\mathcal K$，<strong>网格估计</strong>就是枚举各候选并选择损失最小者：</p>
+<p>$$\hat k_{\mathcal K}\in\underset{k\in\mathcal K}{\arg\min}\ S(k).$$</p>
+<p>$\arg\min$表示“使后面的量最小的参数”；若出现多个完全相同的最小值，本题选较小的$k$。这个规则让返回值明确，数据本身仍可能无法区分并列的候选。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-grid-resolution">网格最优意味着什么</a></li></ul></nav>
+
+<p>把原网格中的点全部保留，再加入新点，最小损失不会变大，因为原来最优的候选仍可选。但有限集合中最优只回答已经算过的比较，尚未计算的参数仍可能给出更低损失。若最优落在网格端点，可以扩大范围再观察损失曲线。</p>
+<p>有两种容易手算的无信息情形：所有$t_i=0$时，任何$k$都预测$A_0$；$A_0=0$时，任何$k$都预测0。此时返回较小候选来自并列规则，而不是读数确定了清除速度。</p>
+<h2 id="relative-weights-and-units">测量精度与相对权重</h2>
+<p>若后期读数更不精确，它们是否应和早期读数一样影响拟合？设独立高斯误差的已知方差为$\sigma_i^2$，上一节的似然给出权重与$1/\sigma_i^2$成比例。</p>
+<p>选一个参考方差$\sigma_{\rm ref}^2$，定义无量纲相对权重</p>
+<p>$$w_i=\frac{\sigma_{\rm ref}^2}{\sigma_i^2},\qquad
+\boxed{S_w(k)=\sum_iw_i r_i(k)^2.}$$</p>
+<p>$S_w$的单位仍是U²；将它除以$2\sigma_{\rm ref}^2$，才得到负对数似然中随$k$变化的无量纲部分。若直接用$1/\sigma_i^2$作权重，损失则无量纲。这两种比例约定产生同一个最佳参数。</p>
+<p>本例将前四个读数的权重取为1。若后两个点的误差标准差是前四个点的两倍，方差就是四倍，因此相对权重为$1/4$。权重列表按测量时刻排列为</p>
+<p>$$[1,1,1,1,0.25,0.25].$$</p>
+<p>这些数反映拟合前给定的仪器精度。所有权重同时乘一个正数，损失整体按相同比例缩放，最优$k$保持不变。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-clearance-grid">在给定参数集合中拟合清除</a></li></ul></nav>
+
+<h2 id="grid-weight-experiment">网格与权重的曲线对照</h2>
+<p>下面先在0到0.8 T⁻¹间使用间隔0.1 T⁻¹的粗网格，再将间隔缩到0.005 T⁻¹。等权拟合使用同一组读数与同一损失；另用刚才的相对精度权重做一次拟合。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C04-S02-a7ac63a6-0.png" alt="指数清除曲线、加权损失与网格估计：实验结果图" loading="lazy"></figure>
+</section>
+<p>粗网格选中0.400 T⁻¹，细网格选中0.380 T⁻¹。右图显示细网格中损失最低的位置，较低的等权损失来自新增候选。左图中，等权与精度加权的细网格都选中0.380 T⁻¹，所以两条拟合曲线重合。</p>
+<p>调整权重改变了比较各候选的标准，但最优离散点可能保持相同。两套权重的损失数值使用不同尺度，比较拟合变化时应看所选参数、预测曲线与对应残差，而不是只比较两个损失数字谁更小。</p>
+<h2 id="log-transform-error">对数变换与误差模型</h2>
+<p>无误差且$A_0&gt;0$时，</p>
+<p>$$\log\frac{A(t)}{A_0}=-kt$$</p>
+<p>把指数曲线变成直线。对数作用于无量纲比值，$k$仍有$\mathrm{T^{-1}}$单位。若读数是加性误差$y=A+\varepsilon$，且当前读数为正，则</p>
+<p>$$\log\frac y{A_0}=\log\frac A{A_0}+\log\left(1+\frac\varepsilon A\right).$$</p>
+<p>在$|\varepsilon/A|$较小时，用$\log(1+v)\approx v$得到对数误差约为$\varepsilon/A$。即使原误差方差恒为$\sigma^2$，对数误差的近似方差也成为$\sigma^2/A^2$：晚期总量更小，相同大小的读数误差被放大更多，变换后的误差均值也未必为零。$y\le0$时实数对数没有定义，删去这些读数还会改变保留下来的抽样分布。</p>
+<p>另一种测量模型是乘性误差</p>
+<p>$$y=A\exp(\eta),\qquad \eta\sim N(0,\tau^2).$$</p>
+<p>若各次$\eta$独立同方差，取对数后得到加性同方差高斯误差，才与对数尺度上的无权平方损失相配。在这个模型中，$A$是读数的中位数曲线；由高斯指数的平均可得$E[y]=A\exp(\tau^2/2)$。拟合的尺度与误差如何进入读数应当一起选择。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-log-error-model">取对数只是换一种写法吗</a></li></ul></nav>
+
+<h2 id="noisy-difference-errors">带噪差分的方差与共享误差</h2>
+<p>还可以尝试先把相邻读数相减，再由变化率估计$k$。若$Y_n=A_n+\varepsilon_n$，则</p>
+<p>$$\frac{Y_{n+1}-Y_n}{h}
+=\frac{A_{n+1}-A_n}{h}+\frac{\varepsilon_{n+1}-\varepsilon_n}{h}.$$</p>
+<p>独立同方差误差使新增差分噪声的方差为</p>
+<p>$$\operatorname{Var}\!\left(\frac{\varepsilon_{n+1}-\varepsilon_n}{h}\right)
+=\frac{2\sigma^2}{h^2}.$$</p>
+<p>把$h$减半会使这个方差增为四倍。若又把$Y_n$当作回归输入，差分中的$-\varepsilon_n$和$Y_n$共享同一个误差；在真实轨迹固定时，两者协方差为$-\sigma^2/h$。因此，用带噪差分代替准确导数再做普通回归，会改变上一节所用的误差条件。直接拟合总量曲线，可以在观测尺度上明确写出误差。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-noisy-differences">带噪差分为何不能当无误差导数</a></li></ul></nav>
+
+<h2 id="residual-and-new-data-check">残差与新观测检查</h2>
+<p>拟合后按时间画出$r_i$，能看到偏差是否连续同号、是否随总量大小变化，再与设定的测量误差尺度比较。记录候选范围并查看多个参数能否产生近似曲线，可以说明当前数据对$k$的分辨程度。最后，用拟合前预留的时刻或新个体读数检查预测，让模型面对尚未用来选参数的数据。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-residual-validation">拟合残差小还需检查什么</a></li></ul></nav>
+
+<p>这些检查分别观察误差结构、参数分辨与新数据预测。下一节暂时固定一种直线与误差模型，计算重新测量时参数估计本身会波动多少。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/6-435-system-identification-spring-2005/resources/lec5_6_435/">MIT 6.435 最小二乘讲义</a>解释误差假设与平方损失的联系。网格、六点读数及两种权重是本节用于比较的小实验。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-04-最小二乘与参数估计/read/1/">← 6.4.1 最小二乘、正规方程与误差模型</a><a href="/chapters/06-04-最小二乘与参数估计/read/3/">6.4.3 估计标准误、置信区间与成对自助法 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

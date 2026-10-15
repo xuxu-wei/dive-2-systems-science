@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.6.2 指数遗忘、参数漂移与在线评估 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C06-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C06-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective">本节练习 · 5 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.6.2 指数遗忘、参数漂移与在线评估</h1>
+<p>学完本节，你应能展开旧记录的指数权重，解释参数漂移、噪声和弱激励怎样影响估计，并按先预测后更新的顺序选择和评价遗忘因子。</p>
+<p><strong>先修知识</strong>：上一节的递推最小二乘、几何级数，以及训练、验证与最终评估。</p>
+<h2 id="exponential-forgetting-record-weights">指数遗忘与记录权重</h2>
+<p>培养条件缓慢变化，早期记录可能不再代表当前的交换与清除。保留全部历史，估计会综合旧、新条件；减轻旧记录的权重，可以让近期数据更快影响参数，但也会放大近期噪声带来的波动。</p>
+<p>用<strong>遗忘因子（forgetting factor）</strong> $\lambda$ 指定每来一条数据后，旧目标还保留多少。取 $0&lt;\lambda\le1$，对同一个候选参数 $\theta$ 定义</p>
+<p>$$J_n(\theta)=\lambda J_{n-1}(\theta)
++(y_n-\phi_n^{\mathsf T}\theta)^2.$$</p>
+<p>$\lambda=1$ 时保留全部旧约束；小于1时，旧项每步都乘同一个折扣。沿用上一节的初始平方惩罚，逐次展开：</p>
+<p>$$\boxed{J_n(\theta)=
+\lambda^n(\theta-\theta_0)^{\mathsf T}H_0(\theta-\theta_0)
++\sum_{i=1}^n\lambda^{n-i}(y_i-\phi_i^{\mathsf T}\theta)^2.}$$</p>
+<p>取 $\lambda=0.8$，收到第五条记录时：</p>
+<table>
+<thead>
+<tr>
+  <th>项目</th>
+  <th style="text-align:right">权重</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>初始惩罚</td>
+  <td style="text-align:right">$0.8^5=0.32768$</td>
+</tr>
+<tr>
+  <td>第1条</td>
+  <td style="text-align:right">$0.8^4=0.4096$</td>
+</tr>
+<tr>
+  <td>第2条</td>
+  <td style="text-align:right">$0.8^3=0.512$</td>
+</tr>
+<tr>
+  <td>第3条</td>
+  <td style="text-align:right">$0.8^2=0.64$</td>
+</tr>
+<tr>
+  <td>第4条</td>
+  <td style="text-align:right">$0.8$</td>
+</tr>
+<tr>
+  <td>第5条</td>
+  <td style="text-align:right">1</td>
+</tr>
+</tbody>
+</table>
+<p>初始项比第一条记录多经历一次衰减，因为它在第一条到来之前已经存在。保留固定初始惩罚、不让它衰减，会得到另一种目标。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective">遗忘递推对应哪种目标</a></li></ul></nav>
+
+<p>计算题将记录权重从最旧排到最新。没有记录时，初始项权重仍为1，记录权重列表为空。对于 $\lambda&lt;1$，长历史的观测权重和趋近 $1/(1-\lambda)$；这说明累计权重的量级，实际参数信息还取决于各条特征指向哪里。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-weights">写出当前批量目标的权重</a></li></ul></nav>
+
+<h2 id="weighted-least-squares-recursion">遗忘最小二乘的递推</h2>
+<p>与上一节一样，收集平方项与一次项得到</p>
+<p>$$H_n=\lambda H_{n-1}+\phi_n\phi_n^{\mathsf T},\qquad
+b_n=\lambda b_{n-1}+\phi_ny_n.$$</p>
+<p>先让旧信息矩阵乘 $\lambda$，其逆便是 $P_{n-1}/\lambda$；再对新外积使用上一节的秩一逆公式，得到</p>
+<p>$$K_n=\frac{P_{n-1}\phi_n}
+{\lambda+\phi_n^{\mathsf T}P_{n-1}\phi_n},$$</p>
+<p>$$P_n=\frac1\lambda\left[
+P_{n-1}
+-\frac{(P_{n-1}\phi_n)(P_{n-1}\phi_n)^{\mathsf T}}
+{\lambda+\phi_n^{\mathsf T}P_{n-1}\phi_n}
+\right],$$</p>
+<p>$$\theta_n=\theta_{n-1}
++K_n(y_n-\phi_n^{\mathsf T}\theta_{n-1}).$$</p>
+<p>这组式子仍是当前加权批量目标的解。$0&lt;\lambda$ 保证旧信息缩放后保持正定，也使递推中的除法有意义。</p>
+<p>例如标量特征为1、初始 $\theta_0=0,P_0=1$，取 $\lambda=1/2$，第一条读数为2。则</p>
+<p>$$K_1=\frac1{1/2+1}=\frac23,\qquad
+\theta_1=\frac43,\qquad P_1=\frac23.$$</p>
+<p>批量目标为 $(1/2)\theta^2+(2-\theta)^2$，求导也得到 $\theta=4/3$。与无遗忘时的1相比，初始约束变轻，新读数对参数的影响更大。</p>
+<h2 id="drift-noise-and-tracking">漂移、噪声与跟踪</h2>
+<p>采用无单位回归 $y_i=\phi_i^{\mathsf T}\theta_i+\epsilon_i$，特征在目标到达前已知。每个时刻的真实系数可能改变，而加权拟合用一个候选 $\theta$ 概括近期记录。若真实系数缓慢漂移，较短记忆可以减轻旧系数留下的约束；若系数固定，减轻历史也会削弱多次平均噪声的效果。</p>
+<p>下图保持同一组特征与同一串标准化噪声，构造三条各含200条到达记录的序列：固定系数、第二系数缓慢漂移、固定系数但噪声标准差增大四倍。前两组噪声标准差为0.025，第三组为0.1。每幅图展示三个候选因子的第二参数轨迹，灰虚线为生成系数，竖线为最终评估起点。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C06-S02-b85f26f7-0.png" alt="指数遗忘、参数漂移与在线评估：实验结果图" loading="lazy"></figure>
+</section>
+<p>中图中，较短记忆对生成系数的变化响应更快；在左、右两图的固定系数情形下，它也更容易跟随近期噪声起伏。较大的预测误差既可能来自系数变化，也可能来自噪声增大。将这两种变化分别施加，才能从对照中看清它们的作用。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-drift-noise-validation">跟得快和估得准不是同一件事</a></li></ul></nav>
+
+<h2 id="persistent-excitation-and-unobserved-directions">持续激励与缺少信息的方向</h2>
+<p>短记忆有用的前提，是近期记录仍能提供所需方向。若每条特征都是 $[1,0]$，第二个参数根本不参与预测；没有新观测可以区分它。</p>
+<p>设初始逆信息无交叉项，第二参数便一直保持初值，而</p>
+<p>$$P_{22,n}=\lambda^{-n}P_{22,0}.$$</p>
+<p>例如 $\lambda=0.95,P_{22,0}=1$，十条记录后这一元素为 $0.95^{-10}\approx1.6702$。它增长表示该方向的初始约束不断被削弱，同时没有新约束补入。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C06-S02-504d61a7-0.png" alt="指数遗忘、参数漂移与在线评估：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图第二参数始终为0.1，第一参数则趋近读数0.7；右图第二个逆信息对角元按刚才的指数关系上升。矩阵元素变化没有让第二参数被数据确定。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-excitation">固定回归方向下的遗忘</a></li></ul></nav>
+
+<p>上一章用有限矩阵的秩检查一段数据。长期运行还需检查后来的窗口是否持续覆盖各参数方向。在有界回归特征下，<strong>持续激励（persistent excitation）</strong>可表述为：存在固定窗口长度 $L$ 和常数 $\alpha&gt;0$，对每个起点 $t$ 及每个参数方向 $v$，</p>
+<p>$$\sum_{i=t}^{t+L-1}(\phi_i^{\mathsf T}v)^2
+\ge\alpha\|v\|^2.$$</p>
+<p>左侧累计该方向在一个窗口内能产生多少平方输出变化。这个下界要求每个方向都不断得到新的约束；$[1,0]$ 对方向 $v=[0,1]^{\mathsf T}$ 的左侧为零，显然不满足。遗忘调节历史权重，激励决定近期有没有信息，两者承担不同任务。</p>
+<h2 id="tuning-window-and-online-scoring">调参窗口与在线评分</h2>
+<p>因子的选择也要遵守读数到达的顺序。实验的数组索引从0开始，对应三个预定时段：</p>
+<table>
+<thead>
+<tr>
+  <th>到达记录索引</th>
+  <th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0—79</td>
+  <td>积累初始记录</td>
+</tr>
+<tr>
+  <td>80—139</td>
+  <td>比较 $\lambda=0.9,0.97,1$ 的更新前预测误差</td>
+</tr>
+<tr>
+  <td>140—199</td>
+  <td>固定所选因子后评价在线预测</td>
+</tr>
+</tbody>
+</table>
+<p>公式中的第 $i$ 条记录对应数组索引 $i-1$。每个候选从相同初始化运行，调参时只比较80—139的均方误差，完全并列时选较小因子。选好以后，参数继续更新，因子保持不变。</p>
+<p>每条记录的顺序为：</p>
+<ol>
+<li>用此前参数和当前已知特征保存预测 $\hat y$。</li>
+<li>当前目标 $y$ 到达，用 $y-\hat y$ 计算这条误差。</li>
+<li>再用这条目标更新参数，供后续预测使用。</li>
+</ol>
+<p>最终RMSE使用140—199的这些更新前误差。索引140的记录评分完成后，它可以帮助索引141及以后记录的预测；因此后来的参数会使用已到达的评估读数。它们也只影响此后的预测，不回写已经保存的分数。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-online-clock">在线误差应在哪一步计算</a></li></ul></nav>
+
+<p>这个任务评价“持续收到目标、持续更新”的在线过程。如果之后收不到目标，应按照冻结参数或自由运行的实际使用方式另行评价。</p>
+<h2 id="weighted-objective-and-sampling-covariance">加权目标与抽样协方差</h2>
+<p>逆信息仍来自当前目标。固定设计与真实系数，设独立误差方差为 $\sigma^2$，将观测权重放在对角矩阵 $W$ 中，当前信息矩阵为</p>
+<p>$$H=\lambda^nH_0+\Phi^{\mathsf T}W\Phi.$$</p>
+<p>估计中随误差变化的部分为 $H^{-1}\Phi^{\mathsf T}W\epsilon$，所以</p>
+<p>$$\operatorname{Cov}(\hat\theta)
+=\sigma^2H^{-1}\Phi^{\mathsf T}W^2\Phi H^{-1}.$$</p>
+<p>权重在随机误差的左右各出现一次，因而中间是 $W^2$。这与上一节固定中心协方差的推理一致，不能只从 $P=H^{-1}$ 的大小读出任意数据下的参数方差。图中的漂移情形则还包含“一个近期常数近似变化系数”的误差，需要与观测噪声一起解释。</p>
+<p>篇末综合将输入表示、拟合、数据隔离和在线顺序放回一条计算链，检查每个分数究竟用了哪些信息。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/2-161-signal-processing-continuous-and-discrete-fall-2008/0908e93cb4f31eac9150b14c1ffdf328_rls.pdf">MIT 2.161的RLS讲义</a>从指数加权误差推导递推关系；<a href="https://ocw.mit.edu/courses/6-435-system-identification-spring-2005/pages/lecture-notes/">MIT 6.435讲义</a>第7—8、21—24讲连接激励、递推估计与实践验证。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-06-递推辨识与时变参数跟踪/read/1/">← 6.6.1 正则化最小二乘与递推更新</a><a href="/parts/06-从测量走向模型/综合练习/read/1/">篇末综合 测量表示、参数辨识与预测验证 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

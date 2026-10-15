@@ -131,3 +131,14 @@ def test_overview_preserves_reviewed_text_without_automatic_annotations():
 def test_part05_compound_annotations_keep_their_full_scientific_meaning(source):
     issues, _ = check_text(source, 5, require_first=False)
     assert issues == []
+
+
+@pytest.mark.parametrize('source', [
+    '居中移动平均（centered moving average）使用前后窗口。',
+    '群延迟（group delay）描述相位随频率的变化。',
+    '参数可辨识性（parameter identifiability）取决于参数到观测的映射。',
+    '信息矩阵（information matrix）累计回归方向的约束。',
+])
+def test_part06_compound_annotations_do_not_split_into_shorter_terms(source):
+    issues, _ = check_text(source, 6, require_first=False)
+    assert issues == []

@@ -3,142 +3,157 @@
     "id": "P06-C01-S01",
     "chapter_id": "6.1",
     "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb",
-    "title": "采样间隔与混叠",
+    "title": "采样率与混叠",
     "outcome": "手算同一组采样点上的两种余弦，区分观测间隔、求解步长与抗混叠处理。",
     "number": "6.1.1",
-    "visualization": "web/measurement/index.html"
+    "visualization": "web/measurement/index.html",
+    "reading": "lessons/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.md"
   },
   {
     "id": "P06-C01-S02",
     "chapter_id": "6.1",
     "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb",
-    "title": "因果滤波与时间延迟",
+    "title": "因果移动平均与时间延迟",
     "outcome": "从已有读数算因果平均，推导独立噪声方差和缓变信号的延迟，再比较居中平均。",
     "number": "6.1.2",
-    "visualization": "web/measurement/index.html"
+    "visualization": "web/measurement/index.html",
+    "reading": "lessons/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.md"
   },
   {
     "id": "P06-C02-S01",
     "chapter_id": "6.2",
     "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.ipynb",
-    "title": "从脉冲响应到线性卷积",
+    "title": "脉冲响应与线性卷积",
     "outcome": "把一次输入拆成平移脉冲，逐项相加得到完整线性卷积，并解释末尾与循环回绕。",
     "number": "6.2.1",
-    "visualization": "web/measurement/index.html"
+    "visualization": "web/measurement/index.html",
+    "reading": "lessons/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.md"
   },
   {
     "id": "P06-C02-S02",
     "chapter_id": "6.2",
     "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.ipynb",
-    "title": "复指数与离散频谱",
+    "title": "离散傅里叶变换与单边频谱",
     "outcome": "沿复指数旋转计算频谱，说明每个频率格点、幅值及相位对应什么信号。",
     "number": "6.2.2",
-    "visualization": "web/measurement/index.html"
+    "visualization": "web/measurement/index.html",
+    "reading": "lessons/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.md"
   },
   {
     "id": "P06-C02-S03",
     "chapter_id": "6.2",
     "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.ipynb",
-    "title": "有限记录与滤波频率响应",
+    "title": "有限记录、窗函数与频率响应",
     "outcome": "比较整周期与非整周期记录，解释加窗和补零，再用频率响应预测滤波结果。",
     "number": "6.2.3",
-    "visualization": "web/measurement/index.html"
+    "visualization": "web/measurement/index.html",
+    "reading": "lessons/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.md"
   },
   {
     "id": "P06-C03-S01",
     "chapter_id": "6.3",
     "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.ipynb",
-    "title": "LTI假设与Laplace表示",
+    "title": "线性时不变系统与 Laplace 变换",
     "outcome": "检查叠加与平移是否成立，从单室收支推导变换关系，并分别计算初态与输入响应。",
     "number": "6.3.1",
-    "visualization": "web/measurement/index.html"
+    "visualization": "web/measurement/index.html",
+    "reading": "lessons/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.md"
   },
   {
     "id": "P06-C03-S02",
     "chapter_id": "6.3",
     "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb",
-    "title": "Z变换与精确采样",
+    "title": "精确采样、Z 变换与离散极点",
     "outcome": "对一个采样区间积分，推导精确递推和 Z 变换，比较精确倍率与 Euler 倍率。",
     "number": "6.3.2",
-    "visualization": "web/measurement/index.html"
+    "visualization": "web/measurement/index.html",
+    "reading": "lessons/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.md"
   },
   {
     "id": "P06-C04-S01",
     "chapter_id": "6.4",
     "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.ipynb",
-    "title": "最小二乘与误差假设",
+    "title": "最小二乘、正规方程与误差模型",
     "outcome": "从四个读数手算直线拟合，再由正交条件和高斯误差解释最小二乘。",
     "number": "6.4.1",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.md"
   },
   {
     "id": "P06-C04-S02",
     "chapter_id": "6.4",
     "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.ipynb",
-    "title": "清除曲线的网格估计",
+    "title": "指数清除曲线、加权损失与网格估计",
     "outcome": "逐个比较清除系数的候选损失，解释残差、相对权重和网格范围对结果的影响。",
     "number": "6.4.2",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.md"
   },
   {
     "id": "P06-C04-S03",
     "chapter_id": "6.4",
     "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.ipynb",
-    "title": "参数区间与重复观测",
+    "title": "估计标准误、置信区间与成对自助法",
     "outcome": "在相同设计下重复测量，计算斜率区间，并区分固定设计与成对重抽样。",
     "number": "6.4.3",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.md"
   },
   {
     "id": "P06-C05-S01",
     "chapter_id": "6.5",
     "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb",
-    "title": "ARX回归与两种预测",
+    "title": "ARX 回归、一步预测与自由运行",
     "outcome": "写清历史与输入的回归顺序，解释条件平均，并手算一步预测和自由运行的差别。",
     "number": "6.5.1",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.md"
   },
   {
     "id": "P06-C05-S02",
     "chapter_id": "6.5",
     "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.ipynb",
-    "title": "激励与可辨识范围",
+    "title": "输入激励与参数可辨识性",
     "outcome": "比较稳态、瞬态与变化输入，判断记录中有几个独立方向，以及哪些参数能区分。",
     "number": "6.5.2",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.md"
   },
   {
     "id": "P06-C05-S03",
     "chapter_id": "6.5",
     "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.ipynb",
-    "title": "数据划分与独立验证",
+    "title": "数据划分、缺测与预测验证",
     "outcome": "先按未来时段或新个体划分数据，再拟合、选结构与最终评估，保留缺测时钟。",
     "number": "6.5.3",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.md"
   },
   {
     "id": "P06-C06-S01",
     "chapter_id": "6.6",
     "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/01-从批量最小二乘到递推更新.ipynb",
-    "title": "从批量最小二乘到递推更新",
+    "title": "正则化最小二乘与递推更新",
     "number": "6.6.1",
     "outcome": "从累计平方损失推导逐次更新，用同一初始项核对批量解，并解释逆信息矩阵。",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/06-从测量走向模型/06-递推辨识与时变参数跟踪/01-从批量最小二乘到递推更新.md"
   },
   {
     "id": "P06-C06-S02",
     "chapter_id": "6.6",
     "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/02-遗忘、漂移与在线验证.ipynb",
-    "title": "遗忘、漂移与在线验证",
+    "title": "指数遗忘、参数漂移与在线评估",
     "number": "6.6.2",
     "outcome": "跟踪旧观测的权重衰减，比较漂移、噪声与弱激励，并按先预测后更新评估。",
-    "visualization": null
+    "visualization": null,
+    "reading": "lessons/06-从测量走向模型/06-递推辨识与时变参数跟踪/02-遗忘、漂移与在线验证.md"
   },
   {
     "id": "P06-SUMMARY",
     "chapter_id": "6.summary",
     "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb",
-    "title": "测量辨识与验证的综合实验",
+    "title": "测量表示、参数辨识与预测验证",
     "number": "篇末综合",
     "outcome": "为独立题组选择观测、表示、拟合与评估方法，解释残差和递推预测各自的证据。",
     "visualization": null,
@@ -151,6 +166,7 @@
         "按给定候选和相对权重计算损失，比较一步预测与自由运行的残差",
         "只用调参时段选择遗忘因子，再对预留观测先预测、记误差并更新参数"
       ]
-    }
+    },
+    "reading": "lessons/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.md"
   }
 ]

@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "76625e41e4ee486b558b106ab7aa0d0dffcfef3c41c9251e01e7bfd12d337cfb",
+    "catalogSha256": "73a1b3003f4c90dd561da56f239079189edd97f920d4d5703f1d287131621148",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -6891,8 +6891,8 @@
       "english": null,
       "number": "6.1.1",
       "parentId": "6.1",
-      "url": "/notebook/?id=P06-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-01-观测、采样与滤波/read/1/",
+      "readingUrl": "/chapters/06-01-观测、采样与滤波/read/1/",
       "practiceUrl": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-cosine-samples",
       "description": "手算同一组采样点上的两种余弦，区分观测间隔、求解步长与抗混叠处理。",
       "categories": [
@@ -6911,7 +6911,7 @@
       "total": 1,
       "lessonId": "P06-C01-S01",
       "lessonNumber": "6.1.1",
-      "lessonTitle": "采样间隔与混叠",
+      "lessonTitle": "采样率与混叠",
       "chapterUrl": "/chapters/06-01-观测、采样与滤波/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6922,8 +6922,8 @@
       "english": "aliasing",
       "number": "6.1.1",
       "parentId": "6.1",
-      "url": "/notebook/?id=P06-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-01-观测、采样与滤波/read/1/",
+      "readingUrl": "/chapters/06-01-观测、采样与滤波/read/1/",
       "practiceUrl": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-cosine-samples",
       "description": "手算同一组采样点上的两种余弦，区分观测间隔、求解步长与抗混叠处理。",
       "categories": [
@@ -6942,7 +6942,7 @@
       "total": 1,
       "lessonId": "P06-C01-S01",
       "lessonNumber": "6.1.1",
-      "lessonTitle": "采样间隔与混叠",
+      "lessonTitle": "采样率与混叠",
       "chapterUrl": "/chapters/06-01-观测、采样与滤波/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6953,8 +6953,8 @@
       "english": null,
       "number": "6.1.1",
       "parentId": "6.1",
-      "url": "/notebook/?id=P06-C01-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-01-观测、采样与滤波/read/1/",
+      "readingUrl": "/chapters/06-01-观测、采样与滤波/read/1/",
       "practiceUrl": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-cosine-samples",
       "description": "手算同一组采样点上的两种余弦，区分观测间隔、求解步长与抗混叠处理。",
       "categories": [
@@ -6973,7 +6973,7 @@
       "total": 1,
       "lessonId": "P06-C01-S01",
       "lessonNumber": "6.1.1",
-      "lessonTitle": "采样间隔与混叠",
+      "lessonTitle": "采样率与混叠",
       "chapterUrl": "/chapters/06-01-观测、采样与滤波/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6984,8 +6984,8 @@
       "english": "causal filtering",
       "number": "6.1.2",
       "parentId": "6.1",
-      "url": "/notebook/?id=P06-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-01-观测、采样与滤波/read/2/",
+      "readingUrl": "/chapters/06-01-观测、采样与滤波/read/2/",
       "practiceUrl": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-causal-average",
       "description": "从已有读数算因果平均，推导独立噪声方差和缓变信号的延迟，再比较居中平均。",
       "categories": [
@@ -7004,7 +7004,7 @@
       "total": 1,
       "lessonId": "P06-C01-S02",
       "lessonNumber": "6.1.2",
-      "lessonTitle": "因果滤波与时间延迟",
+      "lessonTitle": "因果移动平均与时间延迟",
       "chapterUrl": "/chapters/06-01-观测、采样与滤波/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7015,8 +7015,8 @@
       "english": null,
       "number": "6.1.2",
       "parentId": "6.1",
-      "url": "/notebook/?id=P06-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-01-观测、采样与滤波/read/2/",
+      "readingUrl": "/chapters/06-01-观测、采样与滤波/read/2/",
       "practiceUrl": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-causal-average",
       "description": "从已有读数算因果平均，推导独立噪声方差和缓变信号的延迟，再比较居中平均。",
       "categories": [
@@ -7035,7 +7035,7 @@
       "total": 1,
       "lessonId": "P06-C01-S02",
       "lessonNumber": "6.1.2",
-      "lessonTitle": "因果滤波与时间延迟",
+      "lessonTitle": "因果移动平均与时间延迟",
       "chapterUrl": "/chapters/06-01-观测、采样与滤波/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7046,8 +7046,8 @@
       "english": null,
       "number": "6.1.2",
       "parentId": "6.1",
-      "url": "/notebook/?id=P06-C01-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-01-观测、采样与滤波/read/2/",
+      "readingUrl": "/chapters/06-01-观测、采样与滤波/read/2/",
       "practiceUrl": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-causal-average",
       "description": "从已有读数算因果平均，推导独立噪声方差和缓变信号的延迟，再比较居中平均。",
       "categories": [
@@ -7066,7 +7066,7 @@
       "total": 1,
       "lessonId": "P06-C01-S02",
       "lessonNumber": "6.1.2",
-      "lessonTitle": "因果滤波与时间延迟",
+      "lessonTitle": "因果移动平均与时间延迟",
       "chapterUrl": "/chapters/06-01-观测、采样与滤波/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7121,8 +7121,8 @@
       "english": "impulse response",
       "number": "6.2.1",
       "parentId": "6.2",
-      "url": "/notebook/?id=P06-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/",
+      "readingUrl": "/chapters/06-02-卷积、频谱与频率响应/read/1/",
       "practiceUrl": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-linear-convolution",
       "description": "把一次输入拆成平移脉冲，逐项相加得到完整线性卷积，并解释末尾与循环回绕。",
       "categories": [
@@ -7141,7 +7141,7 @@
       "total": 1,
       "lessonId": "P06-C02-S01",
       "lessonNumber": "6.2.1",
-      "lessonTitle": "从脉冲响应到线性卷积",
+      "lessonTitle": "脉冲响应与线性卷积",
       "chapterUrl": "/chapters/06-02-卷积、频谱与频率响应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7152,8 +7152,8 @@
       "english": "linear convolution",
       "number": "6.2.1",
       "parentId": "6.2",
-      "url": "/notebook/?id=P06-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/",
+      "readingUrl": "/chapters/06-02-卷积、频谱与频率响应/read/1/",
       "practiceUrl": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-linear-convolution",
       "description": "把一次输入拆成平移脉冲，逐项相加得到完整线性卷积，并解释末尾与循环回绕。",
       "categories": [
@@ -7172,7 +7172,7 @@
       "total": 1,
       "lessonId": "P06-C02-S01",
       "lessonNumber": "6.2.1",
-      "lessonTitle": "从脉冲响应到线性卷积",
+      "lessonTitle": "脉冲响应与线性卷积",
       "chapterUrl": "/chapters/06-02-卷积、频谱与频率响应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7183,8 +7183,8 @@
       "english": null,
       "number": "6.2.1",
       "parentId": "6.2",
-      "url": "/notebook/?id=P06-C02-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/",
+      "readingUrl": "/chapters/06-02-卷积、频谱与频率响应/read/1/",
       "practiceUrl": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-linear-convolution",
       "description": "把一次输入拆成平移脉冲，逐项相加得到完整线性卷积，并解释末尾与循环回绕。",
       "categories": [
@@ -7203,7 +7203,7 @@
       "total": 1,
       "lessonId": "P06-C02-S01",
       "lessonNumber": "6.2.1",
-      "lessonTitle": "从脉冲响应到线性卷积",
+      "lessonTitle": "脉冲响应与线性卷积",
       "chapterUrl": "/chapters/06-02-卷积、频谱与频率响应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7214,8 +7214,8 @@
       "english": null,
       "number": "6.2.2",
       "parentId": "6.2",
-      "url": "/notebook/?id=P06-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/",
+      "readingUrl": "/chapters/06-02-卷积、频谱与频率响应/read/2/",
       "practiceUrl": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-one-sided-spectrum",
       "description": "沿复指数旋转计算频谱，说明每个频率格点、幅值及相位对应什么信号。",
       "categories": [
@@ -7235,7 +7235,7 @@
       "total": 1,
       "lessonId": "P06-C02-S02",
       "lessonNumber": "6.2.2",
-      "lessonTitle": "复指数与离散频谱",
+      "lessonTitle": "离散傅里叶变换与单边频谱",
       "chapterUrl": "/chapters/06-02-卷积、频谱与频率响应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7246,8 +7246,8 @@
       "english": null,
       "number": "6.2.2",
       "parentId": "6.2",
-      "url": "/notebook/?id=P06-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/",
+      "readingUrl": "/chapters/06-02-卷积、频谱与频率响应/read/2/",
       "practiceUrl": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-one-sided-spectrum",
       "description": "沿复指数旋转计算频谱，说明每个频率格点、幅值及相位对应什么信号。",
       "categories": [
@@ -7267,7 +7267,7 @@
       "total": 1,
       "lessonId": "P06-C02-S02",
       "lessonNumber": "6.2.2",
-      "lessonTitle": "复指数与离散频谱",
+      "lessonTitle": "离散傅里叶变换与单边频谱",
       "chapterUrl": "/chapters/06-02-卷积、频谱与频率响应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7278,8 +7278,8 @@
       "english": null,
       "number": "6.2.2",
       "parentId": "6.2",
-      "url": "/notebook/?id=P06-C02-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/",
+      "readingUrl": "/chapters/06-02-卷积、频谱与频率响应/read/2/",
       "practiceUrl": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-one-sided-spectrum",
       "description": "沿复指数旋转计算频谱，说明每个频率格点、幅值及相位对应什么信号。",
       "categories": [
@@ -7299,7 +7299,7 @@
       "total": 1,
       "lessonId": "P06-C02-S02",
       "lessonNumber": "6.2.2",
-      "lessonTitle": "复指数与离散频谱",
+      "lessonTitle": "离散傅里叶变换与单边频谱",
       "chapterUrl": "/chapters/06-02-卷积、频谱与频率响应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7310,8 +7310,8 @@
       "english": null,
       "number": "6.2.3",
       "parentId": "6.2",
-      "url": "/notebook/?id=P06-C02-S03",
-      "readingUrl": null,
+      "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/",
+      "readingUrl": "/chapters/06-02-卷积、频谱与频率响应/read/3/",
       "practiceUrl": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-response",
       "description": "比较整周期与非整周期记录，解释加窗和补零，再用频率响应预测滤波结果。",
       "categories": [
@@ -7331,7 +7331,7 @@
       "total": 1,
       "lessonId": "P06-C02-S03",
       "lessonNumber": "6.2.3",
-      "lessonTitle": "有限记录与滤波频率响应",
+      "lessonTitle": "有限记录、窗函数与频率响应",
       "chapterUrl": "/chapters/06-02-卷积、频谱与频率响应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7342,8 +7342,8 @@
       "english": "spectral leakage",
       "number": "6.2.3",
       "parentId": "6.2",
-      "url": "/notebook/?id=P06-C02-S03",
-      "readingUrl": null,
+      "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/",
+      "readingUrl": "/chapters/06-02-卷积、频谱与频率响应/read/3/",
       "practiceUrl": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-response",
       "description": "比较整周期与非整周期记录，解释加窗和补零，再用频率响应预测滤波结果。",
       "categories": [
@@ -7363,7 +7363,7 @@
       "total": 1,
       "lessonId": "P06-C02-S03",
       "lessonNumber": "6.2.3",
-      "lessonTitle": "有限记录与滤波频率响应",
+      "lessonTitle": "有限记录、窗函数与频率响应",
       "chapterUrl": "/chapters/06-02-卷积、频谱与频率响应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7374,8 +7374,8 @@
       "english": "frequency response",
       "number": "6.2.3",
       "parentId": "6.2",
-      "url": "/notebook/?id=P06-C02-S03",
-      "readingUrl": null,
+      "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/",
+      "readingUrl": "/chapters/06-02-卷积、频谱与频率响应/read/3/",
       "practiceUrl": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-response",
       "description": "比较整周期与非整周期记录，解释加窗和补零，再用频率响应预测滤波结果。",
       "categories": [
@@ -7395,7 +7395,7 @@
       "total": 1,
       "lessonId": "P06-C02-S03",
       "lessonNumber": "6.2.3",
-      "lessonTitle": "有限记录与滤波频率响应",
+      "lessonTitle": "有限记录、窗函数与频率响应",
       "chapterUrl": "/chapters/06-02-卷积、频谱与频率响应/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7443,8 +7443,8 @@
       "english": null,
       "number": "6.3.1",
       "parentId": "6.3",
-      "url": "/notebook/?id=P06-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/",
+      "readingUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/",
       "practiceUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-response-components",
       "description": "检查叠加与平移是否成立，从单室收支推导变换关系，并分别计算初态与输入响应。",
       "categories": [
@@ -7464,7 +7464,7 @@
       "total": 1,
       "lessonId": "P06-C03-S01",
       "lessonNumber": "6.3.1",
-      "lessonTitle": "LTI假设与Laplace表示",
+      "lessonTitle": "线性时不变系统与 Laplace 变换",
       "chapterUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7475,8 +7475,8 @@
       "english": null,
       "number": "6.3.1",
       "parentId": "6.3",
-      "url": "/notebook/?id=P06-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/",
+      "readingUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/",
       "practiceUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-response-components",
       "description": "检查叠加与平移是否成立，从单室收支推导变换关系，并分别计算初态与输入响应。",
       "categories": [
@@ -7496,7 +7496,7 @@
       "total": 1,
       "lessonId": "P06-C03-S01",
       "lessonNumber": "6.3.1",
-      "lessonTitle": "LTI假设与Laplace表示",
+      "lessonTitle": "线性时不变系统与 Laplace 变换",
       "chapterUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7507,8 +7507,8 @@
       "english": "transfer function",
       "number": "6.3.1",
       "parentId": "6.3",
-      "url": "/notebook/?id=P06-C03-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/",
+      "readingUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/",
       "practiceUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-response-components",
       "description": "检查叠加与平移是否成立，从单室收支推导变换关系，并分别计算初态与输入响应。",
       "categories": [
@@ -7528,7 +7528,7 @@
       "total": 1,
       "lessonId": "P06-C03-S01",
       "lessonNumber": "6.3.1",
-      "lessonTitle": "LTI假设与Laplace表示",
+      "lessonTitle": "线性时不变系统与 Laplace 变换",
       "chapterUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7539,8 +7539,8 @@
       "english": null,
       "number": "6.3.2",
       "parentId": "6.3",
-      "url": "/notebook/?id=P06-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/",
+      "readingUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/",
       "practiceUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampled-response",
       "description": "对一个采样区间积分，推导精确递推和 Z 变换，比较精确倍率与 Euler 倍率。",
       "categories": [
@@ -7560,7 +7560,7 @@
       "total": 1,
       "lessonId": "P06-C03-S02",
       "lessonNumber": "6.3.2",
-      "lessonTitle": "Z变换与精确采样",
+      "lessonTitle": "精确采样、Z 变换与离散极点",
       "chapterUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7571,8 +7571,8 @@
       "english": null,
       "number": "6.3.2",
       "parentId": "6.3",
-      "url": "/notebook/?id=P06-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/",
+      "readingUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/",
       "practiceUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampled-response",
       "description": "对一个采样区间积分，推导精确递推和 Z 变换，比较精确倍率与 Euler 倍率。",
       "categories": [
@@ -7592,7 +7592,7 @@
       "total": 1,
       "lessonId": "P06-C03-S02",
       "lessonNumber": "6.3.2",
-      "lessonTitle": "Z变换与精确采样",
+      "lessonTitle": "精确采样、Z 变换与离散极点",
       "chapterUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7603,8 +7603,8 @@
       "english": null,
       "number": "6.3.2",
       "parentId": "6.3",
-      "url": "/notebook/?id=P06-C03-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/",
+      "readingUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/",
       "practiceUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampled-response",
       "description": "对一个采样区间积分，推导精确递推和 Z 变换，比较精确倍率与 Euler 倍率。",
       "categories": [
@@ -7624,7 +7624,7 @@
       "total": 1,
       "lessonId": "P06-C03-S02",
       "lessonNumber": "6.3.2",
-      "lessonTitle": "Z变换与精确采样",
+      "lessonTitle": "精确采样、Z 变换与离散极点",
       "chapterUrl": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7679,8 +7679,8 @@
       "english": null,
       "number": "6.4.1",
       "parentId": "6.4",
-      "url": "/notebook/?id=P06-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-04-最小二乘与参数估计/read/1/",
+      "readingUrl": "/chapters/06-04-最小二乘与参数估计/read/1/",
       "practiceUrl": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-line-fit",
       "description": "从四个读数手算直线拟合，再由正交条件和高斯误差解释最小二乘。",
       "categories": [
@@ -7700,7 +7700,7 @@
       "total": 1,
       "lessonId": "P06-C04-S01",
       "lessonNumber": "6.4.1",
-      "lessonTitle": "最小二乘与误差假设",
+      "lessonTitle": "最小二乘、正规方程与误差模型",
       "chapterUrl": "/chapters/06-04-最小二乘与参数估计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7711,8 +7711,8 @@
       "english": null,
       "number": "6.4.1",
       "parentId": "6.4",
-      "url": "/notebook/?id=P06-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-04-最小二乘与参数估计/read/1/",
+      "readingUrl": "/chapters/06-04-最小二乘与参数估计/read/1/",
       "practiceUrl": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-line-fit",
       "description": "从四个读数手算直线拟合，再由正交条件和高斯误差解释最小二乘。",
       "categories": [
@@ -7732,7 +7732,7 @@
       "total": 1,
       "lessonId": "P06-C04-S01",
       "lessonNumber": "6.4.1",
-      "lessonTitle": "最小二乘与误差假设",
+      "lessonTitle": "最小二乘、正规方程与误差模型",
       "chapterUrl": "/chapters/06-04-最小二乘与参数估计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7743,8 +7743,8 @@
       "english": null,
       "number": "6.4.1",
       "parentId": "6.4",
-      "url": "/notebook/?id=P06-C04-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-04-最小二乘与参数估计/read/1/",
+      "readingUrl": "/chapters/06-04-最小二乘与参数估计/read/1/",
       "practiceUrl": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-line-fit",
       "description": "从四个读数手算直线拟合，再由正交条件和高斯误差解释最小二乘。",
       "categories": [
@@ -7764,7 +7764,7 @@
       "total": 1,
       "lessonId": "P06-C04-S01",
       "lessonNumber": "6.4.1",
-      "lessonTitle": "最小二乘与误差假设",
+      "lessonTitle": "最小二乘、正规方程与误差模型",
       "chapterUrl": "/chapters/06-04-最小二乘与参数估计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7775,8 +7775,8 @@
       "english": null,
       "number": "6.4.2",
       "parentId": "6.4",
-      "url": "/notebook/?id=P06-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-04-最小二乘与参数估计/read/2/",
+      "readingUrl": "/chapters/06-04-最小二乘与参数估计/read/2/",
       "practiceUrl": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-clearance-grid",
       "description": "逐个比较清除系数的候选损失，解释残差、相对权重和网格范围对结果的影响。",
       "categories": [
@@ -7796,7 +7796,7 @@
       "total": 1,
       "lessonId": "P06-C04-S02",
       "lessonNumber": "6.4.2",
-      "lessonTitle": "清除曲线的网格估计",
+      "lessonTitle": "指数清除曲线、加权损失与网格估计",
       "chapterUrl": "/chapters/06-04-最小二乘与参数估计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7807,8 +7807,8 @@
       "english": null,
       "number": "6.4.2",
       "parentId": "6.4",
-      "url": "/notebook/?id=P06-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-04-最小二乘与参数估计/read/2/",
+      "readingUrl": "/chapters/06-04-最小二乘与参数估计/read/2/",
       "practiceUrl": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-clearance-grid",
       "description": "逐个比较清除系数的候选损失，解释残差、相对权重和网格范围对结果的影响。",
       "categories": [
@@ -7828,7 +7828,7 @@
       "total": 1,
       "lessonId": "P06-C04-S02",
       "lessonNumber": "6.4.2",
-      "lessonTitle": "清除曲线的网格估计",
+      "lessonTitle": "指数清除曲线、加权损失与网格估计",
       "chapterUrl": "/chapters/06-04-最小二乘与参数估计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7839,8 +7839,8 @@
       "english": "identifiability",
       "number": "6.4.2",
       "parentId": "6.4",
-      "url": "/notebook/?id=P06-C04-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-04-最小二乘与参数估计/read/2/",
+      "readingUrl": "/chapters/06-04-最小二乘与参数估计/read/2/",
       "practiceUrl": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-clearance-grid",
       "description": "逐个比较清除系数的候选损失，解释残差、相对权重和网格范围对结果的影响。",
       "categories": [
@@ -7860,7 +7860,7 @@
       "total": 1,
       "lessonId": "P06-C04-S02",
       "lessonNumber": "6.4.2",
-      "lessonTitle": "清除曲线的网格估计",
+      "lessonTitle": "指数清除曲线、加权损失与网格估计",
       "chapterUrl": "/chapters/06-04-最小二乘与参数估计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7871,8 +7871,8 @@
       "english": null,
       "number": "6.4.3",
       "parentId": "6.4",
-      "url": "/notebook/?id=P06-C04-S03",
-      "readingUrl": null,
+      "url": "/chapters/06-04-最小二乘与参数估计/read/3/",
+      "readingUrl": "/chapters/06-04-最小二乘与参数估计/read/3/",
       "practiceUrl": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-slope-interval",
       "description": "在相同设计下重复测量，计算斜率区间，并区分固定设计与成对重抽样。",
       "categories": [
@@ -7891,7 +7891,7 @@
       "total": 1,
       "lessonId": "P06-C04-S03",
       "lessonNumber": "6.4.3",
-      "lessonTitle": "参数区间与重复观测",
+      "lessonTitle": "估计标准误、置信区间与成对自助法",
       "chapterUrl": "/chapters/06-04-最小二乘与参数估计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7902,8 +7902,8 @@
       "english": null,
       "number": "6.4.3",
       "parentId": "6.4",
-      "url": "/notebook/?id=P06-C04-S03",
-      "readingUrl": null,
+      "url": "/chapters/06-04-最小二乘与参数估计/read/3/",
+      "readingUrl": "/chapters/06-04-最小二乘与参数估计/read/3/",
       "practiceUrl": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-slope-interval",
       "description": "在相同设计下重复测量，计算斜率区间，并区分固定设计与成对重抽样。",
       "categories": [
@@ -7922,7 +7922,7 @@
       "total": 1,
       "lessonId": "P06-C04-S03",
       "lessonNumber": "6.4.3",
-      "lessonTitle": "参数区间与重复观测",
+      "lessonTitle": "估计标准误、置信区间与成对自助法",
       "chapterUrl": "/chapters/06-04-最小二乘与参数估计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -7933,8 +7933,8 @@
       "english": "resampling",
       "number": "6.4.3",
       "parentId": "6.4",
-      "url": "/notebook/?id=P06-C04-S03",
-      "readingUrl": null,
+      "url": "/chapters/06-04-最小二乘与参数估计/read/3/",
+      "readingUrl": "/chapters/06-04-最小二乘与参数估计/read/3/",
       "practiceUrl": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-slope-interval",
       "description": "在相同设计下重复测量，计算斜率区间，并区分固定设计与成对重抽样。",
       "categories": [
@@ -7953,7 +7953,7 @@
       "total": 1,
       "lessonId": "P06-C04-S03",
       "lessonNumber": "6.4.3",
-      "lessonTitle": "参数区间与重复观测",
+      "lessonTitle": "估计标准误、置信区间与成对自助法",
       "chapterUrl": "/chapters/06-04-最小二乘与参数估计/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8009,8 +8009,8 @@
       "english": null,
       "number": "6.5.1",
       "parentId": "6.5",
-      "url": "/notebook/?id=P06-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/",
+      "readingUrl": "/chapters/06-05-动态辨识、实验设计与验证/read/1/",
       "practiceUrl": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-predictions",
       "description": "写清历史与输入的回归顺序，解释条件平均，并手算一步预测和自由运行的差别。",
       "categories": [
@@ -8030,7 +8030,7 @@
       "total": 1,
       "lessonId": "P06-C05-S01",
       "lessonNumber": "6.5.1",
-      "lessonTitle": "ARX回归与两种预测",
+      "lessonTitle": "ARX 回归、一步预测与自由运行",
       "chapterUrl": "/chapters/06-05-动态辨识、实验设计与验证/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8041,8 +8041,8 @@
       "english": "one-step-ahead prediction",
       "number": "6.5.1",
       "parentId": "6.5",
-      "url": "/notebook/?id=P06-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/",
+      "readingUrl": "/chapters/06-05-动态辨识、实验设计与验证/read/1/",
       "practiceUrl": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-predictions",
       "description": "写清历史与输入的回归顺序，解释条件平均，并手算一步预测和自由运行的差别。",
       "categories": [
@@ -8062,7 +8062,7 @@
       "total": 1,
       "lessonId": "P06-C05-S01",
       "lessonNumber": "6.5.1",
-      "lessonTitle": "ARX回归与两种预测",
+      "lessonTitle": "ARX 回归、一步预测与自由运行",
       "chapterUrl": "/chapters/06-05-动态辨识、实验设计与验证/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8073,8 +8073,8 @@
       "english": "free-run simulation",
       "number": "6.5.1",
       "parentId": "6.5",
-      "url": "/notebook/?id=P06-C05-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/",
+      "readingUrl": "/chapters/06-05-动态辨识、实验设计与验证/read/1/",
       "practiceUrl": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-predictions",
       "description": "写清历史与输入的回归顺序，解释条件平均，并手算一步预测和自由运行的差别。",
       "categories": [
@@ -8094,7 +8094,7 @@
       "total": 1,
       "lessonId": "P06-C05-S01",
       "lessonNumber": "6.5.1",
-      "lessonTitle": "ARX回归与两种预测",
+      "lessonTitle": "ARX 回归、一步预测与自由运行",
       "chapterUrl": "/chapters/06-05-动态辨识、实验设计与验证/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8105,8 +8105,8 @@
       "english": null,
       "number": "6.5.2",
       "parentId": "6.5",
-      "url": "/notebook/?id=P06-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/",
+      "readingUrl": "/chapters/06-05-动态辨识、实验设计与验证/read/2/",
       "practiceUrl": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-excitation-rank",
       "description": "比较稳态、瞬态与变化输入，判断记录中有几个独立方向，以及哪些参数能区分。",
       "categories": [
@@ -8126,7 +8126,7 @@
       "total": 1,
       "lessonId": "P06-C05-S02",
       "lessonNumber": "6.5.2",
-      "lessonTitle": "激励与可辨识范围",
+      "lessonTitle": "输入激励与参数可辨识性",
       "chapterUrl": "/chapters/06-05-动态辨识、实验设计与验证/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8137,8 +8137,8 @@
       "english": null,
       "number": "6.5.2",
       "parentId": "6.5",
-      "url": "/notebook/?id=P06-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/",
+      "readingUrl": "/chapters/06-05-动态辨识、实验设计与验证/read/2/",
       "practiceUrl": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-excitation-rank",
       "description": "比较稳态、瞬态与变化输入，判断记录中有几个独立方向，以及哪些参数能区分。",
       "categories": [
@@ -8158,7 +8158,7 @@
       "total": 1,
       "lessonId": "P06-C05-S02",
       "lessonNumber": "6.5.2",
-      "lessonTitle": "激励与可辨识范围",
+      "lessonTitle": "输入激励与参数可辨识性",
       "chapterUrl": "/chapters/06-05-动态辨识、实验设计与验证/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8169,8 +8169,8 @@
       "english": null,
       "number": "6.5.2",
       "parentId": "6.5",
-      "url": "/notebook/?id=P06-C05-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/",
+      "readingUrl": "/chapters/06-05-动态辨识、实验设计与验证/read/2/",
       "practiceUrl": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-excitation-rank",
       "description": "比较稳态、瞬态与变化输入，判断记录中有几个独立方向，以及哪些参数能区分。",
       "categories": [
@@ -8190,7 +8190,7 @@
       "total": 1,
       "lessonId": "P06-C05-S02",
       "lessonNumber": "6.5.2",
-      "lessonTitle": "激励与可辨识范围",
+      "lessonTitle": "输入激励与参数可辨识性",
       "chapterUrl": "/chapters/06-05-动态辨识、实验设计与验证/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8201,8 +8201,8 @@
       "english": null,
       "number": "6.5.3",
       "parentId": "6.5",
-      "url": "/notebook/?id=P06-C05-S03",
-      "readingUrl": null,
+      "url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/",
+      "readingUrl": "/chapters/06-05-动态辨识、实验设计与验证/read/3/",
       "practiceUrl": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-time-partition",
       "description": "先按未来时段或新个体划分数据，再拟合、选结构与最终评估，保留缺测时钟。",
       "categories": [
@@ -8222,7 +8222,7 @@
       "total": 1,
       "lessonId": "P06-C05-S03",
       "lessonNumber": "6.5.3",
-      "lessonTitle": "数据划分与独立验证",
+      "lessonTitle": "数据划分、缺测与预测验证",
       "chapterUrl": "/chapters/06-05-动态辨识、实验设计与验证/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8233,8 +8233,8 @@
       "english": null,
       "number": "6.5.3",
       "parentId": "6.5",
-      "url": "/notebook/?id=P06-C05-S03",
-      "readingUrl": null,
+      "url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/",
+      "readingUrl": "/chapters/06-05-动态辨识、实验设计与验证/read/3/",
       "practiceUrl": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-time-partition",
       "description": "先按未来时段或新个体划分数据，再拟合、选结构与最终评估，保留缺测时钟。",
       "categories": [
@@ -8254,7 +8254,7 @@
       "total": 1,
       "lessonId": "P06-C05-S03",
       "lessonNumber": "6.5.3",
-      "lessonTitle": "数据划分与独立验证",
+      "lessonTitle": "数据划分、缺测与预测验证",
       "chapterUrl": "/chapters/06-05-动态辨识、实验设计与验证/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8265,8 +8265,8 @@
       "english": "data leakage",
       "number": "6.5.3",
       "parentId": "6.5",
-      "url": "/notebook/?id=P06-C05-S03",
-      "readingUrl": null,
+      "url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/",
+      "readingUrl": "/chapters/06-05-动态辨识、实验设计与验证/read/3/",
       "practiceUrl": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-time-partition",
       "description": "先按未来时段或新个体划分数据，再拟合、选结构与最终评估，保留缺测时钟。",
       "categories": [
@@ -8286,7 +8286,7 @@
       "total": 1,
       "lessonId": "P06-C05-S03",
       "lessonNumber": "6.5.3",
-      "lessonTitle": "数据划分与独立验证",
+      "lessonTitle": "数据划分、缺测与预测验证",
       "chapterUrl": "/chapters/06-05-动态辨识、实验设计与验证/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8336,8 +8336,8 @@
       "english": "rank-one update",
       "number": "6.6.1",
       "parentId": "6.6",
-      "url": "/notebook/?id=P06-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/",
+      "readingUrl": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/",
       "practiceUrl": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence",
       "description": "从累计平方损失推导逐次更新，用同一初始项核对批量解，并解释逆信息矩阵。",
       "categories": [
@@ -8357,7 +8357,7 @@
       "total": 1,
       "lessonId": "P06-C06-S01",
       "lessonNumber": "6.6.1",
-      "lessonTitle": "从批量最小二乘到递推更新",
+      "lessonTitle": "正则化最小二乘与递推更新",
       "chapterUrl": "/chapters/06-06-递推辨识与时变参数跟踪/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8368,8 +8368,8 @@
       "english": "recursive least squares",
       "number": "6.6.1",
       "parentId": "6.6",
-      "url": "/notebook/?id=P06-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/",
+      "readingUrl": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/",
       "practiceUrl": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence",
       "description": "从累计平方损失推导逐次更新，用同一初始项核对批量解，并解释逆信息矩阵。",
       "categories": [
@@ -8389,7 +8389,7 @@
       "total": 1,
       "lessonId": "P06-C06-S01",
       "lessonNumber": "6.6.1",
-      "lessonTitle": "从批量最小二乘到递推更新",
+      "lessonTitle": "正则化最小二乘与递推更新",
       "chapterUrl": "/chapters/06-06-递推辨识与时变参数跟踪/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8400,8 +8400,8 @@
       "english": null,
       "number": "6.6.1",
       "parentId": "6.6",
-      "url": "/notebook/?id=P06-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/",
+      "readingUrl": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/",
       "practiceUrl": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence",
       "description": "从累计平方损失推导逐次更新，用同一初始项核对批量解，并解释逆信息矩阵。",
       "categories": [
@@ -8421,7 +8421,7 @@
       "total": 1,
       "lessonId": "P06-C06-S01",
       "lessonNumber": "6.6.1",
-      "lessonTitle": "从批量最小二乘到递推更新",
+      "lessonTitle": "正则化最小二乘与递推更新",
       "chapterUrl": "/chapters/06-06-递推辨识与时变参数跟踪/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8432,8 +8432,8 @@
       "english": null,
       "number": "6.6.1",
       "parentId": "6.6",
-      "url": "/notebook/?id=P06-C06-S01",
-      "readingUrl": null,
+      "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/",
+      "readingUrl": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/",
       "practiceUrl": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence",
       "description": "从累计平方损失推导逐次更新，用同一初始项核对批量解，并解释逆信息矩阵。",
       "categories": [
@@ -8453,7 +8453,7 @@
       "total": 1,
       "lessonId": "P06-C06-S01",
       "lessonNumber": "6.6.1",
-      "lessonTitle": "从批量最小二乘到递推更新",
+      "lessonTitle": "正则化最小二乘与递推更新",
       "chapterUrl": "/chapters/06-06-递推辨识与时变参数跟踪/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8464,8 +8464,8 @@
       "english": null,
       "number": "6.6.2",
       "parentId": "6.6",
-      "url": "/notebook/?id=P06-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/",
+      "readingUrl": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/",
       "practiceUrl": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective",
       "description": "跟踪旧观测的权重衰减，比较漂移、噪声与弱激励，并按先预测后更新评估。",
       "categories": [
@@ -8485,7 +8485,7 @@
       "total": 1,
       "lessonId": "P06-C06-S02",
       "lessonNumber": "6.6.2",
-      "lessonTitle": "遗忘、漂移与在线验证",
+      "lessonTitle": "指数遗忘、参数漂移与在线评估",
       "chapterUrl": "/chapters/06-06-递推辨识与时变参数跟踪/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8496,8 +8496,8 @@
       "english": null,
       "number": "6.6.2",
       "parentId": "6.6",
-      "url": "/notebook/?id=P06-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/",
+      "readingUrl": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/",
       "practiceUrl": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective",
       "description": "跟踪旧观测的权重衰减，比较漂移、噪声与弱激励，并按先预测后更新评估。",
       "categories": [
@@ -8517,7 +8517,7 @@
       "total": 1,
       "lessonId": "P06-C06-S02",
       "lessonNumber": "6.6.2",
-      "lessonTitle": "遗忘、漂移与在线验证",
+      "lessonTitle": "指数遗忘、参数漂移与在线评估",
       "chapterUrl": "/chapters/06-06-递推辨识与时变参数跟踪/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8528,8 +8528,8 @@
       "english": null,
       "number": "6.6.2",
       "parentId": "6.6",
-      "url": "/notebook/?id=P06-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/",
+      "readingUrl": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/",
       "practiceUrl": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective",
       "description": "跟踪旧观测的权重衰减，比较漂移、噪声与弱激励，并按先预测后更新评估。",
       "categories": [
@@ -8549,7 +8549,7 @@
       "total": 1,
       "lessonId": "P06-C06-S02",
       "lessonNumber": "6.6.2",
-      "lessonTitle": "遗忘、漂移与在线验证",
+      "lessonTitle": "指数遗忘、参数漂移与在线评估",
       "chapterUrl": "/chapters/06-06-递推辨识与时变参数跟踪/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -8560,8 +8560,8 @@
       "english": null,
       "number": "6.6.2",
       "parentId": "6.6",
-      "url": "/notebook/?id=P06-C06-S02",
-      "readingUrl": null,
+      "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/",
+      "readingUrl": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/",
       "practiceUrl": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective",
       "description": "跟踪旧观测的权重衰减，比较漂移、噪声与弱激励，并按先预测后更新评估。",
       "categories": [
@@ -8581,7 +8581,7 @@
       "total": 1,
       "lessonId": "P06-C06-S02",
       "lessonNumber": "6.6.2",
-      "lessonTitle": "遗忘、漂移与在线验证",
+      "lessonTitle": "指数遗忘、参数漂移与在线评估",
       "chapterUrl": "/chapters/06-06-递推辨识与时变参数跟踪/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },

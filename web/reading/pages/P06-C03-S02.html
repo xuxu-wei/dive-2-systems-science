@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.3.2 精确采样、Z 变换与离散极点 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C03-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C03-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampled-response">本节练习 · 5 题</a><a class="button" href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.3.2 精确采样、Z 变换与离散极点</h1>
+<p>学完本节，你应能对一个采样区间积分得到精确递推，解释Z变换中的初态与一拍延迟，并分别判断Euler近似的幅度稳定性和非负性。</p>
+<p><strong>先修知识</strong>：6.3.1的响应分解与变换，2.4的Euler方法，以及几何级数。</p>
+<h2 id="zero-order-hold-integration">零阶保持与区间积分</h2>
+<p>设备每隔$h$ T设置一次输入流率，在下一次设置前保持不变。我们也在这些时刻读取总量。已知连续方程，能否一次计算出整个区间后的状态，而不是用一个近似步代替它？</p>
+<p>沿用$\dot x=-kx+u$，定义$x[n]=x(nh)$，而$u[n]$在区间$[nh,(n+1)h)$内保持恒定。这种输入设置称为<strong>零阶保持（zero-order hold，ZOH）</strong>。$x[n]$是区间起点的状态，$u[n]$作用于接下来的区间，最早改变$x[n+1]$。</p>
+<p>把上一节的积分解从区间起点重新计时，得到</p>
+<p>$$x[n+1]=e^{-kh}x[n]
++u[n]\int_0^he^{-k(h-\tau)}\,d\tau.$$</p>
+<p>当$k&gt;0$，积分为</p>
+<p>$$\int_0^he^{-k(h-\tau)}\,d\tau
+=\left[\frac1k e^{-k(h-\tau)}\right]_0^h
+=\frac{1-e^{-kh}}k.$$</p>
+<p>于是<strong>精确采样模型</strong>为</p>
+<p>$$\boxed{x[n+1]=ax[n]+bu[n],\qquad
+a=e^{-kh},\quad b=\frac{1-e^{-kh}}k.}$$</p>
+<p>$a$无量纲，$b$单位为T，故$bu[n]$的单位为U。精确性来自整个区间的积分：只要模型和输入保持方式相同，任意$h&gt;0$都给出连续解在这些采样时刻的值。</p>
+<p>若$k=0$，核恒为1，直接积分得到$b=h$、$a=1$；从$k&gt;0$的公式取极限也得到相同结果。此时状态按区间输入总量逐步累积：</p>
+<p>$$x[n+1]=x[n]+hu[n].$$</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-zero-clearance">零清除系数如何取极限</a></li></ul></nav>
+
+<h2 id="euler-decay-and-positivity">Euler 倍率、幅度衰减与非负性</h2>
+<p>Euler把整个区间内的变化率取成起点值，得到</p>
+<p>$$x_E[n+1]=(1-kh)x_E[n]+hu[n].$$</p>
+<p>无输入时，精确模型每步保留$a=e^{-kh}$倍，Euler保留$a_E=1-kh$倍。对于$k&gt;0,h&gt;0$，精确倍率始终在0与1之间。Euler则需要分开问两个问题：偏差幅度是否缩小？非负总量是否保持非负？</p>
+<p>无输入时$|x_E[n]|=|1-kh|^n|x_0|$，所以非零初态的幅度趋零要求</p>
+<p>$$|1-kh|&lt;1\quad\Longleftrightarrow\quad0&lt;kh&lt;2.$$</p>
+<p>要让任意非负初态、非负输入都产生非负下一状态，还要求$1-kh\ge0$，即$kh\le1$。输入系数$h$本来就为正；若状态系数为负，只需取正初态与零输入，就会出现负值。</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">$kh$</th>
+  <th style="text-align:right">精确倍率</th>
+  <th style="text-align:right">Euler倍率</th>
+  <th>无输入Euler行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0.25</td>
+  <td style="text-align:right">约0.7788</td>
+  <td style="text-align:right">0.75</td>
+  <td>同号衰减</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">约0.3679</td>
+  <td style="text-align:right">0</td>
+  <td>一步到零</td>
+</tr>
+<tr>
+  <td style="text-align:right">1.5</td>
+  <td style="text-align:right">约0.2231</td>
+  <td style="text-align:right">−0.5</td>
+  <td>变号且幅度衰减</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">约0.1353</td>
+  <td style="text-align:right">−1</td>
+  <td>变号且幅度保持</td>
+</tr>
+<tr>
+  <td style="text-align:right">2.5</td>
+  <td style="text-align:right">约0.0821</td>
+  <td style="text-align:right">−1.5</td>
+  <td>变号且幅度增大</td>
+</tr>
+</tbody>
+</table>
+<p>负值暴露了数值近似对总量模型的破坏，而“幅度衰减”仍是另一个可以独立判断的数学性质。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-discrete-poles">离散极点与物理合理性</a></li></ul></nav>
+
+<p class="concept-explore"><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/explore/?concept=P06-C03-S02%3Aeuler-decay-and-positivity">可视化与探索：Euler 倍率、幅度衰减与非负性 →</a></p>
+
+<p>计算题在每个输入区间分别推进两种序列，都保留起点。对$N$个输入，返回的状态序列都有$N+1$项；每次$u[n]$与对应区间配对。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampled-response">相同采样间隔不等于相同离散模型</a></li></ul></nav>
+
+<h2 id="z-transform-initial-term">单侧 Z 变换与初态项</h2>
+<p>连续变换把曲线乘指数再积分；对序列，改成从$n=0$开始的加权求和，定义<strong>单侧Z变换</strong></p>
+<p>$$X(z)=\sum_{n=0}^\infty x[n]z^{-n},$$</p>
+<p>$z$无量纲。先处理下一步序列的变换。令$m=n+1$，则</p>
+<p>$$\begin{aligned}
+\sum_{n=0}^\infty x[n+1]z^{-n}
+&amp;=\sum_{m=1}^\infty x[m]z^{-(m-1)}\\
+&amp;=z\sum_{m=1}^\infty x[m]z^{-m}
+=z\bigl(X(z)-x[0]\bigr).
+\end{aligned}$$</p>
+<p>原来的第0项没有进入左侧求和，因此右侧必须先减$x[0]$。对递推$x[n+1]=ax[n]+bu[n]$变换，得到</p>
+<p>$$z(X-x[0])=aX+bU,$$</p>
+<p>进而</p>
+<p>$$\boxed{X(z)=\frac{zx[0]}{z-a}+\frac b{z-a}U(z).}$$</p>
+<p>初态贡献仍独立保留。它与连续式$x_0/(s+k)+H(s)U(s)$扮演同样的角色。</p>
+<h2 id="one-step-delay">一拍延迟与离散卷积</h2>
+<p>取零初态，离散传递函数为</p>
+<p>$$\boxed{H(z)=\frac b{z-a}=\frac{bz^{-1}}{1-az^{-1}}.}$$</p>
+<p>展开几何级数，</p>
+<p>$$H(z)=bz^{-1}+baz^{-2}+ba^2z^{-3}+\cdots.$$</p>
+<p>因此用于离散卷积的脉冲响应系数为</p>
+<p>$$g[0]=0,\qquad g[n]=ba^{n-1}\quad(n\ge1).$$</p>
+<p>这些系数单位为T，与流率序列卷积后得到总量。第0项为零，因为输入$u[0]$在第一个区间内起作用，最早出现在$x[1]$中。采用U、T作数值单位，令$u[0]=1$、其他项为0，则状态数值依次为$0,b,ba,ba^2,\ldots$。这里的1表示1 U/T流率持续一个区间，输入总量为$h$ U，而非瞬时投放1 U。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-z-index">Z变换中的一拍延迟</a></li></ul></nav>
+
+<p>本例输出定义为区间起点状态$x[n]$。若改为区间末状态，输出的编号也随之改变，传递函数中的延迟必须按新的输入输出时刻重新推导。</p>
+<h2 id="sampled-pole-map">收敛域与连续离散极点</h2>
+<p>上面的几何级数要求$|a/z|&lt;1$，所以因果脉冲响应变换的收敛域为</p>
+<p>$$|z|&gt;|a|.$$</p>
+<p>极点是$z=a$，它决定自由响应的每步倍率。$k&gt;0$时$0&lt;a&lt;1$，极点位于单位圆内；核的绝对和为</p>
+<p>$$\sum_{n=0}^\infty|g[n]|=\frac b{1-a}=\frac1k,$$</p>
+<p>与连续系统的恒定输入增益相同。$b/(z-a)$没有有限零点，等价式中的$z^{-1}$表示一拍延迟，不能将它单独看成有限零点。</p>
+<p>连续极点$s=-k$与精确离散极点的关系为</p>
+<p>$$z=e^{sh},$$</p>
+<p>而Euler使用$z_E=1+sh$近似。改变$h$，真实连续系统的衰减没有改变，离散“每一步”所跨过的时间却变了。</p>
+<p>探索页右侧用实数轴显示这两个极点。把$kh$从小于1调到1与2之间，检查Euler极点怎样越过0；继续增大到超过2，检查它怎样越过−1。</p>
+<p class="concept-explore"><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/explore/?concept=P06-C03-S02%3Asampled-pole-map">可视化与探索：收敛域与连续离散极点 →</a></p>
+
+<p>若间隔改成$2h$，新的精确状态系数为$e^{-2kh}=a^2$。当输入在整个$2h$区间内保持同一值，输入系数需重新积分，为$(1-e^{-2kh})/k$。仅改变观察时刻、保持实际输入轨迹相同，不会改变真实轨迹；若还改变输入更新时刻，则要按实际保持的输入重新计算。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampling-pole-map">改变采样周期后系数怎样变化</a></li></ul></nav>
+
+<h2 id="sampling-and-solver-substeps">观察间隔与求解子步</h2>
+<p>下图停止输入，分别取$kh=1.5$、$2.5$，比较解析采样与每区间一步Euler。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C03-S02-abe2bf77-0.png" alt="精确采样、Z 变换与离散极点：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图的Euler总量交替变号，幅度却逐渐减小；右图交替变号且幅度增大。精确采样点在两种间隔下都沿连续衰减曲线保持非负。</p>
+<p>如果观察间隔固定为$h=2.5$ T，可以在两次观察之间做$m$个Euler子步，只保存原观察时刻。无输入、$k=1\,\mathrm{T^{-1}}$时，经过整个区间的近似倍率为</p>
+<p>$$\left(1-\frac{2.5}{m}\right)^m\longrightarrow e^{-2.5}.$$</p>
+<p>增加子步改善的是求解近似，观察时刻与实际取得的读数数量保持不变。此时可以把同一组测量与更准确的模型计算比较；模型输入在区间内的保持假设仍沿用开头的定义。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec05/">MIT 6.003 第5讲</a>介绍Z变换及系统函数；<a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/lecture-notes/">第7讲讲义入口</a>讨论连续系统的离散近似。本节从$n=0$开始求和，保留单侧变换的初态项。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/">← 6.3.1 线性时不变系统与 Laplace 变换</a><a href="/chapters/06-04-最小二乘与参数估计/read/1/">6.4.1 最小二乘、正规方程与误差模型 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

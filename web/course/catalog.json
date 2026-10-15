@@ -7835,77 +7835,229 @@
               "id": "P06-C01-S01",
               "chapter_id": "6.1",
               "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb",
-              "title": "采样间隔与混叠",
+              "title": "采样率与混叠",
               "outcome": "手算同一组采样点上的两种余弦，区分观测间隔、求解步长与抗混叠处理。",
               "number": "6.1.1",
               "visualization": "web/measurement/index.html",
+              "reading": "lessons/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.md",
               "questions": [
                 {
                   "id": "p06-cosine-samples",
                   "slug": "p06-cosine-samples",
                   "title": "在指定时刻读取节律",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-01-观测、采样与滤波/read/1/#frequency-and-sampling-rate",
+                  "concept_title": "频率、角频率与采样率",
+                  "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-cosine-samples"
                 },
                 {
                   "id": "p06-three-clocks",
                   "slug": "p06-three-clocks",
                   "title": "细化哪一个时钟",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-01-观测、采样与滤波/read/1/#sampling-plotting-and-integration-grids",
+                  "concept_title": "采样、绘图与求解的三种间隔",
+                  "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-three-clocks"
                 },
                 {
                   "id": "p06-alias-equivalence",
                   "slug": "p06-alias-equivalence",
                   "title": "相同样本能证明什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-01-观测、采样与滤波/read/1/#aliasing-equivalent-samples",
+                  "concept_title": "相同样本与频率混叠",
+                  "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-alias-equivalence"
                 },
                 {
                   "id": "p06-nyquist-conditions",
                   "slug": "p06-nyquist-conditions",
                   "title": "采样定理的适用前提",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-01-观测、采样与滤波/read/1/#nyquist-frequency-and-bandlimit",
+                  "concept_title": "奈奎斯特频率与带限条件",
+                  "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-nyquist-conditions"
                 }
               ],
               "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-cosine-samples",
               "notebook_url": "/notebook/?id=P06-C01-S01",
-              "url": "/notebook/?id=P06-C01-S01"
+              "reading_url": "/chapters/06-01-观测、采样与滤波/read/1/",
+              "concepts": [
+                {
+                  "id": "frequency-and-sampling-rate",
+                  "title": "频率、角频率与采样率",
+                  "question_ids": [
+                    "p06-cosine-samples"
+                  ],
+                  "explore": false,
+                  "key": "P06-C01-S01:frequency-and-sampling-rate",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/1/#frequency-and-sampling-rate"
+                },
+                {
+                  "id": "aliasing-equivalent-samples",
+                  "title": "相同样本与频率混叠",
+                  "question_ids": [
+                    "p06-alias-equivalence"
+                  ],
+                  "explore": true,
+                  "key": "P06-C01-S01:aliasing-equivalent-samples",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/1/#aliasing-equivalent-samples",
+                  "explore_url": "/chapters/06-01-观测、采样与滤波/explore/?concept=P06-C01-S01%3Aaliasing-equivalent-samples"
+                },
+                {
+                  "id": "nyquist-frequency-and-bandlimit",
+                  "title": "奈奎斯特频率与带限条件",
+                  "question_ids": [
+                    "p06-nyquist-conditions"
+                  ],
+                  "explore": false,
+                  "key": "P06-C01-S01:nyquist-frequency-and-bandlimit",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/1/#nyquist-frequency-and-bandlimit"
+                },
+                {
+                  "id": "analog-antialias-and-digital-decimation",
+                  "title": "模拟抗混叠与数字降采样",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C01-S01:analog-antialias-and-digital-decimation",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/1/#analog-antialias-and-digital-decimation"
+                },
+                {
+                  "id": "sampling-plotting-and-integration-grids",
+                  "title": "采样、绘图与求解的三种间隔",
+                  "question_ids": [
+                    "p06-three-clocks"
+                  ],
+                  "explore": false,
+                  "key": "P06-C01-S01:sampling-plotting-and-integration-grids",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/1/#sampling-plotting-and-integration-grids"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C01-S01:references",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/1/#references"
+                }
+              ],
+              "url": "/chapters/06-01-观测、采样与滤波/read/1/"
             },
             {
               "id": "P06-C01-S02",
               "chapter_id": "6.1",
               "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb",
-              "title": "因果滤波与时间延迟",
+              "title": "因果移动平均与时间延迟",
               "outcome": "从已有读数算因果平均，推导独立噪声方差和缓变信号的延迟，再比较居中平均。",
               "number": "6.1.2",
               "visualization": "web/measurement/index.html",
+              "reading": "lessons/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.md",
               "questions": [
                 {
                   "id": "p06-causal-average",
                   "slug": "p06-causal-average",
                   "title": "只用已经到达的读数",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-01-观测、采样与滤波/read/2/#causal-average-startup",
+                  "concept_title": "启动段与实际点数",
+                  "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-causal-average"
                 },
                 {
                   "id": "p06-centered-lookahead",
                   "slug": "p06-centered-lookahead",
                   "title": "居中均值是否适合实时报警",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-01-观测、采样与滤波/read/2/#centered-average-and-lookahead",
+                  "concept_title": "居中平均与等待时间",
+                  "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-centered-lookahead"
                 },
                 {
                   "id": "p06-filter-delay",
                   "slug": "p06-filter-delay",
                   "title": "平滑与延迟如何一起解释",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-01-观测、采样与滤波/read/2/#averaging-noise-and-output-correlation",
+                  "concept_title": "独立误差的方差与输出相关性",
+                  "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-filter-delay"
                 },
                 {
                   "id": "p06-startup-filter",
                   "slug": "p06-startup-filter",
                   "title": "前缀平均与固定FIR相同吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-01-观测、采样与滤波/read/2/#causal-average-startup",
+                  "concept_title": "启动段与实际点数",
+                  "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-startup-filter"
                 }
               ],
               "practice_url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-causal-average",
               "notebook_url": "/notebook/?id=P06-C01-S02",
-              "url": "/notebook/?id=P06-C01-S02"
+              "reading_url": "/chapters/06-01-观测、采样与滤波/read/2/",
+              "concepts": [
+                {
+                  "id": "causal-filtering-and-available-observations",
+                  "title": "因果滤波与已到达的读数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C01-S02:causal-filtering-and-available-observations",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/2/#causal-filtering-and-available-observations"
+                },
+                {
+                  "id": "causal-average-startup",
+                  "title": "启动段与实际点数",
+                  "question_ids": [
+                    "p06-causal-average",
+                    "p06-startup-filter"
+                  ],
+                  "explore": false,
+                  "key": "P06-C01-S02:causal-average-startup",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/2/#causal-average-startup"
+                },
+                {
+                  "id": "ramp-delay-and-step-smoothing",
+                  "title": "斜坡延迟与阶跃变形",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C01-S02:ramp-delay-and-step-smoothing",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/2/#ramp-delay-and-step-smoothing"
+                },
+                {
+                  "id": "averaging-noise-and-output-correlation",
+                  "title": "独立误差的方差与输出相关性",
+                  "question_ids": [
+                    "p06-filter-delay"
+                  ],
+                  "explore": false,
+                  "key": "P06-C01-S02:averaging-noise-and-output-correlation",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/2/#averaging-noise-and-output-correlation"
+                },
+                {
+                  "id": "centered-average-and-lookahead",
+                  "title": "居中平均与等待时间",
+                  "question_ids": [
+                    "p06-centered-lookahead"
+                  ],
+                  "explore": false,
+                  "key": "P06-C01-S02:centered-average-and-lookahead",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/2/#centered-average-and-lookahead"
+                },
+                {
+                  "id": "smoothing-and-timing-comparison",
+                  "title": "斜坡与阶跃的对照图",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C01-S02:smoothing-and-timing-comparison",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/2/#smoothing-and-timing-comparison"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C01-S02:references",
+                  "url": "/chapters/06-01-观测、采样与滤波/read/2/#references"
+                }
+              ],
+              "url": "/chapters/06-01-观测、采样与滤波/read/2/"
             }
           ],
           "visualization": "web/measurement/index.html"
@@ -7928,127 +8080,379 @@
               "id": "P06-C02-S01",
               "chapter_id": "6.2",
               "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.ipynb",
-              "title": "从脉冲响应到线性卷积",
+              "title": "脉冲响应与线性卷积",
               "outcome": "把一次输入拆成平移脉冲，逐项相加得到完整线性卷积，并解释末尾与循环回绕。",
               "number": "6.2.1",
               "visualization": "web/measurement/index.html",
+              "reading": "lessons/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.md",
               "questions": [
                 {
                   "id": "p06-linear-convolution",
                   "slug": "p06-linear-convolution",
                   "title": "把各次输入的响应叠加",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#linear-convolution-sum",
+                  "concept_title": "线性卷积与索引含义",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-linear-convolution"
                 },
                 {
                   "id": "p06-lti-superposition",
                   "slug": "p06-lti-superposition",
                   "title": "卷积表达依靠哪些假设",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#linearity-and-time-shifting",
+                  "concept_title": "缩放、平移与叠加",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-lti-superposition"
                 },
                 {
                   "id": "p06-circular-wrap",
                   "slug": "p06-circular-wrap",
                   "title": "为什么尾部绕回了开头",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#linear-tail-and-circular-convolution",
+                  "concept_title": "完整尾部与循环卷积",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-circular-wrap"
                 },
                 {
                   "id": "p06-impulse-meaning",
                   "slug": "p06-impulse-meaning",
                   "title": "单位脉冲与初始状态",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#zero-state-and-startup-conventions",
+                  "concept_title": "零状态响应与启动约定",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-impulse-meaning"
                 }
               ],
               "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-linear-convolution",
               "notebook_url": "/notebook/?id=P06-C02-S01",
-              "url": "/notebook/?id=P06-C02-S01"
+              "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/1/",
+              "concepts": [
+                {
+                  "id": "unit-impulse-and-response",
+                  "title": "单位脉冲与脉冲响应",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C02-S01:unit-impulse-and-response",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#unit-impulse-and-response"
+                },
+                {
+                  "id": "linearity-and-time-shifting",
+                  "title": "缩放、平移与叠加",
+                  "question_ids": [
+                    "p06-lti-superposition"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S01:linearity-and-time-shifting",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#linearity-and-time-shifting"
+                },
+                {
+                  "id": "linear-convolution-sum",
+                  "title": "线性卷积与索引含义",
+                  "question_ids": [
+                    "p06-linear-convolution"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S01:linear-convolution-sum",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#linear-convolution-sum"
+                },
+                {
+                  "id": "zero-state-and-startup-conventions",
+                  "title": "零状态响应与启动约定",
+                  "question_ids": [
+                    "p06-impulse-meaning"
+                  ],
+                  "explore": true,
+                  "key": "P06-C02-S01:zero-state-and-startup-conventions",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#zero-state-and-startup-conventions",
+                  "explore_url": "/chapters/06-02-卷积、频谱与频率响应/explore/?concept=P06-C02-S01%3Azero-state-and-startup-conventions"
+                },
+                {
+                  "id": "linear-tail-and-circular-convolution",
+                  "title": "完整尾部与循环卷积",
+                  "question_ids": [
+                    "p06-circular-wrap"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S01:linear-tail-and-circular-convolution",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#linear-tail-and-circular-convolution"
+                },
+                {
+                  "id": "kernel-length-and-output-timing",
+                  "title": "核长度与输出时序",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C02-S01:kernel-length-and-output-timing",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#kernel-length-and-output-timing"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C02-S01:references",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/#references"
+                }
+              ],
+              "url": "/chapters/06-02-卷积、频谱与频率响应/read/1/"
             },
             {
               "id": "P06-C02-S02",
               "chapter_id": "6.2",
               "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.ipynb",
-              "title": "复指数与离散频谱",
+              "title": "离散傅里叶变换与单边频谱",
               "outcome": "沿复指数旋转计算频谱，说明每个频率格点、幅值及相位对应什么信号。",
               "number": "6.2.2",
               "visualization": "web/measurement/index.html",
+              "reading": "lessons/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.md",
               "questions": [
                 {
                   "id": "p06-one-sided-spectrum",
                   "slug": "p06-one-sided-spectrum",
                   "title": "给有限记录标上正确频率",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#two-frequency-record-and-spectrum",
+                  "concept_title": "双频记录的幅值与相位",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-one-sided-spectrum"
                 },
                 {
                   "id": "p06-complex-rotation",
                   "slug": "p06-complex-rotation",
                   "title": "复指数怎样表示相位",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#complex-rotations-and-components",
+                  "concept_title": "复旋转与频率成分",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-complex-rotation"
                 },
                 {
                   "id": "p06-nyquist-amplitude",
                   "slug": "p06-nyquist-amplitude",
                   "title": "交替序列的单边频谱",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#one-sided-amplitude-and-endpoints",
+                  "concept_title": "单边幅值与奇偶长度",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-nyquist-amplitude"
                 },
                 {
                   "id": "p06-phase-zero",
                   "slug": "p06-phase-zero",
                   "title": "零幅频点的相位表示什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#phase-origin-and-zero-amplitude",
+                  "concept_title": "相位原点与零幅标记",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-phase-zero"
                 },
                 {
                   "id": "p06-frequency-units",
                   "slug": "p06-frequency-units",
                   "title": "频点间隔由什么决定",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#dft-definition-and-frequency-grid",
+                  "concept_title": "DFT 与频率格",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-frequency-units"
                 }
               ],
               "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-one-sided-spectrum",
               "notebook_url": "/notebook/?id=P06-C02-S02",
-              "url": "/notebook/?id=P06-C02-S02"
+              "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/2/",
+              "concepts": [
+                {
+                  "id": "complex-rotations-and-components",
+                  "title": "复旋转与频率成分",
+                  "question_ids": [
+                    "p06-complex-rotation"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S02:complex-rotations-and-components",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#complex-rotations-and-components"
+                },
+                {
+                  "id": "dft-definition-and-frequency-grid",
+                  "title": "DFT 与频率格",
+                  "question_ids": [
+                    "p06-frequency-units"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S02:dft-definition-and-frequency-grid",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#dft-definition-and-frequency-grid"
+                },
+                {
+                  "id": "dft-hand-calculation-and-orthogonality",
+                  "title": "反向旋转的手算与正交性",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C02-S02:dft-hand-calculation-and-orthogonality",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#dft-hand-calculation-and-orthogonality"
+                },
+                {
+                  "id": "one-sided-amplitude-and-endpoints",
+                  "title": "单边幅值与奇偶长度",
+                  "question_ids": [
+                    "p06-nyquist-amplitude"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S02:one-sided-amplitude-and-endpoints",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#one-sided-amplitude-and-endpoints"
+                },
+                {
+                  "id": "phase-origin-and-zero-amplitude",
+                  "title": "相位原点与零幅标记",
+                  "question_ids": [
+                    "p06-phase-zero"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S02:phase-origin-and-zero-amplitude",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#phase-origin-and-zero-amplitude"
+                },
+                {
+                  "id": "two-frequency-record-and-spectrum",
+                  "title": "双频记录的幅值与相位",
+                  "question_ids": [
+                    "p06-one-sided-spectrum"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S02:two-frequency-record-and-spectrum",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#two-frequency-record-and-spectrum"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C02-S02:references",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/#references"
+                }
+              ],
+              "url": "/chapters/06-02-卷积、频谱与频率响应/read/2/"
             },
             {
               "id": "P06-C02-S03",
               "chapter_id": "6.2",
               "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.ipynb",
-              "title": "有限记录与滤波频率响应",
+              "title": "有限记录、窗函数与频率响应",
               "outcome": "比较整周期与非整周期记录，解释加窗和补零，再用频率响应预测滤波结果。",
               "number": "6.2.3",
               "visualization": "web/measurement/index.html",
+              "reading": "lessons/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.md",
               "questions": [
                 {
                   "id": "p06-fir-response",
                   "slug": "p06-fir-response",
                   "title": "不同频率通过滤波器后怎样变化",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#fir-frequency-response",
+                  "concept_title": "卷积与稳态频率响应",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-response"
                 },
                 {
                   "id": "p06-finite-leakage",
                   "slug": "p06-finite-leakage",
                   "title": "频谱泄漏来自哪里",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#finite-record-and-spectral-leakage",
+                  "concept_title": "有限记录与频谱泄漏",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-finite-leakage"
                 },
                 {
                   "id": "p06-zero-padding",
                   "slug": "p06-zero-padding",
                   "title": "补零能增加什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#zero-padding-and-frequency-grid",
+                  "concept_title": "补零与更密的频率格",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-zero-padding"
                 },
                 {
                   "id": "p06-fir-delay-band",
                   "slug": "p06-fir-delay-band",
                   "title": "均值滤波器的延迟在哪成立",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#moving-average-gain-and-delay",
+                  "concept_title": "均值核的衰减与延迟",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-delay-band"
                 },
                 {
                   "id": "p06-amplitude-calibration",
                   "slug": "p06-amplitude-calibration",
                   "title": "给频谱乘窗后怎样报幅值",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#window-mainlobe-and-sidelobes",
+                  "concept_title": "窗函数、主瓣与旁瓣",
+                  "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-amplitude-calibration"
                 }
               ],
               "practice_url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-response",
               "notebook_url": "/notebook/?id=P06-C02-S03",
-              "url": "/notebook/?id=P06-C02-S03"
+              "reading_url": "/chapters/06-02-卷积、频谱与频率响应/read/3/",
+              "concepts": [
+                {
+                  "id": "finite-record-and-spectral-leakage",
+                  "title": "有限记录与频谱泄漏",
+                  "question_ids": [
+                    "p06-finite-leakage"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S03:finite-record-and-spectral-leakage",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#finite-record-and-spectral-leakage"
+                },
+                {
+                  "id": "window-mainlobe-and-sidelobes",
+                  "title": "窗函数、主瓣与旁瓣",
+                  "question_ids": [
+                    "p06-amplitude-calibration"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S03:window-mainlobe-and-sidelobes",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#window-mainlobe-and-sidelobes"
+                },
+                {
+                  "id": "zero-padding-and-frequency-grid",
+                  "title": "补零与更密的频率格",
+                  "question_ids": [
+                    "p06-zero-padding"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S03:zero-padding-and-frequency-grid",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#zero-padding-and-frequency-grid"
+                },
+                {
+                  "id": "fir-frequency-response",
+                  "title": "卷积与稳态频率响应",
+                  "question_ids": [
+                    "p06-fir-response"
+                  ],
+                  "explore": false,
+                  "key": "P06-C02-S03:fir-frequency-response",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#fir-frequency-response"
+                },
+                {
+                  "id": "moving-average-gain-and-delay",
+                  "title": "均值核的衰减与延迟",
+                  "question_ids": [
+                    "p06-fir-delay-band"
+                  ],
+                  "explore": true,
+                  "key": "P06-C02-S03:moving-average-gain-and-delay",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#moving-average-gain-and-delay",
+                  "explore_url": "/chapters/06-02-卷积、频谱与频率响应/explore/?concept=P06-C02-S03%3Amoving-average-gain-and-delay"
+                },
+                {
+                  "id": "window-and-filter-comparisons",
+                  "title": "有限窗与滤波结果的对照图",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C02-S03:window-and-filter-comparisons",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#window-and-filter-comparisons"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C02-S03:references",
+                  "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/#references"
+                }
+              ],
+              "url": "/chapters/06-02-卷积、频谱与频率响应/read/3/"
             }
           ],
           "visualization": "web/measurement/index.html"
@@ -8071,89 +8475,260 @@
               "id": "P06-C03-S01",
               "chapter_id": "6.3",
               "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.ipynb",
-              "title": "LTI假设与Laplace表示",
+              "title": "线性时不变系统与 Laplace 变换",
               "outcome": "检查叠加与平移是否成立，从单室收支推导变换关系，并分别计算初态与输入响应。",
               "number": "6.3.1",
               "visualization": "web/measurement/index.html",
+              "reading": "lessons/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.md",
               "questions": [
                 {
                   "id": "p06-response-components",
                   "slug": "p06-response-components",
                   "title": "将初态与输入的作用分开",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#initial-and-input-response",
+                  "concept_title": "单室方程与响应分解",
+                  "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-response-components"
                 },
                 {
                   "id": "p06-laplace-initial",
                   "slug": "p06-laplace-initial",
                   "title": "导数变换遗漏了哪一项",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#laplace-derivative-initial",
+                  "concept_title": "导数变换与初值项",
+                  "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-laplace-initial"
                 },
                 {
                   "id": "p06-linear-map-initial",
                   "slug": "p06-linear-map-initial",
                   "title": "固定非零初态的映射是否线性",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#lti-zero-state-map",
+                  "concept_title": "线性与时不变的定义",
+                  "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-linear-map-initial"
                 },
                 {
                   "id": "p06-roc-causal",
                   "slug": "p06-roc-causal",
                   "title": "极点与收敛域说明什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#transfer-function-pole-stability",
+                  "concept_title": "传递函数、极点与有界响应",
+                  "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-roc-causal"
                 },
                 {
                   "id": "p06-lti-failure",
                   "slug": "p06-lti-failure",
                   "title": "线性与时不变哪个失效",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#lti-zero-state-map",
+                  "concept_title": "线性与时不变的定义",
+                  "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-lti-failure"
                 }
               ],
               "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-response-components",
               "notebook_url": "/notebook/?id=P06-C03-S01",
-              "url": "/notebook/?id=P06-C03-S01"
+              "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/",
+              "concepts": [
+                {
+                  "id": "initial-and-input-response",
+                  "title": "单室方程与响应分解",
+                  "question_ids": [
+                    "p06-response-components"
+                  ],
+                  "explore": false,
+                  "key": "P06-C03-S01:initial-and-input-response",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#initial-and-input-response"
+                },
+                {
+                  "id": "lti-zero-state-map",
+                  "title": "线性与时不变的定义",
+                  "question_ids": [
+                    "p06-linear-map-initial",
+                    "p06-lti-failure"
+                  ],
+                  "explore": false,
+                  "key": "P06-C03-S01:lti-zero-state-map",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#lti-zero-state-map"
+                },
+                {
+                  "id": "laplace-definition-roc",
+                  "title": "Laplace 变换与收敛域",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C03-S01:laplace-definition-roc",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#laplace-definition-roc"
+                },
+                {
+                  "id": "laplace-derivative-initial",
+                  "title": "导数变换与初值项",
+                  "question_ids": [
+                    "p06-laplace-initial"
+                  ],
+                  "explore": false,
+                  "key": "P06-C03-S01:laplace-derivative-initial",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#laplace-derivative-initial"
+                },
+                {
+                  "id": "transfer-function-pole-stability",
+                  "title": "传递函数、极点与有界响应",
+                  "question_ids": [
+                    "p06-roc-causal"
+                  ],
+                  "explore": false,
+                  "key": "P06-C03-S01:transfer-function-pole-stability",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#transfer-function-pole-stability"
+                },
+                {
+                  "id": "response-components-experiment",
+                  "title": "初态响应与输入响应的对照",
+                  "question_ids": [],
+                  "explore": true,
+                  "key": "P06-C03-S01:response-components-experiment",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#response-components-experiment",
+                  "explore_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/explore/?concept=P06-C03-S01%3Aresponse-components-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C03-S01:references",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/#references"
+                }
+              ],
+              "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/"
             },
             {
               "id": "P06-C03-S02",
               "chapter_id": "6.3",
               "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb",
-              "title": "Z变换与精确采样",
+              "title": "精确采样、Z 变换与离散极点",
               "outcome": "对一个采样区间积分，推导精确递推和 Z 变换，比较精确倍率与 Euler 倍率。",
               "number": "6.3.2",
               "visualization": "web/measurement/index.html",
+              "reading": "lessons/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.md",
               "questions": [
                 {
                   "id": "p06-sampled-response",
                   "slug": "p06-sampled-response",
                   "title": "相同采样间隔不等于相同离散模型",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#euler-decay-and-positivity",
+                  "concept_title": "Euler 倍率、幅度衰减与非负性",
+                  "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampled-response"
                 },
                 {
                   "id": "p06-z-index",
                   "slug": "p06-z-index",
                   "title": "Z变换中的一拍延迟",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#one-step-delay",
+                  "concept_title": "一拍延迟与离散卷积",
+                  "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-z-index"
                 },
                 {
                   "id": "p06-discrete-poles",
                   "slug": "p06-discrete-poles",
                   "title": "离散极点与物理合理性",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#euler-decay-and-positivity",
+                  "concept_title": "Euler 倍率、幅度衰减与非负性",
+                  "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-discrete-poles"
                 },
                 {
                   "id": "p06-zero-clearance",
                   "slug": "p06-zero-clearance",
                   "title": "零清除系数如何取极限",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#zero-order-hold-integration",
+                  "concept_title": "零阶保持与区间积分",
+                  "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-zero-clearance"
                 },
                 {
                   "id": "p06-sampling-pole-map",
                   "slug": "p06-sampling-pole-map",
                   "title": "改变采样周期后系数怎样变化",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#sampled-pole-map",
+                  "concept_title": "收敛域与连续离散极点",
+                  "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampling-pole-map"
                 }
               ],
               "practice_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampled-response",
               "notebook_url": "/notebook/?id=P06-C03-S02",
-              "url": "/notebook/?id=P06-C03-S02"
+              "reading_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/",
+              "concepts": [
+                {
+                  "id": "zero-order-hold-integration",
+                  "title": "零阶保持与区间积分",
+                  "question_ids": [
+                    "p06-zero-clearance"
+                  ],
+                  "explore": false,
+                  "key": "P06-C03-S02:zero-order-hold-integration",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#zero-order-hold-integration"
+                },
+                {
+                  "id": "euler-decay-and-positivity",
+                  "title": "Euler 倍率、幅度衰减与非负性",
+                  "question_ids": [
+                    "p06-discrete-poles",
+                    "p06-sampled-response"
+                  ],
+                  "explore": true,
+                  "key": "P06-C03-S02:euler-decay-and-positivity",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#euler-decay-and-positivity",
+                  "explore_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/explore/?concept=P06-C03-S02%3Aeuler-decay-and-positivity"
+                },
+                {
+                  "id": "z-transform-initial-term",
+                  "title": "单侧 Z 变换与初态项",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C03-S02:z-transform-initial-term",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#z-transform-initial-term"
+                },
+                {
+                  "id": "one-step-delay",
+                  "title": "一拍延迟与离散卷积",
+                  "question_ids": [
+                    "p06-z-index"
+                  ],
+                  "explore": false,
+                  "key": "P06-C03-S02:one-step-delay",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#one-step-delay"
+                },
+                {
+                  "id": "sampled-pole-map",
+                  "title": "收敛域与连续离散极点",
+                  "question_ids": [
+                    "p06-sampling-pole-map"
+                  ],
+                  "explore": true,
+                  "key": "P06-C03-S02:sampled-pole-map",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#sampled-pole-map",
+                  "explore_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/explore/?concept=P06-C03-S02%3Asampled-pole-map"
+                },
+                {
+                  "id": "sampling-and-solver-substeps",
+                  "title": "观察间隔与求解子步",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C03-S02:sampling-and-solver-substeps",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#sampling-and-solver-substeps"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C03-S02:references",
+                  "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/#references"
+                }
+              ],
+              "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/"
             }
           ],
           "visualization": "web/measurement/index.html"
@@ -8176,127 +8751,382 @@
               "id": "P06-C04-S01",
               "chapter_id": "6.4",
               "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.ipynb",
-              "title": "最小二乘与误差假设",
+              "title": "最小二乘、正规方程与误差模型",
               "outcome": "从四个读数手算直线拟合，再由正交条件和高斯误差解释最小二乘。",
               "number": "6.4.1",
               "visualization": null,
+              "reading": "lessons/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.md",
               "questions": [
                 {
                   "id": "p06-line-fit",
                   "slug": "p06-line-fit",
                   "title": "用残差定义直线拟合",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/1/#line-least-squares-derivation",
+                  "concept_title": "含截距直线的最小二乘解",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-line-fit"
                 },
                 {
                   "id": "p06-least-squares-gaussian",
                   "slug": "p06-least-squares-gaussian",
                   "title": "平方残差何时对应似然",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/1/#gaussian-likelihood-and-sse",
+                  "concept_title": "高斯误差与最大似然",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-least-squares-gaussian"
                 },
                 {
                   "id": "p06-rank-deficiency",
                   "slug": "p06-rank-deficiency",
                   "title": "输入恒定时哪些系数可确定",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/1/#normal-equations-and-rank",
+                  "concept_title": "正规方程、投影与秩",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-rank-deficiency"
                 },
                 {
                   "id": "p06-orthogonal-residual",
                   "slug": "p06-orthogonal-residual",
                   "title": "最小二乘残差的代数检查",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/1/#normal-equations-and-rank",
+                  "concept_title": "正规方程、投影与秩",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-orthogonal-residual"
                 },
                 {
                   "id": "p06-weighted-errors",
                   "slug": "p06-weighted-errors",
                   "title": "不同测量精度如何进入损失",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/1/#gaussian-likelihood-and-sse",
+                  "concept_title": "高斯误差与最大似然",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-weighted-errors"
                 }
               ],
               "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-line-fit",
               "notebook_url": "/notebook/?id=P06-C04-S01",
-              "url": "/notebook/?id=P06-C04-S01"
+              "reading_url": "/chapters/06-04-最小二乘与参数估计/read/1/",
+              "concepts": [
+                {
+                  "id": "line-model-and-squared-residual",
+                  "title": "校准直线与平方残差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S01:line-model-and-squared-residual",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/1/#line-model-and-squared-residual"
+                },
+                {
+                  "id": "line-least-squares-derivation",
+                  "title": "含截距直线的最小二乘解",
+                  "question_ids": [
+                    "p06-line-fit"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S01:line-least-squares-derivation",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/1/#line-least-squares-derivation"
+                },
+                {
+                  "id": "normal-equations-and-rank",
+                  "title": "正规方程、投影与秩",
+                  "question_ids": [
+                    "p06-rank-deficiency",
+                    "p06-orthogonal-residual"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S01:normal-equations-and-rank",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/1/#normal-equations-and-rank"
+                },
+                {
+                  "id": "gaussian-likelihood-and-sse",
+                  "title": "高斯误差与最大似然",
+                  "question_ids": [
+                    "p06-least-squares-gaussian",
+                    "p06-weighted-errors"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S01:gaussian-likelihood-and-sse",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/1/#gaussian-likelihood-and-sse"
+                },
+                {
+                  "id": "line-residual-experiment",
+                  "title": "拟合线与残差图",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S01:line-residual-experiment",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/1/#line-residual-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S01:references",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/1/#references"
+                }
+              ],
+              "url": "/chapters/06-04-最小二乘与参数估计/read/1/"
             },
             {
               "id": "P06-C04-S02",
               "chapter_id": "6.4",
               "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.ipynb",
-              "title": "清除曲线的网格估计",
+              "title": "指数清除曲线、加权损失与网格估计",
               "outcome": "逐个比较清除系数的候选损失，解释残差、相对权重和网格范围对结果的影响。",
               "number": "6.4.2",
               "visualization": null,
+              "reading": "lessons/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.md",
               "questions": [
                 {
                   "id": "p06-clearance-grid",
                   "slug": "p06-clearance-grid",
                   "title": "在给定参数集合中拟合清除",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/2/#relative-weights-and-units",
+                  "concept_title": "测量精度与相对权重",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-clearance-grid"
                 },
                 {
                   "id": "p06-log-error-model",
                   "slug": "p06-log-error-model",
                   "title": "取对数只是换一种写法吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/2/#log-transform-error",
+                  "concept_title": "对数变换与误差模型",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-log-error-model"
                 },
                 {
                   "id": "p06-grid-resolution",
                   "slug": "p06-grid-resolution",
                   "title": "网格最优意味着什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/2/#finite-grid-estimation",
+                  "concept_title": "有限候选集合与网格最优",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-grid-resolution"
                 },
                 {
                   "id": "p06-noisy-differences",
                   "slug": "p06-noisy-differences",
                   "title": "带噪差分为何不能当无误差导数",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/2/#noisy-difference-errors",
+                  "concept_title": "带噪差分的方差与共享误差",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-noisy-differences"
                 },
                 {
                   "id": "p06-residual-validation",
                   "slug": "p06-residual-validation",
                   "title": "拟合残差小还需检查什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/2/#residual-and-new-data-check",
+                  "concept_title": "残差与新观测检查",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-residual-validation"
                 }
               ],
               "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-clearance-grid",
               "notebook_url": "/notebook/?id=P06-C04-S02",
-              "url": "/notebook/?id=P06-C04-S02"
+              "reading_url": "/chapters/06-04-最小二乘与参数估计/read/2/",
+              "concepts": [
+                {
+                  "id": "clearance-model-and-observations",
+                  "title": "指数曲线与带误差读数",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S02:clearance-model-and-observations",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/2/#clearance-model-and-observations"
+                },
+                {
+                  "id": "finite-grid-estimation",
+                  "title": "有限候选集合与网格最优",
+                  "question_ids": [
+                    "p06-grid-resolution"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S02:finite-grid-estimation",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/2/#finite-grid-estimation"
+                },
+                {
+                  "id": "relative-weights-and-units",
+                  "title": "测量精度与相对权重",
+                  "question_ids": [
+                    "p06-clearance-grid"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S02:relative-weights-and-units",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/2/#relative-weights-and-units"
+                },
+                {
+                  "id": "grid-weight-experiment",
+                  "title": "网格与权重的曲线对照",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S02:grid-weight-experiment",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/2/#grid-weight-experiment"
+                },
+                {
+                  "id": "log-transform-error",
+                  "title": "对数变换与误差模型",
+                  "question_ids": [
+                    "p06-log-error-model"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S02:log-transform-error",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/2/#log-transform-error"
+                },
+                {
+                  "id": "noisy-difference-errors",
+                  "title": "带噪差分的方差与共享误差",
+                  "question_ids": [
+                    "p06-noisy-differences"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S02:noisy-difference-errors",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/2/#noisy-difference-errors"
+                },
+                {
+                  "id": "residual-and-new-data-check",
+                  "title": "残差与新观测检查",
+                  "question_ids": [
+                    "p06-residual-validation"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S02:residual-and-new-data-check",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/2/#residual-and-new-data-check"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S02:references",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/2/#references"
+                }
+              ],
+              "url": "/chapters/06-04-最小二乘与参数估计/read/2/"
             },
             {
               "id": "P06-C04-S03",
               "chapter_id": "6.4",
               "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.ipynb",
-              "title": "参数区间与重复观测",
+              "title": "估计标准误、置信区间与成对自助法",
               "outcome": "在相同设计下重复测量，计算斜率区间，并区分固定设计与成对重抽样。",
               "number": "6.4.3",
               "visualization": null,
+              "reading": "lessons/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.md",
               "questions": [
                 {
                   "id": "p06-slope-interval",
                   "slug": "p06-slope-interval",
                   "title": "已知测量噪声下的斜率区间",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/3/#confidence-interval-coverage",
+                  "concept_title": "置信区间与重复覆盖",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-slope-interval"
                 },
                 {
                   "id": "p06-interval-meaning",
                   "slug": "p06-interval-meaning",
                   "title": "95%覆盖率指谁变化",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/3/#confidence-interval-coverage",
+                  "concept_title": "置信区间与重复覆盖",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-interval-meaning"
                 },
                 {
                   "id": "p06-unknown-variance",
                   "slug": "p06-unknown-variance",
                   "title": "未知方差时为什么需要额外条件",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/3/#unknown-variance-t-interval",
+                  "concept_title": "未知误差方差与 t 区间",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-unknown-variance"
                 },
                 {
                   "id": "p06-bootstrap-unit",
                   "slug": "p06-bootstrap-unit",
                   "title": "应该重采样什么单位",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-04-最小二乘与参数估计/read/3/#pairs-bootstrap",
+                  "concept_title": "成对自助法与经验分布",
+                  "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-bootstrap-unit"
                 }
               ],
               "practice_url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-slope-interval",
               "notebook_url": "/notebook/?id=P06-C04-S03",
-              "url": "/notebook/?id=P06-C04-S03"
+              "reading_url": "/chapters/06-04-最小二乘与参数估计/read/3/",
+              "concepts": [
+                {
+                  "id": "estimator-and-fixed-design",
+                  "title": "参数估计与重复测量",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S03:estimator-and-fixed-design",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/3/#estimator-and-fixed-design"
+                },
+                {
+                  "id": "slope-standard-error",
+                  "title": "斜率方差与标准误",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S03:slope-standard-error",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/3/#slope-standard-error"
+                },
+                {
+                  "id": "confidence-interval-coverage",
+                  "title": "置信区间与重复覆盖",
+                  "question_ids": [
+                    "p06-slope-interval",
+                    "p06-interval-meaning"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S03:confidence-interval-coverage",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/3/#confidence-interval-coverage"
+                },
+                {
+                  "id": "mean-and-new-reading-interval",
+                  "title": "平均响应区间与下一读数区间",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S03:mean-and-new-reading-interval",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/3/#mean-and-new-reading-interval"
+                },
+                {
+                  "id": "unknown-variance-t-interval",
+                  "title": "未知误差方差与 t 区间",
+                  "question_ids": [
+                    "p06-unknown-variance"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S03:unknown-variance-t-interval",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/3/#unknown-variance-t-interval"
+                },
+                {
+                  "id": "pairs-bootstrap",
+                  "title": "成对自助法与经验分布",
+                  "question_ids": [
+                    "p06-bootstrap-unit"
+                  ],
+                  "explore": false,
+                  "key": "P06-C04-S03:pairs-bootstrap",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/3/#pairs-bootstrap"
+                },
+                {
+                  "id": "coverage-and-bootstrap-experiment",
+                  "title": "固定设计覆盖与自助斜率的对照",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S03:coverage-and-bootstrap-experiment",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/3/#coverage-and-bootstrap-experiment"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C04-S03:references",
+                  "url": "/chapters/06-04-最小二乘与参数估计/read/3/#references"
+                }
+              ],
+              "url": "/chapters/06-04-最小二乘与参数估计/read/3/"
             }
           ],
           "visualization": null
@@ -8319,133 +9149,362 @@
               "id": "P06-C05-S01",
               "chapter_id": "6.5",
               "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb",
-              "title": "ARX回归与两种预测",
+              "title": "ARX 回归、一步预测与自由运行",
               "outcome": "写清历史与输入的回归顺序，解释条件平均，并手算一步预测和自由运行的差别。",
               "number": "6.5.1",
               "visualization": null,
+              "reading": "lessons/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.md",
               "questions": [
                 {
                   "id": "p06-arx-predictions",
                   "slug": "p06-arx-predictions",
                   "title": "一步预测与自由运行",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#one-step-and-free-run",
+                  "concept_title": "一步预测与自由运行",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-predictions"
                 },
                 {
                   "id": "p06-arx-regressors",
                   "slug": "p06-arx-regressors",
                   "title": "ARX回归的一行由什么组成",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#arx-regression-row-order",
+                  "concept_title": "回归行、目标与参数顺序",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-regressors"
                 },
                 {
                   "id": "p06-prediction-information",
                   "slug": "p06-prediction-information",
                   "title": "两种预测用了同样信息吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#one-step-and-free-run",
+                  "concept_title": "一步预测与自由运行",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-prediction-information"
                 },
                 {
                   "id": "p06-arx-noise-assumption",
                   "slug": "p06-arx-noise-assumption",
                   "title": "最小二乘怎样受到观测噪声影响",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#measurement-error-in-regressors",
+                  "concept_title": "测量误差与有噪回归量",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-noise-assumption"
                 },
                 {
                   "id": "p06-delay-structure",
                   "slug": "p06-delay-structure",
                   "title": "输入延迟选错会怎样",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#arx-model-and-input-clock",
+                  "concept_title": "ARX 模型与输入时序",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-delay-structure"
                 }
               ],
               "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-predictions",
               "notebook_url": "/notebook/?id=P06-C05-S01",
-              "url": "/notebook/?id=P06-C05-S01"
+              "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/",
+              "concepts": [
+                {
+                  "id": "arx-model-and-input-clock",
+                  "title": "ARX 模型与输入时序",
+                  "question_ids": [
+                    "p06-delay-structure"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S01:arx-model-and-input-clock",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#arx-model-and-input-clock"
+                },
+                {
+                  "id": "arx-regression-row-order",
+                  "title": "回归行、目标与参数顺序",
+                  "question_ids": [
+                    "p06-arx-regressors"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S01:arx-regression-row-order",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#arx-regression-row-order"
+                },
+                {
+                  "id": "conditional-mean-and-new-disturbance",
+                  "title": "条件平均与新扰动",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C05-S01:conditional-mean-and-new-disturbance",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#conditional-mean-and-new-disturbance"
+                },
+                {
+                  "id": "one-step-and-free-run",
+                  "title": "一步预测与自由运行",
+                  "question_ids": [
+                    "p06-arx-predictions",
+                    "p06-prediction-information"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S01:one-step-and-free-run",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#one-step-and-free-run"
+                },
+                {
+                  "id": "measurement-error-in-regressors",
+                  "title": "测量误差与有噪回归量",
+                  "question_ids": [
+                    "p06-arx-noise-assumption"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S01:measurement-error-in-regressors",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#measurement-error-in-regressors"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C05-S01:references",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/#references"
+                }
+              ],
+              "url": "/chapters/06-05-动态辨识、实验设计与验证/read/1/"
             },
             {
               "id": "P06-C05-S02",
               "chapter_id": "6.5",
               "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.ipynb",
-              "title": "激励与可辨识范围",
+              "title": "输入激励与参数可辨识性",
               "outcome": "比较稳态、瞬态与变化输入，判断记录中有几个独立方向，以及哪些参数能区分。",
               "number": "6.5.2",
               "visualization": null,
+              "reading": "lessons/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.md",
               "questions": [
                 {
                   "id": "p06-excitation-rank",
                   "slug": "p06-excitation-rank",
                   "title": "给定实验能区分几个回归方向",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#regression-rank-and-information-directions",
+                  "concept_title": "回归矩阵的秩与信息方向",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-excitation-rank"
                 },
                 {
                   "id": "p06-steady-confounding",
                   "slug": "p06-steady-confounding",
                   "title": "只在稳态能确定什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#steady-records-parameter-combinations",
+                  "concept_title": "稳态记录与参数组合",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-steady-confounding"
                 },
                 {
                   "id": "p06-constant-transient",
                   "slug": "p06-constant-transient",
                   "title": "恒定输入下的参数辨识",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#transients-independent-regression-directions",
+                  "concept_title": "瞬态与独立回归方向",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-constant-transient"
                 },
                 {
                   "id": "p06-conditioning",
                   "slug": "p06-conditioning",
                   "title": "满秩为什么仍可能很难估计",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#singular-values-and-estimation-sensitivity",
+                  "concept_title": "奇异值与估计敏感性",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-conditioning"
                 },
                 {
                   "id": "p06-mechanistic-parameters",
                   "slug": "p06-mechanistic-parameters",
                   "title": "同一稳态结论依赖哪些未知量",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#physical-constraints-and-unknown-parameters",
+                  "concept_title": "物理约束与独立未知量",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-mechanistic-parameters"
                 }
               ],
               "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-excitation-rank",
               "notebook_url": "/notebook/?id=P06-C05-S02",
-              "url": "/notebook/?id=P06-C05-S02"
+              "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/",
+              "concepts": [
+                {
+                  "id": "steady-records-parameter-combinations",
+                  "title": "稳态记录与参数组合",
+                  "question_ids": [
+                    "p06-steady-confounding"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S02:steady-records-parameter-combinations",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#steady-records-parameter-combinations"
+                },
+                {
+                  "id": "transients-independent-regression-directions",
+                  "title": "瞬态与独立回归方向",
+                  "question_ids": [
+                    "p06-constant-transient"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S02:transients-independent-regression-directions",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#transients-independent-regression-directions"
+                },
+                {
+                  "id": "regression-rank-and-information-directions",
+                  "title": "回归矩阵的秩与信息方向",
+                  "question_ids": [
+                    "p06-excitation-rank"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S02:regression-rank-and-information-directions",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#regression-rank-and-information-directions"
+                },
+                {
+                  "id": "singular-values-and-estimation-sensitivity",
+                  "title": "奇异值与估计敏感性",
+                  "question_ids": [
+                    "p06-conditioning"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S02:singular-values-and-estimation-sensitivity",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#singular-values-and-estimation-sensitivity"
+                },
+                {
+                  "id": "physical-constraints-and-unknown-parameters",
+                  "title": "物理约束与独立未知量",
+                  "question_ids": [
+                    "p06-mechanistic-parameters"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S02:physical-constraints-and-unknown-parameters",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#physical-constraints-and-unknown-parameters"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C05-S02:references",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/#references"
+                }
+              ],
+              "url": "/chapters/06-05-动态辨识、实验设计与验证/read/2/"
             },
             {
               "id": "P06-C05-S03",
               "chapter_id": "6.5",
               "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.ipynb",
-              "title": "数据划分与独立验证",
+              "title": "数据划分、缺测与预测验证",
               "outcome": "先按未来时段或新个体划分数据，再拟合、选结构与最终评估，保留缺测时钟。",
               "number": "6.5.3",
               "visualization": null,
+              "reading": "lessons/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.md",
               "questions": [
                 {
                   "id": "p06-time-partition",
                   "slug": "p06-time-partition",
                   "title": "保留原时钟的数据划分",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#prediction-task-and-data-partitions",
+                  "concept_title": "预测任务与数据划分",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-time-partition"
                 },
                 {
                   "id": "p06-group-partition",
                   "slug": "p06-group-partition",
                   "title": "让同一个体留在同一数据集合",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#prediction-task-and-data-partitions",
+                  "concept_title": "预测任务与数据划分",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-group-partition"
                 },
                 {
                   "id": "p06-train-only-transform",
                   "slug": "p06-train-only-transform",
                   "title": "标准化参数从哪里估计",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#training-standardization-and-coefficient-recovery",
+                  "concept_title": "训练标准化与参数还原",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-train-only-transform"
                 },
                 {
                   "id": "p06-missing-lags",
                   "slug": "p06-missing-lags",
                   "title": "缺测点能直接拼接吗",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#missing-observations-and-clock",
+                  "concept_title": "缺测时钟与有效回归行",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-missing-lags"
                 },
                 {
                   "id": "p06-held-out-purpose",
                   "slug": "p06-held-out-purpose",
                   "title": "验证与最终评估分别做什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#model-selection-and-final-evaluation",
+                  "concept_title": "模型选择与最终评分",
+                  "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-held-out-purpose"
                 }
               ],
               "practice_url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-time-partition",
               "notebook_url": "/notebook/?id=P06-C05-S03",
-              "url": "/notebook/?id=P06-C05-S03"
+              "reading_url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/",
+              "concepts": [
+                {
+                  "id": "prediction-task-and-data-partitions",
+                  "title": "预测任务与数据划分",
+                  "question_ids": [
+                    "p06-time-partition",
+                    "p06-group-partition"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S03:prediction-task-and-data-partitions",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#prediction-task-and-data-partitions"
+                },
+                {
+                  "id": "training-standardization-and-coefficient-recovery",
+                  "title": "训练标准化与参数还原",
+                  "question_ids": [
+                    "p06-train-only-transform"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S03:training-standardization-and-coefficient-recovery",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#training-standardization-and-coefficient-recovery"
+                },
+                {
+                  "id": "missing-observations-and-clock",
+                  "title": "缺测时钟与有效回归行",
+                  "question_ids": [
+                    "p06-missing-lags"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S03:missing-observations-and-clock",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#missing-observations-and-clock"
+                },
+                {
+                  "id": "model-selection-and-final-evaluation",
+                  "title": "模型选择与最终评分",
+                  "question_ids": [
+                    "p06-held-out-purpose"
+                  ],
+                  "explore": false,
+                  "key": "P06-C05-S03:model-selection-and-final-evaluation",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#model-selection-and-final-evaluation"
+                },
+                {
+                  "id": "input-range-change-and-residuals",
+                  "title": "输入范围变化与残差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C05-S03:input-range-change-and-residuals",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#input-range-change-and-residuals"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C05-S03:references",
+                  "url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/#references"
+                }
+              ],
+              "url": "/chapters/06-05-动态辨识、实验设计与验证/read/3/"
             }
           ],
           "visualization": null
@@ -8468,89 +9527,248 @@
               "id": "P06-C06-S01",
               "chapter_id": "6.6",
               "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/01-从批量最小二乘到递推更新.ipynb",
-              "title": "从批量最小二乘到递推更新",
+              "title": "正则化最小二乘与递推更新",
               "number": "6.6.1",
               "outcome": "从累计平方损失推导逐次更新，用同一初始项核对批量解，并解释逆信息矩阵。",
               "visualization": null,
+              "reading": "lessons/06-从测量走向模型/06-递推辨识与时变参数跟踪/01-从批量最小二乘到递推更新.md",
               "questions": [
                 {
                   "id": "p06-rls-equivalence",
                   "slug": "p06-rls-equivalence",
                   "title": "递推与批量究竟在比较什么",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#recursive-least-squares-prediction-clock",
+                  "concept_title": "递推最小二乘与预测时钟",
+                  "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence"
                 },
                 {
                   "id": "p06-rls-trace",
                   "slug": "p06-rls-trace",
                   "title": "逐条更新参数并保留预测时钟",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#recursive-least-squares-prediction-clock",
+                  "concept_title": "递推最小二乘与预测时钟",
+                  "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-trace"
                 },
                 {
                   "id": "p06-rls-rank-one",
                   "slug": "p06-rls-rank-one",
                   "title": "秩一更新为何省计算",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#normal-equations-and-accumulated-information",
+                  "concept_title": "正规方程与累计信息",
+                  "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-rank-one"
                 },
                 {
                   "id": "p06-ridge-variance",
                   "slug": "p06-ridge-variance",
                   "title": "逆信息与抽样方差的差别",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#inverse-information-bias-and-sampling-covariance",
+                  "concept_title": "逆信息、偏差与抽样协方差",
+                  "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-ridge-variance"
                 },
                 {
                   "id": "p06-rls-covariance",
                   "slug": "p06-rls-covariance",
                   "title": "什么时候可以写成噪声方差乘P",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#inverse-information-bias-and-sampling-covariance",
+                  "concept_title": "逆信息、偏差与抽样协方差",
+                  "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-covariance"
                 }
               ],
               "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence",
               "notebook_url": "/notebook/?id=P06-C06-S01",
-              "url": "/notebook/?id=P06-C06-S01"
+              "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/",
+              "concepts": [
+                {
+                  "id": "fixed-center-squared-objective",
+                  "title": "固定中心的平方目标",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C06-S01:fixed-center-squared-objective",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#fixed-center-squared-objective"
+                },
+                {
+                  "id": "normal-equations-and-accumulated-information",
+                  "title": "正规方程与累计信息",
+                  "question_ids": [
+                    "p06-rls-rank-one"
+                  ],
+                  "explore": false,
+                  "key": "P06-C06-S01:normal-equations-and-accumulated-information",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#normal-equations-and-accumulated-information"
+                },
+                {
+                  "id": "rank-one-inverse-update",
+                  "title": "秩一逆更新的乘法核对",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C06-S01:rank-one-inverse-update",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#rank-one-inverse-update"
+                },
+                {
+                  "id": "recursive-least-squares-prediction-clock",
+                  "title": "递推最小二乘与预测时钟",
+                  "question_ids": [
+                    "p06-rls-trace",
+                    "p06-rls-equivalence"
+                  ],
+                  "explore": false,
+                  "key": "P06-C06-S01:recursive-least-squares-prediction-clock",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#recursive-least-squares-prediction-clock"
+                },
+                {
+                  "id": "inverse-information-bias-and-sampling-covariance",
+                  "title": "逆信息、偏差与抽样协方差",
+                  "question_ids": [
+                    "p06-rls-covariance",
+                    "p06-ridge-variance"
+                  ],
+                  "explore": false,
+                  "key": "P06-C06-S01:inverse-information-bias-and-sampling-covariance",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#inverse-information-bias-and-sampling-covariance"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C06-S01:references",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/#references"
+                }
+              ],
+              "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/1/"
             },
             {
               "id": "P06-C06-S02",
               "chapter_id": "6.6",
               "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/02-遗忘、漂移与在线验证.ipynb",
-              "title": "遗忘、漂移与在线验证",
+              "title": "指数遗忘、参数漂移与在线评估",
               "number": "6.6.2",
               "outcome": "跟踪旧观测的权重衰减，比较漂移、噪声与弱激励，并按先预测后更新评估。",
               "visualization": null,
+              "reading": "lessons/06-从测量走向模型/06-递推辨识与时变参数跟踪/02-遗忘、漂移与在线验证.md",
               "questions": [
                 {
                   "id": "p06-forgetting-objective",
                   "slug": "p06-forgetting-objective",
                   "title": "遗忘递推对应哪种目标",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#exponential-forgetting-record-weights",
+                  "concept_title": "指数遗忘与记录权重",
+                  "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective"
                 },
                 {
                   "id": "p06-forgetting-weights",
                   "slug": "p06-forgetting-weights",
                   "title": "写出当前批量目标的权重",
-                  "type": "python"
+                  "type": "python",
+                  "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#exponential-forgetting-record-weights",
+                  "concept_title": "指数遗忘与记录权重",
+                  "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-weights"
                 },
                 {
                   "id": "p06-online-clock",
                   "slug": "p06-online-clock",
                   "title": "在线误差应在哪一步计算",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#tuning-window-and-online-scoring",
+                  "concept_title": "调参窗口与在线评分",
+                  "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-online-clock"
                 },
                 {
                   "id": "p06-forgetting-excitation",
                   "slug": "p06-forgetting-excitation",
                   "title": "固定回归方向下的遗忘",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#persistent-excitation-and-unobserved-directions",
+                  "concept_title": "持续激励与缺少信息的方向",
+                  "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-excitation"
                 },
                 {
                   "id": "p06-drift-noise-validation",
                   "slug": "p06-drift-noise-validation",
                   "title": "跟得快和估得准不是同一件事",
-                  "type": "choice"
+                  "type": "choice",
+                  "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#drift-noise-and-tracking",
+                  "concept_title": "漂移、噪声与跟踪",
+                  "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-drift-noise-validation"
                 }
               ],
               "practice_url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective",
               "notebook_url": "/notebook/?id=P06-C06-S02",
-              "url": "/notebook/?id=P06-C06-S02"
+              "reading_url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/",
+              "concepts": [
+                {
+                  "id": "exponential-forgetting-record-weights",
+                  "title": "指数遗忘与记录权重",
+                  "question_ids": [
+                    "p06-forgetting-objective",
+                    "p06-forgetting-weights"
+                  ],
+                  "explore": false,
+                  "key": "P06-C06-S02:exponential-forgetting-record-weights",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#exponential-forgetting-record-weights"
+                },
+                {
+                  "id": "weighted-least-squares-recursion",
+                  "title": "遗忘最小二乘的递推",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C06-S02:weighted-least-squares-recursion",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#weighted-least-squares-recursion"
+                },
+                {
+                  "id": "drift-noise-and-tracking",
+                  "title": "漂移、噪声与跟踪",
+                  "question_ids": [
+                    "p06-drift-noise-validation"
+                  ],
+                  "explore": false,
+                  "key": "P06-C06-S02:drift-noise-and-tracking",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#drift-noise-and-tracking"
+                },
+                {
+                  "id": "persistent-excitation-and-unobserved-directions",
+                  "title": "持续激励与缺少信息的方向",
+                  "question_ids": [
+                    "p06-forgetting-excitation"
+                  ],
+                  "explore": false,
+                  "key": "P06-C06-S02:persistent-excitation-and-unobserved-directions",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#persistent-excitation-and-unobserved-directions"
+                },
+                {
+                  "id": "tuning-window-and-online-scoring",
+                  "title": "调参窗口与在线评分",
+                  "question_ids": [
+                    "p06-online-clock"
+                  ],
+                  "explore": false,
+                  "key": "P06-C06-S02:tuning-window-and-online-scoring",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#tuning-window-and-online-scoring"
+                },
+                {
+                  "id": "weighted-objective-and-sampling-covariance",
+                  "title": "加权目标与抽样协方差",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C06-S02:weighted-objective-and-sampling-covariance",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#weighted-objective-and-sampling-covariance"
+                },
+                {
+                  "id": "references",
+                  "title": "参考资料",
+                  "question_ids": [],
+                  "explore": false,
+                  "key": "P06-C06-S02:references",
+                  "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/#references"
+                }
+              ],
+              "url": "/chapters/06-06-递推辨识与时变参数跟踪/read/2/"
             }
           ],
           "visualization": null
@@ -8559,7 +9777,7 @@
       "assessment": {
         "id": "6.summary",
         "assessment": true,
-        "title": "测量辨识与验证的综合实验",
+        "title": "测量表示、参数辨识与预测验证",
         "url": "/parts/06-从测量走向模型/综合练习/",
         "goals": "为独立题组选择观测、表示、拟合与评估方法，解释残差和递推预测各自的证据。",
         "prerequisites": "本篇的采样与滤波、连续和离散表示、最小二乘、动态回归及递推更新。",
@@ -8574,7 +9792,7 @@
             "id": "P06-SUMMARY",
             "chapter_id": "6.summary",
             "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb",
-            "title": "测量辨识与验证的综合实验",
+            "title": "测量表示、参数辨识与预测验证",
             "number": "篇末综合",
             "outcome": "为独立题组选择观测、表示、拟合与评估方法，解释残差和递推预测各自的证据。",
             "visualization": null,
@@ -8588,59 +9806,174 @@
                 "只用调参时段选择遗忘因子，再对预留观测先预测、记误差并更新参数"
               ]
             },
+            "reading": "lessons/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.md",
             "questions": [
               {
                 "id": "p06-cap-sampling",
                 "slug": "p06-cap-sampling",
                 "title": "采样改变了什么",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/06-从测量走向模型/综合练习/read/1/#observation-plan-and-visible-dynamics",
+                "concept_title": "观测计划与可见动态",
+                "practice_url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-sampling"
               },
               {
                 "id": "p06-cap-excitation",
                 "slug": "p06-cap-excitation",
                 "title": "哪些激励有助于辨识",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/06-从测量走向模型/综合练习/read/1/#excitation-unknowns-independent-equations",
+                "concept_title": "激励、未知量与独立方程",
+                "practice_url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-excitation"
               },
               {
                 "id": "p06-cap-discrete",
                 "slug": "p06-cap-discrete",
                 "title": "连接区间输入与离散响应",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/06-从测量走向模型/综合练习/read/1/#interval-input-and-discrete-response",
+                "concept_title": "区间输入与离散响应",
+                "practice_url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-discrete"
               },
               {
                 "id": "p06-cap-fit",
                 "slug": "p06-cap-fit",
                 "title": "参数估计与残差",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/06-从测量走向模型/综合练习/read/1/#parameter-candidates-and-weighted-residuals",
+                "concept_title": "参数候选与加权残差",
+                "practice_url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-fit"
               },
               {
                 "id": "p06-cap-preprocess",
                 "slug": "p06-cap-preprocess",
                 "title": "划分数据并隔离标准化",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/06-从测量走向模型/综合练习/read/1/#time-partitions-and-training-preprocessing",
+                "concept_title": "时间划分与训练预处理",
+                "practice_url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-preprocess"
               },
               {
                 "id": "p06-cap-prediction",
                 "slug": "p06-cap-prediction",
                 "title": "两种预测的误差分别是多少",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/06-从测量走向模型/综合练习/read/1/#two-predictions-and-common-targets",
+                "concept_title": "两种预测与共同评分目标",
+                "practice_url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-prediction"
               },
               {
                 "id": "p06-cap-resampling",
                 "slug": "p06-cap-resampling",
                 "title": "更换采样率后的响应",
-                "type": "choice"
+                "type": "choice",
+                "reading_url": "/parts/06-从测量走向模型/综合练习/read/1/#interval-input-and-discrete-response",
+                "concept_title": "区间输入与离散响应",
+                "practice_url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-resampling"
               },
               {
                 "id": "p06-cap-validation",
                 "slug": "p06-cap-validation",
                 "title": "漂移参数的递推核验",
-                "type": "python"
+                "type": "python",
+                "reading_url": "/parts/06-从测量走向模型/综合练习/read/1/#recursive-selection-and-online-evaluation",
+                "concept_title": "递推选择与在线评估",
+                "practice_url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-validation"
               }
             ],
             "practice_url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-sampling",
             "notebook_url": "/notebook/?id=P06-SUMMARY",
-            "url": "/notebook/?id=P06-SUMMARY"
+            "reading_url": "/parts/06-从测量走向模型/综合练习/read/1/",
+            "concepts": [
+              {
+                "id": "observation-plan-and-visible-dynamics",
+                "title": "观测计划与可见动态",
+                "question_ids": [
+                  "p06-cap-sampling"
+                ],
+                "explore": false,
+                "key": "P06-SUMMARY:observation-plan-and-visible-dynamics",
+                "url": "/parts/06-从测量走向模型/综合练习/read/1/#observation-plan-and-visible-dynamics"
+              },
+              {
+                "id": "interval-input-and-discrete-response",
+                "title": "区间输入与离散响应",
+                "question_ids": [
+                  "p06-cap-discrete",
+                  "p06-cap-resampling"
+                ],
+                "explore": false,
+                "key": "P06-SUMMARY:interval-input-and-discrete-response",
+                "url": "/parts/06-从测量走向模型/综合练习/read/1/#interval-input-and-discrete-response"
+              },
+              {
+                "id": "parameter-candidates-and-weighted-residuals",
+                "title": "参数候选与加权残差",
+                "question_ids": [
+                  "p06-cap-fit"
+                ],
+                "explore": false,
+                "key": "P06-SUMMARY:parameter-candidates-and-weighted-residuals",
+                "url": "/parts/06-从测量走向模型/综合练习/read/1/#parameter-candidates-and-weighted-residuals"
+              },
+              {
+                "id": "excitation-unknowns-independent-equations",
+                "title": "激励、未知量与独立方程",
+                "question_ids": [
+                  "p06-cap-excitation"
+                ],
+                "explore": false,
+                "key": "P06-SUMMARY:excitation-unknowns-independent-equations",
+                "url": "/parts/06-从测量走向模型/综合练习/read/1/#excitation-unknowns-independent-equations"
+              },
+              {
+                "id": "time-partitions-and-training-preprocessing",
+                "title": "时间划分与训练预处理",
+                "question_ids": [
+                  "p06-cap-preprocess"
+                ],
+                "explore": false,
+                "key": "P06-SUMMARY:time-partitions-and-training-preprocessing",
+                "url": "/parts/06-从测量走向模型/综合练习/read/1/#time-partitions-and-training-preprocessing"
+              },
+              {
+                "id": "two-predictions-and-common-targets",
+                "title": "两种预测与共同评分目标",
+                "question_ids": [
+                  "p06-cap-prediction"
+                ],
+                "explore": false,
+                "key": "P06-SUMMARY:two-predictions-and-common-targets",
+                "url": "/parts/06-从测量走向模型/综合练习/read/1/#two-predictions-and-common-targets"
+              },
+              {
+                "id": "recursive-selection-and-online-evaluation",
+                "title": "递推选择与在线评估",
+                "question_ids": [
+                  "p06-cap-validation"
+                ],
+                "explore": false,
+                "key": "P06-SUMMARY:recursive-selection-and-online-evaluation",
+                "url": "/parts/06-从测量走向模型/综合练习/read/1/#recursive-selection-and-online-evaluation"
+              },
+              {
+                "id": "input-output-models-to-state-estimation",
+                "title": "从输入输出模型走向状态估计",
+                "question_ids": [],
+                "explore": false,
+                "key": "P06-SUMMARY:input-output-models-to-state-estimation",
+                "url": "/parts/06-从测量走向模型/综合练习/read/1/#input-output-models-to-state-estimation"
+              },
+              {
+                "id": "references",
+                "title": "参考资料",
+                "question_ids": [],
+                "explore": false,
+                "key": "P06-SUMMARY:references",
+                "url": "/parts/06-从测量走向模型/综合练习/read/1/#references"
+              }
+            ],
+            "url": "/parts/06-从测量走向模型/综合练习/read/1/"
           }
         ],
         "available": true,

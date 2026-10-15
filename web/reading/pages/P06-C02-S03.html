@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.2.3 有限记录、窗函数与频率响应 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C02-S03">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C02-S03" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-response">本节练习 · 5 题</a><a class="button" href="/chapters/06-02-卷积、频谱与频率响应/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.2.3 有限记录、窗函数与频率响应</h1>
+<p>学完本节，你应能由有限求和解释频谱泄漏，区分加窗与补零的作用，并从固定滤波核计算稳态幅值比和相位变化。</p>
+<p><strong>先修知识</strong>：线性卷积、复指数、DFT 与单边幅值规则。</p>
+<h2 id="finite-record-and-spectral-leakage">有限记录与频谱泄漏</h2>
+<p>采样率同为 16 Hz，每段记录 64 点，频点间隔都是 0.25 Hz。2 Hz 余弦在对应的 64 个采样间隔内转 8 圈，恰好落在第 8 个频点；2.125 Hz 则转 8.5 圈，落在第 8 与第 9 个频点之间。频率只改了一点，为什么频谱会从一个峰散到许多格点？</p>
+<p>DFT 使用一组固定的整圈旋转来展开记录。一个不在格点上的旋转，无法只由其中一个候选表示；有限截断使其贡献分散到多个频点，称为<strong>频谱泄漏（spectral leakage）</strong>。</p>
+<p>对复旋转 $x[n]=e^{i\omega_0n}$，$\omega_0$ 的单位是 rad/样本。第 $k$ 个 DFT 系数为</p>
+<p>$$X[k]=\sum_{n=0}^{N-1}e^{i(\omega_0-2\pi k/N)n}.$$</p>
+<p>令旋转差 $\delta=\omega_0-2\pi k/N$。与上一节相同的几何和给出</p>
+<p>$$X[k]=\frac{1-e^{iN\delta}}{1-e^{i\delta}}
+=e^{i\delta(N-1)/2}\frac{\sin(N\delta/2)}{\sin(\delta/2)},$$</p>
+<p>其中 $\delta$ 为 $2\pi$ 的整数倍时直接求和为 $N$。若原频率恰在格点上，其他格点相消；落在格点之间时，多数位置的和不再为零。真实余弦由正、反两种旋转组成，两部分各自贡献到有限频谱。</p>
+<p>将记录周期延拓，也能理解这个现象：整周期记录与所选周期相容，非整周期记录通常在拼接处出现跳变，需要更多频率来表达。混叠讨论的是不同连续信号留下相同样本；泄漏讨论的是同一段有限样本在频率格上怎样展开。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-finite-leakage">频谱泄漏来自哪里</a></li></ul></nav>
+
+<h2 id="window-mainlobe-and-sidelobes">窗函数、主瓣与旁瓣</h2>
+<p>只保留 $n=0,\ldots,N-1$ 的样本，相当于给长序列乘一个范围内为 1、范围外为零的<strong>矩形窗（rectangular window）</strong>。一般的<strong>窗函数（window function）</strong>则给不同位置设置权重，令</p>
+<p>$$x_w[n]=w[n]x[n].$$</p>
+<p>减小两端的权重，可以使截断更平缓。常用的 <strong>Hann 窗（Hann window）</strong>为</p>
+<p>$$w[n]=\frac12\left(1-\cos\frac{2\pi n}{N-1}\right),\qquad n=0,\ldots,N-1.$$</p>
+<p>本节取 $N=64$，两端权重为零，中间权重较大。频谱峰附近的中央隆起称为<strong>主瓣（main lobe）</strong>，两侧较小的隆起称为<strong>旁瓣（side lobe）</strong>。相较矩形窗，Hann 窗减小远处旁瓣，同时让主瓣变宽：远处的弱成分可能更容易看见，距离很近的两个成分则可能更难分开。</p>
+<p>加窗也改变幅值。令</p>
+<p>$$X_w[k]=\sum_{n=0}^{N-1}w[n]x[n]e^{-i2\pi kn/N}.$$</p>
+<p>对孤立、接近整频点的正弦，一种常用的单边幅值标定为</p>
+<p>$$A_k\approx\frac{2|X_w[k]|}{\sum_nw[n]}.$$</p>
+<p>直流与偶数长度的奈奎斯特点仍不乘 2。这里以窗系数和代替 $N$，补偿整体权重的减小；频率落在格点之间或多个成分重叠时，读出的峰值还会受泄漏影响。标定要求 $\sum_nw[n]&gt;0$，例如上述 Hann 定义在 $N=2$ 时两项都为零，不能用它作幅值归一化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-amplitude-calibration">给频谱乘窗后怎样报幅值</a></li></ul></nav>
+
+<h2 id="zero-padding-and-frequency-grid">补零与更密的频率格</h2>
+<p>另一种操作是在原记录后面补零到 $L&gt;N$ 项，再计算 $L$ 点 DFT。它计算的是</p>
+<p>$$X_L[k]=\sum_{n=0}^{N-1}x_w[n]e^{-i2\pi kn/L},\qquad
+f_k=\frac{kf_s}{L}.$$</p>
+<p>求和里仍只有原来的 $N$ 个加窗样本，改变的是所检查的频率位置。相邻频点间隔缩为 $f_s/L$，曲线因而更细。若 $L=8N$，新频谱每隔 8 个点就回到原来一个频点。</p>
+<p>补零后，DFT 周期延拓的是包含零段的 $L$ 点块；真实观测仍只有 $N$ 点，首尾跨度仍为 $(N-1)/f_s$。因此幅值继续除以原窗系数和，矩形窗时就是 $N$；改除以 $L$ 会把同一段记录的幅值缩小。补零能更密地描出原主瓣，却没有使它变窄。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-zero-padding">补零能增加什么</a></li></ul></nav>
+
+<h2 id="fir-frequency-response">卷积与稳态频率响应</h2>
+<p>现在把问题从“怎样描述一段记录”转为“滤波器怎样改变它”。固定因果 FIR 核 $h[m]$，$m=0,\ldots,M-1$，输入、输出都以 U 计，核系数无单位。用离散角频率</p>
+<p>$$\omega=\frac{2\pi f}{f_s}$$</p>
+<p>表示每个采样间隔转过的弧度，单位为 rad/样本。对持续的复旋转输入 $x[n]=e^{i\omega n}$，代入卷积得到</p>
+<p>$$\begin{aligned}
+y[n]&amp;=\sum_{m=0}^{M-1}h[m]e^{i\omega(n-m)}\\
+&amp;=e^{i\omega n}\sum_{m=0}^{M-1}h[m]e^{-i\omega m}.
+\end{aligned}$$</p>
+<p>把随频率变化的复系数定义为<strong>频率响应（frequency response）</strong>：</p>
+<p>$$\boxed{H(\omega)=\sum_{m=0}^{M-1}h[m]e^{-i\omega m}.}$$</p>
+<p>它的模长改变旋转的大小，相角改变旋转的角度。对实系数核与实余弦输入 $A\cos(\omega n+\phi)$，对应输出为</p>
+<p>$$y[n]=A|H(\omega)|\cos\!\bigl(\omega n+\phi+\arg H(\omega)\bigr).$$</p>
+<p>所以 $|H|$ 是<strong>增益（gain）</strong>，即输出与输入的振幅之比，$\arg H$ 是相位变化。若余弦从 $n=0$ 才开始、此前输入为零，前 $M-1$ 项还缺少过去的余弦。要到 $n\ge M-1$、窗口装满后，才满足上述稳态表达。</p>
+<p>若 $H=0$，该频率的稳态输出为零，相位没有定义。计算题沿用上一节的相位主值，并在</p>
+<p>$$|H|\le10^{-12}\max\!\left(1,\sum_m|h[m]|\right)$$</p>
+<p>时把模和相位都记为零，作为数值零响应的标记。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-response">不同频率通过滤波器后怎样变化</a></li></ul></nav>
+
+<h2 id="moving-average-gain-and-delay">均值核的衰减与延迟</h2>
+<p>长度 $W$ 的固定均值核为 $h[m]=1/W$。几何和给出</p>
+<p>$$\begin{aligned}
+H(\omega)&amp;=\frac1W\sum_{m=0}^{W-1}e^{-i\omega m}\\
+&amp;=\frac{1-e^{-iW\omega}}{W(1-e^{-i\omega})}\\
+&amp;=e^{-i\omega(W-1)/2}\frac{\sin(W\omega/2)}{W\sin(\omega/2)}.
+\end{aligned}$$</p>
+<p>在 $\omega=0$ 处直接求和得到 $H(0)=1$，所以恒定输入在满窗口后保持原值。低频段中，后面的实数比值为正，相位为 $-\omega(W-1)/2$，与 6.1 的斜坡延迟相对应。</p>
+<p>对于 $W=5$、$f_s=16$ Hz、$f=1$ Hz，$\omega=\pi/8$，于是</p>
+<p>$$|H|=\frac{\sin(5\pi/16)}{5\sin(\pi/16)}\approx0.8524,\qquad
+\arg H=-\frac\pi4.$$</p>
+<p>振幅为 1 U 的低频余弦变为约 0.8524 U，相位减少 $\pi/4$，对应 $2/16=0.125$ s 的延迟。若 $f=3.2$ Hz，则 $\omega=2\pi/5$，五个等间隔旋转恰好转完一圈，相加为零；该成分的稳态输出消失。</p>
+<p>在某些更高频段，正弦比值会变负，相位还要相应增加 $\pi$。在没有零响应的连续频段内，将相位连续选取后，它对角频率的负斜率</p>
+<p>$$\tau_g=-\frac{d\arg H}{d\omega}$$</p>
+<p>称为<strong>群延迟（group delay）</strong>，以采样间隔计。均值核在这样的频段中有 $\tau_g=(W-1)/2$。它描述邻近频率的相位变化规律；一般波形还含有不同频率，而这些频率的增益不同，输出形状也会改变。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-delay-band">均值滤波器的延迟在哪成立</a></li></ul></nav>
+
+<p>在探索页先用 $W=5$、每样本 0.1 周期的输入，观察满窗口后的衰减与相位，再改为每样本 0.2 周期，核对五个贡献如何抵消。最后切换到 $W=1$，比较不平滑时的输入与输出。</p>
+<p class="concept-explore"><a href="/chapters/06-02-卷积、频谱与频率响应/explore/?concept=P06-C02-S03%3Amoving-average-gain-and-delay">可视化与探索：均值核的衰减与延迟 →</a></p>
+
+<h2 id="window-and-filter-comparisons">有限窗与滤波结果的对照图</h2>
+<p>下面保留两组对照。第一组使用同一段 2.125 Hz、64 点记录：左图比较原频率格与补零到 512 点的结果，右图用密频率格比较矩形窗与 Hann 窗。补零使计算点更密，Hann 窗降低远处旁瓣并加宽中央峰。第二组画五点均值的增益与相位，并对</p>
+<p>$$x[n]=\cos\!\left(2\pi\frac1{16}n\right)
++0.5\cos\!\left(2\pi\frac{3.2}{16}n\right)$$</p>
+<p>进行时域卷积。两项分别对应 1 Hz 与 3.2 Hz。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C02-S03-7d3a0b72-0.png" alt="有限记录、窗函数与频率响应：实验结果图" loading="lazy"></figure>
+<figure><img src="/web/reading/assets/P06-C02-S03-7d3a0b72-1.png" alt="有限记录、窗函数与频率响应：实验结果图" loading="lazy"></figure>
+</section>
+<p>第二组左图在直流处为 1，在 3.2 Hz 处为零；相位图在零增益位置留空。右图开头的灰色区域是零历史启动阶段，过去的四个输入尚未全部到齐。此后，1 Hz 项按约 0.8524 的比例保留并推迟，3.2 Hz 项被消去；输出更平滑，同时也有明确的幅值和时间变化。</p>
+<p>有限记录的谱、窗口选择和滤波器响应各回答不同的问题。先固定记录和幅值标定，才能比较谱峰；先明确固定核与启动规则，才能将时域输出与稳态频率响应对照。下一章将回到连续动力学，把状态方程和输入响应连接到变换表示。</p>
+<h2 id="references">参考资料</h2>
+<ul>
+<li><a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec09/">MIT 6.003 第 9 讲：频率响应</a>：复指数经过线性时不变系统时的幅值和相位。</li>
+<li><a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec17/">MIT 6.003 第 17 讲</a>与<a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec18/">第 18 讲：离散时间 Fourier 表示</a>：有限求和、周期性和频率表示。</li>
+</ul>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-02-卷积、频谱与频率响应/read/2/">← 6.2.2 离散傅里叶变换与单边频谱</a><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/1/">6.3.1 线性时不变系统与 Laplace 变换 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

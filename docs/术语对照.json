@@ -783,7 +783,10 @@
   {
     "zh": "标准误",
     "en": "standard error",
-    "scope": "part05"
+    "scope": "part05",
+    "accepted": [
+      "standard error, SE"
+    ]
   },
   {
     "zh": "高斯分布",
@@ -1144,7 +1147,10 @@
   {
     "zh": "抗混叠滤波",
     "en": "anti-aliasing filter",
-    "scope": "part06"
+    "scope": "part06",
+    "accepted": [
+      "anti-aliasing filtering"
+    ]
   },
   {
     "zh": "因果滤波",
@@ -1309,7 +1315,10 @@
     "zh": "均方根误差",
     "en": "root mean squared error",
     "scope": "part06",
-    "abbr": "RMSE"
+    "abbr": "RMSE",
+    "accepted": [
+      "root mean square error, RMSE"
+    ]
   },
   {
     "zh": "递推最小二乘",
@@ -1486,7 +1495,7 @@
   {
     "zh": "正则化",
     "en": "regularization",
-    "scope": "part08"
+    "scope": "part06"
   },
   {
     "zh": "凸性",
@@ -2112,5 +2121,25 @@
     "zh": "条件互信息",
     "en": "conditional mutual information",
     "scope": "part05"
+  },
+  {
+    "zh": "居中移动平均",
+    "en": "centered moving average",
+    "scope": "part06"
+  },
+  {
+    "zh": "群延迟",
+    "en": "group delay",
+    "scope": "part06"
+  },
+  {
+    "zh": "参数可辨识性",
+    "en": "parameter identifiability",
+    "scope": "part06"
+  },
+  {
+    "zh": "信息矩阵",
+    "en": "information matrix",
+    "scope": "part06"
   }
 ]

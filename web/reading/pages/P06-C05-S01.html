@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.5.1 ARX 回归、一步预测与自由运行 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C05-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C05-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-predictions">本节练习 · 5 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.5.1 ARX 回归、一步预测与自由运行</h1>
+<p>学完本节，你应能把读数与输入排成相应的回归行，说明下一步条件平均需要什么误差条件，并比较一步预测和自由运行所用的信息。</p>
+<p><strong>先修知识</strong>：6.3的采样递推、6.4的最小二乘，以及5.3的条件期望。</p>
+<h2 id="arx-model-and-input-clock">ARX 模型与输入时序</h2>
+<p>每隔1 T记录一次浓度偏差，并在相邻记录之间施加预先安排的刺激。我们想知道：下一次读数保留当前偏差的多少，输入又贡献多少？</p>
+<p>用 $y_n$ 表示时刻 $n$ 的浓度偏差，单位U；$u_n$ 表示从时刻 $n$ 到 $n+1$ 之间施加的刺激，单位V。一个简单的候选关系是</p>
+<p>$$y_{n+1}=ay_n+bu_n+e_{n+1}.$$</p>
+<p>$a$ 没有单位，$b$ 的单位为U/V，$e_{n+1}$ 是下一拍的新扰动，单位U。用自己的过去值和外源输入预测当前输出，这类关系称为<strong>外源输入自回归模型（autoregressive with exogenous input，ARX）</strong>。这里“外源”表示输入由外部实验安排提供。</p>
+<p>下标同时说明先后顺序：$y_n$ 是区间起点已收到的读数，$u_n$ 在这段时间作用，$y_{n+1}$ 是区间结束后才收到的目标。输入列表长 $N$ 时，读数列表需要有 $N+1$ 项，才能形成 $N$ 次完整转移。</p>
+<p>若实际输入经过一拍才起效，目标 $y_{n+1}$ 应与 $u_{n-1}$ 配对。这种取更早变量的操作称为取<strong>滞后项（lagged term）</strong>；滞后输入（lagged input）的具体下标要由作用时序确定。多等一拍再读取、与把当前输入系数改小，是两个不同模型。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-delay-structure">输入延迟选错会怎样</a></li></ul></nav>
+
+<h2 id="arx-regression-row-order">回归行、目标与参数顺序</h2>
+<p>将参数按 $\theta=[a,b]^{\mathsf T}$ 排列，对应的回归行就必须按 $[y_n,u_n]$ 排列。记列向量 $\phi_n=[y_n,u_n]^{\mathsf T}$、目标 $z_n=y_{n+1}$，则</p>
+<p>$$z_n=\phi_n^{\mathsf T}\theta+e_{n+1}.$$</p>
+<p>例如读数为 $[0,1,2,2]$ U，区间输入为 $[1,1,0]$ V：</p>
+<table>
+<thead>
+<tr>
+  <th>转移</th>
+  <th>回归行 $[y_n,u_n]$</th>
+  <th style="text-align:right">目标 $z_n$ / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$0\to1$</td>
+  <td>$[0,1]$</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>$1\to2$</td>
+  <td>$[1,1]$</td>
+  <td style="text-align:right">2</td>
+</tr>
+<tr>
+  <td>$2\to3$</td>
+  <td>$[2,0]$</td>
+  <td style="text-align:right">2</td>
+</tr>
+</tbody>
+</table>
+<p>第一列乘无单位的 $a$，第二列乘U/V的 $b$，两项都是U，能与目标相加减。将所有行堆成矩阵 $\Phi$，目标堆成向量 $z$，就得到 $z=\Phi\theta+e$。沿用上一章的平方损失，满列秩时估计满足</p>
+<p>$$\Phi^{\mathsf T}\Phi\hat\theta=\Phi^{\mathsf T}z.$$</p>
+<p>方程的排列决定了估计向量中哪个数是 $a$、哪个数是 $b$。交换回归列时，也必须交换参数的对应位置。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-regressors">ARX回归的一行由什么组成</a></li></ul></nav>
+
+<h2 id="conditional-mean-and-new-disturbance">条件平均与新扰动</h2>
+<p>回归式给出一个数值关系；要把 $ay_n+bu_n$ 解释为下一读数的条件平均，还需要规定新扰动怎样产生。设</p>
+<p>$$E[e_{n+1}\mid y_n,y_{n-1},\ldots,u_n,u_{n-1},\ldots]=0.$$</p>
+<p>竖线右侧固定截至当前的读数与已安排的输入，左侧仍对下一拍的新扰动求平均。这个条件表示：利用现有记录，无法预测新扰动有正向还是负向的平均偏移。因此</p>
+<p>$$E[y_{n+1}\mid\text{当前及过去的信息}]=ay_n+bu_n.$$</p>
+<p>取 $a=0.5,b=2$ U/V、$y_n=2$ U、$u_n=1$ V，条件平均为3 U。如果新扰动独立地以相同概率取 $-1,+1$ U，下一读数可以是2或4 U，平均恰好为3 U。条件平均不是要求每次都取这个数，而是把当前信息固定后，对各种后续结果按概率加权。</p>
+<p>总体均值为零与这里的条件不同。回顾5.3.1的测量方式表，令 $e=X-1\,\mathrm U$，总体 $E[e]=0$，却有</p>
+<p>$$E[e\mid Y=0]=-0.5\,\mathrm U,\qquad
+E[e\mid Y=1]=0.5\,\mathrm U.$$</p>
+<p>两种测量方式的平均偏移互相抵消，知道方式以后却能预测偏移方向。若回归模型漏掉这样的已知信息，残差在相应条件下就会留下可预测的结构。</p>
+<p>条件均值为零还使当前回归量与下一新扰动的乘积平均为零。例如</p>
+<p>$$E[y_ne_{n+1}]
+=E\!\left[y_nE[e_{n+1}\mid\text{当前及过去的信息}]\right]=0,$$</p>
+<p>只要这些期望存在。这里先按已知历史求条件平均，再对历史平均，正是全期望公式。它解释了为何这个噪声条件与动态回归有关。有限记录中的 $y_n$ 本身受过去扰动影响，估计结果仍会随记录波动；更多数据能否稳定识别参数，还要结合下一节的输入信息和相应的大样本条件。</p>
+<h2 id="one-step-and-free-run">一步预测与自由运行</h2>
+<p>固定已拟合参数后，两种使用场景决定了两种计算。</p>
+<p><strong>一步预测（one-step-ahead prediction）</strong>每拍收到新观测，用它预测下一拍：</p>
+<p>$$\hat y_{n+1\mid n}=\hat a y_n+\hat b u_n.$$</p>
+<p><strong>自由运行（free-run simulation）</strong>只在起点读取一次观测，随后将自己的结果代回模型：</p>
+<p>$$\tilde y_0=y_0,\qquad
+\tilde y_{n+1}=\hat a\tilde y_n+\hat b u_n.$$</p>
+<p>对刚才的读数与输入，先固定 $\hat a=0.5,\hat b=1$ U/V：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">目标时刻</th>
+  <th style="text-align:right">实际目标 / U</th>
+  <th style="text-align:right">一步预测 / U</th>
+  <th style="text-align:right">自由运行 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">$0.5\times0+1=1$</td>
+  <td style="text-align:right">$0.5\times0+1=1$</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">$0.5\times1+1=1.5$</td>
+  <td style="text-align:right">$0.5\times1+1=1.5$</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">$0.5\times2+0=1$</td>
+  <td style="text-align:right">$0.5\times1.5+0=0.75$</td>
+</tr>
+</tbody>
+</table>
+<p>分歧出现在第三个目标：一步法已经收到 $y_2=2$ U，自由运行仍使用自己的1.5 U。改变后续实际读数会改变一步序列，自由运行则只受共同初态和输入影响。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-predictions">一步预测与自由运行</a></li></ul></nav>
+
+<p>参数正确时，记自由运行误差 $d_n=y_n-\tilde y_n$，相减得到</p>
+<p>$$d_{n+1}=ad_n+e_{n+1},\qquad d_0=0.$$</p>
+<p>新扰动逐步积累；若扰动相互独立、方差同为 $\sigma_e^2$，则</p>
+<p>$$\operatorname{Var}(d_n)=\sigma_e^2\sum_{j=0}^{n-1}a^{2j}.$$</p>
+<p>正确参数的一步误差仅为当次新扰动。实际比较中还包含参数估计误差，因此两种误差的差别同时反映模型和读数可用性。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-prediction-information">两种预测用了同样信息吗</a></li></ul></nav>
+
+<p>下面用前60次转移拟合，固定参数后在后40个共同目标上比较两种预测。自由运行从第60时刻的实际读数开始。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C05-S01-fe0b1046-0.png" alt="ARX 回归、一步预测与自由运行：实验结果图" loading="lazy"></figure>
+</section>
+<p>两幅图的蓝线相同。左图每拍用新读数重新起步，右图持续使用自己的预测。沿着一次明显的上下偏离查看，可以追踪这个差异怎样被下一次计算保留。</p>
+<h2 id="measurement-error-in-regressors">测量误差与有噪回归量</h2>
+<p>前面的误差直接作为下一拍的新扰动加入输出。若仪器另外给状态加上测量误差，关系就会改变。设</p>
+<p>$$x_{n+1}=ax_n+bu_n+w_{n+1},\qquad y_n=x_n+v_n.$$</p>
+<p>将 $x_n=y_n-v_n$ 代回，得到</p>
+<p>$$y_{n+1}=ay_n+bu_n+\underbrace{w_{n+1}+v_{n+1}-av_n}_{\eta_{n+1}}.$$</p>
+<p>设 $w_{n+1}$ 独立于过去，测量误差 $v_n$ 跨时刻独立、零均值，并与状态、输入和过程扰动独立。当前回归量 $y_n$ 与等效误差 $\eta_{n+1}$ 仍共享同一个 $v_n$，因而</p>
+<p>$$\operatorname{Cov}(y_n,\eta_{n+1})=-a\operatorname{Var}(v_n).$$</p>
+<p>当这一项非零时，当前读数已经能提供等效误差的信息，前面的条件均值解释就不适用。这是误差进入回归量造成的变化，增加同类读数不会自动把它修正。</p>
+<p>可以在零输入、零均值平稳模型中算清这种影响。若 $|a|&lt;1$、过程扰动方差为 $\sigma_w^2$，则 $\operatorname{Var}(x)=\sigma_w^2/(1-a^2)$。按6.4的无截距平方回归，在读数方差非零时，使用仪器读数得到的总体最佳系数为</p>
+<p>$$a_{\rm obs}=\frac{\operatorname{Cov}(y_n,y_{n+1})}{\operatorname{Var}(y_n)}
+=a\frac{\operatorname{Var}(x)}{\operatorname{Var}(x)+\sigma_v^2}.$$</p>
+<p>分子只保留状态跨时刻的协方差，分母却多了测量误差方差。取 $a=0.8$、过程标准差0.3 U、测量标准差0.5 U，状态方差为0.25 U²，故</p>
+<p>$$a_{\rm obs}=0.8\frac{0.25}{0.25+0.25}=0.4.$$</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-noise-assumption">最小二乘怎样受到观测噪声影响</a></li></ul></nav>
+
+<p>下图对200条独立的平稳记录分别用真实状态与有噪读数回归，每条含1000次转移。误差条为系数均值上下两个蒙特卡洛标准误。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C05-S01-9f2e99e4-0.png" alt="ARX 回归、一步预测与自由运行：实验结果图" loading="lazy"></figure>
+</section>
+<p>真实状态回归的均值接近0.8，读数回归的均值接近0.4。误差条衡量重复均值的计算精度，两组中心的分离则由刚才的噪声关系解释。接下来即使噪声形式正确，还要问输入与观察时段能否让 $a,b$ 分别被确定。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/6-435-system-identification-spring-2005/pages/lecture-notes/">MIT 6.435讲义</a>第9—12讲连接线性回归、一步预测和参数结构，第15—16讲讨论信息条件与估计收敛。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-04-最小二乘与参数估计/read/3/">← 6.4.3 估计标准误、置信区间与成对自助法</a><a href="/chapters/06-05-动态辨识、实验设计与验证/read/2/">6.5.2 输入激励与参数可辨识性 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

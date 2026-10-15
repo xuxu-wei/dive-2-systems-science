@@ -10,15 +10,15 @@ const tickFmt=x=>Number(x.toPrecision(3)).toString();
 const svg=(tag,attrs,text)=>{const n=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;};
 let chapter,mode,p={},playback,data,end;
 const definitions={
- '6.1':{title:'相同读数，可能来自不同节律',question:'每秒起伏 0.8 次的节律，每秒测一次，会留下什么读数？先作预测，再把采样率提高，比较曲线与测量点。',explanation:'用余弦 x(t) 表示振幅为 1 U 的节律偏差。频率 f 表示每秒重复几次，采样率 fₛ 表示每秒测几次，二者的单位都是 Hz。f=0.8 Hz、fₛ=1 Hz 时，这些点也符合 0.2 Hz 的余弦；从同样的读数辨不出两种节律，这就是混叠。'},
- '6.2':{title:'一个平均窗口，怎样改变不同频率',question:'把当前读数和前四个读数相加，再除以五，会把节律压低多少、推迟多少？改变频率和窗口，比较输入、输出与幅值比。',explanation:'用 n 从 0 开始编号，窗口长度 W 表示每次平均几个点。这里把 n<0 的输入设为零，始终除以 W；例如 W=5 时第一个输出为 x[0]/5。这是固定有限脉冲响应滤波器的启动方式，与 6.1 按已有点数求平均不同。'},
- '6.3':{title:'采样间隔怎样影响数值近似',question:'如果相隔更久才测一次，原本非负的清除总量会变成负值吗？先作预测，再增大间隔，比较解析曲线、精确采样点与 Euler 近似。',explanation:'单室收支为 dA/dt=u−kA：A 是物质总量，u 是每单位时间进入的量，kA 是每单位时间清除的量。本页保持 u、k 恒定且非负，初值也非负。精确采样通过区间积分得到，Euler 则用区间起点的变化率作近似；下面比较两种递推的倍率。'}
+ '6.1':{title:'采样与混叠',question:'每秒起伏 0.8 次的节律，每秒测一次，会留下什么读数？先作预测，再把采样率提高，比较曲线与测量点。',explanation:'用余弦 x(t) 表示振幅为 1 U 的节律偏差。频率 f 表示每秒重复几次，采样率 fₛ 表示每秒测几次，二者的单位都是 Hz。f=0.8 Hz、fₛ=1 Hz 时，这些点也符合 0.2 Hz 的余弦；从同样的读数辨不出两种节律，这就是混叠。'},
+ '6.2':{title:'有限脉冲响应与频率响应',question:'把当前读数和前四个读数相加，再除以五，会把节律压低多少、推迟多少？改变频率和窗口，比较输入、输出与幅值比。',explanation:'用 n 从 0 开始编号，窗口长度 W 表示每次平均几个点。这里把 n<0 的输入设为零，始终除以 W；例如 W=5 时第一个输出为 x[0]/5。这是固定有限脉冲响应滤波器的启动方式，与 6.1 按已有点数求平均不同。'},
+ '6.3':{title:'精确采样、数值近似与极点',question:'如果相隔更久才测一次，原本非负的清除总量会变成负值吗？先作预测，再增大间隔，比较解析曲线、精确采样点与 Euler 近似。',explanation:'单室收支为 dA/dt=u−kA：A 是所追踪物质总量，u 是每单位时间进入的量，k 是一阶消除速率常数，kA 是每单位时间消除的量。本页保持 u、k 恒定且非负，初值也非负。精确采样通过区间积分得到，Euler 则用区间起点的变化率作近似；下面比较两种递推的倍率。'}
 };
 function slider(key,label,min,max,step,value){p[key]=value;const group=el('div',undefined,'slider'),lab=el('label',label),out=el('output',value),input=el('input');Object.assign(input,{id:key,type:'range',min,max,step,value});lab.htmlFor=key;out.id=key+'-value';out.htmlFor=key;input.addEventListener('input',()=>{p[key]=Number(input.value);out.value=input.value;guard(recompute);});group.append(lab,out,input);$('sliders').append(group);}
 function controls(){p={};$('sliders').replaceChildren();
  if(mode==='6.1'){slider('frequency','节律频率 f / Hz',.1,1.8,.1,.8);slider('sample-rate','采样率 fₛ / Hz',.5,4,.25,1);}
  if(mode==='6.2'){slider('frequency','输入频率 f /（周期/样本）',0,.5,.01,.1);slider('window','窗口长度 W / 样本',1,9,1,5);}
- if(mode==='6.3'){slider('k','清除系数 k / T⁻¹',0,.3,.02,.2);slider('u','恒定输入 u /（U/T）',0,1,.1,0);slider('initial','初始总量 A₀ / U',0,10,1,10);slider('step','采样间隔 h / T',1,12,1,1);}
+ if(mode==='6.3'){slider('k','消除系数 k / T⁻¹',0,.3,.02,.2);slider('u','恒定输入 u /（U/T）',0,1,.1,0);slider('initial','初始总量 A₀ / U',0,10,1,10);slider('step','采样间隔 h / T',1,12,1,1);}
 }
 function set(values){for(const [key,value] of Object.entries(values)){p[key]=value;$(key).value=value;$(key+'-value').value=value;}guard(recompute);}
 function legend(entries){$('legend').replaceChildren();for(const [label,color,dashed] of entries){const item=el('span',label,dashed?'dashed':'');item.style.setProperty('--line-color',color);$('legend').append(item);}}

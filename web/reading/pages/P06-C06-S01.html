@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.6.1 正则化最小二乘与递推更新 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C06-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C06-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence">本节练习 · 5 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.6.1 正则化最小二乘与递推更新</h1>
+<p>学完本节，你应能从同一个平方目标推导批量解与递推最小二乘，手算两次更新，并区分逆信息、估计偏差与重复测量中的参数方差。</p>
+<p><strong>先修知识</strong>：本篇最小二乘、实验激励，第3篇的矩阵乘法与二次型，以及第5篇的协方差。</p>
+<h2 id="fixed-center-squared-objective">固定中心的平方目标</h2>
+<p>仪器不断给出新的读数。每收到一条就重新处理全部历史，可以得到新的最小二乘解；如果只保留少量累计量，能否得到同一个结果？</p>
+<p>先看一个无单位的标量例子：读数满足 $y=\theta+\epsilon$，以0为初始中心，加上强度为1的平方惩罚。第一条读数为2时，目标为</p>
+<p>$$J_1(\theta)=\theta^2+(2-\theta)^2.$$</p>
+<p>求导得 $4\theta-4=0$，解为1。第二条读数为4，目标变为</p>
+<p>$$J_2(\theta)=\theta^2+(2-\theta)^2+(4-\theta)^2,$$</p>
+<p>求导得 $6\theta-12=0$，解为2。新读数只增加一项，但我们希望沿用第一次已经算好的信息。</p>
+<p>推广到回归模型 $y_i=\phi_i^{\mathsf T}\theta+\epsilon_i$。$\phi_i$ 按固定顺序放入 $d$ 个特征，$\theta$ 是对应系数；本节用固定参照尺度把各量变为无单位数。回归特征在目标到达之前已知。收到 $n$ 条记录后，采用</p>
+<p>$$J_n(\theta)
+=(\theta-\theta_0)^{\mathsf T}H_0(\theta-\theta_0)
++\sum_{i=1}^n(y_i-\phi_i^{\mathsf T}\theta)^2.$$</p>
+<p>$\theta_0$ 是固定的初始中心，$H_0$ 是对称正定矩阵，指定偏离中心时的平方代价。这种加入参数惩罚的做法称为<strong>正则化（regularization）</strong>。任意非零方向 $v$ 都满足 $v^{\mathsf T}H_0v&gt;0$，因此所有方向都受到一个初始约束。</p>
+<h2 id="normal-equations-and-accumulated-information">正规方程与累计信息</h2>
+<p>逐项展开目标，把与 $\theta$ 有关的部分收在一起：</p>
+<p>$$J_n(\theta)=\theta^{\mathsf T}H_n\theta-2b_n^{\mathsf T}\theta+\text{常数},$$</p>
+<p>其中</p>
+<p>$$H_n=H_0+\sum_{i=1}^n\phi_i\phi_i^{\mathsf T},\qquad
+b_n=H_0\theta_0+\sum_{i=1}^n\phi_i y_i.$$</p>
+<p>对参数各分量求导得到 $2H_n\theta-2b_n$，所以解满足</p>
+<p>$$H_n\theta_n=b_n.$$</p>
+<p>$H_n$ 正定，解唯一。还可以直接配方：</p>
+<p>$$J_n(\theta)=J_n(\theta_n)
++(\theta-\theta_n)^{\mathsf T}H_n(\theta-\theta_n).$$</p>
+<p>最后一项非负且只在 $\theta=\theta_n$ 时为零，因此这确实是全局最小值。</p>
+<p>这里 $\phi_i\phi_i^{\mathsf T}$ 是列向量乘行向量形成的矩阵，第 $j,k$ 项为 $\phi_{i,j}\phi_{i,k}$，称为外积。每条记录只需累计</p>
+<p>$$H_n=H_{n-1}+\phi_n\phi_n^{\mathsf T},\qquad
+b_n=b_{n-1}+\phi_n y_n.$$</p>
+<p>本节称 $H_n$ 为回归<strong>信息矩阵（information matrix）</strong>：在方向 $v$ 上，每条数据增加的二次约束为 $v^{\mathsf T}\phi_n\phi_n^{\mathsf T}v=(\phi_n^{\mathsf T}v)^2$。能在输出中产生较大变化的参数方向，积累的约束也较大。</p>
+<p>外积 $\phi_n\phi_n^{\mathsf T}$ 的每一列都是 $\phi_n$ 的倍数，$\phi_n\ne0$ 时秩为1，故称为<strong>秩一更新（rank-one update）</strong>。新记录虽然增加了一行数据，对累计矩阵的改变却只有这样的一个方向。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-rank-one">秩一更新为何省计算</a></li></ul></nav>
+
+<h2 id="rank-one-inverse-update">秩一逆更新的乘法核对</h2>
+<p>记 $P_n=H_n^{-1}$，称为<strong>逆信息矩阵（inverse information matrix）</strong>。要逐条求解，还可以利用秩一结构更新这个逆。</p>
+<p>先省去下标，设旧矩阵为 $H$、旧逆为 $P$，令</p>
+<p>$$v=P\phi,\qquad s=\phi^{\mathsf T}v.$$</p>
+<p>尝试把新逆写成 $P-cvv^{\mathsf T}$。利用 $HP=I$、$Hv=\phi$ 和 $P$ 对称，直接相乘：</p>
+<p>$$\begin{aligned}
+(H+\phi\phi^{\mathsf T})(P-cvv^{\mathsf T})
+&amp;=I-c\phi v^{\mathsf T}
++\phi v^{\mathsf T}-cs\phi v^{\mathsf T}\\
+&amp;=I+[1-c(1+s)]\phi v^{\mathsf T}.
+\end{aligned}$$</p>
+<p>取 $c=1/(1+s)$，附加项消失。由于 $P$ 正定，$s\ge0$，分母始终为正。恢复下标，得到</p>
+<p>$$K_n=\frac{P_{n-1}\phi_n}
+{1+\phi_n^{\mathsf T}P_{n-1}\phi_n},\qquad
+P_n=P_{n-1}-\frac{(P_{n-1}\phi_n)(P_{n-1}\phi_n)^{\mathsf T}}
+{1+\phi_n^{\mathsf T}P_{n-1}\phi_n}.$$</p>
+<p>这一步通过乘回原矩阵验证了逆关系，无须每次重新对一个完整矩阵求逆。</p>
+<h2 id="recursive-least-squares-prediction-clock">递推最小二乘与预测时钟</h2>
+<p>再从新旧正规方程相减：</p>
+<p>$$H_n(\theta_n-\theta_{n-1})
+=\phi_n(y_n-\phi_n^{\mathsf T}\theta_{n-1}).$$</p>
+<p>左乘 $P_n$，并由刚才的逆式得到 $P_n\phi_n=K_n$，于是</p>
+<p>$$\boxed{\hat y_{n\mid n-1}=\phi_n^{\mathsf T}\theta_{n-1},\qquad
+\theta_n=\theta_{n-1}
++K_n(y_n-\hat y_{n\mid n-1}).}$$</p>
+<p>这称为<strong>递推最小二乘（recursive least squares，RLS）</strong>。旧参数先给出预测，新读数与预测的差再推动参数更新。初始化为 $\theta_0,P_0=H_0^{-1}$，保存参数和一个 $d\times d$ 矩阵，即可继续处理后来的记录。</p>
+<p>开头的标量例子可以逐步核对：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">到达记录</th>
+  <th style="text-align:right">更新前预测</th>
+  <th style="text-align:right">旧逆信息 $P$</th>
+  <th style="text-align:right">更新系数 $K$</th>
+  <th style="text-align:right">更新后参数</th>
+  <th style="text-align:right">新逆信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">$y_1=2$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">$1/(1+1)=1/2$</td>
+  <td style="text-align:right">$0+(1/2)(2-0)=1$</td>
+  <td style="text-align:right">$1/2$</td>
+</tr>
+<tr>
+  <td style="text-align:right">$y_2=4$</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">$1/2$</td>
+  <td style="text-align:right">$(1/2)/(1+1/2)=1/3$</td>
+  <td style="text-align:right">$1+(1/3)(4-1)=2$</td>
+  <td style="text-align:right">$1/3$</td>
+</tr>
+</tbody>
+</table>
+<p>参数恰与逐次重新最小化目标的结果相同。第二条的更新前预测仍是1，而更新后参数才变成2。没有记录时保持初始化；$\phi_n=0$ 时，新目标项与参数无关，$K_n=0$，也没有参数变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-trace">逐条更新参数并保留预测时钟</a></li></ul></nav>
+
+<p>批量与递推等价，需要它们采用相同特征、读数、初始中心和初始惩罚。若拿有限正则递推去比较无正则批量解，二者优化的目标已经不同。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence">递推与批量究竟在比较什么</a></li></ul></nav>
+
+<p>下面用60条二维回归记录，每增加一条都重建批量目标，再与递推比较。两者采用相同初始化，误差标准差为0.03。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C06-S01-0a380f3c-0.png" alt="正则化最小二乘与递推更新：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图显示两个系数随新记录更新，虚线为生成值；右图显示递推参数与批量参数的最大绝对差。差值在浮点舍入尺度，反映两种计算都在求同一目标的解。系数接近生成值的速度，则还受特征方向、噪声和初始惩罚影响。</p>
+<h2 id="inverse-information-bias-and-sampling-covariance">逆信息、偏差与抽样协方差</h2>
+<p>$P$ 来自平方目标的矩阵逆。估计量在重复测量中怎样波动，还需要一个概率模型来计算。</p>
+<p>固定设计矩阵 $\Phi$、真实参数 $\theta_*$ 和初始中心，令</p>
+<p>$$y=\Phi\theta_*+\epsilon,\qquad
+E[\epsilon]=0,\qquad \operatorname{Cov}(\epsilon)=\sigma^2I.$$</p>
+<p>这可由独立、零均值、同方差误差满足。记 $H=H_0+\Phi^{\mathsf T}\Phi$、$P=H^{-1}$，将数据代入批量解：</p>
+<p>$$\hat\theta-\theta_*
+=PH_0(\theta_0-\theta_*)+P\Phi^{\mathsf T}\epsilon.$$</p>
+<p>第一项固定，给出重复平均的<strong>估计偏差</strong>；第二项随误差变化。令 $B=P\Phi^{\mathsf T}$。因为 $E[\epsilon]=0$，随机部分的协方差可以直接展开：</p>
+<p>$$\operatorname{Cov}(B\epsilon)
+=E[(B\epsilon)(B\epsilon)^{\mathsf T}]
+=BE[\epsilon\epsilon^{\mathsf T}]B^{\mathsf T}
+=\sigma^2BB^{\mathsf T}.$$</p>
+<p>代回 $B$，得到</p>
+<p>$$\boxed{\operatorname{Cov}(\hat\theta)
+=\sigma^2P\Phi^{\mathsf T}\Phi P.}$$</p>
+<p>因此逆信息与参数协方差是不同对象。在无初始正则、设计满列秩时，$P=(\Phi^{\mathsf T}\Phi)^{-1}$，才化简为 $\sigma^2P$。动态回归的特征随先前读数变化，或误差进入特征时，应根据相应随机关系重新计算协方差。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-covariance">什么时候可以写成噪声方差乘P</a></li></ul></nav>
+
+<p>用标量设计 $[1,2]$，正则强度1、中心0、误差标准差2作手算。特征平方和为5，故</p>
+<p>$$P=\frac1{1+5}=\frac16,\qquad
+\operatorname{Var}(\hat\theta)=4\frac5{6^2}=\frac{20}{36}.$$</p>
+<p>直接使用 $4P$ 则得到 $4/6$，与上式不同。如果真参数为0.7，估计的期望为 $(5/6)\times0.7=7/12$，初始中心将平均结果向零拉近。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-ridge-variance">逆信息与抽样方差的差别</a></li></ul></nav>
+
+<p>下图固定这一设计，独立重抽2000组测量误差，画出参数估计的分布。灰虚线为真参数，玫红线为刚才推导的估计期望。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C06-S01-8922cc58-1.png" alt="正则化最小二乘与递推更新：实验结果图" loading="lazy"></figure>
+</section>
+<p>重复分布围绕 $7/12$ 展开，方差对应 $20/36$。正则改变了中心，也改变了重复方差。它能约束当前数据没有提供的方向，但这些约束来自初始惩罚；要用观测区分该方向，仍需要下一批数据提供新的特征变化。</p>
+<p>下一节让旧记录的约束逐步减轻，观察估计如何跟踪变化参数。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/2-161-signal-processing-continuous-and-discrete-fall-2008/0908e93cb4f31eac9150b14c1ffdf328_rls.pdf">MIT 2.161：Introduction to Recursive-Least-Squares Adaptive Filters</a>介绍递推最小二乘的矩阵更新；<a href="https://ocw.mit.edu/courses/6-435-system-identification-spring-2005/pages/lecture-notes/">MIT 6.435讲义</a>第21—22讲讨论递推估计。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-05-动态辨识、实验设计与验证/read/3/">← 6.5.3 数据划分、缺测与预测验证</a><a href="/chapters/06-06-递推辨识与时变参数跟踪/read/2/">6.6.2 指数遗忘、参数漂移与在线评估 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

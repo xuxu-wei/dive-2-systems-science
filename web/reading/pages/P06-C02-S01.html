@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.2.1 脉冲响应与线性卷积 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C02-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C02-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-linear-convolution">本节练习 · 4 题</a><a class="button" href="/chapters/06-02-卷积、频谱与频率响应/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.2.1 脉冲响应与线性卷积</h1>
+<p>学完本节，你应能把各次输入引起的响应逐项叠加，计算完整卷积，并解释零初态、固定核与尾部处理各自的作用。</p>
+<p><strong>先修知识</strong>：因果平均、有限求和，以及第 3 篇的线性叠加。</p>
+<h2 id="unit-impulse-and-response">单位脉冲与脉冲响应</h2>
+<p>一个滤波器把一次读数的一半放在当前输出，另一半放在下一次输出。如果第 0 步输入 $1\,\mathrm U$，第 1 步又输入 $2\,\mathrm U$，那么第 1 步会收到两份贡献：前一步留下 $0.5\,\mathrm U$，当前输入贡献 $1\,\mathrm U$。总和为 $1.5\,\mathrm U$。</p>
+<p>要把这种计算推广到任意输入，可以先记录单次输入的完整作用。<strong>离散单位脉冲（discrete unit impulse）</strong>是序列</p>
+<p>$$\delta[n]=\begin{cases}1,&amp;n=0,\\0,&amp;n\ne0.\end{cases}$$</p>
+<p>它把“只在一个时刻输入”表示为一个确定的数值模式。系统的内部状态在输入开始前为零；输入单位幅度的脉冲后，输出随时间的序列称为<strong>脉冲响应（impulse response）</strong>。</p>
+<p>本节输入和输出都以 U 计。给系统送入 $(1\,\mathrm U)\delta[n]$，把输出除以 $1\,\mathrm U$，记为无单位的 $h[n]$。上述滤波器的系数为</p>
+<p>$$h[0]=\frac12,\qquad h[1]=\frac12,\qquad h[n]=0\quad(n\notin\{0,1\}).$$</p>
+<p>响应只有有限项非零，因此称为 <strong>FIR（finite impulse response，有限脉冲响应）</strong>；这些系数也称为滤波核。</p>
+<h2 id="linearity-and-time-shifting">缩放、平移与叠加</h2>
+<p>为什么一次脉冲的响应足以计算更复杂的输入？这里用到两个可以分别检验的性质。</p>
+<p>系统是线性的，是说任意两条输入 $x_1,x_2$ 产生输出 $y_1,y_2$ 时，输入 $\alpha x_1+\beta x_2$ 产生 $\alpha y_1+\beta y_2$。因此，把脉冲幅度放大两倍，整条响应也放大两倍；两次输入同时存在时，响应逐项相加。</p>
+<p>系统是时不变的，是说把整条输入推迟 $j$ 步，输出也只推迟同样的 $j$ 步。于是 $\delta[n-j]$ 的响应为 $h[n-j]$，输入 $x[j]\delta[n-j]$ 的响应为 $x[j]h[n-j]$。同时具备这两个性质的系统称为 <strong>LTI（linear time-invariant，线性时不变）</strong>系统。</p>
+<p>以输入 $[1,2,0]\,\mathrm U$ 为例，列表从序号 0 排列，区间外输入为零。将两次非零输入的贡献展开：</p>
+<table>
+<thead>
+<tr>
+  <th>输出序号 $n$</th>
+  <th>第 0 步输入的贡献 / U</th>
+  <th>第 1 步输入的贡献 / U</th>
+  <th>总输出 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>0.5</td>
+  <td>0</td>
+  <td>0.5</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>0.5</td>
+  <td>1</td>
+  <td>1.5</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>0</td>
+  <td>1</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+</tr>
+</tbody>
+</table>
+<p>这张表同时用到了缩放、平移和相加。若大输入引起饱和，放大后的响应不再成比例；若系数随绝对时刻改变，相同脉冲晚输入时的形状也可能改变。固定 $h$ 的计算依赖上述两项性质。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-lti-superposition">卷积表达依靠哪些假设</a></li></ul></nav>
+
+<h2 id="linear-convolution-sum">线性卷积与索引含义</h2>
+<p>任意有限输入都可以拆成平移脉冲的和：</p>
+<p>$$x[n]=\sum_jx[j]\delta[n-j].$$</p>
+<p>对某个固定的 $n$，只有 $j=n$ 那项留下 $x[n]$，所以等式成立。把每项的响应相加，得到<strong>线性卷积（linear convolution）</strong>：</p>
+<p>$$\boxed{y[n]=(x*h)[n]=\sum_jx[j]h[n-j].}$$</p>
+<p>星号 $*$ 表示对整条序列进行这一求和运算。$j$ 是输入发生的时刻，$n-j$ 是这次输入距当前输出已经过去的步数。也可以令 $m=n-j$，改为按响应经过的步数求和：</p>
+<p>$$y[n]=\sum_mh[m]x[n-m].$$</p>
+<p>对于前面的两点核，这就是 $y[n]=(x[n]+x[n-1])/2$。例如</p>
+<p>$$y[1]=x[0]h[1]+x[1]h[0]=1\times0.5+2\times0.5=1.5\,\mathrm U.$$</p>
+<p>输入有 $N$ 项，核有 $M$ 项，且两者在列表范围外均为零。最晚的贡献来自 $x[N-1]h[M-1]$，落在序号 $N+M-2$，所以完整输出包含</p>
+<p>$$N+M-1$$</p>
+<p>项。前例 $N=3,M=2$，完整结果为 $[0.5,1.5,1,0]\,\mathrm U$；最后一项虽然为零，仍属于规定的输出范围。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-linear-convolution">把各次输入的响应叠加</a></li></ul></nav>
+
+<h2 id="zero-state-and-startup-conventions">零状态响应与启动约定</h2>
+<p>上述卷积给出输入引起的<strong>零状态响应（zero-state response）</strong>：输入开始前，系统没有另行储存的状态。若系统原本已有状态，它还会在后续产生自己的演化，即<strong>零输入响应（zero-input response）</strong>。在线性模型中，两部分相加才是总响应；用输入脉冲替代原本的初态，会改变问题的开始方式。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-impulse-meaning">单位脉冲与初始状态</a></li></ul></nav>
+
+<p>前一节按已到达点数平均，第一步输出 $x[0]$；这里固定两点核，历史输入取零，第一步输出 $x[0]/2$。例如输入先到 $10\,\mathrm U$，两种结果分别为 10 U、5 U。前一节启动时分母随已有点数改变，这里从第一步起就使用同一组系数。对于一般窗口 $W$，固定均值核始终除以 $W$；要到窗口装满后，两种平均才一致。</p>
+<p>在探索页选择窗口长度 5，停在第 0 项，先核对输出是否为输入的五分之一，再播放到第 4 项。这个固定 FIR 的启动结果正由零历史卷积给出。</p>
+<p class="concept-explore"><a href="/chapters/06-02-卷积、频谱与频率响应/explore/?concept=P06-C02-S01%3Azero-state-and-startup-conventions">可视化与探索：零状态响应与启动约定 →</a></p>
+
+<h2 id="linear-tail-and-circular-convolution">完整尾部与循环卷积</h2>
+<p>设输入 $[1,2,3]$，核 $[1,1]$，完整卷积为 $[1,3,5,3]$。如果强行只保留三个位置，又把第四项绕回第一个位置，就得到 $[4,3,5]$。</p>
+<p>这种把序号按长度 $L$ 取模、即除以 $L$ 后取余数的运算，称为<strong>循环卷积（circular convolution）</strong>。将序列补至长度 $L$ 后，它的公式是</p>
+<p>$$y_c[n]=\sum_{j=0}^{L-1}x[j]h[(n-j)\bmod L],\qquad n=0,\ldots,L-1.$$</p>
+<p>长度为 3 的例子将序号 3 的贡献加回序号 0，表示的是周期重复的索引规则。下一节的离散频率表示也采用周期结构，在频域相乘后直接变回长度 $L$ 的序列，会产生这样的回绕。</p>
+<p>若目标是计算完整线性卷积，可先把输入与核补零到至少 $N+M-1$ 项，再进行这种频域计算。足够长的输出容纳全部尾部，回绕就不会让尾部与开头重叠。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-circular-wrap">为什么尾部绕回了开头</a></li></ul></nav>
+
+<h2 id="kernel-length-and-output-timing">核长度与输出时序</h2>
+<p>下图保持输入 $[1,0,2]\,\mathrm U$ 不变，比较两点核 $[0.5,0.5]$ 与四点核 $[0.4,0.3,0.2,0.1]$。两组系数和都为 1。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C02-S01-9582b87d-0.png" alt="脉冲响应与线性卷积：实验结果图" loading="lazy"></figure>
+</section>
+<p>两点核的完整输出为 $[0.5,0.5,1,1]\,\mathrm U$，四点核则为 $[0.4,0.3,1,0.7,0.4,0.2]\,\mathrm U$。较长的核将同一份输入的影响摊到更多时刻，最后一个输入到达后，输出仍有尾部。</p>
+<p>将完整输出相加，交换有限求和顺序可得</p>
+<p>$$\sum_ny[n]=\sum_jx[j]\sum_mh[m]
+=\left(\sum_jx[j]\right)\left(\sum_mh[m]\right).$$</p>
+<p>所以图中两组输出的数值总和都等于输入总和 3 U。这个相等来自核系数和为 1；若输入表示流率，要计算累计流入量，还需将离散和乘以对应的时间间隔。保留完整尾部，才能使比较对应于同一个求和范围。</p>
+<p>时域卷积说明每次输入在何时贡献多少。接下来，我们将把同一段记录展开成不同频率的旋转，学习从频率看它的组成。</p>
+<h2 id="references">参考资料</h2>
+<ul>
+<li><a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec08/">MIT 6.003 第 8 讲：卷积</a>：由脉冲拆分、线性叠加和时间平移建立卷积。</li>
+<li><a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec18/">MIT 6.003 第 18 讲：离散时间 Fourier 表示</a>：周期序列与频率运算的联系。</li>
+</ul>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-01-观测、采样与滤波/read/2/">← 6.1.2 因果移动平均与时间延迟</a><a href="/chapters/06-02-卷积、频谱与频率响应/read/2/">6.2.2 离散傅里叶变换与单边频谱 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

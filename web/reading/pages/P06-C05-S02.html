@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.5.2 输入激励与参数可辨识性 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C05-S02">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C05-S02" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-excitation-rank">本节练习 · 5 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.5.2 输入激励与参数可辨识性</h1>
+<p>学完本节，你应能从回归方向判断两个系数能否分别确定，解释满秩记录仍可能估计敏感，并根据已知物理关系重新数清待估参数。</p>
+<p><strong>先修知识</strong>：上一节的ARX回归，第3篇的秩和特征值，以及最小二乘。</p>
+<h2 id="steady-records-parameter-combinations">稳态记录与参数组合</h2>
+<p>持续施加1 V输入，浓度偏差稳定在2 U。反复记录同一个稳态，能够分清每拍保留多少、输入每拍贡献多少吗？</p>
+<p>在 $y_{n+1}=ay_n+bu_n$ 中，稳态只给出</p>
+<p>$$2\,\mathrm U=a(2\,\mathrm U)+b(1\,\mathrm V).$$</p>
+<p>取 $a=0.5,b=1$ U/V可以满足它，取 $a=0.8,b=0.4$ U/V也可以。两组模型的稳态相同，靠近稳态的速度却不同。</p>
+<p><strong>参数可辨识性（parameter identifiability）</strong>讨论不同参数能否由给定模型及观测方式区分。如果不同参数产生相同的可观测结果，仅靠这些观测就不能选择其中一组。对本例的稳态实验，当 $|a|&lt;1$、非零恒定输入为 $u^*$ 时，</p>
+<p>$$\frac{y^*}{u^*}=\frac b{1-a}.$$</p>
+<p>数据约束的是这个比值。多读一百次相同稳态可以提高该比值的测量精度，却仍没有第二种关系来分开 $a,b$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-steady-confounding">只在稳态能确定什么</a></li></ul></nav>
+
+<h2 id="transients-independent-regression-directions">瞬态与独立回归方向</h2>
+<p>保持输入1 V，从0 U开始记录。第一步有 $y_1=b(1\,\mathrm V)$；若记录到 $y_1=0.4$ U，便得到 $b=0.4$ U/V。第二步若为0.72 U，则</p>
+<p>$$0.72\,\mathrm U=a(0.4\,\mathrm U)+0.4\,\mathrm U,$$</p>
+<p>所以 $a=0.8$。恒定输入本身没有改变，但不同状态提供了两条不同方程。</p>
+<p>一般地，恒定输入下</p>
+<p>$$y_n=y^*+a^n(y_0-y^*).$$</p>
+<p>若观察到两个不同的 $y_j,y_k$，回归行 $[y_j,u^*]$ 与 $[y_k,u^*]$ 的行列式为</p>
+<p>$$\begin{vmatrix}y_j&amp;u^*\\y_k&amp;u^*\end{vmatrix}
+=u^*(y_j-y_k)\ne0.$$</p>
+<p>两行给出独立方向。因此，常输入下可见的瞬态也能区分两个系数。若从稳态开始，两行会重合；若输入一直为零，输入列全零，输出变化也无法确定输入系数 $b$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-constant-transient">恒定输入下的参数辨识</a></li></ul></nav>
+
+<p>实验中安排输入的变化，以便让模型的不同参数产生可区分的输出，这叫作输入<strong>激励（excitation）</strong>。激励如何作用，要结合系统响应与观察时段判断；“输入在变”与“这份回归矩阵满秩”是相关但不同的检查。</p>
+<h2 id="regression-rank-and-information-directions">回归矩阵的秩与信息方向</h2>
+<p>按数值单位计算，记状态平方和、输入平方和和交叉乘积为</p>
+<p>$$S_y=\sum_ny_n^2,\qquad S_u=\sum_nu_n^2,\qquad
+S_{yu}=\sum_ny_nu_n.$$</p>
+<p>则</p>
+<p>$$\Phi^{\mathsf T}\Phi=
+\begin{pmatrix}S_y&amp;S_{yu}\\S_{yu}&amp;S_u\end{pmatrix}.$$</p>
+<p>两列全零时秩为0；行列式 $S_yS_u-S_{yu}^2&gt;0$ 时秩为2；其余非零情况秩为1。这里计算题使用整数记录，可精确比较行列式。</p>
+<p>用三组小例子手算：</p>
+<table>
+<thead>
+<tr>
+  <th>状态列</th>
+  <th>输入列</th>
+  <th>$(S_y,S_u,S_{yu})$</th>
+  <th style="text-align:right">行列式</th>
+  <th style="text-align:right">秩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>$[0,0]$</td>
+  <td>$[0,0]$</td>
+  <td>$(0,0,0)$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td>$[2,2]$</td>
+  <td>$[1,1]$</td>
+  <td>$(8,2,4)$</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td>$[0,1]$</td>
+  <td>$[1,1]$</td>
+  <td>$(1,2,1)$</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">2</td>
+</tr>
+</tbody>
+</table>
+<p>满列秩意味着这份记录的平方损失有唯一参数解。它是有限数据中的代数性质；是否准确恢复生成参数，还取决于噪声、输入范围和模型是否合适。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-excitation-rank">给定实验能区分几个回归方向</a></li></ul></nav>
+
+<h2 id="singular-values-and-estimation-sensitivity">奇异值与估计敏感性</h2>
+<p>设已经满秩，但瞬态小到几乎看不见。此时两列虽然没有完全成比例，仍可能非常接近。参数沿某个方向改变很多，预测却只改变一点，目标中很小的误差也就足以改变参数估计。</p>
+<p>可以用<strong>奇异值（singular value）</strong>量化这种变化。$\Phi$ 的奇异值是 $\Phi^{\mathsf T}\Phi$ 特征值的非负平方根，表示参数空间的某个单位方向通过 $\Phi$ 后被伸缩多少。非零参数变化 $\delta\theta$ 造成的预测变化为 $\Phi\delta\theta$；最小奇异值很小时，存在难以从输出中看见的参数方向。</p>
+<p>满列秩时，<strong>二范数条件数（condition number）</strong>为</p>
+<p>$$\kappa(\Phi)=\frac{\sigma_{\max}}{\sigma_{\min}}.$$</p>
+<p>本节将列秩不足的条件数记为无穷大。条件数越大，各方向的尺度差异越悬殊；在相同坐标和误差尺度下，估计通常更敏感。浮点列近乎平行时，用奇异值分解（singular value decomposition，SVD）计算这些方向，比相减两个很大的近似平方和更合适。</p>
+<p>单位也会改变列尺度。例如把刺激从V换成毫V，会把输入列数值乘1000，条件数随之变化。下面同时报告原单位矩阵和每列除以自身长度后的条件数；后者有助于分开列尺度差异与接近平行的问题。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-conditioning">满秩为什么仍可能很难估计</a></li></ul></nav>
+
+<p>图中比较四种记录：从稳态开始、从零开始的可见瞬态、只偏离稳态 $10^{-5}$ U的微小瞬态，以及每五步切换的输入。生成参数均为 $a=0.8,b=0.4$ U/V。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C05-S02-85512bac-0.png" alt="输入激励与参数可辨识性：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图可见瞬态与变化输入都带来新的回归方向。右图固定各自的回归矩阵，只给两个目标序列加入相同的 $10^{-4}\sin n$ U小扰动，比较估计变化。微小瞬态数学上仍可能满秩，参数变化却明显更大。这个对照单独展示目标扰动如何被敏感方向放大。</p>
+<h2 id="physical-constraints-and-unknown-parameters">物理约束与独立未知量</h2>
+<p>前面把 $a,b$ 当成两个独立系数。如果已知它们来自同一物理参数，就应使用这份关系重新判断。</p>
+<p>对流率输入 $q$（U/T），单室模型为</p>
+<p>$$\dot A=q-kA.$$</p>
+<p>当 $k&gt;0$，稳态满足 $A^*=q/k$。若 $q$ 已校准且 $A^*&gt;0$，可直接得到 $k=q/A^*$；若 $q,k$ 都未知，同一个稳态只能确定它们的比值。</p>
+<p>若输入仍是刺激 $u$（V），需要输入通道系数 $g$：</p>
+<p>$$\dot A=gu-kA,\qquad [g]=\mathrm{U/(V\cdot T)}.$$</p>
+<p>当 $k&gt;0$、采样间隔为 $h$ 时，</p>
+<p>$$a=e^{-kh},\qquad
+b=g\frac{1-e^{-kh}}k.$$</p>
+<p>若 $g$ 已知，这两个离散系数由同一个 $k$ 决定；若 $g,k$ 都未知，稳态只约束 $g/k$。改用已标定流率输入时，离散输入系数则为 $(1-e^{-kh})/k$，单位T。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-mechanistic-parameters">同一稳态结论依赖哪些未知量</a></li></ul></nav>
+
+<p>因此，实验设计要先说清待估的是两个自由回归系数，还是受物理关系约束的少数参数，再选择能区分它们的输入和观察时段。下一节把候选模型放到预留观测上，检查这种区分能否支持新的预测。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/6-435-system-identification-spring-2005/pages/lecture-notes/">MIT 6.435讲义</a>第7—8讲讨论输入设计与持续激励，第11—12讲讨论模型结构和可辨识性。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-05-动态辨识、实验设计与验证/read/1/">← 6.5.1 ARX 回归、一步预测与自由运行</a><a href="/chapters/06-05-动态辨识、实验设计与验证/read/3/">6.5.3 数据划分、缺测与预测验证 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

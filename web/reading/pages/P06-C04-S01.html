@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.4.1 最小二乘、正规方程与误差模型 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C04-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C04-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-line-fit">本节练习 · 5 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.4.1 最小二乘、正规方程与误差模型</h1>
+<p>学完本节，你应能手算含截距的直线拟合，由残差正交说明它为何最小，并区分平方损失的代数定义与高斯误差下的似然解释。</p>
+<p><strong>先修知识</strong>：第3篇的偏导、矩阵秩和向量正交；第5篇的均值、方差、高斯密度与似然。</p>
+<h2 id="line-model-and-squared-residual">校准直线与平方残差</h2>
+<p>用标准溶液校准传感器时，已知浓度为0、1、2、3 C，仪器读数依次为1.1、2.8、5.2、6.9 U。点大致沿直线上升，却没有一条直线能穿过所有点。我们需要先给“接近”一个计算标准，再选择截距和斜率。</p>
+<p>采用直线关系</p>
+<p>$$y_i=\beta_0+\beta_1x_i+\varepsilon_i,\qquad i=1,\ldots,n.$$</p>
+<p>$x_i$是准确给定的浓度，单位C；$y_i$是读数，单位U；截距$\beta_0$单位U，斜率$\beta_1$单位U/C。将输入位置视为固定、只让读数误差变化，称为<strong>固定设计（fixed design）</strong>。</p>
+<p>对一组候选参数$b_0,b_1$，预测为$\hat y_i=b_0+b_1x_i$，<strong>残差（residual）</strong>按“观测减预测”定义：</p>
+<p>$$r_i=y_i-b_0-b_1x_i.$$</p>
+<p>例如候选直线$\hat y=1+2x$在$x=1$ C时预测3 U，残差为$2.8-3=-0.2$ U。正负残差直接相加会抵消，因而用<strong>平方残差和（sum of squared errors，SSE）</strong>比较整体距离：</p>
+<p>$$S(b_0,b_1)=\sum_{i=1}^n r_i^2.$$</p>
+<p>本例候选直线的四个残差为$[0.1,-0.2,0.2,-0.1]$ U，平方和为0.10 U²。<strong>最小二乘（least squares）</strong>选择使这个平方和最小的参数。这个计算问题先由距离标准定义，概率模型随后用于解释估计如何波动。</p>
+<h2 id="line-least-squares-derivation">含截距直线的最小二乘解</h2>
+<p>固定斜率、改变截距，或固定截距、改变斜率，分别对平方和求偏导。对每个残差使用平方函数的链式法则：</p>
+<p>$$\frac{\partial r_i^2}{\partial b_0}=2r_i(-1),\qquad
+\frac{\partial r_i^2}{\partial b_1}=2r_i(-x_i).$$</p>
+<p>所以最小处满足</p>
+<p>$$\sum_i r_i=0,\qquad \sum_i x_i r_i=0.$$</p>
+<p>第一式展开为$\sum_i y_i-nb_0-b_1\sum_i x_i=0$，用样本平均$\bar x,\bar y$表示，得到</p>
+<p>$$b_0=\bar y-b_1\bar x.$$</p>
+<p>代回残差后，$r_i=(y_i-\bar y)-b_1(x_i-\bar x)$。又因为残差和为零，第二式等价于$\sum_i(x_i-\bar x)r_i=0$。整理便得到</p>
+<p>$$\boxed{\hat\beta_1=
+\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{S_{xx}},
+\qquad \hat\beta_0=\bar y-\hat\beta_1\bar x,}
+\qquad S_{xx}=\sum_i(x_i-\bar x)^2.$$</p>
+<p>帽子表示由这批数据算出的估计。四点数据有$\bar x=1.5$ C、$\bar y=4$ U，逐项计算为</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">$x_i$/C</th>
+  <th style="text-align:right">$y_i$/U</th>
+  <th style="text-align:right">$(x_i-\bar x)$/C</th>
+  <th style="text-align:right">$(y_i-\bar y)$/U</th>
+  <th style="text-align:right">中心化乘积/(C·U)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1.1</td>
+  <td style="text-align:right">−1.5</td>
+  <td style="text-align:right">−2.9</td>
+  <td style="text-align:right">4.35</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">2.8</td>
+  <td style="text-align:right">−0.5</td>
+  <td style="text-align:right">−1.2</td>
+  <td style="text-align:right">0.60</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">5.2</td>
+  <td style="text-align:right">0.5</td>
+  <td style="text-align:right">1.2</td>
+  <td style="text-align:right">0.60</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">6.9</td>
+  <td style="text-align:right">1.5</td>
+  <td style="text-align:right">2.9</td>
+  <td style="text-align:right">4.35</td>
+</tr>
+</tbody>
+</table>
+<p>于是$S_{xx}=5$ C²，分子为9.9 C·U，斜率为1.98 U/C，截距为$4-1.98\times1.5=1.03$ U。残差为$[0.07,-0.21,0.21,-0.07]$ U，SSE降到0.098 U²。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-line-fit">用残差定义直线拟合</a></li></ul></nav>
+
+<h2 id="normal-equations-and-rank">正规方程、投影与秩</h2>
+<p>把每个输入写成一行$[1,x_i]$，组成<strong>设计矩阵（design matrix）</strong>$X$；参数为列向量$\beta=[\beta_0,\beta_1]^{\mathsf T}$。刚才的两个残差条件就是</p>
+<p>$$X^{\mathsf T}(y-X\hat\beta)=0,
+\quad\text{即}\quad
+\boxed{(X^{\mathsf T}X)\hat\beta=X^{\mathsf T}y.}$$</p>
+<p>这叫<strong>正规方程（normal equations）</strong>。它说残差$r$与$X$的每一列正交，因此拟合向量$X\hat\beta$是$y$在这些列所张成空间上的正交投影。</p>
+<p>它为什么一定给出最小值？将参数再改动向量$d$，平方距离变为</p>
+<p>$$\begin{aligned}
+\|y-X(\hat\beta+d)\|^2
+&amp;=\|r-Xd\|^2\\
+&amp;=\|r\|^2-2r^{\mathsf T}Xd+\|Xd\|^2\\
+&amp;=\|r\|^2+\|Xd\|^2\ge\|r\|^2.
+\end{aligned}$$</p>
+<p>中间交叉项由正交条件消失。若$X$满列秩，只有$d=0$能让$Xd=0$，所以参数解唯一。直线情形中，这等价于$S_{xx}&gt;0$，也就是输入不全相同。</p>
+<p>若所有$x_i=2$ C，每次预测只能看到组合$\beta_0+(2\,\mathrm C)\beta_1$。增大截距同时相应减小斜率，可以保持这个组合相同。重复测量能改善该组合的估计，却不能分别确定两个系数。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-rank-deficiency">输入恒定时哪些系数可确定</a></li></ul></nav>
+
+<p>有截距列时，残差和为零；有输入列时，残差与输入的内积为零。这些是拟合规则造成的代数约束，并不说明相邻残差已经独立。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-orthogonal-residual">最小二乘残差的代数检查</a></li></ul></nav>
+
+<h2 id="gaussian-likelihood-and-sse">高斯误差与最大似然</h2>
+<p>现在给读数的波动建立概率模型。给定准确的输入后，假设误差独立、零均值、共同方差为$\sigma^2&gt;0$，并服从高斯分布。每个读数的条件密度为</p>
+<p>$$f(y_i\mid x_i,\beta)=\frac1{\sqrt{2\pi\sigma^2}}
+\exp\!\left[-\frac{(y_i-\beta_0-\beta_1x_i)^2}{2\sigma^2}\right].$$</p>
+<p>固定已经看到的读数，把这些密度视为参数的函数；独立性使联合似然等于各项乘积。取对数得到</p>
+<p>$$\ell(\beta,\sigma^2)
+=-\frac n2\log(2\pi\sigma^2)-\frac{S(\beta)}{2\sigma^2}.$$</p>
+<p>$\sigma^2$已知时，第一项与参数无关，因此使似然最大恰好等于使SSE最小。</p>
+<p>若共同方差也未知，令$v=\sigma^2$。对固定参数，</p>
+<p>$$\frac{\partial\ell}{\partial v}
+=-\frac n{2v}+\frac{S}{2v^2}.$$</p>
+<p>当$S&gt;0$，最大处为$\hat v=S/n$；代回后，似然仍随着SSE减小而增大，所以仍选择最小二乘参数。若能精确拟合使$S=0$，则$v\to0^+$时似然无界，不存在正方差范围内的有限联合最大值。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-least-squares-gaussian">平方残差何时对应似然</a></li></ul></nav>
+
+<p>如果各读数的误差方差已知但不同，负对数似然中随参数变化的项变为</p>
+<p>$$\frac12\sum_i\frac{r_i^2}{\sigma_i^2}.$$</p>
+<p>测量更精确的点得到更大权重。误差相关时，协方差还会把不同残差联系起来；这些概率假设决定采用何种统计损失。下一节先在独立误差下，把直线拟合换成指数曲线。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-04-最小二乘与参数估计/practice/?question=p06-weighted-errors">不同测量精度如何进入损失</a></li></ul></nav>
+
+<h2 id="line-residual-experiment">拟合线与残差图</h2>
+<p>下面把四点最小二乘直线与带符号残差并列显示。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C04-S01-48b5ffd3-0.png" alt="最小二乘、正规方程与误差模型：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图的斜率1.98 U/C描述标准浓度每增加1 C，平均读数增加多少。右图显示两个中间点的残差较大、两端较小；它们按拟合约束正负抵消。是否存在随浓度变化的弯曲或误差幅度变化，还要结合更多浓度和重复读数判断。这里的残差图先让每个偏差在何处发生清楚可见。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/6-435-system-identification-spring-2005/resources/lec5_6_435/">MIT 6.435 最小二乘讲义</a>讨论正规方程与最小二乘的统计性质；课程第9—10讲对应这些主题。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/">← 6.3.2 精确采样、Z 变换与离散极点</a><a href="/chapters/06-04-最小二乘与参数估计/read/2/">6.4.2 指数清除曲线、加权损失与网格估计 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

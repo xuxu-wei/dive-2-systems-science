@@ -133,6 +133,8 @@ def test_new_latex_commands_survive_notebook_serialization():
     for path in folder.glob('*.ipynb'):
         book=json.loads(path.read_text(encoding='utf-8'))
         prose='\n'.join(''.join(cell['source']) for cell in book['cells'][:-1] if cell['cell_type']=='markdown')
+        if book.get('metadata',{}).get('reading'):
+            prose+='\n'+(ROOT/book['metadata']['reading']).read_text(encoding='utf-8')
         assert not any(ord(ch)<32 and ch not in '\n\r' for ch in prose),path
         assert r'\phi' in prose and r'\theta' in prose and r'\frac' in prose
         for equation in re.findall(r'\$\$.*?\$\$|\$[^$\n]+\$',prose,re.S):

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>篇末综合 测量表示、参数辨识与预测验证 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-SUMMARY">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-SUMMARY" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-sampling">本节练习 · 8 题</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>篇末综合 测量表示、参数辨识与预测验证</h1>
+<p>学完本节，你应能连接输入区间与采样模型，按误差尺度比较参数候选，并将数据划分、预测评分和在线更新按正确顺序组合起来。</p>
+<p><strong>先修知识</strong>：本篇六章的采样、系统表示、最小二乘、动态回归和递推辨识。</p>
+<h2 id="observation-plan-and-visible-dynamics">观测计划与可见动态</h2>
+<p>两组培养室记录分别描述停供后的清除和持续刺激下的动态响应。前者用于比较清除参数，后者用于比较预测方式。连接它们时，先确认每一列记录代表什么、每一个时间间隔怎样进入模型。</p>
+<p>例如节律同时含0.2 Hz与0.8 Hz余弦，每秒采一次。在整数时刻 $n$，</p>
+<p>$$\cos(2\pi\,0.8n)
+=\cos(2\pi n-2\pi\,0.2n)
+=\cos(2\pi\,0.2n).$$</p>
+<p>这份采样已经把两种连续频率映成相同记录。求解器内部用0.001 s还是更小步长，不改变原来每秒一次的观测时刻。增加采样率则改变能看到的时间信息；在相应带限和理想采样条件下，采样率高于1.6 Hz可以分开这两个频率。</p>
+<p>在线滤波也要对应实际时钟。居中平均需要等待后续读数到达；已有记录的补零只改变频谱计算的格点，不会补回此前没有测到的变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-sampling">采样改变了什么</a></li></ul></nav>
+
+<h2 id="interval-input-and-discrete-response">区间输入与离散响应</h2>
+<p>令所追踪物质总量为 $A$，单位U，输入流率为 $q$，单位U/T，满足</p>
+<p>$$\dot A=q-kA,\qquad k\ge0.$$</p>
+<p>这里用 $q$ 表示流率，后面的刺激输入另记为 $u$，单位V。每个长度为 $h$ 的区间内流率保持不变，6.3的区间积分给出</p>
+<p>$$A_{n+1}=aA_n+bq_n,\qquad
+a=e^{-kh},\qquad
+b=\int_0^he^{-k\tau}\,d\tau.$$</p>
+<p>所以 $k&gt;0$ 时 $b=(1-e^{-kh})/k$，$k=0$ 时 $b=h$。$a$ 无单位，$b$ 的单位为T，乘流率后得到U。</p>
+<p>Euler则只用区间起点变化率：</p>
+<p>$$A_{n+1}=(1-kh)A_n+hq_n.$$</p>
+<p>取 $k=0.25/\mathrm T,h=2\,\mathrm T,A_0=2\,\mathrm U,q_0=1\,\mathrm{U/T}$，精确更新为</p>
+<p>$$A_1=2e^{-0.5}+4(1-e^{-0.5})
+=4-2e^{-0.5}\approx2.78694\,\mathrm U,$$</p>
+<p>Euler得到 $A_1=2+2(1-0.25\times2)=3$ U。两种序列随后都使用各自上一项，才能比较两个不同更新规则的累积差异。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-discrete">连接区间输入与离散响应</a></li></ul></nav>
+
+<p>若采样间隔改变，应重新计算状态保留系数和区间输入累计系数。例如 $k=0.4/\mathrm T$、间隔从1 T改为2 T，新的两项为</p>
+<p>$$a=e^{-0.8},\qquad
+b=\frac{1-e^{-0.8}}{0.4/\mathrm T}.$$</p>
+<p>改变间隔不仅让状态多衰减一段时间，也让恒定输入多作用一段时间。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-resampling">更换采样率后的响应</a></li></ul></nav>
+
+<h2 id="parameter-candidates-and-weighted-residuals">参数候选与加权残差</h2>
+<p>停供后的另一组记录在0、1、2 T测得5、3、2 U，初始总量独立给定为5 U。候选为 $k=0,0.5,1/\mathrm T$。对每个候选计算</p>
+<p>$$p_i(k)=5\,\mathrm U\,e^{-kt_i},\qquad
+r_i(k)=y_i-p_i(k),\qquad
+S(k)=\sum_iw_i r_i(k)^2.$$</p>
+<p>本综合采用逆误差方差作为权重，数值1、2、1的单位为 $1/\mathrm{U^2}$，对应测量标准差1、$1/\sqrt2$、1 U，故损失无单位。它与6.4中无单位相对权重的计算有相同形式，但损失单位不同。</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">候选 $k$ / (1/T)</th>
+  <th>预测 / U</th>
+  <th style="text-align:right">加权平方损失</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td>$[5,5,5]$</td>
+  <td style="text-align:right">17</td>
+</tr>
+<tr>
+  <td style="text-align:right">0.5</td>
+  <td>$[5,5e^{-0.5},5e^{-1}]$</td>
+  <td style="text-align:right">约0.027926</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td>$[5,5e^{-1},5e^{-2}]$</td>
+  <td style="text-align:right">约4.445183</td>
+</tr>
+</tbody>
+</table>
+<p>候选0.5/T胜出。它在这个有限集合中使给定损失最小；若要比较其他参数，需要把它们的预测也放进同一个目标中。独立高斯测量误差下，这个损失对应相应的负对数似然中的残差部分。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-fit">参数估计与残差</a></li></ul></nav>
+
+<h2 id="excitation-unknowns-independent-equations">激励、未知量与独立方程</h2>
+<p>连续曲线拟合给参数规定了物理关系。若换成两个自由系数的ARX模型，能够识别什么还要重新判断。</p>
+<p>在非零恒定输入的同一稳态重复读数，只重复约束</p>
+<p>$$y^*=ay^*+bu^*.$$</p>
+<p>即使读1000次，回归行仍全为 $[y^*,u^*]$，无法分开不同的 $a,b$ 组合。记录可见瞬态或改变输入后，再检查新回归列是否线性独立，才能判断是否增加了区分参数的方向。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-excitation">哪些激励有助于辨识</a></li></ul></nav>
+
+<p>满列秩给出当前平方问题的唯一解；误差条件、数值敏感性和新记录上的预测则继续回答这个解能支持什么使用。这里的三项检查相互连接，各自对应不同问题。</p>
+<h2 id="time-partitions-and-training-preprocessing">时间划分与训练预处理</h2>
+<p>以短记录检算划分：时刻为0、1、2、3、4、5 T，读数为1、3、缺测、5、7、9 U。设训练到2 T之前，验证到4 T之前，得到</p>
+<table>
+<thead>
+<tr>
+  <th>用途</th>
+  <th>有效原索引</th>
+  <th>读数 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>训练</td>
+  <td>$[0,1]$</td>
+  <td>$[1,3]$</td>
+</tr>
+<tr>
+  <td>验证</td>
+  <td>$[3]$</td>
+  <td>$[5]$</td>
+</tr>
+<tr>
+  <td>最终</td>
+  <td>$[4,5]$</td>
+  <td>$[7,9]$</td>
+</tr>
+</tbody>
+</table>
+<p>训练均值为2 U，按训练点数作分母的尺度为1 U。对所有有效读数使用同一变换后，原位置的标准化结果为</p>
+<p>$$[-1,1,\text{缺测},3,5,7].$$</p>
+<p>缺测占位不删除，原索引不改写；需要上一拍的动态回归行还要确认那一拍确实存在。训练尺度若为零，本题按所用数值单位将除数设为1。验证和最终段的读数怎样变化，都不影响这对训练统计量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-preprocess">划分数据并隔离标准化</a></li></ul></nav>
+
+<h2 id="two-predictions-and-common-targets">两种预测与共同评分目标</h2>
+<p>回到持续刺激的短记录。现在输入 $u$ 单位为V，读数 $y$ 单位为U，已固定 $a=0.5,b=1$ U/V。读数 $[0,1,2,2]$ 对应时刻0—3，输入 $[1,1,0]$ 对应三个区间。</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">目标时刻</th>
+  <th style="text-align:right">观测 / U</th>
+  <th style="text-align:right">一步预测 / U</th>
+  <th style="text-align:right">自由运行 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1.5</td>
+  <td style="text-align:right">1.5</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0.75</td>
+</tr>
+</tbody>
+</table>
+<p>一步预测使用每拍的新观测，自由运行只读取共同初态。两种结果都对后面的三个目标评分，共同起点不加入误差。因此一步平方误差和为 $0+0.25+1=1.25$，自由运行是 $0+0.25+1.5625=1.8125$，RMSE分别为</p>
+<p>$$\sqrt{\frac{1.25}3}\approx0.6455\,\mathrm U,\qquad
+\sqrt{\frac{1.8125}3}\approx0.7773\,\mathrm U.$$</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-prediction">两种预测的误差分别是多少</a></li></ul></nav>
+
+<p>下面左图是刚才的清除候选，右图是这段动态记录的两种预测。它们各自使用相应的输入含义、参数和目标。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-SUMMARY-b0ccf3af-0.png" alt="测量表示、参数辨识与预测验证：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图的比较改变清除参数，右图的比较固定参数而改变实际可用的观测。解释误差变化时，先认出哪个因素在两次计算间改变，再把分数接回实验问题。</p>
+<h2 id="recursive-selection-and-online-evaluation">递推选择与在线评估</h2>
+<p>若参数缓慢变化，可进一步按6.6的指数权重更新。为了检算顺序，取四条无单位读数 $[0,0,2,2]$，特征均为1，初始参数0、逆信息1，候选因子为1与0.5。数组索引1、2用于调参，索引3用于最终在线评分。</p>
+<p>两个候选在调参目标到来前都预测0，因此调参均方误差同为 $(0^2+2^2)/2=2$，按并列规则选择0.5。对所选因子，按记录数展开批量累计量：</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">数组索引</th>
+  <th style="text-align:right">当前读数</th>
+  <th style="text-align:right">更新前预测</th>
+  <th style="text-align:right">新信息 $H$</th>
+  <th style="text-align:right">更新后参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">$3/2$</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">$7/4$</td>
+  <td style="text-align:right">0</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">$15/8$</td>
+  <td style="text-align:right">$16/15$</td>
+</tr>
+<tr>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">$16/15$</td>
+  <td style="text-align:right">$31/16$</td>
+  <td style="text-align:right">$48/31$</td>
+</tr>
+</tbody>
+</table>
+<p>第3索引的读数尚未到达时，能使用的参数是 $16/15$。因此留出误差为 $2-16/15=14/15$，只有一个目标时RMSE也是 $14/15$。使用这条读数更新后，参数才变为 $48/31$，用于此后的预测。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-validation">漂移参数的递推核验</a></li></ul></nav>
+
+<p>这保留了在线评估的时间顺序：评估读数到达以后可以帮助未来更新，却不参与遗忘因子的选择，也不改变已经保存的当前预测。在较长记录中，按同样规则平均每个留出时刻的更新前误差。</p>
+<h2 id="input-output-models-to-state-estimation">从输入输出模型走向状态估计</h2>
+<p>本篇从测量怎样形成记录，走到如何选择表示、拟合参数并评价预测。采样间隔规定可见时间信息，模型结构规定哪些历史参与预测，误差关系和激励决定参数解释，数据划分则保留一次新的预测检验。</p>
+<p>下一篇将把参数已给定或已估计的动态模型继续向前用：当内部状态无法直接看到，怎样结合模型预测与带噪读数恢复它？本篇区分的一步信息、过程扰动、传感器误差和先后顺序，将成为状态估计的起点。</p>
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/6-435-system-identification-spring-2005/pages/lecture-notes/">MIT 6.435讲义</a>串联系统表示、参数估计、激励和模型验证；<a href="https://ocw.mit.edu/courses/2-161-signal-processing-continuous-and-discrete-fall-2008/0908e93cb4f31eac9150b14c1ffdf328_rls.pdf">MIT 2.161的RLS讲义</a>提供在线递推的进一步推导。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-06-递推辨识与时变参数跟踪/read/2/">← 6.6.2 指数遗忘、参数漂移与在线评估</a><a href="/parts/07-状态估计与贝叶斯滤波/">继续：第 7 篇 状态估计与贝叶斯滤波 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

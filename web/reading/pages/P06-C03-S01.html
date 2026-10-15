@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.3.1 线性时不变系统与 Laplace 变换 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C03-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C03-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-response-components">本节练习 · 5 题</a><a class="button" href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.3.1 线性时不变系统与 Laplace 变换</h1>
+<p>学完本节，你应能检验输入与响应的叠加和平移，分开初态与后续输入的贡献，并从单室方程推导带初值项的 Laplace 表示。</p>
+<p><strong>先修知识</strong>：第2篇的乘积求导与定积分，6.2的线性卷积，以及第3篇的复数表示。</p>
+<h2 id="initial-and-input-response">单室方程与响应分解</h2>
+<p>培养室起初已有3 U物质，随后以恒定流率输入。把输入流率加倍，任一时刻的总量也会加倍吗？新增输入的贡献会加倍，最初那3 U留下的部分却保持原样。先把两部分分开，才能准确描述输入与输出的关系。</p>
+<p>沿用总量方程</p>
+<p>$$\dot x(t)=-kx(t)+u(t),\qquad x(0)=x_0.$$</p>
+<p>$x$是所追踪物质总量，单位U；$u$是输入流率，单位U/T。$k$是恒定的<strong>一阶消除速率常数</strong>，单位$\mathrm{T^{-1}}$：它决定清除快慢，乘以当前总量得到消除流率$kx$。物质实验取$k\ge0$以及非负初态和输入。</p>
+<p>把方程写成$\dot x+kx=u$，乘以积分因子$e^{kt}$：</p>
+<p>$$\frac{d}{dt}(e^{kt}x(t))=e^{kt}u(t).$$</p>
+<p>从0积分到$t$，再乘回$e^{-kt}$，就有</p>
+<p>$$\boxed{x(t)=x_0e^{-kt}+\int_0^te^{-k(t-\tau)}u(\tau)\,d\tau.}$$</p>
+<p>第一项是<strong>零输入响应</strong>：后续输入为零，初始总量继续留下多少。第二项是<strong>零状态响应</strong>：初态为零，后续输入累积出多少。这里输入分段连续，0时刻没有瞬时投放，所以$x(0^-)=x(0^+)=x_0$。</p>
+<p>恒定流率为$u_0$、$k&gt;0$时，积分给出</p>
+<p>$$x(t)=\underbrace{x_0e^{-kt}}_{\text{初态贡献}}
++\underbrace{\frac{u_0}{k}(1-e^{-kt})}_{\text{输入贡献}}.$$</p>
+<p>取$k=0.4\,\mathrm{T^{-1}}$、$x_0=3\,\mathrm U$、$t=2\,\mathrm T$，两部分约为</p>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">输入流率 / (U/T)</th>
+  <th style="text-align:right">初态贡献 / U</th>
+  <th style="text-align:right">输入贡献 / U</th>
+  <th style="text-align:right">总量 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1.3480</td>
+  <td style="text-align:right">0</td>
+  <td style="text-align:right">1.3480</td>
+</tr>
+<tr>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">1.3480</td>
+  <td style="text-align:right">1.3767</td>
+  <td style="text-align:right">2.7247</td>
+</tr>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1.3480</td>
+  <td style="text-align:right">2.7534</td>
+  <td style="text-align:right">4.1013</td>
+</tr>
+</tbody>
+</table>
+<p>第三行的总量小于第二行总量的两倍，少的正是一份初态贡献。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-response-components">将初态与输入的作用分开</a></li></ul></nav>
+
+<h2 id="lti-zero-state-map">线性与时不变的定义</h2>
+<p>令$\mathcal T$表示从输入$u$到零状态响应的映射。<strong>线性（linearity）</strong>要求叠加关系</p>
+<p>$$\mathcal T(c_1u_1+c_2u_2)=c_1\mathcal T(u_1)+c_2\mathcal T(u_2)$$</p>
+<p>对允许的输入及实数系数成立。也就是说，分别施加两个输入再把响应按比例相加，与先合成输入再运行系统得到同一结果。数学上可在有正负值的信号空间检验它；物质实验使用其中的非负输入。</p>
+<p>积分的可加性使本例满足这个等式。固定非零初态时，完整响应还多一项$x_0e^{-kt}$：零输入也可能得到非零输出，因此$u\mapsto x$一般是<strong>仿射映射</strong>，即线性映射加上固定项。若把输入和初态一起乘$c$，两部分才都乘$c$。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-linear-map-initial">固定非零初态的映射是否线性</a></li></ul></nav>
+
+<p><strong>时不变（time invariance）</strong>要求：把输入推迟一段时间，零状态响应也只推迟同样时间，形状不变。具体地，输入在0以前为零，将它推迟$d\ge0$得到</p>
+<p>$$u_d(t)=\begin{cases}0,&amp;t&lt;d,\\u(t-d),&amp;t\ge d.\end{cases}$$</p>
+<p>对$t\ge d$，将积分中的$\tau$换成$v+d$：</p>
+<p>$$\begin{aligned}
+\mathcal T(u_d)(t)
+&amp;=\int_d^t e^{-k(t-\tau)}u(\tau-d)\,d\tau\\
+&amp;=\int_0^{t-d}e^{-k((t-d)-v)}u(v)\,dv
+=\mathcal T(u)(t-d).
+\end{aligned}$$</p>
+<p>它只依赖输入作用以后经过多久。线性和时不变同时成立时，称为<strong>线性时不变系统（linear time-invariant system，LTI）</strong>。本例的零状态响应就是输入与因果核$g(t)=e^{-kt}$（$t\ge0$）的卷积。</p>
+<p>若改成$\dot x=-k(t)x+u$，给定的系数随绝对时间改变，叠加仍成立，时不变性一般失效；若改成饱和消除$\dot x=-V_{\max}x/(K+x)+u$，$V_{\max},K$恒定，规则不随时间变，但非线性分式破坏叠加。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-lti-failure">线性与时不变哪个失效</a></li></ul></nav>
+
+<h2 id="laplace-definition-roc">Laplace 变换与收敛域</h2>
+<p>卷积把任意时刻输入的贡献都加起来；变换则让微分和卷积转成更便于求解的代数关系。定义从0开始的<strong>单侧 Laplace 变换</strong></p>
+<p>$$X(s)=\int_0^\infty x(t)e^{-st}\,dt,
+\qquad s=\sigma+i\omega.$$</p>
+<p>$s$的单位是$\mathrm{T^{-1}}$。实部$\sigma$控制额外的指数衰减，虚部$\omega$对应连续时间旋转，单位为rad/T；固定一个$s$，变换就是按这个复指数权重对整条曲线积分。使积分收敛的$s$组成<strong>收敛域（region of convergence，ROC）</strong>。</p>
+<p>例如，对因果核$g(t)=e^{-kt}$，</p>
+<p>$$\begin{aligned}
+G(s)&amp;=\int_0^\infty e^{-(s+k)t}\,dt\\
+&amp;=\left[-\frac{e^{-(s+k)t}}{s+k}\right]_0^\infty
+=\frac1{s+k},\qquad \operatorname{Re}(s)&gt;-k.
+\end{aligned}$$</p>
+<p>实部条件使无穷远的指数项趋零，不能在代数式写出后丢掉。不同时间信号的收敛要求也可能不同：非零恒定信号的变换为常数除以$s$，要求$\operatorname{Re}(s)&gt;0$；因此恒定输入产生的完整响应，要按其自身的收敛条件使用变换。</p>
+<h2 id="laplace-derivative-initial">导数变换与初值项</h2>
+<p>先对乘积求导：</p>
+<p>$$\frac{d}{dt}(x(t)e^{-st})=\dot x(t)e^{-st}-s x(t)e^{-st}.$$</p>
+<p>把最后一项移到右侧并从0积分到无穷，就能将导数的变换写成边界项与原变换：</p>
+<p>$$\begin{aligned}
+\mathcal L\{\dot x\}
+&amp;=\int_0^\infty \dot x(t)e^{-st}\,dt\\
+&amp;=\left[x(t)e^{-st}\right]_0^\infty
++s\int_0^\infty x(t)e^{-st}\,dt\\
+&amp;=sX(s)-x_0.
+\end{aligned}$$</p>
+<p>这里选取的$s$还要让$x(t)e^{-st}$在无穷远消失。0时刻的下边界留下$-x_0$，这就是初值项的来源。</p>
+<p>记输入变换为$U(s)$，对$\dot x=-kx+u$逐项变换：</p>
+<p>$$sX(s)-x_0=-kX(s)+U(s),$$</p>
+<p>所以</p>
+<p>$$\boxed{X(s)=\frac{x_0}{s+k}+\frac1{s+k}U(s).}$$</p>
+<p>它与时间域的两部分一一对应：第一项保留初态，第二项传递输入。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-laplace-initial">导数变换遗漏了哪一项</a></li></ul></nav>
+
+<h2 id="transfer-function-pole-stability">传递函数、极点与有界响应</h2>
+<p><strong>传递函数（transfer function）</strong>描述零状态下的输入输出关系，定义为使$X(s)=H(s)U(s)$成立的$H(s)$。本例为</p>
+<p>$$H(s)=\frac1{s+k}.$$</p>
+<p>$X(s)$单位为U·T，$U(s)$单位为U，因此$H$单位为T；它把输入流率的变换连接到总量的变换。当$k&gt;0$时，取$s=0$得到恒定输入的稳态增益$1/k$，与$x^*=u_0/k$一致。</p>
+<p>对约去公共因子的有理函数，分母的根叫<strong>极点（pole）</strong>，分子的根叫<strong>零点（zero）</strong>。本例极点为$s=-k$，没有有限零点。$k&gt;0$时极点位于左半平面，对应随时间衰减的指数。</p>
+<p>这个衰减怎样保证输入不会累积成无界输出？若输入始终满足$|u(t)|\le M$，零状态响应满足</p>
+<p>$$|x(t)|\le M\int_0^t e^{-k(t-\tau)}\,d\tau\le\frac Mk.$$</p>
+<p>因此它具有<strong>有界输入有界输出稳定性（BIBO stability）</strong>：任一有界输入都产生有界零状态输出。这里用到核的绝对积分$\int_0^\infty|g(t)|\,dt=1/k$。极点位置、指数衰减和这个积分在同一个模型中相互对应。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-roc-causal">极点与收敛域说明什么</a></li></ul></nav>
+
+<p>$k=0$时，方程变成$\dot x=u$，响应为$x_0+\int_0^tu(\tau)d\tau$。非零恒定输入会一直累积，这个<strong>积分器</strong>没有上述BIBO稳定性；恒定输入公式的极限则是$x_0+u_0t$。</p>
+<h2 id="response-components-experiment">初态响应与输入响应的对照</h2>
+<p>下图固定$k=0.4\,\mathrm{T^{-1}}$、$x_0=3\,\mathrm U$。左图把流率1 U/T产生的两部分相加；右图比较“仅将输入加倍”与“把原来的整个响应加倍”。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C03-S01-249d874c-0.png" alt="线性时不变系统与 Laplace 变换：实验结果图" loading="lazy"></figure>
+</section>
+<p>左图的初态贡献下降，输入贡献趋近2.5 U。右图两条曲线的差是一份初态响应$3e^{-0.4t}$ U，随时间衰减。输入输出的叠加关系落在零状态部分；固定初态则为完整响应增加一个与输入无关的部分。</p>
+<p>探索时先把$u$设为0，观察初态留下的轨迹；再把初始总量设为0，观察输入累积。接下来保持同一连续模型，改变采样间隔，便能把这些连续曲线与离散递推连接起来。</p>
+<p class="concept-explore"><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/explore/?concept=P06-C03-S01%3Aresponse-components-experiment">可视化与探索：初态响应与输入响应的对照 →</a></p>
+
+<h2 id="references">参考资料</h2>
+<p><a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec06/">MIT 6.003 第6讲</a>连接连续方程、Laplace变换、收敛域与极点。讲义同时讨论双侧变换；本节用从0开始的单侧形式保留初值。</p>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/chapters/06-02-卷积、频谱与频率响应/read/3/">← 6.2.3 有限记录、窗函数与频率响应</a><a href="/chapters/06-03-LTI 系统、Laplace 与 Z 变换/read/2/">6.3.2 精确采样、Z 变换与离散极点 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>

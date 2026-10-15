@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.1.1 采样率与混叠 · 动手学系统科学</title>
+<link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css">
+<link rel="stylesheet" href="/web/reading/style.css"><link rel="stylesheet" href="/web/vendor/katex/katex.min.css">
+<script defer src="/web/vendor/katex/katex.min.js"></script><script defer src="/web/vendor/katex/contrib/auto-render.min.js"></script>
+</head><body class="reading-page"><main id="main" data-lesson="P06-C01-S01">
+<div id="loading-note" class="notice" role="status" hidden></div>
+<div class="reading-actions"><a class="button primary" href="/notebook/?id=P06-C01-S01" target="_blank" rel="noopener">打开 JupyterLab 实验 ↗</a><a class="button" href="/chapters/06-01-观测、采样与滤波/practice/?question=p06-cosine-samples">本节练习 · 4 题</a><a class="button" href="/chapters/06-01-观测、采样与滤波/explore/">可视化与探索</a></div>
+<div class="reading-layout"><article id="lesson-content"><h1>6.1.1 采样率与混叠</h1>
+<p>学完本节，你应能手算不同节律产生的采样读数，说明混叠怎样发生，并区分取得读数的间隔、绘图网格和数值求解步长。</p>
+<p><strong>先修知识</strong>：连续时间、余弦函数，以及第 5 篇对状态与测量误差的区分。</p>
+<h2 id="frequency-and-sampling-rate">频率、角频率与采样率</h2>
+<p>假设传感器测量某种浓度相对参考水平的偏差。真实节律每秒振荡 0.8 次，传感器每秒却只读一次。读数连起来会呈现多快的变化？先把测量误差设为零，看看仅仅选择不同的观察时刻，会怎样改变能够看到的节律。</p>
+<p>用</p>
+<p>$$x(t)=B\cos(2\pi ft+\phi)$$</p>
+<p>表示一条理想节律。$x$ 与振幅 $B$ 的单位为 U；<strong>频率（frequency）</strong> $f$ 表示每单位时间完成的周期数。时间以秒计时，频率单位为 Hz，即每秒一个周期。$f=0.2\,\mathrm{Hz}$ 对应每 5 s 重复一次。</p>
+<p>一个周期转过 $2\pi$ 弧度，所以<strong>角频率（angular frequency）</strong>为 $\Omega=2\pi f$，单位 rad/s。$2\pi ft$ 给出经过时间 $t$ 后转过的角度，$\phi$ 是时刻零的初相位，以 rad 计。振幅、频率和初相位共同规定这条曲线。</p>
+<p><strong>采样（sampling）</strong>是在指定时刻读取连续信号的值。若每隔 $\Delta t$ 秒读取一次，时刻依次为</p>
+<p>$$t_n=n\Delta t,\qquad n=0,1,2,\ldots.$$</p>
+<p><strong>采样率（sampling rate）</strong> $f_s=1/\Delta t$ 表示每秒读取多少次。用方括号把离散读数与连续曲线区分开，</p>
+<p>$$x[n]=x(t_n)=B\cos\!\left(2\pi\frac f{f_s}n+\phi\right).$$</p>
+<p>$n$ 是样本序号，$f/f_s$ 则是两个相邻读数之间，节律经过了多少个周期。对任意给定的时刻列表，也可以逐个代入 $x(t)$ 取得读数；下面关于频率折叠的推理使用均匀采样时刻。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-01-观测、采样与滤波/practice/?question=p06-cosine-samples">在指定时刻读取节律</a></li></ul></nav>
+
+<h2 id="aliasing-equivalent-samples">相同样本与频率混叠</h2>
+<p>取 $B=1\,\mathrm U$、$\phi=0$，比较 0.2 Hz 和 0.8 Hz。每秒读取一次时，在 $t=1$，两个角度分别为 $0.4\pi$ 和 $1.6\pi=2\pi-0.4\pi$，余弦值相同。继续计算前六个整数时刻：</p>
+<table>
+<thead>
+<tr>
+  <th>时刻 $t$ / s</th>
+  <th>0.2 Hz 读数 / U</th>
+  <th>0.8 Hz 读数 / U</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>1</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>0.309</td>
+  <td>0.309</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>−0.809</td>
+  <td>−0.809</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>−0.809</td>
+  <td>−0.809</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>0.309</td>
+  <td>0.309</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td>1</td>
+  <td>1</td>
+</tr>
+</tbody>
+</table>
+<p>两条连续曲线不同，传感器取得的读数却一样。不同连续信号在给定采样规则下产生相同离散序列，这种现象称为<strong>混叠（aliasing）</strong>。</p>
+<p>相同读数的来源可以用余弦的周期性解释。将频率改为 $f+mf_s$，$m$ 为整数，采样时的角度增加</p>
+<p>$$2\pi\frac{mf_s}{f_s}n=2\pi mn,$$</p>
+<p>恰好是整数圈，因而每个读数都不变。对实余弦，反向转动还会产生另一类等价候选：</p>
+<p>$$\cos\!\left(2\pi\frac{f_s-f}{f_s}n-\phi\right)
+=\cos\!\left(2\pi\frac f{f_s}n+\phi\right).$$</p>
+<p>相位为零时，$f$ 和 $f_s-f$ 可以直接比较。这正是 $f_s=1\,\mathrm{Hz}$ 时，0.8 Hz 折回成 0.2 Hz 的关系；初相位不为零时，折回也要相应改变相位。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-01-观测、采样与滤波/practice/?question=p06-alias-equivalence">相同样本能证明什么</a></li></ul></nav>
+
+<p>在探索页保持真实频率 0.8 Hz，先以 1 Hz 采样，比较原节律、圆点读数与低频候选；再提高采样率，观察哪些新增读数开始区分两条曲线。</p>
+<p class="concept-explore"><a href="/chapters/06-01-观测、采样与滤波/explore/?concept=P06-C01-S01%3Aaliasing-equivalent-samples">可视化与探索：相同样本与频率混叠 →</a></p>
+
+<h2 id="nyquist-frequency-and-bandlimit">奈奎斯特频率与带限条件</h2>
+<p>如果事先知道节律可能包含的频率范围，就能据此选择采样率。采样率的一半</p>
+<p>$$f_N=\frac{f_s}{2}$$</p>
+<p>称为<strong>奈奎斯特频率（Nyquist frequency）</strong>。信号所有频率成分都不超过某个有限的 $f_{\max}$ 时，称为<strong>带限（band-limited）</strong>。例如，纯 0.8 Hz 余弦的频率上限就是 0.8 Hz。</p>
+<p><strong>采样定理（sampling theorem）</strong>说明，在已知频率上限、无限长的精确均匀采样等理想条件下，</p>
+<p>$$f_s&gt;2f_{\max}$$</p>
+<p>可以使一般带限信号得到唯一重建。直观上，采样产生的频率副本相隔 $f_s$，足够宽的间隔使它们分开；6.2 将建立用频率成分描述信号的方法。</p>
+<p>这里采用严格大于，因为恰在边界会漏掉某些相位。例如频率为 $f_s/2$ 的信号</p>
+<p>$$x(t)=\sin\!\left(2\pi\frac{f_s}{2}t\right)$$</p>
+<p>在 $t_n=n/f_s$ 处全部给出 $\sin(\pi n)=0$，与全零信号留下相同记录。有限或含噪记录的重建精度还取决于记录时长和误差，实际选取采样率时也要为滤波器的过渡频段留出余量。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-01-观测、采样与滤波/practice/?question=p06-nyquist-conditions">采样定理的适用前提</a></li></ul></nav>
+
+<h2 id="analog-antialias-and-digital-decimation">模拟抗混叠与数字降采样</h2>
+<p>怎样让送入采样器的信号满足所选频率范围？<strong>抗混叠滤波（anti-aliasing filtering）</strong>是在降低时间分辨率之前，抑制会折叠进入保留频段的高频成分。低通滤波器保留较低频率、衰减较高频率，常用于完成这一步。</p>
+<p>首次把模拟信号送入 ADC（analog-to-digital converter，模数转换器）时，抗混叠必须发生在采样之前，通常由模拟前端滤波完成。数字读数生成后才做平滑，无法再区分已经重合的 0.2 Hz 与 0.8 Hz 两个候选。</p>
+<p>另一种情形是已经取得足够高采样率的数字序列，希望每 $M$ 个点只保留一个点。这称为数字降采样或<strong>抽取（decimation）</strong>，新采样率为 $f_s/M$。应先在数字序列上低通，限制其频率范围，再抽取；两项操作的顺序决定高频是否已经折叠进低频。模拟前端滤波处理第一次取得读数的条件，数字滤波处理已取得序列的再次降采样。</p>
+<h2 id="sampling-plotting-and-integration-grids">采样、绘图与求解的三种间隔</h2>
+<p>下图保持两条候选曲线不变，左侧每秒测一次，右侧每秒测四次。连续线由密集计算点绘出，圆点才表示仪器的读数。</p>
+
+<section class="experiment-example">
+<figure><img src="/web/reading/assets/P06-C01-S01-ef263cf0-0.png" alt="采样率与混叠：实验结果图" loading="lazy"></figure>
+</section>
+<p>在 1 Hz 采样下，两条线经过相同圆点；在 4 Hz 采样下，新增的 $t=0.25$ s 读数已能区分它们：0.2 Hz 候选约为 $0.951\,\mathrm U$，0.8 Hz 原节律约为 $0.309\,\mathrm U$。真实增加的观察时刻，提供了原记录没有的信息。</p>
+<p>这也区分了三个常被混用的时间设置：</p>
+<table>
+<thead>
+<tr>
+  <th>设置</th>
+  <th>决定什么</th>
+  <th>调得更细会改变什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>采样间隔 $\Delta t$</td>
+  <td>仪器何时读取信号</td>
+  <td>实际取得的样本</td>
+</tr>
+<tr>
+  <td>绘图网格</td>
+  <td>画连续参照时在哪些位置计算</td>
+  <td>曲线显示的细密程度</td>
+</tr>
+<tr>
+  <td>数值求解步长</td>
+  <td>用离散更新近似连续演化时每步走多远</td>
+  <td>轨迹近似的数值误差</td>
+</tr>
+</tbody>
+</table>
+<p>本例直接计算余弦，因而没有微分方程求解误差。把它多画一千个点，原先每秒一次的传感器记录仍是那组整数时刻读数。下一节将研究读数到达后怎样平滑，以及平滑为什么会推迟变化。</p>
+<nav class="concept-practice" aria-label="相关练习"><span>相关练习</span><ul><li><a href="/chapters/06-01-观测、采样与滤波/practice/?question=p06-three-clocks">细化哪一个时钟</a></li></ul></nav>
+
+<h2 id="references">参考资料</h2>
+<ul>
+<li><a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec21/">MIT 6.003 第 21 讲：采样</a>：采样副本、混叠与带限信号重建。</li>
+<li><a href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/mit6_003f11_lec22/">MIT 6.003 第 22 讲：采样与量化</a>：模拟读数进入数字表示的条件。</li>
+</ul>
+
+<nav class="lesson-neighbors" aria-label="前后小节"><a href="/parts/05-随机性与信息/综合练习/read/1/">← 篇末综合 重复测量、概率更新与信息</a><a href="/chapters/06-01-观测、采样与滤波/read/2/">6.1.2 因果移动平均与时间延迟 →</a></nav></article>
+<aside class="reading-toc" aria-label="本节内容"><p>本节内容</p><nav id="lesson-toc"></nav></aside></div>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/reading/app.mjs" data-main></script></body></html>
